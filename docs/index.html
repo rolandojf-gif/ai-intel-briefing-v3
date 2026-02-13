@@ -7,26 +7,28 @@
   <title>AI Intel Briefing</title>
   <style>
     :root{
-      --bg:#0b0f14;
-      --panel:#0f1722;
-      --border:#1b2635;
-      --text:#d7e1f0;
-      --muted:#8aa2c2;
-      --neon:#7bdff2;
-      --link:#a78bfa;
-      --chip:#0b1220;
-      --warn:#fbbf24;
+      --bg:#0b0f14; --panel:#0f1722; --border:#1b2635; --text:#d7e1f0;
+      --muted:#8aa2c2; --neon:#7bdff2; --link:#a78bfa; --chip:#0b1220;
     }
     body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; background:var(--bg); color:var(--text); margin:0; }
     header { padding:22px 0; border-bottom:1px solid var(--border); background: linear-gradient(90deg,#0b0f14,#0f1722); }
     .wrap { padding:22px; max-width:1100px; margin:0 auto; }
     h1 { margin:0; font-size:20px; letter-spacing:0.6px; }
-    .sub { color:var(--muted); margin-top:8px; font-size:13px; display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
-    .pill { display:inline-flex; gap:8px; align-items:center; padding:4px 10px; border:1px solid var(--border); background:rgba(15,23,34,0.6); border-radius:999px; font-size:12px; color:var(--muted); }
+    .sub { color:var(--muted); margin-top:8px; font-size:13px; display:flex; gap:10px; flex-wrap:wrap; }
+    .pill { padding:4px 10px; border:1px solid var(--border); background:rgba(15,23,34,0.6); border-radius:999px; font-size:12px; color:var(--muted); }
+
+    .panel { border:1px solid var(--border); background:var(--panel); border-radius:16px; padding:14px; margin:18px 0 16px; }
+    .panel h2 { margin:0 0 10px; font-size:14px; letter-spacing:0.4px; color:var(--neon); }
+    .cols { display:grid; grid-template-columns: 1fr; gap:10px; }
+    @media (min-width: 860px){ .cols { grid-template-columns: 2fr 1fr; } }
+    .box { border:1px solid var(--border); background:rgba(11,18,32,0.55); border-radius:14px; padding:12px; }
+    .box h3 { margin:0 0 8px; font-size:12px; color:var(--muted); letter-spacing:0.3px; }
+    ul { margin:0; padding-left:18px; color:#cfe0ff; }
+    li { margin:6px 0; font-size:13px; line-height:1.25; }
 
     .grid { display:grid; grid-template-columns: 1fr; gap:12px; }
-    .card { border:1px solid var(--border); background:var(--panel); border-radius:14px; padding:14px 14px 12px; }
-    .top { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; }
+    .card { border:1px solid var(--border); background:var(--panel); border-radius:14px; padding:14px; }
+    .top { display:flex; justify-content:space-between; gap:12px; }
     .src { color:var(--neon); font-size:12px; }
     .score { font-size:12px; color:var(--muted); display:flex; gap:8px; align-items:center; }
     .bar { width:90px; height:8px; border-radius:999px; border:1px solid var(--border); background:#0a0f18; overflow:hidden; }
@@ -36,11 +38,7 @@
     .title { margin-top:6px; font-size:15px; line-height:1.3; }
     .meta { color:var(--muted); font-size:12px; margin-top:8px; display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
     .chip { padding:3px 8px; border:1px solid var(--border); background:var(--chip); border-radius:999px; font-size:11px; color:var(--muted); }
-    .chip.primary { border-color: rgba(123,223,242,0.35); }
-    .chip.entity { border-color: rgba(167,139,250,0.35); }
-    .summary { margin-top:10px; color:#b7c7df; font-size:13px; line-height:1.35; }
     .why { margin-top:10px; color:#dbe8ff; font-size:13px; line-height:1.35; }
-    .foot { margin-top:18px; color:var(--muted); font-size:12px; opacity:0.85; }
   </style>
 </head>
 <body>
@@ -48,910 +46,81 @@
   <div class="wrap">
     <h1>AI Intel Briefing</h1>
     <div class="sub">
-      <span class="pill">Cyberpunk sobrio</span>
-      <span class="pill">Generado: 2026-02-13 21:33</span>
-      <span class="pill">Items: 20</span>
+      <span class="pill">Generado: 2026-02-13 22:01</span>
+      <span class="pill">Items: 15</span>
     </div>
   </div>
 </header>
 
 <div class="wrap">
+
+  
+  <div class="panel">
+    <h2>Briefing</h2>
+    <div class="cols">
+      <div class="box">
+        <h3>Señales del día</h3>
+        <ul>
+          
+            <li>NVIDIA presenta la arquitectura Rubin en CES 2026, sucediendo a Blackwell para liderar el hardware de IA.</li>
+          
+            <li>OpenAI despliega GPT-5.2 y GPT-5.3 Codex, marcando la transición definitiva hacia agentes de IA autónomos.</li>
+          
+            <li>La memoria HBM y la tecnología de interconexión superan al cómputo puro como el cuello de botella crítico del sector.</li>
+          
+            <li>Consolidación de la economía del chiplet como estándar arquitectónico para escalar aceleradores de próxima generación.</li>
+          
+            <li>TSMC, Intel y Samsung aceleran la carrera por los nodos de 2nm proyectados para el despliegue masivo en 2026.</li>
+          
+        </ul>
+      </div>
+
+      <div class="box">
+        <h3>Riesgos / cuellos de botella</h3>
+        <ul>
+          
+            <li>Saturación del rendimiento de modelos MoE debido a la degradación por compresión agresiva en despliegues locales.</li>
+          
+            <li>Escasez de datos de alta calidad para el entrenamiento de modelos de optimización y razonamiento complejo.</li>
+          
+            <li>Dependencia crítica de la infraestructura de NVIDIA para el despliegue de los modelos frontera de OpenAI (GPT-5).</li>
+          
+        </ul>
+
+        <h3 style="margin-top:12px;">Entidades dominantes</h3>
+        <ul>
+          
+            <li>NVIDIA</li>
+          
+            <li>OpenAI</li>
+          
+            <li>TSMC</li>
+          
+        </ul>
+
+        <h3 style="margin-top:12px;">Watch (mañana)</h3>
+        <ul>
+          
+            <li>Capacidad de ejecución de Intel Foundry para cerrar la brecha con TSMC en el nodo de 1.8A/2nm.</li>
+          
+            <li>Adopción de agentes de IA en el flujo de diseño y verificación de semiconductores (EDA) para reducir el Time-to-Market.</li>
+          
+            <li>Efectividad de los modelos de mundo interactivos (Project Genie) en aplicaciones industriales de simulación física.</li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+
   <div class="grid">
     
       <div class="card">
         <div class="top">
           <div class="src">NVIDIA Blog (AI)</div>
           <div class="score">
-            <span>Score 95</span>
-            <div class="bar">
-              <div class="fill" style="width: 95%;"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="title">
-          <a href="https://blogs.nvidia.com/blog/leading-models-nvidia/" target="_blank" rel="noreferrer">As AI Grows More Complex, Model Builders Rely on NVIDIA</a>
-        </div>
-
-        <div class="meta">
-          
-            <span class="chip primary">models</span>
-          
-
-          
-            
-              <span class="chip">gpt-5</span>
-            
-              <span class="chip">hopper</span>
-            
-              <span class="chip">gb200</span>
-            
-              <span class="chip">inference</span>
-            
-          
-
-          
-            
-              <span class="chip entity">OpenAI</span>
-            
-              <span class="chip entity">NVIDIA</span>
-            
-          
-
-          
-            
-              <span class="chip">infra</span>
-            
-              <span class="chip">chips</span>
-            
-          
-
-          <span class="chip">2025-12-11T19:19:57+00:00</span>
-        </div>
-
-        
-          <div class="why">Lanzamiento de modelos agenticos de OpenAI entrenados y desplegados sobre la infraestructura más avanzada de NVIDIA.</div>
-        
-      </div>
-    
-      <div class="card">
-        <div class="top">
-          <div class="src">SemiWiki</div>
-          <div class="score">
-            <span>Score 90</span>
-            <div class="bar">
-              <div class="fill" style="width: 90%;"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="title">
-          <a href="https://semiwiki.com/semiconductor-manufacturers/tsmc/366523-tsmc-vs-intel-foundry-vs-samsung-foundry-2026/" target="_blank" rel="noreferrer">TSMC vs Intel Foundry vs Samsung Foundry 2026</a>
-        </div>
-
-        <div class="meta">
-          
-            <span class="chip primary">infra</span>
-          
-
-          
-            
-              <span class="chip">foundry</span>
-            
-              <span class="chip">2nm</span>
-            
-              <span class="chip">logic</span>
-            
-              <span class="chip">semiconductor</span>
-            
-          
-
-          
-            
-              <span class="chip entity">TSMC</span>
-            
-              <span class="chip entity">Intel</span>
-            
-              <span class="chip entity">Samsung</span>
-            
-          
-
-          
-            
-              <span class="chip">infra</span>
-            
-              <span class="chip">chips</span>
-            
-          
-
-          <span class="chip">2026-02-13T14:00:18+00:00</span>
-        </div>
-
-        
-          <div class="why">Competencia crítica entre los tres líderes de fundición para dominar la fabricación de chips de IA de próxima generación en 2026.</div>
-        
-      </div>
-    
-      <div class="card">
-        <div class="top">
-          <div class="src">SemiWiki</div>
-          <div class="score">
-            <span>Score 85</span>
-            <div class="bar">
-              <div class="fill" style="width: 85%;"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="title">
-          <a href="https://semiwiki.com/ip/rambus/366449-how-memory-technology-is-powering-the-next-era-of-compute/" target="_blank" rel="noreferrer">How Memory Technology Is Powering the Next Era of Compute</a>
-        </div>
-
-        <div class="meta">
-          
-            <span class="chip primary">infra</span>
-          
-
-          
-            
-              <span class="chip">memory</span>
-            
-              <span class="chip">hbm</span>
-            
-              <span class="chip">bandwidth</span>
-            
-              <span class="chip">agentic ai</span>
-            
-          
-
-          
-            
-              <span class="chip entity">Rambus</span>
-            
-          
-
-          
-            
-              <span class="chip">infra</span>
-            
-              <span class="chip">chips</span>
-            
-          
-
-          <span class="chip">2026-02-11T18:00:42+00:00</span>
-        </div>
-
-        
-          <div class="why">La tecnología de memoria se identifica como el nuevo cuello de botella crítico para la evolución de la IA generativa y agentica.</div>
-        
-      </div>
-    
-      <div class="card">
-        <div class="top">
-          <div class="src">NVIDIA Blog (AI)</div>
-          <div class="score">
-            <span>Score 80</span>
-            <div class="bar">
-              <div class="fill" style="width: 80%;"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="title">
-          <a href="https://blogs.nvidia.com/blog/isambard-ai/" target="_blank" rel="noreferrer">Isambard-AI, the UK’s Most Powerful AI Supercomputer, Goes Live</a>
-        </div>
-
-        <div class="meta">
-          
-            <span class="chip primary">infra</span>
-          
-
-          
-            
-              <span class="chip">supercomputing</span>
-            
-              <span class="chip">grace hopper</span>
-            
-              <span class="chip">exascale</span>
-            
-              <span class="chip">hpc</span>
-            
-          
-
-          
-            
-              <span class="chip entity">NVIDIA</span>
-            
-              <span class="chip entity">University of Bristol</span>
-            
-          
-
-          
-            
-              <span class="chip">infra</span>
-            
-              <span class="chip">chips</span>
-            
-          
-
-          <span class="chip">2025-07-17T17:00:50+00:00</span>
-        </div>
-
-        
-          <div class="why">Puesta en marcha del supercomputador de IA más potente del Reino Unido basado en chips Grace Hopper de NVIDIA.</div>
-        
-      </div>
-    
-      <div class="card">
-        <div class="top">
-          <div class="src">NVIDIA Blog (AI)</div>
-          <div class="score">
-            <span>Score 75</span>
-            <div class="bar">
-              <div class="fill" style="width: 75%;"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="title">
-          <a href="https://blogs.nvidia.com/blog/physical-ai-research-siggraph-2025/" target="_blank" rel="noreferrer">NVIDIA Research Shapes Physical AI</a>
-        </div>
-
-        <div class="meta">
-          
-            <span class="chip primary">models</span>
-          
-
-          
-            
-              <span class="chip">physical ai</span>
-            
-              <span class="chip">robotics</span>
-            
-              <span class="chip">simulation</span>
-            
-              <span class="chip">graphics</span>
-            
-          
-
-          
-            
-              <span class="chip entity">NVIDIA</span>
-            
-          
-
-          
-            
-              <span class="chip">infra</span>
-            
-              <span class="chip">chips</span>
-            
-          
-
-          <span class="chip">2025-08-11T15:00:38+00:00</span>
-        </div>
-
-        
-          <div class="why">Avances en renderizado neuronal y simulación de mundos para potenciar la robótica y vehículos autónomos.</div>
-        
-      </div>
-    
-      <div class="card">
-        <div class="top">
-          <div class="src">NVIDIA Blog (AI)</div>
-          <div class="score">
-            <span>Score 70</span>
-            <div class="bar">
-              <div class="fill" style="width: 70%;"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="title">
-          <a href="https://blogs.nvidia.com/blog/autonomous-vehicle-ecosystem-ai-models-developer-tools/" target="_blank" rel="noreferrer">NVIDIA Releases New AI Models and Developer Tools to Advance Autonomous Vehicle Ecosystem</a>
-        </div>
-
-        <div class="meta">
-          
-            <span class="chip primary">models</span>
-          
-
-          
-            
-              <span class="chip">autonomous vehicles</span>
-            
-              <span class="chip">simulation</span>
-            
-              <span class="chip">end-to-end</span>
-            
-          
-
-          
-            
-              <span class="chip entity">NVIDIA</span>
-            
-          
-
-          
-            
-              <span class="chip">infra</span>
-            
-              <span class="chip">chips</span>
-            
-          
-
-          <span class="chip">2025-06-11T10:55:36+00:00</span>
-        </div>
-
-        
-          <div class="why">Nuevas herramientas y modelos para acelerar la transición hacia arquitecturas de conducción autónoma de extremo a extremo.</div>
-        
-      </div>
-    
-      <div class="card">
-        <div class="top">
-          <div class="src">NVIDIA Blog (AI)</div>
-          <div class="score">
-            <span>Score 65</span>
-            <div class="bar">
-              <div class="fill" style="width: 65%;"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="title">
-          <a href="https://blogs.nvidia.com/blog/uk-llm-nemotron/" target="_blank" rel="noreferrer">Reaching Across the Isles: UK-LLM Brings AI to UK Languages With NVIDIA Nemotron</a>
-        </div>
-
-        <div class="meta">
-          
-            <span class="chip primary">models</span>
-          
-
-          
-            
-              <span class="chip">sovereign ai</span>
-            
-              <span class="chip">nemotron</span>
-            
-              <span class="chip">llm</span>
-            
-              <span class="chip">multi-lingual</span>
-            
-          
-
-          
-            
-              <span class="chip entity">NVIDIA</span>
-            
-          
-
-          
-            
-              <span class="chip">infra</span>
-            
-              <span class="chip">chips</span>
-            
-          
-
-          <span class="chip">2025-09-14T01:00:21+00:00</span>
-        </div>
-
-        
-          <div class="why">Iniciativa de IA soberana del Reino Unido utilizando Nemotron para preservar y potenciar lenguas celtas.</div>
-        
-      </div>
-    
-      <div class="card">
-        <div class="top">
-          <div class="src">SemiWiki</div>
-          <div class="score">
-            <span>Score 65</span>
-            <div class="bar">
-              <div class="fill" style="width: 65%;"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="title">
-          <a href="https://semiwiki.com/eda/amiq-eda/366471-giving-ai-agents-access-to-a-compiled-design-and-verification-database/" target="_blank" rel="noreferrer">Giving AI Agents Access to a Compiled Design and Verification Database</a>
-        </div>
-
-        <div class="meta">
-          
-            <span class="chip primary">infra</span>
-          
-
-          
-            
-              <span class="chip">eda</span>
-            
-              <span class="chip">chip design</span>
-            
-              <span class="chip">agents</span>
-            
-              <span class="chip">verification</span>
-            
-          
-
-          
-            
-              <span class="chip entity">AMIQ EDA</span>
-            
-          
-
-          
-            
-              <span class="chip">infra</span>
-            
-              <span class="chip">chips</span>
-            
-          
-
-          <span class="chip">2026-02-12T16:00:40+00:00</span>
-        </div>
-
-        
-          <div class="why">Uso de agentes de IA para automatizar y mejorar el diseño y verificación de semiconductores.</div>
-        
-      </div>
-    
-      <div class="card">
-        <div class="top">
-          <div class="src">arXiv cs.LG</div>
-          <div class="score">
-            <span>Score 60</span>
-            <div class="bar">
-              <div class="fill" style="width: 60%;"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="title">
-          <a href="https://arxiv.org/abs/2602.11184" target="_blank" rel="noreferrer">KBVQ-MoE: KLT-guided SVD with Bias-Corrected Vector Quantization for MoE Large Language Models</a>
-        </div>
-
-        <div class="meta">
-          
-            <span class="chip primary">models</span>
-          
-
-          
-            
-              <span class="chip">moe</span>
-            
-              <span class="chip">quantization</span>
-            
-              <span class="chip">efficiency</span>
-            
-              <span class="chip">compression</span>
-            
-          
-
-          
-
-          
-            
-              <span class="chip">papers</span>
-            
-              <span class="chip">models</span>
-            
-          
-
-          <span class="chip">2026-02-13T05:00:00+00:00</span>
-        </div>
-
-        
-          <div class="why">Método de compresión para modelos MoE que permite su despliegue en entornos de recursos limitados sin gran pérdida de precisión.</div>
-        
-      </div>
-    
-      <div class="card">
-        <div class="top">
-          <div class="src">arXiv cs.AI</div>
-          <div class="score">
-            <span>Score 55</span>
-            <div class="bar">
-              <div class="fill" style="width: 55%;"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="title">
-          <a href="https://arxiv.org/abs/2602.11229" target="_blank" rel="noreferrer">Latent Generative Solvers for Generalizable Long-Term Physics Simulation</a>
-        </div>
-
-        <div class="meta">
-          
-            <span class="chip primary">models</span>
-          
-
-          
-            
-              <span class="chip">physics</span>
-            
-              <span class="chip">simulation</span>
-            
-              <span class="chip">pde</span>
-            
-              <span class="chip">transformer</span>
-            
-          
-
-          
-
-          
-            
-              <span class="chip">papers</span>
-            
-              <span class="chip">models</span>
-            
-          
-
-          <span class="chip">2026-02-13T05:00:00+00:00</span>
-        </div>
-
-        
-          <div class="why">Marco de trabajo para simulaciones físicas de largo plazo más estables y generalizables mediante espacios latentes.</div>
-        
-      </div>
-    
-      <div class="card">
-        <div class="top">
-          <div class="src">NVIDIA Blog (AI)</div>
-          <div class="score">
-            <span>Score 50</span>
-            <div class="bar">
-              <div class="fill" style="width: 50%;"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="title">
-          <a href="https://blogs.nvidia.com/blog/nvidia-research-ai-graphics/" target="_blank" rel="noreferrer">Innovation to Impact: How NVIDIA Research Fuels Transformative Work in AI, Graphics and Beyond</a>
-        </div>
-
-        <div class="meta">
-          
-            <span class="chip primary">misc</span>
-          
-
-          
-            
-              <span class="chip">r&d</span>
-            
-              <span class="chip">innovation</span>
-            
-              <span class="chip">graphics</span>
-            
-              <span class="chip">architecture</span>
-            
-          
-
-          
-            
-              <span class="chip entity">NVIDIA</span>
-            
-          
-
-          
-            
-              <span class="chip">infra</span>
-            
-              <span class="chip">chips</span>
-            
-          
-
-          <span class="chip">2025-03-20T00:00:24+00:00</span>
-        </div>
-
-        
-          <div class="why">Resumen del impacto de la investigación de NVIDIA en el desarrollo de tecnologías fundacionales para centros de datos.</div>
-        
-      </div>
-    
-      <div class="card">
-        <div class="top">
-          <div class="src">NVIDIA Blog (AI)</div>
-          <div class="score">
-            <span>Score 45</span>
-            <div class="bar">
-              <div class="fill" style="width: 45%;"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="title">
-          <a href="https://blogs.nvidia.com/blog/ai-sign-language/" target="_blank" rel="noreferrer">It’s a Sign: AI Platform for Teaching American Sign Language Aims to Bridge Communication Gaps</a>
-        </div>
-
-        <div class="meta">
-          
-            <span class="chip primary">models</span>
-          
-
-          
-            
-              <span class="chip">asl</span>
-            
-              <span class="chip">accessibility</span>
-            
-              <span class="chip">datasets</span>
-            
-              <span class="chip">inclusion</span>
-            
-          
-
-          
-            
-              <span class="chip entity">NVIDIA</span>
-            
-          
-
-          
-            
-              <span class="chip">infra</span>
-            
-              <span class="chip">chips</span>
-            
-          
-
-          <span class="chip">2025-02-20T14:30:18+00:00</span>
-        </div>
-
-        
-          <div class="why">Cierre de la brecha de datos en IA para el lenguaje de señas americano mediante herramientas especializadas.</div>
-        
-      </div>
-    
-      <div class="card">
-        <div class="top">
-          <div class="src">arXiv cs.LG</div>
-          <div class="score">
-            <span>Score 40</span>
-            <div class="bar">
-              <div class="fill" style="width: 40%;"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="title">
-          <a href="https://arxiv.org/abs/2602.11164" target="_blank" rel="noreferrer">Automated Optimization Modeling via a Localizable Error-Driven Perspective</a>
-        </div>
-
-        <div class="meta">
-          
-            <span class="chip primary">models</span>
-          
-
-          
-            
-              <span class="chip">llm</span>
-            
-              <span class="chip">optimization</span>
-            
-              <span class="chip">post-training</span>
-            
-          
-
-          
-
-          
-            
-              <span class="chip">papers</span>
-            
-              <span class="chip">models</span>
-            
-          
-
-          <span class="chip">2026-02-13T05:00:00+00:00</span>
-        </div>
-
-        
-          <div class="why">Investigación para mejorar la capacidad de los LLM en modelado de optimización mediante la identificación de patrones de error.</div>
-        
-      </div>
-    
-      <div class="card">
-        <div class="top">
-          <div class="src">arXiv cs.AI</div>
-          <div class="score">
-            <span>Score 35</span>
-            <div class="bar">
-              <div class="fill" style="width: 35%;"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="title">
-          <a href="https://arxiv.org/abs/2602.11159" target="_blank" rel="noreferrer">Explaining AI Without Code: A User Study on Explainable AI</a>
-        </div>
-
-        <div class="meta">
-          
-            <span class="chip primary">misc</span>
-          
-
-          
-            
-              <span class="chip">xai</span>
-            
-              <span class="chip">no-code</span>
-            
-              <span class="chip">usability</span>
-            
-              <span class="chip">transparency</span>
-            
-          
-
-          
-
-          
-            
-              <span class="chip">papers</span>
-            
-              <span class="chip">models</span>
-            
-          
-
-          <span class="chip">2026-02-13T05:00:00+00:00</span>
-        </div>
-
-        
-          <div class="why">Estudio sobre la implementación de IA explicable en plataformas sin código para democratizar el entendimiento de modelos.</div>
-        
-      </div>
-    
-      <div class="card">
-        <div class="top">
-          <div class="src">NVIDIA Blog (AI)</div>
-          <div class="score">
-            <span>Score 30</span>
-            <div class="bar">
-              <div class="fill" style="width: 30%;"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="title">
-          <a href="https://blogs.nvidia.com/blog/applications-open-graduate-fellowship-awards-2025/" target="_blank" rel="noreferrer">Applications Now Open for $60,000 NVIDIA Graduate Fellowship Awards</a>
-        </div>
-
-        <div class="meta">
-          
-            <span class="chip primary">invest</span>
-          
-
-          
-            
-              <span class="chip">fellowship</span>
-            
-              <span class="chip">grants</span>
-            
-              <span class="chip">talent</span>
-            
-              <span class="chip">research</span>
-            
-          
-
-          
-            
-              <span class="chip entity">NVIDIA</span>
-            
-          
-
-          
-            
-              <span class="chip">infra</span>
-            
-              <span class="chip">chips</span>
-            
-          
-
-          <span class="chip">2025-08-13T15:00:02+00:00</span>
-        </div>
-
-        
-          <div class="why">Inversión en talento académico para fomentar investigaciones relevantes al ecosistema de computación acelerada.</div>
-        
-      </div>
-    
-      <div class="card">
-        <div class="top">
-          <div class="src">Google AI Blog</div>
-          <div class="score">
-            <span>Score 17</span>
-            <div class="bar">
-              <div class="fill" style="width: 17%;"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="title">
-          <a href="https://blog.google/company-news/outreach-and-initiatives/accessibility/natively-adaptive-interfaces-ai-accessibility/" target="_blank" rel="noreferrer">Natively Adaptive Interfaces: A new framework for AI accessibility</a>
-        </div>
-
-        <div class="meta">
-          
-            <span class="chip primary">models</span>
-          
-
-          
-            
-              <span class="chip">models</span>
-            
-          
-
-          
-
-          
-            
-              <span class="chip">labs</span>
-            
-              <span class="chip">models</span>
-            
-          
-
-          <span class="chip">2026-02-05T17:00:00+00:00</span>
-        </div>
-
-        
-          <div class="why">A collage of four images, the first of a woman with curly hair in front of a silver laptop, the second of the same woman and a man with short black hair speakin</div>
-        
-      </div>
-    
-      <div class="card">
-        <div class="top">
-          <div class="src">Google AI Blog</div>
-          <div class="score">
-            <span>Score 16</span>
-            <div class="bar">
-              <div class="fill" style="width: 16%;"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="title">
-          <a href="https://blog.google/innovation-and-ai/technology/ai/release-notes-podcast-project-genie/" target="_blank" rel="noreferrer">Hear more about interactive world models in our latest podcast.</a>
-        </div>
-
-        <div class="meta">
-          
-            <span class="chip primary">models</span>
-          
-
-          
-            
-              <span class="chip">models</span>
-            
-          
-
-          
-
-          
-            
-              <span class="chip">labs</span>
-            
-              <span class="chip">models</span>
-            
-          
-
-          <span class="chip">2026-01-29T15:00:00+00:00</span>
-        </div>
-
-        
-          <div class="why">Project Genie: Create and explore worlds</div>
-        
-      </div>
-    
-      <div class="card">
-        <div class="top">
-          <div class="src">NVIDIA Blog (AI)</div>
-          <div class="score">
-            <span>Score 13</span>
-            <div class="bar">
-              <div class="fill" style="width: 13%;"></div>
-            </div>
+            <span>Score 98</span>
+            <div class="bar"><div class="fill" style="width: 98%;"></div></div>
           </div>
         </div>
 
@@ -960,31 +129,64 @@
         </div>
 
         <div class="meta">
-          
-            <span class="chip primary">models</span>
-          
-
-          
-            
-              <span class="chip">models</span>
-            
-          
-
-          
-
-          
-            
-              <span class="chip">infra</span>
-            
-              <span class="chip">chips</span>
-            
-          
-
+          <span class="chip">infra</span>
+          <span class="chip">rubin</span><span class="chip">ces-2026</span><span class="chip">gpu</span>
+          <span class="chip">NVIDIA</span><span class="chip">Jensen Huang</span>
           <span class="chip">2026-01-05T23:30:18+00:00</span>
         </div>
 
         
-          <div class="why">NVIDIA founder and CEO Jensen Huang took the stage at the Fontainebleau Las Vegas to open CES 2026, declaring that AI is scaling into every domain and every dev</div>
+          <div class="why">NVIDIA Rubin es el anuncio de hardware más relevante, marcando la trayectoria del mercado de IA para los próximos 24 meses.</div>
+        
+      </div>
+    
+      <div class="card">
+        <div class="top">
+          <div class="src">NVIDIA Blog (AI)</div>
+          <div class="score">
+            <span>Score 95</span>
+            <div class="bar"><div class="fill" style="width: 95%;"></div></div>
+          </div>
+        </div>
+
+        <div class="title">
+          <a href="https://blogs.nvidia.com/blog/leading-models-nvidia/" target="_blank" rel="noreferrer">As AI Grows More Complex, Model Builders Rely on NVIDIA</a>
+        </div>
+
+        <div class="meta">
+          <span class="chip">models</span>
+          <span class="chip">gpt-5</span><span class="chip">agentic-ai</span><span class="chip">hopper</span>
+          <span class="chip">OpenAI</span><span class="chip">NVIDIA</span>
+          <span class="chip">2025-12-11T19:19:57+00:00</span>
+        </div>
+
+        
+          <div class="why">El lanzamiento de GPT-5.2/5.3 sobre infraestructura GB200 valida el salto hacia la IA agéntica capaz de autorreparar código y razonar.</div>
+        
+      </div>
+    
+      <div class="card">
+        <div class="top">
+          <div class="src">Google AI Blog</div>
+          <div class="score">
+            <span>Score 95</span>
+            <div class="bar"><div class="fill" style="width: 95%;"></div></div>
+          </div>
+        </div>
+
+        <div class="title">
+          <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-deep-think/" target="_blank" rel="noreferrer">Gemini 3 Deep Think: Advancing science, research and engineering</a>
+        </div>
+
+        <div class="meta">
+          <span class="chip">models</span>
+          <span class="chip">reasoning</span><span class="chip">gemini-3</span><span class="chip">science</span>
+          <span class="chip">Google DeepMind</span><span class="chip">Gemini</span>
+          <span class="chip">2026-02-12T16:13:00+00:00</span>
+        </div>
+
+        
+          <div class="why">Gemini 3 Deep Think representa el mayor avance de Google en modelos de razonamiento logico y cientifico.</div>
         
       </div>
     
@@ -992,10 +194,83 @@
         <div class="top">
           <div class="src">SemiWiki</div>
           <div class="score">
-            <span>Score 13</span>
-            <div class="bar">
-              <div class="fill" style="width: 13%;"></div>
-            </div>
+            <span>Score 88</span>
+            <div class="bar"><div class="fill" style="width: 88%;"></div></div>
+          </div>
+        </div>
+
+        <div class="title">
+          <a href="https://semiwiki.com/semiconductor-manufacturers/tsmc/366523-tsmc-vs-intel-foundry-vs-samsung-foundry-2026/" target="_blank" rel="noreferrer">TSMC vs Intel Foundry vs Samsung Foundry 2026</a>
+        </div>
+
+        <div class="meta">
+          <span class="chip">infra</span>
+          <span class="chip">foundry</span><span class="chip">2nm</span><span class="chip">semiconductors</span>
+          <span class="chip">TSMC</span><span class="chip">Intel</span><span class="chip">Samsung</span>
+          <span class="chip">2026-02-13T14:00:18+00:00</span>
+        </div>
+
+        
+          <div class="why">La competencia tripartita por el nodo de 2026 definirá la capacidad de fabricación global para la próxima generación de aceleradores de IA.</div>
+        
+      </div>
+    
+      <div class="card">
+        <div class="top">
+          <div class="src">Google AI Blog</div>
+          <div class="score">
+            <span>Score 85</span>
+            <div class="bar"><div class="fill" style="width: 85%;"></div></div>
+          </div>
+        </div>
+
+        <div class="title">
+          <a href="https://blog.google/innovation-and-ai/models-and-research/google-deepmind/project-genie/" target="_blank" rel="noreferrer">Project Genie: Experimenting with infinite, interactive worlds</a>
+        </div>
+
+        <div class="meta">
+          <span class="chip">models</span>
+          <span class="chip">generative-world</span><span class="chip">simulation</span><span class="chip">gaming</span>
+          <span class="chip">Google DeepMind</span>
+          <span class="chip">2026-01-29T17:00:00+00:00</span>
+        </div>
+
+        
+          <div class="why">Project Genie redefine la creacion de entornos virtuales permitiendo interactividad total a partir de prompts basicos.</div>
+        
+      </div>
+    
+      <div class="card">
+        <div class="top">
+          <div class="src">SemiWiki</div>
+          <div class="score">
+            <span>Score 82</span>
+            <div class="bar"><div class="fill" style="width: 82%;"></div></div>
+          </div>
+        </div>
+
+        <div class="title">
+          <a href="https://semiwiki.com/ip/rambus/366449-how-memory-technology-is-powering-the-next-era-of-compute/" target="_blank" rel="noreferrer">How Memory Technology Is Powering the Next Era of Compute</a>
+        </div>
+
+        <div class="meta">
+          <span class="chip">infra</span>
+          <span class="chip">memory</span><span class="chip">bandwidth</span><span class="chip">hbm</span>
+          <span class="chip">Rambus</span>
+          <span class="chip">2026-02-11T18:00:42+00:00</span>
+        </div>
+
+        
+          <div class="why">Identifica correctamente la memoria como el nuevo factor limitante frente al poder de procesamiento bruto de las GPUs actuales.</div>
+        
+      </div>
+    
+      <div class="card">
+        <div class="top">
+          <div class="src">SemiWiki</div>
+          <div class="score">
+            <span>Score 76</span>
+            <div class="bar"><div class="fill" style="width: 76%;"></div></div>
           </div>
         </div>
 
@@ -1004,28 +279,39 @@
         </div>
 
         <div class="meta">
-          
-            <span class="chip primary">infra</span>
-          
-
-          
-
-          
-
-          
-            
-              <span class="chip">infra</span>
-            
-              <span class="chip">chips</span>
-            
-          
-
+          <span class="chip">infra</span>
+          <span class="chip">chiplets</span><span class="chip">packaging</span><span class="chip">interconnect</span>
+          <span class="chip">Silicon Catalyst</span>
           <span class="chip">2026-02-12T18:00:04+00:00</span>
         </div>
 
         
-          <div class="why"><p>
-<p>The rapid evolution of semiconductor design has elevated <a href="https://semiwiki.com/category/chiplet/">chiplets</a> from a niche concept to a foundati</div>
+          <div class="why">La transición a chiplets es necesaria para superar los límites físicos de los dies monolíticos en procesadores de IA.</div>
+        
+      </div>
+    
+      <div class="card">
+        <div class="top">
+          <div class="src">arXiv cs.LG</div>
+          <div class="score">
+            <span>Score 75</span>
+            <div class="bar"><div class="fill" style="width: 75%;"></div></div>
+          </div>
+        </div>
+
+        <div class="title">
+          <a href="https://arxiv.org/abs/2602.11184" target="_blank" rel="noreferrer">KBVQ-MoE: KLT-guided SVD with Bias-Corrected Vector Quantization for MoE Large Language Models</a>
+        </div>
+
+        <div class="meta">
+          <span class="chip">models</span>
+          <span class="chip">compression</span><span class="chip">moe</span><span class="chip">quantization</span>
+          
+          <span class="chip">2026-02-13T05:00:00+00:00</span>
+        </div>
+
+        
+          <div class="why">KBVQ-MoE aborda el principal problema de los modelos MoE: su inmenso tamaño, facilitando el despliegue en hardware de consumo.</div>
         
       </div>
     
@@ -1033,10 +319,83 @@
         <div class="top">
           <div class="src">SemiWiki</div>
           <div class="score">
-            <span>Score 13</span>
-            <div class="bar">
-              <div class="fill" style="width: 13%;"></div>
-            </div>
+            <span>Score 74</span>
+            <div class="bar"><div class="fill" style="width: 74%;"></div></div>
+          </div>
+        </div>
+
+        <div class="title">
+          <a href="https://semiwiki.com/eda/amiq-eda/366471-giving-ai-agents-access-to-a-compiled-design-and-verification-database/" target="_blank" rel="noreferrer">Giving AI Agents Access to a Compiled Design and Verification Database</a>
+        </div>
+
+        <div class="meta">
+          <span class="chip">infra</span>
+          <span class="chip">eda</span><span class="chip">chip-design</span><span class="chip">agents</span>
+          <span class="chip">AMIQ EDA</span>
+          <span class="chip">2026-02-12T16:00:40+00:00</span>
+        </div>
+
+        
+          <div class="why">La aplicación de agentes de IA en el diseño de chips (EDA) acelera el ciclo de innovación del propio hardware de IA.</div>
+        
+      </div>
+    
+      <div class="card">
+        <div class="top">
+          <div class="src">arXiv cs.AI</div>
+          <div class="score">
+            <span>Score 70</span>
+            <div class="bar"><div class="fill" style="width: 70%;"></div></div>
+          </div>
+        </div>
+
+        <div class="title">
+          <a href="https://arxiv.org/abs/2602.11229" target="_blank" rel="noreferrer">Latent Generative Solvers for Generalizable Long-Term Physics Simulation</a>
+        </div>
+
+        <div class="meta">
+          <span class="chip">models</span>
+          <span class="chip">physics</span><span class="chip">simulation</span><span class="chip">pde</span>
+          
+          <span class="chip">2026-02-13T05:00:00+00:00</span>
+        </div>
+
+        
+          <div class="why">El uso de Transformers para simulaciones físicas de largo plazo permite gemelos digitales más estables y generalizables.</div>
+        
+      </div>
+    
+      <div class="card">
+        <div class="top">
+          <div class="src">Google AI Blog</div>
+          <div class="score">
+            <span>Score 68</span>
+            <div class="bar"><div class="fill" style="width: 68%;"></div></div>
+          </div>
+        </div>
+
+        <div class="title">
+          <a href="https://blog.google/innovation-and-ai/technology/ai/release-notes-podcast-project-genie/" target="_blank" rel="noreferrer">Hear more about interactive world models in our latest podcast.</a>
+        </div>
+
+        <div class="meta">
+          <span class="chip">models</span>
+          <span class="chip">world-models</span><span class="chip">genie</span><span class="chip">interactive</span>
+          <span class="chip">Google DeepMind</span>
+          <span class="chip">2026-01-29T15:00:00+00:00</span>
+        </div>
+
+        
+          <div class="why">Project Genie representa un avance en modelos de mundo, esenciales para la robótica y la IA espacial.</div>
+        
+      </div>
+    
+      <div class="card">
+        <div class="top">
+          <div class="src">SemiWiki</div>
+          <div class="score">
+            <span>Score 65</span>
+            <div class="bar"><div class="fill" style="width: 65%;"></div></div>
           </div>
         </div>
 
@@ -1045,35 +404,94 @@
         </div>
 
         <div class="meta">
-          
-            <span class="chip primary">infra</span>
-          
-
-          
-
-          
-
-          
-            
-              <span class="chip">infra</span>
-            
-              <span class="chip">chips</span>
-            
-          
-
+          <span class="chip">infra</span>
+          <span class="chip">edge-ai</span><span class="chip">ip</span><span class="chip">silicon</span>
+          <span class="chip">Ceva</span>
           <span class="chip">2026-02-12T14:00:05+00:00</span>
         </div>
 
         
-          <div class="why"><p><a href="https://www.ceva-ip.com/">Ceva, Inc.</a> is known as a leading licensor of silicon and software IP for connected devices and is actively transformin</div>
+          <div class="why">La evolución de IP para IA en el borde (Edge) es fundamental para reducir la latencia y dependencia de la nube.</div>
+        
+      </div>
+    
+      <div class="card">
+        <div class="top">
+          <div class="src">arXiv cs.LG</div>
+          <div class="score">
+            <span>Score 62</span>
+            <div class="bar"><div class="fill" style="width: 62%;"></div></div>
+          </div>
+        </div>
+
+        <div class="title">
+          <a href="https://arxiv.org/abs/2602.11164" target="_blank" rel="noreferrer">Automated Optimization Modeling via a Localizable Error-Driven Perspective</a>
+        </div>
+
+        <div class="meta">
+          <span class="chip">models</span>
+          <span class="chip">optimization</span><span class="chip">llms</span><span class="chip">post-training</span>
+          
+          <span class="chip">2026-02-13T05:00:00+00:00</span>
+        </div>
+
+        
+          <div class="why">Propone soluciones a la escasez de datos en modelos de optimización, un campo crítico para la toma de decisiones empresariales.</div>
+        
+      </div>
+    
+      <div class="card">
+        <div class="top">
+          <div class="src">Google AI Blog</div>
+          <div class="score">
+            <span>Score 60</span>
+            <div class="bar"><div class="fill" style="width: 60%;"></div></div>
+          </div>
+        </div>
+
+        <div class="title">
+          <a href="https://blog.google/innovation-and-ai/models-and-research/google-deepmind/kaggle-game-arena-updates/" target="_blank" rel="noreferrer">Advancing AI benchmarking with Game Arena</a>
+        </div>
+
+        <div class="meta">
+          <span class="chip">models</span>
+          <span class="chip">benchmarking</span><span class="chip">evaluation</span><span class="chip">game-arena</span>
+          <span class="chip">Google DeepMind</span><span class="chip">Kaggle</span>
+          <span class="chip">2026-02-02T17:00:00+00:00</span>
+        </div>
+
+        
+          <div class="why">Nuevos métodos de evaluación en entornos dinámicos son clave para medir el progreso real de las capacidades de razonamiento.</div>
+        
+      </div>
+    
+      <div class="card">
+        <div class="top">
+          <div class="src">Google AI Blog</div>
+          <div class="score">
+            <span>Score 58</span>
+            <div class="bar"><div class="fill" style="width: 58%;"></div></div>
+          </div>
+        </div>
+
+        <div class="title">
+          <a href="https://blog.google/products-and-platforms/products/google-one/google-ai-plus-availability/" target="_blank" rel="noreferrer">Google AI Plus is now available everywhere our AI plans are available, including the U.S.</a>
+        </div>
+
+        <div class="meta">
+          <span class="chip">invest</span>
+          <span class="chip">monetization</span><span class="chip">subscription</span><span class="chip">google</span>
+          <span class="chip">Google</span>
+          <span class="chip">2026-01-27T18:00:00+00:00</span>
+        </div>
+
+        
+          <div class="why">La expansión de Google AI Plus indica una fase de monetización agresiva para recuperar inversiones masivas en CAPEX.</div>
         
       </div>
     
   </div>
 
-  <div class="foot">
-    Si ves “why”, viene del LLM. Si no, es el summary RSS. Si algo parece hype, aún estamos afinando prompts y scoring.
-  </div>
 </div>
 </body>
 </html>
