@@ -1,0 +1,34 @@
+name: Daily AI Intel Briefing
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 6 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Generate site
+        run: python src/main.py
+
+      - name: Commit and push docs
+        run: |
+          git config user.name "ai-intel-bot"
+          git config user.email "ai-intel-bot@users.noreply.github.com"
+          git add docs/index.html
+          git commit -m "Daily briefing" || echo "No changes"
+          git push
