@@ -146,48 +146,33 @@ def main():
 
     final_items = reranked[:15]
 
-    # 6️⃣ Guardar snapshot diario
-    today = datetime.now().strftime("%Y-%m-%d")
+    # ... tu código anterior
 
-    scores = [x.get("score", 0) for x in final_items]
-    score_avg = round(statistics.mean(scores), 1) if scores else 0
+# 6️⃣ Snapshot JSON
+top_entities = sorted(entity_counts.items(), key=lambda x: x[1], reverse=True)[:5]
+top_entities = [{"entity": e, "count": c} for e, c in top_entities]  # mejor que tuplas
 
-    primary_dist = {}
-    for x in final_items:
-        p = x.get("primary", "misc")
-        primary_dist[p] = primary_dist.get(p, 0) + 1
+daily_snapshot = {
+    "date": today,
+    "score_avg": score_avg,
+    "primary_dist": primary_dist,
+    "top_entities": top_entities,
+    "briefing": briefing,
+    "items": final_items,
+}
 
-    entities_flat = []
-    for x in final_items:
-        entities_flat.extend(x.get("entities", []))
+Path("docs/data").mkdir(parents=True, exist_ok=True)
+Path(f"docs/data/{today}.json").write_text(
+    json.dumps(daily_snapshot, ensure_ascii=False, indent=2),
+    encoding="utf-8"
+)
 
-    entity_counts = {}
-    for e in entities_flat:
-        entity_counts[e] = entity_counts.get(e, 0) + 1
+# 7️⃣ Render HTML (index)
+html = render_index(final_items, briefing=briefing)
 
-    top_entities = sorted(entity_counts.items(), key=lambda x: x[1], reverse=True)[:5]
+Path("docs").mkdir(exist_ok=True)
+Path("docs/index.html").write_text(html, encoding="utf-8")
 
-    daily_snapshot = {
-        "date": today,
-        "score_avg": score_avg,
-        "primary_dist": primary_dist,
-        "top_entities": top_entities,
-        "briefing": briefing,
-        "items": final_items,
-    }
-
-    Path("docs/data").mkdir(parents=True, exist_ok=True)
-    Path(f"docs/data/{today}.json").write_text(
-        json.dumps(daily_snapshot, ensure_ascii=False, indent=2),
-        encoding="utf-8"
-    )
-
-    # 7️⃣ Render HTML
-    html = render_index(final_items, briefing=briefing)
-
-    Path("docs").mkdir(exist_ok=True)
-    Path("docs/index.html").write_text(html, encoding="utf-8")
-
-
-if __name__ == "__main__":
-    main()
+# 8️⃣ Weekly radar (no bloquea el daily si falla)
+import subprocess
+subprocess.run(["python", "-m", "src.weekly"], check=False)
