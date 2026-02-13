@@ -11,7 +11,7 @@ def main():
     for s in cfg["sources"]:
         if s.get("type") != "rss":
             continue
-        for it in fetch_rss(s["url"], limit=20):
+        for it in fetch_rss(s["url"], limit=8):
             if not it.get("title") or not it.get("link"):
                 continue
             it["source"] = s["name"]
