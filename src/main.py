@@ -21,6 +21,7 @@ def main():
     per_source_cap = {
         "arXiv cs.AI": 2,
         "arXiv cs.LG": 2,   # opcional, quítalo si quieres más LG
+        "NVIDIA Blog": 2,
     }
     per_source_count = {}
 
