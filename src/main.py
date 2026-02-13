@@ -221,12 +221,16 @@ def main():
     Path("docs").mkdir(exist_ok=True)
     Path("docs/index.html").write_text(html, encoding="utf-8")
 
-    # 8️⃣ Weekly radar (direct call)
-    try:
-        from src.weekly import main as weekly_main
-        weekly_main()
-    except Exception as e:
-        print("WEEKLY FAILED:", repr(e))
+    # 8️⃣ Weekly radar (direct call + traceback)
+try:
+    from src.weekly import main as weekly_main
+    weekly_main()
+    print("WEEKLY OK -> docs/weekly.html")
+except Exception:
+    import traceback
+    print("WEEKLY FAILED (traceback):")
+    traceback.print_exc()
+
 
 
 if __name__ == "__main__":
