@@ -15,13 +15,15 @@
       --neon:#7bdff2;
       --link:#a78bfa;
       --chip:#0b1220;
+      --warn:#fbbf24;
     }
     body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; background:var(--bg); color:var(--text); margin:0; }
     header { padding:22px 0; border-bottom:1px solid var(--border); background: linear-gradient(90deg,#0b0f14,#0f1722); }
     .wrap { padding:22px; max-width:1100px; margin:0 auto; }
     h1 { margin:0; font-size:20px; letter-spacing:0.6px; }
-    .sub { color:var(--muted); margin-top:6px; font-size:13px; display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+    .sub { color:var(--muted); margin-top:8px; font-size:13px; display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
     .pill { display:inline-flex; gap:8px; align-items:center; padding:4px 10px; border:1px solid var(--border); background:rgba(15,23,34,0.6); border-radius:999px; font-size:12px; color:var(--muted); }
+
     .grid { display:grid; grid-template-columns: 1fr; gap:12px; }
     .card { border:1px solid var(--border); background:var(--panel); border-radius:14px; padding:14px 14px 12px; }
     .top { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; }
@@ -34,7 +36,10 @@
     .title { margin-top:6px; font-size:15px; line-height:1.3; }
     .meta { color:var(--muted); font-size:12px; margin-top:8px; display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
     .chip { padding:3px 8px; border:1px solid var(--border); background:var(--chip); border-radius:999px; font-size:11px; color:var(--muted); }
+    .chip.primary { border-color: rgba(123,223,242,0.35); }
+    .chip.entity { border-color: rgba(167,139,250,0.35); }
     .summary { margin-top:10px; color:#b7c7df; font-size:13px; line-height:1.35; }
+    .why { margin-top:10px; color:#dbe8ff; font-size:13px; line-height:1.35; }
     .foot { margin-top:18px; color:var(--muted); font-size:12px; opacity:0.85; }
   </style>
 </head>
@@ -44,8 +49,8 @@
     <h1>AI Intel Briefing</h1>
     <div class="sub">
       <span class="pill">Cyberpunk sobrio</span>
-      <span class="pill">Generado: 2026-02-13 20:33</span>
-      <span class="pill">Top señales (cap ~20)</span>
+      <span class="pill">Generado: 2026-02-13 21:00</span>
+      <span class="pill">Items: 20</span>
     </div>
   </div>
 </header>
@@ -57,9 +62,9 @@
         <div class="top">
           <div class="src">SemiWiki</div>
           <div class="score">
-            <span>Score 63</span>
+            <span>Score 88</span>
             <div class="bar">
-              <div class="fill" style="width: 63%;"></div>
+              <div class="fill" style="width: 88%;"></div>
             </div>
           </div>
         </div>
@@ -69,22 +74,47 @@
         </div>
 
         <div class="meta">
-          <span class="chip">infra</span>
           
-            <span class="chip">infra</span>
+            <span class="chip primary">infra</span>
           
+
           
-            <span class="chip">infra</span>
+            
+              <span class="chip">foundry</span>
+            
+              <span class="chip">2nm</span>
+            
+              <span class="chip">semiconductors</span>
+            
+              <span class="chip">manufacturing</span>
+            
+              <span class="chip">roadmap</span>
+            
           
-            <span class="chip">chips</span>
+
           
+            
+              <span class="chip entity">TSMC</span>
+            
+              <span class="chip entity">Intel</span>
+            
+              <span class="chip entity">Samsung</span>
+            
+          
+
+          
+            
+              <span class="chip">infra</span>
+            
+              <span class="chip">chips</span>
+            
+          
+
           <span class="chip">2026-02-13T14:00:18+00:00</span>
         </div>
 
         
-          <div class="summary">
-            The global semiconductor industry sits at the foundation of modern technology, powering everything from smartphones and cloud data centers to artificial intelligence, automobiles, and national defense systems. At the center of advanced chip manufacturing are three major players: TSMC, Samsung Foundry, and Intel Foundr…
-          </div>
+          <div class="why">La competencia en nodos de vanguardia para 2026 definira la capacidad de produccion y eficiencia energetica de la proxima generacion de chips de IA.</div>
         
       </div>
     
@@ -92,9 +122,9 @@
         <div class="top">
           <div class="src">arXiv cs.AI</div>
           <div class="score">
-            <span>Score 57</span>
+            <span>Score 72</span>
             <div class="bar">
-              <div class="fill" style="width: 57%;"></div>
+              <div class="fill" style="width: 72%;"></div>
             </div>
           </div>
         </div>
@@ -104,63 +134,43 @@
         </div>
 
         <div class="meta">
-          <span class="chip">models</span>
           
-            <span class="chip">invest</span>
+            <span class="chip primary">models</span>
           
-            <span class="chip">models</span>
+
           
+            
+              <span class="chip">multimodal</span>
+            
+              <span class="chip">llm-as-a-judge</span>
+            
+              <span class="chip">prompt-optimization</span>
+            
+              <span class="chip">vlm</span>
+            
+              <span class="chip">evaluation</span>
+            
           
-            <span class="chip">papers</span>
+
           
-            <span class="chip">models</span>
+            
+              <span class="chip entity">arXiv</span>
+            
           
+
+          
+            
+              <span class="chip">papers</span>
+            
+              <span class="chip">models</span>
+            
+          
+
           <span class="chip">2026-02-13T05:00:00+00:00</span>
         </div>
 
         
-          <div class="summary">
-            arXiv:2602.11340v1 Announce Type: new Abstract: Large language models (LLMs) have become widely adopted as automated judges for evaluating AI-generated content. Despite their success, aligning LLM-based evaluations with human judgments remains challenging. While supervised fine-tuning on human-labeled data can improve…
-          </div>
-        
-      </div>
-    
-      <div class="card">
-        <div class="top">
-          <div class="src">arXiv cs.LG</div>
-          <div class="score">
-            <span>Score 53</span>
-            <div class="bar">
-              <div class="fill" style="width: 53%;"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="title">
-          <a href="https://arxiv.org/abs/2602.11186" target="_blank" rel="noreferrer">GAC-KAN: An Ultra-Lightweight GNSS Interference Classifier for GenAI-Powered Consumer Edge Devices</a>
-        </div>
-
-        <div class="meta">
-          <span class="chip">models</span>
-          
-            <span class="chip">infra</span>
-          
-            <span class="chip">invest</span>
-          
-            <span class="chip">models</span>
-          
-          
-            <span class="chip">papers</span>
-          
-            <span class="chip">models</span>
-          
-          <span class="chip">2026-02-13T05:00:00+00:00</span>
-        </div>
-
-        
-          <div class="summary">
-            arXiv:2602.11186v1 Announce Type: new Abstract: The integration of Generative AI (GenAI) into Consumer Electronics (CE)--from AI-powered assistants in wearables to generative planning in autonomous Uncrewed Aerial Vehicles (UAVs)--has revolutionized user experiences. However, these GenAI applications impose immense co…
-          </div>
+          <div class="why">Optimiza la evaluacion automatica multimodad al convertir imagenes en texto para superar limites de ventana de contexto en el refinamiento de prompts.</div>
         
       </div>
     
@@ -168,9 +178,67 @@
         <div class="top">
           <div class="src">arXiv cs.AI</div>
           <div class="score">
-            <span>Score 50</span>
+            <span>Score 72</span>
             <div class="bar">
-              <div class="fill" style="width: 50%;"></div>
+              <div class="fill" style="width: 72%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="title">
+          <a href="https://arxiv.org/abs/2602.11351" target="_blank" rel="noreferrer">Pushing Forward Pareto Frontiers of Proactive Agents with Behavioral Agentic Optimization</a>
+        </div>
+
+        <div class="meta">
+          
+            <span class="chip primary">models</span>
+          
+
+          
+            
+              <span class="chip">agentic ai</span>
+            
+              <span class="chip">reinforcement learning</span>
+            
+              <span class="chip">proactive agents</span>
+            
+              <span class="chip">human-computer interaction</span>
+            
+          
+
+          
+            
+              <span class="chip entity">OpenAI</span>
+            
+              <span class="chip entity">Anthropic</span>
+            
+              <span class="chip entity">Google DeepMind</span>
+            
+          
+
+          
+            
+              <span class="chip">papers</span>
+            
+              <span class="chip">models</span>
+            
+          
+
+          <span class="chip">2026-02-13T05:00:00+00:00</span>
+        </div>
+
+        
+          <div class="why">Propone BAO, un marco de RL que optimiza el equilibrio entre la proactividad del agente y la satisfaccion del usuario evitando interacciones redundantes.</div>
+        
+      </div>
+    
+      <div class="card">
+        <div class="top">
+          <div class="src">arXiv cs.AI</div>
+          <div class="score">
+            <span>Score 68</span>
+            <div class="bar">
+              <div class="fill" style="width: 68%;"></div>
             </div>
           </div>
         </div>
@@ -180,22 +248,101 @@
         </div>
 
         <div class="meta">
-          <span class="chip">models</span>
           
-            <span class="chip">models</span>
+            <span class="chip primary">models</span>
           
+
           
-            <span class="chip">papers</span>
+            
+              <span class="chip">agents</span>
+            
+              <span class="chip">benchmarking</span>
+            
+              <span class="chip">robustness</span>
+            
+              <span class="chip">reliability</span>
+            
+              <span class="chip">llm</span>
+            
           
-            <span class="chip">models</span>
+
           
+            
+              <span class="chip entity">OpenAI</span>
+            
+              <span class="chip entity">Anthropic</span>
+            
+              <span class="chip entity">Google</span>
+            
+              <span class="chip entity">Meta</span>
+            
+          
+
+          
+            
+              <span class="chip">papers</span>
+            
+              <span class="chip">models</span>
+            
+          
+
           <span class="chip">2026-02-13T05:00:00+00:00</span>
         </div>
 
         
-          <div class="summary">
-            arXiv:2602.11348v1 Announce Type: new Abstract: Recent advances in large language models have enabled LLM-based agents to achieve strong performance on a variety of benchmarks. However, their performance in real-world deployments often that observed on benchmark settings, especially in complex and imperfect environmen…
+          <div class="why">Proporciona un marco de evaluacion critico para cerrar la brecha entre el rendimiento de agentes en benchmarks idealizados y su despliegue en entornos reales ruidosos.</div>
+        
+      </div>
+    
+      <div class="card">
+        <div class="top">
+          <div class="src">arXiv cs.LG</div>
+          <div class="score">
+            <span>Score 65</span>
+            <div class="bar">
+              <div class="fill" style="width: 65%;"></div>
+            </div>
           </div>
+        </div>
+
+        <div class="title">
+          <a href="https://arxiv.org/abs/2602.11186" target="_blank" rel="noreferrer">GAC-KAN: An Ultra-Lightweight GNSS Interference Classifier for GenAI-Powered Consumer Edge Devices</a>
+        </div>
+
+        <div class="meta">
+          
+            <span class="chip primary">models</span>
+          
+
+          
+            
+              <span class="chip">edge ai</span>
+            
+              <span class="chip">security</span>
+            
+              <span class="chip">kan</span>
+            
+              <span class="chip">gnss</span>
+            
+              <span class="chip">iot</span>
+            
+          
+
+          
+
+          
+            
+              <span class="chip">papers</span>
+            
+              <span class="chip">models</span>
+            
+          
+
+          <span class="chip">2026-02-13T05:00:00+00:00</span>
+        </div>
+
+        
+          <div class="why">Propone un modelo ultra-ligero para proteger señales GNSS en dispositivos de borde sin comprometer los recursos limitados requeridos por aplicaciones de GenAI.</div>
         
       </div>
     
@@ -203,9 +350,9 @@
         <div class="top">
           <div class="src">arXiv cs.AI</div>
           <div class="score">
-            <span>Score 47</span>
+            <span>Score 65</span>
             <div class="bar">
-              <div class="fill" style="width: 47%;"></div>
+              <div class="fill" style="width: 65%;"></div>
             </div>
           </div>
         </div>
@@ -215,24 +362,49 @@
         </div>
 
         <div class="meta">
-          <span class="chip">models</span>
           
-            <span class="chip">invest</span>
+            <span class="chip primary">infra</span>
           
-            <span class="chip">models</span>
+
           
+            
+              <span class="chip">security</span>
+            
+              <span class="chip">agents</span>
+            
+              <span class="chip">enterprise</span>
+            
+              <span class="chip">governance</span>
+            
+              <span class="chip">architecture</span>
+            
           
-            <span class="chip">papers</span>
+
           
-            <span class="chip">models</span>
+            
+              <span class="chip entity">NIST</span>
+            
+              <span class="chip entity">OpenAI</span>
+            
+              <span class="chip entity">Anthropic</span>
+            
+              <span class="chip entity">NVIDIA</span>
+            
           
+
+          
+            
+              <span class="chip">papers</span>
+            
+              <span class="chip">models</span>
+            
+          
+
           <span class="chip">2026-02-13T05:00:00+00:00</span>
         </div>
 
         
-          <div class="summary">
-            arXiv:2602.11301v1 Announce Type: new Abstract: Enterprises are rapidly deploying large language models, retrieval augmented generation pipelines, and tool using agents into production, often on shared high performance computing clusters and cloud accelerator platforms that also support defensive analytics. These syst…
-          </div>
+          <div class="why">Propone una arquitectura tecnica multi-agente para cerrar la brecha entre los marcos de gobernanza teoricos y la seguridad operativa en infraestructuras de IA.</div>
         
       </div>
     
@@ -252,24 +424,33 @@
         </div>
 
         <div class="meta">
-          <span class="chip">infra</span>
           
-            <span class="chip">infra</span>
+            <span class="chip primary">infra</span>
           
-            <span class="chip">models</span>
+
           
+            
+              <span class="chip">infra</span>
+            
+              <span class="chip">models</span>
+            
           
-            <span class="chip">infra</span>
+
           
-            <span class="chip">chips</span>
+
           
+            
+              <span class="chip">infra</span>
+            
+              <span class="chip">chips</span>
+            
+          
+
           <span class="chip">2025-12-11T19:19:57+00:00</span>
         </div>
 
         
-          <div class="summary">
-            Unveiling what it describes as the most capable model series yet for professional knowledge work, OpenAI launched GPT-5.2 in December. The model was trained and deployed on NVIDIA infrastructure, including NVIDIA Hopper and GB200 NVL72 systems. GPT-5.3 Codex — the first OpenAI agentic coding model to help build itself…
-          </div>
+          <div class="why">Unveiling what it describes as the most capable model series yet for professional knowledge work, OpenAI launched GPT-5.2 in December. The model was trained and</div>
         
       </div>
     
@@ -289,98 +470,36 @@
         </div>
 
         <div class="meta">
-          <span class="chip">infra</span>
           
-            <span class="chip">infra</span>
+            <span class="chip primary">infra</span>
           
-            <span class="chip">invest</span>
+
           
-            <span class="chip">models</span>
+            
+              <span class="chip">infra</span>
+            
+              <span class="chip">invest</span>
+            
+              <span class="chip">models</span>
+            
           
+
           
-            <span class="chip">papers</span>
+
           
-            <span class="chip">models</span>
+            
+              <span class="chip">papers</span>
+            
+              <span class="chip">models</span>
+            
           
+
           <span class="chip">2026-02-13T05:00:00+00:00</span>
         </div>
 
         
-          <div class="summary">
-            arXiv:2602.11187v1 Announce Type: new Abstract: The rapid growth of electronics has accelerated the adoption of 2.5D integrated circuits, where effective automated chiplet placement is essential as systems scale to larger and more heterogeneous chiplet assemblies. Existing placement methods typically focus on minimizi…
-          </div>
-        
-      </div>
-    
-      <div class="card">
-        <div class="top">
-          <div class="src">NVIDIA Blog (AI)</div>
-          <div class="score">
-            <span>Score 36</span>
-            <div class="bar">
-              <div class="fill" style="width: 36%;"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="title">
-          <a href="https://blogs.nvidia.com/blog/physical-ai-research-siggraph-2025/" target="_blank" rel="noreferrer">NVIDIA Research Shapes Physical AI</a>
-        </div>
-
-        <div class="meta">
-          <span class="chip">infra</span>
-          
-            <span class="chip">infra</span>
-          
-            <span class="chip">models</span>
-          
-          
-            <span class="chip">infra</span>
-          
-            <span class="chip">chips</span>
-          
-          <span class="chip">2025-08-11T15:00:38+00:00</span>
-        </div>
-
-        
-          <div class="summary">
-            AI and graphics research breakthroughs in neural rendering, 3D generation and world simulation power robotics, autonomous vehicles and content creation.
-          </div>
-        
-      </div>
-    
-      <div class="card">
-        <div class="top">
-          <div class="src">arXiv cs.AI</div>
-          <div class="score">
-            <span>Score 47</span>
-            <div class="bar">
-              <div class="fill" style="width: 47%;"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="title">
-          <a href="https://arxiv.org/abs/2602.11351" target="_blank" rel="noreferrer">Pushing Forward Pareto Frontiers of Proactive Agents with Behavioral Agentic Optimization</a>
-        </div>
-
-        <div class="meta">
-          <span class="chip">models</span>
-          
-            <span class="chip">models</span>
-          
-          
-            <span class="chip">papers</span>
-          
-            <span class="chip">models</span>
-          
-          <span class="chip">2026-02-13T05:00:00+00:00</span>
-        </div>
-
-        
-          <div class="summary">
-            arXiv:2602.11351v1 Announce Type: new Abstract: Proactive large language model (LLM) agents aim to actively plan, query, and interact over multiple turns, enabling efficient task completion beyond passive instruction following and making them essential for real-world, user-centric applications. Agentic reinforcement l…
-          </div>
+          <div class="why">arXiv:2602.11187v1 Announce Type: new 
+Abstract: The rapid growth of electronics has accelerated the adoption of 2.5D integrated circuits, where effective autom</div>
         
       </div>
     
@@ -400,22 +519,32 @@
         </div>
 
         <div class="meta">
-          <span class="chip">models</span>
           
-            <span class="chip">models</span>
+            <span class="chip primary">models</span>
           
+
           
-            <span class="chip">papers</span>
+            
+              <span class="chip">models</span>
+            
           
-            <span class="chip">models</span>
+
           
+
+          
+            
+              <span class="chip">papers</span>
+            
+              <span class="chip">models</span>
+            
+          
+
           <span class="chip">2026-02-13T05:00:00+00:00</span>
         </div>
 
         
-          <div class="summary">
-            arXiv:2602.11190v1 Announce Type: new Abstract: Time series forecasting is crucial for the World Wide Web and represents a core technical challenge in ensuring the stable and efficient operation of modern web services, such as intelligent transportation and website throughput. However, we have found that existing meth…
-          </div>
+          <div class="why">arXiv:2602.11190v1 Announce Type: new 
+Abstract: Time series forecasting is crucial for the World Wide Web and represents a core technical challenge in ensuring</div>
         
       </div>
     
@@ -435,22 +564,32 @@
         </div>
 
         <div class="meta">
-          <span class="chip">models</span>
           
-            <span class="chip">models</span>
+            <span class="chip primary">models</span>
           
+
           
-            <span class="chip">papers</span>
+            
+              <span class="chip">models</span>
+            
           
-            <span class="chip">models</span>
+
           
+
+          
+            
+              <span class="chip">papers</span>
+            
+              <span class="chip">models</span>
+            
+          
+
           <span class="chip">2026-02-13T05:00:00+00:00</span>
         </div>
 
         
-          <div class="summary">
-            arXiv:2602.11354v1 Announce Type: new Abstract: The literature has witnessed an emerging interest in AI agents for automated assessment of scientific papers. Existing benchmarks focus primarily on the computational aspect of this task, testing agents' ability to reproduce or replicate research outcomes when having acc…
-          </div>
+          <div class="why">arXiv:2602.11354v1 Announce Type: new 
+Abstract: The literature has witnessed an emerging interest in AI agents for automated assessment of scientific papers. E</div>
         
       </div>
     
@@ -470,24 +609,34 @@
         </div>
 
         <div class="meta">
-          <span class="chip">models</span>
           
-            <span class="chip">infra</span>
+            <span class="chip primary">models</span>
           
-            <span class="chip">models</span>
+
           
+            
+              <span class="chip">infra</span>
+            
+              <span class="chip">models</span>
+            
           
-            <span class="chip">papers</span>
+
           
-            <span class="chip">models</span>
+
           
+            
+              <span class="chip">papers</span>
+            
+              <span class="chip">models</span>
+            
+          
+
           <span class="chip">2026-02-13T05:00:00+00:00</span>
         </div>
 
         
-          <div class="summary">
-            arXiv:2602.11200v1 Announce Type: new Abstract: Ambient intelligence, continuously understanding human presence, activity, and physiology in physical spaces, is fundamental to smart environments, health monitoring, and human-computer interaction. WiFi infrastructure provides a ubiquitous, always-on, privacy-preserving…
-          </div>
+          <div class="why">arXiv:2602.11200v1 Announce Type: new 
+Abstract: Ambient intelligence, continuously understanding human presence, activity, and physiology in physical spaces, i</div>
         
       </div>
     
@@ -507,24 +656,80 @@
         </div>
 
         <div class="meta">
-          <span class="chip">models</span>
           
-            <span class="chip">infra</span>
+            <span class="chip primary">models</span>
           
-            <span class="chip">models</span>
+
           
+            
+              <span class="chip">infra</span>
+            
+              <span class="chip">models</span>
+            
           
-            <span class="chip">papers</span>
+
           
-            <span class="chip">models</span>
+
           
+            
+              <span class="chip">papers</span>
+            
+              <span class="chip">models</span>
+            
+          
+
           <span class="chip">2026-02-13T05:00:00+00:00</span>
         </div>
 
         
-          <div class="summary">
-            arXiv:2602.11185v1 Announce Type: new Abstract: Gradient signals in LLM training are highly anisotropic: recurrent linguistic structure concentrates energy into a small set of dominant spectral directions, while context specific information resides in a long tail. We show that this spike tail separation persists throu…
+          <div class="why">arXiv:2602.11185v1 Announce Type: new 
+Abstract: Gradient signals in LLM training are highly anisotropic: recurrent linguistic structure concentrates energy int</div>
+        
+      </div>
+    
+      <div class="card">
+        <div class="top">
+          <div class="src">NVIDIA Blog (AI)</div>
+          <div class="score">
+            <span>Score 36</span>
+            <div class="bar">
+              <div class="fill" style="width: 36%;"></div>
+            </div>
           </div>
+        </div>
+
+        <div class="title">
+          <a href="https://blogs.nvidia.com/blog/physical-ai-research-siggraph-2025/" target="_blank" rel="noreferrer">NVIDIA Research Shapes Physical AI</a>
+        </div>
+
+        <div class="meta">
+          
+            <span class="chip primary">infra</span>
+          
+
+          
+            
+              <span class="chip">infra</span>
+            
+              <span class="chip">models</span>
+            
+          
+
+          
+
+          
+            
+              <span class="chip">infra</span>
+            
+              <span class="chip">chips</span>
+            
+          
+
+          <span class="chip">2025-08-11T15:00:38+00:00</span>
+        </div>
+
+        
+          <div class="why">AI and graphics research breakthroughs in neural rendering, 3D generation and world simulation power robotics, autonomous vehicles and content creation.</div>
         
       </div>
     
@@ -544,29 +749,315 @@
         </div>
 
         <div class="meta">
-          <span class="chip">models</span>
           
-            <span class="chip">models</span>
+            <span class="chip primary">models</span>
           
+
           
-            <span class="chip">papers</span>
+            
+              <span class="chip">models</span>
+            
           
-            <span class="chip">models</span>
+
           
+
+          
+            
+              <span class="chip">papers</span>
+            
+              <span class="chip">models</span>
+            
+          
+
           <span class="chip">2026-02-13T05:00:00+00:00</span>
         </div>
 
         
-          <div class="summary">
-            arXiv:2602.11164v1 Announce Type: new Abstract: Automated optimization modeling via Large Language Models (LLMs) has emerged as a promising approach to assist complex human decision-making. While post-training has become a pivotal technique to enhance LLMs' capabilities in this domain, its effectiveness is severely co…
+          <div class="why">arXiv:2602.11164v1 Announce Type: new 
+Abstract: Automated optimization modeling via Large Language Models (LLMs) has emerged as a promising approach to assist </div>
+        
+      </div>
+    
+      <div class="card">
+        <div class="top">
+          <div class="src">arXiv cs.LG</div>
+          <div class="score">
+            <span>Score 33</span>
+            <div class="bar">
+              <div class="fill" style="width: 33%;"></div>
+            </div>
           </div>
+        </div>
+
+        <div class="title">
+          <a href="https://arxiv.org/abs/2602.11208" target="_blank" rel="noreferrer">Adaptive Physics Transformer with Fused Global-Local Attention for Subsurface Energy Systems</a>
+        </div>
+
+        <div class="meta">
+          
+            <span class="chip primary">models</span>
+          
+
+          
+            
+              <span class="chip">infra</span>
+            
+              <span class="chip">models</span>
+            
+          
+
+          
+
+          
+            
+              <span class="chip">papers</span>
+            
+              <span class="chip">models</span>
+            
+          
+
+          <span class="chip">2026-02-13T05:00:00+00:00</span>
+        </div>
+
+        
+          <div class="why">arXiv:2602.11208v1 Announce Type: new 
+Abstract: The Earth's subsurface is a cornerstone of modern society, providing essential energy resources like hydrocarbo</div>
+        
+      </div>
+    
+      <div class="card">
+        <div class="top">
+          <div class="src">NVIDIA Blog (AI)</div>
+          <div class="score">
+            <span>Score 33</span>
+            <div class="bar">
+              <div class="fill" style="width: 33%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="title">
+          <a href="https://blogs.nvidia.com/blog/uk-llm-nemotron/" target="_blank" rel="noreferrer">Reaching Across the Isles: UK-LLM Brings AI to UK Languages With NVIDIA Nemotron</a>
+        </div>
+
+        <div class="meta">
+          
+            <span class="chip primary">models</span>
+          
+
+          
+            
+              <span class="chip">infra</span>
+            
+              <span class="chip">models</span>
+            
+              <span class="chip">geopol</span>
+            
+          
+
+          
+
+          
+            
+              <span class="chip">infra</span>
+            
+              <span class="chip">chips</span>
+            
+          
+
+          <span class="chip">2025-09-14T01:00:21+00:00</span>
+        </div>
+
+        
+          <div class="why">Celtic languages — including Cornish, Irish, Scottish Gaelic and Welsh — are the U.K.’s oldest living languages. To empower their speakers, the UK-LLM sovereign</div>
+        
+      </div>
+    
+      <div class="card">
+        <div class="top">
+          <div class="src">arXiv cs.AI</div>
+          <div class="score">
+            <span>Score 32</span>
+            <div class="bar">
+              <div class="fill" style="width: 32%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="title">
+          <a href="https://arxiv.org/abs/2602.11229" target="_blank" rel="noreferrer">Latent Generative Solvers for Generalizable Long-Term Physics Simulation</a>
+        </div>
+
+        <div class="meta">
+          
+            <span class="chip primary">models</span>
+          
+
+          
+            
+              <span class="chip">models</span>
+            
+          
+
+          
+
+          
+            
+              <span class="chip">papers</span>
+            
+              <span class="chip">models</span>
+            
+          
+
+          <span class="chip">2026-02-13T05:00:00+00:00</span>
+        </div>
+
+        
+          <div class="why">arXiv:2602.11229v1 Announce Type: new 
+Abstract: We study long-horizon surrogate simulation across heterogeneous PDE systems. We introduce Latent Generative Sol</div>
+        
+      </div>
+    
+      <div class="card">
+        <div class="top">
+          <div class="src">arXiv cs.LG</div>
+          <div class="score">
+            <span>Score 32</span>
+            <div class="bar">
+              <div class="fill" style="width: 32%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="title">
+          <a href="https://arxiv.org/abs/2602.11184" target="_blank" rel="noreferrer">KBVQ-MoE: KLT-guided SVD with Bias-Corrected Vector Quantization for MoE Large Language Models</a>
+        </div>
+
+        <div class="meta">
+          
+            <span class="chip primary">models</span>
+          
+
+          
+            
+              <span class="chip">models</span>
+            
+          
+
+          
+
+          
+            
+              <span class="chip">papers</span>
+            
+              <span class="chip">models</span>
+            
+          
+
+          <span class="chip">2026-02-13T05:00:00+00:00</span>
+        </div>
+
+        
+          <div class="why">arXiv:2602.11184v1 Announce Type: new 
+Abstract: Mixture of Experts (MoE) models have achieved great success by significantly improving performance while mainta</div>
+        
+      </div>
+    
+      <div class="card">
+        <div class="top">
+          <div class="src">arXiv cs.LG</div>
+          <div class="score">
+            <span>Score 32</span>
+            <div class="bar">
+              <div class="fill" style="width: 32%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="title">
+          <a href="https://arxiv.org/abs/2602.11192" target="_blank" rel="noreferrer">MELINOE: Fine-Tuning Enables Memory-Efficient Inference for Mixture-of-Experts Models</a>
+        </div>
+
+        <div class="meta">
+          
+            <span class="chip primary">models</span>
+          
+
+          
+            
+              <span class="chip">models</span>
+            
+          
+
+          
+
+          
+            
+              <span class="chip">papers</span>
+            
+              <span class="chip">models</span>
+            
+          
+
+          <span class="chip">2026-02-13T05:00:00+00:00</span>
+        </div>
+
+        
+          <div class="why">arXiv:2602.11192v1 Announce Type: new 
+Abstract: Mixture-of-Experts (MoE) model architectures can significantly reduce the number of activated parameters per to</div>
+        
+      </div>
+    
+      <div class="card">
+        <div class="top">
+          <div class="src">SemiWiki</div>
+          <div class="score">
+            <span>Score 31</span>
+            <div class="bar">
+              <div class="fill" style="width: 31%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="title">
+          <a href="https://semiwiki.com/ip/rambus/366449-how-memory-technology-is-powering-the-next-era-of-compute/" target="_blank" rel="noreferrer">How Memory Technology Is Powering the Next Era of Compute</a>
+        </div>
+
+        <div class="meta">
+          
+            <span class="chip primary">infra</span>
+          
+
+          
+            
+              <span class="chip">infra</span>
+            
+              <span class="chip">models</span>
+            
+          
+
+          
+
+          
+            
+              <span class="chip">infra</span>
+            
+              <span class="chip">chips</span>
+            
+          
+
+          <span class="chip">2026-02-11T18:00:42+00:00</span>
+        </div>
+
+        
+          <div class="why"><p>For more than a decade, progress in artificial intelligence has been framed almost entirely through the lens of compute. Faster GPUs, denser accelerators, an</div>
         
       </div>
     
   </div>
 
   <div class="foot">
-    Nota: esto aún es scoring heurístico (keywords + bonus por fuente). El siguiente salto será Gemini Flash para clasificar y resumir mejor sin tragar artículos enteros.
+    Si ves “why”, viene del LLM. Si no, es el summary RSS. Si algo parece hype, aún estamos afinando prompts y scoring.
   </div>
 </div>
 </body>
