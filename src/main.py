@@ -50,7 +50,6 @@ def main():
         "arXiv cs.LG": 2,
         "NVIDIA Blog": 2,
     }
-
     per_source_count = {}
 
     # 1️⃣ Ingesta RSS
@@ -84,16 +83,16 @@ def main():
 
     # 2️⃣ Dedup
     seen = set()
-    dedup = []
+    deduped = []
     for it in items:
         if it["link"] in seen:
             continue
         seen.add(it["link"])
-        dedup.append(it)
+        deduped.append(it)
 
     # 3️⃣ Preselección heurística
-    dedup.sort(key=lambda x: x.get("score", 0), reverse=True)
-    candidates = dedup[:30]
+    deduped.sort(key=lambda x: x.get("score", 0), reverse=True)
+    candidates = deduped[:30]
 
     # 4️⃣ Preparar batch Gemini
     batch_in = []
@@ -111,46 +110,43 @@ def main():
     briefings = []
 
     for part in chunk(batch_in, 15):
-    try:
-        out = rank_batch(part)
-        results_map.update(out.get("map", {}))
-        briefings.append(out.get("briefing", {}))
-   except Exception as e:
-    print("GEMINI rank_batch FAILED:", repr(e))
+        try:
+            out = rank_batch(part)
+            results_map.update(out.get("map", {}))
+            briefings.append(out.get("briefing", {}))
+        except Exception as e:
+            print("GEMINI rank_batch FAILED:", repr(e))
 
-
-
-  briefing = merge_briefings(briefings) if briefings else {
-    "signals": [],
-    "risks": [],
-    "watch": [],
-    "entities_top": []
-}
-
-# Fallback: si Gemini no devolvió briefing útil, genera uno heurístico
-if not (briefing.get("signals") or briefing.get("risks") or briefing.get("watch") or briefing.get("entities_top")):
-    primary_counts = {}
-    entity_counts_tmp = {}
-
-    for it in candidates:
-        p = it.get("primary", "misc")
-        primary_counts[p] = primary_counts.get(p, 0) + 1
-
-        for e in (it.get("entities") or []):
-            if isinstance(e, str) and e.strip():
-                e2 = e.strip()
-                entity_counts_tmp[e2] = entity_counts_tmp.get(e2, 0) + 1
-
-    top_primaries = sorted(primary_counts.items(), key=lambda x: x[1], reverse=True)[:3]
-    top_ents = sorted(entity_counts_tmp.items(), key=lambda x: x[1], reverse=True)[:3]
-
-    briefing = {
-        "signals": [f"Dominancia de categoría: {p} ({c})" for p, c in top_primaries],
-        "risks": ["LLM briefing no disponible (fallback heurístico activo)."],
-        "watch": ["Revisar estabilidad Gemini / cuota / API key."],
-        "entities_top": [e for e, _ in top_ents],
+    briefing = merge_briefings(briefings) if briefings else {
+        "signals": [],
+        "risks": [],
+        "watch": [],
+        "entities_top": []
     }
 
+    # Fallback: si Gemini no devolvió briefing útil, genera uno heurístico
+    if not (briefing.get("signals") or briefing.get("risks") or briefing.get("watch") or briefing.get("entities_top")):
+        primary_counts = {}
+        entity_counts_tmp = {}
+
+        for it in candidates:
+            p = it.get("primary", "misc")
+            primary_counts[p] = primary_counts.get(p, 0) + 1
+
+            for e in (it.get("entities") or []):
+                if isinstance(e, str) and e.strip():
+                    e2 = e.strip()
+                    entity_counts_tmp[e2] = entity_counts_tmp.get(e2, 0) + 1
+
+        top_primaries = sorted(primary_counts.items(), key=lambda x: x[1], reverse=True)[:3]
+        top_ents = sorted(entity_counts_tmp.items(), key=lambda x: x[1], reverse=True)[:3]
+
+        briefing = {
+            "signals": [f"Dominancia de categoría: {p} ({c})" for p, c in top_primaries],
+            "risks": ["LLM briefing no disponible (fallback heurístico activo)."],
+            "watch": ["Revisar estabilidad Gemini / cuota / API key."],
+            "entities_top": [e for e, _ in top_ents],
+        }
 
     # 5️⃣ Aplicar resultados LLM
     reranked = []
@@ -158,7 +154,7 @@ if not (briefing.get("signals") or briefing.get("risks") or briefing.get("watch"
         rid = it.get("_rid")
         llm = results_map.get(rid)
 
-        # estandariza url (para weekly/clusters)
+        # estandariza url para downstream
         it["url"] = it.get("link", "")
 
         if llm:
@@ -178,7 +174,7 @@ if not (briefing.get("signals") or briefing.get("risks") or briefing.get("watch"
     reranked.sort(key=lambda x: x.get("score", 0), reverse=True)
     final_items = reranked[:15]
 
-    # 5.5️⃣ Métricas daily
+    # 5.5️⃣ Métricas daily (para snapshot)
     today = datetime.now().strftime("%Y-%m-%d")
 
     scores = [
@@ -196,12 +192,9 @@ if not (briefing.get("signals") or briefing.get("risks") or briefing.get("watch"
     entity_counts = {}
     for it in final_items:
         for e in (it.get("entities") or []):
-            if not isinstance(e, str):
-                continue
-            e2 = e.strip()
-            if not e2:
-                continue
-            entity_counts[e2] = entity_counts.get(e2, 0) + 1
+            if isinstance(e, str) and e.strip():
+                e2 = e.strip()
+                entity_counts[e2] = entity_counts.get(e2, 0) + 1
 
     # 6️⃣ Snapshot JSON
     top_entities = sorted(entity_counts.items(), key=lambda x: x[1], reverse=True)[:5]
@@ -228,13 +221,12 @@ if not (briefing.get("signals") or briefing.get("risks") or briefing.get("watch"
     Path("docs").mkdir(exist_ok=True)
     Path("docs/index.html").write_text(html, encoding="utf-8")
 
-   # 8️⃣ Weekly radar (direct call, sin subprocess)
-try:
-    from src.weekly import main as weekly_main
-    weekly_main()
-except Exception as e:
-    print("WEEKLY FAILED:", repr(e))
-
+    # 8️⃣ Weekly radar (direct call)
+    try:
+        from src.weekly import main as weekly_main
+        weekly_main()
+    except Exception as e:
+        print("WEEKLY FAILED:", repr(e))
 
 
 if __name__ == "__main__":
