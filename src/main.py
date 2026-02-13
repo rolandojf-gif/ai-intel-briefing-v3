@@ -14,7 +14,7 @@ def main():
         if s.get("type") != "rss":
             continue
 
-        for it in fetch_rss(s["url"], limit=8):
+        for it in fetch_rss(s["url"], limit=10):
             if not it.get("title") or not it.get("link"):
                 continue
 
@@ -37,8 +37,16 @@ def main():
         dedup.append(it)
 
     # Filtro por score mínimo
-    dedup = [x for x in dedup if x.get("score", 0) >= 55]
     dedup.sort(key=lambda x: x.get("score", 0), reverse=True)
+
+# Umbral dinámico: intenta 45, si no hay suficiente baja a 35
+threshold = 45
+filtered = [x for x in dedup if x.get("score", 0) >= threshold]
+if len(filtered) < 20:
+    threshold = 35
+    filtered = [x for x in dedup if x.get("score", 0) >= threshold]
+
+dedup = filtered
 
     # Caps por categoría (total objetivo ~20)
     caps = {"infra": 6, "invest": 6, "models": 4, "geopol": 4, "misc": 2}
