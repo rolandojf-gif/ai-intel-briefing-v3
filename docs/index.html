@@ -6,531 +6,130 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>AI Intel Briefing</title>
   <style>
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; background:#0b0f14; color:#d7e1f0; margin:0; }
-    header { padding:24px; border-bottom:1px solid #1b2635; background: linear-gradient(90deg,#0b0f14,#0f1722); }
-    h1 { margin:0; font-size:20px; letter-spacing:0.5px; }
-    .sub { color:#8aa2c2; margin-top:6px; font-size:13px; }
-    .wrap { padding:24px; max-width:1100px; margin:0 auto; }
-    .card { border:1px solid #1b2635; background:#0f1722; border-radius:14px; padding:16px; margin-bottom:14px; }
-    .src { color:#7bdff2; font-size:12px; }
-    a { color:#a78bfa; text-decoration:none; }
+    :root{
+      --bg:#0b0f14;
+      --panel:#0f1722;
+      --border:#1b2635;
+      --text:#d7e1f0;
+      --muted:#8aa2c2;
+      --neon:#7bdff2;
+      --link:#a78bfa;
+      --chip:#0b1220;
+    }
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; background:var(--bg); color:var(--text); margin:0; }
+    header { padding:22px 0; border-bottom:1px solid var(--border); background: linear-gradient(90deg,#0b0f14,#0f1722); }
+    .wrap { padding:22px; max-width:1100px; margin:0 auto; }
+    h1 { margin:0; font-size:20px; letter-spacing:0.6px; }
+    .sub { color:var(--muted); margin-top:6px; font-size:13px; display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+    .pill { display:inline-flex; gap:8px; align-items:center; padding:4px 10px; border:1px solid var(--border); background:rgba(15,23,34,0.6); border-radius:999px; font-size:12px; color:var(--muted); }
+    .grid { display:grid; grid-template-columns: 1fr; gap:12px; }
+    .card { border:1px solid var(--border); background:var(--panel); border-radius:14px; padding:14px 14px 12px; }
+    .top { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; }
+    .src { color:var(--neon); font-size:12px; }
+    .score { font-size:12px; color:var(--muted); display:flex; gap:8px; align-items:center; }
+    .bar { width:90px; height:8px; border-radius:999px; border:1px solid var(--border); background:#0a0f18; overflow:hidden; }
+    .fill { height:100%; background:linear-gradient(90deg, #7bdff2, #a78bfa); width:0%; }
+    a { color:var(--link); text-decoration:none; }
     a:hover { text-decoration:underline; }
-    .meta { color:#8aa2c2; font-size:12px; margin-top:6px; }
+    .title { margin-top:6px; font-size:15px; line-height:1.3; }
+    .meta { color:var(--muted); font-size:12px; margin-top:8px; display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+    .chip { padding:3px 8px; border:1px solid var(--border); background:var(--chip); border-radius:999px; font-size:11px; color:var(--muted); }
+    .summary { margin-top:10px; color:#b7c7df; font-size:13px; line-height:1.35; }
+    .foot { margin-top:18px; color:var(--muted); font-size:12px; opacity:0.85; }
   </style>
 </head>
 <body>
 <header>
   <div class="wrap">
     <h1>AI Intel Briefing</h1>
-    <div class="sub">Cyberpunk sobrio · 2026-02-13 19:58</div>
+    <div class="sub">
+      <span class="pill">Cyberpunk sobrio</span>
+      <span class="pill">Generado: 2026-02-13 20:18</span>
+      <span class="pill">Top señales (cap ~20)</span>
+    </div>
   </div>
 </header>
+
 <div class="wrap">
-  
-    <div class="card">
-      <div class="src">arXiv cs.AI</div>
-      <div><a href="https://arxiv.org/abs/2602.11159" target="_blank" rel="noreferrer">Explaining AI Without Code: A User Study on Explainable AI</a></div>
-      <div class="meta">2026-02-13T05:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">arXiv cs.AI</div>
-      <div><a href="https://arxiv.org/abs/2602.11229" target="_blank" rel="noreferrer">Latent Generative Solvers for Generalizable Long-Term Physics Simulation</a></div>
-      <div class="meta">2026-02-13T05:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">arXiv cs.AI</div>
-      <div><a href="https://arxiv.org/abs/2602.11295" target="_blank" rel="noreferrer">On Decision-Valued Maps and Representational Dependence</a></div>
-      <div class="meta">2026-02-13T05:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">arXiv cs.AI</div>
-      <div><a href="https://arxiv.org/abs/2602.11298" target="_blank" rel="noreferrer">Voxtral Realtime</a></div>
-      <div class="meta">2026-02-13T05:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">arXiv cs.AI</div>
-      <div><a href="https://arxiv.org/abs/2602.11301" target="_blank" rel="noreferrer">The PBSAI Governance Ecosystem: A Multi-Agent AI Reference Architecture for Securing Enterprise AI Estates</a></div>
-      <div class="meta">2026-02-13T05:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">arXiv cs.AI</div>
-      <div><a href="https://arxiv.org/abs/2602.11318" target="_blank" rel="noreferrer">Dissecting Subjectivity and the "Ground Truth" Illusion in Data Annotation</a></div>
-      <div class="meta">2026-02-13T05:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">arXiv cs.AI</div>
-      <div><a href="https://arxiv.org/abs/2602.11340" target="_blank" rel="noreferrer">Bi-Level Prompt Optimization for Multimodal LLM-as-a-Judge</a></div>
-      <div class="meta">2026-02-13T05:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">arXiv cs.AI</div>
-      <div><a href="https://arxiv.org/abs/2602.11348" target="_blank" rel="noreferrer">AgentNoiseBench: Benchmarking Robustness of Tool-Using LLM Agents Under Noisy Condition</a></div>
-      <div class="meta">2026-02-13T05:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">arXiv cs.AI</div>
-      <div><a href="https://arxiv.org/abs/2602.11351" target="_blank" rel="noreferrer">Pushing Forward Pareto Frontiers of Proactive Agents with Behavioral Agentic Optimization</a></div>
-      <div class="meta">2026-02-13T05:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">arXiv cs.AI</div>
-      <div><a href="https://arxiv.org/abs/2602.11354" target="_blank" rel="noreferrer">ReplicatorBench: Benchmarking LLM Agents for Replicability in Social and Behavioral Sciences</a></div>
-      <div class="meta">2026-02-13T05:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">arXiv cs.AI</div>
-      <div><a href="https://arxiv.org/abs/2602.11389" target="_blank" rel="noreferrer">Causal-JEPA: Learning World Models through Object-Level Latent Interventions</a></div>
-      <div class="meta">2026-02-13T05:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">arXiv cs.AI</div>
-      <div><a href="https://arxiv.org/abs/2602.11408" target="_blank" rel="noreferrer">GHOST: Unmasking Phantom States in Mamba2 via Grouped Hidden-state Output-aware Selection & Truncation</a></div>
-      <div class="meta">2026-02-13T05:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">arXiv cs.AI</div>
-      <div><a href="https://arxiv.org/abs/2602.11409" target="_blank" rel="noreferrer">TRACER: Trajectory Risk Aggregation for Critical Episodes in Agentic Reasoning</a></div>
-      <div class="meta">2026-02-13T05:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">arXiv cs.AI</div>
-      <div><a href="https://arxiv.org/abs/2602.11437" target="_blank" rel="noreferrer">Distributionally Robust Cooperative Multi-Agent Reinforcement Learning via Robust Value Factorization</a></div>
-      <div class="meta">2026-02-13T05:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">arXiv cs.AI</div>
-      <div><a href="https://arxiv.org/abs/2602.11455" target="_blank" rel="noreferrer">Credit Where It is Due: Cross-Modality Connectivity Drives Precise Reinforcement Learning for MLLM Reasoning</a></div>
-      <div class="meta">2026-02-13T05:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">arXiv cs.AI</div>
-      <div><a href="https://arxiv.org/abs/2602.11510" target="_blank" rel="noreferrer">AgentLeak: A Full-Stack Benchmark for Privacy Leakage in Multi-Agent LLM Systems</a></div>
-      <div class="meta">2026-02-13T05:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">arXiv cs.AI</div>
-      <div><a href="https://arxiv.org/abs/2602.11516" target="_blank" rel="noreferrer">Human-Inspired Continuous Learning of Internal Reasoning Processes: Learning How to Think for Adaptive AI Systems</a></div>
-      <div class="meta">2026-02-13T05:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">arXiv cs.AI</div>
-      <div><a href="https://arxiv.org/abs/2602.11527" target="_blank" rel="noreferrer">CausalAgent: A Conversational Multi-Agent System for End-to-End Causal Inference</a></div>
-      <div class="meta">2026-02-13T05:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">arXiv cs.AI</div>
-      <div><a href="https://arxiv.org/abs/2602.11541" target="_blank" rel="noreferrer">Budget-Constrained Agentic Large Language Models: Intention-Based Planning for Costly Tool Use</a></div>
-      <div class="meta">2026-02-13T05:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">arXiv cs.AI</div>
-      <div><a href="https://arxiv.org/abs/2602.11569" target="_blank" rel="noreferrer">SemaPop: Semantic-Persona Conditioned Population Synthesis</a></div>
-      <div class="meta">2026-02-13T05:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">arXiv cs.LG</div>
-      <div><a href="https://arxiv.org/abs/2602.11164" target="_blank" rel="noreferrer">Automated Optimization Modeling via a Localizable Error-Driven Perspective</a></div>
-      <div class="meta">2026-02-13T05:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">arXiv cs.LG</div>
-      <div><a href="https://arxiv.org/abs/2602.11184" target="_blank" rel="noreferrer">KBVQ-MoE: KLT-guided SVD with Bias-Corrected Vector Quantization for MoE Large Language Models</a></div>
-      <div class="meta">2026-02-13T05:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">arXiv cs.LG</div>
-      <div><a href="https://arxiv.org/abs/2602.11185" target="_blank" rel="noreferrer">Spectra: Rethinking Optimizers for LLMs Under Spectral Anisotropy</a></div>
-      <div class="meta">2026-02-13T05:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">arXiv cs.LG</div>
-      <div><a href="https://arxiv.org/abs/2602.11186" target="_blank" rel="noreferrer">GAC-KAN: An Ultra-Lightweight GNSS Interference Classifier for GenAI-Powered Consumer Edge Devices</a></div>
-      <div class="meta">2026-02-13T05:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">arXiv cs.LG</div>
-      <div><a href="https://arxiv.org/abs/2602.11187" target="_blank" rel="noreferrer">TDPNavigator-Placer: Thermal- and Wirelength-Aware Chiplet Placement in 2.5D Systems Through Multi-Agent Reinforcement Learning</a></div>
-      <div class="meta">2026-02-13T05:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">arXiv cs.LG</div>
-      <div><a href="https://arxiv.org/abs/2602.11190" target="_blank" rel="noreferrer">Time-TK: A Multi-Offset Temporal Interaction Framework Combining Transformer and Kolmogorov-Arnold Networks for Time Series Forecasting</a></div>
-      <div class="meta">2026-02-13T05:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">arXiv cs.LG</div>
-      <div><a href="https://arxiv.org/abs/2602.11192" target="_blank" rel="noreferrer">MELINOE: Fine-Tuning Enables Memory-Efficient Inference for Mixture-of-Experts Models</a></div>
-      <div class="meta">2026-02-13T05:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">arXiv cs.LG</div>
-      <div><a href="https://arxiv.org/abs/2602.11194" target="_blank" rel="noreferrer">Predicting the post-wildfire mudflow onset using machine learning models on multi-parameter experimental data</a></div>
-      <div class="meta">2026-02-13T05:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">arXiv cs.LG</div>
-      <div><a href="https://arxiv.org/abs/2602.11200" target="_blank" rel="noreferrer">AM-FM: A Foundation Model for Ambient Intelligence Through WiFi</a></div>
-      <div class="meta">2026-02-13T05:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">arXiv cs.LG</div>
-      <div><a href="https://arxiv.org/abs/2602.11204" target="_blank" rel="noreferrer">Zero-Sacrifice Persistent-Robustness Adversarial Defense for Pre-Trained Encoders</a></div>
-      <div class="meta">2026-02-13T05:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">arXiv cs.LG</div>
-      <div><a href="https://arxiv.org/abs/2602.11206" target="_blank" rel="noreferrer">UltraLIF: Fully Differentiable Spiking Neural Networks via Ultradiscretization and Max-Plus Algebra</a></div>
-      <div class="meta">2026-02-13T05:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">arXiv cs.LG</div>
-      <div><a href="https://arxiv.org/abs/2602.11208" target="_blank" rel="noreferrer">Adaptive Physics Transformer with Fused Global-Local Attention for Subsurface Energy Systems</a></div>
-      <div class="meta">2026-02-13T05:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">arXiv cs.LG</div>
-      <div><a href="https://arxiv.org/abs/2602.11212" target="_blank" rel="noreferrer">Towards Compressive and Scalable Recurrent Memory</a></div>
-      <div class="meta">2026-02-13T05:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">arXiv cs.LG</div>
-      <div><a href="https://arxiv.org/abs/2602.11215" target="_blank" rel="noreferrer">Charting Empirical Laws for LLM Fine-Tuning in Scientific Multi-Discipline Learning</a></div>
-      <div class="meta">2026-02-13T05:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">arXiv cs.LG</div>
-      <div><a href="https://arxiv.org/abs/2602.11216" target="_blank" rel="noreferrer">Protein Language Model Embeddings Improve Generalization of Implicit Transfer Operators</a></div>
-      <div class="meta">2026-02-13T05:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">arXiv cs.LG</div>
-      <div><a href="https://arxiv.org/abs/2602.11217" target="_blank" rel="noreferrer">The Magic Correlations: Understanding Knowledge Transfer from Pretraining to Supervised Fine-Tuning</a></div>
-      <div class="meta">2026-02-13T05:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">arXiv cs.LG</div>
-      <div><a href="https://arxiv.org/abs/2602.11219" target="_blank" rel="noreferrer">Credal Concept Bottleneck Models: Structural Separation of Epistemic and Aleatoric Uncertainty</a></div>
-      <div class="meta">2026-02-13T05:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">arXiv cs.LG</div>
-      <div><a href="https://arxiv.org/abs/2602.11220" target="_blank" rel="noreferrer">Patch the Distribution Mismatch: RL Rewriting Agent for Stable Off-Policy SFT</a></div>
-      <div class="meta">2026-02-13T05:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">arXiv cs.LG</div>
-      <div><a href="https://arxiv.org/abs/2602.11234" target="_blank" rel="noreferrer">Learning Glioblastoma Tumor Heterogeneity Using Brain Inspired Topological Neural Networks</a></div>
-      <div class="meta">2026-02-13T05:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">arXiv cs.LG</div>
-      <div><a href="https://arxiv.org/abs/2602.11237" target="_blank" rel="noreferrer">AI-Driven Clinical Decision Support System for Enhanced Diabetes Diagnosis and Management</a></div>
-      <div class="meta">2026-02-13T05:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">Google AI Blog</div>
-      <div><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-deep-think/" target="_blank" rel="noreferrer">Gemini 3 Deep Think: Advancing science, research and engineering</a></div>
-      <div class="meta">2026-02-12T16:13:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">Google AI Blog</div>
-      <div><a href="https://blog.google/products-and-platforms/products/photos/ask-button-ask-photos-tips/" target="_blank" rel="noreferrer">9 fun questions to try asking Google Photos</a></div>
-      <div class="meta">2026-02-10T17:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">Google AI Blog</div>
-      <div><a href="https://blog.google/innovation-and-ai/technology/safety-security/safer-internet-day-2026-kids-teens/" target="_blank" rel="noreferrer">Helping kids and teens learn and grow online on Safer Internet Day</a></div>
-      <div class="meta">2026-02-10T02:30:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">Google AI Blog</div>
-      <div><a href="https://blog.google/company-news/outreach-and-initiatives/accessibility/natively-adaptive-interfaces-ai-accessibility/" target="_blank" rel="noreferrer">Natively Adaptive Interfaces: A new framework for AI accessibility</a></div>
-      <div class="meta">2026-02-05T17:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">Google AI Blog</div>
-      <div><a href="https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/us-ski-snowboard-tool-winter-olympics-2026/" target="_blank" rel="noreferrer">How Google Cloud is helping Team USA elevate their tricks with AI</a></div>
-      <div class="meta">2026-02-05T16:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">Google AI Blog</div>
-      <div><a href="https://blog.google/company-news/inside-google/company-announcements/gemini-ad-new-home/" target="_blank" rel="noreferrer">Watch our new Gemini ad ahead of football’s biggest weekend</a></div>
-      <div class="meta">2026-02-05T14:30:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">Google AI Blog</div>
-      <div><a href="https://blog.google/innovation-and-ai/products/google-ai-updates-january-2026/" target="_blank" rel="noreferrer">The latest AI news we announced in January</a></div>
-      <div class="meta">2026-02-04T16:55:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">Google AI Blog</div>
-      <div><a href="https://blog.google/innovation-and-ai/technology/ai/ai-to-preserve-endangered-species/" target="_blank" rel="noreferrer">How we’re helping preserve the genetic information of endangered species with AI</a></div>
-      <div class="meta">2026-02-02T18:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">Google AI Blog</div>
-      <div><a href="https://blog.google/innovation-and-ai/models-and-research/google-deepmind/kaggle-game-arena-updates/" target="_blank" rel="noreferrer">Advancing AI benchmarking with Game Arena</a></div>
-      <div class="meta">2026-02-02T17:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">Google AI Blog</div>
-      <div><a href="https://blog.google/innovation-and-ai/models-and-research/google-deepmind/project-genie/" target="_blank" rel="noreferrer">Project Genie: Experimenting with infinite, interactive worlds</a></div>
-      <div class="meta">2026-01-29T17:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">Google AI Blog</div>
-      <div><a href="https://blog.google/innovation-and-ai/technology/ai/release-notes-podcast-project-genie/" target="_blank" rel="noreferrer">Hear more about interactive world models in our latest podcast.</a></div>
-      <div class="meta">2026-01-29T15:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">Google AI Blog</div>
-      <div><a href="https://blog.google/products-and-platforms/products/google-one/google-ai-plus-availability/" target="_blank" rel="noreferrer">Google AI Plus is now available everywhere our AI plans are available, including the U.S.</a></div>
-      <div class="meta">2026-01-27T18:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">Google AI Blog</div>
-      <div><a href="https://blog.google/products-and-platforms/products/search/ai-mode-ai-overviews-updates/" target="_blank" rel="noreferrer">Just ask anything: a seamless new Search experience</a></div>
-      <div class="meta">2026-01-27T17:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">Google AI Blog</div>
-      <div><a href="https://blog.google/products-and-platforms/products/gemini/release-notes-podcast-smokejumpers/" target="_blank" rel="noreferrer">In our latest podcast, hear how the “Smoke Jumpers” team brings Gemini to billions of people.</a></div>
-      <div class="meta">2026-01-27T10:28:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">Google AI Blog</div>
-      <div><a href="https://blog.google/innovation-and-ai/models-and-research/google-deepmind/dear-upstairs-neighbors/" target="_blank" rel="noreferrer">How animators and AI researchers made ‘Dear Upstairs Neighbors’</a></div>
-      <div class="meta">2026-01-26T18:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">Google AI Blog</div>
-      <div><a href="https://blog.google/products-and-platforms/products/search/personal-intelligence-ai-mode-search/" target="_blank" rel="noreferrer">Personal Intelligence in AI Mode in Search: Help that's uniquely yours</a></div>
-      <div class="meta">2026-01-22T16:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">Google AI Blog</div>
-      <div><a href="https://blog.google/company-news/outreach-and-initiatives/google-org/sundance-institute-ai-education/" target="_blank" rel="noreferrer">Building a community-led future for AI in film with Sundance Institute</a></div>
-      <div class="meta">2026-01-20T20:30:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">Google AI Blog</div>
-      <div><a href="https://blog.google/products-and-platforms/products/gemini/how-nano-banana-got-its-name/" target="_blank" rel="noreferrer">How Nano Banana got its name</a></div>
-      <div class="meta">2026-01-15T16:06:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">Google AI Blog</div>
-      <div><a href="https://blog.google/products-and-platforms/products/education/our-life-with-ai-2025/" target="_blank" rel="noreferrer">Learners and educators are AI’s new “super users”</a></div>
-      <div class="meta">2026-01-15T11:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">Google AI Blog</div>
-      <div><a href="https://blog.google/innovation-and-ai/technology/developers-tools/kaggle-community-benchmarks/" target="_blank" rel="noreferrer">Introducing Community Benchmarks on Kaggle</a></div>
-      <div class="meta">2026-01-14T14:00:00+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">NVIDIA Blog (AI)</div>
-      <div><a href="https://blogs.nvidia.com/blog/2026-ces-special-presentation/" target="_blank" rel="noreferrer">NVIDIA Rubin Platform, Open Models, Autonomous Driving: NVIDIA Presents Blueprint for the Future at CES</a></div>
-      <div class="meta">2026-01-05T23:30:18+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">NVIDIA Blog (AI)</div>
-      <div><a href="https://blogs.nvidia.com/blog/leading-models-nvidia/" target="_blank" rel="noreferrer">As AI Grows More Complex, Model Builders Rely on NVIDIA</a></div>
-      <div class="meta">2025-12-11T19:19:57+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">NVIDIA Blog (AI)</div>
-      <div><a href="https://blogs.nvidia.com/blog/uk-llm-nemotron/" target="_blank" rel="noreferrer">Reaching Across the Isles: UK-LLM Brings AI to UK Languages With NVIDIA Nemotron</a></div>
-      <div class="meta">2025-09-14T01:00:21+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">NVIDIA Blog (AI)</div>
-      <div><a href="https://blogs.nvidia.com/blog/humidity/" target="_blank" rel="noreferrer">It’s the Humidity: How International Researchers in Poland, Deep Learning and NVIDIA GPUs Could Change the Forecast</a></div>
-      <div class="meta">2025-09-02T13:00:15+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">NVIDIA Blog (AI)</div>
-      <div><a href="https://blogs.nvidia.com/blog/applications-open-graduate-fellowship-awards-2025/" target="_blank" rel="noreferrer">Applications Now Open for $60,000 NVIDIA Graduate Fellowship Awards</a></div>
-      <div class="meta">2025-08-13T15:00:02+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">NVIDIA Blog (AI)</div>
-      <div><a href="https://blogs.nvidia.com/blog/physical-ai-research-siggraph-2025/" target="_blank" rel="noreferrer">NVIDIA Research Shapes Physical AI</a></div>
-      <div class="meta">2025-08-11T15:00:38+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">NVIDIA Blog (AI)</div>
-      <div><a href="https://blogs.nvidia.com/blog/isambard-ai/" target="_blank" rel="noreferrer">Isambard-AI, the UK’s Most Powerful AI Supercomputer, Goes Live</a></div>
-      <div class="meta">2025-07-17T17:00:50+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">NVIDIA Blog (AI)</div>
-      <div><a href="https://blogs.nvidia.com/blog/gaming-gpu-ceramics/" target="_blank" rel="noreferrer">A Gaming GPU Helps Crack the Code on a Thousand-Year Cultural Conversation</a></div>
-      <div class="meta">2025-07-11T13:00:50+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">NVIDIA Blog (AI)</div>
-      <div><a href="https://blogs.nvidia.com/blog/gtc-paris-2025/" target="_blank" rel="noreferrer">NVIDIA CEO Drops the Blueprint for Europe’s AI Boom</a></div>
-      <div class="meta">2025-06-11T11:10:50+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">NVIDIA Blog (AI)</div>
-      <div><a href="https://blogs.nvidia.com/blog/autonomous-vehicle-ecosystem-ai-models-developer-tools/" target="_blank" rel="noreferrer">NVIDIA Releases New AI Models and Developer Tools to Advance Autonomous Vehicle Ecosystem</a></div>
-      <div class="meta">2025-06-11T10:55:36+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">NVIDIA Blog (AI)</div>
-      <div><a href="https://blogs.nvidia.com/blog/nvidia-research-ai-graphics/" target="_blank" rel="noreferrer">Innovation to Impact: How NVIDIA Research Fuels Transformative Work in AI, Graphics and Beyond</a></div>
-      <div class="meta">2025-03-20T00:00:24+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">NVIDIA Blog (AI)</div>
-      <div><a href="https://blogs.nvidia.com/blog/ai-sign-language/" target="_blank" rel="noreferrer">It’s a Sign: AI Platform for Teaching American Sign Language Aims to Bridge Communication Gaps</a></div>
-      <div class="meta">2025-02-20T14:30:18+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">NVIDIA Blog (AI)</div>
-      <div><a href="https://blogs.nvidia.com/blog/evo-2-biomolecular-ai/" target="_blank" rel="noreferrer">Massive Foundation Model for Biomolecular Sciences Now Available via NVIDIA BioNeMo</a></div>
-      <div class="meta">2025-02-19T16:00:46+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">NVIDIA Blog (AI)</div>
-      <div><a href="https://blogs.nvidia.com/blog/what-are-foundation-models/" target="_blank" rel="noreferrer">What Are Foundation Models?</a></div>
-      <div class="meta">2025-02-11T23:51:46+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">NVIDIA Blog (AI)</div>
-      <div><a href="https://blogs.nvidia.com/blog/ai-designed-proteins-snake-venom/" target="_blank" rel="noreferrer">AI-Designed Proteins Take on Deadly Snake Venom</a></div>
-      <div class="meta">2025-02-07T14:00:36+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">NVIDIA Blog (AI)</div>
-      <div><a href="https://blogs.nvidia.com/blog/what-is-retrieval-augmented-generation/" target="_blank" rel="noreferrer">What Is Retrieval-Augmented Generation, aka RAG?</a></div>
-      <div class="meta">2025-01-31T23:00:25+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">NVIDIA Blog (AI)</div>
-      <div><a href="https://blogs.nvidia.com/blog/ai-maps-titan-clouds/" target="_blank" rel="noreferrer">AI Maps Titan’s Methane Clouds in Record Time</a></div>
-      <div class="meta">2025-01-24T14:00:30+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">NVIDIA Blog (AI)</div>
-      <div><a href="https://blogs.nvidia.com/blog/jp-morgan-healthcare-2025/" target="_blank" rel="noreferrer">Healthcare Leaders, NVIDIA CEO Share AI Innovation Across the Industry</a></div>
-      <div class="meta">2025-01-14T20:00:14+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">NVIDIA Blog (AI)</div>
-      <div><a href="https://blogs.nvidia.com/blog/ai-podcast-2024-highlights/" target="_blank" rel="noreferrer">Have You Heard? 5 AI Podcast Episodes Listeners Loved in 2024</a></div>
-      <div class="meta">2024-12-27T16:00:22+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">SemiWiki</div>
-      <div><a href="https://semiwiki.com/semiconductor-manufacturers/tsmc/366523-tsmc-vs-intel-foundry-vs-samsung-foundry-2026/" target="_blank" rel="noreferrer">TSMC vs Intel Foundry vs Samsung Foundry 2026</a></div>
-      <div class="meta">2026-02-13T14:00:18+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">SemiWiki</div>
-      <div><a href="https://semiwiki.com/semiconductor-services/silicon-catalyst/366270-silicon-catalyst-at-the-chiplet-summit-advancing-the-chiplet-economy/" target="_blank" rel="noreferrer">Silicon Catalyst at the Chiplet Summit: Advancing the Chiplet Economy</a></div>
-      <div class="meta">2026-02-12T18:00:04+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">SemiWiki</div>
-      <div><a href="https://semiwiki.com/eda/amiq-eda/366471-giving-ai-agents-access-to-a-compiled-design-and-verification-database/" target="_blank" rel="noreferrer">Giving AI Agents Access to a Compiled Design and Verification Database</a></div>
-      <div class="meta">2026-02-12T16:00:40+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">SemiWiki</div>
-      <div><a href="https://semiwiki.com/ip/ceva/366378-cevas-strategic-play-in-the-ai-surge-from-smart-edge-to-scalable-ai-platforms/" target="_blank" rel="noreferrer">Ceva’s Strategic Play in the AI Surge: From Smart Edge to Scalable AI Platforms</a></div>
-      <div class="meta">2026-02-12T14:00:05+00:00</div>
-    </div>
-  
-    <div class="card">
-      <div class="src">SemiWiki</div>
-      <div><a href="https://semiwiki.com/ip/rambus/366449-how-memory-technology-is-powering-the-next-era-of-compute/" target="_blank" rel="noreferrer">How Memory Technology Is Powering the Next Era of Compute</a></div>
-      <div class="meta">2026-02-11T18:00:42+00:00</div>
-    </div>
-  
+  <div class="grid">
+    
+      <div class="card">
+        <div class="top">
+          <div class="src">SemiWiki</div>
+          <div class="score">
+            <span>Score 63</span>
+            <div class="bar">
+              <div class="fill" style="width: 63%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="title">
+          <a href="https://semiwiki.com/semiconductor-manufacturers/tsmc/366523-tsmc-vs-intel-foundry-vs-samsung-foundry-2026/" target="_blank" rel="noreferrer">TSMC vs Intel Foundry vs Samsung Foundry 2026</a>
+        </div>
+
+        <div class="meta">
+          <span class="chip">infra</span>
+          
+            <span class="chip">infra</span>
+          
+          
+            <span class="chip">infra</span>
+          
+            <span class="chip">chips</span>
+          
+          <span class="chip">2026-02-13T14:00:18+00:00</span>
+        </div>
+
+        
+          <div class="summary">
+            The global semiconductor industry sits at the foundation of modern technology, powering everything from smartphones and cloud data centers to artificial intelligence, automobiles, and national defense systems. At the center of advanced chip manufacturing are three major players: TSMC, Samsung Foundry, and Intel Foundr…
+          </div>
+        
+      </div>
+    
+      <div class="card">
+        <div class="top">
+          <div class="src">arXiv cs.AI</div>
+          <div class="score">
+            <span>Score 57</span>
+            <div class="bar">
+              <div class="fill" style="width: 57%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="title">
+          <a href="https://arxiv.org/abs/2602.11340" target="_blank" rel="noreferrer">Bi-Level Prompt Optimization for Multimodal LLM-as-a-Judge</a>
+        </div>
+
+        <div class="meta">
+          <span class="chip">models</span>
+          
+            <span class="chip">invest</span>
+          
+            <span class="chip">models</span>
+          
+          
+            <span class="chip">papers</span>
+          
+            <span class="chip">models</span>
+          
+          <span class="chip">2026-02-13T05:00:00+00:00</span>
+        </div>
+
+        
+          <div class="summary">
+            arXiv:2602.11340v1 Announce Type: new Abstract: Large language models (LLMs) have become widely adopted as automated judges for evaluating AI-generated content. Despite their success, aligning LLM-based evaluations with human judgments remains challenging. While supervised fine-tuning on human-labeled data can improve…
+          </div>
+        
+      </div>
+    
+  </div>
+
+  <div class="foot">
+    Nota: esto aún es scoring heurístico (keywords + bonus por fuente). El siguiente salto será Gemini Flash para clasificar y resumir mejor sin tragar artículos enteros.
+  </div>
 </div>
 </body>
 </html>
