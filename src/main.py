@@ -147,7 +147,46 @@ def main():
 
     reranked.sort(key=lambda x: x.get("score", 0), reverse=True)
 
-    final_items = reranked[:15]
+    final_items = reranked[:10]
+    from datetime import datetime
+import json
+import statistics
+
+today = datetime.now().strftime("%Y-%m-%d")
+
+# métricas simples
+scores = [x.get("score", 0) for x in final_items]
+score_avg = round(statistics.mean(scores), 1) if scores else 0
+
+primary_dist = {}
+for x in final_items:
+    p = x.get("primary", "misc")
+    primary_dist[p] = primary_dist.get(p, 0) + 1
+
+entities_flat = []
+for x in final_items:
+    entities_flat.extend(x.get("entities", []))
+
+entity_counts = {}
+for e in entities_flat:
+    entity_counts[e] = entity_counts.get(e, 0) + 1
+
+top_entities = sorted(entity_counts.items(), key=lambda x: x[1], reverse=True)[:5]
+
+daily_snapshot = {
+    "date": today,
+    "score_avg": score_avg,
+    "primary_dist": primary_dist,
+    "top_entities": top_entities,
+    "briefing": briefing,
+    "items": final_items,
+}
+
+Path("docs/data").mkdir(parents=True, exist_ok=True)
+Path(f"docs/data/{today}.json").write_text(
+    json.dumps(daily_snapshot, ensure_ascii=False, indent=2),
+    encoding="utf-8"
+)
 
     html = render_index(final_items, briefing=briefing)
 
