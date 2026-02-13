@@ -125,29 +125,30 @@ def main():
         "entities_top": []
     }
 
-    # 5️⃣ Aplicar resultados LLM
-    reranked = []
-    for it in candidates:
-        rid = it.get("_rid")
-        llm = results_map.get(rid)
+# 5️⃣ Aplicar resultados LLM
+reranked = []
+for it in candidates:
+    rid = it.get("_rid")
+    llm = results_map.get(rid)
 
-        if llm:
-            it["score"] = int(llm.get("score", it.get("score", 0)))
-            it["primary"] = llm.get("primary", it.get("primary", "misc"))
-            it["tags"] = llm.get("tags", [])
-            it["why"] = llm.get("why", "")
-            it["entities"] = llm.get("entities", [])
-        else:
-            it["why"] = it.get("summary", "")[:160]
+    # estandariza el campo url para downstream (weekly/clusters/etc.)
+    it["url"] = it.get("link", "")
 
-        reranked.append(it)
+    if llm:
+        it["score"] = int(llm.get("score", it.get("score", 0)))
+        it["primary"] = llm.get("primary", it.get("primary", "misc"))
+        it["tags"] = llm.get("tags", [])
+        it["why"] = llm.get("why", "")
+        it["entities"] = llm.get("entities", [])
+    else:
+        it["why"] = it.get("summary", "")[:160]
 
-    reranked.sort(key=lambda x: x.get("score", 0), reverse=True)
+    reranked.append(it)
 
-    final_items = reranked[:15]
-    reranked.sort(key=lambda x: x.get("score", 0), reverse=True)
+reranked.sort(key=lambda x: x.get("score", 0), reverse=True)
+final_items = reranked[:15]
 
-    final_items = reranked[:15]
+
 
     # 5.5️⃣ Métricas daily (necesarias para el snapshot)
     today = datetime.now().strftime("%Y-%m-%d")
