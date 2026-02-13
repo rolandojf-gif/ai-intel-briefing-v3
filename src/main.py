@@ -116,7 +116,7 @@ def main():
     # 6) Orden final por score (LLM si disponible)
     reranked.sort(key=lambda x: x.get("score", 0), reverse=True)
 
-    final_items = reranked[:20]
+    final_items = reranked[:10]
 
     html = render_index(final_items)
 
