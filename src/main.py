@@ -3,8 +3,8 @@ from pathlib import Path
 
 from src.fetch import fetch_rss
 from src.render import render_index
-from src.score import score_item              # heurístico (gratis)
-from src.llm_rank import rank_batch           # Gemini batch (1-2 llamadas)
+from src.score import score_item
+from src.llm_rank import rank_batch
 
 
 def chunk(lst, n):
@@ -12,25 +12,53 @@ def chunk(lst, n):
         yield lst[i:i+n]
 
 
+def merge_briefings(briefs: list[dict]) -> dict:
+    """
+    Si haces 2 chunks, tendrás 2 briefings.
+    Aquí los fusionamos de forma simple:
+    - concatenar y recortar a tamaño fijo.
+    """
+    out = {"signals": [], "risks": [], "watch": [], "entities_top": []}
+    for b in briefs:
+        for k in out.keys():
+            out[k].extend(b.get(k, []))
+
+    # dedup preservando orden
+    def dedup(seq):
+        seen = set()
+        res = []
+        for x in seq:
+            if x in seen:
+                continue
+            seen.add(x)
+            res.append(x)
+        return res
+
+    out["signals"] = dedup(out["signals"])[:5]
+    out["risks"] = dedup(out["risks"])[:3]
+    out["watch"] = dedup(out["watch"])[:3]
+    out["entities_top"] = dedup(out["entities_top"])[:3]
+    return out
+
+
 def main():
     cfg = yaml.safe_load(Path("feeds/feeds.yaml").read_text(encoding="utf-8"))
 
     items = []
 
-    # caps por fuente (anti-spam arXiv)
+    # caps por fuente (ajusta nombres EXACTOS según feeds.yaml)
     per_source_cap = {
         "arXiv cs.AI": 2,
-        "arXiv cs.LG": 2,   # opcional, quítalo si quieres más LG
-        "NVIDIA Blog": 2,
+        "arXiv cs.LG": 2,
+        "NVIDIA Blog (AI)": 2,  # si tu name es distinto, cámbialo
     }
     per_source_count = {}
 
-    # 1) Ingesta RSS + heurístico rápido
+    # 1) Ingesta RSS + heurístico
     for s in cfg["sources"]:
         if s.get("type") != "rss":
             continue
 
-        # reduce volumen desde el origen para arXiv
         limit = 12
         if s["name"].startswith("arXiv"):
             limit = 6
@@ -42,7 +70,7 @@ def main():
             it["source"] = s["name"]
             it["feed_tags"] = s.get("tags", [])
 
-            # aplicar cap por fuente
+            # cap por fuente
             src = it["source"]
             cap = per_source_cap.get(src)
             if cap is not None:
@@ -51,13 +79,11 @@ def main():
                     continue
                 per_source_count[src] += 1
 
-            # score provisional (heurístico)
             sc = score_item(it["title"], it.get("summary", ""), it["source"])
             it.update(sc)
-
             items.append(it)
 
-    # 2) Dedup por link
+    # 2) Dedup
     seen = set()
     dedup = []
     for it in items:
@@ -67,15 +93,11 @@ def main():
         seen.add(link)
         dedup.append(it)
 
-    # 3) Preselección por heurístico (para no gastar en basura)
+    # 3) Preselección
     dedup.sort(key=lambda x: x.get("score", 0), reverse=True)
-
-    # Ajustes “equilibrio inteligente” en free tier:
-    # - candidates 30 máximo
-    # - chunk 15 => 2 llamadas como mucho
     candidates = dedup[:30]
 
-    # 4) Preparar input para batch
+    # 4) Batch input
     batch_in = []
     for idx, it in enumerate(candidates, start=1):
         batch_in.append({
@@ -85,19 +107,28 @@ def main():
             "summary": it.get("summary", ""),
             "url": it.get("link", ""),
         })
-        it["_rid"] = idx  # id interno para mapear respuesta
+        it["_rid"] = idx
 
-    # 5) Re-rank con Gemini en 1-2 chunks
+    # 5) Gemini batch en 1-2 chunks
     results_map = {}
+    briefings = []
+
     for part in chunk(batch_in, 15):
         try:
-            part_map = rank_batch(part)
-            results_map.update(part_map)
+            out = rank_batch(part)
+            results_map.update(out.get("map", {}))
+            briefings.append(out.get("briefing", {}))
         except Exception:
-            # si Gemini falla, no rompemos el pipeline (queda heurístico)
             pass
 
-    # Aplicar resultados LLM a candidates
+    briefing = merge_briefings(briefings) if briefings else {
+        "signals": [],
+        "risks": [],
+        "watch": [],
+        "entities_top": []
+    }
+
+    # 6) Aplicar LLM + ordenar
     reranked = []
     for it in candidates:
         rid = it.get("_rid")
@@ -114,12 +145,11 @@ def main():
 
         reranked.append(it)
 
-    # 6) Orden final por score (LLM si disponible)
     reranked.sort(key=lambda x: x.get("score", 0), reverse=True)
 
-    final_items = reranked[:10]
+    final_items = reranked[:15]
 
-    html = render_index(final_items)
+    html = render_index(final_items, briefing=briefing)
 
     Path("docs").mkdir(exist_ok=True)
     Path("docs/index.html").write_text(html, encoding="utf-8")
