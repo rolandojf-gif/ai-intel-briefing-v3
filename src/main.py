@@ -150,7 +150,7 @@ def main():
 
 # 6️⃣ Snapshot JSON
 top_entities = sorted(entity_counts.items(), key=lambda x: x[1], reverse=True)[:5]
-top_entities = [{"entity": e, "count": c} for e, c in top_entities]  # mejor que tuplas
+top_entities = [{"entity": e, "count": c} for e, c in top_entities]
 
 daily_snapshot = {
     "date": today,
@@ -167,12 +167,13 @@ Path(f"docs/data/{today}.json").write_text(
     encoding="utf-8"
 )
 
-# 7️⃣ Render HTML (index)
+# 7️⃣ Render HTML
 html = render_index(final_items, briefing=briefing)
 
 Path("docs").mkdir(exist_ok=True)
 Path("docs/index.html").write_text(html, encoding="utf-8")
 
-# 8️⃣ Weekly radar (no bloquea el daily si falla)
+# 8️⃣ Weekly radar (no rompe el daily si falla)
 import subprocess
 subprocess.run(["python", "-m", "src.weekly"], check=False)
+
