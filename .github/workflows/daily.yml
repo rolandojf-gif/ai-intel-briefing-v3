@@ -36,5 +36,6 @@ jobs:
           git config user.name "ai-intel-bot"
           git config user.email "ai-intel-bot@users.noreply.github.com"
           git add docs/index.html
+          git add docs/data/*.json || true
           git commit -m "Daily briefing" || echo "No changes"
           git push
