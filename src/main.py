@@ -145,35 +145,60 @@ def main():
     reranked.sort(key=lambda x: x.get("score", 0), reverse=True)
 
     final_items = reranked[:15]
+    reranked.sort(key=lambda x: x.get("score", 0), reverse=True)
 
-    # ... tu código anterior
+    final_items = reranked[:15]
 
-# 6️⃣ Snapshot JSON
-top_entities = sorted(entity_counts.items(), key=lambda x: x[1], reverse=True)[:5]
-top_entities = [{"entity": e, "count": c} for e, c in top_entities]
+    # 5.5️⃣ Métricas daily (necesarias para el snapshot)
+    today = datetime.now().strftime("%Y-%m-%d")
 
-daily_snapshot = {
-    "date": today,
-    "score_avg": score_avg,
-    "primary_dist": primary_dist,
-    "top_entities": top_entities,
-    "briefing": briefing,
-    "items": final_items,
-}
+    scores = [it.get("score", 0) for it in final_items if isinstance(it.get("score", 0), (int, float))]
+    score_avg = round(statistics.mean(scores), 2) if scores else 0
 
-Path("docs/data").mkdir(parents=True, exist_ok=True)
-Path(f"docs/data/{today}.json").write_text(
-    json.dumps(daily_snapshot, ensure_ascii=False, indent=2),
-    encoding="utf-8"
-)
+    primary_dist = {}
+    for it in final_items:
+        p = it.get("primary", "misc")
+        primary_dist[p] = primary_dist.get(p, 0) + 1
 
-# 7️⃣ Render HTML
-html = render_index(final_items, briefing=briefing)
+    entity_counts = {}
+    for it in final_items:
+        for e in it.get("entities", []) or []:
+            if not isinstance(e, str):
+                continue
+            e2 = e.strip()
+            if not e2:
+                continue
+            entity_counts[e2] = entity_counts.get(e2, 0) + 1
 
-Path("docs").mkdir(exist_ok=True)
-Path("docs/index.html").write_text(html, encoding="utf-8")
+    # 6️⃣ Snapshot JSON
+    top_entities = sorted(entity_counts.items(), key=lambda x: x[1], reverse=True)[:5]
+    top_entities = [{"entity": e, "count": c} for e, c in top_entities]
 
-# 8️⃣ Weekly radar (no rompe el daily si falla)
-import subprocess
-subprocess.run(["python", "-m", "src.weekly"], check=False)
+    daily_snapshot = {
+        "date": today,
+        "score_avg": score_avg,
+        "primary_dist": primary_dist,
+        "top_entities": top_entities,
+        "briefing": briefing,
+        "items": final_items,
+    }
 
+    Path("docs/data").mkdir(parents=True, exist_ok=True)
+    Path(f"docs/data/{today}.json").write_text(
+        json.dumps(daily_snapshot, ensure_ascii=False, indent=2),
+        encoding="utf-8"
+    )
+
+    # 7️⃣ Render HTML
+    html = render_index(final_items, briefing=briefing)
+
+    Path("docs").mkdir(exist_ok=True)
+    Path("docs/index.html").write_text(html, encoding="utf-8")
+
+    # 8️⃣ Weekly radar (no rompe el daily si falla)
+    import subprocess
+    subprocess.run(["python", "-m", "src.weekly"], check=False)
+
+
+if __name__ == "__main__":
+    main()
