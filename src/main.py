@@ -17,17 +17,38 @@ def main():
 
     items = []
 
+    # caps por fuente (anti-spam arXiv)
+    per_source_cap = {
+        "arXiv cs.AI": 2,
+        "arXiv cs.LG": 2,   # opcional, quítalo si quieres más LG
+    }
+    per_source_count = {}
+
     # 1) Ingesta RSS + heurístico rápido
     for s in cfg["sources"]:
         if s.get("type") != "rss":
             continue
 
-        for it in fetch_rss(s["url"], limit=12):
+        # reduce volumen desde el origen para arXiv
+        limit = 12
+        if s["name"].startswith("arXiv"):
+            limit = 6
+
+        for it in fetch_rss(s["url"], limit=limit):
             if not it.get("title") or not it.get("link"):
                 continue
 
             it["source"] = s["name"]
             it["feed_tags"] = s.get("tags", [])
+
+            # aplicar cap por fuente
+            src = it["source"]
+            cap = per_source_cap.get(src)
+            if cap is not None:
+                per_source_count[src] = per_source_count.get(src, 0)
+                if per_source_count[src] >= cap:
+                    continue
+                per_source_count[src] += 1
 
             # score provisional (heurístico)
             sc = score_item(it["title"], it.get("summary", ""), it["source"])
@@ -72,8 +93,7 @@ def main():
             part_map = rank_batch(part)
             results_map.update(part_map)
         except Exception:
-            # Si Gemini falla (cuota, rate limit, etc.), no rompemos pipeline.
-            # Se quedará el score heurístico para esos items.
+            # si Gemini falla, no rompemos el pipeline (queda heurístico)
             pass
 
     # Aplicar resultados LLM a candidates
@@ -89,7 +109,6 @@ def main():
             it["why"] = llm.get("why", "")
             it["entities"] = llm.get("entities", [])
         else:
-            # fallback: mantén heurístico + una razón cutre
             it["why"] = it.get("why") or (it.get("summary", "")[:160])
 
         reranked.append(it)
