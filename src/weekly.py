@@ -3,10 +3,20 @@ from __future__ import annotations
 import json
 from pathlib import Path
 from datetime import datetime
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List
 
 DATA_DIR = Path("docs/data")
 OUT_HTML = Path("docs/weekly.html")
+
+# opcional: normalización de categorías si tu primary varía
+CATEGORY_ALIASES = {
+    "chips": "hardware",
+    "semiconductors": "hardware",
+    "datacenter": "infrastructure",
+    "security": "security",
+    "cybersecurity": "security",
+}
+
 
 def parse_date(stem: str) -> datetime:
     try:
@@ -14,12 +24,14 @@ def parse_date(stem: str) -> datetime:
     except ValueError:
         return datetime.min
 
+
 def list_latest(n: int = 7) -> List[Path]:
     if not DATA_DIR.exists():
         return []
     files = [p for p in DATA_DIR.glob("*.json") if p.is_file()]
     files.sort(key=lambda p: parse_date(p.stem))
     return files[-n:]
+
 
 def load_day(p: Path) -> Dict[str, Any]:
     try:
@@ -29,6 +41,12 @@ def load_day(p: Path) -> Dict[str, Any]:
     except Exception:
         pass
     return {"date": p.stem, "items": []}
+
+
+def norm_cat(c: str) -> str:
+    c2 = (c or "misc").strip().lower()
+    return CATEGORY_ALIASES.get(c2, c2)
+
 
 def slope(xs: List[int]) -> float:
     n = len(xs)
@@ -41,6 +59,7 @@ def slope(xs: List[int]) -> float:
     den = sum((xi - mx) ** 2 for xi in x) or 1.0
     return num / den
 
+
 def streak(xs: List[int]) -> int:
     s = 0
     for v in reversed(xs):
@@ -49,6 +68,7 @@ def streak(xs: List[int]) -> int:
         else:
             break
     return s
+
 
 def spark(series: List[int]) -> str:
     bars = "▁▂▃▄▅▆▇█"
@@ -61,6 +81,25 @@ def spark(series: List[int]) -> str:
         out += bars[idx]
     return out
 
+
+def pick_items_for_entity(
+    snapshots: List[Dict[str, Any]],
+    entity: str,
+    limit: int = 6
+) -> List[Dict[str, Any]]:
+    hits = []
+    for snap in reversed(snapshots):
+        for it in (snap.get("items", []) or []):
+            if not isinstance(it, dict):
+                continue
+            ents = it.get("entities") or []
+            if entity in ents:
+                hits.append(it)
+                if len(hits) >= limit:
+                    return hits
+    return hits
+
+
 def main():
     files = list_latest(7)
     if not files:
@@ -72,7 +111,6 @@ def main():
     days = [p.stem for p in files]
     snapshots = [load_day(p) for p in files]
 
-    # series por entidad y por primary
     ent_series: Dict[str, List[int]] = {}
     cat_series: Dict[str, List[int]] = {}
 
@@ -86,7 +124,7 @@ def main():
             if not isinstance(it, dict):
                 continue
 
-            cat = (it.get("primary") or "misc").strip()
+            cat = norm_cat(it.get("primary", "misc"))
             local_cat[cat] = local_cat.get(cat, 0) + 1
 
             for e in (it.get("entities") or []):
@@ -102,7 +140,6 @@ def main():
         for e, v in local_ent.items():
             ent_series.setdefault(e, [0] * len(snapshots))[di] = v
 
-    # ranking entidades
     ent_rows = []
     for e, series in ent_series.items():
         ent_rows.append({
@@ -114,7 +151,6 @@ def main():
         })
     ent_rows.sort(key=lambda r: (r["streak"], r["total"], r["slope"]), reverse=True)
 
-    # ranking categorías (dominante creciente)
     cat_rows = []
     for c, series in cat_series.items():
         cat_rows.append({
@@ -130,13 +166,13 @@ def main():
     top_cats = cat_rows[:8]
 
     dominant = top_cats[0] if top_cats else None
+    hot_ent = top_entities[0] if top_entities else None
 
     implications = []
     if dominant and dominant["slope"] > 0.25 and dominant["streak"] >= 3:
         implications.append(
             f"La categoría '{dominant['name']}' acelera (slope {dominant['slope']:.2f}, streak {dominant['streak']}d). Señal de narrativa dominante en subida."
         )
-    hot_ent = top_entities[0] if top_entities else None
     if hot_ent and hot_ent["streak"] >= 3:
         implications.append(
             f"Entidad caliente: '{hot_ent['name']}' mantiene presencia (streak {hot_ent['streak']}d). Probable tema tractor."
@@ -144,7 +180,6 @@ def main():
     if not implications:
         implications.append("No hay aceleraciones claras: o semana plana, o scoring demasiado homogéneo.")
 
-    # HTML
     ent_li = "\n".join(
         f"<li><span class='k'>{r['name']}</span> <span class='s'>{spark(r['series'])}</span>"
         f"<span class='m'>streak {r['streak']} · total {r['total']} · slope {r['slope']:.2f}</span></li>"
@@ -158,6 +193,24 @@ def main():
     ) or "<li>Sin datos</li>"
 
     imp_li = "\n".join(f"<li>{x}</li>" for x in implications)
+
+    clusters = []
+    for r in top_entities[:5]:
+        entity = r["name"]
+        items = pick_items_for_entity(snapshots, entity, limit=6)
+        li = []
+        for it in items:
+            title = (it.get("title") or "").strip()
+            url = (it.get("url") or it.get("link") or "").strip()
+            src = (it.get("source") or "").strip()
+            cat = norm_cat(it.get("primary", "misc"))
+            if url:
+                li.append(f"<li><a href='{url}' target='_blank' rel='noopener'>{title}</a> <span class='m'>[{src}] [{cat}]</span></li>")
+            else:
+                li.append(f"<li>{title} <span class='m'>[{src}] [{cat}]</span></li>")
+        clusters.append(f"<section class='card'><h2>{entity}</h2><ul>{''.join(li)}</ul></section>")
+
+    clusters_html = "<div class='grid'>" + "".join(clusters) + "</div>" if clusters else ""
 
     period = f"{days[0]} → {days[-1]}"
 
@@ -177,6 +230,8 @@ def main():
     h2 {{ margin:0 0 10px 0; font-size:15px; color:#cbd5e1; }}
     ul {{ margin:0; padding-left:18px; }}
     li {{ margin:6px 0; line-height:1.25rem; }}
+    a {{ color:#8ab4f8; text-decoration:none; }}
+    a:hover {{ text-decoration:underline; }}
     .k {{ font-weight:600; }}
     .s {{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; margin-left:8px; }}
     .m {{ color:#9aa4b2; margin-left:8px; font-size:12px; }}
@@ -208,6 +263,11 @@ def main():
     <h2>Implicaciones estratégicas</h2>
     <ul>{imp_li}</ul>
   </section>
+
+  <section style="margin-top:14px">
+    <h2 style="color:#cbd5e1; font-size:15px; margin:0 0 10px 0;">Clusters (top entidades)</h2>
+    {clusters_html}
+  </section>
 </main>
 
 </body>
@@ -217,6 +277,7 @@ def main():
     OUT_HTML.parent.mkdir(parents=True, exist_ok=True)
     OUT_HTML.write_text(html, encoding="utf-8")
     print(f"OK -> {OUT_HTML}")
+
 
 if __name__ == "__main__":
     main()
