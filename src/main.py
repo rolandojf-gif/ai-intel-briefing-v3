@@ -1,5 +1,8 @@
 import yaml
 from pathlib import Path
+from datetime import datetime
+import json
+import statistics
 
 from src.fetch import fetch_rss
 from src.render import render_index
@@ -13,17 +16,12 @@ def chunk(lst, n):
 
 
 def merge_briefings(briefs: list[dict]) -> dict:
-    """
-    Si haces 2 chunks, tendrás 2 briefings.
-    Aquí los fusionamos de forma simple:
-    - concatenar y recortar a tamaño fijo.
-    """
     out = {"signals": [], "risks": [], "watch": [], "entities_top": []}
+
     for b in briefs:
         for k in out.keys():
             out[k].extend(b.get(k, []))
 
-    # dedup preservando orden
     def dedup(seq):
         seen = set()
         res = []
@@ -38,6 +36,7 @@ def merge_briefings(briefs: list[dict]) -> dict:
     out["risks"] = dedup(out["risks"])[:3]
     out["watch"] = dedup(out["watch"])[:3]
     out["entities_top"] = dedup(out["entities_top"])[:3]
+
     return out
 
 
@@ -46,15 +45,15 @@ def main():
 
     items = []
 
-    # caps por fuente (ajusta nombres EXACTOS según feeds.yaml)
     per_source_cap = {
         "arXiv cs.AI": 2,
         "arXiv cs.LG": 2,
-        "NVIDIA Blog (AI)": 2,  # si tu name es distinto, cámbialo
+        "NVIDIA Blog": 2,
     }
+
     per_source_count = {}
 
-    # 1) Ingesta RSS + heurístico
+    # 1️⃣ Ingesta RSS
     for s in cfg["sources"]:
         if s.get("type") != "rss":
             continue
@@ -70,7 +69,6 @@ def main():
             it["source"] = s["name"]
             it["feed_tags"] = s.get("tags", [])
 
-            # cap por fuente
             src = it["source"]
             cap = per_source_cap.get(src)
             if cap is not None:
@@ -81,23 +79,23 @@ def main():
 
             sc = score_item(it["title"], it.get("summary", ""), it["source"])
             it.update(sc)
+
             items.append(it)
 
-    # 2) Dedup
+    # 2️⃣ Dedup
     seen = set()
     dedup = []
     for it in items:
-        link = it["link"]
-        if link in seen:
+        if it["link"] in seen:
             continue
-        seen.add(link)
+        seen.add(it["link"])
         dedup.append(it)
 
-    # 3) Preselección
+    # 3️⃣ Preselección heurística
     dedup.sort(key=lambda x: x.get("score", 0), reverse=True)
     candidates = dedup[:30]
 
-    # 4) Batch input
+    # 4️⃣ Preparar batch Gemini
     batch_in = []
     for idx, it in enumerate(candidates, start=1):
         batch_in.append({
@@ -109,7 +107,6 @@ def main():
         })
         it["_rid"] = idx
 
-    # 5) Gemini batch en 1-2 chunks
     results_map = {}
     briefings = []
 
@@ -128,7 +125,7 @@ def main():
         "entities_top": []
     }
 
-    # 6) Aplicar LLM + ordenar
+    # 5️⃣ Aplicar resultados LLM
     reranked = []
     for it in candidates:
         rid = it.get("_rid")
@@ -141,53 +138,51 @@ def main():
             it["why"] = llm.get("why", "")
             it["entities"] = llm.get("entities", [])
         else:
-            it["why"] = it.get("why") or (it.get("summary", "")[:160])
+            it["why"] = it.get("summary", "")[:160]
 
         reranked.append(it)
 
     reranked.sort(key=lambda x: x.get("score", 0), reverse=True)
 
-    final_items = reranked[:10]
-    from datetime import datetime
-import json
-import statistics
+    final_items = reranked[:15]
 
-today = datetime.now().strftime("%Y-%m-%d")
+    # 6️⃣ Guardar snapshot diario
+    today = datetime.now().strftime("%Y-%m-%d")
 
-# métricas simples
-scores = [x.get("score", 0) for x in final_items]
-score_avg = round(statistics.mean(scores), 1) if scores else 0
+    scores = [x.get("score", 0) for x in final_items]
+    score_avg = round(statistics.mean(scores), 1) if scores else 0
 
-primary_dist = {}
-for x in final_items:
-    p = x.get("primary", "misc")
-    primary_dist[p] = primary_dist.get(p, 0) + 1
+    primary_dist = {}
+    for x in final_items:
+        p = x.get("primary", "misc")
+        primary_dist[p] = primary_dist.get(p, 0) + 1
 
-entities_flat = []
-for x in final_items:
-    entities_flat.extend(x.get("entities", []))
+    entities_flat = []
+    for x in final_items:
+        entities_flat.extend(x.get("entities", []))
 
-entity_counts = {}
-for e in entities_flat:
-    entity_counts[e] = entity_counts.get(e, 0) + 1
+    entity_counts = {}
+    for e in entities_flat:
+        entity_counts[e] = entity_counts.get(e, 0) + 1
 
-top_entities = sorted(entity_counts.items(), key=lambda x: x[1], reverse=True)[:5]
+    top_entities = sorted(entity_counts.items(), key=lambda x: x[1], reverse=True)[:5]
 
-daily_snapshot = {
-    "date": today,
-    "score_avg": score_avg,
-    "primary_dist": primary_dist,
-    "top_entities": top_entities,
-    "briefing": briefing,
-    "items": final_items,
-}
+    daily_snapshot = {
+        "date": today,
+        "score_avg": score_avg,
+        "primary_dist": primary_dist,
+        "top_entities": top_entities,
+        "briefing": briefing,
+        "items": final_items,
+    }
 
-Path("docs/data").mkdir(parents=True, exist_ok=True)
-Path(f"docs/data/{today}.json").write_text(
-    json.dumps(daily_snapshot, ensure_ascii=False, indent=2),
-    encoding="utf-8"
-)
+    Path("docs/data").mkdir(parents=True, exist_ok=True)
+    Path(f"docs/data/{today}.json").write_text(
+        json.dumps(daily_snapshot, ensure_ascii=False, indent=2),
+        encoding="utf-8"
+    )
 
+    # 7️⃣ Render HTML
     html = render_index(final_items, briefing=briefing)
 
     Path("docs").mkdir(exist_ok=True)
