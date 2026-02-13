@@ -8,15 +8,6 @@ from typing import Any, Dict, List
 DATA_DIR = Path("docs/data")
 OUT_HTML = Path("docs/weekly.html")
 
-# opcional: normalización de categorías si tu primary varía
-CATEGORY_ALIASES = {
-    "chips": "hardware",
-    "semiconductors": "hardware",
-    "datacenter": "infrastructure",
-    "security": "security",
-    "cybersecurity": "security",
-}
-
 
 def parse_date(stem: str) -> datetime:
     try:
@@ -37,15 +28,12 @@ def load_day(p: Path) -> Dict[str, Any]:
     try:
         data = json.loads(p.read_text(encoding="utf-8"))
         if isinstance(data, dict):
+            data.setdefault("date", p.stem)
+            data.setdefault("items", [])
             return data
     except Exception:
         pass
     return {"date": p.stem, "items": []}
-
-
-def norm_cat(c: str) -> str:
-    c2 = (c or "misc").strip().lower()
-    return CATEGORY_ALIASES.get(c2, c2)
 
 
 def slope(xs: List[int]) -> float:
@@ -105,7 +93,6 @@ def main():
     if not files:
         OUT_HTML.parent.mkdir(parents=True, exist_ok=True)
         OUT_HTML.write_text("<html><body><p>No data.</p></body></html>", encoding="utf-8")
-        print(f"OK -> {OUT_HTML}")
         return
 
     days = [p.stem for p in files]
@@ -124,42 +111,35 @@ def main():
             if not isinstance(it, dict):
                 continue
 
-            cat = norm_cat(it.get("primary", "misc"))
+            cat = (it.get("primary") or "misc").strip()
             local_cat[cat] = local_cat.get(cat, 0) + 1
 
             for e in (it.get("entities") or []):
-                if not isinstance(e, str):
-                    continue
-                e2 = e.strip()
-                if not e2:
-                    continue
-                local_ent[e2] = local_ent.get(e2, 0) + 1
+                if isinstance(e, str) and e.strip():
+                    e2 = e.strip()
+                    local_ent[e2] = local_ent.get(e2, 0) + 1
 
         for c, v in local_cat.items():
             cat_series.setdefault(c, [0] * len(snapshots))[di] = v
         for e, v in local_ent.items():
             ent_series.setdefault(e, [0] * len(snapshots))[di] = v
 
-    ent_rows = []
-    for e, series in ent_series.items():
-        ent_rows.append({
-            "name": e,
-            "series": series,
-            "total": sum(series),
-            "streak": streak(series),
-            "slope": slope(series),
-        })
+    ent_rows = [{
+        "name": e,
+        "series": series,
+        "total": sum(series),
+        "streak": streak(series),
+        "slope": slope(series),
+    } for e, series in ent_series.items()]
     ent_rows.sort(key=lambda r: (r["streak"], r["total"], r["slope"]), reverse=True)
 
-    cat_rows = []
-    for c, series in cat_series.items():
-        cat_rows.append({
-            "name": c,
-            "series": series,
-            "total": sum(series),
-            "streak": streak(series),
-            "slope": slope(series),
-        })
+    cat_rows = [{
+        "name": c,
+        "series": series,
+        "total": sum(series),
+        "streak": streak(series),
+        "slope": slope(series),
+    } for c, series in cat_series.items()]
     cat_rows.sort(key=lambda r: (r["slope"], r["total"], r["streak"]), reverse=True)
 
     top_entities = ent_rows[:12]
@@ -171,14 +151,14 @@ def main():
     implications = []
     if dominant and dominant["slope"] > 0.25 and dominant["streak"] >= 3:
         implications.append(
-            f"La categoría '{dominant['name']}' acelera (slope {dominant['slope']:.2f}, streak {dominant['streak']}d). Señal de narrativa dominante en subida."
+            f"La categoría '{dominant['name']}' acelera (slope {dominant['slope']:.2f}, streak {dominant['streak']}d)."
         )
     if hot_ent and hot_ent["streak"] >= 3:
         implications.append(
-            f"Entidad caliente: '{hot_ent['name']}' mantiene presencia (streak {hot_ent['streak']}d). Probable tema tractor."
+            f"Entidad caliente: '{hot_ent['name']}' mantiene presencia (streak {hot_ent['streak']}d)."
         )
     if not implications:
-        implications.append("No hay aceleraciones claras: o semana plana, o scoring demasiado homogéneo.")
+        implications.append("No hay aceleraciones claras en esta ventana.")
 
     ent_li = "\n".join(
         f"<li><span class='k'>{r['name']}</span> <span class='s'>{spark(r['series'])}</span>"
@@ -203,7 +183,7 @@ def main():
             title = (it.get("title") or "").strip()
             url = (it.get("url") or it.get("link") or "").strip()
             src = (it.get("source") or "").strip()
-            cat = norm_cat(it.get("primary", "misc"))
+            cat = (it.get("primary") or "misc").strip()
             if url:
                 li.append(f"<li><a href='{url}' target='_blank' rel='noopener'>{title}</a> <span class='m'>[{src}] [{cat}]</span></li>")
             else:
@@ -276,7 +256,6 @@ def main():
 
     OUT_HTML.parent.mkdir(parents=True, exist_ok=True)
     OUT_HTML.write_text(html, encoding="utf-8")
-    print(f"OK -> {OUT_HTML}")
 
 
 if __name__ == "__main__":
