@@ -12,7 +12,7 @@ from src.llm_rank import rank_batch
 
 def chunk(lst, n):
     for i in range(0, len(lst), n):
-        yield lst[i:i+n]
+        yield lst[i:i + n]
 
 
 def merge_briefings(briefs: list[dict]) -> dict:
@@ -116,6 +116,7 @@ def main():
             results_map.update(out.get("map", {}))
             briefings.append(out.get("briefing", {}))
         except Exception:
+            # si Gemini falla en un chunk, no tires el pipeline entero
             pass
 
     briefing = merge_briefings(briefings) if briefings else {
@@ -125,35 +126,40 @@ def main():
         "entities_top": []
     }
 
-# 5️⃣ Aplicar resultados LLM
-reranked = []
-for it in candidates:
-    rid = it.get("_rid")
-    llm = results_map.get(rid)
+    # 5️⃣ Aplicar resultados LLM
+    reranked = []
+    for it in candidates:
+        rid = it.get("_rid")
+        llm = results_map.get(rid)
 
-    # estandariza el campo url para downstream (weekly/clusters/etc.)
-    it["url"] = it.get("link", "")
+        # estandariza url (para weekly/clusters)
+        it["url"] = it.get("link", "")
 
-    if llm:
-        it["score"] = int(llm.get("score", it.get("score", 0)))
-        it["primary"] = llm.get("primary", it.get("primary", "misc"))
-        it["tags"] = llm.get("tags", [])
-        it["why"] = llm.get("why", "")
-        it["entities"] = llm.get("entities", [])
-    else:
-        it["why"] = it.get("summary", "")[:160]
+        if llm:
+            it["score"] = int(llm.get("score", it.get("score", 0)))
+            it["primary"] = llm.get("primary", it.get("primary", "misc"))
+            it["tags"] = llm.get("tags", [])
+            it["why"] = llm.get("why", "")
+            it["entities"] = llm.get("entities", [])
+        else:
+            it["primary"] = it.get("primary", "misc")
+            it["tags"] = it.get("tags", [])
+            it["entities"] = it.get("entities", [])
+            it["why"] = it.get("summary", "")[:160]
 
-    reranked.append(it)
+        reranked.append(it)
 
-reranked.sort(key=lambda x: x.get("score", 0), reverse=True)
-final_items = reranked[:15]
+    reranked.sort(key=lambda x: x.get("score", 0), reverse=True)
+    final_items = reranked[:15]
 
-
-
-    # 5.5️⃣ Métricas daily (necesarias para el snapshot)
+    # 5.5️⃣ Métricas daily
     today = datetime.now().strftime("%Y-%m-%d")
 
-    scores = [it.get("score", 0) for it in final_items if isinstance(it.get("score", 0), (int, float))]
+    scores = [
+        it.get("score", 0)
+        for it in final_items
+        if isinstance(it.get("score", 0), (int, float))
+    ]
     score_avg = round(statistics.mean(scores), 2) if scores else 0
 
     primary_dist = {}
@@ -163,7 +169,7 @@ final_items = reranked[:15]
 
     entity_counts = {}
     for it in final_items:
-        for e in it.get("entities", []) or []:
+        for e in (it.get("entities") or []):
             if not isinstance(e, str):
                 continue
             e2 = e.strip()
@@ -196,7 +202,7 @@ final_items = reranked[:15]
     Path("docs").mkdir(exist_ok=True)
     Path("docs/index.html").write_text(html, encoding="utf-8")
 
-    # 8️⃣ Weekly radar (no rompe el daily si falla)
+    # 8️⃣ Weekly radar
     import subprocess
     subprocess.run(["python", "-m", "src.weekly"], check=False)
 
