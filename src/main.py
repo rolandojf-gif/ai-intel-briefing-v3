@@ -3,17 +3,16 @@ from pathlib import Path
 
 from src.fetch import fetch_rss
 from src.render import render_index
-from src.score import score_item
+from src.score import score_item  # heurístico (barato)
+from src.llm_rank import rank_item  # Gemini (caro, pero poco)
 
 
 def main():
-    cfg = yaml.safe_load(
-        Path("feeds/feeds.yaml").read_text(encoding="utf-8")
-    )
+    cfg = yaml.safe_load(Path("feeds/feeds.yaml").read_text(encoding="utf-8"))
 
-    items_out = []
+    items = []
 
-    # ---- Fetch + score ----
+    # 1) Ingesta RSS + heurístico rápido
     for s in cfg["sources"]:
         if s.get("type") != "rss":
             continue
@@ -25,72 +24,51 @@ def main():
             it["source"] = s["name"]
             it["feed_tags"] = s.get("tags", [])
 
-            sc = score_item(
-                it["title"],
-                it.get("summary", ""),
-                it["source"]
-            )
+            sc = score_item(it["title"], it.get("summary", ""), it["source"])
             it.update(sc)
 
-            items_out.append(it)
+            items.append(it)
 
-    # ---- Dedup por link ----
+    # 2) Dedup por link
     seen = set()
     dedup = []
-    for it in items_out:
-        if it["link"] in seen:
+    for it in items:
+        link = it["link"]
+        if link in seen:
             continue
-        seen.add(it["link"])
+        seen.add(link)
         dedup.append(it)
 
-    # ---- Orden por score ----
+    # 3) Preselección: top N por heurístico (para no pagar por basura)
     dedup.sort(key=lambda x: x.get("score", 0), reverse=True)
+    candidates = dedup[:40]  # aquí controlas el gasto
 
-    # ---- Umbral dinámico ----
-    threshold = 45
-    filtered = [x for x in dedup if x.get("score", 0) >= threshold]
+    # 4) Re-rank con Gemini (score “real”)
+    reranked = []
+    for it in candidates:
+        try:
+            llm = rank_item(
+                title=it["title"],
+                summary=it.get("summary", ""),
+                source=it["source"],
+                url=it["link"],
+            )
+            it["score"] = int(llm["score"])
+            it["primary"] = llm["primary"]
+            it["tags"] = llm.get("tags", [])
+            it["why"] = llm.get("why", "")
+            it["entities"] = llm.get("entities", [])
+        except Exception:
+            # si Gemini falla, al menos no rompas el pipeline
+            it["why"] = it.get("summary", "")[:160]
+        reranked.append(it)
 
-    if len(filtered) < 20:
-        threshold = 35
-        filtered = [x for x in dedup if x.get("score", 0) >= threshold]
+    reranked.sort(key=lambda x: x.get("score", 0), reverse=True)
 
-    dedup = filtered
+    # 5) Top 20 final
+    final_items = reranked[:20]
 
-    # ---- Caps por categoría ----
-    caps = {
-        "infra": 6,
-        "invest": 6,
-        "models": 4,
-        "geopol": 4,
-        "misc": 2
-    }
-
-    picked = []
-    counts = {k: 0 for k in caps}
-
-    for it in dedup:
-        p = it.get("primary", "misc")
-        if p not in caps:
-            p = "misc"
-
-        if counts[p] >= caps[p]:
-            continue
-
-        counts[p] += 1
-        picked.append(it)
-
-    # ---- Relleno hasta 20 si hace falta ----
-    if len(picked) < 20:
-        for it in dedup:
-            if it in picked:
-                continue
-            picked.append(it)
-            if len(picked) >= 20:
-                break
-
-    # ---- Render ----
-    html = render_index(picked)
-
+    html = render_index(final_items)
     Path("docs").mkdir(exist_ok=True)
     Path("docs/index.html").write_text(html, encoding="utf-8")
 
