@@ -111,20 +111,46 @@ def main():
     briefings = []
 
     for part in chunk(batch_in, 15):
-        try:
-            out = rank_batch(part)
-            results_map.update(out.get("map", {}))
-            briefings.append(out.get("briefing", {}))
-        except Exception:
-            # si Gemini falla en un chunk, no tires el pipeline entero
-            pass
+    try:
+        out = rank_batch(part)
+        results_map.update(out.get("map", {}))
+        briefings.append(out.get("briefing", {}))
+   except Exception as e:
+    print("GEMINI rank_batch FAILED:", repr(e))
 
-    briefing = merge_briefings(briefings) if briefings else {
-        "signals": [],
-        "risks": [],
-        "watch": [],
-        "entities_top": []
+
+
+  briefing = merge_briefings(briefings) if briefings else {
+    "signals": [],
+    "risks": [],
+    "watch": [],
+    "entities_top": []
+}
+
+# Fallback: si Gemini no devolvió briefing útil, genera uno heurístico
+if not (briefing.get("signals") or briefing.get("risks") or briefing.get("watch") or briefing.get("entities_top")):
+    primary_counts = {}
+    entity_counts_tmp = {}
+
+    for it in candidates:
+        p = it.get("primary", "misc")
+        primary_counts[p] = primary_counts.get(p, 0) + 1
+
+        for e in (it.get("entities") or []):
+            if isinstance(e, str) and e.strip():
+                e2 = e.strip()
+                entity_counts_tmp[e2] = entity_counts_tmp.get(e2, 0) + 1
+
+    top_primaries = sorted(primary_counts.items(), key=lambda x: x[1], reverse=True)[:3]
+    top_ents = sorted(entity_counts_tmp.items(), key=lambda x: x[1], reverse=True)[:3]
+
+    briefing = {
+        "signals": [f"Dominancia de categoría: {p} ({c})" for p, c in top_primaries],
+        "risks": ["LLM briefing no disponible (fallback heurístico activo)."],
+        "watch": ["Revisar estabilidad Gemini / cuota / API key."],
+        "entities_top": [e for e, _ in top_ents],
     }
+
 
     # 5️⃣ Aplicar resultados LLM
     reranked = []
