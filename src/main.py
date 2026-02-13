@@ -202,9 +202,12 @@ def main():
     Path("docs").mkdir(exist_ok=True)
     Path("docs/index.html").write_text(html, encoding="utf-8")
 
-    # 8️⃣ Weekly radar (direct call)
-from src.weekly import main as weekly_main
-weekly_main()
+   # 8️⃣ Weekly radar (direct call, sin subprocess)
+try:
+    from src.weekly import main as weekly_main
+    weekly_main()
+except Exception as e:
+    print("WEEKLY FAILED:", repr(e))
 
 
 
