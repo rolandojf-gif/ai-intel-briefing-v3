@@ -106,16 +106,31 @@ def main():
         })
         it["_rid"] = idx
 
+    # Fecha del run (se usa en snapshot y en cache)
+    today = datetime.now().strftime("%Y-%m-%d")
+    llm_flag = Path(f"docs/data/{today}.llm_done")
+
     results_map = {}
     briefings = []
 
-    for part in chunk(batch_in, 15):
-        try:
-            out = rank_batch(part)
-            results_map.update(out.get("map", {}))
-            briefings.append(out.get("briefing", {}))
-        except Exception as e:
-            print("GEMINI rank_batch FAILED:", repr(e))
+    # 4.5️⃣ Cache diario de Gemini: solo 1 intento al día
+    if llm_flag.exists():
+        print("Skipping Gemini: already used today (cache flag present).")
+    else:
+        for part in chunk(batch_in, 15):
+            try:
+                out = rank_batch(part)
+                results_map.update(out.get("map", {}))
+                briefings.append(out.get("briefing", {}))
+            except Exception as e:
+                print("GEMINI rank_batch FAILED:", repr(e))
+                # Si es cuota, no sigas quemando intentos
+                if "429" in repr(e) or "RESOURCE_EXHAUSTED" in repr(e):
+                    break
+
+        # marca el día como “Gemini ya intentado”
+        Path("docs/data").mkdir(parents=True, exist_ok=True)
+        llm_flag.write_text(datetime.now().isoformat(), encoding="utf-8")
 
     briefing = merge_briefings(briefings) if briefings else {
         "signals": [],
@@ -175,8 +190,6 @@ def main():
     final_items = reranked[:15]
 
     # 5.5️⃣ Métricas daily (para snapshot)
-    today = datetime.now().strftime("%Y-%m-%d")
-
     scores = [
         it.get("score", 0)
         for it in final_items
@@ -221,16 +234,15 @@ def main():
     Path("docs").mkdir(exist_ok=True)
     Path("docs/index.html").write_text(html, encoding="utf-8")
 
-    # 8️⃣ Weekly radar (direct call + traceback)
-try:
-    from src.weekly import main as weekly_main
-    weekly_main()
-    print("WEEKLY OK -> docs/weekly.html")
-except Exception:
-    import traceback
-    print("WEEKLY FAILED (traceback):")
-    traceback.print_exc()
-
+    # 8️⃣ Weekly radar (direct call)
+    try:
+        from src.weekly import main as weekly_main
+        weekly_main()
+        print("WEEKLY OK -> docs/weekly.html")
+    except Exception:
+        import traceback
+        print("WEEKLY FAILED (traceback):")
+        traceback.print_exc()
 
 
 if __name__ == "__main__":
