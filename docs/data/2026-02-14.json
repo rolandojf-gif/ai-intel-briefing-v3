@@ -1,14 +1,14 @@
 {
   "date": "2026-02-14",
-  "score_avg": 31.87,
+  "score_avg": 28.07,
   "primary_dist": {
-    "infra": 7,
-    "models": 8
+    "infra": 8,
+    "models": 7
   },
   "top_entities": [
     {
       "entity": "NVIDIA",
-      "count": 6
+      "count": 7
     },
     {
       "entity": "Reino Unido",
@@ -29,7 +29,7 @@
   ],
   "briefing": {
     "signals": [
-      "Mix de hoy (top): Modelos (8/15), Infraestructura/HW (7/15).",
+      "Mix de hoy (top): Infraestructura/HW (8/15), Modelos (7/15).",
       "Actores dominantes (hoy): NVIDIA, Reino Unido, TSMC, Intel, Samsung."
     ],
     "risks": [
@@ -37,7 +37,7 @@
     ],
     "watch": [
       "Seguir: NVIDIA, Reino Unido, TSMC.",
-      "Vigilar si 'Modelos' mantiene dominancia mañana."
+      "Vigilar si 'Infraestructura/HW' mantiene dominancia mañana."
     ],
     "entities_top": [
       "NVIDIA",
@@ -124,30 +124,6 @@
       "why": "AI and graphics research breakthroughs in neural rendering, 3D generation and world simulation power robotics, autonomous vehicles and content creation."
     },
     {
-      "title": "Automated Optimization Modeling via a Localizable Error-Driven Perspective",
-      "link": "https://arxiv.org/abs/2602.11164",
-      "published": "2026-02-13T05:00:00+00:00",
-      "summary": "arXiv:2602.11164v1 Announce Type: new \nAbstract: Automated optimization modeling via Large Language Models (LLMs) has emerged as a promising approach to assist complex human decision-making. While post-training has become a pivotal technique to enhance LLMs' capabilities in this domain, its effectiveness is severely constrained by the scarcity and underutilization of high-quality training data. However, through a detailed profiling of error patterns across various problem-response pairs drawn from post-training, we identify two fundamental limitations of existing automated optimization modeling approaches: (L1) the sparsity of error-specific problems and (L2) the sparse rewards associated with difficult problems. We demonstrate that these limitations can result in suboptimal performance in domain-specific post-training for LLMs. To tackle the above two limitations, we propose a novel error-driven learning framework -- namely, auto\\textbf{m}ated opt\\textbf{i}mization modeli\\textbf{n}g via a localizable error-\\textbf{d}riven perspective (MIND) -- that customizes the whole model training framework from data synthesis to post-training. MIND is based on our key observation of the unique localizable patterns in error propagation of optimization modelings, that is, modeling errors may remain localized to specific semantic segments and do not propagate throughout the entire solution. Thus, in contrast to holistic reasoning tasks such as mathematical proofs, MIND leverages the construction of a focused, high-density training corpus and proposes \\textbf{D}ynamic Supervised \\textbf{F}ine-Tuning \\textbf{P}olicy \\textbf{O}ptimization (DFPO) to tackle difficult problems through localized refinement. Experiments on six benchmarks demonstrate that MIND consistently outperforms all the state-of-the-art automated optimization modeling approaches.",
-      "source": "arXiv cs.LG",
-      "feed_tags": [
-        "papers",
-        "models"
-      ],
-      "score": 35,
-      "primary": "models",
-      "tags": [
-        "models"
-      ],
-      "url": "https://arxiv.org/abs/2602.11164",
-      "_rid": 4,
-      "entities": [
-        "Automated Optimization Modeling",
-        "Localizable Error",
-        "Driven Perspective"
-      ],
-      "why": "arXiv:2602.11164v1 Announce Type: new \nAbstract: Automated optimization modeling via Large Language Models (LLMs) has emerged as a promising approach to assist "
-    },
-    {
       "title": "Reaching Across the Isles: UK-LLM Brings AI to UK Languages With NVIDIA Nemotron",
       "link": "https://blogs.nvidia.com/blog/uk-llm-nemotron/",
       "published": "2025-09-14T01:00:21+00:00",
@@ -165,7 +141,7 @@
         "geopol"
       ],
       "url": "https://blogs.nvidia.com/blog/uk-llm-nemotron/",
-      "_rid": 5,
+      "_rid": 4,
       "entities": [
         "NVIDIA",
         "Reino Unido",
@@ -176,57 +152,6 @@
         "Nemotron"
       ],
       "why": "Celtic languages — including Cornish, Irish, Scottish Gaelic and Welsh — are the U.K.’s oldest living languages. To empower their speakers, the UK-LLM sovereign"
-    },
-    {
-      "title": "Latent Generative Solvers for Generalizable Long-Term Physics Simulation",
-      "link": "https://arxiv.org/abs/2602.11229",
-      "published": "2026-02-13T05:00:00+00:00",
-      "summary": "arXiv:2602.11229v1 Announce Type: new \nAbstract: We study long-horizon surrogate simulation across heterogeneous PDE systems. We introduce Latent Generative Solvers (LGS), a two-stage framework that (i) maps diverse PDE states into a shared latent physics space with a pretrained VAE, and (ii) learns probabilistic latent dynamics with a Transformer trained by flow matching. Our key mechanism is an uncertainty knob that perturbs latent inputs during training and inference, teaching the solver to correct off-manifold rollout drift and stabilizing autoregressive prediction. We further use flow forcing to update a system descriptor (context) from model-generated trajectories, aligning train/test conditioning and improving long-term stability. We pretrain on a curated corpus of $\\sim$2.5M trajectories at $128^2$ resolution spanning 12 PDE families. LGS matches strong deterministic neural-operator baselines on short horizons while substantially reducing rollout drift on long horizons. Learning in latent space plus efficient architectural choices yields up to \\textbf{70$\\times$} lower FLOPs than non-generative baselines, enabling scalable pretraining. We also show efficient adaptation to an out-of-distribution $256^2$ Kolmogorov flow dataset under limited finetuning budgets. Overall, LGS provides a practical route toward generalizable, uncertainty-aware neural PDE solvers that are more reliable for long-term forecasting and downstream scientific workflows.",
-      "source": "arXiv cs.AI",
-      "feed_tags": [
-        "papers",
-        "models"
-      ],
-      "score": 32,
-      "primary": "models",
-      "tags": [
-        "models"
-      ],
-      "url": "https://arxiv.org/abs/2602.11229",
-      "_rid": 6,
-      "entities": [
-        "Latent Generative Solvers",
-        "Generalizable Long",
-        "Term Physics Simulation"
-      ],
-      "why": "arXiv:2602.11229v1 Announce Type: new \nAbstract: We study long-horizon surrogate simulation across heterogeneous PDE systems. We introduce Latent Generative Sol"
-    },
-    {
-      "title": "KBVQ-MoE: KLT-guided SVD with Bias-Corrected Vector Quantization for MoE Large Language Models",
-      "link": "https://arxiv.org/abs/2602.11184",
-      "published": "2026-02-13T05:00:00+00:00",
-      "summary": "arXiv:2602.11184v1 Announce Type: new \nAbstract: Mixture of Experts (MoE) models have achieved great success by significantly improving performance while maintaining computational efficiency through sparse expert activation. However, their enormous parameter sizes and memory demands pose major challenges for deployment in resource-constrained environments. Vector Quantization (VQ) offers a promising approach for ultra-low-bit compression in Large Language Models (LLMs) by leveraging a codebook, where weight vectors are mapped to the most similar discrete codewords. Yet, directly applying VQ to MoEs often leads to substantial performance degradation due to two critical obstacles: (1) redundant representations among experts cause VQ to repeatedly quantize similar representations for each expert, resulting in inefficient use of limited codebook capacity; and (2) cumulative output bias is amplified by expert aggregation in MoE layers, leading to distributional shifts in the quantized outputs. To address these issues, we propose KBVQ-MoE, a novel VQ framework to enhance extremely low-bit quantization for MoE-based LLMs. KBVQ-MoE integrates two techniques: (1) input-driven redundancy elimination, where a Karhunen-Loeve Transform (KLT) guided singular value decomposition (SVD) extracts dominant weight components and shares them across experts; and (2) bias-corrected output stabilization, where vector quantization is applied only to expert-specific (non-redundant) representations and the quantized outputs are corrected via channel-wise affine compensation. Experiments on various MoE LLMs demonstrate that KBVQ-MoE preserves accuracy substantially better than existing quantization methods. For example, 3-bit quantization of Qwen1.5-MoE-A2.7B achieves an average accuracy of 67.99, nearly identical to the FP16 baseline of 68.07, underscoring KBVQ-MoE's potential for efficient deployment on edge devices and other resource-constrained platforms.",
-      "source": "arXiv cs.LG",
-      "feed_tags": [
-        "papers",
-        "models"
-      ],
-      "score": 32,
-      "primary": "models",
-      "tags": [
-        "models"
-      ],
-      "url": "https://arxiv.org/abs/2602.11184",
-      "_rid": 7,
-      "entities": [
-        "KBVQ",
-        "KLT",
-        "SVD",
-        "Bias",
-        "Corrected Vector Quantization",
-        "Large Language Models"
-      ],
-      "why": "arXiv:2602.11184v1 Announce Type: new \nAbstract: Mixture of Experts (MoE) models have achieved great success by significantly improving performance while mainta"
     },
     {
       "title": "How Memory Technology Is Powering the Next Era of Compute",
@@ -245,7 +170,7 @@
         "models"
       ],
       "url": "https://semiwiki.com/ip/rambus/366449-how-memory-technology-is-powering-the-next-era-of-compute/",
-      "_rid": 8,
+      "_rid": 5,
       "entities": [
         "How Memory Technology",
         "Is Powering",
@@ -270,7 +195,7 @@
         "infra"
       ],
       "url": "https://blogs.nvidia.com/blog/isambard-ai/",
-      "_rid": 9,
+      "_rid": 6,
       "entities": [
         "Reino Unido",
         "Isambard",
@@ -296,7 +221,7 @@
         "infra"
       ],
       "url": "https://blogs.nvidia.com/blog/nvidia-research-ai-graphics/",
-      "_rid": 10,
+      "_rid": 7,
       "entities": [
         "NVIDIA",
         "Innovation",
@@ -326,7 +251,7 @@
         "models"
       ],
       "url": "https://blogs.nvidia.com/blog/applications-open-graduate-fellowship-awards-2025/",
-      "_rid": 11,
+      "_rid": 8,
       "entities": [
         "NVIDIA",
         "Applications Now Open",
@@ -350,7 +275,7 @@
         "models"
       ],
       "url": "https://blogs.nvidia.com/blog/autonomous-vehicle-ecosystem-ai-models-developer-tools/",
-      "_rid": 12,
+      "_rid": 9,
       "entities": [
         "NVIDIA",
         "Releases New",
@@ -377,7 +302,7 @@
         "models"
       ],
       "url": "https://semiwiki.com/eda/amiq-eda/366471-giving-ai-agents-access-to-a-compiled-design-and-verification-database/",
-      "_rid": 13,
+      "_rid": 10,
       "entities": [
         "Giving",
         "Agents Access",
@@ -402,7 +327,7 @@
         "models"
       ],
       "url": "https://blogs.nvidia.com/blog/ai-sign-language/",
-      "_rid": 14,
+      "_rid": 11,
       "entities": [
         "Sign",
         "Platform",
@@ -413,13 +338,13 @@
       "why": "American Sign Language is the third most prevalent language in the United States — but there are vastly fewer AI tools developed with ASL data than data represe"
     },
     {
-      "title": "Explaining AI Without Code: A User Study on Explainable AI",
-      "link": "https://arxiv.org/abs/2602.11159",
-      "published": "2026-02-13T05:00:00+00:00",
-      "summary": "arXiv:2602.11159v1 Announce Type: new \nAbstract: The increasing use of Machine Learning (ML) in sensitive domains such as healthcare, finance, and public policy has raised concerns about the transparency of automated decisions. Explainable AI (XAI) addresses this by clarifying how models generate predictions, yet most methods demand technical expertise, limiting their value for novices. This gap is especially critical in no-code ML platforms, which seek to democratize AI but rarely include explainability. We present a human-centered XAI module in DashAI, an open-source no-code ML platform. The module integrates three complementary techniques, which are Partial Dependence Plots (PDP), Permutation Feature Importance (PFI), and KernelSHAP, into DashAI's workflow for tabular classification. A user study (N = 20; ML novices and experts) evaluated usability and the impact of explanations. Results show: (i) high task success ($\\geq80\\%$) across all explainability tasks; (ii) novices rated explanations as useful, accurate, and trustworthy on the Explanation Satisfaction Scale (ESS, Cronbach's $\\alpha$ = 0.74, a measure of internal consistency), while experts were more critical of sufficiency and completeness; and (iii) explanations improved perceived predictability and confidence on the Trust in Automation scale (TiA, $\\alpha$ = 0.60), with novices showing higher trust than experts. These findings highlight a central challenge for XAI in no-code ML, making explanations both accessible to novices and sufficiently detailed for experts.",
-      "source": "arXiv cs.AI",
+      "title": "Natively Adaptive Interfaces: A new framework for AI accessibility",
+      "link": "https://blog.google/company-news/outreach-and-initiatives/accessibility/natively-adaptive-interfaces-ai-accessibility/",
+      "published": "2026-02-05T17:00:00+00:00",
+      "summary": "A collage of four images, the first of a woman with curly hair in front of a silver laptop, the second of the same woman and a man with short black hair speaking on a stairwell, the third of a the same man with glasses, and an aerial image of NTID",
+      "source": "Google AI Blog",
       "feed_tags": [
-        "papers",
+        "labs",
         "models"
       ],
       "score": 17,
@@ -427,15 +352,85 @@
       "tags": [
         "models"
       ],
-      "url": "https://arxiv.org/abs/2602.11159",
+      "url": "https://blog.google/company-news/outreach-and-initiatives/accessibility/natively-adaptive-interfaces-ai-accessibility/",
+      "_rid": 12,
+      "entities": [
+        "Natively Adaptive Interfaces"
+      ],
+      "why": "A collage of four images, the first of a woman with curly hair in front of a silver laptop, the second of the same woman and a man with short black hair speakin"
+    },
+    {
+      "title": "Hear more about interactive world models in our latest podcast.",
+      "link": "https://blog.google/innovation-and-ai/technology/ai/release-notes-podcast-project-genie/",
+      "published": "2026-01-29T15:00:00+00:00",
+      "summary": "Project Genie: Create and explore worlds",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 16,
+      "primary": "models",
+      "tags": [
+        "models"
+      ],
+      "url": "https://blog.google/innovation-and-ai/technology/ai/release-notes-podcast-project-genie/",
+      "_rid": 13,
+      "entities": [
+        "Hear"
+      ],
+      "why": "Project Genie: Create and explore worlds"
+    },
+    {
+      "title": "NVIDIA Rubin Platform, Open Models, Autonomous Driving: NVIDIA Presents Blueprint for the Future at CES",
+      "link": "https://blogs.nvidia.com/blog/2026-ces-special-presentation/",
+      "published": "2026-01-05T23:30:18+00:00",
+      "summary": "NVIDIA founder and CEO Jensen Huang took the stage at the Fontainebleau Las Vegas to open CES 2026, declaring that AI is scaling into every domain and every device. “Computing has been fundamentally reshaped as a result of accelerated computing, as a result of artificial intelligence,” Huang said. “What that means is some $10 trillion\t<a class=\"read-more\" href=\"https://blogs.nvidia.com/blog/2026-ces-special-presentation/\">\n\t\tRead Article\t\t<span></span>\n\t</a>",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 13,
+      "primary": "models",
+      "tags": [
+        "models"
+      ],
+      "url": "https://blogs.nvidia.com/blog/2026-ces-special-presentation/",
+      "_rid": 14,
+      "entities": [
+        "NVIDIA",
+        "CES",
+        "Rubin Platform",
+        "Open Models",
+        "Autonomous Driving",
+        "Presents Blueprint",
+        "Future"
+      ],
+      "why": "NVIDIA founder and CEO Jensen Huang took the stage at the Fontainebleau Las Vegas to open CES 2026, declaring that AI is scaling into every domain and every dev"
+    },
+    {
+      "title": "Silicon Catalyst at the Chiplet Summit: Advancing the Chiplet Economy",
+      "link": "https://semiwiki.com/semiconductor-services/silicon-catalyst/366270-silicon-catalyst-at-the-chiplet-summit-advancing-the-chiplet-economy/",
+      "published": "2026-02-12T18:00:04+00:00",
+      "summary": "<p>\n<p>The rapid evolution of semiconductor design has elevated <a href=\"https://semiwiki.com/category/chiplet/\">chiplets</a> from a niche concept to a foundational strategy for next-generation computing. At the upcoming <a href=\"https://chipletsummit.com/\">Chiplet Summit</a> &#8211; February 17–19, 2026 Santa Clara Convention Center. Silicon Catalyst will play a central role in shaping this conversation, highlighting&#8230; <a class=\"read-more\" href=\"https://semiwiki.com/semiconductor-services/silicon-catalyst/366270-silicon-catalyst-at-the-chiplet-summit-advancing-the-chiplet-economy/\">Read More </a></p>\n<p>The post <a href=\"https://semiwiki.com/semiconductor-services/silicon-catalyst/366270-silicon-catalyst-at-the-chiplet-summit-advancing-the-chiplet-economy/\">Silicon Catalyst at the Chiplet Summit: Advancing the Chiplet Economy</a> appeared first on <a href=\"https://semiwiki.com\">SemiWiki</a>.</p>",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 13,
+      "primary": "infra",
+      "tags": [],
+      "url": "https://semiwiki.com/semiconductor-services/silicon-catalyst/366270-silicon-catalyst-at-the-chiplet-summit-advancing-the-chiplet-economy/",
       "_rid": 15,
       "entities": [
-        "Explaining",
-        "Without Code",
-        "User Study",
-        "Explainable"
+        "Silicon Catalyst",
+        "Chiplet Summit",
+        "Advancing",
+        "Chiplet Economy"
       ],
-      "why": "arXiv:2602.11159v1 Announce Type: new \nAbstract: The increasing use of Machine Learning (ML) in sensitive domains such as healthcare, finance, and public policy"
+      "why": "<p>\n<p>The rapid evolution of semiconductor design has elevated <a href=\"https://semiwiki.com/category/chiplet/\">chiplets</a> from a niche concept to a foundati"
     }
   ]
 }
