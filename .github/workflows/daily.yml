@@ -9,10 +9,6 @@ on:
         description: "Forzar llamada a Gemini en ejecución manual"
         required: false
         default: "false"
-      commit_outputs:
-        description: "Hacer commit/push de docs"
-        required: false
-        default: "true"
 
 permissions:
   contents: write
@@ -42,7 +38,6 @@ jobs:
           python -m src.main
 
       - name: Commit and push docs
-        if: ${{ github.event_name != 'workflow_dispatch' || inputs.commit_outputs == 'true' }}
         run: |
           git config user.name "ai-intel-bot"
           git config user.email "ai-intel-bot@users.noreply.github.com"
