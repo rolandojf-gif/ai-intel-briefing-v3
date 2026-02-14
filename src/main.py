@@ -1,4 +1,5 @@
 # src/main.py
+import os
 import yaml
 from pathlib import Path
 from datetime import datetime
@@ -10,11 +11,6 @@ from src.fetch import fetch_rss
 from src.render import render_index
 from src.score import score_item
 from src.llm_rank import rank_batch
-
-
-def chunk(lst, n):
-    for i in range(0, len(lst), n):
-        yield lst[i:i + n]
 
 
 def merge_briefings(briefs: list[dict]) -> dict:
@@ -38,11 +34,9 @@ def merge_briefings(briefs: list[dict]) -> dict:
     out["risks"] = dedup(out["risks"])[:3]
     out["watch"] = dedup(out["watch"])[:3]
     out["entities_top"] = dedup(out["entities_top"])[:5]
-
     return out
 
 
-# Etiquetas humanas para el briefing (NO cambia la categoría interna en datos)
 CATEGORY_LABELS = {
     "models": "Modelos",
     "infra": "Infraestructura/HW",
@@ -56,7 +50,6 @@ CATEGORY_LABELS = {
     "misc": "Misc",
 }
 
-# Entidades "conocidas" que quieres captar incluso sin LLM
 KNOWN_ENTITIES = [
     "OpenAI", "NVIDIA", "Anthropic", "Google", "DeepMind", "Microsoft", "Meta", "Apple",
     "Amazon", "AWS", "Azure", "TSMC", "AMD", "Intel", "Arm", "Tesla",
@@ -64,20 +57,26 @@ KNOWN_ENTITIES = [
     "ByteDance", "Alibaba", "Tencent", "Samsung", "Qualcomm",
 ]
 
-# Basura típica cuando haces heurística en títulos
-STOP_ENTITIES = {
-    "AI", "ML", "LLM", "RAG", "RL", "GPU", "CPU",
-    "UK", "US", "USA", "EU", "UAE", "UN", "NATO", "APAC", "EMEA",
-    "PDF", "HTML", "API", "SDK", "OSS",
+ENTITY_ALIASES = {
+    "UK": "Reino Unido",
+    "US": "EEUU",
+    "USA": "EEUU",
+    "EU": "UE",
 }
 
-# Acrónimos permitidos aunque sean cortos
-ALLOW_ACRONYMS = {"AWS", "TSMC", "AMD", "ARM", "NVIDIA", "GPT", "CUDA"}
+STOP_ENTITIES = {
+    "AI", "ML", "LLM", "RAG", "RL",
+    "GPU", "CPU", "API", "SDK", "OSS", "PDF", "HTML",
+}
+
+ALLOW_ACRONYMS = {"AWS", "TSMC", "AMD", "ARM", "NVIDIA", "GPT", "CUDA", "EEUU", "UE"}
 
 
 def normalize_entity(e: str) -> str:
     e = (e or "").strip()
     e = re.sub(r"\s+", " ", e)
+    if e in ENTITY_ALIASES:
+        return ENTITY_ALIASES[e]
     return e
 
 
@@ -87,7 +86,8 @@ def is_bad_entity(e: str) -> bool:
     e2 = e.strip()
     if e2 in STOP_ENTITIES:
         return True
-    if len(e2) <= 2 and e2.isupper() and e2 not in ALLOW_ACRONYMS:
+    # filtra acrónimos de 2 letras salvo alias/allowlist
+    if len(e2) <= 2 and e2.isupper() and e2 not in ALLOW_ACRONYMS and e2 not in ENTITY_ALIASES:
         return True
     if len(e2) < 3:
         return True
@@ -103,47 +103,51 @@ def extract_entities_from_title(title: str) -> list[str]:
         if re.search(r"\b" + re.escape(e) + r"\b", t, flags=re.IGNORECASE):
             hits.append(e)
 
-    # 2) acrónimos (3-6 mayúsculas/números) + allowlist
+    # 2) acrónimos (2-6 mayúsculas/números), pero filtramos basura
     for m in re.findall(r"\b[A-Z][A-Z0-9]{1,6}\b", t):
-        if len(m) <= 2 and m not in ALLOW_ACRONYMS:
+        m2 = normalize_entity(m)
+        if is_bad_entity(m2):
             continue
-        if m in STOP_ENTITIES:
-            continue
-        if m not in hits:
-            hits.append(m)
+        if m2 not in hits:
+            hits.append(m2)
 
     # 3) secuencias Capitalizadas (hasta 3 palabras)
     candidates = re.findall(r"\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,2})\b", t)
     stop_words = {"The", "A", "An", "And", "Of", "In", "On", "For", "With", "New"}
     for c in candidates:
-        c = c.strip()
-        if c in stop_words:
+        c2 = normalize_entity(c.strip())
+        if c2 in stop_words:
             continue
-        if len(c) < 4:
+        if is_bad_entity(c2):
             continue
-        if c not in hits:
-            hits.append(c)
+        if c2 not in hits:
+            hits.append(c2)
 
-    # normaliza + filtra basura
+    # dedup
     out = []
     seen = set()
     for x in hits:
-        x2 = normalize_entity(x)
-        key = x2.lower()
+        key = x.lower()
         if key in seen:
             continue
         seen.add(key)
-        if is_bad_entity(x2):
-            continue
-        out.append(x2)
-
+        out.append(x)
     return out[:8]
+
+
+def should_use_gemini_today() -> bool:
+    # Solo Gemini en schedule (por defecto). En manual (workflow_dispatch), NO.
+    # Override: set FORCE_GEMINI=1 si quieres forzarlo puntualmente.
+    if os.getenv("FORCE_GEMINI", "").strip() == "1":
+        return True
+    event = (os.getenv("GITHUB_EVENT_NAME") or "").strip()
+    if event == "schedule":
+        return True
+    return False
 
 
 def main():
     cfg = yaml.safe_load(Path("feeds/feeds.yaml").read_text(encoding="utf-8"))
-
-    items = []
 
     per_source_cap = {
         "arXiv cs.AI": 2,
@@ -159,7 +163,9 @@ def main():
     llm_done = data_dir / f"{today}.llm_done"
     llm_cache = data_dir / f"{today}.llm_cache.json"
 
-    # 1️⃣ Ingesta RSS
+    items = []
+
+    # 1️⃣ RSS ingest
     for s in cfg["sources"]:
         if s.get("type") != "rss":
             continue
@@ -198,14 +204,14 @@ def main():
         seen.add(it["link"])
         deduped.append(it)
 
-    # 3️⃣ Preselección heurística
+    # 3️⃣ Heuristic preselect
     deduped.sort(key=lambda x: x.get("score", 0), reverse=True)
     candidates = deduped[:30]
 
-    # 4️⃣ Preparar batch Gemini
-    batch_in = []
-    for idx, it in enumerate(candidates, start=1):
-        batch_in.append({
+    # 4️⃣ LLM payload: solo top 15 (1 llamada)
+    llm_payload = []
+    for idx, it in enumerate(candidates[:15], start=1):
+        llm_payload.append({
             "id": idx,
             "source": it.get("source", ""),
             "title": it.get("title", ""),
@@ -217,7 +223,7 @@ def main():
     results_map = {}
     briefings = []
 
-    # 4.5️⃣ LLM cache: si hay cache, úsalo. Si no, intenta Gemini 1 vez/día.
+    # 4.5️⃣ Cache HIT
     if llm_cache.exists():
         try:
             cached = json.loads(llm_cache.read_text(encoding="utf-8"))
@@ -227,31 +233,30 @@ def main():
         except Exception as e:
             print("Gemini cache read FAILED:", repr(e))
 
+    # 4.6️⃣ Gemini attempt (solo si toca)
     if not results_map and not briefings:
-        if llm_done.exists():
+        use_gemini = should_use_gemini_today()
+        if not use_gemini:
+            print("Gemini disabled for this run (non-scheduled).")
+        elif llm_done.exists():
             print("Skipping Gemini: llm_done present (already attempted today).")
         else:
-            for part in chunk(batch_in, 15):
-                try:
-                    out = rank_batch(part)
-                    results_map.update(out.get("map", {}))
-                    b = out.get("briefing", {}) or {}
-                    briefings.append(b)
-                except Exception as e:
-                    print("GEMINI rank_batch FAILED:", repr(e))
-                    if "429" in repr(e) or "RESOURCE_EXHAUSTED" in repr(e):
-                        break
+            try:
+                out = rank_batch(llm_payload)
+                results_map.update(out.get("map", {}))
+                b = out.get("briefing", {}) or {}
+                briefings.append(b)
 
-            # marca “intentado hoy”
-            llm_done.write_text(datetime.now().isoformat(), encoding="utf-8")
-
-            # guarda cache si hay algo útil
-            if results_map or any((b.get("signals") or b.get("risks") or b.get("watch") or b.get("entities_top")) for b in briefings):
                 llm_cache.write_text(
                     json.dumps({"results_map": results_map, "briefings": briefings}, ensure_ascii=False, indent=2),
                     encoding="utf-8"
                 )
                 print("Gemini cache WRITTEN:", llm_cache.name)
+            except Exception as e:
+                print("GEMINI rank_batch FAILED:", repr(e))
+            finally:
+                # marca que ya se intentó hoy (solo cuando intentamos)
+                llm_done.write_text(datetime.now().isoformat(), encoding="utf-8")
 
     briefing = merge_briefings(briefings) if briefings else {
         "signals": [],
@@ -260,11 +265,11 @@ def main():
         "entities_top": []
     }
 
-    # 5️⃣ Aplicar resultados LLM
+    # 5️⃣ Apply LLM results (si existen) al subset top-15; resto queda heurístico
     reranked = []
     for it in candidates:
         rid = it.get("_rid")
-        llm = results_map.get(rid)
+        llm = results_map.get(rid) if rid else None
 
         if llm:
             it["score"] = int(llm.get("score", it.get("score", 0)))
@@ -283,13 +288,13 @@ def main():
     reranked.sort(key=lambda x: x.get("score", 0), reverse=True)
     final_items = reranked[:15]
 
-    # 5.1️⃣ Si no hay entidades (sin LLM), extrae heurísticamente desde títulos
+    # 5.1️⃣ Entities heuristic si vacío
     for it in final_items:
         ents = it.get("entities") or []
         if not ents:
             it["entities"] = extract_entities_from_title(it.get("title", ""))
 
-    # 5.5️⃣ Métricas daily (para snapshot)
+    # 5.5️⃣ Daily metrics
     scores = [
         it.get("score", 0)
         for it in final_items
@@ -302,7 +307,6 @@ def main():
         p = (it.get("primary", "misc") or "misc").strip()
         primary_dist[p] = primary_dist.get(p, 0) + 1
 
-    # entidades dominantes (filtradas)
     entity_counts = {}
     for it in final_items:
         for e in (it.get("entities") or []):
@@ -316,16 +320,15 @@ def main():
     top_entities = sorted(entity_counts.items(), key=lambda x: x[1], reverse=True)[:5]
     top_entities_list = [e for e, _ in top_entities]
 
-    # 5.6️⃣ Briefing fallback humano (si no hay LLM briefing)
+    # 5.6️⃣ Briefing fallback humano (solo si no hubo briefing LLM)
     if not (briefing.get("signals") or briefing.get("risks") or briefing.get("watch") or briefing.get("entities_top")):
         top_cats = sorted(primary_dist.items(), key=lambda x: x[1], reverse=True)[:3]
-        cat_txt_parts = []
+        parts = []
         for c, ncat in top_cats:
             lbl = CATEGORY_LABELS.get(c, c)
-            cat_txt_parts.append(f"{lbl} ({ncat}/{len(final_items)})")
-        cat_txt = ", ".join(cat_txt_parts) if cat_txt_parts else "Misc"
+            parts.append(f"{lbl} ({ncat}/{len(final_items)})")
+        cat_txt = ", ".join(parts) if parts else "Misc"
 
-        # riesgo simple: concentración por categoría
         max_cat = top_cats[0][1] if top_cats else 0
         concentration = max_cat / max(1, len(final_items))
         if concentration >= 0.60:
