@@ -1,22 +1,28 @@
-name: Daily AI Intel Briefing
+name: Daily briefing
 
 on:
-  workflow_dispatch:
   schedule:
-    - cron: "0 6 * * *"
+    - cron: "15 6 * * *"
+  workflow_dispatch:
+    inputs:
+      force_gemini:
+        description: "Forzar llamada a Gemini en ejecución manual"
+        required: false
+        default: "false"
+      commit_outputs:
+        description: "Hacer commit/push de docs"
+        required: false
+        default: "true"
 
 permissions:
   contents: write
 
 jobs:
-  build:
+  generate:
     runs-on: ubuntu-latest
-
-    env:
-      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -29,9 +35,14 @@ jobs:
           pip install -r requirements.txt
 
       - name: Generate site
-        run: python -m src.main
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          FORCE_GEMINI: ${{ (github.event_name == 'workflow_dispatch' && inputs.force_gemini == 'true') && '1' || '0' }}
+        run: |
+          python -m src.main
 
       - name: Commit and push docs
+        if: ${{ github.event_name != 'workflow_dispatch' || inputs.commit_outputs == 'true' }}
         run: |
           git config user.name "ai-intel-bot"
           git config user.email "ai-intel-bot@users.noreply.github.com"
