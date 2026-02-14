@@ -33,7 +33,7 @@ jobs:
       - name: Generate site
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          FORCE_GEMINI: ${{ (github.event_name == 'workflow_dispatch' && inputs.force_gemini == 'true') && '1' || '0' }}
+          FORCE_GEMINI: ${{ (github.event_name == 'workflow_dispatch' && inputs.force_gemini) || 'false' }}
         run: |
           python -m src.main
 
