@@ -42,12 +42,56 @@ def merge_briefings(briefs: list[dict]) -> dict:
     return out
 
 
+# Etiquetas humanas para el briefing (NO cambia la categoría interna en datos)
+CATEGORY_LABELS = {
+    "models": "Modelos",
+    "infra": "Infraestructura/HW",
+    "policy": "Política/Regulación",
+    "security": "Seguridad",
+    "research": "Research",
+    "products": "Producto",
+    "chips": "Chips",
+    "robotics": "Robótica",
+    "compute": "Compute",
+    "misc": "Misc",
+}
+
+# Entidades "conocidas" que quieres captar incluso sin LLM
 KNOWN_ENTITIES = [
     "OpenAI", "NVIDIA", "Anthropic", "Google", "DeepMind", "Microsoft", "Meta", "Apple",
     "Amazon", "AWS", "Azure", "TSMC", "AMD", "Intel", "Arm", "Tesla",
     "Cerebras", "Groq", "Mistral", "Hugging Face", "Stability AI",
     "ByteDance", "Alibaba", "Tencent", "Samsung", "Qualcomm",
 ]
+
+# Basura típica cuando haces heurística en títulos
+STOP_ENTITIES = {
+    "AI", "ML", "LLM", "RAG", "RL", "GPU", "CPU",
+    "UK", "US", "USA", "EU", "UAE", "UN", "NATO", "APAC", "EMEA",
+    "PDF", "HTML", "API", "SDK", "OSS",
+}
+
+# Acrónimos permitidos aunque sean cortos
+ALLOW_ACRONYMS = {"AWS", "TSMC", "AMD", "ARM", "NVIDIA", "GPT", "CUDA"}
+
+
+def normalize_entity(e: str) -> str:
+    e = (e or "").strip()
+    e = re.sub(r"\s+", " ", e)
+    return e
+
+
+def is_bad_entity(e: str) -> bool:
+    if not e:
+        return True
+    e2 = e.strip()
+    if e2 in STOP_ENTITIES:
+        return True
+    if len(e2) <= 2 and e2.isupper() and e2 not in ALLOW_ACRONYMS:
+        return True
+    if len(e2) < 3:
+        return True
+    return False
 
 
 def extract_entities_from_title(title: str) -> list[str]:
@@ -59,32 +103,40 @@ def extract_entities_from_title(title: str) -> list[str]:
         if re.search(r"\b" + re.escape(e) + r"\b", t, flags=re.IGNORECASE):
             hits.append(e)
 
-    # 2) acrónimos (2-6 mayúsculas/números)
-    for m in re.findall(r"\b[A-Z][A-Z0-9]{1,5}\b", t):
-        if m not in hits and m not in {"AI", "ML", "LLM"}:
+    # 2) acrónimos (3-6 mayúsculas/números) + allowlist
+    for m in re.findall(r"\b[A-Z][A-Z0-9]{1,6}\b", t):
+        if len(m) <= 2 and m not in ALLOW_ACRONYMS:
+            continue
+        if m in STOP_ENTITIES:
+            continue
+        if m not in hits:
             hits.append(m)
 
-    # 3) secuencias Capitalizadas tipo "San Francisco", "United States"
-    # ojo: heurístico, no NER real
+    # 3) secuencias Capitalizadas (hasta 3 palabras)
     candidates = re.findall(r"\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,2})\b", t)
-    stop = {"The", "A", "An", "And", "Of", "In", "On", "For", "With", "New"}
+    stop_words = {"The", "A", "An", "And", "Of", "In", "On", "For", "With", "New"}
     for c in candidates:
-        if c in stop:
+        c = c.strip()
+        if c in stop_words:
             continue
-        if len(c) < 3:
+        if len(c) < 4:
             continue
         if c not in hits:
             hits.append(c)
 
-    # limpia y limita
+    # normaliza + filtra basura
     out = []
     seen = set()
     for x in hits:
-        x2 = x.strip()
-        if not x2 or x2.lower() in seen:
+        x2 = normalize_entity(x)
+        key = x2.lower()
+        if key in seen:
             continue
-        seen.add(x2.lower())
+        seen.add(key)
+        if is_bad_entity(x2):
+            continue
         out.append(x2)
+
     return out[:8]
 
 
@@ -100,7 +152,6 @@ def main():
     }
     per_source_count = {}
 
-    # Fecha del run (para cache + snapshot)
     today = datetime.now().strftime("%Y-%m-%d")
     data_dir = Path("docs/data")
     data_dir.mkdir(parents=True, exist_ok=True)
@@ -135,9 +186,7 @@ def main():
             sc = score_item(it["title"], it.get("summary", ""), it["source"])
             it.update(sc)
 
-            # estándar
             it["url"] = it.get("link", "")
-
             items.append(it)
 
     # 2️⃣ Dedup
@@ -193,7 +242,7 @@ def main():
                     if "429" in repr(e) or "RESOURCE_EXHAUSTED" in repr(e):
                         break
 
-            # marca “intentado hoy” (para no quemar cuota en reruns)
+            # marca “intentado hoy”
             llm_done.write_text(datetime.now().isoformat(), encoding="utf-8")
 
             # guarda cache si hay algo útil
@@ -250,51 +299,63 @@ def main():
 
     primary_dist = {}
     for it in final_items:
-        p = it.get("primary", "misc")
+        p = (it.get("primary", "misc") or "misc").strip()
         primary_dist[p] = primary_dist.get(p, 0) + 1
 
+    # entidades dominantes (filtradas)
     entity_counts = {}
     for it in final_items:
         for e in (it.get("entities") or []):
-            if isinstance(e, str) and e.strip():
-                e2 = e.strip()
-                entity_counts[e2] = entity_counts.get(e2, 0) + 1
+            if not isinstance(e, str):
+                continue
+            e2 = normalize_entity(e)
+            if is_bad_entity(e2):
+                continue
+            entity_counts[e2] = entity_counts.get(e2, 0) + 1
 
     top_entities = sorted(entity_counts.items(), key=lambda x: x[1], reverse=True)[:5]
     top_entities_list = [e for e, _ in top_entities]
 
-    # 5.6️⃣ Briefing fallback DECENTE si no hay LLM briefing
+    # 5.6️⃣ Briefing fallback humano (si no hay LLM briefing)
     if not (briefing.get("signals") or briefing.get("risks") or briefing.get("watch") or briefing.get("entities_top")):
         top_cats = sorted(primary_dist.items(), key=lambda x: x[1], reverse=True)[:3]
-        cat_txt = ", ".join([f"{c} ({n}/{len(final_items)})" for c, n in top_cats]) if top_cats else "misc"
+        cat_txt_parts = []
+        for c, ncat in top_cats:
+            lbl = CATEGORY_LABELS.get(c, c)
+            cat_txt_parts.append(f"{lbl} ({ncat}/{len(final_items)})")
+        cat_txt = ", ".join(cat_txt_parts) if cat_txt_parts else "Misc"
 
-        # riesgo simple: concentración
+        # riesgo simple: concentración por categoría
         max_cat = top_cats[0][1] if top_cats else 0
         concentration = max_cat / max(1, len(final_items))
-        risk = "Concentración alta en una categoría (posible mono-tema)." if concentration >= 0.55 else "Diversidad razonable de categorías."
+        if concentration >= 0.60:
+            risk = "Concentración alta en una categoría: posible mono-tema o sesgo del scoring."
+        elif concentration >= 0.50:
+            risk = "Concentración media: vigilar si se consolida como narrativa dominante."
+        else:
+            risk = "Diversidad razonable de categorías (sin dominancia extrema)."
 
-        # watch: top 2 entidades + categoría dominante
         watch = []
         if top_entities_list:
             watch.append(f"Seguir: {', '.join(top_entities_list[:3])}.")
         if top_cats:
-            watch.append(f"Vigilar si '{top_cats[0][0]}' sigue dominando mañana.")
+            lbl0 = CATEGORY_LABELS.get(top_cats[0][0], top_cats[0][0])
+            watch.append(f"Vigilar si '{lbl0}' mantiene dominancia mañana.")
         if not watch:
-            watch = ["Sube más histórico para ver tendencias reales."]
+            watch = ["Aumentar histórico para detectar momentum real."]
 
         briefing = {
             "signals": [
-                f"Top categorías (hoy): {cat_txt}.",
-                f"Top entidades (hoy): {', '.join(top_entities_list) if top_entities_list else 'n/a'}.",
+                f"Mix de hoy (top): {cat_txt}.",
+                f"Actores dominantes (hoy): {', '.join(top_entities_list) if top_entities_list else 'n/a'}.",
             ],
-            "risks": [risk, "LLM no disponible (cuota/429): briefing en modo heurístico."],
+            "risks": [risk],
             "watch": watch[:3],
             "entities_top": top_entities_list[:5],
         }
 
     # 6️⃣ Snapshot JSON
     top_entities_json = [{"entity": e, "count": c} for e, c in top_entities]
-
     daily_snapshot = {
         "date": today,
         "score_avg": score_avg,
