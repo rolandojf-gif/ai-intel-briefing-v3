@@ -57,18 +57,9 @@ KNOWN_ENTITIES = [
     "ByteDance", "Alibaba", "Tencent", "Samsung", "Qualcomm",
 ]
 
-ENTITY_ALIASES = {
-    "UK": "Reino Unido",
-    "US": "EEUU",
-    "USA": "EEUU",
-    "EU": "UE",
-}
+ENTITY_ALIASES = {"UK": "Reino Unido", "US": "EEUU", "USA": "EEUU", "EU": "UE"}
 
-STOP_ENTITIES = {
-    "AI", "ML", "LLM", "RAG", "RL",
-    "GPU", "CPU", "API", "SDK", "OSS", "PDF", "HTML",
-}
-
+STOP_ENTITIES = {"AI", "ML", "LLM", "RAG", "RL", "GPU", "CPU", "API", "SDK", "OSS", "PDF", "HTML"}
 ALLOW_ACRONYMS = {"AWS", "TSMC", "AMD", "ARM", "NVIDIA", "GPT", "CUDA", "EEUU", "UE"}
 
 
@@ -86,7 +77,6 @@ def is_bad_entity(e: str) -> bool:
     e2 = e.strip()
     if e2 in STOP_ENTITIES:
         return True
-    # filtra acrónimos de 2 letras salvo alias/allowlist
     if len(e2) <= 2 and e2.isupper() and e2 not in ALLOW_ACRONYMS and e2 not in ENTITY_ALIASES:
         return True
     if len(e2) < 3:
@@ -98,12 +88,10 @@ def extract_entities_from_title(title: str) -> list[str]:
     t = title or ""
     hits = []
 
-    # 1) conocidos
     for e in KNOWN_ENTITIES:
         if re.search(r"\b" + re.escape(e) + r"\b", t, flags=re.IGNORECASE):
             hits.append(e)
 
-    # 2) acrónimos (2-6 mayúsculas/números), pero filtramos basura
     for m in re.findall(r"\b[A-Z][A-Z0-9]{1,6}\b", t):
         m2 = normalize_entity(m)
         if is_bad_entity(m2):
@@ -111,7 +99,6 @@ def extract_entities_from_title(title: str) -> list[str]:
         if m2 not in hits:
             hits.append(m2)
 
-    # 3) secuencias Capitalizadas (hasta 3 palabras)
     candidates = re.findall(r"\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,2})\b", t)
     stop_words = {"The", "A", "An", "And", "Of", "In", "On", "For", "With", "New"}
     for c in candidates:
@@ -123,7 +110,6 @@ def extract_entities_from_title(title: str) -> list[str]:
         if c2 not in hits:
             hits.append(c2)
 
-    # dedup
     out = []
     seen = set()
     for x in hits:
@@ -135,25 +121,21 @@ def extract_entities_from_title(title: str) -> list[str]:
     return out[:8]
 
 
+def forced_gemini() -> bool:
+    return (os.getenv("FORCE_GEMINI", "").strip() == "1")
+
+
 def should_use_gemini_today() -> bool:
-    # Solo Gemini en schedule (por defecto). En manual (workflow_dispatch), NO.
-    # Override: set FORCE_GEMINI=1 si quieres forzarlo puntualmente.
-    if os.getenv("FORCE_GEMINI", "").strip() == "1":
+    if forced_gemini():
         return True
     event = (os.getenv("GITHUB_EVENT_NAME") or "").strip()
-    if event == "schedule":
-        return True
-    return False
+    return event == "schedule"
 
 
 def main():
     cfg = yaml.safe_load(Path("feeds/feeds.yaml").read_text(encoding="utf-8"))
 
-    per_source_cap = {
-        "arXiv cs.AI": 2,
-        "arXiv cs.LG": 2,
-        "NVIDIA Blog": 2,
-    }
+    per_source_cap = {"arXiv cs.AI": 2, "arXiv cs.LG": 2, "NVIDIA Blog": 2}
     per_source_count = {}
 
     today = datetime.now().strftime("%Y-%m-%d")
@@ -165,7 +147,7 @@ def main():
 
     items = []
 
-    # 1️⃣ RSS ingest
+    # 1) RSS ingest
     for s in cfg["sources"]:
         if s.get("type") != "rss":
             continue
@@ -191,11 +173,11 @@ def main():
 
             sc = score_item(it["title"], it.get("summary", ""), it["source"])
             it.update(sc)
-
             it["url"] = it.get("link", "")
+
             items.append(it)
 
-    # 2️⃣ Dedup
+    # 2) Dedup
     seen = set()
     deduped = []
     for it in items:
@@ -204,11 +186,11 @@ def main():
         seen.add(it["link"])
         deduped.append(it)
 
-    # 3️⃣ Heuristic preselect
+    # 3) Preselect
     deduped.sort(key=lambda x: x.get("score", 0), reverse=True)
     candidates = deduped[:30]
 
-    # 4️⃣ LLM payload: solo top 15 (1 llamada)
+    # 4) LLM payload: top 15 (1 llamada)
     llm_payload = []
     for idx, it in enumerate(candidates[:15], start=1):
         llm_payload.append({
@@ -223,7 +205,7 @@ def main():
     results_map = {}
     briefings = []
 
-    # 4.5️⃣ Cache HIT
+    # 4.5) Cache hit
     if llm_cache.exists():
         try:
             cached = json.loads(llm_cache.read_text(encoding="utf-8"))
@@ -233,39 +215,33 @@ def main():
         except Exception as e:
             print("Gemini cache read FAILED:", repr(e))
 
-    # 4.6️⃣ Gemini attempt (solo si toca)
+    # 4.6) Gemini attempt
     if not results_map and not briefings:
-        use_gemini = should_use_gemini_today()
-        if not use_gemini:
+        if not should_use_gemini_today():
             print("Gemini disabled for this run (non-scheduled).")
-        elif llm_done.exists():
-            print("Skipping Gemini: llm_done present (already attempted today).")
         else:
-            try:
-                out = rank_batch(llm_payload)
-                results_map.update(out.get("map", {}))
-                b = out.get("briefing", {}) or {}
-                briefings.append(b)
+            # si FORCE_GEMINI=1, ignoramos llm_done para poder probar
+            if llm_done.exists() and not forced_gemini():
+                print("Skipping Gemini: llm_done present (already attempted today).")
+            else:
+                try:
+                    out = rank_batch(llm_payload)
+                    results_map.update(out.get("map", {}))
+                    briefings.append(out.get("briefing", {}) or {})
 
-                llm_cache.write_text(
-                    json.dumps({"results_map": results_map, "briefings": briefings}, ensure_ascii=False, indent=2),
-                    encoding="utf-8"
-                )
-                print("Gemini cache WRITTEN:", llm_cache.name)
-            except Exception as e:
-                print("GEMINI rank_batch FAILED:", repr(e))
-            finally:
-                # marca que ya se intentó hoy (solo cuando intentamos)
-                llm_done.write_text(datetime.now().isoformat(), encoding="utf-8")
+                    llm_cache.write_text(
+                        json.dumps({"results_map": results_map, "briefings": briefings}, ensure_ascii=False, indent=2),
+                        encoding="utf-8"
+                    )
+                    print("Gemini cache WRITTEN:", llm_cache.name)
+                except Exception as e:
+                    print("GEMINI rank_batch FAILED:", repr(e))
+                finally:
+                    llm_done.write_text(datetime.now().isoformat(), encoding="utf-8")
 
-    briefing = merge_briefings(briefings) if briefings else {
-        "signals": [],
-        "risks": [],
-        "watch": [],
-        "entities_top": []
-    }
+    briefing = merge_briefings(briefings) if briefings else {"signals": [], "risks": [], "watch": [], "entities_top": []}
 
-    # 5️⃣ Apply LLM results (si existen) al subset top-15; resto queda heurístico
+    # 5) Apply LLM results
     reranked = []
     for it in candidates:
         rid = it.get("_rid")
@@ -288,18 +264,13 @@ def main():
     reranked.sort(key=lambda x: x.get("score", 0), reverse=True)
     final_items = reranked[:15]
 
-    # 5.1️⃣ Entities heuristic si vacío
+    # entities fallback
     for it in final_items:
-        ents = it.get("entities") or []
-        if not ents:
+        if not (it.get("entities") or []):
             it["entities"] = extract_entities_from_title(it.get("title", ""))
 
-    # 5.5️⃣ Daily metrics
-    scores = [
-        it.get("score", 0)
-        for it in final_items
-        if isinstance(it.get("score", 0), (int, float))
-    ]
+    # metrics
+    scores = [it.get("score", 0) for it in final_items if isinstance(it.get("score", 0), (int, float))]
     score_avg = round(statistics.mean(scores), 2) if scores else 0
 
     primary_dist = {}
@@ -320,7 +291,7 @@ def main():
     top_entities = sorted(entity_counts.items(), key=lambda x: x[1], reverse=True)[:5]
     top_entities_list = [e for e, _ in top_entities]
 
-    # 5.6️⃣ Briefing fallback humano (solo si no hubo briefing LLM)
+    # briefing fallback humano
     if not (briefing.get("signals") or briefing.get("risks") or briefing.get("watch") or briefing.get("entities_top")):
         top_cats = sorted(primary_dist.items(), key=lambda x: x[1], reverse=True)[:3]
         parts = []
@@ -357,13 +328,12 @@ def main():
             "entities_top": top_entities_list[:5],
         }
 
-    # 6️⃣ Snapshot JSON
-    top_entities_json = [{"entity": e, "count": c} for e, c in top_entities]
+    # snapshot
     daily_snapshot = {
         "date": today,
         "score_avg": score_avg,
         "primary_dist": primary_dist,
-        "top_entities": top_entities_json,
+        "top_entities": [{"entity": e, "count": c} for e, c in top_entities],
         "briefing": briefing,
         "items": final_items,
     }
@@ -373,12 +343,10 @@ def main():
         encoding="utf-8"
     )
 
-    # 7️⃣ Render HTML
     html = render_index(final_items, briefing=briefing)
     Path("docs").mkdir(exist_ok=True)
     Path("docs/index.html").write_text(html, encoding="utf-8")
 
-    # 8️⃣ Weekly radar
     try:
         from src.weekly import main as weekly_main
         weekly_main()
