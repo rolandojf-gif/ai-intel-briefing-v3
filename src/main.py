@@ -122,7 +122,8 @@ def extract_entities_from_title(title: str) -> list[str]:
 
 
 def forced_gemini() -> bool:
-    return (os.getenv("FORCE_GEMINI", "").strip() == "1")
+    v = (os.getenv("FORCE_GEMINI") or "").strip().lower()
+    return v in {"1", "true", "yes", "y", "on"}
 
 
 def should_use_gemini_today() -> bool:
@@ -133,6 +134,10 @@ def should_use_gemini_today() -> bool:
 
 
 def main():
+    event = (os.getenv("GITHUB_EVENT_NAME") or "").strip()
+    fg = (os.getenv("FORCE_GEMINI") or "").strip()
+    print(f"Context: GITHUB_EVENT_NAME={event} FORCE_GEMINI={fg}")
+
     cfg = yaml.safe_load(Path("feeds/feeds.yaml").read_text(encoding="utf-8"))
 
     per_source_cap = {"arXiv cs.AI": 2, "arXiv cs.LG": 2, "NVIDIA Blog": 2}
@@ -205,7 +210,7 @@ def main():
     results_map = {}
     briefings = []
 
-    # 4.5) Cache hit
+    # cache hit
     if llm_cache.exists():
         try:
             cached = json.loads(llm_cache.read_text(encoding="utf-8"))
@@ -215,12 +220,11 @@ def main():
         except Exception as e:
             print("Gemini cache read FAILED:", repr(e))
 
-    # 4.6) Gemini attempt
+    # Gemini attempt
     if not results_map and not briefings:
         if not should_use_gemini_today():
             print("Gemini disabled for this run (non-scheduled).")
         else:
-            # si FORCE_GEMINI=1, ignoramos llm_done para poder probar
             if llm_done.exists() and not forced_gemini():
                 print("Skipping Gemini: llm_done present (already attempted today).")
             else:
@@ -241,7 +245,7 @@ def main():
 
     briefing = merge_briefings(briefings) if briefings else {"signals": [], "risks": [], "watch": [], "entities_top": []}
 
-    # 5) Apply LLM results
+    # Apply LLM results
     reranked = []
     for it in candidates:
         rid = it.get("_rid")
@@ -264,12 +268,10 @@ def main():
     reranked.sort(key=lambda x: x.get("score", 0), reverse=True)
     final_items = reranked[:15]
 
-    # entities fallback
     for it in final_items:
         if not (it.get("entities") or []):
             it["entities"] = extract_entities_from_title(it.get("title", ""))
 
-    # metrics
     scores = [it.get("score", 0) for it in final_items if isinstance(it.get("score", 0), (int, float))]
     score_avg = round(statistics.mean(scores), 2) if scores else 0
 
@@ -291,7 +293,6 @@ def main():
     top_entities = sorted(entity_counts.items(), key=lambda x: x[1], reverse=True)[:5]
     top_entities_list = [e for e, _ in top_entities]
 
-    # briefing fallback humano
     if not (briefing.get("signals") or briefing.get("risks") or briefing.get("watch") or briefing.get("entities_top")):
         top_cats = sorted(primary_dist.items(), key=lambda x: x[1], reverse=True)[:3]
         parts = []
@@ -328,7 +329,6 @@ def main():
             "entities_top": top_entities_list[:5],
         }
 
-    # snapshot
     daily_snapshot = {
         "date": today,
         "score_avg": score_avg,
