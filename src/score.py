@@ -56,6 +56,8 @@ def score_item(title: str, summary: str, source: str) -> dict:
         raw += 4
     if "deepmind" in src or "google ai" in src:
         raw += 6
+    if src.startswith("x "):
+        raw += 5
 
     score = max(0, min(100, raw))
     tags = []
@@ -65,14 +67,22 @@ def score_item(title: str, summary: str, source: str) -> dict:
     if geopol: tags.append("geopol")
 
     # categoría principal
-    primary = "misc"
-    if infra >= max(models, invest, geopol):
+    counts = {
+        "infra": infra,
+        "invest": invest,
+        "models": models,
+        "geopol": geopol,
+    }
+    max_hits = max(counts.values())
+    if max_hits == 0:
+        primary = "misc"
+    elif infra == max_hits:
         primary = "infra"
-    elif invest >= max(models, infra, geopol):
+    elif invest == max_hits:
         primary = "invest"
-    elif models >= max(infra, invest, geopol):
+    elif models == max_hits:
         primary = "models"
-    elif geopol > 0:
+    else:
         primary = "geopol"
 
     return {"score": score, "primary": primary, "tags": tags}

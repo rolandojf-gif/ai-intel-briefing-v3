@@ -6,9 +6,13 @@ on:
   workflow_dispatch:
     inputs:
       force_gemini:
-        description: "Forzar llamada a Gemini en ejecución manual"
-        required: false
-        default: "false"
+        description: "Force Gemini call on manual run"
+        type: boolean
+        default: true
+      force_refresh:
+        description: "Ignore daily Gemini cache/done files"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -16,6 +20,8 @@ permissions:
 jobs:
   generate:
     runs-on: ubuntu-latest
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -32,8 +38,8 @@ jobs:
 
       - name: Generate site
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          FORCE_GEMINI: ${{ (github.event_name == 'workflow_dispatch' && inputs.force_gemini) || 'false' }}
+          FORCE_GEMINI: ${{ github.event_name == 'workflow_dispatch' && inputs.force_gemini && '1' || '0' }}
+          FORCE_GEMINI_REFRESH: ${{ github.event_name == 'workflow_dispatch' && inputs.force_refresh && '1' || '0' }}
         run: |
           python -m src.main
 

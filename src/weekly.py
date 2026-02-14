@@ -2,9 +2,11 @@
 from __future__ import annotations
 
 import json
+import html
 from pathlib import Path
 from datetime import datetime
 from typing import Any, Dict, List, Tuple
+from urllib.parse import urlparse
 
 DATA_DIR = Path("docs/data")
 OUT_HTML = Path("docs/weekly.html")
@@ -17,10 +19,16 @@ def parse_date(stem: str) -> datetime:
         return datetime.min
 
 
+def is_daily_snapshot_file(p: Path) -> bool:
+    if not p.is_file() or p.suffix.lower() != ".json":
+        return False
+    return parse_date(p.stem) != datetime.min
+
+
 def list_latest(n: int = 7) -> List[Path]:
     if not DATA_DIR.exists():
         return []
-    files = [p for p in DATA_DIR.glob("*.json") if p.is_file()]
+    files = [p for p in DATA_DIR.glob("*.json") if is_daily_snapshot_file(p)]
     files.sort(key=lambda p: parse_date(p.stem))
     return files[-n:]
 
@@ -140,7 +148,17 @@ def pick_items_for_category(snapshots: List[Dict[str, Any]], category: str, limi
 
 
 def html_escape(s: str) -> str:
-    return (s or "").replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+    return html.escape(s or "", quote=True)
+
+
+def safe_href(url: str) -> str:
+    raw = (url or "").strip()
+    if not raw:
+        return "#"
+    parsed = urlparse(raw)
+    if parsed.scheme in {"http", "https"} and parsed.netloc:
+        return html_escape(raw)
+    return "#"
 
 
 def main():
@@ -157,6 +175,7 @@ def main():
 
     ent_series: Dict[str, List[int]] = {}
     cat_series: Dict[str, List[int]] = {}
+    source_series: Dict[str, List[int]] = {}
     total_items_per_day: List[int] = []
 
     # Construye series
@@ -166,6 +185,7 @@ def main():
 
         local_ent: Dict[str, int] = {}
         local_cat: Dict[str, int] = {}
+        local_source: Dict[str, int] = {}
 
         for it in items:
             if not isinstance(it, dict):
@@ -174,6 +194,9 @@ def main():
             cat = (it.get("primary") or "misc").strip()
             local_cat[cat] = local_cat.get(cat, 0) + 1
 
+            src = (it.get("source") or "unknown").strip() or "unknown"
+            local_source[src] = local_source.get(src, 0) + 1
+
             for e in (it.get("entities") or []):
                 if isinstance(e, str) and e.strip():
                     e2 = e.strip()
@@ -181,6 +204,8 @@ def main():
 
         for c, v in local_cat.items():
             cat_series.setdefault(c, [0] * n)[di] = v
+        for s, v in local_source.items():
+            source_series.setdefault(s, [0] * n)[di] = v
         for e, v in local_ent.items():
             ent_series.setdefault(e, [0] * n)[di] = v
 
@@ -232,6 +257,25 @@ def main():
 
     # Momentum ranking categorías: share_slope + w_total
     cat_rows.sort(key=lambda r: (r["share_slope"], r["w_total"], r["total"], r["streak"]), reverse=True)
+
+    # Métricas por fuente
+    source_rows = []
+    source_weighted_counts: Dict[str, float] = {}
+    for src, series in source_series.items():
+        wt = weighted_total(series, weights)
+        source_weighted_counts[src] = wt
+        source_rows.append({
+            "name": src,
+            "series": series,
+            "total": sum(series),
+            "streak": streak(series),
+            "w_total": wt,
+            "delta": delta_recent_vs_early(series, weights),
+        })
+    source_rows.sort(key=lambda r: (r["w_total"], r["total"], r["streak"]), reverse=True)
+    x_rows = [r for r in source_rows if str(r["name"]).startswith("X ")]
+    x_weighted_total = sum(r["w_total"] for r in x_rows)
+    x_mentions_total = sum(r["total"] for r in x_rows)
 
     # Rotación narrativa: compara share reciente vs temprano (promedios)
     k = min(3, max(1, n // 2))
@@ -307,35 +351,48 @@ def main():
     else:
         implications.append(f"Concentración moderada en categorías (HHI {cat_hhi:.3f}).")
 
+    if x_mentions_total > 0:
+        implications.append(f"Cobertura X: {x_mentions_total} menciones en la ventana (peso reciente {x_weighted_total:.2f}).")
+    else:
+        implications.append("Cobertura X: sin menciones en la ventana actual.")
+
     # HTML blocks
     def li_entity(r):
         return (
             f"<li><span class='k'>{html_escape(r['name'])}</span> "
             f"<span class='s'>{spark(r['series'])}</span>"
-            f"<span class='m'>w {r['w_total']:.2f} · Δ {r['delta']:.2f} · streak {r['streak']} · total {r['total']}</span></li>"
+            f"<span class='m'>peso {r['w_total']:.2f} · cambio {r['delta']:+.2f} · días {r['streak']} · menciones {r['total']}</span></li>"
         )
 
     def li_cat(r):
         return (
             f"<li><span class='k'>{html_escape(r['name'])}</span> "
             f"<span class='s'>{spark(r['series'])}</span>"
-            f"<span class='m'>share_slope {r['share_slope']:.3f} · w {r['w_total']:.2f} · total {r['total']} · streak {r['streak']}</span></li>"
+            f"<span class='m'>tendencia_share {r['share_slope']:+.3f} · peso {r['w_total']:.2f} · menciones {r['total']} · días {r['streak']}</span></li>"
+        )
+
+    def li_source(r):
+        return (
+            f"<li><span class='k'>{html_escape(r['name'])}</span> "
+            f"<span class='s'>{spark(r['series'])}</span>"
+            f"<span class='m'>peso {r['w_total']:.2f} · cambio {r['delta']:+.2f} · días {r['streak']} · menciones {r['total']}</span></li>"
         )
 
     ent_li = "\n".join(li_entity(r) for r in ent_rows[:12]) or "<li>Sin datos</li>"
     cat_li = "\n".join(li_cat(r) for r in cat_rows[:10]) or "<li>Sin datos</li>"
+    source_li = "\n".join(li_source(r) for r in source_rows[:10]) or "<li>Sin datos</li>"
 
     imp_li = "\n".join(f"<li>{html_escape(x)}</li>" for x in implications)
 
     risers_li = "\n".join(
         f"<li><span class='k'>{html_escape(r['name'])}</span> "
-        f"<span class='m'>share {r['early']:.2%} → {r['recent']:.2%} (Δ {r['delta']:+.2%})</span></li>"
+        f"<span class='m'>participación {r['early']:.2%} → {r['recent']:.2%} (cambio {r['delta']:+.2%})</span></li>"
         for r in risers
     ) or "<li>Sin datos</li>"
 
     fallers_li = "\n".join(
         f"<li><span class='k'>{html_escape(r['name'])}</span> "
-        f"<span class='m'>share {r['early']:.2%} → {r['recent']:.2%} (Δ {r['delta']:+.2%})</span></li>"
+        f"<span class='m'>participación {r['early']:.2%} → {r['recent']:.2%} (cambio {r['delta']:+.2%})</span></li>"
         for r in fallers
     ) or "<li>Sin datos</li>"
 
@@ -354,7 +411,7 @@ def main():
             src = html_escape((it.get("source") or "").strip())
             cat = html_escape(((it.get("primary") or "misc").strip()))
             if url:
-                li.append(f"<li><a href='{url}' target='_blank' rel='noopener'>{title}</a> <span class='m'>[{src}] [{cat}]</span></li>")
+                li.append(f"<li><a href='{safe_href(url)}' target='_blank' rel='noopener noreferrer'>{title}</a> <span class='m'>[{src}] [{cat}]</span></li>")
             else:
                 li.append(f"<li>{title} <span class='m'>[{src}] [{cat}]</span></li>")
         clusters.append(f"<section class='card'><h2>{html_escape(entity)}</h2><ul>{''.join(li)}</ul></section>")
@@ -370,7 +427,7 @@ def main():
             src = html_escape((it.get("source") or "").strip())
             cat = html_escape(((it.get("primary") or "misc").strip()))
             if url:
-                li.append(f"<li><a href='{url}' target='_blank' rel='noopener'>{title}</a> <span class='m'>[{src}] [{cat}]</span></li>")
+                li.append(f"<li><a href='{safe_href(url)}' target='_blank' rel='noopener noreferrer'>{title}</a> <span class='m'>[{src}] [{cat}]</span></li>")
             else:
                 li.append(f"<li>{title} <span class='m'>[{src}] [{cat}]</span></li>")
         cat_clusters.append(f"<section class='card'><h2>Categoria: {html_escape(category)}</h2><ul>{''.join(li)}</ul></section>")
@@ -413,24 +470,43 @@ def main():
     <div class="metrics">
       <span class="pill">ventana: {n} días</span>
       <span class="pill">recency half-life: 3d</span>
-      <span class="pill">ent HHI: {ent_hhi:.3f} (top3 {ent_top3:.1%})</span>
-      <span class="pill">cat HHI: {cat_hhi:.3f} (top3 {cat_top3:.1%})</span>
+      <span class="pill">concentración entidades: {ent_hhi:.3f} (top3 {ent_top3:.1%})</span>
+      <span class="pill">concentración categorías: {cat_hhi:.3f} (top3 {cat_top3:.1%})</span>
     </div>
   </div>
 </header>
 
 <main class="wrap">
+  <section class="card" style="margin-bottom:14px">
+    <h2>Cómo leer estas métricas</h2>
+    <ul>
+      <li><span class="k">peso</span>: importancia reciente (más peso a los últimos días).</li>
+      <li><span class="k">cambio</span>: diferencia entre periodo reciente y periodo inicial.</li>
+      <li><span class="k">días</span>: días consecutivos con presencia.</li>
+      <li><span class="k">menciones</span>: total de apariciones en la ventana.</li>
+    </ul>
+  </section>
+
   <div class="grid">
     <section class="card">
-      <h2>Entidades · momentum (ponderado)</h2>
+      <h2>Entidades · impulso (ponderado)</h2>
       <ul>{ent_li}</ul>
     </section>
 
     <section class="card">
-      <h2>Categorías · share momentum</h2>
+      <h2>Categorías · impulso de participación</h2>
       <ul>{cat_li}</ul>
     </section>
   </div>
+
+  <section class="card" style="margin-top:14px">
+    <h2>Fuentes · presencia en la ventana</h2>
+    <div class="metrics">
+      <span class="pill">X menciones: {x_mentions_total}</span>
+      <span class="pill">X peso reciente: {x_weighted_total:.2f}</span>
+    </div>
+    <ul>{source_li}</ul>
+  </section>
 
   <div class="grid" style="margin-top:14px">
     <section class="card">

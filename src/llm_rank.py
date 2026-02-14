@@ -1,9 +1,12 @@
 from google import genai
 from pydantic import BaseModel, Field
-from typing import List, Literal, Optional
+from typing import List, Literal
 import json
+import os
 
-client = genai.Client()
+
+client = None
+
 
 Primary = Literal["infra", "models", "invest", "geopol", "misc"]
 
@@ -41,6 +44,11 @@ def rank_batch(items: list[dict], model: str = "gemini-3-flash-preview") -> dict
         "map": {id: {...rank fields...}}
       }
     """
+    global client
+    if client is None:
+        client = genai.Client()
+    model = (os.getenv("GEMINI_MODEL") or model).strip()
+
     payload = []
     for it in items:
         payload.append({
@@ -81,7 +89,15 @@ def rank_batch(items: list[dict], model: str = "gemini-3-flash-preview") -> dict
         },
     )
 
-    data = json.loads(resp.text)
+    raw_text = (resp.text or "").strip()
+    if not raw_text:
+        raise RuntimeError("Gemini returned empty response text.")
+
+    try:
+        data = json.loads(raw_text)
+    except json.JSONDecodeError as exc:
+        raise RuntimeError(f"Gemini returned invalid JSON: {exc.msg}") from exc
+
     validated = BatchOut.model_validate(data)
 
     out_map: dict[int, dict] = {}

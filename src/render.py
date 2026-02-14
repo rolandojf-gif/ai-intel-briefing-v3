@@ -1,7 +1,24 @@
-from jinja2 import Template
 from datetime import datetime
+from urllib.parse import urlparse
 
-TEMPLATE = Template("""
+from jinja2 import Environment, select_autoescape
+
+
+def _safe_url(url: str) -> str:
+    raw = (url or "").strip()
+    if not raw:
+        return "#"
+
+    parsed = urlparse(raw)
+    if parsed.scheme in {"http", "https"} and parsed.netloc:
+        return raw
+    return "#"
+
+
+ENV = Environment(autoescape=select_autoescape(["html", "xml"]))
+ENV.filters["safe_url"] = _safe_url
+
+TEMPLATE = ENV.from_string("""
 <!doctype html>
 <html lang="es">
 <head>
@@ -108,7 +125,7 @@ TEMPLATE = Template("""
         </div>
 
         <div class="title">
-          <a href="{{ item.link }}" target="_blank" rel="noreferrer">{{ item.title }}</a>
+          <a href="{{ (item.url or item.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a>
         </div>
 
         <div class="meta">

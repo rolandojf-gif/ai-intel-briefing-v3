@@ -11,7 +11,7 @@ sources:
 
   - name: DeepMind Blog
     type: rss
-    url: https://deepmind.google/discover/blog/rss.xml
+    url: https://deepmind.google/blog/rss.xml
     tags: [labs, models]
 
   - name: Google AI Blog
@@ -28,3 +28,45 @@ sources:
     type: rss
     url: https://semiwiki.com/feed/
     tags: [infra, chips]
+
+  - name: X @OpenAI
+    type: x
+    username: OpenAI
+    limit: 6
+    cap: 2
+    tags: [x, models, products]
+
+  - name: X @AnthropicAI
+    type: x
+    username: AnthropicAI
+    limit: 6
+    cap: 2
+    tags: [x, models, safety]
+
+  - name: X @GoogleDeepMind
+    type: x
+    username: GoogleDeepMind
+    limit: 6
+    cap: 2
+    tags: [x, research, models]
+
+  - name: X @NVIDIAAI
+    type: x
+    username: NVIDIAAI
+    limit: 6
+    cap: 2
+    tags: [x, infra, chips]
+
+  - name: X @xai
+    type: x
+    username: xai
+    limit: 6
+    cap: 2
+    tags: [x, models]
+
+  - name: X AI policy/search
+    type: x
+    query: "(from:WhiteHouse OR from:EU_Commission OR from:NIST) (ai OR semiconductor OR chips) -is:retweet -is:reply"
+    limit: 10
+    cap: 2
+    tags: [x, geopol, policy]
