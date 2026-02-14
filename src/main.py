@@ -1,3 +1,4 @@
+# src/main.py
 import yaml
 from pathlib import Path
 from datetime import datetime
@@ -124,11 +125,9 @@ def main():
                 briefings.append(out.get("briefing", {}))
             except Exception as e:
                 print("GEMINI rank_batch FAILED:", repr(e))
-                # Si es cuota, no sigas quemando intentos
                 if "429" in repr(e) or "RESOURCE_EXHAUSTED" in repr(e):
                     break
 
-        # marca el día como “Gemini ya intentado”
         Path("docs/data").mkdir(parents=True, exist_ok=True)
         llm_flag.write_text(datetime.now().isoformat(), encoding="utf-8")
 
@@ -169,7 +168,6 @@ def main():
         rid = it.get("_rid")
         llm = results_map.get(rid)
 
-        # estandariza url para downstream
         it["url"] = it.get("link", "")
 
         if llm:
