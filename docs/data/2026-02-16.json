@@ -1,0 +1,435 @@
+{
+  "date": "2026-02-16",
+  "score_avg": 74.67,
+  "primary_dist": {
+    "models": 6,
+    "infra": 6,
+    "geopol": 1,
+    "misc": 1,
+    "invest": 1
+  },
+  "top_entities": [
+    {
+      "entity": "NVIDIA",
+      "count": 8
+    },
+    {
+      "entity": "OpenAI",
+      "count": 2
+    },
+    {
+      "entity": "TSMC",
+      "count": 2
+    },
+    {
+      "entity": "Sentient",
+      "count": 1
+    },
+    {
+      "entity": "CUDA",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "OpenAI acelera la era de agentes personales y modelos de codificación autónoma con la serie GPT-5.",
+      "NVIDIA Blackwell y GB200 se consolidan como la infraestructura crítica para el despliegue de modelos de frontera.",
+      "La soberanía de IA escala con supercomputadores como Isambard-AI y modelos nacionales como el UK-LLM.",
+      "La optimización automatizada de kernels CUDA mediante OptiML elimina cuellos de botella de rendimiento en software.",
+      "El diseño de chips asistido por agentes de IA (EDA) acelera los ciclos de desarrollo de hardware avanzado."
+    ],
+    "risks": [
+      "Los modelos de frontera fallan en cooperar en entornos multi-agente, logrando solo un 62% de acciones beneficiosas.",
+      "Dependencia extrema del liderazgo de TSMC frente a la incertidumbre competitiva de Intel y Samsung hacia 2026.",
+      "Complejidad creciente en la navegación del espacio combinatorio de optimizaciones de bajo nivel para nuevo hardware."
+    ],
+    "watch": [
+      "Despliegue operativo de sistemas GB200 NVL72 para soportar la carga de inferencia de agentes masivos.",
+      "Resultados del desafío 'First Proof' de OpenAI como nuevo estándar de evaluación de razonamiento avanzado.",
+      "Adopción de arquitecturas end-to-end en vehículos autónomos basadas en datos de sensores físicamente precisos."
+    ],
+    "entities_top": [
+      "NVIDIA",
+      "OpenAI",
+      "TSMC"
+    ]
+  },
+  "items": [
+    {
+      "title": "As AI Grows More Complex, Model Builders Rely on NVIDIA",
+      "link": "https://blogs.nvidia.com/blog/leading-models-nvidia/",
+      "published": "2025-12-11T19:19:57+00:00",
+      "summary": "Unveiling what it describes as the most capable model series yet for professional knowledge work, OpenAI launched GPT-5.2 in December. The model was trained and deployed on NVIDIA infrastructure, including NVIDIA Hopper and GB200 NVL72 systems. GPT-5.3 Codex — the first OpenAI agentic coding model to help build itself — was released in February and Read Article",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 98,
+      "primary": "models",
+      "tags": [
+        "gpt-5",
+        "hopper",
+        "gb200"
+      ],
+      "url": "https://blogs.nvidia.com/blog/leading-models-nvidia/",
+      "_rid": 3,
+      "why": "El lanzamiento de GPT-5.2/5.3 entrenado en Blackwell marca un hito en capacidades de agentes de conocimiento.",
+      "entities": [
+        "OpenAI",
+        "NVIDIA"
+      ]
+    },
+    {
+      "title": "launched to 1.8 million waitlisted users in 24 hours and processed 5.6 million queries in a single week — with consistent low latency throughout. Sentient ma...",
+      "summary": "launched to 1.8 million waitlisted users in 24 hours and processed 5.6 million queries in a single week — with consistent low latency throughout. Sentient manages this scale and complexity on 's inference platform, running on NVIDIA Blackwell. The",
+      "link": "https://x.com/NVIDIAAI/status/2022702374276530406",
+      "published": null,
+      "source": "X @NVIDIAAI",
+      "feed_tags": [
+        "x",
+        "infra",
+        "chips"
+      ],
+      "score": 92,
+      "primary": "infra",
+      "tags": [
+        "blackwell",
+        "inference",
+        "scaling"
+      ],
+      "url": "https://x.com/NVIDIAAI/status/2022702374276530406",
+      "_rid": 7,
+      "why": "La capacidad de procesar 5.6 millones de consultas semanales en Blackwell valida la escalabilidad de la nueva arquitectura.",
+      "entities": [
+        "NVIDIA",
+        "Sentient"
+      ]
+    },
+    {
+      "title": "OptiML: An End-to-End Framework for Program Synthesis and CUDA Kernel Optimization",
+      "link": "https://arxiv.org/abs/2602.12305",
+      "published": "2026-02-16T05:00:00+00:00",
+      "summary": "arXiv:2602.12305v1 Announce Type: new Abstract: Generating high-performance CUDA kernels remains challenging due to the need to navigate a combinatorial space of low-level transformations under noisy and expensive hardware feedback. Although large language models can synthesize functionally correct CUDA code, achieving competitive performance requires systematic exploration and verification of optimization choices. We present OptiML, an end-to-end framework that maps either natural-language intent or input CUDA code to performance-optimized CUDA kernels by formulating kernel optimization as search under verification. OptiML consists of two decoupled stages. When the input is natural language, a Mixture-of-Thoughts generator (OptiML-G) acts as a proposal policy over kernel implementation strategies, producing an initial executable program. A search-based optimizer (OptiML-X) then refines either synthesized or user-provided kernels using Monte Carlo Tree Search over LLM-driven edits, guided by a hardware-aware reward derived from profiler feedback. Each candidate transformation is compiled, verified, and profiled with Nsight Compute, and evaluated by a composite objective that combines runtime with hardware bottleneck proxies and guardrails against regressions. We evaluate OptiML in both synthesis-and-optimize and optimization-only settings on a diverse suite of CUDA kernels. Results show that OptiML consistently discovers verified performance improvements over strong LLM baselines and produces interpretable optimization trajectories grounded in profiler evidence.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 88,
+      "primary": "infra",
+      "tags": [
+        "cuda",
+        "optimization",
+        "ml"
+      ],
+      "url": "https://arxiv.org/abs/2602.12305",
+      "_rid": 10,
+      "why": "OptiML automatiza la optimización de kernels CUDA de alto rendimiento, reduciendo la dependencia de expertos humanos.",
+      "entities": [
+        "CUDA",
+        "An End",
+        "End Framework",
+        "Program Synthesis",
+        "Kernel Optimization"
+      ]
+    },
+    {
+      "title": "TSMC vs Intel Foundry vs Samsung Foundry 2026",
+      "link": "https://semiwiki.com/semiconductor-manufacturers/tsmc/366523-tsmc-vs-intel-foundry-vs-samsung-foundry-2026/",
+      "published": "2026-02-13T14:00:18+00:00",
+      "summary": "The global semiconductor industry sits at the foundation of modern technology, powering everything from smartphones and cloud data centers to artificial intelligence, automobiles, and national defense systems. At the center of advanced chip manufacturing are three major players: TSMC , Samsung Foundry , and Intel Foundry &#8230; Read More The post TSMC vs Intel Foundry vs Samsung Foundry 2026 appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 85,
+      "primary": "infra",
+      "tags": [
+        "foundry",
+        "semiconductors",
+        "tsmc"
+      ],
+      "url": "https://semiwiki.com/semiconductor-manufacturers/tsmc/366523-tsmc-vs-intel-foundry-vs-samsung-foundry-2026/",
+      "_rid": 1,
+      "why": "La competencia entre TSMC, Intel y Samsung para 2026 es fundamental para el suministro global de chips de IA.",
+      "entities": [
+        "TSMC",
+        "Intel",
+        "Samsung"
+      ]
+    },
+    {
+      "title": "You can just build things. Peter Steinberger is joining OpenAI to drive the next generation of personal agents. He is a genius with a lot of amazing ideas ab...",
+      "summary": "You can just build things. Peter Steinberger is joining OpenAI to drive the next generation of personal agents. He is a genius with a lot of amazing ideas about the future of very smart agents interacting with each other to do very useful things for people. We expect this will quickly become core to our Very excited about the \"First Proof\" challenge. I believe novel frontier research is perhaps the most important way to evaluate capabilities of the next generation of AI models. We have run our internal model with limited human supervision on the ten proposed problems. The",
+      "link": "https://x.com/OpenAI?post=a17b85292233",
+      "published": "Mon, 16 Feb 2026 07:14:46 GMT",
+      "source": "X @OpenAI",
+      "feed_tags": [
+        "x",
+        "models",
+        "products"
+      ],
+      "score": 85,
+      "primary": "models",
+      "tags": [
+        "agents",
+        "hiring",
+        "openai"
+      ],
+      "url": "https://x.com/OpenAI?post=a17b85292233",
+      "_rid": 15,
+      "why": "La incorporación de talento clave subraya la transición de OpenAI hacia agentes personales altamente autónomos.",
+      "entities": [
+        "OpenAI",
+        "Peter Steinberger"
+      ]
+    },
+    {
+      "title": "Isambard-AI, the UK’s Most Powerful AI Supercomputer, Goes Live",
+      "link": "https://blogs.nvidia.com/blog/isambard-ai/",
+      "published": "2025-07-17T17:00:50+00:00",
+      "summary": "The University of Bristol’s Isambard-AI, powered by NVIDIA Grace Hopper Superchips, delivers 21 exaflops of AI performance, making it the fastest system in the U.K. and among the most energy-efficient globally.",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 82,
+      "primary": "infra",
+      "tags": [
+        "supercomputing",
+        "uk",
+        "grace-hopper"
+      ],
+      "url": "https://blogs.nvidia.com/blog/isambard-ai/",
+      "_rid": 8,
+      "why": "Isambard-AI se convierte en el sistema más rápido del Reino Unido con 21 exaflops para investigación en IA.",
+      "entities": [
+        "University of Bristol",
+        "NVIDIA"
+      ]
+    },
+    {
+      "title": "TSMC and Cadence Strengthen Partnership to Enable Next-Generation AI and HPC Silicon",
+      "link": "https://semiwiki.com/semiconductor-manufacturers/tsmc/366493-tsmc-and-cadence-strengthen-partnership-to-enable-next-generation-ai-and-hpc-silicon/",
+      "published": "2026-02-16T02:00:32+00:00",
+      "summary": "TSMC continues to reinforce its leadership in advanced semiconductor manufacturing through its deepening collaboration with Cadence Design Systems. The expanded partnership focuses on enabling next-generation artificial intelligence and high-performance computing innovations by aligning advanced electronic design&#8230; Read More The post TSMC and Cadence Strengthen Partnership to Enable Next-Generation AI and HPC Silicon appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 80,
+      "primary": "infra",
+      "tags": [
+        "tsmc",
+        "cadence",
+        "hpc"
+      ],
+      "url": "https://semiwiki.com/semiconductor-manufacturers/tsmc/366493-tsmc-and-cadence-strengthen-partnership-to-enable-next-generation-ai-and-hpc-silicon/",
+      "_rid": 14,
+      "why": "La alianza TSMC-Cadence es clave para habilitar el silicio de próxima generación para IA y computación de alto rendimiento.",
+      "entities": [
+        "TSMC",
+        "Cadence"
+      ]
+    },
+    {
+      "title": "NVIDIA Releases New AI Models and Developer Tools to Advance Autonomous Vehicle Ecosystem",
+      "link": "https://blogs.nvidia.com/blog/autonomous-vehicle-ecosystem-ai-models-developer-tools/",
+      "published": "2025-06-11T10:55:36+00:00",
+      "summary": "Autonomous vehicle (AV) stacks are evolving from many distinct models to a unified, end-to-end architecture that executes driving actions directly from sensor data. This transition to using larger models is drastically increasing the demand for high-quality, physically based sensor data for training, testing and validation. To help accelerate the development of next-generation AV architectures, NVIDIA Read Article",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 78,
+      "primary": "models",
+      "tags": [
+        "autonomous-vehicles",
+        "simulation",
+        "sensors"
+      ],
+      "url": "https://blogs.nvidia.com/blog/autonomous-vehicle-ecosystem-ai-models-developer-tools/",
+      "_rid": 12,
+      "why": "La transición a arquitecturas AV unificadas aumenta drásticamente la demanda de datos de sensores de alta fidelidad.",
+      "entities": [
+        "NVIDIA"
+      ]
+    },
+    {
+      "title": "NVIDIA Research Shapes Physical AI",
+      "link": "https://blogs.nvidia.com/blog/physical-ai-research-siggraph-2025/",
+      "published": "2025-08-11T15:00:38+00:00",
+      "summary": "AI and graphics research breakthroughs in neural rendering, 3D generation and world simulation power robotics, autonomous vehicles and content creation.",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 75,
+      "primary": "models",
+      "tags": [
+        "robotics",
+        "physical-ai",
+        "graphics"
+      ],
+      "url": "https://blogs.nvidia.com/blog/physical-ai-research-siggraph-2025/",
+      "_rid": 4,
+      "why": "NVIDIA Research impulsa la IA física mediante simulación de mundos 3D y renderizado neuronal avanzado.",
+      "entities": [
+        "NVIDIA"
+      ]
+    },
+    {
+      "title": "Giving AI Agents Access to a Compiled Design and Verification Database",
+      "link": "https://semiwiki.com/eda/amiq-eda/366471-giving-ai-agents-access-to-a-compiled-design-and-verification-database/",
+      "published": "2026-02-12T16:00:40+00:00",
+      "summary": "A few weeks ago, I had the chance to work with AMIQ EDA as they introduced a new product: DVT MCP Server. I was quite intrigued by the role it will play in AI-assisted chip design and verification, so I wanted to learn more. I spoke with Gabriel Busuioc, the AI Assistant team leader at AMIQ EDA, to understand more about the product and how&#8230; Read More The post Giving AI Agents Access to a Compiled Design and Verification Database appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 72,
+      "primary": "infra",
+      "tags": [
+        "eda",
+        "chip-design",
+        "agents"
+      ],
+      "url": "https://semiwiki.com/eda/amiq-eda/366471-giving-ai-agents-access-to-a-compiled-design-and-verification-database/",
+      "_rid": 13,
+      "why": "El acceso de agentes de IA a bases de datos de verificación (DVT MCP) optimiza el diseño de hardware avanzado.",
+      "entities": [
+        "AMIQ EDA"
+      ]
+    },
+    {
+      "title": "Reaching Across the Isles: UK-LLM Brings AI to UK Languages With NVIDIA Nemotron",
+      "link": "https://blogs.nvidia.com/blog/uk-llm-nemotron/",
+      "published": "2025-09-14T01:00:21+00:00",
+      "summary": "Celtic languages — including Cornish, Irish, Scottish Gaelic and Welsh — are the U.K.’s oldest living languages. To empower their speakers, the UK-LLM sovereign AI initiative is building an AI model based on NVIDIA Nemotron that can reason in both English and Welsh, a language spoken by about 850,000 people in Wales today. Enabling high-quality Read Article",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 70,
+      "primary": "geopol",
+      "tags": [
+        "sovereign-ai",
+        "llm",
+        "uk"
+      ],
+      "url": "https://blogs.nvidia.com/blog/uk-llm-nemotron/",
+      "_rid": 5,
+      "why": "El proyecto UK-LLM demuestra el uso de arquitecturas Nemotron para la preservación cultural y soberanía tecnológica.",
+      "entities": [
+        "NVIDIA",
+        "UK-LLM"
+      ]
+    },
+    {
+      "title": "GT-HarmBench: Benchmarking AI Safety Risks Through the Lens of Game Theory",
+      "link": "https://arxiv.org/abs/2602.12316",
+      "published": "2026-02-16T05:00:00+00:00",
+      "summary": "arXiv:2602.12316v1 Announce Type: new Abstract: Frontier AI systems are increasingly capable and deployed in high-stakes multi-agent environments. However, existing AI safety benchmarks largely evaluate single agents, leaving multi-agent risks such as coordination failure and conflict poorly understood. We introduce GT-HarmBench, a benchmark of 2,009 high-stakes scenarios spanning game-theoretic structures such as the Prisoner's Dilemma, Stag Hunt and Chicken. Scenarios are drawn from realistic AI risk contexts in the MIT AI Risk Repository. Across 15 frontier models, agents choose socially beneficial actions in only 62% of cases, frequently leading to harmful outcomes. We measure sensitivity to game-theoretic prompt framing and ordering, and analyze reasoning patterns driving failures. We further show that game-theoretic interventions improve socially beneficial outcomes by up to 18%. Our results highlight substantial reliability gaps and provide a broad standardized testbed for studying alignment in multi-agent environments. The benchmark and code are available at https://github.com/causalNLP/gt-harmbench.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 65,
+      "primary": "models",
+      "tags": [
+        "safety",
+        "game-theory",
+        "benchmarks"
+      ],
+      "url": "https://arxiv.org/abs/2602.12316",
+      "_rid": 2,
+      "why": "GT-HarmBench revela fallos críticos de coordinación en modelos multi-agente en escenarios de alto riesgo.",
+      "entities": [
+        "MIT"
+      ]
+    },
+    {
+      "title": "Innovation to Impact: How NVIDIA Research Fuels Transformative Work in AI, Graphics and Beyond",
+      "link": "https://blogs.nvidia.com/blog/nvidia-research-ai-graphics/",
+      "published": "2025-03-20T00:00:24+00:00",
+      "summary": "The roots of many of NVIDIA’s landmark innovations — the foundational technology that powers AI, accelerated computing, real-time ray tracing and seamlessly connected data centers — can be found in the company’s research organization, a global team of around 400 experts in fields including computer architecture, generative AI, graphics and robotics. Established in 2006 and Read Article",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 60,
+      "primary": "misc",
+      "tags": [
+        "r&d",
+        "innovation",
+        "graphics"
+      ],
+      "url": "https://blogs.nvidia.com/blog/nvidia-research-ai-graphics/",
+      "_rid": 9,
+      "why": "El equipo de investigación de NVIDIA alimenta el pipeline tecnológico de centros de datos y computación acelerada.",
+      "entities": [
+        "NVIDIA"
+      ]
+    },
+    {
+      "title": "A Theoretical Framework for Adaptive Utility-Weighted Benchmarking",
+      "link": "https://arxiv.org/abs/2602.12356",
+      "published": "2026-02-16T05:00:00+00:00",
+      "summary": "arXiv:2602.12356v1 Announce Type: new Abstract: Benchmarking has long served as a foundational practice in machine learning and, increasingly, in modern AI systems such as large language models, where shared tasks, metrics, and leaderboards offer a common basis for measuring progress and comparing approaches. As AI systems are deployed in more varied and consequential settings, though, there is growing value in complementing these established practices with a more holistic conceptualization of what evaluation should represent. Of note, recognizing the sociotechnical contexts in which these systems operate invites an opportunity for a deeper view of how multiple stakeholders and their unique priorities might inform what we consider meaningful or desirable model behavior. This paper introduces a theoretical framework that reconceptualizes benchmarking as a multilayer, adaptive network linking evaluation metrics, model components, and stakeholder groups through weighted interactions. Using conjoint-derived utilities and a human-in-the-loop update rule, we formalize how human tradeoffs can be embedded into benchmark structure and how benchmarks can evolve dynamically while preserving stability and interpretability. The resulting formulation generalizes classical leaderboards as a special case and provides a foundation for building evaluation protocols that are more context aware, resulting in new robust tools for analyzing the structural properties of benchmarks, which opens a path toward more accountable and human-aligned evaluation.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 50,
+      "primary": "models",
+      "tags": [
+        "benchmarking",
+        "evaluation",
+        "metrics"
+      ],
+      "url": "https://arxiv.org/abs/2602.12356",
+      "_rid": 6,
+      "why": "Nueva propuesta teórica para adaptar las métricas de IA a contextos sociotécnicos y stakeholders específicos.",
+      "entities": [
+        "Theoretical Framework",
+        "Adaptive Utility",
+        "Weighted Benchmarking"
+      ]
+    },
+    {
+      "title": "Applications Now Open for $60,000 NVIDIA Graduate Fellowship Awards",
+      "link": "https://blogs.nvidia.com/blog/applications-open-graduate-fellowship-awards-2025/",
+      "published": "2025-08-13T15:00:02+00:00",
+      "summary": "Bringing together the world’s brightest minds and the latest accelerated computing technology leads to powerful breakthroughs that help tackle some of the biggest research problems. To foster such innovation, the NVIDIA Graduate Fellowship Program provides grants, mentors and technical support to doctoral students doing outstanding research relevant to NVIDIA technologies. The program, in its 25th Read Article",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 40,
+      "primary": "invest",
+      "tags": [
+        "talent",
+        "fellowship",
+        "academia"
+      ],
+      "url": "https://blogs.nvidia.com/blog/applications-open-graduate-fellowship-awards-2025/",
+      "_rid": 11,
+      "why": "Inversión en talento doctoral para asegurar el liderazgo continuo en investigación de computación acelerada.",
+      "entities": [
+        "NVIDIA"
+      ]
+    }
+  ]
+}
