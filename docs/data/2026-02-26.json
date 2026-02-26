@@ -1,0 +1,425 @@
+{
+  "date": "2026-02-26",
+  "score_avg": 73.33,
+  "primary_dist": {
+    "models": 8,
+    "infra": 3,
+    "invest": 2,
+    "geopol": 1,
+    "misc": 1
+  },
+  "top_entities": [
+    {
+      "entity": "NVIDIA",
+      "count": 8
+    },
+    {
+      "entity": "Google DeepMind",
+      "count": 3
+    },
+    {
+      "entity": "OpenAI",
+      "count": 1
+    },
+    {
+      "entity": "University of Bristol",
+      "count": 1
+    },
+    {
+      "entity": "Latent Context Compilation",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "OpenAI confirms GPT-5.2 and agentic GPT-5.3 Codex training on NVIDIA GB200 infrastructure.",
+      "Shift to agentic engineering in semiconductors with AI-driven multi-die and RTL security verification.",
+      "Emergence of stateless portable memory artifacts to bypass long-context LLM deployment bottlenecks.",
+      "UK sovereign AI scales with Isambard-AI reaching 21 exaflops and Nemotron-based regional LLMs.",
+      "Physical AI convergence via world models (Project Genie) and end-to-end autonomous vehicle architectures."
+    ],
+    "risks": [
+      "Multi-model ensemble orchestration complexity requires new auditable measurement and routing frameworks.",
+      "Scaling long-context windows faces diminishing returns between generalization and prohibitive synthetic data costs.",
+      "Hardware security verification must evolve rapidly to match the complexity of chiplet and 3D stacking designs."
+    ],
+    "watch": [
+      "Adoption of agentic coding models (GPT-5.3) within autonomous self-improvement software loops.",
+      "Real-world performance of Isambard-AI as a benchmark for European exascale AI research.",
+      "Integration of Google DeepMind's Lyria 3 and Project Genie into consumer creative workflows."
+    ],
+    "entities_top": [
+      "NVIDIA",
+      "OpenAI",
+      "Google DeepMind"
+    ]
+  },
+  "items": [
+    {
+      "title": "As AI Grows More Complex, Model Builders Rely on NVIDIA",
+      "link": "https://blogs.nvidia.com/blog/leading-models-nvidia/",
+      "published": "2025-12-11T19:19:57+00:00",
+      "summary": "Unveiling what it describes as the most capable model series yet for professional knowledge work, OpenAI launched GPT-5.2 in December. The model was trained and deployed on NVIDIA infrastructure, including NVIDIA Hopper and GB200 NVL72 systems. GPT-5.3 Codex — the first OpenAI agentic coding model to help build itself — was released in February and Read Article",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 95,
+      "primary": "models",
+      "tags": [
+        "gpt-5",
+        "agents",
+        "training"
+      ],
+      "url": "https://blogs.nvidia.com/blog/leading-models-nvidia/",
+      "_rid": 2,
+      "why": "Official confirmation of GPT-5 series training on GB200 and the launch of the first agentic coding model.",
+      "entities": [
+        "OpenAI",
+        "NVIDIA"
+      ]
+    },
+    {
+      "title": "Isambard-AI, the UK’s Most Powerful AI Supercomputer, Goes Live",
+      "link": "https://blogs.nvidia.com/blog/isambard-ai/",
+      "published": "2025-07-17T17:00:50+00:00",
+      "summary": "The University of Bristol’s Isambard-AI, powered by NVIDIA Grace Hopper Superchips, delivers 21 exaflops of AI performance, making it the fastest system in the U.K. and among the most energy-efficient globally.",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 88,
+      "primary": "infra",
+      "tags": [
+        "supercomputing",
+        "hpc",
+        "exascale"
+      ],
+      "url": "https://blogs.nvidia.com/blog/isambard-ai/",
+      "_rid": 9,
+      "why": "Isambard-AI goes live as the UK's fastest AI system, delivering 21 exaflops of performance.",
+      "entities": [
+        "NVIDIA",
+        "University of Bristol"
+      ]
+    },
+    {
+      "title": "Latent Context Compilation: Distilling Long Context into Compact Portable Memory",
+      "link": "https://arxiv.org/abs/2602.21221",
+      "published": "2026-02-26T05:00:00+00:00",
+      "summary": "arXiv:2602.21221v1 Announce Type: new Abstract: Efficient long-context LLM deployment is stalled by a dichotomy between amortized compression, which struggles with out-of-distribution generalization, and Test-Time Training, which incurs prohibitive synthetic data costs and requires modifying model weights, creating stateful parameters that complicate concurrent serving. We propose Latent Context Compilation, a framework that fundamentally shifts context processing from adaptation to compilation. By utilizing a disposable LoRA module as a compiler, we distill long contexts into compact buffer tokens -- stateless, portable memory artifacts that are plug-and-play compatible with frozen base models. Crucially, we introduce a self-aligned optimization strategy that eliminates the need for synthetic context-relevant QA pairs. By regularizing context reconstruction task with context-agnostic random queries, we force compressed tokens to reside within the model's existing instruction-following manifold. Experiments with Llama-3.1-8B demonstrate that Latent Context Compilation preserves fine-grained details and reasoning capabilities where prior methods falter, effectively decoupling memory density from model parameters even at a 16x compression ratio.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 85,
+      "primary": "models",
+      "tags": [
+        "context",
+        "distillation",
+        "lora"
+      ],
+      "url": "https://arxiv.org/abs/2602.21221",
+      "_rid": 4,
+      "why": "Proposes Latent Context Compilation to distill long context into portable, stateless memory artifacts.",
+      "entities": [
+        "Latent Context Compilation",
+        "Distilling Long Context",
+        "Compact Portable Memory"
+      ]
+    },
+    {
+      "title": "How does a single prompt become a navigable environment? ![Image 5: 🌐](https://abs-0.twimg.com/emoji/v2/svg/1f310.svg) We asked the researchers behind Projec...",
+      "summary": "How does a single prompt become a navigable environment? ![Image 5: 🌐](https://abs-0.twimg.com/emoji/v2/svg/1f310.svg) We asked the researchers behind Project Genie to explain the mechanics of world models and their potential for training future AI agents. ![Image 6: 🧵](https://abs-0.twimg.com/emoji/v2/svg/1f9f5.svg) The media could not be played.",
+      "link": "https://x.com/GoogleDeepMind?post=b22a4c8a3e3d",
+      "published": "Thu, 26 Feb 2026 06:19:45 GMT",
+      "source": "X @GoogleDeepMind",
+      "feed_tags": [
+        "x",
+        "research",
+        "models"
+      ],
+      "score": 84,
+      "primary": "models",
+      "tags": [
+        "world-models",
+        "agents",
+        "generative"
+      ],
+      "url": "https://x.com/GoogleDeepMind?post=b22a4c8a3e3d",
+      "_rid": 7,
+      "why": "Project Genie enables prompt-to-navigable world generation, critical for training generalist agents.",
+      "entities": [
+        "Google DeepMind"
+      ]
+    },
+    {
+      "title": "Designing the Future: AI-Driven Multi-Die Innovation in the Era of Agentic Engineering",
+      "link": "https://semiwiki.com/eda/synopsys/366866-designing-the-future-ai-driven-multi-die-innovation-in-the-era-of-agentic-engineering/",
+      "published": "2026-02-25T16:00:06+00:00",
+      "summary": "At the 2026 Chiplet Summit , Synopsys presented a bold vision for the future of semiconductor innovation: AI-driven multi-die design powered by agentic intelligence. As the semiconductor industry shifts rapidly toward chiplet -based architectures and 3D stacking, the complexity of design, verification, and system integration&#8230; Read More The post Designing the Future: AI-Driven Multi-Die Innovation in the Era of Agentic Engineering appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 82,
+      "primary": "infra",
+      "tags": [
+        "chiplets",
+        "eda",
+        "agentic"
+      ],
+      "url": "https://semiwiki.com/eda/synopsys/366866-designing-the-future-ai-driven-multi-die-innovation-in-the-era-of-agentic-engineering/",
+      "_rid": 3,
+      "why": "Synopsys maps the transition to AI-driven multi-die design powered by agentic intelligence for chiplets.",
+      "entities": [
+        "Synopsys"
+      ]
+    },
+    {
+      "title": "NVIDIA Releases New AI Models and Developer Tools to Advance Autonomous Vehicle Ecosystem",
+      "link": "https://blogs.nvidia.com/blog/autonomous-vehicle-ecosystem-ai-models-developer-tools/",
+      "published": "2025-06-11T10:55:36+00:00",
+      "summary": "Autonomous vehicle (AV) stacks are evolving from many distinct models to a unified, end-to-end architecture that executes driving actions directly from sensor data. This transition to using larger models is drastically increasing the demand for high-quality, physically based sensor data for training, testing and validation. To help accelerate the development of next-generation AV architectures, NVIDIA Read Article",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 81,
+      "primary": "models",
+      "tags": [
+        "autonomous-vehicles",
+        "simulation"
+      ],
+      "url": "https://blogs.nvidia.com/blog/autonomous-vehicle-ecosystem-ai-models-developer-tools/",
+      "_rid": 13,
+      "why": "Evolution of AV stacks toward unified end-to-end architectures requires massive physical sensor data.",
+      "entities": [
+        "NVIDIA"
+      ]
+    },
+    {
+      "title": "ACAR: Adaptive Complexity Routing for Multi-Model Ensembles with Auditable Decision Traces",
+      "link": "https://arxiv.org/abs/2602.21231",
+      "published": "2026-02-26T05:00:00+00:00",
+      "summary": "arXiv:2602.21231v1 Announce Type: new Abstract: We present ACAR (Adaptive Complexity and Attribution Routing), a measurement framework for studying multi-model orchestration under auditable conditions. ACAR uses self-consistency variance (sigma) computed from N=3 probe samples to route tasks across single-model, two-model, and three-model execution modes. The system is implemented on top of TEAMLLM, a deterministic execution substrate with immutable artifacts and complete decision traces. We evaluate ACAR on 1,510 tasks spanning four benchmarks: MathArena, Reasoning Gym, LiveCodeBench, and SuperGPQA, using Claude Sonnet 4, GPT-4o, and Gemini 2.0 Flash, producing more than 7,550 auditable runs. Results show that sigma-based routing achieves 55.6 percent accuracy, exceeding the two-model baseline of 54.4 percent while avoiding full ensembling on 54.2 percent of tasks. The routing mechanism is model-agnostic and requires no learned components. We also document negative results. First, retrieval augmentation reduced accuracy by 3.4 percentage points, as median retrieval similarity was only 0.167, demonstrating that experience injection without semantic alignment introduces noise rather than grounding. Second, when models agree on incorrect answers (sigma equals zero), no downstream ensemble can recover; this agreement-but-wrong failure mode is intrinsic to self-consistency and bounds achievable accuracy at approximately eight percentage points below full ensembling. Third, attribution estimates based on proxy signals such as response similarity and entropy showed weak correlation with ground-truth leave-one-out values, indicating that practical attribution requires explicit counterfactual computation. This work documents which assumptions fail in practice and provides falsifiable baselines for future research on routing, retrieval, and multi-model attribution.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 78,
+      "primary": "models",
+      "tags": [
+        "ensemble",
+        "orchestration",
+        "routing"
+      ],
+      "url": "https://arxiv.org/abs/2602.21231",
+      "_rid": 1,
+      "why": "Introduces ACAR framework for task routing across multi-model ensembles using auditable self-consistency metrics.",
+      "entities": [
+        "Claude",
+        "GPT-4o",
+        "Gemini"
+      ]
+    },
+    {
+      "title": "Caspia Technologies Unveils A Breakthrough in RTL Security Verification Paving the Way for Agentic Silicon Security",
+      "link": "https://semiwiki.com/security/caspia-technologies/366956-caspia-technologies-unveils-a-breakthrough-in-rtl-security-verification-paving-the-way-for-agentic-silicon-security/",
+      "published": "2026-02-25T18:00:51+00:00",
+      "summary": "In a significant advancement for the semiconductor industry, Caspia Technologies announced the broad availability of CODAx V2026.1, its flagship RTL security analyzer. The new release strengthens early-stage hardware security verification and positions the company to deliver fully agentic workflows that automate vulnerability&#8230; Read More The post Caspia Technologies Unveils A Breakthrough in RTL Security Verification Paving the Way for Agentic Silicon Security appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 75,
+      "primary": "infra",
+      "tags": [
+        "security",
+        "rtl",
+        "silicon"
+      ],
+      "url": "https://semiwiki.com/security/caspia-technologies/366956-caspia-technologies-unveils-a-breakthrough-in-rtl-security-verification-paving-the-way-for-agentic-silicon-security/",
+      "_rid": 8,
+      "why": "Caspia Technologies automates RTL security verification using agentic workflows for hardware integrity.",
+      "entities": [
+        "Caspia Technologies"
+      ]
+    },
+    {
+      "title": "We’re scaling up robotics in Europe. ![Image 3: 🤖](https://abs-0.twimg.com/emoji/v2/svg/1f916.svg) Our Robotics Accelerator is tailored for startups and desi...",
+      "summary": "We’re scaling up robotics in Europe. ![Image 3: 🤖](https://abs-0.twimg.com/emoji/v2/svg/1f916.svg) Our Robotics Accelerator is tailored for startups and designed to bridge the gap between technology and business, powering the next generation of physical agents. The media could not be played.",
+      "link": "https://x.com/GoogleDeepMind?post=c4e482c34540",
+      "published": "Thu, 26 Feb 2026 06:19:45 GMT",
+      "source": "X @GoogleDeepMind",
+      "feed_tags": [
+        "x",
+        "research",
+        "models"
+      ],
+      "score": 74,
+      "primary": "invest",
+      "tags": [
+        "robotics",
+        "startups",
+        "accelerator"
+      ],
+      "url": "https://x.com/GoogleDeepMind?post=c4e482c34540",
+      "_rid": 14,
+      "why": "New European robotics accelerator aims to bridge the gap between AI research and physical agent startups.",
+      "entities": [
+        "Google DeepMind"
+      ]
+    },
+    {
+      "title": "NVIDIA Research Shapes Physical AI",
+      "link": "https://blogs.nvidia.com/blog/physical-ai-research-siggraph-2025/",
+      "published": "2025-08-11T15:00:38+00:00",
+      "summary": "AI and graphics research breakthroughs in neural rendering, 3D generation and world simulation power robotics, autonomous vehicles and content creation.",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 72,
+      "primary": "models",
+      "tags": [
+        "physical-ai",
+        "robotics",
+        "simulation"
+      ],
+      "url": "https://blogs.nvidia.com/blog/physical-ai-research-siggraph-2025/",
+      "_rid": 5,
+      "why": "NVIDIA focuses research on neural rendering and world simulation to accelerate physical AI agents.",
+      "entities": [
+        "NVIDIA"
+      ]
+    },
+    {
+      "title": "Reaching Across the Isles: UK-LLM Brings AI to UK Languages With NVIDIA Nemotron",
+      "link": "https://blogs.nvidia.com/blog/uk-llm-nemotron/",
+      "published": "2025-09-14T01:00:21+00:00",
+      "summary": "Celtic languages — including Cornish, Irish, Scottish Gaelic and Welsh — are the U.K.’s oldest living languages. To empower their speakers, the UK-LLM sovereign AI initiative is building an AI model based on NVIDIA Nemotron that can reason in both English and Welsh, a language spoken by about 850,000 people in Wales today. Enabling high-quality Read Article",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 68,
+      "primary": "geopol",
+      "tags": [
+        "sovereign-ai",
+        "llm",
+        "uk"
+      ],
+      "url": "https://blogs.nvidia.com/blog/uk-llm-nemotron/",
+      "_rid": 6,
+      "why": "Sovereign AI initiative building bilingual Nemotron-based models for UK regional languages.",
+      "entities": [
+        "NVIDIA",
+        "UK-LLM"
+      ]
+    },
+    {
+      "title": "A new way to express yourself: Gemini can now create music",
+      "link": "https://deepmind.google/blog/a-new-way-to-express-yourself-gemini-can-now-create-music/",
+      "published": "2026-02-18T16:01:38+00:00",
+      "summary": "The Gemini app now features our most advanced music generation model Lyria 3, empowering anyone to make 30-second tracks using text or images.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 65,
+      "primary": "models",
+      "tags": [
+        "music",
+        "multimodal",
+        "gemini"
+      ],
+      "url": "https://deepmind.google/blog/a-new-way-to-express-yourself-gemini-can-now-create-music/",
+      "_rid": 15,
+      "why": "Launch of Lyria 3 model within Gemini for short-form text-to-music generation.",
+      "entities": [
+        "Google DeepMind"
+      ]
+    },
+    {
+      "title": "NVIDIA GauGAN2, a powerful [#AI](https://x.com/hashtag/AI?src=hashtag_click) model that allows anyone to convert simple written phrases like \"ocean waves\" in...",
+      "summary": "NVIDIA GauGAN2, a powerful [#AI](https://x.com/hashtag/AI?src=hashtag_click) model that allows anyone to convert simple written phrases like \"ocean waves\" into a photorealistic masterpiece. Learn more about GauGAN2 now: [nvda.ws/3oNitRX](https://t.co/IhNldsaEYV) The media could not be played.",
+      "link": "https://x.com/NVIDIAAI?post=116947ff16ec",
+      "published": null,
+      "source": "X @NVIDIAAI",
+      "feed_tags": [
+        "x",
+        "infra",
+        "chips"
+      ],
+      "score": 58,
+      "primary": "models",
+      "tags": [
+        "multimodal",
+        "generative"
+      ],
+      "url": "https://x.com/NVIDIAAI?post=116947ff16ec",
+      "_rid": 11,
+      "why": "Iterative update for GauGAN2 model allowing photorealistic image generation from text phrases.",
+      "entities": [
+        "NVIDIA"
+      ]
+    },
+    {
+      "title": "Innovation to Impact: How NVIDIA Research Fuels Transformative Work in AI, Graphics and Beyond",
+      "link": "https://blogs.nvidia.com/blog/nvidia-research-ai-graphics/",
+      "published": "2025-03-20T00:00:24+00:00",
+      "summary": "The roots of many of NVIDIA’s landmark innovations — the foundational technology that powers AI, accelerated computing, real-time ray tracing and seamlessly connected data centers — can be found in the company’s research organization, a global team of around 400 experts in fields including computer architecture, generative AI, graphics and robotics. Established in 2006 and Read Article",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 55,
+      "primary": "misc",
+      "tags": [
+        "research",
+        "innovation"
+      ],
+      "url": "https://blogs.nvidia.com/blog/nvidia-research-ai-graphics/",
+      "_rid": 10,
+      "why": "Highlighting NVIDIA's internal research team size and historical impact on GPU architecture.",
+      "entities": [
+        "NVIDIA"
+      ]
+    },
+    {
+      "title": "Applications Now Open for $60,000 NVIDIA Graduate Fellowship Awards",
+      "link": "https://blogs.nvidia.com/blog/applications-open-graduate-fellowship-awards-2025/",
+      "published": "2025-08-13T15:00:02+00:00",
+      "summary": "Bringing together the world’s brightest minds and the latest accelerated computing technology leads to powerful breakthroughs that help tackle some of the biggest research problems. To foster such innovation, the NVIDIA Graduate Fellowship Program provides grants, mentors and technical support to doctoral students doing outstanding research relevant to NVIDIA technologies. The program, in its 25th Read Article",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 40,
+      "primary": "invest",
+      "tags": [
+        "fellowship",
+        "education"
+      ],
+      "url": "https://blogs.nvidia.com/blog/applications-open-graduate-fellowship-awards-2025/",
+      "_rid": 12,
+      "why": "Strategic talent investment through PhD grants for research relevant to NVIDIA tech stacks.",
+      "entities": [
+        "NVIDIA"
+      ]
+    }
+  ]
+}
