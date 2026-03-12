@@ -27,8 +27,8 @@ TEMPLATE = ENV.from_string("""
   <title>AI Intel Briefing</title>
   <style>
     :root{
-      --bg:#0b0f14; --panel:#0f1722; --border:#1b2635; --text:#d7e1f0;
-      --muted:#8aa2c2; --neon:#7bdff2; --link:#a78bfa; --chip:#0b1220;
+      --bg:#070b12; --panel:#0f1722; --panel-soft:#101b2a; --border:#1b2635; --text:#d7e1f0;
+      --muted:#8aa2c2; --neon:#7bdff2; --link:#a78bfa; --chip:#0b1220; --ok:#34d399; --warn:#f59e0b;
     }
     body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; background:var(--bg); color:var(--text); margin:0; }
     header { padding:22px 0; border-bottom:1px solid var(--border); background: linear-gradient(90deg,#0b0f14,#0f1722); }
@@ -38,6 +38,11 @@ TEMPLATE = ENV.from_string("""
     .pill { padding:4px 10px; border:1px solid var(--border); background:rgba(15,23,34,0.6); border-radius:999px; font-size:12px; color:var(--muted); }
 
     .panel { border:1px solid var(--border); background:var(--panel); border-radius:16px; padding:14px; margin:18px 0 16px; }
+    .stats { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin:14px 0 6px; }
+    @media (min-width: 860px){ .stats { grid-template-columns:repeat(4,minmax(0,1fr)); } }
+    .kpi { border:1px solid var(--border); background:var(--panel-soft); border-radius:12px; padding:10px 12px; }
+    .kpi .label { color:var(--muted); font-size:11px; text-transform:uppercase; letter-spacing:.3px; }
+    .kpi .value { font-size:18px; margin-top:4px; font-weight:600; }
     .panel h2 { margin:0 0 10px; font-size:14px; letter-spacing:0.4px; color:var(--neon); }
     .cols { display:grid; grid-template-columns: 1fr; gap:10px; }
     @media (min-width: 860px){ .cols { grid-template-columns: 2fr 1fr; } }
@@ -46,6 +51,8 @@ TEMPLATE = ENV.from_string("""
     ul { margin:0; padding-left:18px; color:#cfe0ff; }
     li { margin:6px 0; font-size:13px; line-height:1.25; }
 
+    .controls { display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin:14px 0; }
+    .controls select { background:var(--panel-soft); color:var(--text); border:1px solid var(--border); border-radius:10px; padding:7px 10px; }
     .grid { display:grid; grid-template-columns: 1fr; gap:12px; }
     .card { border:1px solid var(--border); background:var(--panel); border-radius:14px; padding:14px; }
     .top { display:flex; justify-content:space-between; gap:12px; }
@@ -58,6 +65,8 @@ TEMPLATE = ENV.from_string("""
     .title { margin-top:6px; font-size:15px; line-height:1.3; }
     .meta { color:var(--muted); font-size:12px; margin-top:8px; display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
     .chip { padding:3px 8px; border:1px solid var(--border); background:var(--chip); border-radius:999px; font-size:11px; color:var(--muted); }
+    .chip.ok { color:var(--ok); border-color:rgba(52,211,153,.35); }
+    .chip.warn { color:var(--warn); border-color:rgba(245,158,11,.35); }
     .why { margin-top:10px; color:#dbe8ff; font-size:13px; line-height:1.35; }
   </style>
 </head>
@@ -73,6 +82,12 @@ TEMPLATE = ENV.from_string("""
 </header>
 
 <div class="wrap">
+  <div class="stats">
+    <div class="kpi"><div class="label">Total noticias</div><div class="value">{{ items|length }}</div></div>
+    <div class="kpi"><div class="label">Novedades</div><div class="value">{{ items|rejectattr('is_repeat')|list|length }}</div></div>
+    <div class="kpi"><div class="label">Repetidas</div><div class="value">{{ items|selectattr('is_repeat')|list|length }}</div></div>
+    <div class="kpi"><div class="label">Score medio novedad</div><div class="value">{{ ((items|map(attribute='novelty_score')|list|sum) / (items|length if items|length > 0 else 1))|round(1) }}</div></div>
+  </div>
 
   {% if briefing and (briefing.signals or briefing.risks or briefing.watch or briefing.entities_top) %}
   <div class="panel">
@@ -113,9 +128,18 @@ TEMPLATE = ENV.from_string("""
   </div>
   {% endif %}
 
-  <div class="grid">
+  <div class="controls">
+    <label for="viewFilter" class="pill">Vista</label>
+    <select id="viewFilter" onchange="applyFilter()">
+      <option value="all">Todas</option>
+      <option value="new">Solo novedades</option>
+      <option value="repeat">Solo repetidas</option>
+    </select>
+  </div>
+
+  <div class="grid" id="itemsGrid">
     {% for item in items %}
-      <div class="card">
+      <div class="card" data-repeat="{{ '1' if item.is_repeat else '0' }}">
         <div class="top">
           <div class="src">{{ item.source }}</div>
           <div class="score">
@@ -130,6 +154,12 @@ TEMPLATE = ENV.from_string("""
 
         <div class="meta">
           {% if item.primary %}<span class="chip">{{ item.primary }}</span>{% endif %}
+          {% if item.is_repeat %}
+            <span class="chip warn">repetida</span>
+          {% else %}
+            <span class="chip ok">nueva</span>
+          {% endif %}
+          {% if item.novelty_score is defined %}<span class="chip">novedad {{ item.novelty_score }}</span>{% endif %}
           {% for t in item.tags %}<span class="chip">{{ t }}</span>{% endfor %}
           {% for e in item.entities %}<span class="chip">{{ e }}</span>{% endfor %}
           <span class="chip">{{ item.published or "sin fecha" }}</span>
@@ -143,6 +173,16 @@ TEMPLATE = ENV.from_string("""
   </div>
 
 </div>
+<script>
+function applyFilter(){
+  const value = document.getElementById('viewFilter').value;
+  document.querySelectorAll('#itemsGrid .card').forEach((card)=>{
+    const isRepeat = card.dataset.repeat === '1';
+    const show = value === 'all' || (value === 'new' && !isRepeat) || (value === 'repeat' && isRepeat);
+    card.style.display = show ? '' : 'none';
+  });
+}
+</script>
 </body>
 </html>
 """)

@@ -248,6 +248,63 @@ def dedup_items(items: list[dict]) -> list[dict]:
     return deduped
 
 
+def title_fingerprint(title: str) -> str:
+    base = re.sub(r"[^a-z0-9\s]", " ", (title or "").lower())
+    tokens = [t for t in re.split(r"\s+", base) if t and len(t) > 2]
+    return " ".join(tokens[:16])
+
+
+def load_recent_history(data_dir: Path, today: str, days: int = 5) -> tuple[set[str], set[str]]:
+    history_urls: set[str] = set()
+    history_titles: set[str] = set()
+    snapshots = sorted(data_dir.glob("*.json"), key=lambda p: p.name)
+    recent = [p for p in snapshots if p.stem != today][-days:]
+
+    for path in recent:
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        for it in data.get("items", []):
+            if not isinstance(it, dict):
+                continue
+            curl = canonical_url(it.get("link") or it.get("url") or "")
+            if curl:
+                history_urls.add(curl)
+            tfp = title_fingerprint(it.get("title", ""))
+            if tfp:
+                history_titles.add(tfp)
+
+    return history_urls, history_titles
+
+
+def apply_novelty_penalty(items: list[dict], history_urls: set[str], history_titles: set[str]) -> list[dict]:
+    scored = []
+    for it in items:
+        base_score = int(it.get("score", 0) or 0)
+        curl = canonical_url(it.get("link", ""))
+        tfp = title_fingerprint(it.get("title", ""))
+
+        repeated_url = bool(curl and curl in history_urls)
+        repeated_title = bool(tfp and tfp in history_titles)
+        is_repeat = repeated_url or repeated_title
+
+        penalty = 0
+        if repeated_url:
+            penalty += 35
+        if repeated_title:
+            penalty += 20
+
+        novelty_score = max(0, min(100, 100 - penalty))
+        adjusted_score = max(0, base_score - penalty)
+
+        it["is_repeat"] = is_repeat
+        it["novelty_score"] = novelty_score
+        it["adjusted_score"] = adjusted_score
+        scored.append(it)
+    return scored
+
+
 def generate_llm_data(candidates: list[dict], llm_cache: Path, llm_done: Path) -> tuple[dict, list]:
     llm_payload = []
     for idx, it in enumerate(candidates[:15], start=1):
@@ -325,6 +382,9 @@ def apply_llm_results(candidates: list[dict], results_map: dict) -> list[dict]:
             it["tags"] = it.get("tags", [])
             it["entities"] = it.get("entities", [])
             it["why"] = it.get("summary", "")[:160]
+
+        if "adjusted_score" in it:
+            it["score"] = max(0, min(100, int(it["adjusted_score"])))
 
         reranked.append(it)
     
@@ -457,8 +517,12 @@ def main():
     # 2) Dedup
     deduped = dedup_items(items)
 
+    # 2.5) Novelty (anti-repetición respecto últimos días)
+    history_urls, history_titles = load_recent_history(data_dir, today=today, days=5)
+    deduped = apply_novelty_penalty(deduped, history_urls, history_titles)
+
     # 3) Preselect
-    deduped.sort(key=lambda x: x.get("score", 0), reverse=True)
+    deduped.sort(key=lambda x: x.get("adjusted_score", x.get("score", 0)), reverse=True)
     candidates = deduped[:30]
 
     # 4) LLM Rank
