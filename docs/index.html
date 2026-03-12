@@ -7,8 +7,8 @@
   <title>AI Intel Briefing</title>
   <style>
     :root{
-      --bg:#0b0f14; --panel:#0f1722; --border:#1b2635; --text:#d7e1f0;
-      --muted:#8aa2c2; --neon:#7bdff2; --link:#a78bfa; --chip:#0b1220;
+      --bg:#070b12; --panel:#0f1722; --panel-soft:#101b2a; --border:#1b2635; --text:#d7e1f0;
+      --muted:#8aa2c2; --neon:#7bdff2; --link:#a78bfa; --chip:#0b1220; --ok:#34d399; --warn:#f59e0b;
     }
     body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; background:var(--bg); color:var(--text); margin:0; }
     header { padding:22px 0; border-bottom:1px solid var(--border); background: linear-gradient(90deg,#0b0f14,#0f1722); }
@@ -18,6 +18,11 @@
     .pill { padding:4px 10px; border:1px solid var(--border); background:rgba(15,23,34,0.6); border-radius:999px; font-size:12px; color:var(--muted); }
 
     .panel { border:1px solid var(--border); background:var(--panel); border-radius:16px; padding:14px; margin:18px 0 16px; }
+    .stats { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin:14px 0 6px; }
+    @media (min-width: 860px){ .stats { grid-template-columns:repeat(4,minmax(0,1fr)); } }
+    .kpi { border:1px solid var(--border); background:var(--panel-soft); border-radius:12px; padding:10px 12px; }
+    .kpi .label { color:var(--muted); font-size:11px; text-transform:uppercase; letter-spacing:.3px; }
+    .kpi .value { font-size:18px; margin-top:4px; font-weight:600; }
     .panel h2 { margin:0 0 10px; font-size:14px; letter-spacing:0.4px; color:var(--neon); }
     .cols { display:grid; grid-template-columns: 1fr; gap:10px; }
     @media (min-width: 860px){ .cols { grid-template-columns: 2fr 1fr; } }
@@ -26,6 +31,8 @@
     ul { margin:0; padding-left:18px; color:#cfe0ff; }
     li { margin:6px 0; font-size:13px; line-height:1.25; }
 
+    .controls { display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin:14px 0; }
+    .controls select { background:var(--panel-soft); color:var(--text); border:1px solid var(--border); border-radius:10px; padding:7px 10px; }
     .grid { display:grid; grid-template-columns: 1fr; gap:12px; }
     .card { border:1px solid var(--border); background:var(--panel); border-radius:14px; padding:14px; }
     .top { display:flex; justify-content:space-between; gap:12px; }
@@ -38,6 +45,8 @@
     .title { margin-top:6px; font-size:15px; line-height:1.3; }
     .meta { color:var(--muted); font-size:12px; margin-top:8px; display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
     .chip { padding:3px 8px; border:1px solid var(--border); background:var(--chip); border-radius:999px; font-size:11px; color:var(--muted); }
+    .chip.ok { color:var(--ok); border-color:rgba(52,211,153,.35); }
+    .chip.warn { color:var(--warn); border-color:rgba(245,158,11,.35); }
     .why { margin-top:10px; color:#dbe8ff; font-size:13px; line-height:1.35; }
   </style>
 </head>
@@ -46,13 +55,19 @@
   <div class="wrap">
     <h1>AI Intel Briefing</h1>
     <div class="sub">
-      <span class="pill">Generado: 2026-03-12 07:14</span>
+      <span class="pill">Generado: 2026-03-12 19:24</span>
       <span class="pill">Items: 15</span>
     </div>
   </div>
 </header>
 
 <div class="wrap">
+  <div class="stats">
+    <div class="kpi"><div class="label">Total noticias</div><div class="value">15</div></div>
+    <div class="kpi"><div class="label">Novedades</div><div class="value">15</div></div>
+    <div class="kpi"><div class="label">Repetidas</div><div class="value">0</div></div>
+    <div class="kpi"><div class="label">Score medio novedad</div><div class="value">100.0</div></div>
+  </div>
 
   
   <div class="panel">
@@ -113,264 +128,23 @@
   </div>
   
 
-  <div class="grid">
+  <div class="controls">
+    <label for="viewFilter" class="pill">Vista</label>
+    <select id="viewFilter" onchange="applyFilter()">
+      <option value="all">Todas</option>
+      <option value="new">Solo novedades</option>
+      <option value="repeat">Solo repetidas</option>
+    </select>
+  </div>
+
+  <div class="grid" id="itemsGrid">
     
-      <div class="card">
-        <div class="top">
-          <div class="src">X @OpenAI</div>
-          <div class="score">
-            <span>Score 98</span>
-            <div class="bar"><div class="fill" style="width: 98%;"></div></div>
-          </div>
-        </div>
-
-        <div class="title">
-          <a href="https://x.com/OpenAI/status/2029620619743219811" target="_blank" rel="noopener noreferrer">GPT-5.4 Thinking and GPT-5.4 Pro are rolling out now in ChatGPT. GPT-5.4 is also now available in the API and Codex. GPT-5.4 brings our advances in reasoning...</a>
-        </div>
-
-        <div class="meta">
-          <span class="chip">models</span>
-          <span class="chip">gpt-5</span><span class="chip">agents</span><span class="chip">reasoning</span>
-          <span class="chip">OpenAI</span>
-          <span class="chip">Thu, 12 Mar 2026 06:48:15 GMT</span>
-        </div>
-
-        
-          <div class="why">Lanzamiento de GPT-5.4 que unifica razonamiento avanzado y flujos agenticos, redefiniendo el estado del arte.</div>
-        
-      </div>
-    
-      <div class="card">
-        <div class="top">
-          <div class="src">NVIDIA Blog (AI)</div>
-          <div class="score">
-            <span>Score 92</span>
-            <div class="bar"><div class="fill" style="width: 92%;"></div></div>
-          </div>
-        </div>
-
-        <div class="title">
-          <a href="https://blogs.nvidia.com/blog/leading-models-nvidia/" target="_blank" rel="noopener noreferrer">As AI Grows More Complex, Model Builders Rely on NVIDIA</a>
-        </div>
-
-        <div class="meta">
-          <span class="chip">infra</span>
-          <span class="chip">nvidia</span><span class="chip">openai</span><span class="chip">hopper</span><span class="chip">gb200</span>
-          <span class="chip">NVIDIA</span><span class="chip">OpenAI</span>
-          <span class="chip">2025-12-11T19:19:57+00:00</span>
-        </div>
-
-        
-          <div class="why">Confirma que los modelos mas avanzados de OpenAI dependen criticamente de los sistemas GB200 y Hopper de NVIDIA.</div>
-        
-      </div>
-    
-      <div class="card">
-        <div class="top">
-          <div class="src">X @GoogleDeepMind</div>
-          <div class="score">
-            <span>Score 86</span>
-            <div class="bar"><div class="fill" style="width: 86%;"></div></div>
-          </div>
-        </div>
-
-        <div class="title">
-          <a href="https://x.com/GoogleDeepMind?post=3e94533c4458" target="_blank" rel="noopener noreferrer">Ten years after AlphaGo, we’re still building on its foundations to advance AI. The techniques pioneered have helped us prove mathematical statements and are...</a>
-        </div>
-
-        <div class="meta">
-          <span class="chip">models</span>
-          <span class="chip">alphago</span><span class="chip">mathematics</span><span class="chip">multimodal</span>
-          <span class="chip">Google DeepMind</span>
-          <span class="chip">sin fecha</span>
-        </div>
-
-        
-          <div class="why">DeepMind extiende el legado de AlphaGo a la resolucion de problemas matematicos complejos y lanza Gemini Embedding 2.</div>
-        
-      </div>
-    
-      <div class="card">
-        <div class="top">
-          <div class="src">NVIDIA Blog (AI)</div>
-          <div class="score">
-            <span>Score 84</span>
-            <div class="bar"><div class="fill" style="width: 84%;"></div></div>
-          </div>
-        </div>
-
-        <div class="title">
-          <a href="https://blogs.nvidia.com/blog/isambard-ai/" target="_blank" rel="noopener noreferrer">Isambard-AI, the UK’s Most Powerful AI Supercomputer, Goes Live</a>
-        </div>
-
-        <div class="meta">
-          <span class="chip">infra</span>
-          <span class="chip">supercomputing</span><span class="chip">grace-hopper</span><span class="chip">uk</span>
-          <span class="chip">NVIDIA</span><span class="chip">University of Bristol</span>
-          <span class="chip">2025-07-17T17:00:50+00:00</span>
-        </div>
-
-        
-          <div class="why">El supercomputador mas potente del Reino Unido entra en operacion con 21 exaflops de rendimiento para IA.</div>
-        
-      </div>
-    
-      <div class="card">
-        <div class="top">
-          <div class="src">NVIDIA Blog (AI)</div>
-          <div class="score">
-            <span>Score 79</span>
-            <div class="bar"><div class="fill" style="width: 79%;"></div></div>
-          </div>
-        </div>
-
-        <div class="title">
-          <a href="https://blogs.nvidia.com/blog/autonomous-vehicle-ecosystem-ai-models-developer-tools/" target="_blank" rel="noopener noreferrer">NVIDIA Releases New AI Models and Developer Tools to Advance Autonomous Vehicle Ecosystem</a>
-        </div>
-
-        <div class="meta">
-          <span class="chip">models</span>
-          <span class="chip">autonomous-vehicles</span><span class="chip">simulation</span><span class="chip">training</span>
-          <span class="chip">NVIDIA</span>
-          <span class="chip">2025-06-11T10:55:36+00:00</span>
-        </div>
-
-        
-          <div class="why">Transicion hacia arquitecturas de conduccion autonoma unificadas que requieren datos sinteticos de alta fidelidad.</div>
-        
-      </div>
-    
-      <div class="card">
-        <div class="top">
-          <div class="src">X @xai</div>
-          <div class="score">
-            <span>Score 76</span>
-            <div class="bar"><div class="fill" style="width: 76%;"></div></div>
-          </div>
-        </div>
-
-        <div class="title">
-          <a href="https://x.com/xai?post=9073a4b572f5" target="_blank" rel="noopener noreferrer">xAI is committed to deploying artificial intelligence that makes the lives of people better as well as adding more power near our datacenters to reduce the c...</a>
-        </div>
-
-        <div class="meta">
-          <span class="chip">infra</span>
-          <span class="chip">energy</span><span class="chip">datacenters</span><span class="chip">sustainability</span>
-          <span class="chip">xAI</span><span class="chip">The White House</span>
-          <span class="chip">Thu, 12 Mar 2026 07:09:38 GMT</span>
-        </div>
-
-        
-          <div class="why">xAI busca integrar soluciones energeticas locales para sostener el crecimiento masivo de sus centros de datos.</div>
-        
-      </div>
-    
-      <div class="card">
-        <div class="top">
-          <div class="src">NVIDIA Blog (AI)</div>
-          <div class="score">
-            <span>Score 75</span>
-            <div class="bar"><div class="fill" style="width: 75%;"></div></div>
-          </div>
-        </div>
-
-        <div class="title">
-          <a href="https://blogs.nvidia.com/blog/physical-ai-research-siggraph-2025/" target="_blank" rel="noopener noreferrer">NVIDIA Research Shapes Physical AI</a>
-        </div>
-
-        <div class="meta">
-          <span class="chip">models</span>
-          <span class="chip">physical-ai</span><span class="chip">robotics</span><span class="chip">simulation</span>
-          <span class="chip">NVIDIA</span>
-          <span class="chip">2025-08-11T15:00:38+00:00</span>
-        </div>
-
-        
-          <div class="why">NVIDIA enfoca su investigacion en la convergencia de IA y graficos para potenciar la robotica y vehiculos autonomos.</div>
-        
-      </div>
-    
-      <div class="card">
+      <div class="card" data-repeat="0">
         <div class="top">
           <div class="src">arXiv cs.LG</div>
           <div class="score">
-            <span>Score 74</span>
-            <div class="bar"><div class="fill" style="width: 74%;"></div></div>
-          </div>
-        </div>
-
-        <div class="title">
-          <a href="https://arxiv.org/abs/2603.09983" target="_blank" rel="noopener noreferrer">MoE-SpAc: Efficient MoE Inference Based on Speculative Activation Utility in Heterogeneous Edge Scenarios</a>
-        </div>
-
-        <div class="meta">
-          <span class="chip">infra</span>
-          <span class="chip">moe</span><span class="chip">edge</span><span class="chip">inference</span>
-          <span class="chip">arXiv</span>
-          <span class="chip">2026-03-12T04:00:00+00:00</span>
-        </div>
-
-        
-          <div class="why">Presenta una solucion al cuello de botella de memoria en dispositivos moviles mediante inferencia especulativa para modelos MoE.</div>
-        
-      </div>
-    
-      <div class="card">
-        <div class="top">
-          <div class="src">arXiv cs.AI</div>
-          <div class="score">
-            <span>Score 73</span>
-            <div class="bar"><div class="fill" style="width: 73%;"></div></div>
-          </div>
-        </div>
-
-        <div class="title">
-          <a href="https://arxiv.org/abs/2603.10291" target="_blank" rel="noopener noreferrer">Hybrid Self-evolving Structured Memory for GUI Agents</a>
-        </div>
-
-        <div class="meta">
-          <span class="chip">models</span>
-          <span class="chip">vlm</span><span class="chip">gui-agents</span><span class="chip">memory</span>
-          <span class="chip">arXiv</span>
-          <span class="chip">2026-03-12T04:00:00+00:00</span>
-        </div>
-
-        
-          <div class="why">Propone HyMEM para dotar a los agentes de IA de una memoria estructurada y evolutiva similar a la humana para tareas de PC.</div>
-        
-      </div>
-    
-      <div class="card">
-        <div class="top">
-          <div class="src">NVIDIA Blog (AI)</div>
-          <div class="score">
-            <span>Score 72</span>
-            <div class="bar"><div class="fill" style="width: 72%;"></div></div>
-          </div>
-        </div>
-
-        <div class="title">
-          <a href="https://blogs.nvidia.com/blog/uk-llm-nemotron/" target="_blank" rel="noopener noreferrer">Reaching Across the Isles: UK-LLM Brings AI to UK Languages With NVIDIA Nemotron</a>
-        </div>
-
-        <div class="meta">
-          <span class="chip">geopol</span>
-          <span class="chip">sovereign-ai</span><span class="chip">uk</span><span class="chip">nemotron</span>
-          <span class="chip">NVIDIA</span><span class="chip">UK-LLM</span>
-          <span class="chip">2025-09-14T01:00:21+00:00</span>
-        </div>
-
-        
-          <div class="why">Iniciativa para crear modelos linguisticos en lenguas celtas, reforzando la soberania cultural y tecnologica del Reino Unido.</div>
-        
-      </div>
-    
-      <div class="card">
-        <div class="top">
-          <div class="src">arXiv cs.LG</div>
-          <div class="score">
-            <span>Score 70</span>
-            <div class="bar"><div class="fill" style="width: 70%;"></div></div>
+            <span>Score 47</span>
+            <div class="bar"><div class="fill" style="width: 47%;"></div></div>
           </div>
         </div>
 
@@ -380,6 +154,10 @@
 
         <div class="meta">
           <span class="chip">models</span>
+          
+            <span class="chip ok">nueva</span>
+          
+          <span class="chip">novedad 100</span>
           <span class="chip">unlearning</span><span class="chip">safety</span><span class="chip">privacy</span>
           <span class="chip">arXiv</span>
           <span class="chip">2026-03-12T04:00:00+00:00</span>
@@ -390,12 +168,12 @@
         
       </div>
     
-      <div class="card">
+      <div class="card" data-repeat="0">
         <div class="top">
           <div class="src">SemiWiki</div>
           <div class="score">
-            <span>Score 68</span>
-            <div class="bar"><div class="fill" style="width: 68%;"></div></div>
+            <span>Score 43</span>
+            <div class="bar"><div class="fill" style="width: 43%;"></div></div>
           </div>
         </div>
 
@@ -405,69 +183,23 @@
 
         <div class="meta">
           <span class="chip">infra</span>
-          <span class="chip">intel</span><span class="chip">foundry</span><span class="chip">semiconductors</span>
-          <span class="chip">Intel</span><span class="chip">David Zinsner</span>
+          
+            <span class="chip ok">nueva</span>
+          
+          <span class="chip">novedad 100</span>
+          <span class="chip">nvidia</span><span class="chip">openai</span><span class="chip">hopper</span><span class="chip">gb200</span>
+          <span class="chip">NVIDIA</span><span class="chip">OpenAI</span>
           <span class="chip">2026-03-11T15:00:16+00:00</span>
         </div>
 
         
-          <div class="why">Revela inestabilidad operativa en la division de fundicion de Intel, impactando la alternativa de suministro en hardware.</div>
+          <div class="why">Confirma que los modelos mas avanzados de OpenAI dependen criticamente de los sistemas GB200 y Hopper de NVIDIA.</div>
         
       </div>
     
-      <div class="card">
+      <div class="card" data-repeat="0">
         <div class="top">
-          <div class="src">X @NVIDIAAI</div>
-          <div class="score">
-            <span>Score 58</span>
-            <div class="bar"><div class="fill" style="width: 58%;"></div></div>
-          </div>
-        </div>
-
-        <div class="title">
-          <a href="https://x.com/NVIDIAAI?post=116947ff16ec" target="_blank" rel="noopener noreferrer">NVIDIA GauGAN2, a powerful [#AI](https://x.com/hashtag/AI?src=hashtag_click) model that allows anyone to convert simple written phrases like &#34;ocean waves&#34; in...</a>
-        </div>
-
-        <div class="meta">
-          <span class="chip">models</span>
-          <span class="chip">generative-art</span><span class="chip">text-to-image</span><span class="chip">gaugan2</span>
-          <span class="chip">NVIDIA</span>
-          <span class="chip">sin fecha</span>
-        </div>
-
-        
-          <div class="why">Herramienta interactiva para la creacion de paisajes realistas mediante IA, facilitando el diseño creativo.</div>
-        
-      </div>
-    
-      <div class="card">
-        <div class="top">
-          <div class="src">NVIDIA Blog (AI)</div>
-          <div class="score">
-            <span>Score 55</span>
-            <div class="bar"><div class="fill" style="width: 55%;"></div></div>
-          </div>
-        </div>
-
-        <div class="title">
-          <a href="https://blogs.nvidia.com/blog/nvidia-research-ai-graphics/" target="_blank" rel="noopener noreferrer">Innovation to Impact: How NVIDIA Research Fuels Transformative Work in AI, Graphics and Beyond</a>
-        </div>
-
-        <div class="meta">
-          <span class="chip">misc</span>
-          <span class="chip">research</span><span class="chip">history</span><span class="chip">corporate</span>
-          <span class="chip">NVIDIA</span>
-          <span class="chip">2025-03-20T00:00:24+00:00</span>
-        </div>
-
-        
-          <div class="why">Resumen institucional sobre el impacto de la investigacion interna de NVIDIA en su ecosistema tecnologico actual.</div>
-        
-      </div>
-    
-      <div class="card">
-        <div class="top">
-          <div class="src">NVIDIA Blog (AI)</div>
+          <div class="src">arXiv cs.LG</div>
           <div class="score">
             <span>Score 40</span>
             <div class="bar"><div class="fill" style="width: 40%;"></div></div>
@@ -475,14 +207,279 @@
         </div>
 
         <div class="title">
-          <a href="https://blogs.nvidia.com/blog/applications-open-graduate-fellowship-awards-2025/" target="_blank" rel="noopener noreferrer">Applications Now Open for $60,000 NVIDIA Graduate Fellowship Awards</a>
+          <a href="https://arxiv.org/abs/2603.09983" target="_blank" rel="noopener noreferrer">MoE-SpAc: Efficient MoE Inference Based on Speculative Activation Utility in Heterogeneous Edge Scenarios</a>
+        </div>
+
+        <div class="meta">
+          <span class="chip">infra</span>
+          
+            <span class="chip ok">nueva</span>
+          
+          <span class="chip">novedad 100</span>
+          <span class="chip">intel</span><span class="chip">foundry</span><span class="chip">semiconductors</span>
+          <span class="chip">Intel</span><span class="chip">David Zinsner</span>
+          <span class="chip">2026-03-12T04:00:00+00:00</span>
+        </div>
+
+        
+          <div class="why">Revela inestabilidad operativa en la division de fundicion de Intel, impactando la alternativa de suministro en hardware.</div>
+        
+      </div>
+    
+      <div class="card" data-repeat="0">
+        <div class="top">
+          <div class="src">arXiv cs.AI</div>
+          <div class="score">
+            <span>Score 32</span>
+            <div class="bar"><div class="fill" style="width: 32%;"></div></div>
+          </div>
+        </div>
+
+        <div class="title">
+          <a href="https://arxiv.org/abs/2603.10291" target="_blank" rel="noopener noreferrer">Hybrid Self-evolving Structured Memory for GUI Agents</a>
+        </div>
+
+        <div class="meta">
+          <span class="chip">infra</span>
+          
+            <span class="chip ok">nueva</span>
+          
+          <span class="chip">novedad 100</span>
+          <span class="chip">moe</span><span class="chip">edge</span><span class="chip">inference</span>
+          <span class="chip">arXiv</span>
+          <span class="chip">2026-03-12T04:00:00+00:00</span>
+        </div>
+
+        
+          <div class="why">Presenta una solucion al cuello de botella de memoria en dispositivos moviles mediante inferencia especulativa para modelos MoE.</div>
+        
+      </div>
+    
+      <div class="card" data-repeat="0">
+        <div class="top">
+          <div class="src">SemiWiki</div>
+          <div class="score">
+            <span>Score 26</span>
+            <div class="bar"><div class="fill" style="width: 26%;"></div></div>
+          </div>
+        </div>
+
+        <div class="title">
+          <a href="https://semiwiki.com/eda/yieldwerx/367393-outrunning-the-data-wave-why-we-need-to-keep-pace-with-the-coming-400-data-surge/" target="_blank" rel="noopener noreferrer">WEBINAR: Outrunning the Data Wave – Why we need to keep pace with the coming 400% data surge</a>
+        </div>
+
+        <div class="meta">
+          <span class="chip">models</span>
+          
+            <span class="chip ok">nueva</span>
+          
+          <span class="chip">novedad 100</span>
+          <span class="chip">alphago</span><span class="chip">mathematics</span><span class="chip">multimodal</span>
+          <span class="chip">Google DeepMind</span>
+          <span class="chip">2026-03-12T17:00:05+00:00</span>
+        </div>
+
+        
+          <div class="why">DeepMind extiende el legado de AlphaGo a la resolucion de problemas matematicos complejos y lanza Gemini Embedding 2.</div>
+        
+      </div>
+    
+      <div class="card" data-repeat="0">
+        <div class="top">
+          <div class="src">X @OpenAI</div>
+          <div class="score">
+            <span>Score 25</span>
+            <div class="bar"><div class="fill" style="width: 25%;"></div></div>
+          </div>
+        </div>
+
+        <div class="title">
+          <a href="https://x.com/OpenAI/status/2029620619743219811" target="_blank" rel="noopener noreferrer">GPT-5.4 Thinking and GPT-5.4 Pro are rolling out now in ChatGPT. GPT-5.4 is also now available in the API and Codex. GPT-5.4 brings our advances in reasoning...</a>
+        </div>
+
+        <div class="meta">
+          <span class="chip">models</span>
+          
+            <span class="chip ok">nueva</span>
+          
+          <span class="chip">novedad 100</span>
+          <span class="chip">physical-ai</span><span class="chip">robotics</span><span class="chip">simulation</span>
+          <span class="chip">NVIDIA</span>
+          <span class="chip">Thu, 12 Mar 2026 19:15:19 GMT</span>
+        </div>
+
+        
+          <div class="why">NVIDIA enfoca su investigacion en la convergencia de IA y graficos para potenciar la robotica y vehiculos autonomos.</div>
+        
+      </div>
+    
+      <div class="card" data-repeat="0">
+        <div class="top">
+          <div class="src">DeepMind Blog</div>
+          <div class="score">
+            <span>Score 24</span>
+            <div class="bar"><div class="fill" style="width: 24%;"></div></div>
+          </div>
+        </div>
+
+        <div class="title">
+          <a href="https://deepmind.google/blog/a-new-way-to-express-yourself-gemini-can-now-create-music/" target="_blank" rel="noopener noreferrer">A new way to express yourself: Gemini can now create music</a>
+        </div>
+
+        <div class="meta">
+          <span class="chip">geopol</span>
+          
+            <span class="chip ok">nueva</span>
+          
+          <span class="chip">novedad 100</span>
+          <span class="chip">sovereign-ai</span><span class="chip">uk</span><span class="chip">nemotron</span>
+          <span class="chip">NVIDIA</span><span class="chip">UK-LLM</span>
+          <span class="chip">2026-02-18T16:01:38+00:00</span>
+        </div>
+
+        
+          <div class="why">Iniciativa para crear modelos linguisticos en lenguas celtas, reforzando la soberania cultural y tecnologica del Reino Unido.</div>
+        
+      </div>
+    
+      <div class="card" data-repeat="0">
+        <div class="top">
+          <div class="src">Google AI Blog</div>
+          <div class="score">
+            <span>Score 24</span>
+            <div class="bar"><div class="fill" style="width: 24%;"></div></div>
+          </div>
+        </div>
+
+        <div class="title">
+          <a href="https://blog.google/innovation-and-ai/models-and-research/google-deepmind/tips-prompt-writing-project-genie/" target="_blank" rel="noopener noreferrer">Create new worlds in Project Genie with these 4 tips</a>
+        </div>
+
+        <div class="meta">
+          <span class="chip">models</span>
+          
+            <span class="chip ok">nueva</span>
+          
+          <span class="chip">novedad 100</span>
+          <span class="chip">vlm</span><span class="chip">gui-agents</span><span class="chip">memory</span>
+          <span class="chip">arXiv</span>
+          <span class="chip">2026-03-03T17:00:00+00:00</span>
+        </div>
+
+        
+          <div class="why">Propone HyMEM para dotar a los agentes de IA de una memoria estructurada y evolutiva similar a la humana para tareas de PC.</div>
+        
+      </div>
+    
+      <div class="card" data-repeat="0">
+        <div class="top">
+          <div class="src">Google AI Blog</div>
+          <div class="score">
+            <span>Score 24</span>
+            <div class="bar"><div class="fill" style="width: 24%;"></div></div>
+          </div>
+        </div>
+
+        <div class="title">
+          <a href="https://blog.google/products-and-platforms/products/translate/translation-context-ai-update/" target="_blank" rel="noopener noreferrer">Get more context and understand translations more deeply with new AI-powered updates in Translate.</a>
+        </div>
+
+        <div class="meta">
+          <span class="chip">infra</span>
+          
+            <span class="chip ok">nueva</span>
+          
+          <span class="chip">novedad 100</span>
+          <span class="chip">supercomputing</span><span class="chip">grace-hopper</span><span class="chip">uk</span>
+          <span class="chip">NVIDIA</span><span class="chip">University of Bristol</span>
+          <span class="chip">2026-02-26T18:00:00+00:00</span>
+        </div>
+
+        
+          <div class="why">El supercomputador mas potente del Reino Unido entra en operacion con 21 exaflops de rendimiento para IA.</div>
+        
+      </div>
+    
+      <div class="card" data-repeat="0">
+        <div class="top">
+          <div class="src">SemiWiki</div>
+          <div class="score">
+            <span>Score 24</span>
+            <div class="bar"><div class="fill" style="width: 24%;"></div></div>
+          </div>
+        </div>
+
+        <div class="title">
+          <a href="https://semiwiki.com/semiconductor-services/axiomise/367412-axiomise-introduces-nocprove-to-transform-noc-design-verification/" target="_blank" rel="noopener noreferrer">Axiomise Introduces nocProve to Transform NoC Design Verification</a>
+        </div>
+
+        <div class="meta">
+          <span class="chip">misc</span>
+          
+            <span class="chip ok">nueva</span>
+          
+          <span class="chip">novedad 100</span>
+          <span class="chip">research</span><span class="chip">history</span><span class="chip">corporate</span>
+          <span class="chip">NVIDIA</span>
+          <span class="chip">2026-03-12T13:00:39+00:00</span>
+        </div>
+
+        
+          <div class="why">Resumen institucional sobre el impacto de la investigacion interna de NVIDIA en su ecosistema tecnologico actual.</div>
+        
+      </div>
+    
+      <div class="card" data-repeat="0">
+        <div class="top">
+          <div class="src">NVIDIA Blog (AI)</div>
+          <div class="score">
+            <span>Score 18</span>
+            <div class="bar"><div class="fill" style="width: 18%;"></div></div>
+          </div>
+        </div>
+
+        <div class="title">
+          <a href="https://blogs.nvidia.com/blog/ai-sign-language/" target="_blank" rel="noopener noreferrer">It’s a Sign: AI Platform for Teaching American Sign Language Aims to Bridge Communication Gaps</a>
+        </div>
+
+        <div class="meta">
+          <span class="chip">models</span>
+          
+            <span class="chip ok">nueva</span>
+          
+          <span class="chip">novedad 100</span>
+          <span class="chip">generative-art</span><span class="chip">text-to-image</span><span class="chip">gaugan2</span>
+          <span class="chip">NVIDIA</span>
+          <span class="chip">2025-02-20T14:30:18+00:00</span>
+        </div>
+
+        
+          <div class="why">Herramienta interactiva para la creacion de paisajes realistas mediante IA, facilitando el diseño creativo.</div>
+        
+      </div>
+    
+      <div class="card" data-repeat="0">
+        <div class="top">
+          <div class="src">SemiWiki</div>
+          <div class="score">
+            <span>Score 18</span>
+            <div class="bar"><div class="fill" style="width: 18%;"></div></div>
+          </div>
+        </div>
+
+        <div class="title">
+          <a href="https://semiwiki.com/eda/synopsys/367459-ravi-subramanian-on-trends-that-are-shaping-ai-at-synopsys/" target="_blank" rel="noopener noreferrer">Ravi Subramanian on Trends that are Shaping AI at Synopsys</a>
         </div>
 
         <div class="meta">
           <span class="chip">invest</span>
+          
+            <span class="chip ok">nueva</span>
+          
+          <span class="chip">novedad 100</span>
           <span class="chip">grants</span><span class="chip">education</span><span class="chip">talent</span>
           <span class="chip">NVIDIA</span>
-          <span class="chip">2025-08-13T15:00:02+00:00</span>
+          <span class="chip">2026-03-12T15:00:50+00:00</span>
         </div>
 
         
@@ -490,8 +487,105 @@
         
       </div>
     
+      <div class="card" data-repeat="0">
+        <div class="top">
+          <div class="src">Google AI Blog</div>
+          <div class="score">
+            <span>Score 17</span>
+            <div class="bar"><div class="fill" style="width: 17%;"></div></div>
+          </div>
+        </div>
+
+        <div class="title">
+          <a href="https://blog.google/company-news/outreach-and-initiatives/grow-with-google/google-ai-training-massachusetts-residents/" target="_blank" rel="noopener noreferrer">Google and the Massachusetts AI Hub are launching a new AI training initiative for the Commonwealth.</a>
+        </div>
+
+        <div class="meta">
+          <span class="chip">models</span>
+          
+            <span class="chip ok">nueva</span>
+          
+          <span class="chip">novedad 100</span>
+          <span class="chip">autonomous-vehicles</span><span class="chip">simulation</span><span class="chip">training</span>
+          <span class="chip">NVIDIA</span>
+          <span class="chip">2026-02-26T18:55:00+00:00</span>
+        </div>
+
+        
+          <div class="why">Transicion hacia arquitecturas de conduccion autonoma unificadas que requieren datos sinteticos de alta fidelidad.</div>
+        
+      </div>
+    
+      <div class="card" data-repeat="0">
+        <div class="top">
+          <div class="src">DeepMind Blog</div>
+          <div class="score">
+            <span>Score 16</span>
+            <div class="bar"><div class="fill" style="width: 16%;"></div></div>
+          </div>
+        </div>
+
+        <div class="title">
+          <a href="https://deepmind.google/blog/nano-banana-2-combining-pro-capabilities-with-lightning-fast-speed/" target="_blank" rel="noopener noreferrer">Nano Banana 2: Combining Pro capabilities with lightning-fast speed</a>
+        </div>
+
+        <div class="meta">
+          <span class="chip">models</span>
+          
+            <span class="chip ok">nueva</span>
+          
+          <span class="chip">novedad 100</span>
+          <span class="chip">gpt-5</span><span class="chip">agents</span><span class="chip">reasoning</span>
+          <span class="chip">OpenAI</span>
+          <span class="chip">2026-02-26T16:01:50+00:00</span>
+        </div>
+
+        
+          <div class="why">Lanzamiento de GPT-5.4 que unifica razonamiento avanzado y flujos agenticos, redefiniendo el estado del arte.</div>
+        
+      </div>
+    
+      <div class="card" data-repeat="0">
+        <div class="top">
+          <div class="src">X @OpenAI</div>
+          <div class="score">
+            <span>Score 15</span>
+            <div class="bar"><div class="fill" style="width: 15%;"></div></div>
+          </div>
+        </div>
+
+        <div class="title">
+          <a href="https://x.com/OpenAI?post=cede89ff0c21" target="_blank" rel="noopener noreferrer">We’re acquiring Promptfoo. Their technology will strengthen agentic security testing and evaluation capabilities in OpenAI Frontier. Promptfoo will remain op...</a>
+        </div>
+
+        <div class="meta">
+          <span class="chip">models</span>
+          
+            <span class="chip ok">nueva</span>
+          
+          <span class="chip">novedad 100</span>
+          <span class="chip">models</span>
+          <span class="chip">OpenAI</span><span class="chip">Promptfoo</span><span class="chip">Their</span><span class="chip">Frontier</span>
+          <span class="chip">Thu, 12 Mar 2026 19:15:19 GMT</span>
+        </div>
+
+        
+          <div class="why">We’re acquiring Promptfoo. Their technology will strengthen agentic security testing and evaluation capabilities in OpenAI Frontier. Promptfoo will remain open </div>
+        
+      </div>
+    
   </div>
 
 </div>
+<script>
+function applyFilter(){
+  const value = document.getElementById('viewFilter').value;
+  document.querySelectorAll('#itemsGrid .card').forEach((card)=>{
+    const isRepeat = card.dataset.repeat === '1';
+    const show = value === 'all' || (value === 'new' && !isRepeat) || (value === 'repeat' && isRepeat);
+    card.style.display = show ? '' : 'none';
+  });
+}
+</script>
 </body>
 </html>
