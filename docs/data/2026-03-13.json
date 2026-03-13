@@ -1,0 +1,469 @@
+{
+  "date": "2026-03-13",
+  "score_avg": 19.33,
+  "primary_dist": {
+    "models": 9,
+    "invest": 1,
+    "infra": 2,
+    "misc": 3
+  },
+  "top_entities": [
+    {
+      "entity": "Gemini",
+      "count": 4
+    },
+    {
+      "entity": "NVIDIA",
+      "count": 2
+    },
+    {
+      "entity": "Survey",
+      "count": 1
+    },
+    {
+      "entity": "Reasoning",
+      "count": 1
+    },
+    {
+      "entity": "Autonomous Driving Systems",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "Mix de hoy (top): Modelos (9/15), Misc (3/15), Infraestructura/HW (2/15).",
+      "Actores dominantes (hoy): Gemini, NVIDIA, Survey, Reasoning, Autonomous Driving Systems."
+    ],
+    "risks": [
+      "Concentración alta en una categoría: posible mono-tema o sesgo del scoring."
+    ],
+    "watch": [
+      "Seguir: Gemini, NVIDIA, Survey.",
+      "Vigilar si 'Modelos' mantiene dominancia mañana."
+    ],
+    "entities_top": [
+      "Gemini",
+      "NVIDIA",
+      "Survey",
+      "Reasoning",
+      "Autonomous Driving Systems"
+    ]
+  },
+  "items": [
+    {
+      "title": "A Survey of Reasoning in Autonomous Driving Systems: Open Challenges and Emerging Paradigms",
+      "link": "https://arxiv.org/abs/2603.11093",
+      "published": "2026-03-13T04:00:00+00:00",
+      "summary": "arXiv:2603.11093v1 Announce Type: new Abstract: The development of high-level autonomous driving (AD) is shifting from perception-centric limitations to a more fundamental bottleneck, namely, a deficit in robust and generalizable reasoning. Although current AD systems manage structured environments, they consistently falter in long-tail scenarios and complex social interactions that require human-like judgment. Meanwhile, the advent of large language and multimodal models (LLMs and MLLMs) presents a transformative opportunity to integrate a powerful cognitive engine into AD systems, moving beyond pattern matching toward genuine comprehension. However, a systematic framework to guide this integration is critically lacking. To bridge this gap, we provide a comprehensive review of this emerging field and argue that reasoning should be elevated from a modular component to the system's cognitive core. Specifically, we first propose a novel Cognitive Hierarchy to decompose the monolithic driving task according to its cognitive and interactive complexity. Building on this, we further derive and systematize seven core reasoning challenges, such as the responsiveness-reasoning trade-off and social-game reasoning. Furthermore, we conduct a dual-perspective review of the state-of-the-art, analyzing both system-centric approaches to architecting intelligent agents and evaluation-centric practices for their validation. Our analysis reveals a clear trend toward holistic and interpretable \"glass-box\" agents. In conclusion, we identify a fundamental and unresolved tension between the high-latency, deliberative nature of LLM-based reasoning and the millisecond-scale, safety-critical demands of vehicle control. For future work, a primary objective is to bridge the symbolic-to-physical gap by developing verifiable neuro-symbolic architectures, robust reasoning under uncertainty, and scalable models for implicit social negotiation.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 53,
+      "primary": "models",
+      "tags": [
+        "infra",
+        "models"
+      ],
+      "url": "https://arxiv.org/abs/2603.11093",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 53,
+      "_rid": 1,
+      "entities": [
+        "Survey",
+        "Reasoning",
+        "Autonomous Driving Systems",
+        "Open Challenges",
+        "Emerging Paradigms"
+      ],
+      "why": "arXiv:2603.11093v1 Announce Type: new Abstract: The development of high-level autonomous driving (AD) is shifting from perception-centric limitations to a more "
+    },
+    {
+      "title": "DIVE: Scaling Diversity in Agentic Task Synthesis for Generalizable Tool Use",
+      "link": "https://arxiv.org/abs/2603.11076",
+      "published": "2026-03-13T04:00:00+00:00",
+      "summary": "arXiv:2603.11076v1 Announce Type: new Abstract: Recent work synthesizes agentic tasks for post-training tool-using LLMs, yet robust generalization under shifts in tasks and toolsets remains an open challenge. We trace this brittleness to insufficient diversity in synthesized tasks. Scaling diversity is difficult because training requires tasks to remain executable and verifiable, while generalization demands coverage of diverse tool types, toolset combinations, and heterogeneous tool-use patterns. We propose DIVE, an evidence-driven recipe that inverts synthesis order, executing diverse, real-world tools first and reverse-deriving tasks strictly entailed by the resulting traces, thereby providing grounding by construction. DIVE scales structural diversity along two controllable axes, tool-pool coverage and per-task toolset variety, and an Evidence Collection--Task Derivation loop further induces rich multi-step tool-use patterns across 373 tools in five domains. Training Qwen3-8B on DIVE data (48k SFT + 3.2k RL) improves by +22 average points across 9 OOD benchmarks and outperforms the strongest 8B baseline by +68. Remarkably, controlled scaling analysis reveals that diversity scaling consistently outperforms quantity scaling for OOD generalization, even with 4x less data.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 40,
+      "primary": "models",
+      "tags": [
+        "models"
+      ],
+      "url": "https://arxiv.org/abs/2603.11076",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 40,
+      "_rid": 2,
+      "entities": [
+        "DIVE",
+        "Scaling Diversity",
+        "Agentic Task Synthesis",
+        "Generalizable Tool Use"
+      ],
+      "why": "arXiv:2603.11076v1 Announce Type: new Abstract: Recent work synthesizes agentic tasks for post-training tool-using LLMs, yet robust generalization under shifts "
+    },
+    {
+      "title": "Structure-Aware Epistemic Uncertainty Quantification for Neural Operator PDE Surrogates",
+      "link": "https://arxiv.org/abs/2603.11052",
+      "published": "2026-03-13T04:00:00+00:00",
+      "summary": "arXiv:2603.11052v1 Announce Type: new Abstract: Neural operators (NOs) provide fast, resolution-invariant surrogates for mapping input fields to PDE solution fields, but their predictions can exhibit significant epistemic uncertainty due to finite data, imperfect optimization, and distribution shift. For practical deployment in scientific computing, uncertainty quantification (UQ) must be both computationally efficient and spatially faithful, i.e., uncertainty bands should align with the localized residual structures that matter for downstream risk management. We propose a structure-aware epistemic UQ scheme that exploits the modular anatomy common to modern NOs (lifting-propagation-recovering). Instead of applying unstructured weight perturbations (e.g., naive dropout) across the entire network, we restrict Monte Carlo sampling to a module-aligned subspace by injecting stochasticity only into the lifting module, and treat the learned solver dynamics (propagation and recovery) as deterministic. We instantiate this principle with two lightweight lifting-level perturbations, including channel-wise multiplicative feature dropout and a Gaussian feature perturbation with matched variance, followed by standard calibration to construct uncertainty bands. Experiments on challenging PDE benchmarks (including discontinuous-coefficient Darcy flow and geometry-shifted 3D car CFD surrogates) demonstrate that the proposed structure-aware design yields more reliable coverage, tighter bands, and improved residual-uncertainty alignment compared with common baselines, while remaining practical in runtime.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 32,
+      "primary": "models",
+      "tags": [
+        "infra",
+        "models"
+      ],
+      "url": "https://arxiv.org/abs/2603.11052",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 32,
+      "_rid": 3,
+      "entities": [
+        "PDE",
+        "Structure",
+        "Aware Epistemic Uncertainty",
+        "Quantification",
+        "Neural Operator",
+        "Surrogates"
+      ],
+      "why": "arXiv:2603.11052v1 Announce Type: new Abstract: Neural operators (NOs) provide fast, resolution-invariant surrogates for mapping input fields to PDE solution fi"
+    },
+    {
+      "title": "OPERATION EPIC FURY ![Image 6: 🇺🇸](https://abs-0.twimg.com/emoji/v2/svg/1f1fa-1f1f8.svg) One mission. Clear objectives. ![Image 7: 🎯](https://abs-0.twimg.com...",
+      "summary": "OPERATION EPIC FURY ![Image 6: 🇺🇸](https://abs-0.twimg.com/emoji/v2/svg/1f1fa-1f1f8.svg) One mission. Clear objectives. ![Image 7: 🎯](https://abs-0.twimg.com/emoji/v2/svg/1f3af.svg) Destroy Iran's Missiles We are dominating on every front and executing our core mission: • Annihilate the Iranian Navy • Destroy Iran’s missile capabilities • Permanently deny the regime a nuclear weapon is taking decisive steps to promote stability in global energy markets and working to keep prices low as we address the threat and instability posed by the terrorist Iranian regime. To increase the global reach of existing supply, is providing a temporary Be Courageous. Take risks. Remarks by at the White House Women’s History Month and National Working Moms Day Event",
+      "link": "https://x.com/WhiteHouse?post=803bd265c66a",
+      "published": "Fri, 13 Mar 2026 07:07:01 GMT",
+      "source": "X AI policy/search",
+      "feed_tags": [
+        "x",
+        "geopol",
+        "policy"
+      ],
+      "score": 25,
+      "primary": "invest",
+      "tags": [
+        "invest"
+      ],
+      "url": "https://x.com/WhiteHouse?post=803bd265c66a",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 25,
+      "_rid": 4,
+      "entities": [
+        "EPIC",
+        "FURY",
+        "Image",
+        "One",
+        "Clear"
+      ],
+      "why": "OPERATION EPIC FURY ![Image 6: 🇺🇸](https://abs-0.twimg.com/emoji/v2/svg/1f1fa-1f1f8.svg) One mission. Clear objectives. ![Image 7: 🎯](https://abs-0.twimg.com/em"
+    },
+    {
+      "title": "Introducing The Anthropic Institute, a new effort to advance the public conversation about powerful AI.",
+      "summary": "Introducing The Anthropic Institute, a new effort to advance the public conversation about powerful AI.",
+      "link": "https://x.com/AnthropicAI?post=b9d7c8ead1f1",
+      "published": "Fri, 13 Mar 2026 06:18:05 GMT",
+      "source": "X @AnthropicAI",
+      "feed_tags": [
+        "x",
+        "models",
+        "safety"
+      ],
+      "score": 18,
+      "primary": "infra",
+      "tags": [
+        "infra"
+      ],
+      "url": "https://x.com/AnthropicAI?post=b9d7c8ead1f1",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 18,
+      "_rid": 5,
+      "entities": [
+        "Anthropic",
+        "Introducing The Anthropic",
+        "Institute"
+      ],
+      "why": "Introducing The Anthropic Institute, a new effort to advance the public conversation about powerful AI."
+    },
+    {
+      "title": "Accelerating discovery in India through AI-powered science and education",
+      "link": "https://deepmind.google/blog/accelerating-discovery-in-india-through-ai-powered-science-and-education/",
+      "published": "2026-02-17T13:42:20+00:00",
+      "summary": "Google DeepMind brings National Partnerships for AI initiative to India, scaling AI for science and education",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 16,
+      "primary": "infra",
+      "tags": [
+        "infra"
+      ],
+      "url": "https://deepmind.google/blog/accelerating-discovery-in-india-through-ai-powered-science-and-education/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 16,
+      "_rid": 6,
+      "entities": [
+        "Accelerating",
+        "India"
+      ],
+      "why": "Google DeepMind brings National Partnerships for AI initiative to India, scaling AI for science and education"
+    },
+    {
+      "title": "NVIDIA Rubin Platform, Open Models, Autonomous Driving: NVIDIA Presents Blueprint for the Future at CES",
+      "link": "https://blogs.nvidia.com/blog/2026-ces-special-presentation/",
+      "published": "2026-01-05T23:30:18+00:00",
+      "summary": "NVIDIA founder and CEO Jensen Huang took the stage at the Fontainebleau Las Vegas to open CES 2026, declaring that AI is scaling into every domain and every device. “Computing has been fundamentally reshaped as a result of accelerated computing, as a result of artificial intelligence,” Huang said. “What that means is some $10 trillion [&#8230;]",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 13,
+      "primary": "models",
+      "tags": [
+        "models"
+      ],
+      "url": "https://blogs.nvidia.com/blog/2026-ces-special-presentation/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 13,
+      "_rid": 7,
+      "entities": [
+        "NVIDIA",
+        "CES",
+        "Rubin Platform",
+        "Open Models",
+        "Autonomous Driving",
+        "Presents Blueprint",
+        "Future"
+      ],
+      "why": "NVIDIA founder and CEO Jensen Huang took the stage at the Fontainebleau Las Vegas to open CES 2026, declaring that AI is scaling into every domain and every dev"
+    },
+    {
+      "title": "Qnity and Silicon Catalyst Light a Path to Success  at the Chiplet Summit",
+      "link": "https://semiwiki.com/events/367107-qnity-and-silicon-catalyst-light-a-path-to-success/",
+      "published": "2026-03-11T17:00:49+00:00",
+      "summary": "The Chiplet Summit recently concluded. Multi-die heterogeneous design is a hot topic these days and chiplets are a key enabler for this trend. The conference was noticeably larger this year. There were many presentations and exhibits that focused on areas such as how to design chiplets, what standards are important, how to integrate&#8230; Read More The post Qnity and Silicon Catalyst Light a Path to Success at the Chiplet Summit appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 13,
+      "primary": "misc",
+      "tags": [],
+      "url": "https://semiwiki.com/events/367107-qnity-and-silicon-catalyst-light-a-path-to-success/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 13,
+      "_rid": 8,
+      "entities": [
+        "Qnity",
+        "Silicon Catalyst Light",
+        "Path",
+        "Success",
+        "Chiplet Summit"
+      ],
+      "why": "The Chiplet Summit recently concluded. Multi-die heterogeneous design is a hot topic these days and chiplets are a key enabler for this trend. The conference wa"
+    },
+    {
+      "title": "From 8 hours to 80 seconds - NVIDIA’s DGX SuperPOD delivers ready-to-run infrastructure out of the box with leading performance in [#MLPerf](https://x.com/ha...",
+      "summary": "From 8 hours to 80 seconds - NVIDIA’s DGX SuperPOD delivers ready-to-run infrastructure out of the box with leading performance in [#MLPerf](https://x.com/hashtag/MLPerf?src=hashtag_click). Learn more: [nvda.ws/2XDFqw3](https://t.co/QpwC8Dj9Iy)",
+      "link": "https://x.com/NVIDIAAI?post=5c74284ea0e6",
+      "published": null,
+      "source": "X @NVIDIAAI",
+      "feed_tags": [
+        "x",
+        "infra",
+        "chips"
+      ],
+      "score": 13,
+      "primary": "misc",
+      "tags": [],
+      "url": "https://x.com/NVIDIAAI?post=5c74284ea0e6",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 13,
+      "_rid": 9,
+      "entities": [
+        "NVIDIA",
+        "DGX",
+        "From"
+      ],
+      "why": "From 8 hours to 80 seconds - NVIDIA’s DGX SuperPOD delivers ready-to-run infrastructure out of the box with leading performance in [#MLPerf](https://x.com/hasht"
+    },
+    {
+      "title": "Gemini in Google Sheets just achieved state-of-the-art performance.",
+      "link": "https://blog.google/products-and-platforms/products/workspace/gemini-google-sheets-state-of-the-art/",
+      "published": "2026-03-10T13:00:00+00:00",
+      "summary": "Today we announced new beta features for Gemini in Sheets to help you create, organize and edit entire sheets, from basic tasks to complex data analysis — just describe …",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 12,
+      "primary": "misc",
+      "tags": [],
+      "url": "https://blog.google/products-and-platforms/products/workspace/gemini-google-sheets-state-of-the-art/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 12,
+      "_rid": 10,
+      "entities": [
+        "Google",
+        "Gemini",
+        "Google Sheets"
+      ],
+      "why": "Today we announced new beta features for Gemini in Sheets to help you create, organize and edit entire sheets, from basic tasks to complex data analysis — just "
+    },
+    {
+      "title": "Gemini 3.1 Flash-Lite: Built for intelligence at scale",
+      "link": "https://deepmind.google/blog/gemini-3-1-flash-lite-built-for-intelligence-at-scale/",
+      "published": "2026-03-03T16:35:55+00:00",
+      "summary": "Gemini 3.1 Flash-Lite is our fastest and most cost-efficient Gemini 3 series model yet.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 11,
+      "primary": "models",
+      "tags": [
+        "models"
+      ],
+      "url": "https://deepmind.google/blog/gemini-3-1-flash-lite-built-for-intelligence-at-scale/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 11,
+      "_rid": 11,
+      "entities": [
+        "Gemini",
+        "Flash",
+        "Lite",
+        "Built"
+      ],
+      "why": "Gemini 3.1 Flash-Lite is our fastest and most cost-efficient Gemini 3 series model yet."
+    },
+    {
+      "title": "Gemini 3.1 Pro: A smarter model for your most complex tasks",
+      "link": "https://deepmind.google/blog/gemini-3-1-pro-a-smarter-model-for-your-most-complex-tasks/",
+      "published": "2026-02-19T16:06:14+00:00",
+      "summary": "3.1 Pro is designed for tasks where a simple answer isn’t enough.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 11,
+      "primary": "models",
+      "tags": [
+        "models"
+      ],
+      "url": "https://deepmind.google/blog/gemini-3-1-pro-a-smarter-model-for-your-most-complex-tasks/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 11,
+      "_rid": 12,
+      "entities": [
+        "Gemini",
+        "Pro"
+      ],
+      "why": "3.1 Pro is designed for tasks where a simple answer isn’t enough."
+    },
+    {
+      "title": "Gemini 3 Deep Think: Advancing science, research and engineering",
+      "link": "https://deepmind.google/blog/gemini-3-deep-think-advancing-science-research-and-engineering/",
+      "published": "2026-02-12T16:15:09+00:00",
+      "summary": "Our most specialized reasoning mode is now updated to solve modern science, research and engineering challenges.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 11,
+      "primary": "models",
+      "tags": [
+        "models"
+      ],
+      "url": "https://deepmind.google/blog/gemini-3-deep-think-advancing-science-research-and-engineering/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 11,
+      "_rid": 13,
+      "entities": [
+        "Gemini",
+        "Deep Think",
+        "Advancing"
+      ],
+      "why": "Our most specialized reasoning mode is now updated to solve modern science, research and engineering challenges."
+    },
+    {
+      "title": "Project Genie: Experimenting with infinite, interactive worlds",
+      "link": "https://deepmind.google/blog/project-genie-experimenting-with-infinite-interactive-worlds/",
+      "published": "2026-01-29T17:01:05+00:00",
+      "summary": "Google AI Ultra subscribers in the U.S. can try out Project Genie, an experimental research prototype that lets you create and explore worlds.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 11,
+      "primary": "models",
+      "tags": [
+        "models"
+      ],
+      "url": "https://deepmind.google/blog/project-genie-experimenting-with-infinite-interactive-worlds/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 11,
+      "_rid": 14,
+      "entities": [
+        "Project Genie",
+        "Experimenting"
+      ],
+      "why": "Google AI Ultra subscribers in the U.S. can try out Project Genie, an experimental research prototype that lets you create and explore worlds."
+    },
+    {
+      "title": "D4RT: Teaching AI to see the world in four dimensions",
+      "link": "https://deepmind.google/blog/d4rt-teaching-ai-to-see-the-world-in-four-dimensions/",
+      "published": "2026-01-16T10:39:00+00:00",
+      "summary": "D4RT: Unified, efficient 4D reconstruction and tracking up to 300x faster than prior methods.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 11,
+      "primary": "models",
+      "tags": [
+        "models"
+      ],
+      "url": "https://deepmind.google/blog/d4rt-teaching-ai-to-see-the-world-in-four-dimensions/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 11,
+      "_rid": 15,
+      "entities": [
+        "D4RT",
+        "Teaching"
+      ],
+      "why": "D4RT: Unified, efficient 4D reconstruction and tracking up to 300x faster than prior methods."
+    }
+  ]
+}
