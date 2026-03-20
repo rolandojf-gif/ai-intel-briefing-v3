@@ -1,0 +1,470 @@
+{
+  "date": "2026-03-20",
+  "score_avg": 31.47,
+  "primary_dist": {
+    "infra": 6,
+    "models": 6,
+    "geopol": 1,
+    "misc": 1,
+    "invest": 1
+  },
+  "top_entities": [
+    {
+      "entity": "NVIDIA",
+      "count": 8
+    },
+    {
+      "entity": "arXiv",
+      "count": 4
+    },
+    {
+      "entity": "OpenAI",
+      "count": 1
+    },
+    {
+      "entity": "Siemens",
+      "count": 1
+    },
+    {
+      "entity": "EDA",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "OpenAI lanza GPT-5.2 y 5.3 entrenados en Blackwell/GB200, validando el escalado masivo de hardware.",
+      "El Reino Unido activa Isambard-AI, posicionándose en computación soberana con 21 exaflops de rendimiento.",
+      "El estándar HBM4E emerge como pieza clave para aliviar el cuello de botella de memoria en entrenamiento de LLMs.",
+      "Siemens introduce IA agentica en el diseño de semiconductores para acelerar el ciclo de creación de chips.",
+      "La transición hacia arquitecturas de conducción autónoma de extremo a extremo exige simulaciones físicas precisas."
+    ],
+    "risks": [
+      "Degradación de rendimiento en modelos de contexto largo debido a la saturación geométrica de los embeddings RoPE.",
+      "Dependencia excesiva de inferencia semántica en modelos de audio en lugar de fidelidad acústica real.",
+      "Falta de modularidad causal en Transformers que impide el control preciso de comportamientos distribuidos."
+    ],
+    "watch": [
+      "Despliegue comercial masivo de sistemas GB200 NVL72 tras el éxito de los nuevos modelos de OpenAI.",
+      "Adopción industrial de chiplets y diseño 3D IC para superar los límites físicos de los semiconductores.",
+      "Evolución de modelos de IA agentica aplicados a la auto-codificación y mejora algorítmica autónoma."
+    ],
+    "entities_top": [
+      "NVIDIA",
+      "OpenAI",
+      "Siemens"
+    ]
+  },
+  "items": [
+    {
+      "title": "As AI Grows More Complex, Model Builders Rely on NVIDIA",
+      "link": "https://blogs.nvidia.com/blog/leading-models-nvidia/",
+      "published": "2025-12-11T19:19:57+00:00",
+      "summary": "Unveiling what it describes as the most capable model series yet for professional knowledge work, OpenAI launched GPT-5.2 in December. The model was trained and deployed on NVIDIA infrastructure, including NVIDIA Hopper and GB200 NVL72 systems. GPT-5.3 Codex — the first OpenAI agentic coding model to help build itself — was released in February and [&#8230;]",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 47,
+      "primary": "infra",
+      "tags": [
+        "blackwell",
+        "gpt-5",
+        "llm",
+        "compute"
+      ],
+      "url": "https://blogs.nvidia.com/blog/leading-models-nvidia/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 47,
+      "_rid": 1,
+      "why": "Confirmación del despliegue de GPT-5 sobre Blackwell, validando el retorno de inversión en hardware de gama ultra-alta.",
+      "entities": [
+        "NVIDIA",
+        "OpenAI"
+      ]
+    },
+    {
+      "title": "DEAF: A Benchmark for Diagnostic Evaluation of Acoustic Faithfulness in Audio Language Models",
+      "link": "https://arxiv.org/abs/2603.18048",
+      "published": "2026-03-20T04:00:00+00:00",
+      "summary": "arXiv:2603.18048v1 Announce Type: new Abstract: Recent Audio Multimodal Large Language Models (Audio MLLMs) demonstrate impressive performance on speech benchmarks, yet it remains unclear whether these models genuinely process acoustic signals or rely on text-based semantic inference. To systematically study this question, we introduce DEAF (Diagnostic Evaluation of Acoustic Faithfulness), a benchmark of over 2,700 conflict stimuli spanning three acoustic dimensions: emotional prosody, background sounds, and speaker identity. Then, we design a controlled multi-level evaluation framework that progressively increases textual influence, ranging from semantic conflicts in the content to misleading prompts and their combination, allowing us to disentangle content-driven bias from prompt-induced sycophancy. We further introduce diagnostic metrics to quantify model reliance on textual cues over acoustic signals. Our evaluation of seven Audio MLLMs reveals a consistent pattern of text dominance: models are sensitive to acoustic variations, yet predictions are predominantly driven by textual inputs, revealing a gap between high performance on standard speech benchmarks and genuine acoustic understanding.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 37,
+      "primary": "models",
+      "tags": [
+        "audio",
+        "benchmark",
+        "mllm"
+      ],
+      "url": "https://arxiv.org/abs/2603.18048",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 37,
+      "_rid": 2,
+      "why": "Benchmark crítico que revela si los modelos de audio realmente procesan sonido o solo deducen significado del texto.",
+      "entities": [
+        "arXiv"
+      ]
+    },
+    {
+      "title": "Frayed RoPE and Long Inputs: A Geometric Perspective",
+      "link": "https://arxiv.org/abs/2603.18017",
+      "published": "2026-03-20T04:00:00+00:00",
+      "summary": "arXiv:2603.18017v1 Announce Type: new Abstract: Rotary Positional Embedding (RoPE) is a widely adopted technique for encoding position in language models, which, while effective, causes performance breakdown when input length exceeds training length. Prior analyses assert (rightly) that long inputs cause channels to rotate ``out of distribution,'' but it is not clear how extra rotation relates to or causes pathological behavior. Through empirical and theoretical analysis we advance a unified geometric understanding of attention behavior with RoPE. We find that attention induces tight clustering of separated key and query latent point clouds, allowing for creation of sink tokens: placeholders that allow attention heads to avoid token mixing when not required. RoPE applied to longer inputs damages this key/query cluster separation, producing pathological behavior by inhibiting sink token functionality. From this geometric perspective, we propose RoPE-ID (In Distribution), a straightforward modification that allows attention layers to generalize to longer inputs out of the box: apply RoPE with high frequency to a subset of channels. We demonstrate the effectiveness of RoPE-ID for extended inputs using 1B and 3B parameter Transformers on the LongBench and RULER information retrieval benchmarks.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 37,
+      "primary": "models",
+      "tags": [
+        "rope",
+        "context-length",
+        "transformers"
+      ],
+      "url": "https://arxiv.org/abs/2603.18017",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 37,
+      "_rid": 3,
+      "why": "Análisis geométrico que explica por qué los modelos fallan al superar su longitud de entrenamiento original.",
+      "entities": [
+        "arXiv"
+      ]
+    },
+    {
+      "title": "NVIDIA Research Shapes Physical AI",
+      "link": "https://blogs.nvidia.com/blog/physical-ai-research-siggraph-2025/",
+      "published": "2025-08-11T15:00:38+00:00",
+      "summary": "AI and graphics research breakthroughs in neural rendering, 3D generation and world simulation power robotics, autonomous vehicles and content creation.",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 36,
+      "primary": "infra",
+      "tags": [
+        "physical-ai",
+        "robotics",
+        "simulation"
+      ],
+      "url": "https://blogs.nvidia.com/blog/physical-ai-research-siggraph-2025/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 36,
+      "_rid": 4,
+      "why": "Avances en IA física y simulación de mundos para el entrenamiento de robótica y sistemas autónomos.",
+      "entities": [
+        "NVIDIA"
+      ]
+    },
+    {
+      "title": "Siemens Wins Best in Show Award at Chiplet Summit and Targets Broad 3D IC Design Enablement",
+      "link": "https://semiwiki.com/events/367536-siemens-wins-best-in-show-award-at-chiplet-summit-and-targets-broad-3d-ic-design-enablement/",
+      "published": "2026-03-19T15:00:38+00:00",
+      "summary": "The recent Chiplet Summit in Santa Clara was buzzing with new designs and new design methods. It felt like the industry had turned a corner at this year’s event with lots of new technology and design success on display. Siemens EDA had a large presence at the show and took home the Best in Show Award for Packaging Design. There were a &#8230; Read More The post Siemens Wins Best in Show Award at Chiplet Summit and Targets Broad 3D IC Design Enablement appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 36,
+      "primary": "infra",
+      "tags": [
+        "chiplets",
+        "3d-ic",
+        "semiconductors"
+      ],
+      "url": "https://semiwiki.com/events/367536-siemens-wins-best-in-show-award-at-chiplet-summit-and-targets-broad-3d-ic-design-enablement/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 36,
+      "_rid": 5,
+      "why": "El diseño de chiplets y 3D IC se consolida como la vía necesaria para escalar la potencia de cómputo post-Ley de Moore.",
+      "entities": [
+        "Siemens",
+        "EDA"
+      ]
+    },
+    {
+      "title": "Reaching Across the Isles: UK-LLM Brings AI to UK Languages With NVIDIA Nemotron",
+      "link": "https://blogs.nvidia.com/blog/uk-llm-nemotron/",
+      "published": "2025-09-14T01:00:21+00:00",
+      "summary": "Celtic languages — including Cornish, Irish, Scottish Gaelic and Welsh — are the U.K.’s oldest living languages. To empower their speakers, the UK-LLM sovereign AI initiative is building an AI model based on NVIDIA Nemotron that can reason in both English and Welsh, a language spoken by about 850,000 people in Wales today. Enabling high-quality [&#8230;]",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 33,
+      "primary": "geopol",
+      "tags": [
+        "sovereign-ai",
+        "uk",
+        "nemotron"
+      ],
+      "url": "https://blogs.nvidia.com/blog/uk-llm-nemotron/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 33,
+      "_rid": 6,
+      "why": "Iniciativa de soberanía tecnológica con modelos adaptados a lenguas minoritarias británicas usando tecnología NVIDIA.",
+      "entities": [
+        "NVIDIA",
+        "UK-LLM"
+      ]
+    },
+    {
+      "title": "WEBINAR: HBM4E Advances Bandwidth Performance for AI Training",
+      "link": "https://semiwiki.com/ip/rambus/367607-webinar-hbm4e-advances-bandwidth-performance-for-ai-training/",
+      "published": "2026-03-19T17:00:56+00:00",
+      "summary": "The rapid proliferation of LLMs and other AI applications, and of high-end GPU platforms that run them, is putting intense pressure on the performance requirements for memory technologies. Designers need to be keenly aware of how to make the most of their memory and controller choices, which can be moving targets given the rapid&#8230; Read More The post WEBINAR: HBM4E Advances Bandwidth Performance for AI Training appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 33,
+      "primary": "infra",
+      "tags": [
+        "hbm4e",
+        "memory",
+        "bandwidth"
+      ],
+      "url": "https://semiwiki.com/ip/rambus/367607-webinar-hbm4e-advances-bandwidth-performance-for-ai-training/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 33,
+      "_rid": 7,
+      "why": "HBM4E es el habilitador crítico para satisfacer la demanda de ancho de banda en el entrenamiento de modelos masivos.",
+      "entities": [
+        "Rambus",
+        "SemiWiki"
+      ]
+    },
+    {
+      "title": "Continually self-improving AI",
+      "link": "https://arxiv.org/abs/2603.18073",
+      "published": "2026-03-20T04:00:00+00:00",
+      "summary": "arXiv:2603.18073v1 Announce Type: new Abstract: Modern language model-based AI systems are remarkably powerful, yet their capabilities remain fundamentally capped by their human creators in three key ways. First, although a model's weights can be updated via fine-tuning, acquiring new knowledge from small, specialized corpora after pretraining remains highly data-inefficient. Second, the training of these systems relies heavily on finite, human-generated data from across history. Third, the pipelines used to train AI models are confined by the algorithms that human researchers can discover and explore. This thesis takes a small step toward overcoming these inherent limitations, presenting three chapters aimed at breaking these dependencies to create continually self-improving AI. First, to overcome this data-efficiency barrier in knowledge acquisition, we propose a synthetic data approach that diversifies and amplifies small corpora into rich knowledge representations, enabling a model to effectively update its parameters from limited source material. Second, to reduce reliance on human data, we show that given a fixed amount of such data, the model can self-generate synthetic data to bootstrap its fundamental pretraining capabilities without distillation from any off-the-shelf, instruction-tuned LM. Finally, to transcend human-engineered training paradigms, we demonstrate that by scaling search during test time over the space of algorithms, AI can search over a larger space of learning algorithm configurations than human researchers can explore manually.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 30,
+      "primary": "models",
+      "tags": [
+        "self-improvement",
+        "algorithms",
+        "data-efficiency"
+      ],
+      "url": "https://arxiv.org/abs/2603.18073",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 30,
+      "_rid": 8,
+      "why": "Investigación en superación de límites de datos humanos mediante la mejora algorítmica autónoma de la IA.",
+      "entities": [
+        "arXiv"
+      ]
+    },
+    {
+      "title": "Isambard-AI, the UK’s Most Powerful AI Supercomputer, Goes Live",
+      "link": "https://blogs.nvidia.com/blog/isambard-ai/",
+      "published": "2025-07-17T17:00:50+00:00",
+      "summary": "The University of Bristol’s Isambard-AI, powered by NVIDIA Grace Hopper Superchips, delivers 21 exaflops of AI performance, making it the fastest system in the U.K. and among the most energy-efficient globally.",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 28,
+      "primary": "infra",
+      "tags": [
+        "supercomputing",
+        "grace-hopper",
+        "uk"
+      ],
+      "url": "https://blogs.nvidia.com/blog/isambard-ai/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 28,
+      "_rid": 9,
+      "why": "El superordenador Isambard-AI entra en fase operativa, proporcionando una base de cómputo masiva para el Reino Unido.",
+      "entities": [
+        "University of Bristol",
+        "NVIDIA"
+      ]
+    },
+    {
+      "title": "Innovation to Impact: How NVIDIA Research Fuels Transformative Work in AI, Graphics and Beyond",
+      "link": "https://blogs.nvidia.com/blog/nvidia-research-ai-graphics/",
+      "published": "2025-03-20T00:00:24+00:00",
+      "summary": "The roots of many of NVIDIA’s landmark innovations — the foundational technology that powers AI, accelerated computing, real-time ray tracing and seamlessly connected data centers — can be found in the company’s research organization, a global team of around 400 experts in fields including computer architecture, generative AI, graphics and robotics. Established in 2006 and [&#8230;]",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 28,
+      "primary": "misc",
+      "tags": [
+        "research",
+        "corporate-strategy",
+        "innovation"
+      ],
+      "url": "https://blogs.nvidia.com/blog/nvidia-research-ai-graphics/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 28,
+      "_rid": 10,
+      "why": "La estructura de investigación interna de NVIDIA actúa como motor de innovaciones comerciales en gráficos e IA.",
+      "entities": [
+        "NVIDIA"
+      ]
+    },
+    {
+      "title": "NVIDIA GauGAN2, a powerful [#AI](https://x.com/hashtag/AI?src=hashtag_click) model that allows anyone to convert simple written phrases like \"ocean waves\" in...",
+      "summary": "NVIDIA GauGAN2, a powerful [#AI](https://x.com/hashtag/AI?src=hashtag_click) model that allows anyone to convert simple written phrases like \"ocean waves\" into a photorealistic masterpiece. Learn more about GauGAN2 now: [nvda.ws/3oNitRX](https://t.co/IhNldsaEYV) The media could not be played.",
+      "link": "https://x.com/NVIDIAAI?post=116947ff16ec",
+      "published": "Fri, 20 Mar 2026 07:12:42 GMT",
+      "source": "X @NVIDIAAI",
+      "feed_tags": [
+        "x",
+        "infra",
+        "chips"
+      ],
+      "score": 28,
+      "primary": "models",
+      "tags": [
+        "gaugan2",
+        "generative-art",
+        "vision"
+      ],
+      "url": "https://x.com/NVIDIAAI?post=116947ff16ec",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 28,
+      "_rid": 11,
+      "why": "Herramienta de generación de imágenes fotorrealistas a partir de texto, orientada a democratizar la creación visual.",
+      "entities": [
+        "NVIDIA"
+      ]
+    },
+    {
+      "title": "Engineering Verifiable Modularity in Transformers via Per-Layer Supervision",
+      "link": "https://arxiv.org/abs/2603.18029",
+      "published": "2026-03-20T04:00:00+00:00",
+      "summary": "arXiv:2603.18029v1 Announce Type: new Abstract: Transformers resist surgical control. Ablating an attention head identified as critical for capitalization produces minimal behavioral change because distributed redundancy compensates for damage. This Hydra effect renders interpretability illusory: we may identify components through correlation, but cannot predict or control their causal role. We demonstrate that architectural interventions can expose hidden modularity. Our approach combines dual-stream processing separating token and contextual representations, per-layer supervision providing independent gradient signal at each depth, and gated attention regularizing toward discrete activation patterns. When trained with per-layer supervision, models produce ablation effects 5 to 23 times larger than architecturally identical controls trained with standard objectives. This enables 4 times greater control leverage on targeted behaviors: scaling identified attention heads produces smooth, predictable changes in model output. The key finding is architectural. Without per-layer supervision, ablation damage concentrates near zero with low variance (Winograd standard deviation 0.63%). With per-layer supervision, effects spread widely (standard deviation 6.32%), revealing which predictions depend on which circuits. The larger variance is not measurement noise but the signature of unmasked modularity. We validate our approach through three components: engineered features that capture computational dynamics rather than vocabulary structure (validated by near-zero correlation with raw activation clustering), an architecture providing positive control for modularity, and causal experiments demonstrating functional reorganization where different tasks route through different attention heads. This es tablishes a methodology for transforming interpretability from passive observation to active control.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 27,
+      "primary": "models",
+      "tags": [
+        "interpretability",
+        "modularity",
+        "transformers"
+      ],
+      "url": "https://arxiv.org/abs/2603.18029",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 27,
+      "_rid": 12,
+      "why": "Nueva técnica para lograr modularidad real en Transformers y evitar la redundancia incontrolable del efecto Hydra.",
+      "entities": [
+        "arXiv"
+      ]
+    },
+    {
+      "title": "Applications Now Open for $60,000 NVIDIA Graduate Fellowship Awards",
+      "link": "https://blogs.nvidia.com/blog/applications-open-graduate-fellowship-awards-2025/",
+      "published": "2025-08-13T15:00:02+00:00",
+      "summary": "Bringing together the world’s brightest minds and the latest accelerated computing technology leads to powerful breakthroughs that help tackle some of the biggest research problems. To foster such innovation, the NVIDIA Graduate Fellowship Program provides grants, mentors and technical support to doctoral students doing outstanding research relevant to NVIDIA technologies. The program, in its 25th [&#8230;]",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 26,
+      "primary": "invest",
+      "tags": [
+        "talent",
+        "education",
+        "grants"
+      ],
+      "url": "https://blogs.nvidia.com/blog/applications-open-graduate-fellowship-awards-2025/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 26,
+      "_rid": 13,
+      "why": "Inversión en talento académico para asegurar la futura fuerza laboral experta en el ecosistema de hardware NVIDIA.",
+      "entities": [
+        "NVIDIA"
+      ]
+    },
+    {
+      "title": "NVIDIA Releases New AI Models and Developer Tools to Advance Autonomous Vehicle Ecosystem",
+      "link": "https://blogs.nvidia.com/blog/autonomous-vehicle-ecosystem-ai-models-developer-tools/",
+      "published": "2025-06-11T10:55:36+00:00",
+      "summary": "Autonomous vehicle (AV) stacks are evolving from many distinct models to a unified, end-to-end architecture that executes driving actions directly from sensor data. This transition to using larger models is drastically increasing the demand for high-quality, physically based sensor data for training, testing and validation. To help accelerate the development of next-generation AV architectures, NVIDIA [&#8230;]",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 26,
+      "primary": "infra",
+      "tags": [
+        "autonomous-vehicles",
+        "synthetic-data",
+        "av"
+      ],
+      "url": "https://blogs.nvidia.com/blog/autonomous-vehicle-ecosystem-ai-models-developer-tools/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 26,
+      "_rid": 14,
+      "why": "Cambio de paradigma hacia arquitecturas AV unificadas que requieren simulaciones físicas de alta fidelidad.",
+      "entities": [
+        "NVIDIA"
+      ]
+    },
+    {
+      "title": "Since xAI was formed just 30 months ago, the small and talented team has made remarkable progress. The future has never looked more exciting! Grok's Text to ...",
+      "summary": "Since xAI was formed just 30 months ago, the small and talented team has made remarkable progress. The future has never looked more exciting! Grok's Text to Speech API is now available in LiveKit Inference. Natural, expressive voices with low-latency streaming. Multilingual in 20+ languages. Telephony and production-ready out of the box. One API key. No extra setup. → [docs.livekit.io/agents/models/](https://t.co/LCX4zfQTg8) Quote xAI @xai Mar 16 Grok's Text to Speech API is now available. Start building with natural voices and expressive controls to bring your apps to life. x.ai/api/voice#text",
+      "link": "https://x.com/xai?post=1d5d4965326e",
+      "published": "Fri, 20 Mar 2026 06:42:11 GMT",
+      "source": "X @xai",
+      "feed_tags": [
+        "x",
+        "models"
+      ],
+      "score": 20,
+      "primary": "models",
+      "tags": [
+        "models"
+      ],
+      "url": "https://x.com/xai?post=1d5d4965326e",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 20,
+      "entities": [
+        "Since",
+        "Grok",
+        "Text"
+      ],
+      "why": "Since xAI was formed just 30 months ago, the small and talented team has made remarkable progress. The future has never looked more exciting! Grok's Text to Spe"
+    }
+  ]
+}
