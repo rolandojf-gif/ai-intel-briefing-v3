@@ -1,0 +1,472 @@
+{
+  "date": "2026-03-23",
+  "score_avg": 29,
+  "primary_dist": {
+    "infra": 4,
+    "models": 6,
+    "geopol": 1,
+    "misc": 3,
+    "invest": 1
+  },
+  "top_entities": [
+    {
+      "entity": "NVIDIA",
+      "count": 8
+    },
+    {
+      "entity": "arXiv",
+      "count": 3
+    },
+    {
+      "entity": "OpenAI",
+      "count": 1
+    },
+    {
+      "entity": "Siemens",
+      "count": 1
+    },
+    {
+      "entity": "Siemens EDA",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "NVIDIA consolida dominio absoluto proveyendo infraestructura GB200 para los nuevos modelos GPT-5.2 y GPT-5.3 de OpenAI.",
+      "La optimización de inferencia MoE mediante especulación de expertos reduce cuellos de botella en transferencias CPU-GPU.",
+      "El diseño de chiplets y arquitecturas 3D IC de Siemens emerge como estándar crítico para la eficiencia del hardware IA.",
+      "La memoria HBM4E se posiciona como el próximo salto necesario en ancho de banda para entrenamiento de modelos masivos.",
+      "Auge de la IA Soberana en Europa con el supercomputador Isambard-AI y modelos lingüísticos específicos para el Reino Unido."
+    ],
+    "risks": [
+      "Latencia crítica en modelos MoE debido a la dependencia de transferencias de memoria entre CPU y GPU en sistemas limitados.",
+      "Concentración de riesgo sistémico por la dependencia total de los modelos frontera en una única arquitectura de hardware.",
+      "Creciente complejidad en la verificación y validación de sistemas de conducción autónoma end-to-end."
+    ],
+    "watch": [
+      "Capacidades de auto-programación del modelo agente GPT-5.3 Codex y su impacto en el desarrollo de software.",
+      "Adopción comercial de tecnologías de empaquetado 3D IC para chips de IA de próxima generación.",
+      "Efectividad real de los esquemas de prefetching de expertos en entornos de producción MoE."
+    ],
+    "entities_top": [
+      "NVIDIA",
+      "OpenAI",
+      "Siemens"
+    ]
+  },
+  "items": [
+    {
+      "title": "As AI Grows More Complex, Model Builders Rely on NVIDIA",
+      "link": "https://blogs.nvidia.com/blog/leading-models-nvidia/",
+      "published": "2025-12-11T19:19:57+00:00",
+      "summary": "Unveiling what it describes as the most capable model series yet for professional knowledge work, OpenAI launched GPT-5.2 in December. The model was trained and deployed on NVIDIA infrastructure, including NVIDIA Hopper and GB200 NVL72 systems. GPT-5.3 Codex — the first OpenAI agentic coding model to help build itself — was released in February and [&#8230;]",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 47,
+      "primary": "infra",
+      "tags": [
+        "gpu",
+        "llm",
+        "agents",
+        "cloud-computing"
+      ],
+      "url": "https://blogs.nvidia.com/blog/leading-models-nvidia/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 47,
+      "_rid": 1,
+      "why": "Confirmación del despliegue de GPT-5.2 y GPT-5.3 sobre Blackwell GB200; hito crítico en la infraestructura de modelos frontera.",
+      "entities": [
+        "NVIDIA",
+        "OpenAI"
+      ]
+    },
+    {
+      "title": "Speculating Experts Accelerates Inference for Mixture-of-Experts",
+      "link": "https://arxiv.org/abs/2603.19289",
+      "published": "2026-03-23T04:00:00+00:00",
+      "summary": "arXiv:2603.19289v1 Announce Type: new Abstract: Mixture-of-Experts (MoE) models have gained popularity as a means of scaling the capacity of large language models (LLMs) while maintaining sparse activations and reduced per-token compute. However, in memory-constrained inference settings, expert weights must be offloaded to CPU, creating a performance bottleneck from CPU-GPU transfers during decoding. We propose an expert prefetching scheme that leverages currently computed internal model representations to speculate future experts, enabling memory transfers to overlap with computation. Across multiple MoE architectures, we demonstrate that future experts can be reliably predicted by these internal representations. We also demonstrate that executing speculated experts generally maintains downstream task accuracy, thus preserving more effective compute-memory overlap by eliminating the need to re-fetch true router-selected experts. Integrated into an optimized inference engine, our approach achieves up to 14\\% reduction in time per output token (TPOT) over on-demand loading of experts from CPU memory. For MoEs where speculative execution alone yields suboptimal accuracy, we further examine lightweight estimators that improve expert prediction hit rates, thereby reducing performance degradation. Our code is released in open-source at https://github.com/axonn-ai/yalis/tree/offload_prefetch.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 40,
+      "primary": "models",
+      "tags": [
+        "moe",
+        "inference",
+        "latency",
+        "optimization"
+      ],
+      "url": "https://arxiv.org/abs/2603.19289",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 40,
+      "_rid": 2,
+      "why": "Propuesta técnica relevante para mitigar el cuello de botella de memoria en modelos Mixture-of-Experts mediante pre-búsqueda.",
+      "entities": [
+        "arXiv"
+      ]
+    },
+    {
+      "title": "NVIDIA Research Shapes Physical AI",
+      "link": "https://blogs.nvidia.com/blog/physical-ai-research-siggraph-2025/",
+      "published": "2025-08-11T15:00:38+00:00",
+      "summary": "AI and graphics research breakthroughs in neural rendering, 3D generation and world simulation power robotics, autonomous vehicles and content creation.",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 36,
+      "primary": "models",
+      "tags": [
+        "robotics",
+        "simulation",
+        "graphics",
+        "embodied-ai"
+      ],
+      "url": "https://blogs.nvidia.com/blog/physical-ai-research-siggraph-2025/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 36,
+      "_rid": 3,
+      "why": "Avances en IA física y simulación de mundos, esenciales para el desarrollo de robótica y vehículos autónomos.",
+      "entities": [
+        "NVIDIA"
+      ]
+    },
+    {
+      "title": "Siemens Wins Best in Show Award at Chiplet Summit and Targets Broad 3D IC Design Enablement",
+      "link": "https://semiwiki.com/events/367536-siemens-wins-best-in-show-award-at-chiplet-summit-and-targets-broad-3d-ic-design-enablement/",
+      "published": "2026-03-19T15:00:38+00:00",
+      "summary": "The recent Chiplet Summit in Santa Clara was buzzing with new designs and new design methods. It felt like the industry had turned a corner at this year’s event with lots of new technology and design success on display. Siemens EDA had a large presence at the show and took home the Best in Show Award for Packaging Design. There were a &#8230; Read More The post Siemens Wins Best in Show Award at Chiplet Summit and Targets Broad 3D IC Design Enablement appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 36,
+      "primary": "infra",
+      "tags": [
+        "chiplets",
+        "3d-ic",
+        "eda",
+        "semiconductors"
+      ],
+      "url": "https://semiwiki.com/events/367536-siemens-wins-best-in-show-award-at-chiplet-summit-and-targets-broad-3d-ic-design-enablement/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 36,
+      "_rid": 4,
+      "why": "El avance en diseño de chiplets es fundamental para superar los límites físicos de los chips monollíticos de IA.",
+      "entities": [
+        "Siemens",
+        "Siemens EDA"
+      ]
+    },
+    {
+      "title": "Reaching Across the Isles: UK-LLM Brings AI to UK Languages With NVIDIA Nemotron",
+      "link": "https://blogs.nvidia.com/blog/uk-llm-nemotron/",
+      "published": "2025-09-14T01:00:21+00:00",
+      "summary": "Celtic languages — including Cornish, Irish, Scottish Gaelic and Welsh — are the U.K.’s oldest living languages. To empower their speakers, the UK-LLM sovereign AI initiative is building an AI model based on NVIDIA Nemotron that can reason in both English and Welsh, a language spoken by about 850,000 people in Wales today. Enabling high-quality [&#8230;]",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 33,
+      "primary": "geopol",
+      "tags": [
+        "sovereign-ai",
+        "llm",
+        "languages",
+        "uk"
+      ],
+      "url": "https://blogs.nvidia.com/blog/uk-llm-nemotron/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 33,
+      "_rid": 5,
+      "why": "Iniciativa de IA soberana para preservar lenguas minoritarias usando modelos Nemotron adaptados.",
+      "entities": [
+        "NVIDIA",
+        "UK-LLM"
+      ]
+    },
+    {
+      "title": "WEBINAR: HBM4E Advances Bandwidth Performance for AI Training",
+      "link": "https://semiwiki.com/ip/rambus/367607-webinar-hbm4e-advances-bandwidth-performance-for-ai-training/",
+      "published": "2026-03-19T17:00:56+00:00",
+      "summary": "The rapid proliferation of LLMs and other AI applications, and of high-end GPU platforms that run them, is putting intense pressure on the performance requirements for memory technologies. Designers need to be keenly aware of how to make the most of their memory and controller choices, which can be moving targets given the rapid&#8230; Read More The post WEBINAR: HBM4E Advances Bandwidth Performance for AI Training appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 33,
+      "primary": "infra",
+      "tags": [
+        "hbm4e",
+        "memory",
+        "bandwidth",
+        "training"
+      ],
+      "url": "https://semiwiki.com/ip/rambus/367607-webinar-hbm4e-advances-bandwidth-performance-for-ai-training/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 33,
+      "_rid": 6,
+      "why": "La memoria HBM4E es el componente crítico para escalar el rendimiento de entrenamiento de LLMs de próxima generación.",
+      "entities": [
+        "Rambus"
+      ]
+    },
+    {
+      "title": "Isambard-AI, the UK’s Most Powerful AI Supercomputer, Goes Live",
+      "link": "https://blogs.nvidia.com/blog/isambard-ai/",
+      "published": "2025-07-17T17:00:50+00:00",
+      "summary": "The University of Bristol’s Isambard-AI, powered by NVIDIA Grace Hopper Superchips, delivers 21 exaflops of AI performance, making it the fastest system in the U.K. and among the most energy-efficient globally.",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 28,
+      "primary": "infra",
+      "tags": [
+        "supercomputing",
+        "efficiency",
+        "grace-hopper",
+        "uk"
+      ],
+      "url": "https://blogs.nvidia.com/blog/isambard-ai/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 28,
+      "_rid": 7,
+      "why": "Puesta en marcha de uno de los supercomputadores más eficientes para investigación de IA en Europa.",
+      "entities": [
+        "NVIDIA",
+        "University of Bristol"
+      ]
+    },
+    {
+      "title": "Innovation to Impact: How NVIDIA Research Fuels Transformative Work in AI, Graphics and Beyond",
+      "link": "https://blogs.nvidia.com/blog/nvidia-research-ai-graphics/",
+      "published": "2025-03-20T00:00:24+00:00",
+      "summary": "The roots of many of NVIDIA’s landmark innovations — the foundational technology that powers AI, accelerated computing, real-time ray tracing and seamlessly connected data centers — can be found in the company’s research organization, a global team of around 400 experts in fields including computer architecture, generative AI, graphics and robotics. Established in 2006 and [&#8230;]",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 28,
+      "primary": "misc",
+      "tags": [
+        "research",
+        "graphics",
+        "innovation"
+      ],
+      "url": "https://blogs.nvidia.com/blog/nvidia-research-ai-graphics/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 28,
+      "_rid": 8,
+      "why": "Resumen de la trayectoria de investigación de NVIDIA sin anuncios de hardware o modelos específicos inmediatos.",
+      "entities": [
+        "NVIDIA"
+      ]
+    },
+    {
+      "title": "NVIDIA GauGAN2, a powerful [#AI](https://x.com/hashtag/AI?src=hashtag_click) model that allows anyone to convert simple written phrases like \"ocean waves\" in...",
+      "summary": "NVIDIA GauGAN2, a powerful [#AI](https://x.com/hashtag/AI?src=hashtag_click) model that allows anyone to convert simple written phrases like \"ocean waves\" into a photorealistic masterpiece. Learn more about GauGAN2 now: [nvda.ws/3oNitRX](https://t.co/IhNldsaEYV) The media could not be played.",
+      "link": "https://x.com/NVIDIAAI?post=116947ff16ec",
+      "published": "Mon, 23 Mar 2026 07:38:27 GMT",
+      "source": "X @NVIDIAAI",
+      "feed_tags": [
+        "x",
+        "infra",
+        "chips"
+      ],
+      "score": 28,
+      "primary": "models",
+      "tags": [
+        "generative-ai",
+        "vision",
+        "creative-tools"
+      ],
+      "url": "https://x.com/NVIDIAAI?post=116947ff16ec",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 28,
+      "_rid": 9,
+      "why": "Herramienta de generación de imagen a partir de texto; impacto menor comparado con modelos multimodales actuales.",
+      "entities": [
+        "NVIDIA"
+      ]
+    },
+    {
+      "title": "A Visualization for Comparative Analysis of Regression Models",
+      "link": "https://arxiv.org/abs/2603.19291",
+      "published": "2026-03-23T04:00:00+00:00",
+      "summary": "arXiv:2603.19291v1 Announce Type: new Abstract: As regression is a widely studied problem, many methods have been proposed to solve it, each of them often requiring setting different hyper-parameters. Therefore, selecting the proper method for a given application may be very difficult and relies on comparing their performances. Performance is usually measured using various metrics such as Mean Absolute Error (MAE), Root Mean Squared Error (RMSE), or R-squared (R${}^2$). These metrics provide a numerical summary of predictive accuracy by quantifying the difference between predicted and actual values. However, while these metrics are widely used in the literature for summarizing model performance and useful to distinguish between models performing poorly and well, they often aggregate too much information. This article addresses these limitations by introducing a novel visualization approach that highlights key aspects of regression model performance. The proposed method builds upon three main contributions: (1) considering the residuals in a 2D space, which allows for simultaneous evaluation of errors from two models, (2) leveraging the Mahalanobis distance to account for correlations and differences in scale within the data, and (3) employing a colormap to visualize the percentile-based distribution of errors, making it easier to identify dense regions and outliers. By graphically representing the distribution of errors and their correlations, this approach provides a more detailed and comprehensive view of model performance, enabling users to uncover patterns that traditional aggregate metrics may obscure. The proposed visualization method facilitates a deeper understanding of regression model performance differences and error distributions, enhancing the evaluation and comparison process.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 27,
+      "primary": "misc",
+      "tags": [
+        "regression",
+        "data-viz",
+        "analytics"
+      ],
+      "url": "https://arxiv.org/abs/2603.19291",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 27,
+      "_rid": 10,
+      "why": "Herramienta académica para visualización estadística sin impacto directo en la escala o potencia de la IA.",
+      "entities": [
+        "arXiv"
+      ]
+    },
+    {
+      "title": "Applications Now Open for $60,000 NVIDIA Graduate Fellowship Awards",
+      "link": "https://blogs.nvidia.com/blog/applications-open-graduate-fellowship-awards-2025/",
+      "published": "2025-08-13T15:00:02+00:00",
+      "summary": "Bringing together the world’s brightest minds and the latest accelerated computing technology leads to powerful breakthroughs that help tackle some of the biggest research problems. To foster such innovation, the NVIDIA Graduate Fellowship Program provides grants, mentors and technical support to doctoral students doing outstanding research relevant to NVIDIA technologies. The program, in its 25th [&#8230;]",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 26,
+      "primary": "invest",
+      "tags": [
+        "education",
+        "fellowship",
+        "talent"
+      ],
+      "url": "https://blogs.nvidia.com/blog/applications-open-graduate-fellowship-awards-2025/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 26,
+      "_rid": 11,
+      "why": "Programa de becas para doctorado; impacto a largo plazo en talento pero nulo en el mercado inmediato.",
+      "entities": [
+        "NVIDIA"
+      ]
+    },
+    {
+      "title": "NVIDIA Releases New AI Models and Developer Tools to Advance Autonomous Vehicle Ecosystem",
+      "link": "https://blogs.nvidia.com/blog/autonomous-vehicle-ecosystem-ai-models-developer-tools/",
+      "published": "2025-06-11T10:55:36+00:00",
+      "summary": "Autonomous vehicle (AV) stacks are evolving from many distinct models to a unified, end-to-end architecture that executes driving actions directly from sensor data. This transition to using larger models is drastically increasing the demand for high-quality, physically based sensor data for training, testing and validation. To help accelerate the development of next-generation AV architectures, NVIDIA [&#8230;]",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 26,
+      "primary": "models",
+      "tags": [
+        "autonomous-vehicles",
+        "simulation",
+        "data-generation"
+      ],
+      "url": "https://blogs.nvidia.com/blog/autonomous-vehicle-ecosystem-ai-models-developer-tools/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 26,
+      "_rid": 12,
+      "why": "Transición a arquitecturas end-to-end en conducción autónoma que demandan simulación física masiva.",
+      "entities": [
+        "NVIDIA"
+      ]
+    },
+    {
+      "title": "Hyperagents",
+      "link": "https://arxiv.org/abs/2603.19461",
+      "published": "2026-03-23T04:00:00+00:00",
+      "summary": "arXiv:2603.19461v1 Announce Type: new Abstract: Self-improving AI systems aim to reduce reliance on human engineering by learning to improve their own learning and problem-solving processes. Existing approaches to self-improvement rely on fixed, handcrafted meta-level mechanisms, fundamentally limiting how fast such systems can improve. The Darwin G\\\"odel Machine (DGM) demonstrates open-ended self-improvement in coding by repeatedly generating and evaluating self-modified variants. Because both evaluation and self-modification are coding tasks, gains in coding ability can translate into gains in self-improvement ability. However, this alignment does not generally hold beyond coding domains. We introduce \\textbf{hyperagents}, self-referential agents that integrate a task agent (which solves the target task) and a meta agent (which modifies itself and the task agent) into a single editable program. Crucially, the meta-level modification procedure is itself editable, enabling metacognitive self-modification, improving not only the task-solving behavior, but also the mechanism that generates future improvements. We instantiate this framework by extending DGM to create DGM-Hyperagents (DGM-H), eliminating the assumption of domain-specific alignment between task performance and self-modification skill to potentially support self-accelerating progress on any computable task. Across diverse domains, the DGM-H improves performance over time and outperforms baselines without self-improvement or open-ended exploration, as well as prior self-improving systems. Furthermore, the DGM-H improves the process by which it generates new agents (e.g., persistent memory, performance tracking), and these meta-level improvements transfer across domains and accumulate across runs. DGM-Hyperagents offer a glimpse of open-ended AI systems that do not merely search for better solutions, but continually improve their search for how to improve.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 22,
+      "primary": "models",
+      "tags": [
+        "self-improvement",
+        "agents",
+        "recursive-ai"
+      ],
+      "url": "https://arxiv.org/abs/2603.19461",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 22,
+      "_rid": 13,
+      "why": "Investigación en sistemas que mejoran su propio aprendizaje; potencial disruptivo en la autonomía de modelos.",
+      "entities": [
+        "Darwin Goedel Machine"
+      ]
+    },
+    {
+      "title": "When both Grounding and not Grounding are Bad -- A Partially Grounded Encoding of Planning into SAT (Extended Version)",
+      "link": "https://arxiv.org/abs/2603.19429",
+      "published": "2026-03-23T04:00:00+00:00",
+      "summary": "arXiv:2603.19429v1 Announce Type: new Abstract: Classical planning problems are typically defined using lifted first-order representations, which offer compactness and generality. While most planners ground these representations to simplify reasoning, this can cause an exponential blowup in size. Recent approaches instead operate directly on the lifted level to avoid full grounding. We explore a middle ground between fully lifted and fully grounded planning by introducing three SAT encodings that keep actions lifted while partially grounding predicates. Unlike previous SAT encodings, which scale quadratically with plan length, our approach scales linearly, enabling better performance on longer plans. Empirically, our best encoding outperforms the state of the art in length-optimal planning on hard-to-ground domains.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 20,
+      "primary": "models",
+      "tags": [
+        "logic",
+        "sat",
+        "planning",
+        "optimization"
+      ],
+      "url": "https://arxiv.org/abs/2603.19429",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 20,
+      "_rid": 14,
+      "why": "Mejora algorítmica en la planificación SAT que reduce la complejidad computacional en tareas lógicas.",
+      "entities": [
+        "arXiv"
+      ]
+    },
+    {
+      "title": "In order to understand the universe, you must explore the universe → [x.ai/careers](https://t.co/E9BY2xFmcL) We're building TERAFAB to close the gap between ...",
+      "summary": "In order to understand the universe, you must explore the universe → [x.ai/careers](https://t.co/E9BY2xFmcL) We're building TERAFAB to close the gap between today’s chip production & the future's demand – a future among the stars. Join us → [terafab.ai](https://t.co/512DIlqNgY)",
+      "link": "https://x.com/xai?post=164bfac0fcd2",
+      "published": "Mon, 23 Mar 2026 07:22:15 GMT",
+      "source": "X @xai",
+      "feed_tags": [
+        "x",
+        "models"
+      ],
+      "score": 5,
+      "primary": "misc",
+      "tags": [],
+      "url": "https://x.com/xai?post=164bfac0fcd2",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 5,
+      "entities": [
+        "TERAFAB"
+      ],
+      "why": "In order to understand the universe, you must explore the universe → [x.ai/careers](https://t.co/E9BY2xFmcL) We're building TERAFAB to close the gap between tod"
+    }
+  ]
+}
