@@ -1,0 +1,471 @@
+{
+  "date": "2026-03-26",
+  "score_avg": 29.6,
+  "primary_dist": {
+    "models": 6,
+    "infra": 5,
+    "geopol": 1,
+    "invest": 2,
+    "misc": 1
+  },
+  "top_entities": [
+    {
+      "entity": "NVIDIA",
+      "count": 8
+    },
+    {
+      "entity": "arXiv",
+      "count": 4
+    },
+    {
+      "entity": "Google DeepMind",
+      "count": 2
+    },
+    {
+      "entity": "OpenAI",
+      "count": 1
+    },
+    {
+      "entity": "UK-LLM",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "OpenAI confirma entrenamiento de GPT-5.2 y GPT-5.3 sobre infraestructura NVIDIA Blackwell (GB200).",
+      "Reino Unido activa Isambard-AI, supercomputador de 21 exaflops para soberanía tecnológica.",
+      "Google DeepMind escala su modelo Gemini a hardware físico mediante alianza con Agile Robots.",
+      "Transición en vehículos autónomos hacia arquitecturas unificadas end-to-end basadas en datos de sensores físicos.",
+      "Surgimiento de 'Environment Maps' para dotar a agentes de IA de memoria persistente en flujos de trabajo complejos."
+    ],
+    "risks": [
+      "Errores en cascada y estocasticidad ambiental en agentes de IA de largo horizonte.",
+      "Dificultad para distinguir generalización real de memorización (shortcuts) en evaluaciones estándar de LLMs.",
+      "Inestabilidad química en fotorresistencias MOR para litografía EUV de alta apertura numérica (High-NA)."
+    ],
+    "watch": [
+      "Despliegue operativo del agente codificador autónomo GPT-5.3 Codex.",
+      "Resultados de la integración de modelos Gemini en robots comerciales de Agile Robots.",
+      "Adopción de modelos de soberanía lingüística (Sovereign AI) como el UK-LLM en otras regiones."
+    ],
+    "entities_top": [
+      "NVIDIA",
+      "OpenAI",
+      "Google DeepMind"
+    ]
+  },
+  "items": [
+    {
+      "title": "As AI Grows More Complex, Model Builders Rely on NVIDIA",
+      "link": "https://blogs.nvidia.com/blog/leading-models-nvidia/",
+      "published": "2025-12-11T19:19:57+00:00",
+      "summary": "Unveiling what it describes as the most capable model series yet for professional knowledge work, OpenAI launched GPT-5.2 in December. The model was trained and deployed on NVIDIA infrastructure, including NVIDIA Hopper and GB200 NVL72 systems. GPT-5.3 Codex — the first OpenAI agentic coding model to help build itself — was released in February and [&#8230;]",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 47,
+      "primary": "models",
+      "tags": [
+        "llm",
+        "compute",
+        "blackwell",
+        "agentic"
+      ],
+      "url": "https://blogs.nvidia.com/blog/leading-models-nvidia/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 47,
+      "_rid": 1,
+      "why": "Confirmación del uso de GB200 para GPT-5.2 y el lanzamiento de GPT-5.3 Codex como primer agente de autoconstrucción.",
+      "entities": [
+        "NVIDIA",
+        "OpenAI"
+      ]
+    },
+    {
+      "title": "Environment Maps: Structured Environmental Representations for Long-Horizon Agents",
+      "link": "https://arxiv.org/abs/2603.23610",
+      "published": "2026-03-26T04:00:00+00:00",
+      "summary": "arXiv:2603.23610v1 Announce Type: new Abstract: Although large language models (LLMs) have advanced rapidly, robust automation of complex software workflows remains an open problem. In long-horizon settings, agents frequently suffer from cascading errors and environmental stochasticity; a single misstep in a dynamic interface can lead to task failure, resulting in hallucinations or trial-and-error. This paper introduces $\\textit{Environment Maps}$: a persistent, agent-agnostic representation that mitigates these failures by consolidating heterogeneous evidence, such as screen recordings and execution traces, into a structured graph. The representation consists of four core components: (1) Contexts (abstracted locations), (2) Actions (parameterized affordances), (3) Workflows (observed trajectories), and (4) Tacit Knowledge (domain definitions and reusable procedures). We evaluate this framework on the WebArena benchmark across five domains. Agents equipped with environment maps achieve a 28.2% success rate, nearly doubling the performance of baselines limited to session-bound context (14.2%) and outperforming agents that have access to the raw trajectory data used to generate the environment maps (23.3%). By providing a structured interface between the model and the environment, Environment Maps establish a persistent foundation for long-horizon planning that is human-interpretable, editable, and incrementally refinable.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 45,
+      "primary": "models",
+      "tags": [
+        "agents",
+        "software-automation",
+        "reasoning"
+      ],
+      "url": "https://arxiv.org/abs/2603.23610",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 45,
+      "_rid": 2,
+      "why": "Introducción de representaciones gráficas estructuradas para reducir fallos por alucinación en tareas de larga duración.",
+      "entities": [
+        "arXiv"
+      ]
+    },
+    {
+      "title": "PLDR-LLMs Reason At Self-Organized Criticality",
+      "link": "https://arxiv.org/abs/2603.23539",
+      "published": "2026-03-26T04:00:00+00:00",
+      "summary": "arXiv:2603.23539v1 Announce Type: new Abstract: We show that PLDR-LLMs pretrained at self-organized criticality exhibit reasoning at inference time. The characteristics of PLDR-LLM deductive outputs at criticality is similar to second-order phase transitions. At criticality, the correlation length diverges, and the deductive outputs attain a metastable steady state. The steady state behaviour suggests that deductive outputs learn representations equivalent to scaling functions, universality classes and renormalization groups from the training dataset, leading to generalization and reasoning capabilities in the process. We can then define an order parameter from the global statistics of the model's deductive output parameters at inference. The reasoning capabilities of a PLDR-LLM is better when its order parameter is close to zero at criticality. This observation is supported by the benchmark scores of the models trained at near-criticality and sub-criticality. Our results provide a self-contained explanation on how reasoning manifests in large language models, and the ability to reason can be quantified solely from global model parameter values of the deductive outputs at steady state, without any need for evaluation of curated benchmark datasets through inductive output for reasoning and comprehension.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 42,
+      "primary": "models",
+      "tags": [
+        "physics",
+        "reasoning",
+        "theory"
+      ],
+      "url": "https://arxiv.org/abs/2603.23539",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 42,
+      "_rid": 3,
+      "why": "Investigación sobre la relación entre la criticidad autoorganizada y la capacidad de razonamiento deductivo en LLMs.",
+      "entities": [
+        "arXiv"
+      ]
+    },
+    {
+      "title": "Implicit Turn-Wise Policy Optimization for Proactive User-LLM Interaction",
+      "link": "https://arxiv.org/abs/2603.23550",
+      "published": "2026-03-26T04:00:00+00:00",
+      "summary": "arXiv:2603.23550v1 Announce Type: new Abstract: Multi-turn human-AI collaboration is fundamental to deploying interactive services such as adaptive tutoring, conversational recommendation, and professional consultation. However, optimizing these interactions via reinforcement learning is hindered by the sparsity of verifiable intermediate rewards and the high stochasticity of user responses. To address these challenges, we introduce Implicit Turn-wise Policy Optimization (ITPO). ITPO leverages an implicit process reward model to derive fine-grained, turn-wise process rewards from sparse outcome signals. Unlike volatile token-level rewards, these turn-level signals exhibit superior robustness and may utilize a normalization mechanism to further enhance training stability. We evaluate ITPO across three representative multi-turn collaborative tasks: math tutoring, document writing, and medical recommendation. Empirical results demonstrate that ITPO, when combined with PPO, GRPO, or RLOO, consistently achieves improved convergence than existing baselines. Elaborate trajectory analysis confirms that ITPO infers turn-wise preferences that are semantically aligned with human judgment. Code is publicly available at https://github.com/Graph-COM/ITPO.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 37,
+      "primary": "models",
+      "tags": [
+        "rl",
+        "interaction",
+        "feedback"
+      ],
+      "url": "https://arxiv.org/abs/2603.23550",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 37,
+      "_rid": 4,
+      "why": "Método para optimizar diálogos proactivos mediante recompensas por turno en lugar de señales de token dispersas.",
+      "entities": [
+        "arXiv"
+      ]
+    },
+    {
+      "title": "NVIDIA Research Shapes Physical AI",
+      "link": "https://blogs.nvidia.com/blog/physical-ai-research-siggraph-2025/",
+      "published": "2025-08-11T15:00:38+00:00",
+      "summary": "AI and graphics research breakthroughs in neural rendering, 3D generation and world simulation power robotics, autonomous vehicles and content creation.",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 36,
+      "primary": "infra",
+      "tags": [
+        "robotics",
+        "simulation",
+        "physical-ai"
+      ],
+      "url": "https://blogs.nvidia.com/blog/physical-ai-research-siggraph-2025/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 36,
+      "_rid": 5,
+      "why": "Avances en renderizado neuronal y simulación 3D para entrenar agentes en entornos físicos del mundo real.",
+      "entities": [
+        "NVIDIA"
+      ]
+    },
+    {
+      "title": "Reaching Across the Isles: UK-LLM Brings AI to UK Languages With NVIDIA Nemotron",
+      "link": "https://blogs.nvidia.com/blog/uk-llm-nemotron/",
+      "published": "2025-09-14T01:00:21+00:00",
+      "summary": "Celtic languages — including Cornish, Irish, Scottish Gaelic and Welsh — are the U.K.’s oldest living languages. To empower their speakers, the UK-LLM sovereign AI initiative is building an AI model based on NVIDIA Nemotron that can reason in both English and Welsh, a language spoken by about 850,000 people in Wales today. Enabling high-quality [&#8230;]",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 33,
+      "primary": "geopol",
+      "tags": [
+        "sovereign-ai",
+        "llm",
+        "languages"
+      ],
+      "url": "https://blogs.nvidia.com/blog/uk-llm-nemotron/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 33,
+      "_rid": 6,
+      "why": "Iniciativa de IA soberana en el Reino Unido para preservar lenguas celtas usando la arquitectura Nemotron.",
+      "entities": [
+        "NVIDIA",
+        "UK-LLM"
+      ]
+    },
+    {
+      "title": "Isambard-AI, the UK’s Most Powerful AI Supercomputer, Goes Live",
+      "link": "https://blogs.nvidia.com/blog/isambard-ai/",
+      "published": "2025-07-17T17:00:50+00:00",
+      "summary": "The University of Bristol’s Isambard-AI, powered by NVIDIA Grace Hopper Superchips, delivers 21 exaflops of AI performance, making it the fastest system in the U.K. and among the most energy-efficient globally.",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 28,
+      "primary": "infra",
+      "tags": [
+        "supercomputing",
+        "hpc",
+        "compute"
+      ],
+      "url": "https://blogs.nvidia.com/blog/isambard-ai/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 28,
+      "_rid": 7,
+      "why": "Puesta en marcha de Isambard-AI con 21 exaflops, convirtiéndose en el nodo de computación más potente del Reino Unido.",
+      "entities": [
+        "University of Bristol",
+        "NVIDIA"
+      ]
+    },
+    {
+      "title": "Innovation to Impact: How NVIDIA Research Fuels Transformative Work in AI, Graphics and Beyond",
+      "link": "https://blogs.nvidia.com/blog/nvidia-research-ai-graphics/",
+      "published": "2025-03-20T00:00:24+00:00",
+      "summary": "The roots of many of NVIDIA’s landmark innovations — the foundational technology that powers AI, accelerated computing, real-time ray tracing and seamlessly connected data centers — can be found in the company’s research organization, a global team of around 400 experts in fields including computer architecture, generative AI, graphics and robotics. Established in 2006 and [&#8230;]",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 28,
+      "primary": "invest",
+      "tags": [
+        "r-d",
+        "innovation",
+        "corporate"
+      ],
+      "url": "https://blogs.nvidia.com/blog/nvidia-research-ai-graphics/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 28,
+      "_rid": 8,
+      "why": "Recorrido por la organización de investigación de NVIDIA que sustenta sus innovaciones en computación acelerada.",
+      "entities": [
+        "NVIDIA"
+      ]
+    },
+    {
+      "title": "NVIDIA GauGAN2, a powerful [#AI](https://x.com/hashtag/AI?src=hashtag_click) model that allows anyone to convert simple written phrases like \"ocean waves\" in...",
+      "summary": "NVIDIA GauGAN2, a powerful [#AI](https://x.com/hashtag/AI?src=hashtag_click) model that allows anyone to convert simple written phrases like \"ocean waves\" into a photorealistic masterpiece. Learn more about GauGAN2 now: [nvda.ws/3oNitRX](https://t.co/IhNldsaEYV) The media could not be played.",
+      "link": "https://x.com/NVIDIAAI?post=116947ff16ec",
+      "published": "Thu, 26 Mar 2026 07:36:09 GMT",
+      "source": "X @NVIDIAAI",
+      "feed_tags": [
+        "x",
+        "infra",
+        "chips"
+      ],
+      "score": 28,
+      "primary": "misc",
+      "tags": [
+        "creative",
+        "genai",
+        "imagery"
+      ],
+      "url": "https://x.com/NVIDIAAI?post=116947ff16ec",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 28,
+      "_rid": 9,
+      "why": "Herramienta de generación de imágenes fotorrealistas mediante frases simples, con impacto limitado en el ecosistema técnico.",
+      "entities": [
+        "NVIDIA"
+      ]
+    },
+    {
+      "title": "Applications Now Open for $60,000 NVIDIA Graduate Fellowship Awards",
+      "link": "https://blogs.nvidia.com/blog/applications-open-graduate-fellowship-awards-2025/",
+      "published": "2025-08-13T15:00:02+00:00",
+      "summary": "Bringing together the world’s brightest minds and the latest accelerated computing technology leads to powerful breakthroughs that help tackle some of the biggest research problems. To foster such innovation, the NVIDIA Graduate Fellowship Program provides grants, mentors and technical support to doctoral students doing outstanding research relevant to NVIDIA technologies. The program, in its 25th [&#8230;]",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 26,
+      "primary": "invest",
+      "tags": [
+        "talent",
+        "academic",
+        "grants"
+      ],
+      "url": "https://blogs.nvidia.com/blog/applications-open-graduate-fellowship-awards-2025/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 26,
+      "_rid": 10,
+      "why": "Programa de becas para doctorado enfocado en problemas de investigación relevantes para hardware de NVIDIA.",
+      "entities": [
+        "NVIDIA"
+      ]
+    },
+    {
+      "title": "NVIDIA Releases New AI Models and Developer Tools to Advance Autonomous Vehicle Ecosystem",
+      "link": "https://blogs.nvidia.com/blog/autonomous-vehicle-ecosystem-ai-models-developer-tools/",
+      "published": "2025-06-11T10:55:36+00:00",
+      "summary": "Autonomous vehicle (AV) stacks are evolving from many distinct models to a unified, end-to-end architecture that executes driving actions directly from sensor data. This transition to using larger models is drastically increasing the demand for high-quality, physically based sensor data for training, testing and validation. To help accelerate the development of next-generation AV architectures, NVIDIA [&#8230;]",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 26,
+      "primary": "infra",
+      "tags": [
+        "autonomous-driving",
+        "simulation",
+        "sensors"
+      ],
+      "url": "https://blogs.nvidia.com/blog/autonomous-vehicle-ecosystem-ai-models-developer-tools/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 26,
+      "_rid": 11,
+      "why": "Nuevas herramientas para el ecosistema de vehículos autónomos que facilitan la transición a modelos end-to-end.",
+      "entities": [
+        "NVIDIA"
+      ]
+    },
+    {
+      "title": "Beyond Accuracy: Introducing a Symbolic-Mechanistic Approach to Interpretable Evaluation",
+      "link": "https://arxiv.org/abs/2603.23517",
+      "published": "2026-03-26T04:00:00+00:00",
+      "summary": "arXiv:2603.23517v1 Announce Type: new Abstract: Accuracy-based evaluation cannot reliably distinguish genuine generalization from shortcuts like memorization, leakage, or brittle heuristics, especially in small-data regimes. In this position paper, we argue for mechanism-aware evaluation that combines task-relevant symbolic rules with mechanistic interpretability, yielding algorithmic pass/fail scores that show exactly where models generalize versus exploit patterns. We demonstrate this on NL-to-SQL by training two identical architectures under different conditions: one without schema information (forcing memorization), one with schema (enabling grounding). Standard evaluation shows the memorization model achieves 94% field-name accuracy on unseen data, falsely suggesting competence. Our symbolic-mechanistic evaluation reveals this model violates core schema generalization rules, a failure invisible to accuracy metrics.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 22,
+      "primary": "models",
+      "tags": [
+        "interpretability",
+        "evaluation",
+        "trust"
+      ],
+      "url": "https://arxiv.org/abs/2603.23517",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 22,
+      "_rid": 12,
+      "why": "Propuesta de evaluación mecanismo-consciente para separar la generalización algorítmica de la memorización de datos.",
+      "entities": [
+        "arXiv"
+      ]
+    },
+    {
+      "title": "Google DeepMind ![Image 3: 🤝](https://abs-0.twimg.com/emoji/v2/svg/1f91d.svg) Agile Robots Our new research partnership will integrate the Gemini foundation ...",
+      "summary": "Google DeepMind ![Image 3: 🤝](https://abs-0.twimg.com/emoji/v2/svg/1f91d.svg) Agile Robots Our new research partnership will integrate the Gemini foundation models with their hardware to help build the next generation of more helpful and useful robots. Find out more → [goo.gle/4lKu7de](https://t.co/dptWjeZwya)",
+      "link": "https://x.com/GoogleDeepMind/status/2036418139672482229",
+      "published": "Thu, 26 Mar 2026 07:08:37 GMT",
+      "source": "X @GoogleDeepMind",
+      "feed_tags": [
+        "x",
+        "research",
+        "models"
+      ],
+      "score": 19,
+      "primary": "infra",
+      "tags": [
+        "robotics",
+        "gemini",
+        "hardware"
+      ],
+      "url": "https://x.com/GoogleDeepMind/status/2036418139672482229",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 19,
+      "_rid": 13,
+      "why": "Integración estratégica de modelos Gemini en hardware robótico para desarrollar agentes físicos de nueva generación.",
+      "entities": [
+        "Google DeepMind",
+        "Agile Robots"
+      ]
+    },
+    {
+      "title": "Build with Lyria 3, our newest music generation model",
+      "link": "https://blog.google/innovation-and-ai/technology/developers-tools/lyria-3-developers/",
+      "published": "2026-03-25T16:00:00+00:00",
+      "summary": "Google Lyria teaser",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 14,
+      "primary": "models",
+      "tags": [
+        "audio",
+        "music",
+        "genai"
+      ],
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/lyria-3-developers/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 14,
+      "_rid": 14,
+      "why": "Lanzamiento de Lyria 3 para generación musical, expandiendo el catálogo de modelos multimodales de Google.",
+      "entities": [
+        "Google DeepMind"
+      ]
+    },
+    {
+      "title": "Chemical Origins of Environmental Modifications to MOR Lithographic Chemistry",
+      "link": "https://semiwiki.com/lithography/367266-chemical-origins-of-environmental-modifications-to-mor-lithographic-chemistry/",
+      "published": "2026-03-25T17:00:19+00:00",
+      "summary": "In the pursuit of advanced extreme ultraviolet (EUV) lithography for high-NA patterning, metal oxide resists (MORs) offer significant promise but face challenges like critical dimension (CD) variation due to atmospheric interactions. Presented at SPIE Advanced Lithography + Patterning 2025 by Kevin M. Dorney and colleagues&#8230; Read More The post Chemical Origins of Environmental Modifications to MOR Lithographic Chemistry appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 13,
+      "primary": "infra",
+      "tags": [
+        "semiconductors",
+        "lithography",
+        "high-na"
+      ],
+      "url": "https://semiwiki.com/lithography/367266-chemical-origins-of-environmental-modifications-to-mor-lithographic-chemistry/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 13,
+      "_rid": 15,
+      "why": "Avance en la química de materiales para litografía EUV, fundamental para la fabricación de chips de próxima generación.",
+      "entities": [
+        "SemiWiki"
+      ]
+    }
+  ]
+}
