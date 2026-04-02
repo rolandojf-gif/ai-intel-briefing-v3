@@ -1,0 +1,486 @@
+{
+  "date": "2026-04-02",
+  "score_avg": 15.73,
+  "primary_dist": {
+    "models": 8,
+    "infra": 3,
+    "invest": 1,
+    "misc": 2,
+    "geopol": 1
+  },
+  "top_entities": [
+    {
+      "entity": "Google",
+      "count": 3
+    },
+    {
+      "entity": "Google DeepMind",
+      "count": 3
+    },
+    {
+      "entity": "CAMP",
+      "count": 1
+    },
+    {
+      "entity": "E-STEER",
+      "count": 1
+    },
+    {
+      "entity": "Two",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "Google renueva su ecosistema con Gemini 3.1 Pro, Deep Think, Lyria 3 y Veo 3.1 Lite en un despliegue masivo",
+      "Alchip lidera la carrera hacia los 2nm en ASICs personalizados para IA de alto rendimiento",
+      "RISC-V alcanza escala comercial desafiando arquitecturas propietarias en el ecosistema de semiconductores",
+      "NVIDIA impulsa el concepto de infraestructura de inteligencia soberana en el mercado europeo",
+      "Nuevos metodos de seleccion de datos online optimizan el fine-tuning eficiente de modelos de lenguaje"
+    ],
+    "risks": [
+      "Degradacion de rendimiento por heterogeneidad de tareas en redes de aprendizaje federado",
+      "Riesgos de manipulacion maliciosa del comportamiento de la IA en sectores criticos como finanzas",
+      "Inestabilidad geopolitica impactando la cadena de suministro global de hardware avanzado"
+    ],
+    "watch": [
+      "Rendimiento real de Gemini 3 Deep Think en retos cientificos y de ingenieria complejos",
+      "Adopcion de arquitecturas RISC-V frente a x86 y ARM en centros de datos de IA",
+      "Viabilidad comercial y plazos de fabricacion de los chips de 2nm de Alchip"
+    ],
+    "entities_top": [
+      "Google DeepMind",
+      "NVIDIA",
+      "Alchip Technologies"
+    ]
+  },
+  "items": [
+    {
+      "title": "One Panel Does Not Fit All: Case-Adaptive Multi-Agent Deliberation for Clinical Prediction",
+      "link": "https://arxiv.org/abs/2604.00085",
+      "published": "2026-04-02T04:00:00+00:00",
+      "summary": "arXiv:2604.00085v1 Announce Type: new Abstract: Large language models applied to clinical prediction exhibit case-level heterogeneity: simple cases yield consistent outputs, while complex cases produce divergent predictions under minor prompt changes. Existing single-agent strategies sample from one role-conditioned distribution, and multi-agent frameworks use fixed roles with flat majority voting, discarding the diagnostic signal in disagreement. We propose CAMP (Case-Adaptive Multi-agent Panel), where an attending-physician agent dynamically assembles a specialist panel tailored to each case's diagnostic uncertainty. Each specialist evaluates candidates via three-valued voting (KEEP/REFUSE/NEUTRAL), enabling principled abstention outside one's expertise. A hybrid router directs each diagnosis through strong consensus, fallback to the attending physician's judgment, or evidence-based arbitration that weighs argument quality over vote counts. On diagnostic prediction and brief hospital course generation from MIMIC-IV across four LLM backbones, CAMP consistently outperforms strong baselines while consuming fewer tokens than most competing multi-agent methods, with voting records and arbitration traces offering transparent decision audits.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 35,
+      "primary": "models",
+      "tags": [
+        "clinical prediction",
+        "multi-agent",
+        "healthcare",
+        "ai agents"
+      ],
+      "url": "https://arxiv.org/abs/2604.00085",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 35,
+      "_rid": 1,
+      "why": "Propuesta de paneles multi-agente adaptativos para mejorar la precision diagnostica en casos medicos complejos y ambiguos",
+      "entities": [
+        "CAMP"
+      ]
+    },
+    {
+      "title": "How Emotion Shapes the Behavior of LLMs and Agents: A Mechanistic Study",
+      "link": "https://arxiv.org/abs/2604.00005",
+      "published": "2026-04-02T04:00:00+00:00",
+      "summary": "arXiv:2604.00005v1 Announce Type: new Abstract: Emotion plays an important role in human cognition and performance. Motivated by this, we investigate whether analogous emotional signals can shape the behavior of large language models (LLMs) and agents. Existing emotion-aware studies mainly treat emotion as a surface-level style factor or a perception target, overlooking its mechanistic role in task processing. To address this limitation, we propose E-STEER, an interpretable emotion steering framework that enables direct representation-level intervention in LLMs and agents. It embeds emotion as a structured, controllable variable in hidden states, and with it, we examine the impact of emotion on objective reasoning, subjective generation, safety, and multi-step agent behaviors. The results reveal non-monotonic emotion-behavior relations consistent with established psychological theories, and show that specific emotions not only enhance LLM capability but also improve safety, and systematically shape multi-step agent behaviors.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 32,
+      "primary": "models",
+      "tags": [
+        "emotion steering",
+        "mechanistic study",
+        "llm behavior"
+      ],
+      "url": "https://arxiv.org/abs/2604.00005",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 32,
+      "_rid": 2,
+      "why": "Estudio sobre como intervenir en las representaciones internas de los LLM para controlar el impacto de señales emocionales",
+      "entities": [
+        "E-STEER"
+      ]
+    },
+    {
+      "title": "Two-Stage Optimizer-Aware Online Data Selection for Large Language Models",
+      "link": "https://arxiv.org/abs/2604.00001",
+      "published": "2026-04-02T04:00:00+00:00",
+      "summary": "arXiv:2604.00001v1 Announce Type: new Abstract: Gradient-based data selection offers a principled framework for estimating sample utility in large language model (LLM) fine-tuning, but existing methods are mostly designed for offline settings. They are therefore less suited to online fine-tuning, where data arrives sequentially, sample utility is step-dependent, and the effective update geometry is shaped by adaptive optimizers. We propose an optimizer-aware framework for gradient-based online data selection and reweighting in LLM fine-tuning. Our key idea is to view online selection not as static sample ranking, but as shaping the next target-oriented update under the optimizer state. We formulate this as an optimizer-aware update-matching problem, establish its connection to second-order target utility, and show why subset-level construction must account for interactions and redundancy among selected samples. Based on this view, we develop a two-stage Filter-then-Weight algorithm that first filters geometrically useful candidates and then optimizes their coefficients. To make the framework practical for LLMs, we introduce a factorized outer-product gradient representation and optimized matrix computations for long-context data. Experiments show that our method consistently improves convergence and downstream performance over existing online data selection baselines under the same data budget.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 25,
+      "primary": "models",
+      "tags": [
+        "data selection",
+        "fine-tuning",
+        "optimization",
+        "efficiency"
+      ],
+      "url": "https://arxiv.org/abs/2604.00001",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 25,
+      "_rid": 3,
+      "why": "Metodologia de seleccion de datos online que considera el estado del optimizador para mejorar la eficiencia del entrenamiento",
+      "entities": [
+        "Two",
+        "Stage Optimizer",
+        "Aware Online Data",
+        "Selection",
+        "Large Language Models"
+      ]
+    },
+    {
+      "title": "Task-Centric Personalized Federated Fine-Tuning of Language Models",
+      "link": "https://arxiv.org/abs/2604.00050",
+      "published": "2026-04-02T04:00:00+00:00",
+      "summary": "arXiv:2604.00050v1 Announce Type: new Abstract: Federated Learning (FL) has emerged as a promising technique for training language models on distributed and private datasets of diverse tasks. However, aggregating models trained on heterogeneous tasks often degrades the overall performance of individual clients. To address this issue, Personalized FL (pFL) aims to create models tailored for each client's data distribution. Although these approaches improve local performance, they usually lack robustness in two aspects: (i) generalization: when clients must make predictions on unseen tasks, or face changes in their data distributions, and (ii) intra-client tasks interference: when a single client's data contains multiple distributions that may interfere with each other during local training. To tackle these two challenges, we propose FedRouter, a clustering-based pFL that builds specialized models for each task rather than for each client. FedRouter uses adapters to personalize models by employing two clustering mechanisms to associate adapters with specific tasks. A local clustering that associate adapters with task data samples and a global one that associates similar adapters from different clients to construct task-centric personalized models. Additionally, we propose an evaluation router mechanism that routes test samples to the best adapter based on the created clusters. Experiments comparing our method with existing approaches across a multitask dataset, FedRouter demonstrate strong resilience in these challenging scenarios performing up to 6.1% relatively better under tasks interference and up to 136% relative improvement under generalization evaluation.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 22,
+      "primary": "infra",
+      "tags": [
+        "federated learning",
+        "privacy",
+        "distributed training"
+      ],
+      "url": "https://arxiv.org/abs/2604.00050",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 22,
+      "_rid": 4,
+      "why": "Optimizacion de aprendizaje federado para modelos de lenguaje en entornos distribuidos con datos heterogeneos",
+      "entities": [
+        "Task",
+        "Centric Personalized Federated",
+        "Fine",
+        "Tuning",
+        "Language Models"
+      ]
+    },
+    {
+      "title": "Build with Lyria 3, our newest music generation model",
+      "link": "https://blog.google/innovation-and-ai/technology/developers-tools/lyria-3-developers/",
+      "published": "2026-03-25T16:00:00+00:00",
+      "summary": "Google Lyria teaser",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 14,
+      "primary": "models",
+      "tags": [
+        "music generation",
+        "multimodal",
+        "google lyria"
+      ],
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/lyria-3-developers/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 14,
+      "_rid": 5,
+      "why": "Lanzamiento de Lyria 3 para generacion de musica, reforzando la oferta creativa de Google para desarrolladores",
+      "entities": [
+        "Google"
+      ]
+    },
+    {
+      "title": "Alchip’s Leadership in ASIC Innovation: Advancing Toward 2nm Semiconductor Technology",
+      "link": "https://semiwiki.com/semiconductor-services/alchip/367489-alchips-leadership-in-asic-innovation-advancing-toward-2nm-semiconductor-technology/",
+      "published": "2026-04-01T17:00:48+00:00",
+      "summary": "Alchip Technologies has recently reported significant progress in the development of advanced 2nm ASICs, positioning itself as a leader in next-generation semiconductor design for AI and HPC. The announcement highlights Alchip’s efforts to commercialize cutting-edge chip technologies and deliver highly customized &#8230; Read More The post Alchip’s Leadership in ASIC Innovation: Advancing Toward 2nm Semiconductor Technology appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 13,
+      "primary": "infra",
+      "tags": [
+        "2nm",
+        "asic",
+        "semiconductors",
+        "hpc"
+      ],
+      "url": "https://semiwiki.com/semiconductor-services/alchip/367489-alchips-leadership-in-asic-innovation-advancing-toward-2nm-semiconductor-technology/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 13,
+      "_rid": 6,
+      "why": "Avance critico en el diseño de chips de 2nm para acelerar aplicaciones de IA y computacion de alto rendimiento",
+      "entities": [
+        "Alchip Technologies"
+      ]
+    },
+    {
+      "title": "RISC-V Now! — Where Specification Meets Scale!",
+      "link": "https://semiwiki.com/ip/andes-technology/367155-risc-v-now-where-specification-meets-scale/",
+      "published": "2026-03-31T15:00:59+00:00",
+      "summary": "In forty plus years as a semiconductor professional I have never seen a semiconductor design ecosystem build as fast and as strong as RISC-V. As a result, RISC-V Now! has emerged as a pivotal gathering, a conference with a clear and ambitious mission: To transform the open, modular, and flexible RISC-V ISA from an exciting specification &#8230; Read More The post RISC-V Now! — Where Specification Meets Scale! appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 13,
+      "primary": "infra",
+      "tags": [
+        "risc-v",
+        "isa",
+        "open hardware",
+        "semiconductors"
+      ],
+      "url": "https://semiwiki.com/ip/andes-technology/367155-risc-v-now-where-specification-meets-scale/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 13,
+      "_rid": 7,
+      "why": "Consolidacion de RISC-V como una alternativa escalable y abierta a las arquitecturas de chip tradicionales",
+      "entities": [
+        "RISC-V International"
+      ]
+    },
+    {
+      "title": "Gemini 3.1 Pro: A smarter model for your most complex tasks",
+      "link": "https://deepmind.google/blog/gemini-3-1-pro-a-smarter-model-for-your-most-complex-tasks/",
+      "published": "2026-02-19T16:06:14+00:00",
+      "summary": "3.1 Pro is designed for tasks where a simple answer isn’t enough.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 11,
+      "primary": "models",
+      "tags": [
+        "gemini 3.1",
+        "llm",
+        "multimodal",
+        "google deepmind"
+      ],
+      "url": "https://deepmind.google/blog/gemini-3-1-pro-a-smarter-model-for-your-most-complex-tasks/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 11,
+      "_rid": 8,
+      "why": "Actualizacion mayor del modelo Pro enfocada en la resolucion de tareas complejas y razonamiento avanzado",
+      "entities": [
+        "Google DeepMind"
+      ]
+    },
+    {
+      "title": "Gemini 3 Deep Think: Advancing science, research and engineering",
+      "link": "https://deepmind.google/blog/gemini-3-deep-think-advancing-science-research-and-engineering/",
+      "published": "2026-02-12T16:15:09+00:00",
+      "summary": "Our most specialized reasoning mode is now updated to solve modern science, research and engineering challenges.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 11,
+      "primary": "models",
+      "tags": [
+        "reasoning",
+        "science",
+        "deep think",
+        "gemini"
+      ],
+      "url": "https://deepmind.google/blog/gemini-3-deep-think-advancing-science-research-and-engineering/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 11,
+      "_rid": 9,
+      "why": "Modelo especializado en razonamiento profundo para aplicaciones cientificas y de ingenieria de alta precision",
+      "entities": [
+        "Google DeepMind"
+      ]
+    },
+    {
+      "title": "Build with Veo 3.1 Lite, our most cost-effective video generation model",
+      "link": "https://blog.google/innovation-and-ai/technology/ai/veo-3-1-lite/",
+      "published": "2026-03-31T16:00:00+00:00",
+      "summary": "Build with Veo 3.1 Lite",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 11,
+      "primary": "models",
+      "tags": [
+        "video generation",
+        "veo",
+        "efficiency",
+        "cost-effective"
+      ],
+      "url": "https://blog.google/innovation-and-ai/technology/ai/veo-3-1-lite/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 11,
+      "_rid": 10,
+      "why": "Version optimizada y de bajo coste de su modelo de generacion de video para facilitar la adopcion masiva",
+      "entities": [
+        "Google"
+      ]
+    },
+    {
+      "title": "NVIDIA CEO Drops the Blueprint for Europe’s AI Boom",
+      "link": "https://blogs.nvidia.com/blog/gtc-paris-2025/",
+      "published": "2025-06-11T11:10:50+00:00",
+      "summary": "At GTC Paris — held alongside VivaTech, Europe’s largest tech event — NVIDIA founder and CEO Jensen Huang delivered a clear message: Europe isn’t just adopting AI — it’s building it. “We now have a new industry, an AI industry, and it’s now part of the new infrastructure, called intelligence infrastructure, that will be used [&#8230;]",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 11,
+      "primary": "invest",
+      "tags": [
+        "nvidia",
+        "europe",
+        "intelligence infrastructure",
+        "sovereignty"
+      ],
+      "url": "https://blogs.nvidia.com/blog/gtc-paris-2025/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 11,
+      "_rid": 11,
+      "why": "NVIDIA posiciona a Europa como productor de IA mediante la creacion de infraestructura de inteligencia nacional",
+      "entities": [
+        "NVIDIA",
+        "Jensen Huang"
+      ]
+    },
+    {
+      "title": "We invited Claude users to share how they use AI, what they dream it could make possible, and what they fear it might do. Nearly 81,000 people responded in o...",
+      "summary": "We invited Claude users to share how they use AI, what they dream it could make possible, and what they fear it might do. Nearly 81,000 people responded in one week—the largest qualitative study of its kind. Read more:",
+      "link": "https://x.com/AnthropicAI?post=f57298ac6e82",
+      "published": "Thu, 02 Apr 2026 07:18:47 GMT",
+      "source": "X @AnthropicAI",
+      "feed_tags": [
+        "x",
+        "models",
+        "safety"
+      ],
+      "score": 10,
+      "primary": "misc",
+      "tags": [
+        "anthropic",
+        "claude",
+        "qualitative study",
+        "safety"
+      ],
+      "url": "https://x.com/AnthropicAI?post=f57298ac6e82",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 10,
+      "_rid": 12,
+      "why": "Estudio masivo sobre la percepcion de los usuarios respecto al uso, sueños y miedos relacionados con la IA",
+      "entities": [
+        "Anthropic"
+      ]
+    },
+    {
+      "title": "A defining moment in history. A clear mandate from the American people. 365 days later, President Donald J. Trump is delivering, patriotism is rising, Americ...",
+      "summary": "A defining moment in history. A clear mandate from the American people. 365 days later, President Donald J. Trump is delivering, patriotism is rising, America is BACK, and the story is just getting started. ![Image 4: 🇺🇸](https://abs-0.twimg.com/emoji/v2/svg/1f1fa-1f1f8.svg) Excellent speech. As President Trump said, Iran’s days of terrorizing the world are OVER. The actions we are taking will make the United States SAFER and MORE PROSPEROUS than ever before. Peace through strength ![Image 5: 🇺🇸](https://abs-0.twimg.com/emoji/v2/svg/1f1fa-1f1f8.svg) Quote The White House @WhiteHouse 5h President Trump delivers remarks on Operation Epic Fury from the White House. \"Our enemies are losing. And America, as it has been for five years under my presidency, is winning.\" - President Donald J. Trump ![Image 7: 🇺🇸](https://abs-0.twimg.com/emoji/v2/svg/1f1fa-1f1f8.svg)",
+      "link": "https://x.com/WhiteHouse?post=c05fcf7484e6",
+      "published": "Thu, 02 Apr 2026 06:51:56 GMT",
+      "source": "X AI policy/search",
+      "feed_tags": [
+        "x",
+        "geopol",
+        "policy"
+      ],
+      "score": 10,
+      "primary": "geopol",
+      "tags": [
+        "usa",
+        "national security",
+        "trade policy"
+      ],
+      "url": "https://x.com/WhiteHouse?post=c05fcf7484e6",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 10,
+      "_rid": 13,
+      "why": "Cambio de postura geopolitica de EE. UU. con implicaciones directas en seguridad nacional y flujos tecnologicos",
+      "entities": [
+        "Donald J. Trump"
+      ]
+    },
+    {
+      "title": "Protecting people from harmful manipulation",
+      "link": "https://deepmind.google/blog/protecting-people-from-harmful-manipulation/",
+      "published": "2026-03-25T16:46:20+00:00",
+      "summary": "Google DeepMind researches AI's harmful manipulation risks across areas like finance and health, leading to new safety measures.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 9,
+      "primary": "models",
+      "tags": [
+        "ai safety",
+        "manipulation",
+        "deepmind",
+        "governance"
+      ],
+      "url": "https://deepmind.google/blog/protecting-people-from-harmful-manipulation/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 9,
+      "_rid": 14,
+      "why": "Investigacion sobre riesgos de manipulacion mediante IA y desarrollo de salvaguardas para proteger usuarios",
+      "entities": [
+        "Google DeepMind"
+      ]
+    },
+    {
+      "title": "We’re creating a new satellite imagery map to help protect Brazil’s forests.",
+      "link": "https://blog.google/products-and-platforms/products/earth/satellite-imagery-brazilian-deforestation/",
+      "published": "2026-04-01T13:30:00+00:00",
+      "summary": "Google partnered with the Brazilian government on a satellite imagery map to help protect the country’s forests.",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 9,
+      "primary": "misc",
+      "tags": [
+        "satellite imagery",
+        "sustainability",
+        "brazil",
+        "mapping"
+      ],
+      "url": "https://blog.google/products-and-platforms/products/earth/satellite-imagery-brazilian-deforestation/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 9,
+      "_rid": 15,
+      "why": "Uso de imagenes satelitales e IA para la proteccion forestal en colaboracion con gobiernos nacionales",
+      "entities": [
+        "Google"
+      ]
+    }
+  ]
+}
