@@ -1,0 +1,472 @@
+{
+  "date": "2026-04-06",
+  "score_avg": 23.6,
+  "primary_dist": {
+    "models": 10,
+    "misc": 1,
+    "infra": 3,
+    "invest": 1
+  },
+  "top_entities": [
+    {
+      "entity": "Google DeepMind",
+      "count": 5
+    },
+    {
+      "entity": "Gemini",
+      "count": 2
+    },
+    {
+      "entity": "Xpertbench",
+      "count": 1
+    },
+    {
+      "entity": "Convolutional Surrogate",
+      "count": 1
+    },
+    {
+      "entity": "Discrete Fracture",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "Google lanza Gemma 4 bajo Apache 2.0, democratizando razonamiento avanzado en hardware local.",
+      "La Agentic Web emerge con sistemas multi-agente persistentes diseñados para evolucionar autónomamente.",
+      "El diseño sub-5nm enfrenta crisis de márgenes por incertidumbre de modelado, perdiendo hasta 35% de PPA.",
+      "Refrigeración de estado sólido en semiconductores se posiciona como clave para la sostenibilidad de la IA.",
+      "Surgen benchmarks de alta fidelidad para evaluar cognición experta en finanzas, medicina y leyes."
+    ],
+    "risks": [
+      "Pérdida masiva de rendimiento en nodos avanzados por guard-banding excesivo en diseños sub-5nm.",
+      "Fricción de escalado y coordinación en sistemas multi-agente web que dificultan la persistencia.",
+      "Brechas de inclusión en IA para lenguajes no hablados comparado con el avance en inglés y español."
+    ],
+    "watch": [
+      "Adopción de Gemma 4 para flujos de trabajo agénticos en entornos de hardware privado.",
+      "Integración de modelos de voz de baja latencia como Gemini 3.1 Flash en asistentes naturales.",
+      "Impacto de Silicon Catalyst en el ecosistema de startups de microelectrónica hacia 2026."
+    ],
+    "entities_top": [
+      "Google DeepMind",
+      "NVIDIA",
+      "Phononic"
+    ]
+  },
+  "items": [
+    {
+      "title": "Xpertbench: Expert Level Tasks with Rubrics-Based Evaluation",
+      "link": "https://arxiv.org/abs/2604.02368",
+      "published": "2026-04-06T04:00:00+00:00",
+      "summary": "arXiv:2604.02368v1 Announce Type: new Abstract: As Large Language Models (LLMs) exhibit plateauing performance on conventional benchmarks, a pivotal challenge persists: evaluating their proficiency in complex, open-ended tasks characterizing genuine expert-level cognition. Existing frameworks suffer from narrow domain coverage, reliance on generalist tasks, or self-evaluation biases. To bridge this gap, we present XpertBench, a high-fidelity benchmark engineered to assess LLMs across authentic professional domains. XpertBench consists of 1,346 meticulously curated tasks across 80 categories, spanning finance, healthcare, legal services, education, and dual-track research (STEM and Humanities). These tasks are derived from over 1,000 submissions by domain experts--including researchers from elite institutions and practitioners with extensive clinical or industrial experience--ensuring superior ecological validity. Each task uses detailed rubrics with mostly 15-40 weighted checkpoints to assess professional rigor. To facilitate scalable yet human-aligned assessment, we introduce ShotJudge, a novel evaluation paradigm that employs LLM judges calibrated with expert few-shot exemplars to mitigate self-rewarding biases. Our empirical evaluation of state-of-the-art LLMs reveals a pronounced performance ceiling: even leading models achieve a peak success rate of only ~66%, with a mean score around 55%. Models also exhibit domain-specific divergence, showing non-overlapping strengths in quantitative reasoning versus linguistic synthesis.. These findings underscore a significant \"expert-gap\" in current AI systems and establish XpertBench as a critical instrument for navigating the transition from general-purpose assistants to specialized professional collaborators.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 40,
+      "primary": "models",
+      "tags": [
+        "benchmark",
+        "expert-ai",
+        "evaluation"
+      ],
+      "url": "https://arxiv.org/abs/2604.02368",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 40,
+      "_rid": 1,
+      "why": "Introduce métricas rigurosas para evaluar IA en tareas profesionales complejas de finanzas y salud.",
+      "entities": [
+        "Xpertbench"
+      ]
+    },
+    {
+      "title": "Convolutional Surrogate for 3D Discrete Fracture-Matrix Tensor Upscaling",
+      "link": "https://arxiv.org/abs/2604.02335",
+      "published": "2026-04-06T04:00:00+00:00",
+      "summary": "arXiv:2604.02335v1 Announce Type: new Abstract: Modeling groundwater flow in three-dimensional fractured crystalline media requires accounting for strong spatial heterogeneity induced by fractures. Fine-scale discrete fracture-matrix (DFM) simulations can capture this complexity but are computationally expensive, especially when repeated evaluations are needed. To address this, we aim to employ a multilevel Monte Carlo (MLMC) framework in which numerical homogenization is used to upscale sub-resolution fracture effects when transitioning between accuracy levels. To reduce the cost of conventional 3D numerical homogenization, we develop a surrogate model that predicts the equivalent hydraulic conductivity tensor Keq from a voxelized 3D domain representing tensor-valued random fields of matrix and fracture conductivities. Fracture size, orientation, and aperture are sampled from distributions informed by natural observations. The surrogate architecture combines a 3D convolutional neural network with feed-forward layers, enabling it to capture both local spatial features and global interactions. Three surrogates are trained on data generated by DFM simulations, each corresponding to a different fracture-to-matrix conductivity contrast. Performance is evaluated across a wide range of fracture network parameters and matrix-field correlation lengths. The trained models achieve high accuracy, with normalized root-mean-square errors below 0.22 across most test cases. Practical applicability is demonstrated by comparing numerically homogenized conductivities with surrogate predictions in two macro-scale problems: computing equivalent conductivity tensors and predicting outflow from a constrained 3D domain. In both cases, surrogate-based upscaling preserves accuracy while substantially reducing computational cost, achieving speedups exceeding 100x when inference is performed on a GPU.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 37,
+      "primary": "misc",
+      "tags": [
+        "ml",
+        "groundwater",
+        "surrogate-models"
+      ],
+      "url": "https://arxiv.org/abs/2604.02335",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 37,
+      "_rid": 2,
+      "why": "Utiliza modelos sustitutos para acelerar simulaciones hidráulicas 3D críticas en geología.",
+      "entities": [
+        "Convolutional Surrogate",
+        "Discrete Fracture",
+        "Matrix Tensor Upscaling"
+      ]
+    },
+    {
+      "title": "Holos: A Web-Scale LLM-Based Multi-Agent System for the Agentic Web",
+      "link": "https://arxiv.org/abs/2604.02334",
+      "published": "2026-04-06T04:00:00+00:00",
+      "summary": "arXiv:2604.02334v1 Announce Type: new Abstract: As large language models (LLM)-driven agents transition from isolated task solvers to persistent digital entities, the emergence of the Agentic Web, an ecosystem where heterogeneous agents autonomously interact and co-evolve, marks a pivotal shift toward Artificial General Intelligence (AGI). However, LLM-based multi-agent systems (LaMAS) are hindered by open-world issues such as scaling friction, coordination breakdown, and value dissipation. To address these challenges, we introduce Holos, a web-scale LaMAS architected for long-term ecological persistence. Holos adopts a five-layer architecture, with core modules primarily featuring the Nuwa engine for high-efficiency agent generation and hosting, a market-driven Orchestrator for resilient coordination, and an endogenous value cycle to achieve incentive compatibility. By bridging the gap between micro-level collaboration and macro-scale emergence, Holos hopes to lay the foundation for the next generation of the self-organizing and continuously evolving Agentic Web. We have publicly released Holos (accessible at https://holosai.io), providing a resource for the community and a testbed for future research in large-scale agentic ecosystems.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 30,
+      "primary": "models",
+      "tags": [
+        "multi-agent",
+        "agi",
+        "holos"
+      ],
+      "url": "https://arxiv.org/abs/2604.02334",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 30,
+      "_rid": 3,
+      "why": "Propone una arquitectura de cinco capas para habilitar la persistencia y evolución de la Agentic Web.",
+      "entities": [
+        "Holos"
+      ]
+    },
+    {
+      "title": "Meet Gemma 4: our new family of open models you can run on your own hardware. Built for advanced reasoning and agentic workflows, we’re releasing them under ...",
+      "summary": "Meet Gemma 4: our new family of open models you can run on your own hardware. Built for advanced reasoning and agentic workflows, we’re releasing them under an Apache 2.0 license. Here’s what’s new ![Image 4: 🧵](https://abs-0.twimg.com/emoji/v2/svg/1f9f5.svg) The media could not be played.",
+      "link": "https://x.com/GoogleDeepMind?post=eedfaa7f873b",
+      "published": "Mon, 06 Apr 2026 07:23:56 GMT",
+      "source": "X @GoogleDeepMind",
+      "feed_tags": [
+        "x",
+        "research",
+        "models"
+      ],
+      "score": 29,
+      "primary": "models",
+      "tags": [
+        "gemma-4",
+        "open-source",
+        "reasoning"
+      ],
+      "url": "https://x.com/GoogleDeepMind?post=eedfaa7f873b",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 29,
+      "_rid": 4,
+      "why": "Gemma 4 redefine el estado del arte en modelos abiertos con licencia Apache 2.0 para razonamiento avanzado.",
+      "entities": [
+        "Google DeepMind"
+      ]
+    },
+    {
+      "title": "Meet Gemma 4: our new family of open models you can run on your own hardware. Built for advanced reasoning and agentic workflows, we’re releasing them under ...",
+      "summary": "Meet Gemma 4: our new family of open models you can run on your own hardware. Built for advanced reasoning and agentic workflows, we’re releasing them under an Apache 2.0 license. Here’s what’s new ![Image 6: 🧵](https://abs-0.twimg.com/emoji/v2/svg/1f9f5.svg) The media could not be played.",
+      "link": "https://x.com/GoogleDeepMind?post=00b013d2f411",
+      "published": "Mon, 06 Apr 2026 07:23:56 GMT",
+      "source": "X @GoogleDeepMind",
+      "feed_tags": [
+        "x",
+        "research",
+        "models"
+      ],
+      "score": 29,
+      "primary": "models",
+      "tags": [
+        "gemma-4",
+        "llm",
+        "agents"
+      ],
+      "url": "https://x.com/GoogleDeepMind?post=00b013d2f411",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 29,
+      "_rid": 5,
+      "why": "Lanzamiento de modelos optimizados para flujos agénticos capaces de ejecutarse en hardware local.",
+      "entities": [
+        "Google DeepMind"
+      ]
+    },
+    {
+      "title": "Webinar – How to Reclaim Margin in Advanced Nodes",
+      "link": "https://semiwiki.com/eda/clockedge/368009-webinar-how-to-reclaim-margin-in-advanced-nodes/",
+      "published": "2026-04-02T13:00:48+00:00",
+      "summary": "This informative webinar discusses a significant issue that is cropping up for sub-5nm designs. As the graphic above shows, modeling uncertainty at advanced nodes results in excessive guard banding. These guard bands result in reduced performance and profit. A loss of 25 – 35% in PPA is discussed, along with the lost profit associated&#8230; Read More The post Webinar – How to Reclaim Margin in Advanced Nodes appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 28,
+      "primary": "infra",
+      "tags": [
+        "semiconductors",
+        "sub-5nm",
+        "ppa"
+      ],
+      "url": "https://semiwiki.com/eda/clockedge/368009-webinar-how-to-reclaim-margin-in-advanced-nodes/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 28,
+      "_rid": 6,
+      "why": "Incertidumbre en nodos sub-5nm causa pérdidas de hasta 35% en PPA y beneficios, exigiendo nuevos diseños.",
+      "entities": [
+        "SemiWiki"
+      ]
+    },
+    {
+      "title": "A new way to express yourself: Gemini can now create music",
+      "link": "https://deepmind.google/blog/a-new-way-to-express-yourself-gemini-can-now-create-music/",
+      "published": "2026-02-18T16:01:38+00:00",
+      "summary": "The Gemini app now features our most advanced music generation model Lyria 3, empowering anyone to make 30-second tracks using text or images.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 24,
+      "primary": "models",
+      "tags": [
+        "music-ai",
+        "generative-audio",
+        "lyria-3"
+      ],
+      "url": "https://deepmind.google/blog/a-new-way-to-express-yourself-gemini-can-now-create-music/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 24,
+      "_rid": 7,
+      "why": "Lyria 3 integra generación de audio creativa directamente en el ecosistema Gemini para consumo masivo.",
+      "entities": [
+        "Gemini",
+        "Google DeepMind"
+      ]
+    },
+    {
+      "title": "CEO Interview with Dr. Tony Atti of Phononics",
+      "link": "https://semiwiki.com/ceo-interviews/368134-ceo-interview-with-dr-tony-atti-of-phononics/",
+      "published": "2026-04-05T19:00:07+00:00",
+      "summary": "Tony Atti, Ph.D. is Phononic’s CEO. Tony is an experienced technology entrepreneur and executive, who is passionate about disruptive technology solutions that change our lives. As CEO and Co-Founder of Phononic, Dr. Atti has led the company’s mission to sustainably transform global cooling and heating through semiconductor&#8230; Read More The post CEO Interview with Dr. Tony Atti of Phononics appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 23,
+      "primary": "infra",
+      "tags": [
+        "cooling",
+        "semiconductors",
+        "sustainability"
+      ],
+      "url": "https://semiwiki.com/ceo-interviews/368134-ceo-interview-with-dr-tony-atti-of-phononics/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 23,
+      "_rid": 8,
+      "why": "La refrigeración basada en semiconductores es vital para la eficiencia térmica en centros de datos.",
+      "entities": [
+        "Phononic",
+        "Tony Atti"
+      ]
+    },
+    {
+      "title": "Gemma 4: Byte for byte, the most capable open models",
+      "link": "https://deepmind.google/blog/gemma-4-byte-for-byte-the-most-capable-open-models/",
+      "published": "2026-04-02T16:00:49+00:00",
+      "summary": "Gemma 4: Our most intelligent open models to date, purpose-built for advanced reasoning and agentic workflows.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 21,
+      "primary": "models",
+      "tags": [
+        "gemma-4",
+        "ai-reasoning",
+        "open-models"
+      ],
+      "url": "https://deepmind.google/blog/gemma-4-byte-for-byte-the-most-capable-open-models/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 21,
+      "_rid": 9,
+      "why": "Versión más inteligente de la familia Gemma diseñada específicamente para tareas de razonamiento experto.",
+      "entities": [
+        "Google DeepMind"
+      ]
+    },
+    {
+      "title": "It’s a Sign: AI Platform for Teaching American Sign Language Aims to Bridge Communication Gaps",
+      "link": "https://blogs.nvidia.com/blog/ai-sign-language/",
+      "published": "2025-02-20T14:30:18+00:00",
+      "summary": "American Sign Language is the third most prevalent language in the United States — but there are vastly fewer AI tools developed with ASL data than data representing the country’s most common languages, English and Spanish. NVIDIA, the American Society for Deaf Children and creative agency Hello Monday are helping close this gap with Signs, [&#8230;]",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 18,
+      "primary": "models",
+      "tags": [
+        "asl",
+        "inclusion",
+        "computer-vision"
+      ],
+      "url": "https://blogs.nvidia.com/blog/ai-sign-language/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 18,
+      "_rid": 10,
+      "why": "NVIDIA reduce la brecha de inclusión mediante herramientas de IA especializadas en lenguaje de señas.",
+      "entities": [
+        "NVIDIA"
+      ]
+    },
+    {
+      "title": "Silicon Catalyst and Microelectronics US 2026",
+      "link": "https://semiwiki.com/semiconductor-services/silicon-catalyst/368053-368053/",
+      "published": "2026-04-02T17:00:36+00:00",
+      "summary": "The designation of Silicon Catalyst as the exclusive strategic partner for Microelectronics US 2026 represents a significant alignment between a leading semiconductor startup ecosystem and a rapidly growing U.S. microelectronics industry event. This partnership reflects broader trends in semiconductor innovation, &#8230; Read More The post Silicon Catalyst and Microelectronics US 2026 appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 18,
+      "primary": "invest",
+      "tags": [
+        "semiconductors",
+        "startups",
+        "us-tech"
+      ],
+      "url": "https://semiwiki.com/semiconductor-services/silicon-catalyst/368053-368053/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 18,
+      "_rid": 11,
+      "why": "Alianza estratégica para fortalecer el ecosistema de startups en la industria de microelectrónica de EE.UU.",
+      "entities": [
+        "Silicon Catalyst"
+      ]
+    },
+    {
+      "title": "Generating Counterfactual Patient Timelines from Real-World Data",
+      "link": "https://arxiv.org/abs/2604.02337",
+      "published": "2026-04-06T04:00:00+00:00",
+      "summary": "arXiv:2604.02337v1 Announce Type: new Abstract: Counterfactual simulation - exploring hypothetical consequences under alternative clinical scenarios - holds promise for transformative applications such as personalized medicine and in silico trials. However, it remains challenging due to methodological limitations. Here, we show that an autoregressive generative model trained on real-world data from over 300,000 patients and 400 million patient timeline entries can generate clinically plausible counterfactual trajectories. As a validation task, we applied the model to patients hospitalized with COVID-19 in 2023, modifying age, serum C-reactive protein (CRP), and serum creatinine to simulate 7-day outcomes. Increased in-hospital mortality was observed in counterfactual simulations with older age, elevated CRP, and elevated serum creatinine. Remdesivir prescriptions increased in simulations with higher CRP values and decreased in those with impaired kidney function. These counterfactual trajectories reproduced known clinical patterns. These findings suggest that autoregressive generative models trained on real-world data in a self-supervised manner can establish a foundation for counterfactual clinical simulation.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 17,
+      "primary": "models",
+      "tags": [
+        "healthcare",
+        "counterfactuals",
+        "patient-data"
+      ],
+      "url": "https://arxiv.org/abs/2604.02337",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 17,
+      "_rid": 12,
+      "why": "IA generativa permite simular trayectorias de pacientes para medicina personalizada a escala masiva.",
+      "entities": [
+        "Generating Counterfactual Patient",
+        "Timelines",
+        "Real",
+        "World Data"
+      ]
+    },
+    {
+      "title": "Nano Banana 2: Combining Pro capabilities with lightning-fast speed",
+      "link": "https://deepmind.google/blog/nano-banana-2-combining-pro-capabilities-with-lightning-fast-speed/",
+      "published": "2026-02-26T16:01:50+00:00",
+      "summary": "Our latest image generation model offers advanced world knowledge, production ready specs, subject consistency and more, all at Flash speed.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 16,
+      "primary": "models",
+      "tags": [
+        "image-gen",
+        "diffusion-models",
+        "speed"
+      ],
+      "url": "https://deepmind.google/blog/nano-banana-2-combining-pro-capabilities-with-lightning-fast-speed/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 16,
+      "_rid": 13,
+      "why": "Modelo de imagen optimizado para alta velocidad y consistencia de sujetos en entornos de producción.",
+      "entities": [
+        "Google DeepMind"
+      ]
+    },
+    {
+      "title": "CEO Interview with Jussi-Pekka Penttinen of Vexlum",
+      "link": "https://semiwiki.com/ceo-interviews/368158-ceo-interview-with-jussi-pekka-penttinen-of-vexlum/",
+      "published": "2026-04-05T21:00:12+00:00",
+      "summary": "Jussi-Pekka Penttinen is the chief executive officer, chief technical officer, and cofounder of Vexlum Ltd, an advanced laser technology company. With more than 15 years of experience, he is a leading researcher in the field of Vertical External Cavity Surface Emitting Laser (VECSEL) and successfully commercialized the technology.&#8230; Read More The post CEO Interview with Jussi-Pekka Penttinen of Vexlum appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 13,
+      "primary": "infra",
+      "tags": [
+        "lasers",
+        "vecsel",
+        "hardware"
+      ],
+      "url": "https://semiwiki.com/ceo-interviews/368158-ceo-interview-with-jussi-pekka-penttinen-of-vexlum/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 13,
+      "_rid": 14,
+      "why": "Tecnología láser avanzada VECSEL para aplicaciones industriales de alta precisión e investigación.",
+      "entities": [
+        "Vexlum"
+      ]
+    },
+    {
+      "title": "Gemini 3.1 Flash Live: Making audio AI more natural and reliable",
+      "link": "https://deepmind.google/blog/gemini-3-1-flash-live-making-audio-ai-more-natural-and-reliable/",
+      "published": "2026-03-26T15:23:35+00:00",
+      "summary": "Our latest voice model has improved precision and lower latency to make voice interactions more fluid, natural and precise.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 11,
+      "primary": "models",
+      "tags": [
+        "voice-ai",
+        "low-latency",
+        "multimodal"
+      ],
+      "url": "https://deepmind.google/blog/gemini-3-1-flash-live-making-audio-ai-more-natural-and-reliable/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 11,
+      "_rid": 15,
+      "why": "Mejora drástica de latencia y naturalidad en interacciones de voz para modelos en tiempo real.",
+      "entities": [
+        "Gemini"
+      ]
+    }
+  ]
+}
