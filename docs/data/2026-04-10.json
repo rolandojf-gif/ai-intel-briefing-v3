@@ -1,0 +1,471 @@
+{
+  "date": "2026-04-10",
+  "score_avg": 17.07,
+  "primary_dist": {
+    "models": 7,
+    "invest": 1,
+    "infra": 3,
+    "geopol": 1,
+    "misc": 3
+  },
+  "top_entities": [
+    {
+      "entity": "Google DeepMind",
+      "count": 4
+    },
+    {
+      "entity": "Google",
+      "count": 4
+    },
+    {
+      "entity": "Kalshi",
+      "count": 1
+    },
+    {
+      "entity": "Polymarket",
+      "count": 1
+    },
+    {
+      "entity": "arXiv",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "SiFive consolida RISC-V como alternativa real a x86/ARM en centros de datos para agentes con 400M$ de inversion.",
+      "Los benchmarks estaticos mueren frente a la Prediction Arena: evaluacion de agentes con capital real en mercados vivos.",
+      "La arquitectura de interconexion (NoC) desplaza al computo puro como cuello de botella critico en IA para Edge.",
+      "NVIDIA impulsa la soberania tecnologica europea mediante la creacion de infraestructuras de inteligencia locales.",
+      "Modelos de Deep Thinking pasan de la investigacion a la produccion para resolver problemas complejos de ingenieria."
+    ],
+    "risks": [
+      "El movimiento de datos on-chip (interconnect) limita la escalabilidad de arquitecturas centralizadas en el borde.",
+      "Riesgos de manipulacion financiera y sanitaria aumentan con la autonomia de agentes en mercados y diagnosticos.",
+      "La escasez de datos neurograficos de calidad frena la integracion efectiva de LLMs en el analisis cerebral profundo."
+    ],
+    "watch": [
+      "Despliegue de los primeros nucleos RISC-V de alto rendimiento en infraestructuras de agentes autonomos.",
+      "Resultados de rentabilidad real de los agentes frontier en plataformas como Kalshi y Polymarket.",
+      "Adopcion del modelo Gemma 4 frente a alternativas cerradas mucho mas pesadas en entornos corporativos."
+    ],
+    "entities_top": [
+      "SiFive",
+      "Google DeepMind",
+      "NVIDIA"
+    ]
+  },
+  "items": [
+    {
+      "title": "Prediction Arena: Benchmarking AI Models on Real-World Prediction Markets",
+      "link": "https://arxiv.org/abs/2604.07355",
+      "published": "2026-04-10T04:00:00+00:00",
+      "summary": "arXiv:2604.07355v1 Announce Type: new Abstract: We introduce Prediction Arena, a benchmark for evaluating AI models' predictive accuracy and decision-making by enabling them to trade autonomously on live prediction markets with real capital. Unlike synthetic benchmarks, Prediction Arena tests models in environments where trades execute on actual exchanges (Kalshi and Polymarket), providing objective ground truth that cannot be gamed or overfitted. Each model operates as an independent agent starting with $10,000, making autonomous decisions every 15-45 minutes. Over a 57-day longitudinal evaluation (January 12 to March 9, 2026), we track two cohorts: six frontier models in live trading (Cohort 1, full period) and four next-generation models in paper trading (Cohort 2, 3-day preliminary). For Cohort 1, final Kalshi returns range from -16.0% to -30.8%. Our analysis identifies a clear performance hierarchy: initial prediction accuracy and the ability to capitalize on correct predictions are the main drivers, while research volume shows no correlation with outcomes. A striking cross-platform contrast emerges from parallel Polymarket live trading: Cohort 1 models averaged only -1.1% on Polymarket vs. -22.6% on Kalshi, with grok-4-20-checkpoint achieving a 71.4% settlement win rate - the highest across any platform or cohort. gemini-3.1-pro-preview (Cohort 2), which executed zero trades on Kalshi, achieved +6.02% on Polymarket in 3 days - the best return of any model across either cohort - demonstrating that platform design has a profound effect on which models succeed. Beyond performance, we analyze computational efficiency (token usage, cycle time), settlement accuracy, exit patterns, and market preferences, providing a comprehensive view of how frontier models behave under real financial pressure.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 40,
+      "primary": "models",
+      "tags": [
+        "benchmarking",
+        "prediction-markets",
+        "agents",
+        "fintech"
+      ],
+      "url": "https://arxiv.org/abs/2604.07355",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 40,
+      "_rid": 1,
+      "why": "Mover el benchmarking a mercados de prediccion reales con capital propio mide la utilidad economica real de los agentes.",
+      "entities": [
+        "Kalshi",
+        "Polymarket"
+      ]
+    },
+    {
+      "title": "BLEG: LLM Functions as Powerful fMRI Graph-Enhancer for Brain Network Analysis",
+      "link": "https://arxiv.org/abs/2604.07361",
+      "published": "2026-04-10T04:00:00+00:00",
+      "summary": "arXiv:2604.07361v1 Announce Type: new Abstract: Graph Neural Networks (GNNs) have been widely used in diverse brain network analysis tasks based on preprocessed functional magnetic resonance imaging (fMRI) data. However, their performances are constrained due to high feature sparsity and inherent limitations of domain knowledge within uni-modal neurographs. Meanwhile, large language models (LLMs) have demonstrated powerful representation capabilities. Combining LLMs with GNNs presents a promising direction for brain network analysis. While LLMs and MLLMs have emerged in neuroscience, integration of LLMs with graph-based data remains unexplored. In this work, we deal with these issues by incorporating LLM's powerful representation and generalization capabilities. Considering great cost for directly tuning LLMs, we instead function LLM as enhancer to boost GNN's performance on downstream tasks. Our method, namely BLEG, can be divided into three stages. We firstly prompt LLM to get augmented texts for fMRI graph data, then we design a LLM-LM instruction tuning method to get enhanced textual representations at a relatively lower cost. GNN is trained together for coarsened alignment. Finally we finetune an adapter after GNN for given downstream tasks. Alignment loss between LM and GNN logits is designed to further enhance GNN's representation. Extensive experiments on different datasets confirmed BLEG's superiority.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 35,
+      "primary": "models",
+      "tags": [
+        "fmri",
+        "gnn",
+        "neuroscience",
+        "healthcare"
+      ],
+      "url": "https://arxiv.org/abs/2604.07361",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 35,
+      "_rid": 2,
+      "why": "La combinacion de LLMs con redes neuronales graficas para analisis cerebral reduce la brecha de datos en neuroimagen.",
+      "entities": [
+        "arXiv"
+      ]
+    },
+    {
+      "title": "Architecting Intelligence: The Rise of RISC-V CPUs in Agentic AI Infrastructure",
+      "link": "https://semiwiki.com/ip/sifive/368143-architecting-intelligence-the-rise-of-risc-v-cpus-in-agentic-ai-infrastructure/",
+      "published": "2026-04-09T13:00:36+00:00",
+      "summary": "SiFive’s newly announced $400 million Series G financing represents a significant technical inflection point for high-performance RISC-V CPU development targeted at agentic AI data center workloads. The funding, which values the company at $3.65 billion, is specifically intended to accelerate next-generation CPU IP, &#8230; Read More The post Architecting Intelligence: The Rise of RISC-V CPUs in Agentic AI Infrastructure appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 31,
+      "primary": "invest",
+      "tags": [
+        "risc-v",
+        "semiconductors",
+        "agentic-ai",
+        "hardware"
+      ],
+      "url": "https://semiwiki.com/ip/sifive/368143-architecting-intelligence-the-rise-of-risc-v-cpus-in-agentic-ai-infrastructure/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 31,
+      "_rid": 3,
+      "why": "La inversion de 400M$ posiciona a RISC-V como el tercer pilar arquitectonico para la infraestructura de agentes IA.",
+      "entities": [
+        "SiFive"
+      ]
+    },
+    {
+      "title": "NXP Expands Arteris NoC Deployment to Scale Edge AI Architectures",
+      "link": "https://semiwiki.com/ip/arteris/366617-nxp-expands-arteris-noc-deployment-to-scale-edge-ai-architectures/",
+      "published": "2026-04-09T15:00:25+00:00",
+      "summary": "As edge AI systems become more centralized and compute-dense, on-chip data movement is increasingly the architectural bottleneck. NXP’s expanded deployment of Arteris network-on-chip (NoC) and cache-coherent interconnect IP highlights a broader industry trend: interconnect architecture is now a first-order design &#8230; Read More The post NXP Expands Arteris NoC Deployment to Scale Edge AI Architectures appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 23,
+      "primary": "infra",
+      "tags": [
+        "edge-ai",
+        "noc",
+        "interconnect",
+        "semiconductors"
+      ],
+      "url": "https://semiwiki.com/ip/arteris/366617-nxp-expands-arteris-noc-deployment-to-scale-edge-ai-architectures/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 23,
+      "_rid": 4,
+      "why": "El despliegue de Arteris en NXP confirma que la interconexion es ahora el factor de diseño critico para IA en el borde.",
+      "entities": [
+        "NXP",
+        "Arteris"
+      ]
+    },
+    {
+      "title": "Gemma 4 punches above its weight, outperforming models 10x its size without the need for massive compute. With 10M+ downloads in its first week and 500M+ for...",
+      "summary": "Gemma 4 punches above its weight, outperforming models 10x its size without the need for massive compute. With 10M+ downloads in its first week and 500M+ for the Gemma family overall, we’re excited to see this level of engagement within the open research community.",
+      "link": "https://x.com/GoogleDeepMind/status/2042283481640615944",
+      "published": "Fri, 10 Apr 2026 07:28:03 GMT",
+      "source": "X @GoogleDeepMind",
+      "feed_tags": [
+        "x",
+        "research",
+        "models"
+      ],
+      "score": 22,
+      "primary": "models",
+      "tags": [
+        "open-source",
+        "efficiency",
+        "llm"
+      ],
+      "url": "https://x.com/GoogleDeepMind/status/2042283481640615944",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 22,
+      "_rid": 5,
+      "why": "Gemma 4 redefine la eficiencia al superar modelos 10 veces mayores, democratizando el uso de frontier models.",
+      "entities": [
+        "Google DeepMind"
+      ]
+    },
+    {
+      "title": "yieldHUB Expands Its Impact with New Technology and a New Website",
+      "link": "https://semiwiki.com/eda/yieldhub/367971-yieldhub-expands-its-impact-with-new-technology-and-a-new-website/",
+      "published": "2026-04-09T17:00:42+00:00",
+      "summary": "yieldHUB is a unique company that focuses on yield optimization for the semiconductor industry. The company aims to bring engineering teams together with a platform that allows sharing of data analytics and knowledge about products to improve yield. This goal is certainly fueled by unifying data from multiple steps in the manufacturing&#8230; Read More The post yieldHUB Expands Its Impact with New Technology and a New Website appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 16,
+      "primary": "infra",
+      "tags": [
+        "manufacturing",
+        "yield-optimization",
+        "eda"
+      ],
+      "url": "https://semiwiki.com/eda/yieldhub/367971-yieldhub-expands-its-impact-with-new-technology-and-a-new-website/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 16,
+      "_rid": 6,
+      "why": "La optimizacion de rendimiento en semiconductores es vital para costes, pero representa una mejora incremental.",
+      "entities": [
+        "yieldHUB"
+      ]
+    },
+    {
+      "title": "Gemini 3.1 Pro: A smarter model for your most complex tasks",
+      "link": "https://deepmind.google/blog/gemini-3-1-pro-a-smarter-model-for-your-most-complex-tasks/",
+      "published": "2026-02-19T16:06:14+00:00",
+      "summary": "3.1 Pro is designed for tasks where a simple answer isn’t enough.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 11,
+      "primary": "models",
+      "tags": [
+        "llm",
+        "reasoning",
+        "productivity"
+      ],
+      "url": "https://deepmind.google/blog/gemini-3-1-pro-a-smarter-model-for-your-most-complex-tasks/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 11,
+      "_rid": 7,
+      "why": "Gemini 3.1 Pro se enfoca en la resolucion de tareas complejas donde el razonamiento secuencial es mas critico que la velocidad.",
+      "entities": [
+        "Google DeepMind"
+      ]
+    },
+    {
+      "title": "Gemini 3 Deep Think: Advancing science, research and engineering",
+      "link": "https://deepmind.google/blog/gemini-3-deep-think-advancing-science-research-and-engineering/",
+      "published": "2026-02-12T16:15:09+00:00",
+      "summary": "Our most specialized reasoning mode is now updated to solve modern science, research and engineering challenges.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 11,
+      "primary": "models",
+      "tags": [
+        "science",
+        "reasoning",
+        "engineering"
+      ],
+      "url": "https://deepmind.google/blog/gemini-3-deep-think-advancing-science-research-and-engineering/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 11,
+      "_rid": 8,
+      "why": "El modo Deep Think marca la transicion hacia modelos especializados en el metodo cientifico y resolucion de problemas tecnicos.",
+      "entities": [
+        "Google DeepMind"
+      ]
+    },
+    {
+      "title": "Build with Veo 3.1 Lite, our most cost-effective video generation model",
+      "link": "https://blog.google/innovation-and-ai/technology/ai/veo-3-1-lite/",
+      "published": "2026-03-31T16:00:00+00:00",
+      "summary": "Build with Veo 3.1 Lite",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 11,
+      "primary": "models",
+      "tags": [
+        "video-generation",
+        "efficiency",
+        "multimodal"
+      ],
+      "url": "https://blog.google/innovation-and-ai/technology/ai/veo-3-1-lite/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 11,
+      "_rid": 9,
+      "why": "Veo 3.1 Lite reduce las barreras de coste para la generacion de video, habilitando aplicaciones comerciales a escala.",
+      "entities": [
+        "Google"
+      ]
+    },
+    {
+      "title": "NVIDIA CEO Drops the Blueprint for Europe’s AI Boom",
+      "link": "https://blogs.nvidia.com/blog/gtc-paris-2025/",
+      "published": "2025-06-11T11:10:50+00:00",
+      "summary": "At GTC Paris — held alongside VivaTech, Europe’s largest tech event — NVIDIA founder and CEO Jensen Huang delivered a clear message: Europe isn’t just adopting AI — it’s building it. “We now have a new industry, an AI industry, and it’s now part of the new infrastructure, called intelligence infrastructure, that will be used [&#8230;]",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 11,
+      "primary": "geopol",
+      "tags": [
+        "sovereign-ai",
+        "europe",
+        "infrastructure"
+      ],
+      "url": "https://blogs.nvidia.com/blog/gtc-paris-2025/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 11,
+      "_rid": 10,
+      "why": "NVIDIA lidera la narrativa de soberania digital europea al vincular la IA con la nueva infraestructura industrial basica.",
+      "entities": [
+        "NVIDIA",
+        "Jensen Huang"
+      ]
+    },
+    {
+      "title": "Protecting people from harmful manipulation",
+      "link": "https://deepmind.google/blog/protecting-people-from-harmful-manipulation/",
+      "published": "2026-03-25T16:46:20+00:00",
+      "summary": "Google DeepMind researches AI's harmful manipulation risks across areas like finance and health, leading to new safety measures.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 9,
+      "primary": "misc",
+      "tags": [
+        "safety",
+        "alignment",
+        "ethics"
+      ],
+      "url": "https://deepmind.google/blog/protecting-people-from-harmful-manipulation/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 9,
+      "_rid": 11,
+      "why": "La investigacion en manipulacion es crucial para la seguridad a largo plazo, aunque su impacto tecnico inmediato es menor.",
+      "entities": [
+        "Google DeepMind"
+      ]
+    },
+    {
+      "title": "New ways to balance cost and reliability in the Gemini API",
+      "link": "https://blog.google/innovation-and-ai/technology/developers-tools/introducing-flex-and-priority-inference/",
+      "published": "2026-04-02T16:00:00+00:00",
+      "summary": "Gemini API Dials",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 9,
+      "primary": "infra",
+      "tags": [
+        "api",
+        "cloud",
+        "inference",
+        "optimization"
+      ],
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/introducing-flex-and-priority-inference/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 9,
+      "_rid": 12,
+      "why": "Nuevos controles de inferencia (Flex/Priority) permiten a las empresas optimizar el ratio coste/fiabilidad en produccion.",
+      "entities": [
+        "Google"
+      ]
+    },
+    {
+      "title": "We’re creating a new satellite imagery map to help protect Brazil’s forests.",
+      "link": "https://blog.google/products-and-platforms/products/earth/satellite-imagery-brazilian-deforestation/",
+      "published": "2026-04-01T13:30:00+00:00",
+      "summary": "Google partnered with the Brazilian government on a satellite imagery map to help protect the country’s forests.",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 9,
+      "primary": "misc",
+      "tags": [
+        "satellite",
+        "environment",
+        "brazil"
+      ],
+      "url": "https://blog.google/products-and-platforms/products/earth/satellite-imagery-brazilian-deforestation/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 9,
+      "_rid": 13,
+      "why": "Aplicacion practica de vision por computador para conservacion forestal con alto impacto social pero bajo impacto en el stack IA.",
+      "entities": [
+        "Google"
+      ]
+    },
+    {
+      "title": "The latest AI news we announced in March 2026",
+      "link": "https://blog.google/innovation-and-ai/technology/ai/google-ai-updates-march-2026/",
+      "published": "2026-04-01T13:00:00+00:00",
+      "summary": "March 2026 AI Recap showing new updates",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 9,
+      "primary": "misc",
+      "tags": [
+        "recap",
+        "news"
+      ],
+      "url": "https://blog.google/innovation-and-ai/technology/ai/google-ai-updates-march-2026/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 9,
+      "_rid": 14,
+      "why": "Resumen de actualizaciones generales de Google con bajo valor de señal individual.",
+      "entities": [
+        "Google"
+      ]
+    },
+    {
+      "title": "Meet Gemma 4: our new family of open models you can run on your own hardware. Built for advanced reasoning and agentic workflows, we’re releasing them under ...",
+      "summary": "Meet Gemma 4: our new family of open models you can run on your own hardware. Built for advanced reasoning and agentic workflows, we’re releasing them under an Apache 2.0 license. Here’s what’s new ![Image 3: 🧵](https://abs-0.twimg.com/emoji/v2/svg/1f9f5.svg) GIF",
+      "link": "https://x.com/GoogleDeepMind?post=b0867991fab0",
+      "published": "Fri, 10 Apr 2026 07:28:03 GMT",
+      "source": "X @GoogleDeepMind",
+      "feed_tags": [
+        "x",
+        "research",
+        "models"
+      ],
+      "score": 9,
+      "primary": "models",
+      "tags": [
+        "models"
+      ],
+      "url": "https://x.com/GoogleDeepMind?post=b0867991fab0",
+      "is_repeat": true,
+      "novelty_score": 80,
+      "adjusted_score": 9,
+      "entities": [
+        "Meet Gemma",
+        "Built"
+      ],
+      "why": "Meet Gemma 4: our new family of open models you can run on your own hardware. Built for advanced reasoning and agentic workflows, we’re releasing them under an "
+    }
+  ]
+}
