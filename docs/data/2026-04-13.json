@@ -1,0 +1,473 @@
+{
+  "date": "2026-04-13",
+  "score_avg": 17.93,
+  "primary_dist": {
+    "models": 7,
+    "misc": 4,
+    "infra": 2,
+    "invest": 1,
+    "geopol": 1
+  },
+  "top_entities": [
+    {
+      "entity": "Google DeepMind",
+      "count": 4
+    },
+    {
+      "entity": "NVIDIA",
+      "count": 2
+    },
+    {
+      "entity": "OpenKedge",
+      "count": 1
+    },
+    {
+      "entity": "LOM-action",
+      "count": 1
+    },
+    {
+      "entity": "GNN",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "Hyperscalers are shifting to custom silicon, forcing Intel to rethink its foundry business model.",
+      "Google's Gemma 4 and Veo 3.1 Lite prioritize efficiency and cost-effectiveness over raw parameter size.",
+      "Specialized reasoning via Gemini Deep Think targets scientific and engineering breakthroughs beyond text.",
+      "European AI is pivoting toward building 'intelligence infrastructure' with heavy NVIDIA backing.",
+      "Agentic AI moves toward 'execution-bound safety' and 'ontology-governed' simulation for enterprise trust."
+    ],
+    "risks": [
+      "Conflict of interest in the semiconductor IP market as Arm moves to compete with its own silicon customers.",
+      "Unrestricted LLM agents in enterprise lack audit trails and grounded business context, risking hallucinations.",
+      "High-dimensional optimization and digital-twin calibration face severe simulation budget constraints."
+    ],
+    "watch": [
+      "Deployment of 'Execution Contracts' for autonomous agents to mitigate state mutation risks.",
+      "Intel's evolution into a 'charter' foundry for hyperscalers like Musk, Microsoft, and Meta.",
+      "Implementation of 'Flex and Priority' inference models to manage API costs in production AI."
+    ],
+    "entities_top": [
+      "Google DeepMind",
+      "NVIDIA",
+      "Intel"
+    ]
+  },
+  "items": [
+    {
+      "title": "OpenKedge: Governing Agentic Mutation with Execution-Bound Safety and Evidence Chains",
+      "link": "https://arxiv.org/abs/2604.08601",
+      "published": "2026-04-13T04:00:00+00:00",
+      "summary": "arXiv:2604.08601v1 Announce Type: new Abstract: The rise of autonomous AI agents exposes a fundamental flaw in API-centric architectures: probabilistic systems directly execute state mutations without sufficient context, coordination, or safety guarantees. We introduce OpenKedge, a protocol that redefines mutation as a governed process rather than an immediate consequence of API invocation. OpenKedge requires actors to submit declarative intent proposals, which are evaluated against deterministically derived system state, temporal signals, and policy constraints prior to execution. Approved intents are compiled into execution contracts that strictly bound permitted actions, resource scope, and time, and are enforced via ephemeral, task-oriented identities. This shifts safety from reactive filtering to preventative, execution-bound enforcement. Crucially, OpenKedge introduces an Intent-to-Execution Evidence Chain (IEEC), which cryptographically links intent, context, policy decisions, execution bounds, and outcomes into a unified lineage. This transforms mutation into a verifiable and reconstructable process, enabling deterministic auditability and reasoning about system behavior. We evaluate OpenKedge across multi-agent conflict scenarios and cloud infrastructure mutations. Results show that the protocol deterministically arbitrates competing intents and cages unsafe execution while maintaining high throughput, establishing a principled foundation for safely operating agentic systems at scale.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 37,
+      "primary": "models",
+      "tags": [
+        "safety",
+        "agents",
+        "protocols"
+      ],
+      "url": "https://arxiv.org/abs/2604.08601",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 37,
+      "_rid": 1,
+      "why": "Redefines AI agent mutations as governed declarative intent rather than direct API calls to ensure safety.",
+      "entities": [
+        "OpenKedge"
+      ]
+    },
+    {
+      "title": "From Business Events to Auditable Decisions: Ontology-Governed Graph Simulation for Enterprise AI",
+      "link": "https://arxiv.org/abs/2604.08603",
+      "published": "2026-04-13T04:00:00+00:00",
+      "summary": "arXiv:2604.08603v1 Announce Type: new Abstract: Existing LLM-based agent systems share a common architectural failure: they answer from the unrestricted knowledge space without first simulating how active business scenarios reshape that space for the event at hand -- producing decisions that are fluent but ungrounded and carrying no audit trail. We present LOM-action, which equips enterprise AI with \\emph{event-driven ontology simulation}: business events trigger scenario conditions encoded in the enterprise ontology~(EO), which drive deterministic graph mutations in an isolated sandbox, evolving a working copy of the subgraph into the scenario-valid simulation graph $G_{\\text{sim}}$; all decisions are derived exclusively from this evolved graph. The core pipeline is \\emph{event $\\to$ simulation $\\to$ decision}, realized through a dual-mode architecture -- \\emph{skill mode} and \\emph{reasoning mode}. Every decision produces a fully traceable audit log. LOM-action achieves 93.82% accuracy and 98.74% tool-chain F1 against frontier baselines Doubao-1.8 and DeepSeek-V3.2, which reach only 24--36% F1 despite 80% accuracy -- exposing the \\emph{illusive accuracy} phenomenon. The four-fold F1 advantage confirms that ontology-governed, event-driven simulation, not model scale, is the architectural prerequisite for trustworthy enterprise decision intelligence.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 35,
+      "primary": "models",
+      "tags": [
+        "enterprise",
+        "knowledge-graph",
+        "agents"
+      ],
+      "url": "https://arxiv.org/abs/2604.08603",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 35,
+      "_rid": 2,
+      "why": "Uses ontology-governed graph simulation to provide auditable and grounded decisions for enterprise AI.",
+      "entities": [
+        "LOM-action"
+      ]
+    },
+    {
+      "title": "GNN-as-Judge: Unleashing the Power of LLMs for Graph Learning with GNN Feedback",
+      "link": "https://arxiv.org/abs/2604.08553",
+      "published": "2026-04-13T04:00:00+00:00",
+      "summary": "arXiv:2604.08553v1 Announce Type: new Abstract: Large Language Models (LLMs) have shown strong performance on text-attributed graphs (TAGs) due to their superior semantic understanding ability on textual node features. However, their effectiveness as predictors in the low-resource setting, where labeled nodes are severely limited and scarce, remains constrained since fine-tuning LLMs usually requires sufficient labeled data, especially when the TAG shows complex structural patterns. In essence, this paper targets two key challenges: (i) the difficulty of generating and selecting reliable pseudo labels on TAGs for LLMs, and (ii) the need to mitigate potential label noise when fine-tuning LLMs with pseudo labels. To counter the challenges, we propose a new framework, GNN-as-Judge, which can unleash the power of LLMs for few-shot semi-supervised learning on TAGs by incorporating the structural inductive bias of Graph Neural Networks (GNNs). Specifically, GNN-as-Judge introduces a collaborative pseudo-labeling strategy that first identifies the most influenced unlabeled nodes from labeled nodes, then exploits both the agreement and disagreement patterns between LLMs and GNNs to generate reliable labels. Furthermore, we develop a weakly-supervised LLM fine-tuning algorithm that can distill the knowledge from informative pseudo labels while mitigating the potential label noise. Experiments on multiple TAG datasets demonstrate that GNN-as-Judge significantly outperforms existing methods, particularly in low-resource regimes where labeled data are scarce.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 35,
+      "primary": "models",
+      "tags": [
+        "gnn",
+        "llm",
+        "graphs"
+      ],
+      "url": "https://arxiv.org/abs/2604.08553",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 35,
+      "_rid": 3,
+      "why": "Improves LLM performance on graph-based tasks through specialized GNN feedback and pseudo-label selection.",
+      "entities": [
+        "GNN",
+        "Judge",
+        "Unleashing",
+        "Power",
+        "Graph Learning",
+        "Feedback"
+      ]
+    },
+    {
+      "title": "Memory-Guided Trust-Region Bayesian Optimization (MG-TuRBO) for High Dimensions",
+      "link": "https://arxiv.org/abs/2604.08569",
+      "published": "2026-04-13T04:00:00+00:00",
+      "summary": "arXiv:2604.08569v1 Announce Type: new Abstract: Traffic simulation and digital-twin calibration is a challenging optimization problem with a limited simulation budget. Each trial requires an expensive simulation run, and the relationship between calibration inputs and model error is often nonconvex, and noisy. The problem becomes more difficult as the number of calibration parameters increases. We compare a commonly used automatic calibration method, a genetic algorithm (GA), with Bayesian optimization methods (BOMs): classical Bayesian optimization (BO), Trust-Region BO (TuRBO), Multi-TuRBO, and a proposed Memory-Guided TuRBO (MG-TuRBO) method. We compare performance on 2 real-world traffic simulation calibration problems with 14 and 84 decision variables, representing lower- and higher-dimensional (14D and 84D) settings. For BOMs, we study two acquisition strategies, Thompson sampling and a novel adaptive strategy. We evaluate performance using final calibration quality, convergence behavior, and consistency across runs. The results show that BOMs reach good calibration targets much faster than GA in the lower-D problem. MG-TuRBO performs comparably in our 14D setting, it demonstrates noticeable advantages in the 84D problem, particularly when paired with our adaptive strategy. Our results suggest that MG-TuRBO is especially useful for high-D traffic simulation calibration and potentially for high-D problems in general.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 22,
+      "primary": "misc",
+      "tags": [
+        "optimization",
+        "simulation",
+        "calibration"
+      ],
+      "url": "https://arxiv.org/abs/2604.08569",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 22,
+      "_rid": 4,
+      "why": "Introduces memory-guided trust-region optimization for complex, high-dimensional digital-twin calibration.",
+      "entities": [
+        "Memory",
+        "Guided Trust",
+        "Region Bayesian Optimization",
+        "High Dimensions"
+      ]
+    },
+    {
+      "title": "Gemma 4 punches above its weight, outperforming models 10x its size without the need for massive compute. With 10M+ downloads in its first week and 500M+ for...",
+      "summary": "Gemma 4 punches above its weight, outperforming models 10x its size without the need for massive compute. With 10M+ downloads in its first week and 500M+ for the Gemma family overall, we’re excited to see this level of engagement within the open research community.",
+      "link": "https://x.com/GoogleDeepMind/status/2042283481640615944",
+      "published": "Mon, 13 Apr 2026 08:16:42 GMT",
+      "source": "X @GoogleDeepMind",
+      "feed_tags": [
+        "x",
+        "research",
+        "models"
+      ],
+      "score": 22,
+      "primary": "models",
+      "tags": [
+        "slm",
+        "efficiency",
+        "open-source"
+      ],
+      "url": "https://x.com/GoogleDeepMind/status/2042283481640615944",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 22,
+      "_rid": 5,
+      "why": "Gemma 4 achieves state-of-the-art performance while being 10x smaller, highlighting the trend of model efficiency.",
+      "entities": [
+        "Google DeepMind"
+      ]
+    },
+    {
+      "title": "Who’s Buying America’s Foundry Future?",
+      "link": "https://semiwiki.com/semiconductor-manufacturers/intel/368294-whos-buying-americas-foundry-future/",
+      "published": "2026-04-12T21:00:38+00:00",
+      "summary": "Everyone has been treating Intel as a turnaround story. What if it&#8217;s not a scheduled airline — but a charter, and Musk is the one filing the flight plan? Not just Tesla. Companies like Microsoft, Google, Meta, and Oracle are all designing their own silicon now, and their AI infrastructure depends on it. And yet they remain dependent&#8230; Read More The post Who&#8217;s Buying America&#8217;s Foundry Future? appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 18,
+      "primary": "infra",
+      "tags": [
+        "foundry",
+        "semiconductors",
+        "hyperscalers"
+      ],
+      "url": "https://semiwiki.com/semiconductor-manufacturers/intel/368294-whos-buying-americas-foundry-future/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 18,
+      "_rid": 6,
+      "why": "Shift in US foundry landscape as tech giants design custom silicon, potentially redefining Intel's role as a charter fab.",
+      "entities": [
+        "Intel",
+        "Tesla",
+        "NVIDIA",
+        "Microsoft"
+      ]
+    },
+    {
+      "title": "yieldHUB Expands Its Impact with New Technology and a New Website",
+      "link": "https://semiwiki.com/eda/yieldhub/367971-yieldhub-expands-its-impact-with-new-technology-and-a-new-website/",
+      "published": "2026-04-09T17:00:42+00:00",
+      "summary": "yieldHUB is a unique company that focuses on yield optimization for the semiconductor industry. The company aims to bring engineering teams together with a platform that allows sharing of data analytics and knowledge about products to improve yield. This goal is certainly fueled by unifying data from multiple steps in the manufacturing&#8230; Read More The post yieldHUB Expands Its Impact with New Technology and a New Website appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 16,
+      "primary": "infra",
+      "tags": [
+        "manufacturing",
+        "semiconductors",
+        "optimization"
+      ],
+      "url": "https://semiwiki.com/eda/yieldhub/367971-yieldhub-expands-its-impact-with-new-technology-and-a-new-website/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 16,
+      "_rid": 7,
+      "why": "Platform for unifying manufacturing data to optimize semiconductor yield through shared analytics.",
+      "entities": [
+        "yieldHUB"
+      ]
+    },
+    {
+      "title": "CEO Interview with Dr. Hardik Kabaria of Vinci",
+      "link": "https://semiwiki.com/ceo-interviews/368322-ceo-interview-with-dr-hardik-kabaria-of-vinci/",
+      "published": "2026-04-12T19:00:56+00:00",
+      "summary": "Hardik Kabaria is the founder and CEO of Vinci, a frontier lab building systems that make physical reality continuously computable. While software has become programmable, physics has remained episodic—accessed through discrete simulations and approximations. Vinci is changing that. Under Kabaria’s leadership, the company &#8230; Read More The post CEO Interview with Dr. Hardik Kabaria of Vinci appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 13,
+      "primary": "misc",
+      "tags": [
+        "physics",
+        "computing",
+        "digital-twin"
+      ],
+      "url": "https://semiwiki.com/ceo-interviews/368322-ceo-interview-with-dr-hardik-kabaria-of-vinci/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 13,
+      "_rid": 8,
+      "why": "Aims to make physical reality continuously computable rather than episodic through new software-physics systems.",
+      "entities": [
+        "Vinci",
+        "Hardik Kabaria"
+      ]
+    },
+    {
+      "title": "When a Platform Provider Becomes a Competitor: Why Arm’s Silicon Strategy Changes the Incentives",
+      "link": "https://semiwiki.com/ip/andes-technology/368084-when-a-platform-provider-becomes-a-competitor-why-arms-silicon-strategy-changes-the-incentives/",
+      "published": "2026-04-12T19:00:49+00:00",
+      "summary": "Marc Evans, Director of Business Development &#38; Marketing, Andes Technology USA I work at a RISC-V IP company, and I genuinely root for Arm — probably more than most people in my position would admit. Not because I&#8217;m confused about who competes with whom, but because Arm&#8217;s best move for their shareholders is also&#8230; Read More The post When a Platform Provider Becomes a Competitor: Why Arm’s Silicon Strategy Changes the Incentives appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 13,
+      "primary": "invest",
+      "tags": [
+        "arm",
+        "risc-v",
+        "competition"
+      ],
+      "url": "https://semiwiki.com/ip/andes-technology/368084-when-a-platform-provider-becomes-a-competitor-why-arms-silicon-strategy-changes-the-incentives/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 13,
+      "_rid": 9,
+      "why": "Arm's shift into direct silicon strategy alters incentives for the industry and boosts RISC-V interest.",
+      "entities": [
+        "Arm",
+        "Andes Technology"
+      ]
+    },
+    {
+      "title": "Gemini 3.1 Pro: A smarter model for your most complex tasks",
+      "link": "https://deepmind.google/blog/gemini-3-1-pro-a-smarter-model-for-your-most-complex-tasks/",
+      "published": "2026-02-19T16:06:14+00:00",
+      "summary": "3.1 Pro is designed for tasks where a simple answer isn’t enough.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 11,
+      "primary": "models",
+      "tags": [
+        "llm",
+        "multimodal",
+        "productivity"
+      ],
+      "url": "https://deepmind.google/blog/gemini-3-1-pro-a-smarter-model-for-your-most-complex-tasks/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 11,
+      "_rid": 10,
+      "why": "Optimized for complex reasoning where simple answers are insufficient, strengthening the enterprise stack.",
+      "entities": [
+        "Google DeepMind"
+      ]
+    },
+    {
+      "title": "Gemini 3 Deep Think: Advancing science, research and engineering",
+      "link": "https://deepmind.google/blog/gemini-3-deep-think-advancing-science-research-and-engineering/",
+      "published": "2026-02-12T16:15:09+00:00",
+      "summary": "Our most specialized reasoning mode is now updated to solve modern science, research and engineering challenges.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 11,
+      "primary": "models",
+      "tags": [
+        "reasoning",
+        "science",
+        "r&d"
+      ],
+      "url": "https://deepmind.google/blog/gemini-3-deep-think-advancing-science-research-and-engineering/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 11,
+      "_rid": 11,
+      "why": "Advanced reasoning mode specifically tuned for scientific research and engineering problem-solving.",
+      "entities": [
+        "Google DeepMind"
+      ]
+    },
+    {
+      "title": "Build with Veo 3.1 Lite, our most cost-effective video generation model",
+      "link": "https://blog.google/innovation-and-ai/technology/ai/veo-3-1-lite/",
+      "published": "2026-03-31T16:00:00+00:00",
+      "summary": "Build with Veo 3.1 Lite",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 11,
+      "primary": "models",
+      "tags": [
+        "video-gen",
+        "efficiency",
+        "api"
+      ],
+      "url": "https://blog.google/innovation-and-ai/technology/ai/veo-3-1-lite/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 11,
+      "_rid": 12,
+      "why": "Cost-effective video generation model targeting developers and production scalability.",
+      "entities": [
+        "Google AI"
+      ]
+    },
+    {
+      "title": "NVIDIA CEO Drops the Blueprint for Europe’s AI Boom",
+      "link": "https://blogs.nvidia.com/blog/gtc-paris-2025/",
+      "published": "2025-06-11T11:10:50+00:00",
+      "summary": "At GTC Paris — held alongside VivaTech, Europe’s largest tech event — NVIDIA founder and CEO Jensen Huang delivered a clear message: Europe isn’t just adopting AI — it’s building it. “We now have a new industry, an AI industry, and it’s now part of the new infrastructure, called intelligence infrastructure, that will be used [&#8230;]",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 11,
+      "primary": "geopol",
+      "tags": [
+        "infrastructure",
+        "europe",
+        "sovereign-ai"
+      ],
+      "url": "https://blogs.nvidia.com/blog/gtc-paris-2025/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 11,
+      "_rid": 13,
+      "why": "Focus on building European intelligence infrastructure and new industrial paradigms driven by AI.",
+      "entities": [
+        "NVIDIA",
+        "Jensen Huang"
+      ]
+    },
+    {
+      "title": "Protecting people from harmful manipulation",
+      "link": "https://deepmind.google/blog/protecting-people-from-harmful-manipulation/",
+      "published": "2026-03-25T16:46:20+00:00",
+      "summary": "Google DeepMind researches AI's harmful manipulation risks across areas like finance and health, leading to new safety measures.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 9,
+      "primary": "misc",
+      "tags": [
+        "safety",
+        "ethics",
+        "manipulation"
+      ],
+      "url": "https://deepmind.google/blog/protecting-people-from-harmful-manipulation/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 9,
+      "_rid": 14,
+      "why": "Research into preventing AI manipulation in sensitive sectors like finance and healthcare.",
+      "entities": [
+        "Google DeepMind"
+      ]
+    },
+    {
+      "title": "The security and privacy of your information are a top priority. We’re committed to being transparent and taking quick action when issues arise. We're sharin...",
+      "summary": "The security and privacy of your information are a top priority. We’re committed to being transparent and taking quick action when issues arise. We're sharing more technical details and FAQs here:",
+      "link": "https://x.com/OpenAI?post=cbb7874e704e",
+      "published": "Mon, 13 Apr 2026 07:31:42 GMT",
+      "source": "X @OpenAI",
+      "feed_tags": [
+        "x",
+        "models",
+        "products"
+      ],
+      "score": 5,
+      "primary": "misc",
+      "tags": [],
+      "url": "https://x.com/OpenAI?post=cbb7874e704e",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 5,
+      "entities": [],
+      "why": "The security and privacy of your information are a top priority. We’re committed to being transparent and taking quick action when issues arise. We're sharing m"
+    }
+  ]
+}
