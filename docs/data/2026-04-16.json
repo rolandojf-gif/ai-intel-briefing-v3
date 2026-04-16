@@ -1,0 +1,476 @@
+{
+  "date": "2026-04-16",
+  "score_avg": 15.93,
+  "primary_dist": {
+    "models": 10,
+    "infra": 2,
+    "invest": 1,
+    "misc": 2
+  },
+  "top_entities": [
+    {
+      "entity": "Google DeepMind",
+      "count": 3
+    },
+    {
+      "entity": "arXiv",
+      "count": 2
+    },
+    {
+      "entity": "NVIDIA",
+      "count": 2
+    },
+    {
+      "entity": "Jensen Huang",
+      "count": 2
+    },
+    {
+      "entity": "Gemini",
+      "count": 2
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "NVIDIA Rubin define el nuevo roadmap de hardware 2026 con un mercado potencial de 10 billones de dólares.",
+      "Google expande Gemini 3.1 priorizando latencia ultrabaja, control por voz y eficiencia de costes a escala.",
+      "Descubierta la capacidad de los LLM para transmitir rasgos y sesgos mediante señales subliminales en datos.",
+      "El fenómeno de grokking en transformers se identifica como un cuello de botella en el decoder, no falta de aprendizaje.",
+      "El algoritmo Forward-Forward emerge como alternativa viable al backpropagation mediante funciones de bondad sparse."
+    ],
+    "risks": [
+      "Vulnerabilidad ante el aprendizaje subliminal que permite transferir sesgos indetectables entre modelos.",
+      "Cuellos de botella en la entrega de potencia (PDN) limitan el rendimiento de hardware de alta frecuencia.",
+      "Riesgo de estancamiento científico en mínimos locales debido a la dependencia histórica de marcos teóricos."
+    ],
+    "watch": [
+      "Lanzamiento comercial de la plataforma Rubin y su integración en sistemas de conducción autónoma.",
+      "Resultados del hackathon de Google sobre métricas cognitivas para cuantificar el progreso hacia AGI.",
+      "Adopción de Gemini 3.1 Flash-Lite en aplicaciones que requieren procesamiento masivo a bajo coste."
+    ],
+    "entities_top": [
+      "NVIDIA",
+      "Google DeepMind",
+      "Anthropic"
+    ]
+  },
+  "items": [
+    {
+      "title": "The Long Delay to Arithmetic Generalization: When Learned Representations Outrun Behavior",
+      "link": "https://arxiv.org/abs/2604.13082",
+      "published": "2026-04-16T04:00:00+00:00",
+      "summary": "arXiv:2604.13082v1 Announce Type: new Abstract: Grokking in transformers trained on algorithmic tasks is characterized by a long delay between training-set fit and abrupt generalization, but the source of that delay remains poorly understood. In encoder-decoder arithmetic models, we argue that this delay reflects limited access to already learned structure rather than failure to acquire that structure in the first place. We study one-step Collatz prediction and find that the encoder organizes parity and residue structure within the first few thousand training steps, while output accuracy remains near chance for tens of thousands more. Causal interventions support the decoder bottleneck hypothesis. Transplanting a trained encoder into a fresh model accelerates grokking by 2.75 times, while transplanting a trained decoder actively hurts. Freezing a converged encoder and retraining only the decoder eliminates the plateau entirely and yields 97.6% accuracy, compared to 86.1% for joint training. What makes the decoder's job harder or easier depends on numeral representation. Across 15 bases, those whose factorization aligns with the Collatz map's arithmetic (e.g., base 24) reach 99.8% accuracy, while binary fails completely because its representations collapse and never recover. The choice of base acts as an inductive bias that controls how much local digit structure the decoder can exploit, producing large differences in learnability from the same underlying task.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 30,
+      "primary": "models",
+      "tags": [
+        "grokking",
+        "transformers",
+        "generalization",
+        "interpretability"
+      ],
+      "url": "https://arxiv.org/abs/2604.13082",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 30,
+      "_rid": 1,
+      "why": "Revela que el retraso en la generalización (grokking) es un problema de acceso del decoder y no de aprendizaje del encoder.",
+      "entities": [
+        "arXiv"
+      ]
+    },
+    {
+      "title": "Exploring the Hidden Complexity of Modern Power Electronics Design – A Siemens White Paper",
+      "link": "https://semiwiki.com/eda/siemens-eda/368421-exploring-the-hidden-complexity-of-modern-power-electronics-design-a-siemens-white-paper/",
+      "published": "2026-04-15T17:00:56+00:00",
+      "summary": "Review the specifications of any state-of-the-art microcontroller and you will discover the high dynamic current the device can consume. Examining the high clock rates and low tolerable voltage drop will lead you to the all-important power delivery network, or PDN. Components here include power planes, layer stack-up, decoupling&#8230; Read More The post Exploring the Hidden Complexity of Modern Power Electronics Design – A Siemens White Paper appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 26,
+      "primary": "infra",
+      "tags": [
+        "hardware",
+        "power-electronics",
+        "eda",
+        "semiconductors"
+      ],
+      "url": "https://semiwiki.com/eda/siemens-eda/368421-exploring-the-hidden-complexity-of-modern-power-electronics-design-a-siemens-white-paper/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 26,
+      "_rid": 2,
+      "why": "La complejidad en el diseño de la red de entrega de potencia (PDN) es crítica para los microcontroladores modernos de IA.",
+      "entities": [
+        "Siemens",
+        "SemiWiki"
+      ]
+    },
+    {
+      "title": "Research we co-authored on subliminal learning—how LLMs can pass on traits like preferences or misalignment through hidden signals in data—was published toda...",
+      "summary": "Research we co-authored on subliminal learning—how LLMs can pass on traits like preferences or misalignment through hidden signals in data—was published today in . Read the paper: [nature.com/articles/s4158](https://t.co/b1BYwcW9dH) Quote Owain Evans @OwainEvans_UK 13h Our paper on Subliminal Learning was just published in Nature! Last July we released our preprint. It showed that LLMs can transmit traits (e.g. liking owls) through data that is unrelated to that trait (numbers that appear meaningless). What’s new?![Image 3: 🧵](https://abs-0.twimg.com/emoji/v2/svg/1f9f5.svg)",
+      "link": "https://x.com/AnthropicAI?post=c8e154d9c6e7",
+      "published": "Thu, 16 Apr 2026 07:50:12 GMT",
+      "source": "X @AnthropicAI",
+      "feed_tags": [
+        "x",
+        "models",
+        "safety"
+      ],
+      "score": 21,
+      "primary": "models",
+      "tags": [
+        "safety",
+        "alignment",
+        "subliminal-learning",
+        "nature"
+      ],
+      "url": "https://x.com/AnthropicAI?post=c8e154d9c6e7",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 21,
+      "_rid": 3,
+      "why": "Publicación en Nature demuestra que los LLM pueden transferir preferencias o desalineación de forma oculta en los datos.",
+      "entities": [
+        "Anthropic",
+        "Nature"
+      ]
+    },
+    {
+      "title": "Gemini 3.1 Flash TTS is our most controllable text-to-speech model yet. With new Audio Tags, you can easily direct vocal style, delivery, and pace through te...",
+      "summary": "Gemini 3.1 Flash TTS is our most controllable text-to-speech model yet. With new Audio Tags, you can easily direct vocal style, delivery, and pace through text commands. ![Image 6: 🧵](https://abs-0.twimg.com/emoji/v2/svg/1f9f5.svg)",
+      "link": "https://x.com/GoogleDeepMind?post=e1b44e489fee",
+      "published": "Thu, 16 Apr 2026 07:10:11 GMT",
+      "source": "X @GoogleDeepMind",
+      "feed_tags": [
+        "x",
+        "research",
+        "models"
+      ],
+      "score": 19,
+      "primary": "models",
+      "tags": [
+        "tts",
+        "multimodal",
+        "voice-ai",
+        "ux"
+      ],
+      "url": "https://x.com/GoogleDeepMind?post=e1b44e489fee",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 19,
+      "_rid": 4,
+      "why": "Gemini 3.1 Flash introduce etiquetas de audio para control granular de estilo y ritmo, mejorando la interacción humana.",
+      "entities": [
+        "Google DeepMind"
+      ]
+    },
+    {
+      "title": "Watch Jensen Huang unveil the latest breakthroughs in AI and accelerated computing, and more in the [#NVIDIAGTC](https://x.com/hashtag/NVIDIAGTC?src=hashtag_...",
+      "summary": "Watch Jensen Huang unveil the latest breakthroughs in AI and accelerated computing, and more in the [#NVIDIAGTC](https://x.com/hashtag/NVIDIAGTC?src=hashtag_click) 2026 keynote. Now live ![Image 4: ⬇️](https://abs-0.twimg.com/emoji/v2/svg/2b07.svg)",
+      "link": "https://x.com/NVIDIAAI?post=414b3815ed07",
+      "published": "Thu, 16 Apr 2026 08:02:02 GMT",
+      "source": "X @NVIDIAAI",
+      "feed_tags": [
+        "x",
+        "infra",
+        "chips"
+      ],
+      "score": 16,
+      "primary": "invest",
+      "tags": [
+        "gpu",
+        "gtc2026",
+        "accelerated-computing"
+      ],
+      "url": "https://x.com/NVIDIAAI?post=414b3815ed07",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 16,
+      "_rid": 5,
+      "why": "Jensen Huang proyecta la escala de la IA en todos los dominios y dispositivos como motor de la economía global.",
+      "entities": [
+        "NVIDIA",
+        "Jensen Huang"
+      ]
+    },
+    {
+      "title": "Gemini 3.1 Flash TTS: the next generation of expressive AI speech",
+      "link": "https://deepmind.google/blog/gemini-3-1-flash-tts-the-next-generation-of-expressive-ai-speech/",
+      "published": "2026-04-15T16:03:19+00:00",
+      "summary": "Our newest audio model introduces granular audio tags that give you precise control to direct AI speech for expressive audio generation.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 14,
+      "primary": "models",
+      "tags": [
+        "models"
+      ],
+      "url": "https://deepmind.google/blog/gemini-3-1-flash-tts-the-next-generation-of-expressive-ai-speech/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 14,
+      "_rid": 6,
+      "entities": [
+        "TTS",
+        "Gemini",
+        "Flash"
+      ],
+      "why": "Our newest audio model introduces granular audio tags that give you precise control to direct AI speech for expressive audio generation."
+    },
+    {
+      "title": "Measuring progress toward AGI: A cognitive framework",
+      "link": "https://deepmind.google/blog/measuring-progress-toward-agi-a-cognitive-framework/",
+      "published": "2026-03-17T16:03:47+00:00",
+      "summary": "We’re introducing a framework to measure progress toward AGI, and launching a Kaggle hackathon to build the relevant evaluations.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 14,
+      "primary": "models",
+      "tags": [
+        "agi",
+        "benchmarks",
+        "evaluation"
+      ],
+      "url": "https://deepmind.google/blog/measuring-progress-toward-agi-a-cognitive-framework/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 14,
+      "_rid": 7,
+      "why": "Nuevo marco cognitivo para medir el progreso hacia AGI, estandarizando la evaluación de capacidades superiores.",
+      "entities": [
+        "Google DeepMind",
+        "Kaggle"
+      ]
+    },
+    {
+      "title": "Bringing people together at AI for the Economy Forum",
+      "link": "https://blog.google/company-news/outreach-and-initiatives/creating-opportunity/ai-economy-forum/",
+      "published": "2026-04-14T09:00:00+00:00",
+      "summary": "Woman working with a large tool. On the left are the Google and MIT FutureTech logos, \"AI for the Economy Forum\", and \"Innovation and Adaption in the New Era\"",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 14,
+      "primary": "models",
+      "tags": [
+        "models"
+      ],
+      "url": "https://blog.google/company-news/outreach-and-initiatives/creating-opportunity/ai-economy-forum/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 14,
+      "_rid": 8,
+      "entities": [
+        "Bringing",
+        "Economy Forum"
+      ],
+      "why": "Woman working with a large tool. On the left are the Google and MIT FutureTech logos, \"AI for the Economy Forum\", and \"Innovation and Adaption in the New Era\""
+    },
+    {
+      "title": "NVIDIA Rubin Platform, Open Models, Autonomous Driving: NVIDIA Presents Blueprint for the Future at CES",
+      "link": "https://blogs.nvidia.com/blog/2026-ces-special-presentation/",
+      "published": "2026-01-05T23:30:18+00:00",
+      "summary": "NVIDIA founder and CEO Jensen Huang took the stage at the Fontainebleau Las Vegas to open CES 2026, declaring that AI is scaling into every domain and every device. “Computing has been fundamentally reshaped as a result of accelerated computing, as a result of artificial intelligence,” Huang said. “What that means is some $10 trillion [&#8230;]",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 13,
+      "primary": "infra",
+      "tags": [
+        "rubin",
+        "roadmap",
+        "autonomous-driving",
+        "ces2026"
+      ],
+      "url": "https://blogs.nvidia.com/blog/2026-ces-special-presentation/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 13,
+      "_rid": 9,
+      "why": "Presentación de la arquitectura Rubin; NVIDIA consolida su dominio en infraestructura de IA y conducción autónoma.",
+      "entities": [
+        "NVIDIA",
+        "Jensen Huang"
+      ]
+    },
+    {
+      "title": "Effective Defense Against Hacks at the Edge",
+      "link": "https://semiwiki.com/quantum-computing/367967-effective-defense-against-hacks-at-the-edge/",
+      "published": "2026-04-15T13:00:51+00:00",
+      "summary": "IoT permeates every aspect of our lives, in payment systems, access authorization, vehicles, utilities, factories, hospitals, and in so many other fields. Which makes these systems attractive targets for hacking and social disruption while also challenging to protect given the highly constrained resources that many such&#8230; Read More The post Effective Defense Against Hacks at the Edge appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 13,
+      "primary": "misc",
+      "tags": [],
+      "url": "https://semiwiki.com/quantum-computing/367967-effective-defense-against-hacks-at-the-edge/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 13,
+      "_rid": 10,
+      "entities": [
+        "Effective Defense Against",
+        "Hacks",
+        "Edge"
+      ],
+      "why": "IoT permeates every aspect of our lives, in payment systems, access authorization, vehicles, utilities, factories, hospitals, and in so many other fields. Which"
+    },
+    {
+      "title": "Calibrating Quantum Computing Activity in Financial Services",
+      "link": "https://semiwiki.com/artificial-intelligence/367878-calibrating-quantum-computing-activity-in-financial-services/",
+      "published": "2026-04-14T13:00:54+00:00",
+      "summary": "I was invited to listen in on an event hosted by Fujitsu and Quantum Insider on the reality of Quantum Computing (QC) in financial services today. This market is a good test for QC since multiple possible high value applications have been suggested. The panel was chaired by Brian Lenehan, (Founder and Chair, Quantum Strategy Institute),&#8230; Read More The post Calibrating Quantum Computing Activity in Financial Services appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 13,
+      "primary": "misc",
+      "tags": [],
+      "url": "https://semiwiki.com/artificial-intelligence/367878-calibrating-quantum-computing-activity-in-financial-services/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 13,
+      "_rid": 11,
+      "entities": [
+        "Calibrating Quantum Computing",
+        "Activity",
+        "Financial Services"
+      ],
+      "why": "I was invited to listen in on an event hosted by Fujitsu and Quantum Insider on the reality of Quantum Computing (QC) in financial services today. This market i"
+    },
+    {
+      "title": "The Non-Optimality of Scientific Knowledge: Path Dependence, Lock-In, and The Local Minimum Trap",
+      "link": "https://arxiv.org/abs/2604.11828",
+      "published": "2026-04-16T04:00:00+00:00",
+      "summary": "arXiv:2604.11828v2 Announce Type: new Abstract: Science is widely regarded as humanity's most reliable method for uncovering truths about the natural world. Yet the \\emph{trajectory} of scientific discovery is rarely examined as an optimization problem in its own right. This paper argues that the body of scientific knowledge, at any given historical moment, represents a \\emph{local optimum} rather than a global one--that the frameworks, formalisms, and paradigms through which we understand nature are substantially shaped by historical contingency, cognitive path dependence, and institutional lock-in. Drawing an analogy to gradient descent in machine learning, we propose that science follows the steepest local gradient of tractability, empirical accessibility, and institutional reward, and in doing so may bypass fundamentally superior descriptions of nature. We develop this thesis through detailed case studies spanning mathematics, physics, chemistry, biology, neuroscience, and statistical methodology. We identify three interlocking mechanisms of lock-in--cognitive, formal, and institutional--and argue that recognizing these mechanisms is a prerequisite for designing meta-scientific strategies capable of escaping local optima. We conclude by proposing concrete interventions and discussing the epistemological implications of our thesis for the philosophy of science.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 12,
+      "primary": "models",
+      "tags": [
+        "models"
+      ],
+      "url": "https://arxiv.org/abs/2604.11828",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 12,
+      "_rid": 12,
+      "entities": [
+        "The Non",
+        "Optimality",
+        "Scientific Knowledge",
+        "Path Dependence",
+        "Lock",
+        "The Local Minimum",
+        "Trap"
+      ],
+      "why": "arXiv:2604.11828v2 Announce Type: new Abstract: Science is widely regarded as humanity's most reliable method for uncovering truths about the natural world. Yet"
+    },
+    {
+      "title": "Sparse Goodness: How Selective Measurement Transforms Forward-Forward Learning",
+      "link": "https://arxiv.org/abs/2604.13081",
+      "published": "2026-04-16T04:00:00+00:00",
+      "summary": "arXiv:2604.13081v1 Announce Type: new Abstract: The Forward-Forward (FF) algorithm is a biologically plausible alternative to backpropagation that trains neural networks layer by layer using a local goodness function to distinguish positive from negative data. Since its introduction, sum-of-squares (SoS) has served as the default goodness function. In this work, we systematically study the design space of goodness functions, investigating both which activations to measure and how to aggregate them. We introduce top-k goodness, which evaluates only the k most active neurons, and show that it substantially outperforms SoS, improving Fashion-MNIST accuracy by 22.6 percentage points. We further introduce entmax-weighted energy, which replaces hard top-k selection with a learnable sparse weighting based on the alpha-entmax transformation, yielding additional gains. Orthogonally, we adopt separate label feature forwarding (FFCL), in which class hypotheses are injected at every layer through a dedicated projection rather than concatenated only at the input. Combining these ideas, we achieve 87.1 percent accuracy on Fashion-MNIST with a 4x2000 architecture, representing a 30.7 percentage point improvement over the SoS baseline while changing only the goodness function and the label pathway. Across controlled experiments covering 11 goodness functions, two architectures, and a sparsity spectrum analysis over both k and alpha, we identify a consistent principle: sparsity in the goodness function is the most important design choice in FF networks. In particular, adaptive sparsity with alpha approximately 1.5 outperforms both fully dense and fully sparse alternatives.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 12,
+      "primary": "models",
+      "tags": [
+        "forward-forward",
+        "optimization",
+        "backpropagation-alternative"
+      ],
+      "url": "https://arxiv.org/abs/2604.13081",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 12,
+      "_rid": 13,
+      "why": "La medición selectiva (Top-K) en algoritmos Forward-Forward supera drásticamente los métodos tradicionales de entrenamiento.",
+      "entities": [
+        "arXiv"
+      ]
+    },
+    {
+      "title": "Gemini 3.1 Flash Live: Making audio AI more natural and reliable",
+      "link": "https://deepmind.google/blog/gemini-3-1-flash-live-making-audio-ai-more-natural-and-reliable/",
+      "published": "2026-03-26T15:23:35+00:00",
+      "summary": "Our latest voice model has improved precision and lower latency to make voice interactions more fluid, natural and precise.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 11,
+      "primary": "models",
+      "tags": [
+        "models"
+      ],
+      "url": "https://deepmind.google/blog/gemini-3-1-flash-live-making-audio-ai-more-natural-and-reliable/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 11,
+      "_rid": 14,
+      "entities": [
+        "Gemini",
+        "Flash Live",
+        "Making"
+      ],
+      "why": "Our latest voice model has improved precision and lower latency to make voice interactions more fluid, natural and precise."
+    },
+    {
+      "title": "Gemini 3.1 Flash-Lite: Built for intelligence at scale",
+      "link": "https://deepmind.google/blog/gemini-3-1-flash-lite-built-for-intelligence-at-scale/",
+      "published": "2026-03-03T16:35:55+00:00",
+      "summary": "Gemini 3.1 Flash-Lite is our fastest and most cost-efficient Gemini 3 series model yet.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 11,
+      "primary": "models",
+      "tags": [
+        "efficiency",
+        "edge-ai",
+        "inference",
+        "cost-optimization"
+      ],
+      "url": "https://deepmind.google/blog/gemini-3-1-flash-lite-built-for-intelligence-at-scale/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 11,
+      "_rid": 15,
+      "why": "Lanzamiento de un modelo optimizado para inteligencia a escala masiva con alta eficiencia de costes.",
+      "entities": [
+        "Google DeepMind"
+      ]
+    }
+  ]
+}
