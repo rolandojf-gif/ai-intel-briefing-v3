@@ -1,0 +1,470 @@
+{
+  "date": "2026-04-17",
+  "score_avg": 30,
+  "primary_dist": {
+    "models": 9,
+    "infra": 4,
+    "geopol": 1,
+    "invest": 1
+  },
+  "top_entities": [
+    {
+      "entity": "NVIDIA",
+      "count": 7
+    },
+    {
+      "entity": "arXiv",
+      "count": 4
+    },
+    {
+      "entity": "OpenAI",
+      "count": 2
+    },
+    {
+      "entity": "University of Bristol",
+      "count": 2
+    },
+    {
+      "entity": "Google DeepMind",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "OpenAI lanza GPT-5.2 y GPT-5.3 Codex, consolidando modelos que participan en su propio desarrollo de software.",
+      "La IA Soberana avanza con el supercomputador Isambard-AI y modelos lingüísticos específicos para el Reino Unido.",
+      "Convergencia de modelos de razonamiento (Gemini) en hardware robótico (Spot) para tareas físicas complejas.",
+      "Transición en vehículos autónomos hacia arquitecturas end-to-end que dependen masivamente de simulación física.",
+      "Especialización vertical extrema con GPT-Rosalind, enfocado en biología, medicina traslacional y fármacos."
+    ],
+    "risks": [
+      "Desperdicio de silicio y energía por ejecución especulativa ineficiente en arquitecturas de procesadores actuales.",
+      "Entrelazamiento de gradientes que limita la capacidad de aprendizaje en tareas de descubrimiento de categorías.",
+      "Dificultad técnica para medir objetivamente el equilibrio entre exploración y explotación en agentes autónomos."
+    ],
+    "watch": [
+      "Rendimiento real de los sistemas NVIDIA GB200 en el despliegue de modelos agenticos de OpenAI.",
+      "Escalabilidad de frameworks científicos como SciFi en laboratorios de investigación biotecnológica.",
+      "Adopción de modelos de IA en lenguas minoritarias como motor de soberanía tecnológica nacional."
+    ],
+    "entities_top": [
+      "NVIDIA",
+      "OpenAI",
+      "Google DeepMind"
+    ]
+  },
+  "items": [
+    {
+      "title": "As AI Grows More Complex, Model Builders Rely on NVIDIA",
+      "link": "https://blogs.nvidia.com/blog/leading-models-nvidia/",
+      "published": "2025-12-11T19:19:57+00:00",
+      "summary": "Unveiling what it describes as the most capable model series yet for professional knowledge work, OpenAI launched GPT-5.2 in December. The model was trained and deployed on NVIDIA infrastructure, including NVIDIA Hopper and GB200 NVL72 systems. GPT-5.3 Codex — the first OpenAI agentic coding model to help build itself — was released in February and [&#8230;]",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 47,
+      "primary": "models",
+      "tags": [
+        "gpt-5",
+        "openai",
+        "nvidia",
+        "blackwell"
+      ],
+      "url": "https://blogs.nvidia.com/blog/leading-models-nvidia/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 47,
+      "_rid": 1,
+      "why": "Lanzamiento de GPT-5.2 y 5.3 Codex entrenados en GB200; hito en modelos que se autoconstruyen y razonamiento profesional.",
+      "entities": [
+        "OpenAI",
+        "NVIDIA"
+      ]
+    },
+    {
+      "title": "MixAtlas: Uncertainty-aware Data Mixture Optimization for Multimodal LLM Midtraining",
+      "link": "https://arxiv.org/abs/2604.14198",
+      "published": "2026-04-17T04:00:00+00:00",
+      "summary": "arXiv:2604.14198v1 Announce Type: new Abstract: Domain reweighting can improve sample efficiency and downstream generalization, but data-mixture optimization for multimodal midtraining remains largely unexplored. Current multimodal training recipes tune mixtures along a single dimension, typically data format or task type. We introduce MixAtlas, a method that produces benchmark-targeted data recipes that can be inspected, adapted, and transferred to new corpora. MixAtlas decomposes the training corpus along two axes: image concepts (10 visual-domain clusters discovered via CLIP embeddings) and task supervision (5 objective types including captioning, OCR, grounding, detection, and VQA). Using small proxy models (Qwen2-0.5B) paired with a Gaussian-process surrogate and GP-UCB acquisition, MixAtlas searches the resulting mixture space with the same proxy budget as regression-based baselines but finds better-performing mixtures. We evaluate on 10 benchmarks spanning visual understanding, document reasoning, and multimodal reasoning. On Qwen2-7B, optimized mixtures improve average performance by 8.5%-17.6% over the strongest baseline; on Qwen2.5-7B, gains are 1.0%-3.3%. Both settings reach baseline-equivalent training loss in up to 2 times fewer steps. Recipes discovered on 0.5B proxies transfer to 7B-scale training across Qwen model families.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 42,
+      "primary": "models",
+      "tags": [
+        "multimodal",
+        "data-optimization",
+        "mixatlas"
+      ],
+      "url": "https://arxiv.org/abs/2604.14198",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 42,
+      "_rid": 2,
+      "why": "MixAtlas permite optimizar mezclas de datos multimodales por dominios visuales y tipos de tarea para mejorar eficiencia.",
+      "entities": [
+        "arXiv"
+      ]
+    },
+    {
+      "title": "Exploration and Exploitation Errors Are Measurable for Language Model Agents",
+      "link": "https://arxiv.org/abs/2604.13151",
+      "published": "2026-04-17T04:00:00+00:00",
+      "summary": "arXiv:2604.13151v1 Announce Type: new Abstract: Language Model (LM) agents are increasingly used in complex open-ended decision-making tasks, from AI coding to physical AI. A core requirement in these settings is the ability to both explore the problem space and exploit acquired knowledge effectively. However, systematically distinguishing and quantifying exploration and exploitation from observed actions without access to the agent's internal policy remains challenging. To address this, we design controllable environments inspired by practical embodied AI scenarios. Each environment consists of a partially observable 2D grid map and an unknown task Directed Acyclic Graph (DAG). The map generation can be programmatically adjusted to emphasize exploration or exploitation difficulty. To enable policy-agnostic evaluation, we design a metric to quantify exploration and exploitation errors from agent's actions. We evaluate a variety of frontier LM agents and find that even state-of-the-art models struggle on our task, with different models exhibiting distinct failure modes. We further observe that reasoning models solve the task more effectively and show both exploration and exploitation can be significantly improved through minimal harness engineering. We release our code \\href{https://github.com/jjj-madison/measurable-explore-exploit}{here}.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 40,
+      "primary": "models",
+      "tags": [
+        "agents",
+        "rl",
+        "metrics"
+      ],
+      "url": "https://arxiv.org/abs/2604.13151",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 40,
+      "_rid": 3,
+      "why": "Propuesta para cuantificar errores de exploración en agentes LM, vital para su despliegue en entornos de decisión abiertos.",
+      "entities": [
+        "arXiv"
+      ]
+    },
+    {
+      "title": "NVIDIA Research Shapes Physical AI",
+      "link": "https://blogs.nvidia.com/blog/physical-ai-research-siggraph-2025/",
+      "published": "2025-08-11T15:00:38+00:00",
+      "summary": "AI and graphics research breakthroughs in neural rendering, 3D generation and world simulation power robotics, autonomous vehicles and content creation.",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 36,
+      "primary": "infra",
+      "tags": [
+        "physical-ai",
+        "robotics",
+        "simulation"
+      ],
+      "url": "https://blogs.nvidia.com/blog/physical-ai-research-siggraph-2025/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 36,
+      "_rid": 4,
+      "why": "Inversión masiva de NVIDIA en simulación de mundos para entrenar IA física en robótica y vehículos autónomos.",
+      "entities": [
+        "NVIDIA"
+      ]
+    },
+    {
+      "title": "Reaching Across the Isles: UK-LLM Brings AI to UK Languages With NVIDIA Nemotron",
+      "link": "https://blogs.nvidia.com/blog/uk-llm-nemotron/",
+      "published": "2025-09-14T01:00:21+00:00",
+      "summary": "Celtic languages — including Cornish, Irish, Scottish Gaelic and Welsh — are the U.K.’s oldest living languages. To empower their speakers, the UK-LLM sovereign AI initiative is building an AI model based on NVIDIA Nemotron that can reason in both English and Welsh, a language spoken by about 850,000 people in Wales today. Enabling high-quality [&#8230;]",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 33,
+      "primary": "geopol",
+      "tags": [
+        "sovereign-ai",
+        "llm",
+        "uk"
+      ],
+      "url": "https://blogs.nvidia.com/blog/uk-llm-nemotron/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 33,
+      "_rid": 5,
+      "why": "UK-LLM utiliza Nemotron para preservar lenguas celtas, reforzando la tendencia de independencia tecnológica nacional.",
+      "entities": [
+        "NVIDIA",
+        "University of Bristol"
+      ]
+    },
+    {
+      "title": "We teamed up with to power their robot Spot with Gemini Robotics embodied reasoning models. This means it can better understand its surroundings, identify ob...",
+      "summary": "We teamed up with to power their robot Spot with Gemini Robotics embodied reasoning models. This means it can better understand its surroundings, identify objects and follow simple commands - like tidying up a room.",
+      "link": "https://x.com/GoogleDeepMind?post=c40684919eb5",
+      "published": "Fri, 17 Apr 2026 07:29:31 GMT",
+      "source": "X @GoogleDeepMind",
+      "feed_tags": [
+        "x",
+        "research",
+        "models"
+      ],
+      "score": 31,
+      "primary": "models",
+      "tags": [
+        "robotics",
+        "embodied-ai",
+        "gemini"
+      ],
+      "url": "https://x.com/GoogleDeepMind?post=c40684919eb5",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 31,
+      "_rid": 6,
+      "why": "Integración de razonamiento multimodal en el robot Spot de Boston Dynamics, permitiendo comandos complejos y contexto.",
+      "entities": [
+        "Google DeepMind",
+        "Boston Dynamics"
+      ]
+    },
+    {
+      "title": "Isambard-AI, the UK’s Most Powerful AI Supercomputer, Goes Live",
+      "link": "https://blogs.nvidia.com/blog/isambard-ai/",
+      "published": "2025-07-17T17:00:50+00:00",
+      "summary": "The University of Bristol’s Isambard-AI, powered by NVIDIA Grace Hopper Superchips, delivers 21 exaflops of AI performance, making it the fastest system in the U.K. and among the most energy-efficient globally.",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 28,
+      "primary": "infra",
+      "tags": [
+        "supercomputing",
+        "grace-hopper",
+        "uk"
+      ],
+      "url": "https://blogs.nvidia.com/blog/isambard-ai/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 28,
+      "_rid": 7,
+      "why": "Puesta en marcha de Isambard-AI con 21 exaflops, posicionando al Reino Unido en la élite de infraestructura para IA.",
+      "entities": [
+        "NVIDIA",
+        "University of Bristol"
+      ]
+    },
+    {
+      "title": "Innovation to Impact: How NVIDIA Research Fuels Transformative Work in AI, Graphics and Beyond",
+      "link": "https://blogs.nvidia.com/blog/nvidia-research-ai-graphics/",
+      "published": "2025-03-20T00:00:24+00:00",
+      "summary": "The roots of many of NVIDIA’s landmark innovations — the foundational technology that powers AI, accelerated computing, real-time ray tracing and seamlessly connected data centers — can be found in the company’s research organization, a global team of around 400 experts in fields including computer architecture, generative AI, graphics and robotics. Established in 2006 and [&#8230;]",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 28,
+      "primary": "infra",
+      "tags": [
+        "research",
+        "innovation",
+        "rd"
+      ],
+      "url": "https://blogs.nvidia.com/blog/nvidia-research-ai-graphics/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 28,
+      "_rid": 8,
+      "why": "NVIDIA Research consolida su ecosistema de propiedad intelectual para sostener su dominio en computación acelerada.",
+      "entities": [
+        "NVIDIA"
+      ]
+    },
+    {
+      "title": "SciFi: A Safe, Lightweight, User-Friendly, and Fully Autonomous Agentic AI Workflow for Scientific Applications",
+      "link": "https://arxiv.org/abs/2604.13180",
+      "published": "2026-04-17T04:00:00+00:00",
+      "summary": "arXiv:2604.13180v1 Announce Type: new Abstract: Recent advances in agentic AI have enabled increasingly autonomous workflows, but existing systems still face substantial challenges in achieving reliable deployment in real-world scientific research. In this work, we present a safe, lightweight, and user-friendly agentic framework for the autonomous execution of well-defined scientific tasks. The framework combines an isolated execution environment, a three-layer agent loop, and a self-assessing do-until mechanism to ensure safe and reliable operation while effectively leveraging large language models of varying capability levels. By focusing on structured tasks with clearly defined context and stopping criteria, the framework supports end-to-end automation with minimal human intervention, enabling researchers to offload routine workloads and devote more effort to creative activities and open-ended scientific inquiry.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 27,
+      "primary": "models",
+      "tags": [
+        "science",
+        "agents",
+        "automation"
+      ],
+      "url": "https://arxiv.org/abs/2604.13180",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 27,
+      "_rid": 9,
+      "why": "Framework SciFi para ejecución autónoma y segura de tareas científicas mediante bucles de agentes autoevaluados.",
+      "entities": [
+        "arXiv"
+      ]
+    },
+    {
+      "title": "Applications Now Open for $60,000 NVIDIA Graduate Fellowship Awards",
+      "link": "https://blogs.nvidia.com/blog/applications-open-graduate-fellowship-awards-2025/",
+      "published": "2025-08-13T15:00:02+00:00",
+      "summary": "Bringing together the world’s brightest minds and the latest accelerated computing technology leads to powerful breakthroughs that help tackle some of the biggest research problems. To foster such innovation, the NVIDIA Graduate Fellowship Program provides grants, mentors and technical support to doctoral students doing outstanding research relevant to NVIDIA technologies. The program, in its 25th [&#8230;]",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 26,
+      "primary": "invest",
+      "tags": [
+        "talent",
+        "fellowship",
+        "academia"
+      ],
+      "url": "https://blogs.nvidia.com/blog/applications-open-graduate-fellowship-awards-2025/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 26,
+      "_rid": 10,
+      "why": "Inversión en talento doctoral para asegurar el pipeline de innovación en hardware y algoritmos a largo plazo.",
+      "entities": [
+        "NVIDIA"
+      ]
+    },
+    {
+      "title": "NVIDIA Releases New AI Models and Developer Tools to Advance Autonomous Vehicle Ecosystem",
+      "link": "https://blogs.nvidia.com/blog/autonomous-vehicle-ecosystem-ai-models-developer-tools/",
+      "published": "2025-06-11T10:55:36+00:00",
+      "summary": "Autonomous vehicle (AV) stacks are evolving from many distinct models to a unified, end-to-end architecture that executes driving actions directly from sensor data. This transition to using larger models is drastically increasing the demand for high-quality, physically based sensor data for training, testing and validation. To help accelerate the development of next-generation AV architectures, NVIDIA [&#8230;]",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 26,
+      "primary": "models",
+      "tags": [
+        "autonomous-driving",
+        "sensors",
+        "training"
+      ],
+      "url": "https://blogs.nvidia.com/blog/autonomous-vehicle-ecosystem-ai-models-developer-tools/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 26,
+      "_rid": 11,
+      "why": "Evolución de stacks de conducción autónoma hacia modelos unificados que requieren datos sintéticos de alta fidelidad.",
+      "entities": [
+        "NVIDIA"
+      ]
+    },
+    {
+      "title": "The Devil Is in Gradient Entanglement: Energy-Aware Gradient Coordinator for Robust Generalized Category Discovery",
+      "link": "https://arxiv.org/abs/2604.14176",
+      "published": "2026-04-17T04:00:00+00:00",
+      "summary": "arXiv:2604.14176v1 Announce Type: new Abstract: Generalized Category Discovery (GCD) leverages labeled data to categorize unlabeled samples from known or unknown classes. Most previous methods jointly optimize supervised and unsupervised objectives and achieve promising results. However, inherent optimization interference still limits their ability to improve further. Through quantitative analysis, we identify a key issue, i.e., gradient entanglement, which 1) distorts supervised gradients and weakens discrimination among known classes, and 2) induces representation-subspace overlap between known and novel classes, reducing the separability of novel categories. To address this issue, we propose the Energy-Aware Gradient Coordinator (EAGC), a plug-and-play gradient-level module that explicitly regulates the optimization process. EAGC comprises two components: Anchor-based Gradient Alignment (AGA) and Energy-aware Elastic Projection (EEP). AGA introduces a reference model to anchor the gradient directions of labeled samples, preserving the discriminative structure of known classes against the interference of unlabeled gradients. EEP softly projects unlabeled gradients onto the complement of the known-class subspace and derives an energy-based coefficient to adaptively scale the projection for each unlabeled sample according to its degree of alignment with the known subspace, thereby reducing subspace overlap without suppressing unlabeled samples that likely belong to known classes. Experiments show that EAGC consistently boosts existing methods and establishes new state-of-the-art results. Code is available at https://haiyangzheng.github.io/EAGC.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 25,
+      "primary": "models",
+      "tags": [
+        "gradients",
+        "optimization",
+        "category-discovery"
+      ],
+      "url": "https://arxiv.org/abs/2604.14176",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 25,
+      "_rid": 12,
+      "why": "Análisis del entrelazamiento de gradientes para mejorar la separación entre clases conocidas y nuevas en aprendizaje.",
+      "entities": [
+        "arXiv"
+      ]
+    },
+    {
+      "title": "Speculation: Silicon’s Most Expensive Compulsion",
+      "link": "https://semiwiki.com/eda/368077-speculation-silicons-most-expensive-compulsion/",
+      "published": "2026-04-16T13:00:49+00:00",
+      "summary": "How Time-Based Scheduling Reclaims Silicon Wasted by Speculative Execution By: Dr. Thang Tran, Founder and CTO, Simplex Micro I have spent my career designing processor architectures, and I have reached an uncomfortable conclusion: a substantial fraction of the silicon area and power in modern high-performance processors&#8230; Read More The post Speculation: Silicon’s Most Expensive Compulsion appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 23,
+      "primary": "infra",
+      "tags": [
+        "silicon",
+        "hardware",
+        "efficiency"
+      ],
+      "url": "https://semiwiki.com/eda/368077-speculation-silicons-most-expensive-compulsion/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 23,
+      "_rid": 13,
+      "why": "Crítica al desperdicio de silicio por ejecución especulativa; propone scheduling temporal para optimizar procesadores.",
+      "entities": [
+        "Simplex Micro"
+      ]
+    },
+    {
+      "title": "Introducing Quality mode on Grok Imagine – powered by our most advanced image generation model. Quality mode gives you enhanced details, stronger text render...",
+      "summary": "Introducing Quality mode on Grok Imagine – powered by our most advanced image generation model. Quality mode gives you enhanced details, stronger text rendering, and higher levels of creative control. Now available on web and mobile. Try it at [grok.com/imagine](https://t.co/zGhs9czkC5)",
+      "link": "https://x.com/xai?post=97b282cb586a",
+      "published": "Fri, 17 Apr 2026 07:04:48 GMT",
+      "source": "X @xai",
+      "feed_tags": [
+        "x",
+        "models"
+      ],
+      "score": 20,
+      "primary": "models",
+      "tags": [
+        "image-generation",
+        "xai",
+        "creative"
+      ],
+      "url": "https://x.com/xai?post=97b282cb586a",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 20,
+      "_rid": 14,
+      "why": "Grok Imagine introduce modo de alta calidad con mejor renderizado de texto y detalles, compitiendo en el sector creativo.",
+      "entities": [
+        "xAI"
+      ]
+    },
+    {
+      "title": "To go deeper on our new Life Sciences model series, research lead and product lead Yunyun Wang joined on the OpenAI Podcast to discuss how we’re building mod...",
+      "summary": "To go deeper on our new Life Sciences model series, research lead and product lead Yunyun Wang joined on the OpenAI Podcast to discuss how we’re building models for biology, drug discovery, and translational medicine. They cover both the opportunity and Quote OpenAI @OpenAI 12h Introducing GPT-Rosalind, our frontier reasoning model built to support research across biology, drug discovery, and translational medicine.",
+      "link": "https://x.com/OpenAI?post=2279075e6381",
+      "published": "Fri, 17 Apr 2026 07:55:33 GMT",
+      "source": "X @OpenAI",
+      "feed_tags": [
+        "x",
+        "models",
+        "products"
+      ],
+      "score": 18,
+      "primary": "models",
+      "tags": [
+        "life-sciences",
+        "biology",
+        "openai"
+      ],
+      "url": "https://x.com/OpenAI?post=2279075e6381",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 18,
+      "_rid": 15,
+      "why": "GPT-Rosalind marca la entrada directa de OpenAI en el razonamiento biológico y descubrimiento de fármacos.",
+      "entities": [
+        "OpenAI"
+      ]
+    }
+  ]
+}
