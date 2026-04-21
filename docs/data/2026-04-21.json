@@ -1,0 +1,475 @@
+{
+  "date": "2026-04-21",
+  "score_avg": 24.6,
+  "primary_dist": {
+    "models": 7,
+    "infra": 2,
+    "geopol": 1,
+    "misc": 3,
+    "invest": 2
+  },
+  "top_entities": [
+    {
+      "entity": "Google DeepMind",
+      "count": 5
+    },
+    {
+      "entity": "arXiv",
+      "count": 2
+    },
+    {
+      "entity": "TSMC",
+      "count": 2
+    },
+    {
+      "entity": "NVIDIA",
+      "count": 2
+    },
+    {
+      "entity": "Analog Bits",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "Anthropic and Amazon secure 5GW of compute, a massive leap in infra scaling expectations through 2026.",
+      "BASIS algorithm decouples activation memory from batch size, potentially breaking scaling limits for deep networks.",
+      "TSMC reinforces the technical moats in fab construction, dismissing the possibility of industry shortcuts.",
+      "Gemma 4 shifts open-source AI toward agentic reasoning and advanced workflows rather than just chat.",
+      "Gemini Robotics-ER 1.6 advances embodied AI, focusing on spatial reasoning for physical autonomy."
+    ],
+    "risks": [
+      "Extreme capital expenditure and power requirements for 5GW-scale AI clusters.",
+      "Hardware-level power delivery constraints as chips move to 2nm (N2P) nodes.",
+      "The variance problem in randomized backpropagation hindering reliable training of ultra-deep models."
+    ],
+    "watch": [
+      "TSMC's 2026 Technology Symposium for further details on N2P efficiency and delivery.",
+      "The integration of Lyria 3 and Flash TTS into consumer-facing multimodal applications.",
+      "The speed of deployment for the first gigawatt of Anthropic's new compute capacity."
+    ],
+    "entities_top": [
+      "Anthropic",
+      "TSMC",
+      "Google DeepMind"
+    ]
+  },
+  "items": [
+    {
+      "title": "BASIS: Balanced Activation Sketching with Invariant Scalars for \"Ghost Backpropagation\"",
+      "link": "https://arxiv.org/abs/2604.16324",
+      "published": "2026-04-21T04:00:00+00:00",
+      "summary": "arXiv:2604.16324v1 Announce Type: new Abstract: The activation memory required for exact backpropagation scales linearly with network depth, context length, and feature dimensionality, forming an O(L * BN ) spatial bottleneck (where B is the sequence-batch cardinality and N is the feature dimension). This constraint historically throttles the scaling of deep neural networks. While randomized automatic differentiation attempts to mitigate this, it historically suffers from catastrophic variance. In this paper, we introduce BASIS (Balanced Activation Sketching with Invariant Scalars), an efficient backpropagation algorithm that fully decouples activation memory from the batch and sequence dimensions. BASIS propagates the exact error signal (dX) to preserve flawless gradient flow, but computes the weight updates (dW) using massively compressed rank-R tensors. To solve the foundational instability of sketched gradients, we propose two novel mechanisms: Balanced Hashing, which strictly eliminates off-diagonal collision variance, and Invariant Scalars, a principled bias-variance tradeoff that deterministically preserves the exact continuous energy norm of the spatial geometry. Theoretically, BASIS reduces activation memory to O(L * RN ) and heavily decreases the backward pass matrix-multiplication footprint. Empirically, training a GPT architecture for 50,000 steps validates our theoretical guarantees: at R = 32, BASIS achieves parity with (and marginally outperforms) exact backpropagation validation loss (6.575 vs. 6.616), acting as an implicit regularizer. Remarkably, the stabilized magnitude trajectory allows the model to converge smoothly even under extreme spatial compression (R = 1), proving the extreme robustness of the estimator. The code is available at https://github.com/VladimerKhasia/basis",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 50,
+      "primary": "models",
+      "tags": [
+        "research",
+        "backprop",
+        "efficiency",
+        "memory"
+      ],
+      "url": "https://arxiv.org/abs/2604.16324",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 50,
+      "_rid": 1,
+      "why": "BASIS decouples activation memory from batch/sequence size, addressing a core bottleneck in scaling deep networks.",
+      "entities": [
+        "arXiv"
+      ]
+    },
+    {
+      "title": "Analog Bits Demos Real-Time On-Chip Power Sensing and Delivery on N2P at the TSMC 2026 Technology Symposium",
+      "link": "https://semiwiki.com/events/368458-analog-bits-demos-real-time-on-chip-power-sensing-and-delivery-on-n2p-at-the-tsmc-2026-technology-symposium/",
+      "published": "2026-04-20T13:00:58+00:00",
+      "summary": "Analog Bits has a way of stealing the show at every event they attend. The formula is actually quite straight-forward – come to the show with the most relevant, highest impact IP running on the most advanced process. The company will be applying this strategy again at the upcoming TSMC 2026 Technology Symposium with an array of real-time&#8230; Read More The post Analog Bits Demos Real-Time On-Chip Power Sensing and Delivery on N2P at the TSMC 2026 Technology Symposium appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 33,
+      "primary": "infra",
+      "tags": [
+        "tsmc",
+        "semiconductors",
+        "power",
+        "2nm"
+      ],
+      "url": "https://semiwiki.com/events/368458-analog-bits-demos-real-time-on-chip-power-sensing-and-delivery-on-n2p-at-the-tsmc-2026-technology-symposium/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 33,
+      "_rid": 2,
+      "why": "Critical on-chip power sensing IP for TSMC N2P node; essential for energy-efficient AI hardware in 2026.",
+      "entities": [
+        "Analog Bits",
+        "TSMC"
+      ]
+    },
+    {
+      "title": "TSMC to Elon Musk: There are no Shortcuts in Building Fabs!",
+      "link": "https://semiwiki.com/semiconductor-manufacturers/tsmc/368480-tsmc-to-elon-musk-there-are-no-shortcuts-in-building-fabs/",
+      "published": "2026-04-17T17:00:39+00:00",
+      "summary": "The opening of the TSMC 2026 earning call series brought no surprises. CC Wei has done more than 30 such calls since taking the CEO position in 2018 and he never fails to disappoint. Once again, CC Wei reported numbers above guidance driven by strong demand and flawless execution. This illustrates the benefit of TSMC’s close collaborations&#8230; Read More The post TSMC to Elon Musk: There are no Shortcuts in Building Fabs! appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 33,
+      "primary": "geopol",
+      "tags": [
+        "fabs",
+        "production",
+        "semiconductors"
+      ],
+      "url": "https://semiwiki.com/semiconductor-manufacturers/tsmc/368480-tsmc-to-elon-musk-there-are-no-shortcuts-in-building-fabs/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 33,
+      "_rid": 3,
+      "why": "TSMC's strong earnings and pushback against 'shortcuts' emphasize the extreme barriers to entry in fab manufacturing.",
+      "entities": [
+        "TSMC",
+        "Elon Musk"
+      ]
+    },
+    {
+      "title": "UniMamba: A Unified Spatial-Temporal Modeling Framework with State-Space and Attention Integration",
+      "link": "https://arxiv.org/abs/2604.16325",
+      "published": "2026-04-21T04:00:00+00:00",
+      "summary": "arXiv:2604.16325v1 Announce Type: new Abstract: Multivariate time series forecasting is fundamental to numerous domains such as energy, finance, and environmental monitoring, where complex temporal dependencies and cross-variable interactions pose enduring challenges. Existing Transformer-based methods capture temporal correlations through attention mechanisms but suffer from quadratic computational cost, while state-space models like Mamba achieve efficient long-context modeling yet lack explicit temporal pattern recognition. Therefore we introduce UniMamba, a unified spatial-temporal forecasting framework that integrates efficient state-space dynamics with attention-based dependency learning. UniMamba employs a Mamba Variate-Channel Encoding Layer enhanced with FFT-Laplace Transform and TCN to capture global temporal dependencies, and a Spatial Temporal Attention Layer to jointly model inter-variate correlations and temporal evolution. A Feedforward Temporal Dynamics Layer further fuses continuous and discrete contexts for accurate forecasting. Comprehensive experiments on eight public benchmark datasets demonstrate that UniMamba consistently outperforms state-of-the-art forecasting models in both forecasting accuracy and computational efficiency, establishing a scalable and robust solution for long-sequence multivariate time-series prediction.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 30,
+      "primary": "models",
+      "tags": [
+        "mamba",
+        "transformer",
+        "efficiency",
+        "time-series"
+      ],
+      "url": "https://arxiv.org/abs/2604.16325",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 30,
+      "_rid": 4,
+      "why": "UniMamba hybridizes state-space models and attention to optimize long-context temporal forecasting.",
+      "entities": [
+        "arXiv"
+      ]
+    },
+    {
+      "title": "NVIDIA GauGAN2, a powerful [#AI](https://x.com/hashtag/AI?src=hashtag_click) model that allows anyone to convert simple written phrases like \"ocean waves\" in...",
+      "summary": "NVIDIA GauGAN2, a powerful [#AI](https://x.com/hashtag/AI?src=hashtag_click) model that allows anyone to convert simple written phrases like \"ocean waves\" into a photorealistic masterpiece. Learn more about GauGAN2 now: [nvda.ws/3oNitRX](https://t.co/IhNldsaEYV) The media could not be played.",
+      "link": "https://x.com/NVIDIAAI?post=116947ff16ec",
+      "published": "Tue, 21 Apr 2026 08:07:00 GMT",
+      "source": "X @NVIDIAAI",
+      "feed_tags": [
+        "x",
+        "infra",
+        "chips"
+      ],
+      "score": 28,
+      "primary": "misc",
+      "tags": [
+        "generative ai",
+        "image gen",
+        "nvidia"
+      ],
+      "url": "https://x.com/NVIDIAAI?post=116947ff16ec",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 28,
+      "_rid": 5,
+      "why": "Incremental update to an older image synthesis tool with low marginal impact on current SOTA AI development.",
+      "entities": [
+        "NVIDIA"
+      ]
+    },
+    {
+      "title": "Gemini Robotics-ER 1.6: Powering real-world robotics tasks through enhanced embodied reasoning",
+      "link": "https://deepmind.google/blog/gemini-robotics-er-1-6/",
+      "published": "2026-04-13T15:52:13+00:00",
+      "summary": "Gemini Robotics ER 1.6: Enhancing spatial reasoning and multi-view understanding for autonomous robotics.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 26,
+      "primary": "models",
+      "tags": [
+        "robotics",
+        "embodied ai",
+        "spatial reasoning"
+      ],
+      "url": "https://deepmind.google/blog/gemini-robotics-er-1-6/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 26,
+      "_rid": 6,
+      "why": "Gemini Robotics-ER 1.6 focuses on embodied reasoning, a key frontier for autonomous physical agents.",
+      "entities": [
+        "Google DeepMind"
+      ]
+    },
+    {
+      "title": "A new way to express yourself: Gemini can now create music",
+      "link": "https://deepmind.google/blog/a-new-way-to-express-yourself-gemini-can-now-create-music/",
+      "published": "2026-02-18T16:01:38+00:00",
+      "summary": "The Gemini app now features our most advanced music generation model Lyria 3, empowering anyone to make 30-second tracks using text or images.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 24,
+      "primary": "misc",
+      "tags": [
+        "audio",
+        "music",
+        "generative ai"
+      ],
+      "url": "https://deepmind.google/blog/a-new-way-to-express-yourself-gemini-can-now-create-music/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 24,
+      "_rid": 7,
+      "why": "Expands Gemini's multimodality into creative audio, though less impactful than reasoning or infrastructure.",
+      "entities": [
+        "Google DeepMind"
+      ]
+    },
+    {
+      "title": "Gemini 3.1 Flash TTS is our most controllable text-to-speech model yet. With new Audio Tags, you can easily direct vocal style, delivery, and pace through te...",
+      "summary": "Gemini 3.1 Flash TTS is our most controllable text-to-speech model yet. With new Audio Tags, you can easily direct vocal style, delivery, and pace through text commands. ![Image 3: 🧵](https://abs.twimg.com/emoji/v2/svg/1f9f5.svg) [pumped] gemini 3.1 flash text-to-speech just landed in ai studio. you can now trigger specific vocal delivery like pace and accent by including [tags] in front of dialogue. iterate in composer view then export the code to start building. Big news: \"Dear Upstairs Neighbors\" is premiering at ! ![Image 6: 🎬](https://abs.twimg.com/emoji/v2/svg/1f3ac.svg) Inspired by a sleepless pandemic night, our 45-person crew of Pixar alumni, an Academy Award winner, researchers, and engineers developed new workflows to bring original artwork and paintings to life. Quote Tribeca @Tribeca Apr 16 Here we go! Today we announced our full feature film lineup for the milestone 25th Tribeca Festival —a program that reflects where independent film has been and where it's headed. Official Selections span 118 feature films, including 103 world premieres (the most in Tribeca",
+      "link": "https://x.com/GoogleDeepMind?post=08fc9024b443",
+      "published": "Tue, 21 Apr 2026 08:06:52 GMT",
+      "source": "X @GoogleDeepMind",
+      "feed_tags": [
+        "x",
+        "research",
+        "models"
+      ],
+      "score": 24,
+      "primary": "models",
+      "tags": [
+        "tts",
+        "audio",
+        "multimodal"
+      ],
+      "url": "https://x.com/GoogleDeepMind?post=08fc9024b443",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 24,
+      "_rid": 8,
+      "why": "New Flash TTS models increase developer control over vocal delivery, improving human-AI interaction quality.",
+      "entities": [
+        "Google DeepMind"
+      ]
+    },
+    {
+      "title": "WEBINAR: Intrinsic Techniques in RF Power Amplifier Design",
+      "link": "https://semiwiki.com/eda/keysight-eda/368530-webinar-intrinsic-techniques-in-rf-power-amplifier-design/",
+      "published": "2026-04-20T17:00:29+00:00",
+      "summary": "Load-pull power amplifier (PA) design techniques determine the optimal impedances at the power transistor&#8217;s extrinsic reference plane, which is the physically accessible boundary for measurement or simulation. This reference plane can be the package transistor leads, die bond pads, or IC chip terminals. It includes&#8230; Read More The post WEBINAR: Intrinsic Techniques in RF Power Amplifier Design appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 23,
+      "primary": "infra",
+      "tags": [
+        "eda",
+        "semiconductors",
+        "rf"
+      ],
+      "url": "https://semiwiki.com/eda/keysight-eda/368530-webinar-intrinsic-techniques-in-rf-power-amplifier-design/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 23,
+      "_rid": 9,
+      "why": "Specialized RF power amplifier design techniques; relevant for edge connectivity but niche for core AI.",
+      "entities": [
+        "SemiWiki",
+        "Keysight EDA"
+      ]
+    },
+    {
+      "title": "Gemma 4: Byte for byte, the most capable open models",
+      "link": "https://deepmind.google/blog/gemma-4-byte-for-byte-the-most-capable-open-models/",
+      "published": "2026-04-02T16:00:49+00:00",
+      "summary": "Gemma 4: Our most intelligent open models to date, purpose-built for advanced reasoning and agentic workflows.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 21,
+      "primary": "models",
+      "tags": [
+        "open models",
+        "reasoning",
+        "agents"
+      ],
+      "url": "https://deepmind.google/blog/gemma-4-byte-for-byte-the-most-capable-open-models/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 21,
+      "_rid": 10,
+      "why": "Gemma 4 sets a new benchmark for open-source models focused on high-level reasoning and agentic workflows.",
+      "entities": [
+        "Google DeepMind"
+      ]
+    },
+    {
+      "title": "It’s a Sign: AI Platform for Teaching American Sign Language Aims to Bridge Communication Gaps",
+      "link": "https://blogs.nvidia.com/blog/ai-sign-language/",
+      "published": "2025-02-20T14:30:18+00:00",
+      "summary": "American Sign Language is the third most prevalent language in the United States — but there are vastly fewer AI tools developed with ASL data than data representing the country’s most common languages, English and Spanish. NVIDIA, the American Society for Deaf Children and creative agency Hello Monday are helping close this gap with Signs, [&#8230;]",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 18,
+      "primary": "misc",
+      "tags": [
+        "accessibility",
+        "sign language",
+        "nlp"
+      ],
+      "url": "https://blogs.nvidia.com/blog/ai-sign-language/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 18,
+      "_rid": 11,
+      "why": "NVIDIA's ASL project represents a high-impact social application of existing vision and language technologies.",
+      "entities": [
+        "NVIDIA"
+      ]
+    },
+    {
+      "title": "Nano Banana 2: Combining Pro capabilities with lightning-fast speed",
+      "link": "https://deepmind.google/blog/nano-banana-2-combining-pro-capabilities-with-lightning-fast-speed/",
+      "published": "2026-02-26T16:01:50+00:00",
+      "summary": "Our latest image generation model offers advanced world knowledge, production ready specs, subject consistency and more, all at Flash speed.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 16,
+      "primary": "models",
+      "tags": [
+        "image gen",
+        "efficiency",
+        "flash"
+      ],
+      "url": "https://deepmind.google/blog/nano-banana-2-combining-pro-capabilities-with-lightning-fast-speed/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 16,
+      "_rid": 12,
+      "why": "Nano Banana 2 optimizes image generation for speed and world-knowledge consistency in production environments.",
+      "entities": [
+        "Google DeepMind"
+      ]
+    },
+    {
+      "title": "We're expanding our collaboration with Amazon to secure up to 5 gigawatts of compute for training and deploying Claude. Capacity begins coming online this qu...",
+      "summary": "We're expanding our collaboration with Amazon to secure up to 5 gigawatts of compute for training and deploying Claude. Capacity begins coming online this quarter, with nearly 1 gigawatt expected by the end of 2026.",
+      "link": "https://x.com/AnthropicAI?post=dae69edb001f",
+      "published": "Tue, 21 Apr 2026 08:04:51 GMT",
+      "source": "X @AnthropicAI",
+      "feed_tags": [
+        "x",
+        "models",
+        "safety"
+      ],
+      "score": 15,
+      "primary": "invest",
+      "tags": [
+        "compute",
+        "cloud",
+        "scaling",
+        "amazon"
+      ],
+      "url": "https://x.com/AnthropicAI?post=dae69edb001f",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 15,
+      "_rid": 13,
+      "why": "The 5GW compute deal with Amazon is a staggering indicator of the capital requirements for future frontier models.",
+      "entities": [
+        "Anthropic",
+        "Amazon"
+      ]
+    },
+    {
+      "title": "Grok's Speech to Text API is now available. Instant, multi-speaker transcription across 25 languages - at the best price in the market.",
+      "summary": "Grok's Speech to Text API is now available. Instant, multi-speaker transcription across 25 languages - at the best price in the market.",
+      "link": "https://x.com/xai?post=64c3349cee59",
+      "published": "Tue, 21 Apr 2026 07:47:48 GMT",
+      "source": "X @xai",
+      "feed_tags": [
+        "x",
+        "models"
+      ],
+      "score": 15,
+      "primary": "models",
+      "tags": [
+        "stt",
+        "api",
+        "transcription"
+      ],
+      "url": "https://x.com/xai?post=64c3349cee59",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 15,
+      "_rid": 14,
+      "why": "xAI's entrance into the transcription market with competitive pricing increases pressure on incumbents.",
+      "entities": [
+        "xAI"
+      ]
+    },
+    {
+      "title": "CEO Interview with Johan Wadenholt Vrethem of Voxo",
+      "link": "https://semiwiki.com/ceo-interviews/368473-ceo-interview-with-johan-wadenholt-vrethem-of-voxo/",
+      "published": "2026-04-19T19:00:45+00:00",
+      "summary": "With over two decades of experience bridging technology and business, Johan Wadenholt Vrethem focused on harnessing AI to transform how organizations operate and engage with their customers. After leading critical digital initiatives and client engagements in the banking and finance sectors at CGI, Johan co-founded Voxo&#8230; Read More The post CEO Interview with Johan Wadenholt Vrethem of Voxo appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 13,
+      "primary": "invest",
+      "tags": [
+        "enterprise ai",
+        "banking",
+        "fintech"
+      ],
+      "url": "https://semiwiki.com/ceo-interviews/368473-ceo-interview-with-johan-wadenholt-vrethem-of-voxo/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 13,
+      "_rid": 15,
+      "why": "Illustrates typical enterprise AI adoption trends in the financial sector via a CEO interview.",
+      "entities": [
+        "Voxo"
+      ]
+    }
+  ]
+}
