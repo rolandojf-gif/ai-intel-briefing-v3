@@ -1,0 +1,491 @@
+{
+  "date": "2026-04-22",
+  "score_avg": 23.87,
+  "primary_dist": {
+    "infra": 5,
+    "models": 6,
+    "misc": 2,
+    "invest": 2
+  },
+  "top_entities": [
+    {
+      "entity": "Google DeepMind",
+      "count": 3
+    },
+    {
+      "entity": "NVIDIA",
+      "count": 2
+    },
+    {
+      "entity": "Jensen Huang",
+      "count": 2
+    },
+    {
+      "entity": "Intel",
+      "count": 1
+    },
+    {
+      "entity": "Elon Musk",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "NVIDIA desvela la plataforma Rubin marcando el salto arquitectónico post-Blackwell para una economía de $10T.",
+      "xAI escala potencia con Colossus (1M H100s) y se integra con Cursor para dominar el desarrollo de software con IA.",
+      "OpenAI recupera el trono en generación de imágenes con GPT-Image-2 logrando una ventaja histórica en benchmarks.",
+      "Google DeepMind lanza Deep Research Max (Gemini 3.1 Pro) como agente autónomo para reportes profesionales citados.",
+      "Intel Foundry emerge como actor crítico ante el agotamiento de capacidad en TSMC tras las demandas de Terafab de Musk."
+    ],
+    "risks": [
+      "Colapso de modelos y 'reward hacking' en entrenamientos RL por falta de datos anotados de alta calidad.",
+      "Cuellos de botella críticos en la cadena de suministro de chips que fuerzan la creación de infraestructuras propias.",
+      "Complejidad extrema en el monitoreo y validación de sistemas basados en chiplets y cargas de trabajo masivas."
+    ],
+    "watch": [
+      "Resultados del benchmark AGI de Google y la participación en el hackathon de métricas cognitivas.",
+      "Despliegue real de las capacidades de edición y razonamiento visual en ChatGPT Images 2.0.",
+      "Impacto de la arquitectura Rubin de NVIDIA en la eficiencia energética de los centros de datos en 2026."
+    ],
+    "entities_top": [
+      "NVIDIA",
+      "OpenAI",
+      "xAI"
+    ]
+  },
+  "items": [
+    {
+      "title": "Is Intel About to Take Flight?",
+      "link": "https://semiwiki.com/semiconductor-manufacturers/intel/368539-is-intel-about-to-take-flight/",
+      "published": "2026-04-21T17:00:38+00:00",
+      "summary": "The Pan Am–Boeing playbook and what Musk’s Terafab order could mean for Intel Foundry “We either build the Terafab or we don’t have the chips.” That’s Elon Musk, speaking to Reuters , stating a supply constraint as plainly as anyone has stated one. TSMC is sold out. Samsung is committed. The existing supply chain can’t expand fast&#8230; Read More The post Is Intel About to Take Flight? appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 63,
+      "primary": "infra",
+      "tags": [
+        "foundry",
+        "chips",
+        "intel",
+        "supply-chain"
+      ],
+      "url": "https://semiwiki.com/semiconductor-manufacturers/intel/368539-is-intel-about-to-take-flight/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 63,
+      "_rid": 1,
+      "why": "El interés de Musk por Intel Foundry para su Terafab subraya la crisis de capacidad en TSMC y el resurgimiento de Intel.",
+      "entities": [
+        "Intel",
+        "Elon Musk",
+        "TSMC",
+        "Samsung"
+      ]
+    },
+    {
+      "title": "Easy Samples Are All You Need: Self-Evolving LLMs via Data-Efficient Reinforcement Learning",
+      "link": "https://arxiv.org/abs/2604.18639",
+      "published": "2026-04-22T04:00:00+00:00",
+      "summary": "arXiv:2604.18639v1 Announce Type: new Abstract: Previous LLMs-based RL studies typically follow either supervised learning with high annotation costs, or unsupervised paradigms using voting or entropy-based rewards. However, their performance remains far from satisfactory due to the substantial annotation cost and issues such as model collapse or reward hacking. To address these issues, we introduce a new perspective inspired by cognitive learning theory and propose a novel approach called EasyRL. The core of EasyRL is to simulate the human cognitive acquisition curve by integrating reliable knowledge transfer from easy labeled data with a progressive divide-and-conquer strategy that tackles increasingly difficult unlabeled data. Specifically, we initialize a warm-up model using supervised RL with few-shot labeled data. This is followed by a divide-and-conquer pseudo-labeling strategy on difficult unlabeled data, combining consistency-based selection for low-uncertainty cases and reflection-based resolution for medium-uncertainty cases. Finally, difficulty-progressive self-training with iterative pseudo-labeling and RL further strengthens the model's reasoning capability. EasyRL provides a unified self-evolving framework that facilitates data-efficient post-training of LLMs. Experimental results on mathematical and scientific benchmarks demonstrate that EasyRL, using only 10% of easy labeled data, consistently outperforms state-of-the-art baselines.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 40,
+      "primary": "models",
+      "tags": [
+        "rl",
+        "efficiency",
+        "training"
+      ],
+      "url": "https://arxiv.org/abs/2604.18639",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 40,
+      "_rid": 2,
+      "why": "EasyRL propone un aprendizaje cognitivo eficiente para mitigar el colapso de modelos sin costes de anotación masivos.",
+      "entities": [
+        "Easy Samples Are",
+        "All You Need",
+        "Self",
+        "Evolving",
+        "Data",
+        "Efficient Reinforcement Learning"
+      ]
+    },
+    {
+      "title": "Compile to Compress: Boosting Formal Theorem Provers by Compiler Outputs",
+      "link": "https://arxiv.org/abs/2604.18587",
+      "published": "2026-04-22T04:00:00+00:00",
+      "summary": "arXiv:2604.18587v1 Announce Type: new Abstract: Large language models (LLMs) have demonstrated significant potential in formal theorem proving, yet state-of-the-art performance often necessitates prohibitive test-time compute via massive roll-outs or extended context windows. In this work, we address this scalability bottleneck by exploiting an informative structure in formal verification: the observation that compilers map a vast space of diverse proof attempts to a compact set of structured failure modes. We introduce a learning-to-refine framework that leverages this compression to perform efficient learning and proof exploration. We perform tree search that corrects errors locally conditioned on explicit verifier feedback, thereby circumventing the costs associated with accumulating a long history of proof attempts. Extensive evaluations show that our method consistently amplifies the reasoning capabilities of base provers across varying scales. Notably, our approach achieves state-of-the-art performance on PutnamBench among publicly reported $\\sim$8B and $\\sim$32B parameter models under comparable test-time budgets, offering a scalable paradigm for next-generation verifier-guided reasoning.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 38,
+      "primary": "models",
+      "tags": [
+        "reasoning",
+        "compilers",
+        "optimization"
+      ],
+      "url": "https://arxiv.org/abs/2604.18587",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 38,
+      "_rid": 3,
+      "why": "Utiliza salidas de compiladores para comprimir búsquedas de pruebas formales, reduciendo el cómputo necesario en inferencia.",
+      "entities": [
+        "Compile",
+        "Compress",
+        "Boosting Formal Theorem",
+        "Provers",
+        "Compiler Outputs"
+      ]
+    },
+    {
+      "title": "Introducing ChatGPT Images 2.0 A state-of-the-art image model that can take on complex visual tasks and produce precise, immediately usable visuals, with sha...",
+      "summary": "Introducing ChatGPT Images 2.0 A state-of-the-art image model that can take on complex visual tasks and produce precise, immediately usable visuals, with sharper editing, richer layouts, and thinking-level intelligence. Video made with ChatGPT Images Arena Trends: Text-to-Image, Jan 2026 – Apr 2026 For most of the year, and traded the top spot within a tight margin - GPT-Image vs. Nano Banana - with the rest of the field clustered below 1,200. Today, GPT-Image-2 breaks away with a score of 1,512, 242 Quote Arena.ai @arena 12h Exciting news - GPT-Image-2 by @OpenAI has claimed the #1 spot across all Image Arena leaderboards! A clean sweep with a record-breaking +242 point lead in Text-to-Image - the largest gap we’ve seen to date. - #1 Text-to-Image (1512), +242 over #2 (Nano-banana-2 with web-search  x.com/OpenAI/status/…",
+      "link": "https://x.com/OpenAI?post=6fb45269ad50",
+      "published": "Wed, 22 Apr 2026 08:03:00 GMT",
+      "source": "X @OpenAI",
+      "feed_tags": [
+        "x",
+        "models",
+        "products"
+      ],
+      "score": 29,
+      "primary": "models",
+      "tags": [
+        "image-gen",
+        "multimodality",
+        "benchmarks"
+      ],
+      "url": "https://x.com/OpenAI?post=6fb45269ad50",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 29,
+      "_rid": 4,
+      "why": "ChatGPT Images 2.0 rompe récords en Arena con un margen de +242 puntos, integrando capacidades de pensamiento en edición visual.",
+      "entities": [
+        "OpenAI",
+        "Arena.ai"
+      ]
+    },
+    {
+      "title": "Deep Research and Deep Research Max are our latest autonomous research agents powered by Gemini 3.1 Pro. They can safely navigate both the web and your custo...",
+      "summary": "Deep Research and Deep Research Max are our latest autonomous research agents powered by Gemini 3.1 Pro. They can safely navigate both the web and your custom data, like internal docs and specialized financial information, to create professional-grade, fully cited reports. ![Image 3: 🧵](https://abs.twimg.com/emoji/v2/svg/1f9f5.svg)",
+      "link": "https://x.com/GoogleDeepMind/status/2046627042335060342",
+      "published": "Wed, 22 Apr 2026 07:49:16 GMT",
+      "source": "X @GoogleDeepMind",
+      "feed_tags": [
+        "x",
+        "research",
+        "models"
+      ],
+      "score": 26,
+      "primary": "models",
+      "tags": [
+        "agents",
+        "gemini",
+        "research"
+      ],
+      "url": "https://x.com/GoogleDeepMind/status/2046627042335060342",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 26,
+      "_rid": 5,
+      "why": "Deep Research Max automatiza la generación de reportes profesionales usando Gemini 3.1 Pro con acceso a datos internos.",
+      "entities": [
+        "Google DeepMind"
+      ]
+    },
+    {
+      "title": "Beyond One Output: Visualizing and Comparing Distributions of Language Model Generations",
+      "link": "https://arxiv.org/abs/2604.18724",
+      "published": "2026-04-22T04:00:00+00:00",
+      "summary": "arXiv:2604.18724v1 Announce Type: new Abstract: Users typically interact with and evaluate language models via single outputs, but each output is just one sample from a broad distribution of possible completions. This interaction hides distributional structure such as modes, uncommon edge cases, and sensitivity to small prompt changes, leading users to over-generalize from anecdotes when iterating on prompts for open-ended tasks. Informed by a formative study with researchers who use LMs (n=13) examining when stochasticity matters in practice, how they reason about distributions over language, and where current workflows break down, we introduce GROVE. GROVE is an interactive visualization that represents multiple LM generations as overlapping paths through a text graph, revealing shared structure, branching points, and clusters while preserving access to raw outputs. We evaluate across three crowdsourced user studies (N=47, 44, and 40 participants) targeting complementary distributional tasks. Our results support a hybrid workflow: graph summaries improve structural judgments such as assessing diversity, while direct output inspection remains stronger for detail-oriented questions.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 22,
+      "primary": "misc",
+      "tags": [
+        "visualization",
+        "ui",
+        "interpretability"
+      ],
+      "url": "https://arxiv.org/abs/2604.18724",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 22,
+      "_rid": 6,
+      "why": "GROVE permite visualizar distribuciones de respuestas de LLMs para evitar la sobre-generalización basada en anécdotas.",
+      "entities": [
+        "Beyond One Output",
+        "Visualizing",
+        "Comparing Distributions",
+        "Language Model Generations"
+      ]
+    },
+    {
+      "title": "On Solving the Multiple Variable Gapped Longest Common Subsequence Problem",
+      "link": "https://arxiv.org/abs/2604.18645",
+      "published": "2026-04-22T04:00:00+00:00",
+      "summary": "arXiv:2604.18645v1 Announce Type: new Abstract: This paper addresses the Variable Gapped Longest Common Subsequence (VGLCS) problem, a generalization of the classical LCS problem involving flexible gap constraints between consecutive solutions' characters. The problem arises in molecular sequence comparison, where structural distance constraints between residues must be respected, and in time-series analysis where events are required to occur within specified temporal delays. We propose a search framework based on the root-based state graph representation, in which the state space comprises a generally large number of rooted state subgraphs. To cope with the resulting combinatorial explosion, an iterative beam search strategy is employed, dynamically maintaining a global pool of promising candidate root nodes, enabling effective control of diversification across iterations. To exploit the search for high-quality solutions, several known heuristics from the LCS literature are utilized into the standalone beam search procedure. To the best of our knowledge, this is the first comprehensive computational study on the VGLCS problem comprising 320 synthetic instances with up to 10 input sequences and up to 500 characters. Experimental results show robustness of the designed approach over the baseline beam search in comparable runtimes.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 20,
+      "primary": "misc",
+      "tags": [
+        "algorithms",
+        "bioinformatics"
+      ],
+      "url": "https://arxiv.org/abs/2604.18645",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 20,
+      "_rid": 7,
+      "why": "Aborda problemas combinatorios en comparación de secuencias con restricciones de huecos variables.",
+      "entities": [
+        "On Solving",
+        "Multiple Variable Gapped",
+        "Longest Common Subsequence",
+        "Problem"
+      ]
+    },
+    {
+      "title": "Live Event: Engineering the Future of AI Systems",
+      "link": "https://semiwiki.com/eda/keysight-eda/368619-live-event-engineering-the-future-of-ai-systems/",
+      "published": "2026-04-21T15:00:19+00:00",
+      "summary": "The rapid acceleration of artificial intelligence (AI) workloads is placing unprecedented demands on system design, validation, and performance optimization. To address these challenges, Keysight Technologies presents its forward-looking event, Engineering the Future of AI Systems —a technical deep dive into the tools,&#8230; Read More The post Live Event: Engineering the Future of AI Systems appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 18,
+      "primary": "infra",
+      "tags": [
+        "eda",
+        "validation",
+        "hardware"
+      ],
+      "url": "https://semiwiki.com/eda/keysight-eda/368619-live-event-engineering-the-future-of-ai-systems/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 18,
+      "_rid": 8,
+      "why": "Keysight presenta herramientas críticas para el diseño y validación de sistemas de IA ante demandas de rendimiento extremas.",
+      "entities": [
+        "Keysight Technologies"
+      ]
+    },
+    {
+      "title": "proteanTecs at Chiplet Summit – Changing the Game for Health & Performance Monitoring of Chiplets",
+      "link": "https://semiwiki.com/events/368423-proteantecs-at-chiplet-summit-changing-the-game-for-health-performance-monitoring-of-chiplets/",
+      "published": "2026-04-21T13:00:26+00:00",
+      "summary": "The recent Chiplet Summit 2026 was a great place to learn about new chiplet designs, emerging standards, and a growing array of support technologies to help design and manufacture chiplet-based systems. In my travels at the show, I found a lot of technology that fit these descriptions. But there were also companies at the show that&#8230; Read More The post proteanTecs at Chiplet Summit – Changing the Game for Health &amp; Performance Monitoring of Chiplets appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 16,
+      "primary": "infra",
+      "tags": [
+        "chiplets",
+        "monitoring",
+        "standards"
+      ],
+      "url": "https://semiwiki.com/events/368423-proteantecs-at-chiplet-summit-changing-the-game-for-health-performance-monitoring-of-chiplets/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 16,
+      "_rid": 9,
+      "why": "La tecnología de monitorización de chiplets es esencial para la salud de sistemas modulares de alta computación.",
+      "entities": [
+        "proteanTecs"
+      ]
+    },
+    {
+      "title": "Watch Jensen Huang unveil the latest breakthroughs in AI and accelerated computing, and more in the [#NVIDIAGTC](https://x.com/hashtag/NVIDIAGTC?src=hashtag_...",
+      "summary": "Watch Jensen Huang unveil the latest breakthroughs in AI and accelerated computing, and more in the [#NVIDIAGTC](https://x.com/hashtag/NVIDIAGTC?src=hashtag_click) 2026 keynote. Now live ![Image 4: ⬇️](https://abs.twimg.com/emoji/v2/svg/2b07.svg)",
+      "link": "https://x.com/NVIDIAAI?post=0ff05ce3351a",
+      "published": "Wed, 22 Apr 2026 08:04:00 GMT",
+      "source": "X @NVIDIAAI",
+      "feed_tags": [
+        "x",
+        "infra",
+        "chips"
+      ],
+      "score": 16,
+      "primary": "invest",
+      "tags": [
+        "keynote",
+        "gpu",
+        "accelerated-computing"
+      ],
+      "url": "https://x.com/NVIDIAAI?post=0ff05ce3351a",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 16,
+      "_rid": 10,
+      "why": "El GTC 2026 de NVIDIA consolida su liderazgo en la hoja de ruta del hardware para la próxima frontera de la IA.",
+      "entities": [
+        "NVIDIA",
+        "Jensen Huang"
+      ]
+    },
+    {
+      "title": "In order to understand the universe, you must explore the universe → [x.ai/careers](https://t.co/E9BY2xFmcL) SpaceXAI and are now working closely together to...",
+      "summary": "In order to understand the universe, you must explore the universe → [x.ai/careers](https://t.co/E9BY2xFmcL) SpaceXAI and are now working closely together to create the world’s best coding and knowledge work AI. The combination of Cursor’s leading product and distribution to expert software engineers with SpaceX’s million H100 equivalent Colossus training supercomputer will",
+      "link": "https://x.com/xai?post=480354d1149c",
+      "published": "Wed, 22 Apr 2026 07:30:46 GMT",
+      "source": "X @xai",
+      "feed_tags": [
+        "x",
+        "models"
+      ],
+      "score": 15,
+      "primary": "infra",
+      "tags": [
+        "supercomputer",
+        "coding",
+        "software-engineering"
+      ],
+      "url": "https://x.com/xai?post=480354d1149c",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 15,
+      "_rid": 11,
+      "why": "La unión de xAI, SpaceX y Cursor bajo el superordenador Colossus redefine la infraestructura para IA de programación.",
+      "entities": [
+        "xAI",
+        "SpaceX",
+        "Cursor"
+      ]
+    },
+    {
+      "title": "Gemini 3.1 Flash TTS: the next generation of expressive AI speech",
+      "link": "https://deepmind.google/blog/gemini-3-1-flash-tts-the-next-generation-of-expressive-ai-speech/",
+      "published": "2026-04-15T16:03:19+00:00",
+      "summary": "Our newest audio model introduces granular audio tags that give you precise control to direct AI speech for expressive audio generation.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 14,
+      "primary": "models",
+      "tags": [
+        "tts",
+        "audio",
+        "multimodality"
+      ],
+      "url": "https://deepmind.google/blog/gemini-3-1-flash-tts-the-next-generation-of-expressive-ai-speech/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 14,
+      "_rid": 12,
+      "why": "Gemini 3.1 Flash TTS introduce control granular sobre la expresividad de la voz sintética mediante etiquetas de audio.",
+      "entities": [
+        "Google DeepMind"
+      ]
+    },
+    {
+      "title": "Measuring progress toward AGI: A cognitive framework",
+      "link": "https://deepmind.google/blog/measuring-progress-toward-agi-a-cognitive-framework/",
+      "published": "2026-03-17T16:03:47+00:00",
+      "summary": "We’re introducing a framework to measure progress toward AGI, and launching a Kaggle hackathon to build the relevant evaluations.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 14,
+      "primary": "models",
+      "tags": [
+        "agi",
+        "benchmarks",
+        "evaluation"
+      ],
+      "url": "https://deepmind.google/blog/measuring-progress-toward-agi-a-cognitive-framework/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 14,
+      "_rid": 13,
+      "why": "Nuevo marco cognitivo y hackathon para cuantificar el progreso real hacia la Inteligencia Artificial General.",
+      "entities": [
+        "Google DeepMind",
+        "Kaggle"
+      ]
+    },
+    {
+      "title": "Bringing people together at AI for the Economy Forum",
+      "link": "https://blog.google/company-news/outreach-and-initiatives/creating-opportunity/ai-economy-forum/",
+      "published": "2026-04-14T09:00:00+00:00",
+      "summary": "Woman working with a large tool. On the left are the Google and MIT FutureTech logos, \"AI for the Economy Forum\", and \"Innovation and Adaption in the New Era\"",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 14,
+      "primary": "invest",
+      "tags": [
+        "economy",
+        "policy",
+        "mit"
+      ],
+      "url": "https://blog.google/company-news/outreach-and-initiatives/creating-opportunity/ai-economy-forum/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 14,
+      "_rid": 14,
+      "why": "Foro sobre el impacto de la IA en la economía centrado en innovación y adaptación estructural.",
+      "entities": [
+        "Google",
+        "MIT"
+      ]
+    },
+    {
+      "title": "NVIDIA Rubin Platform, Open Models, Autonomous Driving: NVIDIA Presents Blueprint for the Future at CES",
+      "link": "https://blogs.nvidia.com/blog/2026-ces-special-presentation/",
+      "published": "2026-01-05T23:30:18+00:00",
+      "summary": "NVIDIA founder and CEO Jensen Huang took the stage at the Fontainebleau Las Vegas to open CES 2026, declaring that AI is scaling into every domain and every device. “Computing has been fundamentally reshaped as a result of accelerated computing, as a result of artificial intelligence,” Huang said. “What that means is some $10 trillion [&#8230;]",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 13,
+      "primary": "infra",
+      "tags": [
+        "rubin",
+        "architecture",
+        "gpu"
+      ],
+      "url": "https://blogs.nvidia.com/blog/2026-ces-special-presentation/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 13,
+      "_rid": 15,
+      "why": "La plataforma Rubin sucede a Blackwell como el pilar de NVIDIA para el futuro del cómputo acelerado y conducción autónoma.",
+      "entities": [
+        "NVIDIA",
+        "Jensen Huang"
+      ]
+    }
+  ]
+}
