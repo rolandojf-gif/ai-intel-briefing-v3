@@ -1,0 +1,486 @@
+{
+  "date": "2026-04-23",
+  "score_avg": 31.33,
+  "primary_dist": {
+    "models": 4,
+    "infra": 6,
+    "geopol": 1,
+    "misc": 2,
+    "invest": 2
+  },
+  "top_entities": [
+    {
+      "entity": "NVIDIA",
+      "count": 7
+    },
+    {
+      "entity": "TSMC",
+      "count": 2
+    },
+    {
+      "entity": "WorkflowGen",
+      "count": 1
+    },
+    {
+      "entity": "OpenAI",
+      "count": 1
+    },
+    {
+      "entity": "GPT-5.2",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "OpenAI lanza GPT-5.2 y 5.3 Codex utilizando infraestructura masiva NVIDIA GB200 NVL72.",
+      "Google contraataca el dominio de hardware con su octava generación de TPUs (8t y 8i) para agentes.",
+      "Reino Unido activa Isambard-AI, su supercomputador más potente para soberanía tecnológica.",
+      "NVIDIA pivota agresivamente hacia la IA física y arquitecturas autónomas extremo-a-extremo.",
+      "TSMC prepara su simposio 2026 marcando el roadmap crítico de la próxima generación de chips."
+    ],
+    "risks": [
+      "Cuello de botella crítico en la verificación física de diseños de chips en nodos avanzados.",
+      "Fenómeno de 'ilusión epistémica' donde los LLMs abusan de herramientas externas ineficientemente.",
+      "Falta de transparencia en el impacto ambiental y consumo energético de modelos propietarios."
+    ],
+    "watch": [
+      "Adopción empresarial de la nueva plataforma de agentes Gemini Enterprise de Google.",
+      "Resultados operativos de los sistemas GB200 en el despliegue de modelos agenticos de OpenAI.",
+      "Anuncios de TSMC sobre procesos de manufactura para hardware de IA en 2026."
+    ],
+    "entities_top": [
+      "NVIDIA",
+      "Google",
+      "OpenAI"
+    ]
+  },
+  "items": [
+    {
+      "title": "WorkflowGen:an adaptive workflow generation mechanism driven by trajectory experience",
+      "link": "https://arxiv.org/abs/2604.19756",
+      "published": "2026-04-23T04:00:00+00:00",
+      "summary": "arXiv:2604.19756v1 Announce Type: new Abstract: Large language model (LLM) agents often suffer from high reasoning overhead, excessive token consumption, unstable execution, and inability to reuse past experiences in complex tasks like business queries, tool use, and workflow orchestration. Traditional methods generate workflows from scratch for every query, leading to high cost, slow response, and poor robustness. We propose WorkflowGen, an adaptive, trajectory experience-driven framework for automatic workflow generation that reduces token usage and improves efficiency and success rate. Early in execution, WorkflowGen captures full trajectories and extracts reusable knowledge at both node and workflow levels, including error fingerprints, optimal tool mappings, parameter schemas, execution paths, and exception-avoidance strategies. It then employs a closed-loop mechanism that performs lightweight generation only on variable nodes via trajectory rewriting, experience updating, and template induction. A three-tier adaptive routing strategy dynamically selects among direct reuse, rewriting-based generation, and full initialization based on semantic similarity to historical queries. Without large annotated datasets, we qualitatively compare WorkflowGen against real-time planning, static single trajectory, and basic in-context learning baselines. Our method reduces token consumption by over 40 percent compared to real-time planning, improves success rate by 20 percent on medium-similarity queries through proactive error avoidance and adaptive fallback, and enhances deployability via modular, traceable experiences and cross-scenario adaptability. WorkflowGen achieves a practical balance of efficiency, robustness, and interpretability, addressing key limitations of existing approaches.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 47,
+      "primary": "models",
+      "tags": [
+        "agents",
+        "workflow",
+        "efficiency",
+        "tokens"
+      ],
+      "url": "https://arxiv.org/abs/2604.19756",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 47,
+      "_rid": 1,
+      "why": "Optimiza el uso de tokens y la estabilidad de agentes mediante la reutilización de trayectorias de experiencia previa.",
+      "entities": [
+        "WorkflowGen"
+      ]
+    },
+    {
+      "title": "As AI Grows More Complex, Model Builders Rely on NVIDIA",
+      "link": "https://blogs.nvidia.com/blog/leading-models-nvidia/",
+      "published": "2025-12-11T19:19:57+00:00",
+      "summary": "Unveiling what it describes as the most capable model series yet for professional knowledge work, OpenAI launched GPT-5.2 in December. The model was trained and deployed on NVIDIA infrastructure, including NVIDIA Hopper and GB200 NVL72 systems. GPT-5.3 Codex — the first OpenAI agentic coding model to help build itself — was released in February and [&#8230;]",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 47,
+      "primary": "infra",
+      "tags": [
+        "gpt-5",
+        "gb200",
+        "training",
+        "llm"
+      ],
+      "url": "https://blogs.nvidia.com/blog/leading-models-nvidia/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 47,
+      "_rid": 2,
+      "why": "Hito masivo: GPT-5.2 desplegado en GB200 NVL72 marca el nuevo techo de rendimiento en IA profesional y codificación.",
+      "entities": [
+        "OpenAI",
+        "NVIDIA",
+        "GPT-5.2",
+        "GPT-5.3 Codex"
+      ]
+    },
+    {
+      "title": "The Tool-Overuse Illusion: Why Does LLM Prefer External Tools over Internal Knowledge?",
+      "link": "https://arxiv.org/abs/2604.19749",
+      "published": "2026-04-23T04:00:00+00:00",
+      "summary": "arXiv:2604.19749v1 Announce Type: new Abstract: Equipping LLMs with external tools effectively addresses internal reasoning limitations. However, it introduces a critical yet under-explored phenomenon: tool overuse, the unnecessary tool-use during reasoning. In this paper, we first reveal this phenomenon is pervasive across diverse LLMs. We then experimentally elucidate its underlying mechanisms through two key lenses: (1) First, by analyzing tool-use behavior across different internal knowledge availability regions, we identify a \\textit{knowledge epistemic illusion}: models misjudge internal knowledge boundaries and fail to accurately perceive their actual knowledge availability. To mitigate this, we propose a knowledge-aware epistemic boundary alignment strategy based on direct preference optimization, which reduces tool usage in by 82.8\\% while yielding an accuracy improvement. (2) Second, we establish a causal link between reward structures and tool-use behavior by visualizing the tool-augmented training process. It reveals that \\textit{outcome-only rewards} inadvertently encourage tool overuse by rewarding only final correctness, regardless of tool efficiency. To verify this, we balance reward signals during training rather than relying on outcome-only rewards, cutting unnecessary tool calls by 66.7\\% (7B) and 60.7\\% (32B) without sacrificing accuracy. Finally, we provide theoretical justification in this two lenses to understand tool overuse.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 45,
+      "primary": "models",
+      "tags": [
+        "llm",
+        "tools",
+        "reasoning",
+        "efficiency"
+      ],
+      "url": "https://arxiv.org/abs/2604.19749",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 45,
+      "_rid": 3,
+      "why": "Identifica la 'ilusión epistémica': LLMs usan herramientas externas innecesariamente ignorando su propio conocimiento interno.",
+      "entities": [
+        "The Tool",
+        "Overuse Illusion",
+        "Why Does",
+        "Prefer External Tools",
+        "Internal Knowledge"
+      ]
+    },
+    {
+      "title": "NVIDIA Research Shapes Physical AI",
+      "link": "https://blogs.nvidia.com/blog/physical-ai-research-siggraph-2025/",
+      "published": "2025-08-11T15:00:38+00:00",
+      "summary": "AI and graphics research breakthroughs in neural rendering, 3D generation and world simulation power robotics, autonomous vehicles and content creation.",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 36,
+      "primary": "infra",
+      "tags": [
+        "physical ai",
+        "robotics",
+        "simulation",
+        "graphics"
+      ],
+      "url": "https://blogs.nvidia.com/blog/physical-ai-research-siggraph-2025/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 36,
+      "_rid": 4,
+      "why": "Investigación clave en renderizado neuronal y simulación de mundos para acelerar la robótica autónoma.",
+      "entities": [
+        "NVIDIA"
+      ]
+    },
+    {
+      "title": "Reaching Across the Isles: UK-LLM Brings AI to UK Languages With NVIDIA Nemotron",
+      "link": "https://blogs.nvidia.com/blog/uk-llm-nemotron/",
+      "published": "2025-09-14T01:00:21+00:00",
+      "summary": "Celtic languages — including Cornish, Irish, Scottish Gaelic and Welsh — are the U.K.’s oldest living languages. To empower their speakers, the UK-LLM sovereign AI initiative is building an AI model based on NVIDIA Nemotron that can reason in both English and Welsh, a language spoken by about 850,000 people in Wales today. Enabling high-quality [&#8230;]",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 33,
+      "primary": "geopol",
+      "tags": [
+        "sovereign ai",
+        "uk",
+        "nemotron",
+        "languages"
+      ],
+      "url": "https://blogs.nvidia.com/blog/uk-llm-nemotron/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 33,
+      "_rid": 5,
+      "why": "Impulso a la soberanía digital del Reino Unido mediante modelos específicos para lenguas celtas con tecnología Nemotron.",
+      "entities": [
+        "NVIDIA",
+        "UK-LLM"
+      ]
+    },
+    {
+      "title": "Isambard-AI, the UK’s Most Powerful AI Supercomputer, Goes Live",
+      "link": "https://blogs.nvidia.com/blog/isambard-ai/",
+      "published": "2025-07-17T17:00:50+00:00",
+      "summary": "The University of Bristol’s Isambard-AI, powered by NVIDIA Grace Hopper Superchips, delivers 21 exaflops of AI performance, making it the fastest system in the U.K. and among the most energy-efficient globally.",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 28,
+      "primary": "infra",
+      "tags": [
+        "supercomputer",
+        "grace hopper",
+        "uk",
+        "performance"
+      ],
+      "url": "https://blogs.nvidia.com/blog/isambard-ai/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 28,
+      "_rid": 6,
+      "why": "Isambard-AI se activa como el superordenador más potente del Reino Unido, optimizado para cargas de IA masivas.",
+      "entities": [
+        "University of Bristol",
+        "NVIDIA"
+      ]
+    },
+    {
+      "title": "Innovation to Impact: How NVIDIA Research Fuels Transformative Work in AI, Graphics and Beyond",
+      "link": "https://blogs.nvidia.com/blog/nvidia-research-ai-graphics/",
+      "published": "2025-03-20T00:00:24+00:00",
+      "summary": "The roots of many of NVIDIA’s landmark innovations — the foundational technology that powers AI, accelerated computing, real-time ray tracing and seamlessly connected data centers — can be found in the company’s research organization, a global team of around 400 experts in fields including computer architecture, generative AI, graphics and robotics. Established in 2006 and [&#8230;]",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 28,
+      "primary": "misc",
+      "tags": [
+        "research",
+        "innovation",
+        "strategy"
+      ],
+      "url": "https://blogs.nvidia.com/blog/nvidia-research-ai-graphics/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 28,
+      "_rid": 7,
+      "why": "NVIDIA destaca su trayectoria transformando investigación básica en productos líderes de mercado.",
+      "entities": [
+        "NVIDIA"
+      ]
+    },
+    {
+      "title": "TSMC Technology Symposium 2026 Overview",
+      "link": "https://semiwiki.com/semiconductor-manufacturers/tsmc/368690-tsmc-technology-symposium-2026-overview/",
+      "published": "2026-04-22T19:00:11+00:00",
+      "summary": "Yes, it is that time of year again, the 2026 TSMC Technology Symposium kick-off event in Silicon Valley. TSMC has never been in a better position to forecast the future of semiconductor technology and the industry itself. TSMC closely collaborates with the top semiconductor companies around the world and the top players in the &#8230; Read More The post TSMC Technology Symposium 2026 Overview appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 28,
+      "primary": "invest",
+      "tags": [
+        "tsmc",
+        "semiconductors",
+        "roadmap",
+        "foundry"
+      ],
+      "url": "https://semiwiki.com/semiconductor-manufacturers/tsmc/368690-tsmc-technology-symposium-2026-overview/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 28,
+      "_rid": 8,
+      "why": "Evento crítico para el futuro de la industria: define el suministro y tecnología de chips para 2026.",
+      "entities": [
+        "TSMC"
+      ]
+    },
+    {
+      "title": "How to Overcome the Advanced Node Physical Verification Bottleneck",
+      "link": "https://semiwiki.com/eda/synopsys/368490-how-to-overcome-the-advanced-node-physical-verification-bottleneck/",
+      "published": "2026-04-22T13:00:37+00:00",
+      "summary": "It is well-known that advanced semiconductor process technology presents substantial challenges across the full design flow and global supply chain. In this piece, we will focus on a particularly difficult problem – physical verification. This design step is the final gate to manufacturing. Producing a final tape‑out GDS &#8230; Read More The post How to Overcome the Advanced Node Physical Verification Bottleneck appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 28,
+      "primary": "infra",
+      "tags": [
+        "eda",
+        "semiconductors",
+        "manufacturing",
+        "verification"
+      ],
+      "url": "https://semiwiki.com/eda/synopsys/368490-how-to-overcome-the-advanced-node-physical-verification-bottleneck/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 28,
+      "_rid": 9,
+      "why": "Aborda el cuello de botella crítico en la verificación física final antes de la fabricación de chips avanzados.",
+      "entities": [
+        "TSMC",
+        "Synopsys"
+      ]
+    },
+    {
+      "title": "Transparent Screening for LLM Inference and Training Impacts",
+      "link": "https://arxiv.org/abs/2604.19757",
+      "published": "2026-04-23T04:00:00+00:00",
+      "summary": "arXiv:2604.19757v1 Announce Type: new Abstract: This paper presents a transparent screening framework for estimating inference and training impacts of current large language models under limited observability. The framework converts natural-language application descriptions into bounded environmental estimates and supports a comparative online observatory of current market models. Rather than claiming direct measurement for opaque proprietary services, it provides an auditable, source-linked proxy methodology designed to improve comparability, transparency, and reproducibility.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "score": 27,
+      "primary": "misc",
+      "tags": [
+        "sustainability",
+        "transparency",
+        "metrics"
+      ],
+      "url": "https://arxiv.org/abs/2604.19757",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 27,
+      "_rid": 10,
+      "why": "Propuesta de framework para auditar el impacto ambiental del entrenamiento e inferencia de modelos opacos.",
+      "entities": [
+        "Transparent Screening",
+        "Inference",
+        "Training Impacts"
+      ]
+    },
+    {
+      "title": "We’re launching Gemini Enterprise Agent Platform with : a platform for businesses to develop, scale, govern and optimize agents. It’s the evolution of Vertex...",
+      "summary": "We’re launching Gemini Enterprise Agent Platform with : a platform for businesses to develop, scale, govern and optimize agents. It’s the evolution of Vertex AI, bringing together model selection and agent building with new features for integration, security and",
+      "link": "https://x.com/GoogleDeepMind/status/2046983340524269713",
+      "published": "Thu, 23 Apr 2026 07:32:22 GMT",
+      "source": "X @GoogleDeepMind",
+      "feed_tags": [
+        "x",
+        "research",
+        "models"
+      ],
+      "score": 27,
+      "primary": "models",
+      "tags": [
+        "enterprise",
+        "agents",
+        "cloud",
+        "gemini"
+      ],
+      "url": "https://x.com/GoogleDeepMind/status/2046983340524269713",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 27,
+      "_rid": 11,
+      "why": "Evolución de Vertex AI hacia una plataforma integral para construir, gobernar y escalar agentes de negocio.",
+      "entities": [
+        "Google DeepMind",
+        "Google Cloud"
+      ]
+    },
+    {
+      "title": "Applications Now Open for $60,000 NVIDIA Graduate Fellowship Awards",
+      "link": "https://blogs.nvidia.com/blog/applications-open-graduate-fellowship-awards-2025/",
+      "published": "2025-08-13T15:00:02+00:00",
+      "summary": "Bringing together the world’s brightest minds and the latest accelerated computing technology leads to powerful breakthroughs that help tackle some of the biggest research problems. To foster such innovation, the NVIDIA Graduate Fellowship Program provides grants, mentors and technical support to doctoral students doing outstanding research relevant to NVIDIA technologies. The program, in its 25th [&#8230;]",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 26,
+      "primary": "invest",
+      "tags": [
+        "talent",
+        "grants",
+        "academia"
+      ],
+      "url": "https://blogs.nvidia.com/blog/applications-open-graduate-fellowship-awards-2025/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 26,
+      "_rid": 12,
+      "why": "Inversión en talento académico para asegurar la próxima generación de investigadores en computación acelerada.",
+      "entities": [
+        "NVIDIA"
+      ]
+    },
+    {
+      "title": "NVIDIA Releases New AI Models and Developer Tools to Advance Autonomous Vehicle Ecosystem",
+      "link": "https://blogs.nvidia.com/blog/autonomous-vehicle-ecosystem-ai-models-developer-tools/",
+      "published": "2025-06-11T10:55:36+00:00",
+      "summary": "Autonomous vehicle (AV) stacks are evolving from many distinct models to a unified, end-to-end architecture that executes driving actions directly from sensor data. This transition to using larger models is drastically increasing the demand for high-quality, physically based sensor data for training, testing and validation. To help accelerate the development of next-generation AV architectures, NVIDIA [&#8230;]",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "score": 26,
+      "primary": "infra",
+      "tags": [
+        "autonomous vehicles",
+        "simulation",
+        "training"
+      ],
+      "url": "https://blogs.nvidia.com/blog/autonomous-vehicle-ecosystem-ai-models-developer-tools/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 26,
+      "_rid": 13,
+      "why": "NVIDIA lanza modelos y herramientas para acelerar el paso a arquitecturas de conducción extremo-a-extremo.",
+      "entities": [
+        "NVIDIA"
+      ]
+    },
+    {
+      "title": "We're launching two specialized TPUs for the agentic era.",
+      "link": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/tpus-8t-8i-cloud-next/",
+      "published": "2026-04-22T12:00:00+00:00",
+      "summary": "The eighth generation of Google’s TPU includes two specialized chips that will power the future of AI.",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "score": 24,
+      "primary": "infra",
+      "tags": [
+        "tpu",
+        "hardware",
+        "google",
+        "cloud"
+      ],
+      "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/tpus-8t-8i-cloud-next/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 24,
+      "_rid": 14,
+      "why": "Google desafía el dominio de NVIDIA con su 8ª generación de TPUs diseñadas específicamente para la era agéntica.",
+      "entities": [
+        "Google"
+      ]
+    },
+    {
+      "title": "Workspace agents can work across tools—pulling context from docs, email, chats, code, and systems, and taking approved actions like updating issues, creating...",
+      "summary": "Workspace agents can work across tools—pulling context from docs, email, chats, code, and systems, and taking approved actions like updating issues, creating docs, or sending messages. In , agents can jump into a thread, understand what’s needed, pull the right",
+      "link": "https://x.com/OpenAI/status/2047008991944069624",
+      "published": "Thu, 23 Apr 2026 07:30:12 GMT",
+      "source": "X @OpenAI",
+      "feed_tags": [
+        "x",
+        "models",
+        "products"
+      ],
+      "score": 20,
+      "primary": "models",
+      "tags": [
+        "models"
+      ],
+      "url": "https://x.com/OpenAI/status/2047008991944069624",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 20,
+      "entities": [
+        "Workspace"
+      ],
+      "why": "Workspace agents can work across tools—pulling context from docs, email, chats, code, and systems, and taking approved actions like updating issues, creating do"
+    }
+  ]
+}
