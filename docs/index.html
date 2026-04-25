@@ -33,6 +33,20 @@
     .signal.medium{color:#fde68a;background:rgba(245,158,11,.16);border-color:rgba(245,158,11,.38)}
     .signal.high{color:#fdba74;background:rgba(249,115,22,.17);border-color:rgba(249,115,22,.38)}
     .signal.extreme{color:#fda4af;background:rgba(244,63,94,.18);border-color:rgba(244,63,94,.42)}
+    .topnav{margin-top:14px;display:flex;gap:10px;align-items:center}
+    .topnav-link{display:inline-flex;padding:8px 12px;border-radius:10px;border:1px solid var(--border);background:#0d1726;color:var(--muted);font-size:13px;font-weight:600}
+    .topnav-link.active{background:rgba(123,223,242,.12);border-color:rgba(123,223,242,.4);color:#d9f8ff}
+    .brief{margin-top:12px;border:1px solid var(--border);border-radius:18px;background:var(--panel);padding:14px}
+    .brief-inner{display:grid;grid-template-columns:1fr;gap:12px}
+    @media (min-width:980px){.brief-inner{grid-template-columns:1.5fr 1fr 1fr;}}
+    .brief-body{display:flex;flex-direction:column;gap:8px}
+    .brief-signal{display:flex;gap:9px;align-items:flex-start;font-size:13px;line-height:1.35}
+    .brief-n{min-width:22px;height:22px;border-radius:999px;border:1px solid rgba(123,223,242,.5);display:inline-flex;align-items:center;justify-content:center;color:var(--cyan);font-weight:700;font-size:12px}
+    .brief-block{border:1px solid var(--border);border-radius:12px;padding:10px;background:#0d1726}
+    .brief-block.risks{border-color:rgba(245,158,11,.45)}
+    .brief-block.watch{border-color:rgba(167,139,250,.45)}
+    .brief-risk-item{color:#fcd9a8;font-size:13px;line-height:1.35;margin:7px 0}
+    .brief-watch-item{color:#ddd6fe;font-size:13px;line-height:1.35;margin:7px 0}
 
     .thesis{margin-top:16px;border:1px solid var(--border);border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0));padding:14px}
     .thesis .lbl{font-size:12px;text-transform:uppercase;letter-spacing:.7px;color:var(--cyan);font-weight:700}
@@ -51,7 +65,6 @@
     .badge.score{color:var(--rose);border-color:rgba(251,113,133,.45)}
     .badge.theme{color:var(--cyan);border-color:rgba(123,223,242,.42)}
     .lead-why{margin-top:12px;font-size:14px;line-height:1.45;color:#d4e3ff;max-width:920px;border-left:3px solid rgba(123,223,242,.7);padding-left:11px;font-style:italic}
-    .lead-reason{margin-top:12px;font-size:14px;line-height:1.4;color:#d4e3ff;max-width:920px}
     .lead-entities{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
     .entity{padding:6px 10px;border-radius:999px;border:1px solid var(--border);background:#0a1422;font-size:12px}
     .lead-cta{margin-top:14px}
@@ -60,7 +73,7 @@
     .side{display:grid;grid-template-columns:1fr;gap:10px}
     .side-card{border:1px solid var(--border);border-radius:16px;background:var(--panel-soft);padding:14px}
     .side-card h3{margin:8px 0 0;font-size:21px;line-height:1.2}
-    .side-reason{margin-top:8px;font-size:13px;color:#cfddf7;line-height:1.35}
+    .side-why{margin-top:8px;font-size:13px;color:#cfddf7;line-height:1.35;border-left:3px solid rgba(123,223,242,.55);padding-left:9px;font-style:italic}
 
     .panels{margin-top:16px;display:grid;grid-template-columns:1fr;gap:12px}
     @media (min-width:980px){.panels{grid-template-columns:1.2fr 1fr;}}
@@ -106,34 +119,76 @@
     <div class="hero-kpis">
       <div class="kpi"><div class="k">Date</div><div class="v">2026-04-25</div></div>
       <div class="kpi"><div class="k">Signal level</div><div class="v"><span class="signal high">High</span></div></div>
-      <div class="kpi"><div class="k">Dominant theme</div><div class="v">Agentic automation</div></div>
-      <div class="kpi"><div class="k">Strong signals</div><div class="v">5</div></div>
-      <div class="kpi"><div class="k">Noise filtered</div><div class="v">8</div></div>
+      <div class="kpi"><div class="k">Dominant theme</div><div class="v">Other signals</div></div>
+      <div class="kpi"><div class="k">Strong signals</div><div class="v">3</div></div>
+      <div class="kpi"><div class="k">Noise filtered</div><div class="v">5</div></div>
     </div>
     <div class="thesis">
       <div class="lbl">Today’s thesis</div>
-      <div class="txt">Agentic automation: Markets of AI agents could provide value, but there are plenty of rough edges. Access to higher-quality mod…</div>
+      <div class="txt">OpenAI lanza GPT-5.5 y GPT-5.5 Pro elevando el techo de inteligencia y eficiencia en su API.</div>
+    </div>
+  </section>
+  <nav class="topnav">
+    <a class="topnav-link active" href="./index.html">Daily</a>
+    <a class="topnav-link" href="./weekly.html">Weekly</a>
+  </nav>
+  <section class="brief">
+    <div class="brief-inner">
+      <div class="brief-body">
+        <div class="eyebrow">Intelligence Brief</div>
+        
+          <div class="brief-signal"><span class="brief-n">1</span><span>OpenAI lanza GPT-5.5 y GPT-5.5 Pro elevando el techo de inteligencia y eficiencia en su API.</span></div>
+        
+          <div class="brief-signal"><span class="brief-n">2</span><span>NVIDIA presenta Rubin y vaticina una reconfiguración económica de la computación de 10 billones de dólares.</span></div>
+        
+          <div class="brief-signal"><span class="brief-n">3</span><span>Google despliega la serie Gemini 3.1 optimizada para latencia, coste y control granular de voz (TTS).</span></div>
+        
+          <div class="brief-signal"><span class="brief-n">4</span><span>Decoupled DiLoCo permite entrenamiento de modelos masivos en infraestructuras distribuidas y resilientes.</span></div>
+        
+          <div class="brief-signal"><span class="brief-n">5</span><span>La contabilidad de carbono se consolida como requisito obligatorio de adquisición en la industria de chips.</span></div>
+        
+      </div>
+      <div class="brief-block risks">
+        <div class="eyebrow" style="color:var(--amber)">Risks</div>
+        
+          <div class="brief-risk-item">• Mercados de agentes autónomos operando con marcos legales y políticas de seguridad insuficientes.</div>
+        
+          <div class="brief-risk-item">• Dependencia crítica de la ejecución de nuevas fábricas de semiconductores frente a la retórica de inversión.</div>
+        
+          <div class="brief-risk-item">• Cuellos de botella en la sostenibilidad ambiental debido a la escala energética demandada por el hardware.</div>
+        
+      </div>
+      <div class="brief-block watch">
+        <div class="eyebrow" style="color:var(--purple)">Watch</div>
+        
+          <div class="brief-watch-item">• Rendimiento de GPT-5.5 Pro en entornos críticos de salud y precisión clínica.</div>
+        
+          <div class="brief-watch-item">• Adopción de la arquitectura Rubin de NVIDIA frente a soluciones de silicio personalizadas.</div>
+        
+          <div class="brief-watch-item">• Estandarización de métricas AGI a través del nuevo marco cognitivo de DeepMind.</div>
+        
+      </div>
     </div>
   </section>
 
   <section class="signals-layout">
     <article class="lead">
       <div class="eyebrow">Lead Signal</div>
-      <h2 class="lead-title">Markets of AI agents could provide value, but there are plenty of rough edges. Access to higher-quality models conferred a real advantage—and participants di...</h2>
+      <h2 class="lead-title">For , the path to AGI started in 1988 with an Amiga 500 and a game of Othello. ![Image 5: 🕹️](https://abs.twimg.com/emoji/v2/svg/1f579.svg) His epiphany that...</h2>
       <div class="lead-meta">
-        <span class="badge">X @AnthropicAI</span>
-        <span class="badge theme">Agentic automation</span>
-        <span class="badge score">Score 74</span>
+        <span class="badge">X @GoogleDeepMind</span>
+        <span class="badge theme">Model economics</span>
+        <span class="badge score">Score 78</span>
         
       </div>
-      <div class="lead-reason">llm(0.85)+adjusted(0.15)-noise(0)</div>
+      <div class="lead-why">La técnica Decoupled DiLoCo permite entrenar modelos en clústeres geográficamente dispersos con alta resiliencia.</div>
       <div class="lead-entities">
         
-          <span class="entity">NVIDIA</span>
+          <span class="entity">Google DeepMind</span>
         
       </div>
       <div class="lead-cta">
-        <a class="cta" href="https://x.com/AnthropicAI?post=2d568a2774bf" target="_blank" rel="noopener noreferrer">Open source</a>
+        <a class="cta" href="https://x.com/GoogleDeepMind?post=fa753b4be21c" target="_blank" rel="noopener noreferrer">Read more →</a>
       </div>
     </article>
 
@@ -141,22 +196,22 @@
       
       <article class="side-card">
         <div class="lead-meta">
-          <span class="badge">DeepMind Blog</span>
-          <span class="badge theme">Compute &amp; chips</span>
-          <span class="badge score">Score 72</span>
+          <span class="badge">SemiWiki</span>
+          <span class="badge theme">Model economics</span>
+          <span class="badge score">Score 77</span>
         </div>
-        <h3><a href="https://deepmind.google/blog/decoupled-diloco/" target="_blank" rel="noopener noreferrer">Decoupled DiLoCo: A new frontier for resilient, distributed AI training</a></h3>
-        <div class="side-reason">llm(0.85)+adjusted(0.15)-noise(0)</div>
+        <h3><a href="https://semiwiki.com/semiconductor-manufacturers/tsmc/368690-tsmc-technology-symposium-2026-overview/" target="_blank" rel="noopener noreferrer">TSMC Technology Symposium 2026 Overview</a></h3>
+        <div class="side-why">Lanzamiento de GPT-5.5 Pro y versiones especializadas para medicina; marca el nuevo estado del arte en razonamiento y eficiencia.</div>
       </article>
       
       <article class="side-card">
         <div class="lead-meta">
-          <span class="badge">SemiWiki</span>
-          <span class="badge theme">Other signals</span>
-          <span class="badge score">Score 71</span>
+          <span class="badge">X @OpenAI</span>
+          <span class="badge theme">Model economics</span>
+          <span class="badge score">Score 74</span>
         </div>
-        <h3><a href="https://semiwiki.com/semiconductor-manufacturers/tsmc/368690-tsmc-technology-symposium-2026-overview/" target="_blank" rel="noopener noreferrer">TSMC Technology Symposium 2026 Overview</a></h3>
-        <div class="side-reason">llm(0.85)+adjusted(0.15)-noise(8)</div>
+        <h3><a href="https://x.com/OpenAI?post=0f655b0eef98" target="_blank" rel="noopener noreferrer">Update: GPT-5.5 and GPT-5.5 Pro are now available in the API. Quote OpenAI Developers @OpenAIDevs 22h GPT-5.5 is now available in the API. The model brings h...</a></h3>
+        <div class="side-why">Gemini Embedding 2 facilita búsquedas multimodales nativas y estables para aplicaciones de producción a gran escala.</div>
       </article>
       
     </aside>
@@ -168,10 +223,18 @@
       
       <div class="theme-row">
         <div class="theme-top">
-          <div class="theme-label">Agentic automation</div>
-          <div class="theme-num">6 · 40.0%</div>
+          <div class="theme-label">Other signals</div>
+          <div class="theme-num">5 · 33.3%</div>
         </div>
-        <div class="theme-bar"><div class="theme-fill" style="width: 40.0%;"></div></div>
+        <div class="theme-bar"><div class="theme-fill" style="width: 33.3%;"></div></div>
+      </div>
+      
+      <div class="theme-row">
+        <div class="theme-top">
+          <div class="theme-label">Model economics</div>
+          <div class="theme-num">3 · 20.0%</div>
+        </div>
+        <div class="theme-bar"><div class="theme-fill" style="width: 20.0%;"></div></div>
       </div>
       
       <div class="theme-row">
@@ -184,15 +247,7 @@
       
       <div class="theme-row">
         <div class="theme-top">
-          <div class="theme-label">Other signals</div>
-          <div class="theme-num">3 · 20.0%</div>
-        </div>
-        <div class="theme-bar"><div class="theme-fill" style="width: 20.0%;"></div></div>
-      </div>
-      
-      <div class="theme-row">
-        <div class="theme-top">
-          <div class="theme-label">Model economics</div>
+          <div class="theme-label">Agentic automation</div>
           <div class="theme-num">2 · 13.3%</div>
         </div>
         <div class="theme-bar"><div class="theme-fill" style="width: 13.3%;"></div></div>
@@ -201,23 +256,21 @@
       <div class="theme-row">
         <div class="theme-top">
           <div class="theme-label">Frontier capability</div>
-          <div class="theme-num">1 · 6.7%</div>
+          <div class="theme-num">2 · 13.3%</div>
         </div>
-        <div class="theme-bar"><div class="theme-fill" style="width: 6.7%;"></div></div>
+        <div class="theme-bar"><div class="theme-fill" style="width: 13.3%;"></div></div>
       </div>
       
-      <div class="dominant">Dominant today: <strong>Agentic automation</strong>.</div>
+      <div class="dominant">Dominant today: <strong>Other signals</strong>.</div>
     </article>
 
     <article class="panel">
       <h2>Entity Momentum / Watchlist</h2>
       <div class="watch-badges">
         
-          <span class="watch top">Google DeepMind</span>
+          <span class="watch lead">Google DeepMind</span>
         
-          <span class="watch lead">NVIDIA</span>
-        
-          <span class="watch ">OpenAI</span>
+          <span class="watch top">OpenAI</span>
         
           <span class="watch ">Anthropic</span>
         
@@ -227,16 +280,18 @@
         
           <span class="watch ">xAI</span>
         
+          <span class="watch ">NVIDIA</span>
+        
           <span class="watch ">Huawei</span>
         
       </div>
-      <div class="small-note">Noise Suppressed: 8 items with noise penalty ≥ 8.</div>
+      <div class="small-note">Noise Suppressed: 5 items with noise penalty ≥ 8.</div>
       <h2 style="margin-top:14px;">Watchlist for Tomorrow</h2>
       <ul class="tomorrow">
         
-          <li>Watch for follow-through in Agentic automation.</li>
+          <li>Watch for follow-through in Other signals.</li>
         
-          <li>Watch for narrative acceleration from Google DeepMind and NVIDIA.</li>
+          <li>Watch for narrative acceleration from Google DeepMind and OpenAI.</li>
         
           <li>Watch for pricing/compute updates that can re-rank strategic urgency tomorrow.</li>
         
@@ -260,13 +315,28 @@
       <article class="intel-card" data-repeat="0">
         <div class="intel-head">
           <div>
-            <div class="intel-source">X @OpenAI</div>
-            <div class="intel-title"><a href="https://x.com/OpenAI?post=16df347c4013" target="_blank" rel="noopener noreferrer">Update: GPT-5.5 and GPT-5.5 Pro are now available in the API. Quote OpenAI Developers @OpenAIDevs 13h GPT-5.5 is now available in the API. The model brings h...</a></div>
+            <div class="intel-source">X @GoogleDeepMind</div>
+            <div class="intel-title"><a href="https://x.com/GoogleDeepMind?post=fa753b4be21c" target="_blank" rel="noopener noreferrer">For , the path to AGI started in 1988 with an Amiga 500 and a game of Othello. ![Image 5: 🕹️](https://abs.twimg.com/emoji/v2/svg/1f579.svg) His epiphany that...</a></div>
           </div>
           <div class="intel-badges">
-            <span class="badge score">28</span>
-            <span class="badge theme">Models</span>
+            <span class="badge score">78</span>
+            <span class="badge theme">Model economics</span>
             
+          </div>
+        </div>
+        <div class="intel-reason">La técnica Decoupled DiLoCo permite entrenar modelos en clústeres geográficamente dispersos con alta resiliencia.</div>
+      </article>
+      
+      <article class="intel-card" data-repeat="0">
+        <div class="intel-head">
+          <div>
+            <div class="intel-source">SemiWiki</div>
+            <div class="intel-title"><a href="https://semiwiki.com/semiconductor-manufacturers/tsmc/368690-tsmc-technology-symposium-2026-overview/" target="_blank" rel="noopener noreferrer">TSMC Technology Symposium 2026 Overview</a></div>
+          </div>
+          <div class="intel-badges">
+            <span class="badge score">77</span>
+            <span class="badge theme">Model economics</span>
+            <span class="badge">Noise 8</span>
           </div>
         </div>
         <div class="intel-reason">Lanzamiento de GPT-5.5 Pro y versiones especializadas para medicina; marca el nuevo estado del arte en razonamiento y eficiencia.</div>
@@ -275,12 +345,12 @@
       <article class="intel-card" data-repeat="0">
         <div class="intel-head">
           <div>
-            <div class="intel-source">X @GoogleDeepMind</div>
-            <div class="intel-title"><a href="https://x.com/GoogleDeepMind?post=fa753b4be21c" target="_blank" rel="noopener noreferrer">For , the path to AGI started in 1988 with an Amiga 500 and a game of Othello. ![Image 5: 🕹️](https://abs.twimg.com/emoji/v2/svg/1f579.svg) His epiphany that...</a></div>
+            <div class="intel-source">X @OpenAI</div>
+            <div class="intel-title"><a href="https://x.com/OpenAI?post=0f655b0eef98" target="_blank" rel="noopener noreferrer">Update: GPT-5.5 and GPT-5.5 Pro are now available in the API. Quote OpenAI Developers @OpenAIDevs 22h GPT-5.5 is now available in the API. The model brings h...</a></div>
           </div>
           <div class="intel-badges">
-            <span class="badge score">24</span>
-            <span class="badge theme">Models</span>
+            <span class="badge score">74</span>
+            <span class="badge theme">Model economics</span>
             
           </div>
         </div>
@@ -294,38 +364,8 @@
             <div class="intel-title"><a href="https://x.com/AnthropicAI?post=2d568a2774bf" target="_blank" rel="noopener noreferrer">Markets of AI agents could provide value, but there are plenty of rough edges. Access to higher-quality models conferred a real advantage—and participants di...</a></div>
           </div>
           <div class="intel-badges">
-            <span class="badge score">15</span>
-            <span class="badge theme">Other signals</span>
-            
-          </div>
-        </div>
-        <div class="intel-reason">Investigación sobre mercados de agentes destaca la necesidad urgente de marcos legales para evitar fallos de alineación.</div>
-      </article>
-      
-      <article class="intel-card" data-repeat="0">
-        <div class="intel-head">
-          <div>
-            <div class="intel-source">DeepMind Blog</div>
-            <div class="intel-title"><a href="https://deepmind.google/blog/decoupled-diloco/" target="_blank" rel="noopener noreferrer">Decoupled DiLoCo: A new frontier for resilient, distributed AI training</a></div>
-          </div>
-          <div class="intel-badges">
-            <span class="badge score">14</span>
-            <span class="badge theme">Infra</span>
-            
-          </div>
-        </div>
-        <div class="intel-reason">La técnica Decoupled DiLoCo permite entrenar modelos en clústeres geográficamente dispersos con alta resiliencia.</div>
-      </article>
-      
-      <article class="intel-card" data-repeat="0">
-        <div class="intel-head">
-          <div>
-            <div class="intel-source">DeepMind Blog</div>
-            <div class="intel-title"><a href="https://deepmind.google/blog/gemini-3-1-flash-tts-the-next-generation-of-expressive-ai-speech/" target="_blank" rel="noopener noreferrer">Gemini 3.1 Flash TTS: the next generation of expressive AI speech</a></div>
-          </div>
-          <div class="intel-badges">
-            <span class="badge score">14</span>
-            <span class="badge theme">Models</span>
+            <span class="badge score">69</span>
+            <span class="badge theme">Agentic automation</span>
             
           </div>
         </div>
@@ -335,12 +375,42 @@
       <article class="intel-card" data-repeat="0">
         <div class="intel-head">
           <div>
-            <div class="intel-source">DeepMind Blog</div>
-            <div class="intel-title"><a href="https://deepmind.google/blog/measuring-progress-toward-agi-a-cognitive-framework/" target="_blank" rel="noopener noreferrer">Measuring progress toward AGI: A cognitive framework</a></div>
+            <div class="intel-source">Google AI Blog</div>
+            <div class="intel-title"><a href="https://blog.google/company-news/outreach-and-initiatives/creating-opportunity/ai-economy-forum/" target="_blank" rel="noopener noreferrer">Bringing people together at AI for the Economy Forum</a></div>
           </div>
           <div class="intel-badges">
-            <span class="badge score">14</span>
-            <span class="badge theme">Models</span>
+            <span class="badge score">67</span>
+            <span class="badge theme">Compute &amp; chips</span>
+            <span class="badge">Noise 18</span>
+          </div>
+        </div>
+        <div class="intel-reason">La plataforma Rubin de NVIDIA es el pilar de la próxima generación de hardware para la economía de IA de 10 billones.</div>
+      </article>
+      
+      <article class="intel-card" data-repeat="0">
+        <div class="intel-head">
+          <div>
+            <div class="intel-source">Google AI Blog</div>
+            <div class="intel-title"><a href="https://blog.google/products/ads-commerce/ads-advisor-google-ads/" target="_blank" rel="noopener noreferrer">3 new ways Ads Advisor is making Google Ads safer and faster</a></div>
+          </div>
+          <div class="intel-badges">
+            <span class="badge score">67</span>
+            <span class="badge theme">Other signals</span>
+            
+          </div>
+        </div>
+        <div class="intel-reason">Gemini 3.1 Flash-Lite optimiza el equilibrio entre inteligencia y coste operativo para despliegues masivos.</div>
+      </article>
+      
+      <article class="intel-card" data-repeat="0">
+        <div class="intel-head">
+          <div>
+            <div class="intel-source">DeepMind Blog</div>
+            <div class="intel-title"><a href="https://deepmind.google/blog/decoupled-diloco/" target="_blank" rel="noopener noreferrer">Decoupled DiLoCo: A new frontier for resilient, distributed AI training</a></div>
+          </div>
+          <div class="intel-badges">
+            <span class="badge score">62</span>
+            <span class="badge theme">Compute &amp; chips</span>
             
           </div>
         </div>
@@ -351,102 +421,12 @@
         <div class="intel-head">
           <div>
             <div class="intel-source">Google AI Blog</div>
-            <div class="intel-title"><a href="https://blog.google/company-news/outreach-and-initiatives/creating-opportunity/ai-economy-forum/" target="_blank" rel="noopener noreferrer">Bringing people together at AI for the Economy Forum</a></div>
+            <div class="intel-title"><a href="https://blog.google/products-and-platforms/products/chrome/skills-in-chrome/" target="_blank" rel="noopener noreferrer">Turn your best AI prompts into one-click tools in Chrome</a></div>
           </div>
           <div class="intel-badges">
-            <span class="badge score">14</span>
-            <span class="badge theme">Invest</span>
-            
-          </div>
-        </div>
-        <div class="intel-reason">Iniciativa de Google y MIT para analizar el impacto de la IA en la productividad y la adaptación de la fuerza laboral.</div>
-      </article>
-      
-      <article class="intel-card" data-repeat="0">
-        <div class="intel-head">
-          <div>
-            <div class="intel-source">NVIDIA Blog (AI)</div>
-            <div class="intel-title"><a href="https://blogs.nvidia.com/blog/2026-ces-special-presentation/" target="_blank" rel="noopener noreferrer">NVIDIA Rubin Platform, Open Models, Autonomous Driving: NVIDIA Presents Blueprint for the Future at CES</a></div>
-          </div>
-          <div class="intel-badges">
-            <span class="badge score">13</span>
-            <span class="badge theme">Infra</span>
-            
-          </div>
-        </div>
-        <div class="intel-reason">La plataforma Rubin de NVIDIA es el pilar de la próxima generación de hardware para la economía de IA de 10 billones.</div>
-      </article>
-      
-      <article class="intel-card" data-repeat="0">
-        <div class="intel-head">
-          <div>
-            <div class="intel-source">SemiWiki</div>
-            <div class="intel-title"><a href="https://semiwiki.com/semiconductor-services/ipnest/368639-semiwiki-acquires-ipnest/" target="_blank" rel="noopener noreferrer">SemiWiki Acquires IPnest!</a></div>
-          </div>
-          <div class="intel-badges">
-            <span class="badge score">13</span>
-            <span class="badge theme">Invest</span>
-            
-          </div>
-        </div>
-        <div class="intel-reason">Adquisición de IPnest por SemiWiki consolida el análisis de propiedad intelectual en el sector de semiconductores.</div>
-      </article>
-      
-      <article class="intel-card" data-repeat="0">
-        <div class="intel-head">
-          <div>
-            <div class="intel-source">SemiWiki</div>
-            <div class="intel-title"><a href="https://semiwiki.com/semiconductor-manufacturers/intel/368645-elon-musk-needs-to-put-his-money-where-his-mouth-is/" target="_blank" rel="noopener noreferrer">Elon Musk Needs to Put His Fab Money Where his Mouth is!</a></div>
-          </div>
-          <div class="intel-badges">
-            <span class="badge score">13</span>
-            <span class="badge theme">Geopol</span>
-            
-          </div>
-        </div>
-        <div class="intel-reason">Análisis crítico sobre la necesidad de capital real en plantas de fabricación frente a la influencia mediática.</div>
-      </article>
-      
-      <article class="intel-card" data-repeat="0">
-        <div class="intel-head">
-          <div>
-            <div class="intel-source">SemiWiki</div>
-            <div class="intel-title"><a href="https://semiwiki.com/semiconductor-services/techinsights/368503-carbon-in-the-age-of-ai-chips-what-the-semiconductor-industry-needs-to-know-this-earth-day/" target="_blank" rel="noopener noreferrer">Carbon in the Age of AI Chips: What the Semiconductor Industry Needs to Know This Earth Day</a></div>
-          </div>
-          <div class="intel-badges">
-            <span class="badge score">13</span>
-            <span class="badge theme">Infra</span>
-            
-          </div>
-        </div>
-        <div class="intel-reason">La huella de carbono se convierte en un factor decisivo de compra y cumplimiento normativo para fabricantes de chips.</div>
-      </article>
-      
-      <article class="intel-card" data-repeat="0">
-        <div class="intel-head">
-          <div>
-            <div class="intel-source">X @NVIDIAAI</div>
-            <div class="intel-title"><a href="https://x.com/NVIDIAAI?post=5c74284ea0e6" target="_blank" rel="noopener noreferrer">From 8 hours to 80 seconds - NVIDIA’s DGX SuperPOD delivers ready-to-run infrastructure out of the box with leading performance in [#MLPerf](https://x.com/ha...</a></div>
-          </div>
-          <div class="intel-badges">
-            <span class="badge score">13</span>
-            <span class="badge theme">Infra</span>
-            
-          </div>
-        </div>
-        <div class="intel-reason">Récords de velocidad en entrenamiento demuestran la superioridad de los sistemas integrados frente a soluciones DIY.</div>
-      </article>
-      
-      <article class="intel-card" data-repeat="0">
-        <div class="intel-head">
-          <div>
-            <div class="intel-source">DeepMind Blog</div>
-            <div class="intel-title"><a href="https://deepmind.google/blog/gemini-3-1-flash-live-making-audio-ai-more-natural-and-reliable/" target="_blank" rel="noopener noreferrer">Gemini 3.1 Flash Live: Making audio AI more natural and reliable</a></div>
-          </div>
-          <div class="intel-badges">
-            <span class="badge score">11</span>
-            <span class="badge theme">Models</span>
-            
+            <span class="badge score">60</span>
+            <span class="badge theme">Other signals</span>
+            <span class="badge">Noise 10</span>
           </div>
         </div>
         <div class="intel-reason">Gemini 3.1 Flash Live reduce drásticamente la latencia para interacciones de voz humanas más naturales.</div>
@@ -456,30 +436,105 @@
         <div class="intel-head">
           <div>
             <div class="intel-source">DeepMind Blog</div>
-            <div class="intel-title"><a href="https://deepmind.google/blog/gemini-3-1-flash-lite-built-for-intelligence-at-scale/" target="_blank" rel="noopener noreferrer">Gemini 3.1 Flash-Lite: Built for intelligence at scale</a></div>
+            <div class="intel-title"><a href="https://deepmind.google/blog/gemini-3-1-flash-live-making-audio-ai-more-natural-and-reliable/" target="_blank" rel="noopener noreferrer">Gemini 3.1 Flash Live: Making audio AI more natural and reliable</a></div>
           </div>
           <div class="intel-badges">
-            <span class="badge score">11</span>
-            <span class="badge theme">Models</span>
-            
+            <span class="badge score">58</span>
+            <span class="badge theme">Frontier capability</span>
+            <span class="badge">Noise 16</span>
           </div>
         </div>
-        <div class="intel-reason">Gemini 3.1 Flash-Lite optimiza el equilibrio entre inteligencia y coste operativo para despliegues masivos.</div>
+        <div class="intel-reason">Récords de velocidad en entrenamiento demuestran la superioridad de los sistemas integrados frente a soluciones DIY.</div>
       </article>
       
       <article class="intel-card" data-repeat="0">
         <div class="intel-head">
           <div>
             <div class="intel-source">Google AI Blog</div>
-            <div class="intel-title"><a href="https://blog.google/products-and-platforms/products/chrome/skills-in-chrome/" target="_blank" rel="noopener noreferrer">Turn your best AI prompts into one-click tools in Chrome</a></div>
+            <div class="intel-title"><a href="https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/tpus-8t-8i-cloud-next/" target="_blank" rel="noopener noreferrer">We&#39;re launching two specialized TPUs for the agentic era.</a></div>
           </div>
           <div class="intel-badges">
-            <span class="badge score">11</span>
+            <span class="badge score">55</span>
+            <span class="badge theme">Agentic automation</span>
+            
+          </div>
+        </div>
+        <div class="intel-reason">Investigación sobre mercados de agentes destaca la necesidad urgente de marcos legales para evitar fallos de alineación.</div>
+      </article>
+      
+      <article class="intel-card" data-repeat="0">
+        <div class="intel-head">
+          <div>
+            <div class="intel-source">SemiWiki</div>
+            <div class="intel-title"><a href="https://semiwiki.com/semiconductor-services/techinsights/368503-carbon-in-the-age-of-ai-chips-what-the-semiconductor-industry-needs-to-know-this-earth-day/" target="_blank" rel="noopener noreferrer">Carbon in the Age of AI Chips: What the Semiconductor Industry Needs to Know This Earth Day</a></div>
+          </div>
+          <div class="intel-badges">
+            <span class="badge score">55</span>
+            <span class="badge theme">Compute &amp; chips</span>
+            
+          </div>
+        </div>
+        <div class="intel-reason">La huella de carbono se convierte en un factor decisivo de compra y cumplimiento normativo para fabricantes de chips.</div>
+      </article>
+      
+      <article class="intel-card" data-repeat="0">
+        <div class="intel-head">
+          <div>
+            <div class="intel-source">Google AI Blog</div>
+            <div class="intel-title"><a href="https://blog.google/products-and-platforms/products/search/ai-mode-chrome/" target="_blank" rel="noopener noreferrer">A new way to explore the web with AI Mode in Chrome</a></div>
+          </div>
+          <div class="intel-badges">
+            <span class="badge score">52</span>
             <span class="badge theme">Other signals</span>
             
           </div>
         </div>
         <div class="intel-reason">Integración de herramientas de IA directamente en el navegador simplifica la automatización de tareas diarias para el usuario.</div>
+      </article>
+      
+      <article class="intel-card" data-repeat="0">
+        <div class="intel-head">
+          <div>
+            <div class="intel-source">SemiWiki</div>
+            <div class="intel-title"><a href="https://semiwiki.com/semiconductor-manufacturers/intel/368645-elon-musk-needs-to-put-his-money-where-his-mouth-is/" target="_blank" rel="noopener noreferrer">Elon Musk Needs to Put His Fab Money Where his Mouth is!</a></div>
+          </div>
+          <div class="intel-badges">
+            <span class="badge score">49</span>
+            <span class="badge theme">Other signals</span>
+            
+          </div>
+        </div>
+        <div class="intel-reason">Análisis crítico sobre la necesidad de capital real en plantas de fabricación frente a la influencia mediática.</div>
+      </article>
+      
+      <article class="intel-card" data-repeat="0">
+        <div class="intel-head">
+          <div>
+            <div class="intel-source">DeepMind Blog</div>
+            <div class="intel-title"><a href="https://deepmind.google/blog/gemini-3-1-flash-tts-the-next-generation-of-expressive-ai-speech/" target="_blank" rel="noopener noreferrer">Gemini 3.1 Flash TTS: the next generation of expressive AI speech</a></div>
+          </div>
+          <div class="intel-badges">
+            <span class="badge score">30</span>
+            <span class="badge theme">Frontier capability</span>
+            <span class="badge">Noise 10</span>
+          </div>
+        </div>
+        <div class="intel-reason">Iniciativa de Google y MIT para analizar el impacto de la IA en la productividad y la adaptación de la fuerza laboral.</div>
+      </article>
+      
+      <article class="intel-card" data-repeat="0">
+        <div class="intel-head">
+          <div>
+            <div class="intel-source">SemiWiki</div>
+            <div class="intel-title"><a href="https://semiwiki.com/semiconductor-services/ipnest/368639-semiwiki-acquires-ipnest/" target="_blank" rel="noopener noreferrer">SemiWiki Acquires IPnest!</a></div>
+          </div>
+          <div class="intel-badges">
+            <span class="badge score">27</span>
+            <span class="badge theme">Other signals</span>
+            
+          </div>
+        </div>
+        <div class="intel-reason">Adquisición de IPnest por SemiWiki consolida el análisis de propiedad intelectual en el sector de semiconductores.</div>
       </article>
       
     </div>
