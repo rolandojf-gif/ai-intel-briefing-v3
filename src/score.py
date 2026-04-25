@@ -36,6 +36,7 @@ def _count_hits(text: str, words: list[str]) -> int:
 
 def score_item(title: str, summary: str, source: str) -> dict:
     text = f"{title}\n{summary}".strip()
+    text_l = text.lower()
     infra = _count_hits(text, KEYWORDS["infra"])
     models = _count_hits(text, KEYWORDS["models"])
     invest = _count_hits(text, KEYWORDS["invest"])
@@ -51,7 +52,13 @@ def score_item(title: str, summary: str, source: str) -> dict:
     if "semiwiki" in src:
         raw += 10
     if "nvidia" in src:
-        raw += 8
+        # Mantiene NVIDIA como fuente estratégica, pero evita subir por marca
+        # cuando no hay señal real de impacto.
+        nvidia_strategic_signal = (infra + invest + geopol) > 0 or any(
+            k in text_l for k in ("datacenter", "hbm", "gpu", "inference", "training", "pricing", "capex")
+        )
+        if nvidia_strategic_signal:
+            raw += 4
     if "arxiv" in src:
         raw += 4
     if "deepmind" in src or "google ai" in src:

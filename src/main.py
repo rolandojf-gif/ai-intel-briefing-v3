@@ -2,11 +2,12 @@
 import os
 import yaml
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timezone
 import json
 import statistics
 import re
 import traceback
+from email.utils import parsedate_to_datetime
 from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 from src.fetch import fetch_rss
@@ -310,6 +311,37 @@ def clamp_score(value: float | int) -> int:
     return max(0, min(100, int(round(float(value)))))
 
 
+def parse_published_dt(raw_value) -> datetime | None:
+    raw = (raw_value or "").strip()
+    if not raw:
+        return None
+
+    try:
+        dt = datetime.fromisoformat(raw.replace("Z", "+00:00"))
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone.utc)
+        return dt.astimezone(timezone.utc)
+    except ValueError:
+        pass
+
+    try:
+        dt2 = parsedate_to_datetime(raw)
+        if dt2.tzinfo is None:
+            dt2 = dt2.replace(tzinfo=timezone.utc)
+        return dt2.astimezone(timezone.utc)
+    except (TypeError, ValueError):
+        return None
+
+
+def item_age_days(it: dict) -> int | None:
+    dt = parse_published_dt(it.get("published"))
+    if not dt:
+        return None
+    now_utc = datetime.now(timezone.utc)
+    days = (now_utc - dt).days
+    return max(0, days)
+
+
 def infer_strategic_theme(it: dict) -> str:
     text = f"{it.get('title', '')}\n{it.get('summary', '')}".lower()
     tags = [str(t).lower() for t in (it.get("tags") or []) if isinstance(t, str)]
@@ -360,6 +392,29 @@ def compute_noise_penalty(it: dict) -> int:
     has_hard_signal = any(k in text for k in ["price", "pricing", "capex", "opex", "datacenter", "hbm", "gpu", "training", "inference"])
     if any(s in source for s in promotional_sources) and not has_hard_signal:
         penalty += 4
+
+    if "nvidia" in source and not has_hard_signal:
+        nvidia_pr_tokens = [
+            "applications now open",
+            "special presentation",
+            "innovation to impact",
+            "teaching",
+            "bridge communication",
+            "introducing",
+        ]
+        if any(tok in text for tok in nvidia_pr_tokens):
+            penalty += 4
+
+    age_days = item_age_days(it)
+    if age_days is not None:
+        if age_days >= 45:
+            penalty += 18
+        elif age_days >= 21:
+            penalty += 12
+        elif age_days >= 10:
+            penalty += 6
+        elif age_days >= 5:
+            penalty += 3
 
     return min(25, max(0, penalty))
 
