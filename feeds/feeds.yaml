@@ -9,6 +9,11 @@ sources:
     url: https://export.arxiv.org/rss/cs.LG
     tags: [papers, models]
 
+  - name: arXiv cs.CL
+    type: rss
+    url: https://export.arxiv.org/rss/cs.CL
+    tags: [papers, models, nlp]
+
   - name: DeepMind Blog
     type: rss
     url: https://deepmind.google/blog/rss.xml
@@ -64,9 +69,30 @@ sources:
     cap: 2
     tags: [x, models]
 
+  - name: X @deepseek_ai
+    type: x
+    username: deepseek_ai
+    limit: 6
+    cap: 2
+    tags: [x, models, china]
+
+  - name: X @karpathy
+    type: x
+    username: karpathy
+    limit: 6
+    cap: 1
+    tags: [x, agents, coding]
+
+  - name: X @sama
+    type: x
+    username: sama
+    limit: 6
+    cap: 1
+    tags: [x, labs, strategy]
+
   - name: X AI policy/search
     type: x
-    query: "(from:WhiteHouse OR from:EU_Commission OR from:NIST) (ai OR semiconductor OR chips) -is:retweet -is:reply"
+    query: "(from:EU_Commission OR from:NIST) (\"AI Act\" OR \"export control\" OR semiconductor OR \"frontier AI\") -is:retweet -is:reply"
     limit: 10
     cap: 2
     tags: [x, geopol, policy]
