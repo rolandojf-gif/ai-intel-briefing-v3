@@ -227,6 +227,7 @@ def ingest_feeds(cfg: dict, per_source_cap: dict) -> list[dict]:
 
             sc = score_item(it["title"], it.get("summary", ""), it["source"])
             it.update(sc)
+            it["heuristic_score"] = int(it.get("score", 0) or 0)
             it["url"] = it.get("link", "")
 
             items.append(it)
@@ -281,7 +282,7 @@ def load_recent_history(data_dir: Path, today: str, days: int = 5) -> tuple[set[
 def apply_novelty_penalty(items: list[dict], history_urls: set[str], history_titles: set[str]) -> list[dict]:
     scored = []
     for it in items:
-        base_score = int(it.get("score", 0) or 0)
+        base_score = int(it.get("heuristic_score", it.get("score", 0)) or 0)
         curl = canonical_url(it.get("link", ""))
         tfp = title_fingerprint(it.get("title", ""))
 
@@ -303,6 +304,64 @@ def apply_novelty_penalty(items: list[dict], history_urls: set[str], history_tit
         it["adjusted_score"] = adjusted_score
         scored.append(it)
     return scored
+
+
+def clamp_score(value: float | int) -> int:
+    return max(0, min(100, int(round(float(value)))))
+
+
+def infer_strategic_theme(it: dict) -> str:
+    text = f"{it.get('title', '')}\n{it.get('summary', '')}".lower()
+    tags = [str(t).lower() for t in (it.get("tags") or []) if isinstance(t, str)]
+
+    def has_any(words: list[str]) -> bool:
+        return any(w in text for w in words) or any(w in tags for w in words)
+
+    if has_any(["agent", "agents", "mcp", "workflow", "autonomous", "automation", "coding"]):
+        return "agents_automation"
+    if has_any(["chip", "gpu", "hbm", "datacenter", "data center", "tpu", "inference", "training", "compute"]):
+        return "compute_chips_dc"
+    if has_any(["price", "pricing", "api", "cost", "token", "margin", "capex", "opex"]):
+        return "model_economics_pricing"
+    if has_any(["china", "huawei", "deepseek", "alibaba", "tencent", "bytedance"]):
+        return "china_stack"
+    if has_any(["export control", "sanction", "regulation", "policy", "eu ai act", "bis", "sovereign"]):
+        return "geopolitics_power"
+    if has_any(["agi", "reasoning", "frontier", "model", "multimodal", "benchmark", "alignment"]):
+        return "frontier_capability"
+    return "other"
+
+
+def compute_noise_penalty(it: dict) -> int:
+    title = (it.get("title") or "").lower()
+    summary = (it.get("summary") or "").lower()
+    text = f"{title}\n{summary}"
+    source = (it.get("source") or "").lower()
+
+    penalty = 0
+    fluff_tokens = [
+        "webinar",
+        "forum",
+        "applications now open",
+        "announces",
+        "preview",
+        "award",
+        "event",
+        "sponsored",
+    ]
+    if any(tok in text for tok in fluff_tokens):
+        penalty += 8
+
+    entities = [e for e in (it.get("entities") or []) if isinstance(e, str) and e.strip()]
+    if (it.get("primary") or "").strip() == "misc" and not entities:
+        penalty += 6
+
+    promotional_sources = ["google ai blog", "nvidia blog", "deepmind blog"]
+    has_hard_signal = any(k in text for k in ["price", "pricing", "capex", "opex", "datacenter", "hbm", "gpu", "training", "inference"])
+    if any(s in source for s in promotional_sources) and not has_hard_signal:
+        penalty += 4
+
+    return min(25, max(0, penalty))
 
 
 def generate_llm_data(candidates: list[dict], llm_cache: Path, llm_done: Path) -> tuple[dict, list]:
@@ -372,23 +431,54 @@ def apply_llm_results(candidates: list[dict], results_map: dict) -> list[dict]:
         llm = results_map.get(str(rid)) or results_map.get(rid) # handle string/int keys
 
         if llm:
-            it["score"] = int(llm.get("score", it.get("score", 0)))
+            it["llm_score"] = llm.get("score")
             it["primary"] = llm.get("primary", it.get("primary", "misc"))
             it["tags"] = llm.get("tags", [])
             it["why"] = llm.get("why", "")
             it["entities"] = llm.get("entities", [])
         else:
+            it["llm_score"] = None
             it["primary"] = it.get("primary", "misc")
             it["tags"] = it.get("tags", [])
             it["entities"] = it.get("entities", [])
             it["why"] = it.get("summary", "")[:160]
 
-        if "adjusted_score" in it:
-            it["score"] = max(0, min(100, int(it["adjusted_score"])))
+        heuristic_score = int(it.get("heuristic_score", it.get("score", 0)) or 0)
+        adjusted_score = int(it.get("adjusted_score", heuristic_score) or 0)
+        it["heuristic_score"] = clamp_score(heuristic_score)
+        it["adjusted_score"] = clamp_score(adjusted_score)
+
+        llm_score_raw = it.get("llm_score")
+        llm_score_valid = False
+        llm_score_num = None
+        if llm_score_raw is not None:
+            try:
+                llm_score_num = clamp_score(float(llm_score_raw))
+                llm_score_valid = True
+            except (TypeError, ValueError):
+                llm_score_valid = False
+
+        noise_penalty = compute_noise_penalty(it)
+        strategic_theme = infer_strategic_theme(it)
+
+        if llm_score_valid and llm_score_num is not None:
+            final_score = clamp_score((0.85 * llm_score_num) + (0.15 * it["adjusted_score"]) - noise_penalty)
+            ranking_reason = f"llm(0.85)+adjusted(0.15)-noise({noise_penalty})"
+            it["llm_score"] = llm_score_num
+        else:
+            final_score = clamp_score(it["adjusted_score"] - noise_penalty)
+            ranking_reason = f"fallback_adjusted-noise({noise_penalty})"
+            it["llm_score"] = None
+
+        it["noise_penalty"] = noise_penalty
+        it["final_score"] = final_score
+        it["score"] = final_score  # legacy alias for current render.py
+        it["ranking_reason"] = ranking_reason
+        it["strategic_theme"] = strategic_theme
 
         reranked.append(it)
-    
-    reranked.sort(key=lambda x: x.get("score", 0), reverse=True)
+
+    reranked.sort(key=lambda x: x.get("final_score", x.get("score", 0)), reverse=True)
     final_items = reranked[:15]
 
     min_x_items = max(0, env_int("MIN_X_ITEMS", 2))
@@ -409,7 +499,7 @@ def apply_llm_results(candidates: list[dict], results_map: dict) -> list[dict]:
                 need -= 1
                 if need <= 0:
                     break
-            final_items.sort(key=lambda x: x.get("score", 0), reverse=True)
+            final_items.sort(key=lambda x: x.get("final_score", x.get("score", 0)), reverse=True)
     
     for it in final_items:
         if not (it.get("entities") or []):
