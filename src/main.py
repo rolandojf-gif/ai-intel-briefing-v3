@@ -1,5 +1,6 @@
 # src/main.py
 import os
+import hashlib
 import yaml
 from pathlib import Path
 from datetime import datetime, timezone
@@ -419,6 +420,28 @@ def compute_noise_penalty(it: dict) -> int:
     return min(25, max(0, penalty))
 
 
+def _batch_fingerprint(payload: list[dict]) -> str:
+    s = json.dumps(
+        [{"id": p["id"], "t": (p.get("title") or "")[:50]} for p in payload],
+        ensure_ascii=False, separators=(",", ":"),
+    )
+    return hashlib.md5(s.encode()).hexdigest()[:12]
+
+
+_PROMO_SOURCES = frozenset({"nvidia blog (ai)", "google ai blog", "deepmind blog"})
+_PROMO_MAX_AGE_DAYS = 30
+
+
+def is_fresh_enough(it: dict) -> bool:
+    source = (it.get("source") or "").lower()
+    if not any(s in source for s in _PROMO_SOURCES):
+        return True
+    age = item_age_days(it)
+    if age is None:
+        return True
+    return age <= _PROMO_MAX_AGE_DAYS
+
+
 def generate_llm_data(candidates: list[dict], llm_cache: Path, llm_done: Path) -> tuple[dict, list]:
     llm_payload = []
     for idx, it in enumerate(candidates[:15], start=1):
@@ -431,6 +454,7 @@ def generate_llm_data(candidates: list[dict], llm_cache: Path, llm_done: Path) -
         })
         it["_rid"] = idx
 
+    current_fp = _batch_fingerprint(llm_payload)
     results_map = {}
     briefings = []
 
@@ -440,9 +464,13 @@ def generate_llm_data(candidates: list[dict], llm_cache: Path, llm_done: Path) -
     if llm_cache.exists() and not force_refresh:
         try:
             cached = json.loads(llm_cache.read_text(encoding="utf-8"))
-            results_map = cached.get("results_map", {}) or {}
-            briefings = cached.get("briefings", []) or []
-            print("Gemini cache HIT:", llm_cache.name)
+            cached_fp = cached.get("batch_fingerprint")
+            if cached_fp and cached_fp != current_fp:
+                print("Gemini cache STALE: invalidating.")
+            else:
+                results_map = cached.get("results_map", {}) or {}
+                briefings = cached.get("briefings", []) or []
+                print("Gemini cache HIT:", llm_cache.name)
         except Exception as e:
             print("Gemini cache read FAILED:", repr(e))
 
@@ -464,7 +492,15 @@ def generate_llm_data(candidates: list[dict], llm_cache: Path, llm_done: Path) -
                 gemini_ok = True
                 try:
                     llm_cache.write_text(
-                        json.dumps({"results_map": results_map, "briefings": briefings}, ensure_ascii=False, indent=2),
+                        json.dumps(
+                            {
+                                "batch_fingerprint": current_fp,
+                                "results_map": results_map,
+                                "briefings": briefings,
+                            },
+                            ensure_ascii=False,
+                            indent=2,
+                        ),
                         encoding="utf-8"
                     )
                     print("Gemini cache WRITTEN:", llm_cache.name)
@@ -665,6 +701,12 @@ def main():
     # 2.5) Novelty (anti-repetición respecto últimos días)
     history_urls, history_titles = load_recent_history(data_dir, today=today, days=5)
     deduped = apply_novelty_penalty(deduped, history_urls, history_titles)
+
+    before_age = len(deduped)
+    deduped = [it for it in deduped if is_fresh_enough(it)]
+    dropped = before_age - len(deduped)
+    if dropped:
+        print(f"Age filter: removed {dropped} stale promo-blog items (>{_PROMO_MAX_AGE_DAYS} days)")
 
     # 3) Preselect
     deduped.sort(key=lambda x: x.get("adjusted_score", x.get("score", 0)), reverse=True)

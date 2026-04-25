@@ -46,10 +46,10 @@ def score_value(item: dict) -> int:
 
 
 def item_reason(item: dict, limit: int = 150) -> str:
-    txt = (item.get("ranking_reason") or item.get("why") or "").strip()
+    txt = (item.get("why") or "").strip()
     if not txt:
         txt = (item.get("summary") or "").strip()
-    return truncate_text(txt, limit) if txt else "No rationale available yet."
+    return truncate_text(txt, limit) if txt else "No analysis available."
 
 
 def item_entities(item: dict, limit: int = 6) -> list[str]:
@@ -87,15 +87,16 @@ def truncate_text(text: str, limit: int = 140) -> str:
     return raw[: max(0, limit - 1)].rstrip() + "…"
 
 
-def signal_level(top_items: list[dict]) -> tuple[str, str, float, float]:
+def signal_level(top_items: list[dict], all_items: list[dict] | None = None) -> tuple[str, str, float, float]:
     if not top_items:
         return "Low", "low", 0.0, 0.0
 
     scores = [score_value(x) for x in top_items]
     avg = sum(scores) / max(1, len(scores))
-    theme_counts = Counter((x.get("theme") or "other") for x in top_items)
+    pool = all_items if all_items else top_items
+    theme_counts = Counter((x.get("theme") or "other") for x in pool)
     dominant = theme_counts.most_common(1)[0][1] if theme_counts else 0
-    concentration = dominant / max(1, len(top_items))
+    concentration = dominant / max(1, len(pool))
 
     if avg >= 80 or (avg >= 72 and concentration >= 0.6):
         return "Extreme", "extreme", avg, concentration
@@ -144,6 +145,20 @@ TEMPLATE = ENV.from_string("""
     .signal.medium{color:#fde68a;background:rgba(245,158,11,.16);border-color:rgba(245,158,11,.38)}
     .signal.high{color:#fdba74;background:rgba(249,115,22,.17);border-color:rgba(249,115,22,.38)}
     .signal.extreme{color:#fda4af;background:rgba(244,63,94,.18);border-color:rgba(244,63,94,.42)}
+    .topnav{margin-top:14px;display:flex;gap:10px;align-items:center}
+    .topnav-link{display:inline-flex;padding:8px 12px;border-radius:10px;border:1px solid var(--border);background:#0d1726;color:var(--muted);font-size:13px;font-weight:600}
+    .topnav-link.active{background:rgba(123,223,242,.12);border-color:rgba(123,223,242,.4);color:#d9f8ff}
+    .brief{margin-top:12px;border:1px solid var(--border);border-radius:18px;background:var(--panel);padding:14px}
+    .brief-inner{display:grid;grid-template-columns:1fr;gap:12px}
+    @media (min-width:980px){.brief-inner{grid-template-columns:1.5fr 1fr 1fr;}}
+    .brief-body{display:flex;flex-direction:column;gap:8px}
+    .brief-signal{display:flex;gap:9px;align-items:flex-start;font-size:13px;line-height:1.35}
+    .brief-n{min-width:22px;height:22px;border-radius:999px;border:1px solid rgba(123,223,242,.5);display:inline-flex;align-items:center;justify-content:center;color:var(--cyan);font-weight:700;font-size:12px}
+    .brief-block{border:1px solid var(--border);border-radius:12px;padding:10px;background:#0d1726}
+    .brief-block.risks{border-color:rgba(245,158,11,.45)}
+    .brief-block.watch{border-color:rgba(167,139,250,.45)}
+    .brief-risk-item{color:#fcd9a8;font-size:13px;line-height:1.35;margin:7px 0}
+    .brief-watch-item{color:#ddd6fe;font-size:13px;line-height:1.35;margin:7px 0}
 
     .thesis{margin-top:16px;border:1px solid var(--border);border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0));padding:14px}
     .thesis .lbl{font-size:12px;text-transform:uppercase;letter-spacing:.7px;color:var(--cyan);font-weight:700}
@@ -161,7 +176,7 @@ TEMPLATE = ENV.from_string("""
     .badge{display:inline-flex;align-items:center;border:1px solid var(--border);border-radius:999px;padding:5px 10px;font-size:12px;color:#cfe0ff;background:#0d1726}
     .badge.score{color:var(--rose);border-color:rgba(251,113,133,.45)}
     .badge.theme{color:var(--cyan);border-color:rgba(123,223,242,.42)}
-    .lead-reason{margin-top:12px;font-size:14px;line-height:1.4;color:#d4e3ff;max-width:920px}
+    .lead-why{margin-top:12px;font-size:14px;line-height:1.45;color:#d4e3ff;max-width:920px;border-left:3px solid rgba(123,223,242,.7);padding-left:11px;font-style:italic}
     .lead-entities{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
     .entity{padding:6px 10px;border-radius:999px;border:1px solid var(--border);background:#0a1422;font-size:12px}
     .lead-cta{margin-top:14px}
@@ -170,7 +185,7 @@ TEMPLATE = ENV.from_string("""
     .side{display:grid;grid-template-columns:1fr;gap:10px}
     .side-card{border:1px solid var(--border);border-radius:16px;background:var(--panel-soft);padding:14px}
     .side-card h3{margin:8px 0 0;font-size:21px;line-height:1.2}
-    .side-reason{margin-top:8px;font-size:13px;color:#cfddf7;line-height:1.35}
+    .side-why{margin-top:8px;font-size:13px;color:#cfddf7;line-height:1.35;border-left:3px solid rgba(123,223,242,.55);padding-left:9px;font-style:italic}
 
     .panels{margin-top:16px;display:grid;grid-template-columns:1fr;gap:12px}
     @media (min-width:980px){.panels{grid-template-columns:1.2fr 1fr;}}
@@ -225,6 +240,32 @@ TEMPLATE = ENV.from_string("""
       <div class="txt">{{ todays_thesis }}</div>
     </div>
   </section>
+  <nav class="topnav">
+    <a class="topnav-link active" href="./index.html">Daily</a>
+    <a class="topnav-link" href="./weekly.html">Weekly</a>
+  </nav>
+  <section class="brief">
+    <div class="brief-inner">
+      <div class="brief-body">
+        <div class="eyebrow">Intelligence Brief</div>
+        {% for s in brief_signals %}
+          <div class="brief-signal"><span class="brief-n">{{ loop.index }}</span><span>{{ s }}</span></div>
+        {% endfor %}
+      </div>
+      <div class="brief-block risks">
+        <div class="eyebrow" style="color:var(--amber)">Risks</div>
+        {% for r in brief_risks %}
+          <div class="brief-risk-item">• {{ r }}</div>
+        {% endfor %}
+      </div>
+      <div class="brief-block watch">
+        <div class="eyebrow" style="color:var(--purple)">Watch</div>
+        {% for w in brief_watch %}
+          <div class="brief-watch-item">• {{ w }}</div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
 
   <section class="signals-layout">
     <article class="lead">
@@ -236,14 +277,14 @@ TEMPLATE = ENV.from_string("""
         <span class="badge score">Score {{ lead.score }}</span>
         {% if lead.noise_penalty >= 8 %}<span class="badge">Noise {{ lead.noise_penalty }}</span>{% endif %}
       </div>
-      <div class="lead-reason">{{ lead.reason }}</div>
+      {% if lead.reason %}<div class="lead-why">{{ lead.reason }}</div>{% endif %}
       <div class="lead-entities">
         {% for e in lead.entities %}
           <span class="entity">{{ e }}</span>
         {% endfor %}
       </div>
       <div class="lead-cta">
-        <a class="cta" href="{{ (lead.url or lead.link)|safe_url }}" target="_blank" rel="noopener noreferrer">Open source</a>
+        <a class="cta" href="{{ (lead.url or lead.link)|safe_url }}" target="_blank" rel="noopener noreferrer">Read more →</a>
       </div>
     </article>
 
@@ -256,7 +297,7 @@ TEMPLATE = ENV.from_string("""
           <span class="badge score">Score {{ item.score }}</span>
         </div>
         <h3><a href="{{ (item.url or item.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a></h3>
-        <div class="side-reason">{{ item.reason }}</div>
+        <div class="side-why">{{ item.reason }}</div>
       </article>
       {% endfor %}
     </aside>
@@ -367,7 +408,7 @@ def render_index(items, briefing=None):
     secondary_signals = enriched[1:3]
 
     top3 = enriched[:3]
-    signal_label, signal_class, avg_top, concentration = signal_level(top3)
+    signal_label, signal_class, avg_top, concentration = signal_level(top3, enriched)
     strong_signals_count = sum(1 for x in enriched if x.get("score", 0) >= 70)
     noise_suppressed_count = sum(1 for x in enriched if x.get("noise_penalty", 0) >= 8)
 
@@ -382,8 +423,11 @@ def render_index(items, briefing=None):
     if not theme_rows:
         theme_rows = [{"label": "Other signals", "count": 0, "pct": 0}]
 
-    thesis_title = truncate_text(lead.get("title", ""), 108)
-    todays_thesis = f"{dominant_theme_label}: {thesis_title}"
+    if briefing and briefing.get("signals"):
+        todays_thesis = briefing["signals"][0]
+    else:
+        thesis_title = truncate_text(lead.get("title", ""), 108)
+        todays_thesis = f"{dominant_theme_label}: {thesis_title}"
 
     top_entity_counter = Counter()
     for it in top3:
@@ -408,6 +452,18 @@ def render_index(items, briefing=None):
         watch_for_tomorrow.append("Watch for fresh frontier-lab releases that can displace today’s lead.")
     watch_for_tomorrow.append("Watch for pricing/compute updates that can re-rank strategic urgency tomorrow.")
 
+    briefing_obj = briefing or {}
+    brief_signals = (briefing_obj.get("signals") or [])[:5]
+    brief_risks = (briefing_obj.get("risks") or [])[:3]
+    brief_watch = (briefing_obj.get("watch") or [])[:3]
+
+    if not brief_signals:
+        brief_signals = [f"Top narrative: {dominant_theme_label}.", "Monitor top-ranked shift for persistence."]
+    if not brief_risks:
+        brief_risks = ["Potential over-concentration in one narrative cluster."]
+    if not brief_watch:
+        brief_watch = ["Watch for new hard-signal evidence in top themes."]
+
     return TEMPLATE.render(
         generated_at=datetime.now().strftime("%Y-%m-%d"),
         items=enriched,
@@ -426,5 +482,8 @@ def render_index(items, briefing=None):
         avg_top=round(avg_top, 1),
         concentration=round(concentration * 100, 1),
         watch_for_tomorrow=watch_for_tomorrow[:3],
-        briefing=briefing or {},
+        briefing=briefing_obj,
+        brief_signals=brief_signals,
+        brief_risks=brief_risks,
+        brief_watch=brief_watch,
     )
