@@ -63,7 +63,33 @@ def normalize_entity(e: str) -> str:
     e = re.sub(r"\s+", " ", e)
     if e in ENTITY_ALIASES:
         return ENTITY_ALIASES[e]
+    for src, dst in ENTITY_ALIASES.items():
+        if e.lower() == src.lower():
+            return dst
     return e
+
+
+def clean_signal_text(text: str, source: str = "") -> str:
+    raw = (text or "").strip()
+    if not raw:
+        return ""
+    raw = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", raw)
+    raw = re.sub(r"!\s*Image\s*\d*:?", " ", raw, flags=re.IGNORECASE)
+    raw = re.sub(r"\bImage\s*\d*:?", " ", raw, flags=re.IGNORECASE)
+    raw = re.sub(r"https?://\S+", " ", raw)
+    raw = re.sub(r"#([A-Za-z0-9_]+)", r"\1", raw)
+    raw = re.sub(r"&amp;", "&", raw)
+    raw = re.sub(r"\s+", " ", raw).strip()
+
+    if (source or "").startswith("X ") and " Quote " in raw:
+        lead, quoted = raw.split(" Quote ", 1)
+        if len(lead.strip()) >= 24:
+            raw = lead.strip()
+        else:
+            raw = f"{lead.strip()} / {quoted.strip()}"
+
+    raw = re.sub(r"\s+@\w+\s+[A-Z][a-z]{2}\s+\d{1,2}\s+", " ", raw)
+    return re.sub(r"\s+", " ", raw).strip()
 
 
 TRACKING_QUERY_KEYS = {
@@ -108,11 +134,15 @@ def is_bad_entity(e: str) -> bool:
     if not e:
         return True
     e2 = e.strip()
-    if e2 in STOP_ENTITIES:
+    if e2 in STOP_ENTITIES or e2.lower() in {x.lower() for x in STOP_ENTITIES}:
+        return True
+    if re.search(r"https?://|[#@]", e2):
         return True
     if len(e2) <= 2 and e2.isupper() and e2 not in ALLOW_ACRONYMS and e2 not in ENTITY_ALIASES:
         return True
     if len(e2) < 3:
+        return True
+    if len(e2.split()) > 3:
         return True
     return False
 
@@ -133,7 +163,7 @@ def extract_entities_from_title(title: str) -> list[str]:
             hits.append(m2)
 
     candidates = re.findall(r"\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,2})\b", t)
-    stop_words = {"The", "A", "An", "And", "Of", "In", "On", "For", "With", "New"}
+    stop_words = {"The", "A", "An", "And", "Of", "In", "On", "For", "With", "New"} | STOP_ENTITIES
     for c in candidates:
         c2 = normalize_entity(c.strip())
         if c2 in stop_words:
@@ -151,6 +181,41 @@ def extract_entities_from_title(title: str) -> list[str]:
             continue
         seen.add(key)
         out.append(x)
+    return out[:8]
+
+
+def clean_entities(raw_entities: list, title: str = "") -> list[str]:
+    out = []
+    seen = set()
+    source_entities = list(raw_entities or [])
+    has_specific_gpt = any(isinstance(e, str) and re.search(r"\bGPT[- ]\d", e, re.IGNORECASE) for e in source_entities)
+    for e in source_entities:
+        if not isinstance(e, str):
+            continue
+        e2 = normalize_entity(e)
+        e2 = re.sub(r"^[^A-Za-z0-9]+|[^A-Za-z0-9. -]+$", "", e2).strip()
+        if has_specific_gpt and e2.upper() == "GPT":
+            continue
+        if is_bad_entity(e2):
+            continue
+        key = e2.lower()
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append(e2)
+
+    for e in extract_entities_from_title(title):
+        e2 = normalize_entity(e)
+        if has_specific_gpt and e2.upper() == "GPT":
+            continue
+        if is_bad_entity(e2):
+            continue
+        key = e2.lower()
+        if key not in seen:
+            seen.add(key)
+            out.append(e2)
+        if len(out) >= 8:
+            break
     return out[:8]
 
 
@@ -218,6 +283,10 @@ def ingest_feeds(cfg: dict, per_source_cap: dict) -> list[dict]:
 
             it["source"] = s["name"]
             it["feed_tags"] = s.get("tags", [])
+            it["raw_title"] = it.get("title", "")
+            it["raw_summary"] = it.get("summary", "")
+            it["title"] = clean_signal_text(it.get("title", ""), it["source"])
+            it["summary"] = clean_signal_text(it.get("summary", ""), it["source"])
 
             src = it["source"]
             cap = per_source_cap.get(src)
@@ -345,14 +414,15 @@ def item_age_days(it: dict) -> int | None:
 
 def infer_strategic_theme(it: dict) -> str:
     text = f"{it.get('title', '')}\n{it.get('summary', '')}".lower()
-    tags = [str(t).lower() for t in (it.get("tags") or []) if isinstance(t, str)]
+    tags = [str(t).lower() for t in ((it.get("tags") or []) + (it.get("feed_tags") or [])) if isinstance(t, str)]
+    source = (it.get("source") or "").lower()
 
     def has_any(words: list[str]) -> bool:
-        return any(w in text for w in words) or any(w in tags for w in words)
+        return any(w in text for w in words) or any(w in tags for w in words) or any(w in source for w in words)
 
-    if has_any(["agent", "agents", "mcp", "workflow", "autonomous", "automation", "coding"]):
+    if has_any(["agent", "agents", "mcp", "workflow", "autonomous", "automation", "coding", "tool use"]):
         return "agents_automation"
-    if has_any(["chip", "gpu", "hbm", "datacenter", "data center", "tpu", "inference", "training", "compute"]):
+    if has_any(["chip", "gpu", "hbm", "datacenter", "data center", "tpu", "training cluster", "compute", "tsmc", "blackwell", "gb200"]):
         return "compute_chips_dc"
     if has_any(["price", "pricing", "api", "cost", "token", "margin", "capex", "opex"]):
         return "model_economics_pricing"
@@ -362,6 +432,15 @@ def infer_strategic_theme(it: dict) -> str:
         return "geopolitics_power"
     if has_any(["agi", "reasoning", "frontier", "model", "multimodal", "benchmark", "alignment"]):
         return "frontier_capability"
+    primary = (it.get("primary") or "").strip()
+    if primary == "models":
+        return "frontier_capability"
+    if primary == "infra":
+        return "compute_chips_dc"
+    if primary == "invest":
+        return "model_economics_pricing"
+    if primary == "geopol":
+        return "geopolitics_power"
     return "other"
 
 
@@ -566,6 +645,7 @@ def apply_llm_results(candidates: list[dict], results_map: dict) -> list[dict]:
         it["score"] = final_score  # legacy alias for current render.py
         it["ranking_reason"] = ranking_reason
         it["strategic_theme"] = strategic_theme
+        it["entities"] = clean_entities(it.get("entities") or [], it.get("title", ""))
 
         reranked.append(it)
 
@@ -593,8 +673,7 @@ def apply_llm_results(candidates: list[dict], results_map: dict) -> list[dict]:
             final_items.sort(key=lambda x: x.get("final_score", x.get("score", 0)), reverse=True)
     
     for it in final_items:
-        if not (it.get("entities") or []):
-            it["entities"] = extract_entities_from_title(it.get("title", ""))
+        it["entities"] = clean_entities(it.get("entities") or [], it.get("title", ""))
             
     return final_items
 
@@ -624,16 +703,20 @@ def calculate_stats(final_items: list[dict]) -> tuple[float, dict, list]:
 
 def generate_fallback_briefing(final_items: list[dict], primary_dist: dict, top_entities_list: list) -> dict:
     top_cats = sorted(primary_dist.items(), key=lambda x: x[1], reverse=True)[:3]
-    parts = []
-    for c, ncat in top_cats:
-        lbl = CATEGORY_LABELS.get(c, c)
-        parts.append(f"{lbl} ({ncat}/{len(final_items)})")
-    cat_txt = ", ".join(parts) if parts else "Misc"
+    top_items = sorted(final_items, key=lambda x: x.get("score", 0), reverse=True)[:3]
+    parts = [f"{CATEGORY_LABELS.get(c, c)} ({ncat}/{len(final_items)})" for c, ncat in top_cats]
+    cat_txt = ", ".join(parts) if parts else "Sin señal"
+    lead = top_items[0] if top_items else {}
+    lead_score = int(lead.get("score", 0) or 0)
+    lead_title = (lead.get("title") or "Sin lead claro").strip()
+    lead_theme = infer_strategic_theme(lead) if lead else "other"
 
     max_cat = top_cats[0][1] if top_cats else 0
     concentration = max_cat / max(1, len(final_items))
-    if concentration >= 0.60:
-        risk = "Concentración alta en una categoría: posible mono-tema o sesgo del scoring."
+    if lead_score < 35:
+        risk = "Convicción baja: hoy predominan señales blandas o promocionales; evitar sobreinterpretar."
+    elif concentration >= 0.60:
+        risk = "Concentración alta en una categoría: vigilar sesgo de fuente o narrativa única."
     elif concentration >= 0.50:
         risk = "Concentración media: vigilar si se consolida como narrativa dominante."
     else:
@@ -648,11 +731,19 @@ def generate_fallback_briefing(final_items: list[dict], primary_dist: dict, top_
     if not watch:
         watch = ["Aumentar histórico para detectar momentum real."]
 
+    signals = [
+        f"Lead: {lead_title[:130]} (score {lead_score}, {infer_strategic_theme(lead) if lead else lead_theme}).",
+        f"Mix de hoy: {cat_txt}.",
+    ]
+    for it in top_items[1:4]:
+        title = (it.get("title") or "").strip()
+        if title:
+            signals.append(f"Follow-up: {title[:118]} (score {int(it.get('score', 0) or 0)}).")
+    if len(signals) < 5:
+        signals.append(f"Actores a vigilar: {', '.join(top_entities_list[:5]) if top_entities_list else 'sin entidad dominante'}.")
+
     return {
-        "signals": [
-            f"Mix de hoy (top): {cat_txt}.",
-            f"Actores dominantes (hoy): {', '.join(top_entities_list) if top_entities_list else 'n/a'}.",
-        ],
+        "signals": signals[:5],
         "risks": [risk],
         "watch": watch[:3],
         "entities_top": top_entities_list[:5],

@@ -13,6 +13,19 @@ Outputs:
 - `docs/index.html`
 - `docs/weekly.html`
 
+## Test
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+## Product direction
+
+The site is designed as a strategic radar, not a raw feed:
+- Daily shows the lead signal, conviction, theme radar, entity momentum, filters, search, local saves, and shareable source snippets.
+- Weekly shows trend momentum, narrative rotation, breakouts, new entrants, and source/entity concentration.
+- Scoring prioritizes hard signals such as API availability, pricing, compute, capex, policy, and shipped model changes over promotional noise.
+
 ## X Sources (free)
 
 X ingestion is API-free:

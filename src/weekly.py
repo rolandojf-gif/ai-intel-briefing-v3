@@ -11,6 +11,14 @@ from urllib.parse import urlparse
 DATA_DIR = Path("docs/data")
 OUT_HTML = Path("docs/weekly.html")
 
+CATEGORY_LABELS = {
+    "models": "Frontier models",
+    "infra": "Compute & chips",
+    "invest": "Model economics",
+    "geopol": "Geopolitics",
+    "misc": "Other",
+}
+
 
 def parse_date(stem: str) -> datetime:
     try:
@@ -159,6 +167,11 @@ def safe_href(url: str) -> str:
     if parsed.scheme in {"http", "https"} and parsed.netloc:
         return html_escape(raw)
     return "#"
+
+
+def human_category(category: str) -> str:
+    key = (category or "misc").strip()
+    return CATEGORY_LABELS.get(key, key.replace("_", " ").title())
 
 
 def main():
@@ -366,7 +379,7 @@ def main():
 
     def li_cat(r):
         return (
-            f"<li><span class='k'>{html_escape(r['name'])}</span> "
+            f"<li><span class='k'>{html_escape(human_category(r['name']))}</span> "
             f"<span class='s'>{spark(r['series'])}</span>"
             f"<span class='m'>tendencia_share {r['share_slope']:+.3f} · peso {r['w_total']:.2f} · menciones {r['total']} · días {r['streak']}</span></li>"
         )
@@ -385,13 +398,13 @@ def main():
     imp_li = "\n".join(f"<li>{html_escape(x)}</li>" for x in implications)
 
     risers_li = "\n".join(
-        f"<li><span class='k'>{html_escape(r['name'])}</span> "
+        f"<li><span class='k'>{html_escape(human_category(r['name']))}</span> "
         f"<span class='m'>participación {r['early']:.2%} → {r['recent']:.2%} (cambio {r['delta']:+.2%})</span></li>"
         for r in risers
     ) or "<li>Sin datos</li>"
 
     fallers_li = "\n".join(
-        f"<li><span class='k'>{html_escape(r['name'])}</span> "
+        f"<li><span class='k'>{html_escape(human_category(r['name']))}</span> "
         f"<span class='m'>participación {r['early']:.2%} → {r['recent']:.2%} (cambio {r['delta']:+.2%})</span></li>"
         for r in fallers
     ) or "<li>Sin datos</li>"
@@ -430,7 +443,7 @@ def main():
                 li.append(f"<li><a href='{safe_href(url)}' target='_blank' rel='noopener noreferrer'>{title}</a> <span class='m'>[{src}] [{cat}]</span></li>")
             else:
                 li.append(f"<li>{title} <span class='m'>[{src}] [{cat}]</span></li>")
-        cat_clusters.append(f"<section class='card'><h2>Categoria: {html_escape(category)}</h2><ul>{''.join(li)}</ul></section>")
+        cat_clusters.append(f"<section class='card'><h2>Categoria: {html_escape(human_category(category))}</h2><ul>{''.join(li)}</ul></section>")
 
     clusters_html = "<div class='grid'>" + "".join(clusters) + "</div>" if clusters else ""
     cat_clusters_html = "<div class='grid'>" + "".join(cat_clusters) + "</div>" if cat_clusters else ""
@@ -444,35 +457,45 @@ def main():
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Weekly Radar · {period}</title>
   <style>
-    body {{ font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin:0; background:#0b0e14; color:#e6edf3; }}
-    header {{ padding:20px; border-bottom:1px solid #222; background:#0b0e14; position:sticky; top:0; z-index: 5; }}
-    .wrap {{ max-width:1100px; margin:0 auto; padding:18px; }}
-    .grid {{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }}
-    .card {{ background:#0f1420; border:1px solid #1f2a3a; border-radius:14px; padding:14px; }}
-    h1 {{ margin:0 0 6px 0; font-size:18px; }}
-    h2 {{ margin:0 0 10px 0; font-size:15px; color:#cbd5e1; }}
+    :root {{ --bg:#090a0c; --surface:#11151b; --line:#27313d; --text:#edf2f7; --muted:#9aa8b7; --cyan:#67e8f9; --green:#74d99f; --amber:#f4bd50; --red:#fb7185; }}
+    * {{ box-sizing:border-box; }}
+    body {{ font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin:0; background:#090a0c; color:var(--text); }}
+    body:before {{ content:""; position:fixed; inset:0; pointer-events:none; background:linear-gradient(145deg,rgba(103,232,249,.10),transparent 34%),linear-gradient(20deg,rgba(116,217,159,.08),transparent 44%); z-index:-1; }}
+    header {{ padding:16px 0; border-bottom:1px solid var(--line); background:rgba(9,10,12,.94); position:sticky; top:0; z-index:5; backdrop-filter:blur(10px); }}
+    .wrap {{ max-width:1160px; margin:0 auto; padding:18px; }}
+    .top {{ display:flex; align-items:center; justify-content:space-between; gap:12px; }}
+    .nav {{ display:flex; gap:8px; flex-wrap:wrap; }}
+    .nav a {{ border:1px solid var(--line); border-radius:8px; padding:8px 10px; color:var(--muted); background:#0d1117; font-size:13px; }}
+    .nav a.active {{ color:var(--text); border-color:rgba(103,232,249,.55); }}
+    .grid {{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }}
+    .card {{ background:rgba(17,21,27,.92); border:1px solid var(--line); border-radius:8px; padding:14px; }}
+    h1 {{ margin:0 0 6px 0; font-size:26px; line-height:1.1; }}
+    h2 {{ margin:0 0 10px 0; font-size:15px; color:#dbe7f3; }}
     ul {{ margin:0; padding-left:18px; }}
-    li {{ margin:6px 0; line-height:1.25rem; }}
-    a {{ color:#8ab4f8; text-decoration:none; }}
+    li {{ margin:7px 0; line-height:1.3rem; }}
+    a {{ color:#cfe6ff; text-decoration:none; }}
     a:hover {{ text-decoration:underline; }}
     .k {{ font-weight:600; }}
     .s {{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; margin-left:8px; }}
-    .m {{ color:#9aa4b2; margin-left:8px; font-size:12px; }}
-    .pill {{ display:inline-block; padding:2px 8px; border:1px solid #1f2a3a; border-radius:999px; color:#9aa4b2; font-size:12px; margin-right:8px; }}
-    .metrics {{ margin-top:8px; color:#9aa4b2; font-size:12px; }}
+    .m {{ color:var(--muted); margin-left:8px; font-size:12px; }}
+    .pill {{ display:inline-block; padding:3px 8px; border:1px solid var(--line); border-radius:999px; color:var(--muted); font-size:12px; margin:3px 6px 3px 0; background:#0d1117; }}
+    .metrics {{ margin-top:8px; color:var(--muted); font-size:12px; }}
     @media (max-width:900px) {{ .grid {{ grid-template-columns:1fr; }} }}
   </style>
 </head>
 <body>
 <header>
-  <div class="wrap">
-    <h1>Weekly Radar · {period}</h1>
-    <div class="metrics">
-      <span class="pill">ventana: {n} días</span>
-      <span class="pill">recency half-life: 3d</span>
-      <span class="pill">concentración entidades: {ent_hhi:.3f} (top3 {ent_top3:.1%})</span>
-      <span class="pill">concentración categorías: {cat_hhi:.3f} (top3 {cat_top3:.1%})</span>
+  <div class="wrap top">
+    <div>
+      <h1>Weekly Radar · {period}</h1>
+      <div class="metrics">
+        <span class="pill">ventana: {n} días</span>
+        <span class="pill">recency half-life: 3d</span>
+        <span class="pill">concentración entidades: {ent_hhi:.3f} (top3 {ent_top3:.1%})</span>
+        <span class="pill">concentración categorías: {cat_hhi:.3f} (top3 {cat_top3:.1%})</span>
+      </div>
     </div>
+    <nav class="nav"><a href="./index.html">Daily</a><a class="active" href="./weekly.html">Weekly</a></nav>
   </div>
 </header>
 

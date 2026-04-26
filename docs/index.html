@@ -7,542 +7,659 @@
   <title>AI Strategic Radar</title>
   <style>
     :root{
-      --bg:#070b12; --bg-soft:#0b111d; --panel:#101a2b; --panel-soft:#0f1827; --border:#223149;
-      --text:#e3eeff; --muted:#8ea8cc; --cyan:#7bdff2; --purple:#a78bfa; --amber:#f59e0b; --rose:#fb7185; --ok:#34d399;
+      --bg:#090a0c; --surface:#11151b; --surface2:#161b22; --line:#27313d;
+      --text:#edf2f7; --muted:#9aa8b7; --cyan:#67e8f9; --green:#74d99f;
+      --amber:#f4bd50; --red:#fb7185; --violet:#c4b5fd; --blue:#93c5fd;
+      --shadow:0 16px 45px rgba(0,0,0,.32);
     }
     *{box-sizing:border-box}
-    body{margin:0;background:radial-gradient(circle at top,#0f1d34 0%,#080d16 38%,#070b12 100%);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
-    a{color:#b8c7ff;text-decoration:none} a:hover{text-decoration:underline}
-    .wrap{max-width:1250px;margin:0 auto;padding:18px}
-
-    .hero{
-      border:1px solid var(--border);
-      background:radial-gradient(1200px 600px at 0% 0%,rgba(123,223,242,.22),transparent 55%),radial-gradient(1000px 500px at 100% 0%,rgba(167,139,250,.18),transparent 55%),linear-gradient(180deg,#0e1727,#0c1422);
-      border-radius:22px;padding:28px 26px 24px;box-shadow:0 12px 40px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.05);
-    }
-    .eyebrow{font-size:12px;letter-spacing:1px;color:var(--cyan);text-transform:uppercase;font-weight:700}
-    h1{margin:8px 0 0 0;font-size:clamp(34px,5vw,56px);line-height:1.02;letter-spacing:.3px}
-    .subtitle{margin-top:10px;color:var(--muted);font-size:15px;max-width:840px}
-    .hero-kpis{margin-top:18px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-    @media (min-width:920px){.hero-kpis{grid-template-columns:repeat(5,minmax(0,1fr));}}
-    .kpi{border:1px solid var(--border);border-radius:13px;background:rgba(9,15,25,.58);padding:10px 11px}
-    .kpi .k{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.4px}
-    .kpi .v{margin-top:4px;font-size:21px;font-weight:700}
-    .signal{display:inline-flex;align-items:center;border-radius:999px;padding:6px 12px;font-weight:700;font-size:12px;border:1px solid transparent}
-    .signal.low{color:#93c5fd;background:rgba(59,130,246,.14);border-color:rgba(59,130,246,.38)}
-    .signal.medium{color:#fde68a;background:rgba(245,158,11,.16);border-color:rgba(245,158,11,.38)}
-    .signal.high{color:#fdba74;background:rgba(249,115,22,.17);border-color:rgba(249,115,22,.38)}
-    .signal.extreme{color:#fda4af;background:rgba(244,63,94,.18);border-color:rgba(244,63,94,.42)}
-    .topnav{margin-top:14px;display:flex;gap:10px;align-items:center}
-    .topnav-link{display:inline-flex;padding:8px 12px;border-radius:10px;border:1px solid var(--border);background:#0d1726;color:var(--muted);font-size:13px;font-weight:600}
-    .topnav-link.active{background:rgba(123,223,242,.12);border-color:rgba(123,223,242,.4);color:#d9f8ff}
-    .brief{margin-top:12px;border:1px solid var(--border);border-radius:18px;background:var(--panel);padding:14px}
-    .brief-inner{display:grid;grid-template-columns:1fr;gap:12px}
-    @media (min-width:980px){.brief-inner{grid-template-columns:1.5fr 1fr 1fr;}}
-    .brief-body{display:flex;flex-direction:column;gap:8px}
-    .brief-signal{display:flex;gap:9px;align-items:flex-start;font-size:13px;line-height:1.35}
-    .brief-n{min-width:22px;height:22px;border-radius:999px;border:1px solid rgba(123,223,242,.5);display:inline-flex;align-items:center;justify-content:center;color:var(--cyan);font-weight:700;font-size:12px}
-    .brief-block{border:1px solid var(--border);border-radius:12px;padding:10px;background:#0d1726}
-    .brief-block.risks{border-color:rgba(245,158,11,.45)}
-    .brief-block.watch{border-color:rgba(167,139,250,.45)}
-    .brief-risk-item{color:#fcd9a8;font-size:13px;line-height:1.35;margin:7px 0}
-    .brief-watch-item{color:#ddd6fe;font-size:13px;line-height:1.35;margin:7px 0}
-
-    .thesis{margin-top:16px;border:1px solid var(--border);border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0));padding:14px}
-    .thesis .lbl{font-size:12px;text-transform:uppercase;letter-spacing:.7px;color:var(--cyan);font-weight:700}
-    .thesis .txt{margin-top:7px;font-size:clamp(18px,2.2vw,28px);line-height:1.25;font-weight:650;max-width:960px}
-
-    .signals-layout{margin-top:16px;display:grid;grid-template-columns:1fr;gap:12px}
-    @media (min-width:980px){.signals-layout{grid-template-columns:1.55fr 1fr;}}
-    .lead{
-      border:1px solid var(--border);border-radius:20px;padding:18px;
-      background:linear-gradient(180deg,#121f33,#0f1a2c 65%,#0e1828);
-      box-shadow:0 10px 28px rgba(0,0,0,.28);
-    }
-    .lead-title{margin:9px 0 0 0;font-size:clamp(24px,3vw,40px);line-height:1.12}
-    .lead-meta{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
-    .badge{display:inline-flex;align-items:center;border:1px solid var(--border);border-radius:999px;padding:5px 10px;font-size:12px;color:#cfe0ff;background:#0d1726}
-    .badge.score{color:var(--rose);border-color:rgba(251,113,133,.45)}
-    .badge.theme{color:var(--cyan);border-color:rgba(123,223,242,.42)}
-    .lead-why{margin-top:12px;font-size:14px;line-height:1.45;color:#d4e3ff;max-width:920px;border-left:3px solid rgba(123,223,242,.7);padding-left:11px;font-style:italic}
-    .lead-entities{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
-    .entity{padding:6px 10px;border-radius:999px;border:1px solid var(--border);background:#0a1422;font-size:12px}
-    .lead-cta{margin-top:14px}
-    .cta{display:inline-flex;padding:9px 12px;border-radius:10px;border:1px solid rgba(123,223,242,.45);background:rgba(123,223,242,.08);color:#d8f7ff;font-weight:650}
-
-    .side{display:grid;grid-template-columns:1fr;gap:10px}
-    .side-card{border:1px solid var(--border);border-radius:16px;background:var(--panel-soft);padding:14px}
-    .side-card h3{margin:8px 0 0;font-size:21px;line-height:1.2}
-    .side-why{margin-top:8px;font-size:13px;color:#cfddf7;line-height:1.35;border-left:3px solid rgba(123,223,242,.55);padding-left:9px;font-style:italic}
-
-    .panels{margin-top:16px;display:grid;grid-template-columns:1fr;gap:12px}
-    @media (min-width:980px){.panels{grid-template-columns:1.2fr 1fr;}}
-    .panel{border:1px solid var(--border);border-radius:16px;background:var(--panel);padding:14px}
-    .panel h2{margin:0 0 10px;font-size:18px}
-    .theme-row{margin:9px 0}
-    .theme-top{display:flex;justify-content:space-between;align-items:center}
-    .theme-label{font-size:13px}
-    .theme-num{font-size:17px;font-weight:700}
-    .theme-bar{height:12px;border-radius:999px;border:1px solid var(--border);overflow:hidden;background:#0b1423;margin-top:6px}
-    .theme-fill{height:100%;background:linear-gradient(90deg,var(--cyan),var(--purple))}
-    .dominant{margin-top:11px;padding:9px 10px;border:1px solid rgba(123,223,242,.35);border-radius:11px;background:rgba(123,223,242,.08);font-size:13px}
-
-    .watch-badges{display:flex;flex-wrap:wrap;gap:8px}
-    .watch{padding:8px 12px;border-radius:999px;border:1px solid var(--border);background:#0b1423;font-size:13px}
-    .watch.lead{border-color:rgba(251,113,133,.45);background:rgba(251,113,133,.08)}
-    .watch.top{border-color:rgba(123,223,242,.45);background:rgba(123,223,242,.07)}
-    .small-note{margin-top:11px;font-size:12px;color:var(--muted)}
-    .tomorrow{margin:0;padding-left:18px}
-    .tomorrow li{margin:8px 0;line-height:1.35}
-
-    .support{margin-top:20px;border:1px solid var(--border);border-radius:18px;background:rgba(10,16,26,.7);padding:16px}
-    .support h2{margin:0;font-size:26px}
-    .support-sub{margin-top:5px;color:var(--muted)}
-    .controls{margin-top:12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-    .pill{border:1px solid var(--border);border-radius:999px;padding:5px 10px;color:var(--muted);font-size:12px}
-    select{background:#0a1320;color:var(--text);border:1px solid var(--border);border-radius:10px;padding:7px 10px}
-    .intel{margin-top:10px;display:grid;grid-template-columns:1fr;gap:9px}
-    .intel-card{border:1px solid var(--border);border-radius:13px;background:#0f1929;padding:12px}
-    .intel-head{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
-    .intel-source{font-size:12px;color:var(--cyan)}
-    .intel-title{margin-top:5px;font-size:18px;line-height:1.25}
-    .intel-badges{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}
-    .intel-reason{margin-top:8px;color:#cddcf7;font-size:13px;line-height:1.35}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:#090a0c;color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(145deg,rgba(103,232,249,.10),transparent 32%),linear-gradient(30deg,rgba(116,217,159,.08),transparent 40%);z-index:-1}
+    a{color:#cfe6ff;text-decoration:none} a:hover{text-decoration:underline}
+    .wrap{max-width:1240px;margin:0 auto;padding:18px}
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+    .brand{font-weight:800;letter-spacing:.2px}.nav{display:flex;gap:8px;flex-wrap:wrap}
+    .nav a{border:1px solid var(--line);border-radius:8px;padding:8px 10px;color:var(--muted);background:rgba(17,21,27,.72);font-size:13px}.nav a.active{color:var(--text);border-color:rgba(103,232,249,.55)}
+    .hero{border:1px solid var(--line);background:linear-gradient(180deg,rgba(22,27,34,.96),rgba(13,16,21,.96));border-radius:8px;padding:22px;box-shadow:var(--shadow)}
+    .eyebrow{font-size:11px;color:var(--cyan);font-weight:800;text-transform:uppercase;letter-spacing:.8px}
+    h1{margin:6px 0 0;font-size:clamp(34px,6vw,68px);line-height:1;font-weight:850}
+    .subtitle{margin-top:10px;color:var(--muted);font-size:15px;max-width:820px}
+    .thesis{margin-top:16px;font-size:clamp(20px,3vw,34px);line-height:1.16;font-weight:760;max-width:980px}
+    .metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:18px}
+    @media (min-width:820px){.metrics{grid-template-columns:repeat(6,minmax(0,1fr))}}
+    .metric{border:1px solid var(--line);background:#0d1117;border-radius:8px;padding:10px;min-height:78px}
+    .metric .k{font-size:11px;color:var(--muted);text-transform:uppercase;font-weight:750}.metric .v{margin-top:7px;font-size:22px;font-weight:820;line-height:1.05}
+    .signal{display:inline-flex;border:1px solid transparent;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:850}
+    .low{color:var(--blue);background:rgba(147,197,253,.10);border-color:rgba(147,197,253,.35)}
+    .medium{color:var(--amber);background:rgba(244,189,80,.12);border-color:rgba(244,189,80,.38)}
+    .high{color:var(--green);background:rgba(116,217,159,.12);border-color:rgba(116,217,159,.38)}
+    .extreme{color:var(--red);background:rgba(251,113,133,.13);border-color:rgba(251,113,133,.42)}
+    .grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px}@media (min-width:980px){.grid.two{grid-template-columns:1.35fr .9fr}.grid.three{grid-template-columns:1.2fr 1fr 1fr}}
+    .panel,.lead,.mini,.feed-card{border:1px solid var(--line);border-radius:8px;background:rgba(17,21,27,.90)}
+    .panel{padding:14px}.panel h2,.feed h2{margin:0 0 10px;font-size:17px}.lead{padding:18px;background:linear-gradient(180deg,#18202a,#111820)}
+    .lead h2{font-size:clamp(26px,4vw,44px);line-height:1.08;margin:8px 0 0}
+    .meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.badge{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;background:#0d1117;color:#dbe7f3;font-size:12px;padding:5px 9px}.badge.score{color:var(--red);border-color:rgba(251,113,133,.42)}.badge.theme{color:var(--cyan);border-color:rgba(103,232,249,.38)}.badge.repeat{color:var(--amber);border-color:rgba(244,189,80,.38)}
+    .why{margin-top:13px;color:#d8e4ef;line-height:1.42;border-left:3px solid var(--cyan);padding-left:10px}
+    .entities{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}.entity{border:1px solid var(--line);background:#0b0f14;border-radius:999px;padding:6px 9px;font-size:12px;color:#dfe8f2}
+    .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}.btn{border:1px solid var(--line);background:#0d1117;color:var(--text);border-radius:8px;padding:9px 11px;font-weight:750;cursor:pointer;font-size:13px}.btn.primary{border-color:rgba(103,232,249,.5);background:rgba(103,232,249,.10)}.btn.fav.active{border-color:rgba(244,189,80,.6);color:var(--amber)}
+    .mini{padding:13px}.mini h3{font-size:18px;line-height:1.18;margin:8px 0 0}.mini .why{font-size:13px}
+    .brief-list{display:grid;gap:8px}.brief-row{display:grid;grid-template-columns:26px 1fr;gap:8px;align-items:start;font-size:14px;line-height:1.35}.num{width:24px;height:24px;border-radius:999px;border:1px solid rgba(103,232,249,.5);display:flex;align-items:center;justify-content:center;color:var(--cyan);font-size:12px;font-weight:800}
+    .risk{color:#ffe0a3}.watch-text{color:#dcd4ff}.bar-row{margin:10px 0}.bar-top{display:flex;justify-content:space-between;gap:10px;font-size:13px}.bar{height:10px;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#0b0f14;margin-top:6px}.fill{height:100%;background:linear-gradient(90deg,var(--green),var(--cyan),var(--amber))}
+    .controls{position:sticky;top:0;z-index:5;margin-top:14px;border:1px solid var(--line);border-radius:8px;background:rgba(9,10,12,.92);backdrop-filter:blur(10px);padding:10px;display:grid;gap:8px}
+    @media (min-width:900px){.controls{grid-template-columns:1fr 180px 180px 170px}}
+    input,select{width:100%;border:1px solid var(--line);border-radius:8px;background:#0d1117;color:var(--text);padding:10px;font:inherit}
+    .feed{margin-top:14px}.feed-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}.count{color:var(--muted);font-size:13px}
+    .feed-grid{display:grid;grid-template-columns:1fr;gap:9px}.feed-card{padding:12px}.feed-card.hidden{display:none}.feed-card.favorited{border-color:rgba(244,189,80,.58)}
+    .feed-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.feed-title{font-size:17px;font-weight:760;line-height:1.25}.feed-reason{margin-top:8px;color:#cbd6e2;font-size:13px;line-height:1.38}.tiny{font-size:12px;color:var(--muted)}
+    .empty{display:none;color:var(--muted);border:1px dashed var(--line);border-radius:8px;padding:18px;text-align:center}.empty.show{display:block}
+    @media (max-width:700px){.wrap{padding:12px}.hero,.lead,.panel{padding:13px}.feed-top{display:block}.metric .v{font-size:19px}}
   </style>
 </head>
 <body>
 <div class="wrap">
+  <div class="topbar">
+    <div class="brand">AI Strategic Radar</div>
+    <nav class="nav">
+      <a class="active" href="./index.html">Daily</a>
+      <a href="./weekly.html">Weekly</a>
+      <a href="#feed">Signals</a>
+    </nav>
+  </div>
+
   <section class="hero">
-    <div class="eyebrow">Morning Intelligence Brief</div>
-    <h1>AI Strategic Radar</h1>
-    <div class="subtitle">Frontier labs, agents, compute, China stack, market power shifts</div>
-    <div class="hero-kpis">
-      <div class="kpi"><div class="k">Date</div><div class="v">2026-04-26</div></div>
-      <div class="kpi"><div class="k">Signal level</div><div class="v"><span class="signal high">High</span></div></div>
-      <div class="kpi"><div class="k">Dominant theme</div><div class="v">Other signals</div></div>
-      <div class="kpi"><div class="k">Strong signals</div><div class="v">0</div></div>
-      <div class="kpi"><div class="k">Noise filtered</div><div class="v">6</div></div>
-    </div>
-    <div class="thesis">
-      <div class="lbl">Today’s thesis</div>
-      <div class="txt">Mix de hoy (top): Misc (9/15), Modelos (3/15), Infraestructura/HW (3/15).</div>
-    </div>
-  </section>
-  <nav class="topnav">
-    <a class="topnav-link active" href="./index.html">Daily</a>
-    <a class="topnav-link" href="./weekly.html">Weekly</a>
-  </nav>
-  <section class="brief">
-    <div class="brief-inner">
-      <div class="brief-body">
-        <div class="eyebrow">Intelligence Brief</div>
-        
-          <div class="brief-signal"><span class="brief-n">1</span><span>Mix de hoy (top): Misc (9/15), Modelos (3/15), Infraestructura/HW (3/15).</span></div>
-        
-          <div class="brief-signal"><span class="brief-n">2</span><span>Actores dominantes (hoy): Gemini, NVIDIA, OpenAI, GPT, Update.</span></div>
-        
-      </div>
-      <div class="brief-block risks">
-        <div class="eyebrow" style="color:var(--amber)">Risks</div>
-        
-          <div class="brief-risk-item">• Concentración alta en una categoría: posible mono-tema o sesgo del scoring.</div>
-        
-      </div>
-      <div class="brief-block watch">
-        <div class="eyebrow" style="color:var(--purple)">Watch</div>
-        
-          <div class="brief-watch-item">• Seguir: Gemini, NVIDIA, OpenAI.</div>
-        
-          <div class="brief-watch-item">• Vigilar si &#39;Misc&#39; mantiene dominancia mañana.</div>
-        
-      </div>
+    <div class="eyebrow">Morning intelligence brief</div>
+    <h1>Medium signal day</h1>
+    <div class="subtitle">Frontier labs, agents, compute, China stack, model economics and power shifts.</div>
+    <div class="thesis">Lead: Update: GPT-5.5 and GPT-5.5 Pro are now available in the API. (score 55, model_economics_pricing).</div>
+    <div class="metrics">
+      <div class="metric"><div class="k">Date</div><div class="v">2026-04-26</div></div>
+      <div class="metric"><div class="k">Conviction</div><div class="v"><span class="signal medium">Medium</span></div></div>
+      <div class="metric"><div class="k">Top score</div><div class="v">55</div></div>
+      <div class="metric"><div class="k">Avg top 3</div><div class="v">40.7</div></div>
+      <div class="metric"><div class="k">Strong</div><div class="v">1</div></div>
+      <div class="metric"><div class="k">Filtered</div><div class="v">4</div></div>
     </div>
   </section>
 
-  <section class="signals-layout">
-    <article class="lead">
-      <div class="eyebrow">Lead Signal</div>
-      <h2 class="lead-title">Update: GPT-5.5 and GPT-5.5 Pro are now available in the API. Quote OpenAI Developers @OpenAIDevs Apr 24 GPT-5.5 is now available in the API. The model bring...</h2>
-      <div class="lead-meta">
+  <section class="grid two">
+    <article class="lead" data-id="sig-1">
+      <div class="eyebrow">Lead signal</div>
+      <h2>Update: GPT-5.5 and GPT-5.5 Pro are now available in the API.</h2>
+      <div class="meta">
         <span class="badge">X @OpenAI</span>
         <span class="badge theme">Model economics</span>
-        <span class="badge score">Score 28</span>
+        <span class="badge score">Score 55</span>
+        <span class="badge medium">Medium</span>
         
       </div>
-      <div class="lead-why">Update: GPT-5.5 and GPT-5.5 Pro are now available in the API. Quote OpenAI Developers @OpenAIDevs Apr 24 GPT-5.5 is now available in the API. The model brings h</div>
-      <div class="lead-entities">
-        
-          <span class="entity">OpenAI</span>
-        
-          <span class="entity">GPT</span>
-        
-          <span class="entity">Pro</span>
-        
-          <span class="entity">Quote</span>
-        
-          <span class="entity">Developers</span>
-        
-          <span class="entity">Apr</span>
-        
-      </div>
-      <div class="lead-cta">
-        <a class="cta" href="https://x.com/OpenAI?post=5abcae699818" target="_blank" rel="noopener noreferrer">Read more →</a>
+      <div class="why">Update: GPT-5.5 and GPT-5.5 Pro are now available in the API.</div>
+      <div class="entities"><span class="entity">GPT-5.5</span><span class="entity">GPT-5</span></div>
+      <div class="actions">
+        <a class="btn primary" href="https://x.com/OpenAI?post=5abcae699818" target="_blank" rel="noopener noreferrer">Read source</a>
+        <button class="btn fav" data-fav="sig-1" type="button">Save</button>
+        <button class="btn" data-copy="Update: GPT-5.5 and GPT-5.5 Pro are now available in the API. - https://x.com/OpenAI?post=5abcae699818" type="button">Copy</button>
       </div>
     </article>
-
-    <aside class="side">
+    <aside class="grid">
       
-      <article class="side-card">
-        <div class="lead-meta">
-          <span class="badge">SemiWiki</span>
-          <span class="badge theme">Compute &amp; chips</span>
-          <span class="badge score">Score 15</span>
+      <article class="mini" data-id="sig-2">
+        <div class="meta">
+          <span class="badge">X @NVIDIAAI</span>
+          <span class="badge theme">Frontier models</span>
+          <span class="badge score">34</span>
         </div>
-        <h3><a href="https://semiwiki.com/ceo-interviews/368683-ceo-interview-with-xianxin-guo-of-lumai/" target="_blank" rel="noopener noreferrer">CEO Interview with Xianxin Guo of Lumai</a></h3>
-        <div class="side-why">Xianxin is the CEO and Co-Founder of Lumai, an Oxford University spin-out pioneering disruptive optical computing technologies for Al and data center accelerati</div>
+        <h3><a href="https://x.com/NVIDIAAI?post=116947ff16ec" target="_blank" rel="noopener noreferrer">NVIDIA GauGAN2, a powerful AI model that allows anyone to convert simple written phrases like &#34;ocean waves&#34; in...</a></h3>
+        <div class="why">NVIDIA GauGAN2, a powerful AI model that allows anyone to convert simple written phrases like &#34;ocean waves&#34; into a photorealistic masterpiece. Learn more about</div>
       </article>
       
-      <article class="side-card">
-        <div class="lead-meta">
-          <span class="badge">X @NVIDIAAI</span>
-          <span class="badge theme">Frontier capability</span>
-          <span class="badge score">Score 4</span>
+      <article class="mini" data-id="sig-3">
+        <div class="meta">
+          <span class="badge">X @GoogleDeepMind</span>
+          <span class="badge theme">Model economics</span>
+          <span class="badge score">33</span>
         </div>
-        <h3><a href="https://x.com/NVIDIAAI?post=116947ff16ec" target="_blank" rel="noopener noreferrer">NVIDIA GauGAN2, a powerful [#AI](https://x.com/hashtag/AI?src=hashtag_click) model that allows anyone to convert simple written phrases like &#34;ocean waves&#34; in...</a></h3>
-        <div class="side-why">NVIDIA GauGAN2, a powerful [#AI](https://x.com/hashtag/AI?src=hashtag_click) model that allows anyone to convert simple written phrases like &#34;ocean waves&#34; into</div>
+        <h3><a href="https://x.com/GoogleDeepMind?post=fa753b4be21c" target="_blank" rel="noopener noreferrer">For , the path to AGI started in 1988 with an Amiga 500 and a game of Othello. 🕹️ His epiphany that...</a></h3>
+        <div class="why">For , the path to AGI started in 1988 with an Amiga 500 and a game of Othello. 🕹️ His epiphany that software could act on our behalf remains at the heart of our</div>
       </article>
       
     </aside>
   </section>
 
-  <section class="panels">
+  <section class="grid three">
     <article class="panel">
-      <h2>Theme Radar</h2>
-      
-      <div class="theme-row">
-        <div class="theme-top">
-          <div class="theme-label">Other signals</div>
-          <div class="theme-num">8 · 53.3%</div>
-        </div>
-        <div class="theme-bar"><div class="theme-fill" style="width: 53.3%;"></div></div>
+      <h2>Intelligence brief</h2>
+      <div class="brief-list">
+        
+        <div class="brief-row"><span class="num">1</span><span>Lead: Update: GPT-5.5 and GPT-5.5 Pro are now available in the API. (score 55, model_economics_pricing).</span></div>
+        
+        <div class="brief-row"><span class="num">2</span><span>Mix de hoy: Modelos (5/15), Misc (5/15), Economía/mercado (3/15).</span></div>
+        
+        <div class="brief-row"><span class="num">3</span><span>Follow-up: NVIDIA GauGAN2, a powerful AI model that allows anyone to convert simple written phrases like &#34;ocean waves&#34; in... (score 34).</span></div>
+        
+        <div class="brief-row"><span class="num">4</span><span>Follow-up: For , the path to AGI started in 1988 with an Amiga 500 and a game of Othello. 🕹️ His epiphany that... (score 33).</span></div>
+        
+        <div class="brief-row"><span class="num">5</span><span>Actores a vigilar: Gemini, GPT-5.5, GPT-5, NVIDIA, AGI.</span></div>
+        
       </div>
-      
-      <div class="theme-row">
-        <div class="theme-top">
-          <div class="theme-label">Frontier capability</div>
-          <div class="theme-num">3 · 20.0%</div>
-        </div>
-        <div class="theme-bar"><div class="theme-fill" style="width: 20.0%;"></div></div>
-      </div>
-      
-      <div class="theme-row">
-        <div class="theme-top">
-          <div class="theme-label">Model economics</div>
-          <div class="theme-num">2 · 13.3%</div>
-        </div>
-        <div class="theme-bar"><div class="theme-fill" style="width: 13.3%;"></div></div>
-      </div>
-      
-      <div class="theme-row">
-        <div class="theme-top">
-          <div class="theme-label">Compute &amp; chips</div>
-          <div class="theme-num">2 · 13.3%</div>
-        </div>
-        <div class="theme-bar"><div class="theme-fill" style="width: 13.3%;"></div></div>
-      </div>
-      
-      <div class="dominant">Dominant today: <strong>Other signals</strong>.</div>
     </article>
-
     <article class="panel">
-      <h2>Entity Momentum / Watchlist</h2>
-      <div class="watch-badges">
-        
-          <span class="watch lead">OpenAI</span>
-        
-          <span class="watch lead">GPT</span>
-        
-          <span class="watch lead">Pro</span>
-        
-          <span class="watch lead">Quote</span>
-        
-          <span class="watch top">Developers</span>
-        
-          <span class="watch top">Apr</span>
-        
-          <span class="watch top">CEO</span>
-        
-          <span class="watch top">Interview</span>
-        
-          <span class="watch ">Anthropic</span>
-        
-          <span class="watch ">Google DeepMind</span>
-        
-      </div>
-      <div class="small-note">Noise Suppressed: 6 items with noise penalty ≥ 8.</div>
-      <h2 style="margin-top:14px;">Watchlist for Tomorrow</h2>
-      <ul class="tomorrow">
-        
-          <li>Watch for follow-through in Other signals.</li>
-        
-          <li>Watch for narrative acceleration from OpenAI and GPT.</li>
-        
-          <li>Watch for pricing/compute updates that can re-rank strategic urgency tomorrow.</li>
-        
-      </ul>
+      <h2>Risks</h2>
+      <p class="risk">Diversidad razonable de categorías (sin dominancia extrema).</p>
+      <h2>Watch next</h2>
+      <p class="watch-text">Seguir: Gemini, GPT-5.5, GPT-5.</p><p class="watch-text">Vigilar si &#39;Modelos&#39; mantiene dominancia mañana.</p>
+    </article>
+    <article class="panel">
+      <h2>Entity momentum</h2>
+      <div class="entities"><span class="entity">GPT-5.5</span><span class="entity">GPT-5</span><span class="entity">Gemini</span><span class="entity">NVIDIA</span><span class="entity">AGI</span><span class="entity">Amiga</span><span class="entity">Othello</span><span class="entity">Anthropic</span><span class="entity">Claude</span><span class="entity">New Anthropic</span><span class="entity">Project Deal</span><span class="entity">San Francisco</span><span class="entity">OpenAI</span></div>
+      <p class="tiny">Dominant theme: Model economics. Repeat pressure: 4 items.</p>
     </article>
   </section>
 
-  <section class="support">
-    <h2>Supporting Intelligence</h2>
-    <div class="support-sub">Secondary evidence layer. Useful for drill-down, not the main narrative.</div>
-    <div class="controls">
-      <span class="pill">View</span>
-      <select id="viewFilter" onchange="applyFilter()">
-        <option value="all">All</option>
-        <option value="new">New only</option>
-        <option value="repeat">Repeated only</option>
-      </select>
+  <section class="panel">
+    <h2>Theme radar</h2>
+    
+    <div class="bar-row">
+      <div class="bar-top"><span>Model economics</span><strong>4 / 26.7%</strong></div>
+      <div class="bar"><div class="fill" style="width: 26.7%;"></div></div>
     </div>
-    <div class="intel" id="itemsGrid">
+    
+    <div class="bar-row">
+      <div class="bar-top"><span>Other</span><strong>4 / 26.7%</strong></div>
+      <div class="bar"><div class="fill" style="width: 26.7%;"></div></div>
+    </div>
+    
+    <div class="bar-row">
+      <div class="bar-top"><span>Frontier models</span><strong>3 / 20.0%</strong></div>
+      <div class="bar"><div class="fill" style="width: 20.0%;"></div></div>
+    </div>
+    
+    <div class="bar-row">
+      <div class="bar-top"><span>Agents &amp; automation</span><strong>2 / 13.3%</strong></div>
+      <div class="bar"><div class="fill" style="width: 13.3%;"></div></div>
+    </div>
+    
+    <div class="bar-row">
+      <div class="bar-top"><span>Compute &amp; chips</span><strong>1 / 6.7%</strong></div>
+      <div class="bar"><div class="fill" style="width: 6.7%;"></div></div>
+    </div>
+    
+    <div class="bar-row">
+      <div class="bar-top"><span>Geopolitics</span><strong>1 / 6.7%</strong></div>
+      <div class="bar"><div class="fill" style="width: 6.7%;"></div></div>
+    </div>
+    
+  </section>
+
+  <section class="controls" aria-label="Signal controls">
+    <input id="searchBox" type="search" placeholder="Search signal, source, entity"/>
+    <select id="themeFilter">
+      <option value="all">All themes</option>
+      <option value="Agents &amp; automation">Agents &amp; automation</option><option value="Compute &amp; chips">Compute &amp; chips</option><option value="Frontier models">Frontier models</option><option value="Geopolitics">Geopolitics</option><option value="Model economics">Model economics</option><option value="Other">Other</option>
+    </select>
+    <select id="viewFilter">
+      <option value="all">All signals</option>
+      <option value="new">New only</option>
+      <option value="repeat">Repeated only</option>
+      <option value="fav">Saved only</option>
+    </select>
+    <select id="sortMode">
+      <option value="score">Sort by score</option>
+      <option value="theme">Sort by theme</option>
+      <option value="source">Sort by source</option>
+    </select>
+  </section>
+
+  <section class="feed" id="feed">
+    <div class="feed-head"><h2>Signal stream</h2><span class="count" id="visibleCount">15 visible</span></div>
+    <div class="feed-grid" id="itemsGrid">
       
-      <article class="intel-card" data-repeat="0">
-        <div class="intel-head">
+      <article class="feed-card"
+        data-id="sig-1"
+        data-score="55"
+        data-theme="Model economics"
+        data-source="X @OpenAI"
+        data-repeat="0"
+        data-search="update: gpt-5.5 and gpt-5.5 pro are now available in the api. x @openai model economics gpt-5.5 gpt-5 ">
+        <div class="feed-top">
           <div>
-            <div class="intel-source">X @OpenAI</div>
-            <div class="intel-title"><a href="https://x.com/OpenAI?post=5abcae699818" target="_blank" rel="noopener noreferrer">Update: GPT-5.5 and GPT-5.5 Pro are now available in the API. Quote OpenAI Developers @OpenAIDevs Apr 24 GPT-5.5 is now available in the API. The model bring...</a></div>
+            <div class="tiny">X @OpenAI · x.com</div>
+            <div class="feed-title"><a href="https://x.com/OpenAI?post=5abcae699818" target="_blank" rel="noopener noreferrer">Update: GPT-5.5 and GPT-5.5 Pro are now available in the API.</a></div>
           </div>
-          <div class="intel-badges">
-            <span class="badge score">28</span>
+          <div class="meta">
+            <span class="badge score">55</span>
             <span class="badge theme">Model economics</span>
             
           </div>
         </div>
-        <div class="intel-reason">Update: GPT-5.5 and GPT-5.5 Pro are now available in the API. Quote OpenAI Developers @OpenAIDevs Apr 24 GPT-5.5 is now available in the API. The model brings h</div>
-      </article>
-      
-      <article class="intel-card" data-repeat="0">
-        <div class="intel-head">
-          <div>
-            <div class="intel-source">SemiWiki</div>
-            <div class="intel-title"><a href="https://semiwiki.com/ceo-interviews/368683-ceo-interview-with-xianxin-guo-of-lumai/" target="_blank" rel="noopener noreferrer">CEO Interview with Xianxin Guo of Lumai</a></div>
-          </div>
-          <div class="intel-badges">
-            <span class="badge score">15</span>
-            <span class="badge theme">Compute &amp; chips</span>
-            <span class="badge">Noise 8</span>
-          </div>
+        <div class="feed-reason">Update: GPT-5.5 and GPT-5.5 Pro are now available in the API.</div>
+        <div class="entities"><span class="entity">GPT-5.5</span><span class="entity">GPT-5</span></div>
+        <div class="actions">
+          <button class="btn fav" data-fav="sig-1" type="button">Save</button>
+          <button class="btn" data-copy="Update: GPT-5.5 and GPT-5.5 Pro are now available in the API. - https://x.com/OpenAI?post=5abcae699818" type="button">Copy</button>
         </div>
-        <div class="intel-reason">Xianxin is the CEO and Co-Founder of Lumai, an Oxford University spin-out pioneering disruptive optical computing technologies for Al and data center accelerati</div>
       </article>
       
-      <article class="intel-card" data-repeat="1">
-        <div class="intel-head">
+      <article class="feed-card"
+        data-id="sig-2"
+        data-score="34"
+        data-theme="Frontier models"
+        data-source="X @NVIDIAAI"
+        data-repeat="0"
+        data-search="nvidia gaugan2, a powerful ai model that allows anyone to convert simple written phrases like &#34;ocean waves&#34; in... x @nvidiaai frontier models nvidia ">
+        <div class="feed-top">
           <div>
-            <div class="intel-source">X @NVIDIAAI</div>
-            <div class="intel-title"><a href="https://x.com/NVIDIAAI?post=116947ff16ec" target="_blank" rel="noopener noreferrer">NVIDIA GauGAN2, a powerful [#AI](https://x.com/hashtag/AI?src=hashtag_click) model that allows anyone to convert simple written phrases like &#34;ocean waves&#34; in...</a></div>
+            <div class="tiny">X @NVIDIAAI · x.com</div>
+            <div class="feed-title"><a href="https://x.com/NVIDIAAI?post=116947ff16ec" target="_blank" rel="noopener noreferrer">NVIDIA GauGAN2, a powerful AI model that allows anyone to convert simple written phrases like &#34;ocean waves&#34; in...</a></div>
           </div>
-          <div class="intel-badges">
-            <span class="badge score">4</span>
-            <span class="badge theme">Frontier capability</span>
+          <div class="meta">
+            <span class="badge score">34</span>
+            <span class="badge theme">Frontier models</span>
             
           </div>
         </div>
-        <div class="intel-reason">NVIDIA GauGAN2, a powerful [#AI](https://x.com/hashtag/AI?src=hashtag_click) model that allows anyone to convert simple written phrases like &#34;ocean waves&#34; into</div>
-      </article>
-      
-      <article class="intel-card" data-repeat="0">
-        <div class="intel-head">
-          <div>
-            <div class="intel-source">X @AnthropicAI</div>
-            <div class="intel-title"><a href="https://x.com/AnthropicAI?post=4477b18bb1a9" target="_blank" rel="noopener noreferrer">New Anthropic research: Project Deal. We created a marketplace for employees in our San Francisco office, with one big twist. We tasked Claude with buying, s...</a></div>
-          </div>
-          <div class="intel-badges">
-            <span class="badge score">2</span>
-            <span class="badge theme">Other signals</span>
-            
-          </div>
+        <div class="feed-reason">NVIDIA GauGAN2, a powerful AI model that allows anyone to convert simple written phrases like &#34;ocean waves&#34; into a photorealistic masterpiece. Learn more about</div>
+        <div class="entities"><span class="entity">NVIDIA</span></div>
+        <div class="actions">
+          <button class="btn fav" data-fav="sig-2" type="button">Save</button>
+          <button class="btn" data-copy="NVIDIA GauGAN2, a powerful AI model that allows anyone to convert simple written phrases like &#34;ocean waves&#34; in... - https://x.com/NVIDIAAI?post=116947ff16ec" type="button">Copy</button>
         </div>
-        <div class="intel-reason">New Anthropic research: Project Deal. We created a marketplace for employees in our San Francisco office, with one big twist. We tasked Claude with buying, sell</div>
       </article>
       
-      <article class="intel-card" data-repeat="0">
-        <div class="intel-head">
+      <article class="feed-card"
+        data-id="sig-3"
+        data-score="33"
+        data-theme="Model economics"
+        data-source="X @GoogleDeepMind"
+        data-repeat="1"
+        data-search="for , the path to agi started in 1988 with an amiga 500 and a game of othello. 🕹️ his epiphany that... x @googledeepmind model economics agi amiga othello ">
+        <div class="feed-top">
           <div>
-            <div class="intel-source">X AI policy/search</div>
-            <div class="intel-title"><a href="https://x.com/EU_Commission/status/2047715489078460813" target="_blank" rel="noopener noreferrer">Regions remain at the heart of the EU&#39;s research and innovation agenda. Our new Joint Action Plan will ensure that every region can contribute to and benefit...</a></div>
+            <div class="tiny">X @GoogleDeepMind · x.com</div>
+            <div class="feed-title"><a href="https://x.com/GoogleDeepMind?post=fa753b4be21c" target="_blank" rel="noopener noreferrer">For , the path to AGI started in 1988 with an Amiga 500 and a game of Othello. 🕹️ His epiphany that...</a></div>
           </div>
-          <div class="intel-badges">
-            <span class="badge score">2</span>
-            <span class="badge theme">Other signals</span>
-            
-          </div>
-        </div>
-        <div class="intel-reason">Regions remain at the heart of the EU&#39;s research and innovation agenda. Our new Joint Action Plan will ensure that every region can contribute to and benefit fr</div>
-      </article>
-      
-      <article class="intel-card" data-repeat="0">
-        <div class="intel-head">
-          <div>
-            <div class="intel-source">Google AI Blog</div>
-            <div class="intel-title"><a href="https://blog.google/innovation-and-ai/products/gemini-app/personal-intelligence-nano-banana/" target="_blank" rel="noopener noreferrer">New ways to create personalized images in the Gemini app</a></div>
-          </div>
-          <div class="intel-badges">
-            <span class="badge score">0</span>
-            <span class="badge theme">Other signals</span>
-            <span class="badge">Noise 13</span>
-          </div>
-        </div>
-        <div class="intel-reason">Example images made with Personal Intelligence</div>
-      </article>
-      
-      <article class="intel-card" data-repeat="0">
-        <div class="intel-head">
-          <div>
-            <div class="intel-source">Google AI Blog</div>
-            <div class="intel-title"><a href="https://blog.google/innovation-and-ai/technology/developers-tools/introducing-flex-and-priority-inference/" target="_blank" rel="noopener noreferrer">New ways to balance cost and reliability in the Gemini API</a></div>
-          </div>
-          <div class="intel-badges">
-            <span class="badge score">0</span>
+          <div class="meta">
+            <span class="badge score">33</span>
             <span class="badge theme">Model economics</span>
-            <span class="badge">Noise 22</span>
+            <span class="badge repeat">Repeat</span>
           </div>
         </div>
-        <div class="intel-reason">Gemini API Dials</div>
-      </article>
-      
-      <article class="intel-card" data-repeat="0">
-        <div class="intel-head">
-          <div>
-            <div class="intel-source">Google AI Blog</div>
-            <div class="intel-title"><a href="https://blog.google/products-and-platforms/products/gemini/gemini-spring-cleaning-tips/" target="_blank" rel="noopener noreferrer">8 Gemini tips for organizing your space (and life)</a></div>
-          </div>
-          <div class="intel-badges">
-            <span class="badge score">0</span>
-            <span class="badge theme">Other signals</span>
-            <span class="badge">Noise 10</span>
-          </div>
+        <div class="feed-reason">For , the path to AGI started in 1988 with an Amiga 500 and a game of Othello. 🕹️ His epiphany that software could act on our behalf remains at the heart of our</div>
+        <div class="entities"><span class="entity">AGI</span><span class="entity">Amiga</span><span class="entity">Othello</span></div>
+        <div class="actions">
+          <button class="btn fav" data-fav="sig-3" type="button">Save</button>
+          <button class="btn" data-copy="For , the path to AGI started in 1988 with an Amiga 500 and a game of Othello. 🕹️ His epiphany that... - https://x.com/GoogleDeepMind?post=fa753b4be21c" type="button">Copy</button>
         </div>
-        <div class="intel-reason">Black screen with illustrations including a laptop with document and email icons streaming out, a smiling person holding a phone and looking at a checklist, and</div>
       </article>
       
-      <article class="intel-card" data-repeat="0">
-        <div class="intel-head">
+      <article class="feed-card"
+        data-id="sig-4"
+        data-score="32"
+        data-theme="Model economics"
+        data-source="Google AI Blog"
+        data-repeat="0"
+        data-search="new ways to balance cost and reliability in the gemini api google ai blog model economics gemini ">
+        <div class="feed-top">
           <div>
-            <div class="intel-source">Google AI Blog</div>
-            <div class="intel-title"><a href="https://blog.google/products-and-platforms/products/search/summer-travel-tips-google-search-ai/" target="_blank" rel="noopener noreferrer">7 ways to travel smarter this summer, with help from Google</a></div>
+            <div class="tiny">Google AI Blog · blog.google</div>
+            <div class="feed-title"><a href="https://blog.google/innovation-and-ai/technology/developers-tools/introducing-flex-and-priority-inference/" target="_blank" rel="noopener noreferrer">New ways to balance cost and reliability in the Gemini API</a></div>
           </div>
-          <div class="intel-badges">
-            <span class="badge score">0</span>
-            <span class="badge theme">Other signals</span>
-            <span class="badge">Noise 13</span>
-          </div>
-        </div>
-        <div class="intel-reason">Illustration showing a person with a Pixel phone in a beach town farmers&#39; market by the water</div>
-      </article>
-      
-      <article class="intel-card" data-repeat="0">
-        <div class="intel-head">
-          <div>
-            <div class="intel-source">X @NVIDIAAI</div>
-            <div class="intel-title"><a href="https://x.com/NVIDIAAI?post=5c74284ea0e6" target="_blank" rel="noopener noreferrer">From 8 hours to 80 seconds - NVIDIA’s DGX SuperPOD delivers ready-to-run infrastructure out of the box with leading performance in [#MLPerf](https://x.com/ha...</a></div>
-          </div>
-          <div class="intel-badges">
-            <span class="badge score">0</span>
-            <span class="badge theme">Other signals</span>
+          <div class="meta">
+            <span class="badge score">32</span>
+            <span class="badge theme">Model economics</span>
             
           </div>
         </div>
-        <div class="intel-reason">From 8 hours to 80 seconds - NVIDIA’s DGX SuperPOD delivers ready-to-run infrastructure out of the box with leading performance in [#MLPerf](https://x.com/hasht</div>
+        <div class="feed-reason">Gemini API Dials</div>
+        <div class="entities"><span class="entity">Gemini</span></div>
+        <div class="actions">
+          <button class="btn fav" data-fav="sig-4" type="button">Save</button>
+          <button class="btn" data-copy="New ways to balance cost and reliability in the Gemini API - https://blog.google/innovation-and-ai/technology/developers-tools/introducing-flex-and-priority-inference/" type="button">Copy</button>
+        </div>
       </article>
       
-      <article class="intel-card" data-repeat="0">
-        <div class="intel-head">
+      <article class="feed-card"
+        data-id="sig-5"
+        data-score="31"
+        data-theme="Model economics"
+        data-source="X @AnthropicAI"
+        data-repeat="0"
+        data-search="new anthropic research: project deal. we created a marketplace for employees in our san francisco office, with one big twist. we tasked claude with buying, s... x @anthropicai model economics anthropic claude new anthropic project deal san francisco ">
+        <div class="feed-top">
           <div>
-            <div class="intel-source">X @xai</div>
-            <div class="intel-title"><a href="https://x.com/xai?post=584b6e77f9d9" target="_blank" rel="noopener noreferrer">In order to understand the universe, you must explore the universe → [x.ai/careers](https://t.co/E9BY2xFmcL)</a></div>
+            <div class="tiny">X @AnthropicAI · x.com</div>
+            <div class="feed-title"><a href="https://x.com/AnthropicAI?post=4477b18bb1a9" target="_blank" rel="noopener noreferrer">New Anthropic research: Project Deal. We created a marketplace for employees in our San Francisco office, with one big twist. We tasked Claude with buying, s...</a></div>
           </div>
-          <div class="intel-badges">
-            <span class="badge score">0</span>
-            <span class="badge theme">Other signals</span>
+          <div class="meta">
+            <span class="badge score">31</span>
+            <span class="badge theme">Model economics</span>
             
           </div>
         </div>
-        <div class="intel-reason">In order to understand the universe, you must explore the universe → [x.ai/careers](https://t.co/E9BY2xFmcL)</div>
-      </article>
-      
-      <article class="intel-card" data-repeat="0">
-        <div class="intel-head">
-          <div>
-            <div class="intel-source">X @xai</div>
-            <div class="intel-title"><a href="https://x.com/xai?post=1e92fdc5a5f3" target="_blank" rel="noopener noreferrer">Replying to Try it now for free:</a></div>
-          </div>
-          <div class="intel-badges">
-            <span class="badge score">0</span>
-            <span class="badge theme">Other signals</span>
-            
-          </div>
+        <div class="feed-reason">New Anthropic research: Project Deal. We created a marketplace for employees in our San Francisco office, with one big twist. We tasked Claude with buying, sell</div>
+        <div class="entities"><span class="entity">Anthropic</span><span class="entity">Claude</span><span class="entity">New Anthropic</span><span class="entity">Project Deal</span><span class="entity">San Francisco</span></div>
+        <div class="actions">
+          <button class="btn fav" data-fav="sig-5" type="button">Save</button>
+          <button class="btn" data-copy="New Anthropic research: Project Deal. We created a marketplace for employees in our San Francisco office, with one big twist. We tasked Claude with buying, s... - https://x.com/AnthropicAI?post=4477b18bb1a9" type="button">Copy</button>
         </div>
-        <div class="intel-reason">Replying to Try it now for free:</div>
       </article>
       
-      <article class="intel-card" data-repeat="1">
-        <div class="intel-head">
+      <article class="feed-card"
+        data-id="sig-6"
+        data-score="23"
+        data-theme="Compute &amp; chips"
+        data-source="SemiWiki"
+        data-repeat="0"
+        data-search="ceo interview with xianxin guo of lumai semiwiki compute &amp; chips xianxin guo lumai ">
+        <div class="feed-top">
           <div>
-            <div class="intel-source">DeepMind Blog</div>
-            <div class="intel-title"><a href="https://deepmind.google/blog/decoupled-diloco/" target="_blank" rel="noopener noreferrer">Decoupled DiLoCo: A new frontier for resilient, distributed AI training</a></div>
+            <div class="tiny">SemiWiki · semiwiki.com</div>
+            <div class="feed-title"><a href="https://semiwiki.com/ceo-interviews/368683-ceo-interview-with-xianxin-guo-of-lumai/" target="_blank" rel="noopener noreferrer">CEO Interview with Xianxin Guo of Lumai</a></div>
           </div>
-          <div class="intel-badges">
-            <span class="badge score">0</span>
+          <div class="meta">
+            <span class="badge score">23</span>
             <span class="badge theme">Compute &amp; chips</span>
             
           </div>
         </div>
-        <div class="intel-reason">No analysis available.</div>
+        <div class="feed-reason">Xianxin is the CEO and Co-Founder of Lumai, an Oxford University spin-out pioneering disruptive optical computing technologies for Al and data center accelerati</div>
+        <div class="entities"><span class="entity">Xianxin Guo</span><span class="entity">Lumai</span></div>
+        <div class="actions">
+          <button class="btn fav" data-fav="sig-6" type="button">Save</button>
+          <button class="btn" data-copy="CEO Interview with Xianxin Guo of Lumai - https://semiwiki.com/ceo-interviews/368683-ceo-interview-with-xianxin-guo-of-lumai/" type="button">Copy</button>
+        </div>
       </article>
       
-      <article class="intel-card" data-repeat="1">
-        <div class="intel-head">
+      <article class="feed-card"
+        data-id="sig-7"
+        data-score="20"
+        data-theme="Agents &amp; automation"
+        data-source="X @OpenAI"
+        data-repeat="1"
+        data-search="introducing gpt-5.5 a new class of intelligence for real work and powering agents, built to understand complex goals, use tools, check its work, and carry mo... x @openai agents &amp; automation gpt-5.5 gpt-5 ">
+        <div class="feed-top">
           <div>
-            <div class="intel-source">DeepMind Blog</div>
-            <div class="intel-title"><a href="https://deepmind.google/blog/partnering-with-industry-leaders-to-accelerate-ai-transformation/" target="_blank" rel="noopener noreferrer">Partnering with industry leaders to accelerate AI transformation</a></div>
+            <div class="tiny">X @OpenAI · x.com</div>
+            <div class="feed-title"><a href="https://x.com/OpenAI?post=a086b6d3a242" target="_blank" rel="noopener noreferrer">Introducing GPT-5.5 A new class of intelligence for real work and powering agents, built to understand complex goals, use tools, check its work, and carry mo...</a></div>
           </div>
-          <div class="intel-badges">
-            <span class="badge score">0</span>
-            <span class="badge theme">Frontier capability</span>
+          <div class="meta">
+            <span class="badge score">20</span>
+            <span class="badge theme">Agents &amp; automation</span>
+            <span class="badge repeat">Repeat</span>
+          </div>
+        </div>
+        <div class="feed-reason">Introducing GPT-5.5 A new class of intelligence for real work and powering agents, built to understand complex goals, use tools, check its work, and carry more</div>
+        <div class="entities"><span class="entity">GPT-5.5</span><span class="entity">GPT-5</span></div>
+        <div class="actions">
+          <button class="btn fav" data-fav="sig-7" type="button">Save</button>
+          <button class="btn" data-copy="Introducing GPT-5.5 A new class of intelligence for real work and powering agents, built to understand complex goals, use tools, check its work, and carry mo... - https://x.com/OpenAI?post=a086b6d3a242" type="button">Copy</button>
+        </div>
+      </article>
+      
+      <article class="feed-card"
+        data-id="sig-8"
+        data-score="8"
+        data-theme="Frontier models"
+        data-source="Google AI Blog"
+        data-repeat="0"
+        data-search="new ways to create personalized s in the gemini app google ai blog frontier models gemini ">
+        <div class="feed-top">
+          <div>
+            <div class="tiny">Google AI Blog · blog.google</div>
+            <div class="feed-title"><a href="https://blog.google/innovation-and-ai/products/gemini-app/personal-intelligence-nano-banana/" target="_blank" rel="noopener noreferrer">New ways to create personalized s in the Gemini app</a></div>
+          </div>
+          <div class="meta">
+            <span class="badge score">8</span>
+            <span class="badge theme">Frontier models</span>
             
           </div>
         </div>
-        <div class="intel-reason">Google DeepMind partners with global consultancies to bring the power of frontier AI to organizations around the world.</div>
+        <div class="feed-reason">Example s made with Personal Intelligence</div>
+        <div class="entities"><span class="entity">Gemini</span></div>
+        <div class="actions">
+          <button class="btn fav" data-fav="sig-8" type="button">Save</button>
+          <button class="btn" data-copy="New ways to create personalized s in the Gemini app - https://blog.google/innovation-and-ai/products/gemini-app/personal-intelligence-nano-banana/" type="button">Copy</button>
+        </div>
       </article>
       
-      <article class="intel-card" data-repeat="1">
-        <div class="intel-head">
+      <article class="feed-card"
+        data-id="sig-9"
+        data-score="3"
+        data-theme="Frontier models"
+        data-source="X @GoogleDeepMind"
+        data-repeat="1"
+        data-search="this is decoupled diloco: our new resilient and flexible way to train advanced ai models across multiple data centres. ![ 🧵]( x @googledeepmind frontier models decoupled ">
+        <div class="feed-top">
           <div>
-            <div class="intel-source">DeepMind Blog</div>
-            <div class="intel-title"><a href="https://deepmind.google/blog/gemini-3-1-flash-tts-the-next-generation-of-expressive-ai-speech/" target="_blank" rel="noopener noreferrer">Gemini 3.1 Flash TTS: the next generation of expressive AI speech</a></div>
+            <div class="tiny">X @GoogleDeepMind · x.com</div>
+            <div class="feed-title"><a href="https://x.com/GoogleDeepMind?post=f2aa16bb0fdb" target="_blank" rel="noopener noreferrer">This is Decoupled DiLoCo: our new resilient and flexible way to train advanced AI models across multiple data centres. ![ 🧵](</a></div>
           </div>
-          <div class="intel-badges">
-            <span class="badge score">0</span>
-            <span class="badge theme">Frontier capability</span>
-            <span class="badge">Noise 10</span>
+          <div class="meta">
+            <span class="badge score">3</span>
+            <span class="badge theme">Frontier models</span>
+            <span class="badge repeat">Repeat</span>
           </div>
         </div>
-        <div class="intel-reason">Our newest audio model introduces granular audio tags that give you precise control to direct AI speech for expressive audio generation.</div>
+        <div class="feed-reason">This is Decoupled DiLoCo: our new resilient and flexible way to train advanced AI models across multiple data centres. 🧵 The media could not be played.</div>
+        <div class="entities"><span class="entity">Decoupled</span></div>
+        <div class="actions">
+          <button class="btn fav" data-fav="sig-9" type="button">Save</button>
+          <button class="btn" data-copy="This is Decoupled DiLoCo: our new resilient and flexible way to train advanced AI models across multiple data centres. ![ 🧵]( - https://x.com/GoogleDeepMind?post=f2aa16bb0fdb" type="button">Copy</button>
+        </div>
+      </article>
+      
+      <article class="feed-card"
+        data-id="sig-10"
+        data-score="2"
+        data-theme="Other"
+        data-source="X @NVIDIAAI"
+        data-repeat="0"
+        data-search="from 8 hours to 80 seconds - nvidia’s dgx superpod delivers ready-to-run infrastructure out of the box with leading performance in [mlperf]( x @nvidiaai other nvidia dgx from ">
+        <div class="feed-top">
+          <div>
+            <div class="tiny">X @NVIDIAAI · x.com</div>
+            <div class="feed-title"><a href="https://x.com/NVIDIAAI?post=5c74284ea0e6" target="_blank" rel="noopener noreferrer">From 8 hours to 80 seconds - NVIDIA’s DGX SuperPOD delivers ready-to-run infrastructure out of the box with leading performance in [MLPerf](</a></div>
+          </div>
+          <div class="meta">
+            <span class="badge score">2</span>
+            <span class="badge theme">Other</span>
+            
+          </div>
+        </div>
+        <div class="feed-reason">From 8 hours to 80 seconds - NVIDIA’s DGX SuperPOD delivers ready-to-run infrastructure out of the box with leading performance in MLPerf. Learn more: nvda.ws/2</div>
+        <div class="entities"><span class="entity">NVIDIA</span><span class="entity">DGX</span><span class="entity">From</span></div>
+        <div class="actions">
+          <button class="btn fav" data-fav="sig-10" type="button">Save</button>
+          <button class="btn" data-copy="From 8 hours to 80 seconds - NVIDIA’s DGX SuperPOD delivers ready-to-run infrastructure out of the box with leading performance in [MLPerf]( - https://x.com/NVIDIAAI?post=5c74284ea0e6" type="button">Copy</button>
+        </div>
+      </article>
+      
+      <article class="feed-card"
+        data-id="sig-11"
+        data-score="2"
+        data-theme="Other"
+        data-source="X @xai"
+        data-repeat="0"
+        data-search="in order to understand the universe, you must explore the universe → x.ai/careers x @xai other  ">
+        <div class="feed-top">
+          <div>
+            <div class="tiny">X @xai · x.com</div>
+            <div class="feed-title"><a href="https://x.com/xai?post=584b6e77f9d9" target="_blank" rel="noopener noreferrer">In order to understand the universe, you must explore the universe → x.ai/careers</a></div>
+          </div>
+          <div class="meta">
+            <span class="badge score">2</span>
+            <span class="badge theme">Other</span>
+            
+          </div>
+        </div>
+        <div class="feed-reason">In order to understand the universe, you must explore the universe → x.ai/careers</div>
+        <div class="entities"></div>
+        <div class="actions">
+          <button class="btn fav" data-fav="sig-11" type="button">Save</button>
+          <button class="btn" data-copy="In order to understand the universe, you must explore the universe → x.ai/careers - https://x.com/xai?post=584b6e77f9d9" type="button">Copy</button>
+        </div>
+      </article>
+      
+      <article class="feed-card"
+        data-id="sig-12"
+        data-score="2"
+        data-theme="Other"
+        data-source="X @xai"
+        data-repeat="0"
+        data-search="replying to try it now for free: x @xai other replying try ">
+        <div class="feed-top">
+          <div>
+            <div class="tiny">X @xai · x.com</div>
+            <div class="feed-title"><a href="https://x.com/xai?post=1e92fdc5a5f3" target="_blank" rel="noopener noreferrer">Replying to Try it now for free:</a></div>
+          </div>
+          <div class="meta">
+            <span class="badge score">2</span>
+            <span class="badge theme">Other</span>
+            
+          </div>
+        </div>
+        <div class="feed-reason">Replying to Try it now for free:</div>
+        <div class="entities"><span class="entity">Replying</span><span class="entity">Try</span></div>
+        <div class="actions">
+          <button class="btn fav" data-fav="sig-12" type="button">Save</button>
+          <button class="btn" data-copy="Replying to Try it now for free: - https://x.com/xai?post=1e92fdc5a5f3" type="button">Copy</button>
+        </div>
+      </article>
+      
+      <article class="feed-card"
+        data-id="sig-13"
+        data-score="0"
+        data-theme="Geopolitics"
+        data-source="X AI policy/search"
+        data-repeat="0"
+        data-search="regions remain at the heart of the eu&#39;s research and innovation agenda. our new joint action plan will ensure that every region can contribute to and benefit... x ai policy/search geopolitics regions joint action plan ">
+        <div class="feed-top">
+          <div>
+            <div class="tiny">X AI policy/search · x.com</div>
+            <div class="feed-title"><a href="https://x.com/EU_Commission/status/2047715489078460813" target="_blank" rel="noopener noreferrer">Regions remain at the heart of the EU&#39;s research and innovation agenda. Our new Joint Action Plan will ensure that every region can contribute to and benefit...</a></div>
+          </div>
+          <div class="meta">
+            <span class="badge score">0</span>
+            <span class="badge theme">Geopolitics</span>
+            
+          </div>
+        </div>
+        <div class="feed-reason">Regions remain at the heart of the EU&#39;s research and innovation agenda. Our new Joint Action Plan will ensure that every region can contribute to and benefit fr</div>
+        <div class="entities"><span class="entity">Regions</span><span class="entity">Joint Action Plan</span></div>
+        <div class="actions">
+          <button class="btn fav" data-fav="sig-13" type="button">Save</button>
+          <button class="btn" data-copy="Regions remain at the heart of the EU&#39;s research and innovation agenda. Our new Joint Action Plan will ensure that every region can contribute to and benefit... - https://x.com/EU_Commission/status/2047715489078460813" type="button">Copy</button>
+        </div>
+      </article>
+      
+      <article class="feed-card"
+        data-id="sig-14"
+        data-score="0"
+        data-theme="Other"
+        data-source="Google AI Blog"
+        data-repeat="0"
+        data-search="7 ways to travel smarter this summer, with help from google google ai blog other google ">
+        <div class="feed-top">
+          <div>
+            <div class="tiny">Google AI Blog · blog.google</div>
+            <div class="feed-title"><a href="https://blog.google/products-and-platforms/products/search/summer-travel-tips-google-search-ai/" target="_blank" rel="noopener noreferrer">7 ways to travel smarter this summer, with help from Google</a></div>
+          </div>
+          <div class="meta">
+            <span class="badge score">0</span>
+            <span class="badge theme">Other</span>
+            
+          </div>
+        </div>
+        <div class="feed-reason">Illustration showing a person with a Pixel phone in a beach town farmers&#39; market by the water</div>
+        <div class="entities"><span class="entity">Google</span></div>
+        <div class="actions">
+          <button class="btn fav" data-fav="sig-14" type="button">Save</button>
+          <button class="btn" data-copy="7 ways to travel smarter this summer, with help from Google - https://blog.google/products-and-platforms/products/search/summer-travel-tips-google-search-ai/" type="button">Copy</button>
+        </div>
+      </article>
+      
+      <article class="feed-card"
+        data-id="sig-15"
+        data-score="0"
+        data-theme="Agents &amp; automation"
+        data-source="DeepMind Blog"
+        data-repeat="1"
+        data-search="gemini robotics-er 1.6: powering real-world robotics tasks through enhanced embodied reasoning deepmind blog agents &amp; automation gemini gemini robotics powering ">
+        <div class="feed-top">
+          <div>
+            <div class="tiny">DeepMind Blog · deepmind.google</div>
+            <div class="feed-title"><a href="https://deepmind.google/blog/gemini-robotics-er-1-6/" target="_blank" rel="noopener noreferrer">Gemini Robotics-ER 1.6: Powering real-world robotics tasks through enhanced embodied reasoning</a></div>
+          </div>
+          <div class="meta">
+            <span class="badge score">0</span>
+            <span class="badge theme">Agents &amp; automation</span>
+            <span class="badge repeat">Repeat</span>
+          </div>
+        </div>
+        <div class="feed-reason">Gemini Robotics ER 1.6: Enhancing spatial reasoning and multi-view understanding for autonomous robotics.</div>
+        <div class="entities"><span class="entity">Gemini</span><span class="entity">Gemini Robotics</span><span class="entity">Powering</span></div>
+        <div class="actions">
+          <button class="btn fav" data-fav="sig-15" type="button">Save</button>
+          <button class="btn" data-copy="Gemini Robotics-ER 1.6: Powering real-world robotics tasks through enhanced embodied reasoning - https://deepmind.google/blog/gemini-robotics-er-1-6/" type="button">Copy</button>
+        </div>
       </article>
       
     </div>
+    <div class="empty" id="emptyState">No signals match the current view.</div>
   </section>
 </div>
 <script>
-function applyFilter(){
-  const value = document.getElementById('viewFilter').value;
-  document.querySelectorAll('#itemsGrid .intel-card').forEach((card)=>{
-    const isRepeat = card.dataset.repeat === '1';
-    const show = value === 'all' || (value === 'new' && !isRepeat) || (value === 'repeat' && isRepeat);
-    card.style.display = show ? '' : 'none';
+const favKey = 'ai-radar-favorites';
+const saved = new Set(JSON.parse(localStorage.getItem(favKey) || '[]'));
+const cards = Array.from(document.querySelectorAll('.feed-card'));
+function persist(){ localStorage.setItem(favKey, JSON.stringify(Array.from(saved))); }
+function paintFavs(){
+  document.querySelectorAll('[data-fav]').forEach((btn)=>{
+    const id = btn.dataset.fav;
+    const active = saved.has(id);
+    btn.classList.toggle('active', active);
+    btn.textContent = active ? 'Saved' : 'Save';
   });
+  cards.forEach((card)=>card.classList.toggle('favorited', saved.has(card.dataset.id)));
 }
+function applyView(){
+  const q = document.getElementById('searchBox').value.trim().toLowerCase();
+  const theme = document.getElementById('themeFilter').value;
+  const view = document.getElementById('viewFilter').value;
+  const mode = document.getElementById('sortMode').value;
+  const grid = document.getElementById('itemsGrid');
+  cards.sort((a,b)=>{
+    if(mode === 'theme') return a.dataset.theme.localeCompare(b.dataset.theme) || Number(b.dataset.score)-Number(a.dataset.score);
+    if(mode === 'source') return a.dataset.source.localeCompare(b.dataset.source) || Number(b.dataset.score)-Number(a.dataset.score);
+    return Number(b.dataset.score)-Number(a.dataset.score);
+  }).forEach((card)=>grid.appendChild(card));
+  let visible = 0;
+  cards.forEach((card)=>{
+    const repeat = card.dataset.repeat === '1';
+    const fav = saved.has(card.dataset.id);
+    const matchesSearch = !q || card.dataset.search.includes(q);
+    const matchesTheme = theme === 'all' || card.dataset.theme === theme;
+    const matchesView = view === 'all' || (view === 'new' && !repeat) || (view === 'repeat' && repeat) || (view === 'fav' && fav);
+    const show = matchesSearch && matchesTheme && matchesView;
+    card.classList.toggle('hidden', !show);
+    if(show) visible += 1;
+  });
+  document.getElementById('visibleCount').textContent = visible + ' visible';
+  document.getElementById('emptyState').classList.toggle('show', visible === 0);
+}
+document.querySelectorAll('input,select').forEach((el)=>el.addEventListener('input', applyView));
+document.addEventListener('click', async (event)=>{
+  const fav = event.target.closest('[data-fav]');
+  if(fav){
+    const id = fav.dataset.fav;
+    saved.has(id) ? saved.delete(id) : saved.add(id);
+    persist(); paintFavs(); applyView();
+  }
+  const copy = event.target.closest('[data-copy]');
+  if(copy && navigator.clipboard){ await navigator.clipboard.writeText(copy.dataset.copy); copy.textContent = 'Copied'; setTimeout(()=>copy.textContent='Copy', 900); }
+});
+paintFavs();
+applyView();
 </script>
 </body>
 </html>
