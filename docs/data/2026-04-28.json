@@ -1,0 +1,645 @@
+{
+  "date": "2026-04-28",
+  "score_avg": 65.4,
+  "primary_dist": {
+    "infra": 3,
+    "models": 10,
+    "invest": 1,
+    "misc": 1
+  },
+  "top_entities": [
+    {
+      "entity": "arXiv",
+      "count": 3
+    },
+    {
+      "entity": "Google",
+      "count": 2
+    },
+    {
+      "entity": "Knowledge",
+      "count": 2
+    },
+    {
+      "entity": "TSMC",
+      "count": 1
+    },
+    {
+      "entity": "The Shift",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "Transición hacia hardware optimizado específicamente para flujos de trabajo de agentes (Google TPU v8t/8i).",
+      "TSMC identifica el cuello de botella actual en los sistemas de nivel industrial más que en los modelos aislados.",
+      "Gemma 4 redefine el estado del arte en modelos abiertos optimizados para razonamiento avanzado.",
+      "Auge de la verificación ejecutable (Python/LaTeX) para garantizar la fiabilidad de las salidas de los LLM.",
+      "Observación de mercados de agentes autónomos revelando riesgos regulatorios y de calidad de modelo."
+    ],
+    "risks": [
+      "Invisibilidad de fallos en mercados de agentes debido a diferencias críticas en la calidad de modelos subyacentes.",
+      "Acciones irreversibles en llamadas a funciones (transferencias, borrado) sin cuantificación de incertidumbre.",
+      "Mecanismos de recompensa estáticos en RL que inducen abstención excesiva o alucinaciones persistentes."
+    ],
+    "watch": [
+      "Despliegue de los nuevos aceleradores TPU 8i en entornos de inferencia de baja latencia.",
+      "Adopción de marcos de verificación automática de código para control de calidad en tiempo de ejecución.",
+      "Nuevas políticas de regulación para agentes autónomos tras las advertencias de Anthropic."
+    ],
+    "entities_top": [
+      "Google",
+      "TSMC",
+      "Anthropic"
+    ]
+  },
+  "items": [
+    {
+      "title": "The Shift to System-Level AI Drives Next-Generation Silicon",
+      "link": "https://semiwiki.com/semiconductor-manufacturers/tsmc/368812-the-shift-to-system-level-ai-drives-next-generation-silicon/",
+      "published": "2026-04-27T15:00:11+00:00",
+      "summary": "At its 2026 Technology Symposium, TSMC delivered a clear message: the AI era has entered a new phase. The primary constraint is no longer model capability, but the systems required to run those models at scale. Addressing this shift will demand significant advances in semiconductor technology, spanning compute, memory, interconnects,&8230; Read More The post The Shift to System-Level AI Drives Next-Generation Silicon appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "The Shift to System-Level AI Drives Next-Generation Silicon",
+      "raw_summary": "At its 2026 Technology Symposium, TSMC delivered a clear message: the AI era has entered a new phase. The primary constraint is no longer model capability, but the systems required to run those models at scale. Addressing this shift will demand significant advances in semiconductor technology, spanning compute, memory, interconnects,&#8230; Read More The post The Shift to System-Level AI Drives Next-Generation Silicon appeared first on SemiWiki .",
+      "score": 85,
+      "primary": "infra",
+      "tags": [
+        "semiconductors",
+        "tsmc",
+        "scaling"
+      ],
+      "heuristic_score": 69,
+      "url": "https://semiwiki.com/semiconductor-manufacturers/tsmc/368812-the-shift-to-system-level-ai-drives-next-generation-silicon/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 69,
+      "_rid": 8,
+      "llm_score": 88,
+      "why": "TSMC marca el cambio hacia optimización a nivel de sistema como el nuevo motor del avance en IA.",
+      "entities": [
+        "TSMC",
+        "The Shift",
+        "System",
+        "Level",
+        "Drives Next",
+        "Generation Silicon"
+      ],
+      "noise_penalty": 0,
+      "final_score": 85,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "AutoPyVerifier: Learning Compact Executable Verifiers for Large Language Model Outputs",
+      "link": "https://arxiv.org/abs/2604.22937",
+      "published": "2026-04-28T04:00:00+00:00",
+      "summary": "arXiv:2604.22937v1 Announce Type: new Abstract: Verification is becoming central to both reinforcement-learning-based training and inference-time control of large language models (LLMs). Yet current verifiers face a fundamental trade-off: LLM-based verifiers are expressive but hard to control and prone to error, while deterministic executable verifiers are reliable and interpretable but often limited in capability. We study the following question: given a development set of LLM outputs and labels for a target objective, such as correctness, can we automatically induce a minimal set of Python verifiers whose joint satisfaction closely matches that objective? We propose AutoPyVerifier, a framework that uses an LLM to synthesize candidate verifier functions and then refines them through search over a directed acyclic graph (DAG). By navigating the DAG, AutoPyVerifier systematically explores the space of deterministic executable verifiers and selects a compact verifier set whose joint satisfaction best approximates the target objective. Across mathematical reasoning, coding, function calling, and instruction-following benchmarks for several state-of-the-art LLMs, AutoPyVerifier improves target-objective prediction by up to 55.0 F1 points over the initial LLM-generated verifier sets. Additional analyses show that the most useful verification targets vary by benchmark and model, and that the DAG-based search shifts the learned verifier sets toward more structural and semantically grounded checks. We further show that exposing the discovered verifier set to an LLM as an external tool improves downstream accuracy by up to 17.0 points. We release our code",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "AutoPyVerifier: Learning Compact Executable Verifiers for Large Language Model Outputs",
+      "raw_summary": "arXiv:2604.22937v1 Announce Type: new Abstract: Verification is becoming central to both reinforcement-learning-based training and inference-time control of large language models (LLMs). Yet current verifiers face a fundamental trade-off: LLM-based verifiers are expressive but hard to control and prone to error, while deterministic executable verifiers are reliable and interpretable but often limited in capability. We study the following question: given a development set of LLM outputs and labels for a target objective, such as correctness, can we automatically induce a minimal set of Python verifiers whose joint satisfaction closely matches that objective? We propose AutoPyVerifier, a framework that uses an LLM to synthesize candidate verifier functions and then refines them through search over a directed acyclic graph (DAG). By navigating the DAG, AutoPyVerifier systematically explores the space of deterministic executable verifiers and selects a compact verifier set whose joint satisfaction best approximates the target objective. Across mathematical reasoning, coding, function calling, and instruction-following benchmarks for several state-of-the-art LLMs, AutoPyVerifier improves target-objective prediction by up to 55.0 F1 points over the initial LLM-generated verifier sets. Additional analyses show that the most useful verification targets vary by benchmark and model, and that the DAG-based search shifts the learned verifier sets toward more structural and semantically grounded checks. We further show that exposing the discovered verifier set to an LLM as an external tool improves downstream accuracy by up to 17.0 points. We release our code",
+      "score": 81,
+      "primary": "models",
+      "tags": [
+        "verification",
+        "python",
+        "reliability"
+      ],
+      "heuristic_score": 96,
+      "url": "https://arxiv.org/abs/2604.22937",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 96,
+      "_rid": 3,
+      "llm_score": 78,
+      "why": "Induce verificadores ejecutables de Python para validar salidas de LLM, mejorando la fiabilidad sobre métodos probabilísticos.",
+      "entities": [
+        "arXiv",
+        "Learning Compact Executable",
+        "Verifiers",
+        "Large Language Model",
+        "Outputs"
+      ],
+      "noise_penalty": 0,
+      "final_score": 81,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Markets of AI agents could provide value, but there are plenty of rough edges. Access to higher-quality models conferred a real advantage—and participants di...",
+      "summary": "Markets of AI agents could provide value, but there are plenty of rough edges. Access to higher-quality models conferred a real advantage—and participants didn’t notice. There are plenty of other ways they can go wrong. Policy and legal frameworks will need to adapt to keep up.",
+      "link": "https://x.com/AnthropicAI?post=2d568a2774bf",
+      "published": "Tue, 28 Apr 2026 08:07:00 GMT",
+      "source": "X @AnthropicAI",
+      "feed_tags": [
+        "x",
+        "models",
+        "safety"
+      ],
+      "raw_title": "Markets of AI agents could provide value, but there are plenty of rough edges. Access to higher-quality models conferred a real advantage—and participants di...",
+      "raw_summary": "Markets of AI agents could provide value, but there are plenty of rough edges. Access to higher-quality models conferred a real advantage—and participants didn’t notice. There are plenty of other ways they can go wrong. Policy and legal frameworks will need to adapt to keep up.",
+      "score": 77,
+      "primary": "invest",
+      "tags": [
+        "agents",
+        "markets",
+        "policy"
+      ],
+      "heuristic_score": 46,
+      "url": "https://x.com/AnthropicAI?post=2d568a2774bf",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 46,
+      "_rid": 13,
+      "llm_score": 82,
+      "why": "Anthropic advierte sobre fallos de mercado y la necesidad de marcos legales para ecosistemas de agentes.",
+      "entities": [
+        "Anthropic",
+        "Markets",
+        "Access"
+      ],
+      "noise_penalty": 0,
+      "final_score": 77,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "We're launching two specialized TPUs for the agentic era.",
+      "link": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/tpus-8t-8i-cloud-next/",
+      "published": "2026-04-22T12:00:00+00:00",
+      "summary": "The eighth generation of Google’s TPU includes two specialized chips that will power the future of AI.",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "We're launching two specialized TPUs for the agentic era.",
+      "raw_summary": "The eighth generation of Google’s TPU includes two specialized chips that will power the future of AI.",
+      "score": 77,
+      "primary": "infra",
+      "tags": [
+        "tpu",
+        "hardware",
+        "accelerators"
+      ],
+      "heuristic_score": 36,
+      "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/tpus-8t-8i-cloud-next/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 36,
+      "_rid": 15,
+      "llm_score": 92,
+      "why": "Google lanza la 8ª generación de TPUs especializada en entrenamiento e inferencia de agentes.",
+      "entities": [
+        "Google"
+      ],
+      "noise_penalty": 7,
+      "final_score": 77,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(7)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "PExA: Parallel Exploration Agent for Complex Text-to-SQL",
+      "link": "https://arxiv.org/abs/2604.22934",
+      "published": "2026-04-28T04:00:00+00:00",
+      "summary": "arXiv:2604.22934v1 Announce Type: new Abstract: LLM-based agents for text-to-SQL often struggle with latency-performance trade-off, where performance improvements come at the cost of latency or vice versa. We reformulate text-to-SQL generation within the lens of software test coverage where the original query is prepared with a suite of test cases with simpler, atomic SQLs that are executed in parallel and together ensure semantic coverage of the original query. After iterating on test case coverage, the final SQL is generated only when enough information is gathered, leveraging the explored test case SQLs to ground the final generation. We validated our framework on a state-of-the-art benchmark for text-to-SQL, Spider 2.0, achieving a new state-of-the-art with 70.2% execution accuracy.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "PExA: Parallel Exploration Agent for Complex Text-to-SQL",
+      "raw_summary": "arXiv:2604.22934v1 Announce Type: new Abstract: LLM-based agents for text-to-SQL often struggle with latency-performance trade-off, where performance improvements come at the cost of latency or vice versa. We reformulate text-to-SQL generation within the lens of software test coverage where the original query is prepared with a suite of test cases with simpler, atomic SQLs that are executed in parallel and together ensure semantic coverage of the original query. After iterating on test case coverage, the final SQL is generated only when enough information is gathered, leveraging the explored test case SQLs to ground the final generation. We validated our framework on a state-of-the-art benchmark for text-to-SQL, Spider 2.0, achieving a new state-of-the-art with 70.2% execution accuracy.",
+      "score": 72,
+      "primary": "models",
+      "tags": [
+        "agents",
+        "sql",
+        "performance"
+      ],
+      "heuristic_score": 70,
+      "url": "https://arxiv.org/abs/2604.22934",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 70,
+      "_rid": 6,
+      "llm_score": 72,
+      "why": "Framework de exploración paralela que resuelve el compromiso entre latencia y precisión en generación de SQL.",
+      "entities": [
+        "PExA",
+        "SQL",
+        "Parallel Exploration Agent",
+        "Complex Text"
+      ],
+      "noise_penalty": 0,
+      "final_score": 72,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "KARL: Mitigating Hallucinations in LLMs via Knowledge-Boundary-Aware Reinforcement Learning",
+      "link": "https://arxiv.org/abs/2604.22779",
+      "published": "2026-04-28T04:00:00+00:00",
+      "summary": "arXiv:2604.22779v1 Announce Type: new Abstract: Enabling large language models (LLMs) to appropriately abstain from answering questions beyond their knowledge is crucial for mitigating hallucinations. While existing reinforcement learning methods foster autonomous abstention, they often compromise answer accuracy because their static reward mechanisms, agnostic to models' knowledge boundaries, drive models toward excessive caution. In this work, we propose KARL, a novel framework that continuously aligns an LLM's abstention behavior with its evolving knowledge boundary. KARL introduces two core innovations: a Knowledge-Boundary-Aware Reward that performs online knowledge boundary estimation using within-group response statistics, dynamically rewarding correct answers or guided abstention; and a Two-Stage RL Training Strategy that first explores the knowledge boundary and bypasses the \"abstention trap\", and subsequently converts incorrect answers beyond the knowledge boundary into abstentions without sacrificing accuracy. Extensive experiments on multiple benchmarks demonstrate that KARL achieves a superior accuracy-hallucination trade-off, effectively suppressing hallucinations while maintaining high accuracy across both in-distribution and out-of-distribution scenarios.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "KARL: Mitigating Hallucinations in LLMs via Knowledge-Boundary-Aware Reinforcement Learning",
+      "raw_summary": "arXiv:2604.22779v1 Announce Type: new Abstract: Enabling large language models (LLMs) to appropriately abstain from answering questions beyond their knowledge is crucial for mitigating hallucinations. While existing reinforcement learning methods foster autonomous abstention, they often compromise answer accuracy because their static reward mechanisms, agnostic to models' knowledge boundaries, drive models toward excessive caution. In this work, we propose KARL, a novel framework that continuously aligns an LLM's abstention behavior with its evolving knowledge boundary. KARL introduces two core innovations: a Knowledge-Boundary-Aware Reward that performs online knowledge boundary estimation using within-group response statistics, dynamically rewarding correct answers or guided abstention; and a Two-Stage RL Training Strategy that first explores the knowledge boundary and bypasses the \"abstention trap\", and subsequently converts incorrect answers beyond the knowledge boundary into abstentions without sacrificing accuracy. Extensive experiments on multiple benchmarks demonstrate that KARL achieves a superior accuracy-hallucination trade-off, effectively suppressing hallucinations while maintaining high accuracy across both in-distribution and out-of-distribution scenarios.",
+      "score": 72,
+      "primary": "models",
+      "tags": [
+        "hallucinations",
+        "rl",
+        "alignment"
+      ],
+      "heuristic_score": 61,
+      "url": "https://arxiv.org/abs/2604.22779",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 61,
+      "_rid": 9,
+      "llm_score": 74,
+      "why": "Mitiga alucinaciones alineando dinámicamente la abstención del modelo con sus límites reales de conocimiento.",
+      "entities": [
+        "KARL",
+        "Mitigating Hallucinations",
+        "Knowledge",
+        "Boundary",
+        "Aware Reinforcement Learning"
+      ],
+      "noise_penalty": 0,
+      "final_score": 72,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Uncertainty Quantification for LLM Function-Calling",
+      "link": "https://arxiv.org/abs/2604.22985",
+      "published": "2026-04-28T04:00:00+00:00",
+      "summary": "arXiv:2604.22985v1 Announce Type: new Abstract: Large Language Models (LLMs) are increasingly deployed to autonomously solve real-world tasks. A key ingredient for this is the LLM Function-Calling paradigm, a widely used approach for equipping LLMs with tool-use capabilities. However, an LLM calling functions incorrectly can have severe implications, especially when their effects are irreversible, e.g., transferring money or deleting data. Hence, it is of paramount importance to consider the LLM's confidence that a function call solves the task correctly prior to executing it. Uncertainty Quantification (UQ) methods can be used to quantify this confidence and prevent potentially incorrect function calls. In this work, we present what is, to our knowledge, the first evaluation of UQ methods for LLM Function-Calling (FC). While multi-sample UQ methods, such as Semantic Entropy, show strong performance for natural language Q&A tasks, we find that in the FC setting, it offers no clear advantage over simple single-sample UQ methods. Additionally, we find that the particularities of FC outputs can be leveraged to improve the performance of existing UQ methods in this setting. Specifically, multi-sample UQ methods benefit from clustering FC outputs based on their abstract syntax tree parsing, while single-sample UQ methods can be improved by selecting only semantically meaningful tokens when calculating logit-based uncertainty scores.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Uncertainty Quantification for LLM Function-Calling",
+      "raw_summary": "arXiv:2604.22985v1 Announce Type: new Abstract: Large Language Models (LLMs) are increasingly deployed to autonomously solve real-world tasks. A key ingredient for this is the LLM Function-Calling paradigm, a widely used approach for equipping LLMs with tool-use capabilities. However, an LLM calling functions incorrectly can have severe implications, especially when their effects are irreversible, e.g., transferring money or deleting data. Hence, it is of paramount importance to consider the LLM's confidence that a function call solves the task correctly prior to executing it. Uncertainty Quantification (UQ) methods can be used to quantify this confidence and prevent potentially incorrect function calls. In this work, we present what is, to our knowledge, the first evaluation of UQ methods for LLM Function-Calling (FC). While multi-sample UQ methods, such as Semantic Entropy, show strong performance for natural language Q&amp;A tasks, we find that in the FC setting, it offers no clear advantage over simple single-sample UQ methods. Additionally, we find that the particularities of FC outputs can be leveraged to improve the performance of existing UQ methods in this setting. Specifically, multi-sample UQ methods benefit from clustering FC outputs based on their abstract syntax tree parsing, while single-sample UQ methods can be improved by selecting only semantically meaningful tokens when calculating logit-based uncertainty scores.",
+      "score": 71,
+      "primary": "models",
+      "tags": [
+        "function-calling",
+        "safety",
+        "uncertainty"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2604.22985",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 1,
+      "llm_score": 75,
+      "why": "Crucial para evitar errores irreversibles en tareas autónomas mediante la cuantificación de la confianza del modelo.",
+      "entities": [
+        "arXiv",
+        "Uncertainty Quantification",
+        "Function",
+        "Calling"
+      ],
+      "noise_penalty": 8,
+      "final_score": 71,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(8)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "TexOCR: Advancing Document OCR Models for Compilable Page-to-LaTeX Reconstruction",
+      "link": "https://arxiv.org/abs/2604.22880",
+      "published": "2026-04-28T04:00:00+00:00",
+      "summary": "arXiv:2604.22880v1 Announce Type: new Abstract: Existing document OCR largely targets plain text or Markdown, discarding the structural and executable properties that make LaTeX essential for scientific publishing. We study page-level reconstruction of scientific PDFs into compilable LaTeX and introduce TexOCR-Bench, a benchmark, and TexOCR-Train, a large-scale training corpus, for this task. TexOCR-Bench features a multi-dimensional evaluation suite that jointly assesses transcription fidelity, structural faithfulness, and end-to-end compilability. Leveraging TexOCR-Train, we train a 2B-parameter model, TexOCR, using supervised fine-tuning (SFT) and reinforcement learning (RL) with verifiable rewards derived from LaTeX unit tests that directly enforce compilability and referential integrity. Experiments across 21 frontier models on TexOCR-Bench show that existing systems frequently violate key document invariants, including consistent section structure, correct float placement, and valid label-reference links, which undermines compilation reliability and downstream usability. Our analysis further reveals that RL with verifiable rewards yields consistent improvements over SFT alone, particularly on structural and compilation metrics.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "TexOCR: Advancing Document OCR Models for Compilable Page-to-LaTeX Reconstruction",
+      "raw_summary": "arXiv:2604.22880v1 Announce Type: new Abstract: Existing document OCR largely targets plain text or Markdown, discarding the structural and executable properties that make LaTeX essential for scientific publishing. We study page-level reconstruction of scientific PDFs into compilable LaTeX and introduce TexOCR-Bench, a benchmark, and TexOCR-Train, a large-scale training corpus, for this task. TexOCR-Bench features a multi-dimensional evaluation suite that jointly assesses transcription fidelity, structural faithfulness, and end-to-end compilability. Leveraging TexOCR-Train, we train a 2B-parameter model, TexOCR, using supervised fine-tuning (SFT) and reinforcement learning (RL) with verifiable rewards derived from LaTeX unit tests that directly enforce compilability and referential integrity. Experiments across 21 frontier models on TexOCR-Bench show that existing systems frequently violate key document invariants, including consistent section structure, correct float placement, and valid label-reference links, which undermines compilation reliability and downstream usability. Our analysis further reveals that RL with verifiable rewards yields consistent improvements over SFT alone, particularly on structural and compilation metrics.",
+      "score": 67,
+      "primary": "models",
+      "tags": [
+        "ocr",
+        "latex",
+        "scientific-ai"
+      ],
+      "heuristic_score": 77,
+      "url": "https://arxiv.org/abs/2604.22880",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 77,
+      "_rid": 5,
+      "llm_score": 65,
+      "why": "Mejora la reconstrucción de documentos científicos en LaTeX compilable mediante entrenamiento con RL.",
+      "entities": [
+        "TexOCR",
+        "OCR",
+        "Advancing Document",
+        "Models",
+        "Compilable Page",
+        "Reconstruction"
+      ],
+      "noise_penalty": 0,
+      "final_score": 67,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "An Intelligent Fault Diagnosis Method for General Aviation Aircraft Based on Multi-Fidelity Digital Twin and FMEA Knowledge Enhancement",
+      "link": "https://arxiv.org/abs/2604.22777",
+      "published": "2026-04-28T04:00:00+00:00",
+      "summary": "arXiv:2604.22777v1 Announce Type: new Abstract: Fault diagnosis of general aviation aircraft faces challenges including scarce real fault data, diverse fault types, and weak fault signatures. This paper proposes an intelligent fault diagnosis framework based on multi-fidelity digital twin, integrating four modules: high-fidelity flight dynamics simulation, FMEA-driven fault injection, multi-fidelity residual feature extraction, and large language model (LLM)-enhanced interpretable report generation. A digital twin is constructed using the JSBSim six-degree-of-freedom (6-DoF) flight dynamics engine, generating 23-channel engine health monitoring data via semi-empirical sensor synthesis equations. A three-layer fault injection engine based on failure mode and effects analysis (FMEA) models the physical causal propagation of 19 engine fault types. A multi-fidelity residual computation framework comprising paired-mirror residuals and GRU surrogate prediction residuals is proposed: the high-fidelity path obtains clean fault deviation signals using nominal mirror trajectories with identical initial conditions, while the low-fidelity path achieves online real-time residual computation through a multi-step prediction GRU surrogate model. A 1D-CNN classifier performs end-to-end diagnosis of 20 fault classes. An LLM diagnostic report engine enhanced with FMEA knowledge fuses classification results, residual evidence, and domain causal knowledge to generate interpretable natural language reports. Experiments show the paired-mirror residual scheme achieves a Macro-F1 of 96.2% on the 20-class task, while the GRU surrogate scheme achieves 4.3x inference acceleration at only 0.6% performance cost. Comparison across 24 schemes reveals that residual feature quality contributes approximately 5x more to diagnostic performance than classifier architecture, establishing the \"residual quality first\" design principle.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "An Intelligent Fault Diagnosis Method for General Aviation Aircraft Based on Multi-Fidelity Digital Twin and FMEA Knowledge Enhancement",
+      "raw_summary": "arXiv:2604.22777v1 Announce Type: new Abstract: Fault diagnosis of general aviation aircraft faces challenges including scarce real fault data, diverse fault types, and weak fault signatures. This paper proposes an intelligent fault diagnosis framework based on multi-fidelity digital twin, integrating four modules: high-fidelity flight dynamics simulation, FMEA-driven fault injection, multi-fidelity residual feature extraction, and large language model (LLM)-enhanced interpretable report generation. A digital twin is constructed using the JSBSim six-degree-of-freedom (6-DoF) flight dynamics engine, generating 23-channel engine health monitoring data via semi-empirical sensor synthesis equations. A three-layer fault injection engine based on failure mode and effects analysis (FMEA) models the physical causal propagation of 19 engine fault types. A multi-fidelity residual computation framework comprising paired-mirror residuals and GRU surrogate prediction residuals is proposed: the high-fidelity path obtains clean fault deviation signals using nominal mirror trajectories with identical initial conditions, while the low-fidelity path achieves online real-time residual computation through a multi-step prediction GRU surrogate model. A 1D-CNN classifier performs end-to-end diagnosis of 20 fault classes. An LLM diagnostic report engine enhanced with FMEA knowledge fuses classification results, residual evidence, and domain causal knowledge to generate interpretable natural language reports. Experiments show the paired-mirror residual scheme achieves a Macro-F1 of 96.2% on the 20-class task, while the GRU surrogate scheme achieves 4.3x inference acceleration at only 0.6% performance cost. Comparison across 24 schemes reveals that residual feature quality contributes approximately 5x more to diagnostic performance than classifier architecture, establishing the \"residual quality first\" design principle.",
+      "score": 66,
+      "primary": "infra",
+      "tags": [
+        "digital-twin",
+        "aviation",
+        "maintenance"
+      ],
+      "heuristic_score": 55,
+      "url": "https://arxiv.org/abs/2604.22777",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 55,
+      "_rid": 10,
+      "llm_score": 68,
+      "why": "Integración de gemelos digitales y LLMs para diagnóstico de fallos en aviación general.",
+      "entities": [
+        "JSBSim",
+        "FMEA",
+        "An Intelligent Fault",
+        "Diagnosis Method",
+        "General Aviation Aircraft",
+        "Based",
+        "Multi",
+        "Fidelity Digital Twin"
+      ],
+      "noise_penalty": 0,
+      "final_score": 66,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Gemma 4: Byte for byte, the most capable open models",
+      "link": "https://deepmind.google/blog/gemma-4-byte-for-byte-the-most-capable-open-models/",
+      "published": "2026-04-02T16:00:49+00:00",
+      "summary": "Gemma 4: Our most intelligent open models to date, purpose-built for advanced reasoning and agentic workflows.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Gemma 4: Byte for byte, the most capable open models",
+      "raw_summary": "Gemma 4: Our most intelligent open models to date, purpose-built for advanced reasoning and agentic workflows.",
+      "score": 66,
+      "primary": "models",
+      "tags": [
+        "open-source",
+        "reasoning",
+        "agents"
+      ],
+      "heuristic_score": 37,
+      "url": "https://deepmind.google/blog/gemma-4-byte-for-byte-the-most-capable-open-models/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 37,
+      "_rid": 14,
+      "llm_score": 90,
+      "why": "Lanzamiento de Gemma 4 como el modelo abierto más avanzado para flujos de trabajo de agentes.",
+      "entities": [
+        "Google",
+        "DeepMind",
+        "Gemma",
+        "Byte"
+      ],
+      "noise_penalty": 16,
+      "final_score": 66,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(16)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Self Knowledge Re-expression: A Fully Local Method for Adapting LLMs to Tasks Using Intrinsic Knowledge",
+      "link": "https://arxiv.org/abs/2604.22939",
+      "published": "2026-04-28T04:00:00+00:00",
+      "summary": "arXiv:2604.22939v1 Announce Type: new Abstract: While the next-token prediction (NTP) paradigm enables large language models (LLMs) to express their intrinsic knowledge, its sequential nature constrains performance on specialized, non-generative tasks. We attribute this performance bottleneck to the LLMs' knowledge expression mechanism, rather than to deficiencies in knowledge acquisition. To address this, we propose Self-Knowledge Re-expression (SKR), a novel, task-agnostic adaptation method. SKR transforms the LLM's output from generic token generation to highly efficient, task-specific expression. SKR is a fully local method that uses only unannotated data, requiring neither human supervision nor model distillation. Experiments on a large financial document dataset demonstrate substantial improvements: over 40% in Recall@1 for information retrieval tasks, over 76% reduction in object detection latency, and over 33% increase in anomaly detection AUPRC. Our results on the MMDocRAG dataset surpass those of leading retrieval models by at least 12.6%.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Self Knowledge Re-expression: A Fully Local Method for Adapting LLMs to Tasks Using Intrinsic Knowledge",
+      "raw_summary": "arXiv:2604.22939v1 Announce Type: new Abstract: While the next-token prediction (NTP) paradigm enables large language models (LLMs) to express their intrinsic knowledge, its sequential nature constrains performance on specialized, non-generative tasks. We attribute this performance bottleneck to the LLMs' knowledge expression mechanism, rather than to deficiencies in knowledge acquisition. To address this, we propose Self-Knowledge Re-expression (SKR), a novel, task-agnostic adaptation method. SKR transforms the LLM's output from generic token generation to highly efficient, task-specific expression. SKR is a fully local method that uses only unannotated data, requiring neither human supervision nor model distillation. Experiments on a large financial document dataset demonstrate substantial improvements: over 40% in Recall@1 for information retrieval tasks, over 76% reduction in object detection latency, and over 33% increase in anomaly detection AUPRC. Our results on the MMDocRAG dataset surpass those of leading retrieval models by at least 12.6%.",
+      "score": 60,
+      "primary": "models",
+      "tags": [
+        "adaptation",
+        "efficiency",
+        "local-learning"
+      ],
+      "heuristic_score": 50,
+      "url": "https://arxiv.org/abs/2604.22939",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 50,
+      "_rid": 11,
+      "llm_score": 62,
+      "why": "Método local para adaptar LLMs a tareas específicas optimizando la expresión de su conocimiento intrínseco.",
+      "entities": [
+        "SKR",
+        "Self Knowledge Re",
+        "Fully Local Method",
+        "Adapting",
+        "Tasks Using Intrinsic",
+        "Knowledge"
+      ],
+      "noise_penalty": 0,
+      "final_score": 60,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "The Spectral Lifecycle of Transformer Training: Transient Compression Waves, Persistent Spectral Gradients, and the Q/K--V Asymmetry",
+      "link": "https://arxiv.org/abs/2604.22778",
+      "published": "2026-04-28T04:00:00+00:00",
+      "summary": "arXiv:2604.22778v1 Announce Type: new Abstract: We present the first systematic study of weight matrix singular value spectra \\emph{during} transformer pretraining, tracking full SVD decompositions of every weight matrix at 25-step intervals across three model scales (30M--285M parameters). We discover three phenomena: \\textbf{(1)~Transient Compression Waves:} stable rank compression propagates as a traveling wave from early to late layers, creating a dramatic gradient that peaks early then \\emph{reverses} -- late layers eventually over-compress past early layers. \\textbf{(2)~Persistent Spectral Gradients:} the power-law exponent~$\\alpha$ develops a permanent depth gradient forming a non-monotonic inverted-U in deeper models, with peaks shifting toward earlier layers as depth increases. \\textbf{(3)~Q/K--V Functional Asymmetry:} value/output projections compress uniformly while query/key projections carry the full depth-dependent dynamics. The dissociation between transient compression and persistent spectral shape reveals that \\emph{rank and spectral shape encode fundamentally different information about training}. We formalize this as a two-timescale dynamical model and derive scaling laws ($\\Delta\\alpha \\propto L^{0.26}$, $R^2{=}0.99$). We validate on nine models across three families (custom, GPT-2, Pythia; 30M--1B parameters; 8--36 layers), demonstrate that $\\alpha$ predicts layer importance ($\\rho{=}0.69$--$0.84$, $p{<}0.02$), and show that spectral-guided pruning outperforms Last-N heuristics by $1.1{\\times}$--$3.6{\\times}$ across seven models in two families (GPT-2 124M--774M, Pythia 160M--1B), with worst-vs-best gaps up to $23.7{\\times}$ confirming the causal role of spectral structure.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "The Spectral Lifecycle of Transformer Training: Transient Compression Waves, Persistent Spectral Gradients, and the Q/K--V Asymmetry",
+      "raw_summary": "arXiv:2604.22778v1 Announce Type: new Abstract: We present the first systematic study of weight matrix singular value spectra \\emph{during} transformer pretraining, tracking full SVD decompositions of every weight matrix at 25-step intervals across three model scales (30M--285M parameters). We discover three phenomena: \\textbf{(1)~Transient Compression Waves:} stable rank compression propagates as a traveling wave from early to late layers, creating a dramatic gradient that peaks early then \\emph{reverses} -- late layers eventually over-compress past early layers. \\textbf{(2)~Persistent Spectral Gradients:} the power-law exponent~$\\alpha$ develops a permanent depth gradient forming a non-monotonic inverted-U in deeper models, with peaks shifting toward earlier layers as depth increases. \\textbf{(3)~Q/K--V Functional Asymmetry:} value/output projections compress uniformly while query/key projections carry the full depth-dependent dynamics. The dissociation between transient compression and persistent spectral shape reveals that \\emph{rank and spectral shape encode fundamentally different information about training}. We formalize this as a two-timescale dynamical model and derive scaling laws ($\\Delta\\alpha \\propto L^{0.26}$, $R^2{=}0.99$). We validate on nine models across three families (custom, GPT-2, Pythia; 30M--1B parameters; 8--36 layers), demonstrate that $\\alpha$ predicts layer importance ($\\rho{=}0.69$--$0.84$, $p{<}0.02$), and show that spectral-guided pruning outperforms Last-N heuristics by $1.1{\\times}$--$3.6{\\times}$ across seven models in two families (GPT-2 124M--774M, Pythia 160M--1B), with worst-vs-best gaps up to $23.7{\\times}$ confirming the causal role of spectral structure.",
+      "score": 58,
+      "primary": "models",
+      "tags": [
+        "transformers",
+        "training",
+        "mathematics"
+      ],
+      "heuristic_score": 97,
+      "url": "https://arxiv.org/abs/2604.22778",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 97,
+      "_rid": 2,
+      "llm_score": 60,
+      "why": "Primer estudio sistemático de la evolución de espectros de matrices de pesos durante el preentrenamiento.",
+      "entities": [
+        "arXiv",
+        "The Spectral Lifecycle",
+        "Transformer Training",
+        "Transient Compression Waves",
+        "Persistent Spectral Gradients",
+        "Asymmetry"
+      ],
+      "noise_penalty": 8,
+      "final_score": 58,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(8)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "The Randomness Floor: Measuring Intrinsic Non-Randomness in Language Model Token Distributions",
+      "link": "https://arxiv.org/abs/2604.22771",
+      "published": "2026-04-28T04:00:00+00:00",
+      "summary": "arXiv:2604.22771v1 Announce Type: new Abstract: Language models cannot be random. This paper introduces Entropic Deviation (ED), the normalised KL divergence between a model's token distribution and the uniform distribution, and measures it systematically across 31,200 generations spanning seven models, two architectures (transformer and state space), nine prompt categories, three temperatures, and five languages. Under semantically neutral prompts (empty strings, random characters, nonsense syllables) transformers still exhibit ED of approximately 0.30, meaning that 88-93% of the non-randomness observed under semantic prompts is intrinsic to the learned weights rather than induced by context. Three transformer families (Gemma, Llama, Qwen) converge on nearly identical ED values despite different training data and vocabularies. A state space model (Mamba2) reveals a qualitatively different regime: twice the ED, three times lower within-sequence variance, and massive sensitivity to temperature (r = -0.78) where transformers are nearly immune (r < 0.05). Cross-lingual experiments with Qwen-32B show a stable gradient across five languages (English, Japanese, Chinese, Polish, Arabic) that does not correlate with token fertility and persists when two languages sharing an identical tokeniser subset are compared. These findings establish a structural lower bound on randomness in pretrained language models, characterise how this bound differs across architectures, and demonstrate that language itself modulates the bound independently of tokenisation.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "The Randomness Floor: Measuring Intrinsic Non-Randomness in Language Model Token Distributions",
+      "raw_summary": "arXiv:2604.22771v1 Announce Type: new Abstract: Language models cannot be random. This paper introduces Entropic Deviation (ED), the normalised KL divergence between a model's token distribution and the uniform distribution, and measures it systematically across 31,200 generations spanning seven models, two architectures (transformer and state space), nine prompt categories, three temperatures, and five languages. Under semantically neutral prompts (empty strings, random characters, nonsense syllables) transformers still exhibit ED of approximately 0.30, meaning that 88-93% of the non-randomness observed under semantic prompts is intrinsic to the learned weights rather than induced by context. Three transformer families (Gemma, Llama, Qwen) converge on nearly identical ED values despite different training data and vocabularies. A state space model (Mamba2) reveals a qualitatively different regime: twice the ED, three times lower within-sequence variance, and massive sensitivity to temperature (r = -0.78) where transformers are nearly immune (r < 0.05). Cross-lingual experiments with Qwen-32B show a stable gradient across five languages (English, Japanese, Chinese, Polish, Arabic) that does not correlate with token fertility and persists when two languages sharing an identical tokeniser subset are compared. These findings establish a structural lower bound on randomness in pretrained language models, characterise how this bound differs across architectures, and demonstrate that language itself modulates the bound independently of tokenisation.",
+      "score": 57,
+      "primary": "models",
+      "tags": [
+        "entropy",
+        "interpretability",
+        "theory"
+      ],
+      "heuristic_score": 70,
+      "url": "https://arxiv.org/abs/2604.22771",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 70,
+      "_rid": 7,
+      "llm_score": 55,
+      "why": "Demuestra que la mayoría de la no-aleatoriedad en LLMs es intrínseca a los pesos y no inducida por prompts.",
+      "entities": [
+        "The Randomness Floor",
+        "Measuring Intrinsic Non",
+        "Randomness",
+        "Language Model Token",
+        "Distributions"
+      ],
+      "noise_penalty": 0,
+      "final_score": 57,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Chinese-SkillSpan: A Span-Level Dataset for ESCO-Aligned Competency Extraction from Chinese Job Ads",
+      "link": "https://arxiv.org/abs/2604.23009",
+      "published": "2026-04-28T04:00:00+00:00",
+      "summary": "arXiv:2604.23009v1 Announce Type: new Abstract: Job Skill Named Entity Recognition (JobSkillNER) aims to automatically extract key skill information from large-scale job posting data, which is important for improving talent-market matching efficiency and supporting personalized employment services. To the best of our knowledge, this work presents the first Chinese JobSkillNER dataset for recruitment texts. We propose annotation guidelines tailored to Chinese job postings and an LLM-empowered Macro-Micro collaborative annotation pipeline. The pipeline leverages the contextual understanding ability of large language models (LLMs) for initial annotation and then refines the results through expert sentence-level adjudication. Using this pipeline, we annotate more than 20,000 instances collected from four major recruitment platforms over the period 2014-2025. Based on these efforts, we release Chinese-SkillSpan, the first Chinese JobSkillNER dataset aligned with the ESCO occupational skill standard across four dimensions: knowledge, skill, transversal competence, and language competence (LSKT). Experimental results show that the dataset supports effective model training and evaluation, indicating that Chinese-SkillSpan helps fill a major gap in Chinese JobSkillNER resources and provides a useful benchmark for intelligent recruitment research. Code and data are available at .",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Chinese-SkillSpan: A Span-Level Dataset for ESCO-Aligned Competency Extraction from Chinese Job Ads",
+      "raw_summary": "arXiv:2604.23009v1 Announce Type: new Abstract: Job Skill Named Entity Recognition (JobSkillNER) aims to automatically extract key skill information from large-scale job posting data, which is important for improving talent-market matching efficiency and supporting personalized employment services. To the best of our knowledge, this work presents the first Chinese JobSkillNER dataset for recruitment texts. We propose annotation guidelines tailored to Chinese job postings and an LLM-empowered Macro-Micro collaborative annotation pipeline. The pipeline leverages the contextual understanding ability of large language models (LLMs) for initial annotation and then refines the results through expert sentence-level adjudication. Using this pipeline, we annotate more than 20,000 instances collected from four major recruitment platforms over the period 2014-2025. Based on these efforts, we release Chinese-SkillSpan, the first Chinese JobSkillNER dataset aligned with the ESCO occupational skill standard across four dimensions: knowledge, skill, transversal competence, and language competence (LSKT). Experimental results show that the dataset supports effective model training and evaluation, indicating that Chinese-SkillSpan helps fill a major gap in Chinese JobSkillNER resources and provides a useful benchmark for intelligent recruitment research. Code and data are available at https://sites.google.com/view/cn-skillspan-resources .",
+      "score": 52,
+      "primary": "misc",
+      "tags": [
+        "dataset",
+        "recruiting",
+        "nlp"
+      ],
+      "heuristic_score": 91,
+      "url": "https://arxiv.org/abs/2604.23009",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 91,
+      "_rid": 4,
+      "llm_score": 45,
+      "why": "Dataset especializado para extracción de competencias en el mercado laboral chino usando LLMs.",
+      "entities": [
+        "ESCO",
+        "Chinese",
+        "Span",
+        "Level Dataset",
+        "Aligned Competency Extraction",
+        "Chinese Job Ads"
+      ],
+      "noise_penalty": 0,
+      "final_score": 52,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Introducing GPT-5.5 A new class of intelligence for real work and powering agents, built to understand complex goals, use tools, check its work, and carry mo...",
+      "summary": "Introducing GPT-5.5 A new class of intelligence for real work and powering agents, built to understand complex goals, use tools, check its work, and carry more tasks through to completion. It marks a new way of getting computer work done. Now available in ChatGPT and Codex.",
+      "link": "https://x.com/OpenAI?post=a086b6d3a242",
+      "published": "Tue, 28 Apr 2026 08:15:46 GMT",
+      "source": "X @OpenAI",
+      "feed_tags": [
+        "x",
+        "models",
+        "products"
+      ],
+      "raw_title": "Introducing GPT-5.5 A new class of intelligence for real work and powering agents, built to understand complex goals, use tools, check its work, and carry mo...",
+      "raw_summary": "Introducing GPT-5.5 A new class of intelligence for real work and powering agents, built to understand complex goals, use tools, check its work, and carry more tasks through to completion. It marks a new way of getting computer work done. Now available in ChatGPT and Codex.",
+      "score": 20,
+      "primary": "models",
+      "tags": [
+        "infra",
+        "models"
+      ],
+      "heuristic_score": 75,
+      "url": "https://x.com/OpenAI?post=a086b6d3a242",
+      "is_repeat": true,
+      "novelty_score": 45,
+      "adjusted_score": 20,
+      "llm_score": null,
+      "entities": [
+        "GPT-5.5",
+        "GPT-5"
+      ],
+      "why": "Introducing GPT-5.5 A new class of intelligence for real work and powering agents, built to understand complex goals, use tools, check its work, and carry more ",
+      "noise_penalty": 0,
+      "final_score": 20,
+      "ranking_reason": "fallback_adjusted-noise(0)",
+      "strategic_theme": "agents_automation"
+    }
+  ]
+}
