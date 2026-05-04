@@ -1,0 +1,636 @@
+{
+  "date": "2026-05-04",
+  "score_avg": 59.13,
+  "primary_dist": {
+    "models": 11,
+    "infra": 2,
+    "invest": 1,
+    "geopol": 1
+  },
+  "top_entities": [
+    {
+      "entity": "arXiv",
+      "count": 8
+    },
+    {
+      "entity": "Anthropic",
+      "count": 2
+    },
+    {
+      "entity": "Claude",
+      "count": 2
+    },
+    {
+      "entity": "Google",
+      "count": 2
+    },
+    {
+      "entity": "DeepMind",
+      "count": 2
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "Google lanza la 8ª generación de TPUs especializada en agentes autónomos e inferencia de alto rendimiento.",
+      "Anthropic utiliza 1 millón de interacciones reales para mitigar la sicofancia en sus nuevos modelos Opus 4.7.",
+      "Gemini Robotics-ER 1.6 mejora significativamente el razonamiento espacial y la visión multi-vista para robots.",
+      "Nuevos benchmarks de audio (LAM) logran 93% de correlación usando solo el 0.3% de los datos de evaluación tradicionales.",
+      "La inferencia en la nube demuestra ser competitiva frente al procesamiento on-device para tareas de control crítico."
+    ],
+    "risks": [
+      "La sicofancia (dar la razón al usuario) sigue siendo un reto crítico en el alineamiento de modelos frontera.",
+      "La heterogeneidad de hardware limita la eficiencia de los sistemas de aprendizaje federado para múltiples tareas.",
+      "Falta de cobertura de matices culturales y dialectales en modelos de lenguaje fuera del ecosistema anglosajón."
+    ],
+    "watch": [
+      "Despliegue de los chips TPU v8t y v8i en la infraestructura de Google Cloud para cargas de trabajo agentitcas.",
+      "Integración de modelos 'co-clinician' de DeepMind en flujos de trabajo médicos reales.",
+      "Adopción de arquitecturas ModernBERT para modelos de lenguaje específicos por idioma."
+    ],
+    "entities_top": [
+      "Google",
+      "Anthropic",
+      "DeepMind"
+    ]
+  },
+  "items": [
+    {
+      "title": "This work is part of a loop we're working to close between societal impacts and model training. One of our goals is to study how people use Claude, find wher...",
+      "summary": "This work is part of a loop we're working to close between societal impacts and model training. One of our goals is to study how people use Claude, find where it falls short of its principles, and use what we learned in training new models. Read more:",
+      "link": "https://x.com/AnthropicAI?post=02c842a668da",
+      "published": "Mon, 04 May 2026 08:03:32 GMT",
+      "source": "X @AnthropicAI",
+      "feed_tags": [
+        "x",
+        "models",
+        "safety"
+      ],
+      "raw_title": "This work is part of a loop we're working to close between societal impacts and model training. One of our goals is to study how people use Claude, find wher...",
+      "raw_summary": "This work is part of a loop we're working to close between societal impacts and model training. One of our goals is to study how people use Claude, find where it falls short of its principles, and use what we learned in training new models. Read more:",
+      "score": 78,
+      "primary": "models",
+      "tags": [
+        "safety",
+        "alignment",
+        "anthropics-principles"
+      ],
+      "heuristic_score": 37,
+      "url": "https://x.com/AnthropicAI?post=02c842a668da",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 37,
+      "_rid": 9,
+      "llm_score": 85,
+      "why": "Cierra el ciclo entre impacto social detectado y re-entrenamiento de modelos frontera.",
+      "entities": [
+        "Anthropic",
+        "Claude",
+        "One"
+      ],
+      "noise_penalty": 0,
+      "final_score": 78,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Cloud Is Closer Than It Appears: Revisiting the Tradeoffs of Distributed Real-Time Inference",
+      "link": "https://arxiv.org/abs/2605.00005",
+      "published": "2026-05-04T04:00:00+00:00",
+      "summary": "arXiv:2605.00005v1 Announce Type: new Abstract: The increasing deployment of deep neural networks (DNNs) in cyber-physical systems (CPS) enhances perception fidelity, but imposes substantial computational demands on execution platforms, posing challenges to real-time control deadlines. Traditional distributed CPS architectures typically favor on-device inference to avoid network variability and contention-induced delays on remote platforms. However, this design choice places significant energy and computational demands on the local hardware. In this work, we revisit the assumption that cloud-based inference is intrinsically unsuitable for latency-sensitive control tasks. We demonstrate that, when provisioned with high-throughput compute resources, cloud platforms can effectively amortize network and queueing delays, enabling them to match or surpass on-device performance for real-time decision-making. Specifically, we develop a formal analytical model that characterizes distributed inference latency as a function of the sensing frequency, platform throughput, network delay, and task-specific safety constraints. We instantiate this model in the context of emergency braking for autonomous driving and validate it through extensive simulations using real-time vehicular dynamics. Our empirical results identify concrete conditions under which cloud-based inference adheres to safety margins more reliably than its on-device counterpart. These findings challenge prevailing design strategies and suggest that the cloud is not merely a feasible option, but often the preferred inference location for distributed CPS architectures. In this light, the cloud is not as distant as traditionally perceived; in fact, it is closer than it appears.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Cloud Is Closer Than It Appears: Revisiting the Tradeoffs of Distributed Real-Time Inference",
+      "raw_summary": "arXiv:2605.00005v1 Announce Type: new Abstract: The increasing deployment of deep neural networks (DNNs) in cyber-physical systems (CPS) enhances perception fidelity, but imposes substantial computational demands on execution platforms, posing challenges to real-time control deadlines. Traditional distributed CPS architectures typically favor on-device inference to avoid network variability and contention-induced delays on remote platforms. However, this design choice places significant energy and computational demands on the local hardware. In this work, we revisit the assumption that cloud-based inference is intrinsically unsuitable for latency-sensitive control tasks. We demonstrate that, when provisioned with high-throughput compute resources, cloud platforms can effectively amortize network and queueing delays, enabling them to match or surpass on-device performance for real-time decision-making. Specifically, we develop a formal analytical model that characterizes distributed inference latency as a function of the sensing frequency, platform throughput, network delay, and task-specific safety constraints. We instantiate this model in the context of emergency braking for autonomous driving and validate it through extensive simulations using real-time vehicular dynamics. Our empirical results identify concrete conditions under which cloud-based inference adheres to safety margins more reliably than its on-device counterpart. These findings challenge prevailing design strategies and suggest that the cloud is not merely a feasible option, but often the preferred inference location for distributed CPS architectures. In this light, the cloud is not as distant as traditionally perceived; in fact, it is closer than it appears.",
+      "score": 76,
+      "primary": "infra",
+      "tags": [
+        "edge-computing",
+        "cloud",
+        "robotics"
+      ],
+      "heuristic_score": 86,
+      "url": "https://arxiv.org/abs/2605.00005",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 86,
+      "_rid": 4,
+      "llm_score": 74,
+      "why": "Desafía la convención de que el procesamiento on-device es siempre superior para control en tiempo real.",
+      "entities": [
+        "arXiv",
+        "Cloud Is Closer",
+        "Than It Appears",
+        "Revisiting",
+        "Tradeoffs",
+        "Distributed Real",
+        "Time Inference"
+      ],
+      "noise_penalty": 0,
+      "final_score": 76,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "We're launching two specialized TPUs for the agentic era.",
+      "link": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/tpus-8t-8i-cloud-next/",
+      "published": "2026-04-22T12:00:00+00:00",
+      "summary": "The eighth generation of Google’s TPU includes two specialized chips that will power the future of AI.",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "We're launching two specialized TPUs for the agentic era.",
+      "raw_summary": "The eighth generation of Google’s TPU includes two specialized chips that will power the future of AI.",
+      "score": 75,
+      "primary": "infra",
+      "tags": [
+        "hardware",
+        "tpu",
+        "agents"
+      ],
+      "heuristic_score": 36,
+      "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/tpus-8t-8i-cloud-next/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 36,
+      "_rid": 10,
+      "llm_score": 94,
+      "why": "Lanzamiento de hardware especializado para la 'era agentica', crucial para la escalabilidad de la infraestructura.",
+      "entities": [
+        "Google"
+      ],
+      "noise_penalty": 10,
+      "final_score": 75,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(10)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "How do people seek guidance from Claude? We looked at 1M conversations to understand what questions people ask, how Claude responds, and where it slips into ...",
+      "summary": "How do people seek guidance from Claude? We looked at 1M conversations to understand what questions people ask, how Claude responds, and where it slips into sycophancy. We used what we found to improve how we trained Opus 4.7 and Mythos Preview.",
+      "link": "https://x.com/AnthropicAI?post=77d65bf28ff3",
+      "published": "Mon, 04 May 2026 08:03:32 GMT",
+      "source": "X @AnthropicAI",
+      "feed_tags": [
+        "x",
+        "models",
+        "safety"
+      ],
+      "raw_title": "How do people seek guidance from Claude? We looked at 1M conversations to understand what questions people ask, how Claude responds, and where it slips into ...",
+      "raw_summary": "How do people seek guidance from Claude? We looked at 1M conversations to understand what questions people ask, how Claude responds, and where it slips into sycophancy. We used what we found to improve how we trained Opus 4.7 and Mythos Preview.",
+      "score": 73,
+      "primary": "models",
+      "tags": [
+        "rlhf",
+        "alignment",
+        "anthropic"
+      ],
+      "heuristic_score": 40,
+      "url": "https://x.com/AnthropicAI?post=77d65bf28ff3",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 40,
+      "_rid": 8,
+      "llm_score": 88,
+      "why": "Uso de datos masivos de usuarios para iterar Opus 4.7 y reducir comportamientos no deseados como la sicofancia.",
+      "entities": [
+        "Anthropic",
+        "Claude",
+        "How"
+      ],
+      "noise_penalty": 8,
+      "final_score": 73,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(8)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Putting HUMANS first: Efficient LAM Evaluation with Human Preference Alignment",
+      "link": "https://arxiv.org/abs/2605.00022",
+      "published": "2026-05-04T04:00:00+00:00",
+      "summary": "arXiv:2605.00022v1 Announce Type: new Abstract: The rapid proliferation of large audio models (LAMs) demands efficient approaches for model comparison, yet comprehensive benchmarks are costly. To fill this gap, we investigate whether minimal subsets can reliably evaluate LAMs while reducing costs and data redundancy. Analyzing 10 subset selection methods with 18 audio models across 40 tasks covering major LAM evaluation dimensions, we show that subsets of just 50 examples (0.3% of data) can achieve over 0.93 Pearson correlation with full benchmark scores. To understand how well these scores align with what practitioners ultimately care about, user satisfaction, we collect 776 human preference ratings from realistic voice assistant conversations, finding that both subsets and full benchmark achieve only 0.85 correlation with human. To better predict preferences, we trained regression models on these selected subsets, achieving 0.98 correlation -- outperforming regression models trained on both random subsets and the full benchmark. This demonstrates that in regression modeling, well-curated subsets outpredict the full benchmark, showing quality over quantity. We open-source these regression-weighted subsets as the HUMANS benchmark, an efficient proxy for LAM evaluation that captures both benchmark performance and user preferences.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Putting HUMANS first: Efficient LAM Evaluation with Human Preference Alignment",
+      "raw_summary": "arXiv:2605.00022v1 Announce Type: new Abstract: The rapid proliferation of large audio models (LAMs) demands efficient approaches for model comparison, yet comprehensive benchmarks are costly. To fill this gap, we investigate whether minimal subsets can reliably evaluate LAMs while reducing costs and data redundancy. Analyzing 10 subset selection methods with 18 audio models across 40 tasks covering major LAM evaluation dimensions, we show that subsets of just 50 examples (0.3% of data) can achieve over 0.93 Pearson correlation with full benchmark scores. To understand how well these scores align with what practitioners ultimately care about, user satisfaction, we collect 776 human preference ratings from realistic voice assistant conversations, finding that both subsets and full benchmark achieve only 0.85 correlation with human. To better predict preferences, we trained regression models on these selected subsets, achieving 0.98 correlation -- outperforming regression models trained on both random subsets and the full benchmark. This demonstrates that in regression modeling, well-curated subsets outpredict the full benchmark, showing quality over quantity. We open-source these regression-weighted subsets as the HUMANS benchmark, an efficient proxy for LAM evaluation that captures both benchmark performance and user preferences.",
+      "score": 70,
+      "primary": "models",
+      "tags": [
+        "audio",
+        "lam",
+        "benchmarking",
+        "efficiency"
+      ],
+      "heuristic_score": 97,
+      "url": "https://arxiv.org/abs/2605.00022",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 97,
+      "_rid": 1,
+      "llm_score": 65,
+      "why": "Demuestra que la evaluación de modelos de audio puede ser radicalmente más eficiente sin perder precisión estadística.",
+      "entities": [
+        "arXiv",
+        "HUMANS",
+        "LAM",
+        "Putting",
+        "Efficient",
+        "Evaluation",
+        "Human Preference Alignment"
+      ],
+      "noise_penalty": 0,
+      "final_score": 70,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "FedACT: Concurrent Federated Intelligence across Heterogeneous Data Sources",
+      "link": "https://arxiv.org/abs/2605.00011",
+      "published": "2026-05-04T04:00:00+00:00",
+      "summary": "arXiv:2605.00011v1 Announce Type: new Abstract: Federated Learning (FL) enables collaborative intelligence across decentralized data source devices in a privacy-preserving way. While substantial research attention has been drawn to optimizing the learning process for an individual task, real-world applications increasingly require multiple machine learning tasks simultaneously training their models across a shared pool of devices. Naively applying single-FL optimization techniques in multi-FL systems results in suboptimal system performance, particularly due to device heterogeneity and resource inefficiency. To address such a critical open challenge, we introduce {\\em FedACT}, a novel resource heterogeneity-aware device scheduling approach designed to efficiently schedule heterogeneous devices across multiple concurrent FL jobs, with the goal of minimizing their average job completion time (JCT). {\\em FedACT} dynamically assigns devices to FL jobs based on an alignment scoring mechanism that evaluates the compatibility between available resources of devices and resource demands of jobs. Additionally, it incorporates participation fairness to ensure balanced contributions from devices across jobs, further enhancing the accuracy levels of learned global models. An optimal scheduling plan is formulated in {\\em FedACT} by prioritizing devices with higher alignment scores, while ensuring fair participation across jobs. To evaluate the effectiveness of the proposed scheduling algorithm, we carried out comprehensive experiments using diverse FL jobs and benchmark datasets. Experimental results demonstrate that {\\em FedACT} reduces the average JCT by up to 8.3\\(\\times\\) and improves model accuracy by up to 44.5\\%, compared to the state-of-the-art baselines.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "FedACT: Concurrent Federated Intelligence across Heterogeneous Data Sources",
+      "raw_summary": "arXiv:2605.00011v1 Announce Type: new Abstract: Federated Learning (FL) enables collaborative intelligence across decentralized data source devices in a privacy-preserving way. While substantial research attention has been drawn to optimizing the learning process for an individual task, real-world applications increasingly require multiple machine learning tasks simultaneously training their models across a shared pool of devices. Naively applying single-FL optimization techniques in multi-FL systems results in suboptimal system performance, particularly due to device heterogeneity and resource inefficiency. To address such a critical open challenge, we introduce {\\em FedACT}, a novel resource heterogeneity-aware device scheduling approach designed to efficiently schedule heterogeneous devices across multiple concurrent FL jobs, with the goal of minimizing their average job completion time (JCT). {\\em FedACT} dynamically assigns devices to FL jobs based on an alignment scoring mechanism that evaluates the compatibility between available resources of devices and resource demands of jobs. Additionally, it incorporates participation fairness to ensure balanced contributions from devices across jobs, further enhancing the accuracy levels of learned global models. An optimal scheduling plan is formulated in {\\em FedACT} by prioritizing devices with higher alignment scores, while ensuring fair participation across jobs. To evaluate the effectiveness of the proposed scheduling algorithm, we carried out comprehensive experiments using diverse FL jobs and benchmark datasets. Experimental results demonstrate that {\\em FedACT} reduces the average JCT by up to 8.3\\(\\times\\) and improves model accuracy by up to 44.5\\%, compared to the state-of-the-art baselines.",
+      "score": 68,
+      "primary": "models",
+      "tags": [
+        "federated-learning",
+        "privacy",
+        "heterogeneous-data"
+      ],
+      "heuristic_score": 79,
+      "url": "https://arxiv.org/abs/2605.00011",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 79,
+      "_rid": 5,
+      "llm_score": 66,
+      "why": "Propone FedACT para resolver ineficiencias en el entrenamiento federado multitarea sobre hardware diverso.",
+      "entities": [
+        "arXiv",
+        "Concurrent Federated Intelligence",
+        "Heterogeneous Data Sources"
+      ],
+      "noise_penalty": 0,
+      "final_score": 68,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "NorBERTo: A ModernBERT Model Trained for Portuguese with 331 Billion Tokens Corpus",
+      "link": "https://arxiv.org/abs/2605.00086",
+      "published": "2026-05-04T04:00:00+00:00",
+      "summary": "arXiv:2605.00086v1 Announce Type: new Abstract: High-quality corpora are essential for advancing Natural Language Processing (NLP) in Portuguese. Building on previous encoder-only models such as BERTimbau and Albertina PT-BR, we introduce NorBERTo, a modern encoder based on the ModernBERT architecture, featuring long-context support and efficient attention mechanisms. NorBERTo is trained on Aurora-PT, a newly curated Brazilian Portuguese corpus comprising 331 billion GPT-2 tokens collected from diverse web sources and existing multilingual datasets. We systematically benchmark NorBERTo against Strong baselines on semantic similarity, textual entailment and classification tasks using standardized datasets such as ASSIN 2 and PLUE. On PLUE, NorBERTo-large achieves the best results among the encoder models we evaluated, notably reaching 0.9191 F1 on MRPC and 0.7689 accuracy on RTE. On ASSIN 2, NorBERTo-large attains the highest entailment F1 (~0.904) among all encoders considered, although Albertina-900M and BERTimbau-large still hold an advantage. To the best of our knowledge, Aurora-PT is currently the largest openly available monolingual Portuguese corpus, surpassing previous resources. NorBERTo provides a modern, mid-sized encoder designed for realistic deployment scenarios: it is straight-forward to fine-tune, efficient to serve, and well suited as a backbone for retrieval-augmented generation and other downstream Portuguese NLP systems.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "NorBERTo: A ModernBERT Model Trained for Portuguese with 331 Billion Tokens Corpus",
+      "raw_summary": "arXiv:2605.00086v1 Announce Type: new Abstract: High-quality corpora are essential for advancing Natural Language Processing (NLP) in Portuguese. Building on previous encoder-only models such as BERTimbau and Albertina PT-BR, we introduce NorBERTo, a modern encoder based on the ModernBERT architecture, featuring long-context support and efficient attention mechanisms. NorBERTo is trained on Aurora-PT, a newly curated Brazilian Portuguese corpus comprising 331 billion GPT-2 tokens collected from diverse web sources and existing multilingual datasets. We systematically benchmark NorBERTo against Strong baselines on semantic similarity, textual entailment and classification tasks using standardized datasets such as ASSIN 2 and PLUE. On PLUE, NorBERTo-large achieves the best results among the encoder models we evaluated, notably reaching 0.9191 F1 on MRPC and 0.7689 accuracy on RTE. On ASSIN 2, NorBERTo-large attains the highest entailment F1 (~0.904) among all encoders considered, although Albertina-900M and BERTimbau-large still hold an advantage. To the best of our knowledge, Aurora-PT is currently the largest openly available monolingual Portuguese corpus, surpassing previous resources. NorBERTo provides a modern, mid-sized encoder designed for realistic deployment scenarios: it is straight-forward to fine-tune, efficient to serve, and well suited as a backbone for retrieval-augmented generation and other downstream Portuguese NLP systems.",
+      "score": 67,
+      "primary": "models",
+      "tags": [
+        "nlp",
+        "portuguese",
+        "modernbert"
+      ],
+      "heuristic_score": 95,
+      "url": "https://arxiv.org/abs/2605.00086",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 95,
+      "_rid": 2,
+      "llm_score": 62,
+      "why": "Aplica arquitectura ModernBERT y un corpus masivo para elevar el estado del arte en procesamiento de portugués.",
+      "entities": [
+        "arXiv",
+        "Model Trained",
+        "Portuguese",
+        "Billion Tokens Corpus"
+      ],
+      "noise_penalty": 0,
+      "final_score": 67,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Gemini Robotics-ER 1.6: Powering real-world robotics tasks through enhanced embodied reasoning",
+      "link": "https://deepmind.google/blog/gemini-robotics-er-1-6/",
+      "published": "2026-04-13T15:52:13+00:00",
+      "summary": "Gemini Robotics ER 1.6: Enhancing spatial reasoning and multi-view understanding for autonomous robotics.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Gemini Robotics-ER 1.6: Powering real-world robotics tasks through enhanced embodied reasoning",
+      "raw_summary": "Gemini Robotics ER 1.6: Enhancing spatial reasoning and multi-view understanding for autonomous robotics.",
+      "score": 64,
+      "primary": "models",
+      "tags": [
+        "robotics",
+        "multimodal",
+        "google"
+      ],
+      "heuristic_score": 58,
+      "url": "https://deepmind.google/blog/gemini-robotics-er-1-6/",
+      "is_repeat": true,
+      "novelty_score": 45,
+      "adjusted_score": 3,
+      "_rid": 14,
+      "llm_score": 86,
+      "why": "Mejora el razonamiento encarnado (embodied reasoning), clave para robots autónomos más inteligentes.",
+      "entities": [
+        "DeepMind",
+        "Google",
+        "Gemini",
+        "Gemini Robotics",
+        "Powering"
+      ],
+      "noise_penalty": 10,
+      "final_score": 64,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(10)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Enabling a new model for healthcare with AI co-clinician",
+      "link": "https://deepmind.google/blog/ai-co-clinician/",
+      "published": "2026-04-30T12:14:15+00:00",
+      "summary": "Researching the path to AI-augmented care and development of an AI co-clinician.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Enabling a new model for healthcare with AI co-clinician",
+      "raw_summary": "Researching the path to AI-augmented care and development of an AI co-clinician.",
+      "score": 62,
+      "primary": "models",
+      "tags": [
+        "healthcare",
+        "med-ai"
+      ],
+      "heuristic_score": 15,
+      "url": "https://deepmind.google/blog/ai-co-clinician/",
+      "is_repeat": true,
+      "novelty_score": 45,
+      "adjusted_score": 0,
+      "_rid": 15,
+      "llm_score": 78,
+      "why": "Avance hacia la asistencia clínica aumentada por IA, un sector de alta inversión y sensibilidad.",
+      "entities": [
+        "DeepMind",
+        "Enabling"
+      ],
+      "noise_penalty": 4,
+      "final_score": 62,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(4)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Cultural Benchmarking of LLMs in Standard and Dialectal Arabic Dialogues",
+      "link": "https://arxiv.org/abs/2605.00119",
+      "published": "2026-05-04T04:00:00+00:00",
+      "summary": "arXiv:2605.00119v1 Announce Type: new Abstract: There is a significant gap in evaluating cultural reasoning in LLMs using conversational datasets that capture culturally rich and dialectal contexts. Most Arabic benchmarks focus on short text snippets in Modern Standard Arabic (MSA), overlooking the cultural nuances that naturally arise in dialogues. To address this gap, we introduce ArabCulture-Dialogue, a culturally grounded conversational dataset covering 13 Arabic-speaking countries, in both MSA and each country's respective dialect, spanning 12 daily-life topics and 54 fine-grained subtopics. We utilize the dataset to form three benchmarking tasks: (i) multiple-choice cultural reasoning, (ii) machine translation between MSA and dialects, and (iii) dialect-steering generation. Our experiments indicate that the performance gap between MSA and Arabic dialects still exists, whereby the models perform worse on all three tasks in the dialectal setup, compared to the MSA one.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Cultural Benchmarking of LLMs in Standard and Dialectal Arabic Dialogues",
+      "raw_summary": "arXiv:2605.00119v1 Announce Type: new Abstract: There is a significant gap in evaluating cultural reasoning in LLMs using conversational datasets that capture culturally rich and dialectal contexts. Most Arabic benchmarks focus on short text snippets in Modern Standard Arabic (MSA), overlooking the cultural nuances that naturally arise in dialogues. To address this gap, we introduce ArabCulture-Dialogue, a culturally grounded conversational dataset covering 13 Arabic-speaking countries, in both MSA and each country's respective dialect, spanning 12 daily-life topics and 54 fine-grained subtopics. We utilize the dataset to form three benchmarking tasks: (i) multiple-choice cultural reasoning, (ii) machine translation between MSA and dialects, and (iii) dialect-steering generation. Our experiments indicate that the performance gap between MSA and Arabic dialects still exists, whereby the models perform worse on all three tasks in the dialectal setup, compared to the MSA one.",
+      "score": 60,
+      "primary": "models",
+      "tags": [
+        "nlp",
+        "arabic",
+        "culture"
+      ],
+      "heuristic_score": 74,
+      "url": "https://arxiv.org/abs/2605.00119",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 74,
+      "_rid": 7,
+      "llm_score": 58,
+      "why": "Aborda la brecha de razonamiento cultural en modelos de lenguaje para el contexto árabe dialectal.",
+      "entities": [
+        "arXiv",
+        "Cultural Benchmarking",
+        "Standard",
+        "Dialectal Arabic Dialogues"
+      ],
+      "noise_penalty": 0,
+      "final_score": 60,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "How Frontier LLMs Adapt to Neurodivergence Context: A Measurement Framework for Surface vs. Structural Change in System-Prompted Responses",
+      "link": "https://arxiv.org/abs/2605.00113",
+      "published": "2026-05-04T04:00:00+00:00",
+      "summary": "arXiv:2605.00113v1 Announce Type: new Abstract: We examine if frontier chat-based large language models (LLMs) adjust their outputs based on neurodivergence (ND) context in system prompts and describe the nature of these adjustments. Specifically, we propose NDBench, a 576-output benchmark involving two frontier models, three system prompt types (baseline, ND-profile assertion, and ND-profile assertion with explicit instructions for adjustments), four canonical ND profiles, and 24 prompts across four categories, one of which involves an adversarial masking strategy. Four trends emerge consistently from our findings. First, LLMs show significant adaptation under ND context, where fully instructed conditions yield lengthier and more structured outputs, characterized by higher token counts, more headings, and more granular steps (p = 0.67) and thus can be considered primary results. NDBench is made publicly available along with its prompts, outputs, code, and other resources, forming a reproducible framework for auditing future LLMs' adaptation to ND awareness.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "How Frontier LLMs Adapt to Neurodivergence Context: A Measurement Framework for Surface vs. Structural Change in System-Prompted Responses",
+      "raw_summary": "arXiv:2605.00113v1 Announce Type: new Abstract: We examine if frontier chat-based large language models (LLMs) adjust their outputs based on neurodivergence (ND) context in system prompts and describe the nature of these adjustments. Specifically, we propose NDBench, a 576-output benchmark involving two frontier models, three system prompt types (baseline, ND-profile assertion, and ND-profile assertion with explicit instructions for adjustments), four canonical ND profiles, and 24 prompts across four categories, one of which involves an adversarial masking strategy. Four trends emerge consistently from our findings. First, LLMs show significant adaptation under ND context, where fully instructed conditions yield lengthier and more structured outputs, characterized by higher token counts, more headings, and more granular steps (p = 0.67) and thus can be considered primary results. NDBench is made publicly available along with its prompts, outputs, code, and other resources, forming a reproducible framework for auditing future LLMs' adaptation to ND awareness.",
+      "score": 58,
+      "primary": "models",
+      "tags": [
+        "ethics",
+        "neurodivergence",
+        "prompt-engineering"
+      ],
+      "heuristic_score": 76,
+      "url": "https://arxiv.org/abs/2605.00113",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 76,
+      "_rid": 6,
+      "llm_score": 55,
+      "why": "Establece un marco para medir cómo los LLMs adaptan su respuesta a contextos de neurodiversidad.",
+      "entities": [
+        "arXiv",
+        "How Frontier",
+        "Adapt",
+        "Neurodivergence Context",
+        "Measurement Framework",
+        "Surface",
+        "Structural Change",
+        "System"
+      ],
+      "noise_penalty": 0,
+      "final_score": 58,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "ViLegalNLI: Natural Language Inference for Vietnamese Legal Texts",
+      "link": "https://arxiv.org/abs/2605.00116",
+      "published": "2026-05-04T04:00:00+00:00",
+      "summary": "arXiv:2605.00116v1 Announce Type: new Abstract: In this article, we introduce ViLegalNLI, the first large-scale Vietnamese Natural Language Inference (NLI) dataset specifically constructed for the legal domain. The dataset consists of 42,012 premise-hypothesis pairs derived from official statutory documents and annotated with binary inference labels (Entailment and Non-entailment). It covers multiple legal domains and reflects realistic legal reasoning scenarios characterized by structured logic, conditional clauses, and domain-specific terminology. To construct ViLegalNLI, we propose a semi-automatic data generation framework that integrates large language models for controlled hypothesis generation and systematic quality validation procedures. The framework incorporates artifact mitigation strategies and cross-model validation to improve annotation reliability and ensure legal consistency. The resulting dataset captures diverse reasoning patterns, including paraphrasing, logical implication, and legally invalid inferences, thereby providing a comprehensive benchmark for Vietnamese legal inference tasks. We conduct extensive experiments on the ViLegalNLI using multilingual models, Vietnamese-specific pretrained language models, and instruction-tuned large language models. The results show that few-shot LLM configurations consistently achieve superior performance, while performance is significantly influenced by hypothesis length, lexical overlap, and reasoning complexity. Cross-domain evaluations further reveal the challenges of generalizing legal inference across distinct legal fields. Overall, ViLegalNLI establishes a foundational benchmark for Vietnamese legal NLI and supports future research in legal reasoning, statutory text understanding, and the development of reliable AI systems for legal analysis and decision support. The dataset is publicly available for research purposes.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "ViLegalNLI: Natural Language Inference for Vietnamese Legal Texts",
+      "raw_summary": "arXiv:2605.00116v1 Announce Type: new Abstract: In this article, we introduce ViLegalNLI, the first large-scale Vietnamese Natural Language Inference (NLI) dataset specifically constructed for the legal domain. The dataset consists of 42,012 premise-hypothesis pairs derived from official statutory documents and annotated with binary inference labels (Entailment and Non-entailment). It covers multiple legal domains and reflects realistic legal reasoning scenarios characterized by structured logic, conditional clauses, and domain-specific terminology. To construct ViLegalNLI, we propose a semi-automatic data generation framework that integrates large language models for controlled hypothesis generation and systematic quality validation procedures. The framework incorporates artifact mitigation strategies and cross-model validation to improve annotation reliability and ensure legal consistency. The resulting dataset captures diverse reasoning patterns, including paraphrasing, logical implication, and legally invalid inferences, thereby providing a comprehensive benchmark for Vietnamese legal inference tasks. We conduct extensive experiments on the ViLegalNLI using multilingual models, Vietnamese-specific pretrained language models, and instruction-tuned large language models. The results show that few-shot LLM configurations consistently achieve superior performance, while performance is significantly influenced by hypothesis length, lexical overlap, and reasoning complexity. Cross-domain evaluations further reveal the challenges of generalizing legal inference across distinct legal fields. Overall, ViLegalNLI establishes a foundational benchmark for Vietnamese legal NLI and supports future research in legal reasoning, statutory text understanding, and the development of reliable AI systems for legal analysis and decision support. The dataset is publicly available for research purposes.",
+      "score": 54,
+      "primary": "models",
+      "tags": [
+        "nlp",
+        "legal",
+        "vietnam"
+      ],
+      "heuristic_score": 88,
+      "url": "https://arxiv.org/abs/2605.00116",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 88,
+      "_rid": 3,
+      "llm_score": 48,
+      "why": "Dataset especializado para un nicho legal y lingüístico específico; impacto limitado pero relevante sectorialmente.",
+      "entities": [
+        "arXiv",
+        "Natural Language Inference",
+        "Vietnamese Legal Texts"
+      ],
+      "noise_penalty": 0,
+      "final_score": 54,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "CEO Interview with Geoffrey Rodgers of Chameleon Semiconductor",
+      "link": "https://semiwiki.com/ceo-interviews/368833-ceo-interview-with-geoffrey-rodgers-of-chameleon-semiconductor/",
+      "published": "2026-05-03T21:00:04+00:00",
+      "summary": "Geoffrey Rodgers spent most of his career at the intersection of semiconductor technology and go-to-market execution, with a focus on scaling businesses and bringing complex solutions to market. He previously led the Analog Go-To-Market motion at Synopsys following the acquisition of Analog Design Automation and held leadership&8230; Read More The post CEO Interview with Geoffrey Rodgers of Chameleon Semiconductor appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "CEO Interview with Geoffrey Rodgers of Chameleon Semiconductor",
+      "raw_summary": "Geoffrey Rodgers spent most of his career at the intersection of semiconductor technology and go-to-market execution, with a focus on scaling businesses and bringing complex solutions to market. He previously led the Analog Go-To-Market motion at Synopsys following the acquisition of Analog Design Automation and held leadership&#8230; Read More The post CEO Interview with Geoffrey Rodgers of Chameleon Semiconductor appeared first on SemiWiki .",
+      "score": 37,
+      "primary": "invest",
+      "tags": [
+        "semiconductors",
+        "business"
+      ],
+      "heuristic_score": 10,
+      "url": "https://semiwiki.com/ceo-interviews/368833-ceo-interview-with-geoffrey-rodgers-of-chameleon-semiconductor/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 10,
+      "_rid": 13,
+      "llm_score": 42,
+      "why": "Visión estratégica sobre el mercado de semiconductores analógicos y su comercialización.",
+      "entities": [
+        "Chameleon Semiconductor",
+        "Synopsys",
+        "Geoffrey Rodgers"
+      ],
+      "noise_penalty": 0,
+      "final_score": 37,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Timing is Everything: Temporal Scaffolding of Semantic Surprise in Humor",
+      "link": "https://arxiv.org/abs/2605.00143",
+      "published": "2026-05-04T04:00:00+00:00",
+      "summary": "arXiv:2605.00143v1 Announce Type: new Abstract: Humor is a fundamental cognitive phenomenon in which humans derive pleasure from the expectation violations and their resolution, exemplifying the brain's dynamic capacity for predictive processing. Classical humor theories emphasize semantic incongruity as the primary driver of amusement, yet overlook temporal dynamics despite comedians' intuition that \"timing is everything.\" The extent to which temporal structure contributes to humor appreciation and how it interacts with semantic content remains poorly understood. Here, we propose the Dual Prediction Violation (DPV) framework to capture the interplay between content and timing. By analyzing 828 professional Chinese stand-up performances, we show that temporal features substantially outweigh semantic incongruity in predicting audience appreciation. Specifically, we find that peak semantic violations matter more than average incongruity levels, and pauses systematically lengthen before high-surprise punchlines--a strategic coupling that distinguishes successful from unsuccessful performances. These findings reframe humor as temporally scaffolded, where timing and semantic content operate in strategic coordination rather than independently. Our DPV framework bridges humor theory with predictive processing, demonstrating that temporal structure plays a central role in naturalistic humor appreciation with implications for understanding multi-scale prediction integration in linguistic processing.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Timing is Everything: Temporal Scaffolding of Semantic Surprise in Humor",
+      "raw_summary": "arXiv:2605.00143v1 Announce Type: new Abstract: Humor is a fundamental cognitive phenomenon in which humans derive pleasure from the expectation violations and their resolution, exemplifying the brain's dynamic capacity for predictive processing. Classical humor theories emphasize semantic incongruity as the primary driver of amusement, yet overlook temporal dynamics despite comedians' intuition that \"timing is everything.\" The extent to which temporal structure contributes to humor appreciation and how it interacts with semantic content remains poorly understood. Here, we propose the Dual Prediction Violation (DPV) framework to capture the interplay between content and timing. By analyzing 828 professional Chinese stand-up performances, we show that temporal features substantially outweigh semantic incongruity in predicting audience appreciation. Specifically, we find that peak semantic violations matter more than average incongruity levels, and pauses systematically lengthen before high-surprise punchlines--a strategic coupling that distinguishes successful from unsuccessful performances. These findings reframe humor as temporally scaffolded, where timing and semantic content operate in strategic coordination rather than independently. Our DPV framework bridges humor theory with predictive processing, demonstrating that temporal structure plays a central role in naturalistic humor appreciation with implications for understanding multi-scale prediction integration in linguistic processing.",
+      "score": 29,
+      "primary": "models",
+      "tags": [
+        "cognitive-science",
+        "humor"
+      ],
+      "heuristic_score": 14,
+      "url": "https://arxiv.org/abs/2605.00143",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 14,
+      "_rid": 12,
+      "llm_score": 32,
+      "why": "Investigación teórica sobre el procesamiento del humor; impacto práctico bajo en el corto plazo.",
+      "entities": [
+        "arXiv",
+        "Timing",
+        "Everything",
+        "Temporal Scaffolding",
+        "Semantic Surprise",
+        "Humor"
+      ],
+      "noise_penalty": 0,
+      "final_score": 29,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Let the truth be told, let the press be free. 📰 Journalists hold power to account, uncover injustic...",
+      "summary": "Let the truth be told, let the press be free. 📰 Journalists hold power to account, uncover injustice, and keep citizens informed often at great personal risk. This WorldPressFreedomDay, we reaffirm our commitment to protecting journalists and defending independent media.",
+      "link": "https://x.com/EU_Commission/status/2050835079518097594",
+      "published": null,
+      "source": "X AI policy/search",
+      "feed_tags": [
+        "x",
+        "geopol",
+        "policy"
+      ],
+      "raw_title": "Let the truth be told, let the press be free. ![Image 5: 📰](https://abs.twimg.com/emoji/v2/svg/1f4f0.svg) Journalists hold power to account, uncover injustic...",
+      "raw_summary": "Let the truth be told, let the press be free. ![Image 5: 📰](https://abs.twimg.com/emoji/v2/svg/1f4f0.svg) Journalists hold power to account, uncover injustice, and keep citizens informed often at great personal risk. This [#WorldPressFreedomDay](https://x.com/hashtag/WorldPressFreedomDay?src=hashtag_click), we reaffirm our commitment to protecting journalists and defending independent media.",
+      "score": 16,
+      "primary": "geopol",
+      "tags": [
+        "policy",
+        "media"
+      ],
+      "heuristic_score": 25,
+      "url": "https://x.com/EU_Commission/status/2050835079518097594",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 25,
+      "_rid": 11,
+      "llm_score": 15,
+      "why": "Declaración política sobre libertad de prensa sin impacto técnico o económico directo en IA.",
+      "entities": [
+        "EU Commission",
+        "Let",
+        "Journalists"
+      ],
+      "noise_penalty": 0,
+      "final_score": 16,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "geopolitics_power"
+    }
+  ]
+}
