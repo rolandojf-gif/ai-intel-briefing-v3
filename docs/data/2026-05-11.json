@@ -1,0 +1,650 @@
+{
+  "date": "2026-05-11",
+  "score_avg": 65.27,
+  "primary_dist": {
+    "models": 8,
+    "infra": 5,
+    "invest": 1,
+    "misc": 1
+  },
+  "top_entities": [
+    {
+      "entity": "OpenAI",
+      "count": 2
+    },
+    {
+      "entity": "DeepMind",
+      "count": 2
+    },
+    {
+      "entity": "DeepSeek-R1",
+      "count": 1
+    },
+    {
+      "entity": "More Thinking",
+      "count": 1
+    },
+    {
+      "entity": "More Bias",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "Google lanza TPU v8 (8t/8i) optimizada para la era de agentes, atacando cuellos de botella en entrenamiento e inferencia.",
+      "Investigación revela que un mayor tiempo de pensamiento (CoT) correlaciona con un aumento en el sesgo de posición.",
+      "Nuevas técnicas de cuantización KV (RateQuant/LKV) usan teoría de tasa-distorsión para optimizar memoria en contextos largos.",
+      "DeepMind presenta Decoupled DiLoCo para mejorar la resiliencia en el entrenamiento de modelos distribuidos a gran escala.",
+      "OpenAI prioriza la monitorización de agentes evitando penalizar razonamientos desalineados durante el entrenamiento RL."
+    ],
+    "risks": [
+      "El crecimiento lineal del KV cache sigue siendo el principal limitador físico para la inferencia de contexto largo.",
+      "Los modelos de razonamiento (CoT) amplifican sesgos heurísticos mientras más 'piensan', desafiando supuestos previos.",
+      "La monitorización metacognitiva falla sistemáticamente en dominios de razonamiento formal y ciencia natural."
+    ],
+    "watch": [
+      "Despliegue comercial de los chips TPU v8t y 8i en Google Cloud y su impacto en la latencia de agentes.",
+      "Integración de optimización diferenciable de KV cache en frameworks de servicio como vLLM o TensorRT-LLM.",
+      "Evolución de modelos de habla 'audio-to-audio' nativos frente a paradigmas híbridos texto-voz."
+    ],
+    "entities_top": [
+      "Google",
+      "OpenAI",
+      "DeepMind"
+    ]
+  },
+  "items": [
+    {
+      "title": "More Thinking, More Bias: Length-Driven Position Bias in Reasoning Models",
+      "link": "https://arxiv.org/abs/2605.06672",
+      "published": "2026-05-11T04:00:00+00:00",
+      "summary": "arXiv:2605.06672v1 Announce Type: new Abstract: Chain-of-thought (CoT) reasoning and reasoning-tuned models such as DeepSeek-R1 are commonly assumed to reduce shallow heuristic biases by thinking carefully. We test this on position bias in multiple-choice QA and find a different story: within any reasoning-capable model, per-question position bias scales with the length of the reasoning trajectory. Across thirteen reasoning-mode configurations (two R1-distilled 7-8B models, two base models prompted with CoT, and DeepSeek-R1 at 671B) on MMLU, ARC-Challenge, and GPQA, twelve show a positive partial correlation between trajectory length and Position Bias Score (PBS) after controlling for accuracy, ranging from 0.11 to 0.41 (all p < 0.05). All twelve open-weight reasoning-mode configurations show monotonically increasing PBS across length quartiles. A truncation intervention provides causal evidence: continuations resumed from later points in the trajectory are increasingly likely to shift toward position-preferred options (16% to 32% for R1-Qwen-7B across absolute-position buckets). At 671B, aggregate PBS collapses to 0.019, but the length effect still manifests in the longest quartile (PBS = 0.071), suggesting that accuracy gates the expression of length-driven bias rather than eliminating the underlying mechanism. We additionally find that direct-answer position bias is a distinct phenomenon with a different footprint (strong in Llama-Instruct-direct, weak in Qwen-Instruct-direct, and uncorrelated with trajectory length): CoT reasoning replaces this baseline bias with length-accumulated bias. Our results argue that reasoning-capable models should not be treated as order-robust by default in MCQ evaluation pipelines, and offer a diagnostic toolkit (PBS, commitment change point, effective switching, truncation probes) for auditing position bias in reasoning models.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "More Thinking, More Bias: Length-Driven Position Bias in Reasoning Models",
+      "raw_summary": "arXiv:2605.06672v1 Announce Type: new Abstract: Chain-of-thought (CoT) reasoning and reasoning-tuned models such as DeepSeek-R1 are commonly assumed to reduce shallow heuristic biases by thinking carefully. We test this on position bias in multiple-choice QA and find a different story: within any reasoning-capable model, per-question position bias scales with the length of the reasoning trajectory. Across thirteen reasoning-mode configurations (two R1-distilled 7-8B models, two base models prompted with CoT, and DeepSeek-R1 at 671B) on MMLU, ARC-Challenge, and GPQA, twelve show a positive partial correlation between trajectory length and Position Bias Score (PBS) after controlling for accuracy, ranging from 0.11 to 0.41 (all p < 0.05). All twelve open-weight reasoning-mode configurations show monotonically increasing PBS across length quartiles. A truncation intervention provides causal evidence: continuations resumed from later points in the trajectory are increasingly likely to shift toward position-preferred options (16% to 32% for R1-Qwen-7B across absolute-position buckets). At 671B, aggregate PBS collapses to 0.019, but the length effect still manifests in the longest quartile (PBS = 0.071), suggesting that accuracy gates the expression of length-driven bias rather than eliminating the underlying mechanism. We additionally find that direct-answer position bias is a distinct phenomenon with a different footprint (strong in Llama-Instruct-direct, weak in Qwen-Instruct-direct, and uncorrelated with trajectory length): CoT reasoning replaces this baseline bias with length-accumulated bias. Our results argue that reasoning-capable models should not be treated as order-robust by default in MCQ evaluation pipelines, and offer a diagnostic toolkit (PBS, commitment change point, effective switching, truncation probes) for auditing position bias in reasoning models.",
+      "score": 86,
+      "primary": "models",
+      "tags": [
+        "reasoning",
+        "cot",
+        "bias",
+        "deepseek"
+      ],
+      "heuristic_score": 77,
+      "url": "https://arxiv.org/abs/2605.06672",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 77,
+      "_rid": 5,
+      "llm_score": 88,
+      "why": "Hallazgo crítico: el razonamiento extendido (CoT) aumenta el sesgo de posición en modelos como DeepSeek-R1 y GPT-4.",
+      "entities": [
+        "DeepSeek-R1",
+        "OpenAI",
+        "More Thinking",
+        "More Bias",
+        "Length",
+        "Driven Position Bias",
+        "Reasoning Models"
+      ],
+      "noise_penalty": 0,
+      "final_score": 86,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "china_stack"
+    },
+    {
+      "title": "LKV: End-to-End Learning of Head-wise Budgets and Token Selection for LLM KV Cache Eviction",
+      "link": "https://arxiv.org/abs/2605.06676",
+      "published": "2026-05-11T04:00:00+00:00",
+      "summary": "arXiv:2605.06676v1 Announce Type: new Abstract: Long-context inference in Large Language Models (LLMs) is bottlenecked by the linear growth of Key-Value (KV) cache memory. Existing KV cache compression paradigms are fundamentally limited by heuristics: heuristic budgeting relies on statistical priors rather than task objectives, causing resource misallocation, while heuristic selection relies on coupled query-key interactions or static inductive biases (e.g., attention sinks). To address this limitation, we introduce LKV (Learned KV Eviction), which formulates KV compression as an end-to-end differentiable optimization problem. LKV integrates LKV-H to learn task-optimized global budgets, and LKV-T to derive intrinsic KV importance without materializing attention matrices. This design bypasses heuristic proxies, strictly aligning compression with task objectives. Extensive evaluations demonstrate that LKV achieves state-of-the-art performance on both LongBench and RULER benchmarks at high compression rates. In particular, on LongBench, LKV achieves near-lossless performance with only 15\\% KV cache retention. Crucially, our analysis identifies learned budgeting as the dominant driver of fidelity, demonstrating that data-driven allocation is essential to overcome the limitations of hand-crafted heuristics.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "LKV: End-to-End Learning of Head-wise Budgets and Token Selection for LLM KV Cache Eviction",
+      "raw_summary": "arXiv:2605.06676v1 Announce Type: new Abstract: Long-context inference in Large Language Models (LLMs) is bottlenecked by the linear growth of Key-Value (KV) cache memory. Existing KV cache compression paradigms are fundamentally limited by heuristics: heuristic budgeting relies on statistical priors rather than task objectives, causing resource misallocation, while heuristic selection relies on coupled query-key interactions or static inductive biases (e.g., attention sinks). To address this limitation, we introduce LKV (Learned KV Eviction), which formulates KV compression as an end-to-end differentiable optimization problem. LKV integrates LKV-H to learn task-optimized global budgets, and LKV-T to derive intrinsic KV importance without materializing attention matrices. This design bypasses heuristic proxies, strictly aligning compression with task objectives. Extensive evaluations demonstrate that LKV achieves state-of-the-art performance on both LongBench and RULER benchmarks at high compression rates. In particular, on LongBench, LKV achieves near-lossless performance with only 15\\% KV cache retention. Crucially, our analysis identifies learned budgeting as the dominant driver of fidelity, demonstrating that data-driven allocation is essential to overcome the limitations of hand-crafted heuristics.",
+      "score": 83,
+      "primary": "infra",
+      "tags": [
+        "kv-cache",
+        "optimization",
+        "inference",
+        "efficiency"
+      ],
+      "heuristic_score": 91,
+      "url": "https://arxiv.org/abs/2605.06676",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 91,
+      "_rid": 3,
+      "llm_score": 82,
+      "why": "LKV transforma la gestión de memoria KV en un problema de optimización diferenciable, superando heurísticas estáticas.",
+      "entities": [
+        "LKV",
+        "End",
+        "End Learning",
+        "Head",
+        "Budgets",
+        "Token Selection",
+        "Cache Eviction"
+      ],
+      "noise_penalty": 0,
+      "final_score": 83,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory",
+      "link": "https://arxiv.org/abs/2605.06675",
+      "published": "2026-05-11T04:00:00+00:00",
+      "summary": "arXiv:2605.06675v1 Announce Type: new Abstract: Large language models cache all previously computed key-value (KV) pairs during generation, and this KV cache grows linearly with sequence length, making it a primary memory bottleneck for serving. Quantizing the KV cache to fewer bits reduces this cost, yet all current quantizers assign the same bit-width to every attention head, ignoring the large variation in head importance. A natural idea is to allocate more bits to important heads and fewer to the rest. We show, however, that such mixed-precision allocation has a hidden pitfall: each quantizer follows a different distortion curve D(b)=alpha*beta^{-b}, and the decay rate beta varies from 3.6 to 5.3 across quantizer designs. Applying one quantizer's distortion model to another inverts the allocation order and makes performance worse than uniform quantization. We call this failure mode distortion model mismatch and propose RateQuant to resolve it. RateQuant fits a per-quantizer distortion model from a small calibration set, then solves the resulting bit-allocation problem in closed form via reverse waterfilling from rate-distortion theory. On Qwen3-8B at 2.5 average bits, calibrated RateQuant reduces KIVI's perplexity from 49.3 to 14.9 (70% reduction) and improves QuaRot by 6.6 PPL. The entire calibration takes 1.6 s on a single GPU and adds zero overhead at inference time.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory",
+      "raw_summary": "arXiv:2605.06675v1 Announce Type: new Abstract: Large language models cache all previously computed key-value (KV) pairs during generation, and this KV cache grows linearly with sequence length, making it a primary memory bottleneck for serving. Quantizing the KV cache to fewer bits reduces this cost, yet all current quantizers assign the same bit-width to every attention head, ignoring the large variation in head importance. A natural idea is to allocate more bits to important heads and fewer to the rest. We show, however, that such mixed-precision allocation has a hidden pitfall: each quantizer follows a different distortion curve D(b)=alpha*beta^{-b}, and the decay rate beta varies from 3.6 to 5.3 across quantizer designs. Applying one quantizer's distortion model to another inverts the allocation order and makes performance worse than uniform quantization. We call this failure mode distortion model mismatch and propose RateQuant to resolve it. RateQuant fits a per-quantizer distortion model from a small calibration set, then solves the resulting bit-allocation problem in closed form via reverse waterfilling from rate-distortion theory. On Qwen3-8B at 2.5 average bits, calibrated RateQuant reduces KIVI's perplexity from 49.3 to 14.9 (70% reduction) and improves QuaRot by 6.6 PPL. The entire calibration takes 1.6 s on a single GPU and adds zero overhead at inference time.",
+      "score": 81,
+      "primary": "infra",
+      "tags": [
+        "quantization",
+        "kv-cache",
+        "rate-distortion",
+        "efficiency"
+      ],
+      "heuristic_score": 62,
+      "url": "https://arxiv.org/abs/2605.06675",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 62,
+      "_rid": 9,
+      "llm_score": 84,
+      "why": "Aplica teoría de tasa-distorsión para asignar bits de forma óptima a cabezas de atención, mejorando drásticamente la memoria.",
+      "entities": [
+        "RateQuant",
+        "Optimal Mixed",
+        "Precision",
+        "Cache Quantization",
+        "Rate",
+        "Distortion Theory"
+      ],
+      "noise_penalty": 0,
+      "final_score": 81,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Chain of thought monitors are a key layer of defense against AI agent misalignment. To preserve monitorability, we avoid penalizing misaligned reasoning duri...",
+      "summary": "Chain of thought monitors are a key layer of defense against AI agent misalignment. To preserve monitorability, we avoid penalizing misaligned reasoning during RL. We found a limited amount of accidental CoT grading which affected released models, and are sharing our analysis.",
+      "link": "https://x.com/OpenAI?post=8e3525c0a307",
+      "published": "Mon, 11 May 2026 08:59:55 GMT",
+      "source": "X @OpenAI",
+      "feed_tags": [
+        "x",
+        "models",
+        "products"
+      ],
+      "raw_title": "Chain of thought monitors are a key layer of defense against AI agent misalignment. To preserve monitorability, we avoid penalizing misaligned reasoning duri...",
+      "raw_summary": "Chain of thought monitors are a key layer of defense against AI agent misalignment. To preserve monitorability, we avoid penalizing misaligned reasoning during RL. We found a limited amount of accidental CoT grading which affected released models, and are sharing our analysis.",
+      "score": 79,
+      "primary": "models",
+      "tags": [
+        "alignment",
+        "safety",
+        "cot",
+        "monitoring"
+      ],
+      "heuristic_score": 78,
+      "url": "https://x.com/OpenAI?post=8e3525c0a307",
+      "is_repeat": true,
+      "novelty_score": 45,
+      "adjusted_score": 23,
+      "_rid": 15,
+      "llm_score": 89,
+      "why": "OpenAI revela que no penalizará razonamientos desalineados en CoT para mantener la visibilidad sobre la seguridad del modelo.",
+      "entities": [
+        "OpenAI",
+        "Chain"
+      ],
+      "noise_penalty": 0,
+      "final_score": 79,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "We're launching two specialized TPUs for the agentic era.",
+      "link": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/tpus-8t-8i-cloud-next/",
+      "published": "2026-04-22T12:00:00+00:00",
+      "summary": "The eighth generation of Google’s TPU includes two specialized chips that will power the future of AI.",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "We're launching two specialized TPUs for the agentic era.",
+      "raw_summary": "The eighth generation of Google’s TPU includes two specialized chips that will power the future of AI.",
+      "score": 76,
+      "primary": "infra",
+      "tags": [
+        "tpu",
+        "hardware",
+        "agents",
+        "google-cloud"
+      ],
+      "heuristic_score": 36,
+      "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/tpus-8t-8i-cloud-next/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 36,
+      "_rid": 12,
+      "llm_score": 95,
+      "why": "Google lanza hardware específico (8t/8i) para la era agéntica, optimizando el rendimiento por vatio en cargas de IA.",
+      "entities": [
+        "Google"
+      ],
+      "noise_penalty": 10,
+      "final_score": 76,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(10)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Decoupled DiLoCo: A new frontier for resilient, distributed AI training",
+      "link": "https://deepmind.google/blog/decoupled-diloco/",
+      "published": "2026-04-22T10:20:03+00:00",
+      "summary": "",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Decoupled DiLoCo: A new frontier for resilient, distributed AI training",
+      "raw_summary": "",
+      "score": 75,
+      "primary": "infra",
+      "tags": [
+        "distributed-training",
+        "diloco",
+        "scaling",
+        "resilience"
+      ],
+      "heuristic_score": 30,
+      "url": "https://deepmind.google/blog/decoupled-diloco/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 30,
+      "_rid": 13,
+      "llm_score": 90,
+      "why": "Nueva frontera en entrenamiento distribuido que permite escalabilidad resiliente en infraestructuras heterogéneas.",
+      "entities": [
+        "DeepMind",
+        "Decoupled"
+      ],
+      "noise_penalty": 6,
+      "final_score": 75,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(6)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "MIST: Multimodal Interactive Speech-based Tool-calling Conversational Assistants for Smart Homes",
+      "link": "https://arxiv.org/abs/2605.06897",
+      "published": "2026-05-11T04:00:00+00:00",
+      "summary": "arXiv:2605.06897v1 Announce Type: new Abstract: The rise of Internet of Things (IoT) devices in the physical world necessitates voice-based interfaces capable of handling complex user experiences. While modern Large Language Models (LLMs) already demonstrate strong tool-usage capabilities, modeling real-world IoT devices presents a difficult, understudied challenge which combines modeling spatiotemporal constraints with speech inputs, dynamic state tracking, and mixed-initiative interaction patterns. We introduce MIST (the Multimodal Interactive Speech-based Tool-calling Dataset), a synthetic multi-turn, voice-driven code generation task that operates over IoT devices. We find that there is a significant gap between open- and closed-weight multimodal LLMs on MIST, and that even frontier closed-weight LLMs have substantial headroom. We release MIST and an extensible data generation framework to build related datasets in order to facilitate research on mixed-initiative voice assistants which reason about physical world constraints.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "MIST: Multimodal Interactive Speech-based Tool-calling Conversational Assistants for Smart Homes",
+      "raw_summary": "arXiv:2605.06897v1 Announce Type: new Abstract: The rise of Internet of Things (IoT) devices in the physical world necessitates voice-based interfaces capable of handling complex user experiences. While modern Large Language Models (LLMs) already demonstrate strong tool-usage capabilities, modeling real-world IoT devices presents a difficult, understudied challenge which combines modeling spatiotemporal constraints with speech inputs, dynamic state tracking, and mixed-initiative interaction patterns. We introduce MIST (the Multimodal Interactive Speech-based Tool-calling Dataset), a synthetic multi-turn, voice-driven code generation task that operates over IoT devices. We find that there is a significant gap between open- and closed-weight multimodal LLMs on MIST, and that even frontier closed-weight LLMs have substantial headroom. We release MIST and an extensible data generation framework to build related datasets in order to facilitate research on mixed-initiative voice assistants which reason about physical world constraints.",
+      "score": 71,
+      "primary": "models",
+      "tags": [
+        "multimodal",
+        "iot",
+        "agents",
+        "speech"
+      ],
+      "heuristic_score": 89,
+      "url": "https://arxiv.org/abs/2605.06897",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 89,
+      "_rid": 4,
+      "llm_score": 68,
+      "why": "Dataset sintético para agentes de voz en hogares inteligentes; clave para la interacción multimodal en el mundo físico.",
+      "entities": [
+        "MIST",
+        "Multimodal Interactive Speech",
+        "Tool",
+        "Conversational Assistants",
+        "Smart Homes"
+      ],
+      "noise_penalty": 0,
+      "final_score": 71,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Domain-level metacognitive monitoring in frontier LLMs: A 33-model atlas",
+      "link": "https://arxiv.org/abs/2605.06673",
+      "published": "2026-05-11T04:00:00+00:00",
+      "summary": "arXiv:2605.06673v1 Announce Type: new Abstract: Aggregate metacognitive quality scores mask within-model variation across MMLU benchmark domains. We administered 1,500 MMLU items (250 per domain, under an a priori six-domain grouping) to 33 frontier LLMs from eight model families and computed Type-2 AUROC per model-domain cell using verbalized confidence (0-100). Total observations: 47,151. Every model with above-chance aggregate monitoring showed non-trivial domain-level variation. Applied/Professional knowledge was reliably the easiest benchmark domain to monitor (mean AUROC = .742, ranked top-2 in 21 of 33 models); Formal Reasoning and Natural Science were reliably the hardest (one of the two ranked bottom-2 in 27 of 33 models). The three middle domains were statistically indistinguishable (Kendall's W = .164). A subject-level coherence analysis (within-domain similarity ratio = 0.95) confirms the six-domain grouping is a pragmatic benchmark taxonomy, not a validated latent construct. Within-family profile-shape clustering is significant for Anthropic, Google-Gemini, and Qwen (permutation p < .0001) but not DeepSeek, Google-Gemma, or OpenAI. Gemma 4 31B showed a +.202 AUROC improvement over Gemma 3 27B. Three models classified Invalid on binary KEEP/WITHDRAW probes produced normal profiles under verbalized confidence, confirming probe-format specificity. Bootstrap 95% CIs on 198 cells have median width .199. Split-half aggregate stability r = .893; profile-level split-half is weaker (grand median r = .184). These results show stable benchmark-domain variation obscured by aggregate metrics, and support benchmark-stage domain screening as a step before deployment in specific application areas.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Domain-level metacognitive monitoring in frontier LLMs: A 33-model atlas",
+      "raw_summary": "arXiv:2605.06673v1 Announce Type: new Abstract: Aggregate metacognitive quality scores mask within-model variation across MMLU benchmark domains. We administered 1,500 MMLU items (250 per domain, under an a priori six-domain grouping) to 33 frontier LLMs from eight model families and computed Type-2 AUROC per model-domain cell using verbalized confidence (0-100). Total observations: 47,151. Every model with above-chance aggregate monitoring showed non-trivial domain-level variation. Applied/Professional knowledge was reliably the easiest benchmark domain to monitor (mean AUROC = .742, ranked top-2 in 21 of 33 models); Formal Reasoning and Natural Science were reliably the hardest (one of the two ranked bottom-2 in 27 of 33 models). The three middle domains were statistically indistinguishable (Kendall's W = .164). A subject-level coherence analysis (within-domain similarity ratio = 0.95) confirms the six-domain grouping is a pragmatic benchmark taxonomy, not a validated latent construct. Within-family profile-shape clustering is significant for Anthropic, Google-Gemini, and Qwen (permutation p < .0001) but not DeepSeek, Google-Gemma, or OpenAI. Gemma 4 31B showed a +.202 AUROC improvement over Gemma 3 27B. Three models classified Invalid on binary KEEP/WITHDRAW probes produced normal profiles under verbalized confidence, confirming probe-format specificity. Bootstrap 95% CIs on 198 cells have median width .199. Split-half aggregate stability r = .893; profile-level split-half is weaker (grand median r = .184). These results show stable benchmark-domain variation obscured by aggregate metrics, and support benchmark-stage domain screening as a step before deployment in specific application areas.",
+      "score": 70,
+      "primary": "models",
+      "tags": [
+        "metacognition",
+        "benchmarking",
+        "llm",
+        "monitoring"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2605.06673",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 1,
+      "llm_score": 65,
+      "why": "La capacidad de un modelo para evaluar su propia certeza varía drásticamente por dominio, siendo débil en razonamiento formal.",
+      "entities": [
+        "MMLU",
+        "Domain"
+      ],
+      "noise_penalty": 0,
+      "final_score": 70,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "GraphDC: A Divide-and-Conquer Multi-Agent System for Scalable Graph Algorithm Reasoning",
+      "link": "https://arxiv.org/abs/2605.06671",
+      "published": "2026-05-11T04:00:00+00:00",
+      "summary": "arXiv:2605.06671v1 Announce Type: new Abstract: Large Language Models (LLMs) have demonstrated strong potential for many mathematical problems. However, their performance on graph algorithmic tasks is still unsatisfying, since graphs are naturally more complex in topology and often require systematic multi-step reasoning, especially on larger graphs. Motivated by this gap, we propose GraphDC, a Divide-and-Conquer multi-agent framework for scalable graph algorithm reasoning. Specifically, inspired by Divide-and-Conquer design, GraphDC decomposes an input graph into smaller subgraphs, assigns each subgraph to a specialized agent for local reasoning, and uses a master agent to integrate the local outputs with inter-subgraph information to produce the final solution. This hierarchical design reduces the reasoning burden on individual agents, alleviates computational bottlenecks, and improves robustness on large graph instances. Extensive experiments show that GraphDC consistently outperforms existing methods on graph algorithm reasoning across diverse tasks and scales, especially on larger instances where direct end-to-end reasoning is less reliable.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "GraphDC: A Divide-and-Conquer Multi-Agent System for Scalable Graph Algorithm Reasoning",
+      "raw_summary": "arXiv:2605.06671v1 Announce Type: new Abstract: Large Language Models (LLMs) have demonstrated strong potential for many mathematical problems. However, their performance on graph algorithmic tasks is still unsatisfying, since graphs are naturally more complex in topology and often require systematic multi-step reasoning, especially on larger graphs. Motivated by this gap, we propose GraphDC, a Divide-and-Conquer multi-agent framework for scalable graph algorithm reasoning. Specifically, inspired by Divide-and-Conquer design, GraphDC decomposes an input graph into smaller subgraphs, assigns each subgraph to a specialized agent for local reasoning, and uses a master agent to integrate the local outputs with inter-subgraph information to produce the final solution. This hierarchical design reduces the reasoning burden on individual agents, alleviates computational bottlenecks, and improves robustness on large graph instances. Extensive experiments show that GraphDC consistently outperforms existing methods on graph algorithm reasoning across diverse tasks and scales, especially on larger instances where direct end-to-end reasoning is less reliable.",
+      "score": 70,
+      "primary": "models",
+      "tags": [
+        "graph-neural-networks",
+        "multi-agent",
+        "reasoning"
+      ],
+      "heuristic_score": 56,
+      "url": "https://arxiv.org/abs/2605.06671",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 56,
+      "_rid": 10,
+      "llm_score": 72,
+      "why": "Framework multi-agente que descompone grafos complejos para resolver algoritmos, superando limitaciones de LLMs base.",
+      "entities": [
+        "GraphDC",
+        "Divide",
+        "Conquer Multi",
+        "Agent System",
+        "Scalable Graph Algorithm",
+        "Reasoning"
+      ],
+      "noise_penalty": 0,
+      "final_score": 70,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "AlphaEvolve: How our Gemini-powered coding agent is scaling impact across fields",
+      "link": "https://deepmind.google/blog/alphaevolve-impact/",
+      "published": "2026-05-06T10:43:49+00:00",
+      "summary": "Explore how AlphaEvolve's Gemini-powered algorithms are driving impact across business, infrastructure, and science.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "AlphaEvolve: How our Gemini-powered coding agent is scaling impact across fields",
+      "raw_summary": "Explore how AlphaEvolve's Gemini-powered algorithms are driving impact across business, infrastructure, and science.",
+      "score": 66,
+      "primary": "invest",
+      "tags": [
+        "agents",
+        "coding",
+        "gemini",
+        "productivity"
+      ],
+      "heuristic_score": 43,
+      "url": "https://deepmind.google/blog/alphaevolve-impact/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 43,
+      "_rid": 11,
+      "llm_score": 75,
+      "why": "DeepMind escala el uso de Gemini en desarrollo de software y ciencia mediante agentes especializados.",
+      "entities": [
+        "DeepMind",
+        "Gemini",
+        "How"
+      ],
+      "noise_penalty": 4,
+      "final_score": 66,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(4)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "VITA-QinYu: Expressive Spoken Language Model for Role-Playing and Singing",
+      "link": "https://arxiv.org/abs/2605.06765",
+      "published": "2026-05-11T04:00:00+00:00",
+      "summary": "arXiv:2605.06765v1 Announce Type: new Abstract: Human speech conveys expressiveness beyond linguistic content, including personality, mood, or performance elements, such as a comforting tone or humming a song, which we formalize as role-playing and singing. We present VITA-QinYu, the first expressive end-to-end (E2E) spoken language model (SLM) that goes beyond natural conversation to support both role-playing and singing generation. VITA-QinYu adopts a hybrid speech-text paradigm that extends interleaved text-audio modeling with multi-codebook audio tokens, a design enabling richer paralinguistic representation while preserving a clear separation between modalities to avoid interference. We further develop a comprehensive data generation pipeline to synthesize a total of 15.8K hours of natural conversation, role-playing, and singing data for training. VITA-QinYu demonstrates superior expressiveness, outperforming peer SLMs by 7 percentage points on objective role-playing benchmarks, and surpassing peer models by 0.13 points on a 5-point MOS scale for singing. Simultaneously, it achieves state-of-the-art conversational accuracy and fluency, exceeding prior SLMs by 1.38 and 4.98 percentage points on the C3 and URO benchmarks, respectively. We open-source our code and models and provide an easy-to-use demo with full-stack support for streaming and full-duplex interaction.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "VITA-QinYu: Expressive Spoken Language Model for Role-Playing and Singing",
+      "raw_summary": "arXiv:2605.06765v1 Announce Type: new Abstract: Human speech conveys expressiveness beyond linguistic content, including personality, mood, or performance elements, such as a comforting tone or humming a song, which we formalize as role-playing and singing. We present VITA-QinYu, the first expressive end-to-end (E2E) spoken language model (SLM) that goes beyond natural conversation to support both role-playing and singing generation. VITA-QinYu adopts a hybrid speech-text paradigm that extends interleaved text-audio modeling with multi-codebook audio tokens, a design enabling richer paralinguistic representation while preserving a clear separation between modalities to avoid interference. We further develop a comprehensive data generation pipeline to synthesize a total of 15.8K hours of natural conversation, role-playing, and singing data for training. VITA-QinYu demonstrates superior expressiveness, outperforming peer SLMs by 7 percentage points on objective role-playing benchmarks, and surpassing peer models by 0.13 points on a 5-point MOS scale for singing. Simultaneously, it achieves state-of-the-art conversational accuracy and fluency, exceeding prior SLMs by 1.38 and 4.98 percentage points on the C3 and URO benchmarks, respectively. We open-source our code and models and provide an easy-to-use demo with full-stack support for streaming and full-duplex interaction.",
+      "score": 62,
+      "primary": "models",
+      "tags": [
+        "speech-to-speech",
+        "slm",
+        "roleplay",
+        "multimodal"
+      ],
+      "heuristic_score": 75,
+      "url": "https://arxiv.org/abs/2605.06765",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 75,
+      "_rid": 6,
+      "llm_score": 60,
+      "why": "Modelo híbrido que soporta canto y rol; avance en la expresividad paralingüística de los modelos de lenguaje hablado.",
+      "entities": [
+        "VITA-QinYu",
+        "VITA",
+        "Expressive Spoken Language",
+        "Model",
+        "Role",
+        "Playing",
+        "Singing"
+      ],
+      "noise_penalty": 0,
+      "final_score": 62,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "IntentGrasp: A Comprehensive Benchmark for Intent Understanding",
+      "link": "https://arxiv.org/abs/2605.06832",
+      "published": "2026-05-11T04:00:00+00:00",
+      "summary": "arXiv:2605.06832v1 Announce Type: new Abstract: Accurately understanding the intent behind speech, conversation, and writing is crucial to the development of helpful Large Language Model (LLM) assistants. This paper introduces IntentGrasp, a comprehensive benchmark for evaluating the intent understanding capability of LLMs. Derived from 49 high-quality, open-licensed corpora spanning 12 diverse domains, IntentGrasp is constructed through source datasets curation, intent label contextualization, and task format unification. IntentGrasp contains a large-scale training set of 262,759 instances and two evaluation sets: an All Set of 12,909 test cases and a more balanced and challenging Gem Set of 470 cases. Extensive evaluations on 20 LLMs across 7 families (including frontier models such as GPT-5.4, Gemini-3.1-Pro, and Claude-Opus-4.7) demonstrate unsatisfactory performance, with scores below 60% on All Set and below 25% on Gem set. Notably, 17 out of 20 tested models perform worse than a random-guess baseline (15.2%) on Gem Set, while the estimated human performance is ~81.1%, showing substantial room for improvement. To enhance such ability, this paper proposes Intentional Fine-Tuning (IFT), which fine-tunes the models on the training set in IntentGrasp, yielding significant gains of 30+ F1 points on All Set and 20+ points on Gem Set. Tellingly, the leave-one-domain-out (Lodo) experiments further demonstrate the strong cross-domain generalizability of IFT, verifying that it is a promising approach to substantially enhancing the intent understanding of LLMs. Overall, by benchmarking and boosting intent understanding ability, this study sheds light on a promising path towards more intentional, capable, and safe AI assistants for human benefits and social good.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "IntentGrasp: A Comprehensive Benchmark for Intent Understanding",
+      "raw_summary": "arXiv:2605.06832v1 Announce Type: new Abstract: Accurately understanding the intent behind speech, conversation, and writing is crucial to the development of helpful Large Language Model (LLM) assistants. This paper introduces IntentGrasp, a comprehensive benchmark for evaluating the intent understanding capability of LLMs. Derived from 49 high-quality, open-licensed corpora spanning 12 diverse domains, IntentGrasp is constructed through source datasets curation, intent label contextualization, and task format unification. IntentGrasp contains a large-scale training set of 262,759 instances and two evaluation sets: an All Set of 12,909 test cases and a more balanced and challenging Gem Set of 470 cases. Extensive evaluations on 20 LLMs across 7 families (including frontier models such as GPT-5.4, Gemini-3.1-Pro, and Claude-Opus-4.7) demonstrate unsatisfactory performance, with scores below 60% on All Set and below 25% on Gem set. Notably, 17 out of 20 tested models perform worse than a random-guess baseline (15.2%) on Gem Set, while the estimated human performance is ~81.1%, showing substantial room for improvement. To enhance such ability, this paper proposes Intentional Fine-Tuning (IFT), which fine-tunes the models on the training set in IntentGrasp, yielding significant gains of 30+ F1 points on All Set and 20+ points on Gem Set. Tellingly, the leave-one-domain-out (Lodo) experiments further demonstrate the strong cross-domain generalizability of IFT, verifying that it is a promising approach to substantially enhancing the intent understanding of LLMs. Overall, by benchmarking and boosting intent understanding ability, this study sheds light on a promising path towards more intentional, capable, and safe AI assistants for human benefits and social good.",
+      "score": 59,
+      "primary": "models",
+      "tags": [
+        "intent",
+        "benchmarking",
+        "nlp",
+        "dataset"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2605.06832",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 2,
+      "llm_score": 52,
+      "why": "Nuevo benchmark masivo para comprensión de intención, crucial para la utilidad de asistentes pero de impacto incremental.",
+      "entities": [
+        "Comprehensive Benchmark",
+        "Intent Understanding"
+      ],
+      "noise_penalty": 0,
+      "final_score": 59,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "TajPersLexon: A Tajik-Persian Lexical Resource and Hybrid Model for Cross-Script Low-Resource NLP",
+      "link": "https://arxiv.org/abs/2605.06886",
+      "published": "2026-05-11T04:00:00+00:00",
+      "summary": "arXiv:2605.06886v1 Announce Type: new Abstract: This work introduces TajPersLexon, a curated Tajik--Persian parallel lexical resource of 40,112 word and short-phrase pairs for cross-script lexical retrieval, transliteration, and alignment in low-resource settings. We conduct a comprehensive CPU-only benchmark comparing three methodological families: (i) a lightweight hybrid pipeline, (ii) neural sequence-to-sequence models, and (iii) retrieval methods. Our evaluation establishes that the task is essentially solvable, with neural and retrieval baselines achieving 98-99% top-1 accuracy. Crucially, we demonstrate that while large multilingual sentence transformers fail on this exact lexical matching, our interpretable hybrid model offers a favorable accuracy-efficiency trade-off for practical applications, achieving 96.4% accuracy in an OCR post-correction task. All experiments use fixed random seeds for full reproducibility. The dataset, code, and models will be publicly released.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "TajPersLexon: A Tajik-Persian Lexical Resource and Hybrid Model for Cross-Script Low-Resource NLP",
+      "raw_summary": "arXiv:2605.06886v1 Announce Type: new Abstract: This work introduces TajPersLexon, a curated Tajik--Persian parallel lexical resource of 40,112 word and short-phrase pairs for cross-script lexical retrieval, transliteration, and alignment in low-resource settings. We conduct a comprehensive CPU-only benchmark comparing three methodological families: (i) a lightweight hybrid pipeline, (ii) neural sequence-to-sequence models, and (iii) retrieval methods. Our evaluation establishes that the task is essentially solvable, with neural and retrieval baselines achieving 98-99% top-1 accuracy. Crucially, we demonstrate that while large multilingual sentence transformers fail on this exact lexical matching, our interpretable hybrid model offers a favorable accuracy-efficiency trade-off for practical applications, achieving 96.4% accuracy in an OCR post-correction task. All experiments use fixed random seeds for full reproducibility. The dataset, code, and models will be publicly released.",
+      "score": 44,
+      "primary": "models",
+      "tags": [
+        "low-resource",
+        "nlp",
+        "tajik",
+        "persian"
+      ],
+      "heuristic_score": 70,
+      "url": "https://arxiv.org/abs/2605.06886",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 70,
+      "_rid": 8,
+      "llm_score": 40,
+      "why": "Recurso léxico para lenguajes de bajos recursos; demuestra limitaciones de transformers multilingües en mapeo exacto.",
+      "entities": [
+        "TajPersLexon",
+        "NLP",
+        "Tajik",
+        "Persian Lexical Resource",
+        "Hybrid Model",
+        "Cross",
+        "Script Low",
+        "Resource"
+      ],
+      "noise_penalty": 0,
+      "final_score": 44,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Reflections and New Directions for Human-Centered Large Language Models",
+      "link": "https://arxiv.org/abs/2605.06901",
+      "published": "2026-05-11T04:00:00+00:00",
+      "summary": "arXiv:2605.06901v1 Announce Type: new Abstract: Large Language Models (LLMs) are increasingly shaping the private and professional lives of users, with numerous applications in business, education, finance, healthcare, law, and science. With this rise in global influence comes greater urgency to build, evaluate, and deploy these systems in a manner that prioritizes not only technical capabilities but also human priorities. This work presents a framework for developing Human-Centered Large Language Models (HCLLMs), which integrates perspectives from Natural Language Processing (NLP), Human-Computer Interaction (HCI), and responsible AI. Considering the ethics, economics, and technical objectives of language modeling, we argue that model developers need to address human concerns, preferences, values, and goals, not only during a cursory post-training stage, but rather with rigor and care at every stage of the pipeline. This paper offers human-centered insights and recommendations for developers at each stage, from system design to data sourcing, model training, evaluation, and responsible deployment. Then we conclude with a case study, applying these insights to understand the future of work with HCLLMs.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Reflections and New Directions for Human-Centered Large Language Models",
+      "raw_summary": "arXiv:2605.06901v1 Announce Type: new Abstract: Large Language Models (LLMs) are increasingly shaping the private and professional lives of users, with numerous applications in business, education, finance, healthcare, law, and science. With this rise in global influence comes greater urgency to build, evaluate, and deploy these systems in a manner that prioritizes not only technical capabilities but also human priorities. This work presents a framework for developing Human-Centered Large Language Models (HCLLMs), which integrates perspectives from Natural Language Processing (NLP), Human-Computer Interaction (HCI), and responsible AI. Considering the ethics, economics, and technical objectives of language modeling, we argue that model developers need to address human concerns, preferences, values, and goals, not only during a cursory post-training stage, but rather with rigor and care at every stage of the pipeline. This paper offers human-centered insights and recommendations for developers at each stage, from system design to data sourcing, model training, evaluation, and responsible deployment. Then we conclude with a case study, applying these insights to understand the future of work with HCLLMs.",
+      "score": 43,
+      "primary": "misc",
+      "tags": [
+        "ethics",
+        "framework",
+        "human-centered"
+      ],
+      "heuristic_score": 74,
+      "url": "https://arxiv.org/abs/2605.06901",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 74,
+      "_rid": 7,
+      "llm_score": 45,
+      "why": "Propuesta de marco de trabajo para IA centrada en humanos, priorizando ética y economía sobre capacidades puras.",
+      "entities": [
+        "Reflections",
+        "New Directions",
+        "Human",
+        "Centered Large Language",
+        "Models"
+      ],
+      "noise_penalty": 6,
+      "final_score": 43,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(6)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "NVIDIA GauGAN2, a powerful AI model that allows anyone to convert simple written phrases like \"ocean waves\" in...",
+      "summary": "NVIDIA GauGAN2, a powerful AI model that allows anyone to convert simple written phrases like \"ocean waves\" into a photorealistic masterpiece. Learn more about GauGAN2 now: nvda.ws/3oNitRX GIF",
+      "link": "https://x.com/NVIDIAAI?post=2c2b7c4a0309",
+      "published": "Mon, 11 May 2026 09:58:20 GMT",
+      "source": "X @NVIDIAAI",
+      "feed_tags": [
+        "x",
+        "infra",
+        "chips"
+      ],
+      "raw_title": "NVIDIA GauGAN2, a powerful [#AI](https://x.com/hashtag/AI?src=hashtag_click) model that allows anyone to convert simple written phrases like \"ocean waves\" in...",
+      "raw_summary": "NVIDIA GauGAN2, a powerful [#AI](https://x.com/hashtag/AI?src=hashtag_click) model that allows anyone to convert simple written phrases like \"ocean waves\" into a photorealistic masterpiece. Learn more about GauGAN2 now: [nvda.ws/3oNitRX](https://t.co/IhNldsaEYV) GIF",
+      "score": 14,
+      "primary": "infra",
+      "tags": [
+        "infra",
+        "models"
+      ],
+      "heuristic_score": 34,
+      "url": "https://x.com/NVIDIAAI?post=2c2b7c4a0309",
+      "is_repeat": true,
+      "novelty_score": 80,
+      "adjusted_score": 14,
+      "llm_score": null,
+      "entities": [
+        "NVIDIA"
+      ],
+      "why": "NVIDIA GauGAN2, a powerful AI model that allows anyone to convert simple written phrases like \"ocean waves\" into a photorealistic masterpiece. Learn more about ",
+      "noise_penalty": 0,
+      "final_score": 14,
+      "ranking_reason": "fallback_adjusted-noise(0)",
+      "strategic_theme": "frontier_capability"
+    }
+  ]
+}
