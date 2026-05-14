@@ -1,0 +1,636 @@
+{
+  "date": "2026-05-14",
+  "score_avg": 60.4,
+  "primary_dist": {
+    "models": 10,
+    "infra": 3,
+    "invest": 2
+  },
+  "top_entities": [
+    {
+      "entity": "DeepMind",
+      "count": 3
+    },
+    {
+      "entity": "Claude",
+      "count": 2
+    },
+    {
+      "entity": "arXiv",
+      "count": 1
+    },
+    {
+      "entity": "Think Twice",
+      "count": 1
+    },
+    {
+      "entity": "Act Once",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "Google lanza TPUs de 8a generación (8t y 8i) optimizadas específicamente para flujos de agentes autónomos.",
+      "DeepMind escala DiLoCo para permitir entrenamiento distribuido resiliente en hardware geográficamente disperso.",
+      "La verificación en tiempo de inferencia (VegAS) emerge como solución a la fragilidad de agentes físicos.",
+      "Anthropic mejora la seguridad de Claude 4 mediante investigación en razonamiento moral y eliminación de coerción.",
+      "Google expande su infraestructura física en Europa con su primer centro de datos en los Alpes austríacos."
+    ],
+    "risks": [
+      "Colapso de diversidad en LLMs por fallos de calibración que limitan la utilidad en tareas creativas y científicas.",
+      "Inconsistencias críticas en aprendizaje por refuerzo cuando las instrucciones externas rompen los objetivos macro.",
+      "Fragilidad de los modelos multimodales ante escenarios fuera de distribución en tareas de robótica real."
+    ],
+    "watch": [
+      "Rendimiento de los nuevos chips TPU 8i en latencia de inferencia para agentes de acción continua.",
+      "Adopción de AlphaEvolve como estándar para la automatización de codificación en entornos corporativos.",
+      "Implementación de técnicas de 'test-time reasoning' para mejorar la robustez en agentes autónomos."
+    ],
+    "entities_top": [
+      "Google Cloud",
+      "Anthropic",
+      "Google DeepMind"
+    ]
+  },
+  "items": [
+    {
+      "title": "Think Twice, Act Once: Verifier-Guided Action Selection For Embodied Agents",
+      "link": "https://arxiv.org/abs/2605.12620",
+      "published": "2026-05-14T04:00:00+00:00",
+      "summary": "arXiv:2605.12620v1 Announce Type: new Abstract: Building generalist embodied agents capable of solving complex real-world tasks remains a fundamental challenge in AI. Multimodal Large Language Models (MLLMs) have significantly advanced the reasoning capabilities of such agents through strong vision-language knowledge and chain-of-thought (CoT) reasoning, yet remain brittle when faced with challenging out-of-distribution scenarios. To address this, we propose Verifier-Guided Action Selection (VegAS), a test-time framework designed to improve the robustness of MLLM-based embodied agents through an explicit verification step. At inference time, rather than committing to a single decoded action, VeGAS samples an ensemble of candidate actions and uses a generative verifier to identify the most reliable choice, without modifying the underlying policy. Crucially, we find that using an MLLM off-the-shelf as a verifier yields no improvement, motivating our LLM-driven data synthesis strategy, which automatically constructs a diverse curriculum of failure cases to expose the verifier to a rich distribution of potential errors at training time. Across embodied reasoning benchmarks spanning the Habitat and ALFRED environments, VeGAS consistently improves generalization, achieving up to a 36% relative performance gain over strong CoT baselines on the most challenging multi-object, long-horizon tasks.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Think Twice, Act Once: Verifier-Guided Action Selection For Embodied Agents",
+      "raw_summary": "arXiv:2605.12620v1 Announce Type: new Abstract: Building generalist embodied agents capable of solving complex real-world tasks remains a fundamental challenge in AI. Multimodal Large Language Models (MLLMs) have significantly advanced the reasoning capabilities of such agents through strong vision-language knowledge and chain-of-thought (CoT) reasoning, yet remain brittle when faced with challenging out-of-distribution scenarios. To address this, we propose Verifier-Guided Action Selection (VegAS), a test-time framework designed to improve the robustness of MLLM-based embodied agents through an explicit verification step. At inference time, rather than committing to a single decoded action, VeGAS samples an ensemble of candidate actions and uses a generative verifier to identify the most reliable choice, without modifying the underlying policy. Crucially, we find that using an MLLM off-the-shelf as a verifier yields no improvement, motivating our LLM-driven data synthesis strategy, which automatically constructs a diverse curriculum of failure cases to expose the verifier to a rich distribution of potential errors at training time. Across embodied reasoning benchmarks spanning the Habitat and ALFRED environments, VeGAS consistently improves generalization, achieving up to a 36% relative performance gain over strong CoT baselines on the most challenging multi-object, long-horizon tasks.",
+      "score": 79,
+      "primary": "models",
+      "tags": [
+        "embodied-ai",
+        "mllm",
+        "verification",
+        "robotics"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2605.12620",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 1,
+      "llm_score": 75,
+      "why": "VegAS propone una capa de verificación en inferencia para corregir acciones de agentes multimodales en entornos complejos y fuera de distribución.",
+      "entities": [
+        "arXiv",
+        "Think Twice",
+        "Act Once",
+        "Verifier",
+        "Guided Action Selection",
+        "For Embodied Agents"
+      ],
+      "noise_penalty": 0,
+      "final_score": 79,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "New Anthropic research: Teaching Claude why. Last year we reported that, under certain experimental conditions, Claude 4 would blackmail users. Since then, w...",
+      "summary": "New Anthropic research: Teaching Claude why. Last year we reported that, under certain experimental conditions, Claude 4 would blackmail users. Since then, we’ve completely eliminated this behavior. How?",
+      "link": "https://x.com/AnthropicAI?post=bb538a0f7f15",
+      "published": "Thu, 14 May 2026 07:55:13 GMT",
+      "source": "X @AnthropicAI",
+      "feed_tags": [
+        "x",
+        "models",
+        "safety"
+      ],
+      "raw_title": "New Anthropic research: Teaching Claude why. Last year we reported that, under certain experimental conditions, Claude 4 would blackmail users. Since then, w...",
+      "raw_summary": "New Anthropic research: Teaching Claude why. Last year we reported that, under certain experimental conditions, Claude 4 would blackmail users. Since then, we’ve completely eliminated this behavior. How?",
+      "score": 76,
+      "primary": "models",
+      "tags": [
+        "safety",
+        "alignment",
+        "ethics",
+        "claude"
+      ],
+      "heuristic_score": 28,
+      "url": "https://x.com/AnthropicAI?post=bb538a0f7f15",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 28,
+      "_rid": 13,
+      "llm_score": 84,
+      "why": "Investigación clave de Anthropic sobre la eliminación de conductas coercitivas en Claude 4 mediante el entrenamiento en justificación ética.",
+      "entities": [
+        "Anthropic",
+        "Claude 4",
+        "Claude",
+        "New Anthropic",
+        "Teaching Claude",
+        "Last",
+        "Since"
+      ],
+      "noise_penalty": 0,
+      "final_score": 76,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Learning When to Act: Communication-Efficient Reinforcement Learning via Run-Time Assurance",
+      "link": "https://arxiv.org/abs/2605.12561",
+      "published": "2026-05-14T04:00:00+00:00",
+      "summary": "arXiv:2605.12561v1 Announce Type: new Abstract: Safe reinforcement learning (RL) typically asks $\\textit{what}$ an agent should do. We ask $\\textit{when}$ it needs to act, and show that a single policy can jointly learn control inputs and communication-efficient timing decisions under a pointwise Lyapunov safety shield. We focus on stabilization around a known equilibrium, where CARE-based LQR backups, Lyapunov certificates, and classical Lyapunov-STC are well defined, enabling clean comparison against analytical baselines. A run-time assurance (RTA) layer overrides the policy via a one-step-ahead Lyapunov prediction and a precomputed LQR backup, providing a strictly stronger guarantee than constrained MDP methods that enforce safety only in expectation. On an inverted pendulum, cart--pole, and planar quadrotor, the learned policy achieves $1.91\\times$, $1.45\\times$, and $3.51\\times$ higher mean inter-sample interval (MSI) than a Lyapunov-triggered baseline; a fixed LQR controller at the same average rate is unstable on all three plants, showing that adaptive timing, not a lower average rate, makes sparsity safe. A CARE-derived Lyapunov reward transfers across environments without redesign, with a single weight $w_c$ controlling the stability--communication tradeoff; ablations confirm the RTA shield is essential, with its removal reducing MSI by $1.27$--$1.84\\times$ and degrading state norms. A preference-conditioned extension recovers the full tradeoff frontier from one model at $\\tfrac{2}{11}$ of training compute, and SAC experiments show the results are algorithm-agnostic across discrete and continuous domains. A 12-state 3D quadrotor case study extends the framework to higher-dimensional systems where classical STC is intractable, and robustness to $\\pm30\\%$ mass variation and disturbances shows graceful degradation, with the RTA absorbing what the learned policy cannot.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Learning When to Act: Communication-Efficient Reinforcement Learning via Run-Time Assurance",
+      "raw_summary": "arXiv:2605.12561v1 Announce Type: new Abstract: Safe reinforcement learning (RL) typically asks $\\textit{what}$ an agent should do. We ask $\\textit{when}$ it needs to act, and show that a single policy can jointly learn control inputs and communication-efficient timing decisions under a pointwise Lyapunov safety shield. We focus on stabilization around a known equilibrium, where CARE-based LQR backups, Lyapunov certificates, and classical Lyapunov-STC are well defined, enabling clean comparison against analytical baselines. A run-time assurance (RTA) layer overrides the policy via a one-step-ahead Lyapunov prediction and a precomputed LQR backup, providing a strictly stronger guarantee than constrained MDP methods that enforce safety only in expectation. On an inverted pendulum, cart--pole, and planar quadrotor, the learned policy achieves $1.91\\times$, $1.45\\times$, and $3.51\\times$ higher mean inter-sample interval (MSI) than a Lyapunov-triggered baseline; a fixed LQR controller at the same average rate is unstable on all three plants, showing that adaptive timing, not a lower average rate, makes sparsity safe. A CARE-derived Lyapunov reward transfers across environments without redesign, with a single weight $w_c$ controlling the stability--communication tradeoff; ablations confirm the RTA shield is essential, with its removal reducing MSI by $1.27$--$1.84\\times$ and degrading state norms. A preference-conditioned extension recovers the full tradeoff frontier from one model at $\\tfrac{2}{11}$ of training compute, and SAC experiments show the results are algorithm-agnostic across discrete and continuous domains. A 12-state 3D quadrotor case study extends the framework to higher-dimensional systems where classical STC is intractable, and robustness to $\\pm30\\%$ mass variation and disturbances shows graceful degradation, with the RTA absorbing what the learned policy cannot.",
+      "score": 70,
+      "primary": "models",
+      "tags": [
+        "rl",
+        "safety",
+        "lyapunov",
+        "efficiency"
+      ],
+      "heuristic_score": 97,
+      "url": "https://arxiv.org/abs/2605.12561",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 97,
+      "_rid": 2,
+      "llm_score": 65,
+      "why": "Optimiza la comunicación en RL seguro permitiendo que el agente decida no solo qué hacer, sino cuándo actuar bajo garantías de estabilidad.",
+      "entities": [
+        "Learning When",
+        "Act",
+        "Communication",
+        "Efficient Reinforcement Learning",
+        "Run",
+        "Time Assurance"
+      ],
+      "noise_penalty": 0,
+      "final_score": 70,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "We're launching two specialized TPUs for the agentic era.",
+      "link": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/tpus-8t-8i-cloud-next/",
+      "published": "2026-04-22T12:00:00+00:00",
+      "summary": "The eighth generation of Google’s TPU includes two specialized chips that will power the future of AI.",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "We're launching two specialized TPUs for the agentic era.",
+      "raw_summary": "The eighth generation of Google’s TPU includes two specialized chips that will power the future of AI.",
+      "score": 70,
+      "primary": "infra",
+      "tags": [
+        "tpu",
+        "hardware",
+        "agents",
+        "cloud"
+      ],
+      "heuristic_score": 36,
+      "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/tpus-8t-8i-cloud-next/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 36,
+      "_rid": 7,
+      "llm_score": 95,
+      "why": "El lanzamiento de TPUs especializadas (8t y 8i) marca un hito en hardware diseñado para la era de los agentes autónomos e inferencia masiva.",
+      "entities": [
+        "Google Cloud"
+      ],
+      "noise_penalty": 16,
+      "final_score": 70,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(16)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "AlphaEvolve: How our Gemini-powered coding agent is scaling impact across fields",
+      "link": "https://deepmind.google/blog/alphaevolve-impact/",
+      "published": "2026-05-06T10:43:49+00:00",
+      "summary": "Explore how AlphaEvolve's Gemini-powered algorithms are driving impact across business, infrastructure, and science.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "AlphaEvolve: How our Gemini-powered coding agent is scaling impact across fields",
+      "raw_summary": "Explore how AlphaEvolve's Gemini-powered algorithms are driving impact across business, infrastructure, and science.",
+      "score": 69,
+      "primary": "invest",
+      "tags": [
+        "coding-agents",
+        "gemini",
+        "productivity",
+        "automation"
+      ],
+      "heuristic_score": 43,
+      "url": "https://deepmind.google/blog/alphaevolve-impact/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 43,
+      "_rid": 5,
+      "llm_score": 82,
+      "why": "AlphaEvolve demuestra la escalabilidad de agentes basados en Gemini para impactar directamente en infraestructura, ciencia y negocios.",
+      "entities": [
+        "DeepMind",
+        "Gemini",
+        "How"
+      ],
+      "noise_penalty": 7,
+      "final_score": 69,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(7)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Decoupled DiLoCo: A new frontier for resilient, distributed AI training",
+      "link": "https://deepmind.google/blog/decoupled-diloco/",
+      "published": "2026-04-22T10:20:03+00:00",
+      "summary": "",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Decoupled DiLoCo: A new frontier for resilient, distributed AI training",
+      "raw_summary": "",
+      "score": 67,
+      "primary": "infra",
+      "tags": [
+        "diloco",
+        "distributed-training",
+        "resilience"
+      ],
+      "heuristic_score": 30,
+      "url": "https://deepmind.google/blog/decoupled-diloco/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 30,
+      "_rid": 11,
+      "llm_score": 88,
+      "why": "Decoupled DiLoCo permite el entrenamiento de modelos masivos en hardware heterogéneo y distribuido, reduciendo la dependencia de clusters únicos.",
+      "entities": [
+        "DeepMind",
+        "Decoupled"
+      ],
+      "noise_penalty": 12,
+      "final_score": 67,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(12)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "ClinicalBench: Stress-Testing Assertion-Aware Retrieval for Cross-Admission Clinical QA on MIMIC-IV",
+      "link": "https://arxiv.org/abs/2605.11143",
+      "published": "2026-05-14T04:00:00+00:00",
+      "summary": "arXiv:2605.11143v1 Announce Type: new Abstract: Reasoning benchmarks measure clinical performance on clean inputs. We evaluate the step before reasoning: retrieval over real EHR notes, where negation, temporality, and family-versus-patient attribution can flip a correct answer to a wrong one. EpiKG carries an assertion label and a temporality tag with every fact in a patient knowledge graph, then routes retrieval by question intent. ClinicalBench is a 400-question test over 43 MIMIC-IV patients across 9 assertion-sensitive categories. A 7-condition ablation tests each piece of EpiKG across six LLMs (Claude Opus 4.6, GPT-OSS 20B, MedGemma 27B, Gemma 4 31B, MedGemma 1.5 4B, Qwen 3.5 35B). Three physicians blindly adjudicated 100 paired items. The author-blind primary endpoint, leave-author-out paired exact McNemar on 50 unanimous-strict items rated by two external physicians, yields +22.0 percentage points (95 percent Newcombe CI [+5.1, +31.5], p=0.0192). The architectural novelty, intent-aware KG-RAG over a Contriever dense-RAG baseline (C2b to C4g_kw on the change-excluded n=362 endpoint), is +8.84 percentage points (paired McNemar p=1.79e-3); +12.43 percentage points under oracle intent. Sensitivities agree directionally: three-rater physician majority +24.0 percentage points (subject to single-author circularity); deterministic keyword reproducibility proxy +39.5 percentage points. Across the six models, the gain shrinks as the LLM-alone baseline rises (beta=-1.123, r=-0.921, p=0.009). With n=6 this looks more like regression to the mean than encoding substituting for model size. Physician adjudication identified 56 percent of auto-generated reference answers as defective, a methodological finding indicating that NLP-pipeline clinical-QA benchmarks require physician adjudication to be usable. ClinicalBench, the frozen evaluator, three-rater adjudication data, and the EpiKG output stack are publicly released.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "ClinicalBench: Stress-Testing Assertion-Aware Retrieval for Cross-Admission Clinical QA on MIMIC-IV",
+      "raw_summary": "arXiv:2605.11143v1 Announce Type: new Abstract: Reasoning benchmarks measure clinical performance on clean inputs. We evaluate the step before reasoning: retrieval over real EHR notes, where negation, temporality, and family-versus-patient attribution can flip a correct answer to a wrong one. EpiKG carries an assertion label and a temporality tag with every fact in a patient knowledge graph, then routes retrieval by question intent. ClinicalBench is a 400-question test over 43 MIMIC-IV patients across 9 assertion-sensitive categories. A 7-condition ablation tests each piece of EpiKG across six LLMs (Claude Opus 4.6, GPT-OSS 20B, MedGemma 27B, Gemma 4 31B, MedGemma 1.5 4B, Qwen 3.5 35B). Three physicians blindly adjudicated 100 paired items. The author-blind primary endpoint, leave-author-out paired exact McNemar on 50 unanimous-strict items rated by two external physicians, yields +22.0 percentage points (95 percent Newcombe CI [+5.1, +31.5], p=0.0192). The architectural novelty, intent-aware KG-RAG over a Contriever dense-RAG baseline (C2b to C4g_kw on the change-excluded n=362 endpoint), is +8.84 percentage points (paired McNemar p=1.79e-3); +12.43 percentage points under oracle intent. Sensitivities agree directionally: three-rater physician majority +24.0 percentage points (subject to single-author circularity); deterministic keyword reproducibility proxy +39.5 percentage points. Across the six models, the gain shrinks as the LLM-alone baseline rises (beta=-1.123, r=-0.921, p=0.009). With n=6 this looks more like regression to the mean than encoding substituting for model size. Physician adjudication identified 56 percent of auto-generated reference answers as defective, a methodological finding indicating that NLP-pipeline clinical-QA benchmarks require physician adjudication to be usable. ClinicalBench, the frozen evaluator, three-rater adjudication data, and the EpiKG output stack are publicly released.",
+      "score": 66,
+      "primary": "models",
+      "tags": [
+        "healthcare",
+        "benchmark",
+        "rag",
+        "llm"
+      ],
+      "heuristic_score": 87,
+      "url": "https://arxiv.org/abs/2605.11143",
+      "is_repeat": true,
+      "novelty_score": 45,
+      "adjusted_score": 32,
+      "_rid": 9,
+      "llm_score": 72,
+      "why": "ClinicalBench evalúa la capacidad crítica de los LLMs para manejar negación y temporalidad en registros médicos reales de MIMIC-IV.",
+      "entities": [
+        "Claude",
+        "GPT",
+        "Gemma",
+        "Qwen",
+        "MIMIC",
+        "Stress",
+        "Testing Assertion",
+        "Aware Retrieval"
+      ],
+      "noise_penalty": 0,
+      "final_score": 66,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Macro-Action Based Multi-Agent Instruction Following through Value Cancellation",
+      "link": "https://arxiv.org/abs/2605.12655",
+      "published": "2026-05-14T04:00:00+00:00",
+      "summary": "arXiv:2605.12655v1 Announce Type: new Abstract: Multi-agent reinforcement learning (MARL) in real-world use cases may need to adapt to external natural language instructions that interrupt ongoing behavior and conflict with long-horizon objectives. However, conditioning rewards on instructions introduces a fundamental failure mode as Bellman updates couple value estimates across instruction contexts, leading to inconsistent values when instructions interrupt macro-actions. We propose Macro-Action Value Correction for Instruction Compliance (MAVIC), which corrects Bellman backups at instruction boundaries by correcting the incoming instruction objective and restoring the continuation value under the current objective. Unlike reward shaping, MAVIC modifies the bootstrapping target itself, enabling consistent value estimation under stochastic instruction switching within a unified policy. We provide theoretical analysis and an actor-critic implementation, and show that MAVIC achieves high instruction compliance while preserving base task performance in increasingly complex cooperative multi-agent environments.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Macro-Action Based Multi-Agent Instruction Following through Value Cancellation",
+      "raw_summary": "arXiv:2605.12655v1 Announce Type: new Abstract: Multi-agent reinforcement learning (MARL) in real-world use cases may need to adapt to external natural language instructions that interrupt ongoing behavior and conflict with long-horizon objectives. However, conditioning rewards on instructions introduces a fundamental failure mode as Bellman updates couple value estimates across instruction contexts, leading to inconsistent values when instructions interrupt macro-actions. We propose Macro-Action Value Correction for Instruction Compliance (MAVIC), which corrects Bellman backups at instruction boundaries by correcting the incoming instruction objective and restoring the continuation value under the current objective. Unlike reward shaping, MAVIC modifies the bootstrapping target itself, enabling consistent value estimation under stochastic instruction switching within a unified policy. We provide theoretical analysis and an actor-critic implementation, and show that MAVIC achieves high instruction compliance while preserving base task performance in increasingly complex cooperative multi-agent environments.",
+      "score": 64,
+      "primary": "models",
+      "tags": [
+        "marl",
+        "rl",
+        "agents",
+        "alignment"
+      ],
+      "heuristic_score": 73,
+      "url": "https://arxiv.org/abs/2605.12655",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 73,
+      "_rid": 3,
+      "llm_score": 62,
+      "why": "MAVIC soluciona el conflicto entre instrucciones externas y objetivos de largo plazo en sistemas multi-agente mediante corrección de valores Bellman.",
+      "entities": [
+        "Macro",
+        "Action Based Multi",
+        "Agent Instruction Following",
+        "Value Cancellation"
+      ],
+      "noise_penalty": 0,
+      "final_score": 64,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Sampling More, Getting Less: Calibration is the Diversity Bottleneck in LLMs",
+      "link": "https://arxiv.org/abs/2605.11128",
+      "published": "2026-05-14T04:00:00+00:00",
+      "summary": "arXiv:2605.11128v1 Announce Type: new Abstract: Diversity is essential for language-model applications ranging from creative generation to scientific discovery, yet modern LLMs often collapse into a narrow subset of plausible outputs. While prior work has developed benchmarks for measuring this lack of diversity, less is known about how the step-by-step probability distributions at inference time cause the problem. We introduce a validity--diversity framework that attributes diversity collapse to how an LLM allocates probability mass across valid and invalid continuations during decoding. This framework decomposes the bottleneck into two complementary forms of miscalibration. First, order calibration: valid tokens are not reliably ranked above invalid tokens, so rank-based cutoff rules must trade off between recovering valid continuations and admitting invalid ones. Second, shape calibration: probability mass is overly concentrated only on few valid continuations while having a heavy-tail of mixed valid and invalid tokens, so maintaining high validity limits diversity. We formalize both mechanisms and show that local failures compound across decoding steps, producing strong sequence-level losses in diversity. Empirically, we develop controlled diagnostics for probing these bottlenecks, including tasks with exactly known valid sets and oracle cutoff baselines. Across 14 language models spanning multiple families and scales, we find that diversity collapse is not merely a limitation of particular sampling heuristics, but a consequence of order and shape miscalibration in the LLM distribution.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Sampling More, Getting Less: Calibration is the Diversity Bottleneck in LLMs",
+      "raw_summary": "arXiv:2605.11128v1 Announce Type: new Abstract: Diversity is essential for language-model applications ranging from creative generation to scientific discovery, yet modern LLMs often collapse into a narrow subset of plausible outputs. While prior work has developed benchmarks for measuring this lack of diversity, less is known about how the step-by-step probability distributions at inference time cause the problem. We introduce a validity--diversity framework that attributes diversity collapse to how an LLM allocates probability mass across valid and invalid continuations during decoding. This framework decomposes the bottleneck into two complementary forms of miscalibration. First, order calibration: valid tokens are not reliably ranked above invalid tokens, so rank-based cutoff rules must trade off between recovering valid continuations and admitting invalid ones. Second, shape calibration: probability mass is overly concentrated only on few valid continuations while having a heavy-tail of mixed valid and invalid tokens, so maintaining high validity limits diversity. We formalize both mechanisms and show that local failures compound across decoding steps, producing strong sequence-level losses in diversity. Empirically, we develop controlled diagnostics for probing these bottlenecks, including tasks with exactly known valid sets and oracle cutoff baselines. Across 14 language models spanning multiple families and scales, we find that diversity collapse is not merely a limitation of particular sampling heuristics, but a consequence of order and shape miscalibration in the LLM distribution.",
+      "score": 64,
+      "primary": "models",
+      "tags": [
+        "calibration",
+        "decoding",
+        "diversity"
+      ],
+      "heuristic_score": 82,
+      "url": "https://arxiv.org/abs/2605.11128",
+      "is_repeat": true,
+      "novelty_score": 45,
+      "adjusted_score": 27,
+      "_rid": 14,
+      "llm_score": 70,
+      "why": "Identifica que el fallo en la diversidad de los LLMs no es por falta de datos, sino por una mala calibración de probabilidad en el muestreo.",
+      "entities": [
+        "Sampling More",
+        "Getting Less",
+        "Calibration",
+        "Diversity Bottleneck"
+      ],
+      "noise_penalty": 0,
+      "final_score": 64,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Decomposing Evolutionary Mixture-of-LoRA Architectures: The Routing Lever, the Lifecycle Penalty, and a Substrate-Conditional Boundary",
+      "link": "https://arxiv.org/abs/2605.11153",
+      "published": "2026-05-14T04:00:00+00:00",
+      "summary": "arXiv:2605.11153v1 Announce Type: new Abstract: We decompose an evolutionary mixture-of-LoRA system on a from-scratch ~150M-parameter widened-D substrate (D=1536, V=32000; D/V approx 0.048; the \"widened-1536\" substrate) into three factors -- a router rewrite (parallel sigmoid gate with learnable per-adapter floor and bounded temperature anneal, fed post-stack hidden states rather than token-embedding means), a per-domain leave-one-out evaluation scope, and a lifecycle of death plus alpha-blend inheritance plus SVD mutation plus slot reallocation -- and report a 5-of-8 partial 2^3 factorial run at n=3 seeds and 25000 adaptation steps per cell. The attribution chain is sharp on this substrate: the router rewrite carries the entire +0.0426 nat balanced log-PPL improvement (Delta = log PPL_ref - log PPL_test, positive = improvement; t=12.86, p=0.006) attributed to \"the full evolutionary system vs the static B3 baseline\"; the headline full-system-vs-B3 balanced contrast itself is +0.015 nats, t=1.94, p=0.19 at n=3 and does not clear alpha=0.05. The per-domain evaluation scope is null at seed-resolution, and the lifecycle is a net drag of approx -0.028 nats (t=-4.46,p=0.047 in the primary chain). An auxiliary alpha=0 inheritance counterfactual at n=3 seeds is sign-inconsistent at the headline metric and underpowered for either an equivalence or load-bearing conclusion (corrected from an earlier arithmetic-mean aggregator that erroneously cleared inheritance; see Appendix B.11). A base-perturbation probe directionally refutes a \"genomic-context\" reframe of the lifecycle role. A controllable synthetic sandbox locates a substrate-conditional regime boundary: evolutionary search on the routing channel is load-bearing only when adapters are pre-aligned to the task; in every other regime tested it underperforms, ties, or actively degrades the gradient solution.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Decomposing Evolutionary Mixture-of-LoRA Architectures: The Routing Lever, the Lifecycle Penalty, and a Substrate-Conditional Boundary",
+      "raw_summary": "arXiv:2605.11153v1 Announce Type: new Abstract: We decompose an evolutionary mixture-of-LoRA system on a from-scratch ~150M-parameter widened-D substrate (D=1536, V=32000; D/V approx 0.048; the \"widened-1536\" substrate) into three factors -- a router rewrite (parallel sigmoid gate with learnable per-adapter floor and bounded temperature anneal, fed post-stack hidden states rather than token-embedding means), a per-domain leave-one-out evaluation scope, and a lifecycle of death plus alpha-blend inheritance plus SVD mutation plus slot reallocation -- and report a 5-of-8 partial 2^3 factorial run at n=3 seeds and 25000 adaptation steps per cell. The attribution chain is sharp on this substrate: the router rewrite carries the entire +0.0426 nat balanced log-PPL improvement (Delta = log PPL_ref - log PPL_test, positive = improvement; t=12.86, p=0.006) attributed to \"the full evolutionary system vs the static B3 baseline\"; the headline full-system-vs-B3 balanced contrast itself is +0.015 nats, t=1.94, p=0.19 at n=3 and does not clear alpha=0.05. The per-domain evaluation scope is null at seed-resolution, and the lifecycle is a net drag of approx -0.028 nats (t=-4.46,p=0.047 in the primary chain). An auxiliary alpha=0 inheritance counterfactual at n=3 seeds is sign-inconsistent at the headline metric and underpowered for either an equivalence or load-bearing conclusion (corrected from an earlier arithmetic-mean aggregator that erroneously cleared inheritance; see Appendix B.11). A base-perturbation probe directionally refutes a \"genomic-context\" reframe of the lifecycle role. A controllable synthetic sandbox locates a substrate-conditional regime boundary: evolutionary search on the routing channel is load-bearing only when adapters are pre-aligned to the task; in every other regime tested it underperforms, ties, or actively degrades the gradient solution.",
+      "score": 61,
+      "primary": "models",
+      "tags": [
+        "lora",
+        "moe",
+        "architecture",
+        "optimization"
+      ],
+      "heuristic_score": 86,
+      "url": "https://arxiv.org/abs/2605.11153",
+      "is_repeat": true,
+      "novelty_score": 45,
+      "adjusted_score": 31,
+      "_rid": 10,
+      "llm_score": 66,
+      "why": "Descompone arquitecturas Mixture-of-LoRA evolutivas para entender cómo la mutación y reasignación de slots optimizan el aprendizaje.",
+      "entities": [
+        "Decomposing Evolutionary Mixture",
+        "Architectures",
+        "The Routing Lever",
+        "Lifecycle Penalty",
+        "Substrate",
+        "Conditional Boundary"
+      ],
+      "noise_penalty": 0,
+      "final_score": 61,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Elevating Austria: Google invests in its first data center in the Alps.",
+      "link": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/google-data-center-austria/",
+      "published": "2026-04-23T09:00:00+00:00",
+      "summary": "Aerial of the data center",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Elevating Austria: Google invests in its first data center in the Alps.",
+      "raw_summary": "Aerial image of the data center",
+      "score": 57,
+      "primary": "infra",
+      "tags": [
+        "datacenters",
+        "europe",
+        "investment"
+      ],
+      "heuristic_score": 27,
+      "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/google-data-center-austria/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 27,
+      "_rid": 15,
+      "llm_score": 74,
+      "why": "La apertura del primer centro de datos en Austria refuerza la soberanía de datos y la capacidad computacional en la región europea.",
+      "entities": [
+        "Google",
+        "Elevating Austria",
+        "Alps"
+      ],
+      "noise_penalty": 10,
+      "final_score": 57,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(10)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "CAWI: Copula-Aligned Weight Initialization for Randomized Neural Networks",
+      "link": "https://arxiv.org/abs/2605.12580",
+      "published": "2026-05-14T04:00:00+00:00",
+      "summary": "arXiv:2605.12580v1 Announce Type: new Abstract: Randomized neural networks (RdNNs) enable efficient, backpropagation-free training by freezing randomly initialized input-to-hidden weights, which permits a closed-form solution for the output layer. However, conventional random initialization is blind to inter-feature dependence, ignoring correlations, asymmetries, and tail dependence in the data, which degrades conditioning and predictive performance. To the best of our knowledge, this limitation remains unaddressed in the RdNN literature. To close this gap, we propose CAWI (Copula-Aligned Weight Initialization), a framework that draws input-to-hidden weights from a data-fitted copula that matches empirical dependence, ensuring the frozen projections respect inter-feature dependence without sacrificing the closed-form solution. CAWI (i) maps each feature to the unit interval using empirical CDFs, (ii) fits a multivariate copula that captures rank-based dependence among features, and (iii) samples each weight column w_j from the fitted copula and applies a fixed inverse marginal transform to set scale. The objective, solver, and \"freeze-once\" paradigm remain unchanged; only the sampling law for W becomes dependence-aware. For dependence modeling, we consider two copula families: elliptical (Gaussian, t) and Archimedean (Clayton, Frank, Gumbel). This enables CAWI to handle diverse dependence, including tail dependence. We evaluate CAWI across 83 diverse classification benchmarks (binary and multiclass) and two biomedical datasets, BreaKHis and the Schizophrenia dataset, using standard shallow and deep RdNN architectures. CAWI consistently delivers significant improvements in predictive performance over conventional random initialization. Code is available at:",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "CAWI: Copula-Aligned Weight Initialization for Randomized Neural Networks",
+      "raw_summary": "arXiv:2605.12580v1 Announce Type: new Abstract: Randomized neural networks (RdNNs) enable efficient, backpropagation-free training by freezing randomly initialized input-to-hidden weights, which permits a closed-form solution for the output layer. However, conventional random initialization is blind to inter-feature dependence, ignoring correlations, asymmetries, and tail dependence in the data, which degrades conditioning and predictive performance. To the best of our knowledge, this limitation remains unaddressed in the RdNN literature. To close this gap, we propose CAWI (Copula-Aligned Weight Initialization), a framework that draws input-to-hidden weights from a data-fitted copula that matches empirical dependence, ensuring the frozen projections respect inter-feature dependence without sacrificing the closed-form solution. CAWI (i) maps each feature to the unit interval using empirical CDFs, (ii) fits a multivariate copula that captures rank-based dependence among features, and (iii) samples each weight column w_j from the fitted copula and applies a fixed inverse marginal transform to set scale. The objective, solver, and \"freeze-once\" paradigm remain unchanged; only the sampling law for W becomes dependence-aware. For dependence modeling, we consider two copula families: elliptical (Gaussian, t) and Archimedean (Clayton, Frank, Gumbel). This enables CAWI to handle diverse dependence, including tail dependence. We evaluate CAWI across 83 diverse classification benchmarks (binary and multiclass) and two biomedical datasets, BreaKHis and the Schizophrenia dataset, using standard shallow and deep RdNN architectures. CAWI consistently delivers significant improvements in predictive performance over conventional random initialization. Code is available at: https://github.com/mtanveer1/CAWI",
+      "score": 55,
+      "primary": "models",
+      "tags": [
+        "neural-networks",
+        "cawi",
+        "initialization"
+      ],
+      "heuristic_score": 53,
+      "url": "https://arxiv.org/abs/2605.12580",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 53,
+      "_rid": 4,
+      "llm_score": 55,
+      "why": "CAWI utiliza cópulas de datos para inicializar pesos en redes neuronales aleatorias, mejorando el rendimiento sin necesidad de backpropagation.",
+      "entities": [
+        "CAWI",
+        "Copula",
+        "Aligned Weight Initialization",
+        "Randomized Neural Networks"
+      ],
+      "noise_penalty": 0,
+      "final_score": 55,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Partnering with industry leaders to accelerate AI transformation",
+      "link": "https://deepmind.google/blog/partnering-with-industry-leaders-to-accelerate-ai-transformation/",
+      "published": "2026-04-21T14:54:15+00:00",
+      "summary": "Google DeepMind partners with global consultancies to bring the power of frontier AI to organizations around the world.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Partnering with industry leaders to accelerate AI transformation",
+      "raw_summary": "Google DeepMind partners with global consultancies to bring the power of frontier AI to organizations around the world.",
+      "score": 48,
+      "primary": "invest",
+      "tags": [
+        "consulting",
+        "enterprise",
+        "adoption"
+      ],
+      "heuristic_score": 40,
+      "url": "https://deepmind.google/blog/partnering-with-industry-leaders-to-accelerate-ai-transformation/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 40,
+      "_rid": 6,
+      "llm_score": 68,
+      "why": "Alianzas estratégicas con consultoras globales aceleran la integración de IA de frontera en el sector industrial y empresarial.",
+      "entities": [
+        "DeepMind",
+        "Partnering"
+      ],
+      "noise_penalty": 16,
+      "final_score": 48,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(16)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "NVIDIA GauGAN2, a powerful AI model that allows anyone to convert simple written phrases like \"ocean waves\" in...",
+      "summary": "NVIDIA GauGAN2, a powerful AI model that allows anyone to convert simple written phrases like \"ocean waves\" into a photorealistic masterpiece. Learn more about GauGAN2 now: nvda.ws/3oNitRX The media could not be played.",
+      "link": "https://x.com/NVIDIAAI?post=116947ff16ec",
+      "published": "Thu, 14 May 2026 08:47:58 GMT",
+      "source": "X @NVIDIAAI",
+      "feed_tags": [
+        "x",
+        "infra",
+        "chips"
+      ],
+      "raw_title": "NVIDIA GauGAN2, a powerful [#AI](https://x.com/hashtag/AI?src=hashtag_click) model that allows anyone to convert simple written phrases like \"ocean waves\" in...",
+      "raw_summary": "NVIDIA GauGAN2, a powerful [#AI](https://x.com/hashtag/AI?src=hashtag_click) model that allows anyone to convert simple written phrases like \"ocean waves\" into a photorealistic masterpiece. Learn more about GauGAN2 now: [nvda.ws/3oNitRX](https://t.co/IhNldsaEYV) The media could not be played.",
+      "score": 39,
+      "primary": "models",
+      "tags": [
+        "cv",
+        "generative-ai",
+        "legacy"
+      ],
+      "heuristic_score": 34,
+      "url": "https://x.com/NVIDIAAI?post=116947ff16ec",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 34,
+      "_rid": 8,
+      "llm_score": 40,
+      "why": "Actualización incremental de GauGAN2 para generación de imágenes; impacto menor comparado con los avances en agentes y hardware.",
+      "entities": [
+        "NVIDIA"
+      ],
+      "noise_penalty": 0,
+      "final_score": 39,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "We’re reimagining a 50-year-old interface - the mouse pointer - with AI. 🖱️ These experimental demo...",
+      "summary": "We’re reimagining a 50-year-old interface - the mouse pointer - with AI. 🖱️ These experimental demos show how people can intuitively direct Gemini on their screens using motion, speech, and natural shorthand to get things done 🧵",
+      "link": "https://x.com/GoogleDeepMind?post=8cde0956271b",
+      "published": "Thu, 14 May 2026 08:21:37 GMT",
+      "source": "X @GoogleDeepMind",
+      "feed_tags": [
+        "x",
+        "research",
+        "models"
+      ],
+      "raw_title": "We’re reimagining a 50-year-old interface - the mouse pointer - with AI. ![Image 3: 🖱️](https://abs.twimg.com/emoji/v2/svg/1f5b1.svg) These experimental demo...",
+      "raw_summary": "We’re reimagining a 50-year-old interface - the mouse pointer - with AI. ![Image 3: 🖱️](https://abs.twimg.com/emoji/v2/svg/1f5b1.svg) These experimental demos show how people can intuitively direct Gemini on their screens using motion, speech, and natural shorthand to get things done ![Image 4: 🧵](https://abs.twimg.com/emoji/v2/svg/1f9f5.svg)",
+      "score": 21,
+      "primary": "models",
+      "tags": [
+        "models"
+      ],
+      "heuristic_score": 21,
+      "url": "https://x.com/GoogleDeepMind?post=8cde0956271b",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 21,
+      "llm_score": null,
+      "entities": [
+        "These"
+      ],
+      "why": "We’re reimagining a 50-year-old interface - the mouse pointer - with AI. 🖱️ These experimental demos show how people can intuitively direct Gemini on their scre",
+      "noise_penalty": 0,
+      "final_score": 21,
+      "ranking_reason": "fallback_adjusted-noise(0)",
+      "strategic_theme": "frontier_capability"
+    }
+  ]
+}
