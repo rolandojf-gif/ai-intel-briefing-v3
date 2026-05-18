@@ -1,0 +1,643 @@
+{
+  "date": "2026-05-18",
+  "score_avg": 62.93,
+  "primary_dist": {
+    "models": 5,
+    "geopol": 1,
+    "invest": 1,
+    "infra": 5,
+    "misc": 3
+  },
+  "top_entities": [
+    {
+      "entity": "Multi",
+      "count": 2
+    },
+    {
+      "entity": "LangChain",
+      "count": 1
+    },
+    {
+      "entity": "LangGraph",
+      "count": 1
+    },
+    {
+      "entity": "CrewAI",
+      "count": 1
+    },
+    {
+      "entity": "SDOF",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "TSMC proyecta un choque de inversión masivo para 2026 con pedidos récord de herramientas por 31.3 mil millones de dólares.",
+      "Anthropic formaliza su postura geopolítica instando a EE.UU. a mantener el liderazgo en IA frente a competidores.",
+      "La orquestación de agentes evoluciona hacia máquinas de estado restringidas para garantizar procesos de negocio auditables.",
+      "Nuevas técnicas de 'Always Learning' optimizan la mezcla de datos en tiempo real durante todo el ciclo de vida del modelo.",
+      "La IA local en dispositivos de consumo prioriza la eficiencia energética mediante terminación temprana de agentes."
+    ],
+    "risks": [
+      "El cambio de ocupación compuesto en el ajuste fino de múltiples agentes degrada el rendimiento de forma cuadrática.",
+      "El consumo excesivo de tokens en flujos de agentes locales amenaza la autonomía de dispositivos móviles sin optimización.",
+      "Brecha entre la fluidez superficial de los LLM y la fidelidad semántica real en traducciones literarias complejas."
+    ],
+    "watch": [
+      "Revisiones al alza del CapEx de TSMC para 2026 y su impacto en la disponibilidad global de nodos avanzados.",
+      "Implementación de webhooks en Gemini para automatización de tareas de larga duración sin latencia de espera.",
+      "Integración de comprensión contextual directa en periféricos de entrada por parte de Google DeepMind."
+    ],
+    "entities_top": [
+      "TSMC",
+      "Anthropic",
+      "Google DeepMind"
+    ]
+  },
+  "items": [
+    {
+      "title": "SDOF: Taming the Alignment Tax in Multi-Agent Orchestration with State-Constrained Dispatch",
+      "link": "https://arxiv.org/abs/2605.15204",
+      "published": "2026-05-18T04:00:00+00:00",
+      "summary": "arXiv:2605.15204v1 Announce Type: new Abstract: Multi-agent orchestration frameworks such as LangChain, LangGraph, and CrewAI route tasks through graph-based pipelines but do not enforce the stage constraints that govern real business processes. We present SDOF, a framework that treats multi-agent execution as a constrained state machine. SDOF operates through two primary defensive layers, implemented by three components: (1) an Online-RLHF Specialized Intent Router trained via Generative Reward Modeling (GRPO) and (2) a StateAwareDispatcher with GoalStage finite-automaton checks and precondition/postcondition SkillRegistry validation for auditable execution control. On a recruitment system backed by the Beisen iTalent platform (6000+ enterprises), 185 expert-curated scenarios trigger 1671 live API calls. Our GSPO-aligned 7B Intent Router achieves higher joint accuracy than zero-shot GPT-4o on this FSM-constrained adversarial routing benchmark (80.9% versus 48.9%). In end-to-end execution, SDOF reaches 86.5% task completion (95% confidence interval 80.8 to 90.7) and blocks all 22 operations in the injection, illegal HR subset. Under a broader message-level blocking audit, SDOF attains precision 100% and recall 88%, expert agreement kappa=0.94. A separate evaluation on 960 SGD-derived dialogues spanning 8 service domains surfaces 201 stage-order conflicts under our FSM mapping, 41 of which arise in the normal split. This arXiv version reports the current validated scope; extended multi-seed training comparisons and deeper workflow evaluations will be released in a subsequent update.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "SDOF: Taming the Alignment Tax in Multi-Agent Orchestration with State-Constrained Dispatch",
+      "raw_summary": "arXiv:2605.15204v1 Announce Type: new Abstract: Multi-agent orchestration frameworks such as LangChain, LangGraph, and CrewAI route tasks through graph-based pipelines but do not enforce the stage constraints that govern real business processes. We present SDOF, a framework that treats multi-agent execution as a constrained state machine. SDOF operates through two primary defensive layers, implemented by three components: (1) an Online-RLHF Specialized Intent Router trained via Generative Reward Modeling (GRPO) and (2) a StateAwareDispatcher with GoalStage finite-automaton checks and precondition/postcondition SkillRegistry validation for auditable execution control. On a recruitment system backed by the Beisen iTalent platform (6000+ enterprises), 185 expert-curated scenarios trigger 1671 live API calls. Our GSPO-aligned 7B Intent Router achieves higher joint accuracy than zero-shot GPT-4o on this FSM-constrained adversarial routing benchmark (80.9% versus 48.9%). In end-to-end execution, SDOF reaches 86.5% task completion (95% confidence interval 80.8 to 90.7) and blocks all 22 operations in the injection, illegal HR subset. Under a broader message-level blocking audit, SDOF attains precision 100% and recall 88%, expert agreement kappa=0.94. A separate evaluation on 960 SGD-derived dialogues spanning 8 service domains surfaces 201 stage-order conflicts under our FSM mapping, 41 of which arise in the normal split. This arXiv version reports the current validated scope; extended multi-seed training comparisons and deeper workflow evaluations will be released in a subsequent update.",
+      "score": 81,
+      "primary": "models",
+      "tags": [
+        "multi-agent",
+        "orchestration",
+        "rlhf"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2605.15204",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 1,
+      "llm_score": 78,
+      "why": "Presenta SDOF, un framework que aplica restricciones de estado y validación de precondiciones a flujos de agentes para uso empresarial.",
+      "entities": [
+        "LangChain",
+        "LangGraph",
+        "CrewAI",
+        "SDOF",
+        "Taming",
+        "Alignment Tax",
+        "Multi",
+        "Agent Orchestration"
+      ],
+      "noise_penalty": 0,
+      "final_score": 81,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "We've published a paper that explains our views on AI competition between the US and China. The US and democratic allies hold the lead in frontier AI today. ...",
+      "summary": "We've published a paper that explains our views on AI competition between the US and China. The US and democratic allies hold the lead in frontier AI today. Read more on what it’ll take to keep that lead:",
+      "link": "https://x.com/AnthropicAI?post=f7bbd4f40551",
+      "published": "Mon, 18 May 2026 09:48:44 GMT",
+      "source": "X @AnthropicAI",
+      "feed_tags": [
+        "x",
+        "models",
+        "safety"
+      ],
+      "raw_title": "We've published a paper that explains our views on AI competition between the US and China. The US and democratic allies hold the lead in frontier AI today. ...",
+      "raw_summary": "We've published a paper that explains our views on AI competition between the US and China. The US and democratic allies hold the lead in frontier AI today. Read more on what it’ll take to keep that lead:",
+      "score": 81,
+      "primary": "geopol",
+      "tags": [
+        "policy",
+        "competition",
+        "us-china"
+      ],
+      "heuristic_score": 42,
+      "url": "https://x.com/AnthropicAI?post=f7bbd4f40551",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 42,
+      "_rid": 10,
+      "llm_score": 88,
+      "why": "Documento estratégico de Anthropic sobre la competencia de IA entre EE.UU. y China y la necesidad de mantener el liderazgo democrático.",
+      "entities": [
+        "Anthropic",
+        "EEUU",
+        "China"
+      ],
+      "noise_penalty": 0,
+      "final_score": 81,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "china_stack"
+    },
+    {
+      "title": "TSMC’s Record Tool Orders Hint at Another CapEx Shockwave",
+      "link": "https://semiwiki.com/semiconductor-manufacturers/tsmc/369288-tsmcs-record-tool-orders-hint-at-another-capex-shockwave/",
+      "published": "2026-05-15T15:00:50+00:00",
+      "summary": "TSMC’s latest Board of Directors capital appropriation announcement may appear mixed on the surface, but a closer look reveals one important conclusion: The company is quietly setting the stage for another potential upward revision to its already aggressive 2026 capital expenditure outlook. The headline figure of $31.3B &8230; Read More The post TSMC’s Record Tool Orders Hint at Another CapEx Shockwave appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "TSMC’s Record Tool Orders Hint at Another CapEx Shockwave",
+      "raw_summary": "TSMC’s latest Board of Directors capital appropriation announcement may appear mixed on the surface, but a closer look reveals one important conclusion: The company is quietly setting the stage for another potential upward revision to its already aggressive 2026 capital expenditure outlook. The headline figure of $31.3B &#8230; Read More The post TSMC’s Record Tool Orders Hint at Another CapEx Shockwave appeared first on SemiWiki .",
+      "score": 80,
+      "primary": "invest",
+      "tags": [
+        "semiconductors",
+        "capex",
+        "foundry"
+      ],
+      "heuristic_score": 66,
+      "url": "https://semiwiki.com/semiconductor-manufacturers/tsmc/369288-tsmcs-record-tool-orders-hint-at-another-capex-shockwave/",
+      "is_repeat": true,
+      "novelty_score": 45,
+      "adjusted_score": 11,
+      "_rid": 13,
+      "llm_score": 92,
+      "why": "Los pedidos récord de herramientas de TSMC por $31.3B señalan una expansión de capacidad masiva para la próxima generación de chips de IA.",
+      "entities": [
+        "TSMC",
+        "Record Tool Orders",
+        "Hint",
+        "Another",
+        "Shockwave"
+      ],
+      "noise_penalty": 0,
+      "final_score": 80,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "TeamTR: Trust-Region Fine-Tuning for Multi-Agent LLM Coordination",
+      "link": "https://arxiv.org/abs/2605.15207",
+      "published": "2026-05-18T04:00:00+00:00",
+      "summary": "arXiv:2605.15207v1 Announce Type: new Abstract: Multi-agent LLM systems have shown promise for complex reasoning, yet recent evaluations reveal they often underperform single-model baselines. We identify a structural failure mode in sequential fine-tuning of shared-context teams: updating one agent shifts the team's context distribution, and when subsequent updates are evaluated on cached rollouts, this mismatch compounds. We formalize this as the compounding occupancy shift and prove that stale-occupancy evaluation incurs a penalty that scales quadratically with the number of agents. In contrast, intermediate-occupancy evaluation reduces this to linear scaling. We propose TeamTR, a trust-region framework that resamples trajectories after each component update and enforces per-agent divergence control, yielding rigorous per-update and per-stage improvement lower bounds. Experiments show that TeamTR outperforms single-agent and sequential baselines with 7.1% on average, mitigates coordination regressions, and supports plug-and-play component replacement. Code is available at",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "TeamTR: Trust-Region Fine-Tuning for Multi-Agent LLM Coordination",
+      "raw_summary": "arXiv:2605.15207v1 Announce Type: new Abstract: Multi-agent LLM systems have shown promise for complex reasoning, yet recent evaluations reveal they often underperform single-model baselines. We identify a structural failure mode in sequential fine-tuning of shared-context teams: updating one agent shifts the team's context distribution, and when subsequent updates are evaluated on cached rollouts, this mismatch compounds. We formalize this as the compounding occupancy shift and prove that stale-occupancy evaluation incurs a penalty that scales quadratically with the number of agents. In contrast, intermediate-occupancy evaluation reduces this to linear scaling. We propose TeamTR, a trust-region framework that resamples trajectories after each component update and enforces per-agent divergence control, yielding rigorous per-update and per-stage improvement lower bounds. Experiments show that TeamTR outperforms single-agent and sequential baselines with 7.1% on average, mitigates coordination regressions, and supports plug-and-play component replacement. Code is available at https://github.com/Yydc/TeamTR.",
+      "score": 77,
+      "primary": "models",
+      "tags": [
+        "fine-tuning",
+        "multi-agent",
+        "optimization"
+      ],
+      "heuristic_score": 86,
+      "url": "https://arxiv.org/abs/2605.15207",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 86,
+      "_rid": 3,
+      "llm_score": 75,
+      "why": "Demuestra que el ajuste fino secuencial en equipos de agentes falla por desplazamientos de contexto y propone TeamTR para corregirlo.",
+      "entities": [
+        "TeamTR",
+        "Trust",
+        "Region Fine",
+        "Tuning",
+        "Multi",
+        "Agent",
+        "Coordination"
+      ],
+      "noise_penalty": 0,
+      "final_score": 77,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "AgentStop: Terminating Local AI Agents Early to Save Energy in Consumer Devices",
+      "link": "https://arxiv.org/abs/2605.15206",
+      "published": "2026-05-18T04:00:00+00:00",
+      "summary": "arXiv:2605.15206v1 Announce Type: new Abstract: Autonomous agents powered by large language models (LLMs) are increasingly used to automate complex, multi-step tasks such as coding or web-based question answering. While remote, cloud-based agents offer scalability and ease of deployment, they raise privacy concerns, depend on network connectivity, and incur recurring API costs. Deploying agents locally on user devices mitigates these issues by preserving data privacy and eliminating usage-based fees. However, agentic workflows are far more resource-intensive than typical LLM interactions. Iterative reasoning, tool use, and failure retries substantially increase token consumption, often expending significant compute without successfully completing tasks. In this work, we investigate the time, token, and energy overhead of locally deployed LLM-based agents on consumer hardware. Our measurements show that agentic execution increases GPU power draw, temperature, and battery drain compared to single-inference workloads. To address this inefficiency, we introduce AgentStop, a lightweight efficiency supervisor that predicts and preemptively terminates trajectories unlikely to succeed. Leveraging low-cost execution signals, such as token-level log probabilities, AgentStop can reduce wasted energy by 15-20% with minimal impact on task performance (<5% utility drop) for challenging web-based question answering and coding benchmarks. These findings position predictive early termination as a practical mechanism for enabling sustainable, privacy-preserving LLM agents on user devices. Our project code and data are available at",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "AgentStop: Terminating Local AI Agents Early to Save Energy in Consumer Devices",
+      "raw_summary": "arXiv:2605.15206v1 Announce Type: new Abstract: Autonomous agents powered by large language models (LLMs) are increasingly used to automate complex, multi-step tasks such as coding or web-based question answering. While remote, cloud-based agents offer scalability and ease of deployment, they raise privacy concerns, depend on network connectivity, and incur recurring API costs. Deploying agents locally on user devices mitigates these issues by preserving data privacy and eliminating usage-based fees. However, agentic workflows are far more resource-intensive than typical LLM interactions. Iterative reasoning, tool use, and failure retries substantially increase token consumption, often expending significant compute without successfully completing tasks. In this work, we investigate the time, token, and energy overhead of locally deployed LLM-based agents on consumer hardware. Our measurements show that agentic execution increases GPU power draw, temperature, and battery drain compared to single-inference workloads. To address this inefficiency, we introduce AgentStop, a lightweight efficiency supervisor that predicts and preemptively terminates trajectories unlikely to succeed. Leveraging low-cost execution signals, such as token-level log probabilities, AgentStop can reduce wasted energy by 15-20% with minimal impact on task performance (<5% utility drop) for challenging web-based question answering and coding benchmarks. These findings position predictive early termination as a practical mechanism for enabling sustainable, privacy-preserving LLM agents on user devices. Our project code and data are available at https://github.com/brave-experiments/AgentStop.",
+      "score": 76,
+      "primary": "infra",
+      "tags": [
+        "edge-ai",
+        "energy-efficiency",
+        "agents"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2605.15206",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 2,
+      "llm_score": 72,
+      "why": "Propone AgentStop para mitigar el alto consumo energético de agentes locales en dispositivos móviles mediante terminación temprana.",
+      "entities": [
+        "Terminating Local",
+        "Agents Early",
+        "Save Energy",
+        "Consumer Devices"
+      ],
+      "noise_penalty": 0,
+      "final_score": 76,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Always Learning, Always Mixing: Efficient and Simple Data Mixing All The Time",
+      "link": "https://arxiv.org/abs/2605.15220",
+      "published": "2026-05-18T04:00:00+00:00",
+      "summary": "arXiv:2605.15220v1 Announce Type: new Abstract: Data mixing decides how to combine different sources or types of data and is a consequential problem throughout language model training. In pretraining, data composition is a key determinant of model quality; in continual learning and adaptation, it governs what is retained and acquired. Yet existing data mixing methods address only one phase of this lifecycle at a time: some require smaller proxy models tied to a single training phase, others assume a fixed domain set, and continual learning lacks principled guidance altogether. We argue that data mixing is fundamentally an online decision making problem -- one that recurs throughout training and demands a single, unified solution. We introduce OP-Mix (On-Policy Mix), a data mixing algorithm that operates across the entire language model training lifecycle. Our main insight is that candidate data mixtures can be cheaply simulated by interpolating between low-rank adapters trained directly on the current model, eliminating separate proxy models and ensuring the search is always grounded in the model's actual learning dynamics. Across pretraining, continual midtraining, and continual instruction tuning, OP-Mix consistently finds near-optimal mixtures while using a fraction of the compute of the baselines. In pretraining, OP-Mix improves upon training without mixing by 6.3% in average perplexity. For continual learning, OP-Mix matches the performance of both retraining and on-policy distillation while using 66% and 95% less overall compute, respectively. OP-Mix suggests a different view of language model training: not a sequence of distinct phases, but a single continuous process of learning from data.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Always Learning, Always Mixing: Efficient and Simple Data Mixing All The Time",
+      "raw_summary": "arXiv:2605.15220v1 Announce Type: new Abstract: Data mixing decides how to combine different sources or types of data and is a consequential problem throughout language model training. In pretraining, data composition is a key determinant of model quality; in continual learning and adaptation, it governs what is retained and acquired. Yet existing data mixing methods address only one phase of this lifecycle at a time: some require smaller proxy models tied to a single training phase, others assume a fixed domain set, and continual learning lacks principled guidance altogether. We argue that data mixing is fundamentally an online decision making problem -- one that recurs throughout training and demands a single, unified solution. We introduce OP-Mix (On-Policy Mix), a data mixing algorithm that operates across the entire language model training lifecycle. Our main insight is that candidate data mixtures can be cheaply simulated by interpolating between low-rank adapters trained directly on the current model, eliminating separate proxy models and ensuring the search is always grounded in the model's actual learning dynamics. Across pretraining, continual midtraining, and continual instruction tuning, OP-Mix consistently finds near-optimal mixtures while using a fraction of the compute of the baselines. In pretraining, OP-Mix improves upon training without mixing by 6.3% in average perplexity. For continual learning, OP-Mix matches the performance of both retraining and on-policy distillation while using 66% and 95% less overall compute, respectively. OP-Mix suggests a different view of language model training: not a sequence of distinct phases, but a single continuous process of learning from data.",
+      "score": 75,
+      "primary": "infra",
+      "tags": [
+        "data-mixing",
+        "pretraining",
+        "continual-learning"
+      ],
+      "heuristic_score": 67,
+      "url": "https://arxiv.org/abs/2605.15220",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 67,
+      "_rid": 7,
+      "llm_score": 76,
+      "why": "Introduce un método de mezcla de datos en línea que funciona durante el entrenamiento, adaptación y aprendizaje continuo de modelos.",
+      "entities": [
+        "Always Learning",
+        "Always Mixing",
+        "Efficient",
+        "Simple Data Mixing",
+        "All The Time"
+      ],
+      "noise_penalty": 0,
+      "final_score": 75,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "DeepSlide: From Artifacts to Presentation Delivery",
+      "link": "https://arxiv.org/abs/2605.15202",
+      "published": "2026-05-18T04:00:00+00:00",
+      "summary": "arXiv:2605.15202v1 Announce Type: new Abstract: Presentations are a primary medium for scholarly communication, yet most AI slide generators optimize the artifact (a visually plausible deck) while under-optimizing the delivery process (pacing, narrative, and presentation preparation). We present DeepSlide, a human-in-the-loop multi-agent system that supports preparing the full presentation process, from requirement elicitation and time-budgeted narrative planning, to evidence-grounded slide--script generation, attention augmentation, and rehearsal support. DeepSlide integrates (i) a controllable logical-chain planner with per-node time budgets, (ii) a lightweight content-tree retriever for grounding, (iii) Markov-style sequential rendering with style inheritance, and (iv) sandboxed execution with minimal repair to ensure renderability. We further introduce a dual-scoreboard benchmark that cleanly separates static artifact quality from dynamic delivery excellence. Across 20 domains and diverse audience profiles, DeepSlide matches strong baselines on artifact quality while consistently achieving larger gains on delivery metrics, improving narrative flow, pacing precision, and slide--script synergy with clearer attention guidance.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "DeepSlide: From Artifacts to Presentation Delivery",
+      "raw_summary": "arXiv:2605.15202v1 Announce Type: new Abstract: Presentations are a primary medium for scholarly communication, yet most AI slide generators optimize the artifact (a visually plausible deck) while under-optimizing the delivery process (pacing, narrative, and presentation preparation). We present DeepSlide, a human-in-the-loop multi-agent system that supports preparing the full presentation process, from requirement elicitation and time-budgeted narrative planning, to evidence-grounded slide--script generation, attention augmentation, and rehearsal support. DeepSlide integrates (i) a controllable logical-chain planner with per-node time budgets, (ii) a lightweight content-tree retriever for grounding, (iii) Markov-style sequential rendering with style inheritance, and (iv) sandboxed execution with minimal repair to ensure renderability. We further introduce a dual-scoreboard benchmark that cleanly separates static artifact quality from dynamic delivery excellence. Across 20 domains and diverse audience profiles, DeepSlide matches strong baselines on artifact quality while consistently achieving larger gains on delivery metrics, improving narrative flow, pacing precision, and slide--script synergy with clearer attention guidance.",
+      "score": 65,
+      "primary": "models",
+      "tags": [
+        "productivity",
+        "human-in-the-loop",
+        "agents"
+      ],
+      "heuristic_score": 68,
+      "url": "https://arxiv.org/abs/2605.15202",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 68,
+      "_rid": 4,
+      "llm_score": 65,
+      "why": "Sistema multi-agente para generación de presentaciones que optimiza el proceso de entrega y narrativa, no solo el artefacto visual.",
+      "entities": [
+        "DeepSlide",
+        "From Artifacts",
+        "Presentation Delivery"
+      ],
+      "noise_penalty": 0,
+      "final_score": 65,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Adesua: Development and Feasibility Study of an AI WhatsApp Bot for Science Learning in West Africa",
+      "link": "https://arxiv.org/abs/2605.15376",
+      "published": "2026-05-18T04:00:00+00:00",
+      "summary": "arXiv:2605.15376v1 Announce Type: new Abstract: Sub-Saharan Africa faces persistently high student-teacher ratios and shortages of qualified teachers, limiting students' access to personalized learning support and formative assessment. To address this challenge, we present Adesua, a WhatsApp-based AI Teaching Assistant for science education that extends the Kwame for Science platform. Adesua leverages WhatsApp's widespread adoption in Africa to provide accessible, curriculum-aligned learning support for Junior High School (JHS) and Senior High School (SHS) students across West Africa. The system integrates curated textbooks and 33 years of national examination questions with generative AI to enable conversational question answering and automated assessment with feedback via a WhatsApp bot. Students can ask science questions, take timed or untimed multiple-choice tests by topic or exam year, and receive instant grading and detailed explanations of correct and incorrect responses. A 6-month feasibility deployment in 2025 had 56 active users in Ghana, including students and parents. Quantitative evaluation showed a high perceived usefulness, with a helpfulness score of 93.75\\% for AI-generated answers, albeit with a small number of ratings (n=16). These preliminary results provide a basis for more extensive future evaluation of a WhatsApp-based AI assistant to assess its potential to offer scalable, low-cost personalized learning support and formative assessment in resource-constrained educational contexts.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Adesua: Development and Feasibility Study of an AI WhatsApp Bot for Science Learning in West Africa",
+      "raw_summary": "arXiv:2605.15376v1 Announce Type: new Abstract: Sub-Saharan Africa faces persistently high student-teacher ratios and shortages of qualified teachers, limiting students' access to personalized learning support and formative assessment. To address this challenge, we present Adesua, a WhatsApp-based AI Teaching Assistant for science education that extends the Kwame for Science platform. Adesua leverages WhatsApp's widespread adoption in Africa to provide accessible, curriculum-aligned learning support for Junior High School (JHS) and Senior High School (SHS) students across West Africa. The system integrates curated textbooks and 33 years of national examination questions with generative AI to enable conversational question answering and automated assessment with feedback via a WhatsApp bot. Students can ask science questions, take timed or untimed multiple-choice tests by topic or exam year, and receive instant grading and detailed explanations of correct and incorrect responses. A 6-month feasibility deployment in 2025 had 56 active users in Ghana, including students and parents. Quantitative evaluation showed a high perceived usefulness, with a helpfulness score of 93.75\\% for AI-generated answers, albeit with a small number of ratings (n=16). These preliminary results provide a basis for more extensive future evaluation of a WhatsApp-based AI assistant to assess its potential to offer scalable, low-cost personalized learning support and formative assessment in resource-constrained educational contexts.",
+      "score": 61,
+      "primary": "misc",
+      "tags": [
+        "education",
+        "social-impact",
+        "whatsapp"
+      ],
+      "heuristic_score": 68,
+      "url": "https://arxiv.org/abs/2605.15376",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 68,
+      "_rid": 6,
+      "llm_score": 60,
+      "why": "Implementación de un tutor de IA vía WhatsApp para educación científica en África occidental basado en currículos nacionales.",
+      "entities": [
+        "Adesua",
+        "WhatsApp",
+        "Development",
+        "Feasibility Study",
+        "Bot",
+        "Science Learning",
+        "West Africa"
+      ],
+      "noise_penalty": 0,
+      "final_score": 61,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "For decades, your mouse only tracked where you were pointing. AI helps it understand what you're pointing at. ![ 💭](",
+      "summary": "For decades, your mouse only tracked where you were pointing. AI helps it understand what you're pointing at. 💭 This means a photo of a scribbled note could turn into an interactive to-do list, or a paused video frame can become a restaurant booking link.",
+      "link": "https://x.com/GoogleDeepMind?post=329a4e810696",
+      "published": "Mon, 18 May 2026 10:22:25 GMT",
+      "source": "X @GoogleDeepMind",
+      "feed_tags": [
+        "x",
+        "research",
+        "models"
+      ],
+      "raw_title": "For decades, your mouse only tracked where you were pointing. AI helps it understand what you're pointing at. ![Image 13: 💭](https://abs.twimg.com/emoji/v2/s...",
+      "raw_summary": "For decades, your mouse only tracked where you were pointing. AI helps it understand what you're pointing at. ![Image 13: 💭](https://abs.twimg.com/emoji/v2/svg/1f4ad.svg) This means a photo of a scribbled note could turn into an interactive to-do list, or a paused video frame can become a restaurant booking link.",
+      "score": 61,
+      "primary": "infra",
+      "tags": [
+        "ui-ux",
+        "computer-vision",
+        "productivity"
+      ],
+      "heuristic_score": 24,
+      "url": "https://x.com/GoogleDeepMind?post=329a4e810696",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 24,
+      "_rid": 12,
+      "llm_score": 68,
+      "why": "Propuesta de DeepMind para evolucionar el puntero del ratón hacia una herramienta con comprensión visual contextual mediante IA.",
+      "entities": [
+        "DeepMind"
+      ],
+      "noise_penalty": 0,
+      "final_score": 61,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "CEO Interview with Adi Gelvan of Speedata",
+      "link": "https://semiwiki.com/ceo-interviews/369224-ceo-interview-with-adi-gelvan-of-speedata/",
+      "published": "2026-05-17T19:00:32+00:00",
+      "summary": "Adi Gelvan is a veteran tech executive and serial entrepreneur, currently serving as the CEO of SPEEDATA , a semiconductor startup redefining analytics infrastructure with its purpose-built Analytics Processing Unit (APU). Known for his sharp operational instincts and deep technical insight, Adi joined Speedata in 2025 &8230; Read More The post CEO Interview with Adi Gelvan of Speedata appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "CEO Interview with Adi Gelvan of Speedata",
+      "raw_summary": "Adi Gelvan is a veteran tech executive and serial entrepreneur, currently serving as the CEO of SPEEDATA , a semiconductor startup redefining analytics infrastructure with its purpose-built Analytics Processing Unit (APU). Known for his sharp operational instincts and deep technical insight, Adi joined Speedata in 2025 &#8230; Read More The post CEO Interview with Adi Gelvan of Speedata appeared first on SemiWiki .",
+      "score": 57,
+      "primary": "infra",
+      "tags": [
+        "apu",
+        "analytics",
+        "hardware"
+      ],
+      "heuristic_score": 10,
+      "url": "https://semiwiki.com/ceo-interviews/369224-ceo-interview-with-adi-gelvan-of-speedata/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 10,
+      "_rid": 15,
+      "llm_score": 65,
+      "why": "Startup Speedata desarrolla una Unidad de Procesamiento de Analítica (APU) para redefinir la infraestructura de datos masivos.",
+      "entities": [
+        "Speedata",
+        "Adi Gelvan"
+      ],
+      "noise_penalty": 0,
+      "final_score": 57,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Automatic Construction of a Legal Citation Graph from 100 Million Ukrainian Court Decisions: Large-Scale Extraction, Topological Analysis, and Ontology-Driven Clustering",
+      "link": "https://arxiv.org/abs/2605.15362",
+      "published": "2026-05-18T04:00:00+00:00",
+      "summary": "arXiv:2605.15362v1 Announce Type: new Abstract: Half a billion citation edges extracted from 100.7 million Ukrainian court decisions reveal that judicial citation structure encodes legal domain boundaries without supervision and predicts future legislative importance with near-perfect accuracy. We construct the first large-scale citation graph from the complete EDRSR registry (99.5 million full texts, 1.1 TB), extracting 502 million citation links across six types via regex on commodity hardware in approximately 5 hours, with precision of 1.00 on a 200-decision validation sample (95% Wilson CI: [0.982, 1.000]). Three principal findings emerge. (1) The degree distribution follows a power law (alpha = 1.57 +/- 0.008), placing the Ukrainian court network near the EU Court of Justice and below the US Supreme Court, with hub articles cited by millions of decisions. (2) Louvain community detection on the co-citation projection recovers legal domain boundaries (civil, criminal, administrative, commercial) with modularity Q = 0.44-0.55 and temporal stability (NMI = 0.83-0.86 across periods), constituting an automatically constructed legal ontology grounded in judicial practice. (3) Citation features predict top-1000 articles with AUC = 0.9984, substantially outperforming a naive frequency baseline (P@1000 = 0.655); temporal dynamics detect legislative regime changes as phase transitions and the 2022 invasion as a citation entropy spike (H: 11.02 -> 13.49) with emergent wartime legislation nodes. The citation-derived ontology is operationalized as the domain layer of a workflow memory system for LLM-assisted legal analysis, connecting to the ontology-controlled paradigm. The extraction pipeline, analysis code, and aggregated statistics are released as open data.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Automatic Construction of a Legal Citation Graph from 100 Million Ukrainian Court Decisions: Large-Scale Extraction, Topological Analysis, and Ontology-Driven Clustering",
+      "raw_summary": "arXiv:2605.15362v1 Announce Type: new Abstract: Half a billion citation edges extracted from 100.7 million Ukrainian court decisions reveal that judicial citation structure encodes legal domain boundaries without supervision and predicts future legislative importance with near-perfect accuracy. We construct the first large-scale citation graph from the complete EDRSR registry (99.5 million full texts, 1.1 TB), extracting 502 million citation links across six types via regex on commodity hardware in approximately 5 hours, with precision of 1.00 on a 200-decision validation sample (95% Wilson CI: [0.982, 1.000]). Three principal findings emerge. (1) The degree distribution follows a power law (alpha = 1.57 +/- 0.008), placing the Ukrainian court network near the EU Court of Justice and below the US Supreme Court, with hub articles cited by millions of decisions. (2) Louvain community detection on the co-citation projection recovers legal domain boundaries (civil, criminal, administrative, commercial) with modularity Q = 0.44-0.55 and temporal stability (NMI = 0.83-0.86 across periods), constituting an automatically constructed legal ontology grounded in judicial practice. (3) Citation features predict top-1000 articles with AUC = 0.9984, substantially outperforming a naive frequency baseline (P@1000 = 0.655); temporal dynamics detect legislative regime changes as phase transitions and the 2022 invasion as a citation entropy spike (H: 11.02 -> 13.49) with emergent wartime legislation nodes. The citation-derived ontology is operationalized as the domain layer of a workflow memory system for LLM-assisted legal analysis, connecting to the ontology-controlled paradigm. The extraction pipeline, analysis code, and aggregated statistics are released as open data.",
+      "score": 55,
+      "primary": "misc",
+      "tags": [
+        "legal-tech",
+        "nlp",
+        "ukraine"
+      ],
+      "heuristic_score": 53,
+      "url": "https://arxiv.org/abs/2605.15362",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 53,
+      "_rid": 8,
+      "llm_score": 55,
+      "why": "Extracción y análisis masivo de 100 millones de decisiones judiciales ucranianas para predecir importancia legislativa futura.",
+      "entities": [
+        "EDRSR",
+        "Automatic Construction",
+        "Legal Citation Graph",
+        "Million Ukrainian Court",
+        "Decisions",
+        "Large",
+        "Scale Extraction",
+        "Topological Analysis"
+      ],
+      "noise_penalty": 0,
+      "final_score": 55,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Reduce friction and latency for long-running jobs with Webhooks in Gemini API",
+      "link": "https://blog.google/innovation-and-ai/technology/developers-tools/event-driven-webhooks/",
+      "published": "2026-05-04T15:30:00+00:00",
+      "summary": "Gemini API",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Reduce friction and latency for long-running jobs with Webhooks in Gemini API",
+      "raw_summary": "Gemini API",
+      "score": 55,
+      "primary": "infra",
+      "tags": [
+        "api",
+        "webhooks",
+        "gemini"
+      ],
+      "heuristic_score": 34,
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/event-driven-webhooks/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 34,
+      "_rid": 11,
+      "llm_score": 70,
+      "why": "Google introduce webhooks en Gemini API para gestionar trabajos de larga duración de forma asíncrona y reducir fricción.",
+      "entities": [
+        "Google",
+        "Gemini",
+        "Reduce",
+        "Webhooks"
+      ],
+      "noise_penalty": 10,
+      "final_score": 55,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(10)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Fluency and Faithfulness in Human and Machine Literary Translation",
+      "link": "https://arxiv.org/abs/2605.15282",
+      "published": "2026-05-18T04:00:00+00:00",
+      "summary": "arXiv:2605.15282v1 Announce Type: new Abstract: Literary translation requires balancing target-language fluency with faithfulness to the source. Recent large language models (LLMs) often produce fluent translations, but it remains unclear whether fluency corresponds to semantic preservation in literary text. We examine this relationship using 130,486 translated paragraphs from 106 novels in 16 source languages, including human, Google Translate, and TranslateGemma translations. Fluency is measured as original-likeness with a translationese classifier trained on paragraph part-of-speech n-grams, and faithfulness with the automatic translation evaluation metric COMET-KIWI. We control for paragraph length and find a consistent negative correlation between fluency and faithfulness. The pattern appears for both human and Google Translate, but is weaker and often non-significant for TranslateGemma. These results show that segment length matters for automatic evaluation and suggest a tradeoff between fluency and faithfulness in literary translation.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Fluency and Faithfulness in Human and Machine Literary Translation",
+      "raw_summary": "arXiv:2605.15282v1 Announce Type: new Abstract: Literary translation requires balancing target-language fluency with faithfulness to the source. Recent large language models (LLMs) often produce fluent translations, but it remains unclear whether fluency corresponds to semantic preservation in literary text. We examine this relationship using 130,486 translated paragraphs from 106 novels in 16 source languages, including human, Google Translate, and TranslateGemma translations. Fluency is measured as original-likeness with a translationese classifier trained on paragraph part-of-speech n-grams, and faithfulness with the automatic translation evaluation metric COMET-KIWI. We control for paragraph length and find a consistent negative correlation between fluency and faithfulness. The pattern appears for both human and Google Translate, but is weaker and often non-significant for TranslateGemma. These results show that segment length matters for automatic evaluation and suggest a tradeoff between fluency and faithfulness in literary translation.",
+      "score": 49,
+      "primary": "models",
+      "tags": [
+        "translation",
+        "metrics",
+        "literary"
+      ],
+      "heuristic_score": 44,
+      "url": "https://arxiv.org/abs/2605.15282",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 44,
+      "_rid": 9,
+      "llm_score": 50,
+      "why": "Evalúa la tensión entre fluidez y fidelidad en traducciones literarias realizadas por humanos y modelos como Gemma.",
+      "entities": [
+        "Google Translate",
+        "Gemma",
+        "Fluency",
+        "Faithfulness",
+        "Human",
+        "Machine Literary Translation"
+      ],
+      "noise_penalty": 0,
+      "final_score": 49,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Greedy or not, here I come: Language production under vocabulary constraints in humans and resource-rational models",
+      "link": "https://arxiv.org/abs/2605.15365",
+      "published": "2026-05-18T04:00:00+00:00",
+      "summary": "arXiv:2605.15365v1 Announce Type: new Abstract: Communicating using only a limited vocabulary is a common but challenging cognitive phenomenon, requiring an ideal communicator to plan carefully to optimize for intelligibility while circumventing a constrained lexicon. In this work, we investigate how humans respond to a broad array of questions under variable vocabulary limitations, consisting of only 250 highly frequent words at the most restrictive. We provide theoretically motivated comparisons to greedy and globally optimal sampling algorithms using Sequential Monte Carlo inference with large language models. Humans generally resemble greedy sampling more than globally optimal sampling, though more skilled humans are more likely to backtrack and revise -- a non-greedy behavior. An observed human pattern of leaning on semantically light words in high-constraint settings falls out of both greedy and globally optimal sampling. We discuss the results and their broader implications for resource-rational cognition, psycholinguistics, L2 communication, and language impairments.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Greedy or not, here I come: Language production under vocabulary constraints in humans and resource-rational models",
+      "raw_summary": "arXiv:2605.15365v1 Announce Type: new Abstract: Communicating using only a limited vocabulary is a common but challenging cognitive phenomenon, requiring an ideal communicator to plan carefully to optimize for intelligibility while circumventing a constrained lexicon. In this work, we investigate how humans respond to a broad array of questions under variable vocabulary limitations, consisting of only 250 highly frequent words at the most restrictive. We provide theoretically motivated comparisons to greedy and globally optimal sampling algorithms using Sequential Monte Carlo inference with large language models. Humans generally resemble greedy sampling more than globally optimal sampling, though more skilled humans are more likely to backtrack and revise -- a non-greedy behavior. An observed human pattern of leaning on semantically light words in high-constraint settings falls out of both greedy and globally optimal sampling. We discuss the results and their broader implications for resource-rational cognition, psycholinguistics, L2 communication, and language impairments.",
+      "score": 48,
+      "primary": "models",
+      "tags": [
+        "cognition",
+        "vocabulary-constraints",
+        "research"
+      ],
+      "heuristic_score": 68,
+      "url": "https://arxiv.org/abs/2605.15365",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 68,
+      "_rid": 5,
+      "llm_score": 45,
+      "why": "Estudio comparativo que muestra que los humanos tienden al muestreo 'greedy' bajo limitaciones de vocabulario, similar a ciertos modelos.",
+      "entities": [
+        "Greedy",
+        "Language"
+      ],
+      "noise_penalty": 0,
+      "final_score": 48,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "CEO Interview with RP Singh of Seasia Infotech",
+      "link": "https://semiwiki.com/ceo-interviews/369172-ceo-interview-with-rp-singh/",
+      "published": "2026-05-17T21:00:12+00:00",
+      "summary": "Rupinder Pal Singh is the co-founder and CEO of Seasia Infotech , a role he takes great pride in. Sharing insights into the business and industry is something he always looks forward to. As the leader of the Seasia Group of Companies, Singh is tasked with overseeing all aspects of operations, ensuring that the company delivers&8230; Read More The post CEO Interview with RP Singh of Seasia Infotech appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "CEO Interview with RP Singh of Seasia Infotech",
+      "raw_summary": "Rupinder Pal Singh is the co-founder and CEO of Seasia Infotech , a role he takes great pride in. Sharing insights into the business and industry is something he always looks forward to. As the leader of the Seasia Group of Companies, Singh is tasked with overseeing all aspects of operations, ensuring that the company delivers&#8230; Read More The post CEO Interview with RP Singh of Seasia Infotech appeared first on SemiWiki .",
+      "score": 23,
+      "primary": "misc",
+      "tags": [
+        "outsourcing",
+        "ceo-interview",
+        "business"
+      ],
+      "heuristic_score": 10,
+      "url": "https://semiwiki.com/ceo-interviews/369172-ceo-interview-with-rp-singh/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 10,
+      "_rid": 14,
+      "llm_score": 25,
+      "why": "Entrevista corporativa estándar sobre operaciones de servicios de TI sin impacto directo en tecnologías de IA de vanguardia.",
+      "entities": [
+        "Seasia Infotech",
+        "Singh"
+      ],
+      "noise_penalty": 0,
+      "final_score": 23,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "other"
+    }
+  ]
+}
