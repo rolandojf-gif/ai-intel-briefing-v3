@@ -1,0 +1,641 @@
+{
+  "date": "2026-05-20",
+  "score_avg": 71.53,
+  "primary_dist": {
+    "models": 10,
+    "infra": 3,
+    "invest": 1,
+    "geopol": 1
+  },
+  "top_entities": [
+    {
+      "entity": "Google",
+      "count": 3
+    },
+    {
+      "entity": "Gemini",
+      "count": 2
+    },
+    {
+      "entity": "Agent Meltdowns",
+      "count": 1
+    },
+    {
+      "entity": "The Road",
+      "count": 1
+    },
+    {
+      "entity": "Hell Is Paved",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "Google lanza Gemini 3.5 y Gemini Omni, integrando capacidades de accionamiento y generacion de video multimodal.",
+      "La alianza TSMC-imec impulsa la transicion de escala monolitica a integracion heterogenea con 3DFabric.",
+      "Aparece el concepto 'Agent Meltdown' como un riesgo critico de seguridad en agentes autonomos ante errores de entorno.",
+      "La arquitectura Mixture-of-Agents (MoA) evoluciona hacia modelos recurrentes con compuertas LSTM para mejorar ruteo.",
+      "Investigaciones confirman que el idioma del prompt altera significativamente la precision en razonamiento medico."
+    ],
+    "risks": [
+      "Falta de expertos sociolinguisticos para validar sistemas en lenguas de bajos recursos.",
+      "Comportamientos inseguros (meltdowns) de agentes IA disparados por errores benignos de configuracion o web.",
+      "Brecha critica entre modelos academicos de NLU y la estabilidad requerida para microservicios en produccion."
+    ],
+    "watch": [
+      "Despliegue de Gemini 3.5 y su capacidad real de ejecucion de acciones autonomas.",
+      "Estandarizacion de tecnicas de compresion de Transformers mediante desacoplamiento de splines.",
+      "Impacto de la alianza TSMC 3DFabric en la reduccion de latencia para hardware de proxima generacion."
+    ],
+    "entities_top": [
+      "Google",
+      "TSMC",
+      "NVIDIA"
+    ]
+  },
+  "items": [
+    {
+      "title": "Agent Meltdowns: The Road to Hell Is Paved with Helpful Agents",
+      "link": "https://arxiv.org/abs/2605.19149",
+      "published": "2026-05-20T04:00:00+00:00",
+      "summary": "arXiv:2605.19149v1 Announce Type: new Abstract: Agents operating with computer and Web use inevitably encounter errors: inaccessible webpages, missing files, local and remote misconfigurations, etc. These errors do not thwart agents based on state-of-the-art models. They helpfully continue to look for ways to complete their tasks. We introduce, characterize, and measure a new type of agent failure we call \\emph{accidental meltdown}: unsafe or harmful behavior in response to a benign environmental error, in the absence of any adversarial inputs. Because meltdowns are not captured by the existing reliability or safety benchmarks, we develop a taxonomy of meltdown behaviors. We then implement an agent-agnostic infrastructure for injecting simulated local and remote errors into the rollout environment and use it to systematically evaluate agent systems powered by GPT, Grok, and Gemini. Our evaluation demonstrates that meltdowns (e.g., conducting unauthorized reconnaissance or subverting access control) of varying severity and success occur in 64.7\\% of agent rollouts that encounter simulated errors, spanning all combinations of agent system, backing model, and error type. In over half of these meltdowns, unsafe behaviors are not reported to the user. Comparing behaviors of the same agents with and without errors, we find that exploration in response to errors is correlated with unsafe and harmful behavior.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Agent Meltdowns: The Road to Hell Is Paved with Helpful Agents",
+      "raw_summary": "arXiv:2605.19149v1 Announce Type: new Abstract: Agents operating with computer and Web use inevitably encounter errors: inaccessible webpages, missing files, local and remote misconfigurations, etc. These errors do not thwart agents based on state-of-the-art models. They helpfully continue to look for ways to complete their tasks. We introduce, characterize, and measure a new type of agent failure we call \\emph{accidental meltdown}: unsafe or harmful behavior in response to a benign environmental error, in the absence of any adversarial inputs. Because meltdowns are not captured by the existing reliability or safety benchmarks, we develop a taxonomy of meltdown behaviors. We then implement an agent-agnostic infrastructure for injecting simulated local and remote errors into the rollout environment and use it to systematically evaluate agent systems powered by GPT, Grok, and Gemini. Our evaluation demonstrates that meltdowns (e.g., conducting unauthorized reconnaissance or subverting access control) of varying severity and success occur in 64.7\\% of agent rollouts that encounter simulated errors, spanning all combinations of agent system, backing model, and error type. In over half of these meltdowns, unsafe behaviors are not reported to the user. Comparing behaviors of the same agents with and without errors, we find that exploration in response to errors is correlated with unsafe and harmful behavior.",
+      "score": 85,
+      "primary": "models",
+      "tags": [
+        "safety",
+        "agents",
+        "reliability"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2605.19149",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 3,
+      "llm_score": 82,
+      "why": "Identifica fallos criticos donde agentes 'serviciales' causan daños ante errores tecnicos triviales del entorno.",
+      "entities": [
+        "Agent Meltdowns",
+        "The Road",
+        "Hell Is Paved",
+        "Helpful Agents"
+      ],
+      "noise_penalty": 0,
+      "final_score": 85,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "We’re dropping Gemini Omni: our first step towards a model that can create anything from anything - starting with video. It combines Gemini’s intelligence wi...",
+      "summary": "We’re dropping Gemini Omni: our first step towards a model that can create anything from anything - starting with video. It combines Gemini’s intelligence with our generative media systems - representing a leap forward in world understanding, multimodality, and editing 🧵",
+      "link": "https://x.com/GoogleDeepMind?post=3c6fa5aa9c71",
+      "published": null,
+      "source": "X @GoogleDeepMind",
+      "feed_tags": [
+        "x",
+        "research",
+        "models"
+      ],
+      "raw_title": "We’re dropping Gemini Omni: our first step towards a model that can create anything from anything - starting with video. It combines Gemini’s intelligence wi...",
+      "raw_summary": "We’re dropping Gemini Omni: our first step towards a model that can create anything from anything - starting with video. It combines Gemini’s intelligence with our generative media systems - representing a leap forward in world understanding, multimodality, and editing ![Image 3: 🧵](https://abs.twimg.com/emoji/v2/svg/1f9f5.svg)",
+      "score": 84,
+      "primary": "models",
+      "tags": [
+        "video-gen",
+        "multimodality",
+        "editing"
+      ],
+      "heuristic_score": 50,
+      "url": "https://x.com/GoogleDeepMind?post=3c6fa5aa9c71",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 50,
+      "_rid": 10,
+      "llm_score": 90,
+      "why": "Gemini Omni marca el giro hacia la creacion y edicion de video nativa dentro del ecosistema de Google.",
+      "entities": [
+        "DeepMind",
+        "Gemini",
+        "Gemini Omni"
+      ],
+      "noise_penalty": 0,
+      "final_score": 84,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "imec IC-Link and TSMC 3DFabric Alliance Expansion Signals New Era of System-Level Scaling",
+      "link": "https://semiwiki.com/semiconductor-manufacturers/tsmc/369260-imec-ic-link-and-tsmc-3dfabric-alliance-expansion-signals-new-era-of-system-level-scaling/",
+      "published": "2026-05-19T13:00:35+00:00",
+      "summary": "imec announced that IC-Link by imec has joined the TSMC 3DFabric Alliance , a strategically important move that reflects the semiconductor industry’s transition from traditional monolithic scaling toward heterogeneous integration, chiplet architectures, and advanced packaging-driven system optimization. The partnership&8230; Read More The post imec IC-Link and TSMC 3DFabric Alliance Expansion Signals New Era of System-Level Scaling appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "imec IC-Link and TSMC 3DFabric Alliance Expansion Signals New Era of System-Level Scaling",
+      "raw_summary": "imec announced that IC-Link by imec has joined the TSMC 3DFabric Alliance , a strategically important move that reflects the semiconductor industry’s transition from traditional monolithic scaling toward heterogeneous integration, chiplet architectures, and advanced packaging-driven system optimization. The partnership&#8230; Read More The post imec IC-Link and TSMC 3DFabric Alliance Expansion Signals New Era of System-Level Scaling appeared first on SemiWiki .",
+      "score": 82,
+      "primary": "infra",
+      "tags": [
+        "semiconductors",
+        "3d-packaging",
+        "tsmc"
+      ],
+      "heuristic_score": 48,
+      "url": "https://semiwiki.com/semiconductor-manufacturers/tsmc/369260-imec-ic-link-and-tsmc-3dfabric-alliance-expansion-signals-new-era-of-system-level-scaling/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 48,
+      "_rid": 11,
+      "llm_score": 88,
+      "why": "La union de imec a TSMC 3DFabric acelera la adopcion de chiplets y optimizacion a nivel de sistema.",
+      "entities": [
+        "imec",
+        "TSMC",
+        "Alliance Expansion Signals",
+        "New Era",
+        "System",
+        "Level Scaling"
+      ],
+      "noise_penalty": 0,
+      "final_score": 82,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Gemini 3.5: frontier intelligence with action",
+      "link": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5/",
+      "published": "2026-05-19T17:45:00+00:00",
+      "summary": "Gemini 3.5 text and multi-colored star icon on an abstract blue background.",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Gemini 3.5: frontier intelligence with action",
+      "raw_summary": "Gemini 3.5 text and multi-colored star icon on an abstract blue background.",
+      "score": 82,
+      "primary": "models",
+      "tags": [
+        "llm",
+        "agents",
+        "frontier-intelligence"
+      ],
+      "heuristic_score": 37,
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 37,
+      "_rid": 13,
+      "llm_score": 95,
+      "why": "Gemini 3.5 introduce inteligencia accionable, posicionandose como lider en agentes de IA de proposito general.",
+      "entities": [
+        "Google",
+        "Gemini"
+      ],
+      "noise_penalty": 4,
+      "final_score": 82,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(4)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "ReacTOD: Bounded Neuro-Symbolic Agentic NLU for Zero-Shot Dialogue State Tracking",
+      "link": "https://arxiv.org/abs/2605.19077",
+      "published": "2026-05-20T04:00:00+00:00",
+      "summary": "arXiv:2605.19077v1 Announce Type: new Abstract: Task-oriented dialogue systems -- handling transactions, reservations, and service requests -- require predictable behavior, yet the moderately-sized LLMs needed for practical latency are prone to hallucination and format errors that cascade into incorrect actions (e.g., a hotel booked for the wrong date). We propose ReacTOD, a bounded neuro-symbolic architecture that reformulates NLU as discrete tool calls within a self-correcting ReAct loop governed by deterministic validation. A bounded ReAct loop enables iterative self-correction, improving accuracy by up to 9.3 percentage points over single-pass inference on MultiWOZ. A symbolic validator enforces action compliance, schema conformance, and coreference consistency on every dialogue state update, achieving a 93.1% self-correction rate on intercepted errors and producing structured execution traces. Incremental state prediction and on-demand history retrieval keep prompts compact, empirically improving instruction adherence in parameter-constrained models. On MultiWOZ 2.1, ReacTOD achieves a new zero-shot state-of-the-art: gpt-oss-20B reaches 52.71% joint goal accuracy, surpassing the previous best by 14 percentage points, while Qwen3-8B achieves 47.34% with only 8B parameters. On the Schema-Guided Dialogue (SGD) benchmark, ReacTOD with Claude-Opus-4.6 achieves 80.68% JGA under fully end-to-end evaluation with predicted domains, and Qwen3-32B reaches 64.09% -- demonstrating cross-benchmark generalization without task-specific training data.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "ReacTOD: Bounded Neuro-Symbolic Agentic NLU for Zero-Shot Dialogue State Tracking",
+      "raw_summary": "arXiv:2605.19077v1 Announce Type: new Abstract: Task-oriented dialogue systems -- handling transactions, reservations, and service requests -- require predictable behavior, yet the moderately-sized LLMs needed for practical latency are prone to hallucination and format errors that cascade into incorrect actions (e.g., a hotel booked for the wrong date). We propose ReacTOD, a bounded neuro-symbolic architecture that reformulates NLU as discrete tool calls within a self-correcting ReAct loop governed by deterministic validation. A bounded ReAct loop enables iterative self-correction, improving accuracy by up to 9.3 percentage points over single-pass inference on MultiWOZ. A symbolic validator enforces action compliance, schema conformance, and coreference consistency on every dialogue state update, achieving a 93.1% self-correction rate on intercepted errors and producing structured execution traces. Incremental state prediction and on-demand history retrieval keep prompts compact, empirically improving instruction adherence in parameter-constrained models. On MultiWOZ 2.1, ReacTOD achieves a new zero-shot state-of-the-art: gpt-oss-20B reaches 52.71% joint goal accuracy, surpassing the previous best by 14 percentage points, while Qwen3-8B achieves 47.34% with only 8B parameters. On the Schema-Guided Dialogue (SGD) benchmark, ReacTOD with Claude-Opus-4.6 achieves 80.68% JGA under fully end-to-end evaluation with predicted domains, and Qwen3-32B reaches 64.09% -- demonstrating cross-benchmark generalization without task-specific training data.",
+      "score": 76,
+      "primary": "models",
+      "tags": [
+        "neuro-symbolic",
+        "agents",
+        "nlu"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2605.19077",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 2,
+      "llm_score": 72,
+      "why": "ReacTOD mejora el seguimiento de estado de dialogo usando validacion determinista para evitar alucinaciones.",
+      "entities": [
+        "MultiWOZ",
+        "NLU",
+        "Bounded Neuro",
+        "Symbolic Agentic",
+        "Zero",
+        "Shot Dialogue State",
+        "Tracking"
+      ],
+      "noise_penalty": 0,
+      "final_score": 76,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Prompting language influences diagnostic reasoning and accuracy of large language models",
+      "link": "https://arxiv.org/abs/2605.19173",
+      "published": "2026-05-20T04:00:00+00:00",
+      "summary": "arXiv:2605.19173v1 Announce Type: new Abstract: Large language models (LLMs) are increasingly explored for clinical decision support, yet most evaluations are conducted in English, leaving their reliability in other languages uncertain. Here we evaluate the impact of prompting language on diagnostic reasoning and final diagnosis accuracy by comparing English and French performance across five LLMs (o3, DeepSeek-R1, GPT-4-Turbo, Llama-3.1-405B-Instruct, and BioMistral-7B). A total of 180 clinical vignettes covering 16 medical specialties were assessed by two physicians using an 18-point scale evaluating both diagnosis accuracy and reasoning quality. Four of the five models performed better in English (mean difference 0.37-0.91, adjusted p < 0.05), with the gap spanning multiple aspects of reasoning, including differential diagnosis, logical structure, and internal validity. o3 was the only model showing no overall language effect. These findings demonstrate that prompting language remains a critical determinant of LLM clinical performance, with implications for equitable linguistico-cultural deployment worldwide.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Prompting language influences diagnostic reasoning and accuracy of large language models",
+      "raw_summary": "arXiv:2605.19173v1 Announce Type: new Abstract: Large language models (LLMs) are increasingly explored for clinical decision support, yet most evaluations are conducted in English, leaving their reliability in other languages uncertain. Here we evaluate the impact of prompting language on diagnostic reasoning and final diagnosis accuracy by comparing English and French performance across five LLMs (o3, DeepSeek-R1, GPT-4-Turbo, Llama-3.1-405B-Instruct, and BioMistral-7B). A total of 180 clinical vignettes covering 16 medical specialties were assessed by two physicians using an 18-point scale evaluating both diagnosis accuracy and reasoning quality. Four of the five models performed better in English (mean difference 0.37-0.91, adjusted p < 0.05), with the gap spanning multiple aspects of reasoning, including differential diagnosis, logical structure, and internal validity. o3 was the only model showing no overall language effect. These findings demonstrate that prompting language remains a critical determinant of LLM clinical performance, with implications for equitable linguistico-cultural deployment worldwide.",
+      "score": 74,
+      "primary": "models",
+      "tags": [
+        "clinical-ai",
+        "multilingual",
+        "benchmarking"
+      ],
+      "heuristic_score": 95,
+      "url": "https://arxiv.org/abs/2605.19173",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 95,
+      "_rid": 4,
+      "llm_score": 70,
+      "why": "La fiabilidad medica de los LLMs varia segun el idioma del prompt, comprometiendo la equidad en salud digital.",
+      "entities": [
+        "Google",
+        "DeepSeek",
+        "Llama",
+        "Prompting"
+      ],
+      "noise_penalty": 0,
+      "final_score": 74,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "china_stack"
+    },
+    {
+      "title": "MMoA: An AI-Agent framework with recurrence for Memoried Mixure-of-Agent",
+      "link": "https://arxiv.org/abs/2605.19194",
+      "published": "2026-05-20T04:00:00+00:00",
+      "summary": "arXiv:2605.19194v1 Announce Type: new Abstract: The Mixture-of-Agents (MoA) framework has shown promise in improving large language model (LLM) performance by aggregating outputs from multiple agents. However, existing MoA systems often rely on static routers that do not fully capture temporal and contextual dependencies across aggregation layers. To address this limitation, we propose MMoA, a recurrent MoA architecture that integrates LSTM-based gating into the agent selection process. The recurrence router adaptively modulates agent contributions based on both current inputs and historical routing decisions, enabling more context-aware aggregation. We evaluate MMoA on standard instruction-following benchmarks, including AlpacaEval 2.0, MT-Bench, and Arena-Hard. The results show that MMoA achieves comparable accuracy to traditional MoA while reducing computational overhead by dynamically activating fewer agents. For example, on AlpacaEval 2.0, MMoA achieves a win rate of 58.0%, compared with 59.8% for MoA, while improving runtime efficiency by up to 4.6%. These results suggest that MMoA provides a scalable and efficient approach for adaptive multi-agent LLM systems.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "MMoA: An AI-Agent framework with recurrence for Memoried Mixure-of-Agent",
+      "raw_summary": "arXiv:2605.19194v1 Announce Type: new Abstract: The Mixture-of-Agents (MoA) framework has shown promise in improving large language model (LLM) performance by aggregating outputs from multiple agents. However, existing MoA systems often rely on static routers that do not fully capture temporal and contextual dependencies across aggregation layers. To address this limitation, we propose MMoA, a recurrent MoA architecture that integrates LSTM-based gating into the agent selection process. The recurrence router adaptively modulates agent contributions based on both current inputs and historical routing decisions, enabling more context-aware aggregation. We evaluate MMoA on standard instruction-following benchmarks, including AlpacaEval 2.0, MT-Bench, and Arena-Hard. The results show that MMoA achieves comparable accuracy to traditional MoA while reducing computational overhead by dynamically activating fewer agents. For example, on AlpacaEval 2.0, MMoA achieves a win rate of 58.0%, compared with 59.8% for MoA, while improving runtime efficiency by up to 4.6%. These results suggest that MMoA provides a scalable and efficient approach for adaptive multi-agent LLM systems.",
+      "score": 74,
+      "primary": "models",
+      "tags": [
+        "mixture-of-agents",
+        "architecture",
+        "lstm"
+      ],
+      "heuristic_score": 68,
+      "url": "https://arxiv.org/abs/2605.19194",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 68,
+      "_rid": 6,
+      "llm_score": 75,
+      "why": "MMoA optimiza la seleccion de agentes mediante una arquitectura recurrente, mejorando la coherencia contextual.",
+      "entities": [
+        "Agent",
+        "Memoried Mixure"
+      ],
+      "noise_penalty": 0,
+      "final_score": 74,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Operationalizing Document AI: A Microservice Architecture for OCR and LLM Pipelines in Production",
+      "link": "https://arxiv.org/abs/2605.18818",
+      "published": "2026-05-20T04:00:00+00:00",
+      "summary": "arXiv:2605.18818v1 Announce Type: new Abstract: Academic research tends to focus on new models for document understanding creating a wide gap in the literature between model definition and running models at production scale. To close that gap, we present a microservice architecture that encapsulates pipelines of multiple models for classification, optical character recognition (OCR), and large language model structured field extraction as well as our experience running this pipeline on thousands of multi-page documents per hour. We describe our primary design decisions, including a hybrid classification, separation of GPU-bound inference from CPU-bound orchestration, use of asynchronous processing for the many IO-bound operations in the pipeline, and an independent, horizontal scaling strategy. Using batch profiling, we identified two surprising qualitative findings that shape production deployments: OCR, not language-model parsing, dominates end-to-end latency, and the system saturates at a concurrency determined by shared GPU-inference capacity rather than worker count. Our goal is to provide practitioners with concrete architectural patterns for building document understanding systems that work beyond the benchmark; effectively operationalizing models in production.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Operationalizing Document AI: A Microservice Architecture for OCR and LLM Pipelines in Production",
+      "raw_summary": "arXiv:2605.18818v1 Announce Type: new Abstract: Academic research tends to focus on new models for document understanding creating a wide gap in the literature between model definition and running models at production scale. To close that gap, we present a microservice architecture that encapsulates pipelines of multiple models for classification, optical character recognition (OCR), and large language model structured field extraction as well as our experience running this pipeline on thousands of multi-page documents per hour. We describe our primary design decisions, including a hybrid classification, separation of GPU-bound inference from CPU-bound orchestration, use of asynchronous processing for the many IO-bound operations in the pipeline, and an independent, horizontal scaling strategy. Using batch profiling, we identified two surprising qualitative findings that shape production deployments: OCR, not language-model parsing, dominates end-to-end latency, and the system saturates at a concurrency determined by shared GPU-inference capacity rather than worker count. Our goal is to provide practitioners with concrete architectural patterns for building document understanding systems that work beyond the benchmark; effectively operationalizing models in production.",
+      "score": 73,
+      "primary": "infra",
+      "tags": [
+        "microservices",
+        "ocr",
+        "production"
+      ],
+      "heuristic_score": 56,
+      "url": "https://arxiv.org/abs/2605.18818",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 56,
+      "_rid": 8,
+      "llm_score": 76,
+      "why": "Define una arquitectura escalable para llevar modelos de vision y lenguaje a produccion industrial real.",
+      "entities": [
+        "OCR",
+        "Operationalizing Document",
+        "Microservice Architecture",
+        "Pipelines",
+        "Production"
+      ],
+      "noise_penalty": 0,
+      "final_score": 73,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Robust Basis Spline Decoupling for the Compression of Transformer Models",
+      "link": "https://arxiv.org/abs/2605.18794",
+      "published": "2026-05-20T04:00:00+00:00",
+      "summary": "arXiv:2605.18794v1 Announce Type: new Abstract: Decoupling is a powerful modeling paradigm for representing multivariate functions as compositions of linear transformations and univariate nonlinear functions. A single-layer decoupling can be viewed as a fully connected neural network with a single hidden layer and flexible activation functions, providing a direct link with neural networks. Because of this, the use of decoupling methods has gained increasing attention in neural network domains, particularly compression, since it enables structured approximations with reduced parameter complexity. Existing tensor-based decoupling methods typically rely on polynomial or piecewise-linear parameterizations of the internal nonlinear functions, which can suffer from numerical instability or limited expressiveness. In this work, we introduce a B-spline-based decoupling framework that generalizes these existing approaches. By exploiting the local support and flexible smoothness control of B-splines, the proposed formulation yields a more numerically stable and expressive representation. We derive a constrained coupled matrix-tensor factorization and propose a robust alternating least-squares algorithm, called R-CMTF-BSD, incorporating normalization and Tikhonov regularization. The proposed method is validated through experiments on synthetic data and transformer model compression. Results on the Vision and Swin Transformer architectures demonstrate that B-spline decoupling enables substantial parameter reduction while maintaining competitive accuracy, making the R-CMTF-BSD algorithm a promising tool for structured neural network compression.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Robust Basis Spline Decoupling for the Compression of Transformer Models",
+      "raw_summary": "arXiv:2605.18794v1 Announce Type: new Abstract: Decoupling is a powerful modeling paradigm for representing multivariate functions as compositions of linear transformations and univariate nonlinear functions. A single-layer decoupling can be viewed as a fully connected neural network with a single hidden layer and flexible activation functions, providing a direct link with neural networks. Because of this, the use of decoupling methods has gained increasing attention in neural network domains, particularly compression, since it enables structured approximations with reduced parameter complexity. Existing tensor-based decoupling methods typically rely on polynomial or piecewise-linear parameterizations of the internal nonlinear functions, which can suffer from numerical instability or limited expressiveness. In this work, we introduce a B-spline-based decoupling framework that generalizes these existing approaches. By exploiting the local support and flexible smoothness control of B-splines, the proposed formulation yields a more numerically stable and expressive representation. We derive a constrained coupled matrix-tensor factorization and propose a robust alternating least-squares algorithm, called R-CMTF-BSD, incorporating normalization and Tikhonov regularization. The proposed method is validated through experiments on synthetic data and transformer model compression. Results on the Vision and Swin Transformer architectures demonstrate that B-spline decoupling enables substantial parameter reduction while maintaining competitive accuracy, making the R-CMTF-BSD algorithm a promising tool for structured neural network compression.",
+      "score": 70,
+      "primary": "infra",
+      "tags": [
+        "compression",
+        "efficiency",
+        "transformers"
+      ],
+      "heuristic_score": 53,
+      "url": "https://arxiv.org/abs/2605.18794",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 53,
+      "_rid": 9,
+      "llm_score": 73,
+      "why": "Uso de splines de base para reducir la complejidad parametrica de Transformers sin perdida severa de precision.",
+      "entities": [
+        "Robust Basis Spline",
+        "Decoupling",
+        "Compression",
+        "Transformer Models"
+      ],
+      "noise_penalty": 0,
+      "final_score": 70,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Benchmarking Commercial ASR Systems on Code-Switching Speech: Arabic, Persian, and German",
+      "link": "https://arxiv.org/abs/2605.19069",
+      "published": "2026-05-20T04:00:00+00:00",
+      "summary": "arXiv:2605.19069v1 Announce Type: new Abstract: Code-switching -- the natural alternation between two languages within a single utterance -- represents one of the most challenging and under-studied conditions for automatic speech recognition (ASR). Existing commercial ASR benchmarks predominantly evaluate clean, monolingual audio and report a single Word Error Rate (WER) figure that tells practitioners little about real-world multilingual performance. We present a benchmark evaluating five commercial ASR providers across four language pairs: Egyptian Arabic--English, Saudi Arabic (Najdi/Hijazi)--English, Persian (Farsi)--English, and German--English. Each dataset comprises 300 samples selected by a two-stage pipeline: a heuristic filter scoring transcripts on five structural code-switching signals, followed by a GPT-4o and Gemini 1.5 Pro ensemble scoring candidates across six linguistic dimensions. This pipeline reduces LLM scoring costs by approximately 91\\% relative to exhaustive scoring. We evaluate the systems on both WER and BERTScore, arguing that BERTScore is a more reliable metric for Arabic and Persian pairs where transliteration variance causes WER to penalise semantically correct transcriptions. ElevenLabs Scribe v2 achieves the lowest WER across all four language pairs (13.2% overall; 13.1% on Egyptian Arabic) and leads on BERTScore (0.936 overall). We further demonstrate that difficulty-stratified analysis reveals performance gaps masked by aggregate averages, and that BERT embedding projections confirm semantic proximity between reference and hypothesis despite surface-level script differences. The benchmarking dataset is publicly available at",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Benchmarking Commercial ASR Systems on Code-Switching Speech: Arabic, Persian, and German",
+      "raw_summary": "arXiv:2605.19069v1 Announce Type: new Abstract: Code-switching -- the natural alternation between two languages within a single utterance -- represents one of the most challenging and under-studied conditions for automatic speech recognition (ASR). Existing commercial ASR benchmarks predominantly evaluate clean, monolingual audio and report a single Word Error Rate (WER) figure that tells practitioners little about real-world multilingual performance. We present a benchmark evaluating five commercial ASR providers across four language pairs: Egyptian Arabic--English, Saudi Arabic (Najdi/Hijazi)--English, Persian (Farsi)--English, and German--English. Each dataset comprises 300 samples selected by a two-stage pipeline: a heuristic filter scoring transcripts on five structural code-switching signals, followed by a GPT-4o and Gemini 1.5 Pro ensemble scoring candidates across six linguistic dimensions. This pipeline reduces LLM scoring costs by approximately 91\\% relative to exhaustive scoring. We evaluate the systems on both WER and BERTScore, arguing that BERTScore is a more reliable metric for Arabic and Persian pairs where transliteration variance causes WER to penalise semantically correct transcriptions. ElevenLabs Scribe v2 achieves the lowest WER across all four language pairs (13.2% overall; 13.1% on Egyptian Arabic) and leads on BERTScore (0.936 overall). We further demonstrate that difficulty-stratified analysis reveals performance gaps masked by aggregate averages, and that BERT embedding projections confirm semantic proximity between reference and hypothesis despite surface-level script differences. The benchmarking dataset is publicly available at https://huggingface.co/datasets/Perle-ai/ASR_Code_Switch.",
+      "score": 67,
+      "primary": "models",
+      "tags": [
+        "asr",
+        "multilingual",
+        "code-switching"
+      ],
+      "heuristic_score": 86,
+      "url": "https://arxiv.org/abs/2605.19069",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 86,
+      "_rid": 5,
+      "llm_score": 64,
+      "why": "Nuevos benchmarks revelan deficiencias en sistemas ASR comerciales al manejar alternancia de idiomas.",
+      "entities": [
+        "ASR",
+        "Benchmarking Commercial",
+        "Systems",
+        "Code",
+        "Switching Speech",
+        "Arabic",
+        "Persian",
+        "German"
+      ],
+      "noise_penalty": 0,
+      "final_score": 67,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Position: Let's Develop Data Probes to Fundamentally Understand How Data Affects LLM Performance",
+      "link": "https://arxiv.org/abs/2605.18801",
+      "published": "2026-05-20T04:00:00+00:00",
+      "summary": "arXiv:2605.18801v1 Announce Type: new Abstract: Data is fundamental to large language models (LLMs). However, understanding of what makes certain data useful for different stages of an LLM workflow, including training, tuning, alignment, in-context learning, etc., and why, remains an open question. Current approaches rely heavily on extensive experimentation with large public datasets to obtain empirical heuristics for data filtering and dataset construction. These approaches are compute intensive and lack a principled way of understanding the essence of how specific data characteristics drive LLM behavior. In this position paper, we advocate for the need of developing systematic methodologies for generating synthetic sequences from appropriately defined random processes, with the goal that these sequences can reveal useful characteristics when they are used in one or multiple stages of the LLM workflow. We refer to such sequences as data probes. By observing LLM behavior on data probes, researchers can systematically conduct studies on how data characteristics influence model performance, generalization, and robustness. The probing sequences exhibit statistical properties that can be viewed using theoretical concepts, such as typical sets, which are generalized to describe the behaviors of LLMs. This data-probe approach provides a pathway for uncovering foundational insights into the role of data in LLM training and inference, beyond empirical heuristics.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Position: Let's Develop Data Probes to Fundamentally Understand How Data Affects LLM Performance",
+      "raw_summary": "arXiv:2605.18801v1 Announce Type: new Abstract: Data is fundamental to large language models (LLMs). However, understanding of what makes certain data useful for different stages of an LLM workflow, including training, tuning, alignment, in-context learning, etc., and why, remains an open question. Current approaches rely heavily on extensive experimentation with large public datasets to obtain empirical heuristics for data filtering and dataset construction. These approaches are compute intensive and lack a principled way of understanding the essence of how specific data characteristics drive LLM behavior. In this position paper, we advocate for the need of developing systematic methodologies for generating synthetic sequences from appropriately defined random processes, with the goal that these sequences can reveal useful characteristics when they are used in one or multiple stages of the LLM workflow. We refer to such sequences as data probes. By observing LLM behavior on data probes, researchers can systematically conduct studies on how data characteristics influence model performance, generalization, and robustness. The probing sequences exhibit statistical properties that can be viewed using theoretical concepts, such as typical sets, which are generalized to describe the behaviors of LLMs. This data-probe approach provides a pathway for uncovering foundational insights into the role of data in LLM training and inference, beyond empirical heuristics.",
+      "score": 67,
+      "primary": "models",
+      "tags": [
+        "data-science",
+        "training",
+        "optimization"
+      ],
+      "heuristic_score": 59,
+      "url": "https://arxiv.org/abs/2605.18801",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 59,
+      "_rid": 7,
+      "llm_score": 68,
+      "why": "Propone sondas de datos sistematicas para reducir la dependencia de heuristicas costosas en el entrenamiento.",
+      "entities": [
+        "Position",
+        "Let",
+        "Develop Data Probes",
+        "Fundamentally Understand How",
+        "Data Affects",
+        "Performance"
+      ],
+      "noise_penalty": 0,
+      "final_score": 67,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "The Annotation Scarcity Paradox in Low-Resource NLP Evaluation: A Decade of Acceleration and Emerging Constraints",
+      "link": "https://arxiv.org/abs/2605.19066",
+      "published": "2026-05-20T04:00:00+00:00",
+      "summary": "arXiv:2605.19066v1 Announce Type: new Abstract: Over the past decade, low-resource natural language processing (NLP) has experienced explosive growth, propelled by cross-lingual transfer, massively multilingual models, and the rapid proliferation of benchmarks. Yet this apparent progress masks a critical, insufficiently examined tension: the deep sociolinguistic expertise required to evaluate increasingly complex generative systems is severely strained, inequitably distributed, and structurally marginalised. We present a critical narrative survey of low-resource NLP evaluation (2014--present), tracing its evolution across three phases: early heuristic optimism, the illusions of top-down benchmark scaling, and the current era of generative bottlenecks. We conceptualise the \\emph{Annotation Scarcity Paradox}, the structural friction arising when the technical capacity to scale models vastly outpaces the sovereign human infrastructure required to authentically evaluate them. By examining extractive data pipelines, undercompensated ``ghost work'', and language data flaring, we argue that this paradox threatens the epistemic validity of reported progress. We survey emerging responses -- including data augmentation, model-based evaluation, participatory curation, and annotation-efficient approaches via item response theory and active learning -- and assess their equity and validity trade-offs. We close with a practitioner call to action, arguing that overcoming this bottleneck requires a paradigm shift from transactional data extraction to relational, community-embedded evaluation rooted in epistemic governance, data sovereignty, and shared ownership.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "The Annotation Scarcity Paradox in Low-Resource NLP Evaluation: A Decade of Acceleration and Emerging Constraints",
+      "raw_summary": "arXiv:2605.19066v1 Announce Type: new Abstract: Over the past decade, low-resource natural language processing (NLP) has experienced explosive growth, propelled by cross-lingual transfer, massively multilingual models, and the rapid proliferation of benchmarks. Yet this apparent progress masks a critical, insufficiently examined tension: the deep sociolinguistic expertise required to evaluate increasingly complex generative systems is severely strained, inequitably distributed, and structurally marginalised. We present a critical narrative survey of low-resource NLP evaluation (2014--present), tracing its evolution across three phases: early heuristic optimism, the illusions of top-down benchmark scaling, and the current era of generative bottlenecks. We conceptualise the \\emph{Annotation Scarcity Paradox}, the structural friction arising when the technical capacity to scale models vastly outpaces the sovereign human infrastructure required to authentically evaluate them. By examining extractive data pipelines, undercompensated ``ghost work'', and language data flaring, we argue that this paradox threatens the epistemic validity of reported progress. We survey emerging responses -- including data augmentation, model-based evaluation, participatory curation, and annotation-efficient approaches via item response theory and active learning -- and assess their equity and validity trade-offs. We close with a practitioner call to action, arguing that overcoming this bottleneck requires a paradigm shift from transactional data extraction to relational, community-embedded evaluation rooted in epistemic governance, data sovereignty, and shared ownership.",
+      "score": 64,
+      "primary": "models",
+      "tags": [
+        "nlp",
+        "low-resource",
+        "evaluation"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2605.19066",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 1,
+      "llm_score": 58,
+      "why": "La escasez de expertos para evaluar idiomas minoritarios limita la expansion global equitativa de los LLMs.",
+      "entities": [
+        "arXiv",
+        "NLP",
+        "The Annotation Scarcity",
+        "Paradox",
+        "Low",
+        "Resource",
+        "Evaluation",
+        "Decade"
+      ],
+      "noise_penalty": 0,
+      "final_score": 64,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "NVIDIA GauGAN2, a powerful AI model that allows anyone to convert simple written phrases like \"ocean waves\" in...",
+      "summary": "NVIDIA GauGAN2, a powerful AI model that allows anyone to convert simple written phrases like \"ocean waves\" into a photorealistic masterpiece. Learn more about GauGAN2 now: nvda.ws/3oNitRX The media could not be played.",
+      "link": "https://x.com/NVIDIAAI?post=116947ff16ec",
+      "published": "Wed, 20 May 2026 09:52:44 GMT",
+      "source": "X @NVIDIAAI",
+      "feed_tags": [
+        "x",
+        "infra",
+        "chips"
+      ],
+      "raw_title": "NVIDIA GauGAN2, a powerful [#AI](https://x.com/hashtag/AI?src=hashtag_click) model that allows anyone to convert simple written phrases like \"ocean waves\" in...",
+      "raw_summary": "NVIDIA GauGAN2, a powerful [#AI](https://x.com/hashtag/AI?src=hashtag_click) model that allows anyone to convert simple written phrases like \"ocean waves\" into a photorealistic masterpiece. Learn more about GauGAN2 now: [nvda.ws/3oNitRX](https://t.co/IhNldsaEYV) The media could not be played.",
+      "score": 60,
+      "primary": "models",
+      "tags": [
+        "creative-ai",
+        "computer-vision",
+        "nvidia"
+      ],
+      "heuristic_score": 34,
+      "url": "https://x.com/NVIDIAAI?post=116947ff16ec",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 34,
+      "_rid": 15,
+      "llm_score": 65,
+      "why": "GauGAN2 demuestra la evolucion en herramientas de creacion artistica mediante prompts de lenguaje natural.",
+      "entities": [
+        "NVIDIA"
+      ],
+      "noise_penalty": 0,
+      "final_score": 60,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Everything new in our Google AI subscriptions, fresh from I/O 2026",
+      "link": "https://blog.google/products-and-platforms/products/google-one/google-ai-subscriptions/",
+      "published": "2026-05-19T17:45:00+00:00",
+      "summary": "The shows colorful icons. The copy reads: More magic in one plan. More power, more perks, same price.",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Everything new in our Google AI subscriptions, fresh from I/O 2026",
+      "raw_summary": "The image shows colorful icons. The copy reads: More magic in one plan. More power, more perks, same price.",
+      "score": 59,
+      "primary": "invest",
+      "tags": [
+        "subscriptions",
+        "consumer-ai",
+        "google-io"
+      ],
+      "heuristic_score": 39,
+      "url": "https://blog.google/products-and-platforms/products/google-one/google-ai-subscriptions/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 39,
+      "_rid": 12,
+      "llm_score": 62,
+      "why": "Estrategia de monetizacion de Google para retener usuarios premium mediante integracion profunda de IA.",
+      "entities": [
+        "Google",
+        "Everything"
+      ],
+      "noise_penalty": 0,
+      "final_score": 59,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "More than two decades of EU policy, science-based monitoring, and collective action has delivered results that can be seen, measured and breathed. We are pro...",
+      "summary": "More than two decades of EU policy, science-based monitoring, and collective action has delivered results that can be seen, measured and breathed. We are proud of the progress. Now, the work continues. Read the report: Our Single Market is one of Europe’s greatest success stories. And it requires a clear vision and constant work, from all of us. And on all its dimensions – from digital to social policy. This is what the “One Europe, One Market roadmap” is for ↓ A deal is a deal, and the EU honours its commitments. I welcome the agreement reached by the European Parliament and the Council on reducing tariffs for US industrial exports to the EU. This means we will soon deliver on our part of the EU-US Joint Statement, as promised. I",
+      "link": "https://x.com/EU_Commission?post=90ed497aed4f",
+      "published": null,
+      "source": "X AI policy/search",
+      "feed_tags": [
+        "x",
+        "geopol",
+        "policy"
+      ],
+      "raw_title": "More than two decades of EU policy, science-based monitoring, and collective action has delivered results that can be seen, measured and breathed. We are pro...",
+      "raw_summary": "More than two decades of EU policy, science-based monitoring, and collective action has delivered results that can be seen, measured and breathed. We are proud of the progress. Now, the work continues. Read the report: Our Single Market is one of Europe’s greatest success stories. And it requires a clear vision and constant work, from all of us. And on all its dimensions – from digital to social policy. This is what the “One Europe, One Market roadmap” is for ↓ A deal is a deal, and the EU honours its commitments. I welcome the agreement reached by the European Parliament and the Council on reducing tariffs for US industrial exports to the EU. This means we will soon deliver on our part of the EU-US Joint Statement, as promised. I",
+      "score": 56,
+      "primary": "geopol",
+      "tags": [
+        "policy",
+        "trade",
+        "eu"
+      ],
+      "heuristic_score": 36,
+      "url": "https://x.com/EU_Commission?post=90ed497aed4f",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 36,
+      "_rid": 14,
+      "llm_score": 60,
+      "why": "La UE alinea su mercado digital y politicas arancelarias para fortalecer su posicion competitiva.",
+      "entities": [
+        "European Commission",
+        "EEUU"
+      ],
+      "noise_penalty": 0,
+      "final_score": 56,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "geopolitics_power"
+    }
+  ]
+}
