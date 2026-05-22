@@ -1,0 +1,656 @@
+{
+  "date": "2026-05-22",
+  "score_avg": 69.13,
+  "primary_dist": {
+    "infra": 2,
+    "models": 7,
+    "invest": 1,
+    "geopol": 1,
+    "misc": 4
+  },
+  "top_entities": [
+    {
+      "entity": "Self",
+      "count": 2
+    },
+    {
+      "entity": "Anthropic",
+      "count": 2
+    },
+    {
+      "entity": "COSMO-Agent",
+      "count": 1
+    },
+    {
+      "entity": "Tool",
+      "count": 1
+    },
+    {
+      "entity": "Augmented Agent",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "Agentes de IA cierran el ciclo de diseño industrial mediante orquestación autónoma de herramientas CAD-CAE.",
+      "Automatización de la evaluación y filtrado de hipótesis científicas para acelerar el descubrimiento empírico.",
+      "Transición hacia agentes de aprendizaje continuo con meta-aprendizaje para entornos con cambios de datos dinámicos.",
+      "Consolidación de infraestructuras de desarrollo mediante adquisiciones estratégicas de plataformas SDK por Anthropic.",
+      "Europa prioriza la innovación en hardware ASIC para competir globalmente más allá de la regulación."
+    ],
+    "risks": [
+      "Brecha semántica persistente entre el feedback de simulación y las ediciones geométricas válidas en CAD.",
+      "Coste prohibitivo de la adaptación basada en gradientes frente a flujos de datos no estacionarios.",
+      "Riesgo de sesgos adultos en mecanismos de seguridad de IA aplicados a entornos adolescentes."
+    ],
+    "watch": [
+      "Adopción del estándar MCP (Model Context Protocol) en el ecosistema de herramientas para desarrolladores.",
+      "Integración de Grok en entornos de desarrollo competitivo como Cursor frente a Copilot.",
+      "Impacto de los 'Science Skills' de DeepMind en la productividad de laboratorios de biociencias."
+    ],
+    "entities_top": [
+      "Anthropic",
+      "Google DeepMind",
+      "xAI"
+    ]
+  },
+  "items": [
+    {
+      "title": "Tool-Augmented Agent for Closed-loop Optimization,Simulation,and Modeling Orchestration",
+      "link": "https://arxiv.org/abs/2605.20190",
+      "published": "2026-05-22T04:00:00+00:00",
+      "summary": "arXiv:2605.20190v1 Announce Type: new Abstract: Iterative industrial design-simulation optimization is bottlenecked by the CAD-CAE semantic gap: translating simulation feedback into valid geometric edits under diverse, coupled constraints. To fill this gap, we propose COSMO-Agent (Closed-loop Optimization, Simulation, and Modeling Orchestration), a tool-augmented reinforcement learning (RL) framework that teaches LLMs to complete the closed-loop CAD-CAE process. Specifically, we cast CAD generation, CAE solving, result parsing, and geometry revision as an interactive RL environment, where an LLM learns to orchestrate external tools and revise parametric geometries until constraints are satisfied. To make this learning stable and industrially usable, we design a multi-constraint reward that jointly encourages feasibility, toolchain robustness, and structured output validity. In addition, we contribute an industry-aligned dataset that covers 25 component categories with executable CAD-CAE tasks to support realistic training and evaluation. Experiments show that COSMO-Agent training substantially improves small open-source LLMs for constraint-driven design, exceeding large open-source and strong closed-source models in feasibility, efficiency, and stability.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Tool-Augmented Agent for Closed-loop Optimization,Simulation,and Modeling Orchestration",
+      "raw_summary": "arXiv:2605.20190v1 Announce Type: new Abstract: Iterative industrial design-simulation optimization is bottlenecked by the CAD-CAE semantic gap: translating simulation feedback into valid geometric edits under diverse, coupled constraints. To fill this gap, we propose COSMO-Agent (Closed-loop Optimization, Simulation, and Modeling Orchestration), a tool-augmented reinforcement learning (RL) framework that teaches LLMs to complete the closed-loop CAD-CAE process. Specifically, we cast CAD generation, CAE solving, result parsing, and geometry revision as an interactive RL environment, where an LLM learns to orchestrate external tools and revise parametric geometries until constraints are satisfied. To make this learning stable and industrially usable, we design a multi-constraint reward that jointly encourages feasibility, toolchain robustness, and structured output validity. In addition, we contribute an industry-aligned dataset that covers 25 component categories with executable CAD-CAE tasks to support realistic training and evaluation. Experiments show that COSMO-Agent training substantially improves small open-source LLMs for constraint-driven design, exceeding large open-source and strong closed-source models in feasibility, efficiency, and stability.",
+      "score": 90,
+      "primary": "infra",
+      "tags": [
+        "cad-cae",
+        "agentes",
+        "industria",
+        "rl"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2605.20190",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 1,
+      "llm_score": 88,
+      "why": "COSMO-Agent resuelve el cuello de botella industrial al automatizar la edición geométrica basada en simulación.",
+      "entities": [
+        "COSMO-Agent",
+        "Tool",
+        "Augmented Agent",
+        "Closed",
+        "Optimization",
+        "Simulation",
+        "Modeling Orchestration"
+      ],
+      "noise_penalty": 0,
+      "final_score": 90,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "SOLAR: A Self-Optimizing Open-Ended Autonomous Agent for Lifelong Learning and Continual Adaptation",
+      "link": "https://arxiv.org/abs/2605.20189",
+      "published": "2026-05-22T04:00:00+00:00",
+      "summary": "arXiv:2605.20189v1 Announce Type: new Abstract: Despite the remarkable success of large language models (LLMs), they still face bottlenecks while deploying in dynamic, real-world settings with primary challenges being concept drift and the high cost of gradient-based adaptation. Traditional fine-tuning (FT) struggles to adapt to non-stationary data streams without resulting in catastrophic for getting or requiring extensive manual data curation. To address these limitations within the streaming and continual learning paradigm, we propose the Self-Optimizing Lifelong Autonomous Reasoner (SOLAR) which is an open-ended autonomous agent that leverages parameter-level meta-learning to self-improve, treating model weights as an environment for exploration. It initiates the process by consolidating a strong prior over common-sense knowledge making it effective for transfer-learning. By utilizing a multi-level reinforcement learning approach, SOLAR autonomously discovers adaptation strategies, enabling efficient test-time adaptation to unseen domains. Crucially, SOLAR maintains an evolving knowledge base of valid modification strategies, implicitly acting as an episodic memory buffer to balance plasticity (adaptation to new tasks) and stability (retention of meta-knowledge). Experiments demonstrate that SOLAR outperforms strong baselines on common-sense, mathematical, medical, coding, social and logical reasoning tasks, marking a significant step toward autonomous agents capable of lifelong adaptation in evolving environments.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "SOLAR: A Self-Optimizing Open-Ended Autonomous Agent for Lifelong Learning and Continual Adaptation",
+      "raw_summary": "arXiv:2605.20189v1 Announce Type: new Abstract: Despite the remarkable success of large language models (LLMs), they still face bottlenecks while deploying in dynamic, real-world settings with primary challenges being concept drift and the high cost of gradient-based adaptation. Traditional fine-tuning (FT) struggles to adapt to non-stationary data streams without resulting in catastrophic for getting or requiring extensive manual data curation. To address these limitations within the streaming and continual learning paradigm, we propose the Self-Optimizing Lifelong Autonomous Reasoner (SOLAR) which is an open-ended autonomous agent that leverages parameter-level meta-learning to self-improve, treating model weights as an environment for exploration. It initiates the process by consolidating a strong prior over common-sense knowledge making it effective for transfer-learning. By utilizing a multi-level reinforcement learning approach, SOLAR autonomously discovers adaptation strategies, enabling efficient test-time adaptation to unseen domains. Crucially, SOLAR maintains an evolving knowledge base of valid modification strategies, implicitly acting as an episodic memory buffer to balance plasticity (adaptation to new tasks) and stability (retention of meta-knowledge). Experiments demonstrate that SOLAR outperforms strong baselines on common-sense, mathematical, medical, coding, social and logical reasoning tasks, marking a significant step toward autonomous agents capable of lifelong adaptation in evolving environments.",
+      "score": 83,
+      "primary": "models",
+      "tags": [
+        "meta-learning",
+        "lifelong-learning",
+        "agentes"
+      ],
+      "heuristic_score": 86,
+      "url": "https://arxiv.org/abs/2605.20189",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 86,
+      "_rid": 4,
+      "llm_score": 82,
+      "why": "SOLAR introduce meta-aprendizaje a nivel de parámetros para adaptación continua sin reentrenamiento costoso.",
+      "entities": [
+        "SOLAR",
+        "Self",
+        "Optimizing Open",
+        "Ended Autonomous Agent",
+        "Lifelong Learning",
+        "Continual Adaptation"
+      ],
+      "noise_penalty": 0,
+      "final_score": 83,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Anthropic is acquiring , an SDK and MCP server platform that has powered every Anthropic SDK since the earliest days of our API. Read more:",
+      "summary": "Anthropic is acquiring , an SDK and MCP server platform that has powered every Anthropic SDK since the earliest days of our API. Read more:",
+      "link": "https://x.com/AnthropicAI?post=5fe1c34e6265",
+      "published": "Fri, 22 May 2026 09:46:53 GMT",
+      "source": "X @AnthropicAI",
+      "feed_tags": [
+        "x",
+        "models",
+        "safety"
+      ],
+      "raw_title": "Anthropic is acquiring , an SDK and MCP server platform that has powered every Anthropic SDK since the earliest days of our API. Read more:",
+      "raw_summary": "Anthropic is acquiring , an SDK and MCP server platform that has powered every Anthropic SDK since the earliest days of our API. Read more:",
+      "score": 82,
+      "primary": "invest",
+      "tags": [
+        "adquisición",
+        "sdk",
+        "mcp",
+        "dev-tools"
+      ],
+      "heuristic_score": 68,
+      "url": "https://x.com/AnthropicAI?post=5fe1c34e6265",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 68,
+      "_rid": 8,
+      "llm_score": 85,
+      "why": "Anthropic adquiere su plataforma base de SDK, asegurando el control sobre su infraestructura de desarrollo y protocolo MCP.",
+      "entities": [
+        "Anthropic",
+        "MCP"
+      ],
+      "noise_penalty": 0,
+      "final_score": 82,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Teaching Language Models to Forecast Research Success Through Comparative Idea Evaluation",
+      "link": "https://arxiv.org/abs/2605.21491",
+      "published": "2026-05-22T04:00:00+00:00",
+      "summary": "arXiv:2605.21491v1 Announce Type: new Abstract: As language models accelerate scientific research by automating hypothesis generation and implementation, a new bottleneck emerges: evaluating and filtering hundreds of AI-generated ideas without exhaustive experimentation. We ask whether LMs can learn to forecast the empirical success of research ideas before any experiments are run. We study comparative empirical forecasting: given a benchmark-specific research goal and two candidate ideas, predict which will achieve better benchmark performance. We construct a dataset of 11,488 idea pairs grounded in objective outcomes from PapersWithCode. While off-the-shelf 8B-parameter models struggle (30% acc.), SFT dramatically boosts performance to 77.1%, outperforming GPT-5 (61.1%). By framing evaluation as a reasoning task via Reinforcement Learning with Verifiable Rewards (RLVR), we train models to discover latent reasoning paths, achieving 71.35% acc. with interpretable justifications. Through additional ablations and out-of-distribution tests, we show robustness to surface-level heuristics and transfer to both a cross-domain time-split test set and an independently constructed test set. Our results demonstrate that compute-efficient small language models can serve as effective, objective verifiers, offering a scalable path for autonomous scientific discovery.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Teaching Language Models to Forecast Research Success Through Comparative Idea Evaluation",
+      "raw_summary": "arXiv:2605.21491v1 Announce Type: new Abstract: As language models accelerate scientific research by automating hypothesis generation and implementation, a new bottleneck emerges: evaluating and filtering hundreds of AI-generated ideas without exhaustive experimentation. We ask whether LMs can learn to forecast the empirical success of research ideas before any experiments are run. We study comparative empirical forecasting: given a benchmark-specific research goal and two candidate ideas, predict which will achieve better benchmark performance. We construct a dataset of 11,488 idea pairs grounded in objective outcomes from PapersWithCode. While off-the-shelf 8B-parameter models struggle (30% acc.), SFT dramatically boosts performance to 77.1%, outperforming GPT-5 (61.1%). By framing evaluation as a reasoning task via Reinforcement Learning with Verifiable Rewards (RLVR), we train models to discover latent reasoning paths, achieving 71.35% acc. with interpretable justifications. Through additional ablations and out-of-distribution tests, we show robustness to surface-level heuristics and transfer to both a cross-domain time-split test set and an independently constructed test set. Our results demonstrate that compute-efficient small language models can serve as effective, objective verifiers, offering a scalable path for autonomous scientific discovery.",
+      "score": 80,
+      "primary": "models",
+      "tags": [
+        "investigación",
+        "predicción",
+        "evaluación",
+        "paperswithcode"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2605.21491",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 2,
+      "llm_score": 76,
+      "why": "Capacidad de predecir el éxito de ideas de investigación antes de experimentar, optimizando recursos científicos.",
+      "entities": [
+        "PapersWithCode",
+        "Teaching Language Models",
+        "Forecast Research Success",
+        "Through Comparative Idea",
+        "Evaluation"
+      ],
+      "noise_penalty": 0,
+      "final_score": 80,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "How can you accelerate your day to day research workflow? By giving AI the right scientific toolkit. We launched Science Skills for Google , integrating insi...",
+      "summary": "How can you accelerate your day to day research workflow? By giving AI the right scientific toolkit. We launched Science Skills for Google , integrating insights from over 30 major life science sources, including UniProt and the AlphaFold Database.",
+      "link": "https://x.com/GoogleDeepMind?post=3651ed1d2044",
+      "published": "Fri, 22 May 2026 09:48:20 GMT",
+      "source": "X @GoogleDeepMind",
+      "feed_tags": [
+        "x",
+        "research",
+        "models"
+      ],
+      "raw_title": "How can you accelerate your day to day research workflow? By giving AI the right scientific toolkit. We launched Science Skills for Google , integrating insi...",
+      "raw_summary": "How can you accelerate your day to day research workflow? By giving AI the right scientific toolkit. We launched Science Skills for Google , integrating insights from over 30 major life science sources, including UniProt and the AlphaFold Database.",
+      "score": 77,
+      "primary": "models",
+      "tags": [
+        "biociencia",
+        "investigación",
+        "herramientas"
+      ],
+      "heuristic_score": 23,
+      "url": "https://x.com/GoogleDeepMind?post=3651ed1d2044",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 23,
+      "_rid": 15,
+      "llm_score": 86,
+      "why": "Google DeepMind lanza herramientas científicas integrando 30 fuentes biológicas clave directamente en sus modelos.",
+      "entities": [
+        "DeepMind",
+        "UniProt",
+        "AlphaFold",
+        "Google",
+        "How",
+        "Science Skills"
+      ],
+      "noise_penalty": 0,
+      "final_score": 77,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "You can now use your or X Premium subscription in . Use the model powering Grok Build for high speed and codebase intelligence. [x.ai/news/grok-open](https:/...",
+      "summary": "You can now use your or X Premium subscription in . Use the model powering Grok Build for high speed and codebase intelligence. x.ai/news/grok-open",
+      "link": "https://x.com/xai/status/2057522050923929948",
+      "published": "Fri, 22 May 2026 09:02:17 GMT",
+      "source": "X @xai",
+      "feed_tags": [
+        "x",
+        "models"
+      ],
+      "raw_title": "You can now use your or X Premium subscription in . Use the model powering Grok Build for high speed and codebase intelligence. [x.ai/news/grok-open](https:/...",
+      "raw_summary": "You can now use your or X Premium subscription in . Use the model powering Grok Build for high speed and codebase intelligence. [x.ai/news/grok-open](https://t.co/8D2F9jYoIQ)",
+      "score": 76,
+      "primary": "infra",
+      "tags": [
+        "coding",
+        "grok",
+        "cursor",
+        "ide"
+      ],
+      "heuristic_score": 31,
+      "url": "https://x.com/xai/status/2057522050923929948",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 31,
+      "_rid": 12,
+      "llm_score": 84,
+      "why": "xAI integra Grok directamente en Cursor, intensificando la guerra de asistentes de código para suscriptores Premium.",
+      "entities": [
+        "xAI",
+        "Grok",
+        "Cursor",
+        "You",
+        "Premium",
+        "Use",
+        "Grok Build"
+      ],
+      "noise_penalty": 0,
+      "final_score": 76,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Europe is Getting Serious About ASIC Innovation",
+      "link": "https://semiwiki.com/artificial-intelligence/369365-europe-is-getting-serious-about-asic-innovation/",
+      "published": "2026-05-21T13:00:35+00:00",
+      "summary": "I was born in the UK (then still a part of Europe), so always eager to see them succeed. But I must admit that past behavior has reinforced the view that the EU’s only active “contribution” to progress is regulation. However this seems to be changing in multiple interesting ways. On a grand scale, the Nordic economic model is taking &8230; Read More The post Europe is Getting Serious About ASIC Innovation appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "Europe is Getting Serious About ASIC Innovation",
+      "raw_summary": "I was born in the UK (then still a part of Europe), so always eager to see them succeed. But I must admit that past behavior has reinforced the view that the EU’s only active “contribution” to progress is regulation. However this seems to be changing in multiple interesting ways. On a grand scale, the Nordic economic model is taking &#8230; Read More The post Europe is Getting Serious About ASIC Innovation appeared first on SemiWiki .",
+      "score": 73,
+      "primary": "geopol",
+      "tags": [
+        "asic",
+        "hardware",
+        "ue",
+        "semiconductores"
+      ],
+      "heuristic_score": 42,
+      "url": "https://semiwiki.com/artificial-intelligence/369365-europe-is-getting-serious-about-asic-innovation/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 42,
+      "_rid": 11,
+      "llm_score": 78,
+      "why": "Giro estratégico en la Unión Europea para fomentar la innovación en diseño de chips personalizados y ASICs.",
+      "entities": [
+        "ASIC",
+        "Europe",
+        "Getting Serious About",
+        "Innovation"
+      ],
+      "noise_penalty": 0,
+      "final_score": 73,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "geopolitics_power"
+    },
+    {
+      "title": "Probabilistic Attribution For Large Language Models",
+      "link": "https://arxiv.org/abs/2605.21726",
+      "published": "2026-05-22T04:00:00+00:00",
+      "summary": "arXiv:2605.21726v1 Announce Type: new Abstract: The generative nature of Large Language Models (LLMs) is reflected in the conditional probabilities they compute to sample each response token given the previous tokens. These probabilities encode the distributional structure that the model learns in training and exploits in inference. In this work, we use these probabilities to situate LLMs within the mathematical theory of stochastic processes. We use this framework to design a model-agnostic probabilistic token attribution measure, using Bayes rule to invert the next-token log-probabilities so as to capture the models internal representation of the distribution over token sequences. The representation is independent of the models computational structure. This representation yields the conditional probability of the response given the prompt, and of the response given the prompt with a token marginalized away. Our attribution score is the log of the ratio of these probabilities. We further compute the entropies of a single prompts token distributions, conditioned on the remaining context. The interplay between entropy and attribution score sheds light on LLM behavior. We evaluate 8 models across 7 prompts and investigate anomalies, token sensitivity, response stability, model stability, and training convergence, thereby improving interpretability and guiding users to focus on uncertain or unstable parts of the generation.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Probabilistic Attribution For Large Language Models",
+      "raw_summary": "arXiv:2605.21726v1 Announce Type: new Abstract: The generative nature of Large Language Models (LLMs) is reflected in the conditional probabilities they compute to sample each response token given the previous tokens. These probabilities encode the distributional structure that the model learns in training and exploits in inference. In this work, we use these probabilities to situate LLMs within the mathematical theory of stochastic processes. We use this framework to design a model-agnostic probabilistic token attribution measure, using Bayes rule to invert the next-token log-probabilities so as to capture the models internal representation of the distribution over token sequences. The representation is independent of the models computational structure. This representation yields the conditional probability of the response given the prompt, and of the response given the prompt with a token marginalized away. Our attribution score is the log of the ratio of these probabilities. We further compute the entropies of a single prompts token distributions, conditioned on the remaining context. The interplay between entropy and attribution score sheds light on LLM behavior. We evaluate 8 models across 7 prompts and investigate anomalies, token sensitivity, response stability, model stability, and training convergence, thereby improving interpretability and guiding users to focus on uncertain or unstable parts of the generation.",
+      "score": 70,
+      "primary": "models",
+      "tags": [
+        "teoría",
+        "probabilidad",
+        "interpretabilidad"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2605.21726",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 3,
+      "llm_score": 65,
+      "why": "Marco matemático para medir la atribución de tokens basada en probabilidades condicionales internas del modelo.",
+      "entities": [
+        "Probabilistic Attribution For",
+        "Large Language Models"
+      ],
+      "noise_penalty": 0,
+      "final_score": 70,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Temporal Contrastive Transformer for Financial Crime Detection: Self-Supervised Sequence Embeddings via Predictive Contrastive Coding",
+      "link": "https://arxiv.org/abs/2605.21490",
+      "published": "2026-05-22T04:00:00+00:00",
+      "summary": "arXiv:2605.21490v1 Announce Type: new Abstract: We introduce the Temporal Contrastive Transformer (TCT), a representation learning framework designed to capture contextual temporal dynamics in sequences of financial transactions. The model is trained using a self-supervised contrastive objective to produce embeddings that encode behavioral patterns over time, with the goal of supporting downstream fraud detection tasks. We evaluate TCT in a realistic setting by using the learned embeddings as input features to a gradient boosting classifier. Experimental results show that embeddings alone achieve meaningful predictive performance (AUC 0.8644), indicating that the model captures non-trivial temporal structure. However, when combined with domain-engineered features, no measurable improvement is observed over the baseline (AUC 0.9205 vs. 0.9245), suggesting that the learned representations largely overlap with existing feature abstractions. These findings position TCT as a promising representation learning approach that captures relevant behavioral signal, while highlighting the challenges of achieving additive value over strong domain features. The results reflect an intermediate stage in the development of temporal representation learning for financial crime detection and motivate further research on model architecture, training objectives, and integration strategies. At this early stage, achieving performance comparable to a strong feature-engineered baseline is itself a meaningful outcome, indicating that learned representations approximate domain-specific features without manual engineering. While not yet production-ready, these results point to a promising direction for reducing reliance on feature engineering in financial crime detection.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Temporal Contrastive Transformer for Financial Crime Detection: Self-Supervised Sequence Embeddings via Predictive Contrastive Coding",
+      "raw_summary": "arXiv:2605.21490v1 Announce Type: new Abstract: We introduce the Temporal Contrastive Transformer (TCT), a representation learning framework designed to capture contextual temporal dynamics in sequences of financial transactions. The model is trained using a self-supervised contrastive objective to produce embeddings that encode behavioral patterns over time, with the goal of supporting downstream fraud detection tasks. We evaluate TCT in a realistic setting by using the learned embeddings as input features to a gradient boosting classifier. Experimental results show that embeddings alone achieve meaningful predictive performance (AUC 0.8644), indicating that the model captures non-trivial temporal structure. However, when combined with domain-engineered features, no measurable improvement is observed over the baseline (AUC 0.9205 vs. 0.9245), suggesting that the learned representations largely overlap with existing feature abstractions. These findings position TCT as a promising representation learning approach that captures relevant behavioral signal, while highlighting the challenges of achieving additive value over strong domain features. The results reflect an intermediate stage in the development of temporal representation learning for financial crime detection and motivate further research on model architecture, training objectives, and integration strategies. At this early stage, achieving performance comparable to a strong feature-engineered baseline is itself a meaningful outcome, indicating that learned representations approximate domain-specific features without manual engineering. While not yet production-ready, these results point to a promising direction for reducing reliance on feature engineering in financial crime detection.",
+      "score": 70,
+      "primary": "models",
+      "tags": [
+        "finanzas",
+        "fraude",
+        "self-supervised"
+      ],
+      "heuristic_score": 68,
+      "url": "https://arxiv.org/abs/2605.21490",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 68,
+      "_rid": 6,
+      "llm_score": 70,
+      "why": "Nuevo framework TCT para detectar patrones de criminalidad financiera mediante embeddings temporales de transacciones.",
+      "entities": [
+        "Temporal Contrastive Transformer",
+        "Financial Crime Detection",
+        "Self",
+        "Supervised Sequence Embeddings",
+        "Predictive Contrastive Coding"
+      ],
+      "noise_penalty": 0,
+      "final_score": 70,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "RankJudge: A Multi-Turn LLM-as-a-Judge Synthetic Benchmark Generator",
+      "link": "https://arxiv.org/abs/2605.21748",
+      "published": "2026-05-22T04:00:00+00:00",
+      "summary": "arXiv:2605.21748v1 Announce Type: new Abstract: As interactive LLM-based applications are created and refined, model developers need to evaluate the quality of generated text along many possible axes. For simpler systems, human evaluation may be practical, but in complicated systems like conversational chatbots, the amount of generated text can overwhelm human annotation resources. Model developers have begun to rely heavily on auto-evaluation, where LLMs are also used to judge generation quality. However, existing LLM-as-a-judge benchmarks largely focus on simple Q\\&A tasks that do not match the complexity of multi-turn conversations. We introduce RankJudge, a benchmark generator for evaluating LLM-as-a-judge on multi-turn conversations grounded in reference documents. RankJudge creates pairs of conversations where one conversation has a single flaw injected into one turn. This construction allows paired conversations to be labeled unambiguously as better or worse, and precisely isolates failure categories to individual turns, enabling a strict joint correctness criterion for judging. We implement RankJudge across the domains of machine learning, biomedicine, and finance, evaluate 21 frontier LLM judges, and rank those judges via the Bradley-Terry model. Our formulation also allows ranking each conversation pair with difficulty ratings, which we use to dynamically curate the evaluation slice to reduce label noise, as confirmed via human annotation. We find that judge rankings are stable under partial observability, coarser correctness criteria, and an alternative random-walk rating algorithm.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "RankJudge: A Multi-Turn LLM-as-a-Judge Synthetic Benchmark Generator",
+      "raw_summary": "arXiv:2605.21748v1 Announce Type: new Abstract: As interactive LLM-based applications are created and refined, model developers need to evaluate the quality of generated text along many possible axes. For simpler systems, human evaluation may be practical, but in complicated systems like conversational chatbots, the amount of generated text can overwhelm human annotation resources. Model developers have begun to rely heavily on auto-evaluation, where LLMs are also used to judge generation quality. However, existing LLM-as-a-judge benchmarks largely focus on simple Q\\&amp;A tasks that do not match the complexity of multi-turn conversations. We introduce RankJudge, a benchmark generator for evaluating LLM-as-a-judge on multi-turn conversations grounded in reference documents. RankJudge creates pairs of conversations where one conversation has a single flaw injected into one turn. This construction allows paired conversations to be labeled unambiguously as better or worse, and precisely isolates failure categories to individual turns, enabling a strict joint correctness criterion for judging. We implement RankJudge across the domains of machine learning, biomedicine, and finance, evaluate 21 frontier LLM judges, and rank those judges via the Bradley-Terry model. Our formulation also allows ranking each conversation pair with difficulty ratings, which we use to dynamically curate the evaluation slice to reduce label noise, as confirmed via human annotation. We find that judge rankings are stable under partial observability, coarser correctness criteria, and an alternative random-walk rating algorithm.",
+      "score": 68,
+      "primary": "models",
+      "tags": [
+        "benchmarking",
+        "evaluación",
+        "chatbot"
+      ],
+      "heuristic_score": 68,
+      "url": "https://arxiv.org/abs/2605.21748",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 68,
+      "_rid": 7,
+      "llm_score": 68,
+      "why": "Generador de benchmarks sintéticos para evaluar la calidad de diálogos multi-turno mediante LLM-as-a-judge.",
+      "entities": [
+        "RankJudge",
+        "Multi",
+        "Turn",
+        "Judge Synthetic Benchmark",
+        "Generator"
+      ],
+      "noise_penalty": 0,
+      "final_score": 68,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "CR4T: Rewrite-Based Guardrails for Adolescent LLM Safety",
+      "link": "https://arxiv.org/abs/2605.21609",
+      "published": "2026-05-22T04:00:00+00:00",
+      "summary": "arXiv:2605.21609v1 Announce Type: new Abstract: Large language models (LLMs) are increasingly embedded in adolescent digital environments, mediating information seeking, advice, and emotionally sensitive interactions. Yet existing safety mechanisms remain largely grounded in adult-centric norms and operationalize safety through refusal-oriented suppression. While such approaches may reduce immediate policy violations, they can also create conversational dead-ends, limit constructive guidance, and fail to address the developmental vulnerabilities inherent in adolescent-AI interactions. We argue that adolescent LLM safety should be framed not solely as a filtering problem, but as a socio-technical, developmentally aligned transformation problem. To operationalize this perspective, we propose Critique-and-Revise-for-Teenagers (CR4T), a model-agnostic safeguarding framework that selectively reconstructs unsafe or refusal-style outputs into ageappropriate, guidance-oriented responses while preserving benign intent. CR4T combines lightweight risk detection with domain-conditioned rewriting to remove risk-amplifying content, reduce unnecessary conversational shutdown, and introduce developmentally appropriate guidance. Experimental results show that targeted rewriting substantially reduces unsafe and refusal-oriented outcomes while avoiding unnecessary intervention on acceptable interactions. These findings suggest that selective response reconstruction offers a more human-centered alternative to refusal-centric guardrails for adolescent-facing LLM systems.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "CR4T: Rewrite-Based Guardrails for Adolescent LLM Safety",
+      "raw_summary": "arXiv:2605.21609v1 Announce Type: new Abstract: Large language models (LLMs) are increasingly embedded in adolescent digital environments, mediating information seeking, advice, and emotionally sensitive interactions. Yet existing safety mechanisms remain largely grounded in adult-centric norms and operationalize safety through refusal-oriented suppression. While such approaches may reduce immediate policy violations, they can also create conversational dead-ends, limit constructive guidance, and fail to address the developmental vulnerabilities inherent in adolescent-AI interactions. We argue that adolescent LLM safety should be framed not solely as a filtering problem, but as a socio-technical, developmentally aligned transformation problem. To operationalize this perspective, we propose Critique-and-Revise-for-Teenagers (CR4T), a model-agnostic safeguarding framework that selectively reconstructs unsafe or refusal-style outputs into ageappropriate, guidance-oriented responses while preserving benign intent. CR4T combines lightweight risk detection with domain-conditioned rewriting to remove risk-amplifying content, reduce unnecessary conversational shutdown, and introduce developmentally appropriate guidance. Experimental results show that targeted rewriting substantially reduces unsafe and refusal-oriented outcomes while avoiding unnecessary intervention on acceptable interactions. These findings suggest that selective response reconstruction offers a more human-centered alternative to refusal-centric guardrails for adolescent-facing LLM systems.",
+      "score": 62,
+      "primary": "misc",
+      "tags": [
+        "seguridad",
+        "ética",
+        "adolescentes"
+      ],
+      "heuristic_score": 64,
+      "url": "https://arxiv.org/abs/2605.21609",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 64,
+      "_rid": 9,
+      "llm_score": 62,
+      "why": "Guardrails de reescritura diseñados para vulnerabilidades específicas en la interacción adolescente-IA.",
+      "entities": [
+        "CR4T",
+        "Rewrite",
+        "Based Guardrails",
+        "Adolescent",
+        "Safety"
+      ],
+      "noise_penalty": 0,
+      "final_score": 62,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "PromptNCE: Pointwise Mutual Information Predictions Using Only LLMs and Contrastive Estimation Prompts",
+      "link": "https://arxiv.org/abs/2605.21776",
+      "published": "2026-05-22T04:00:00+00:00",
+      "summary": "arXiv:2605.21776v1 Announce Type: new Abstract: Estimating mutual information from text usually requires training a task-specific critic, which limits its use in low-data settings. We ask whether large language models can instead estimate pointwise mutual information zero-shot, using only prompts and elicited probabilities. We introduce a benchmark with human-derived ground-truth PMI across three publicly available datasets, and evaluate five information-theoretic prompting-based estimators. Our main method, PromptNCE, frames conditional probability estimation as a contrastive task and augments the candidate set with an explicit OTHER category. We show theoretically that adding OTHER recovers the true conditional P(y | x) rather than just a ranking over listed candidates, turning a contrastive prompt into a general-purpose zero-shot probability estimator. PromptNCE is the best zero-shot method on all three datasets, reaching Spearman correlation up to 0.82 with human-derived PMI. We also present a case study in computer science education showing how these estimators can be used to score student knowledge summaries in a low-data setting.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "PromptNCE: Pointwise Mutual Information Predictions Using Only LLMs and Contrastive Estimation Prompts",
+      "raw_summary": "arXiv:2605.21776v1 Announce Type: new Abstract: Estimating mutual information from text usually requires training a task-specific critic, which limits its use in low-data settings. We ask whether large language models can instead estimate pointwise mutual information zero-shot, using only prompts and elicited probabilities. We introduce a benchmark with human-derived ground-truth PMI across three publicly available datasets, and evaluate five information-theoretic prompting-based estimators. Our main method, PromptNCE, frames conditional probability estimation as a contrastive task and augments the candidate set with an explicit OTHER category. We show theoretically that adding OTHER recovers the true conditional P(y | x) rather than just a ranking over listed candidates, turning a contrastive prompt into a general-purpose zero-shot probability estimator. PromptNCE is the best zero-shot method on all three datasets, reaching Spearman correlation up to 0.82 with human-derived PMI. We also present a case study in computer science education showing how these estimators can be used to score student knowledge summaries in a low-data setting.",
+      "score": 59,
+      "primary": "models",
+      "tags": [
+        "probabilidad",
+        "zero-shot",
+        "teoría"
+      ],
+      "heuristic_score": 56,
+      "url": "https://arxiv.org/abs/2605.21776",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 56,
+      "_rid": 10,
+      "llm_score": 60,
+      "why": "Método PromptNCE para estimar información mutua puntual sin necesidad de críticos específicos por tarea.",
+      "entities": [
+        "PromptNCE",
+        "Pointwise Mutual Information",
+        "Predictions Using Only",
+        "Contrastive Estimation Prompts"
+      ],
+      "noise_penalty": 0,
+      "final_score": 59,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Sem-Detect: Semantic Level Detection of AI Generated Peer-Reviews",
+      "link": "https://arxiv.org/abs/2605.21713",
+      "published": "2026-05-22T04:00:00+00:00",
+      "summary": "arXiv:2605.21713v1 Announce Type: new Abstract: How can we distinguish whether a peer review was written by a human or generated by an AI model? We argue that, in this setting, authorship should not be attributed solely from the textual features of a review, but also from the ideas, judgments, and claims it expresses. To this end, we propose Sem-Detect, an authorship detection method for peer reviews that operationalizes this principle by combining textual features with claim-level semantic analysis. Sem-Detect compares a target review against multiple AI-generated reviews of the same paper, leveraging the observation that different AI models tend to converge on similar points, while human reviewers introduce more unique and diverse ones. As a result, Sem-Detect is able to distinguish fully AI reviews from authentic human-written ones, including those that have been refined using an LLM but still reflect human judgment. Across a dataset of over 20,000 peer reviews from ICLR and NeurIPS conferences, Sem-Detect improves over the strongest baseline by 25.5% in TPR@0.1% FPR in the binary setting. Moreover, in the three-class scenario, we empirically show that LLM refinement preserves the semantic signals of human reviews, which remain distinct from the patterns exhibited by fully AI-generated text; as a result, fewer than 3.5% of LLM-refined human reviews are misclassified as AI-generated.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Sem-Detect: Semantic Level Detection of AI Generated Peer-Reviews",
+      "raw_summary": "arXiv:2605.21713v1 Announce Type: new Abstract: How can we distinguish whether a peer review was written by a human or generated by an AI model? We argue that, in this setting, authorship should not be attributed solely from the textual features of a review, but also from the ideas, judgments, and claims it expresses. To this end, we propose Sem-Detect, an authorship detection method for peer reviews that operationalizes this principle by combining textual features with claim-level semantic analysis. Sem-Detect compares a target review against multiple AI-generated reviews of the same paper, leveraging the observation that different AI models tend to converge on similar points, while human reviewers introduce more unique and diverse ones. As a result, Sem-Detect is able to distinguish fully AI reviews from authentic human-written ones, including those that have been refined using an LLM but still reflect human judgment. Across a dataset of over 20,000 peer reviews from ICLR and NeurIPS conferences, Sem-Detect improves over the strongest baseline by 25.5% in TPR@0.1% FPR in the binary setting. Moreover, in the three-class scenario, we empirically show that LLM refinement preserves the semantic signals of human reviews, which remain distinct from the patterns exhibited by fully AI-generated text; as a result, fewer than 3.5% of LLM-refined human reviews are misclassified as AI-generated.",
+      "score": 53,
+      "primary": "misc",
+      "tags": [
+        "academia",
+        "detección",
+        "peer-review"
+      ],
+      "heuristic_score": 23,
+      "url": "https://arxiv.org/abs/2605.21713",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 23,
+      "_rid": 13,
+      "llm_score": 58,
+      "why": "Detección semántica de revisiones académicas generadas por IA mediante convergencia de ideas y juicios.",
+      "entities": [
+        "Sem-Detect",
+        "Sem",
+        "Detect",
+        "Semantic Level Detection",
+        "Generated Peer",
+        "Reviews"
+      ],
+      "noise_penalty": 0,
+      "final_score": 53,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Broadening Access to Transportation Safety Data with Generative AI: A Schema-Grounded Framework for Spatial Natural Language Queries",
+      "link": "https://arxiv.org/abs/2605.21712",
+      "published": "2026-05-22T04:00:00+00:00",
+      "summary": "arXiv:2605.21712v1 Announce Type: new Abstract: Transportation safety analysis requires integrating crash records, roadway attributes, and geospatial data through GIS-based workflows, but access remains uneven across agencies and community stakeholders. Technical prerequisites create a gap between analytical tools central to safety planning and the practitioners able to use them. Local agencies, school committees, and residents may have safety concerns but limited capacity to retrieve, filter, map, and analyze relevant data. Generative AI offers a way to narrow this divide, but its public-sector use raises questions about reliability, reproducibility, and governance. This paper presents a schema-grounded natural language interface for transportation safety analysis, using a large language model (LLM) to interpret user intent while preserving deterministic, reviewable execution against an authoritative database. User queries are translated into structured semantic frames, validated by a rule-based layer, compiled into a typed directed acyclic graph of spatial operations, and executed against a PostGIS database. This bounded design separates language interpretation from deterministic execution, keeping results reproducible and schema-grounded while removing access barriers. The framework is evaluated using a statewide Massachusetts transportation safety database integrating crash records, roadway attributes, and geospatial layers including schools, bus stops, crosswalks, and municipal boundaries. All queries executed successfully; the validation layer corrects errors in 29% of evaluation queries, reflecting the gap between flexible natural language and strict schema-grounded requirements. The results suggest that combining natural language accessibility with deterministic execution is a practical direction for broadening access to transportation safety data, with implications for trustworthy AI in public-sector planning.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Broadening Access to Transportation Safety Data with Generative AI: A Schema-Grounded Framework for Spatial Natural Language Queries",
+      "raw_summary": "arXiv:2605.21712v1 Announce Type: new Abstract: Transportation safety analysis requires integrating crash records, roadway attributes, and geospatial data through GIS-based workflows, but access remains uneven across agencies and community stakeholders. Technical prerequisites create a gap between analytical tools central to safety planning and the practitioners able to use them. Local agencies, school committees, and residents may have safety concerns but limited capacity to retrieve, filter, map, and analyze relevant data. Generative AI offers a way to narrow this divide, but its public-sector use raises questions about reliability, reproducibility, and governance. This paper presents a schema-grounded natural language interface for transportation safety analysis, using a large language model (LLM) to interpret user intent while preserving deterministic, reviewable execution against an authoritative database. User queries are translated into structured semantic frames, validated by a rule-based layer, compiled into a typed directed acyclic graph of spatial operations, and executed against a PostGIS database. This bounded design separates language interpretation from deterministic execution, keeping results reproducible and schema-grounded while removing access barriers. The framework is evaluated using a statewide Massachusetts transportation safety database integrating crash records, roadway attributes, and geospatial layers including schools, bus stops, crosswalks, and municipal boundaries. All queries executed successfully; the validation layer corrects errors in 29% of evaluation queries, reflecting the gap between flexible natural language and strict schema-grounded requirements. The results suggest that combining natural language accessibility with deterministic execution is a practical direction for broadening access to transportation safety data, with implications for trustworthy AI in public-sector planning.",
+      "score": 52,
+      "primary": "misc",
+      "tags": [
+        "transporte",
+        "seguridad",
+        "gis"
+      ],
+      "heuristic_score": 75,
+      "url": "https://arxiv.org/abs/2605.21712",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 75,
+      "_rid": 5,
+      "llm_score": 55,
+      "why": "Democratización del acceso a datos de seguridad vial mediante consultas de lenguaje natural fundamentadas en esquemas.",
+      "entities": [
+        "Broadening Access",
+        "Transportation Safety Data",
+        "Generative",
+        "Schema",
+        "Grounded Framework",
+        "Spatial Natural Language",
+        "Queries"
+      ],
+      "noise_penalty": 6,
+      "final_score": 52,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(6)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Over the past few months, we've been holding dialogues with scholars, philosophers, clergy, and ethicists on the questions AI raises—starting with how good c...",
+      "summary": "Over the past few months, we've been holding dialogues with scholars, philosophers, clergy, and ethicists on the questions AI raises—starting with how good character forms. Read more about how we’re widening the conversation on frontier AI:",
+      "link": "https://x.com/AnthropicAI?post=8082171b41aa",
+      "published": "Fri, 22 May 2026 09:46:53 GMT",
+      "source": "X @AnthropicAI",
+      "feed_tags": [
+        "x",
+        "models",
+        "safety"
+      ],
+      "raw_title": "Over the past few months, we've been holding dialogues with scholars, philosophers, clergy, and ethicists on the questions AI raises—starting with how good c...",
+      "raw_summary": "Over the past few months, we've been holding dialogues with scholars, philosophers, clergy, and ethicists on the questions AI raises—starting with how good character forms. Read more about how we’re widening the conversation on frontier AI:",
+      "score": 42,
+      "primary": "misc",
+      "tags": [
+        "ética",
+        "filosofía",
+        "gobernanza"
+      ],
+      "heuristic_score": 23,
+      "url": "https://x.com/AnthropicAI?post=8082171b41aa",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 23,
+      "_rid": 14,
+      "llm_score": 45,
+      "why": "Anthropic amplía el diálogo con expertos en ética para definir el 'buen carácter' en modelos de frontera.",
+      "entities": [
+        "Anthropic",
+        "Over"
+      ],
+      "noise_penalty": 0,
+      "final_score": 42,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    }
+  ]
+}
