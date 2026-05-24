@@ -120,6 +120,59 @@ def source_domain(url: str) -> str:
     return host or "source"
 
 
+SOURCE_DOMAIN_HINTS = {
+    "arxiv": "arxiv.org",
+    "deepmind": "deepmind.google",
+    "google ai": "blog.google",
+    "nvidia": "nvidia.com",
+    "semiwiki": "semiwiki.com",
+    "openai": "openai.com",
+    "anthropic": "anthropic.com",
+    "x @googledeepmind": "deepmind.google",
+    "x @deepseek": "deepseek.com",
+    "x @xai": "x.ai",
+    "x @karpathy": "x.com",
+    "x @sama": "openai.com",
+    "x ai policy": "commission.europa.eu",
+}
+
+
+def source_logo_domain(source: str, url: str = "") -> str:
+    src = (source or "").strip().lower()
+    for key, domain in SOURCE_DOMAIN_HINTS.items():
+        if key in src:
+            return domain
+    domain = source_domain(url)
+    if domain != "source":
+        return domain
+    return "x.com" if src.startswith("x ") else "github.com"
+
+
+def source_logo_url(source: str, url: str = "") -> str:
+    domain = source_logo_domain(source, url)
+    return f"https://www.google.com/s2/favicons?domain={domain}&sz=64"
+
+
+def source_label(source: str) -> str:
+    raw = (source or "Source").strip()
+    if raw.startswith("X @"):
+        return raw.replace("X @", "@", 1)
+    return raw.replace(" (AI)", "")
+
+
+def source_initial(source: str) -> str:
+    label = source_label(source).lstrip("@").strip()
+    return (label[:1] or "S").upper()
+
+
+def one_line_takeaway(item: dict) -> str:
+    title = (item.get("title") or "").strip()
+    reason = (item.get("reason") or item_reason(item, limit=120)).strip()
+    if reason and reason.lower() not in title.lower():
+        return truncate_text(reason, 118)
+    return truncate_text(title, 118)
+
+
 ENV = Environment(autoescape=select_autoescape(["html", "xml"]))
 ENV.filters["safe_url"] = _safe_url
 
@@ -135,24 +188,33 @@ TEMPLATE = ENV.from_string("""
       --bg:#090a0c; --surface:#11151b; --surface2:#161b22; --line:#27313d;
       --text:#edf2f7; --muted:#9aa8b7; --cyan:#67e8f9; --green:#74d99f;
       --amber:#f4bd50; --red:#fb7185; --violet:#c4b5fd; --blue:#93c5fd;
-      --shadow:0 16px 45px rgba(0,0,0,.32);
+      --shadow:0 18px 55px rgba(0,0,0,.34);
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{margin:0;background:#090a0c;color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
     body:before{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(145deg,rgba(103,232,249,.10),transparent 32%),linear-gradient(30deg,rgba(116,217,159,.08),transparent 40%);z-index:-1}
     a{color:#cfe6ff;text-decoration:none} a:hover{text-decoration:underline}
-    .wrap{max-width:1240px;margin:0 auto;padding:18px}
+    .wrap{max-width:1180px;margin:0 auto;padding:18px}
     .topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
     .brand{font-weight:800;letter-spacing:.2px}.nav{display:flex;gap:8px;flex-wrap:wrap}
     .nav a{border:1px solid var(--line);border-radius:8px;padding:8px 10px;color:var(--muted);background:rgba(17,21,27,.72);font-size:13px}.nav a.active{color:var(--text);border-color:rgba(103,232,249,.55)}
-    .hero{border:1px solid var(--line);background:linear-gradient(180deg,rgba(22,27,34,.96),rgba(13,16,21,.96));border-radius:8px;padding:22px;box-shadow:var(--shadow)}
+    .hero{position:relative;overflow:hidden;border:1px solid var(--line);background:linear-gradient(135deg,rgba(24,35,42,.98),rgba(13,16,21,.96) 62%,rgba(17,24,39,.98));border-radius:10px;padding:24px;box-shadow:var(--shadow)}
+    .hero:after{content:"";position:absolute;right:-160px;top:-160px;width:360px;height:360px;border-radius:999px;background:radial-gradient(circle,rgba(103,232,249,.16),transparent 62%);pointer-events:none}
     .eyebrow{font-size:11px;color:var(--cyan);font-weight:800;text-transform:uppercase;letter-spacing:.8px}
     h1{margin:6px 0 0;font-size:clamp(34px,6vw,68px);line-height:1;font-weight:850}
     .subtitle{margin-top:10px;color:var(--muted);font-size:15px;max-width:820px}
-    .thesis{margin-top:16px;font-size:clamp(20px,3vw,34px);line-height:1.16;font-weight:760;max-width:980px}
-    .metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:18px}
-    @media (min-width:820px){.metrics{grid-template-columns:repeat(6,minmax(0,1fr))}}
+    .thesis{margin-top:16px;font-size:clamp(21px,3.4vw,40px);line-height:1.12;font-weight:820;max-width:980px}
+    .quick-strip{display:grid;grid-template-columns:1fr;gap:8px;margin-top:18px}
+    @media (min-width:860px){.quick-strip{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    .quick{border:1px solid rgba(103,232,249,.26);background:rgba(13,17,23,.72);border-radius:10px;padding:12px;min-height:98px}
+    .quick .label{font-size:11px;color:var(--cyan);text-transform:uppercase;font-weight:850;letter-spacing:.6px}.quick .txt{margin-top:7px;font-size:15px;line-height:1.28;font-weight:720}
+    .source-strip{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}
+    .source-chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;background:#0d1117;padding:6px 9px;color:#dbe7f3;font-size:12px;font-weight:750}
+    .logo{width:26px;height:26px;border-radius:8px;background:#111820;border:1px solid var(--line);object-fit:contain;padding:3px;flex:0 0 auto}
+    .logo.big{width:46px;height:46px;border-radius:12px;padding:5px}
+    .metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:14px}
+    @media (min-width:820px){.metrics{grid-template-columns:repeat(5,minmax(0,1fr))}}
     .metric{border:1px solid var(--line);background:#0d1117;border-radius:8px;padding:10px;min-height:78px}
     .metric .k{font-size:11px;color:var(--muted);text-transform:uppercase;font-weight:750}.metric .v{margin-top:7px;font-size:22px;font-weight:820;line-height:1.05}
     .signal{display:inline-flex;border:1px solid transparent;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:850}
@@ -160,25 +222,27 @@ TEMPLATE = ENV.from_string("""
     .medium{color:var(--amber);background:rgba(244,189,80,.12);border-color:rgba(244,189,80,.38)}
     .high{color:var(--green);background:rgba(116,217,159,.12);border-color:rgba(116,217,159,.38)}
     .extreme{color:var(--red);background:rgba(251,113,133,.13);border-color:rgba(251,113,133,.42)}
-    .grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px}@media (min-width:980px){.grid.two{grid-template-columns:1.35fr .9fr}.grid.three{grid-template-columns:1.2fr 1fr 1fr}}
+    .grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px}@media (min-width:980px){.grid.two{grid-template-columns:1.18fr .82fr}.grid.three{grid-template-columns:1fr 1fr 1fr}}
     .panel,.lead,.mini,.feed-card{border:1px solid var(--line);border-radius:8px;background:rgba(17,21,27,.90)}
     .panel{padding:14px}.panel h2,.feed h2{margin:0 0 10px;font-size:17px}.lead{padding:18px;background:linear-gradient(180deg,#18202a,#111820)}
-    .lead h2{font-size:clamp(26px,4vw,44px);line-height:1.08;margin:8px 0 0}
+    .lead-head{display:flex;gap:12px;align-items:flex-start}.lead h2{font-size:clamp(24px,3.2vw,38px);line-height:1.09;margin:8px 0 0}
     .meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.badge{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;background:#0d1117;color:#dbe7f3;font-size:12px;padding:5px 9px}.badge.score{color:var(--red);border-color:rgba(251,113,133,.42)}.badge.theme{color:var(--cyan);border-color:rgba(103,232,249,.38)}.badge.repeat{color:var(--amber);border-color:rgba(244,189,80,.38)}
     .why{margin-top:13px;color:#d8e4ef;line-height:1.42;border-left:3px solid var(--cyan);padding-left:10px}
     .entities{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}.entity{border:1px solid var(--line);background:#0b0f14;border-radius:999px;padding:6px 9px;font-size:12px;color:#dfe8f2}
     .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}.btn{border:1px solid var(--line);background:#0d1117;color:var(--text);border-radius:8px;padding:9px 11px;font-weight:750;cursor:pointer;font-size:13px}.btn.primary{border-color:rgba(103,232,249,.5);background:rgba(103,232,249,.10)}.btn.fav.active{border-color:rgba(244,189,80,.6);color:var(--amber)}
-    .mini{padding:13px}.mini h3{font-size:18px;line-height:1.18;margin:8px 0 0}.mini .why{font-size:13px}
+    .mini{padding:13px}.mini h3{font-size:17px;line-height:1.18;margin:8px 0 0}.mini .why{font-size:13px}
+    .mini-head{display:flex;gap:10px;align-items:flex-start}
     .brief-list{display:grid;gap:8px}.brief-row{display:grid;grid-template-columns:26px 1fr;gap:8px;align-items:start;font-size:14px;line-height:1.35}.num{width:24px;height:24px;border-radius:999px;border:1px solid rgba(103,232,249,.5);display:flex;align-items:center;justify-content:center;color:var(--cyan);font-size:12px;font-weight:800}
     .risk{color:#ffe0a3}.watch-text{color:#dcd4ff}.bar-row{margin:10px 0}.bar-top{display:flex;justify-content:space-between;gap:10px;font-size:13px}.bar{height:10px;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#0b0f14;margin-top:6px}.fill{height:100%;background:linear-gradient(90deg,var(--green),var(--cyan),var(--amber))}
     .controls{position:sticky;top:0;z-index:5;margin-top:14px;border:1px solid var(--line);border-radius:8px;background:rgba(9,10,12,.92);backdrop-filter:blur(10px);padding:10px;display:grid;gap:8px}
     @media (min-width:900px){.controls{grid-template-columns:1fr 180px 180px 170px}}
     input,select{width:100%;border:1px solid var(--line);border-radius:8px;background:#0d1117;color:var(--text);padding:10px;font:inherit}
     .feed{margin-top:14px}.feed-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}.count{color:var(--muted);font-size:13px}
-    .feed-grid{display:grid;grid-template-columns:1fr;gap:9px}.feed-card{padding:12px}.feed-card.hidden{display:none}.feed-card.favorited{border-color:rgba(244,189,80,.58)}
-    .feed-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.feed-title{font-size:17px;font-weight:760;line-height:1.25}.feed-reason{margin-top:8px;color:#cbd6e2;font-size:13px;line-height:1.38}.tiny{font-size:12px;color:var(--muted)}
+    .feed-grid{display:grid;grid-template-columns:1fr;gap:10px}@media (min-width:820px){.feed-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}.feed-card{padding:13px;min-height:210px;display:flex;flex-direction:column}.feed-card.hidden{display:none}.feed-card.favorited{border-color:rgba(244,189,80,.58)}
+    .feed-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.source-line{display:flex;align-items:center;gap:9px}.feed-title{font-size:18px;font-weight:820;line-height:1.18;margin-top:10px}.feed-reason{margin-top:9px;color:#cbd6e2;font-size:13px;line-height:1.36}.tiny{font-size:12px;color:var(--muted)}
+    .takeaway{margin-top:10px;border-left:3px solid var(--green);padding-left:9px;font-size:14px;line-height:1.35;color:#eef6ff;font-weight:650}
     .empty{display:none;color:var(--muted);border:1px dashed var(--line);border-radius:8px;padding:18px;text-align:center}.empty.show{display:block}
-    @media (max-width:700px){.wrap{padding:12px}.hero,.lead,.panel{padding:13px}.feed-top{display:block}.metric .v{font-size:19px}}
+    @media (max-width:700px){.wrap{padding:12px}.hero,.lead,.panel{padding:13px}.feed-top{display:block}.metric .v{font-size:19px}.lead-head{display:block}.logo.big{margin-bottom:10px}}
   </style>
 </head>
 <body>
@@ -197,27 +261,45 @@ TEMPLATE = ENV.from_string("""
     <h1>{{ signal_label }} signal day</h1>
     <div class="subtitle">Frontier labs, agents, compute, China stack, model economics and power shifts.</div>
     <div class="thesis">{{ todays_thesis }}</div>
+    <div class="quick-strip">
+      {% for item in briefing_cards %}
+      <div class="quick">
+        <div class="label">{{ item.label }}</div>
+        <div class="txt">{{ item.text }}</div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="source-strip">
+      {% for src in top_sources %}
+      <span class="source-chip"><img class="logo" src="{{ src.logo }}" alt=""/>{{ src.label }}</span>
+      {% endfor %}
+    </div>
     <div class="metrics">
       <div class="metric"><div class="k">Date</div><div class="v">{{ generated_at }}</div></div>
       <div class="metric"><div class="k">Conviction</div><div class="v"><span class="signal {{ signal_class }}">{{ signal_label }}</span></div></div>
       <div class="metric"><div class="k">Top score</div><div class="v">{{ lead.score }}</div></div>
       <div class="metric"><div class="k">Avg top 3</div><div class="v">{{ avg_top }}</div></div>
       <div class="metric"><div class="k">Strong</div><div class="v">{{ strong_signals_count }}</div></div>
-      <div class="metric"><div class="k">Filtered</div><div class="v">{{ noise_suppressed_count }}</div></div>
     </div>
   </section>
 
   <section class="grid two">
     <article class="lead" data-id="{{ lead.id }}">
-      <div class="eyebrow">Lead signal</div>
-      <h2>{{ lead.title }}</h2>
+      <div class="lead-head">
+        <img class="logo big" src="{{ lead.logo }}" alt=""/>
+        <div>
+          <div class="eyebrow">Lead signal</div>
+          <h2>{{ lead.title }}</h2>
+        </div>
+      </div>
       <div class="meta">
-        <span class="badge">{{ lead.source }}</span>
+        <span class="badge">{{ lead.source_label }}</span>
         <span class="badge theme">{{ lead.theme_label }}</span>
         <span class="badge score">Score {{ lead.score }}</span>
         <span class="badge {{ lead.conviction_class }}">{{ lead.conviction_label }}</span>
         {% if lead.is_repeat %}<span class="badge repeat">Repeat</span>{% endif %}
       </div>
+      <div class="takeaway">{{ lead.takeaway }}</div>
       <div class="why">{{ lead.reason }}</div>
       <div class="entities">{% for e in lead.entities %}<span class="entity">{{ e }}</span>{% endfor %}</div>
       <div class="actions">
@@ -229,8 +311,11 @@ TEMPLATE = ENV.from_string("""
     <aside class="grid">
       {% for item in secondary_signals %}
       <article class="mini" data-id="{{ item.id }}">
+        <div class="mini-head">
+          <img class="logo" src="{{ item.logo }}" alt=""/>
+          <div class="tiny">{{ item.source_label }}</div>
+        </div>
         <div class="meta">
-          <span class="badge">{{ item.source }}</span>
           <span class="badge theme">{{ item.theme_label }}</span>
           <span class="badge score">{{ item.score }}</span>
         </div>
@@ -293,7 +378,7 @@ TEMPLATE = ENV.from_string("""
   </section>
 
   <section class="feed" id="feed">
-    <div class="feed-head"><h2>Signal stream</h2><span class="count" id="visibleCount">{{ items|length }} visible</span></div>
+    <div class="feed-head"><h2>Source cards</h2><span class="count" id="visibleCount">{{ items|length }} visible</span></div>
     <div class="feed-grid" id="itemsGrid">
       {% for item in items %}
       <article class="feed-card"
@@ -305,7 +390,7 @@ TEMPLATE = ENV.from_string("""
         data-search="{{ item.search_blob }}">
         <div class="feed-top">
           <div>
-            <div class="tiny">{{ item.source }} · {{ item.domain }}</div>
+            <div class="source-line"><img class="logo" src="{{ item.logo }}" alt=""/><div><strong>{{ item.source_label }}</strong><div class="tiny">{{ item.domain }}</div></div></div>
             <div class="feed-title"><a href="{{ (item.url or item.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a></div>
           </div>
           <div class="meta">
@@ -314,6 +399,7 @@ TEMPLATE = ENV.from_string("""
             {% if item.is_repeat %}<span class="badge repeat">Repeat</span>{% endif %}
           </div>
         </div>
+        <div class="takeaway">{{ item.takeaway }}</div>
         <div class="feed-reason">{{ item.reason }}</div>
         <div class="entities">{% for e in item.entities %}<span class="entity">{{ e }}</span>{% endfor %}</div>
         <div class="actions">
@@ -394,6 +480,7 @@ def render_index(items, briefing=None):
         theme_label = human_theme(theme)
         url = it.get("url") or it.get("link") or ""
         entities = item_entities(it, limit=6)
+        src_label = source_label(it.get("source", ""))
         it.update(
             {
                 "id": f"sig-{idx}",
@@ -406,10 +493,15 @@ def render_index(items, briefing=None):
                 "conviction_label": label,
                 "conviction_class": css,
                 "domain": source_domain(url),
+                "logo": source_logo_url(it.get("source", ""), url),
+                "source_label": src_label,
+                "source_initial": source_initial(it.get("source", "")),
+                "takeaway": one_line_takeaway(it),
                 "search_blob": " ".join(
                     [
                         str(it.get("title", "")),
                         str(it.get("source", "")),
+                        src_label,
                         theme_label,
                         " ".join(entities),
                         str(it.get("reason", "")),
@@ -434,6 +526,9 @@ def render_index(items, briefing=None):
         "conviction_label": "Low",
         "conviction_class": "low",
         "is_repeat": False,
+        "logo": source_logo_url("Radar", ""),
+        "source_label": "Radar",
+        "takeaway": "Insufficient fresh evidence for a clear lead.",
     }
 
     top3 = enriched[:3]
@@ -468,6 +563,12 @@ def render_index(items, briefing=None):
     if not brief_watch:
         brief_watch = ["Watch for hard evidence: pricing, compute, policy or shipped model changes."]
 
+    briefing_cards = [
+        {"label": "Must read", "text": truncate_text(brief_signals[0], 130)},
+        {"label": "Risk", "text": truncate_text(brief_risks[0], 130)},
+        {"label": "Watch", "text": truncate_text(brief_watch[0], 130)},
+    ]
+
     entity_counter = Counter()
     for it in enriched[:8]:
         for e in it.get("entities", []):
@@ -478,6 +579,17 @@ def render_index(items, briefing=None):
             momentum_entities.append(fallback)
         if len(momentum_entities) >= 12:
             break
+
+    source_counter = Counter(x.get("source", "") for x in enriched)
+    top_sources = []
+    for src, _ in source_counter.most_common(6):
+        sample = next((x for x in enriched if x.get("source") == src), {})
+        top_sources.append(
+            {
+                "label": source_label(src),
+                "logo": source_logo_url(src, sample.get("url") or sample.get("link") or ""),
+            }
+        )
 
     return TEMPLATE.render(
         generated_at=datetime.now().strftime("%Y-%m-%d"),
@@ -493,6 +605,8 @@ def render_index(items, briefing=None):
         theme_rows=theme_rows,
         theme_options=theme_options,
         momentum_entities=momentum_entities,
+        top_sources=top_sources,
+        briefing_cards=briefing_cards,
         todays_thesis=todays_thesis,
         avg_top=round(avg_top, 1),
         briefing=briefing_obj,

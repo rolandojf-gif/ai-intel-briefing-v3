@@ -10,24 +10,33 @@
       --bg:#090a0c; --surface:#11151b; --surface2:#161b22; --line:#27313d;
       --text:#edf2f7; --muted:#9aa8b7; --cyan:#67e8f9; --green:#74d99f;
       --amber:#f4bd50; --red:#fb7185; --violet:#c4b5fd; --blue:#93c5fd;
-      --shadow:0 16px 45px rgba(0,0,0,.32);
+      --shadow:0 18px 55px rgba(0,0,0,.34);
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{margin:0;background:#090a0c;color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
     body:before{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(145deg,rgba(103,232,249,.10),transparent 32%),linear-gradient(30deg,rgba(116,217,159,.08),transparent 40%);z-index:-1}
     a{color:#cfe6ff;text-decoration:none} a:hover{text-decoration:underline}
-    .wrap{max-width:1240px;margin:0 auto;padding:18px}
+    .wrap{max-width:1180px;margin:0 auto;padding:18px}
     .topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
     .brand{font-weight:800;letter-spacing:.2px}.nav{display:flex;gap:8px;flex-wrap:wrap}
     .nav a{border:1px solid var(--line);border-radius:8px;padding:8px 10px;color:var(--muted);background:rgba(17,21,27,.72);font-size:13px}.nav a.active{color:var(--text);border-color:rgba(103,232,249,.55)}
-    .hero{border:1px solid var(--line);background:linear-gradient(180deg,rgba(22,27,34,.96),rgba(13,16,21,.96));border-radius:8px;padding:22px;box-shadow:var(--shadow)}
+    .hero{position:relative;overflow:hidden;border:1px solid var(--line);background:linear-gradient(135deg,rgba(24,35,42,.98),rgba(13,16,21,.96) 62%,rgba(17,24,39,.98));border-radius:10px;padding:24px;box-shadow:var(--shadow)}
+    .hero:after{content:"";position:absolute;right:-160px;top:-160px;width:360px;height:360px;border-radius:999px;background:radial-gradient(circle,rgba(103,232,249,.16),transparent 62%);pointer-events:none}
     .eyebrow{font-size:11px;color:var(--cyan);font-weight:800;text-transform:uppercase;letter-spacing:.8px}
     h1{margin:6px 0 0;font-size:clamp(34px,6vw,68px);line-height:1;font-weight:850}
     .subtitle{margin-top:10px;color:var(--muted);font-size:15px;max-width:820px}
-    .thesis{margin-top:16px;font-size:clamp(20px,3vw,34px);line-height:1.16;font-weight:760;max-width:980px}
-    .metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:18px}
-    @media (min-width:820px){.metrics{grid-template-columns:repeat(6,minmax(0,1fr))}}
+    .thesis{margin-top:16px;font-size:clamp(21px,3.4vw,40px);line-height:1.12;font-weight:820;max-width:980px}
+    .quick-strip{display:grid;grid-template-columns:1fr;gap:8px;margin-top:18px}
+    @media (min-width:860px){.quick-strip{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    .quick{border:1px solid rgba(103,232,249,.26);background:rgba(13,17,23,.72);border-radius:10px;padding:12px;min-height:98px}
+    .quick .label{font-size:11px;color:var(--cyan);text-transform:uppercase;font-weight:850;letter-spacing:.6px}.quick .txt{margin-top:7px;font-size:15px;line-height:1.28;font-weight:720}
+    .source-strip{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}
+    .source-chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;background:#0d1117;padding:6px 9px;color:#dbe7f3;font-size:12px;font-weight:750}
+    .logo{width:26px;height:26px;border-radius:8px;background:#111820;border:1px solid var(--line);object-fit:contain;padding:3px;flex:0 0 auto}
+    .logo.big{width:46px;height:46px;border-radius:12px;padding:5px}
+    .metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:14px}
+    @media (min-width:820px){.metrics{grid-template-columns:repeat(5,minmax(0,1fr))}}
     .metric{border:1px solid var(--line);background:#0d1117;border-radius:8px;padding:10px;min-height:78px}
     .metric .k{font-size:11px;color:var(--muted);text-transform:uppercase;font-weight:750}.metric .v{margin-top:7px;font-size:22px;font-weight:820;line-height:1.05}
     .signal{display:inline-flex;border:1px solid transparent;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:850}
@@ -35,25 +44,27 @@
     .medium{color:var(--amber);background:rgba(244,189,80,.12);border-color:rgba(244,189,80,.38)}
     .high{color:var(--green);background:rgba(116,217,159,.12);border-color:rgba(116,217,159,.38)}
     .extreme{color:var(--red);background:rgba(251,113,133,.13);border-color:rgba(251,113,133,.42)}
-    .grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px}@media (min-width:980px){.grid.two{grid-template-columns:1.35fr .9fr}.grid.three{grid-template-columns:1.2fr 1fr 1fr}}
+    .grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px}@media (min-width:980px){.grid.two{grid-template-columns:1.18fr .82fr}.grid.three{grid-template-columns:1fr 1fr 1fr}}
     .panel,.lead,.mini,.feed-card{border:1px solid var(--line);border-radius:8px;background:rgba(17,21,27,.90)}
     .panel{padding:14px}.panel h2,.feed h2{margin:0 0 10px;font-size:17px}.lead{padding:18px;background:linear-gradient(180deg,#18202a,#111820)}
-    .lead h2{font-size:clamp(26px,4vw,44px);line-height:1.08;margin:8px 0 0}
+    .lead-head{display:flex;gap:12px;align-items:flex-start}.lead h2{font-size:clamp(24px,3.2vw,38px);line-height:1.09;margin:8px 0 0}
     .meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.badge{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;background:#0d1117;color:#dbe7f3;font-size:12px;padding:5px 9px}.badge.score{color:var(--red);border-color:rgba(251,113,133,.42)}.badge.theme{color:var(--cyan);border-color:rgba(103,232,249,.38)}.badge.repeat{color:var(--amber);border-color:rgba(244,189,80,.38)}
     .why{margin-top:13px;color:#d8e4ef;line-height:1.42;border-left:3px solid var(--cyan);padding-left:10px}
     .entities{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}.entity{border:1px solid var(--line);background:#0b0f14;border-radius:999px;padding:6px 9px;font-size:12px;color:#dfe8f2}
     .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}.btn{border:1px solid var(--line);background:#0d1117;color:var(--text);border-radius:8px;padding:9px 11px;font-weight:750;cursor:pointer;font-size:13px}.btn.primary{border-color:rgba(103,232,249,.5);background:rgba(103,232,249,.10)}.btn.fav.active{border-color:rgba(244,189,80,.6);color:var(--amber)}
-    .mini{padding:13px}.mini h3{font-size:18px;line-height:1.18;margin:8px 0 0}.mini .why{font-size:13px}
+    .mini{padding:13px}.mini h3{font-size:17px;line-height:1.18;margin:8px 0 0}.mini .why{font-size:13px}
+    .mini-head{display:flex;gap:10px;align-items:flex-start}
     .brief-list{display:grid;gap:8px}.brief-row{display:grid;grid-template-columns:26px 1fr;gap:8px;align-items:start;font-size:14px;line-height:1.35}.num{width:24px;height:24px;border-radius:999px;border:1px solid rgba(103,232,249,.5);display:flex;align-items:center;justify-content:center;color:var(--cyan);font-size:12px;font-weight:800}
     .risk{color:#ffe0a3}.watch-text{color:#dcd4ff}.bar-row{margin:10px 0}.bar-top{display:flex;justify-content:space-between;gap:10px;font-size:13px}.bar{height:10px;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#0b0f14;margin-top:6px}.fill{height:100%;background:linear-gradient(90deg,var(--green),var(--cyan),var(--amber))}
     .controls{position:sticky;top:0;z-index:5;margin-top:14px;border:1px solid var(--line);border-radius:8px;background:rgba(9,10,12,.92);backdrop-filter:blur(10px);padding:10px;display:grid;gap:8px}
     @media (min-width:900px){.controls{grid-template-columns:1fr 180px 180px 170px}}
     input,select{width:100%;border:1px solid var(--line);border-radius:8px;background:#0d1117;color:var(--text);padding:10px;font:inherit}
     .feed{margin-top:14px}.feed-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}.count{color:var(--muted);font-size:13px}
-    .feed-grid{display:grid;grid-template-columns:1fr;gap:9px}.feed-card{padding:12px}.feed-card.hidden{display:none}.feed-card.favorited{border-color:rgba(244,189,80,.58)}
-    .feed-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.feed-title{font-size:17px;font-weight:760;line-height:1.25}.feed-reason{margin-top:8px;color:#cbd6e2;font-size:13px;line-height:1.38}.tiny{font-size:12px;color:var(--muted)}
+    .feed-grid{display:grid;grid-template-columns:1fr;gap:10px}@media (min-width:820px){.feed-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}.feed-card{padding:13px;min-height:210px;display:flex;flex-direction:column}.feed-card.hidden{display:none}.feed-card.favorited{border-color:rgba(244,189,80,.58)}
+    .feed-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.source-line{display:flex;align-items:center;gap:9px}.feed-title{font-size:18px;font-weight:820;line-height:1.18;margin-top:10px}.feed-reason{margin-top:9px;color:#cbd6e2;font-size:13px;line-height:1.36}.tiny{font-size:12px;color:var(--muted)}
+    .takeaway{margin-top:10px;border-left:3px solid var(--green);padding-left:9px;font-size:14px;line-height:1.35;color:#eef6ff;font-weight:650}
     .empty{display:none;color:var(--muted);border:1px dashed var(--line);border-radius:8px;padding:18px;text-align:center}.empty.show{display:block}
-    @media (max-width:700px){.wrap{padding:12px}.hero,.lead,.panel{padding:13px}.feed-top{display:block}.metric .v{font-size:19px}}
+    @media (max-width:700px){.wrap{padding:12px}.hero,.lead,.panel{padding:13px}.feed-top{display:block}.metric .v{font-size:19px}.lead-head{display:block}.logo.big{margin-bottom:10px}}
   </style>
 </head>
 <body>
@@ -69,58 +80,102 @@
 
   <section class="hero">
     <div class="eyebrow">Morning intelligence brief</div>
-    <h1>High signal day</h1>
+    <h1>Low signal day</h1>
     <div class="subtitle">Frontier labs, agents, compute, China stack, model economics and power shifts.</div>
-    <div class="thesis">OpenAI demuestra razonamiento superior al resolver un problema matemático de Paul Erdős estancado por 80 años.</div>
+    <div class="thesis">Lead: Today, we share a breakthrough on the planar unit distance problem, a famous open question first posed by Paul Erdős in 1946. For  (score 42, frontier_capability).</div>
+    <div class="quick-strip">
+      
+      <div class="quick">
+        <div class="label">Must read</div>
+        <div class="txt">Lead: Today, we share a breakthrough on the planar unit distance problem, a famous open question first posed by Paul Erdős in 194...</div>
+      </div>
+      
+      <div class="quick">
+        <div class="label">Risk</div>
+        <div class="txt">Diversidad razonable de categorías (sin dominancia extrema).</div>
+      </div>
+      
+      <div class="quick">
+        <div class="label">Watch</div>
+        <div class="txt">Seguir: Gemini, Paul, You.</div>
+      </div>
+      
+    </div>
+    <div class="source-strip">
+      
+      <span class="source-chip"><img class="logo" src="https://www.google.com/s2/favicons?domain=deepmind.google&amp;sz=64" alt=""/>DeepMind Blog</span>
+      
+      <span class="source-chip"><img class="logo" src="https://www.google.com/s2/favicons?domain=openai.com&amp;sz=64" alt=""/>@OpenAI</span>
+      
+      <span class="source-chip"><img class="logo" src="https://www.google.com/s2/favicons?domain=x.ai&amp;sz=64" alt=""/>@xai</span>
+      
+      <span class="source-chip"><img class="logo" src="https://www.google.com/s2/favicons?domain=semiwiki.com&amp;sz=64" alt=""/>SemiWiki</span>
+      
+      <span class="source-chip"><img class="logo" src="https://www.google.com/s2/favicons?domain=commission.europa.eu&amp;sz=64" alt=""/>X AI policy/search</span>
+      
+      <span class="source-chip"><img class="logo" src="https://www.google.com/s2/favicons?domain=blog.google&amp;sz=64" alt=""/>Google AI Blog</span>
+      
+    </div>
     <div class="metrics">
       <div class="metric"><div class="k">Date</div><div class="v">2026-05-24</div></div>
-      <div class="metric"><div class="k">Conviction</div><div class="v"><span class="signal high">High</span></div></div>
-      <div class="metric"><div class="k">Top score</div><div class="v">80</div></div>
-      <div class="metric"><div class="k">Avg top 3</div><div class="v">78.3</div></div>
-      <div class="metric"><div class="k">Strong</div><div class="v">10</div></div>
-      <div class="metric"><div class="k">Filtered</div><div class="v">0</div></div>
+      <div class="metric"><div class="k">Conviction</div><div class="v"><span class="signal low">Low</span></div></div>
+      <div class="metric"><div class="k">Top score</div><div class="v">42</div></div>
+      <div class="metric"><div class="k">Avg top 3</div><div class="v">32.3</div></div>
+      <div class="metric"><div class="k">Strong</div><div class="v">0</div></div>
     </div>
   </section>
 
   <section class="grid two">
     <article class="lead" data-id="sig-1">
-      <div class="eyebrow">Lead signal</div>
-      <h2>ASML High-NA EUV is Not Ready for High-Volume Production</h2>
+      <div class="lead-head">
+        <img class="logo big" src="https://www.google.com/s2/favicons?domain=openai.com&amp;sz=64" alt=""/>
+        <div>
+          <div class="eyebrow">Lead signal</div>
+          <h2>Today, we share a breakthrough on the planar unit distance problem, a famous open question first posed by Paul Erdős in 1946. For nearly 80 years, mathematic...</h2>
+        </div>
+      </div>
       <div class="meta">
-        <span class="badge">SemiWiki</span>
-        <span class="badge theme">Compute &amp; chips</span>
-        <span class="badge score">Score 80</span>
-        <span class="badge extreme">Extreme</span>
+        <span class="badge">@OpenAI</span>
+        <span class="badge theme">Frontier models</span>
+        <span class="badge score">Score 42</span>
+        <span class="badge low">Low</span>
         
       </div>
-      <div class="why">Los problemas de ASML con High-NA son un cuello de botella crítico para la hoja de ruta de hardware de IA post-2025.</div>
-      <div class="entities"><span class="entity">ASML</span><span class="entity">EUV</span><span class="entity">High</span><span class="entity">Not Ready</span><span class="entity">Volume Production</span></div>
+      <div class="takeaway">Today, we share a breakthrough on the planar unit distance problem, a famous open question first posed by Paul Erdős...</div>
+      <div class="why">Today, we share a breakthrough on the planar unit distance problem, a famous open question first posed by Paul Erdős in 1946. For nearly 80 years, mathematician</div>
+      <div class="entities"><span class="entity">Paul</span></div>
       <div class="actions">
-        <a class="btn primary" href="https://semiwiki.com/lithography/369490-asml-high-na-euv-is-not-ready-for-high-volume-production/" target="_blank" rel="noopener noreferrer">Read source</a>
+        <a class="btn primary" href="https://x.com/OpenAI?post=a521140f6d39" target="_blank" rel="noopener noreferrer">Read source</a>
         <button class="btn fav" data-fav="sig-1" type="button">Save</button>
-        <button class="btn" data-copy="ASML High-NA EUV is Not Ready for High-Volume Production - https://semiwiki.com/lithography/369490-asml-high-na-euv-is-not-ready-for-high-volume-production/" type="button">Copy</button>
+        <button class="btn" data-copy="Today, we share a breakthrough on the planar unit distance problem, a famous open question first posed by Paul Erdős in 1946. For nearly 80 years, mathematic... - https://x.com/OpenAI?post=a521140f6d39" type="button">Copy</button>
       </div>
     </article>
     <aside class="grid">
       
       <article class="mini" data-id="sig-2">
-        <div class="meta">
-          <span class="badge">X @OpenAI</span>
-          <span class="badge theme">Frontier models</span>
-          <span class="badge score">79</span>
+        <div class="mini-head">
+          <img class="logo" src="https://www.google.com/s2/favicons?domain=x.ai&amp;sz=64" alt=""/>
+          <div class="tiny">@xai</div>
         </div>
-        <h3><a href="https://x.com/OpenAI?post=a521140f6d39" target="_blank" rel="noopener noreferrer">Today, we share a breakthrough on the planar unit distance problem, a famous open question first posed by Paul Erdős in 1946. For nearly 80 years, mathematic...</a></h3>
-        <div class="why">Resolver un problema matemático de 80 años valida capacidades de razonamiento simbólico avanzado más allá de la predicción estadística.</div>
+        <div class="meta">
+          <span class="badge theme">Frontier models</span>
+          <span class="badge score">31</span>
+        </div>
+        <h3><a href="https://x.com/xai/status/2057522050923929948" target="_blank" rel="noopener noreferrer">You can now use your or X Premium subscription in . Use the model powering Grok Build for high speed and codebase intelligence. [x.ai/news/grok-open](https:/...</a></h3>
+        <div class="why">You can now use your or X Premium subscription in . Use the model powering Grok Build for high speed and codebase intelligence. x.ai/news/grok-open</div>
       </article>
       
       <article class="mini" data-id="sig-3">
-        <div class="meta">
-          <span class="badge">X @NVIDIAAI</span>
-          <span class="badge theme">Compute &amp; chips</span>
-          <span class="badge score">76</span>
+        <div class="mini-head">
+          <img class="logo" src="https://www.google.com/s2/favicons?domain=commission.europa.eu&amp;sz=64" alt=""/>
+          <div class="tiny">X AI policy/search</div>
         </div>
-        <h3><a href="https://x.com/NVIDIAAI?post=5c74284ea0e6" target="_blank" rel="noopener noreferrer">From 8 hours to 80 seconds - NVIDIA’s DGX SuperPOD delivers ready-to-run infrastructure out of the box with leading performance in [MLPerf](</a></h3>
-        <div class="why">La optimización extrema en tiempos de despliegue y rendimiento de computación es vital para el escalado industrial de IA.</div>
+        <div class="meta">
+          <span class="badge theme">Geopolitics</span>
+          <span class="badge score">24</span>
+        </div>
+        <h3><a href="https://x.com/EU_Commission/status/2058442879392186605" target="_blank" rel="noopener noreferrer">In the EU, the online world serves people, not the other way around. Today we mark ten years of the General Data Protection Regulation entering into force, g...</a></h3>
+        <div class="why">In the EU, the online world serves people, not the other way around. Today we mark ten years of the General Data Protection Regulation entering into force, givi</div>
       </article>
       
     </aside>
@@ -131,27 +186,27 @@
       <h2>Intelligence brief</h2>
       <div class="brief-list">
         
-        <div class="brief-row"><span class="num">1</span><span>OpenAI demuestra razonamiento superior al resolver un problema matemático de Paul Erdős estancado por 80 años.</span></div>
+        <div class="brief-row"><span class="num">1</span><span>Lead: Today, we share a breakthrough on the planar unit distance problem, a famous open question first posed by Paul Erdős in 1946. For  (score 42, frontier_capability).</span></div>
         
-        <div class="brief-row"><span class="num">2</span><span>NVIDIA reduce tiempos de despliegue de infraestructura de 8 horas a 80 segundos con DGX SuperPOD.</span></div>
+        <div class="brief-row"><span class="num">2</span><span>Mix de hoy: Misc (7/15), Modelos (6/15), Infraestructura/HW (2/15).</span></div>
         
-        <div class="brief-row"><span class="num">3</span><span>ASML enfrenta retrasos críticos en litografía High-NA EUV, amenazando el escalado de chips para 2026.</span></div>
+        <div class="brief-row"><span class="num">3</span><span>Follow-up: You can now use your or X Premium subscription in . Use the model powering Grok Build for high speed and codebase inte (score 31).</span></div>
         
-        <div class="brief-row"><span class="num">4</span><span>Anthropic identifica más de 10,000 vulnerabilidades críticas de software mediante IA colaborativa.</span></div>
+        <div class="brief-row"><span class="num">4</span><span>Follow-up: In the EU, the online world serves people, not the other way around. Today we mark ten years of the General Data Prote (score 24).</span></div>
         
-        <div class="brief-row"><span class="num">5</span><span>Google DeepMind consolida Co-Scientist como motor de descubrimiento en enfermedades infecciosas y longevidad.</span></div>
+        <div class="brief-row"><span class="num">5</span><span>Actores a vigilar: Gemini, Paul, You, Premium, Use.</span></div>
         
       </div>
     </article>
     <article class="panel">
       <h2>Risks</h2>
-      <p class="risk">Inviabilidad técnica o retrasos prolongados en la producción masiva de chips mediante High-NA EUV de ASML.</p><p class="risk">Complejidad regulatoria en la UE derivada de una década de GDPR limitando la agilidad en IA.</p><p class="risk">Privacidad y seguridad en el acceso remoto de modelos de lenguaje a sistemas operativos personales.</p>
+      <p class="risk">Diversidad razonable de categorías (sin dominancia extrema).</p>
       <h2>Watch next</h2>
-      <p class="watch-text">Impacto de Gemini Omni en la interacción multimodal nativa de Google.</p><p class="watch-text">Evolución de Project Genie en la creación de simulaciones realistas para entrenamiento de agentes.</p><p class="watch-text">Capacidad de xAI para atraer talento especializado frente a incumbentes como OpenAI y DeepMind.</p>
+      <p class="watch-text">Seguir: Gemini, Paul, You.</p><p class="watch-text">Vigilar si &#39;Misc&#39; mantiene dominancia mañana.</p>
     </article>
     <article class="panel">
       <h2>Entity momentum</h2>
-      <div class="entities"><span class="entity">DeepMind</span><span class="entity">OpenAI</span><span class="entity">ASML</span><span class="entity">EUV</span><span class="entity">High</span><span class="entity">Not Ready</span><span class="entity">Volume Production</span><span class="entity">Paul Erdős</span><span class="entity">Paul</span><span class="entity">NVIDIA</span><span class="entity">DGX</span><span class="entity">From</span></div>
+      <div class="entities"><span class="entity">Gemini</span><span class="entity">Paul</span><span class="entity">You</span><span class="entity">Premium</span><span class="entity">Use</span><span class="entity">Grok Build</span><span class="entity">General Data Protection</span><span class="entity">Regulation</span><span class="entity">Simulate</span><span class="entity">Project Genie</span><span class="entity">Street View</span><span class="entity">Science</span><span class="entity">OpenAI</span></div>
       <p class="tiny">Dominant theme: Frontier models. Repeat pressure: 0 items.</p>
     </article>
   </section>
@@ -160,32 +215,22 @@
     <h2>Theme radar</h2>
     
     <div class="bar-row">
-      <div class="bar-top"><span>Frontier models</span><strong>7 / 46.7%</strong></div>
-      <div class="bar"><div class="fill" style="width: 46.7%;"></div></div>
+      <div class="bar-top"><span>Frontier models</span><strong>6 / 40.0%</strong></div>
+      <div class="bar"><div class="fill" style="width: 40.0%;"></div></div>
     </div>
     
     <div class="bar-row">
-      <div class="bar-top"><span>Compute &amp; chips</span><strong>3 / 20.0%</strong></div>
-      <div class="bar"><div class="fill" style="width: 20.0%;"></div></div>
+      <div class="bar-top"><span>Other</span><strong>6 / 40.0%</strong></div>
+      <div class="bar"><div class="fill" style="width: 40.0%;"></div></div>
     </div>
     
     <div class="bar-row">
-      <div class="bar-top"><span>Other</span><strong>2 / 13.3%</strong></div>
+      <div class="bar-top"><span>Compute &amp; chips</span><strong>2 / 13.3%</strong></div>
       <div class="bar"><div class="fill" style="width: 13.3%;"></div></div>
     </div>
     
     <div class="bar-row">
-      <div class="bar-top"><span>Agents &amp; automation</span><strong>1 / 6.7%</strong></div>
-      <div class="bar"><div class="fill" style="width: 6.7%;"></div></div>
-    </div>
-    
-    <div class="bar-row">
       <div class="bar-top"><span>Geopolitics</span><strong>1 / 6.7%</strong></div>
-      <div class="bar"><div class="fill" style="width: 6.7%;"></div></div>
-    </div>
-    
-    <div class="bar-row">
-      <div class="bar-top"><span>Model economics</span><strong>1 / 6.7%</strong></div>
       <div class="bar"><div class="fill" style="width: 6.7%;"></div></div>
     </div>
     
@@ -195,7 +240,7 @@
     <input id="searchBox" type="search" placeholder="Search signal, source, entity"/>
     <select id="themeFilter">
       <option value="all">All themes</option>
-      <option value="Agents &amp; automation">Agents &amp; automation</option><option value="Compute &amp; chips">Compute &amp; chips</option><option value="Frontier models">Frontier models</option><option value="Geopolitics">Geopolitics</option><option value="Model economics">Model economics</option><option value="Other">Other</option>
+      <option value="Compute &amp; chips">Compute &amp; chips</option><option value="Frontier models">Frontier models</option><option value="Geopolitics">Geopolitics</option><option value="Other">Other</option>
     </select>
     <select id="viewFilter">
       <option value="all">All signals</option>
@@ -211,396 +256,411 @@
   </section>
 
   <section class="feed" id="feed">
-    <div class="feed-head"><h2>Signal stream</h2><span class="count" id="visibleCount">15 visible</span></div>
+    <div class="feed-head"><h2>Source cards</h2><span class="count" id="visibleCount">15 visible</span></div>
     <div class="feed-grid" id="itemsGrid">
       
       <article class="feed-card"
         data-id="sig-1"
-        data-score="80"
-        data-theme="Compute &amp; chips"
-        data-source="SemiWiki"
-        data-repeat="0"
-        data-search="asml high-na euv is not ready for high-volume production semiwiki compute &amp; chips asml euv high not ready volume production ">
-        <div class="feed-top">
-          <div>
-            <div class="tiny">SemiWiki · semiwiki.com</div>
-            <div class="feed-title"><a href="https://semiwiki.com/lithography/369490-asml-high-na-euv-is-not-ready-for-high-volume-production/" target="_blank" rel="noopener noreferrer">ASML High-NA EUV is Not Ready for High-Volume Production</a></div>
-          </div>
-          <div class="meta">
-            <span class="badge score">80</span>
-            <span class="badge theme">Compute &amp; chips</span>
-            
-          </div>
-        </div>
-        <div class="feed-reason">Los problemas de ASML con High-NA son un cuello de botella crítico para la hoja de ruta de hardware de IA post-2025.</div>
-        <div class="entities"><span class="entity">ASML</span><span class="entity">EUV</span><span class="entity">High</span><span class="entity">Not Ready</span><span class="entity">Volume Production</span></div>
-        <div class="actions">
-          <button class="btn fav" data-fav="sig-1" type="button">Save</button>
-          <button class="btn" data-copy="ASML High-NA EUV is Not Ready for High-Volume Production - https://semiwiki.com/lithography/369490-asml-high-na-euv-is-not-ready-for-high-volume-production/" type="button">Copy</button>
-        </div>
-      </article>
-      
-      <article class="feed-card"
-        data-id="sig-2"
-        data-score="79"
+        data-score="42"
         data-theme="Frontier models"
         data-source="X @OpenAI"
         data-repeat="0"
-        data-search="today, we share a breakthrough on the planar unit distance problem, a famous open question first posed by paul erdős in 1946. for nearly 80 years, mathematic... x @openai frontier models openai paul erdős paul ">
+        data-search="today, we share a breakthrough on the planar unit distance problem, a famous open question first posed by paul erdős in 1946. for nearly 80 years, mathematic... x @openai @openai frontier models paul ">
         <div class="feed-top">
           <div>
-            <div class="tiny">X @OpenAI · x.com</div>
+            <div class="source-line"><img class="logo" src="https://www.google.com/s2/favicons?domain=openai.com&amp;sz=64" alt=""/><div><strong>@OpenAI</strong><div class="tiny">x.com</div></div></div>
             <div class="feed-title"><a href="https://x.com/OpenAI?post=a521140f6d39" target="_blank" rel="noopener noreferrer">Today, we share a breakthrough on the planar unit distance problem, a famous open question first posed by Paul Erdős in 1946. For nearly 80 years, mathematic...</a></div>
           </div>
           <div class="meta">
-            <span class="badge score">79</span>
+            <span class="badge score">42</span>
             <span class="badge theme">Frontier models</span>
             
           </div>
         </div>
-        <div class="feed-reason">Resolver un problema matemático de 80 años valida capacidades de razonamiento simbólico avanzado más allá de la predicción estadística.</div>
-        <div class="entities"><span class="entity">OpenAI</span><span class="entity">Paul Erdős</span><span class="entity">Paul</span></div>
+        <div class="takeaway">Today, we share a breakthrough on the planar unit distance problem, a famous open question first posed by Paul Erdős...</div>
+        <div class="feed-reason">Today, we share a breakthrough on the planar unit distance problem, a famous open question first posed by Paul Erdős in 1946. For nearly 80 years, mathematician</div>
+        <div class="entities"><span class="entity">Paul</span></div>
         <div class="actions">
-          <button class="btn fav" data-fav="sig-2" type="button">Save</button>
+          <button class="btn fav" data-fav="sig-1" type="button">Save</button>
           <button class="btn" data-copy="Today, we share a breakthrough on the planar unit distance problem, a famous open question first posed by Paul Erdős in 1946. For nearly 80 years, mathematic... - https://x.com/OpenAI?post=a521140f6d39" type="button">Copy</button>
         </div>
       </article>
       
       <article class="feed-card"
+        data-id="sig-2"
+        data-score="31"
+        data-theme="Frontier models"
+        data-source="X @xai"
+        data-repeat="0"
+        data-search="you can now use your or x premium subscription in . use the model powering grok build for high speed and codebase intelligence. [x.ai/news/grok-open](https:/... x @xai @xai frontier models you premium use grok build ">
+        <div class="feed-top">
+          <div>
+            <div class="source-line"><img class="logo" src="https://www.google.com/s2/favicons?domain=x.ai&amp;sz=64" alt=""/><div><strong>@xai</strong><div class="tiny">x.com</div></div></div>
+            <div class="feed-title"><a href="https://x.com/xai/status/2057522050923929948" target="_blank" rel="noopener noreferrer">You can now use your or X Premium subscription in . Use the model powering Grok Build for high speed and codebase intelligence. [x.ai/news/grok-open](https:/...</a></div>
+          </div>
+          <div class="meta">
+            <span class="badge score">31</span>
+            <span class="badge theme">Frontier models</span>
+            
+          </div>
+        </div>
+        <div class="takeaway">You can now use your or X Premium subscription in . Use the model powering Grok Build for high speed and codebase int...</div>
+        <div class="feed-reason">You can now use your or X Premium subscription in . Use the model powering Grok Build for high speed and codebase intelligence. x.ai/news/grok-open</div>
+        <div class="entities"><span class="entity">You</span><span class="entity">Premium</span><span class="entity">Use</span><span class="entity">Grok Build</span></div>
+        <div class="actions">
+          <button class="btn fav" data-fav="sig-2" type="button">Save</button>
+          <button class="btn" data-copy="You can now use your or X Premium subscription in . Use the model powering Grok Build for high speed and codebase intelligence. [x.ai/news/grok-open](https:/... - https://x.com/xai/status/2057522050923929948" type="button">Copy</button>
+        </div>
+      </article>
+      
+      <article class="feed-card"
         data-id="sig-3"
-        data-score="76"
-        data-theme="Compute &amp; chips"
-        data-source="X @NVIDIAAI"
-        data-repeat="0"
-        data-search="from 8 hours to 80 seconds - nvidia’s dgx superpod delivers ready-to-run infrastructure out of the box with leading performance in [mlperf]( x @nvidiaai compute &amp; chips nvidia dgx from ">
-        <div class="feed-top">
-          <div>
-            <div class="tiny">X @NVIDIAAI · x.com</div>
-            <div class="feed-title"><a href="https://x.com/NVIDIAAI?post=5c74284ea0e6" target="_blank" rel="noopener noreferrer">From 8 hours to 80 seconds - NVIDIA’s DGX SuperPOD delivers ready-to-run infrastructure out of the box with leading performance in [MLPerf](</a></div>
-          </div>
-          <div class="meta">
-            <span class="badge score">76</span>
-            <span class="badge theme">Compute &amp; chips</span>
-            
-          </div>
-        </div>
-        <div class="feed-reason">La optimización extrema en tiempos de despliegue y rendimiento de computación es vital para el escalado industrial de IA.</div>
-        <div class="entities"><span class="entity">NVIDIA</span><span class="entity">DGX</span><span class="entity">From</span></div>
-        <div class="actions">
-          <button class="btn fav" data-fav="sig-3" type="button">Save</button>
-          <button class="btn" data-copy="From 8 hours to 80 seconds - NVIDIA’s DGX SuperPOD delivers ready-to-run infrastructure out of the box with leading performance in [MLPerf]( - https://x.com/NVIDIAAI?post=5c74284ea0e6" type="button">Copy</button>
-        </div>
-      </article>
-      
-      <article class="feed-card"
-        data-id="sig-4"
-        data-score="71"
-        data-theme="Frontier models"
-        data-source="X @AnthropicAI"
-        data-repeat="0"
-        data-search="last month we launched project glasswing, our collaborative ai cybersecurity initiative. since then, we and our partners have found more than ten thousand hi... x @anthropicai frontier models anthropic last project glasswing since ">
-        <div class="feed-top">
-          <div>
-            <div class="tiny">X @AnthropicAI · x.com</div>
-            <div class="feed-title"><a href="https://x.com/AnthropicAI?post=8329aee9c6fa" target="_blank" rel="noopener noreferrer">Last month we launched Project Glasswing, our collaborative AI cybersecurity initiative. Since then, we and our partners have found more than ten thousand hi...</a></div>
-          </div>
-          <div class="meta">
-            <span class="badge score">71</span>
-            <span class="badge theme">Frontier models</span>
-            
-          </div>
-        </div>
-        <div class="feed-reason">La detección masiva de vulnerabilidades críticas demuestra la utilidad inmediata de la IA en la defensa cibernética.</div>
-        <div class="entities"><span class="entity">Anthropic</span><span class="entity">Last</span><span class="entity">Project Glasswing</span><span class="entity">Since</span></div>
-        <div class="actions">
-          <button class="btn fav" data-fav="sig-4" type="button">Save</button>
-          <button class="btn" data-copy="Last month we launched Project Glasswing, our collaborative AI cybersecurity initiative. Since then, we and our partners have found more than ten thousand hi... - https://x.com/AnthropicAI?post=8329aee9c6fa" type="button">Copy</button>
-        </div>
-      </article>
-      
-      <article class="feed-card"
-        data-id="sig-5"
-        data-score="63"
-        data-theme="Frontier models"
-        data-source="DeepMind Blog"
-        data-repeat="0"
-        data-search="introducing gemini omni deepmind blog frontier models deepmind gemini introducing gemini omni ">
-        <div class="feed-top">
-          <div>
-            <div class="tiny">DeepMind Blog · deepmind.google</div>
-            <div class="feed-title"><a href="https://deepmind.google/blog/introducing-gemini-omni/" target="_blank" rel="noopener noreferrer">Introducing Gemini Omni</a></div>
-          </div>
-          <div class="meta">
-            <span class="badge score">63</span>
-            <span class="badge theme">Frontier models</span>
-            
-          </div>
-        </div>
-        <div class="feed-reason">Gemini Omni apunta a una integración multimodal nativa, crucial para competir en asistentes de baja latencia.</div>
-        <div class="entities"><span class="entity">DeepMind</span><span class="entity">Gemini</span><span class="entity">Introducing Gemini Omni</span></div>
-        <div class="actions">
-          <button class="btn fav" data-fav="sig-5" type="button">Save</button>
-          <button class="btn" data-copy="Introducing Gemini Omni - https://deepmind.google/blog/introducing-gemini-omni/" type="button">Copy</button>
-        </div>
-      </article>
-      
-      <article class="feed-card"
-        data-id="sig-6"
-        data-score="63"
-        data-theme="Agents &amp; automation"
-        data-source="X @OpenAI"
-        data-repeat="0"
-        data-search="highlights from today’s codex thursday launches: 1️⃣ codex can now securely use apps on your mac ... x @openai agents &amp; automation openai highlights codex thursday codex mac ">
-        <div class="feed-top">
-          <div>
-            <div class="tiny">X @OpenAI · x.com</div>
-            <div class="feed-title"><a href="https://x.com/OpenAI/status/2057617844800794878" target="_blank" rel="noopener noreferrer">Highlights from today’s Codex Thursday launches: 1️⃣ Codex can now securely use apps on your Mac ...</a></div>
-          </div>
-          <div class="meta">
-            <span class="badge score">63</span>
-            <span class="badge theme">Agents &amp; automation</span>
-            
-          </div>
-        </div>
-        <div class="feed-reason">La capacidad de controlar dispositivos de forma remota y segura acerca a los modelos a la ejecución de tareas autónomas.</div>
-        <div class="entities"><span class="entity">OpenAI</span><span class="entity">Highlights</span><span class="entity">Codex Thursday</span><span class="entity">Codex</span><span class="entity">Mac</span></div>
-        <div class="actions">
-          <button class="btn fav" data-fav="sig-6" type="button">Save</button>
-          <button class="btn" data-copy="Highlights from today’s Codex Thursday launches: 1️⃣ Codex can now securely use apps on your Mac ... - https://x.com/OpenAI/status/2057617844800794878" type="button">Copy</button>
-        </div>
-      </article>
-      
-      <article class="feed-card"
-        data-id="sig-7"
-        data-score="61"
-        data-theme="Frontier models"
-        data-source="DeepMind Blog"
-        data-repeat="0"
-        data-search="simulate real-world places with project genie and street view deepmind blog frontier models google deepmind simulate project genie street view ">
-        <div class="feed-top">
-          <div>
-            <div class="tiny">DeepMind Blog · deepmind.google</div>
-            <div class="feed-title"><a href="https://deepmind.google/blog/simulate-real-world-places-with-project-genie-and-street-view/" target="_blank" rel="noopener noreferrer">Simulate real-world places with Project Genie and Street View</a></div>
-          </div>
-          <div class="meta">
-            <span class="badge score">61</span>
-            <span class="badge theme">Frontier models</span>
-            
-          </div>
-        </div>
-        <div class="feed-reason">La simulación de entornos reales mediante Street View es clave para el entrenamiento de agentes autónomos y robótica.</div>
-        <div class="entities"><span class="entity">Google</span><span class="entity">DeepMind</span><span class="entity">Simulate</span><span class="entity">Project Genie</span><span class="entity">Street View</span></div>
-        <div class="actions">
-          <button class="btn fav" data-fav="sig-7" type="button">Save</button>
-          <button class="btn" data-copy="Simulate real-world places with Project Genie and Street View - https://deepmind.google/blog/simulate-real-world-places-with-project-genie-and-street-view/" type="button">Copy</button>
-        </div>
-      </article>
-      
-      <article class="feed-card"
-        data-id="sig-8"
-        data-score="57"
-        data-theme="Frontier models"
-        data-source="DeepMind Blog"
-        data-repeat="0"
-        data-search="finding the molecular switches behind new infectious diseases deepmind blog frontier models deepmind clare bryant finding ">
-        <div class="feed-top">
-          <div>
-            <div class="tiny">DeepMind Blog · deepmind.google</div>
-            <div class="feed-title"><a href="https://deepmind.google/blog/finding-the-molecular-switches-behind-new-infectious-diseases/" target="_blank" rel="noopener noreferrer">Finding the molecular switches behind new infectious diseases</a></div>
-          </div>
-          <div class="meta">
-            <span class="badge score">57</span>
-            <span class="badge theme">Frontier models</span>
-            
-          </div>
-        </div>
-        <div class="feed-reason">Identificar interruptores moleculares en enfermedades infecciosas mediante IA acelera la respuesta a pandemias.</div>
-        <div class="entities"><span class="entity">DeepMind</span><span class="entity">Clare Bryant</span><span class="entity">Finding</span></div>
-        <div class="actions">
-          <button class="btn fav" data-fav="sig-8" type="button">Save</button>
-          <button class="btn" data-copy="Finding the molecular switches behind new infectious diseases - https://deepmind.google/blog/finding-the-molecular-switches-behind-new-infectious-diseases/" type="button">Copy</button>
-        </div>
-      </article>
-      
-      <article class="feed-card"
-        data-id="sig-9"
-        data-score="57"
-        data-theme="Frontier models"
-        data-source="DeepMind Blog"
-        data-repeat="0"
-        data-search="opening new paths in aging research deepmind blog frontier models deepmind calico life sciences opening ">
-        <div class="feed-top">
-          <div>
-            <div class="tiny">DeepMind Blog · deepmind.google</div>
-            <div class="feed-title"><a href="https://deepmind.google/blog/opening-new-paths-in-aging-research/" target="_blank" rel="noopener noreferrer">Opening new paths in aging research</a></div>
-          </div>
-          <div class="meta">
-            <span class="badge score">57</span>
-            <span class="badge theme">Frontier models</span>
-            
-          </div>
-        </div>
-        <div class="feed-reason">El uso de IA para conectar hallazgos dispersos en investigación sobre el envejecimiento optimiza el R&amp;D biotecnológico.</div>
-        <div class="entities"><span class="entity">DeepMind</span><span class="entity">Calico Life Sciences</span><span class="entity">Opening</span></div>
-        <div class="actions">
-          <button class="btn fav" data-fav="sig-9" type="button">Save</button>
-          <button class="btn" data-copy="Opening new paths in aging research - https://deepmind.google/blog/opening-new-paths-in-aging-research/" type="button">Copy</button>
-        </div>
-      </article>
-      
-      <article class="feed-card"
-        data-id="sig-10"
-        data-score="56"
-        data-theme="Frontier models"
-        data-source="DeepMind Blog"
-        data-repeat="0"
-        data-search="gemini for science: ai experiments and tools for a new era of discovery deepmind blog frontier models deepmind gemini science ">
-        <div class="feed-top">
-          <div>
-            <div class="tiny">DeepMind Blog · deepmind.google</div>
-            <div class="feed-title"><a href="https://deepmind.google/blog/gemini-for-science-ai-experiments-and-tools-for-a-new-era-of-discovery/" target="_blank" rel="noopener noreferrer">Gemini for Science: AI experiments and tools for a new era of discovery</a></div>
-          </div>
-          <div class="meta">
-            <span class="badge score">56</span>
-            <span class="badge theme">Frontier models</span>
-            
-          </div>
-        </div>
-        <div class="feed-reason">Gemini for Science formaliza el uso de LLMs como herramientas de precisión para la exploración científica a escala.</div>
-        <div class="entities"><span class="entity">DeepMind</span><span class="entity">Gemini</span><span class="entity">Science</span></div>
-        <div class="actions">
-          <button class="btn fav" data-fav="sig-10" type="button">Save</button>
-          <button class="btn" data-copy="Gemini for Science: AI experiments and tools for a new era of discovery - https://deepmind.google/blog/gemini-for-science-ai-experiments-and-tools-for-a-new-era-of-discovery/" type="button">Copy</button>
-        </div>
-      </article>
-      
-      <article class="feed-card"
-        data-id="sig-11"
-        data-score="49"
-        data-theme="Other"
-        data-source="Google AI Blog"
-        data-repeat="0"
-        data-search="100 things we announced at i/o 2026 google ai blog other google ">
-        <div class="feed-top">
-          <div>
-            <div class="tiny">Google AI Blog · blog.google</div>
-            <div class="feed-title"><a href="https://blog.google/innovation-and-ai/technology/ai/google-io-2026-all-our-announcements/" target="_blank" rel="noopener noreferrer">100 things we announced at I/O 2026</a></div>
-          </div>
-          <div class="meta">
-            <span class="badge score">49</span>
-            <span class="badge theme">Other</span>
-            
-          </div>
-        </div>
-        <div class="feed-reason">El volumen de anuncios subraya la integración masiva de IA en todos los productos de consumo de Google.</div>
-        <div class="entities"><span class="entity">Google</span></div>
-        <div class="actions">
-          <button class="btn fav" data-fav="sig-11" type="button">Save</button>
-          <button class="btn" data-copy="100 things we announced at I/O 2026 - https://blog.google/innovation-and-ai/technology/ai/google-io-2026-all-our-announcements/" type="button">Copy</button>
-        </div>
-      </article>
-      
-      <article class="feed-card"
-        data-id="sig-12"
-        data-score="42"
+        data-score="24"
         data-theme="Geopolitics"
         data-source="X AI policy/search"
         data-repeat="0"
-        data-search="in the eu, the online world serves people, not the other way around. today we mark ten years of the general data protection regulation entering into force, g... x ai policy/search geopolitics european commission general data protection regulation ">
+        data-search="in the eu, the online world serves people, not the other way around. today we mark ten years of the general data protection regulation entering into force, g... x ai policy/search x ai policy/search geopolitics general data protection regulation ">
         <div class="feed-top">
           <div>
-            <div class="tiny">X AI policy/search · x.com</div>
+            <div class="source-line"><img class="logo" src="https://www.google.com/s2/favicons?domain=commission.europa.eu&amp;sz=64" alt=""/><div><strong>X AI policy/search</strong><div class="tiny">x.com</div></div></div>
             <div class="feed-title"><a href="https://x.com/EU_Commission/status/2058442879392186605" target="_blank" rel="noopener noreferrer">In the EU, the online world serves people, not the other way around. Today we mark ten years of the General Data Protection Regulation entering into force, g...</a></div>
           </div>
           <div class="meta">
-            <span class="badge score">42</span>
+            <span class="badge score">24</span>
             <span class="badge theme">Geopolitics</span>
             
           </div>
         </div>
-        <div class="feed-reason">Diez años de GDPR marcan el estándar regulatorio europeo que ahora condiciona el desarrollo de la IA en la región.</div>
-        <div class="entities"><span class="entity">European Commission</span><span class="entity">General Data Protection</span><span class="entity">Regulation</span></div>
+        <div class="takeaway">In the EU, the online world serves people, not the other way around. Today we mark ten years of the General Data Prot...</div>
+        <div class="feed-reason">In the EU, the online world serves people, not the other way around. Today we mark ten years of the General Data Protection Regulation entering into force, givi</div>
+        <div class="entities"><span class="entity">General Data Protection</span><span class="entity">Regulation</span></div>
         <div class="actions">
-          <button class="btn fav" data-fav="sig-12" type="button">Save</button>
+          <button class="btn fav" data-fav="sig-3" type="button">Save</button>
           <button class="btn" data-copy="In the EU, the online world serves people, not the other way around. Today we mark ten years of the General Data Protection Regulation entering into force, g... - https://x.com/EU_Commission/status/2058442879392186605" type="button">Copy</button>
         </div>
       </article>
       
       <article class="feed-card"
-        data-id="sig-13"
-        data-score="42"
-        data-theme="Other"
+        data-id="sig-4"
+        data-score="20"
+        data-theme="Compute &amp; chips"
         data-source="DeepMind Blog"
         data-repeat="0"
-        data-search="making it easier to understand how content was created and edited deepmind blog other deepmind making ">
+        data-search="simulate real-world places with project genie and street view deepmind blog deepmind blog compute &amp; chips simulate project genie street view ">
         <div class="feed-top">
           <div>
-            <div class="tiny">DeepMind Blog · deepmind.google</div>
-            <div class="feed-title"><a href="https://deepmind.google/blog/making-it-easier-to-understand-how-content-was-created-and-edited/" target="_blank" rel="noopener noreferrer">Making it easier to understand how content was created and edited</a></div>
+            <div class="source-line"><img class="logo" src="https://www.google.com/s2/favicons?domain=deepmind.google&amp;sz=64" alt=""/><div><strong>DeepMind Blog</strong><div class="tiny">deepmind.google</div></div></div>
+            <div class="feed-title"><a href="https://deepmind.google/blog/simulate-real-world-places-with-project-genie-and-street-view/" target="_blank" rel="noopener noreferrer">Simulate real-world places with Project Genie and Street View</a></div>
           </div>
           <div class="meta">
-            <span class="badge score">42</span>
-            <span class="badge theme">Other</span>
+            <span class="badge score">20</span>
+            <span class="badge theme">Compute &amp; chips</span>
             
           </div>
         </div>
-        <div class="feed-reason">Herramientas de trazabilidad de contenido son necesarias para mitigar la desinformación generada por IA.</div>
-        <div class="entities"><span class="entity">DeepMind</span><span class="entity">Making</span></div>
+        <div class="takeaway">We’re expanding access to Google AI Ultra subscribers globally and introducing a new capability powered by Street Vie...</div>
+        <div class="feed-reason">We’re expanding access to Google AI Ultra subscribers globally and introducing a new capability powered by Street View.</div>
+        <div class="entities"><span class="entity">Simulate</span><span class="entity">Project Genie</span><span class="entity">Street View</span></div>
         <div class="actions">
-          <button class="btn fav" data-fav="sig-13" type="button">Save</button>
+          <button class="btn fav" data-fav="sig-4" type="button">Save</button>
+          <button class="btn" data-copy="Simulate real-world places with Project Genie and Street View - https://deepmind.google/blog/simulate-real-world-places-with-project-genie-and-street-view/" type="button">Copy</button>
+        </div>
+      </article>
+      
+      <article class="feed-card"
+        data-id="sig-5"
+        data-score="17"
+        data-theme="Frontier models"
+        data-source="DeepMind Blog"
+        data-repeat="0"
+        data-search="gemini for science: ai experiments and tools for a new era of discovery deepmind blog deepmind blog frontier models gemini science ">
+        <div class="feed-top">
+          <div>
+            <div class="source-line"><img class="logo" src="https://www.google.com/s2/favicons?domain=deepmind.google&amp;sz=64" alt=""/><div><strong>DeepMind Blog</strong><div class="tiny">deepmind.google</div></div></div>
+            <div class="feed-title"><a href="https://deepmind.google/blog/gemini-for-science-ai-experiments-and-tools-for-a-new-era-of-discovery/" target="_blank" rel="noopener noreferrer">Gemini for Science: AI experiments and tools for a new era of discovery</a></div>
+          </div>
+          <div class="meta">
+            <span class="badge score">17</span>
+            <span class="badge theme">Frontier models</span>
+            
+          </div>
+        </div>
+        <div class="takeaway">A collection of science tools and experiments to expand the scale and precision of scientific exploration.</div>
+        <div class="feed-reason">A collection of science tools and experiments to expand the scale and precision of scientific exploration.</div>
+        <div class="entities"><span class="entity">Gemini</span><span class="entity">Science</span></div>
+        <div class="actions">
+          <button class="btn fav" data-fav="sig-5" type="button">Save</button>
+          <button class="btn" data-copy="Gemini for Science: AI experiments and tools for a new era of discovery - https://deepmind.google/blog/gemini-for-science-ai-experiments-and-tools-for-a-new-era-of-discovery/" type="button">Copy</button>
+        </div>
+      </article>
+      
+      <article class="feed-card"
+        data-id="sig-6"
+        data-score="9"
+        data-theme="Frontier models"
+        data-source="Google AI Blog"
+        data-repeat="0"
+        data-search="100 things we announced at i/o 2026 google ai blog google ai blog frontier models  ">
+        <div class="feed-top">
+          <div>
+            <div class="source-line"><img class="logo" src="https://www.google.com/s2/favicons?domain=blog.google&amp;sz=64" alt=""/><div><strong>Google AI Blog</strong><div class="tiny">blog.google</div></div></div>
+            <div class="feed-title"><a href="https://blog.google/innovation-and-ai/technology/ai/google-io-2026-all-our-announcements/" target="_blank" rel="noopener noreferrer">100 things we announced at I/O 2026</a></div>
+          </div>
+          <div class="meta">
+            <span class="badge score">9</span>
+            <span class="badge theme">Frontier models</span>
+            
+          </div>
+        </div>
+        <div class="takeaway">with the words &#34;Ready, Set, I/O&#34; and a colorful Gemini logo</div>
+        <div class="feed-reason">with the words &#34;Ready, Set, I/O&#34; and a colorful Gemini logo</div>
+        <div class="entities"></div>
+        <div class="actions">
+          <button class="btn fav" data-fav="sig-6" type="button">Save</button>
+          <button class="btn" data-copy="100 things we announced at I/O 2026 - https://blog.google/innovation-and-ai/technology/ai/google-io-2026-all-our-announcements/" type="button">Copy</button>
+        </div>
+      </article>
+      
+      <article class="feed-card"
+        data-id="sig-7"
+        data-score="6"
+        data-theme="Frontier models"
+        data-source="DeepMind Blog"
+        data-repeat="0"
+        data-search="introducing gemini omni deepmind blog deepmind blog frontier models gemini introducing gemini omni ">
+        <div class="feed-top">
+          <div>
+            <div class="source-line"><img class="logo" src="https://www.google.com/s2/favicons?domain=deepmind.google&amp;sz=64" alt=""/><div><strong>DeepMind Blog</strong><div class="tiny">deepmind.google</div></div></div>
+            <div class="feed-title"><a href="https://deepmind.google/blog/introducing-gemini-omni/" target="_blank" rel="noopener noreferrer">Introducing Gemini Omni</a></div>
+          </div>
+          <div class="meta">
+            <span class="badge score">6</span>
+            <span class="badge theme">Frontier models</span>
+            
+          </div>
+        </div>
+        <div class="takeaway">No analysis available.</div>
+        <div class="feed-reason">No analysis available.</div>
+        <div class="entities"><span class="entity">Gemini</span><span class="entity">Introducing Gemini Omni</span></div>
+        <div class="actions">
+          <button class="btn fav" data-fav="sig-7" type="button">Save</button>
+          <button class="btn" data-copy="Introducing Gemini Omni - https://deepmind.google/blog/introducing-gemini-omni/" type="button">Copy</button>
+        </div>
+      </article>
+      
+      <article class="feed-card"
+        data-id="sig-8"
+        data-score="6"
+        data-theme="Frontier models"
+        data-source="DeepMind Blog"
+        data-repeat="0"
+        data-search="making it easier to understand how content was created and edited deepmind blog deepmind blog frontier models making ">
+        <div class="feed-top">
+          <div>
+            <div class="source-line"><img class="logo" src="https://www.google.com/s2/favicons?domain=deepmind.google&amp;sz=64" alt=""/><div><strong>DeepMind Blog</strong><div class="tiny">deepmind.google</div></div></div>
+            <div class="feed-title"><a href="https://deepmind.google/blog/making-it-easier-to-understand-how-content-was-created-and-edited/" target="_blank" rel="noopener noreferrer">Making it easier to understand how content was created and edited</a></div>
+          </div>
+          <div class="meta">
+            <span class="badge score">6</span>
+            <span class="badge theme">Frontier models</span>
+            
+          </div>
+        </div>
+        <div class="takeaway">We&#39;re expanding our tools to help you understand how content was created and edited across the web.</div>
+        <div class="feed-reason">We&#39;re expanding our tools to help you understand how content was created and edited across the web.</div>
+        <div class="entities"><span class="entity">Making</span></div>
+        <div class="actions">
+          <button class="btn fav" data-fav="sig-8" type="button">Save</button>
           <button class="btn" data-copy="Making it easier to understand how content was created and edited - https://deepmind.google/blog/making-it-easier-to-understand-how-content-was-created-and-edited/" type="button">Copy</button>
         </div>
       </article>
       
       <article class="feed-card"
-        data-id="sig-14"
-        data-score="31"
+        data-id="sig-9"
+        data-score="4"
+        data-theme="Other"
+        data-source="SemiWiki"
+        data-repeat="0"
+        data-search="asml high-na euv is not ready for high-volume production semiwiki semiwiki other asml euv high not ready volume production ">
+        <div class="feed-top">
+          <div>
+            <div class="source-line"><img class="logo" src="https://www.google.com/s2/favicons?domain=semiwiki.com&amp;sz=64" alt=""/><div><strong>SemiWiki</strong><div class="tiny">semiwiki.com</div></div></div>
+            <div class="feed-title"><a href="https://semiwiki.com/lithography/369490-asml-high-na-euv-is-not-ready-for-high-volume-production/" target="_blank" rel="noopener noreferrer">ASML High-NA EUV is Not Ready for High-Volume Production</a></div>
+          </div>
+          <div class="meta">
+            <span class="badge score">4</span>
+            <span class="badge theme">Other</span>
+            
+          </div>
+        </div>
+        <div class="takeaway">Contrary to the popular press, ASML High-NA EUV is not ready for logic production yet—and it may never be, at least n...</div>
+        <div class="feed-reason">Contrary to the popular press, ASML High-NA EUV is not ready for logic production yet—and it may never be, at least not in the form originally envisioned. If yo</div>
+        <div class="entities"><span class="entity">ASML</span><span class="entity">EUV</span><span class="entity">High</span><span class="entity">Not Ready</span><span class="entity">Volume Production</span></div>
+        <div class="actions">
+          <button class="btn fav" data-fav="sig-9" type="button">Save</button>
+          <button class="btn" data-copy="ASML High-NA EUV is Not Ready for High-Volume Production - https://semiwiki.com/lithography/369490-asml-high-na-euv-is-not-ready-for-high-volume-production/" type="button">Copy</button>
+        </div>
+      </article>
+      
+      <article class="feed-card"
+        data-id="sig-10"
+        data-score="4"
         data-theme="Compute &amp; chips"
         data-source="SemiWiki"
         data-repeat="0"
-        data-search="what winemakers and chip designers have in common semiwiki compute &amp; chips analog bits silicon catalyst what winemakers chip designers have common ">
+        data-search="what winemakers and chip designers have in common semiwiki semiwiki compute &amp; chips what winemakers chip designers have common ">
         <div class="feed-top">
           <div>
-            <div class="tiny">SemiWiki · semiwiki.com</div>
+            <div class="source-line"><img class="logo" src="https://www.google.com/s2/favicons?domain=semiwiki.com&amp;sz=64" alt=""/><div><strong>SemiWiki</strong><div class="tiny">semiwiki.com</div></div></div>
             <div class="feed-title"><a href="https://semiwiki.com/ip/analog-bits/369431-what-winemakers-and-chip-designers-have-in-common/" target="_blank" rel="noopener noreferrer">What Winemakers and Chip Designers Have in Common</a></div>
           </div>
           <div class="meta">
-            <span class="badge score">31</span>
+            <span class="badge score">4</span>
             <span class="badge theme">Compute &amp; chips</span>
             
           </div>
         </div>
-        <div class="feed-reason">Análisis comparativo sobre diseño de chips; impacto menor frente a noticias de fabricación o modelos.</div>
-        <div class="entities"><span class="entity">Analog Bits</span><span class="entity">Silicon Catalyst</span><span class="entity">What Winemakers</span><span class="entity">Chip Designers Have</span><span class="entity">Common</span></div>
+        <div class="takeaway">Consider this a standout presentation at the Silicon Catalyst Spring Portfolio Update Meeting held yesterday at the C...</div>
+        <div class="feed-reason">Consider this a standout presentation at the Silicon Catalyst Spring Portfolio Update Meeting held yesterday at the Computer History Museum. Mahesh Tirupattur,</div>
+        <div class="entities"><span class="entity">What Winemakers</span><span class="entity">Chip Designers Have</span><span class="entity">Common</span></div>
         <div class="actions">
-          <button class="btn fav" data-fav="sig-14" type="button">Save</button>
+          <button class="btn fav" data-fav="sig-10" type="button">Save</button>
           <button class="btn" data-copy="What Winemakers and Chip Designers Have in Common - https://semiwiki.com/ip/analog-bits/369431-what-winemakers-and-chip-designers-have-in-common/" type="button">Copy</button>
         </div>
       </article>
       
       <article class="feed-card"
-        data-id="sig-15"
-        data-score="27"
-        data-theme="Model economics"
-        data-source="X @xai"
+        data-id="sig-11"
+        data-score="4"
+        data-theme="Other"
+        data-source="X @OpenAI"
         data-repeat="0"
-        data-search="in order to understand the universe, you must explore the universe → x.ai/careers x @xai model economics xai ">
+        data-search="highlights from today’s codex thursday launches: 1️⃣ codex can now securely use apps on your mac ... x @openai @openai other highlights codex thursday codex mac ">
         <div class="feed-top">
           <div>
-            <div class="tiny">X @xai · x.com</div>
-            <div class="feed-title"><a href="https://x.com/xai?post=584b6e77f9d9" target="_blank" rel="noopener noreferrer">In order to understand the universe, you must explore the universe → x.ai/careers</a></div>
+            <div class="source-line"><img class="logo" src="https://www.google.com/s2/favicons?domain=openai.com&amp;sz=64" alt=""/><div><strong>@OpenAI</strong><div class="tiny">x.com</div></div></div>
+            <div class="feed-title"><a href="https://x.com/OpenAI/status/2057617844800794878" target="_blank" rel="noopener noreferrer">Highlights from today’s Codex Thursday launches: 1️⃣ Codex can now securely use apps on your Mac ...</a></div>
           </div>
           <div class="meta">
-            <span class="badge score">27</span>
-            <span class="badge theme">Model economics</span>
+            <span class="badge score">4</span>
+            <span class="badge theme">Other</span>
             
           </div>
         </div>
-        <div class="feed-reason">Esfuerzos de contratación de xAI para competir en la carrera por la inteligencia artificial general.</div>
-        <div class="entities"><span class="entity">xAI</span></div>
+        <div class="takeaway">Highlights from today’s Codex Thursday launches: 1️⃣ Codex can now securely use apps on your Mac from your phone, eve...</div>
+        <div class="feed-reason">Highlights from today’s Codex Thursday launches: 1️⃣ Codex can now securely use apps on your Mac from your phone, even when your Mac is locked and the screen is</div>
+        <div class="entities"><span class="entity">Highlights</span><span class="entity">Codex Thursday</span><span class="entity">Codex</span><span class="entity">Mac</span></div>
+        <div class="actions">
+          <button class="btn fav" data-fav="sig-11" type="button">Save</button>
+          <button class="btn" data-copy="Highlights from today’s Codex Thursday launches: 1️⃣ Codex can now securely use apps on your Mac ... - https://x.com/OpenAI/status/2057617844800794878" type="button">Copy</button>
+        </div>
+      </article>
+      
+      <article class="feed-card"
+        data-id="sig-12"
+        data-score="4"
+        data-theme="Other"
+        data-source="X @AnthropicAI"
+        data-repeat="0"
+        data-search="last month we launched project glasswing, our collaborative ai cybersecurity initiative. since then, we and our partners have found more than ten thousand hi... x @anthropicai @anthropicai other last project glasswing since ">
+        <div class="feed-top">
+          <div>
+            <div class="source-line"><img class="logo" src="https://www.google.com/s2/favicons?domain=anthropic.com&amp;sz=64" alt=""/><div><strong>@AnthropicAI</strong><div class="tiny">x.com</div></div></div>
+            <div class="feed-title"><a href="https://x.com/AnthropicAI?post=8329aee9c6fa" target="_blank" rel="noopener noreferrer">Last month we launched Project Glasswing, our collaborative AI cybersecurity initiative. Since then, we and our partners have found more than ten thousand hi...</a></div>
+          </div>
+          <div class="meta">
+            <span class="badge score">4</span>
+            <span class="badge theme">Other</span>
+            
+          </div>
+        </div>
+        <div class="takeaway">Last month we launched Project Glasswing, our collaborative AI cybersecurity initiative. Since then, we and our partn...</div>
+        <div class="feed-reason">Last month we launched Project Glasswing, our collaborative AI cybersecurity initiative. Since then, we and our partners have found more than ten thousand high-</div>
+        <div class="entities"><span class="entity">Last</span><span class="entity">Project Glasswing</span><span class="entity">Since</span></div>
+        <div class="actions">
+          <button class="btn fav" data-fav="sig-12" type="button">Save</button>
+          <button class="btn" data-copy="Last month we launched Project Glasswing, our collaborative AI cybersecurity initiative. Since then, we and our partners have found more than ten thousand hi... - https://x.com/AnthropicAI?post=8329aee9c6fa" type="button">Copy</button>
+        </div>
+      </article>
+      
+      <article class="feed-card"
+        data-id="sig-13"
+        data-score="2"
+        data-theme="Other"
+        data-source="X @NVIDIAAI"
+        data-repeat="0"
+        data-search="from 8 hours to 80 seconds - nvidia’s dgx superpod delivers ready-to-run infrastructure out of the box with leading performance in [mlperf]( x @nvidiaai @nvidiaai other nvidia dgx from ">
+        <div class="feed-top">
+          <div>
+            <div class="source-line"><img class="logo" src="https://www.google.com/s2/favicons?domain=nvidia.com&amp;sz=64" alt=""/><div><strong>@NVIDIAAI</strong><div class="tiny">x.com</div></div></div>
+            <div class="feed-title"><a href="https://x.com/NVIDIAAI?post=5c74284ea0e6" target="_blank" rel="noopener noreferrer">From 8 hours to 80 seconds - NVIDIA’s DGX SuperPOD delivers ready-to-run infrastructure out of the box with leading performance in [MLPerf](</a></div>
+          </div>
+          <div class="meta">
+            <span class="badge score">2</span>
+            <span class="badge theme">Other</span>
+            
+          </div>
+        </div>
+        <div class="takeaway">From 8 hours to 80 seconds - NVIDIA’s DGX SuperPOD delivers ready-to-run infrastructure out of the box with leading p...</div>
+        <div class="feed-reason">From 8 hours to 80 seconds - NVIDIA’s DGX SuperPOD delivers ready-to-run infrastructure out of the box with leading performance in MLPerf. Learn more: nvda.ws/2</div>
+        <div class="entities"><span class="entity">NVIDIA</span><span class="entity">DGX</span><span class="entity">From</span></div>
+        <div class="actions">
+          <button class="btn fav" data-fav="sig-13" type="button">Save</button>
+          <button class="btn" data-copy="From 8 hours to 80 seconds - NVIDIA’s DGX SuperPOD delivers ready-to-run infrastructure out of the box with leading performance in [MLPerf]( - https://x.com/NVIDIAAI?post=5c74284ea0e6" type="button">Copy</button>
+        </div>
+      </article>
+      
+      <article class="feed-card"
+        data-id="sig-14"
+        data-score="2"
+        data-theme="Other"
+        data-source="X @xai"
+        data-repeat="0"
+        data-search="in order to understand the universe, you must explore the universe → x.ai/careers x @xai @xai other  ">
+        <div class="feed-top">
+          <div>
+            <div class="source-line"><img class="logo" src="https://www.google.com/s2/favicons?domain=x.ai&amp;sz=64" alt=""/><div><strong>@xai</strong><div class="tiny">x.com</div></div></div>
+            <div class="feed-title"><a href="https://x.com/xai?post=584b6e77f9d9" target="_blank" rel="noopener noreferrer">In order to understand the universe, you must explore the universe → x.ai/careers</a></div>
+          </div>
+          <div class="meta">
+            <span class="badge score">2</span>
+            <span class="badge theme">Other</span>
+            
+          </div>
+        </div>
+        <div class="takeaway">In order to understand the universe, you must explore the universe → x.ai/careers</div>
+        <div class="feed-reason">In order to understand the universe, you must explore the universe → x.ai/careers</div>
+        <div class="entities"></div>
+        <div class="actions">
+          <button class="btn fav" data-fav="sig-14" type="button">Save</button>
+          <button class="btn" data-copy="In order to understand the universe, you must explore the universe → x.ai/careers - https://x.com/xai?post=584b6e77f9d9" type="button">Copy</button>
+        </div>
+      </article>
+      
+      <article class="feed-card"
+        data-id="sig-15"
+        data-score="0"
+        data-theme="Other"
+        data-source="DeepMind Blog"
+        data-repeat="0"
+        data-search="finding the molecular switches behind new infectious diseases deepmind blog deepmind blog other finding ">
+        <div class="feed-top">
+          <div>
+            <div class="source-line"><img class="logo" src="https://www.google.com/s2/favicons?domain=deepmind.google&amp;sz=64" alt=""/><div><strong>DeepMind Blog</strong><div class="tiny">deepmind.google</div></div></div>
+            <div class="feed-title"><a href="https://deepmind.google/blog/finding-the-molecular-switches-behind-new-infectious-diseases/" target="_blank" rel="noopener noreferrer">Finding the molecular switches behind new infectious diseases</a></div>
+          </div>
+          <div class="meta">
+            <span class="badge score">0</span>
+            <span class="badge theme">Other</span>
+            
+          </div>
+        </div>
+        <div class="takeaway">Clare Bryant uses Co-Scientist to identify genetic triggers in emerging infectious diseases.</div>
+        <div class="feed-reason">Clare Bryant uses Co-Scientist to identify genetic triggers in emerging infectious diseases.</div>
+        <div class="entities"><span class="entity">Finding</span></div>
         <div class="actions">
           <button class="btn fav" data-fav="sig-15" type="button">Save</button>
-          <button class="btn" data-copy="In order to understand the universe, you must explore the universe → x.ai/careers - https://x.com/xai?post=584b6e77f9d9" type="button">Copy</button>
+          <button class="btn" data-copy="Finding the molecular switches behind new infectious diseases - https://deepmind.google/blog/finding-the-molecular-switches-behind-new-infectious-diseases/" type="button">Copy</button>
         </div>
       </article>
       
