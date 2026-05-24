@@ -14,6 +14,8 @@ from src.fetch import fetch_rss
 
 DEFAULT_X_RSS_MIRRORS = (
     "https://xcancel.com",
+    "https://nitter.privacydev.net",
+    "https://nitter.poast.org",
 )
 
 DEFAULT_TIMEOUT_SECONDS = 12

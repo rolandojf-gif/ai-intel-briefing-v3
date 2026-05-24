@@ -456,30 +456,45 @@ def main():
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Weekly Radar · {period}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    :root {{ --bg:#090a0c; --surface:#11151b; --line:#27313d; --text:#edf2f7; --muted:#9aa8b7; --cyan:#67e8f9; --green:#74d99f; --amber:#f4bd50; --red:#fb7185; }}
+    :root {{
+      --bg:#07080a; --surface:rgba(17, 21, 27, 0.75); --line:#212730;
+      --text:#edf2f7; --muted:#8a99a8; --cyan:#67e8f9; --green:#4ade80;
+      --amber:#fbbf24; --red:#f43f5e;
+    }}
     * {{ box-sizing:border-box; }}
-    body {{ font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin:0; background:#090a0c; color:var(--text); }}
-    body:before {{ content:""; position:fixed; inset:0; pointer-events:none; background:linear-gradient(145deg,rgba(103,232,249,.10),transparent 34%),linear-gradient(20deg,rgba(116,217,159,.08),transparent 44%); z-index:-1; }}
-    header {{ padding:16px 0; border-bottom:1px solid var(--line); background:rgba(9,10,12,.94); position:sticky; top:0; z-index:5; backdrop-filter:blur(10px); }}
-    .wrap {{ max-width:1160px; margin:0 auto; padding:18px; }}
+    body {{ font-family: 'Outfit', Inter, system-ui, -apple-system, sans-serif; margin:0; background:#07080a; color:var(--text); }}
+    body:before {{ content:""; position:fixed; inset:0; pointer-events:none; background:linear-gradient(135deg,rgba(103,232,249,0.08),transparent 35%),linear-gradient(45deg,rgba(74,222,128,0.06),transparent 45%); z-index:-1; }}
+    
+    ::-webkit-scrollbar {{ width: 8px; height: 8px; }}
+    ::-webkit-scrollbar-track {{ background: #07080a; }}
+    ::-webkit-scrollbar-thumb {{ background: #1c232e; border-radius: 4px; }}
+    ::-webkit-scrollbar-thumb:hover {{ background: #2b3545; }}
+
+    header {{ padding:20px 0; border-bottom:1px solid var(--line); background:rgba(7,8,10,0.85); position:sticky; top:0; z-index:5; backdrop-filter:blur(12px); box-shadow:0 8px 32px rgba(0,0,0,0.3); }}
+    .wrap {{ max-width:1160px; margin:0 auto; padding:20px; }}
     .top {{ display:flex; align-items:center; justify-content:space-between; gap:12px; }}
-    .nav {{ display:flex; gap:8px; flex-wrap:wrap; }}
-    .nav a {{ border:1px solid var(--line); border-radius:8px; padding:8px 10px; color:var(--muted); background:#0d1117; font-size:13px; }}
-    .nav a.active {{ color:var(--text); border-color:rgba(103,232,249,.55); }}
-    .grid {{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }}
-    .card {{ background:rgba(17,21,27,.92); border:1px solid var(--line); border-radius:8px; padding:14px; }}
-    h1 {{ margin:0 0 6px 0; font-size:26px; line-height:1.1; }}
-    h2 {{ margin:0 0 10px 0; font-size:15px; color:#dbe7f3; }}
+    .nav {{ display:flex; gap:10px; flex-wrap:wrap; }}
+    .nav a {{ border:1px solid var(--line); border-radius:10px; padding:8px 14px; color:var(--muted); background:rgba(17,21,27,0.5); font-size:13px; font-weight:600; transition:all 0.2s ease; }}
+    .nav a:hover {{ color:var(--text); border-color:rgba(103,232,249,0.35); background:rgba(17,21,27,0.85); transform:translateY(-1px); }}
+    .nav a.active {{ color:var(--text); border-color:rgba(103,232,249,0.55); background:rgba(103,232,249,0.12); }}
+    .grid {{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }}
+    .card {{ background:var(--surface); backdrop-filter:blur(10px); border:1px solid var(--line); border-radius:12px; padding:18px; box-shadow:0 8px 30px rgba(0,0,0,0.2); transition:all 0.3s ease; }}
+    .card:hover {{ border-color:rgba(103,232,249,0.25); }}
+    h1 {{ margin:0 0 8px 0; font-size:28px; line-height:1.1; font-weight:900; letter-spacing:-0.5px; background:linear-gradient(to right, #ffffff, var(--cyan)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }}
+    h2 {{ margin:0 0 12px 0; font-size:16px; color:#dbe7f3; font-weight:800; letter-spacing:-0.2px; }}
     ul {{ margin:0; padding-left:18px; }}
-    li {{ margin:7px 0; line-height:1.3rem; }}
-    a {{ color:#cfe6ff; text-decoration:none; }}
-    a:hover {{ text-decoration:underline; }}
-    .k {{ font-weight:600; }}
-    .s {{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; margin-left:8px; }}
-    .m {{ color:var(--muted); margin-left:8px; font-size:12px; }}
-    .pill {{ display:inline-block; padding:3px 8px; border:1px solid var(--line); border-radius:999px; color:var(--muted); font-size:12px; margin:3px 6px 3px 0; background:#0d1117; }}
-    .metrics {{ margin-top:8px; color:var(--muted); font-size:12px; }}
+    li {{ margin:8px 0; line-height:1.45rem; font-weight:500; }}
+    a {{ color:#cfe6ff; text-decoration:none; transition:color 0.2s ease; }}
+    a:hover {{ text-decoration:underline; color:var(--cyan); }}
+    .k {{ font-weight:700; }}
+    .s {{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; margin-left:8px; letter-spacing:1px; color:var(--cyan); }}
+    .m {{ color:var(--muted); margin-left:8px; font-size:12px; font-weight:600; }}
+    .pill {{ display:inline-block; padding:4px 10px; border:1px solid var(--line); border-radius:999px; color:var(--muted); font-size:12px; margin:4px 8px 4px 0; background:rgba(13,17,23,0.5); font-weight:700; }}
+    .metrics {{ margin-top:8px; display:flex; flex-wrap:wrap; gap:4px; }}
     @media (max-width:900px) {{ .grid {{ grid-template-columns:1fr; }} }}
   </style>
 </head>
