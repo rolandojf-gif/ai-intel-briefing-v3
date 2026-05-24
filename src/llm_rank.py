@@ -16,6 +16,7 @@ class RankOut(BaseModel):
     primary: Primary
     tags: List[str] = Field(default_factory=list)
     why: str
+    title_es: str = Field(default="", description="Titular traducido a castellano de España")
     entities: List[str] = Field(default_factory=list)
 
 class Briefing(BaseModel):
@@ -32,7 +33,7 @@ SYSTEM = (
     "Eres analista de IA/hardware/inversión. "
     "Puntúa impacto real (no hype). No inventes. "
     "Usa solo título+resumen+fuente. "
-    "Sé conciso."
+    "Escribe en castellano de España, natural y preciso."
 )
 
 def rank_batch(items: list[dict], model: str = "gemini-3-flash-preview") -> dict:
@@ -67,12 +68,14 @@ def rank_batch(items: list[dict], model: str = "gemini-3-flash-preview") -> dict
         "- score 0-100 (impacto real para IA)\n"
         "- primary: infra/models/invest/geopol/misc\n"
         "- tags: 2-6 tags en minúscula\n"
-        "- why: 1 frase <=160 chars\n"
+        "- why: 1 frase en castellano de España <=160 chars\n"
+        "- title_es: traduce el titular al castellano de España, sin inventar ni añadir opinión\n"
         "- entities: 0-6 nombres clave\n\n"
         "Reglas briefing:\n"
+        "- Todo el briefing en castellano de España.\n"
         "- signals: exactamente 5 bullets (1 línea, máximo 120 chars)\n"
-        "- risks: exactamente 3 bullets\n"
-        "- watch: exactamente 3 bullets\n"
+        "- risks: exactamente 3 bullets claros y accionables\n"
+        "- watch: exactamente 3 bullets claros y accionables\n"
         "- entities_top: exactamente 3 (nombres)\n\n"
         "Devuelve SOLO JSON con forma:\n"
         "{\"briefing\":{...},\"results\":[...]}\n\n"

@@ -25,16 +25,79 @@ def truncate_text(text: str, limit: int = 140) -> str:
     return raw[: max(0, limit - 1)].rstrip() + "..."
 
 
+def clean_briefing_text(text: str) -> str:
+    raw = re.sub(r"\s+", " ", (text or "").strip())
+    replacements = {
+        "Misc": "otros temas",
+        "misc": "otros temas",
+        "Watch": "Vigilar",
+        "watch": "vigilar",
+        "Lead": "Señal principal",
+        "Follow-up": "Continuación",
+        "Modelos": "modelos",
+        "Infraestructura/HW": "infraestructura y hardware",
+        "Economía/mercado": "economía y mercado",
+    }
+    for src, dst in replacements.items():
+        raw = raw.replace(src, dst)
+    raw = re.sub(r"\b(Paul|You)\b,?\s*", "", raw)
+    return re.sub(r"\s+", " ", raw).strip()
+
+
+def translate_headline_es(title: str) -> str:
+    raw = re.sub(r"\s+", " ", (title or "").strip())
+    if not raw:
+        return ""
+
+    patterns = [
+        (r"Today, we share a breakthrough on the planar unit distance problem", "OpenAI anuncia un avance en el problema plano de la distancia unidad"),
+        (r"You can now use your .*X Premium subscription", "Ya puedes usar tu suscripción de X Premium con Grok"),
+        (r"In the EU, the online world serves people", "En la UE, el mundo online debe servir a las personas, no al revés"),
+        (r"Simulate real-world places with Project Genie and Street View", "Simula lugares reales con Project Genie y Street View"),
+        (r"Gemini for Science: AI experiments and tools for a new era of discovery", "Gemini para la ciencia: experimentos y herramientas de IA para una nueva era de descubrimientos"),
+        (r"100 things we announced at I/O 2026", "Las 100 novedades anunciadas en Google I/O 2026"),
+        (r"Introducing Gemini Omni", "Presentamos Gemini Omni"),
+        (r"Making it easier to understand how content was created and edited", "Más fácil entender cómo se creó y editó un contenido"),
+        (r"ASML High-NA EUV is Not Ready for High-Volume Production", "La tecnología High-NA EUV de ASML aún no está lista para la producción a gran escala"),
+        (r"What Winemakers and Chip Designers Have in Common", "Qué tienen en común los bodegueros y los diseñadores de chips"),
+        (r"Highlights from today’s Codex Thursday launches", "Lo más destacado de los lanzamientos de Codex Thursday"),
+        (r"Highlights from today's Codex Thursday launches", "Lo más destacado de los lanzamientos de Codex Thursday"),
+        (r"Last month we launched Project Glasswing", "Anthropic amplía Project Glasswing, su iniciativa colaborativa de ciberseguridad con IA"),
+        (r"From 8 hours to 80 seconds", "De 8 horas a 80 segundos: NVIDIA acelera el despliegue de infraestructura DGX SuperPOD"),
+        (r"In order to understand the universe, you must explore the universe", "Para entender el universo, hay que explorarlo"),
+        (r"Finding the molecular switches behind new infectious diseases", "Identifican los interruptores moleculares detrás de nuevas enfermedades infecciosas"),
+        (r"Gemini 3\.5: frontier intelligence with action", "Gemini 3.5: inteligencia de frontera con capacidad de acción"),
+        (r"New ways to balance cost and reliability in the Gemini API", "Nuevas formas de equilibrar coste y fiabilidad en la API de Gemini"),
+        (r"Update: GPT-5\.5 and GPT-5\.5 Pro are now available in the API", "Actualización: GPT-5.5 y GPT-5.5 Pro ya están disponibles en la API"),
+        (r"New ways to create personalized images in the Gemini app", "Nuevas formas de crear imágenes personalizadas en la aplicación Gemini"),
+        (r"NVIDIA GauGAN2", "NVIDIA GauGAN2 permite crear escenas a partir de frases simples"),
+    ]
+    for pattern, translated in patterns:
+        if re.search(pattern, raw, flags=re.IGNORECASE):
+            return translated
+
+    simple_prefixes = {
+        "Introducing ": "Presentamos ",
+        "Update: ": "Actualización: ",
+        "New ways to ": "Nuevas formas de ",
+        "Everything new in ": "Todas las novedades de ",
+    }
+    for src, dst in simple_prefixes.items():
+        if raw.startswith(src):
+            return dst + raw[len(src):]
+    return raw
+
+
 def human_theme(theme: str) -> str:
     mapping = {
-        "agents_automation": "Agents & automation",
-        "compute_chips_dc": "Compute & chips",
-        "frontier_capability": "Frontier models",
-        "model_economics_pricing": "Model economics",
-        "geopolitics_power": "Geopolitics",
-        "china_stack": "China stack",
-        "other": "Other",
-        "misc": "Other",
+        "agents_automation": "Agentes y automatización",
+        "compute_chips_dc": "Computación y chips",
+        "frontier_capability": "Modelos frontera",
+        "model_economics_pricing": "Economía de modelos",
+        "geopolitics_power": "Geopolítica",
+        "china_stack": "Stack chino",
+        "other": "Otros",
+        "misc": "Otros",
     }
     key = (theme or "other").strip()
     return mapping.get(key, mapping.get(key.lower(), key.replace("_", " ").title()))
@@ -55,12 +118,12 @@ def score_value(item: dict) -> int:
 
 def conviction(score: int) -> tuple[str, str]:
     if score >= 80:
-        return "Extreme", "extreme"
+        return "Extrema", "extreme"
     if score >= 65:
-        return "High", "high"
+        return "Alta", "high"
     if score >= 45:
-        return "Medium", "medium"
-    return "Low", "low"
+        return "Media", "medium"
+    return "Baja", "low"
 
 
 def item_reason(item: dict, limit: int = 180) -> str:
@@ -154,7 +217,7 @@ def source_logo_url(source: str, url: str = "") -> str:
 
 
 def source_label(source: str) -> str:
-    raw = (source or "Source").strip()
+    raw = (source or "Fuente").strip()
     if raw.startswith("X @"):
         return raw.replace("X @", "@", 1)
     return raw.replace(" (AI)", "")
@@ -166,7 +229,7 @@ def source_initial(source: str) -> str:
 
 
 def one_line_takeaway(item: dict) -> str:
-    title = (item.get("title") or "").strip()
+    title = (item.get("display_title") or item.get("title_es") or item.get("title") or "").strip()
     reason = (item.get("reason") or item_reason(item, limit=120)).strip()
     if reason and reason.lower() not in title.lower():
         return truncate_text(reason, 118)
@@ -182,7 +245,7 @@ TEMPLATE = ENV.from_string("""
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>AI Strategic Radar</title>
+  <title>Radar Estratégico de IA</title>
   <style>
     :root{
       --bg:#090a0c; --surface:#11151b; --surface2:#161b22; --line:#27313d;
@@ -222,7 +285,7 @@ TEMPLATE = ENV.from_string("""
     .medium{color:var(--amber);background:rgba(244,189,80,.12);border-color:rgba(244,189,80,.38)}
     .high{color:var(--green);background:rgba(116,217,159,.12);border-color:rgba(116,217,159,.38)}
     .extreme{color:var(--red);background:rgba(251,113,133,.13);border-color:rgba(251,113,133,.42)}
-    .grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px}@media (min-width:980px){.grid.two{grid-template-columns:1.18fr .82fr}.grid.three{grid-template-columns:1fr 1fr 1fr}}
+    .grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px;align-items:start}@media (min-width:980px){.grid.two{grid-template-columns:1.18fr .82fr}.grid.three{grid-template-columns:1.25fr .9fr .85fr}}
     .panel,.lead,.mini,.feed-card{border:1px solid var(--line);border-radius:8px;background:rgba(17,21,27,.90)}
     .panel{padding:14px}.panel h2,.feed h2{margin:0 0 10px;font-size:17px}.lead{padding:18px;background:linear-gradient(180deg,#18202a,#111820)}
     .lead-head{display:flex;gap:12px;align-items:flex-start}.lead h2{font-size:clamp(24px,3.2vw,38px);line-height:1.09;margin:8px 0 0}
@@ -248,18 +311,18 @@ TEMPLATE = ENV.from_string("""
 <body>
 <div class="wrap">
   <div class="topbar">
-    <div class="brand">AI Strategic Radar</div>
+    <div class="brand">Radar Estratégico de IA</div>
     <nav class="nav">
-      <a class="active" href="./index.html">Daily</a>
-      <a href="./weekly.html">Weekly</a>
-      <a href="#feed">Signals</a>
+      <a class="active" href="./index.html">Diario</a>
+      <a href="./weekly.html">Semanal</a>
+      <a href="#feed">Noticias</a>
     </nav>
   </div>
 
   <section class="hero">
-    <div class="eyebrow">Morning intelligence brief</div>
-    <h1>{{ signal_label }} signal day</h1>
-    <div class="subtitle">Frontier labs, agents, compute, China stack, model economics and power shifts.</div>
+    <div class="eyebrow">Briefing de inteligencia</div>
+    <h1>Señal {{ signal_label|lower }}</h1>
+    <div class="subtitle">Laboratorios frontera, agentes, computación, stack chino, economía de modelos y cambios de poder.</div>
     <div class="thesis">{{ todays_thesis }}</div>
     <div class="quick-strip">
       {% for item in briefing_cards %}
@@ -275,11 +338,11 @@ TEMPLATE = ENV.from_string("""
       {% endfor %}
     </div>
     <div class="metrics">
-      <div class="metric"><div class="k">Date</div><div class="v">{{ generated_at }}</div></div>
-      <div class="metric"><div class="k">Conviction</div><div class="v"><span class="signal {{ signal_class }}">{{ signal_label }}</span></div></div>
-      <div class="metric"><div class="k">Top score</div><div class="v">{{ lead.score }}</div></div>
-      <div class="metric"><div class="k">Avg top 3</div><div class="v">{{ avg_top }}</div></div>
-      <div class="metric"><div class="k">Strong</div><div class="v">{{ strong_signals_count }}</div></div>
+      <div class="metric"><div class="k">Fecha</div><div class="v">{{ generated_at }}</div></div>
+      <div class="metric"><div class="k">Convicción</div><div class="v"><span class="signal {{ signal_class }}">{{ signal_label }}</span></div></div>
+      <div class="metric"><div class="k">Score líder</div><div class="v">{{ lead.score }}</div></div>
+      <div class="metric"><div class="k">Media top 3</div><div class="v">{{ avg_top }}</div></div>
+      <div class="metric"><div class="k">Fuertes</div><div class="v">{{ strong_signals_count }}</div></div>
     </div>
   </section>
 
@@ -288,8 +351,8 @@ TEMPLATE = ENV.from_string("""
       <div class="lead-head">
         <img class="logo big" src="{{ lead.logo }}" alt=""/>
         <div>
-          <div class="eyebrow">Lead signal</div>
-          <h2>{{ lead.title }}</h2>
+          <div class="eyebrow">Señal principal</div>
+          <h2>{{ lead.display_title }}</h2>
         </div>
       </div>
       <div class="meta">
@@ -297,15 +360,15 @@ TEMPLATE = ENV.from_string("""
         <span class="badge theme">{{ lead.theme_label }}</span>
         <span class="badge score">Score {{ lead.score }}</span>
         <span class="badge {{ lead.conviction_class }}">{{ lead.conviction_label }}</span>
-        {% if lead.is_repeat %}<span class="badge repeat">Repeat</span>{% endif %}
+        {% if lead.is_repeat %}<span class="badge repeat">Repetida</span>{% endif %}
       </div>
       <div class="takeaway">{{ lead.takeaway }}</div>
       <div class="why">{{ lead.reason }}</div>
       <div class="entities">{% for e in lead.entities %}<span class="entity">{{ e }}</span>{% endfor %}</div>
       <div class="actions">
-        <a class="btn primary" href="{{ (lead.url or lead.link)|safe_url }}" target="_blank" rel="noopener noreferrer">Read source</a>
-        <button class="btn fav" data-fav="{{ lead.id }}" type="button">Save</button>
-        <button class="btn" data-copy="{{ lead.title }} - {{ (lead.url or lead.link)|safe_url }}" type="button">Copy</button>
+        <a class="btn primary" href="{{ (lead.url or lead.link)|safe_url }}" target="_blank" rel="noopener noreferrer">Leer fuente</a>
+        <button class="btn fav" data-fav="{{ lead.id }}" type="button">Guardar</button>
+        <button class="btn" data-copy="{{ lead.display_title }} - {{ (lead.url or lead.link)|safe_url }}" type="button">Copiar</button>
       </div>
     </article>
     <aside class="grid">
@@ -319,7 +382,7 @@ TEMPLATE = ENV.from_string("""
           <span class="badge theme">{{ item.theme_label }}</span>
           <span class="badge score">{{ item.score }}</span>
         </div>
-        <h3><a href="{{ (item.url or item.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a></h3>
+        <h3><a href="{{ (item.url or item.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ item.display_title }}</a></h3>
         <div class="why">{{ item.reason }}</div>
       </article>
       {% endfor %}
@@ -328,7 +391,7 @@ TEMPLATE = ENV.from_string("""
 
   <section class="grid three">
     <article class="panel">
-      <h2>Intelligence brief</h2>
+      <h2>Captura rápida</h2>
       <div class="brief-list">
         {% for s in brief_signals %}
         <div class="brief-row"><span class="num">{{ loop.index }}</span><span>{{ s }}</span></div>
@@ -336,20 +399,20 @@ TEMPLATE = ENV.from_string("""
       </div>
     </article>
     <article class="panel">
-      <h2>Risks</h2>
+      <h2>Riesgos</h2>
       {% for r in brief_risks %}<p class="risk">{{ r }}</p>{% endfor %}
-      <h2>Watch next</h2>
+      <h2>Qué vigilar</h2>
       {% for w in brief_watch %}<p class="watch-text">{{ w }}</p>{% endfor %}
     </article>
     <article class="panel">
-      <h2>Entity momentum</h2>
+      <h2>Actores en foco</h2>
       <div class="entities">{% for ent in momentum_entities %}<span class="entity">{{ ent }}</span>{% endfor %}</div>
-      <p class="tiny">Dominant theme: {{ dominant_theme_label }}. Repeat pressure: {{ repeat_count }} items.</p>
+      <p class="tiny">Tema dominante: {{ dominant_theme_label }}. Repetidas: {{ repeat_count }} noticias.</p>
     </article>
   </section>
 
   <section class="panel">
-    <h2>Theme radar</h2>
+    <h2>Radar temático</h2>
     {% for t in theme_rows %}
     <div class="bar-row">
       <div class="bar-top"><span>{{ t.label }}</span><strong>{{ t.count }} / {{ t.pct }}%</strong></div>
@@ -359,26 +422,26 @@ TEMPLATE = ENV.from_string("""
   </section>
 
   <section class="controls" aria-label="Signal controls">
-    <input id="searchBox" type="search" placeholder="Search signal, source, entity"/>
+    <input id="searchBox" type="search" placeholder="Buscar titular, fuente o entidad"/>
     <select id="themeFilter">
-      <option value="all">All themes</option>
+      <option value="all">Todos los temas</option>
       {% for t in theme_options %}<option value="{{ t }}">{{ t }}</option>{% endfor %}
     </select>
     <select id="viewFilter">
-      <option value="all">All signals</option>
-      <option value="new">New only</option>
-      <option value="repeat">Repeated only</option>
-      <option value="fav">Saved only</option>
+      <option value="all">Todas las noticias</option>
+      <option value="new">Solo nuevas</option>
+      <option value="repeat">Solo repetidas</option>
+      <option value="fav">Guardadas</option>
     </select>
     <select id="sortMode">
-      <option value="score">Sort by score</option>
-      <option value="theme">Sort by theme</option>
-      <option value="source">Sort by source</option>
+      <option value="score">Ordenar por score</option>
+      <option value="theme">Ordenar por tema</option>
+      <option value="source">Ordenar por fuente</option>
     </select>
   </section>
 
   <section class="feed" id="feed">
-    <div class="feed-head"><h2>Source cards</h2><span class="count" id="visibleCount">{{ items|length }} visible</span></div>
+    <div class="feed-head"><h2>Todas las noticias</h2><span class="count" id="visibleCount">{{ items|length }} visibles</span></div>
     <div class="feed-grid" id="itemsGrid">
       {% for item in items %}
       <article class="feed-card"
@@ -391,25 +454,25 @@ TEMPLATE = ENV.from_string("""
         <div class="feed-top">
           <div>
             <div class="source-line"><img class="logo" src="{{ item.logo }}" alt=""/><div><strong>{{ item.source_label }}</strong><div class="tiny">{{ item.domain }}</div></div></div>
-            <div class="feed-title"><a href="{{ (item.url or item.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a></div>
+            <div class="feed-title"><a href="{{ (item.url or item.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ item.display_title }}</a></div>
           </div>
           <div class="meta">
             <span class="badge score">{{ item.score }}</span>
             <span class="badge theme">{{ item.theme_label }}</span>
-            {% if item.is_repeat %}<span class="badge repeat">Repeat</span>{% endif %}
+            {% if item.is_repeat %}<span class="badge repeat">Repetida</span>{% endif %}
           </div>
         </div>
         <div class="takeaway">{{ item.takeaway }}</div>
         <div class="feed-reason">{{ item.reason }}</div>
         <div class="entities">{% for e in item.entities %}<span class="entity">{{ e }}</span>{% endfor %}</div>
         <div class="actions">
-          <button class="btn fav" data-fav="{{ item.id }}" type="button">Save</button>
-          <button class="btn" data-copy="{{ item.title }} - {{ (item.url or item.link)|safe_url }}" type="button">Copy</button>
+          <button class="btn fav" data-fav="{{ item.id }}" type="button">Guardar</button>
+          <button class="btn" data-copy="{{ item.display_title }} - {{ (item.url or item.link)|safe_url }}" type="button">Copiar</button>
         </div>
       </article>
       {% endfor %}
     </div>
-    <div class="empty" id="emptyState">No signals match the current view.</div>
+    <div class="empty" id="emptyState">No hay noticias para esta vista.</div>
   </section>
 </div>
 <script>
@@ -422,7 +485,7 @@ function paintFavs(){
     const id = btn.dataset.fav;
     const active = saved.has(id);
     btn.classList.toggle('active', active);
-    btn.textContent = active ? 'Saved' : 'Save';
+    btn.textContent = active ? 'Guardada' : 'Guardar';
   });
   cards.forEach((card)=>card.classList.toggle('favorited', saved.has(card.dataset.id)));
 }
@@ -448,7 +511,7 @@ function applyView(){
     card.classList.toggle('hidden', !show);
     if(show) visible += 1;
   });
-  document.getElementById('visibleCount').textContent = visible + ' visible';
+  document.getElementById('visibleCount').textContent = visible + ' visibles';
   document.getElementById('emptyState').classList.toggle('show', visible === 0);
 }
 document.querySelectorAll('input,select').forEach((el)=>el.addEventListener('input', applyView));
@@ -460,7 +523,7 @@ document.addEventListener('click', async (event)=>{
     persist(); paintFavs(); applyView();
   }
   const copy = event.target.closest('[data-copy]');
-  if(copy && navigator.clipboard){ await navigator.clipboard.writeText(copy.dataset.copy); copy.textContent = 'Copied'; setTimeout(()=>copy.textContent='Copy', 900); }
+  if(copy && navigator.clipboard){ await navigator.clipboard.writeText(copy.dataset.copy); copy.textContent = 'Copiado'; setTimeout(()=>copy.textContent='Copiar', 900); }
 });
 paintFavs();
 applyView();
@@ -481,13 +544,19 @@ def render_index(items, briefing=None):
         url = it.get("url") or it.get("link") or ""
         entities = item_entities(it, limit=6)
         src_label = source_label(it.get("source", ""))
+        title_original = (it.get("title") or "").strip()
+        llm_title_es = (it.get("title_es") or "").strip()
+        display_title = llm_title_es or translate_headline_es(title_original)
+        reason_text = clean_briefing_text(item_reason(it))
+        if not llm_title_es:
+            reason_text = f"Fuente: {src_label}. Señal clasificada como {theme_label.lower()}."
         it.update(
             {
                 "id": f"sig-{idx}",
                 "score": score,
                 "theme": theme,
                 "theme_label": theme_label,
-                "reason": item_reason(it),
+                "reason": reason_text,
                 "entities": entities,
                 "noise_penalty": int(it.get("noise_penalty", 0) or 0),
                 "conviction_label": label,
@@ -496,10 +565,14 @@ def render_index(items, briefing=None):
                 "logo": source_logo_url(it.get("source", ""), url),
                 "source_label": src_label,
                 "source_initial": source_initial(it.get("source", "")),
-                "takeaway": one_line_takeaway(it),
+                "title_original": title_original,
+                "display_title": display_title,
+                "title_es": display_title,
+                "has_llm_title_es": bool(llm_title_es),
                 "search_blob": " ".join(
                     [
-                        str(it.get("title", "")),
+                        display_title,
+                        title_original,
                         str(it.get("source", "")),
                         src_label,
                         theme_label,
@@ -509,26 +582,29 @@ def render_index(items, briefing=None):
                 ).lower(),
             }
         )
+        it["takeaway"] = one_line_takeaway(it)
         enriched.append(it)
 
     enriched.sort(key=lambda x: x.get("score", 0), reverse=True)
     lead = enriched[0] if enriched else {
         "id": "sig-empty",
         "title": "No strong lead signal detected today.",
+        "display_title": "No se ha detectado una señal principal clara.",
+        "title_original": "",
         "source": "Radar",
         "theme_label": human_theme("other"),
         "score": 0,
-        "reason": "Insufficient data to produce a dominant lead signal.",
+        "reason": "No hay datos suficientes para producir una señal dominante.",
         "entities": [],
         "noise_penalty": 0,
         "url": "#",
         "link": "#",
-        "conviction_label": "Low",
+        "conviction_label": "Baja",
         "conviction_class": "low",
         "is_repeat": False,
         "logo": source_logo_url("Radar", ""),
         "source_label": "Radar",
-        "takeaway": "Insufficient fresh evidence for a clear lead.",
+        "takeaway": "No hay suficiente evidencia fresca para una señal clara.",
     }
 
     top3 = enriched[:3]
@@ -544,29 +620,45 @@ def render_index(items, briefing=None):
     theme_rows = [
         {"label": human_theme(t), "count": c, "pct": round((c / total) * 100, 1)}
         for t, c in theme_counter.most_common(6)
-    ] or [{"label": "Other", "count": 0, "pct": 0}]
+    ] or [{"label": "Otros", "count": 0, "pct": 0}]
     theme_options = sorted({x["label"] for x in theme_rows})
 
     briefing_obj = briefing or {}
     brief_signals = (briefing_obj.get("signals") or [])[:5]
     brief_risks = (briefing_obj.get("risks") or [])[:3]
     brief_watch = (briefing_obj.get("watch") or [])[:3]
+    has_llm_translations = any(x.get("has_llm_title_es") for x in enriched)
 
-    if briefing_obj.get("signals"):
-        todays_thesis = briefing_obj["signals"][0]
+    if not has_llm_translations:
+        brief_signals = [
+            f"Señal principal: {lead.get('display_title', '')} (score {lead.get('score', 0)}).",
+        ]
+        for item in enriched[1:5]:
+            brief_signals.append(f"También importa: {item.get('display_title', '')} (score {item.get('score', 0)}).")
+        brief_risks = ["Día con señales dispersas: conviene priorizar noticias con producto, regulación o infraestructura ya tangible."]
+        brief_watch = [
+            f"Vigilar si {momentum_entities[0] if 'momentum_entities' in locals() and momentum_entities else 'los actores principales'} mantiene tracción mañana.",
+            "Buscar confirmación en fuentes primarias antes de elevar la convicción.",
+        ]
+
+    if has_llm_translations and briefing_obj.get("signals"):
+        todays_thesis = clean_briefing_text(briefing_obj["signals"][0])
     else:
-        todays_thesis = f"{dominant_theme_label}: {truncate_text(lead.get('title', ''), 120)}"
+        todays_thesis = f"{dominant_theme_label}: {truncate_text(lead.get('display_title', ''), 120)}"
+    brief_signals = [clean_briefing_text(x) for x in brief_signals]
+    brief_risks = [clean_briefing_text(x) for x in brief_risks]
+    brief_watch = [clean_briefing_text(x) for x in brief_watch]
     if not brief_signals:
-        brief_signals = [todays_thesis, "Monitor whether the top theme persists tomorrow."]
+        brief_signals = [todays_thesis, "Comprobar mañana si el tema principal se mantiene."]
     if not brief_risks:
-        brief_risks = ["Low hard-signal density can make the day look busier than it is."]
+        brief_risks = ["Pocas señales duras: el día puede parecer más relevante de lo que realmente es."]
     if not brief_watch:
-        brief_watch = ["Watch for hard evidence: pricing, compute, policy or shipped model changes."]
+        brief_watch = ["Vigilar evidencias duras: precios, computación, regulación o modelos ya disponibles."]
 
     briefing_cards = [
-        {"label": "Must read", "text": truncate_text(brief_signals[0], 130)},
-        {"label": "Risk", "text": truncate_text(brief_risks[0], 130)},
-        {"label": "Watch", "text": truncate_text(brief_watch[0], 130)},
+        {"label": "Clave", "text": truncate_text(brief_signals[0], 130)},
+        {"label": "Riesgo", "text": truncate_text(brief_risks[0], 130)},
+        {"label": "Vigilar", "text": truncate_text(brief_watch[0], 130)},
     ]
 
     entity_counter = Counter()

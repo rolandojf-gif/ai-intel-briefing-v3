@@ -1,7 +1,7 @@
 import unittest
 
 from src.main import clean_entities, clean_signal_text
-from src.render import _safe_url, signal_level
+from src.render import _safe_url, signal_level, translate_headline_es
 from src.score import score_item
 
 
@@ -29,6 +29,11 @@ class CoreQualityTests(unittest.TestCase):
     def test_safe_url_blocks_javascript(self):
         self.assertEqual(_safe_url("javascript:alert(1)"), "#")
         self.assertEqual(_safe_url("https://example.com/a"), "https://example.com/a")
+
+    def test_headline_fallback_translation_is_spanish(self):
+        title = translate_headline_es("Gemini 3.5: frontier intelligence with action")
+        self.assertIn("inteligencia de frontera", title)
+        self.assertIn("capacidad de acción", title)
 
 
 if __name__ == "__main__":

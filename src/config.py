@@ -7,12 +7,12 @@ CATEGORY_LABELS = {
     "geopol": "Geopolítica",
     "policy": "Política/Regulación",
     "security": "Seguridad",
-    "research": "Research",
+    "research": "Investigación",
     "products": "Producto",
     "chips": "Chips",
     "robotics": "Robótica",
-    "compute": "Compute",
-    "misc": "Misc",
+    "compute": "Computación",
+    "misc": "Otros",
 }
 
 KNOWN_ENTITIES = [
@@ -43,5 +43,8 @@ STOP_ENTITIES = {
     "Our", "The", "This", "That", "Today", "Tomorrow", "Project", "Research", "Blog",
     "Pro", "Developers", "Resources", "Link", "Read", "More", "Welcome", "Live",
     "His", "Her", "Their", "Introducing", "Interview", "CEO Interview",
+    "You", "Paul", "Misc",
+    "Use", "Simulate", "Science", "Making", "Premium", "Regulation",
+    "General Data Protection", "Introducing Gemini Omni",
 }
 ALLOW_ACRONYMS = {"AWS", "TSMC", "AMD", "ARM", "NVIDIA", "GPT", "CUDA", "EEUU", "UE", "xAI"}

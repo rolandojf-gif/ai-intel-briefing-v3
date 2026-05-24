@@ -605,11 +605,13 @@ def apply_llm_results(candidates: list[dict], results_map: dict) -> list[dict]:
             it["primary"] = llm.get("primary", it.get("primary", "misc"))
             it["tags"] = llm.get("tags", [])
             it["why"] = llm.get("why", "")
+            it["title_es"] = llm.get("title_es", "")
             it["entities"] = llm.get("entities", [])
         else:
             it["llm_score"] = None
             it["primary"] = it.get("primary", "misc")
             it["tags"] = it.get("tags", [])
+            it["title_es"] = it.get("title_es", "")
             it["entities"] = it.get("entities", [])
             it["why"] = it.get("summary", "")[:160]
 
@@ -732,13 +734,13 @@ def generate_fallback_briefing(final_items: list[dict], primary_dist: dict, top_
         watch = ["Aumentar histórico para detectar momentum real."]
 
     signals = [
-        f"Lead: {lead_title[:130]} (score {lead_score}, {infer_strategic_theme(lead) if lead else lead_theme}).",
+        f"Señal principal: {lead_title[:130]} (score {lead_score}).",
         f"Mix de hoy: {cat_txt}.",
     ]
     for it in top_items[1:4]:
         title = (it.get("title") or "").strip()
         if title:
-            signals.append(f"Follow-up: {title[:118]} (score {int(it.get('score', 0) or 0)}).")
+            signals.append(f"También importa: {title[:118]} (score {int(it.get('score', 0) or 0)}).")
     if len(signals) < 5:
         signals.append(f"Actores a vigilar: {', '.join(top_entities_list[:5]) if top_entities_list else 'sin entidad dominante'}.")
 
