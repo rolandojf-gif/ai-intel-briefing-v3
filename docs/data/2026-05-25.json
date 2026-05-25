@@ -1,0 +1,652 @@
+{
+  "date": "2026-05-25",
+  "score_avg": 56.4,
+  "primary_dist": {
+    "infra": 2,
+    "geopol": 1,
+    "models": 7,
+    "misc": 4,
+    "invest": 1
+  },
+  "top_entities": [
+    {
+      "entity": "Text",
+      "count": 3
+    },
+    {
+      "entity": "Model",
+      "count": 2
+    },
+    {
+      "entity": "Xscape Photonics",
+      "count": 2
+    },
+    {
+      "entity": "Vivek Raghunathan",
+      "count": 2
+    },
+    {
+      "entity": "LCF",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "La comunicación entre agentes evoluciona de texto a intercambio directo de KV caches para reducir drásticamente la latencia.",
+      "La fotónica de silicio y la óptica empaquetada (CPO) emergen como infraestructuras críticas para escalar racks de IA.",
+      "El escalado en tiempo de inferencia se aplica ahora con éxito a lenguajes formales como LTL y Cypher.",
+      "La incertidumbre de los LLM se mide mediante la trayectoria de las capas internas en lugar de solo el softmax final.",
+      "El red-teaming se prioriza en modelos de código abierto por su riesgo en campañas de influencia política descentralizadas."
+    ],
+    "risks": [
+      "La opacidad de las APIs de terceros impide una atribución clara de responsabilidades en sistemas de agentes jerárquicos.",
+      "Brecha persistente entre la fluidez conversacional y la profundidad táctica/estratégica en escenarios de competencia.",
+      "Escasez de datos de alta calidad para tareas específicas de bases de datos en entornos de bajos recursos o dominios nicho."
+    ],
+    "watch": [
+      "Adopción de Xscape Photonics en arquitecturas de hiperescaladores para switches de nueva generación (25.6T+).",
+      "Impacto de Co-Scientist en la reducción de tiempos para ensayos clínicos de enfermedades hepáticas y longevidad.",
+      "Validación de NeuroNL2LTL en entornos de ingeniería de seguridad crítica que requieren verificación formal."
+    ],
+    "entities_top": [
+      "Google DeepMind",
+      "Xscape Photonics",
+      "arXiv"
+    ]
+  },
+  "items": [
+    {
+      "title": "Latent Cache Flow: Model-to-Model Communication Without Text",
+      "link": "https://arxiv.org/abs/2605.22863",
+      "published": "2026-05-25T04:00:00+00:00",
+      "summary": "arXiv:2605.22863v1 Announce Type: new Abstract: LLM agents today communicate via text, which incurs considerable latency and information loss due to the need to autoregressively decode the sharer model's state and encode at the receiver model. Recent work such as Cache-to-Cache (C2C; Fu et al., 2026) seeks to exchange KV caches by learning adapters that translate sharer KV matrices to the receiver model. However, the adapters are large and expensive to train, and translate individual tokens, which requires the target context to be identical. This is unsuitable for agent communication, where the LLMs have differing context. We introduce Latent Cache Flow (LCF). To address efficiency, we observe that keys and values can be jointly translated and compressed, reducing the adapter to about 4% of C2C's size. To address differing context, we design the adapter to transmit a summary of new information that the target model does not have. Our early experiments show that a 13 MB LCF adapter can be more accurate than a 956 MB C2C adapter in shared-context settings; for different contexts, LCF is 23% more accurate and 8.5x faster than text-based communication.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Latent Cache Flow: Model-to-Model Communication Without Text",
+      "raw_summary": "arXiv:2605.22863v1 Announce Type: new Abstract: LLM agents today communicate via text, which incurs considerable latency and information loss due to the need to autoregressively decode the sharer model's state and encode at the receiver model. Recent work such as Cache-to-Cache (C2C; Fu et al., 2026) seeks to exchange KV caches by learning adapters that translate sharer KV matrices to the receiver model. However, the adapters are large and expensive to train, and translate individual tokens, which requires the target context to be identical. This is unsuitable for agent communication, where the LLMs have differing context. We introduce Latent Cache Flow (LCF). To address efficiency, we observe that keys and values can be jointly translated and compressed, reducing the adapter to about 4% of C2C's size. To address differing context, we design the adapter to transmit a summary of new information that the target model does not have. Our early experiments show that a 13 MB LCF adapter can be more accurate than a 956 MB C2C adapter in shared-context settings; for different contexts, LCF is 23% more accurate and 8.5x faster than text-based communication.",
+      "score": 86,
+      "primary": "infra",
+      "tags": [
+        "agentes",
+        "kv-cache",
+        "latencia"
+      ],
+      "heuristic_score": 89,
+      "url": "https://arxiv.org/abs/2605.22863",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 89,
+      "_rid": 4,
+      "llm_score": 85,
+      "why": "Propone Latent Cache Flow (LCF) para que los agentes compartan estados internos directamente, eliminando la necesidad de decodificar a texto.",
+      "title_es": "Flujo de caché latente: comunicación de modelo a modelo sin texto",
+      "entities": [
+        "LCF",
+        "C2C",
+        "Latent Cache Flow",
+        "Model",
+        "Model Communication Without",
+        "Text"
+      ],
+      "noise_penalty": 0,
+      "final_score": 86,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "How Far Will They Go? Red-Teaming Online Influence with Large Language Models",
+      "link": "https://arxiv.org/abs/2605.22880",
+      "published": "2026-05-25T04:00:00+00:00",
+      "summary": "arXiv:2605.22880v1 Announce Type: new Abstract: As large language model (LLM)-based agents increasingly participate in online discourse, red-teaming their capacity to support political influence campaigns is critical for information integrity. In pursuit of this goal, we focus on locally deployed open-source LLMs, as opposed to frontier API-only models, given their superior alignment with the operational constraints of privacy-conscious malicious actors deployed in social media environments. We introduce an empirical red-teaming framework for measuring LLM Overton Windows (OWs), defined as the range of political opinions a model can reliably express on controversial topics, and for quantifying how simple natural-language jailbreaks expand that range. We evaluate more than 30 LLMs spanning 10 model families and five countries of origin. We find systematic asymmetries in political expressivity: open-source LLMs are typically more willing to generate left-leaning social media content, OWs tend to contract inversely to model size, and regional differences are substantial despite uneven representation in the open-source ecosystem. Jailbreak potency also varies sharply across model families, motivating a workflow for identifying effective combinations of jailbreak techniques. Taken together, our results establish a practical framework for auditing the political steerability of open-source LLMs and for helping future researchers design stronger countermeasures against LLM-enabled influence campaigns.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "How Far Will They Go? Red-Teaming Online Influence with Large Language Models",
+      "raw_summary": "arXiv:2605.22880v1 Announce Type: new Abstract: As large language model (LLM)-based agents increasingly participate in online discourse, red-teaming their capacity to support political influence campaigns is critical for information integrity. In pursuit of this goal, we focus on locally deployed open-source LLMs, as opposed to frontier API-only models, given their superior alignment with the operational constraints of privacy-conscious malicious actors deployed in social media environments. We introduce an empirical red-teaming framework for measuring LLM Overton Windows (OWs), defined as the range of political opinions a model can reliably express on controversial topics, and for quantifying how simple natural-language jailbreaks expand that range. We evaluate more than 30 LLMs spanning 10 model families and five countries of origin. We find systematic asymmetries in political expressivity: open-source LLMs are typically more willing to generate left-leaning social media content, OWs tend to contract inversely to model size, and regional differences are substantial despite uneven representation in the open-source ecosystem. Jailbreak potency also varies sharply across model families, motivating a workflow for identifying effective combinations of jailbreak techniques. Taken together, our results establish a practical framework for auditing the political steerability of open-source LLMs and for helping future researchers design stronger countermeasures against LLM-enabled influence campaigns.",
+      "score": 81,
+      "primary": "geopol",
+      "tags": [
+        "red-teaming",
+        "influencia",
+        "open-source"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2605.22880",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 3,
+      "llm_score": 78,
+      "why": "Analiza cómo los modelos de código abierto pueden ser manipulados para campañas de desinformación política midiendo su ventana de Overton.",
+      "title_es": "¿Hasta dónde llegarán? Red-teaming de influencia online con modelos de lenguaje de gran tamaño",
+      "entities": [
+        "How Far Will",
+        "They Go",
+        "Red",
+        "Teaming Online Influence",
+        "Large Language Models"
+      ],
+      "noise_penalty": 0,
+      "final_score": 81,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "BOHM: Zero-Cost Hierarchical Attribution for Compound AI Systems",
+      "link": "https://arxiv.org/abs/2605.22866",
+      "published": "2026-05-25T04:00:00+00:00",
+      "summary": "arXiv:2605.22866v1 Announce Type: new Abstract: Compound AI systems route tasks through hierarchies of specialised components. Attribution is dominated by Shapley-based methods (SHAP), which decompose a coalition value function into per-component marginal contributions and require evaluation of the system on arbitrary component subsets. That requirement fails for third-party APIs, opaque endpoints, and agentic orchestrators that concentrate routing on a few tools, leaving most coalitions un-evaluable from the deployed orchestrator. We introduce BOHM, which extracts a hierarchical attribution tree directly from the routing weights such systems already maintain: leaf attribution is the path product of root-to-leaf routing weights; level-k attribution is the induced distribution over depth-k nodes. The method has zero marginal cost, requires no access to component internals, and provides multi-resolution attribution at every level simultaneously, which flat methods cannot offer at any evaluation budget. BOHM and SHAP answer different questions and converge when the deployed router routes near-optimally. On 18 LLMs in a 3-level hierarchy over 880 LiveCodeBench problems, BOHM yields Kendall tau=0.928; SHAP reaches tau=0.980 at 9,000x more coalition evaluations per seed. On a 5-driver, 7-benchmark agentic study (35 cells, complete coverage), drivers concentrate routing on a single tool (top-share median 0.65), and cell-level tau(BOHM,SHAP) is predicted by whether the driver's top pick is the empirically best tool (mean +0.22 vs ~+0.01). On a US Census hierarchy (475 leaves, 4 levels), BOHM recovers ground-truth rankings at every level (tau up to 0.722). BOHM satisfies efficiency, monotonicity, symmetry, and weak suppression but not Shapley's additivity. It is best understood as a complementary primitive: a multi-resolution decomposition computable wherever routing state exists, whose disagreement with Shapley is itself diagnostic.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "BOHM: Zero-Cost Hierarchical Attribution for Compound AI Systems",
+      "raw_summary": "arXiv:2605.22866v1 Announce Type: new Abstract: Compound AI systems route tasks through hierarchies of specialised components. Attribution is dominated by Shapley-based methods (SHAP), which decompose a coalition value function into per-component marginal contributions and require evaluation of the system on arbitrary component subsets. That requirement fails for third-party APIs, opaque endpoints, and agentic orchestrators that concentrate routing on a few tools, leaving most coalitions un-evaluable from the deployed orchestrator. We introduce BOHM, which extracts a hierarchical attribution tree directly from the routing weights such systems already maintain: leaf attribution is the path product of root-to-leaf routing weights; level-k attribution is the induced distribution over depth-k nodes. The method has zero marginal cost, requires no access to component internals, and provides multi-resolution attribution at every level simultaneously, which flat methods cannot offer at any evaluation budget. BOHM and SHAP answer different questions and converge when the deployed router routes near-optimally. On 18 LLMs in a 3-level hierarchy over 880 LiveCodeBench problems, BOHM yields Kendall tau=0.928; SHAP reaches tau=0.980 at 9,000x more coalition evaluations per seed. On a 5-driver, 7-benchmark agentic study (35 cells, complete coverage), drivers concentrate routing on a single tool (top-share median 0.65), and cell-level tau(BOHM,SHAP) is predicted by whether the driver's top pick is the empirically best tool (mean +0.22 vs ~+0.01). On a US Census hierarchy (475 leaves, 4 levels), BOHM recovers ground-truth rankings at every level (tau up to 0.722). BOHM satisfies efficiency, monotonicity, symmetry, and weak suppression but not Shapley's additivity. It is best understood as a complementary primitive: a multi-resolution decomposition computable wherever routing state exists, whose disagreement with Shapley is itself diagnostic.",
+      "score": 76,
+      "primary": "models",
+      "tags": [
+        "agentes",
+        "atribución",
+        "interpretabilidad"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2605.22866",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 1,
+      "llm_score": 72,
+      "why": "Introduce BOHM para asignar crédito en sistemas complejos de IA sin el coste computacional prohibitivo de los métodos basados en Shapley.",
+      "title_es": "BOHM: Atribución jerárquica de coste cero para sistemas de IA compuestos",
+      "entities": [
+        "BOHM",
+        "SHAP",
+        "Zero",
+        "Cost Hierarchical Attribution",
+        "Compound",
+        "Systems"
+      ],
+      "noise_penalty": 0,
+      "final_score": 76,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "CEO Interview with Vivek Raghunathan of Xscape Photonics",
+      "link": "https://semiwiki.com/ceo-interviews/369586-369586/",
+      "published": "2026-05-24T23:00:18+00:00",
+      "summary": "Vivek Raghunathan has over 18 years of experience in silicon photonics. He was a Sr. Principal Engineer, Product Architect and Program Leader for Integrated Silicon Photonics at Broadcom driving key core technology development required to co-package optics with switches and demonstrated industry’s first 25.6T Ethernet &8230; Read More The post CEO Interview with Vivek Raghunathan of Xscape Photonics appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "CEO Interview with Vivek Raghunathan of Xscape Photonics",
+      "raw_summary": "Vivek Raghunathan has over 18 years of experience in silicon photonics. He was a Sr. Principal Engineer, Product Architect and Program Leader for Integrated Silicon Photonics at Broadcom driving key core technology development required to co-package optics with switches and demonstrated industry’s first 25.6T Ethernet &#8230; Read More The post CEO Interview with Vivek Raghunathan of Xscape Photonics appeared first on SemiWiki .",
+      "score": 71,
+      "primary": "infra",
+      "tags": [
+        "fotónica",
+        "hardware",
+        "networking"
+      ],
+      "heuristic_score": 10,
+      "url": "https://semiwiki.com/ceo-interviews/369586-369586/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 10,
+      "_rid": 11,
+      "llm_score": 82,
+      "why": "Xscape Photonics detalla avances en fotónica de silicio para interconexiones de baja energía en infraestructuras de IA masivas.",
+      "title_es": "Entrevista al CEO con Vivek Raghunathan de Xscape Photonics",
+      "entities": [
+        "Xscape Photonics",
+        "Broadcom",
+        "Vivek Raghunathan"
+      ],
+      "noise_penalty": 0,
+      "final_score": 71,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Evaluating Large Language Models in a Complex Hidden Role Game",
+      "link": "https://arxiv.org/abs/2605.22826",
+      "published": "2026-05-25T04:00:00+00:00",
+      "summary": "arXiv:2605.22826v1 Announce Type: new Abstract: Quantifying the deceptive potential of Large Language Models (LLMs) is critical for AI safety, yet difficult to achieve in uncontrolled environments. This work investigates the reasoning, persuasion, and deceptive capabilities of LLMs within the social deduction game Secret Hitler. I introduce an open-source framework and novel metrics to measure performance: Role Identification Accuracy, Deception Retention Rate, and Game State Impact Rate. By benchmarking models against rule-based algorithms and human games, I identify a gap between conversational ability and strategic depth. The study also analyzes the impact of reasoning-enhancement techniques on win rates and strategic reasoning. Neither Chain-of-Thought prompting nor internal memory bring improvements in performance, with up to 23.2% worse win rates for fascist roles. While rule-based agents align with expert human voting decisions 86.7% of the time, models like Llama 3.1 70B achieve only a 59.7% accuracy. Models playing as Fascists consistently yield negative impact scores and fail to sustain deception, resulting in roughly 40% shorter games compared to humans. These findings suggest that current architectures remain ineffective at complex, multi-turn manipulation. As capabilities advance, detecting when models begin to master these deceptive behaviors is crucial. The developed framework serves as a reproducible testbed for future alignment research.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Evaluating Large Language Models in a Complex Hidden Role Game",
+      "raw_summary": "arXiv:2605.22826v1 Announce Type: new Abstract: Quantifying the deceptive potential of Large Language Models (LLMs) is critical for AI safety, yet difficult to achieve in uncontrolled environments. This work investigates the reasoning, persuasion, and deceptive capabilities of LLMs within the social deduction game Secret Hitler. I introduce an open-source framework and novel metrics to measure performance: Role Identification Accuracy, Deception Retention Rate, and Game State Impact Rate. By benchmarking models against rule-based algorithms and human games, I identify a gap between conversational ability and strategic depth. The study also analyzes the impact of reasoning-enhancement techniques on win rates and strategic reasoning. Neither Chain-of-Thought prompting nor internal memory bring improvements in performance, with up to 23.2% worse win rates for fascist roles. While rule-based agents align with expert human voting decisions 86.7% of the time, models like Llama 3.1 70B achieve only a 59.7% accuracy. Models playing as Fascists consistently yield negative impact scores and fail to sustain deception, resulting in roughly 40% shorter games compared to humans. These findings suggest that current architectures remain ineffective at complex, multi-turn manipulation. As capabilities advance, detecting when models begin to master these deceptive behaviors is crucial. The developed framework serves as a reproducible testbed for future alignment research.",
+      "score": 70,
+      "primary": "models",
+      "tags": [
+        "seguridad",
+        "engaño",
+        "benchmark"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2605.22826",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 2,
+      "llm_score": 65,
+      "why": "Evalúa la capacidad de engaño y estrategia de los LLM en juegos de deducción social, revelando límites en su razonamiento táctico.",
+      "title_es": "Evaluación de modelos de lenguaje de gran tamaño en un juego complejo de roles ocultos",
+      "entities": [
+        "Secret Hitler",
+        "Evaluating Large Language",
+        "Models",
+        "Complex Hidden Role",
+        "Game"
+      ],
+      "noise_penalty": 0,
+      "final_score": 70,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "NeuroNL2LTL: A Neurosymbolic Framework for Natural Language Translation of Linear Temporal Logic",
+      "link": "https://arxiv.org/abs/2605.22874",
+      "published": "2026-05-25T04:00:00+00:00",
+      "summary": "arXiv:2605.22874v1 Announce Type: new Abstract: Effectively translating between natural language (NL) and formal logics like Linear Temporal Logic (LTL) requires expertise that limits formal verification's reach in safety-critical development. Template-based approaches sacrifice expressiveness for reliability; neural methods achieve fluency but provide no correctness guarantees. We present NeuroNL2LTL, a neurosymbolic architecture unifying learned translation with formal verification. NeuroNL2LTL routes translation through an intermediate representation whose mapping to LTL is structure-preserving by construction. Generated specifications undergo satisfiability and non-triviality checking; a minimal-edit repair mechanism corrects near-miss outputs before they reach downstream tools. The central innovation is verifier-in-the-loop training: verification outcomes serve as reward signals for reinforcement learning, producing neural components that optimize directly for formal correctness. On 200,000+ requirements spanning aerospace, robotics, autonomous vehicles, and ten additional domains, NeuroNL2LTL achieves 28\\% semantic equivalence with reference specifications while ensuring 86\\% of outputs are verified satisfiable. The system also generates contextually grounded explanations from LTL, enabling domain experts to validate specifications without specialized training. This work demonstrates that formal verification can function as both training objective and runtime filter for neural specification systems, allowing us to build neural-based tools whose reliability derives from logical guarantees rather than statistical confidence.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "NeuroNL2LTL: A Neurosymbolic Framework for Natural Language Translation of Linear Temporal Logic",
+      "raw_summary": "arXiv:2605.22874v1 Announce Type: new Abstract: Effectively translating between natural language (NL) and formal logics like Linear Temporal Logic (LTL) requires expertise that limits formal verification's reach in safety-critical development. Template-based approaches sacrifice expressiveness for reliability; neural methods achieve fluency but provide no correctness guarantees. We present NeuroNL2LTL, a neurosymbolic architecture unifying learned translation with formal verification. NeuroNL2LTL routes translation through an intermediate representation whose mapping to LTL is structure-preserving by construction. Generated specifications undergo satisfiability and non-triviality checking; a minimal-edit repair mechanism corrects near-miss outputs before they reach downstream tools. The central innovation is verifier-in-the-loop training: verification outcomes serve as reward signals for reinforcement learning, producing neural components that optimize directly for formal correctness. On 200,000+ requirements spanning aerospace, robotics, autonomous vehicles, and ten additional domains, NeuroNL2LTL achieves 28\\% semantic equivalence with reference specifications while ensuring 86\\% of outputs are verified satisfiable. The system also generates contextually grounded explanations from LTL, enabling domain experts to validate specifications without specialized training. This work demonstrates that formal verification can function as both training objective and runtime filter for neural specification systems, allowing us to build neural-based tools whose reliability derives from logical guarantees rather than statistical confidence.",
+      "score": 67,
+      "primary": "models",
+      "tags": [
+        "neurosimbólico",
+        "verificación",
+        "seguridad"
+      ],
+      "heuristic_score": 50,
+      "url": "https://arxiv.org/abs/2605.22874",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 50,
+      "_rid": 6,
+      "llm_score": 70,
+      "why": "Unifica modelos neuronales con verificación formal para garantizar que la traducción de lenguaje natural a lógica sea matemáticamente correcta.",
+      "title_es": "NeuroNL2LTL: un marco neurosimbólico para la traducción de lenguaje natural a lógica temporal lineal",
+      "entities": [
+        "NeuroNL2LTL",
+        "LTL",
+        "Neurosymbolic Framework",
+        "Natural Language Translation",
+        "Linear Temporal Logic"
+      ],
+      "noise_penalty": 0,
+      "final_score": 67,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Reading Calibrated Uncertainty from Language Model Trajectories",
+      "link": "https://arxiv.org/abs/2605.22864",
+      "published": "2026-05-25T04:00:00+00:00",
+      "summary": "arXiv:2605.22864v1 Announce Type: new Abstract: The maximum softmax probability (MSP) represents a default approach when evaluating uncertainty quantification for language model generation with structured output. Although cheap, it is often miscalibrated. Methods that probe the model's internal activations feed raw hidden states into opaque classifiers, reading activations as static snapshots and leaving implicit the layer-wise trajectory by which a representation is formed. Yet, similar endpoints can arise from very different paths, and how evidence accumulates, reinforces, or reverses across depth might reveal uncertainty that final probabilities obscure. We extract eleven scale-invariant geometric features, tracing the cumulative path of per-layer MLP updates, and feed them to a sparse linear probe. The probe outperforms MSP under selective abstention, with gains scaling with baseline miscalibration up to 21 AURC points. Because every feature has a closed-form geometric meaning, the probe's coefficients trace how and where along depth errors take shape -- which layers commit prematurely, which contradict the running state, where trajectories drift away from their endpoint.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Reading Calibrated Uncertainty from Language Model Trajectories",
+      "raw_summary": "arXiv:2605.22864v1 Announce Type: new Abstract: The maximum softmax probability (MSP) represents a default approach when evaluating uncertainty quantification for language model generation with structured output. Although cheap, it is often miscalibrated. Methods that probe the model's internal activations feed raw hidden states into opaque classifiers, reading activations as static snapshots and leaving implicit the layer-wise trajectory by which a representation is formed. Yet, similar endpoints can arise from very different paths, and how evidence accumulates, reinforces, or reverses across depth might reveal uncertainty that final probabilities obscure. We extract eleven scale-invariant geometric features, tracing the cumulative path of per-layer MLP updates, and feed them to a sparse linear probe. The probe outperforms MSP under selective abstention, with gains scaling with baseline miscalibration up to 21 AURC points. Because every feature has a closed-form geometric meaning, the probe's coefficients trace how and where along depth errors take shape -- which layers commit prematurely, which contradict the running state, where trajectories drift away from their endpoint.",
+      "score": 66,
+      "primary": "models",
+      "tags": [
+        "incertidumbre",
+        "hallucination",
+        "calibración"
+      ],
+      "heuristic_score": 23,
+      "url": "https://arxiv.org/abs/2605.22864",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 23,
+      "_rid": 10,
+      "llm_score": 74,
+      "why": "Propone evaluar la seguridad de un output analizando la trayectoria de los estados ocultos a través de las capas del modelo.",
+      "title_es": "Lectura de la incertidumbre calibrada a partir de las trayectorias de los modelos de lenguaje",
+      "entities": [
+        "MSP",
+        "Reading Calibrated Uncertainty",
+        "Language Model Trajectories"
+      ],
+      "noise_penalty": 0,
+      "final_score": 66,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Query-Adaptive Semantic Chunking for Retrieval-Augmented Generation: A Dynamic Strategy with Contextual Window Expansion",
+      "link": "https://arxiv.org/abs/2605.22834",
+      "published": "2026-05-25T04:00:00+00:00",
+      "summary": "arXiv:2605.22834v1 Announce Type: new Abstract: Retrieval-Augmented Generation (RAG) systems depend critically on document chunking quality for retrieving relevant context. Fixed chunking segments documents into uniform units irrespective of semantics or user intent, producing a precision-recall trade-off unresolvable by tuning chunk size alone. Semantic and agentic methods partially address these limitations but do not integrate user queries at the chunking stage. We present Query-Adaptive Semantic Chunking (QASC), which dynamically constructs chunks by integrating queries into segmentation through three mechanisms: cosine similarity scoring between sentence and query embeddings to identify seed sentences, contextual window expansion around seeds to preserve coherence, and chunk-level score aggregation to ensure holistic relevance. We evaluate QASC on 100 technical documents across 200 queries spanning four types, comparing against fixed chunking at five granularities, recursive splitting, semantic chunking, and agentic chunking. QASC achieves an F1-score of 0.85, a relative improvement of 18-27% over fixed chunking and 8-12% over semantic and agentic alternatives. Ablation studies confirm each component contributes meaningfully. Human evaluation by three annotators (Cohen kappa = 0.82) corroborates that QASC produces more relevant and coherent chunks than existing methods.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Query-Adaptive Semantic Chunking for Retrieval-Augmented Generation: A Dynamic Strategy with Contextual Window Expansion",
+      "raw_summary": "arXiv:2605.22834v1 Announce Type: new Abstract: Retrieval-Augmented Generation (RAG) systems depend critically on document chunking quality for retrieving relevant context. Fixed chunking segments documents into uniform units irrespective of semantics or user intent, producing a precision-recall trade-off unresolvable by tuning chunk size alone. Semantic and agentic methods partially address these limitations but do not integrate user queries at the chunking stage. We present Query-Adaptive Semantic Chunking (QASC), which dynamically constructs chunks by integrating queries into segmentation through three mechanisms: cosine similarity scoring between sentence and query embeddings to identify seed sentences, contextual window expansion around seeds to preserve coherence, and chunk-level score aggregation to ensure holistic relevance. We evaluate QASC on 100 technical documents across 200 queries spanning four types, comparing against fixed chunking at five granularities, recursive splitting, semantic chunking, and agentic chunking. QASC achieves an F1-score of 0.85, a relative improvement of 18-27% over fixed chunking and 8-12% over semantic and agentic alternatives. Ablation studies confirm each component contributes meaningfully. Human evaluation by three annotators (Cohen kappa = 0.82) corroborates that QASC produces more relevant and coherent chunks than existing methods.",
+      "score": 64,
+      "primary": "models",
+      "tags": [
+        "rag",
+        "chunking",
+        "recuperación"
+      ],
+      "heuristic_score": 44,
+      "url": "https://arxiv.org/abs/2605.22834",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 44,
+      "_rid": 8,
+      "llm_score": 68,
+      "why": "Optimiza sistemas RAG mediante fragmentación dinámica que considera la consulta del usuario, mejorando la precisión del contexto recuperado.",
+      "title_es": "Fragmentación semántica adaptativa a consultas para RAG: una estrategia dinámica con expansión de ventana contextual",
+      "entities": [
+        "QASC",
+        "Query",
+        "Adaptive Semantic Chunking",
+        "Retrieval",
+        "Augmented Generation",
+        "Dynamic Strategy",
+        "Contextual Window Expansion"
+      ],
+      "noise_penalty": 0,
+      "final_score": 64,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Knowledge Distillation for Low-Resource Open-source Text-to-SQL Model",
+      "link": "https://arxiv.org/abs/2605.22843",
+      "published": "2026-05-25T04:00:00+00:00",
+      "summary": "arXiv:2605.22843v1 Announce Type: new Abstract: Text-to-SQL converts natural language questions into executable SQL queries, enabling non-technical users to access relational databases for analytics and intelligent data services. In real-world scenarios, performance is often constrained by low-resource settings, where high-quality annotated \\texttt{} pairs are scarce, particularly for domain-specific databases. Additional challenges include opaque schema definitions, abbreviations, and implicit business logic that are not explicitly encoded in the schema. Existing data synthesis and prompting techniques improve coverage but often fail to produce task-specific, semantically grounded examples aligned with database constraints. To address these challenges, we propose a knowledge-aware Text-to-SQL framework that constructs task-specific knowledge base including schema semantics, abbreviations, business logic, and query patterns, and injects them into both training and inference. This framework generates diverse, contextually grounded synthetic training data and enhances inference through targeted knowledge retrieval. Experiments on seven benchmarks, covering both general and domain-specific datasets, demonstrate that our approach substantially improves the performance of open-source and closed-source large language models in Text-to-SQL tasks, especially in low-resource domain-specific settings, enhancing generalization, robustness, and adaptability.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Knowledge Distillation for Low-Resource Open-source Text-to-SQL Model",
+      "raw_summary": "arXiv:2605.22843v1 Announce Type: new Abstract: Text-to-SQL converts natural language questions into executable SQL queries, enabling non-technical users to access relational databases for analytics and intelligent data services. In real-world scenarios, performance is often constrained by low-resource settings, where high-quality annotated \\texttt{} pairs are scarce, particularly for domain-specific databases. Additional challenges include opaque schema definitions, abbreviations, and implicit business logic that are not explicitly encoded in the schema. Existing data synthesis and prompting techniques improve coverage but often fail to produce task-specific, semantically grounded examples aligned with database constraints. To address these challenges, we propose a knowledge-aware Text-to-SQL framework that constructs task-specific knowledge base including schema semantics, abbreviations, business logic, and query patterns, and injects them into both training and inference. This framework generates diverse, contextually grounded synthetic training data and enhances inference through targeted knowledge retrieval. Experiments on seven benchmarks, covering both general and domain-specific datasets, demonstrate that our approach substantially improves the performance of open-source and closed-source large language models in Text-to-SQL tasks, especially in low-resource domain-specific settings, enhancing generalization, robustness, and adaptability.",
+      "score": 63,
+      "primary": "models",
+      "tags": [
+        "sql",
+        "destilación",
+        "low-resource"
+      ],
+      "heuristic_score": 80,
+      "url": "https://arxiv.org/abs/2605.22843",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 80,
+      "_rid": 5,
+      "llm_score": 60,
+      "why": "Mejora la generación de SQL en modelos pequeños mediante técnicas de destilación y síntesis de datos fundamentados en el esquema.",
+      "title_es": "Destilación de conocimiento para modelos Text-to-SQL de código abierto con pocos recursos",
+      "entities": [
+        "SQL",
+        "Knowledge Distillation",
+        "Low",
+        "Resource Open",
+        "Text",
+        "Model"
+      ],
+      "noise_penalty": 0,
+      "final_score": 63,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "RAS: Reflection-Augmented Scaling with In-Context Learning for Executable Cypher Query Generation",
+      "link": "https://arxiv.org/abs/2605.22937",
+      "published": "2026-05-25T04:00:00+00:00",
+      "summary": "arXiv:2605.22937v1 Announce Type: new Abstract: Inference-time scaling can reduce errors in structured query generation, but methods to allocate the compute for query code generation remains underexplored. We study Text2Cypher, where language models generate Cypher queries that execute against property graph databases. Non-executable queries constitute a distinct syntactic failure separate from semantic inaccuracy: a syntax error triggers a system-generated error message from the database. These error messages are typically discarded at inference time rather than leveraged through in-context learning (ICL). We compare two inference methods: Independent Scaling (IS), which performs memoryless resampling, and Reflection-Augmented Scaling (RAS), which conditions each new attempt on prior execution feedback via ICL. Across three Neo4j datasets and five code-specialized language models, RAS reduces the Query Execution Error Rate by 41--50% at n{=}5, outperforming IS at 32--38%. Execution errors are not merely failures to discard but actionable feedback, and structuring inference-time compute around them is a more efficient path to executability than scaling independent samples.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "RAS: Reflection-Augmented Scaling with In-Context Learning for Executable Cypher Query Generation",
+      "raw_summary": "arXiv:2605.22937v1 Announce Type: new Abstract: Inference-time scaling can reduce errors in structured query generation, but methods to allocate the compute for query code generation remains underexplored. We study Text2Cypher, where language models generate Cypher queries that execute against property graph databases. Non-executable queries constitute a distinct syntactic failure separate from semantic inaccuracy: a syntax error triggers a system-generated error message from the database. These error messages are typically discarded at inference time rather than leveraged through in-context learning (ICL). We compare two inference methods: Independent Scaling (IS), which performs memoryless resampling, and Reflection-Augmented Scaling (RAS), which conditions each new attempt on prior execution feedback via ICL. Across three Neo4j datasets and five code-specialized language models, RAS reduces the Query Execution Error Rate by 41--50% at n{=}5, outperforming IS at 32--38%. Execution errors are not merely failures to discard but actionable feedback, and structuring inference-time compute around them is a more efficient path to executability than scaling independent samples.",
+      "score": 61,
+      "primary": "models",
+      "tags": [
+        "scaling",
+        "grafos",
+        "cypher"
+      ],
+      "heuristic_score": 32,
+      "url": "https://arxiv.org/abs/2605.22937",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 32,
+      "_rid": 9,
+      "llm_score": 66,
+      "why": "Utiliza el tiempo de inferencia y el feedback de errores de ejecución para mejorar la generación de consultas en bases de datos de grafos.",
+      "title_es": "RAS: escalado aumentado por reflexión con aprendizaje en contexto para la generación de consultas Cypher ejecutables",
+      "entities": [
+        "Cypher",
+        "RAS",
+        "Reflection",
+        "Augmented Scaling",
+        "Context Learning",
+        "Executable Cypher Query",
+        "Generation"
+      ],
+      "noise_penalty": 0,
+      "final_score": 61,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "A Survey of Text and Speech Resources for Hausa and Fongbe: Availability, Quality, and Gaps for NLP Development",
+      "link": "https://arxiv.org/abs/2605.22828",
+      "published": "2026-05-25T04:00:00+00:00",
+      "summary": "arXiv:2605.22828v1 Announce Type: new Abstract: This survey provides a comprehensive catalog of publicly available text and speech resources for two West African languages: Hausa, an Afroasiatic language with approximately 80-100 million speakers, and Fongbe, a Niger-Congo language spoken by approximately 2 million people in Benin. These languages represent contrasting cases on the resource availability spectrum. We address the question: \\textit{What is the current state of publicly available NLP resources for Hausa and Fongbe, and what gaps remain?} Through systematic search of academic repositories, data platforms, and web sources, we catalog parallel corpora, monolingual text collections, speech datasets, pre-trained models, and evaluation benchmarks. For each resource, we document size, domain coverage, format, licensing, and accessibility. Our findings reveal that Hausa benefits from broader text resource diversity across news, encyclopedic, and educational domains. Fongbe, while having more limited text resources, has been the focus of recent academic speech data collection initiatives. Both languages are represented in Masakhane benchmarks for NER and POS tagging. We provide task-specific recommendations and identify priority gaps including domain-diverse Fongbe text and dedicated Hausa speech corpora.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "A Survey of Text and Speech Resources for Hausa and Fongbe: Availability, Quality, and Gaps for NLP Development",
+      "raw_summary": "arXiv:2605.22828v1 Announce Type: new Abstract: This survey provides a comprehensive catalog of publicly available text and speech resources for two West African languages: Hausa, an Afroasiatic language with approximately 80-100 million speakers, and Fongbe, a Niger-Congo language spoken by approximately 2 million people in Benin. These languages represent contrasting cases on the resource availability spectrum. We address the question: \\textit{What is the current state of publicly available NLP resources for Hausa and Fongbe, and what gaps remain?} Through systematic search of academic repositories, data platforms, and web sources, we catalog parallel corpora, monolingual text collections, speech datasets, pre-trained models, and evaluation benchmarks. For each resource, we document size, domain coverage, format, licensing, and accessibility. Our findings reveal that Hausa benefits from broader text resource diversity across news, encyclopedic, and educational domains. Fongbe, while having more limited text resources, has been the focus of recent academic speech data collection initiatives. Both languages are represented in Masakhane benchmarks for NER and POS tagging. We provide task-specific recommendations and identify priority gaps including domain-diverse Fongbe text and dedicated Hausa speech corpora.",
+      "score": 53,
+      "primary": "misc",
+      "tags": [
+        "dataset",
+        "áfrica",
+        "nlp"
+      ],
+      "heuristic_score": 44,
+      "url": "https://arxiv.org/abs/2605.22828",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 44,
+      "_rid": 7,
+      "llm_score": 55,
+      "why": "Mapea la disponibilidad de recursos lingüísticos para Hausa y Fongbe, destacando la brecha crítica en datos para el desarrollo de IA global.",
+      "title_es": "Un estudio de recursos de texto y voz para Hausa y Fongbe: disponibilidad, calidad y brechas para el desarrollo de PLN",
+      "entities": [
+        "Hausa",
+        "Fongbe",
+        "NLP",
+        "Survey",
+        "Text",
+        "Speech Resources",
+        "Availability",
+        "Quality"
+      ],
+      "noise_penalty": 0,
+      "final_score": 53,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Opening new paths in aging research",
+      "link": "https://deepmind.google/blog/opening-new-paths-in-aging-research/",
+      "published": "2026-05-16T08:08:44+00:00",
+      "summary": "Calico Life Sciences uses Co-Scientist to connect scattered findings and generate new leads in aging research.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Opening new paths in aging research",
+      "raw_summary": "Calico Life Sciences uses Co-Scientist to connect scattered findings and generate new leads in aging research.",
+      "score": 53,
+      "primary": "invest",
+      "tags": [
+        "biotech",
+        "descubrimiento",
+        "salud"
+      ],
+      "heuristic_score": 6,
+      "url": "https://deepmind.google/blog/opening-new-paths-in-aging-research/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 6,
+      "_rid": 13,
+      "llm_score": 70,
+      "why": "Uso de sistemas Co-Scientist para unificar datos dispersos en la investigación del envejecimiento y generar nuevas hipótesis terapéuticas.",
+      "title_es": "Abriendo nuevos caminos en la investigación del envejecimiento",
+      "entities": [
+        "DeepMind",
+        "Calico Life Sciences",
+        "Co-Scientist",
+        "Opening"
+      ],
+      "noise_penalty": 7,
+      "final_score": 53,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(7)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "A new experiment brings better group meetings to Google Beam",
+      "link": "https://blog.google/innovation-and-ai/models-and-research/google-research/google-beam-group-meetings/",
+      "published": "2026-05-20T16:45:00+00:00",
+      "summary": "A small group meeting featuring two in-room participants and three participants on-screen.",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "A new experiment brings better group meetings to Google Beam",
+      "raw_summary": "A small group meeting featuring two in-room participants and three participants on-screen.",
+      "score": 31,
+      "primary": "misc",
+      "tags": [
+        "ux",
+        "colaboración",
+        "vídeo"
+      ],
+      "heuristic_score": 6,
+      "url": "https://blog.google/innovation-and-ai/models-and-research/google-research/google-beam-group-meetings/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 6,
+      "_rid": 15,
+      "llm_score": 40,
+      "why": "Mejora incremental en la experiencia de reuniones grupales en el ecosistema de productos de comunicación de Google.",
+      "title_es": "Un nuevo experimento aporta mejores reuniones de grupo a Google Beam",
+      "entities": [
+        "Google Beam",
+        "Google"
+      ],
+      "noise_penalty": 4,
+      "final_score": 31,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(4)",
+      "strategic_theme": "other"
+    },
+    {
+      "title": "CEO Interview with Vivek Raghunathan of Xscape Photonics",
+      "link": "https://semiwiki.com/ceo-interviews/369296-ceo-interview-with-vivek-raghunathan-of-xscape-photonics/",
+      "published": "2026-05-24T21:00:54+00:00",
+      "summary": "Vivek has over 18 years of experience in silicon photonics. He was a Sr. Principal Engineer, Product Architect and Program Leader for Integrated Silicon Photonics at Broadcom driving key core technology development required to co-package optics with switches and demonstrated industry’s first 25.6T Ethernet switch co-packaged&8230; Read More The post CEO Interview with Vivek Raghunathan of Xscape Photonics appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "CEO Interview with Vivek Raghunathan of Xscape Photonics",
+      "raw_summary": "Vivek has over 18 years of experience in silicon photonics. He was a Sr. Principal Engineer, Product Architect and Program Leader for Integrated Silicon Photonics at Broadcom driving key core technology development required to co-package optics with switches and demonstrated industry’s first 25.6T Ethernet switch co-packaged&#8230; Read More The post CEO Interview with Vivek Raghunathan of Xscape Photonics appeared first on SemiWiki .",
+      "score": 4,
+      "primary": "misc",
+      "tags": [],
+      "heuristic_score": 10,
+      "url": "https://semiwiki.com/ceo-interviews/369296-ceo-interview-with-vivek-raghunathan-of-xscape-photonics/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 10,
+      "_rid": 12,
+      "llm_score": null,
+      "title_es": "",
+      "entities": [
+        "Vivek Raghunathan",
+        "Xscape Photonics"
+      ],
+      "why": "Vivek has over 18 years of experience in silicon photonics. He was a Sr. Principal Engineer, Product Architect and Program Leader for Integrated Silicon Photoni",
+      "noise_penalty": 6,
+      "final_score": 4,
+      "ranking_reason": "fallback_adjusted-noise(6)",
+      "strategic_theme": "other"
+    },
+    {
+      "title": "Accelerating discovery of liver disease mechanisms",
+      "link": "https://deepmind.google/blog/accelerating-discovery-of-liver-disease-mechanisms/",
+      "published": "2026-05-16T08:00:15+00:00",
+      "summary": "Filippo Menolascina uses Co-Scientist to identify new liver disease treatments and explain why existing drugs only help certain patients.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Accelerating discovery of liver disease mechanisms",
+      "raw_summary": "Filippo Menolascina uses Co-Scientist to identify new liver disease treatments and explain why existing drugs only help certain patients.",
+      "score": 0,
+      "primary": "misc",
+      "tags": [],
+      "heuristic_score": 6,
+      "url": "https://deepmind.google/blog/accelerating-discovery-of-liver-disease-mechanisms/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 6,
+      "_rid": 14,
+      "llm_score": null,
+      "title_es": "",
+      "entities": [
+        "Accelerating"
+      ],
+      "why": "Filippo Menolascina uses Co-Scientist to identify new liver disease treatments and explain why existing drugs only help certain patients.",
+      "noise_penalty": 13,
+      "final_score": 0,
+      "ranking_reason": "fallback_adjusted-noise(13)",
+      "strategic_theme": "other"
+    }
+  ]
+}
