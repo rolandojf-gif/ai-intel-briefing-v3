@@ -1,0 +1,671 @@
+{
+  "date": "2026-05-27",
+  "score_avg": 68.8,
+  "primary_dist": {
+    "models": 11,
+    "infra": 1,
+    "misc": 2,
+    "invest": 1
+  },
+  "top_entities": [
+    {
+      "entity": "arXiv",
+      "count": 9
+    },
+    {
+      "entity": "Self",
+      "count": 2
+    },
+    {
+      "entity": "Gemini",
+      "count": 2
+    },
+    {
+      "entity": "Verified Distillation",
+      "count": 1
+    },
+    {
+      "entity": "Your Language Model",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "OpenAI resuelve un problema matemático de Erdős de hace 80 años, demostrando razonamiento simbólico avanzado.",
+      "Google DeepMind lanza Gemini Embedding 2, su primer modelo nativo multimodal para texto, audio y vídeo.",
+      "El hardware vira hacia sistemas heterogéneos y chiplets para gestionar la convergencia de datos en el ciclo de vida.",
+      "Se identifica el 'impuesto de restricción': forzar salidas JSON en modelos pequeños reduce su precisión operativa.",
+      "La técnica GEM propone optimizar el preentrenamiento de LLMs mediante entropía geométrica en lugar de etiquetas humanas."
+    ],
+    "risks": [
+      "El 'Constraint Tax' penaliza severamente el rendimiento de modelos pequeños (<3B) al exigir formatos estructurados.",
+      "La exposición de datos de preentrenamiento (PDE) compromete la privacidad y la integridad de la evaluación de modelos.",
+      "La asignación de crédito en agentes de razonamiento latente sigue siendo un cuello de botella para el entrenamiento de RAG."
+    ],
+    "watch": [
+      "Adopción de Gemini for Science en el descubrimiento de hipótesis científicas y validación a escala.",
+      "Uso de sandboxes de Python integrados (SPEAR) para la optimización autónoma de prompts en producción.",
+      "Avances en el gobierno y seguridad de sistemas de semiconductores de empaquetado 2.5D y 3D."
+    ],
+    "entities_top": [
+      "OpenAI",
+      "Google DeepMind",
+      "arXiv"
+    ]
+  },
+  "items": [
+    {
+      "title": "Self-Verified Distillation: Your Language Model Is Secretly Its Own Synthetic Data Pipeline",
+      "link": "https://arxiv.org/abs/2605.26132",
+      "published": "2026-05-27T04:00:00+00:00",
+      "summary": "arXiv:2605.26132v1 Announce Type: new Abstract: Can post-trained large language models (LLMs) further improve themselves using only unlabeled prompts, without external teachers or feedback from tools? We study this setting starting only from unlabeled seed questions with no ground-truth solutions, across three reasoning domains: math, science, and coding. We propose Self-Verified Distillation, a simple post-training refinement algorithm in which the model generates candidate solutions to these seed questions, filters them using prompt-based self-verification, and trains on the resulting self-curated dataset. Inspired by the UQ benchmark's use of multiple validators to screen candidate answers to hard unsolved questions, we adapt this validation-based filtering idea to self-training: the model filters its own generated solutions through a three-stage cascade of cycle-consistency, factuality, and correctness checks, accepting a solution only if it passes all stages with unanimous judge votes. We find that sampling more candidate generations and using a larger verification budget during training data construction produces higher-quality self-curated data and, in turn, better reasoning models. We then train Qwen3 models at multiple scales with Self-Verified Distillation and obtain gains across all three domains. For Qwen3-4B, our method improves aggregate held-out pass@1 by +16.7 points in math (AIME26 and HMMT), +11.1 points in science (GPQA Diamond and HLE), and +8.3 points in coding (LCBv5 and LCBv6), with gains also extending to 0.6B and 8B models. Compared to our test-time-only baseline (UQ-TTC), which improves performance by spending extra compute at inference time, Self-Verified Distillation achieves better performance in most settings while requiring only a single inference call at test time.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Self-Verified Distillation: Your Language Model Is Secretly Its Own Synthetic Data Pipeline",
+      "raw_summary": "arXiv:2605.26132v1 Announce Type: new Abstract: Can post-trained large language models (LLMs) further improve themselves using only unlabeled prompts, without external teachers or feedback from tools? We study this setting starting only from unlabeled seed questions with no ground-truth solutions, across three reasoning domains: math, science, and coding. We propose Self-Verified Distillation, a simple post-training refinement algorithm in which the model generates candidate solutions to these seed questions, filters them using prompt-based self-verification, and trains on the resulting self-curated dataset. Inspired by the UQ benchmark's use of multiple validators to screen candidate answers to hard unsolved questions, we adapt this validation-based filtering idea to self-training: the model filters its own generated solutions through a three-stage cascade of cycle-consistency, factuality, and correctness checks, accepting a solution only if it passes all stages with unanimous judge votes. We find that sampling more candidate generations and using a larger verification budget during training data construction produces higher-quality self-curated data and, in turn, better reasoning models. We then train Qwen3 models at multiple scales with Self-Verified Distillation and obtain gains across all three domains. For Qwen3-4B, our method improves aggregate held-out pass@1 by +16.7 points in math (AIME26 and HMMT), +11.1 points in science (GPQA Diamond and HLE), and +8.3 points in coding (LCBv5 and LCBv6), with gains also extending to 0.6B and 8B models. Compared to our test-time-only baseline (UQ-TTC), which improves performance by spending extra compute at inference time, Self-Verified Distillation achieves better performance in most settings while requiring only a single inference call at test time.",
+      "score": 84,
+      "primary": "models",
+      "tags": [
+        "distillation",
+        "synthetic data",
+        "reasoning"
+      ],
+      "heuristic_score": 92,
+      "url": "https://arxiv.org/abs/2605.26132",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 92,
+      "_rid": 2,
+      "llm_score": 82,
+      "why": "Propone que los LLMs pueden mejorar solos mediante autoverificación, reduciendo drásticamente la necesidad de datos humanos.",
+      "title_es": "Destilación autoverificada: Su modelo de lenguaje es secretamente su propio flujo de datos sintéticos",
+      "entities": [
+        "arXiv",
+        "Self",
+        "Verified Distillation",
+        "Your Language Model",
+        "Is Secretly Its",
+        "Own Synthetic Data",
+        "Pipeline"
+      ],
+      "noise_penalty": 0,
+      "final_score": 84,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "We want to help scientists discover their next breakthrough with AI. Gemini for Science is our new suite of experimental tools to help them explore more hypo...",
+      "summary": "We want to help scientists discover their next breakthrough with AI. Gemini for Science is our new suite of experimental tools to help them explore more hypotheses, validate work at scale, unpack literature with ease, and more 🧵 The media could not be played. Gemini Embedding 2: A Native Multimodal Embedding Model from Gemini 🚀 Today, we’re sharing the white paper for GE 2, our first native multimodal embedding model. Whether it’s text, audio, video, or , GE 2 provides a unified representation of the input.",
+      "link": "https://x.com/GoogleDeepMind?post=8f8ab3dda82f",
+      "published": "Wed, 27 May 2026 09:21:18 GMT",
+      "source": "X @GoogleDeepMind",
+      "feed_tags": [
+        "x",
+        "research",
+        "models"
+      ],
+      "raw_title": "We want to help scientists discover their next breakthrough with AI. Gemini for Science is our new suite of experimental tools to help them explore more hypo...",
+      "raw_summary": "We want to help scientists discover their next breakthrough with AI. Gemini for Science is our new suite of experimental tools to help them explore more hypotheses, validate work at scale, unpack literature with ease, and more ![Image 3: 🧵](https://abs.twimg.com/emoji/v2/svg/1f9f5.svg) The media could not be played. Gemini Embedding 2: A Native Multimodal Embedding Model from Gemini ![Image 4: 🚀](https://abs.twimg.com/emoji/v2/svg/1f680.svg) Today, we’re sharing the white paper for GE 2, our first native multimodal embedding model. Whether it’s text, audio, video, or image, GE 2 provides a unified representation of the input.",
+      "score": 84,
+      "primary": "models",
+      "tags": [
+        "multimodal",
+        "embeddings",
+        "science",
+        "gemini"
+      ],
+      "heuristic_score": 60,
+      "url": "https://x.com/GoogleDeepMind?post=8f8ab3dda82f",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 60,
+      "_rid": 8,
+      "llm_score": 88,
+      "why": "El lanzamiento de GE 2 supone un avance clave en infraestructura para búsquedas y representaciones multimodales nativas.",
+      "title_es": "Gemini para la Ciencia y Gemini Embedding 2: Nuevo modelo nativo multimodal",
+      "entities": [
+        "DeepMind",
+        "Gemini"
+      ],
+      "noise_penalty": 0,
+      "final_score": 84,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Today, we share a breakthrough on the planar unit distance problem, a famous open question first posed by Paul Erdős in 1946. For nearly 80 years, mathematic...",
+      "summary": "Today, we share a breakthrough on the planar unit distance problem, a famous open question first posed by Paul Erdős in 1946. For nearly 80 years, mathematicians believed the best possible solutions looked roughly like square grids. An OpenAI model has now disproved that",
+      "link": "https://x.com/OpenAI?post=a521140f6d39",
+      "published": "Wed, 27 May 2026 09:48:27 GMT",
+      "source": "X @OpenAI",
+      "feed_tags": [
+        "x",
+        "models",
+        "products"
+      ],
+      "raw_title": "Today, we share a breakthrough on the planar unit distance problem, a famous open question first posed by Paul Erdős in 1946. For nearly 80 years, mathematic...",
+      "raw_summary": "Today, we share a breakthrough on the planar unit distance problem, a famous open question first posed by Paul Erdős in 1946. For nearly 80 years, mathematicians believed the best possible solutions looked roughly like square grids. An OpenAI model has now disproved that",
+      "score": 84,
+      "primary": "models",
+      "tags": [
+        "mathematics",
+        "reasoning",
+        "erdos",
+        "breakthrough"
+      ],
+      "heuristic_score": 42,
+      "url": "https://x.com/OpenAI?post=a521140f6d39",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 42,
+      "_rid": 12,
+      "llm_score": 92,
+      "why": "Hito en razonamiento matemático: la IA desmiente una conjetura de 80 años, superando las capacidades humanas en este problema.",
+      "title_es": "OpenAI resuelve un problema de distancia unitaria plana de Paul Erdős",
+      "entities": [
+        "OpenAI",
+        "Paul Erdős"
+      ],
+      "noise_penalty": 0,
+      "final_score": 84,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "The Constraint Tax: Measuring Validity-Correctness Tradeoffs in Structured Outputs for Small Language Models",
+      "link": "https://arxiv.org/abs/2605.26128",
+      "published": "2026-05-27T04:00:00+00:00",
+      "summary": "arXiv:2605.26128v1 Announce Type: new Abstract: Production LLM systems increasingly require machine-readable outputs: JSON objects, typed traces, regex-constrained fields, and tool-call schemas. This paper targets on-device and low-cost small language model (SLM) deployments, where sub-3B models are attractive for privacy, latency, and commodity hardware but have limited capacity to satisfy schemas while solving tasks. The usual engineering assumption is that hard output constraints improve reliability without changing the underlying answer. We show that this assumption is unsafe for small models. We introduce \\emph{constraint tax}, a measurement protocol for isolating the answer and executable-accuracy loss caused by structured-output constraints at fixed model, fixed task distribution, and fixed problem instances. Across 15,000 commodity-GPU generations with Qwen2.5-0.5B, Qwen2.5-1.5B, and SmolLM2-1.7B, hard answer-only schema decoding raises schema validity from 61.5\\% to 100.0\\%, but lowers answer accuracy from 19.7\\% to 11.0\\% and increases wrong-valid-schema outputs from 49.5\\% to 88.9\\%. The strongest industry analogue is a deterministic calendar tool-call task: Qwen2.5-1.5B achieves 91.5\\% executable accuracy with prompt-only JSON but only 48.0\\% under the same hard tool-call schema, while both modes are 100.0\\% schema-valid. The error is semantic, not structural. We also show that the 3B boundary still pays a direct-schema tax and that delayed packaging supports a constructive design pattern: reason free, constrain late. The practical conclusion is direct: production systems should report schema validity, answer accuracy, executable accuracy, and wrong-valid-schema rate separately.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "The Constraint Tax: Measuring Validity-Correctness Tradeoffs in Structured Outputs for Small Language Models",
+      "raw_summary": "arXiv:2605.26128v1 Announce Type: new Abstract: Production LLM systems increasingly require machine-readable outputs: JSON objects, typed traces, regex-constrained fields, and tool-call schemas. This paper targets on-device and low-cost small language model (SLM) deployments, where sub-3B models are attractive for privacy, latency, and commodity hardware but have limited capacity to satisfy schemas while solving tasks. The usual engineering assumption is that hard output constraints improve reliability without changing the underlying answer. We show that this assumption is unsafe for small models. We introduce \\emph{constraint tax}, a measurement protocol for isolating the answer and executable-accuracy loss caused by structured-output constraints at fixed model, fixed task distribution, and fixed problem instances. Across 15,000 commodity-GPU generations with Qwen2.5-0.5B, Qwen2.5-1.5B, and SmolLM2-1.7B, hard answer-only schema decoding raises schema validity from 61.5\\% to 100.0\\%, but lowers answer accuracy from 19.7\\% to 11.0\\% and increases wrong-valid-schema outputs from 49.5\\% to 88.9\\%. The strongest industry analogue is a deterministic calendar tool-call task: Qwen2.5-1.5B achieves 91.5\\% executable accuracy with prompt-only JSON but only 48.0\\% under the same hard tool-call schema, while both modes are 100.0\\% schema-valid. The error is semantic, not structural. We also show that the 3B boundary still pays a direct-schema tax and that delayed packaging supports a constructive design pattern: reason free, constrain late. The practical conclusion is direct: production systems should report schema validity, answer accuracy, executable accuracy, and wrong-valid-schema rate separately.",
+      "score": 79,
+      "primary": "models",
+      "tags": [
+        "slm",
+        "json",
+        "inference",
+        "on-device"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2605.26128",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 1,
+      "llm_score": 75,
+      "why": "Documenta cómo obligar a modelos pequeños a usar JSON reduce su capacidad de razonamiento, un riesgo crítico para Edge AI.",
+      "title_es": "El impuesto de restricción: Medición de las compensaciones entre validez y corrección en salidas estructuradas para modelos de lenguaje pequeños",
+      "entities": [
+        "arXiv",
+        "The Constraint Tax",
+        "Measuring Validity",
+        "Correctness Tradeoffs",
+        "Structured Outputs",
+        "Small Language Models"
+      ],
+      "noise_penalty": 0,
+      "final_score": 79,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Trusted Convergence Governance: Preserving Admissibility Integrity Across Heterogeneous Semiconductor Systems",
+      "link": "https://semiwiki.com/3dic/369582-trusted-convergence-governance-preserving-admissibility-integrity-across-heterogeneous-semiconductor-systems/",
+      "published": "2026-05-26T15:00:13+00:00",
+      "summary": "As semiconductor systems evolve toward heterogeneous integration, chiplets, 2.5D and 3D packaging, distributed observability, runtime adaptation, Fleet Learning, and lifecycle convergence governance, the industry is entering a fundamentally new operational reality. Convergence decisions are no longer driven only&8230; Read More The post Trusted Convergence Governance: Preserving Admissibility Integrity Across Heterogeneous Semiconductor Systems appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "Trusted Convergence Governance: Preserving Admissibility Integrity Across Heterogeneous Semiconductor Systems",
+      "raw_summary": "As semiconductor systems evolve toward heterogeneous integration, chiplets, 2.5D and 3D packaging, distributed observability, runtime adaptation, Fleet Learning, and lifecycle convergence governance, the industry is entering a fundamentally new operational reality. Convergence decisions are no longer driven only&#8230; Read More The post Trusted Convergence Governance: Preserving Admissibility Integrity Across Heterogeneous Semiconductor Systems appeared first on SemiWiki .",
+      "score": 79,
+      "primary": "infra",
+      "tags": [
+        "semiconductors",
+        "chiplets",
+        "3d packaging",
+        "governance"
+      ],
+      "heuristic_score": 48,
+      "url": "https://semiwiki.com/3dic/369582-trusted-convergence-governance-preserving-admissibility-integrity-across-heterogeneous-semiconductor-systems/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 48,
+      "_rid": 11,
+      "llm_score": 85,
+      "why": "Aborda la integridad y gobernanza en sistemas de semiconductores heterogéneos, base física para el escalado de la IA.",
+      "title_es": "Gobernanza de convergencia confiable: Preservando la integridad de la admisibilidad en sistemas de semiconductores heterogéneos",
+      "entities": [
+        "SemiWiki",
+        "Trusted Convergence Governance",
+        "Preserving Admissibility Integrity",
+        "Across Heterogeneous Semiconductor",
+        "Systems"
+      ],
+      "noise_penalty": 0,
+      "final_score": 79,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "RICE-PO: Turning Retrieval Interactions into Credit Signals for Reasoning Agents",
+      "link": "https://arxiv.org/abs/2605.26352",
+      "published": "2026-05-27T04:00:00+00:00",
+      "summary": "arXiv:2605.26352v1 Announce Type: new Abstract: Retrieval is increasingly moving from one-shot matching toward interactive reasoning, where language agents iteratively inspect evidence, reformulate queries, and search again. Training such agents raises a credit-assignment challenge: executable actions such as queries or summaries can be directly evaluated by the retriever, while latent reasoning steps are not directly observable and only affect future executable actions. This asymmetry makes outcome-level reward assignment unreliable, as the same final reward may credit reasoning steps that did not actually shape retrieval success. We propose RICE-PO, a critic-free policy optimization framework that converts retrieval interactions into localized learning signals. RICE-PO selects high-uncertainty executable actions as anchors, evaluates local counterfactual branches using retrieval metrics, and propagates credit to latent reasoning steps only when reasoning-to-action influence is strong and future residual effects are stable. On BRIGHT and BEIR, RICE-PO consistently outperforms prompt-based agents and group-based RL baselines under the same retriever setting. These results show that the structure of agent-environment interaction itself can provide useful supervision for training reasoning-based retrieval agents.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "RICE-PO: Turning Retrieval Interactions into Credit Signals for Reasoning Agents",
+      "raw_summary": "arXiv:2605.26352v1 Announce Type: new Abstract: Retrieval is increasingly moving from one-shot matching toward interactive reasoning, where language agents iteratively inspect evidence, reformulate queries, and search again. Training such agents raises a credit-assignment challenge: executable actions such as queries or summaries can be directly evaluated by the retriever, while latent reasoning steps are not directly observable and only affect future executable actions. This asymmetry makes outcome-level reward assignment unreliable, as the same final reward may credit reasoning steps that did not actually shape retrieval success. We propose RICE-PO, a critic-free policy optimization framework that converts retrieval interactions into localized learning signals. RICE-PO selects high-uncertainty executable actions as anchors, evaluates local counterfactual branches using retrieval metrics, and propagates credit to latent reasoning steps only when reasoning-to-action influence is strong and future residual effects are stable. On BRIGHT and BEIR, RICE-PO consistently outperforms prompt-based agents and group-based RL baselines under the same retriever setting. These results show that the structure of agent-environment interaction itself can provide useful supervision for training reasoning-based retrieval agents.",
+      "score": 78,
+      "primary": "models",
+      "tags": [
+        "rag",
+        "retrieval",
+        "policy optimization",
+        "agents"
+      ],
+      "heuristic_score": 76,
+      "url": "https://arxiv.org/abs/2605.26352",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 76,
+      "_rid": 5,
+      "llm_score": 78,
+      "why": "Mejora el entrenamiento de agentes RAG al asignar recompensas a pasos de razonamiento latentes, no solo al resultado final.",
+      "title_es": "RICE-PO: Convirtiendo las interacciones de recuperación en señales de crédito para agentes de razonamiento",
+      "entities": [
+        "arXiv",
+        "RICE",
+        "Turning Retrieval Interactions",
+        "Credit Signals",
+        "Reasoning Agents"
+      ],
+      "noise_penalty": 0,
+      "final_score": 78,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "GEM: Geometric Entropy Mixing for Optimal LLM Data Curation",
+      "link": "https://arxiv.org/abs/2605.26121",
+      "published": "2026-05-27T04:00:00+00:00",
+      "summary": "arXiv:2605.26121v1 Announce Type: new Abstract: LLM pre-training efficacy increasingly depends on data composition rather than sheer volume. Yet, optimal mixing is hindered by categorization flaws: human taxonomies suffer from ontological misalignment, and Euclidean clustering fails to address embedding anisotropy. We introduce GEM (Geometric Entropy Mixing), a framework reformulating data curation as a variational problem on the hypersphere augmented with a mixing-balance regularizer. By decoupling the generative prior and optimizing the objective via a provable MM (Minorize-Maximize) algorithm, GEM effectively counteracts the cluster collapse to discover balanced semantic structures invisible to Euclidean heuristics. We employ teacher-student distillation to scale this geometric fidelity to web-scale corpora and introduce the Geometric Influence Score (GIS) for interpretable taxonomy generation. Experiments with 1.1B-parameter models demonstrate that GEM establishes a new state-of-the-art when integrated into mixing strategies like DoReMi and RegMix, improving average downstream accuracy by up to 1.2% and offering a robust coordinate system for predictable data mixing.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "GEM: Geometric Entropy Mixing for Optimal LLM Data Curation",
+      "raw_summary": "arXiv:2605.26121v1 Announce Type: new Abstract: LLM pre-training efficacy increasingly depends on data composition rather than sheer volume. Yet, optimal mixing is hindered by categorization flaws: human taxonomies suffer from ontological misalignment, and Euclidean clustering fails to address embedding anisotropy. We introduce GEM (Geometric Entropy Mixing), a framework reformulating data curation as a variational problem on the hypersphere augmented with a mixing-balance regularizer. By decoupling the generative prior and optimizing the objective via a provable MM (Minorize-Maximize) algorithm, GEM effectively counteracts the cluster collapse to discover balanced semantic structures invisible to Euclidean heuristics. We employ teacher-student distillation to scale this geometric fidelity to web-scale corpora and introduce the Geometric Influence Score (GIS) for interpretable taxonomy generation. Experiments with 1.1B-parameter models demonstrate that GEM establishes a new state-of-the-art when integrated into mixing strategies like DoReMi and RegMix, improving average downstream accuracy by up to 1.2% and offering a robust coordinate system for predictable data mixing.",
+      "score": 76,
+      "primary": "models",
+      "tags": [
+        "pretraining",
+        "data curation",
+        "geometry",
+        "efficiency"
+      ],
+      "heuristic_score": 55,
+      "url": "https://arxiv.org/abs/2605.26121",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 55,
+      "_rid": 10,
+      "llm_score": 80,
+      "why": "Reformula la mezcla de datos como un problema variacional geométrico, superando las limitaciones de las taxonomías humanas.",
+      "title_es": "GEM: Mezcla de entropía geométrica para la curación óptima de datos en LLM",
+      "entities": [
+        "arXiv",
+        "GEM",
+        "Geometric Entropy Mixing",
+        "Optimal",
+        "Data Curation"
+      ],
+      "noise_penalty": 0,
+      "final_score": 76,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "SPEAR: Code-Augmented Agentic Prompt Optimization",
+      "link": "https://arxiv.org/abs/2605.26275",
+      "published": "2026-05-27T04:00:00+00:00",
+      "summary": "arXiv:2605.26275v1 Announce Type: new Abstract: Automatic prompt engineering (APE) rewrites prompts to improve downstream task performance, but existing APE loops treat the optimizer itself as a fixed pipeline. We port the code-as-action paradigm of CodeAct (Wang et al., 2024a) to APE and propose SPEAR (Sandboxed Prompt Engineer with Active Roll-back), a free-form agentic optimizer with four tools -- evaluate, python, set_prompt, finish -- that decides autonomously how and when to use them. The distinctive tool is the Python sandbox: the optimizer writes and executes arbitrary Python on the current evaluation DataFrame, performing structural error analysis (confusion matrices, error clustering, per group metrics) the agent itself authors. Two guardrails turn the long-horizon agent into a monotone-improving optimizer: auto-rollback on metric regression, and an optional guard metric floor. We evaluate on three industrial LLM-as-judge suites (13 judge tasks across recruiter-intake, conversational-memory, and query-refinement systems) plus seven BBH tasks and GSM8K. SPEAR wins every industrial task on the primary metric ($\\kappa$ 0.857 vs 0.359 on tool-selection; F1-macro 0.815 vs 0.763 on filter-relevance; $\\kappa$ 0.254 vs 0.218 on the hardest extraction dimension). On BBH-7 SPEAR averages 0.938 accuracy vs GEPA 0.628 and TextGrad 0.484. Ablations show the Python tool is the largest single lever on complex judge tasks ($\\Delta \\approx +0.79\\kappa$ on the 5-class tool-selection judge, $\\Delta \\approx +0.35\\kappa$ on the hardest extraction dimension when removed); its irreplaceable contribution is class-pair confusion aggregation that a long-context LLM cannot extract reliably from the raw eval DataFrame.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "SPEAR: Code-Augmented Agentic Prompt Optimization",
+      "raw_summary": "arXiv:2605.26275v1 Announce Type: new Abstract: Automatic prompt engineering (APE) rewrites prompts to improve downstream task performance, but existing APE loops treat the optimizer itself as a fixed pipeline. We port the code-as-action paradigm of CodeAct (Wang et al., 2024a) to APE and propose SPEAR (Sandboxed Prompt Engineer with Active Roll-back), a free-form agentic optimizer with four tools -- evaluate, python, set_prompt, finish -- that decides autonomously how and when to use them. The distinctive tool is the Python sandbox: the optimizer writes and executes arbitrary Python on the current evaluation DataFrame, performing structural error analysis (confusion matrices, error clustering, per group metrics) the agent itself authors. Two guardrails turn the long-horizon agent into a monotone-improving optimizer: auto-rollback on metric regression, and an optional guard metric floor. We evaluate on three industrial LLM-as-judge suites (13 judge tasks across recruiter-intake, conversational-memory, and query-refinement systems) plus seven BBH tasks and GSM8K. SPEAR wins every industrial task on the primary metric ($\\kappa$ 0.857 vs 0.359 on tool-selection; F1-macro 0.815 vs 0.763 on filter-relevance; $\\kappa$ 0.254 vs 0.218 on the hardest extraction dimension). On BBH-7 SPEAR averages 0.938 accuracy vs GEPA 0.628 and TextGrad 0.484. Ablations show the Python tool is the largest single lever on complex judge tasks ($\\Delta \\approx +0.79\\kappa$ on the 5-class tool-selection judge, $\\Delta \\approx +0.35\\kappa$ on the hardest extraction dimension when removed); its irreplaceable contribution is class-pair confusion aggregation that a long-context LLM cannot extract reliably from the raw eval DataFrame.",
+      "score": 73,
+      "primary": "models",
+      "tags": [
+        "ape",
+        "agents",
+        "python",
+        "automation"
+      ],
+      "heuristic_score": 89,
+      "url": "https://arxiv.org/abs/2605.26275",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 89,
+      "_rid": 3,
+      "llm_score": 70,
+      "why": "Introduce un optimizador de prompts que usa sandboxes de Python para realizar análisis de errores estructurales de forma autónoma.",
+      "title_es": "SPEAR: Optimización de prompts agénticos aumentada por código",
+      "entities": [
+        "arXiv",
+        "SPEAR",
+        "Code",
+        "Augmented Agentic Prompt",
+        "Optimization"
+      ],
+      "noise_penalty": 0,
+      "final_score": 73,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Pretraining Data Exposure in Large Language Models: A Survey of Membership Inference, Data Contamination, and Security Implications",
+      "link": "https://arxiv.org/abs/2605.26133",
+      "published": "2026-05-27T04:00:00+00:00",
+      "summary": "arXiv:2605.26133v1 Announce Type: new Abstract: Large Language Models (LLMs) have become the predominant paradigm in NLP, advancing both research and industry. As model sizes and pretraining data grow, concerns about Pretraining Data Exposure (PDE) increase due to the scale and opacity of training datasets. PDE refers to determining whether specific data appeared in an LLM's pretraining corpus. It is critical for ensuring evaluation integrity and protecting privacy, intersecting two key areas: data contamination and membership inference. Though conceptually related, these areas have often been studied in isolation. This paper offers the first unified survey of both under the PDE framework. We formalize PDE across exposure levels, review attack and defense methods, synthesize empirical findings, and highlight open challenges and future research directions.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Pretraining Data Exposure in Large Language Models: A Survey of Membership Inference, Data Contamination, and Security Implications",
+      "raw_summary": "arXiv:2605.26133v1 Announce Type: new Abstract: Large Language Models (LLMs) have become the predominant paradigm in NLP, advancing both research and industry. As model sizes and pretraining data grow, concerns about Pretraining Data Exposure (PDE) increase due to the scale and opacity of training datasets. PDE refers to determining whether specific data appeared in an LLM's pretraining corpus. It is critical for ensuring evaluation integrity and protecting privacy, intersecting two key areas: data contamination and membership inference. Though conceptually related, these areas have often been studied in isolation. This paper offers the first unified survey of both under the PDE framework. We formalize PDE across exposure levels, review attack and defense methods, synthesize empirical findings, and highlight open challenges and future research directions.",
+      "score": 71,
+      "primary": "misc",
+      "tags": [
+        "privacy",
+        "security",
+        "contamination",
+        "survey"
+      ],
+      "heuristic_score": 64,
+      "url": "https://arxiv.org/abs/2605.26133",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 64,
+      "_rid": 7,
+      "llm_score": 72,
+      "why": "Unifica el estudio de la exposición de datos de entrenamiento, esencial para el cumplimiento normativo y la integridad de la IA.",
+      "title_es": "Exposición de datos de preentrenamiento en LLMs: Una encuesta sobre inferencia de pertenencia, contaminación de datos e implicaciones de seguridad",
+      "entities": [
+        "arXiv",
+        "Pretraining Data Exposure",
+        "Large Language Models",
+        "Survey",
+        "Membership Inference",
+        "Data Contamination",
+        "Security Implications"
+      ],
+      "noise_penalty": 0,
+      "final_score": 71,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "The Daily Dose: Workflow-Integrated Large Language Model Automation for Clinical Summarization and Trial Identification in Radiation Oncology",
+      "link": "https://arxiv.org/abs/2605.26346",
+      "published": "2026-05-27T04:00:00+00:00",
+      "summary": "arXiv:2605.26346v1 Announce Type: new Abstract: Objective: To describe the design and early clinical evaluation of The Daily Dose (TDD), an LLM-driven, automated clinical summarization and clinical-trial identification system integrated into routine radiation oncology practice. Design: Mixed-methods evaluation using a cross-sectional, anonymous clinician survey administered after 1 month of system deployment. Exposure: Daily automated delivery of physician-specific email summaries generated using RadOnc-GPT, including patient schedules, concise EHR-derived clinical-status summaries, and automated identification of potentially relevant clinical trials for new or consult visits. Main Outcomes and Measures: Primary outcomes included self-reported usability, satisfaction, perceived usefulness, perceived impact on workflow, time savings, and intention for continued use. Internal consistency reliability was assessed using Cronbach's $\\alpha$. Results: Among 55 respondents, 52 (94.5\\%) worked in radiation oncology, and 38 (69.1\\%) were attending physicians. Most participants (83.6\\%) reported using TDD daily or several times per week. Mean (SD) scores were 3.89 (1.04) for usability and satisfaction, 3.43 (1.24) for perceived usefulness, and 3.80 (1.17) for impact and future use (5-point Likert scale). Overall satisfaction was positively associated with perceived time savings ($p < .001$). Participants reported variable time savings, with 27\\% estimating $\\geq 10$ minutes saved per day. The questionnaire demonstrated excellent internal consistency (overall Cronbach's $\\alpha$ = 0.97).",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "The Daily Dose: Workflow-Integrated Large Language Model Automation for Clinical Summarization and Trial Identification in Radiation Oncology",
+      "raw_summary": "arXiv:2605.26346v1 Announce Type: new Abstract: Objective: To describe the design and early clinical evaluation of The Daily Dose (TDD), an LLM-driven, automated clinical summarization and clinical-trial identification system integrated into routine radiation oncology practice. Design: Mixed-methods evaluation using a cross-sectional, anonymous clinician survey administered after 1 month of system deployment. Exposure: Daily automated delivery of physician-specific email summaries generated using RadOnc-GPT, including patient schedules, concise EHR-derived clinical-status summaries, and automated identification of potentially relevant clinical trials for new or consult visits. Main Outcomes and Measures: Primary outcomes included self-reported usability, satisfaction, perceived usefulness, perceived impact on workflow, time savings, and intention for continued use. Internal consistency reliability was assessed using Cronbach's $\\alpha$. Results: Among 55 respondents, 52 (94.5\\%) worked in radiation oncology, and 38 (69.1\\%) were attending physicians. Most participants (83.6\\%) reported using TDD daily or several times per week. Mean (SD) scores were 3.89 (1.04) for usability and satisfaction, 3.43 (1.24) for perceived usefulness, and 3.80 (1.17) for impact and future use (5-point Likert scale). Overall satisfaction was positively associated with perceived time savings ($p < .001$). Participants reported variable time savings, with 27\\% estimating $\\geq 10$ minutes saved per day. The questionnaire demonstrated excellent internal consistency (overall Cronbach's $\\alpha$ = 0.97).",
+      "score": 66,
+      "primary": "misc",
+      "tags": [
+        "healthcare",
+        "oncology",
+        "summarization"
+      ],
+      "heuristic_score": 73,
+      "url": "https://arxiv.org/abs/2605.26346",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 73,
+      "_rid": 6,
+      "llm_score": 65,
+      "why": "Evaluación clínica real de un sistema LLM integrado en oncología radioterápica para automatizar resúmenes y ensayos clínicos.",
+      "title_es": "La dosis diaria: Automatización mediante LLM integrados en el flujo de trabajo para resúmenes clínicos e identificación de ensayos",
+      "entities": [
+        "RadOnc-GPT",
+        "The Daily Dose",
+        "Workflow",
+        "Integrated Large Language",
+        "Model Automation",
+        "Clinical Summarization",
+        "Trial Identification",
+        "Radiation Oncology"
+      ],
+      "noise_penalty": 0,
+      "final_score": 66,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Can LLMs Introspect? A Reality Check",
+      "link": "https://arxiv.org/abs/2605.26242",
+      "published": "2026-05-27T04:00:00+00:00",
+      "summary": "arXiv:2605.26242v1 Announce Type: new Abstract: Can large language models detect and report their own internal states? A number of studies have argued that the answer to this question is yes. We argue, based on lessons from human metacognition research, that this conclusion may be premature: to be convinced of this conclusion we need to distinguish genuine introspection from pattern matching based on surface-level cues. Furthermore, we argue that behavioral evidence alone is inherently insufficient to establish strong introspective claims. We re-examine two recently introduced evaluation paradigms in light of this consideration. In the first paradigm, models are expected to detect whether their internal states have been tampered with. We find that models cannot reliably distinguish such interventions on their internal states from manipulations of the input, suggesting that their success in the original studies reflects their ability to detect anomalies more generally, as opposed to interventions on their internal states in particular. In the second paradigm we examine, models are tasked with predicting labels derived from their own hidden states. Here, we find that classifiers that only have access to the input achieve equivalent performance to the model's own in-context predictions, indicating that the original results do not conclusively demonstrate that the model has privileged access to its internal representations. We further introduce a relabeled control setting, where models cannot rely on the semantics of the task to solve it, and instead must rely on the internal representation; models perform closer to chance on this better-controlled version of the task. Taken together, these results indicate that current evidence is insufficient to establish that LLMs display metacognitive monitoring.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Can LLMs Introspect? A Reality Check",
+      "raw_summary": "arXiv:2605.26242v1 Announce Type: new Abstract: Can large language models detect and report their own internal states? A number of studies have argued that the answer to this question is yes. We argue, based on lessons from human metacognition research, that this conclusion may be premature: to be convinced of this conclusion we need to distinguish genuine introspection from pattern matching based on surface-level cues. Furthermore, we argue that behavioral evidence alone is inherently insufficient to establish strong introspective claims. We re-examine two recently introduced evaluation paradigms in light of this consideration. In the first paradigm, models are expected to detect whether their internal states have been tampered with. We find that models cannot reliably distinguish such interventions on their internal states from manipulations of the input, suggesting that their success in the original studies reflects their ability to detect anomalies more generally, as opposed to interventions on their internal states in particular. In the second paradigm we examine, models are tasked with predicting labels derived from their own hidden states. Here, we find that classifiers that only have access to the input achieve equivalent performance to the model's own in-context predictions, indicating that the original results do not conclusively demonstrate that the model has privileged access to its internal representations. We further introduce a relabeled control setting, where models cannot rely on the semantics of the task to solve it, and instead must rely on the internal representation; models perform closer to chance on this better-controlled version of the task. Taken together, these results indicate that current evidence is insufficient to establish that LLMs display metacognitive monitoring.",
+      "score": 66,
+      "primary": "models",
+      "tags": [
+        "introspection",
+        "metacognition",
+        "benchmarks"
+      ],
+      "heuristic_score": 55,
+      "url": "https://arxiv.org/abs/2605.26242",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 55,
+      "_rid": 9,
+      "llm_score": 68,
+      "why": "Cuestiona si los LLMs realmente entienden sus estados internos o simplemente replican patrones superficiales en los tests actuales.",
+      "title_es": "¿Pueden los LLMs introspeccionar? Un baño de realidad",
+      "entities": [
+        "arXiv",
+        "Can",
+        "Introspect",
+        "Reality Check"
+      ],
+      "noise_penalty": 0,
+      "final_score": 66,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "BrickAnything: Geometry-Conditioned Buildable Brick Generation with Structure-Aware Tokenization",
+      "link": "https://arxiv.org/abs/2605.26182",
+      "published": "2026-05-27T04:00:00+00:00",
+      "summary": "arXiv:2605.26182v1 Announce Type: new Abstract: Generating physically buildable brick structures from 3D shapes requires more than geometric reconstruction: the output must also satisfy discrete part constraints and structural stability. Existing brick generation methods either rely on heuristic optimization, which can break down when the target 3D shape does not admit a feasible structure under predefined constraints, or generate brick sequences without explicitly modeling the underlying 3D geometry and assembly relations. In this work, we present BrickAnything, a geometry-conditioned autoregressive framework for generating buildable brick structures from diverse 3D representations. BrickAnything uses point clouds as a unified geometric interface and predicts brick sequences that reconstruct the target shape under assembly constraints. To model structural dependencies among bricks, we introduce a structure-aware tree tokenization, which represents brick structures through local attachment relations. This formulation makes sequence generation more consistent with the physical construction process, and reduces invalid intermediate states. We further introduce preference-based alignment post-training, validity-constrained decoding and adaptive rollback to improve buildability objectives such as stability and geometric fidelity. Extensive experiments demonstrate that BrickAnything produces geometrically faithful and physically realizable brick structures, and that the proposed tokenization effectively reduces rollback and regeneration compared with conventional ordering strategies.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "BrickAnything: Geometry-Conditioned Buildable Brick Generation with Structure-Aware Tokenization",
+      "raw_summary": "arXiv:2605.26182v1 Announce Type: new Abstract: Generating physically buildable brick structures from 3D shapes requires more than geometric reconstruction: the output must also satisfy discrete part constraints and structural stability. Existing brick generation methods either rely on heuristic optimization, which can break down when the target 3D shape does not admit a feasible structure under predefined constraints, or generate brick sequences without explicitly modeling the underlying 3D geometry and assembly relations. In this work, we present BrickAnything, a geometry-conditioned autoregressive framework for generating buildable brick structures from diverse 3D representations. BrickAnything uses point clouds as a unified geometric interface and predicts brick sequences that reconstruct the target shape under assembly constraints. To model structural dependencies among bricks, we introduce a structure-aware tree tokenization, which represents brick structures through local attachment relations. This formulation makes sequence generation more consistent with the physical construction process, and reduces invalid intermediate states. We further introduce preference-based alignment post-training, validity-constrained decoding and adaptive rollback to improve buildability objectives such as stability and geometric fidelity. Extensive experiments demonstrate that BrickAnything produces geometrically faithful and physically realizable brick structures, and that the proposed tokenization effectively reduces rollback and regeneration compared with conventional ordering strategies.",
+      "score": 63,
+      "primary": "models",
+      "tags": [
+        "3d",
+        "geometry",
+        "bricks",
+        "generation"
+      ],
+      "heuristic_score": 83,
+      "url": "https://arxiv.org/abs/2605.26182",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 83,
+      "_rid": 4,
+      "llm_score": 60,
+      "why": "Marco autorregresivo para generar estructuras de piezas (tipo Lego) físicamente construibles a partir de representaciones 3D.",
+      "title_es": "BrickAnything: Generación de ladrillos construibles condicionados por la geometría con tokenización consciente de la estructura",
+      "entities": [
+        "arXiv",
+        "Geometry",
+        "Conditioned Buildable Brick",
+        "Generation",
+        "Structure",
+        "Aware Tokenization"
+      ],
+      "noise_penalty": 0,
+      "final_score": 63,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "CroCo: Cross-Lingual Contrastive Preference Tuning on Self-Generations",
+      "link": "https://arxiv.org/abs/2605.26293",
+      "published": "2026-05-27T04:00:00+00:00",
+      "summary": "arXiv:2605.26293v1 Announce Type: new Abstract: Prior work establishes that controlled contrastiveness between self-generated responses from large language models, set via reward scores, improves downstream preference tuning in English. We extend this method to multiple languages and evaluate two models across a total of 14 high and low-resource languages on a diverse set of tasks. Our central finding is that cross-lingual contrastive preference tuning on self-generations (CroCo) transfers without language-specific preference annotation. A reward model trained on English preferences (atop a multilingual base) produces useful within-language rankings across most languages, and pairing in either a monolingual or multilingual setting improves over each model on the majority of setups while preventing the catastrophic forgetting of supervised fine-tuning. We observe that the gains require on-policy data. Off-policy responses reduce the benefit and online preference optimization fails to improve over the offline variant. Specifically, on structured tasks, our method matches or exceeds the base in 6/7 languages for EuroLLM-9B and 4/7 settings for Aya-3B. On open-ended generation, both tuned models win against their respective base across 11 evaluated languages. Overall, we show promising directions for multilingual preference tuning.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "CroCo: Cross-Lingual Contrastive Preference Tuning on Self-Generations",
+      "raw_summary": "arXiv:2605.26293v1 Announce Type: new Abstract: Prior work establishes that controlled contrastiveness between self-generated responses from large language models, set via reward scores, improves downstream preference tuning in English. We extend this method to multiple languages and evaluate two models across a total of 14 high and low-resource languages on a diverse set of tasks. Our central finding is that cross-lingual contrastive preference tuning on self-generations (CroCo) transfers without language-specific preference annotation. A reward model trained on English preferences (atop a multilingual base) produces useful within-language rankings across most languages, and pairing in either a monolingual or multilingual setting improves over each model on the majority of setups while preventing the catastrophic forgetting of supervised fine-tuning. We observe that the gains require on-policy data. Off-policy responses reduce the benefit and online preference optimization fails to improve over the offline variant. Specifically, on structured tasks, our method matches or exceeds the base in 6/7 languages for EuroLLM-9B and 4/7 settings for Aya-3B. On open-ended generation, both tuned models win against their respective base across 11 evaluated languages. Overall, we show promising directions for multilingual preference tuning.",
+      "score": 60,
+      "primary": "models",
+      "tags": [
+        "multilingual",
+        "preference tuning",
+        "efficiency"
+      ],
+      "heuristic_score": 35,
+      "url": "https://arxiv.org/abs/2605.26293",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 35,
+      "_rid": 14,
+      "llm_score": 74,
+      "why": "Demuestra que es posible ajustar preferencias en múltiples idiomas usando únicamente datos de recompensa en inglés.",
+      "title_es": "CroCo: Ajuste de preferencias contrastivas multilingües en autogeneraciones",
+      "entities": [
+        "arXiv",
+        "Cross",
+        "Lingual Contrastive Preference",
+        "Tuning",
+        "Self",
+        "Generations"
+      ],
+      "noise_penalty": 8,
+      "final_score": 60,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(8)",
+      "strategic_theme": "geopolitics_power"
+    },
+    {
+      "title": "Everything new in our Google AI subscriptions, fresh from I/O 2026",
+      "link": "https://blog.google/products-and-platforms/products/google-one/google-ai-subscriptions/",
+      "published": "2026-05-19T17:45:00+00:00",
+      "summary": "The shows colorful icons. The copy reads: More magic in one plan. More power, more perks, same price.",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Everything new in our Google AI subscriptions, fresh from I/O 2026",
+      "raw_summary": "The image shows colorful icons. The copy reads: More magic in one plan. More power, more perks, same price.",
+      "score": 37,
+      "primary": "invest",
+      "tags": [
+        "google",
+        "subscriptions",
+        "consumer"
+      ],
+      "heuristic_score": 39,
+      "url": "https://blog.google/products-and-platforms/products/google-one/google-ai-subscriptions/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 39,
+      "_rid": 13,
+      "llm_score": 40,
+      "why": "Actualización de productos comerciales de Google sin impacto técnico disruptivo, centrada en el modelo de suscripción.",
+      "title_es": "Novedades en las suscripciones de Google AI tras el I/O 2026",
+      "entities": [
+        "Google",
+        "Everything"
+      ],
+      "noise_penalty": 3,
+      "final_score": 37,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(3)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Our Gemini for Science tools could help scientists unlock their next breakthrough. 🧬",
+      "summary": "Our Gemini for Science tools could help scientists unlock their next breakthrough. 🧬",
+      "link": "https://x.com/GoogleDeepMind?post=519c87843d62",
+      "published": "Wed, 27 May 2026 09:21:18 GMT",
+      "source": "X @GoogleDeepMind",
+      "feed_tags": [
+        "x",
+        "research",
+        "models"
+      ],
+      "raw_title": "Our Gemini for Science tools could help scientists unlock their next breakthrough. ![Image 7: 🧬](https://abs.twimg.com/emoji/v2/svg/1f9ec.svg)",
+      "raw_summary": "Our Gemini for Science tools could help scientists unlock their next breakthrough. ![Image 7: 🧬](https://abs.twimg.com/emoji/v2/svg/1f9ec.svg)",
+      "score": 32,
+      "primary": "models",
+      "tags": [
+        "models"
+      ],
+      "heuristic_score": 32,
+      "url": "https://x.com/GoogleDeepMind?post=519c87843d62",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 32,
+      "_rid": 15,
+      "llm_score": null,
+      "title_es": "",
+      "entities": [
+        "Gemini",
+        "Our Gemini"
+      ],
+      "why": "Our Gemini for Science tools could help scientists unlock their next breakthrough. 🧬",
+      "noise_penalty": 0,
+      "final_score": 32,
+      "ranking_reason": "fallback_adjusted-noise(0)",
+      "strategic_theme": "frontier_capability"
+    }
+  ]
+}
