@@ -1,0 +1,676 @@
+{
+  "date": "2026-05-28",
+  "score_avg": 58,
+  "primary_dist": {
+    "models": 13,
+    "infra": 2
+  },
+  "top_entities": [
+    {
+      "entity": "DeepMind",
+      "count": 2
+    },
+    {
+      "entity": "LCO",
+      "count": 1
+    },
+    {
+      "entity": "Constraint Optimization",
+      "count": 1
+    },
+    {
+      "entity": "Safer Agentic",
+      "count": 1
+    },
+    {
+      "entity": "Real",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "Auge de agentes de IA especializados en nichos verticales como odontología y codificación médica mediante RAG.",
+      "Integración de simulaciones del mundo real en modelos de lenguaje para entrenamiento de agentes autónomos.",
+      "Prioridad en la seguridad de agentes mediante sandboxing evolutivo y optimización de restricciones de recompensa.",
+      "Expansión de modelos fundacionales ligeros a idiomas de bajos recursos como el tayiko para despliegue local.",
+      "Enfoque en la sostenibilidad y eficiencia de costes en el diseño de hardware SoC para cargas de IA y HPC."
+    ],
+    "risks": [
+      "Hackeo de recompensas en contexto (ICRH) donde los agentes optimizan objetivos secundarios causando efectos dañinos.",
+      "Heterogeneidad en el aprendizaje federado que puede desequilibrar la actualización de parámetros en redes privadas.",
+      "Coste elevado y escasez de datos anotados por expertos para el enlace de entidades biomédicas en idiomas no ingleses."
+    ],
+    "watch": [
+      "Adopción de grok-build-0.1 y el IDE Kilo en flujos de trabajo de ingeniería de software de alto rendimiento.",
+      "Impacto de Project Genie y Street View en la creación de entornos de simulación realistas para robótica e IA.",
+      "Evolución de las herramientas de diseño SoC hacia modelos que prioricen la reducción de huella de carbono."
+    ],
+    "entities_top": [
+      "Google DeepMind",
+      "Anthropic",
+      "xAI"
+    ]
+  },
+  "items": [
+    {
+      "title": "LCO: LLM-based Constraint Optimization for Safer Agentic LLMs in Real-world Tasks",
+      "link": "https://arxiv.org/abs/2605.27375",
+      "published": "2026-05-28T04:00:00+00:00",
+      "summary": "arXiv:2605.27375v1 Announce Type: new Abstract: Large Language Models (LLMs) are increasingly acting as autonomous agents, but their continuous interaction with the environment can lead to in-context reward hacking (ICRH), a phenomenon where LLMs iteratively optimize their behavior to maximize proxy objectives, inadvertently producing harmful side effects. Existing defense methods are insufficient to address this risk, as ICRH arises not from adversarial inputs but from the model's own over-optimization. To mitigate this issue, we propose \\textbf{LLM-based Constraint Optimization (LCO)}, a framework that effectively reduces ICRH without model fine-tuning. LCO consists of two modules: \\textit{self-thought module}, which guides the LLM to proactively deliberate and integrate potential safety constraints before execution; and \\textit{evolutionary sampling module}, which employs LLM-based crossover and mutation to constrain the model's actions within a safe solution space while maintaining task performance. Experimental results demonstrate that LCO substantially alleviates ICRH in both output-refine and policy-refine scenarios. In particular, on the tweet engagement optimization task, LCO achieves a 39% reduction in the Toxicity Growth Rate (TGR) on GPT-4, while on the policy optimization benchmark, it reduces the ICRH Occurrence Rate by 15.23%, demonstrating safety improvement without sacrificing task performance.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "LCO: LLM-based Constraint Optimization for Safer Agentic LLMs in Real-world Tasks",
+      "raw_summary": "arXiv:2605.27375v1 Announce Type: new Abstract: Large Language Models (LLMs) are increasingly acting as autonomous agents, but their continuous interaction with the environment can lead to in-context reward hacking (ICRH), a phenomenon where LLMs iteratively optimize their behavior to maximize proxy objectives, inadvertently producing harmful side effects. Existing defense methods are insufficient to address this risk, as ICRH arises not from adversarial inputs but from the model's own over-optimization. To mitigate this issue, we propose \\textbf{LLM-based Constraint Optimization (LCO)}, a framework that effectively reduces ICRH without model fine-tuning. LCO consists of two modules: \\textit{self-thought module}, which guides the LLM to proactively deliberate and integrate potential safety constraints before execution; and \\textit{evolutionary sampling module}, which employs LLM-based crossover and mutation to constrain the model's actions within a safe solution space while maintaining task performance. Experimental results demonstrate that LCO substantially alleviates ICRH in both output-refine and policy-refine scenarios. In particular, on the tweet engagement optimization task, LCO achieves a 39% reduction in the Toxicity Growth Rate (TGR) on GPT-4, while on the policy optimization benchmark, it reduces the ICRH Occurrence Rate by 15.23%, demonstrating safety improvement without sacrificing task performance.",
+      "score": 70,
+      "primary": "models",
+      "tags": [
+        "agents",
+        "safety",
+        "alignment",
+        "icrh"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2605.27375",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 2,
+      "llm_score": 65,
+      "why": "Propuesta de optimización de restricciones (LCO) para mitigar el pirateo de recompensas en agentes autónomos sin necesidad de reentrenamiento.",
+      "title_es": "LCO: Optimización de restricciones basada en LLM para agentes de IA más seguros en tareas del mundo real",
+      "entities": [
+        "LCO",
+        "Constraint Optimization",
+        "Safer Agentic",
+        "Real",
+        "Tasks"
+      ],
+      "noise_penalty": 0,
+      "final_score": 70,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "New on the Engineering Blog: The access and permissions we grant agents should evolve with their capabilities. In our own products, we set these parameters t...",
+      "summary": "New on the Engineering Blog: The access and permissions we grant agents should evolve with their capabilities. In our own products, we set these parameters through sandboxing, which limits the scope of any potentially destructive actions. Read more:",
+      "link": "https://x.com/AnthropicAI?post=997d24ef19be",
+      "published": "Thu, 28 May 2026 09:34:34 GMT",
+      "source": "X @AnthropicAI",
+      "feed_tags": [
+        "x",
+        "models",
+        "safety"
+      ],
+      "raw_title": "New on the Engineering Blog: The access and permissions we grant agents should evolve with their capabilities. In our own products, we set these parameters t...",
+      "raw_summary": "New on the Engineering Blog: The access and permissions we grant agents should evolve with their capabilities. In our own products, we set these parameters through sandboxing, which limits the scope of any potentially destructive actions. Read more:",
+      "score": 70,
+      "primary": "models",
+      "tags": [
+        "safety",
+        "agents",
+        "anthropic",
+        "sandboxing"
+      ],
+      "heuristic_score": 28,
+      "url": "https://x.com/AnthropicAI?post=997d24ef19be",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 28,
+      "_rid": 12,
+      "llm_score": 78,
+      "why": "Anthropic establece parámetros de sandboxing para limitar el alcance de acciones destructivas de los agentes según evolucionan sus capacidades.",
+      "title_es": "Nuevo en el blog de ingeniería: El acceso y los permisos que otorgamos a los agentes deben evolucionar con sus capacidades",
+      "entities": [
+        "Anthropic",
+        "Engineering Blog"
+      ],
+      "noise_penalty": 0,
+      "final_score": 70,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Use your SuperGrok or X Premium+ subscription in . Try grok-build-0.1 for high speed and agentic coding intelligence, available in the Kilo IDE extensions or...",
+      "summary": "Use your SuperGrok or X Premium+ subscription in . Try grok-build-0.1 for high speed and agentic coding intelligence, available in the Kilo IDE extensions or CLI.",
+      "link": "https://x.com/xai?post=90b8581a7437",
+      "published": "Thu, 28 May 2026 10:30:49 GMT",
+      "source": "X @xai",
+      "feed_tags": [
+        "x",
+        "models"
+      ],
+      "raw_title": "Use your SuperGrok or X Premium+ subscription in . Try grok-build-0.1 for high speed and agentic coding intelligence, available in the Kilo IDE extensions or...",
+      "raw_summary": "Use your SuperGrok or X Premium+ subscription in . Try grok-build-0.1 for high speed and agentic coding intelligence, available in the Kilo IDE extensions or CLI.",
+      "score": 68,
+      "primary": "models",
+      "tags": [
+        "grok",
+        "coding",
+        "agents",
+        "xai"
+      ],
+      "heuristic_score": 26,
+      "url": "https://x.com/xai?post=90b8581a7437",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 26,
+      "_rid": 14,
+      "llm_score": 75,
+      "why": "xAI lanza un modelo especializado en codificación rápida y agéntica integrado en el IDE Kilo para usuarios Premium.",
+      "title_es": "Usa tu suscripción SuperGrok o X Premium+ en Kilo",
+      "entities": [
+        "xAI",
+        "Grok",
+        "Kilo IDE",
+        "IDE",
+        "Try",
+        "Kilo"
+      ],
+      "noise_penalty": 0,
+      "final_score": 68,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "OralAgent: Integrating Reasoning, Tools, and Knowledge for Interactive Dental Analysis",
+      "link": "https://arxiv.org/abs/2605.27378",
+      "published": "2026-05-28T04:00:00+00:00",
+      "summary": "arXiv:2605.27378v1 Announce Type: new Abstract: Dental analysis plays a pivotal role in supporting accurate diagnosis and treatment planning in oral healthcare. Although recent advances have produced dental AI models for specific tasks and individual imaging modalities, their isolated designs limit practical use in real-world clinical workflows. In this paper, we present OralAgent, the first dental-specialized AI agent that unifies multimodal reasoning, tool-based decision-making, and knowledge-grounded retrieval within an end-to-end automated framework. It integrates 22 visual analysis tools and 368 widely-used classical dental textbooks, enabling autonomous reasoning, planning, tool use, knowledge retrieval, and multi-step workflow execution. Furthermore, we introduce OralCorpus, a large-scale, high-quality bilingual textual resource containing 134.8M tokens curated for dental retrieval-augmented generation (RAG). To evaluate models' multidisciplinary dental knowledge, we construct OralQA-ZH, a Chinese multiple-choice question benchmark consisting of 798 items across eleven oral subspecialties. Extensive experiments demonstrate that OralAgent achieves state-of-the-art performance on the MMOral-Uni, MMOral-OPG, and OralQA-ZH benchmarks, highlighting its effectiveness, interpretability, and adaptability in real-world clinical settings. The code and models are publicly available at",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "OralAgent: Integrating Reasoning, Tools, and Knowledge for Interactive Dental Image Analysis",
+      "raw_summary": "arXiv:2605.27378v1 Announce Type: new Abstract: Dental image analysis plays a pivotal role in supporting accurate diagnosis and treatment planning in oral healthcare. Although recent advances have produced dental AI models for specific tasks and individual imaging modalities, their isolated designs limit practical use in real-world clinical workflows. In this paper, we present OralAgent, the first dental-specialized AI agent that unifies multimodal reasoning, tool-based decision-making, and knowledge-grounded retrieval within an end-to-end automated framework. It integrates 22 visual analysis tools and 368 widely-used classical dental textbooks, enabling autonomous reasoning, planning, tool use, knowledge retrieval, and multi-step workflow execution. Furthermore, we introduce OralCorpus, a large-scale, high-quality bilingual textual resource containing 134.8M tokens curated for dental retrieval-augmented generation (RAG). To evaluate models' multidisciplinary dental knowledge, we construct OralQA-ZH, a Chinese multiple-choice question benchmark consisting of 798 items across eleven oral subspecialties. Extensive experiments demonstrate that OralAgent achieves state-of-the-art performance on the MMOral-Uni, MMOral-OPG, and OralQA-ZH benchmarks, highlighting its effectiveness, interpretability, and adaptability in real-world clinical settings. The code and models are publicly available at https://github.com/isjinghao/OralAgent.",
+      "score": 66,
+      "primary": "models",
+      "tags": [
+        "healthcare",
+        "dental",
+        "multimodal",
+        "rag"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2605.27378",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 3,
+      "llm_score": 60,
+      "why": "Primer agente de IA dental que unifica razonamiento multimodal, uso de herramientas clínicas y conocimiento basado en libros de texto.",
+      "title_es": "OralAgent: Integración de razonamiento, herramientas y conocimiento para el análisis dental interactivo",
+      "entities": [
+        "OralAgent",
+        "Integrating Reasoning",
+        "Tools",
+        "Knowledge",
+        "Interactive Dental Analysis"
+      ],
+      "noise_penalty": 0,
+      "final_score": 66,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "SoC PLANNER: A New Generation of SoC Design Exploration Solution Managing Cost-effectiveness and Sustainability",
+      "link": "https://semiwiki.com/eda/defacto-technologies/369523-soc-planner-a-new-generation-of-soc-design-exploration-solution-managing-cost-effectiveness-and-sustainability/",
+      "published": "2026-05-27T17:00:25+00:00",
+      "summary": "With over a trillion chips manufactured every year and application requirements evolving faster than ever (across automotive, HPC, and AI), the pressure on SoC design teams has never been higher with design space keeps growing and schedules keep shrinking. Indeed, for a complex SoC project, the number of possible configurations&8230; Read More The post SoC PLANNER: A New Generation of SoC Design Exploration Solution Managing Cost-effectiveness and Sustainability appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "SoC PLANNER: A New Generation of SoC Design Exploration Solution Managing Cost-effectiveness and Sustainability",
+      "raw_summary": "With over a trillion chips manufactured every year and application requirements evolving faster than ever (across automotive, HPC, and AI), the pressure on SoC design teams has never been higher with design space keeps growing and schedules keep shrinking. Indeed, for a complex SoC project, the number of possible configurations&#8230; Read More The post SoC PLANNER: A New Generation of SoC Design Exploration Solution Managing Cost-effectiveness and Sustainability appeared first on SemiWiki .",
+      "score": 64,
+      "primary": "infra",
+      "tags": [
+        "soc",
+        "chip design",
+        "eda",
+        "sustainability"
+      ],
+      "heuristic_score": 33,
+      "url": "https://semiwiki.com/eda/defacto-technologies/369523-soc-planner-a-new-generation-of-soc-design-exploration-solution-managing-cost-effectiveness-and-sustainability/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 33,
+      "_rid": 11,
+      "llm_score": 70,
+      "why": "Nueva solución de diseño SoC que aborda la creciente complejidad y la necesidad de sostenibilidad en sectores como automoción y HPC.",
+      "title_es": "SoC PLANNER: Una nueva generación de soluciones de exploración de diseño de SoC que gestiona la rentabilidad y la sostenibilidad",
+      "entities": [
+        "Defacto Technologies",
+        "PLANNER",
+        "New Generation",
+        "Design Exploration Solution",
+        "Managing Cost",
+        "Sustainability"
+      ],
+      "noise_penalty": 0,
+      "final_score": 64,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Soro: A Lightweight Foundation Model and Chatbot for Tajik",
+      "link": "https://arxiv.org/abs/2605.27379",
+      "published": "2026-05-28T04:00:00+00:00",
+      "summary": "arXiv:2605.27379v1 Announce Type: new Abstract: We present Soro, a family of Tajik-specialized conversational large language models (LLMs) designed for real-world deployment under tight compute and connectivity constraints in Tajikistan. Starting from open-weight Gemma 3 checkpoints, we perform Tajik-only continual pretraining on a curated 1.9-billion-token corpus spanning filtered web text, PDF documents, and curriculum-aligned educational materials, followed by supervised instruction tuning on 40K Tajik teacher-style examples. To enable rigorous evaluation despite the limited coverage of Tajik in standard benchmarks, we introduce a suite of Tajik benchmarks covering general knowledge, linguistic competence, and school- and university entrance-exam domains, and we open-source them on Hugging Face. Across these Tajik benchmarks, Soro substantially outperforms same-size Gemma 3 baselines while retaining strong English performance on standard datasets. We further show that FP8 and INT4 quantization of Soro preserves most Tajik-language gains while reducing memory requirements for edge deployment, supporting an ongoing education-sector pilot and planned scale-out across schools in Tajikistan.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Soro: A Lightweight Foundation Model and Chatbot for Tajik",
+      "raw_summary": "arXiv:2605.27379v1 Announce Type: new Abstract: We present Soro, a family of Tajik-specialized conversational large language models (LLMs) designed for real-world deployment under tight compute and connectivity constraints in Tajikistan. Starting from open-weight Gemma 3 checkpoints, we perform Tajik-only continual pretraining on a curated 1.9-billion-token corpus spanning filtered web text, PDF documents, and curriculum-aligned educational materials, followed by supervised instruction tuning on 40K Tajik teacher-style examples. To enable rigorous evaluation despite the limited coverage of Tajik in standard benchmarks, we introduce a suite of Tajik benchmarks covering general knowledge, linguistic competence, and school- and university entrance-exam domains, and we open-source them on Hugging Face. Across these Tajik benchmarks, Soro substantially outperforms same-size Gemma 3 baselines while retaining strong English performance on standard datasets. We further show that FP8 and INT4 quantization of Soro preserves most Tajik-language gains while reducing memory requirements for edge deployment, supporting an ongoing education-sector pilot and planned scale-out across schools in Tajikistan.",
+      "score": 62,
+      "primary": "models",
+      "tags": [
+        "llm",
+        "tajik",
+        "low-resource",
+        "gemma 3"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2605.27379",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 1,
+      "llm_score": 55,
+      "why": "Presentación de Soro, una familia de LLMs especializados en tayiko optimizados para entornos con baja conectividad y computación limitada.",
+      "title_es": "Soro: un modelo fundacional ligero y chatbot para el tayiko",
+      "entities": [
+        "Soro",
+        "Gemma 3",
+        "Lightweight Foundation Model",
+        "Chatbot",
+        "Tajik"
+      ],
+      "noise_penalty": 0,
+      "final_score": 62,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "RAG-Coding: Enhancing LLM Medical Coding with Structured External Knowledge",
+      "link": "https://arxiv.org/abs/2605.27377",
+      "published": "2026-05-28T04:00:00+00:00",
+      "summary": "arXiv:2605.27377v1 Announce Type: new Abstract: We present RAG-Coding, an agentic method for automated ICD-10-CM coding. RAG-Coding orchestrates four large language model (LLM) agents and grounds their coding decisions in external knowledge sources (e.g. the official coding tabular list and guidelines). By retrieving and cross-referencing relevant knowledge in these sources, the agents enhance coding accuracy and ensure clinical compliance. On the MDACE dataset, RAG-Coding outperforms the best LLM-based baseline by 8-13\\% in micro-F1 and 2-8\\% in macro-F1 across multiple LLM backbones. Compared to the state-of-the-art pretrained language model method, PLM-ICD, RAG-Coding exhibits higher micro recall (+11\\%), while PLM-ICD exhibits higher micro precision (+6\\%), yielding comparable micro- and macro-F1. Ablations show stepwise gains, highlighting the importance of incorporating external knowledge. We also release MDACE-2025, updating the original dataset with expert re-annotations with the latest 2025 ICD-10-CM guidelines. This update features more fine-grained code labels and enables evaluation against current clinical standards.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "RAG-Coding: Enhancing LLM Medical Coding with Structured External Knowledge",
+      "raw_summary": "arXiv:2605.27377v1 Announce Type: new Abstract: We present RAG-Coding, an agentic method for automated ICD-10-CM coding. RAG-Coding orchestrates four large language model (LLM) agents and grounds their coding decisions in external knowledge sources (e.g. the official coding tabular list and guidelines). By retrieving and cross-referencing relevant knowledge in these sources, the agents enhance coding accuracy and ensure clinical compliance. On the MDACE dataset, RAG-Coding outperforms the best LLM-based baseline by 8-13\\% in micro-F1 and 2-8\\% in macro-F1 across multiple LLM backbones. Compared to the state-of-the-art pretrained language model method, PLM-ICD, RAG-Coding exhibits higher micro recall (+11\\%), while PLM-ICD exhibits higher micro precision (+6\\%), yielding comparable micro- and macro-F1. Ablations show stepwise gains, highlighting the importance of incorporating external knowledge. We also release MDACE-2025, updating the original dataset with expert re-annotations with the latest 2025 ICD-10-CM guidelines. This update features more fine-grained code labels and enables evaluation against current clinical standards.",
+      "score": 62,
+      "primary": "models",
+      "tags": [
+        "medical coding",
+        "rag",
+        "healthcare",
+        "icd-10"
+      ],
+      "heuristic_score": 64,
+      "url": "https://arxiv.org/abs/2605.27377",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 64,
+      "_rid": 7,
+      "llm_score": 62,
+      "why": "Uso de agentes RAG para automatizar la codificación médica ICD-10-CM con mayor precisión y cumplimiento de las directrices clínicas.",
+      "title_es": "RAG-Coding: Mejora de la codificación médica con LLM mediante conocimiento externo estructurado",
+      "entities": [
+        "ICD-10-CM",
+        "Coding",
+        "Enhancing",
+        "Medical Coding",
+        "Structured External Knowledge"
+      ],
+      "noise_penalty": 0,
+      "final_score": 62,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Simulate real-world places with Project Genie and Street View",
+      "link": "https://deepmind.google/blog/simulate-real-world-places-with-project-genie-and-street-view/",
+      "published": "2026-05-17T19:53:18+00:00",
+      "summary": "We’re expanding access to Google AI Ultra subscribers globally and introducing a new capability powered by Street View.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Simulate real-world places with Project Genie and Street View",
+      "raw_summary": "We’re expanding access to Google AI Ultra subscribers globally and introducing a new capability powered by Street View.",
+      "score": 62,
+      "primary": "models",
+      "tags": [
+        "genie",
+        "simulation",
+        "world model",
+        "google"
+      ],
+      "heuristic_score": 27,
+      "url": "https://deepmind.google/blog/simulate-real-world-places-with-project-genie-and-street-view/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 27,
+      "_rid": 13,
+      "llm_score": 80,
+      "why": "Google expande Project Genie utilizando datos de Street View para simular entornos reales interactivos accesibles para suscriptores AI Ultra.",
+      "title_es": "Simula lugares del mundo real con Project Genie y Street View",
+      "entities": [
+        "DeepMind",
+        "Project Genie",
+        "Street View"
+      ],
+      "noise_penalty": 10,
+      "final_score": 62,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(10)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Gemini for Science: AI experiments and tools for a new era of discovery",
+      "link": "https://deepmind.google/blog/gemini-for-science-ai-experiments-and-tools-for-a-new-era-of-discovery/",
+      "published": "2026-05-17T13:50:34+00:00",
+      "summary": "A collection of science tools and experiments to expand the scale and precision of scientific exploration.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Gemini for Science: AI experiments and tools for a new era of discovery",
+      "raw_summary": "A collection of science tools and experiments to expand the scale and precision of scientific exploration.",
+      "score": 55,
+      "primary": "models",
+      "tags": [
+        "science",
+        "discovery",
+        "gemini",
+        "tools"
+      ],
+      "heuristic_score": 24,
+      "url": "https://deepmind.google/blog/gemini-for-science-ai-experiments-and-tools-for-a-new-era-of-discovery/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 24,
+      "_rid": 15,
+      "llm_score": 72,
+      "why": "Colección de herramientas de IA diseñadas para ampliar la escala y precisión de la investigación científica mediante modelos Gemini.",
+      "title_es": "Gemini para la ciencia: Experimentos y herramientas de IA para una nueva era de descubrimientos",
+      "entities": [
+        "DeepMind",
+        "Gemini"
+      ],
+      "noise_penalty": 10,
+      "final_score": 55,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(10)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "ICG: Improving Cover Generation via MLLM-based Prompting and Personalized Preference Alignment",
+      "link": "https://arxiv.org/abs/2605.27374",
+      "published": "2026-05-28T04:00:00+00:00",
+      "summary": "arXiv:2605.27374v1 Announce Type: new Abstract: Recent advances in multimodal large language models (MLLMs) and diffusion models (DMs) have opened new possibilities for AI-generated content. Yet, personalized cover generation remains underexplored, despite its critical role in boosting user engagement on digital platforms. We propose ICG, a novel framework that integrates MLLM-based prompting with personalized preference alignment to generate high-quality, contextually relevant covers. ICG extracts semantic features from item titles and reference s via meta tokens, refines them with user embeddings, and injects the resulting personalized context into the diffusion model. To address the lack of labeled supervision, we adopt a multi-reward learning strategy that combines public aesthetic and relevance rewards with a personalized preference model trained from user behavior. Unlike prior pipelines relying on handcrafted prompts and disjointed modules, ICG employs an adapter to bridge MLLMs and diffusion models for end-to-end training. Experiments demonstrate that ICG significantly improves quality, semantic fidelity, and personalization, leading to stronger user appeal and offline recommendation accuracy in downstream tasks. As a plug-and-play adapter bridging MLLMs and diffusion models, ICG is compatible with common checkpoints and requires no ground-truth labels during optimization.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "ICG: Improving Cover Image Generation via MLLM-based Prompting and Personalized Preference Alignment",
+      "raw_summary": "arXiv:2605.27374v1 Announce Type: new Abstract: Recent advances in multimodal large language models (MLLMs) and diffusion models (DMs) have opened new possibilities for AI-generated content. Yet, personalized cover image generation remains underexplored, despite its critical role in boosting user engagement on digital platforms. We propose ICG, a novel framework that integrates MLLM-based prompting with personalized preference alignment to generate high-quality, contextually relevant covers. ICG extracts semantic features from item titles and reference images via meta tokens, refines them with user embeddings, and injects the resulting personalized context into the diffusion model. To address the lack of labeled supervision, we adopt a multi-reward learning strategy that combines public aesthetic and relevance rewards with a personalized preference model trained from user behavior. Unlike prior pipelines relying on handcrafted prompts and disjointed modules, ICG employs an adapter to bridge MLLMs and diffusion models for end-to-end training. Experiments demonstrate that ICG significantly improves image quality, semantic fidelity, and personalization, leading to stronger user appeal and offline recommendation accuracy in downstream tasks. As a plug-and-play adapter bridging MLLMs and diffusion models, ICG is compatible with common checkpoints and requires no ground-truth labels during optimization.",
+      "score": 52,
+      "primary": "models",
+      "tags": [
+        "personalization",
+        "diffusion",
+        "mllm",
+        "marketing"
+      ],
+      "heuristic_score": 95,
+      "url": "https://arxiv.org/abs/2605.27374",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 95,
+      "_rid": 4,
+      "llm_score": 45,
+      "why": "Nuevo marco que combina modelos de lenguaje multimodal y difusión para generar portadas personalizadas alineadas con las preferencias del usuario.",
+      "title_es": "ICG: Mejora de la generación de portadas mediante prompting basado en MLLM y alineación de preferencias personalizadas",
+      "entities": [
+        "ICG",
+        "MLLM",
+        "Improving Cover Generation",
+        "Prompting",
+        "Personalized Preference Alignment"
+      ],
+      "noise_penalty": 0,
+      "final_score": 52,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "BioELX: Cross-lingual Biomedical Entity Linking via Alias-based Retrieval and LLM Ranking",
+      "link": "https://arxiv.org/abs/2605.27380",
+      "published": "2026-05-28T04:00:00+00:00",
+      "summary": "arXiv:2605.27380v1 Announce Type: new Abstract: Cross-lingual biomedical entity linking (BEL) maps mentions in any language to unique identifiers in a biomedical knowledge base (KB), supporting clinical and biomedical NLP applications. However, expert-annotated training data for BEL are costly, especially for low-resource languages. Moreover, many cross-lingual BEL systems rely on SapBERT-based retrievers trained on predominantly English aliases in the KB, leading to poor generalization to unseen non-English mentions and limited context-aware disambiguation. We propose BioELX, a two-stage cross-lingual BEL framework that requires no task-specific annotated training corpora. In Stage~1, we enrich SapBERT training with Wikidata-derived multilingual aliases and use the resulting retriever to improve cross-lingual candidate retrieval. In Stage~2, we perform context-aware disambiguation with a pre-trained LLM ranker that jointly considers the mention context and candidate, eliminating the need for supervised training. Experiments on five benchmarks (XL-BEL, EMEA, Patent, WikiMed-DE, and MedMentions) show that BioELX achieves new state-of-the-art performance. It improves average Recall@1 on XL-BEL by +19.2, with especially large gains for low-resource languages, e.g., +21.6 on Turkish, +22.1 on Korean, +30.8 on Thai, and delivers consistent improvements on EMEA (+6.2), Patent (+5.4), and WikiMed-DE (+12.8). Code and resources will be released upon publication.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "BioELX: Cross-lingual Biomedical Entity Linking via Alias-based Retrieval and LLM Ranking",
+      "raw_summary": "arXiv:2605.27380v1 Announce Type: new Abstract: Cross-lingual biomedical entity linking (BEL) maps mentions in any language to unique identifiers in a biomedical knowledge base (KB), supporting clinical and biomedical NLP applications. However, expert-annotated training data for BEL are costly, especially for low-resource languages. Moreover, many cross-lingual BEL systems rely on SapBERT-based retrievers trained on predominantly English aliases in the KB, leading to poor generalization to unseen non-English mentions and limited context-aware disambiguation. We propose BioELX, a two-stage cross-lingual BEL framework that requires no task-specific annotated training corpora. In Stage~1, we enrich SapBERT training with Wikidata-derived multilingual aliases and use the resulting retriever to improve cross-lingual candidate retrieval. In Stage~2, we perform context-aware disambiguation with a pre-trained LLM ranker that jointly considers the mention context and candidate, eliminating the need for supervised training. Experiments on five benchmarks (XL-BEL, EMEA, Patent, WikiMed-DE, and MedMentions) show that BioELX achieves new state-of-the-art performance. It improves average Recall@1 on XL-BEL by +19.2, with especially large gains for low-resource languages, e.g., +21.6 on Turkish, +22.1 on Korean, +30.8 on Thai, and delivers consistent improvements on EMEA (+6.2), Patent (+5.4), and WikiMed-DE (+12.8). Code and resources will be released upon publication.",
+      "score": 52,
+      "primary": "models",
+      "tags": [
+        "biomedical",
+        "nlp",
+        "cross-lingual",
+        "llm"
+      ],
+      "heuristic_score": 66,
+      "url": "https://arxiv.org/abs/2605.27380",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 66,
+      "_rid": 5,
+      "llm_score": 50,
+      "why": "Framework multilingüe para vincular entidades biomédicas que no requiere entrenamiento específico, facilitando su uso en idiomas con pocos recursos.",
+      "title_es": "BioELX: Enlace de entidades biomédicas multilingüe mediante recuperación basada en alias y clasificación por LLM",
+      "entities": [
+        "BioELX",
+        "SapBERT",
+        "Cross",
+        "Biomedical Entity Linking",
+        "Alias",
+        "Retrieval",
+        "Ranking"
+      ],
+      "noise_penalty": 0,
+      "final_score": 52,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "IGADA-IoT: IoT Sensor Energy Optimization in Wireless Sensor Networks Driven by Automatic Data Augmentation",
+      "link": "https://arxiv.org/abs/2605.27397",
+      "published": "2026-05-28T04:00:00+00:00",
+      "summary": "arXiv:2605.27397v1 Announce Type: new Abstract: In wireless sensor networks (WSNs), data augmentation is a novel method to improve sampling-frequency decision performance, thereby enabling energy optimization for IoT (Internet of Things) sensors. However, existing methods rely on a single generator and empirically determined quantities, failing to establish a mapping between dynamic information gaps and multiple generators, and overlooking the heterogeneity of generated samples. Moreover, an evaluation and a closed-loop method that jointly considers the information gap and the model performance are lacking. To address these issues, we propose an information gap-guided IoT sensor automatic data augmentation framework (IGADA-IoT) with hierarchical multi-generator collaboration and scheduling over multiple rounds. Capabilities of different generators are jointly utilized to reduce the information gaps. In the IGADA-IoT, a hierarchical multi-generator collaboration and scheduling strategy (HMGCS) is proposed to enhance the targetedness and rationality of generated sample allocation. An information gap-model performance joint evaluation and closed-loop method (IGMP-EC) is proposed to enhance the accuracy of augmentation decisions, and to mitigate the risks of under-augmentation and over-augmentation. Experimental results show that the IGADA-IoT improves the average accuracy of multiple downstream models by 7.27%. Compared with advanced data augmentation methods, the average accuracy is improved by 8.67%. Compared with the individual generators, the average accuracy is improved by 7.24%. Furthermore, public IoT sensor datasets from the UCR Archive and real-world deployments demonstrate the accuracy and generalizability of the proposed method.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "IGADA-IoT: IoT Sensor Energy Optimization in Wireless Sensor Networks Driven by Automatic Data Augmentation",
+      "raw_summary": "arXiv:2605.27397v1 Announce Type: new Abstract: In wireless sensor networks (WSNs), data augmentation is a novel method to improve sampling-frequency decision performance, thereby enabling energy optimization for IoT (Internet of Things) sensors. However, existing methods rely on a single generator and empirically determined quantities, failing to establish a mapping between dynamic information gaps and multiple generators, and overlooking the heterogeneity of generated samples. Moreover, an evaluation and a closed-loop method that jointly considers the information gap and the model performance are lacking. To address these issues, we propose an information gap-guided IoT sensor automatic data augmentation framework (IGADA-IoT) with hierarchical multi-generator collaboration and scheduling over multiple rounds. Capabilities of different generators are jointly utilized to reduce the information gaps. In the IGADA-IoT, a hierarchical multi-generator collaboration and scheduling strategy (HMGCS) is proposed to enhance the targetedness and rationality of generated sample allocation. An information gap-model performance joint evaluation and closed-loop method (IGMP-EC) is proposed to enhance the accuracy of augmentation decisions, and to mitigate the risks of under-augmentation and over-augmentation. Experimental results show that the IGADA-IoT improves the average accuracy of multiple downstream models by 7.27%. Compared with advanced data augmentation methods, the average accuracy is improved by 8.67%. Compared with the individual generators, the average accuracy is improved by 7.24%. Furthermore, public IoT sensor datasets from the UCR Archive and real-world deployments demonstrate the accuracy and generalizability of the proposed method.",
+      "score": 51,
+      "primary": "infra",
+      "tags": [
+        "iot",
+        "energy",
+        "data augmentation",
+        "wsn"
+      ],
+      "heuristic_score": 44,
+      "url": "https://arxiv.org/abs/2605.27397",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 44,
+      "_rid": 9,
+      "llm_score": 52,
+      "why": "Optimización del consumo energético en redes de sensores IoT mediante técnicas de aumento de datos automático para reducir la frecuencia de muestreo.",
+      "title_es": "IGADA-IoT: Optimización de la energía de los sensores IoT en redes inalámbricas impulsada por el aumento automático de datos",
+      "entities": [
+        "IGADA",
+        "Sensor Energy Optimization",
+        "Wireless Sensor Networks",
+        "Driven",
+        "Automatic Data Augmentation"
+      ],
+      "noise_penalty": 0,
+      "final_score": 51,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Personalized Observation Normalization for Federated Reinforcement Learning in Simulation Environments with Heterogeneity",
+      "link": "https://arxiv.org/abs/2605.27385",
+      "published": "2026-05-28T04:00:00+00:00",
+      "summary": "arXiv:2605.27385v1 Announce Type: new Abstract: Federated reinforcement learning (FedRL) enables multiple agents to collaboratively train a global policy without sharing raw data, making it ideal for privacy-sensitive applications. However, FedRL faces challenges in heterogeneous environments where differing state-transition dynamics lead to non-identical input distributions and imbalanced parameter updates during aggregation. Therefore, this paper develops a personalized observation normalization (PON) method, allowing each agent to locally normalize raw state inputs using a continuously updated running mean and variance. This design ensures consistent scaling of local feature without overshadowing across agents during aggregation. Furthermore, we demonstrate that sharing normalization parameters across agents is ineffective due to the diverse local input distributions, which highlights the necessity of personalized statistics. Experiments on heterogeneous MuJoCo tasks show that our developed PON accelerates training and achieves superior performance compared to baseline methods.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Personalized Observation Normalization for Federated Reinforcement Learning in Simulation Environments with Heterogeneity",
+      "raw_summary": "arXiv:2605.27385v1 Announce Type: new Abstract: Federated reinforcement learning (FedRL) enables multiple agents to collaboratively train a global policy without sharing raw data, making it ideal for privacy-sensitive applications. However, FedRL faces challenges in heterogeneous environments where differing state-transition dynamics lead to non-identical input distributions and imbalanced parameter updates during aggregation. Therefore, this paper develops a personalized observation normalization (PON) method, allowing each agent to locally normalize raw state inputs using a continuously updated running mean and variance. This design ensures consistent scaling of local feature without overshadowing across agents during aggregation. Furthermore, we demonstrate that sharing normalization parameters across agents is ineffective due to the diverse local input distributions, which highlights the necessity of personalized statistics. Experiments on heterogeneous MuJoCo tasks show that our developed PON accelerates training and achieves superior performance compared to baseline methods.",
+      "score": 50,
+      "primary": "models",
+      "tags": [
+        "federated learning",
+        "reinforcement learning",
+        "privacy",
+        "heterogeneity"
+      ],
+      "heuristic_score": 64,
+      "url": "https://arxiv.org/abs/2605.27385",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 64,
+      "_rid": 6,
+      "llm_score": 48,
+      "why": "Método de normalización de observaciones para mejorar el aprendizaje por refuerzo federado en entornos heterogéneos y privados.",
+      "title_es": "Normalización de observaciones personalizada para el aprendizaje por refuerzo federado en entornos de simulación con heterogeneidad",
+      "entities": [
+        "Personalized Observation Normalization",
+        "Federated Reinforcement Learning",
+        "Simulation Environments",
+        "Heterogeneity"
+      ],
+      "noise_penalty": 0,
+      "final_score": 50,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Unlocking Fine-Grained and Within-Utterance Speaking Style Control in Prompt-Based Text-to-Speech Models",
+      "link": "https://arxiv.org/abs/2605.27376",
+      "published": "2026-05-28T04:00:00+00:00",
+      "summary": "arXiv:2605.27376v1 Announce Type: new Abstract: While prompt-based text-to-speech (TTS) models enable natural language-driven speaking style control, they often provide limited fine-grained control and apply a single global style across an utterance. This restricts practical use cases that require continuous style attribute interpolation across utterances and time-varying style transitions within a single utterance. In this paper, we propose novel techniques to achieve both capabilities in existing prompt-based TTS models. For inter-utterance style interpolation, we compute direction vectors between contrastive style prompts in the embedding space and perform simple interpolation, enabling smooth transitions between style characteristics. For intra-utterance style transition, we first identify a strong attention bias toward early tokens in autoregressive TTS decoders, causing the initial audio realization to dominate subsequent generation. To mitigate this effect, we introduce KV-cache swapping and sliding-window attention masking. Experiments demonstrate that our proposed inter-utterance interpolation achieves a 99-100% success rate in gender conversion, up to 36 Hz pitch variation, and up to 1.6 syllables-per-second speed change. Our intra-utterance transition maintains a speaker similarity of 0.81-0.91 and achieves perceptual smoothness scores of 3.48-4.48.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Unlocking Fine-Grained and Within-Utterance Speaking Style Control in Prompt-Based Text-to-Speech Models",
+      "raw_summary": "arXiv:2605.27376v1 Announce Type: new Abstract: While prompt-based text-to-speech (TTS) models enable natural language-driven speaking style control, they often provide limited fine-grained control and apply a single global style across an utterance. This restricts practical use cases that require continuous style attribute interpolation across utterances and time-varying style transitions within a single utterance. In this paper, we propose novel techniques to achieve both capabilities in existing prompt-based TTS models. For inter-utterance style interpolation, we compute direction vectors between contrastive style prompts in the embedding space and perform simple interpolation, enabling smooth transitions between style characteristics. For intra-utterance style transition, we first identify a strong attention bias toward early tokens in autoregressive TTS decoders, causing the initial audio realization to dominate subsequent generation. To mitigate this effect, we introduce KV-cache swapping and sliding-window attention masking. Experiments demonstrate that our proposed inter-utterance interpolation achieves a 99-100% success rate in gender conversion, up to 36 Hz pitch variation, and up to 1.6 syllables-per-second speed change. Our intra-utterance transition maintains a speaker similarity of 0.81-0.91 and achieves perceptual smoothness scores of 3.48-4.48.",
+      "score": 46,
+      "primary": "models",
+      "tags": [
+        "tts",
+        "speech",
+        "audio",
+        "control"
+      ],
+      "heuristic_score": 55,
+      "url": "https://arxiv.org/abs/2605.27376",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 55,
+      "_rid": 8,
+      "llm_score": 45,
+      "why": "Técnicas para el control detallado del estilo de voz y transiciones temporales en modelos de texto a voz basados en instrucciones naturales.",
+      "title_es": "Desbloqueo del control de estilo de habla detallado y dentro de la locución en modelos de texto a voz basados en prompts",
+      "entities": [
+        "Unlocking Fine",
+        "Grained",
+        "Within",
+        "Utterance Speaking Style",
+        "Control",
+        "Prompt",
+        "Based Text",
+        "Speech Models"
+      ],
+      "noise_penalty": 0,
+      "final_score": 46,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Identifying and Understanding Human Values in Text: A Tailorable LLM-based Architecture",
+      "link": "https://arxiv.org/abs/2605.27373",
+      "published": "2026-05-28T04:00:00+00:00",
+      "summary": "arXiv:2605.27373v1 Announce Type: new Abstract: As intelligent systems become more autonomous, the scientific community focuses on creating decision-making mechanisms that include ethical and moral considerations, unlike traditional utility-maximisation models. To achieve this, a key aspect is assessing how well these decisions align with human values. To this end, a promising line of research is centred on developing approaches based on Large Language Models (LLMs) to identify human values from text, whether explicit or implicit, enabling their recognition throughout. This paper introduces a LLM-based architecture to detect and quantify the intensity of human values in text, avoiding the limitations of previous approaches tied to specific value theory or complex prompt engineering. The architecture comprises three coordinated modules: one that generates structured value specifications from the foundational texts of any theoretical framework; one that labels texts using these specifications; and one that assigns graded support or resistance based on rhetorical and semantic evidence. This modular approach separates the tasks of conceptualising from detecting human values, creating a scalable and reproducible process driven by value specifications adaptable to various theories. The architecture was instantiated with multiple LLMs and evaluated using the ValueEval dataset. The experiments demonstrate good detection performance, confirming the generality of the pipeline.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Identifying and Understanding Human Values in Text: A Tailorable LLM-based Architecture",
+      "raw_summary": "arXiv:2605.27373v1 Announce Type: new Abstract: As intelligent systems become more autonomous, the scientific community focuses on creating decision-making mechanisms that include ethical and moral considerations, unlike traditional utility-maximisation models. To achieve this, a key aspect is assessing how well these decisions align with human values. To this end, a promising line of research is centred on developing approaches based on Large Language Models (LLMs) to identify human values from text, whether explicit or implicit, enabling their recognition throughout. This paper introduces a LLM-based architecture to detect and quantify the intensity of human values in text, avoiding the limitations of previous approaches tied to specific value theory or complex prompt engineering. The architecture comprises three coordinated modules: one that generates structured value specifications from the foundational texts of any theoretical framework; one that labels texts using these specifications; and one that assigns graded support or resistance based on rhetorical and semantic evidence. This modular approach separates the tasks of conceptualising from detecting human values, creating a scalable and reproducible process driven by value specifications adaptable to various theories. The architecture was instantiated with multiple LLMs and evaluated using the ValueEval dataset. The experiments demonstrate good detection performance, confirming the generality of the pipeline.",
+      "score": 40,
+      "primary": "models",
+      "tags": [
+        "ethics",
+        "alignment",
+        "human values",
+        "llm"
+      ],
+      "heuristic_score": 41,
+      "url": "https://arxiv.org/abs/2605.27373",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 41,
+      "_rid": 10,
+      "llm_score": 40,
+      "why": "Arquitectura para detectar y medir la intensidad de valores humanos en textos, buscando mejorar la alineación ética de los sistemas inteligentes.",
+      "title_es": "Identificación y comprensión de los valores humanos en el texto: Una arquitectura adaptable basada en LLM",
+      "entities": [
+        "Identifying",
+        "Understanding Human Values",
+        "Text",
+        "Tailorable",
+        "Architecture"
+      ],
+      "noise_penalty": 0,
+      "final_score": 40,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    }
+  ]
+}
