@@ -1,0 +1,669 @@
+{
+  "date": "2026-06-03",
+  "score_avg": 59.33,
+  "primary_dist": {
+    "infra": 1,
+    "models": 11,
+    "geopol": 1,
+    "misc": 1,
+    "invest": 1
+  },
+  "top_entities": [
+    {
+      "entity": "Gemini",
+      "count": 2
+    },
+    {
+      "entity": "Enter Co",
+      "count": 2
+    },
+    {
+      "entity": "Scientist",
+      "count": 2
+    },
+    {
+      "entity": "Large Language Models",
+      "count": 2
+    },
+    {
+      "entity": "AURA-Mem",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "Google DeepMind lanza Co-Scientist, posicionando a Gemini como socio activo en el descubrimiento científico mediante multi-agentes.",
+      "Nueva arquitectura AURA-Mem permite ejecutar políticas robóticas con VRAM constante, optimizando la IA en hardware de borde.",
+      "Europa impulsa su soberanía tecnológica mediante una plataforma de supercomputación propia liderada por Semidynamics y SiPearl.",
+      "Hallazgos en Transformers sugieren que las capas profundas pueden operar con vectores de valor sin contexto, optimizando eficiencia.",
+      "TSMC integra IA para la gestión de secretos industriales, blindando la propiedad intelectual en la fabricación de chips."
+    ],
+    "risks": [
+      "Dependencia excesiva del solapamiento léxico en LLMs que oculta carencias de comprensión semántica profunda.",
+      "Cuellos de botella en la memoria de alta velocidad (HBM) y flash para agentes autónomos de larga duración.",
+      "Riesgo financiero en precios dinámicos automatizados si no se mantiene un control humano (HITL) estricto."
+    ],
+    "watch": [
+      "Evolución del rack de computación soberana europeo frente al dominio de proveedores estadounidenses y asiáticos.",
+      "Integración de grafos como andamiaje interno para mejorar el razonamiento multi-paso en modelos de lenguaje.",
+      "Implementación de la descomposición de alineación espectral para estabilizar el entrenamiento de redes neuronales profundas."
+    ],
+    "entities_top": [
+      "Google DeepMind",
+      "TSMC",
+      "SiPearl"
+    ]
+  },
+  "items": [
+    {
+      "title": "AURA: Action-Gated Memory for Robot Policies at Constant VRAM",
+      "link": "https://arxiv.org/abs/2606.02775",
+      "published": "2026-06-03T04:00:00+00:00",
+      "summary": "arXiv:2606.02775v1 Announce Type: new Abstract: The KV-cache is the right memory for datacenters but the wrong memory for robots. Datacenter inference batches many short requests and resets them, amortizing an attention cache across a crowd. Embodied agents instead run one long, non-resetting episode on bandwidth-limited edge hardware, where high-bandwidth memory and flash are scarce, flash has finite write endurance, and memory writes rather than compute can become the binding constraint. AURA-Mem (Action-Utility Recurrent Adaptive Memory) targets this regime. It wraps a frozen vision-language-action backbone with a constant-size recurrent memory and a learned gate that writes only when the current observation would change the next action: memory that knows when to stay silent. Unlike reconstruction-based memory, the gate is trained directly against a closed-loop action-error signal. Its inference state is fixed at 4,224 bytes regardless of horizon, while a KV-cache grows to 6,061 times larger at 100,000 steps. On a controlled synthetic benchmark, AURA-Mem matches the best O(1) baseline in accuracy while using 5.19-6.13 times fewer writes, and up to 9.19 times fewer writes on easier configurations. Budget-matched random and periodic schedules do not recover this gain, isolating the benefit to the action-surprise signal. On a trained closed-loop OpenVLA-OFT 7B panel on LIBERO-Long (n=60 episodes per arm), the gate does not hurt success: AURA-Mem matches the ungated base policy (0.233) and slightly exceeds an always-write KV arm (0.217), while using 7.0 times fewer writes and constant memory. We also instantiate an approximate-information-state value-loss bound as a methodology demonstration; at this scale, the bound is vacuous rather than a guarantee.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "AURA: Action-Gated Memory for Robot Policies at Constant VRAM",
+      "raw_summary": "arXiv:2606.02775v1 Announce Type: new Abstract: The KV-cache is the right memory for datacenters but the wrong memory for robots. Datacenter inference batches many short requests and resets them, amortizing an attention cache across a crowd. Embodied agents instead run one long, non-resetting episode on bandwidth-limited edge hardware, where high-bandwidth memory and flash are scarce, flash has finite write endurance, and memory writes rather than compute can become the binding constraint. AURA-Mem (Action-Utility Recurrent Adaptive Memory) targets this regime. It wraps a frozen vision-language-action backbone with a constant-size recurrent memory and a learned gate that writes only when the current observation would change the next action: memory that knows when to stay silent. Unlike reconstruction-based memory, the gate is trained directly against a closed-loop action-error signal. Its inference state is fixed at 4,224 bytes regardless of horizon, while a KV-cache grows to 6,061 times larger at 100,000 steps. On a controlled synthetic benchmark, AURA-Mem matches the best O(1) baseline in accuracy while using 5.19-6.13 times fewer writes, and up to 9.19 times fewer writes on easier configurations. Budget-matched random and periodic schedules do not recover this gain, isolating the benefit to the action-surprise signal. On a trained closed-loop OpenVLA-OFT 7B panel on LIBERO-Long (n=60 episodes per arm), the gate does not hurt success: AURA-Mem matches the ungated base policy (0.233) and slightly exceeds an always-write KV arm (0.217), while using 7.0 times fewer writes and constant memory. We also instantiate an approximate-information-state value-loss bound as a methodology demonstration; at this scale, the bound is vacuous rather than a guarantee.",
+      "score": 86,
+      "primary": "infra",
+      "tags": [
+        "robótica",
+        "vram",
+        "edge computing",
+        "memoria recurrente"
+      ],
+      "heuristic_score": 91,
+      "url": "https://arxiv.org/abs/2606.02775",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 91,
+      "_rid": 2,
+      "llm_score": 85,
+      "why": "Soluciona el problema crítico de la memoria en robótica de borde permitiendo episodios largos con VRAM constante y bajo ancho de banda.",
+      "title_es": "AURA: Memoria con puerta de acción para políticas robóticas con VRAM constante",
+      "entities": [
+        "AURA-Mem",
+        "AURA",
+        "VRAM",
+        "Action",
+        "Gated Memory",
+        "Robot Policies",
+        "Constant"
+      ],
+      "noise_penalty": 0,
+      "final_score": 86,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "We believe AI can be a dedicated research partner to help discover the next breakthrough. Enter Co-Scientist: our latest Gemini-based multi-agent system that...",
+      "summary": "We believe AI can be a dedicated research partner to help discover the next breakthrough. Enter Co-Scientist: our latest Gemini-based multi-agent system that can generate, debate and evolve novel hypotheses for complex scientific problems 🧵",
+      "link": "https://x.com/GoogleDeepMind?post=34036172666e",
+      "published": "Wed, 03 Jun 2026 11:09:40 GMT",
+      "source": "X @GoogleDeepMind",
+      "feed_tags": [
+        "x",
+        "research",
+        "models"
+      ],
+      "raw_title": "We believe AI can be a dedicated research partner to help discover the next breakthrough. Enter Co-Scientist: our latest Gemini-based multi-agent system that...",
+      "raw_summary": "We believe AI can be a dedicated research partner to help discover the next breakthrough. Enter Co-Scientist: our latest Gemini-based multi-agent system that can generate, debate and evolve novel hypotheses for complex scientific problems ![Image 3: 🧵](https://abs.twimg.com/emoji/v2/svg/1f9f5.svg)",
+      "score": 81,
+      "primary": "models",
+      "tags": [
+        "ciencia",
+        "gemini",
+        "agentes",
+        "investigación"
+      ],
+      "heuristic_score": 41,
+      "url": "https://x.com/GoogleDeepMind?post=34036172666e",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 41,
+      "_rid": 11,
+      "llm_score": 88,
+      "why": "Google DeepMind avanza en la autonomía científica de la IA con un sistema capaz de debatir y evolucionar hipótesis.",
+      "title_es": "Presentamos Co-Scientist: nuestro último sistema multi-agente basado en Gemini para la investigación científica",
+      "entities": [
+        "DeepMind",
+        "Gemini",
+        "Enter Co",
+        "Scientist"
+      ],
+      "noise_penalty": 0,
+      "final_score": 81,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Do Value Vectors in Deep Layers Need Context from the Residual Stream?",
+      "link": "https://arxiv.org/abs/2606.02780",
+      "published": "2026-06-03T04:00:00+00:00",
+      "summary": "arXiv:2606.02780v1 Announce Type: new Abstract: The success of the transformer architecture as the backbone of modern LLMs is in large part due to its use of attention layers. An attention layer follows the standard neural network paradigm: it takes the residual stream as input and thereby produces context-dependent query, key, and value vectors. However, we find that model performance meaningfully improves when deeper layers learn only a context-free value vector to preserve the original token information, without drawing on any context from the residual stream. When the model has access to this context-free value vector, adding back the context-dependent component provides little additional benefit for aggregate benchmark performance. Such context-free value vectors can be stored as sparse model parameters, eliminating the need to recompute or persistently cache these values. Through systematic ablations on the key design choices for such context-free value vectors, we propose Bank of Values (BoV), a new way of computing value vectors in attention by learning a lookup table of token-specific value vectors for each of the last third of layers. Across 135M and 780M models, BoV improves validation loss over standard attention and, at 780M, the average score across 21 benchmarks, matching the previous best method that adds token information to the value vector with less compute and memory.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Do Value Vectors in Deep Layers Need Context from the Residual Stream?",
+      "raw_summary": "arXiv:2606.02780v1 Announce Type: new Abstract: The success of the transformer architecture as the backbone of modern LLMs is in large part due to its use of attention layers. An attention layer follows the standard neural network paradigm: it takes the residual stream as input and thereby produces context-dependent query, key, and value vectors. However, we find that model performance meaningfully improves when deeper layers learn only a context-free value vector to preserve the original token information, without drawing on any context from the residual stream. When the model has access to this context-free value vector, adding back the context-dependent component provides little additional benefit for aggregate benchmark performance. Such context-free value vectors can be stored as sparse model parameters, eliminating the need to recompute or persistently cache these values. Through systematic ablations on the key design choices for such context-free value vectors, we propose Bank of Values (BoV), a new way of computing value vectors in attention by learning a lookup table of token-specific value vectors for each of the last third of layers. Across 135M and 780M models, BoV improves validation loss over standard attention and, at 780M, the average score across 21 benchmarks, matching the previous best method that adds token information to the value vector with less compute and memory.",
+      "score": 77,
+      "primary": "models",
+      "tags": [
+        "arquitectura transformer",
+        "optimización",
+        "capas profundas",
+        "eficiencia"
+      ],
+      "heuristic_score": 74,
+      "url": "https://arxiv.org/abs/2606.02780",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 74,
+      "_rid": 5,
+      "llm_score": 78,
+      "why": "Descubrimiento clave que sugiere que las capas profundas de los Transformers pueden simplificarse sin perder rendimiento.",
+      "title_es": "¿Necesitan los vectores de valor en capas profundas contexto del flujo residual?",
+      "entities": [
+        "Do Value Vectors",
+        "Deep Layers Need",
+        "Context",
+        "Residual Stream"
+      ],
+      "noise_penalty": 0,
+      "final_score": 77,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Why Europe Needs Its Own AI Supercomputing Platform",
+      "link": "https://semiwiki.com/ip/369596-why-europe-needs-its-own-ai-supercomputing-platform/",
+      "published": "2026-06-02T17:00:00+00:00",
+      "summary": "The strategic cooperation between Semidynamics and SiPearl to develop a European sovereign rack-scale AI compute platform is important for reasons that extend far beyond technology. It represents a major step toward Europe gaining greater control over its artificial intelligence infrastructure, reducing dependence on&8230; Read More The post Why Europe Needs Its Own AI Supercomputing Platform appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "Why Europe Needs Its Own AI Supercomputing Platform",
+      "raw_summary": "The strategic cooperation between Semidynamics and SiPearl to develop a European sovereign rack-scale AI compute platform is important for reasons that extend far beyond technology. It represents a major step toward Europe gaining greater control over its artificial intelligence infrastructure, reducing dependence on&#8230; Read More The post Why Europe Needs Its Own AI Supercomputing Platform appeared first on SemiWiki .",
+      "score": 77,
+      "primary": "geopol",
+      "tags": [
+        "soberanía digital",
+        "supercomputación",
+        "europa",
+        "hardware"
+      ],
+      "heuristic_score": 51,
+      "url": "https://semiwiki.com/ip/369596-why-europe-needs-its-own-ai-supercomputing-platform/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 51,
+      "_rid": 8,
+      "llm_score": 82,
+      "why": "Paso estratégico para reducir la dependencia europea de infraestructuras de computación IA extranjeras.",
+      "title_es": "Por qué Europa necesita su propia plataforma de supercomputación para IA",
+      "entities": [
+        "Semidynamics",
+        "SiPearl",
+        "Why Europe Needs",
+        "Its Own",
+        "Supercomputing Platform"
+      ],
+      "noise_penalty": 0,
+      "final_score": 77,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Visual Graph Scaffolds for Structural Reasoning in Large Language Models",
+      "link": "https://arxiv.org/abs/2606.02673",
+      "published": "2026-06-03T04:00:00+00:00",
+      "summary": "arXiv:2606.02673v1 Announce Type: new Abstract: Graphs have been used to enhance large language models (LLMs) for structured reasoning, mostly as external knowledge sources are provided to models at test time. In this paper, we take a different view: the value of graphs for LLMs lie not only in supplying information, but also in organizing reasoning. Inspired by how humans use graph-structured mind maps to organize branching and converging thoughts, we ask whether graphs can serve as an internal form of reasoning assistance. We study this question on multi-hop question answering tasks, where teacher-provided reasoning traces are rewritten as graph mind maps and used to guide a student model. Our experiments reveal a clear modality gap. When graph structures are flattened into text, their benefits become limited once direct answer hints are removed. Under this abstract guidance setting, both reasoning efficiency and answer quality degrade substantially. In contrast, visual graph guidance remains effective without direct answer clues, and its advantage persists after supervised fine-tuning and KL-based distillation. The above findings support the claim that graphs should be studied not only as external knowledge structures for LLMs, but also as visual scaffolds for organizing reasoning.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Visual Graph Scaffolds for Structural Reasoning in Large Language Models",
+      "raw_summary": "arXiv:2606.02673v1 Announce Type: new Abstract: Graphs have been used to enhance large language models (LLMs) for structured reasoning, mostly as external knowledge sources are provided to models at test time. In this paper, we take a different view: the value of graphs for LLMs lie not only in supplying information, but also in organizing reasoning. Inspired by how humans use graph-structured mind maps to organize branching and converging thoughts, we ask whether graphs can serve as an internal form of reasoning assistance. We study this question on multi-hop question answering tasks, where teacher-provided reasoning traces are rewritten as graph mind maps and used to guide a student model. Our experiments reveal a clear modality gap. When graph structures are flattened into text, their benefits become limited once direct answer hints are removed. Under this abstract guidance setting, both reasoning efficiency and answer quality degrade substantially. In contrast, visual graph guidance remains effective without direct answer clues, and its advantage persists after supervised fine-tuning and KL-based distillation. The above findings support the claim that graphs should be studied not only as external knowledge structures for LLMs, but also as visual scaffolds for organizing reasoning.",
+      "score": 72,
+      "primary": "models",
+      "tags": [
+        "razonamiento",
+        "grafos",
+        "multi-hop qa",
+        "estructuración"
+      ],
+      "heuristic_score": 71,
+      "url": "https://arxiv.org/abs/2606.02673",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 71,
+      "_rid": 6,
+      "llm_score": 72,
+      "why": "Introduce el uso de grafos como mapas mentales internos para organizar el razonamiento complejo en modelos de lenguaje.",
+      "title_es": "Andamiajes de grafos visuales para el razonamiento estructural en modelos de lenguaje de gran tamaño",
+      "entities": [
+        "Visual Graph Scaffolds",
+        "Structural Reasoning",
+        "Large Language Models"
+      ],
+      "noise_penalty": 0,
+      "final_score": 72,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Spectral Asymptotics of Neural Network Loss Landscapes: An Exact Decomposition of the Curvature Exponent",
+      "link": "https://arxiv.org/abs/2606.02596",
+      "published": "2026-06-03T04:00:00+00:00",
+      "summary": "arXiv:2606.02596v1 Announce Type: new Abstract: The curvature exponent $\\alpha$ in $h_k \\propto \\sigma_k^\\alpha$ -- governing how Hessian eigenvalues scale with gradient singular values -- varies systematically across layer types ($\\alpha \\approx 2$ for convolutions, $\\approx 1$ for transformer attention, $< 1$ for MLP up-projections). Why? We prove the Spectral Alignment Decomposition: $\\alpha = 2 + d\\log\\Phi_k / d\\log\\sigma_k$, where $\\Phi_k$ measures alignment between Kronecker factor eigenbases and gradient singular directions. This reduces \"why does $\\alpha$ vary?\" to a geometric question we answer for LayerNorm, residual connections, and softmax heads. The decomposition implies a spectral transfer identity $s = \\alpha\\gamma$ linking curvature exponent, effective gradient rank-decay $\\gamma$, and Hessian decay exponent $s$. The identity is algebraic; its empirical content is that $\\alpha$ and $\\gamma$, fit on independent data (HVPs vs. SVD), recover $s$ to ~2% median error across 93 layers, five architectures, and three datasets -- with no free parameters. A zeta-function bound on participation ratio shows curvature concentrates onto effectively one direction per layer. As a proof of concept, we derive the architecture-adaptive preconditioner $T(\\sigma;\\alpha)$ and show that Spectral Newton -- implementing $T$ in the gradient singular basis -- outperforms AdamW on vision benchmarks where $\\alpha \\approx 2$.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Spectral Asymptotics of Neural Network Loss Landscapes: An Exact Decomposition of the Curvature Exponent",
+      "raw_summary": "arXiv:2606.02596v1 Announce Type: new Abstract: The curvature exponent $\\alpha$ in $h_k \\propto \\sigma_k^\\alpha$ -- governing how Hessian eigenvalues scale with gradient singular values -- varies systematically across layer types ($\\alpha \\approx 2$ for convolutions, $\\approx 1$ for transformer attention, $< 1$ for MLP up-projections). Why? We prove the Spectral Alignment Decomposition: $\\alpha = 2 + d\\log\\Phi_k / d\\log\\sigma_k$, where $\\Phi_k$ measures alignment between Kronecker factor eigenbases and gradient singular directions. This reduces \"why does $\\alpha$ vary?\" to a geometric question we answer for LayerNorm, residual connections, and softmax heads. The decomposition implies a spectral transfer identity $s = \\alpha\\gamma$ linking curvature exponent, effective gradient rank-decay $\\gamma$, and Hessian decay exponent $s$. The identity is algebraic; its empirical content is that $\\alpha$ and $\\gamma$, fit on independent data (HVPs vs. SVD), recover $s$ to ~2% median error across 93 layers, five architectures, and three datasets -- with no free parameters. A zeta-function bound on participation ratio shows curvature concentrates onto effectively one direction per layer. As a proof of concept, we derive the architecture-adaptive preconditioner $T(\\sigma;\\alpha)$ and show that Spectral Newton -- implementing $T$ in the gradient singular basis -- outperforms AdamW on vision benchmarks where $\\alpha \\approx 2$.",
+      "score": 69,
+      "primary": "models",
+      "tags": [
+        "optimización",
+        "teoría de redes neuronales",
+        "hessian",
+        "matemáticas"
+      ],
+      "heuristic_score": 32,
+      "url": "https://arxiv.org/abs/2606.02596",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 32,
+      "_rid": 14,
+      "llm_score": 75,
+      "why": "Aporta una explicación geométrica y matemática sobre por qué diferentes capas de IA requieren distintos ritmos de aprendizaje.",
+      "title_es": "Asintótica espectral de los paisajes de pérdida en redes neuronales",
+      "entities": [
+        "Spectral Asymptotics",
+        "Neural Network Loss",
+        "Landscapes",
+        "An Exact Decomposition",
+        "Curvature Exponent"
+      ],
+      "noise_penalty": 0,
+      "final_score": 69,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Human-in-the-Loop Contextual Bandits for Short-Term Rental Dynamic Pricing: Structural Equivalence of Historical Warm-Up and Approval-Gated Live Learning",
+      "link": "https://arxiv.org/abs/2606.02595",
+      "published": "2026-06-03T04:00:00+00:00",
+      "summary": "arXiv:2606.02595v1 Announce Type: new Abstract: Dynamic pricing in short-term rental (STR) markets presents a distinctive challenge for online learning algorithms: pricing decisions carry significant financial risk, operators require explainability, and market feedback is sparse (one booking outcome per listed night). We introduce the Human-in-the-Loop Gated Bandit (HITL-GB) framework, in which a contextual bandit algorithm generates price recommendations but a human agent retains authority to accept, modify, or reject each recommendation before it is applied. We show that under this approval constraint, historical pricing data -- collected under a prior deterministic policy -- is structurally equivalent to on-policy warm-up data for initialising the bandit's posterior, bypassing the weeks-to-months cold-start period that renders pure online bandit learning impractical in sparse-feedback markets. We formalise the approval-gated reward signal, derive a regularised ridge-regression warm-up procedure from historical episodes, and validate the approach on real STR production data (anonymised urban market, 2 rooms, April 2022 -- April 2026, 1,461 nightly pricing episodes). Our warm-up procedure compresses effective cold-start from ~150 episodes to ~30 episodes when initialising agents from the Hierarchical Factored Thompson Sampling (HF-TS) family. We further argue that the structural equivalence result is domain-agnostic: any high-stakes domain where human approval is legally or operationally required -- including clinical drug dosing, credit origination, content moderation, and radiological diagnosis -- satisfies the same conditions and benefits from the same warm-up strategy. In regulated industries, mandatory human oversight is thus a statistical asset rather than a deployment constraint.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Human-in-the-Loop Contextual Bandits for Short-Term Rental Dynamic Pricing: Structural Equivalence of Historical Warm-Up and Approval-Gated Live Learning",
+      "raw_summary": "arXiv:2606.02595v1 Announce Type: new Abstract: Dynamic pricing in short-term rental (STR) markets presents a distinctive challenge for online learning algorithms: pricing decisions carry significant financial risk, operators require explainability, and market feedback is sparse (one booking outcome per listed night). We introduce the Human-in-the-Loop Gated Bandit (HITL-GB) framework, in which a contextual bandit algorithm generates price recommendations but a human agent retains authority to accept, modify, or reject each recommendation before it is applied. We show that under this approval constraint, historical pricing data -- collected under a prior deterministic policy -- is structurally equivalent to on-policy warm-up data for initialising the bandit's posterior, bypassing the weeks-to-months cold-start period that renders pure online bandit learning impractical in sparse-feedback markets. We formalise the approval-gated reward signal, derive a regularised ridge-regression warm-up procedure from historical episodes, and validate the approach on real STR production data (anonymised urban market, 2 rooms, April 2022 -- April 2026, 1,461 nightly pricing episodes). Our warm-up procedure compresses effective cold-start from ~150 episodes to ~30 episodes when initialising agents from the Hierarchical Factored Thompson Sampling (HF-TS) family. We further argue that the structural equivalence result is domain-agnostic: any high-stakes domain where human approval is legally or operationally required -- including clinical drug dosing, credit origination, content moderation, and radiological diagnosis -- satisfies the same conditions and benefits from the same warm-up strategy. In regulated industries, mandatory human oversight is thus a statistical asset rather than a deployment constraint.",
+      "score": 62,
+      "primary": "misc",
+      "tags": [
+        "precios dinámicos",
+        "human-in-the-loop",
+        "alquiler corto plazo",
+        "contextual bandits"
+      ],
+      "heuristic_score": 99,
+      "url": "https://arxiv.org/abs/2606.02595",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 99,
+      "_rid": 1,
+      "llm_score": 55,
+      "why": "Propone un marco práctico para mitigar riesgos financieros en IA aplicada a mercados inmobiliarios mediante supervisión humana.",
+      "title_es": "Bandidos contextuales con humano en el bucle para precios dinámicos en alquileres de corta duración",
+      "entities": [
+        "HITL-GB",
+        "Human",
+        "Loop Contextual Bandits",
+        "Short",
+        "Term Rental Dynamic",
+        "Pricing",
+        "Structural Equivalence",
+        "Historical Warm"
+      ],
+      "noise_penalty": 0,
+      "final_score": 62,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "On the Persistent Effects of Lexicality in Large Language Mod",
+      "link": "https://arxiv.org/abs/2606.02750",
+      "published": "2026-06-03T04:00:00+00:00",
+      "summary": "arXiv:2606.02750v1 Announce Type: new Abstract: Representations extracted from large language models (LLMs) play an important role in many downstream applications. However, the structure of these representations is often influenced by lexical overlap rather than semantic content. Our understanding of the relationship between this lexical influence and semantic content, and its implications for downstream tasks, remains limited. In this work, we investigate representations to quantify the effect of lexical overlap relative to semantic content. We consider several adversarial semantic stress tests and further connect our findings to the information theory perspective. We find that lexical influence extends across the depth of models, consistently across architectures, training regimes, and objective functions, including the models trained for semantic similarity. Moreover, we observe a mid-depth region in which both lexical and semantic signals degrade simultaneously, indicating a transitional regime where representations are poor for both surface form and meaning. We further demonstrate the effect of lexical influence on downstream uses of LLMs using summarization and model editing as a case study.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "On the Persistent Effects of Lexicality in Large Language Mod",
+      "raw_summary": "arXiv:2606.02750v1 Announce Type: new Abstract: Representations extracted from large language models (LLMs) play an important role in many downstream applications. However, the structure of these representations is often influenced by lexical overlap rather than semantic content. Our understanding of the relationship between this lexical influence and semantic content, and its implications for downstream tasks, remains limited. In this work, we investigate representations to quantify the effect of lexical overlap relative to semantic content. We consider several adversarial semantic stress tests and further connect our findings to the information theory perspective. We find that lexical influence extends across the depth of models, consistently across architectures, training regimes, and objective functions, including the models trained for semantic similarity. Moreover, we observe a mid-depth region in which both lexical and semantic signals degrade simultaneously, indicating a transitional regime where representations are poor for both surface form and meaning. We further demonstrate the effect of lexical influence on downstream uses of LLMs using summarization and model editing as a case study.",
+      "score": 61,
+      "primary": "models",
+      "tags": [
+        "lexicalidad",
+        "semántica",
+        "representaciones",
+        "interpretabilidad"
+      ],
+      "heuristic_score": 41,
+      "url": "https://arxiv.org/abs/2606.02750",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 41,
+      "_rid": 10,
+      "llm_score": 65,
+      "why": "Analiza cómo la estructura de los LLMs se ve influenciada más por el solapamiento de palabras que por el significado real.",
+      "title_es": "Sobre los efectos persistentes de la lexicalidad en los modelos de lenguaje de gran tamaño",
+      "entities": [
+        "Persistent Effects",
+        "Lexicality",
+        "Large Language Mod"
+      ],
+      "noise_penalty": 0,
+      "final_score": 61,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "TSMC Pioneers a New Era in AI-Powered Trade Secret Management, Achieving Intelligent Innovation",
+      "link": "https://semiwiki.com/semiconductor-manufacturers/tsmc/369833-tsmc-pioneers-a-new-era-in-ai-powered-trade-secret-management-achieving-intelligent-innovation/",
+      "published": "2026-06-02T13:00:19+00:00",
+      "summary": "As semiconductor manufacturing becomes increasingly knowledge-intensive, protecting intellectual property and trade secrets has emerged as a strategic imperative. The world&8217;s leading foundry, TSMC is advancing beyond conventional information security practices by integrating artificial intelligence into&8230; Read More The post TSMC Pioneers a New Era in AI-Powered Trade Secret Management, Achieving Intelligent Innovation appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "TSMC Pioneers a New Era in AI-Powered Trade Secret Management, Achieving Intelligent Innovation",
+      "raw_summary": "As semiconductor manufacturing becomes increasingly knowledge-intensive, protecting intellectual property and trade secrets has emerged as a strategic imperative. The world&#8217;s leading foundry, TSMC is advancing beyond conventional information security practices by integrating artificial intelligence into&#8230; Read More The post TSMC Pioneers a New Era in AI-Powered Trade Secret Management, Achieving Intelligent Innovation appeared first on SemiWiki .",
+      "score": 60,
+      "primary": "invest",
+      "tags": [
+        "semiconductores",
+        "ciberseguridad",
+        "secretos comerciales",
+        "propiedad intelectual"
+      ],
+      "heuristic_score": 57,
+      "url": "https://semiwiki.com/semiconductor-manufacturers/tsmc/369833-tsmc-pioneers-a-new-era-in-ai-powered-trade-secret-management-achieving-intelligent-innovation/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 57,
+      "_rid": 7,
+      "llm_score": 60,
+      "why": "TSMC aplica IA para proteger sus procesos críticos, asegurando su ventaja competitiva frente al espionaje industrial.",
+      "title_es": "TSMC es pionera en una nueva era de gestión de secretos comerciales impulsada por IA",
+      "entities": [
+        "TSMC",
+        "Pioneers",
+        "New Era",
+        "Powered Trade Secret",
+        "Management",
+        "Achieving Intelligent Innovation"
+      ],
+      "noise_penalty": 0,
+      "final_score": 60,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "IdiomX A Multilingual Benchmark for Idiom Understanding, Retrieval, and Interpretation",
+      "link": "https://arxiv.org/abs/2606.02584",
+      "published": "2026-06-03T04:00:00+00:00",
+      "summary": "arXiv:2606.02584v1 Announce Type: new Abstract: Idiomatic expressions remain a persistent challenge for natural language processing because their meanings are often non-compositional, context-dependent, and difficult to align across languages. Existing idiom resources are often limited in scale, contextual diversity, or multilingual coverage, restricting their utility for modern language models. We introduce IdiomX, a large-scale multilingual benchmark for idiom understanding, retrieval, and interpretation, constructed through a reproducible multi-stage pipeline combining lexical resource extraction, large-scale normalization, controlled large language model enrichment, and structured validation. The resulting dataset contains over 190K contextualized examples spanning 12K+ idioms, with aligned English, Arabic, and French semantic representations, idiomatic and literal usage labels, and rich linguistic metadata. Building on this resource, we define a unified four-task benchmark covering idiom detection, context-to-idiom retrieval, Arabic-to-English idiom retrieval, and idiom interpretation, extending evaluation from figurative recognition to semantic grounding and explainable meaning retrieval. Experiments show that contextual transformer models substantially improve idiom detection, while hybrid retrieval and reranking architectures significantly strengthen both monolingual and cross-lingual idiom retrieval. Results further demonstrate that idiom interpretation can be effectively modeled as a semantic retrieval task, introducing interpretability as a complementary benchmark dimension. Overall, IdiomX provides a scalable benchmark for studying idiomatic language as a progression from detection to retrieval and semantic interpretation, and offers a modular framework extensible to additional languages and figurative reasoning tasks",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "IdiomX A Multilingual Benchmark for Idiom Understanding, Retrieval, and Interpretation",
+      "raw_summary": "arXiv:2606.02584v1 Announce Type: new Abstract: Idiomatic expressions remain a persistent challenge for natural language processing because their meanings are often non-compositional, context-dependent, and difficult to align across languages. Existing idiom resources are often limited in scale, contextual diversity, or multilingual coverage, restricting their utility for modern language models. We introduce IdiomX, a large-scale multilingual benchmark for idiom understanding, retrieval, and interpretation, constructed through a reproducible multi-stage pipeline combining lexical resource extraction, large-scale normalization, controlled large language model enrichment, and structured validation. The resulting dataset contains over 190K contextualized examples spanning 12K+ idioms, with aligned English, Arabic, and French semantic representations, idiomatic and literal usage labels, and rich linguistic metadata. Building on this resource, we define a unified four-task benchmark covering idiom detection, context-to-idiom retrieval, Arabic-to-English idiom retrieval, and idiom interpretation, extending evaluation from figurative recognition to semantic grounding and explainable meaning retrieval. Experiments show that contextual transformer models substantially improve idiom detection, while hybrid retrieval and reranking architectures significantly strengthen both monolingual and cross-lingual idiom retrieval. Results further demonstrate that idiom interpretation can be effectively modeled as a semantic retrieval task, introducing interpretability as a complementary benchmark dimension. Overall, IdiomX provides a scalable benchmark for studying idiomatic language as a progression from detection to retrieval and semantic interpretation, and offers a modular framework extensible to additional languages and figurative reasoning tasks",
+      "score": 50,
+      "primary": "models",
+      "tags": [
+        "idiomaticidad",
+        "multilingüe",
+        "procesamiento de lenguaje",
+        "benchmark"
+      ],
+      "heuristic_score": 77,
+      "url": "https://arxiv.org/abs/2606.02584",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 77,
+      "_rid": 4,
+      "llm_score": 45,
+      "why": "Aborda la dificultad de los LLMs para entender expresiones no literales en múltiples idiomas, mejorando la comprensión natural.",
+      "title_es": "IdiomX: Un benchmark multilingüe para la comprensión, recuperación e interpretación de modismos",
+      "entities": [
+        "IdiomX",
+        "Multilingual Benchmark",
+        "Idiom Understanding",
+        "Retrieval",
+        "Interpretation"
+      ],
+      "noise_penalty": 0,
+      "final_score": 50,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Greener Than Humans? Environmental Attitudes in Large Language Models",
+      "link": "https://arxiv.org/abs/2606.02741",
+      "published": "2026-06-03T04:00:00+00:00",
+      "summary": "arXiv:2606.02741v1 Announce Type: new Abstract: Large language models (LLMs) are increasingly used in sustainability-related decision support, reporting, and public communication, yet little systematic evidence exists on the environmental attitudes embedded in their outputs. This paper develops a benchmark for evaluating environmental cognition, affect, and behavioural recommendations in LLMs and applies it to 31 widely used proprietary and open-weight models. Drawing on questions from established environmental awareness surveys and additional sustainability-related behavioural measures, we compare LLM responses 1) among models and 2) between models and human survey benchmarks from Germany. We assess their robustness across prompting conditions. We find that many LLMs align more closely with environmentally progressive attitudes than the average survey respondent, exhibiting higher levels of environmental affect and cognition and recommending behaviours associated with substantial potential CO2 reductions. At the same time, we observe no systematic relationship between sustainability-oriented responses and model origin, size, or release context. However, models exhibit contextual sensitivity, controlled by persona-based prompting and show sycophantic shifts mirroring user-specified ideological positions, which raises concerns about steerability and normative reliability in real-world deployments. Our findings provide a reusable evaluation framework for assessing sustainability-related value alignment in LLMs and highlight the importance of governance, transparency, and critical oversight as AI systems become increasingly embedded in sustainability transformations and public decision-making.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Greener Than Humans? Environmental Attitudes in Large Language Models",
+      "raw_summary": "arXiv:2606.02741v1 Announce Type: new Abstract: Large language models (LLMs) are increasingly used in sustainability-related decision support, reporting, and public communication, yet little systematic evidence exists on the environmental attitudes embedded in their outputs. This paper develops a benchmark for evaluating environmental cognition, affect, and behavioural recommendations in LLMs and applies it to 31 widely used proprietary and open-weight models. Drawing on questions from established environmental awareness surveys and additional sustainability-related behavioural measures, we compare LLM responses 1) among models and 2) between models and human survey benchmarks from Germany. We assess their robustness across prompting conditions. We find that many LLMs align more closely with environmentally progressive attitudes than the average survey respondent, exhibiting higher levels of environmental affect and cognition and recommending behaviours associated with substantial potential CO2 reductions. At the same time, we observe no systematic relationship between sustainability-oriented responses and model origin, size, or release context. However, models exhibit contextual sensitivity, controlled by persona-based prompting and show sycophantic shifts mirroring user-specified ideological positions, which raises concerns about steerability and normative reliability in real-world deployments. Our findings provide a reusable evaluation framework for assessing sustainability-related value alignment in LLMs and highlight the importance of governance, transparency, and critical oversight as AI systems become increasingly embedded in sustainability transformations and public decision-making.",
+      "score": 47,
+      "primary": "models",
+      "tags": [
+        "sostenibilidad",
+        "llm",
+        "benchmarking",
+        "alineación"
+      ],
+      "heuristic_score": 86,
+      "url": "https://arxiv.org/abs/2606.02741",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 86,
+      "_rid": 3,
+      "llm_score": 40,
+      "why": "Evalúa las actitudes ambientales de los modelos, un factor relevante para la IA responsable pero de impacto técnico moderado.",
+      "title_es": "¿Más ecológicos que los humanos? Actitudes ambientales en modelos de lenguaje de gran tamaño",
+      "entities": [
+        "Greener Than Humans",
+        "Environmental Attitudes",
+        "Large Language Models"
+      ],
+      "noise_penalty": 0,
+      "final_score": 47,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Topics as Proxies for Sociodemographics: How Conversational Context Affects LLM Answers",
+      "link": "https://arxiv.org/abs/2606.02776",
+      "published": "2026-06-03T04:00:00+00:00",
+      "summary": "arXiv:2606.02776v1 Announce Type: new Abstract: When large language models (LLMs) are used in high-stakes scenarios, such as legal, medical and financial advice, even a single conversation history is enough to drive differences in outcomes between users. Prior work has demonstrated that this results in outcome disparities between sociodemographic groups, with some groups receiving more advantageous outcomes than others. In this work, we demonstrate that LLMs actually struggle to infer user sociodemographics from a single conversation history and that although there are disparities between sociodemographic groups, they are minimal in magnitude. To investigate what the main driver of these disparities is, we compare user sociodemographics to a range of (psycho)linguistic features of conversations, including conversation topic, emotions, and readability. We find that conversation topics are most predictive of LLM-generated advice within a conversational context, which, to some extent, function as proxies for sociodemographic groups and often affect advice in unpredictable ways. This is cause for concern and highlights the need for future research to better understand and, if needed, mitigate the effect of conversational context on LLM outputs in high-stakes scenarios.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Topics as Proxies for Sociodemographics: How Conversational Context Affects LLM Answers",
+      "raw_summary": "arXiv:2606.02776v1 Announce Type: new Abstract: When large language models (LLMs) are used in high-stakes scenarios, such as legal, medical and financial advice, even a single conversation history is enough to drive differences in outcomes between users. Prior work has demonstrated that this results in outcome disparities between sociodemographic groups, with some groups receiving more advantageous outcomes than others. In this work, we demonstrate that LLMs actually struggle to infer user sociodemographics from a single conversation history and that although there are disparities between sociodemographic groups, they are minimal in magnitude. To investigate what the main driver of these disparities is, we compare user sociodemographics to a range of (psycho)linguistic features of conversations, including conversation topic, emotions, and readability. We find that conversation topics are most predictive of LLM-generated advice within a conversational context, which, to some extent, function as proxies for sociodemographic groups and often affect advice in unpredictable ways. This is cause for concern and highlights the need for future research to better understand and, if needed, mitigate the effect of conversational context on LLM outputs in high-stakes scenarios.",
+      "score": 47,
+      "primary": "models",
+      "tags": [
+        "sesgo",
+        "sociodemografía",
+        "privacidad",
+        "ética"
+      ],
+      "heuristic_score": 32,
+      "url": "https://arxiv.org/abs/2606.02776",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 32,
+      "_rid": 15,
+      "llm_score": 50,
+      "why": "Estudio sobre cómo el contexto conversacional puede actuar como proxy de datos demográficos, afectando a la equidad.",
+      "title_es": "Los temas como proxys de sociodemografía: cómo el contexto conversacional afecta a las respuestas de los LLM",
+      "entities": [
+        "Topics",
+        "Proxies",
+        "Sociodemographics",
+        "How Conversational Context",
+        "Affects",
+        "Answers"
+      ],
+      "noise_penalty": 0,
+      "final_score": 47,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "We believe AI can be a dedicated research partner to help discover the next breakthrough. Enter Co-Scientist: our latest Gemini-based multi-agent system that...",
+      "summary": "We believe AI can be a dedicated research partner to help discover the next breakthrough. Enter Co-Scientist: our latest Gemini-based multi-agent system that can generate, debate and evolve novel hypotheses for complex scientific problems 🧵",
+      "link": "https://x.com/GoogleDeepMind?post=4a9e6d9c650f",
+      "published": "Wed, 03 Jun 2026 11:09:40 GMT",
+      "source": "X @GoogleDeepMind",
+      "feed_tags": [
+        "x",
+        "research",
+        "models"
+      ],
+      "raw_title": "We believe AI can be a dedicated research partner to help discover the next breakthrough. Enter Co-Scientist: our latest Gemini-based multi-agent system that...",
+      "raw_summary": "We believe AI can be a dedicated research partner to help discover the next breakthrough. Enter Co-Scientist: our latest Gemini-based multi-agent system that can generate, debate and evolve novel hypotheses for complex scientific problems ![Image 5: 🧵](https://abs.twimg.com/emoji/v2/svg/1f9f5.svg)",
+      "score": 41,
+      "primary": "models",
+      "tags": [
+        "models"
+      ],
+      "heuristic_score": 41,
+      "url": "https://x.com/GoogleDeepMind?post=4a9e6d9c650f",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 41,
+      "_rid": 12,
+      "llm_score": null,
+      "title_es": "",
+      "entities": [
+        "Gemini",
+        "Enter Co",
+        "Scientist"
+      ],
+      "why": "We believe AI can be a dedicated research partner to help discover the next breakthrough. Enter Co-Scientist: our latest Gemini-based multi-agent system that ca",
+      "noise_penalty": 0,
+      "final_score": 41,
+      "ranking_reason": "fallback_adjusted-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Translating Classical Poetry into Modern Prose",
+      "link": "https://arxiv.org/abs/2606.02806",
+      "published": "2026-06-03T04:00:00+00:00",
+      "summary": "arXiv:2606.02806v1 Announce Type: new Abstract: We introduce Padyam2Gadyam, a dataset for the task of poem-to-prose translation from 13th-17th Century Telugu Classical Poetry to contemporary Telugu and English prose. The dataset consists of 600 poems and their human-verified Telugu and English prose translations. We evaluated 5 contemporary Large Language Models (LLMs) on their ability to do poem-to-prose translation into Telugu and English. Our results indicate that while there are differences across LLMs, their overall performance leave a large room for improvement in both languages. Through qualitative analysis, we discuss the the capabilities and limitations of contemporary MT evaluation approaches for this task.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Translating Classical Poetry into Modern Prose",
+      "raw_summary": "arXiv:2606.02806v1 Announce Type: new Abstract: We introduce Padyam2Gadyam, a dataset for the task of poem-to-prose translation from 13th-17th Century Telugu Classical Poetry to contemporary Telugu and English prose. The dataset consists of 600 poems and their human-verified Telugu and English prose translations. We evaluated 5 contemporary Large Language Models (LLMs) on their ability to do poem-to-prose translation into Telugu and English. Our results indicate that while there are differences across LLMs, their overall performance leave a large room for improvement in both languages. Through qualitative analysis, we discuss the the capabilities and limitations of contemporary MT evaluation approaches for this task.",
+      "score": 32,
+      "primary": "models",
+      "tags": [
+        "traducción",
+        "telugu",
+        "poesía",
+        "preservación cultural"
+      ],
+      "heuristic_score": 44,
+      "url": "https://arxiv.org/abs/2606.02806",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 44,
+      "_rid": 9,
+      "llm_score": 30,
+      "why": "Dataset específico para traducción de poesía clásica que resalta las limitaciones actuales de los LLMs en nichos lingüísticos.",
+      "title_es": "Traducción de poesía clásica a prosa moderna",
+      "entities": [
+        "Padyam2Gadyam",
+        "Translating Classical Poetry",
+        "Modern Prose"
+      ],
+      "noise_penalty": 0,
+      "final_score": 32,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Learn How llmda Uses Agentic AI to Generate Hardware Docs & Keep Them Consistent",
+      "link": "https://semiwiki.com/eda/llmda-ai/369323-if-you-struggle-w/",
+      "published": "2026-06-02T15:00:58+00:00",
+      "summary": "Accurate, complete, and consistent technical documentation is a critical element of success for any embedded system design project. This includes IP, SoCs, and the associated hardware and software infrastructure. When documentation contains errors, the consequences go beyond engineering inefficiency. Errors that drive&8230; Read More The post Learn How llmda Uses Agentic AI to Generate Hardware Docs & Keep Them Consistent appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "Learn How llmda Uses Agentic AI to Generate Hardware Docs & Keep Them Consistent",
+      "raw_summary": "Accurate, complete, and consistent technical documentation is a critical element of success for any embedded system design project. This includes IP, SoCs, and the associated hardware and software infrastructure. When documentation contains errors, the consequences go beyond engineering inefficiency. Errors that drive&#8230; Read More The post Learn How llmda Uses Agentic AI to Generate Hardware Docs &amp; Keep Them Consistent appeared first on SemiWiki .",
+      "score": 28,
+      "primary": "models",
+      "tags": [
+        "models"
+      ],
+      "heuristic_score": 28,
+      "url": "https://semiwiki.com/eda/llmda-ai/369323-if-you-struggle-w/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 28,
+      "llm_score": null,
+      "title_es": "",
+      "entities": [
+        "Learn How",
+        "Uses Agentic",
+        "Generate Hardware Docs",
+        "Keep Them Consistent"
+      ],
+      "why": "Accurate, complete, and consistent technical documentation is a critical element of success for any embedded system design project. This includes IP, SoCs, and ",
+      "noise_penalty": 0,
+      "final_score": 28,
+      "ranking_reason": "fallback_adjusted-noise(0)",
+      "strategic_theme": "agents_automation"
+    }
+  ]
+}
