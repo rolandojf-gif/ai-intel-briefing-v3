@@ -1,0 +1,667 @@
+{
+  "date": "2026-06-11",
+  "score_avg": 67.2,
+  "primary_dist": {
+    "models": 10,
+    "infra": 3,
+    "misc": 2
+  },
+  "top_entities": [
+    {
+      "entity": "SemiWiki",
+      "count": 2
+    },
+    {
+      "entity": "DeepMind",
+      "count": 2
+    },
+    {
+      "entity": "Multi",
+      "count": 2
+    },
+    {
+      "entity": "The Structural Attention",
+      "count": 1
+    },
+    {
+      "entity": "Tax",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "Google lanza Gemma 4 12B, un modelo multimodal unificado sin codificador para mayor eficiencia en el procesamiento.",
+      "La desagregación de la computación surge como la solución clave para escalar los centros de datos y superar barreras.",
+      "Identifican el 'impuesto de atención estructural' que penaliza el rendimiento de sistemas RAG al usar grafos de datos.",
+      "Gemini 3.5 Live Translate introduce traducción de voz natural en tiempo real para aplicaciones corporativas y de consumo.",
+      "El desarrollo de 'PoQ-Judge' permite evaluar la calidad en redes de inferencia descentralizadas sin usar referencias."
+    ],
+    "risks": [
+      "El exceso de intervenciones en el alineamiento durante la inferencia degrada la coherencia del modelo si no se mide bien.",
+      "Los formatos de recuperación en RAG capturan hasta 3 veces más atención por token, reduciendo la eficacia del contexto.",
+      "La falta de alineamiento de seguridad en lenguas no dominantes facilita ataques de jailbreak multilingües persistentes."
+    ],
+    "watch": [
+      "Evolución de Project Genie y su capacidad para simular entornos reales mediante la integración masiva con Street View.",
+      "Adopción de IP personalizada en semiconductores para el despliegue de computación avanzada en vehículos inteligentes.",
+      "Implementación de sistemas de memoria explícita inspirados en el hipocampo para superar los límites actuales de los LLM."
+    ],
+    "entities_top": [
+      "Google DeepMind",
+      "NeurIPS",
+      "SemiWiki"
+    ]
+  },
+  "items": [
+    {
+      "title": "The Structural Attention Tax: How Retrieval Format Hijacks In-Context Learning Independent of Content",
+      "link": "https://arxiv.org/abs/2606.11198",
+      "published": "2026-06-11T04:00:00+00:00",
+      "summary": "arXiv:2606.11198v1 Announce Type: new Abstract: Retrieval-augmented generation (RAG) systems inject external knowledge to improve LLM outputs, yet the format of injected content -- distinct from its semantic relevance -- can independently distort the model's attention distribution. We identify and formalise a phenomenon we term the structural attention tax: knowledge graph (KG) triples, due to their relational delimiters and repeated slot patterns, capture 2-3x more attention per token than semantically equivalent natural-language text ($\\hat{o}$(KG) $\\approx$ 0.70 vs. $\\hat{o}$(neutral) $\\approx$ 0.25), compressing demonstration attention by up to 42% -- regardless of whether the triples are relevant or noise. We develop a formal framework decomposing attention scores into semantic and structural components (Eq. 2), derive a compression bound (Proposition 1) connecting token-level format bias to demonstration attention loss, and show that the structural term governs how much attention is diverted while the semantic term governs whether this helps or hurts. This decoupling reveals two orthogonal axes for improving retrieval-augmented ICL: optimising retrieval quality (semantic axis) and reducing format-driven attention capture (structural axis). Empirically, across two model families (Mistral-7B, LLaMA-3-8B) and three QA benchmarks, we observe that source-task alignment dominates: task-matched BM25 retrieval achieves 58-62% on HotpotQA vs. ConceptNet's 25-27%, a >30 pp gap that dwarfs all gating strategies ($\\leq$2 pp). We derive five structure-aware mitigation strategies from the framework, ranging from zero-cost prompt modifications to training-time regularisation; format flattening (S3) is validated by both accuracy and attention-level evidence from a verbalized-triple control, while structural dispersal (S1) yields mixed results that illuminate the challenges of format-level intervention.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "The Structural Attention Tax: How Retrieval Format Hijacks In-Context Learning Independent of Content",
+      "raw_summary": "arXiv:2606.11198v1 Announce Type: new Abstract: Retrieval-augmented generation (RAG) systems inject external knowledge to improve LLM outputs, yet the format of injected content -- distinct from its semantic relevance -- can independently distort the model's attention distribution. We identify and formalise a phenomenon we term the structural attention tax: knowledge graph (KG) triples, due to their relational delimiters and repeated slot patterns, capture 2-3x more attention per token than semantically equivalent natural-language text ($\\hat{o}$(KG) $\\approx$ 0.70 vs. $\\hat{o}$(neutral) $\\approx$ 0.25), compressing demonstration attention by up to 42% -- regardless of whether the triples are relevant or noise. We develop a formal framework decomposing attention scores into semantic and structural components (Eq. 2), derive a compression bound (Proposition 1) connecting token-level format bias to demonstration attention loss, and show that the structural term governs how much attention is diverted while the semantic term governs whether this helps or hurts. This decoupling reveals two orthogonal axes for improving retrieval-augmented ICL: optimising retrieval quality (semantic axis) and reducing format-driven attention capture (structural axis). Empirically, across two model families (Mistral-7B, LLaMA-3-8B) and three QA benchmarks, we observe that source-task alignment dominates: task-matched BM25 retrieval achieves 58-62% on HotpotQA vs. ConceptNet's 25-27%, a >30 pp gap that dwarfs all gating strategies ($\\leq$2 pp). We derive five structure-aware mitigation strategies from the framework, ranging from zero-cost prompt modifications to training-time regularisation; format flattening (S3) is validated by both accuracy and attention-level evidence from a verbalized-triple control, while structural dispersal (S1) yields mixed results that illuminate the challenges of format-level intervention.",
+      "score": 81,
+      "primary": "models",
+      "tags": [
+        "rag",
+        "atención",
+        "eficiencia"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2606.11198",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 2,
+      "llm_score": 78,
+      "why": "Estudio crítico que demuestra cómo el formato de los datos (como grafos) consume desproporcionadamente la atención del modelo en RAG.",
+      "title_es": "El impuesto de atención estructural: cómo el formato de recuperación secuestra el aprendizaje en contexto",
+      "entities": [
+        "The Structural Attention",
+        "Tax",
+        "How Retrieval Format",
+        "Hijacks In",
+        "Context Learning Independent",
+        "Content"
+      ],
+      "noise_penalty": 0,
+      "final_score": 81,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Disaggregating AI Compute to Break the Tokens Barrier",
+      "link": "https://semiwiki.com/artificial-intelligence/369947-disaggregating-ai-compute-to-break-the-tokens-barrier/",
+      "published": "2026-06-10T13:00:21+00:00",
+      "summary": "Among several topics dominating news streams these days, giant datacenters are a leading theme. They point to an AI-centric future while raising real concerns about sustainability and scalability. Certainly land, power and water demand are very present concerns for most of us, witness growing pushback against building new&8230; Read More The post Disaggregating AI Compute to Break the Tokens Barrier appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "Disaggregating AI Compute to Break the Tokens Barrier",
+      "raw_summary": "Among several topics dominating news streams these days, giant datacenters are a leading theme. They point to an AI-centric future while raising real concerns about sustainability and scalability. Certainly land, power and water demand are very present concerns for most of us, witness growing pushback against building new&#8230; Read More The post Disaggregating AI Compute to Break the Tokens Barrier appeared first on SemiWiki .",
+      "score": 81,
+      "primary": "infra",
+      "tags": [
+        "hardware",
+        "datacenters",
+        "escalabilidad"
+      ],
+      "heuristic_score": 78,
+      "url": "https://semiwiki.com/artificial-intelligence/369947-disaggregating-ai-compute-to-break-the-tokens-barrier/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 78,
+      "_rid": 9,
+      "llm_score": 82,
+      "why": "La desagregación del hardware se posiciona como el próximo gran salto para la sostenibilidad y escalabilidad de la IA.",
+      "title_es": "Desagregando la computación de IA para romper la barrera de los tokens",
+      "entities": [
+        "SemiWiki",
+        "Disaggregating",
+        "Compute",
+        "Break",
+        "Tokens Barrier"
+      ],
+      "noise_penalty": 0,
+      "final_score": 81,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Introducing Gemma 4 12B: a unified, encoder-free multimodal model",
+      "link": "https://deepmind.google/blog/introducing-gemma-4-12b-a-unified-encoder-free-multimodal-model/",
+      "published": "2026-06-09T14:10:19+00:00",
+      "summary": "",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Introducing Gemma 4 12B: a unified, encoder-free multimodal model",
+      "raw_summary": "",
+      "score": 78,
+      "primary": "models",
+      "tags": [
+        "gemma",
+        "multimodal",
+        "google"
+      ],
+      "heuristic_score": 28,
+      "url": "https://deepmind.google/blog/introducing-gemma-4-12b-a-unified-encoder-free-multimodal-model/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 28,
+      "_rid": 12,
+      "llm_score": 92,
+      "why": "Lanzamiento de un modelo de 12B parámetros unificado que prescinde de codificadores externos, optimizando la multimodalidad nativa.",
+      "title_es": "Presentando Gemma 4 12B: un modelo multimodal unificado y sin codificador",
+      "entities": [
+        "DeepMind",
+        "Gemma 4",
+        "Introducing Gemma"
+      ],
+      "noise_penalty": 4,
+      "final_score": 78,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(4)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "PoQ-Judge: A Multi-Architecture Evaluation Framework for Cost-Aware Proof-of-Quality in Decentralized LLM Inference",
+      "link": "https://arxiv.org/abs/2606.11196",
+      "published": "2026-06-11T04:00:00+00:00",
+      "summary": "arXiv:2606.11196v1 Announce Type: new Abstract: Decentralized LLM inference networks need lightweight, reference-free quality evaluation for Proof of Quality (PoQ). We present PoQ-Judge, a framework that trains dedicated judge models to score query-output pairs without ground-truth references. We study three architectures across the quality-cost tradeoff: a TextCNN judge, a MiniLM cross-encoder, and a DeBERTa judge. Using two-stage training on UltraFeedback plus GPT-labeled in-domain data, the best model reaches 0.747 Pearson correlation with the ground-truth proxy on a held-out test set, outperforming reference-based evaluators from prior work. As a reference-free component in composite scoring, it achieves 0.645 Pearson correlation, matching the best single reference-based evaluator while removing the need for reference answers. We also show that online calibration identifies semantic quality as the dominant dimension and that cascade evaluation reduces cost by 72.7 percent with only modest quality loss. Results are much stronger on QA than summarization, pointing to proxy quality as the main remaining limitation.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "PoQ-Judge: A Multi-Architecture Evaluation Framework for Cost-Aware Proof-of-Quality in Decentralized LLM Inference",
+      "raw_summary": "arXiv:2606.11196v1 Announce Type: new Abstract: Decentralized LLM inference networks need lightweight, reference-free quality evaluation for Proof of Quality (PoQ). We present PoQ-Judge, a framework that trains dedicated judge models to score query-output pairs without ground-truth references. We study three architectures across the quality-cost tradeoff: a TextCNN judge, a MiniLM cross-encoder, and a DeBERTa judge. Using two-stage training on UltraFeedback plus GPT-labeled in-domain data, the best model reaches 0.747 Pearson correlation with the ground-truth proxy on a held-out test set, outperforming reference-based evaluators from prior work. As a reference-free component in composite scoring, it achieves 0.645 Pearson correlation, matching the best single reference-based evaluator while removing the need for reference answers. We also show that online calibration identifies semantic quality as the dominant dimension and that cascade evaluation reduces cost by 72.7 percent with only modest quality loss. Results are much stronger on QA than summarization, pointing to proxy quality as the main remaining limitation.",
+      "score": 77,
+      "primary": "infra",
+      "tags": [
+        "web3",
+        "descentralización",
+        "calidad"
+      ],
+      "heuristic_score": 92,
+      "url": "https://arxiv.org/abs/2606.11196",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 92,
+      "_rid": 5,
+      "llm_score": 74,
+      "why": "Marco de evaluación sin referencias esencial para garantizar la calidad en redes de inferencia de IA descentralizadas.",
+      "title_es": "PoQ-Judge: evaluación multiarquitectura para prueba de calidad con conciencia de costes en inferencia descentralizada",
+      "entities": [
+        "PoQ-Judge",
+        "MiniLM",
+        "DeBERTa",
+        "Judge",
+        "Multi",
+        "Architecture Evaluation Framework",
+        "Cost",
+        "Aware Proof"
+      ],
+      "noise_penalty": 0,
+      "final_score": 77,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Fluid, natural voice translation with Gemini 3.5 Live Translate",
+      "link": "https://deepmind.google/blog/fluid-natural-voice-translation-with-gemini-35-live-translate/",
+      "published": "2026-06-09T15:16:25+00:00",
+      "summary": "Gemini 3.5 Live Translate brings near real-time, natural speech translation to Google AI Studio, Google Translate and Google Meet.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Fluid, natural voice translation with Gemini 3.5 Live Translate",
+      "raw_summary": "Gemini 3.5 Live Translate brings near real-time, natural speech translation to Google AI Studio, Google Translate and Google Meet.",
+      "score": 74,
+      "primary": "models",
+      "tags": [
+        "traducción",
+        "voz",
+        "gemini"
+      ],
+      "heuristic_score": 22,
+      "url": "https://deepmind.google/blog/fluid-natural-voice-translation-with-gemini-35-live-translate/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 22,
+      "_rid": 14,
+      "llm_score": 88,
+      "why": "Avance significativo en traducción de voz natural casi instantánea integrada en el ecosistema de productividad de Google.",
+      "title_es": "Traducción de voz fluida y natural con Gemini 3.5 Live Translate",
+      "entities": [
+        "DeepMind",
+        "Gemini 3.5",
+        "Google Meet",
+        "Gemini",
+        "Fluid",
+        "Live Translate"
+      ],
+      "noise_penalty": 4,
+      "final_score": 74,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(4)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "To Intervene or Not: Guiding Inference-time Alignment with Probabilistic Model Blending",
+      "link": "https://arxiv.org/abs/2606.11201",
+      "published": "2026-06-11T04:00:00+00:00",
+      "summary": "arXiv:2606.11201v1 Announce Type: new Abstract: The wide deployment of LLMs has made model alignment necessary to make newly trained models safely and effectively respond to user instructions. Among different methods, inference-time alignment is often cheaper as it intervenes (i.e., offers guidances) only during output generation. Existing proposals apply guidances extracted from certain aligned models without properly assessing their reliability. Nonetheless, our systematic evaluation reveals that guidance effectiveness varies drastically across models; since ineffective guidances lead to further confusion and thus further interventions, the resulting excessive interventions typically indicate poor performance. To make interventions more effective and thus more efficient, we introduce BlendIn, an inference-time alignment framework that shifts from binary decisions to creating hybrid distributions integrating both models' knowledge. BlendIn stabilizes inference-time alignment by performing quality-aware alignment and proportionally weighting each model's contribution based on reliability. Compared with existing works, it preserves beneficial guidance while downweighting unreliable suggestions. BlendIn provides both diagnostic signals and mitigation strategies for misaligned guidance, achieving consistent and up to 50% performance improvement on challenging model pairs. Our code is available at:",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "To Intervene or Not: Guiding Inference-time Alignment with Probabilistic Model Blending",
+      "raw_summary": "arXiv:2606.11201v1 Announce Type: new Abstract: The wide deployment of LLMs has made model alignment necessary to make newly trained models safely and effectively respond to user instructions. Among different methods, inference-time alignment is often cheaper as it intervenes (i.e., offers guidances) only during output generation. Existing proposals apply guidances extracted from certain aligned models without properly assessing their reliability. Nonetheless, our systematic evaluation reveals that guidance effectiveness varies drastically across models; since ineffective guidances lead to further confusion and thus further interventions, the resulting excessive interventions typically indicate poor performance. To make interventions more effective and thus more efficient, we introduce BlendIn, an inference-time alignment framework that shifts from binary decisions to creating hybrid distributions integrating both models' knowledge. BlendIn stabilizes inference-time alignment by performing quality-aware alignment and proportionally weighting each model's contribution based on reliability. Compared with existing works, it preserves beneficial guidance while downweighting unreliable suggestions. BlendIn provides both diagnostic signals and mitigation strategies for misaligned guidance, achieving consistent and up to 50% performance improvement on challenging model pairs. Our code is available at: https://github.com/DecayingSeart/BlendIn.",
+      "score": 72,
+      "primary": "models",
+      "tags": [
+        "alineamiento",
+        "inferencia",
+        "probabilidad"
+      ],
+      "heuristic_score": 92,
+      "url": "https://arxiv.org/abs/2606.11201",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 92,
+      "_rid": 4,
+      "llm_score": 68,
+      "why": "Propuesta para mitigar las intervenciones excesivas en el alineamiento de modelos mediante la mezcla probabilística durante la inferencia.",
+      "title_es": "Intervenir o no: guiando el alineamiento en tiempo de inferencia con mezcla de modelos probabilística",
+      "entities": [
+        "To Intervene",
+        "Not",
+        "Guiding Inference",
+        "Alignment",
+        "Probabilistic Model Blending"
+      ],
+      "noise_penalty": 0,
+      "final_score": 72,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "One Jailbreak, Many Tongues: Learning Language-Insensitive Intention Representations for Multilingual Jailbreak Detection",
+      "link": "https://arxiv.org/abs/2606.11202",
+      "published": "2026-06-11T04:00:00+00:00",
+      "summary": "arXiv:2606.11202v1 Announce Type: new Abstract: Large language models (LLMs) are increasingly deployed in applications for global multilingual users, yet safety training remains concentrated in dominant languages and has not progressed in parallel with multilingual capability, creating exploitable gaps for jailbreak attacks. Current jailbreak defenses are largely developed and evaluated in dominant languages, and their effectiveness is limited by the scarcity of aligned multilingual supervision and representations dispersion caused by language variation. To address this issue, we propose MLJailDe, a multilingual jailbreak detection framework designed to improve both multilingual robustness and cross-lingual generalization. MLJailDe first introduces a multilingual back-translation data augmentation algorithm to construct a semantically consistent and functionally effective dataset spanning 11 languages, consisting of 2,232 benign and 1,239 jailbreak samples. On this basis, MLJailDe employs relative-distance constraints to reduce cross-lingual representation dispersion and encourage jailbreak prompts with similar intent to form consistent clusters across languages, while an imbalance-aware classification objective is further used to alleviate class imbalance and learn more reliable multilingual decision boundaries. Experimental results show that MLJailDe outperforms state-of-the-art baselines across multiple languages, achieving an F1 score of 98.5\\%, and obtains an average F1 score of 97.1\\% on unseen languages, demonstrating strong effectiveness and cross-lingual generalization.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "One Jailbreak, Many Tongues: Learning Language-Insensitive Intention Representations for Multilingual Jailbreak Detection",
+      "raw_summary": "arXiv:2606.11202v1 Announce Type: new Abstract: Large language models (LLMs) are increasingly deployed in applications for global multilingual users, yet safety training remains concentrated in dominant languages and has not progressed in parallel with multilingual capability, creating exploitable gaps for jailbreak attacks. Current jailbreak defenses are largely developed and evaluated in dominant languages, and their effectiveness is limited by the scarcity of aligned multilingual supervision and representations dispersion caused by language variation. To address this issue, we propose MLJailDe, a multilingual jailbreak detection framework designed to improve both multilingual robustness and cross-lingual generalization. MLJailDe first introduces a multilingual back-translation data augmentation algorithm to construct a semantically consistent and functionally effective dataset spanning 11 languages, consisting of 2,232 benign and 1,239 jailbreak samples. On this basis, MLJailDe employs relative-distance constraints to reduce cross-lingual representation dispersion and encourage jailbreak prompts with similar intent to form consistent clusters across languages, while an imbalance-aware classification objective is further used to alleviate class imbalance and learn more reliable multilingual decision boundaries. Experimental results show that MLJailDe outperforms state-of-the-art baselines across multiple languages, achieving an F1 score of 98.5\\%, and obtains an average F1 score of 97.1\\% on unseen languages, demonstrating strong effectiveness and cross-lingual generalization.",
+      "score": 71,
+      "primary": "models",
+      "tags": [
+        "seguridad",
+        "multilingüe",
+        "jailbreak"
+      ],
+      "heuristic_score": 78,
+      "url": "https://arxiv.org/abs/2606.11202",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 78,
+      "_rid": 8,
+      "llm_score": 70,
+      "why": "Aborda la brecha de seguridad en lenguas no dominantes mediante representaciones de intención insensibles al idioma.",
+      "title_es": "Un jailbreak, muchas lenguas: aprendizaje de representaciones de intención para detección multilingüe",
+      "entities": [
+        "MLJailDe",
+        "One Jailbreak",
+        "Many Tongues",
+        "Learning Language",
+        "Insensitive Intention Representations",
+        "Multilingual Jailbreak Detection"
+      ],
+      "noise_penalty": 0,
+      "final_score": 71,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "From Explicit Elements to Implicit Intent: A Predefined Library for Auditable Behavioral Inference",
+      "link": "https://arxiv.org/abs/2606.11207",
+      "published": "2026-06-11T04:00:00+00:00",
+      "summary": "arXiv:2606.11207v1 Announce Type: new Abstract: We present SemantiClean, a modular framework for extracting structured semantic signals from e-commerce session data and driving pluggable inference targets including purchase intent, customer segmentation, and product affinity through a shared element library. Unlike conventional end-to-end predictors that optimise solely for accuracy, SemantiClean prioritises auditability, structural governance, and sigma=0 reproducibility, explicitly trading marginal predictive gains for element-level transparency and defensible decision trails. Built upon the Online Shoppers Purchasing Intention (OSPI) dataset, the framework organises twenty-four behavioural elements into a four-layer architecture (Functional, Interaction, Systemic, Contextual) and enforces signal quality through three anti-inflation mechanisms: RedundancyGroup contribution caps, TieredPenaltyCalculator bias penalties, and AdaptiveConstraintMode cold-start protection.This report introduces the LLM-Integrated Semantic Inference Engine, a fully implemented two-phase LLM-driven inference architecture that leverages complete element metadata at inference time. All quantitative results reported herein are produced by this engine. Deterministic engine outputs remain fully reproducible (sigma=0); LLM-dependent results (E8, E10) are subject to controlled output variability under fixed provider/model/temperature settings. The gender inference target remains non-functional in the current implementation and is excluded from all quantitative results.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "From Explicit Elements to Implicit Intent: A Predefined Library for Auditable Behavioral Inference",
+      "raw_summary": "arXiv:2606.11207v1 Announce Type: new Abstract: We present SemantiClean, a modular framework for extracting structured semantic signals from e-commerce session data and driving pluggable inference targets including purchase intent, customer segmentation, and product affinity through a shared element library. Unlike conventional end-to-end predictors that optimise solely for accuracy, SemantiClean prioritises auditability, structural governance, and sigma=0 reproducibility, explicitly trading marginal predictive gains for element-level transparency and defensible decision trails. Built upon the Online Shoppers Purchasing Intention (OSPI) dataset, the framework organises twenty-four behavioural elements into a four-layer architecture (Functional, Interaction, Systemic, Contextual) and enforces signal quality through three anti-inflation mechanisms: RedundancyGroup contribution caps, TieredPenaltyCalculator bias penalties, and AdaptiveConstraintMode cold-start protection.This report introduces the LLM-Integrated Semantic Inference Engine, a fully implemented two-phase LLM-driven inference architecture that leverages complete element metadata at inference time. All quantitative results reported herein are produced by this engine. Deterministic engine outputs remain fully reproducible (sigma=0); LLM-dependent results (E8, E10) are subject to controlled output variability under fixed provider/model/temperature settings. The gender inference target remains non-functional in the current implementation and is excluded from all quantitative results.",
+      "score": 70,
+      "primary": "models",
+      "tags": [
+        "e-commerce",
+        "transparencia",
+        "inferencia"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2606.11207",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 1,
+      "llm_score": 65,
+      "why": "Framework modular para e-commerce que prioriza la auditabilidad y trazabilidad de decisiones sobre la ganancia marginal de precisión.",
+      "title_es": "De elementos explícitos a intención implícita: librería predefinida para inferencia conductual auditable",
+      "entities": [
+        "SemantiClean",
+        "OSPI",
+        "From Explicit Elements",
+        "Implicit Intent",
+        "Predefined Library",
+        "Auditable Behavioral Inference"
+      ],
+      "noise_penalty": 0,
+      "final_score": 70,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "NightFeats @ MMU-RAGent NeurIPS 2025: A Context-Optimized Multi-Agent RAG System for the Text-to-Text Track",
+      "link": "https://arxiv.org/abs/2606.11199",
+      "published": "2026-06-11T04:00:00+00:00",
+      "summary": "arXiv:2606.11199v1 Announce Type: new Abstract: We present NightFeats, a structured multi-agent retrieval-augmented generation (RAG) system submitted to the MMU-RAGent competition at NeurIPS 2025, where it was awarded Best Dynamic Evaluation in the text-to-text track. Rather than targeting benchmark maximization, this work proposes a principled pipeline that decomposes knowledge synthesis into three coordinated phases: retrieval, curation, and composition, each governed by explicit intermediate representations and handoff contracts. Inspired by Agentic Context Engineering (ACE), the system introduces temporal-semantic reranking, bounded contradiction reconciliation, and citation-preserving composition as core architectural primitives. Competition results show that NightFeats surpasses proprietary baselines including Claude-SonnetV2 and Nova-Pro on LLM-as-a-Judge and Human Likert evaluations, confirming that architectural transparency and verifiable evidence grounding are better aligned with human preferences than systems optimizing narrowly for automatic similarity metrics.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "NightFeats @ MMU-RAGent NeurIPS 2025: A Context-Optimized Multi-Agent RAG System for the Text-to-Text Track",
+      "raw_summary": "arXiv:2606.11199v1 Announce Type: new Abstract: We present NightFeats, a structured multi-agent retrieval-augmented generation (RAG) system submitted to the MMU-RAGent competition at NeurIPS 2025, where it was awarded Best Dynamic Evaluation in the text-to-text track. Rather than targeting benchmark maximization, this work proposes a principled pipeline that decomposes knowledge synthesis into three coordinated phases: retrieval, curation, and composition, each governed by explicit intermediate representations and handoff contracts. Inspired by Agentic Context Engineering (ACE), the system introduces temporal-semantic reranking, bounded contradiction reconciliation, and citation-preserving composition as core architectural primitives. Competition results show that NightFeats surpasses proprietary baselines including Claude-SonnetV2 and Nova-Pro on LLM-as-a-Judge and Human Likert evaluations, confirming that architectural transparency and verifiable evidence grounding are better aligned with human preferences than systems optimizing narrowly for automatic similarity metrics.",
+      "score": 68,
+      "primary": "models",
+      "tags": [
+        "rag",
+        "multi-agente",
+        "neurips"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2606.11199",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 3,
+      "llm_score": 72,
+      "why": "Sistema multi-agente galardonado en NeurIPS que mejora la síntesis de conocimiento mediante contratos de entrega entre agentes.",
+      "title_es": "NightFeats en MMU-RAGent NeurIPS 2025: sistema RAG multi-agente optimizado para contexto",
+      "entities": [
+        "NightFeats",
+        "NeurIPS",
+        "ACE",
+        "MMU",
+        "Context",
+        "Optimized Multi",
+        "Agent",
+        "System"
+      ],
+      "noise_penalty": 8,
+      "final_score": 68,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(8)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Customized Foundation IP Enables the Next Generation of Automotive Compute",
+      "link": "https://semiwiki.com/eda/370099-customized-foundation-ip-enables-the-next-generation-of-automotive-compute/",
+      "published": "2026-06-09T17:00:29+00:00",
+      "summary": "As vehicles become increasingly software-defined, automotive semiconductor suppliers face growing pressure to deliver higher compute performance while maintaining strict requirements for power efficiency, reliability, and long-term product support. Advanced driver assistance systems (ADAS), electrification, &8230; Read More The post Customized Foundation IP Enables the Next Generation of Automotive Compute appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "Customized Foundation IP Enables the Next Generation of Automotive Compute",
+      "raw_summary": "As vehicles become increasingly software-defined, automotive semiconductor suppliers face growing pressure to deliver higher compute performance while maintaining strict requirements for power efficiency, reliability, and long-term product support. Advanced driver assistance systems (ADAS), electrification, &#8230; Read More The post Customized Foundation IP Enables the Next Generation of Automotive Compute appeared first on SemiWiki .",
+      "score": 68,
+      "primary": "infra",
+      "tags": [
+        "automoción",
+        "semiconductores",
+        "ip"
+      ],
+      "heuristic_score": 22,
+      "url": "https://semiwiki.com/eda/370099-customized-foundation-ip-enables-the-next-generation-of-automotive-compute/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 22,
+      "_rid": 15,
+      "llm_score": 76,
+      "why": "El desarrollo de semiconductores específicos es crítico para la transición hacia el vehículo definido por software (SDV).",
+      "title_es": "IP de base personalizada permite la próxima generación de computación para automoción",
+      "entities": [
+        "SemiWiki",
+        "ADAS",
+        "Customized Foundation",
+        "Enables",
+        "Next Generation",
+        "Automotive Compute"
+      ],
+      "noise_penalty": 0,
+      "final_score": 68,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Simulate real-world places with Project Genie and Street View",
+      "link": "https://deepmind.google/blog/simulate-real-world-places-with-project-genie-and-street-view/",
+      "published": "2026-05-17T19:53:18+00:00",
+      "summary": "We’re expanding access to Google AI Ultra subscribers globally and introducing a new capability powered by Street View.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Simulate real-world places with Project Genie and Street View",
+      "raw_summary": "We’re expanding access to Google AI Ultra subscribers globally and introducing a new capability powered by Street View.",
+      "score": 60,
+      "primary": "models",
+      "tags": [
+        "simulación",
+        "robótica",
+        "genie"
+      ],
+      "heuristic_score": 27,
+      "url": "https://deepmind.google/blog/simulate-real-world-places-with-project-genie-and-street-view/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 27,
+      "_rid": 13,
+      "llm_score": 85,
+      "why": "Integración de capacidades de simulación con datos reales de Street View para crear mundos virtuales navegables por agentes de IA.",
+      "title_es": "Simula lugares del mundo real con Project Genie y Street View",
+      "entities": [
+        "Google",
+        "Project Genie",
+        "Street View"
+      ],
+      "noise_penalty": 16,
+      "final_score": 60,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(16)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "LatticeBridge: Rare-Event Sequential Inference for Faithful Structured Sequence Synthesis",
+      "link": "https://arxiv.org/abs/2606.11203",
+      "published": "2026-06-11T04:00:00+00:00",
+      "summary": "arXiv:2606.11203v1 Announce Type: new Abstract: Structured sequence generation often requires a model to satisfy several input-derived constraints in a single output. Standard decoding methods may assign high probability to fluent continuations while placing low mass on continuations that realize all required anchors jointly. We study this regime as a rare-event sequential inference problem. LatticeBridge combines a compact prefix language model, instance-compiled surface automata, and a twisted sequential Monte Carlo (SMC) decoder with resampling, multilevel splitting, and a source-support proposal term derived from instance-provided phrases. The constraint representation is compiled from each input instance and does not rely on manually curated lexical classes. On 2,610 attainable validation tasks spanning CommonGen, E2E NLG, and WikiBio, the particle decoder improves exact anchor satisfaction and mean anchor coverage over greedy, beam-filtered, and best-of-k ancestral baselines under a shared proposal model. Since exact anchor satisfaction alone does not rule out unsupported attribute substitutions, the evaluation reports required-anchor coverage, source coverage, source-intrusion diagnostics, overlap, runtime, and particle statistics jointly. The benchmark characterizes the faithfulness-overlap-latency frontier under a fixed proposal model.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "LatticeBridge: Rare-Event Sequential Inference for Faithful Structured Sequence Synthesis",
+      "raw_summary": "arXiv:2606.11203v1 Announce Type: new Abstract: Structured sequence generation often requires a model to satisfy several input-derived constraints in a single output. Standard decoding methods may assign high probability to fluent continuations while placing low mass on continuations that realize all required anchors jointly. We study this regime as a rare-event sequential inference problem. LatticeBridge combines a compact prefix language model, instance-compiled surface automata, and a twisted sequential Monte Carlo (SMC) decoder with resampling, multilevel splitting, and a source-support proposal term derived from instance-provided phrases. The constraint representation is compiled from each input instance and does not rely on manually curated lexical classes. On 2,610 attainable validation tasks spanning CommonGen, E2E NLG, and WikiBio, the particle decoder improves exact anchor satisfaction and mean anchor coverage over greedy, beam-filtered, and best-of-k ancestral baselines under a shared proposal model. Since exact anchor satisfaction alone does not rule out unsupported attribute substitutions, the evaluation reports required-anchor coverage, source coverage, source-intrusion diagnostics, overlap, runtime, and particle statistics jointly. The benchmark characterizes the faithfulness-overlap-latency frontier under a fixed proposal model.",
+      "score": 57,
+      "primary": "models",
+      "tags": [
+        "decodificación",
+        "automatización",
+        "smc"
+      ],
+      "heuristic_score": 81,
+      "url": "https://arxiv.org/abs/2606.11203",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 81,
+      "_rid": 7,
+      "llm_score": 62,
+      "why": "Técnica de decodificación para asegurar que la generación de secuencias cumpla estrictamente con múltiples restricciones de entrada.",
+      "title_es": "LatticeBridge: inferencia secuencial de eventos raros para síntesis fiel de secuencias estructuradas",
+      "entities": [
+        "LatticeBridge",
+        "Rare",
+        "Event Sequential Inference",
+        "Faithful Structured Sequence",
+        "Synthesis"
+      ],
+      "noise_penalty": 8,
+      "final_score": 57,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(8)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Detecting AI-Generated Content on Social Media with Multi-modal Language Models",
+      "link": "https://arxiv.org/abs/2606.11200",
+      "published": "2026-06-11T04:00:00+00:00",
+      "summary": "arXiv:2606.11200v1 Announce Type: new Abstract: Generative AI has enabled the creation of photorealistic s and videos that are increasingly disseminated on social media, often used for spam, misinformation, manipulation, and fraud. Existing AI-generated content (AIGC) detection methods face challenges including poor generalization to new generation models, reliance on single modalities, and lack of interpretable explanations. We present our pipeline that mitigates these issues by continuously curating diverse multi-modal social media data and training a compact vision-language model for detection and explanation. Our model achieves state-of-the-art detection performance on public benchmarks and demonstrates robust detection and explanation capabilities on internal social media datasets across multiple platforms. We deployed our model for post recommendation on social media platforms and observed positive downstream impacts on user engagement, demonstrating that it is feasible to perform effective AIGC detection in dynamic, real-world social media environments.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Detecting AI-Generated Content on Social Media with Multi-modal Language Models",
+      "raw_summary": "arXiv:2606.11200v1 Announce Type: new Abstract: Generative AI has enabled the creation of photorealistic images and videos that are increasingly disseminated on social media, often used for spam, misinformation, manipulation, and fraud. Existing AI-generated content (AIGC) detection methods face challenges including poor generalization to new generation models, reliance on single modalities, and lack of interpretable explanations. We present our pipeline that mitigates these issues by continuously curating diverse multi-modal social media data and training a compact vision-language model for detection and explanation. Our model achieves state-of-the-art detection performance on public benchmarks and demonstrates robust detection and explanation capabilities on internal social media datasets across multiple platforms. We deployed our model for post recommendation on social media platforms and observed positive downstream impacts on user engagement, demonstrating that it is feasible to perform effective AIGC detection in dynamic, real-world social media environments.",
+      "score": 57,
+      "primary": "misc",
+      "tags": [
+        "social media",
+        "detección",
+        "multimodal"
+      ],
+      "heuristic_score": 43,
+      "url": "https://arxiv.org/abs/2606.11200",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 43,
+      "_rid": 11,
+      "llm_score": 60,
+      "why": "Pipeline para detectar y explicar contenido generado por IA en redes sociales usando modelos compactos de visión-lenguaje.",
+      "title_es": "Detección de contenido generado por IA en redes sociales con modelos de lenguaje multimodales",
+      "entities": [
+        "AIGC",
+        "Detecting",
+        "Generated Content",
+        "Social Media",
+        "Multi",
+        "Language Models"
+      ],
+      "noise_penalty": 0,
+      "final_score": 57,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Position: Hippocampal Explicit Memory Is the Cornerstone for AGI",
+      "link": "https://arxiv.org/abs/2606.11245",
+      "published": "2026-06-11T04:00:00+00:00",
+      "summary": "arXiv:2606.11245v1 Announce Type: new Abstract: Large Language Models (LLMs) have demonstrated remarkable capabilities across various tasks, raising expectations for Artificial General Intelligence (AGI). This position paper argues that integrating explicit memory is the cornerstone for advancing LLMs toward AGI. The key reason is that the underlying learning mechanism of LLMs is highly analogous to human implicit memory. However, higher-order cognitive functions necessary for AGI, such as long-term strategic planning, metacognition, and symbolic reasoning, heavily rely on hippocampal explicit memory and cannot arise solely from implicit statistical learning. Drawing on findings from neuroscience, I advance this perspective and complement it with computational requirements for artificial explicit memory systems, hoping to foster further research and lay the groundwork for explicit memory integration.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Position: Hippocampal Explicit Memory Is the Cornerstone for AGI",
+      "raw_summary": "arXiv:2606.11245v1 Announce Type: new Abstract: Large Language Models (LLMs) have demonstrated remarkable capabilities across various tasks, raising expectations for Artificial General Intelligence (AGI). This position paper argues that integrating explicit memory is the cornerstone for advancing LLMs toward AGI. The key reason is that the underlying learning mechanism of LLMs is highly analogous to human implicit memory. However, higher-order cognitive functions necessary for AGI, such as long-term strategic planning, metacognition, and symbolic reasoning, heavily rely on hippocampal explicit memory and cannot arise solely from implicit statistical learning. Drawing on findings from neuroscience, I advance this perspective and complement it with computational requirements for artificial explicit memory systems, hoping to foster further research and lay the groundwork for explicit memory integration.",
+      "score": 54,
+      "primary": "models",
+      "tags": [
+        "agi",
+        "neurociencia",
+        "memoria"
+      ],
+      "heuristic_score": 47,
+      "url": "https://arxiv.org/abs/2606.11245",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 47,
+      "_rid": 10,
+      "llm_score": 55,
+      "why": "Posicionamiento teórico que vincula la memoria explícita del hipocampo con la capacidad necesaria para alcanzar la AGI.",
+      "title_es": "Posición: La memoria explícita del hipocampo es la piedra angular para la AGI",
+      "entities": [
+        "AGI",
+        "Position",
+        "Hippocampal Explicit Memory",
+        "Cornerstone"
+      ],
+      "noise_penalty": 0,
+      "final_score": 54,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Restless bandits with imperfect binary feedback: PCL-indexability analysis and computation",
+      "link": "https://arxiv.org/abs/2606.11192",
+      "published": "2026-06-11T04:00:00+00:00",
+      "summary": "arXiv:2606.11192v1 Announce Type: new Abstract: We study restless bandits with binary latent states and imperfect binary feedback, motivated by opportunistic spectrum access with sensing errors. For the associated belief-state model, we develop a partial conservation laws (PCL)-based analytical and computational framework for establishing indexability and evaluating the Whittle index, building on a verification theorem for real-state discounted restless bandits. The framework analyzes the stochastic dynamics via an associated deterministic skeleton, renewal decompositions, and combinatorics on words. It yields tractable expressions for discounted reward and resource metrics in several threshold regimes, enabling full verification of the PCL-indexability conditions there. For the remaining regime, where a complete analytic verification is not achieved in this paper, we derive efficient numerical schemes for computing the relevant marginal metrics and the marginal productivity (MP) index, which equals the Whittle index when those conditions hold. Extensive computational experiments provide strong evidence that these conditions also hold in that regime across broad parameter ranges and without the stringent parameter restrictions imposed in prior work. The experiments further show that theMP index policy typically outperforms standard benchmark policies, often by a substantial margin.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Restless bandits with imperfect binary feedback: PCL-indexability analysis and computation",
+      "raw_summary": "arXiv:2606.11192v1 Announce Type: new Abstract: We study restless bandits with binary latent states and imperfect binary feedback, motivated by opportunistic spectrum access with sensing errors. For the associated belief-state model, we develop a partial conservation laws (PCL)-based analytical and computational framework for establishing indexability and evaluating the Whittle index, building on a verification theorem for real-state discounted restless bandits. The framework analyzes the stochastic dynamics via an associated deterministic skeleton, renewal decompositions, and combinatorics on words. It yields tractable expressions for discounted reward and resource metrics in several threshold regimes, enabling full verification of the PCL-indexability conditions there. For the remaining regime, where a complete analytic verification is not achieved in this paper, we derive efficient numerical schemes for computing the relevant marginal metrics and the marginal productivity (MP) index, which equals the Whittle index when those conditions hold. Extensive computational experiments provide strong evidence that these conditions also hold in that regime across broad parameter ranges and without the stringent parameter restrictions imposed in prior work. The experiments further show that theMP index policy typically outperforms standard benchmark policies, often by a substantial margin.",
+      "score": 40,
+      "primary": "misc",
+      "tags": [
+        "matemáticas",
+        "espectro",
+        "algoritmos"
+      ],
+      "heuristic_score": 81,
+      "url": "https://arxiv.org/abs/2606.11192",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 81,
+      "_rid": 6,
+      "llm_score": 40,
+      "why": "Análisis técnico de bandidos restless para acceso a espectro; de nicho pero relevante para infraestructuras de comunicación.",
+      "title_es": "Bandidos Restless con feedback binario imperfecto: análisis de indexabilidad PCL y computación",
+      "entities": [
+        "PCL",
+        "Restless"
+      ],
+      "noise_penalty": 6,
+      "final_score": 40,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(6)",
+      "strategic_theme": "model_economics_pricing"
+    }
+  ]
+}
