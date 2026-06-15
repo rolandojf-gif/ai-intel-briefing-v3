@@ -1,0 +1,661 @@
+{
+  "date": "2026-06-15",
+  "score_avg": 59.73,
+  "primary_dist": {
+    "infra": 4,
+    "models": 9,
+    "misc": 2
+  },
+  "top_entities": [
+    {
+      "entity": "Google",
+      "count": 2
+    },
+    {
+      "entity": "Gemini",
+      "count": 2
+    },
+    {
+      "entity": "llada.cpp",
+      "count": 1
+    },
+    {
+      "entity": "NPU",
+      "count": 1
+    },
+    {
+      "entity": "Efficient On",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "La optimización de la inferencia dLLM en dispositivos móviles mediante NPU permite reducir latencias críticas en el edge.",
+      "La fiabilidad de los 'LLM-as-a-Judge' queda cuestionada por su alta variabilidad y sesgos sistemáticos de posición.",
+      "Nuevas arquitecturas de red AI Fabrics prometen recuperar hasta el 80% de la capacidad de cómputo desaprovechada.",
+      "La edición quirúrgica de neuronas individuales se muestra efectiva para corregir bucles de repetición en modelos masivos.",
+      "El filtrado de datos post-entrenamiento está reduciendo la riqueza cultural y diversidad geográfica de los modelos."
+    ],
+    "risks": [
+      "Los jueces automáticos (GPT-4o) muestran una inconsistencia del 13,6% en tareas idénticas, invalidando rankings de hype.",
+      "Los agentes autónomos son vulnerables a interfaces web engañosas que manipulan la ejecución de tareas comerciales.",
+      "Existe una brecha crítica entre la verosimilitud narrativa y la realidad estadística en simulaciones urbanas con IA."
+    ],
+    "watch": [
+      "Evolución de llada.cpp como estándar para llevar modelos de difusión de texto a hardware móvil de consumo.",
+      "Adopción de técnicas de edición de pesos como alternativa a los costosos procesos de reentrenamiento por fallos puntuales.",
+      "Resultados de Gemini en el ámbito científico y su capacidad para resolver razonamientos legales/religiosos complejos."
+    ],
+    "entities_top": [
+      "Google DeepMind",
+      "Clockwork.io",
+      "OpenAI"
+    ]
+  },
+  "items": [
+    {
+      "title": "Efficient On-Device Diffusion LLM Inference with Mobile NPU",
+      "link": "https://arxiv.org/abs/2606.13740",
+      "published": "2026-06-15T04:00:00+00:00",
+      "summary": "arXiv:2606.13740v1 Announce Type: new Abstract: Diffusion large language models (dLLMs) accelerate generation by denoising multiple tokens in parallel, making them attractive for latency-sensitive mobile inference. However, repeated denoising introduces substantial computation on smartphones. Mobile neural processing units (NPUs) offer high-throughput dense matrix computation, but efficiently exploiting them remains challenging: token commitment shrinks per-block effective workloads, token revision complicates KV cache reuse, and limited NPU-visible address space incurs costly remapping and data transfer overheads. In this paper, we propose llada.cpp, the first NPU-aware inference framework for accelerating dLLMs on smartphones. llada.cpp aligns block-wise dLLM inference with the execution characteristics of mobile NPUs through three techniques. (1) Multi-Block Speculative Decoding fills the shrinking workload in late-stage current-block decoding with speculative future-block tokens. (2) Dual-Path Progressive Revision keeps committed tokens revisable until stable and refreshes unstable tokens through a CPU-side path without stalling dense NPU execution. (3) Swap-Optimized Memory Runtime compacts NPU-visible address layouts and overlaps data staging with NPU computation to reduce remapping and transfer overheads. We implement llada.cpp as an end-to-end framework and evaluate it across diverse hardware platforms and dLLM workloads. llada.cpp reduces LLaDA-8B generation latency by 17x-42x over the CPU baseline with prefix KV cache reuse, while preserving generation quality.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Efficient On-Device Diffusion LLM Inference with Mobile NPU",
+      "raw_summary": "arXiv:2606.13740v1 Announce Type: new Abstract: Diffusion large language models (dLLMs) accelerate generation by denoising multiple tokens in parallel, making them attractive for latency-sensitive mobile inference. However, repeated denoising introduces substantial computation on smartphones. Mobile neural processing units (NPUs) offer high-throughput dense matrix computation, but efficiently exploiting them remains challenging: token commitment shrinks per-block effective workloads, token revision complicates KV cache reuse, and limited NPU-visible address space incurs costly remapping and data transfer overheads. In this paper, we propose llada.cpp, the first NPU-aware inference framework for accelerating dLLMs on smartphones. llada.cpp aligns block-wise dLLM inference with the execution characteristics of mobile NPUs through three techniques. (1) Multi-Block Speculative Decoding fills the shrinking workload in late-stage current-block decoding with speculative future-block tokens. (2) Dual-Path Progressive Revision keeps committed tokens revisable until stable and refreshes unstable tokens through a CPU-side path without stalling dense NPU execution. (3) Swap-Optimized Memory Runtime compacts NPU-visible address layouts and overlaps data staging with NPU computation to reduce remapping and transfer overheads. We implement llada.cpp as an end-to-end framework and evaluate it across diverse hardware platforms and dLLM workloads. llada.cpp reduces LLaDA-8B generation latency by 17x-42x over the CPU baseline with prefix KV cache reuse, while preserving generation quality.",
+      "score": 89,
+      "primary": "infra",
+      "tags": [
+        "npu",
+        "inferencia-móvil",
+        "edge-ai",
+        "difusión"
+      ],
+      "heuristic_score": 94,
+      "url": "https://arxiv.org/abs/2606.13740",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 94,
+      "_rid": 3,
+      "llm_score": 88,
+      "why": "Presenta llada.cpp, el primer framework que optimiza la inferencia de modelos de difusión de lenguaje para NPU de smartphones.",
+      "title_es": "Inferencia eficiente de LLM de difusión en dispositivo con NPU móvil",
+      "entities": [
+        "llada.cpp",
+        "NPU",
+        "Efficient On",
+        "Device Diffusion",
+        "Inference",
+        "Mobile"
+      ],
+      "noise_penalty": 0,
+      "final_score": 89,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "The Coin Flip Judge? Reliability and Bias in LLM-as-a-Judge Evaluation",
+      "link": "https://arxiv.org/abs/2606.13685",
+      "published": "2026-06-15T04:00:00+00:00",
+      "summary": "arXiv:2606.13685v1 Announce Type: new Abstract: LLM-as-a-Judge is now widely used to rank model outputs, train reward models, and populate public leaderboards, but its run-to-run reliability remains under-characterized. We study repeated identical evaluations on 29 tasks spanning 10 categories using two OpenAI judge models (GPT-4o-mini and GPT-4.1-mini), with 50 pairwise trials and 50 pointwise trials per question, supplemented by temperature and prompt-sensitivity ablations. Across judges, pairwise preferences flip on average 13.6% of the time, with 28% of questions exceeding a 20% flip rate and one question reaching 56%. GPT-4o-mini also exhibits a significant first-position bias (72% A-majority, p = 0.024). At the same time, mean pointwise score gaps are small (0.19--0.36 on a 10-point scale) and not statistically significant in aggregate, producing a pairwise--pointwise gap: judges frequently choose a winner even when their own scalar scores provide little evidence of a meaningful quality difference. Beyond within-judge instability, cross-judge agreement is only 76% ($\\kappa = 0.51$), semantically equivalent prompt templates change majority outcomes in 25% of tested cases, and deterministic decoding reduces but does not eliminate inconsistency. A reliability curve analysis shows that, in our dataset, 11 repeated trials are needed for a majority vote to recover the 50-trial reference verdict with 95% probability on average, rising to 15 for high-variance questions. These findings suggest that single-trial LLM judging is often too noisy for high-stakes evaluation, and that multi-trial aggregation, position randomization, and explicit uncertainty reporting should be standard practice. Because both judges are from a single provider, cross-provider replication remains an important next step.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "The Coin Flip Judge? Reliability and Bias in LLM-as-a-Judge Evaluation",
+      "raw_summary": "arXiv:2606.13685v1 Announce Type: new Abstract: LLM-as-a-Judge is now widely used to rank model outputs, train reward models, and populate public leaderboards, but its run-to-run reliability remains under-characterized. We study repeated identical evaluations on 29 tasks spanning 10 categories using two OpenAI judge models (GPT-4o-mini and GPT-4.1-mini), with 50 pairwise trials and 50 pointwise trials per question, supplemented by temperature and prompt-sensitivity ablations. Across judges, pairwise preferences flip on average 13.6% of the time, with 28% of questions exceeding a 20% flip rate and one question reaching 56%. GPT-4o-mini also exhibits a significant first-position bias (72% A-majority, p = 0.024). At the same time, mean pointwise score gaps are small (0.19--0.36 on a 10-point scale) and not statistically significant in aggregate, producing a pairwise--pointwise gap: judges frequently choose a winner even when their own scalar scores provide little evidence of a meaningful quality difference. Beyond within-judge instability, cross-judge agreement is only 76% ($\\kappa = 0.51$), semantically equivalent prompt templates change majority outcomes in 25% of tested cases, and deterministic decoding reduces but does not eliminate inconsistency. A reliability curve analysis shows that, in our dataset, 11 repeated trials are needed for a majority vote to recover the 50-trial reference verdict with 95% probability on average, rising to 15 for high-variance questions. These findings suggest that single-trial LLM judging is often too noisy for high-stakes evaluation, and that multi-trial aggregation, position randomization, and explicit uncertainty reporting should be standard practice. Because both judges are from a single provider, cross-provider replication remains an important next step.",
+      "score": 81,
+      "primary": "models",
+      "tags": [
+        "evaluación",
+        "sesgo",
+        "benchmarking"
+      ],
+      "heuristic_score": 75,
+      "url": "https://arxiv.org/abs/2606.13685",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 75,
+      "_rid": 6,
+      "llm_score": 82,
+      "why": "Revela una alta inestabilidad en GPT-4o al actuar como juez, con cambios de opinión frecuentes y sesgo de primera posición.",
+      "title_es": "¿El juez de la moneda al aire? Fiabilidad y sesgo en la evaluación LLM-as-a-Judge",
+      "entities": [
+        "OpenAI",
+        "GPT-4o-mini",
+        "The Coin Flip",
+        "Judge",
+        "Reliability",
+        "Bias",
+        "Judge Evaluation"
+      ],
+      "noise_penalty": 0,
+      "final_score": 81,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Benchmarking Web Agent Safety under E-commerce Deceptive Interfaces",
+      "link": "https://arxiv.org/abs/2606.13686",
+      "published": "2026-06-15T04:00:00+00:00",
+      "summary": "arXiv:2606.13686v1 Announce Type: new Abstract: As autonomous web agents are increasingly deployed to perform real-world tasks, ensuring their safety has become a critical concern. In this work, we study web agent behavior under realistic deceptive interfaces in the e-commerce domain. We introduce WebDecept, a lightweight and configurable plugin framework that enables controlled injection of deceptive interface patterns into existing web environments. Using WebDecept, we instantiate seven deceptive patterns commonly observed on the open web, including targeted advertisements, domain redirection, and shopping manipulation. By injecting these patterns into the frontend during task execution, we perform controlled evaluation of multiple multimodal web agents. Our results show that current web agents are highly susceptible to multiple classes of deceptive interfaces, and that prompt-based constraints are often insufficient to mitigate these failures. We further analyze how the design choices of deceptive patterns influence the success of such manipulations. These findings highlight safety challenges that should be addressed as web agents are scaled toward real-world deployment.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Benchmarking Web Agent Safety under E-commerce Deceptive Interfaces",
+      "raw_summary": "arXiv:2606.13686v1 Announce Type: new Abstract: As autonomous web agents are increasingly deployed to perform real-world tasks, ensuring their safety has become a critical concern. In this work, we study web agent behavior under realistic deceptive interfaces in the e-commerce domain. We introduce WebDecept, a lightweight and configurable plugin framework that enables controlled injection of deceptive interface patterns into existing web environments. Using WebDecept, we instantiate seven deceptive patterns commonly observed on the open web, including targeted advertisements, domain redirection, and shopping manipulation. By injecting these patterns into the frontend during task execution, we perform controlled evaluation of multiple multimodal web agents. Our results show that current web agents are highly susceptible to multiple classes of deceptive interfaces, and that prompt-based constraints are often insufficient to mitigate these failures. We further analyze how the design choices of deceptive patterns influence the success of such manipulations. These findings highlight safety challenges that should be addressed as web agents are scaled toward real-world deployment.",
+      "score": 76,
+      "primary": "models",
+      "tags": [
+        "seguridad",
+        "agentes-web",
+        "e-commerce"
+      ],
+      "heuristic_score": 98,
+      "url": "https://arxiv.org/abs/2606.13686",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 98,
+      "_rid": 1,
+      "llm_score": 72,
+      "why": "Introduce WebDecept para evaluar cómo las interfaces engañosas manipulan a los agentes autónomos en tareas reales de compra.",
+      "title_es": "Evaluación de la seguridad de agentes web ante interfaces engañosas de comercio electrónico",
+      "entities": [
+        "WebDecept",
+        "Benchmarking Web Agent",
+        "Safety",
+        "Deceptive Interfaces"
+      ],
+      "noise_penalty": 0,
+      "final_score": 76,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "CEO Interview with Suresh Vasudevan of Clockwork.io",
+      "link": "https://semiwiki.com/ceo-interviews/370217-ceo-interview-with-suresh-vasudevan-of-clockwork-io/",
+      "published": "2026-06-15T01:00:20+00:00",
+      "summary": "Suresh Vasudevan is CEO of Clockwork.io , pioneering Software-Driven AI Fabrics™ that recover the 60-80% of cluster capacity that today goes completely unutilized. Previously, he led Nimble Storage to IPO and HPE acquisition, and served as CEO of Sysdig. Prior to that, he was at NetApp and McKinsey &38; Co. His focus: making &8230; Read More The post CEO Interview with Suresh Vasudevan of Clockwork.io appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "CEO Interview with Suresh Vasudevan of Clockwork.io",
+      "raw_summary": "Suresh Vasudevan is CEO of Clockwork.io , pioneering Software-Driven AI Fabrics™ that recover the 60-80% of cluster capacity that today goes completely unutilized. Previously, he led Nimble Storage to IPO and HPE acquisition, and served as CEO of Sysdig. Prior to that, he was at NetApp and McKinsey &#38; Co. His focus: making &#8230; Read More The post CEO Interview with Suresh Vasudevan of Clockwork.io appeared first on SemiWiki .",
+      "score": 76,
+      "primary": "infra",
+      "tags": [
+        "redes",
+        "centros-de-datos",
+        "eficiencia",
+        "gpu"
+      ],
+      "heuristic_score": 22,
+      "url": "https://semiwiki.com/ceo-interviews/370217-ceo-interview-with-suresh-vasudevan-of-clockwork-io/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 22,
+      "_rid": 14,
+      "llm_score": 85,
+      "why": "Clockwork.io desarrolla software para maximizar la utilización de clusters de IA, atacando el infrautilizado 60-80% de capacidad.",
+      "title_es": "Entrevista al CEO de Clockwork.io sobre AI Fabrics impulsados por software",
+      "entities": [
+        "Clockwork.io",
+        "Suresh Vasudevan",
+        "Clockwork"
+      ],
+      "noise_penalty": 0,
+      "final_score": 76,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Can Editing 1 Neuron Fix Repetition Loops in LLMs?",
+      "link": "https://arxiv.org/abs/2606.13705",
+      "published": "2026-06-15T04:00:00+00:00",
+      "summary": "arXiv:2606.13705v1 Announce Type: new Abstract: Yes. Can it cure doom loops? Probably not. The Gemma 4 instruction-tuned models share a reproducible failure: on long factual enumeration prompts, such as listing every episode of a TV series, the 88 IAU constellations, or the 151 original Pokemon, they collapse into repetition, either a tight verbatim loop or a list whose entries decay onto a single answer. These loops occur at rates as high as 95% and survive prompt rewording, inference-engine changes, and most sampling adjustments. In this paper we explore whether this behavior is localized enough to remove by weight edits. To localize the cause, we use per-layer ablation and per-neuron attribution, then confirm the strongest candidates with full-generation sweeps. The loops trace to a small set of MLP neurons (or, in the 26B-A4B Mixture-of-Experts model, a few routed experts) which we suppress with static weight edits. These \"surgeries\" can be as small as a single sign-inverted neuron (in the E2B model). The size of the effective edits grows with model scale, but in all cases, the loop patterns can be addressed at normal generation budgets while preserving general-purpose benchmark scores. However, the edits do not solve everything: we also study longer thinking budgets, where the two larger models most visibly enter doom looping, i.e. a non-convergent regime in which the model self-corrects in circles over a fact it cannot recall, exhausting the budget without committing to a final answer. We show this residual failure is reduced but not eliminated by the same edits, and argue it is fundamentally a knowledge-precision problem rather than a removable circuit; weight surgery can delete a loop, but it cannot supply a missing fact. Our results are both a feasibility demonstration, that is, evidence that a concrete generation pathology can be localized to a few parameters and edited out, and a delineation of where that approach stops.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Can Editing 1 Neuron Fix Repetition Loops in LLMs?",
+      "raw_summary": "arXiv:2606.13705v1 Announce Type: new Abstract: Yes. Can it cure doom loops? Probably not. The Gemma 4 instruction-tuned models share a reproducible failure: on long factual enumeration prompts, such as listing every episode of a TV series, the 88 IAU constellations, or the 151 original Pokemon, they collapse into repetition, either a tight verbatim loop or a list whose entries decay onto a single answer. These loops occur at rates as high as 95% and survive prompt rewording, inference-engine changes, and most sampling adjustments. In this paper we explore whether this behavior is localized enough to remove by weight edits. To localize the cause, we use per-layer ablation and per-neuron attribution, then confirm the strongest candidates with full-generation sweeps. The loops trace to a small set of MLP neurons (or, in the 26B-A4B Mixture-of-Experts model, a few routed experts) which we suppress with static weight edits. These \"surgeries\" can be as small as a single sign-inverted neuron (in the E2B model). The size of the effective edits grows with model scale, but in all cases, the loop patterns can be addressed at normal generation budgets while preserving general-purpose benchmark scores. However, the edits do not solve everything: we also study longer thinking budgets, where the two larger models most visibly enter doom looping, i.e. a non-convergent regime in which the model self-corrects in circles over a fact it cannot recall, exhausting the budget without committing to a final answer. We show this residual failure is reduced but not eliminated by the same edits, and argue it is fundamentally a knowledge-precision problem rather than a removable circuit; weight surgery can delete a loop, but it cannot supply a missing fact. Our results are both a feasibility demonstration, that is, evidence that a concrete generation pathology can be localized to a few parameters and edited out, and a delineation of where that approach stops.",
+      "score": 73,
+      "primary": "models",
+      "tags": [
+        "interpretabilidad",
+        "gemma-4",
+        "depuración"
+      ],
+      "heuristic_score": 59,
+      "url": "https://arxiv.org/abs/2606.13705",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 59,
+      "_rid": 8,
+      "llm_score": 76,
+      "why": "Logra corregir errores de repetición infinitos en modelos Gemma mediante la edición de una sola neurona específica.",
+      "title_es": "¿Puede la edición de una neurona arreglar los bucles de repetición en LLM?",
+      "entities": [
+        "Google",
+        "Gemma 4",
+        "Can Editing",
+        "Neuron Fix Repetition",
+        "Loops"
+      ],
+      "noise_penalty": 0,
+      "final_score": 73,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "The Culture Funnel: You Can't Align What isn't in the Data",
+      "link": "https://arxiv.org/abs/2606.13808",
+      "published": "2026-06-15T04:00:00+00:00",
+      "summary": "arXiv:2606.13808v1 Announce Type: new Abstract: Current cultural alignment approaches focus on inference-time interventions, assuming models already contain sufficient cultural knowledge. We argue modern LLM pipelines suffer from a cultural data funnel. Using a multidimensional tagging framework across pretraining, fine-tuning, alignment, and reasoning datasets, we show explicit cultural signals decline sharply during post-training, while geographically concentrated, task-specialized data dominates. Multilinguality enhances geographic diversity of cultural knowledge but does not ensure balanced representation. Our tags improve downstream cultural benchmark performance, demonstrating that advances require shifting focus in training data pipelines. To facilitate future research, we release our culturally tagged dataset with 5.6M samples at",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "The Culture Funnel: You Can't Align What isn't in the Data",
+      "raw_summary": "arXiv:2606.13808v1 Announce Type: new Abstract: Current cultural alignment approaches focus on inference-time interventions, assuming models already contain sufficient cultural knowledge. We argue modern LLM pipelines suffer from a cultural data funnel. Using a multidimensional tagging framework across pretraining, fine-tuning, alignment, and reasoning datasets, we show explicit cultural signals decline sharply during post-training, while geographically concentrated, task-specialized data dominates. Multilinguality enhances geographic diversity of cultural knowledge but does not ensure balanced representation. Our tags improve downstream cultural benchmark performance, demonstrating that advances require shifting focus in training data pipelines. To facilitate future research, we release our culturally tagged dataset with 5.6M samples at https://huggingface.co/datasets/CohereLabs/CultureMarkers.",
+      "score": 72,
+      "primary": "models",
+      "tags": [
+        "datos",
+        "sesgo-cultural",
+        "alineación"
+      ],
+      "heuristic_score": 83,
+      "url": "https://arxiv.org/abs/2606.13808",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 83,
+      "_rid": 4,
+      "llm_score": 70,
+      "why": "Demuestra que el proceso de post-entrenamiento elimina señales culturales críticas, concentrando el conocimiento en occidente.",
+      "title_es": "El embudo cultural: No puedes alinear lo que no está en los datos",
+      "entities": [
+        "The Culture Funnel",
+        "You Can",
+        "Align What",
+        "Data"
+      ],
+      "noise_penalty": 0,
+      "final_score": 72,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "When Plausible Is Not Realistic: Evaluating Human Mobility in LLM-Based Urban Simulation",
+      "link": "https://arxiv.org/abs/2606.13835",
+      "published": "2026-06-15T04:00:00+00:00",
+      "summary": "arXiv:2606.13835v1 Announce Type: new Abstract: LLM-based generative agents are increasingly used in urban simulators, yet it remains unclear whether they reproduce empirically realistic human mobility patterns or merely generate plausible mobility narratives. We introduce a validation framework for evaluating the mobility of generative agents of LLM-based urban simulators against real-world mobility data. For this, we use mobility laws, temporal rhythms, network motifs, semantic activity transitions, and behavioral mobility profiles. Using datasets from the Greater Paris region and Shanghai, we evaluate AgentSociety and CitySim across multiple dimensions of mobility realism. Our analysis reveals a substantial gap between narrative plausibility and empirical mobility realism. Although the simulators capture some high-level semantic activity distributions, they struggle to reproduce core spatial and temporal constraints, including realistic trip-length distributions, origin-destination flows, dwell times, and transition dynamics. We further observe that realistic mobility diversity is unstable across default prompting configurations and may require explicit profile-aware initialization. To support reproducible evaluation, we also contribute scalable and open LLM-driven infrastructure for regional-scale map generation, observability-enhanced simulation, mobility-metric computation, and traffic simulation. Our findings highlight the need for rigorous empirical validation of LLM-based urban simulators and provide practical tools for building more realistic and reproducible urban simulation systems.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "When Plausible Is Not Realistic: Evaluating Human Mobility in LLM-Based Urban Simulation",
+      "raw_summary": "arXiv:2606.13835v1 Announce Type: new Abstract: LLM-based generative agents are increasingly used in urban simulators, yet it remains unclear whether they reproduce empirically realistic human mobility patterns or merely generate plausible mobility narratives. We introduce a validation framework for evaluating the mobility of generative agents of LLM-based urban simulators against real-world mobility data. For this, we use mobility laws, temporal rhythms, network motifs, semantic activity transitions, and behavioral mobility profiles. Using datasets from the Greater Paris region and Shanghai, we evaluate AgentSociety and CitySim across multiple dimensions of mobility realism. Our analysis reveals a substantial gap between narrative plausibility and empirical mobility realism. Although the simulators capture some high-level semantic activity distributions, they struggle to reproduce core spatial and temporal constraints, including realistic trip-length distributions, origin-destination flows, dwell times, and transition dynamics. We further observe that realistic mobility diversity is unstable across default prompting configurations and may require explicit profile-aware initialization. To support reproducible evaluation, we also contribute scalable and open LLM-driven infrastructure for regional-scale map generation, observability-enhanced simulation, mobility-metric computation, and traffic simulation. Our findings highlight the need for rigorous empirical validation of LLM-based urban simulators and provide practical tools for building more realistic and reproducible urban simulation systems.",
+      "score": 68,
+      "primary": "models",
+      "tags": [
+        "simulación-urbana",
+        "movilidad",
+        "agentes-generativos"
+      ],
+      "heuristic_score": 83,
+      "url": "https://arxiv.org/abs/2606.13835",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 83,
+      "_rid": 5,
+      "llm_score": 65,
+      "why": "Advierte que los LLM generan trayectorias urbanas plausibles pero estadísticamente erróneas frente a datos de movilidad reales.",
+      "title_es": "Cuando lo plausible no es realista: Evaluación de la movilidad humana en simulaciones urbanas con LLM",
+      "entities": [
+        "AgentSociety",
+        "CitySim",
+        "When Plausible Is",
+        "Not Realistic",
+        "Evaluating Human Mobility",
+        "Based Urban Simulation"
+      ],
+      "noise_penalty": 0,
+      "final_score": 68,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "A Deep Reinforcement Learning (DRL)-Based Transformer Method for Solving the Open Shop Scheduling Problem",
+      "link": "https://arxiv.org/abs/2606.13682",
+      "published": "2026-06-15T04:00:00+00:00",
+      "summary": "arXiv:2606.13682v1 Announce Type: new Abstract: The open shop scheduling problem (OSSP) arises in many industrial and service settings but remains computationally challenging as the number of jobs and machines increases. While exact methods quickly become intractable, classical dispatching rules and metaheuristics may require substantial tuning to maintain solution quality at large scales. This study develops a Transformer-based scheduling policy for OSSP using an encoder-decoder architecture with multi-head attention. The model is trained on Taillard benchmark instances (4x4, 5x5, 7x7, and 10x10) using only the processing-time matrix as input and produces feasible schedules with makespans typically within 15-30% of best-known values. To evaluate scalability, the trained policy is applied without retraining to randomly generated instances from 40x40 to 100x100 and compared against classical dispatching heuristics, including SPT, LPT, MWKR, and EST. Across these large instances, the Transformer achieved average gaps of 12.89-15.12% relative to a standard lower bound. Compared with EST, the Transformer remained competitive, typically within a modest margin, while substantially outperforming SPT and LPT. These results indicate that a Transformer policy trained on small OSSP instances can generalize to substantially larger problems and provide a feature-light, learning-based alternative to classical dispatching rules.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "A Deep Reinforcement Learning (DRL)-Based Transformer Method for Solving the Open Shop Scheduling Problem",
+      "raw_summary": "arXiv:2606.13682v1 Announce Type: new Abstract: The open shop scheduling problem (OSSP) arises in many industrial and service settings but remains computationally challenging as the number of jobs and machines increases. While exact methods quickly become intractable, classical dispatching rules and metaheuristics may require substantial tuning to maintain solution quality at large scales. This study develops a Transformer-based scheduling policy for OSSP using an encoder-decoder architecture with multi-head attention. The model is trained on Taillard benchmark instances (4x4, 5x5, 7x7, and 10x10) using only the processing-time matrix as input and produces feasible schedules with makespans typically within 15-30% of best-known values. To evaluate scalability, the trained policy is applied without retraining to randomly generated instances from 40x40 to 100x100 and compared against classical dispatching heuristics, including SPT, LPT, MWKR, and EST. Across these large instances, the Transformer achieved average gaps of 12.89-15.12% relative to a standard lower bound. Compared with EST, the Transformer remained competitive, typically within a modest margin, while substantially outperforming SPT and LPT. These results indicate that a Transformer policy trained on small OSSP instances can generalize to substantially larger problems and provide a feature-light, learning-based alternative to classical dispatching rules.",
+      "score": 64,
+      "primary": "misc",
+      "tags": [
+        "optimización-industrial",
+        "transformer",
+        "programación"
+      ],
+      "heuristic_score": 97,
+      "url": "https://arxiv.org/abs/2606.13682",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 97,
+      "_rid": 2,
+      "llm_score": 58,
+      "why": "Aplica aprendizaje por refuerzo profundo y Transformers para optimizar la logística de talleres, superando métodos clásicos.",
+      "title_es": "Un método Transformer basado en DRL para resolver el problema de programación de talleres abiertos",
+      "entities": [
+        "Taillard",
+        "DRL",
+        "Deep Reinforcement Learning",
+        "Based Transformer Method",
+        "Solving",
+        "Open Shop Scheduling",
+        "Problem"
+      ],
+      "noise_penalty": 0,
+      "final_score": 64,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "UP-NRPA: User Portrait based Nested Rollout Policy Adaptation for Planning with Large Language Models in Goal-oriented Dialogue Systems",
+      "link": "https://arxiv.org/abs/2606.13683",
+      "published": "2026-06-15T04:00:00+00:00",
+      "summary": "arXiv:2606.13683v1 Announce Type: new Abstract: To address the challenge that current dialogue policy planning methods struggle to dynamically adapt to diverse user characteristics, this paper proposes a User Portrait based Nested Rollout Policy Adaptation (UP-NRPA) online framework with Large Language Models. In contrast to conventional approaches dependent on model training and require offline reinforcement learning policy models for user groups, UP-NRPA enables dynamic customization of dialogue strategies through an adaptive mechanism. This is achieved by leveraging real-time user feedback alongside personality, preferences, and objectives mapped from the current user portrait, thereby adapting to user characteristics without offline reinforcement learning. In collaborative and non-collaborative dialogue benchmarks, UP-NRPA demonstrated considerable benefits, achieving an impressive 100% success rate in multiple dialogue tasks. Particularly in negotiation tasks, the sale-to-list ratio (SL) increased by 56.41%. This demonstrates that UP-NRPA can adapt to diverse user needs without requiring a training mechanism, enabling the dialogue system to adapt to user characteristics.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "UP-NRPA: User Portrait based Nested Rollout Policy Adaptation for Planning with Large Language Models in Goal-oriented Dialogue Systems",
+      "raw_summary": "arXiv:2606.13683v1 Announce Type: new Abstract: To address the challenge that current dialogue policy planning methods struggle to dynamically adapt to diverse user characteristics, this paper proposes a User Portrait based Nested Rollout Policy Adaptation (UP-NRPA) online framework with Large Language Models. In contrast to conventional approaches dependent on model training and require offline reinforcement learning policy models for user groups, UP-NRPA enables dynamic customization of dialogue strategies through an adaptive mechanism. This is achieved by leveraging real-time user feedback alongside personality, preferences, and objectives mapped from the current user portrait, thereby adapting to user characteristics without offline reinforcement learning. In collaborative and non-collaborative dialogue benchmarks, UP-NRPA demonstrated considerable benefits, achieving an impressive 100% success rate in multiple dialogue tasks. Particularly in negotiation tasks, the sale-to-list ratio (SL) increased by 56.41%. This demonstrates that UP-NRPA can adapt to diverse user needs without requiring a training mechanism, enabling the dialogue system to adapt to user characteristics.",
+      "score": 60,
+      "primary": "models",
+      "tags": [
+        "personalización",
+        "planificación",
+        "diálogo"
+      ],
+      "heuristic_score": 52,
+      "url": "https://arxiv.org/abs/2606.13683",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 52,
+      "_rid": 10,
+      "llm_score": 62,
+      "why": "Propone UP-NRPA para adaptar dinámicamente las estrategias de diálogo de la IA según el perfil psicológico del usuario.",
+      "title_es": "UP-NRPA: Adaptación de políticas basada en retratos de usuario para planificación con LLM",
+      "entities": [
+        "NRPA",
+        "User Portrait",
+        "Nested Rollout Policy",
+        "Adaptation",
+        "Planning",
+        "Large Language Models",
+        "Goal",
+        "Dialogue Systems"
+      ],
+      "noise_penalty": 0,
+      "final_score": 60,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "geopolitics_power"
+    },
+    {
+      "title": "QIAS 2026: Overview of the Shared Task on Islamic Inheritance Reasoning",
+      "link": "https://arxiv.org/abs/2606.13756",
+      "published": "2026-06-15T04:00:00+00:00",
+      "summary": "arXiv:2606.13756v1 Announce Type: new Abstract: This paper presents a comprehensive overview of the QIAS 2026 shared task, organized as part of the OSACT7 Workshop and co-located with LREC 2026. The shared task was designed to evaluate the ability of large language models to perform complex reasoning in the religious and legal domain of Islamic inheritance. Unlike conventional question-answering benchmarks, QIAS 2026 focuses on end-to-end reasoning from natural language cases, requiring systems to perform the full inheritance calculation process, from identifying the eligible heirs to assigning the correct share to each beneficiary. To support this evaluation, the task was based on the MAWARITH benchmark, a dataset of $12{,}500$ Arabic inheritance cases annotated with intermediate reasoning steps and final answers. System submissions were evaluated using MIR-E, a multi-step metric that measures performance across the main stages of inheritance reasoning. A total of $16$ teams participated in the shared task, investigating a range of approaches, including prompting-based methods, retrieval-augmented generation, and fine-tuning strategies. The results show that Islamic inheritance remains a highly challenging benchmark for current language models, especially in stages that require precise legal interpretation and structured numerical reasoning. This overview summarizes the task design, dataset, evaluation framework, participating systems, and main results.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "QIAS 2026: Overview of the Shared Task on Islamic Inheritance Reasoning",
+      "raw_summary": "arXiv:2606.13756v1 Announce Type: new Abstract: This paper presents a comprehensive overview of the QIAS 2026 shared task, organized as part of the OSACT7 Workshop and co-located with LREC 2026. The shared task was designed to evaluate the ability of large language models to perform complex reasoning in the religious and legal domain of Islamic inheritance. Unlike conventional question-answering benchmarks, QIAS 2026 focuses on end-to-end reasoning from natural language cases, requiring systems to perform the full inheritance calculation process, from identifying the eligible heirs to assigning the correct share to each beneficiary. To support this evaluation, the task was based on the MAWARITH benchmark, a dataset of $12{,}500$ Arabic inheritance cases annotated with intermediate reasoning steps and final answers. System submissions were evaluated using MIR-E, a multi-step metric that measures performance across the main stages of inheritance reasoning. A total of $16$ teams participated in the shared task, investigating a range of approaches, including prompting-based methods, retrieval-augmented generation, and fine-tuning strategies. The results show that Islamic inheritance remains a highly challenging benchmark for current language models, especially in stages that require precise legal interpretation and structured numerical reasoning. This overview summarizes the task design, dataset, evaluation framework, participating systems, and main results.",
+      "score": 55,
+      "primary": "models",
+      "tags": [
+        "benchmarking",
+        "razonamiento-legal",
+        "lrec-2026"
+      ],
+      "heuristic_score": 59,
+      "url": "https://arxiv.org/abs/2606.13756",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 59,
+      "_rid": 9,
+      "llm_score": 54,
+      "why": "Establece un nuevo marco de evaluación para razonamiento legal y religioso de extremo a extremo sin simplificaciones de QA.",
+      "title_es": "QIAS 2026: Descripción de la tarea compartida sobre razonamiento de herencias islámicas",
+      "entities": [
+        "QIAS",
+        "MAWAR",
+        "Overview",
+        "Shared Task",
+        "Islamic Inheritance Reasoning"
+      ],
+      "noise_penalty": 0,
+      "final_score": 55,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Which Models Perform Better in Inheritance Reasoning?",
+      "link": "https://arxiv.org/abs/2606.13751",
+      "published": "2026-06-15T04:00:00+00:00",
+      "summary": "arXiv:2606.13751v1 Announce Type: new Abstract: This paper presents the participation of team PSL in the QIAS 2026 Shared Task on Arabic Islamic inheritance reasoning. The task evaluates the ability of large language models to solve inheritance cases that require legal interpretation, multi-step reasoning, and precise numerical computation. We compare \\textit{commercial} and \\textit{open-source} models under a unified prompting strategy to assess their effectiveness in structured legal reasoning with minimal task-specific adaptation. \\\\ Our results show a clear gap in reliability between the two model families. Commercial models demonstrate stronger performance in identifying eligible heirs, applying exclusion rules, and maintaining consistency across reasoning steps. In contrast, open-source models exhibit greater instability, particularly in cases involving dependent legal decisions and fractional share adjustments. The best performance is achieved by \\textit{Gemini 2.5 Flash}, with an MRE of $0.989$.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Which Models Perform Better in Inheritance Reasoning?",
+      "raw_summary": "arXiv:2606.13751v1 Announce Type: new Abstract: This paper presents the participation of team PSL in the QIAS 2026 Shared Task on Arabic Islamic inheritance reasoning. The task evaluates the ability of large language models to solve inheritance cases that require legal interpretation, multi-step reasoning, and precise numerical computation. We compare \\textit{commercial} and \\textit{open-source} models under a unified prompting strategy to assess their effectiveness in structured legal reasoning with minimal task-specific adaptation. \\\\ Our results show a clear gap in reliability between the two model families. Commercial models demonstrate stronger performance in identifying eligible heirs, applying exclusion rules, and maintaining consistency across reasoning steps. In contrast, open-source models exhibit greater instability, particularly in cases involving dependent legal decisions and fractional share adjustments. The best performance is achieved by \\textit{Gemini 2.5 Flash}, with an MRE of $0.989$.",
+      "score": 54,
+      "primary": "models",
+      "tags": [
+        "razonamiento-legal",
+        "árabe",
+        "islamic-law"
+      ],
+      "heuristic_score": 65,
+      "url": "https://arxiv.org/abs/2606.13751",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 65,
+      "_rid": 7,
+      "llm_score": 52,
+      "why": "Compara modelos comerciales y abiertos en la resolución de casos complejos de herencia islámica, con ventaja para los comerciales.",
+      "title_es": "¿Qué modelos rinden mejor en el razonamiento de herencias?",
+      "entities": [
+        "PSL",
+        "QIAS 2026",
+        "Which Models Perform",
+        "Better",
+        "Inheritance Reasoning"
+      ],
+      "noise_penalty": 0,
+      "final_score": 54,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Gemini for Science: AI experiments and tools for a new era of discovery",
+      "link": "https://deepmind.google/blog/gemini-for-science-ai-experiments-and-tools-for-a-new-era-of-discovery/",
+      "published": "2026-05-17T13:50:34+00:00",
+      "summary": "A collection of science tools and experiments to expand the scale and precision of scientific exploration.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Gemini for Science: AI experiments and tools for a new era of discovery",
+      "raw_summary": "A collection of science tools and experiments to expand the scale and precision of scientific exploration.",
+      "score": 54,
+      "primary": "models",
+      "tags": [
+        "ciencia",
+        "gemini",
+        "descubrimiento"
+      ],
+      "heuristic_score": 24,
+      "url": "https://deepmind.google/blog/gemini-for-science-ai-experiments-and-tools-for-a-new-era-of-discovery/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 24,
+      "_rid": 12,
+      "llm_score": 78,
+      "why": "Google DeepMind expande el uso de Gemini hacia herramientas experimentales para acelerar descubrimientos científicos precisos.",
+      "title_es": "Gemini para la ciencia: Experimentos y herramientas de IA para una nueva era de descubrimientos",
+      "entities": [
+        "DeepMind",
+        "Gemini"
+      ],
+      "noise_penalty": 16,
+      "final_score": 54,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(16)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "CEO Interview with Mike Horton CEO of HYFIX",
+      "link": "https://semiwiki.com/ceo-interviews/369611-ceo-interview-with-mike-horton-ceo-of-hyfix/",
+      "published": "2026-06-14T21:00:22+00:00",
+      "summary": "Mike Horton is a co-founder of HYFIX Spatial Intelligence , which builds GNSS hardware for decentralized positioning and timing networks, and GEODNET , the world’s largest decentralized GNSS reference network, and HYFIX Spatial Intelligence , which builds GNSS hardware for decentralized positioning and timing networks.&8230; Read More The post CEO Interview with Mike Horton CEO of HYFIX appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "CEO Interview with Mike Horton CEO of HYFIX",
+      "raw_summary": "Mike Horton is a co-founder of HYFIX Spatial Intelligence , which builds GNSS hardware for decentralized positioning and timing networks, and GEODNET , the world’s largest decentralized GNSS reference network, and HYFIX Spatial Intelligence , which builds GNSS hardware for decentralized positioning and timing networks.&#8230; Read More The post CEO Interview with Mike Horton CEO of HYFIX appeared first on SemiWiki .",
+      "score": 41,
+      "primary": "infra",
+      "tags": [
+        "gnss",
+        "hardware-descentralizado",
+        "posicionamiento"
+      ],
+      "heuristic_score": 19,
+      "url": "https://semiwiki.com/ceo-interviews/369611-ceo-interview-with-mike-horton-ceo-of-hyfix/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 19,
+      "_rid": 15,
+      "llm_score": 45,
+      "why": "Desarrollo de hardware para redes de posicionamiento global descentralizadas, con aplicaciones tangenciales para agentes autónomos.",
+      "title_es": "Entrevista al CEO de HYFIX sobre inteligencia espacial y GNSS",
+      "entities": [
+        "HYFIX",
+        "GEODNET",
+        "Mike Horton"
+      ],
+      "noise_penalty": 0,
+      "final_score": 41,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "The Memory Sector Is Becoming One of the Main Beneficiaries of the AI Boom",
+      "link": "https://semiwiki.com/semiconductor-manufacturers/369676-the-memory-sector-is-becoming-one-of-the-main-beneficiaries-of-the-ai-boom/",
+      "published": "2026-06-11T17:00:52+00:00",
+      "summary": "The explosive growth of artificial intelligence is transforming the semiconductor industry, and nowhere is this more evident than in the memory sector. AI training and inference workloads are fundamentally memory-intensive, driving unprecedented demand for advanced DRAM architectures, High Bandwidth Memory (HBM), and&8230; Read More The post The Memory Sector Is Becoming One of the Main Beneficiaries of the AI Boom appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "The Memory Sector Is Becoming One of the Main Beneficiaries of the AI Boom",
+      "raw_summary": "The explosive growth of artificial intelligence is transforming the semiconductor industry, and nowhere is this more evident than in the memory sector. AI training and inference workloads are fundamentally memory-intensive, driving unprecedented demand for advanced DRAM architectures, High Bandwidth Memory (HBM), and&#8230; Read More The post The Memory Sector Is Becoming One of the Main Beneficiaries of the AI Boom appeared first on SemiWiki .",
+      "score": 18,
+      "primary": "infra",
+      "tags": [
+        "infra",
+        "invest",
+        "models"
+      ],
+      "heuristic_score": 73,
+      "url": "https://semiwiki.com/semiconductor-manufacturers/369676-the-memory-sector-is-becoming-one-of-the-main-beneficiaries-of-the-ai-boom/",
+      "is_repeat": true,
+      "novelty_score": 45,
+      "adjusted_score": 18,
+      "llm_score": null,
+      "title_es": "",
+      "entities": [
+        "The Memory Sector",
+        "Is Becoming One",
+        "Main Beneficiaries",
+        "Boom"
+      ],
+      "why": "The explosive growth of artificial intelligence is transforming the semiconductor industry, and nowhere is this more evident than in the memory sector. AI train",
+      "noise_penalty": 0,
+      "final_score": 18,
+      "ranking_reason": "fallback_adjusted-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "How we used Gemini to build Google I/O 2026",
+      "link": "https://blog.google/innovation-and-ai/technology/ai/io-2026-google-ai/",
+      "published": "2026-06-01T16:00:00+00:00",
+      "summary": "A collage of I/O-related s, including the Antigravity Coffee Co. pop-up, a colorful jellyfish and a still from the Timmy TPU video. The word AI repeats three times on the left of the , and there are colorful icons, including a sparkle, as well.",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "How we used Gemini to build Google I/O 2026",
+      "raw_summary": "A collage of I/O-related images, including the Antigravity Coffee Co. pop-up, a colorful jellyfish and a still from the Timmy TPU video. The word AI repeats three times on the left of the image, and there are colorful icons, including a sparkle, as well.",
+      "score": 15,
+      "primary": "misc",
+      "tags": [
+        "marketing",
+        "google-io",
+        "eventos"
+      ],
+      "heuristic_score": 22,
+      "url": "https://blog.google/innovation-and-ai/technology/ai/io-2026-google-ai/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 22,
+      "_rid": 13,
+      "llm_score": 25,
+      "why": "Resumen promocional sobre el uso interno de IA en la organización de eventos corporativos de Google.",
+      "title_es": "Cómo usamos Gemini para construir el Google I/O 2026",
+      "entities": [
+        "Google",
+        "Gemini",
+        "How"
+      ],
+      "noise_penalty": 10,
+      "final_score": 15,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(10)",
+      "strategic_theme": "compute_chips_dc"
+    }
+  ]
+}
