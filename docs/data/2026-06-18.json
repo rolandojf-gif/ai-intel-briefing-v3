@@ -1,0 +1,684 @@
+{
+  "date": "2026-06-18",
+  "score_avg": 71.27,
+  "primary_dist": {
+    "misc": 3,
+    "infra": 3,
+    "models": 8,
+    "invest": 1
+  },
+  "top_entities": [
+    {
+      "entity": "arXiv",
+      "count": 9
+    },
+    {
+      "entity": "Gemini",
+      "count": 3
+    },
+    {
+      "entity": "Breaking",
+      "count": 2
+    },
+    {
+      "entity": "Long",
+      "count": 2
+    },
+    {
+      "entity": "Google",
+      "count": 2
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "La IA alcanza la órbita terrestre con el primer despliegue de un VLM autónomo en satélites de baja cota.",
+      "Nuevas arquitecturas de atención de tiempo lineal buscan jubilar el cuello de botella cuadrático de los Transformers.",
+      "La inferencia local en dispositivos de borde se profesionaliza con memorias de largo plazo optimizadas para 8GB de VRAM.",
+      "El despliegue de Gemini 3.5 y Gemini Omni marca el paso a una multimodalidad nativa con latencia casi nula.",
+      "La industria de chips prioriza la eficiencia energética con herramientas de estimación de potencia a nivel de diseño RTL."
+    ],
+    "risks": [
+      "Saturación de los datasets de entrenamiento que exige generadores de tareas sintéticas ultraeficientes para RL.",
+      "Alucinaciones persistentes en modelos visuales que requieren frameworks de verificación y citación en bucle cerrado.",
+      "Pérdida de matices acústicos críticos en modelos de audio al procesar información puramente textual."
+    ],
+    "watch": [
+      "Evolución de los estándares A-PHY de MIPI para la conectividad de sensores en vehículos definidos por software.",
+      "Rendimiento real de la decodificación especulativa mediante árboles paralelos en entornos de producción.",
+      "Adopción de técnicas de desidentificación local de datos sensibles en el sector educativo."
+    ],
+    "entities_top": [
+      "Google DeepMind",
+      "MIPI Alliance",
+      "NASA"
+    ]
+  },
+  "items": [
+    {
+      "title": "NAVI-Orbital: First In-Orbit Demonstration of a Zero-Shot Vision-Language Model for Autonomous Earth Observation",
+      "link": "https://arxiv.org/abs/2606.18271",
+      "published": "2026-06-18T04:00:00+00:00",
+      "summary": "arXiv:2606.18271v1 Announce Type: new Abstract: As Earth Observation data generation outpaces downlink bandwidth and human-in-the-loop processing, a widening gap has emerged between onboard collection and actionable ground intelligence. This paper presents NAVI-Orbital, a software system deployed on a Low Earth Orbit (LEO) spacecraft. On April 16, 2026, NAVI-Orbital achieved what is, to the authors' knowledge, the first in-orbit demonstration of a vision-language model performing autonomous multi-modal inference entirely onboard. NAVI-Orbital uses a local vision-language model (Gemma 3) to classify each captured scene, produce a text description of its content and the relationships between its features, and respond to operator follow-up via natural-language dialogue. The system is re-tasked through plain-English prompts in place of conventional command sequences, and is orchestrated by a graph-based state machine (LangGraph) coordinating dedicated agents for detection and dialogue. Results across ground benchmarking (88.16% accuracy on the 7,960- curated AID benchmark), Flatsat validation, and live in-orbit captures of newly acquired, previously unseen Earth ry (including uncorrected YAM-9 ry, processed onboard with hardware-accelerated GPU inference and no fine-tuning for the flight instrument) demonstrate the feasibility of running foundation models on satellite-class edge computers to invert the conventional acquire-then-downlink-everything bandwidth profile through semantic compression of Earth observations in-orbit.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "NAVI-Orbital: First In-Orbit Demonstration of a Zero-Shot Vision-Language Model for Autonomous Earth Observation",
+      "raw_summary": "arXiv:2606.18271v1 Announce Type: new Abstract: As Earth Observation data generation outpaces downlink bandwidth and human-in-the-loop processing, a widening gap has emerged between onboard collection and actionable ground intelligence. This paper presents NAVI-Orbital, a software system deployed on a Low Earth Orbit (LEO) spacecraft. On April 16, 2026, NAVI-Orbital achieved what is, to the authors' knowledge, the first in-orbit demonstration of a vision-language model performing autonomous multi-modal inference entirely onboard. NAVI-Orbital uses a local vision-language model (Gemma 3) to classify each captured scene, produce a text description of its content and the relationships between its features, and respond to operator follow-up via natural-language dialogue. The system is re-tasked through plain-English prompts in place of conventional command sequences, and is orchestrated by a graph-based state machine (LangGraph) coordinating dedicated agents for detection and dialogue. Results across ground benchmarking (88.16% accuracy on the 7,960-image curated AID benchmark), Flatsat validation, and live in-orbit captures of newly acquired, previously unseen Earth imagery (including uncorrected YAM-9 imagery, processed onboard with hardware-accelerated GPU inference and no fine-tuning for the flight instrument) demonstrate the feasibility of running foundation models on satellite-class edge computers to invert the conventional acquire-then-downlink-everything bandwidth profile through semantic compression of Earth observations in-orbit.",
+      "score": 91,
+      "primary": "misc",
+      "tags": [
+        "edge ai",
+        "space",
+        "vlm",
+        "gemma 3",
+        "satellite"
+      ],
+      "heuristic_score": 67,
+      "url": "https://arxiv.org/abs/2606.18271",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 67,
+      "_rid": 7,
+      "llm_score": 95,
+      "why": "Hito histórico: primera demostración de un VLM (Gemma 3) operando de forma autónoma en un satélite en órbita.",
+      "title_es": "NAVI-Orbital: primera demostración en órbita de un modelo de lenguaje y visión zero-shot para observación terrestre autónoma",
+      "entities": [
+        "Gemma 3",
+        "LEO",
+        "NAVI",
+        "Orbital",
+        "First In",
+        "Orbit Demonstration",
+        "Zero",
+        "Shot Vision"
+      ],
+      "noise_penalty": 0,
+      "final_score": 91,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "JetFlow: Breaking the Scaling Ceiling of Speculative Decoding with Parallel Tree Drafting",
+      "link": "https://arxiv.org/abs/2606.18394",
+      "published": "2026-06-18T04:00:00+00:00",
+      "summary": "arXiv:2606.18394v1 Announce Type: new Abstract: Speculative decoding (SD) accelerates autoregressive Large Language Models (LLMs) by drafting multiple tokens and verifying them in parallel, but it faces a scaling limitation: increasing the draft budget improves speed only when acceptance remains high and drafting overhead stays low. This ceiling has been difficult to break because prior head-based SD methods face a causality-efficiency dilemma. Autoregressive drafters produce path-conditioned candidates that are effective for tree speculative decoding with higher acceptance length, but their drafting cost grows with tree depth. Bidirectional block-diffusion drafters generate all positions in one pass, but their branch-agnostic marginals can form individually plausible yet mutually inconsistent trees, wasting budget and reducing acceptance. We propose JetFlow, a head-based SD framework that combines one-forward drafting efficiency with branch-wise causal conditioning. JetFlow trains a causal parallel draft head over fused hidden states from the frozen target model, producing candidate trees whose scores align with the target model's autoregressive factorization. This enables JetFlow to convert larger draft budgets into longer accepted prefixes and higher end-to-end speedup. Across math, coding, and chat benchmarks on dense and MoE Qwen3 models, JetFlow consistently outperforms bidirectional-head and tree-based SD baselines. On H100 GPUs, JetFlow achieves up to 9.64x speedup on MATH-500 and 4.58x on open-ended conversational workloads, with further latency gains demonstrated through vLLM integration under realistic serving loads. Our code and models are available at",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "JetFlow: Breaking the Scaling Ceiling of Speculative Decoding with Parallel Tree Drafting",
+      "raw_summary": "arXiv:2606.18394v1 Announce Type: new Abstract: Speculative decoding (SD) accelerates autoregressive Large Language Models (LLMs) by drafting multiple tokens and verifying them in parallel, but it faces a scaling limitation: increasing the draft budget improves speed only when acceptance remains high and drafting overhead stays low. This ceiling has been difficult to break because prior head-based SD methods face a causality-efficiency dilemma. Autoregressive drafters produce path-conditioned candidates that are effective for tree speculative decoding with higher acceptance length, but their drafting cost grows with tree depth. Bidirectional block-diffusion drafters generate all positions in one pass, but their branch-agnostic marginals can form individually plausible yet mutually inconsistent trees, wasting budget and reducing acceptance. We propose JetFlow, a head-based SD framework that combines one-forward drafting efficiency with branch-wise causal conditioning. JetFlow trains a causal parallel draft head over fused hidden states from the frozen target model, producing candidate trees whose scores align with the target model's autoregressive factorization. This enables JetFlow to convert larger draft budgets into longer accepted prefixes and higher end-to-end speedup. Across math, coding, and chat benchmarks on dense and MoE Qwen3 models, JetFlow consistently outperforms bidirectional-head and tree-based SD baselines. On H100 GPUs, JetFlow achieves up to 9.64x speedup on MATH-500 and 4.58x on open-ended conversational workloads, with further latency gains demonstrated through vLLM integration under realistic serving loads. Our code and models are available at https://github.com/hao-ai-lab/JetFlow.",
+      "score": 86,
+      "primary": "infra",
+      "tags": [
+        "speculative decoding",
+        "inference",
+        "llms",
+        "speed"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2606.18394",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 2,
+      "llm_score": 84,
+      "why": "JetFlow optimiza la decodificación especulativa superando límites previos de latencia en modelos autorregresivos.",
+      "title_es": "JetFlow: superando el techo de escalado de la decodificación especulativa con redacción de árboles paralelos",
+      "entities": [
+        "arXiv",
+        "Breaking",
+        "Scaling Ceiling",
+        "Speculative Decoding",
+        "Parallel Tree Drafting"
+      ],
+      "noise_penalty": 0,
+      "final_score": 86,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Gaussian Mixture Attention: Linear-Time Sequence Mixing via Probabilistic Latent Routing",
+      "link": "https://arxiv.org/abs/2606.18283",
+      "published": "2026-06-18T04:00:00+00:00",
+      "summary": "arXiv:2606.18283v1 Announce Type: new Abstract: The dense token-to-token interaction pattern of standard dot-product attention remains a central bottleneck in scaling Transformer architectures to long contexts. We introduce \\textbf{Gaussian Mixture Attention (GMA)}, a probabilistic attention-style sequence mixer that replaces explicit pairwise query--key comparison with routing through $K$ learned Gaussian mixture components. Queries and keys are mapped to posterior \\textit{responsibility} vectors over a shared latent routing space; their overlap defines an implicit responsibility-space affinity, while values are written into and read from a $K$-slot latent memory. By exploiting the associativity of matrix multiplication, GMA avoids materializing the induced $N\\times N$ affinity matrix and instead uses two responsibility matrices whose dominant activation storage scales as $\\mathcal{O}(NK)$ rather than $\\mathcal{O}(N^2)$ for fixed $K$. We formulate bidirectional and causal variants of GMA, provide an end-to-end differentiable parameterization of the Gaussian mixture components, and analyze its responsibility-modulated gradient structure, constrained non-negative low-rank affinity interpretation, and local routing stability. Empirically, GMA exhibits the intended fixed-$K$ linear memory scaling and is competitive with attention-style baselines on long-context classification, while causal GMA improves over tested linear/random-feature attention variants on WikiText-103 but remains behind optimized causal SDPA and Mamba in the current implementation. Analysis of learned responsibilities further shows broad component usage and moderate alignment with surface-form token categories, supporting GMA as a probabilistic, interpretable, fixed-$K$ linear-time attention-style alternative rather than a universal replacement for optimized softmax attention or state-space models.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Gaussian Mixture Attention: Linear-Time Sequence Mixing via Probabilistic Latent Routing",
+      "raw_summary": "arXiv:2606.18283v1 Announce Type: new Abstract: The dense token-to-token interaction pattern of standard dot-product attention remains a central bottleneck in scaling Transformer architectures to long contexts. We introduce \\textbf{Gaussian Mixture Attention (GMA)}, a probabilistic attention-style sequence mixer that replaces explicit pairwise query--key comparison with routing through $K$ learned Gaussian mixture components. Queries and keys are mapped to posterior \\textit{responsibility} vectors over a shared latent routing space; their overlap defines an implicit responsibility-space affinity, while values are written into and read from a $K$-slot latent memory. By exploiting the associativity of matrix multiplication, GMA avoids materializing the induced $N\\times N$ affinity matrix and instead uses two responsibility matrices whose dominant activation storage scales as $\\mathcal{O}(NK)$ rather than $\\mathcal{O}(N^2)$ for fixed $K$. We formulate bidirectional and causal variants of GMA, provide an end-to-end differentiable parameterization of the Gaussian mixture components, and analyze its responsibility-modulated gradient structure, constrained non-negative low-rank affinity interpretation, and local routing stability. Empirically, GMA exhibits the intended fixed-$K$ linear memory scaling and is competitive with attention-style baselines on long-context classification, while causal GMA improves over tested linear/random-feature attention variants on WikiText-103 but remains behind optimized causal SDPA and Mamba in the current implementation. Analysis of learned responsibilities further shows broad component usage and moderate alignment with surface-form token categories, supporting GMA as a probabilistic, interpretable, fixed-$K$ linear-time attention-style alternative rather than a universal replacement for optimized softmax attention or state-space models.",
+      "score": 86,
+      "primary": "infra",
+      "tags": [
+        "attention mechanism",
+        "transformers",
+        "scalability",
+        "linear time"
+      ],
+      "heuristic_score": 68,
+      "url": "https://arxiv.org/abs/2606.18283",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 68,
+      "_rid": 6,
+      "llm_score": 89,
+      "why": "GMA propone una alternativa de tiempo lineal a la atención estándar, permitiendo escalar a contextos extremadamente largos.",
+      "title_es": "Atención por mezcla gaussiana: mezcla de secuencias en tiempo lineal mediante enrutamiento latente probabilístico",
+      "entities": [
+        "arXiv",
+        "Gaussian Mixture Attention",
+        "Linear",
+        "Time Sequence Mixing",
+        "Probabilistic Latent Routing"
+      ],
+      "noise_penalty": 0,
+      "final_score": 86,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "CoreMem: Riemannian Retrieval and Fisher-Guided Distillation for Long-Term Memory in Dialogue Agents",
+      "link": "https://arxiv.org/abs/2606.18406",
+      "published": "2026-06-18T04:00:00+00:00",
+      "summary": "arXiv:2606.18406v1 Announce Type: new Abstract: Personalized dialogue agents require continuous long-term memory to maintain coherent interactions across multiple sessions. However, deploying these capabilities on consumer-grade hardware (e.g., 8 GB VRAM edge devices) introduces severe memory and compute bottlenecks. Existing systems typically rely on isotropic cosine similarity for retrieval and heuristic rules for context compression. These approaches lack a unified theoretical foundation, frequently suffering from the hubness problem in high-dimensional retrieval and syntactic fragmentation during compression. To overcome these limitations, we propose CoreMem, a resource-efficient edge-cloud memory architecture fundamentally unified by information geometry. First, Riemannian retrieval replaces cosine matching with a locally adaptive Fisher-Rao metric, effectively penalizing hub memories via Mahalanobis distance with O(Ndr) Woodbury acceleration for real-time search. Second, Fisher-guided discrete token distillation (FDTD) introduces a hierarchical sentence-to-token compression mechanism. It derives sensitivity scores from Fisher information traces, providing a principled compression-KL tradeoff augmented with explicit structural syntax protection. Evaluated on the LOCOMO and LongMemEval-S benchmarks, CoreMem achieves strong accuracy improvements, yielding substantial gains in Open-domain (+4.51 pp) and Temporal (+4.17 pp) reasoning. Extensive profiling confirms that CoreMem operates seamlessly within a strict 8 GB VRAM budget, successfully bridging the gap between resource-constrained edge devices and the demand for theoretically grounded, lifelong memory agents.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "CoreMem: Riemannian Retrieval and Fisher-Guided Distillation for Long-Term Memory in Dialogue Agents",
+      "raw_summary": "arXiv:2606.18406v1 Announce Type: new Abstract: Personalized dialogue agents require continuous long-term memory to maintain coherent interactions across multiple sessions. However, deploying these capabilities on consumer-grade hardware (e.g., 8 GB VRAM edge devices) introduces severe memory and compute bottlenecks. Existing systems typically rely on isotropic cosine similarity for retrieval and heuristic rules for context compression. These approaches lack a unified theoretical foundation, frequently suffering from the hubness problem in high-dimensional retrieval and syntactic fragmentation during compression. To overcome these limitations, we propose CoreMem, a resource-efficient edge-cloud memory architecture fundamentally unified by information geometry. First, Riemannian retrieval replaces cosine matching with a locally adaptive Fisher-Rao metric, effectively penalizing hub memories via Mahalanobis distance with O(Ndr) Woodbury acceleration for real-time search. Second, Fisher-guided discrete token distillation (FDTD) introduces a hierarchical sentence-to-token compression mechanism. It derives sensitivity scores from Fisher information traces, providing a principled compression-KL tradeoff augmented with explicit structural syntax protection. Evaluated on the LOCOMO and LongMemEval-S benchmarks, CoreMem achieves strong accuracy improvements, yielding substantial gains in Open-domain (+4.51 pp) and Temporal (+4.17 pp) reasoning. Extensive profiling confirms that CoreMem operates seamlessly within a strict 8 GB VRAM budget, successfully bridging the gap between resource-constrained edge devices and the demand for theoretically grounded, lifelong memory agents.",
+      "score": 81,
+      "primary": "models",
+      "tags": [
+        "edge computing",
+        "memory",
+        "dialogue agents",
+        "efficiency"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2606.18406",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 3,
+      "llm_score": 78,
+      "why": "CoreMem permite memoria persistente en hardware de consumo reduciendo la fragmentación sintáctica y el uso de VRAM.",
+      "title_es": "CoreMem: recuperación riemanniana y destilación guiada por Fisher para memoria a largo plazo en agentes de diálogo",
+      "entities": [
+        "arXiv",
+        "Riemannian Retrieval",
+        "Fisher",
+        "Guided Distillation",
+        "Long",
+        "Term Memory",
+        "Dialogue Agents"
+      ],
+      "noise_penalty": 0,
+      "final_score": 81,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "SproutRAG: Attention-Guided Tree Search with Progressive Embeddings for Long-Document RAG",
+      "link": "https://arxiv.org/abs/2606.18381",
+      "published": "2026-06-18T04:00:00+00:00",
+      "summary": "arXiv:2606.18381v1 Announce Type: new Abstract: Retrieval-augmented generation (RAG) systems must balance retrieval granularity with contextual coherence, a challenge that existing methods address through LLM-guided chunking, single-level context expansion, or hierarchical summarization. These approaches variously depend on costly LLM calls during indexing or retrieval, limit context aggregation to a single granularity level, or introduce information loss through summarization. We present SproutRAG, an attention-guided hierarchical RAG framework that addresses this trade-off by organizing sentence-level chunks into progressively larger but semantically coherent units, using learned inter-sentence attention to construct a binary chunking tree. Unlike prior approaches that rely on external LLMs, fixed context expansion, or lossy summarization, SproutRAG learns which attention heads and layers best capture semantic document structure, enabling multi-granularity retrieval without additional LLM calls or compressed summaries. At retrieval time, SproutRAG uses hierarchical beam search to retrieve candidates at multiple granularities, capturing multi-sentence relevance beyond flat retrieval. The framework is trained end-to-end with a joint objective that improves both embeddings and tree structure. Experiments across four benchmarks spanning scientific, legal, and open-domain settings demonstrate that SproutRAG improves information efficiency (IE) by 6.1% on average over the strongest baseline. Code is available on",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "SproutRAG: Attention-Guided Tree Search with Progressive Embeddings for Long-Document RAG",
+      "raw_summary": "arXiv:2606.18381v1 Announce Type: new Abstract: Retrieval-augmented generation (RAG) systems must balance retrieval granularity with contextual coherence, a challenge that existing methods address through LLM-guided chunking, single-level context expansion, or hierarchical summarization. These approaches variously depend on costly LLM calls during indexing or retrieval, limit context aggregation to a single granularity level, or introduce information loss through summarization. We present SproutRAG, an attention-guided hierarchical RAG framework that addresses this trade-off by organizing sentence-level chunks into progressively larger but semantically coherent units, using learned inter-sentence attention to construct a binary chunking tree. Unlike prior approaches that rely on external LLMs, fixed context expansion, or lossy summarization, SproutRAG learns which attention heads and layers best capture semantic document structure, enabling multi-granularity retrieval without additional LLM calls or compressed summaries. At retrieval time, SproutRAG uses hierarchical beam search to retrieve candidates at multiple granularities, capturing multi-sentence relevance beyond flat retrieval. The framework is trained end-to-end with a joint objective that improves both embeddings and tree structure. Experiments across four benchmarks spanning scientific, legal, and open-domain settings demonstrate that SproutRAG improves information efficiency (IE) by 6.1% on average over the strongest baseline. Code is available on https://github.com/AmirAbaskohi/SproutRAG.",
+      "score": 77,
+      "primary": "models",
+      "tags": [
+        "rag",
+        "embeddings",
+        "long context",
+        "search"
+      ],
+      "heuristic_score": 53,
+      "url": "https://arxiv.org/abs/2606.18381",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 53,
+      "_rid": 9,
+      "llm_score": 81,
+      "why": "Mejora la recuperación en documentos largos mediante una estructura jerárquica de chunks semánticamente coherentes.",
+      "title_es": "SproutRAG: búsqueda en árbol guiada por atención con embeddings progresivos para RAG de documentos largos",
+      "entities": [
+        "arXiv",
+        "Attention",
+        "Guided Tree Search",
+        "Progressive Embeddings",
+        "Long",
+        "Document"
+      ],
+      "noise_penalty": 0,
+      "final_score": 77,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Breaking the Solver Bottleneck: Training Task Generators at the Learnable Frontier",
+      "link": "https://arxiv.org/abs/2606.18284",
+      "published": "2026-06-18T04:00:00+00:00",
+      "summary": "arXiv:2606.18284v1 Announce Type: new Abstract: The limiting resource for training agents via reinforcement learning (RL) is increasingly frontier task supply: valid, solvable tasks just difficult enough to train the current model. As reasoning and agentic models improve, fixed task distributions saturate, while naive synthetic generation yields tasks that are trivial, impossible, or ill-posed. Training a task generator with RL to optimize validity and learnability can address this bottleneck, but direct optimization requires repeated solver rollouts per candidate. For software-engineering (SWE) tasks, a single rollout can take tens of minutes; solver-in-the-loop generator training is intractable. We introduce PROPEL, a solver-amortized framework for training task generators at the targeted solve rate. PROPEL trains a lightweight activation probe on a one-time labeled corpus of generated tasks and solver outcomes. The probe predicts target-solver pass rate from a frozen generator reference model and serves as a proxy for solve rate during generator optimization, reducing generator evaluation to a single forward pass. Across math, code, and software-engineering at multiple model scales, PROPEL shifts generation toward the targeted solve rate: for coding, tasks generated at the learnable frontier increase from $10.1\\% \\rightarrow 20.0\\%$ for a Qwen2.5-3B-Instruct solver and from $5.3\\% \\rightarrow 12.6\\%$ for a Qwen2.5-7B-Instruct solver. For SWE, PROPEL increases the share of generations at the targeted solve rate from $9.8\\% \\rightarrow 19.6\\%$ for Qwen3.5-27B on repositories not seen during training of probe and generator.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Breaking the Solver Bottleneck: Training Task Generators at the Learnable Frontier",
+      "raw_summary": "arXiv:2606.18284v1 Announce Type: new Abstract: The limiting resource for training agents via reinforcement learning (RL) is increasingly frontier task supply: valid, solvable tasks just difficult enough to train the current model. As reasoning and agentic models improve, fixed task distributions saturate, while naive synthetic generation yields tasks that are trivial, impossible, or ill-posed. Training a task generator with RL to optimize validity and learnability can address this bottleneck, but direct optimization requires repeated solver rollouts per candidate. For software-engineering (SWE) tasks, a single rollout can take tens of minutes; solver-in-the-loop generator training is intractable. We introduce PROPEL, a solver-amortized framework for training task generators at the targeted solve rate. PROPEL trains a lightweight activation probe on a one-time labeled corpus of generated tasks and solver outcomes. The probe predicts target-solver pass rate from a frozen generator reference model and serves as a proxy for solve rate during generator optimization, reducing generator evaluation to a single forward pass. Across math, code, and software-engineering at multiple model scales, PROPEL shifts generation toward the targeted solve rate: for coding, tasks generated at the learnable frontier increase from $10.1\\% \\rightarrow 20.0\\%$ for a Qwen2.5-3B-Instruct solver and from $5.3\\% \\rightarrow 12.6\\%$ for a Qwen2.5-7B-Instruct solver. For SWE, PROPEL increases the share of generations at the targeted solve rate from $9.8\\% \\rightarrow 19.6\\%$ for Qwen3.5-27B on repositories not seen during training of probe and generator.",
+      "score": 76,
+      "primary": "models",
+      "tags": [
+        "reinforcement learning",
+        "task generation",
+        "solvers",
+        "efficiency"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2606.18284",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 1,
+      "llm_score": 72,
+      "why": "Propone solventar la escasez de tareas aptas para RL mediante generadores entrenables que evitan rollouts costosos.",
+      "title_es": "Rompiendo el cuello de botella del solver: entrenamiento de generadores de tareas en la frontera del aprendizaje",
+      "entities": [
+        "arXiv",
+        "Breaking",
+        "Solver Bottleneck",
+        "Training Task Generators",
+        "Learnable Frontier"
+      ],
+      "noise_penalty": 0,
+      "final_score": 76,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Fluid, natural voice translation with Gemini 3.5 Live Translate",
+      "link": "https://deepmind.google/blog/fluid-natural-voice-translation-with-gemini-35-live-translate/",
+      "published": "2026-06-09T15:16:25+00:00",
+      "summary": "Gemini 3.5 Live Translate brings near real-time, natural speech translation to Google AI Studio, Google Translate and Google Meet.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Fluid, natural voice translation with Gemini 3.5 Live Translate",
+      "raw_summary": "Gemini 3.5 Live Translate brings near real-time, natural speech translation to Google AI Studio, Google Translate and Google Meet.",
+      "score": 73,
+      "primary": "models",
+      "tags": [
+        "gemini 3.5",
+        "translation",
+        "real-time",
+        "speech"
+      ],
+      "heuristic_score": 22,
+      "url": "https://deepmind.google/blog/fluid-natural-voice-translation-with-gemini-35-live-translate/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 22,
+      "_rid": 13,
+      "llm_score": 90,
+      "why": "Avance significativo en traducción de voz natural y fluida en tiempo real para el ecosistema productivo de Google.",
+      "title_es": "Traducción de voz fluida y natural con Gemini 3.5 Live Translate",
+      "entities": [
+        "DeepMind",
+        "Gemini 3.5",
+        "Gemini",
+        "Fluid",
+        "Live Translate"
+      ],
+      "noise_penalty": 7,
+      "final_score": 73,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(7)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Want Better Synthetic Data? Steer It: Activation Steering for Low-Resource Language Generation",
+      "link": "https://arxiv.org/abs/2606.18389",
+      "published": "2026-06-18T04:00:00+00:00",
+      "summary": "arXiv:2606.18389v1 Announce Type: new Abstract: Large language models (LLMs) have become an effective tool for synthetic data generation, including for low-resource languages, where generated data can improve downstream task performance. Current best-performing approaches typically rely on few-shot prompting with target-language examples, which increases inference costs and may reduce diversity through lexical anchoring. In this work, we investigate activation steering as an alternative for low-resource synthetic data generation. We study two steering strategies: Language Steering, which targets the linguistic identity of a language, and Quality Steering, which captures well-formedness by contrasting human-written and backtranslated text representations. We evaluate these methods across four open-source LLMs, multiple layers, and 11 typologically diverse languages by generating sentiment and topic classification data and finetuning smaller classifiers. Steering is applied in both zero-shot and few-shot prompting settings and compared against non-steered counterparts. Our results show that steering on early layers consistently improves the diversity of generated data while often yielding stronger downstream model performance, particularly for low-resource languages.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Want Better Synthetic Data? Steer It: Activation Steering for Low-Resource Language Generation",
+      "raw_summary": "arXiv:2606.18389v1 Announce Type: new Abstract: Large language models (LLMs) have become an effective tool for synthetic data generation, including for low-resource languages, where generated data can improve downstream task performance. Current best-performing approaches typically rely on few-shot prompting with target-language examples, which increases inference costs and may reduce diversity through lexical anchoring. In this work, we investigate activation steering as an alternative for low-resource synthetic data generation. We study two steering strategies: Language Steering, which targets the linguistic identity of a language, and Quality Steering, which captures well-formedness by contrasting human-written and backtranslated text representations. We evaluate these methods across four open-source LLMs, multiple layers, and 11 typologically diverse languages by generating sentiment and topic classification data and finetuning smaller classifiers. Steering is applied in both zero-shot and few-shot prompting settings and compared against non-steered counterparts. Our results show that steering on early layers consistently improves the diversity of generated data while often yielding stronger downstream model performance, particularly for low-resource languages.",
+      "score": 70,
+      "primary": "models",
+      "tags": [
+        "synthetic data",
+        "low-resource languages",
+        "activation steering",
+        "nlp"
+      ],
+      "heuristic_score": 71,
+      "url": "https://arxiv.org/abs/2606.18389",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 71,
+      "_rid": 5,
+      "llm_score": 70,
+      "why": "Usa el control de activaciones internas para mejorar la calidad de datos sintéticos en idiomas con pocos recursos.",
+      "title_es": "¿Quieres mejores datos sintéticos? Dirígelos: control de activaciones para la generación de lenguaje con pocos recursos",
+      "entities": [
+        "arXiv",
+        "Want Better Synthetic",
+        "Data",
+        "Steer It",
+        "Activation Steering",
+        "Low",
+        "Resource Language Generation"
+      ],
+      "noise_penalty": 0,
+      "final_score": 70,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "CaVe-VLM-CoT: An Interpretable Vision-Language Model Framework",
+      "link": "https://arxiv.org/abs/2606.18385",
+      "published": "2026-06-18T04:00:00+00:00",
+      "summary": "arXiv:2606.18385v1 Announce Type: new Abstract: Vision-Language Models (VLMs) remain prone to hallucinations, producing fluent but visually unfaithful outputs. Existing chain-of-thought and retrieval-augmented methods only partially address this, as they neither enforce step-level citation grounding nor route verification failures back to retrieval for correction. We present CaVe-VLM-CoT, a modular reflection-based agentic-RAG framework that enforces evidence-grounded reasoning through a five-stage closed-loop pipeline: Extractor, Retriever, Solver, Citation Injector, and Verifier, in which detected ungrounded claims trigger structured feedback to the Extractor for targeted re-retrieval. Since no existing framework jointly measures retrieval quality, step-wise citation faithfulness, and cross-modal grounding, we propose a suite of 23 component-wise metrics across all stages, anchored by CaVeScore, a composite metric weighting accuracy, citation precision and recall, attribution, and evidence grounding. Without any architectural or prompt modifications, CaVe-VLM-CoT achieves 87.1\\% accuracy and 56.6\\% CaVeScore on ScienceQA , and 55.2\\% accuracy and 35.7\\% CaVeScore on MMMU (30 subjects).",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "CaVe-VLM-CoT: An Interpretable Vision-Language Model Framework",
+      "raw_summary": "arXiv:2606.18385v1 Announce Type: new Abstract: Vision-Language Models (VLMs) remain prone to hallucinations, producing fluent but visually unfaithful outputs. Existing chain-of-thought and retrieval-augmented methods only partially address this, as they neither enforce step-level citation grounding nor route verification failures back to retrieval for correction. We present CaVe-VLM-CoT, a modular reflection-based agentic-RAG framework that enforces evidence-grounded reasoning through a five-stage closed-loop pipeline: Extractor, Retriever, Solver, Citation Injector, and Verifier, in which detected ungrounded claims trigger structured feedback to the Extractor for targeted re-retrieval. Since no existing framework jointly measures retrieval quality, step-wise citation faithfulness, and cross-modal grounding, we propose a suite of 23 component-wise metrics across all stages, anchored by CaVeScore, a composite metric weighting accuracy, citation precision and recall, attribution, and evidence grounding. Without any architectural or prompt modifications, CaVe-VLM-CoT achieves 87.1\\% accuracy and 56.6\\% CaVeScore on ScienceQA , and 55.2\\% accuracy and 35.7\\% CaVeScore on MMMU (30 subjects).",
+      "score": 70,
+      "primary": "models",
+      "tags": [
+        "vlm",
+        "hallucinations",
+        "rag",
+        "reasoning"
+      ],
+      "heuristic_score": 47,
+      "url": "https://arxiv.org/abs/2606.18385",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 47,
+      "_rid": 10,
+      "llm_score": 74,
+      "why": "Framework para reducir alucinaciones en modelos visuales mediante un ciclo cerrado de extracción y verificación.",
+      "title_es": "CaVe-VLM-CoT: un marco de modelo de lenguaje y visión interpretable",
+      "entities": [
+        "arXiv",
+        "VLM",
+        "An Interpretable Vision",
+        "Language Model Framework"
+      ],
+      "noise_penalty": 0,
+      "final_score": 70,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Redact or Keep? A Fully Local AI Cascade for Educational Dialogue De-Identification",
+      "link": "https://arxiv.org/abs/2606.18372",
+      "published": "2026-06-18T04:00:00+00:00",
+      "summary": "arXiv:2606.18372v1 Announce Type: new Abstract: Educational dialogue is a valuable but sensitive resource for research: the same transcripts that capture authentic learning often capture personally identifiable information (PII) entangled with curricular content, where \"Riemann\" may refer to a real student or to a mathematical concept. Existing approaches force a tradeoff between governance and accuracy. Commercial Large Language Models (LLMs) can handle this ambiguity but require sending student data to third parties, while local named entity recognition (NER) systems preserve governance but over-redact curricular terms. We propose a fully local cascade framework that reframes de-identification from open-ended entity recognition to constrained privacy triage. A recall-first union proposer combines two lightweight encoders with deterministic rules to over-generate candidate spans; a context-aware reviewer then makes a binary Redact/Keep decision for each candidate using surrounding dialogue and speaker role. We evaluate three reviewer configurations against same-family LLM-only baselines and a commercial API on math tutoring transcripts from two large platforms. The strongest local configuration reaches 0.958 macro F1, compared with 0.767 for a same-family LLM-only baseline and 0.706 for the commercial API, while running entirely on a single laptop. On a targeted challenge set of curricular-personal name ambiguity, the same configuration degrades by only 0.03 F1 versus 0.19 to 0.25 for smaller reviewers. These results suggest that for educational de-identification, problem formulation matters more than model scale.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Redact or Keep? A Fully Local AI Cascade for Educational Dialogue De-Identification",
+      "raw_summary": "arXiv:2606.18372v1 Announce Type: new Abstract: Educational dialogue is a valuable but sensitive resource for research: the same transcripts that capture authentic learning often capture personally identifiable information (PII) entangled with curricular content, where \"Riemann\" may refer to a real student or to a mathematical concept. Existing approaches force a tradeoff between governance and accuracy. Commercial Large Language Models (LLMs) can handle this ambiguity but require sending student data to third parties, while local named entity recognition (NER) systems preserve governance but over-redact curricular terms. We propose a fully local cascade framework that reframes de-identification from open-ended entity recognition to constrained privacy triage. A recall-first union proposer combines two lightweight encoders with deterministic rules to over-generate candidate spans; a context-aware reviewer then makes a binary Redact/Keep decision for each candidate using surrounding dialogue and speaker role. We evaluate three reviewer configurations against same-family LLM-only baselines and a commercial API on math tutoring transcripts from two large platforms. The strongest local configuration reaches 0.958 macro F1, compared with 0.767 for a same-family LLM-only baseline and 0.706 for the commercial API, while running entirely on a single laptop. On a targeted challenge set of curricular-personal name ambiguity, the same configuration degrades by only 0.03 F1 versus 0.19 to 0.25 for smaller reviewers. These results suggest that for educational de-identification, problem formulation matters more than model scale.",
+      "score": 66,
+      "primary": "misc",
+      "tags": [
+        "privacy",
+        "education",
+        "local ai",
+        "pii"
+      ],
+      "heuristic_score": 75,
+      "url": "https://arxiv.org/abs/2606.18372",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 75,
+      "_rid": 4,
+      "llm_score": 65,
+      "why": "Sistema local para anonimizar datos educativos sensibles sin depender de nubes de terceros, equilibrando precisión y ética.",
+      "title_es": "¿Redactar o mantener? Una cascada de IA totalmente local para la desidentificación de diálogos educativos",
+      "entities": [
+        "arXiv",
+        "Redact",
+        "Keep",
+        "Fully Local",
+        "Cascade",
+        "Educational Dialogue De",
+        "Identification"
+      ],
+      "noise_penalty": 0,
+      "final_score": 66,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "9 demos of Gemini Omni and Gemini 3.5 in action",
+      "link": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-omni-3-5-videos/",
+      "published": "2026-05-29T17:30:00+00:00",
+      "summary": "Gemini Omni & Gemini 3.5 hero",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "9 demos of Gemini Omni and Gemini 3.5 in action",
+      "raw_summary": "Gemini Omni & Gemini 3.5 hero",
+      "score": 66,
+      "primary": "models",
+      "tags": [
+        "gemini omni",
+        "multimodal",
+        "demos",
+        "video"
+      ],
+      "heuristic_score": 22,
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-omni-3-5-videos/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 22,
+      "_rid": 15,
+      "llm_score": 85,
+      "why": "Las capacidades de Gemini Omni y 3.5 demuestran el estado del arte en interacción multimodal vídeo-voz-texto.",
+      "title_es": "9 demostraciones de Gemini Omni y Gemini 3.5 en acción",
+      "entities": [
+        "Google",
+        "Gemini Omni",
+        "Gemini"
+      ],
+      "noise_penalty": 10,
+      "final_score": 66,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(10)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Continuous Audio Thinking for Large Audio Language Models",
+      "link": "https://arxiv.org/abs/2606.18273",
+      "published": "2026-06-18T04:00:00+00:00",
+      "summary": "arXiv:2606.18273v1 Announce Type: new Abstract: Large audio language models (LALMs) have shown impressive capabilities on diverse audio understanding tasks, ranging from speech transcription to music analysis. However, because LALMs are typically trained to produce text-aligned responses, their hidden states are progressively shaped for text generation rather than for preserving acoustic information. As a result, the diverse acoustic content that audio carries, such as phonetic detail, prosody, sound events, affect, and pitch, is lost along the way and difficult to leverage in the response. We introduce Continuous Audio Thinking (CoAT), a framework that equips audio language models with a continuous latent workspace for organizing acoustic information prior to response generation, grounded by distillation from audio experts. Within the thinking space, the model can utilize the rich acoustic information provided by expert distillation when generating its response. Furthermore, the proposed continuous thinking block can be processed in a single prefill, so CoAT does not require additional autoregressive decoding cost over the baseline. Across three LALMs, Qwen2-Audio, Qwen2.5-Omni-7B, and Audio Flamingo~3, performance gains on a broad benchmark suite spanning audio reasoning, audio understanding, music classification, speech emotion, and speech transcription demonstrate the effectiveness of CoAT. Further analysis confirms that the auxiliary supervision propagates from the thinking positions to the model's textual responses.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Continuous Audio Thinking for Large Audio Language Models",
+      "raw_summary": "arXiv:2606.18273v1 Announce Type: new Abstract: Large audio language models (LALMs) have shown impressive capabilities on diverse audio understanding tasks, ranging from speech transcription to music analysis. However, because LALMs are typically trained to produce text-aligned responses, their hidden states are progressively shaped for text generation rather than for preserving acoustic information. As a result, the diverse acoustic content that audio carries, such as phonetic detail, prosody, sound events, affect, and pitch, is lost along the way and difficult to leverage in the response. We introduce Continuous Audio Thinking (CoAT), a framework that equips audio language models with a continuous latent workspace for organizing acoustic information prior to response generation, grounded by distillation from audio experts. Within the thinking space, the model can utilize the rich acoustic information provided by expert distillation when generating its response. Furthermore, the proposed continuous thinking block can be processed in a single prefill, so CoAT does not require additional autoregressive decoding cost over the baseline. Across three LALMs, Qwen2-Audio, Qwen2.5-Omni-7B, and Audio Flamingo~3, performance gains on a broad benchmark suite spanning audio reasoning, audio understanding, music classification, speech emotion, and speech transcription demonstrate the effectiveness of CoAT. Further analysis confirms that the auxiliary supervision propagates from the thinking positions to the model's textual responses.",
+      "score": 65,
+      "primary": "models",
+      "tags": [
+        "audio",
+        "multimodal",
+        "lalm",
+        "coat"
+      ],
+      "heuristic_score": 59,
+      "url": "https://arxiv.org/abs/2606.18273",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 59,
+      "_rid": 8,
+      "llm_score": 76,
+      "why": "Introduce un framework para que los modelos de audio mantengan detalles acústicos en lugar de priorizar solo el texto.",
+      "title_es": "Pensamiento de audio continuo para grandes modelos de lenguaje de audio",
+      "entities": [
+        "arXiv",
+        "Continuous Audio Thinking",
+        "Large Audio Language",
+        "Models"
+      ],
+      "noise_penalty": 8,
+      "final_score": 65,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(8)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "MIPI Alliance Accelerates Automotive AI Connectivity with A-PHY Compliance Program",
+      "link": "https://semiwiki.com/ip/369684-mipi-alliance-accelerates-automotive-ai-connectivity-with-a-phy-compliance-program/",
+      "published": "2026-06-17T15:00:20+00:00",
+      "summary": "The automotive semiconductor industry is undergoing a major architectural transition as vehicles evolve into centralized, software-defined computing platforms capable of supporting advanced driver assistance systems (ADAS), autonomous driving, and AI-enabled cockpit applications. This shift is driving demand for&8230; Read More The post MIPI Alliance Accelerates Automotive AI Connectivity with A-PHY Compliance Program appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "MIPI Alliance Accelerates Automotive AI Connectivity with A-PHY Compliance Program",
+      "raw_summary": "The automotive semiconductor industry is undergoing a major architectural transition as vehicles evolve into centralized, software-defined computing platforms capable of supporting advanced driver assistance systems (ADAS), autonomous driving, and AI-enabled cockpit applications. This shift is driving demand for&#8230; Read More The post MIPI Alliance Accelerates Automotive AI Connectivity with A-PHY Compliance Program appeared first on SemiWiki .",
+      "score": 62,
+      "primary": "infra",
+      "tags": [
+        "automotive",
+        "adas",
+        "connectivity",
+        "semiconductors"
+      ],
+      "heuristic_score": 31,
+      "url": "https://semiwiki.com/ip/369684-mipi-alliance-accelerates-automotive-ai-connectivity-with-a-phy-compliance-program/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 31,
+      "_rid": 11,
+      "llm_score": 68,
+      "why": "La estandarización de A-PHY es crítica para el flujo de datos masivos que requieren los sistemas de conducción autónoma.",
+      "title_es": "MIPI Alliance acelera la conectividad de IA en automoción con el programa de cumplimiento A-PHY",
+      "entities": [
+        "MIPI Alliance",
+        "MIPI",
+        "PHY",
+        "Alliance Accelerates Automotive",
+        "Connectivity",
+        "Compliance Program"
+      ],
+      "noise_penalty": 0,
+      "final_score": 62,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "PowerArtist RTL Power Estimation Folds into Keysight",
+      "link": "https://semiwiki.com/eda/370032-powerartist-rtl-power-estimation-folds-into-keysight/",
+      "published": "2026-06-17T13:00:49+00:00",
+      "summary": "Back in the late 1990s, Sente launched a product called WattWatcher to estimate power from design RTL and simulation activity. This was revolutionary for its time since alternatives, while very accurate, only offered power analysis at the gate level. Gate-level analysis is great for fine-tuning power but is unhelpful for achieving&8230; Read More The post PowerArtist RTL Power Estimation Folds into Keysight appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "PowerArtist RTL Power Estimation Folds into Keysight",
+      "raw_summary": "Back in the late 1990s, Sente launched a product called WattWatcher to estimate power from design RTL and simulation activity. This was revolutionary for its time since alternatives, while very accurate, only offered power analysis at the gate level. Gate-level analysis is great for fine-tuning power but is unhelpful for achieving&#8230; Read More The post PowerArtist RTL Power Estimation Folds into Keysight appeared first on SemiWiki .",
+      "score": 56,
+      "primary": "invest",
+      "tags": [
+        "eda",
+        "chips",
+        "power estimation",
+        "rtl"
+      ],
+      "heuristic_score": 24,
+      "url": "https://semiwiki.com/eda/370032-powerartist-rtl-power-estimation-folds-into-keysight/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 24,
+      "_rid": 12,
+      "llm_score": 62,
+      "why": "La integración de herramientas de estimación de potencia en el diseño de chips es clave para la eficiencia de la infraestructura IA.",
+      "title_es": "La estimación de potencia RTL de PowerArtist se integra en Keysight",
+      "entities": [
+        "Keysight",
+        "PowerArtist",
+        "RTL",
+        "Power Estimation Folds"
+      ],
+      "noise_penalty": 0,
+      "final_score": 56,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "How we used Gemini to build Google I/O 2026",
+      "link": "https://blog.google/innovation-and-ai/technology/ai/io-2026-google-ai/",
+      "published": "2026-06-01T16:00:00+00:00",
+      "summary": "A collage of I/O-related s, including the Antigravity Coffee Co. pop-up, a colorful jellyfish and a still from the Timmy TPU video. The word AI repeats three times on the left of the , and there are colorful icons, including a sparkle, as well.",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "How we used Gemini to build Google I/O 2026",
+      "raw_summary": "A collage of I/O-related images, including the Antigravity Coffee Co. pop-up, a colorful jellyfish and a still from the Timmy TPU video. The word AI repeats three times on the left of the image, and there are colorful icons, including a sparkle, as well.",
+      "score": 44,
+      "primary": "misc",
+      "tags": [
+        "marketing",
+        "google io",
+        "events",
+        "ai utility"
+      ],
+      "heuristic_score": 22,
+      "url": "https://blog.google/innovation-and-ai/technology/ai/io-2026-google-ai/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 22,
+      "_rid": 14,
+      "llm_score": 60,
+      "why": "Muestra el uso práctico de modelos avanzados para la organización y ejecución de grandes eventos tecnológicos.",
+      "title_es": "Cómo usamos Gemini para construir el Google I/O 2026",
+      "entities": [
+        "Google",
+        "Gemini",
+        "How"
+      ],
+      "noise_penalty": 10,
+      "final_score": 44,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(10)",
+      "strategic_theme": "compute_chips_dc"
+    }
+  ]
+}
