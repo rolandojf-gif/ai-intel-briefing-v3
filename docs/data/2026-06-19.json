@@ -1,0 +1,675 @@
+{
+  "date": "2026-06-19",
+  "score_avg": 66.53,
+  "primary_dist": {
+    "infra": 4,
+    "models": 8,
+    "invest": 1,
+    "misc": 2
+  },
+  "top_entities": [
+    {
+      "entity": "arXiv",
+      "count": 4
+    },
+    {
+      "entity": "Google",
+      "count": 3
+    },
+    {
+      "entity": "How",
+      "count": 2
+    },
+    {
+      "entity": "VerilogEval",
+      "count": 1
+    },
+    {
+      "entity": "RTL",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "DeepSeek-V4 escala a 1.6 billones de parámetros MoE con un millón de tokens de contexto y arquitectura optimizada.",
+      "Google inyecta 1.500 millones de dólares en Alabama para expansión de centros de datos en el bienio 2026-2027.",
+      "El diseño de chips experimenta un cambio de paradigma hacia arquitecturas RISC-V y empaquetado basado en chiplets.",
+      "La capacidad de los LLM para generar código RTL de hardware alcanza un techo empírico cercano al 91% de éxito.",
+      "Surgen políticas de gobernanza deóntica para controlar agentes autónomos que operan entre fronteras corporativas."
+    ],
+    "risks": [
+      "Gaps de conocimiento persistentes en LLM para tareas de hardware complejas que el escalado de cómputo no resuelve.",
+      "Dificultad crítica de testeo en la integración heterogénea de chiplets debido a la complejidad del empaquetado.",
+      "Sesgos ocultos en modelos de lenguaje que solo emergen en ramas de generación de baja probabilidad estadística."
+    ],
+    "watch": [
+      "Evolución del modelo DeepSeek-V4-Pro frente a los líderes actuales en eficiencia y procesamiento de contexto largo.",
+      "Implementación del AI Control Roadmap de DeepMind en sistemas de agentes autónomos internos.",
+      "Adopción de RISC-V en el diseño de nuevos SoCs orientados específicamente a cargas de trabajo de IA."
+    ],
+    "entities_top": [
+      "DeepSeek",
+      "Google",
+      "DeepMind"
+    ]
+  },
+  "items": [
+    {
+      "title": "How LLMs Fail and Generalize in RTL Coding for Hardware Design?",
+      "link": "https://arxiv.org/abs/2606.19347",
+      "published": "2026-06-19T04:00:00+00:00",
+      "summary": "arXiv:2606.19347v1 Announce Type: new Abstract: Translating sequential programming priors into the parallel temporal logic of hardware design remains a crucial bottleneck for large language models(LLM). To investigate this, we introduce a new error taxonomy grounded in problem solvability, inspired by cognitive theory. Our taxonomy categorizes failures into syntactic, semantic, solvable functional, and unsolvable functional types. Evaluations reveal a strict empirical ceiling on the VerilogEval benchmark, as frontier models plateau at a 90.8% initial pass rate. These plateaus are defined by unsolvable functional errors, exposing persistent knowledge gaps immune to test time compute scaling. Furthermore, we expose a striking surface convergence gap: optimization readily eliminates syntax errors but concurrently exacerbates deeper functional failures. Our findings demonstrate that alignment techniques merely teach models to compile. While repeated sampling strategies can patch solvable errors, register-transfer level(RTL) coding capacity remains strictly bounded by pretraining knowledge. Addressing challenges in the current LLM based hardware generation pipeline requires more studies in model reasoning rather than alignment interventions.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "How LLMs Fail and Generalize in RTL Coding for Hardware Design?",
+      "raw_summary": "arXiv:2606.19347v1 Announce Type: new Abstract: Translating sequential programming priors into the parallel temporal logic of hardware design remains a crucial bottleneck for large language models(LLM). To investigate this, we introduce a new error taxonomy grounded in problem solvability, inspired by cognitive theory. Our taxonomy categorizes failures into syntactic, semantic, solvable functional, and unsolvable functional types. Evaluations reveal a strict empirical ceiling on the VerilogEval benchmark, as frontier models plateau at a 90.8% initial pass rate. These plateaus are defined by unsolvable functional errors, exposing persistent knowledge gaps immune to test time compute scaling. Furthermore, we expose a striking surface convergence gap: optimization readily eliminates syntax errors but concurrently exacerbates deeper functional failures. Our findings demonstrate that alignment techniques merely teach models to compile. While repeated sampling strategies can patch solvable errors, register-transfer level(RTL) coding capacity remains strictly bounded by pretraining knowledge. Addressing challenges in the current LLM based hardware generation pipeline requires more studies in model reasoning rather than alignment interventions.",
+      "score": 87,
+      "primary": "infra",
+      "tags": [
+        "hardware-design",
+        "verilog",
+        "rtl",
+        "bottleneck"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2606.19347",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 3,
+      "llm_score": 85,
+      "why": "Identifica un límite real en la capacidad de los LLM para el diseño de hardware paralelo, exponiendo lagunas de conocimiento estructural.",
+      "title_es": "¿Cómo fallan y generalizan los LLM en la codificación RTL para el diseño de hardware?",
+      "entities": [
+        "VerilogEval",
+        "RTL",
+        "How",
+        "Fail",
+        "Generalize",
+        "Coding",
+        "Hardware Design"
+      ],
+      "noise_penalty": 0,
+      "final_score": 87,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "DeepSeek-V4: Towards Highly Efficient Million-Token Context Intelligence",
+      "link": "https://arxiv.org/abs/2606.19348",
+      "published": "2026-06-19T04:00:00+00:00",
+      "summary": "arXiv:2606.19348v1 Announce Type: new Abstract: We present a preview version of DeepSeek-V4 series, including two strong Mixture-of-Experts (MoE) language models -- DeepSeek-V4-Pro with 1.6T parameters (49B activated) and DeepSeek-V4-Flash with 284B parameters (13B activated) -- both supporting a context length of one million tokens. DeepSeek-V4 series incorporate several key upgrades in architecture and optimization: (1) a hybrid attention architecture that combines Compressed Sparse Attention (CSA) and Heavily Compressed Attention (HCA) to improve long-context efficiency; (2) Manifold-Constrained Hyper-Connections (mHC) that enhance conventional residual connections; (3) and the Muon optimizer for faster convergence and greater training stability. We pre-train both models on more than 32T diverse and high-quality tokens, followed by a comprehensive post-training pipeline that unlocks and further enhances their capabilities. DeepSeek-V4-Pro-Max, the maximum reasoning effort mode of DeepSeek-V4-Pro, redefines the state-of-the-art for open models, outperforming its predecessors in core tasks. Meanwhile, DeepSeek-V4 series are highly efficient in long-context scenarios. In the one-million-token context setting, DeepSeek-V4-Pro requires only 27% of single-token inference FLOPs and 10% of KV cache compared with DeepSeek-V3.2. This enables us to routinely support one-million-token contexts, thereby making long-horizon tasks and further test-time scaling more feasible. The model checkpoints are available at",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "DeepSeek-V4: Towards Highly Efficient Million-Token Context Intelligence",
+      "raw_summary": "arXiv:2606.19348v1 Announce Type: new Abstract: We present a preview version of DeepSeek-V4 series, including two strong Mixture-of-Experts (MoE) language models -- DeepSeek-V4-Pro with 1.6T parameters (49B activated) and DeepSeek-V4-Flash with 284B parameters (13B activated) -- both supporting a context length of one million tokens. DeepSeek-V4 series incorporate several key upgrades in architecture and optimization: (1) a hybrid attention architecture that combines Compressed Sparse Attention (CSA) and Heavily Compressed Attention (HCA) to improve long-context efficiency; (2) Manifold-Constrained Hyper-Connections (mHC) that enhance conventional residual connections; (3) and the Muon optimizer for faster convergence and greater training stability. We pre-train both models on more than 32T diverse and high-quality tokens, followed by a comprehensive post-training pipeline that unlocks and further enhances their capabilities. DeepSeek-V4-Pro-Max, the maximum reasoning effort mode of DeepSeek-V4-Pro, redefines the state-of-the-art for open models, outperforming its predecessors in core tasks. Meanwhile, DeepSeek-V4 series are highly efficient in long-context scenarios. In the one-million-token context setting, DeepSeek-V4-Pro requires only 27% of single-token inference FLOPs and 10% of KV cache compared with DeepSeek-V3.2. This enables us to routinely support one-million-token contexts, thereby making long-horizon tasks and further test-time scaling more feasible. The model checkpoints are available at https://huggingface.co/collections/deepseek-ai/deepseek-v4.",
+      "score": 87,
+      "primary": "models",
+      "tags": [
+        "moe",
+        "long-context",
+        "architecture",
+        "efficiency"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2606.19348",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 4,
+      "llm_score": 94,
+      "why": "DeepSeek-V4 redefine la eficiencia en modelos de gran escala con 1.6T de parámetros y gestión nativa de un millón de tokens.",
+      "title_es": "DeepSeek-V4: Hacia una inteligencia de contexto de un millón de tokens altamente eficiente",
+      "entities": [
+        "DeepSeek",
+        "Towards Highly Efficient",
+        "Million",
+        "Token Context Intelligence"
+      ],
+      "noise_penalty": 8,
+      "final_score": 87,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(8)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Deontic Policies for Runtime Governance of Agentic AI Systems",
+      "link": "https://arxiv.org/abs/2606.19464",
+      "published": "2026-06-19T04:00:00+00:00",
+      "summary": "arXiv:2606.19464v1 Announce Type: new Abstract: Autonomous agentic AI systems driven by Large Language Models (LLMs) introduce a new class of security, privacy, and compliance challenges: an agent that can invoke tools, manipulate data, install software, and coordinate with peer agents across organizational boundaries must be constrained not just by authentication and access control, but by the full structure of enterprise governance. This includes specifying what agents are permitted and prohibited from doing, what they areobliged to do after certain actions (e.g., notify the CISO), under what conditions a standing obligation may be waived, and which rules take precedence when policies conflict. This governance problem exceeds what current policy engines provide. Systems such as XACML, Rego, and Cedar address only the permit/prohibit subset of this governance structure. They do not provide obligation lifecycle management, meta-policy conflict resolution, dispensations that waive obligations in specific circumstances, and ontological reasoning over domain class hierarchies commonly found in applications such as healthcare, cybersecurity, or data privacy. We propose AgenticRei, which realizes key governance requirements such as obligations, dispensations, policy conflict resolutions, and reasoning over policies, as well as the basic permit/prohibit constraints. We use a deontic policy language built on the Rei framework, expressed as OWL (Web Ontology Language) and evaluated at runtime by a high-performance logic engine entirely outside the LLM. The same pipeline governs both tool invocations by the agent and agent-to-agent messages. We show through examples that deontic policies capture governance constraints around security and privacy that mostly cannot be expressed in current production engines. Our approach composes naturally with industry-standard frameworks like A2AS.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Deontic Policies for Runtime Governance of Agentic AI Systems",
+      "raw_summary": "arXiv:2606.19464v1 Announce Type: new Abstract: Autonomous agentic AI systems driven by Large Language Models (LLMs) introduce a new class of security, privacy, and compliance challenges: an agent that can invoke tools, manipulate data, install software, and coordinate with peer agents across organizational boundaries must be constrained not just by authentication and access control, but by the full structure of enterprise governance. This includes specifying what agents are permitted and prohibited from doing, what they areobliged to do after certain actions (e.g., notify the CISO), under what conditions a standing obligation may be waived, and which rules take precedence when policies conflict. This governance problem exceeds what current policy engines provide. Systems such as XACML, Rego, and Cedar address only the permit/prohibit subset of this governance structure. They do not provide obligation lifecycle management, meta-policy conflict resolution, dispensations that waive obligations in specific circumstances, and ontological reasoning over domain class hierarchies commonly found in applications such as healthcare, cybersecurity, or data privacy. We propose AgenticRei, which realizes key governance requirements such as obligations, dispensations, policy conflict resolutions, and reasoning over policies, as well as the basic permit/prohibit constraints. We use a deontic policy language built on the Rei framework, expressed as OWL (Web Ontology Language) and evaluated at runtime by a high-performance logic engine entirely outside the LLM. The same pipeline governs both tool invocations by the agent and agent-to-agent messages. We show through examples that deontic policies capture governance constraints around security and privacy that mostly cannot be expressed in current production engines. Our approach composes naturally with industry-standard frameworks like A2AS.",
+      "score": 81,
+      "primary": "models",
+      "tags": [
+        "ai-agents",
+        "governance",
+        "security",
+        "compliance"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2606.19464",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 1,
+      "llm_score": 78,
+      "why": "Propone un marco necesario para que los agentes de IA operen bajo reglas de cumplimiento y seguridad en entornos corporativos reales.",
+      "title_es": "Políticas deónticas para la gobernanza en tiempo de ejecución de sistemas de IA de agentes",
+      "entities": [
+        "arXiv",
+        "Deontic Policies",
+        "Runtime Governance",
+        "Agentic",
+        "Systems"
+      ],
+      "noise_penalty": 0,
+      "final_score": 81,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "When to Trust, How to Distill: Multi-Foundation Model Guidance for Lightweight, Robust Scientific Time Series Forecasting",
+      "link": "https://arxiv.org/abs/2606.19363",
+      "published": "2026-06-19T04:00:00+00:00",
+      "summary": "arXiv:2606.19363v1 Announce Type: new Abstract: The deployment of Time-Series Foundation Models (TSFMs) in physical sciences is hindered by a critical trade-off: while these models encode rich, universal temporal dynamics, they suffer from severe distributional misalignment when applied zero-shot to specific scientific domains, and their computational cost prohibits deployment in edge-computing sensor networks. We address a fundamental challenge: How can we extract latent structural knowledge from misaligned foundation models (FM) to train lightweight, specialized forecasters? We propose Gated Uncertainty-Aware Routing for Distillation (Guard), a novel framework that reframes multiteacher distillation as an instance-wise decision process with two adaptive mechanisms: (1) a Contextual Router that dynamically selects the most relevant teacher based on local input statistics, exploiting complementarity across diverse foundation models; and (2) an Uncertainty-Gated Temperature mechanism that acts as a \"circuit-breaker,\" automatically attenuating distillation strength when teacher confidence diverges from domain reality. We evaluate our proposed lightweight framework on four climate-critical domains: meteorology, ecosystem carbon flux, soil moisture, and energy grids. Our method significantly reduces RMSE relative to a fixed-weight multi-teacher distillation baseline, successfully distilling knowledge from pretrained FMs (teachers) even when they exhibit suboptimal zero-shot accuracy due to distribution shift between the original and target data domains. We demonstrate that these domain-misaligned teachers can still serve as critical correctives, outperforming the globally superior FMs on 28.5% of the hardest instances. Ultimately, this enables high-precision scientific forecasting suitable for resource-constrained edge deployment. Code is available at",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "When to Trust, How to Distill: Multi-Foundation Model Guidance for Lightweight, Robust Scientific Time Series Forecasting",
+      "raw_summary": "arXiv:2606.19363v1 Announce Type: new Abstract: The deployment of Time-Series Foundation Models (TSFMs) in physical sciences is hindered by a critical trade-off: while these models encode rich, universal temporal dynamics, they suffer from severe distributional misalignment when applied zero-shot to specific scientific domains, and their computational cost prohibits deployment in edge-computing sensor networks. We address a fundamental challenge: How can we extract latent structural knowledge from misaligned foundation models (FM) to train lightweight, specialized forecasters? We propose Gated Uncertainty-Aware Routing for Distillation (Guard), a novel framework that reframes multiteacher distillation as an instance-wise decision process with two adaptive mechanisms: (1) a Contextual Router that dynamically selects the most relevant teacher based on local input statistics, exploiting complementarity across diverse foundation models; and (2) an Uncertainty-Gated Temperature mechanism that acts as a \"circuit-breaker,\" automatically attenuating distillation strength when teacher confidence diverges from domain reality. We evaluate our proposed lightweight framework on four climate-critical domains: meteorology, ecosystem carbon flux, soil moisture, and energy grids. Our method significantly reduces RMSE relative to a fixed-weight multi-teacher distillation baseline, successfully distilling knowledge from pretrained FMs (teachers) even when they exhibit suboptimal zero-shot accuracy due to distribution shift between the original and target data domains. We demonstrate that these domain-misaligned teachers can still serve as critical correctives, outperforming the globally superior FMs on 28.5% of the hardest instances. Ultimately, this enables high-precision scientific forecasting suitable for resource-constrained edge deployment. Code is available at https://github.com/RupasreeDey/GUARD-KDD2026.",
+      "score": 77,
+      "primary": "models",
+      "tags": [
+        "time-series",
+        "distillation",
+        "edge-computing",
+        "sensors"
+      ],
+      "heuristic_score": 95,
+      "url": "https://arxiv.org/abs/2606.19363",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 95,
+      "_rid": 5,
+      "llm_score": 74,
+      "why": "Permite llevar la potencia de los modelos fundacionales a dispositivos de sensorización con recursos limitados mediante destilación.",
+      "title_es": "Cuándo confiar, cómo destilar: Guía de modelos fundacionales para previsión robusta de series temporales científicas",
+      "entities": [
+        "Guard",
+        "When",
+        "Trust",
+        "How",
+        "Distill",
+        "Multi",
+        "Foundation Model Guidance",
+        "Lightweight"
+      ],
+      "noise_penalty": 0,
+      "final_score": 77,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "We’re strengthening our presence in Alabama through new investments and community support.",
+      "link": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/alabama-investment-june-2026/",
+      "published": "2026-06-15T15:00:00+00:00",
+      "summary": "Google has announced a $1.5 billion investment for 2026 and 2027 to expand its data center campus in Jackson County, Alabama. Operating since 2019 on a repurposed former…",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "We’re strengthening our presence in Alabama through new investments and community support.",
+      "raw_summary": "Google has announced a $1.5 billion investment for 2026 and 2027 to expand its data center campus in Jackson County, Alabama. Operating since 2019 on a repurposed former…",
+      "score": 77,
+      "primary": "invest",
+      "tags": [
+        "infrastructure",
+        "data-centers",
+        "investment",
+        "cloud"
+      ],
+      "heuristic_score": 39,
+      "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/alabama-investment-june-2026/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 39,
+      "_rid": 10,
+      "llm_score": 88,
+      "why": "Inversión masiva de Google que confirma la necesidad crítica de expandir la infraestructura física para soportar la demanda de IA.",
+      "title_es": "Fortalecemos nuestra presencia en Alabama mediante nuevas inversiones y apoyo comunitario",
+      "entities": [
+        "Google",
+        "Alabama"
+      ],
+      "noise_penalty": 4,
+      "final_score": 77,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(4)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Exposing the Unsaid: Visualizing Hidden LLM Bias through Stochastic Path Aggregation",
+      "link": "https://arxiv.org/abs/2606.19344",
+      "published": "2026-06-19T04:00:00+00:00",
+      "summary": "arXiv:2606.19344v1 Announce Type: new Abstract: Large Language Models (LLMs) exhibit representational and syntactic biases that are difficult to evaluate due to the stochastic nature of text generation. Standard auditing methods rely on a single output inspection or static automated metrics. These approaches obscure the underlying probability distributions and fail to capture biases hidden in lower-probability generation branches. This paper introduces TreeTracer, a visual analytics tool designed to evaluate LLM bias through aggregated comparison. Using a systematic perturbation analysis pipeline, the tool replaces ontology-defined terms in each input prompt, aggregates hundreds of stochastic generations into a syntax-aligned hierarchical structure, and then performs classification-aware node merging with an auxiliary language model. The resulting structure is visualized through a custom Sankey diagram. By juxtaposing two ontology-driven trees, the workspace enables direct comparison between semantic contexts and supports systematic bias detection. Because any visualization reflects only a subset of the model's learned behavior, the system further applies contrastive inference to compute and directly display counterfactual token probabilities across contexts, reducing the risk of misinterpreting the presence of bias. We validate the workspace through case studies comparing an unaligned baseline model GPT-2 XL against the constitutionally aligned Apertus models. The visual aggregation successfully exposes hidden representational harms, such as counterfactual pronoun suppression and conversational marginalization of individuals. A preliminary user study confirms that the aggregated comparative interface reduces cognitive load and effectively supports analysts in detecting systemic biases.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Exposing the Unsaid: Visualizing Hidden LLM Bias through Stochastic Path Aggregation",
+      "raw_summary": "arXiv:2606.19344v1 Announce Type: new Abstract: Large Language Models (LLMs) exhibit representational and syntactic biases that are difficult to evaluate due to the stochastic nature of text generation. Standard auditing methods rely on a single output inspection or static automated metrics. These approaches obscure the underlying probability distributions and fail to capture biases hidden in lower-probability generation branches. This paper introduces TreeTracer, a visual analytics tool designed to evaluate LLM bias through aggregated comparison. Using a systematic perturbation analysis pipeline, the tool replaces ontology-defined terms in each input prompt, aggregates hundreds of stochastic generations into a syntax-aligned hierarchical structure, and then performs classification-aware node merging with an auxiliary language model. The resulting structure is visualized through a custom Sankey diagram. By juxtaposing two ontology-driven trees, the workspace enables direct comparison between semantic contexts and supports systematic bias detection. Because any visualization reflects only a subset of the model's learned behavior, the system further applies contrastive inference to compute and directly display counterfactual token probabilities across contexts, reducing the risk of misinterpreting the presence of bias. We validate the workspace through case studies comparing an unaligned baseline model GPT-2 XL against the constitutionally aligned Apertus models. The visual aggregation successfully exposes hidden representational harms, such as counterfactual pronoun suppression and conversational marginalization of individuals. A preliminary user study confirms that the aggregated comparative interface reduces cognitive load and effectively supports analysts in detecting systemic biases.",
+      "score": 74,
+      "primary": "models",
+      "tags": [
+        "bias",
+        "visual-analytics",
+        "transparency",
+        "ethics"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2606.19344",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 2,
+      "llm_score": 70,
+      "why": "Nueva metodología para descubrir sesgos latentes en LLM que los métodos de auditoría estándar no logran detectar.",
+      "title_es": "Exponiendo lo no dicho: Visualización del sesgo oculto en LLM mediante agregación de rutas estocásticas",
+      "entities": [
+        "TreeTracer",
+        "Exposing",
+        "Unsaid",
+        "Visualizing Hidden",
+        "Bias",
+        "Stochastic Path Aggregation"
+      ],
+      "noise_penalty": 0,
+      "final_score": 74,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "RISC-V and AI: The Architecture Shift Is Now",
+      "link": "https://semiwiki.com/ip/risc-v/370153-risc-v-and-ai-the-architecture-shift-is-now/",
+      "published": "2026-06-17T17:00:09+00:00",
+      "summary": "The semiconductor industry has experienced several defining transitions over the last three decades. We moved from single-core to multicore processors, from ASIC-centric designs to IP-based SoCs, and from monolithic integration to heterogeneous architectures. Today, another transition is underway, one that may ultimately&8230; Read More The post RISC-V and AI: The Architecture Shift Is Now appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "RISC-V and AI: The Architecture Shift Is Now",
+      "raw_summary": "The semiconductor industry has experienced several defining transitions over the last three decades. We moved from single-core to multicore processors, from ASIC-centric designs to IP-based SoCs, and from monolithic integration to heterogeneous architectures. Today, another transition is underway, one that may ultimately&#8230; Read More The post RISC-V and AI: The Architecture Shift Is Now appeared first on SemiWiki .",
+      "score": 74,
+      "primary": "infra",
+      "tags": [
+        "risc-v",
+        "semiconductors",
+        "architecture",
+        "open-standard"
+      ],
+      "heuristic_score": 22,
+      "url": "https://semiwiki.com/ip/risc-v/370153-risc-v-and-ai-the-architecture-shift-is-now/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 22,
+      "_rid": 15,
+      "llm_score": 83,
+      "why": "El giro hacia RISC-V es fundamental para la soberanía tecnológica y la optimización de hardware específico para IA.",
+      "title_es": "RISC-V e IA: El cambio de arquitectura es ahora",
+      "entities": [
+        "RISC-V",
+        "RISC",
+        "The Architecture Shift",
+        "Is Now"
+      ],
+      "noise_penalty": 0,
+      "final_score": 74,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Feed Forward Intelligence: Enabling Testability in the Chiplets Era",
+      "link": "https://semiwiki.com/artificial-intelligence/370248-feed-forward-intelligence-enabling-testability-in-the-chiplets-era/",
+      "published": "2026-06-18T13:00:41+00:00",
+      "summary": "The semiconductor industry is entering a new era in which advanced packaging and chiplets-based architectures are becoming the primary drivers of system-level innovation. As traditional process-node scaling becomes increasingly complex and expensive, manufacturers are turning to heterogeneous integration, combining&8230; Read More The post Feed Forward Intelligence: Enabling Testability in the Chiplets Era appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "Feed Forward Intelligence: Enabling Testability in the Chiplets Era",
+      "raw_summary": "The semiconductor industry is entering a new era in which advanced packaging and chiplets-based architectures are becoming the primary drivers of system-level innovation. As traditional process-node scaling becomes increasingly complex and expensive, manufacturers are turning to heterogeneous integration, combining&#8230; Read More The post Feed Forward Intelligence: Enabling Testability in the Chiplets Era appeared first on SemiWiki .",
+      "score": 73,
+      "primary": "infra",
+      "tags": [
+        "chiplets",
+        "packaging",
+        "semiconductors",
+        "testing"
+      ],
+      "heuristic_score": 24,
+      "url": "https://semiwiki.com/artificial-intelligence/370248-feed-forward-intelligence-enabling-testability-in-the-chiplets-era/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 24,
+      "_rid": 13,
+      "llm_score": 82,
+      "why": "La transición a chiplets requiere nuevas capas de inteligencia para garantizar la testabilidad en arquitecturas heterogéneas complejas.",
+      "title_es": "Feed Forward Intelligence: Habilitando la testabilidad en la era de los chiplets",
+      "entities": [
+        "SemiWiki",
+        "Feed Forward Intelligence",
+        "Enabling Testability",
+        "Chiplets Era"
+      ],
+      "noise_penalty": 0,
+      "final_score": 73,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Where to Place the Query? Unveiling and Mitigating Positional Bias in In-Context Learning for Diffusion LLMs via Decoding Dynamics",
+      "link": "https://arxiv.org/abs/2606.19349",
+      "published": "2026-06-19T04:00:00+00:00",
+      "summary": "arXiv:2606.19349v1 Announce Type: new Abstract: While In-Context Learning (ICL) is extensively studied in Autoregressive (AR) LLMs, its mechanism within Diffusion Large Language Models (dLLMs) remains largely unexplored. Unlike AR models restricted by unidirectional causal masking, dLLMs intrinsically utilize bidirectional attention, offering extensive spatial flexibility for query placement. Unfortunately, current practices conventionally inherit AR-style trailing-query templates, often overlooking the structural paradigm shift. This paper presents a comprehensive analysis unveiling that query position is actually a first-order variable in dLLMs. Through empirical decoupling, we demonstrate that positional variance impacts generation quality on par with example semantic quality. Internally, this positional sensitivity stems from a spatial ``Recency Effect'' in attention flow and task-dependent shifts in decoding trajectories. To mitigate this instability without ground-truth labels, we reveal that traditional single-step confidence ($C_{decoded}$) fails in dLLMs. Instead, we propose Average Confidence ($\\overline{C}$), a novel metric tracking the iterative decoding process. By establishing the foundational spatial ICL baselines, we introduce Auto-ICL, a training-free adaptive routing strategy that dynamically optimizes query placement, robustly approaching oracle performance across heterogeneous reasoning and perception tasks.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Where to Place the Query? Unveiling and Mitigating Positional Bias in In-Context Learning for Diffusion LLMs via Decoding Dynamics",
+      "raw_summary": "arXiv:2606.19349v1 Announce Type: new Abstract: While In-Context Learning (ICL) is extensively studied in Autoregressive (AR) LLMs, its mechanism within Diffusion Large Language Models (dLLMs) remains largely unexplored. Unlike AR models restricted by unidirectional causal masking, dLLMs intrinsically utilize bidirectional attention, offering extensive spatial flexibility for query placement. Unfortunately, current practices conventionally inherit AR-style trailing-query templates, often overlooking the structural paradigm shift. This paper presents a comprehensive analysis unveiling that query position is actually a first-order variable in dLLMs. Through empirical decoupling, we demonstrate that positional variance impacts generation quality on par with example semantic quality. Internally, this positional sensitivity stems from a spatial ``Recency Effect'' in attention flow and task-dependent shifts in decoding trajectories. To mitigate this instability without ground-truth labels, we reveal that traditional single-step confidence ($C_{decoded}$) fails in dLLMs. Instead, we propose Average Confidence ($\\overline{C}$), a novel metric tracking the iterative decoding process. By establishing the foundational spatial ICL baselines, we introduce Auto-ICL, a training-free adaptive routing strategy that dynamically optimizes query placement, robustly approaching oracle performance across heterogeneous reasoning and perception tasks.",
+      "score": 70,
+      "primary": "models",
+      "tags": [
+        "diffusion-models",
+        "icl",
+        "decoding",
+        "bias"
+      ],
+      "heuristic_score": 79,
+      "url": "https://arxiv.org/abs/2606.19349",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 79,
+      "_rid": 7,
+      "llm_score": 68,
+      "why": "Revela que la posición de la consulta cambia drásticamente el rendimiento en modelos de difusión, desafiando los estándares de los AR LLM.",
+      "title_es": "¿Dónde colocar la consulta? Descubriendo y mitigando el sesgo posicional en el aprendizaje en contexto para LLM de difusión",
+      "entities": [
+        "arXiv",
+        "Where",
+        "Place",
+        "Query",
+        "Unveiling",
+        "Mitigating Positional Bias",
+        "Context Learning",
+        "Diffusion"
+      ],
+      "noise_penalty": 0,
+      "final_score": 70,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Ensembles of Large Language Models for Identifying EQ-5D Studies in PubMed Based on Their Abstracts",
+      "link": "https://arxiv.org/abs/2606.19345",
+      "published": "2026-06-19T04:00:00+00:00",
+      "summary": "arXiv:2606.19345v1 Announce Type: new Abstract: The rapid increase in scientific publications leads to the fact that manual study screening in systematic literature reviews (SLRs) is increasingly resource consuming, inefficient, and inconsistent. Classifying studies that clearly report health-related quality-of-life results, such as EQ-5D data, requires a high level of clinical interpretation and poses challenges for human reviewers. This study investigates the use of Google's Gemini and Gemma large language models (LLMs) in automating EQ-5D detection in the PubMed biomedical database based only on published abstracts. A multi-phase framework is proposed that integrates few-shot prompting, weight ensembling aggregation, and a soft stacking meta-classifier. Nine LLMs are evaluated on a dataset of PubMed studies manually labeled by two experts regarding EQ-5D reporting. The weighted ensemble of gemini-2.5-pro, gemma-3-12b, and gemma-3-27b obtained a 0.74 weighted F1-score and 0.74 accuracy, exceeding individually attained results. The ensembling of top-performing models improved the balance between precision and recall compared to individual models, while the soft stacking approach provided greater reliability and interpretability. Feature analysis shows that the probability results from the models are important in guiding the final predictions. The findings suggest that an ensemble-based LLM setup is a reliable and scalable approach for automating screening in biomedical research.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Ensembles of Large Language Models for Identifying EQ-5D Studies in PubMed Based on Their Abstracts",
+      "raw_summary": "arXiv:2606.19345v1 Announce Type: new Abstract: The rapid increase in scientific publications leads to the fact that manual study screening in systematic literature reviews (SLRs) is increasingly resource consuming, inefficient, and inconsistent. Classifying studies that clearly report health-related quality-of-life results, such as EQ-5D data, requires a high level of clinical interpretation and poses challenges for human reviewers. This study investigates the use of Google's Gemini and Gemma large language models (LLMs) in automating EQ-5D detection in the PubMed biomedical database based only on published abstracts. A multi-phase framework is proposed that integrates few-shot prompting, weight ensembling aggregation, and a soft stacking meta-classifier. Nine LLMs are evaluated on a dataset of PubMed studies manually labeled by two experts regarding EQ-5D reporting. The weighted ensemble of gemini-2.5-pro, gemma-3-12b, and gemma-3-27b obtained a 0.74 weighted F1-score and 0.74 accuracy, exceeding individually attained results. The ensembling of top-performing models improved the balance between precision and recall compared to individual models, while the soft stacking approach provided greater reliability and interpretability. Feature analysis shows that the probability results from the models are important in guiding the final predictions. The findings suggest that an ensemble-based LLM setup is a reliable and scalable approach for automating screening in biomedical research.",
+      "score": 66,
+      "primary": "misc",
+      "tags": [
+        "pubmed",
+        "healthcare",
+        "automation",
+        "gemini"
+      ],
+      "heuristic_score": 71,
+      "url": "https://arxiv.org/abs/2606.19345",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 71,
+      "_rid": 8,
+      "llm_score": 65,
+      "why": "Automatización efectiva de la clasificación de estudios médicos, reduciendo la carga de trabajo en revisiones sistemáticas clínicas.",
+      "title_es": "Conjuntos de modelos de lenguaje de gran tamaño para identificar estudios EQ-5D en PubMed basados en sus resúmenes",
+      "entities": [
+        "Google",
+        "Gemini",
+        "Gemma",
+        "Ensembles",
+        "Large Language Models",
+        "Identifying",
+        "Studies",
+        "Based"
+      ],
+      "noise_penalty": 0,
+      "final_score": 66,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Securing the future of AI agents",
+      "link": "https://deepmind.google/blog/securing-the-future-of-ai-agents/",
+      "published": "2026-06-16T15:46:31+00:00",
+      "summary": "Securing internal systems with an AI Control Roadmap, combining traditional safeguards and real-time monitoring.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Securing the future of AI agents",
+      "raw_summary": "Securing internal systems with an AI Control Roadmap, combining traditional safeguards and real-time monitoring.",
+      "score": 64,
+      "primary": "models",
+      "tags": [
+        "agents",
+        "safety",
+        "monitoring",
+        "roadmap"
+      ],
+      "heuristic_score": 22,
+      "url": "https://deepmind.google/blog/securing-the-future-of-ai-agents/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 22,
+      "_rid": 14,
+      "llm_score": 76,
+      "why": "La estrategia de DeepMind subraya la prioridad de la seguridad en agentes capaces de interactuar con sistemas internos.",
+      "title_es": "Asegurando el futuro de los agentes de IA",
+      "entities": [
+        "DeepMind",
+        "Google",
+        "Securing"
+      ],
+      "noise_penalty": 4,
+      "final_score": 64,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(4)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Disentangling Linguistic Relatedness from Task Alignment in Cross-Lingual Transfer",
+      "link": "https://arxiv.org/abs/2606.19346",
+      "published": "2026-06-19T04:00:00+00:00",
+      "summary": "arXiv:2606.19346v1 Announce Type: new Abstract: We study cross-lingual transfer by fine-tuning seven large language models (4B--671B parameters) on Arabic and evaluating zero-shot reading comprehension on Semitic languages and non-Semitic controls. Across dense and Mixture-of-Experts architectures, we find no evidence of Semitic-specific transfer: models with weak baselines improve dramatically across all languages, while strong-baseline models show only marginal gains regardless of language family. A chain-of-thought ablation reinforces this finding -- the same models that benefit most from fine-tuning benefit equally from inference-time reasoning, suggesting both mechanisms address task-format alignment rather than cross-lingual knowledge transfer.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Disentangling Linguistic Relatedness from Task Alignment in Cross-Lingual Transfer",
+      "raw_summary": "arXiv:2606.19346v1 Announce Type: new Abstract: We study cross-lingual transfer by fine-tuning seven large language models (4B--671B parameters) on Arabic and evaluating zero-shot reading comprehension on Semitic languages and non-Semitic controls. Across dense and Mixture-of-Experts architectures, we find no evidence of Semitic-specific transfer: models with weak baselines improve dramatically across all languages, while strong-baseline models show only marginal gains regardless of language family. A chain-of-thought ablation reinforces this finding -- the same models that benefit most from fine-tuning benefit equally from inference-time reasoning, suggesting both mechanisms address task-format alignment rather than cross-lingual knowledge transfer.",
+      "score": 59,
+      "primary": "models",
+      "tags": [
+        "cross-lingual",
+        "arabic",
+        "transfer-learning",
+        "evaluation"
+      ],
+      "heuristic_score": 80,
+      "url": "https://arxiv.org/abs/2606.19346",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 80,
+      "_rid": 6,
+      "llm_score": 55,
+      "why": "Cuestiona la importancia del parentesco lingüístico en la transferencia de tareas, sugiriendo que la alineación es el factor dominante.",
+      "title_es": "Desentrañando el parentesco lingüístico de la alineación de tareas en la transferencia multilingüe",
+      "entities": [
+        "arXiv",
+        "Disentangling Linguistic Relatedness",
+        "Task Alignment",
+        "Cross",
+        "Lingual Transfer"
+      ],
+      "noise_penalty": 0,
+      "final_score": 59,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Computational Identifiability",
+      "link": "https://arxiv.org/abs/2606.19361",
+      "published": "2026-06-19T04:00:00+00:00",
+      "summary": "arXiv:2606.19361v1 Announce Type: new Abstract: Identification conditions describe the computability of a target query or parameter of interest as a function of the type and amount of information available. In causal identification, this information is often expressed in the form of a causal graph, and data are observed or collected for some subset of variables in the graph. Target queries may be for a single effect alone or for a class of effects in a given model. The derivation of an identification algorithm then defines mathematically the process by which the desired causal effect(s) can be uniquely determined, theoretically, in expectation. Identifiability in expectation, or 'theoretical identifiability,' generally assumes asymptotic properties, infinite data, or other mathematically idealized conditions. In this paper, we explore a fundamental distinction between this theoretical, idealized notion of identifiability and a proposed alternative that is computation-bound. The framework we propose - 'computational identifiability' - is to instead define a finite computational search procedure for an empirical estimator. If this process finds an estimator empirically, within a desired error tolerance, then identifiability is satisfied, conditional on the specified assumptions of the search (i.e., a prior distribution over the parameters) and conditional on the search procedure itself. Through several experiments, we demonstrate how this framework allows us to answer fine-grained, practical identification questions, such as identification with small finite samples, with ambiguous graphical criteria, with mixed observational-interventional data, and across counterfactual data and estimands. Code is available at",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Computational Identifiability",
+      "raw_summary": "arXiv:2606.19361v1 Announce Type: new Abstract: Identification conditions describe the computability of a target query or parameter of interest as a function of the type and amount of information available. In causal identification, this information is often expressed in the form of a causal graph, and data are observed or collected for some subset of variables in the graph. Target queries may be for a single effect alone or for a class of effects in a given model. The derivation of an identification algorithm then defines mathematically the process by which the desired causal effect(s) can be uniquely determined, theoretically, in expectation. Identifiability in expectation, or 'theoretical identifiability,' generally assumes asymptotic properties, infinite data, or other mathematically idealized conditions. In this paper, we explore a fundamental distinction between this theoretical, idealized notion of identifiability and a proposed alternative that is computation-bound. The framework we propose - 'computational identifiability' - is to instead define a finite computational search procedure for an empirical estimator. If this process finds an estimator empirically, within a desired error tolerance, then identifiability is satisfied, conditional on the specified assumptions of the search (i.e., a prior distribution over the parameters) and conditional on the search procedure itself. Through several experiments, we demonstrate how this framework allows us to answer fine-grained, practical identification questions, such as identification with small finite samples, with ambiguous graphical criteria, with mixed observational-interventional data, and across counterfactual data and estimands. Code is available at https://github.com/lbynum/metadentify.",
+      "score": 53,
+      "primary": "models",
+      "tags": [
+        "causality",
+        "logic",
+        "computability",
+        "theory"
+      ],
+      "heuristic_score": 26,
+      "url": "https://arxiv.org/abs/2606.19361",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 26,
+      "_rid": 11,
+      "llm_score": 58,
+      "why": "Establece bases teóricas para la identificación causal en modelos computacionales, clave para la robustez del razonamiento de IA.",
+      "title_es": "Identificabilidad computacional",
+      "entities": [
+        "arXiv",
+        "Computational Identifiability"
+      ],
+      "noise_penalty": 0,
+      "final_score": 53,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Measuring Curriculum Alignment across Topical Coverage, Competency, and Cognitive Depth: A Longitudinal Framework Applied to CS2013 and CS2023",
+      "link": "https://arxiv.org/abs/2606.19469",
+      "published": "2026-06-19T04:00:00+00:00",
+      "summary": "arXiv:2606.19469v1 Announce Type: new Abstract: Undergraduate computer science is governed by international curricular guidelines revised about once a decade, yet programs lack a reliable, reproducible way to measure how completely they cover the current guidelines and how that coverage shifts when the guidelines are restructured. We address this with a human-in-the-loop pipeline that measures a program's coverage of an external body of knowledge, applied longitudinally to one accredited BSc in Computer Science against Computer Science Curricula 2013 (CS2013) and 2023 (CS2023). The pipeline represents the program and each guideline as structured corpora, generates candidate course-to-knowledge-unit matches by semantic retrieval, and confirms them through human judgment under an explicit coverage definition. Of seven benchmarked retrievers, a reciprocal-rank-fusion ensemble was strongest, and a reputed long-context model underperformed a small sentence model, so retriever choice must be measured. Both maps were validated by an independent second rater (Cohen's kappa 0.64 for CS2023, 0.69 for CS2013). The program covers 49.7% of CS2023 and 50.9% of CS2013 knowledge units, near-constant across a decade. Extending the same retrieve-then-confirm design to competency articulation and cognitive depth shows that the program articulates the competency for ~88% of covered units under each guideline, yet delivers it at the recommended depth for 76% of present units under CS2023 against 95% under CS2013, a gap reflecting the newer guideline's raised expectations, not the program. The longitudinal comparison separates persistent structural gaps (parallel and distributed computing, foundations of programming languages, systems fundamentals), uncovered against both guidelines and ABET, from differences that reflect the standard's evolution. The instrument is reusable and available from the authors on request.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Measuring Curriculum Alignment across Topical Coverage, Competency, and Cognitive Depth: A Longitudinal Framework Applied to CS2013 and CS2023",
+      "raw_summary": "arXiv:2606.19469v1 Announce Type: new Abstract: Undergraduate computer science is governed by international curricular guidelines revised about once a decade, yet programs lack a reliable, reproducible way to measure how completely they cover the current guidelines and how that coverage shifts when the guidelines are restructured. We address this with a human-in-the-loop pipeline that measures a program's coverage of an external body of knowledge, applied longitudinally to one accredited BSc in Computer Science against Computer Science Curricula 2013 (CS2013) and 2023 (CS2023). The pipeline represents the program and each guideline as structured corpora, generates candidate course-to-knowledge-unit matches by semantic retrieval, and confirms them through human judgment under an explicit coverage definition. Of seven benchmarked retrievers, a reciprocal-rank-fusion ensemble was strongest, and a reputed long-context model underperformed a small sentence model, so retriever choice must be measured. Both maps were validated by an independent second rater (Cohen's kappa 0.64 for CS2023, 0.69 for CS2013). The program covers 49.7% of CS2023 and 50.9% of CS2013 knowledge units, near-constant across a decade. Extending the same retrieve-then-confirm design to competency articulation and cognitive depth shows that the program articulates the competency for ~88% of covered units under each guideline, yet delivers it at the recommended depth for 76% of present units under CS2023 against 95% under CS2013, a gap reflecting the newer guideline's raised expectations, not the program. The longitudinal comparison separates persistent structural gaps (parallel and distributed computing, foundations of programming languages, systems fundamentals), uncovered against both guidelines and ABET, from differences that reflect the standard's evolution. The instrument is reusable and available from the authors on request.",
+      "score": 42,
+      "primary": "misc",
+      "tags": [
+        "education",
+        "computer-science",
+        "curriculum",
+        "alignment"
+      ],
+      "heuristic_score": 50,
+      "url": "https://arxiv.org/abs/2606.19469",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 50,
+      "_rid": 9,
+      "llm_score": 40,
+      "why": "Herramienta de nicho para la gestión académica que utiliza IA para alinear planes de estudio con estándares internacionales.",
+      "title_es": "Medición de la alineación curricular en cobertura temática, competencia y profundidad cognitiva",
+      "entities": [
+        "CS2013",
+        "CS2023",
+        "Measuring Curriculum Alignment",
+        "Topical Coverage",
+        "Competency",
+        "Cognitive Depth",
+        "Longitudinal Framework Applied"
+      ],
+      "noise_penalty": 0,
+      "final_score": 42,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Unlocking UK house-building with AI-accelerated planning",
+      "link": "https://deepmind.google/blog/unlocking-uk-house-building-with-ai-accelerated-planning/",
+      "published": "2026-06-16T21:29:50+00:00",
+      "summary": "UK government partners with Google DeepMind to build a new AI-powered prototype aimed at faster housing decisions.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Unlocking UK house-building with AI-accelerated planning",
+      "raw_summary": "UK government partners with Google DeepMind to build a new AI-powered prototype aimed at faster housing decisions.",
+      "score": 14,
+      "primary": "infra",
+      "tags": [
+        "infra"
+      ],
+      "heuristic_score": 18,
+      "url": "https://deepmind.google/blog/unlocking-uk-house-building-with-ai-accelerated-planning/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 18,
+      "llm_score": null,
+      "title_es": "",
+      "entities": [
+        "Reino Unido",
+        "Unlocking"
+      ],
+      "why": "UK government partners with Google DeepMind to build a new AI-powered prototype aimed at faster housing decisions.",
+      "noise_penalty": 4,
+      "final_score": 14,
+      "ranking_reason": "fallback_adjusted-noise(4)",
+      "strategic_theme": "compute_chips_dc"
+    }
+  ]
+}
