@@ -1,0 +1,678 @@
+{
+  "date": "2026-06-24",
+  "score_avg": 72.4,
+  "primary_dist": {
+    "models": 10,
+    "infra": 3,
+    "misc": 1,
+    "invest": 1
+  },
+  "top_entities": [
+    {
+      "entity": "arXiv",
+      "count": 6
+    },
+    {
+      "entity": "Systems",
+      "count": 2
+    },
+    {
+      "entity": "Google",
+      "count": 2
+    },
+    {
+      "entity": "Gemini",
+      "count": 2
+    },
+    {
+      "entity": "Neuro",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "Google escala Gemini a las versiones 3.5 y Omni, priorizando la multimodalidad total y la integración en ecosistemas.",
+      "La inferencia se consolida como el principal campo de batalla del hardware sobre el entrenamiento puro en 2026.",
+      "Nuevas técnicas de alineamiento mediante 'self-recognition' prometen mitigar el desajuste emergente en modelos masivos.",
+      "La conectividad de ultra alta velocidad (448 Gbps) se vuelve crítica para la escalabilidad física de centros de datos.",
+      "Los modelos de conducción VLA adoptan enfoques neuro-simbólicos para lograr decisiones trazables y seguras."
+    ],
+    "risks": [
+      "Ceguera epistémica en sistemas RAG al no distinguir memoria paramétrica de información contextual nueva.",
+      "Vulnerabilidades en agentes autónomos que exponen vectores de ataque fuera del alcance de la seguridad LLM estándar.",
+      "Inconsistencia en recompensas RL para Text-to-SQL que penalizan cláusulas correctas dentro de consultas erróneas."
+    ],
+    "watch": [
+      "Adopción del códec AV2 por Big Tech para optimizar el procesamiento de vídeo de alta densidad.",
+      "Desempeño del stack de inferencia de Semidynamics en el entorno HPC para aplicaciones de negocio reales.",
+      "Evolución de las métricas NCU frente a las heurísticas discretas en la evaluación de fiabilidad de RAG."
+    ],
+    "entities_top": [
+      "Google",
+      "Semidynamics",
+      "Samtec"
+    ]
+  },
+  "items": [
+    {
+      "title": "Neuro-Symbolic Drive: Rule-Grounded Faithful Reasoning for Driving VLAs",
+      "link": "https://arxiv.org/abs/2606.23938",
+      "published": "2026-06-24T04:00:00+00:00",
+      "summary": "arXiv:2606.23938v1 Announce Type: new Abstract: Driving VLA models incorporating Chain-of-Thought (CoT) reasoning are attractive because they leverage pretrained VLM representations and expose intermediate decisions in natural language, yet current rationales often lack the step-by-step decision semantics needed to keep the rationale causally connected to the planned motion. We introduce Neuro-Symbolic Drive, a neuro-symbolic driving framework that supervises a driving VLA with rule-grounded reasoning traces extracted directly from classical rule-based planners. Our key observation is that rule-based planners are symbolic AI systems that already function as executable reasoning engines: they reason about active safety constraints, search over candidate maneuvers, and select a final trajectory. We instrument these planners in simulation to capture both the executed trajectory and the internal decision trace at each rule-evaluation step. Each trace is serialized into structured rule-grounded reasoning and paired with the trajectory to fine-tune Qwen3.5-4B as a driving VLA. Because these traces are derived directly from the planner states that determine the action, they ensure reasoning is structurally coupled to motion generation by construction, rather than by post-hoc alignment. On our simulator-generated benchmark, detailed rule-grounded reasoning reduces ADE@3s from 0.47 to 0.26 and miss rate from 8.30% to 6.40% under three-camera perception, and from 0.54 to 0.26 and 10.13% to 5.99% under eight-camera perception. Neuro-Symbolic Drive thus converts neuro-symbolic planning logic into structured supervision. Code base:",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Neuro-Symbolic Drive: Rule-Grounded Faithful Reasoning for Driving VLAs",
+      "raw_summary": "arXiv:2606.23938v1 Announce Type: new Abstract: Driving VLA models incorporating Chain-of-Thought (CoT) reasoning are attractive because they leverage pretrained VLM representations and expose intermediate decisions in natural language, yet current rationales often lack the step-by-step decision semantics needed to keep the rationale causally connected to the planned motion. We introduce Neuro-Symbolic Drive, a neuro-symbolic driving framework that supervises a driving VLA with rule-grounded reasoning traces extracted directly from classical rule-based planners. Our key observation is that rule-based planners are symbolic AI systems that already function as executable reasoning engines: they reason about active safety constraints, search over candidate maneuvers, and select a final trajectory. We instrument these planners in simulation to capture both the executed trajectory and the internal decision trace at each rule-evaluation step. Each trace is serialized into structured rule-grounded reasoning and paired with the trajectory to fine-tune Qwen3.5-4B as a driving VLA. Because these traces are derived directly from the planner states that determine the action, they ensure reasoning is structurally coupled to motion generation by construction, rather than by post-hoc alignment. On our simulator-generated benchmark, detailed rule-grounded reasoning reduces ADE@3s from 0.47 to 0.26 and miss rate from 8.30% to 6.40% under three-camera perception, and from 0.54 to 0.26 and 10.13% to 5.99% under eight-camera perception. Neuro-Symbolic Drive thus converts neuro-symbolic planning logic into structured supervision. Code base: https://github.com/XiangboGaoBarry/Neural-Symbolic-Drive.",
+      "score": 83,
+      "primary": "models",
+      "tags": [
+        "vla",
+        "robótica",
+        "neuro-simbólico",
+        "conducción"
+      ],
+      "heuristic_score": 89,
+      "url": "https://arxiv.org/abs/2606.23938",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 89,
+      "_rid": 3,
+      "llm_score": 82,
+      "why": "Framework que une modelos VLA con razonamiento simbólico para garantizar una planificación de movimiento causalmente conectada.",
+      "title_es": "Neuro-Symbolic Drive: Razonamiento fiel basado en reglas para la conducción de modelos VLA",
+      "entities": [
+        "arXiv",
+        "Neuro",
+        "Symbolic Drive",
+        "Rule",
+        "Grounded Faithful Reasoning",
+        "Driving"
+      ],
+      "noise_penalty": 0,
+      "final_score": 83,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Quantifying Prior Dominance in RAG Systems",
+      "link": "https://arxiv.org/abs/2606.23695",
+      "published": "2026-06-24T04:00:00+00:00",
+      "summary": "arXiv:2606.23695v1 Announce Type: new Abstract: Retrieval-Augmented Generation (RAG) grounds Large Language Models in external knowledge, yet current evaluations rely on discrete heuristics that suffer from ''epistemic blindness'' - failing to distinguish genuine contextual information extraction from parametric memory recall. To address this, we introduce the Normalized Context Utilization (NCU) metric, leveraging continuous token log-probabilities across zero-shot, oracle, and adversarial conditions to strictly quantify contextual information gain. Evaluating architectures ranging from 1.5B to 72B parameters alongside a proprietary commercial API reveals that for strict factual extraction (without Chain-of-Thought reasoning), traditional scaling laws exhibit extreme diminishing returns: highly efficient Small Language Models (SLMs) match or outperform high-capacity architectures. Furthermore, we demonstrate that ``Prior Dominance'' correlates with model scale and proprietary alignments. The evaluated commercial API not only overrode explicit external evidence in nearly half of adversarial conflicts, but also frequently suffered from systemic confidence collapse (Negative Transfer) when its parametric priors were contradicted. Our findings highlight the structural epistemic advantage and superior contextual adherence of SLMs in strict extraction workflows.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Quantifying Prior Dominance in RAG Systems",
+      "raw_summary": "arXiv:2606.23695v1 Announce Type: new Abstract: Retrieval-Augmented Generation (RAG) grounds Large Language Models in external knowledge, yet current evaluations rely on discrete heuristics that suffer from ''epistemic blindness'' - failing to distinguish genuine contextual information extraction from parametric memory recall. To address this, we introduce the Normalized Context Utilization (NCU) metric, leveraging continuous token log-probabilities across zero-shot, oracle, and adversarial conditions to strictly quantify contextual information gain. Evaluating architectures ranging from 1.5B to 72B parameters alongside a proprietary commercial API reveals that for strict factual extraction (without Chain-of-Thought reasoning), traditional scaling laws exhibit extreme diminishing returns: highly efficient Small Language Models (SLMs) match or outperform high-capacity architectures. Furthermore, we demonstrate that ``Prior Dominance'' correlates with model scale and proprietary alignments. The evaluated commercial API not only overrode explicit external evidence in nearly half of adversarial conflicts, but also frequently suffered from systemic confidence collapse (Negative Transfer) when its parametric priors were contradicted. Our findings highlight the structural epistemic advantage and superior contextual adherence of SLMs in strict extraction workflows.",
+      "score": 79,
+      "primary": "models",
+      "tags": [
+        "rag",
+        "evaluación",
+        "llm",
+        "ncu"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2606.23695",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 1,
+      "llm_score": 75,
+      "why": "Propone la métrica NCU para diferenciar con precisión entre la memoria del modelo y la información recuperada en sistemas RAG.",
+      "title_es": "Cuantificación de la dominancia previa en sistemas RAG",
+      "entities": [
+        "arXiv",
+        "Quantifying Prior Dominance",
+        "Systems"
+      ],
+      "noise_penalty": 0,
+      "final_score": 79,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "RIFT-Bench: Dynamic Red-teaming For Agentic AI Systems",
+      "link": "https://arxiv.org/abs/2606.23927",
+      "published": "2026-06-24T04:00:00+00:00",
+      "summary": "arXiv:2606.23927v1 Announce Type: new Abstract: Agentic AI systems powered by large language models (LLMs) are rapidly evolving into autonomous decision-making systems, exposing attack vectors beyond those of traditional LLM vulnerabilities. Existing security evaluations are often tied to specific implementations or domains, limiting unified comparison across heterogeneous systems. To address this gap, we introduce RIFT-Bench, a graph representation-driven methodology for dynamic red-teaming that enables unified evaluations across diverse agentic architectures. Building on a novel hierarchical representation, RIFT-Bench operates in two automated phases: Discovery, which extracts system structure, and Scanning, which deploys adaptive adversarial attacks and produces a comprehensive evaluation report. It evaluates the examined system itself, leveraging a broad set of dynamically adaptable adversarial probes across diverse attack vectors and objectives. We demonstrate the effectiveness of the proposed evaluation pipeline across 45 agentic systems spanning a diverse range of implementations, showing that the approach generalizes effectively to heterogeneous agentic architectures. Beyond systems and attacks, RIFT-Bench also supports direct evaluation of mitigation strategies. These key capabilities make RIFT-Bench a scalable foundation for security evaluation of agentic AI systems.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "RIFT-Bench: Dynamic Red-teaming For Agentic AI Systems",
+      "raw_summary": "arXiv:2606.23927v1 Announce Type: new Abstract: Agentic AI systems powered by large language models (LLMs) are rapidly evolving into autonomous decision-making systems, exposing attack vectors beyond those of traditional LLM vulnerabilities. Existing security evaluations are often tied to specific implementations or domains, limiting unified comparison across heterogeneous systems. To address this gap, we introduce RIFT-Bench, a graph representation-driven methodology for dynamic red-teaming that enables unified evaluations across diverse agentic architectures. Building on a novel hierarchical representation, RIFT-Bench operates in two automated phases: Discovery, which extracts system structure, and Scanning, which deploys adaptive adversarial attacks and produces a comprehensive evaluation report. It evaluates the examined system itself, leveraging a broad set of dynamically adaptable adversarial probes across diverse attack vectors and objectives. We demonstrate the effectiveness of the proposed evaluation pipeline across 45 agentic systems spanning a diverse range of implementations, showing that the approach generalizes effectively to heterogeneous agentic architectures. Beyond systems and attacks, RIFT-Bench also supports direct evaluation of mitigation strategies. These key capabilities make RIFT-Bench a scalable foundation for security evaluation of agentic AI systems.",
+      "score": 79,
+      "primary": "models",
+      "tags": [
+        "agentes",
+        "seguridad",
+        "red-teaming"
+      ],
+      "heuristic_score": 86,
+      "url": "https://arxiv.org/abs/2606.23927",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 86,
+      "_rid": 4,
+      "llm_score": 78,
+      "why": "Metodología de red-teaming dinámico basada en grafos para evaluar la seguridad de agentes autónomos ante nuevos vectores de ataque.",
+      "title_es": "RIFT-Bench: Red-teaming dinámico para sistemas de IA de agentes",
+      "entities": [
+        "arXiv",
+        "RIFT",
+        "Bench",
+        "Dynamic Red",
+        "For Agentic",
+        "Systems"
+      ],
+      "noise_penalty": 0,
+      "final_score": 79,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Semidynamics Brings Its Full Inference Stack to ISC HPC 2026 — And Why It Matters",
+      "link": "https://semiwiki.com/ip/370526-semidynamics-brings-its-full-inference-stack-to-isc-hpc-2026-and-why-it-matters/",
+      "published": "2026-06-23T21:00:58+00:00",
+      "summary": "AI inference is quickly becoming the real battleground for next-generation computing. Training still gets the headlines, but inference is where AI becomes a business, a service, and an infrastructure problem. Every chatbot response, agentic workflow, code assistant, scientific model, and enterprise copilot depends on &8230; Read More The post Semidynamics Brings Its Full Inference Stack to ISC HPC 2026 — And Why It Matters appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "Semidynamics Brings Its Full Inference Stack to ISC HPC 2026 — And Why It Matters",
+      "raw_summary": "AI inference is quickly becoming the real battleground for next-generation computing. Training still gets the headlines, but inference is where AI becomes a business, a service, and an infrastructure problem. Every chatbot response, agentic workflow, code assistant, scientific model, and enterprise copilot depends on &#8230; Read More The post Semidynamics Brings Its Full Inference Stack to ISC HPC 2026 — And Why It Matters appeared first on SemiWiki .",
+      "score": 78,
+      "primary": "infra",
+      "tags": [
+        "inferencia",
+        "hpc",
+        "hardware",
+        "riscv"
+      ],
+      "heuristic_score": 46,
+      "url": "https://semiwiki.com/ip/370526-semidynamics-brings-its-full-inference-stack-to-isc-hpc-2026-and-why-it-matters/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 46,
+      "_rid": 11,
+      "llm_score": 84,
+      "why": "Semidynamics presenta su stack completo enfocado en inferencia de IA para el mercado de computación de alto rendimiento.",
+      "title_es": "Semidynamics lleva su stack de inferencia completo al ISC HPC 2026",
+      "entities": [
+        "Semidynamics",
+        "ISC HPC",
+        "ISC",
+        "HPC",
+        "Semidynamics Brings Its",
+        "Full Inference Stack",
+        "And Why It",
+        "Matters"
+      ],
+      "noise_penalty": 0,
+      "final_score": 78,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Systematic Exploration of 4-Expert Heterogeneous Mixture-of-Experts via Automated Pipeline Search",
+      "link": "https://arxiv.org/abs/2606.23739",
+      "published": "2026-06-24T04:00:00+00:00",
+      "summary": "arXiv:2606.23739v1 Announce Type: new Abstract: We present an automated large-scale search pipeline for heterogeneous 4-Expert Mixture-of-Experts (MoE4) architectures within the LEMUR neural network dataset ecosystem. Building on a hand-crafted heterogeneous MoE reference model, we replace manual design with a deterministic code-assembly generator that systematically combines base architecture families drawn from the LEMUR database into MoE4 ensembles, each governed by a convolutional gating network with temperature scaling, mixup augmentation, and cosine-annealed learning rate scheduling. Over a 28-day campaign on an NVIDIA RTX 4090, the pipeline generated 4,463 candidate models across 197 batches, of which 1,021 were evaluated successfully. A critical finding emerged from the campaign: due to alphabetical enumeration via itertools.combinations, the entire explored search space (4.8% of the theoretical 23,751 possible 4-family combinations) is anchored to a single family, AirNet. We characterise this coverage bias precisely, identify the root cause in the generator, and propose a stratified random sampling fix. Within the AirNet anchored scope, ShuffleNet and MobileNetV3 consistently co-produce the highest-accuracy ensembles (mean accuracy up to 0.632), while FractalNet and MNASNet are identified as low-yield families warranting exclusion in future campaigns. The pipeline, analysis artefacts, and corrected generator are released as part of the open-source NNGPT project at",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Systematic Exploration of 4-Expert Heterogeneous Mixture-of-Experts via Automated Pipeline Search",
+      "raw_summary": "arXiv:2606.23739v1 Announce Type: new Abstract: We present an automated large-scale search pipeline for heterogeneous 4-Expert Mixture-of-Experts (MoE4) architectures within the LEMUR neural network dataset ecosystem. Building on a hand-crafted heterogeneous MoE reference model, we replace manual design with a deterministic code-assembly generator that systematically combines base architecture families drawn from the LEMUR database into MoE4 ensembles, each governed by a convolutional gating network with temperature scaling, mixup augmentation, and cosine-annealed learning rate scheduling. Over a 28-day campaign on an NVIDIA RTX 4090, the pipeline generated 4,463 candidate models across 197 batches, of which 1,021 were evaluated successfully. A critical finding emerged from the campaign: due to alphabetical enumeration via itertools.combinations, the entire explored search space (4.8% of the theoretical 23,751 possible 4-family combinations) is anchored to a single family, AirNet. We characterise this coverage bias precisely, identify the root cause in the generator, and propose a stratified random sampling fix. Within the AirNet anchored scope, ShuffleNet and MobileNetV3 consistently co-produce the highest-accuracy ensembles (mean accuracy up to 0.632), while FractalNet and MNASNet are identified as low-yield families warranting exclusion in future campaigns. The pipeline, analysis artefacts, and corrected generator are released as part of the open-source NNGPT project at https://github.com/ABrain-One/nn-gpt",
+      "score": 77,
+      "primary": "models",
+      "tags": [
+        "moe",
+        "arquitectura",
+        "optimización"
+      ],
+      "heuristic_score": 63,
+      "url": "https://arxiv.org/abs/2606.23739",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 63,
+      "_rid": 6,
+      "llm_score": 80,
+      "why": "Pipeline automatizado que optimiza arquitecturas de mezcla de expertos (MoE) heterogéneas para mejorar la eficiencia del modelo.",
+      "title_es": "Exploración sistemática de Mixtura de Expertos heterogénea de 4 expertos vía búsqueda automatizada",
+      "entities": [
+        "NVIDIA",
+        "LEMUR",
+        "Systematic Exploration",
+        "Expert Heterogeneous Mixture",
+        "Experts",
+        "Automated Pipeline Search"
+      ],
+      "noise_penalty": 0,
+      "final_score": 77,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "How Samtec Blazes a Trail to 224/448 Gbps at DesignCon 26",
+      "link": "https://semiwiki.com/events/370262-how-samtec-blazes-a-trail-to-224-448-gbps-at-designcon-26/",
+      "published": "2026-06-23T13:00:28+00:00",
+      "summary": "I recently covered what Samtec was doing at DesignCon 26 . Samtec has a tendency to dominate any show it attends in multiple dimensions. The prior post focused on the company’s contributions to the technical agenda and the high-profile experts in attendance. While all that is interesting and valuable, attending a large show like&8230; Read More The post How Samtec Blazes a Trail to 224/448 Gbps at DesignCon 26 appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "How Samtec Blazes a Trail to 224/448 Gbps at DesignCon 26",
+      "raw_summary": "I recently covered what Samtec was doing at DesignCon 26 . Samtec has a tendency to dominate any show it attends in multiple dimensions. The prior post focused on the company’s contributions to the technical agenda and the high-profile experts in attendance. While all that is interesting and valuable, attending a large show like&#8230; Read More The post How Samtec Blazes a Trail to 224/448 Gbps at DesignCon 26 appeared first on SemiWiki .",
+      "score": 75,
+      "primary": "infra",
+      "tags": [
+        "conectividad",
+        "hardware",
+        "datacenter"
+      ],
+      "heuristic_score": 10,
+      "url": "https://semiwiki.com/events/370262-how-samtec-blazes-a-trail-to-224-448-gbps-at-designcon-26/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 10,
+      "_rid": 15,
+      "llm_score": 86,
+      "why": "Avances críticos en interconexiones de hasta 448 Gbps necesarios para manejar el tráfico masivo de clústeres de IA.",
+      "title_es": "Cómo Samtec abre camino hacia los 224/448 Gbps en DesignCon 26",
+      "entities": [
+        "Samtec",
+        "DesignCon",
+        "How Samtec Blazes",
+        "Trail",
+        "Gbps"
+      ],
+      "noise_penalty": 0,
+      "final_score": 75,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Weight-Space Geometry of Offline Reasoning Training",
+      "link": "https://arxiv.org/abs/2606.23740",
+      "published": "2026-06-24T04:00:00+00:00",
+      "summary": "arXiv:2606.23740v1 Announce Type: new Abstract: Offline reinforcement-learning losses (RFT, RIFT, DFT, Offline GRPO, DPO) are widely used to distill reasoning from large teachers into smaller students, and are typically compared on downstream accuracy alone. We ask whether they are mechanistically distinct or converge to a similar weight update. Training six methods (SFT, RFT, DFT, RIFT, Offline GRPO, DPO) on identical math rollouts from a single base model (Qwen3-4B) with attention-only LoRA, we analyze the resulting deltas via cosine similarity, principal-angle subspace analysis, linear mode connectivity, and CKA. We observe: (i) SFT, RFT, and RIFT have nearly colinear weight deltas (cosine >= 0.97, top-1 principal angle ~7 deg median over 144 modules) and comparable GSM8K accuracy (87-88%, n=1319; pairwise McNemar p >= 0.15); (ii) DFT diverges further in direction than any reward-weighted method despite using the same data; (iii) Offline GRPO adds a substantial component orthogonal to the SFT direction (~67% globally, up to ~86% in late layers) while staying in the SFT loss basin; (iv) DPO sits in a near-orthogonal subspace, shows a mode-connectivity barrier, and collapses late-layer CKA to ~0.46. DPO also reaches the highest accuracy in our protocol on both GSM8K (93.5%, McNemar p < 10^-9 vs. each other method) and AIME26 (30.0% vs. 3.3-10.0%); its training uses a 10x smaller learning rate than the others (the standard convention), so the update-norm and accuracy gaps reflect loss-function and optimizer choices jointly, and a learning-rate-matched DPO comparison is left for future work.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Weight-Space Geometry of Offline Reasoning Training",
+      "raw_summary": "arXiv:2606.23740v1 Announce Type: new Abstract: Offline reinforcement-learning losses (RFT, RIFT, DFT, Offline GRPO, DPO) are widely used to distill reasoning from large teachers into smaller students, and are typically compared on downstream accuracy alone. We ask whether they are mechanistically distinct or converge to a similar weight update. Training six methods (SFT, RFT, DFT, RIFT, Offline GRPO, DPO) on identical math rollouts from a single base model (Qwen3-4B) with attention-only LoRA, we analyze the resulting deltas via cosine similarity, principal-angle subspace analysis, linear mode connectivity, and CKA. We observe: (i) SFT, RFT, and RIFT have nearly colinear weight deltas (cosine >= 0.97, top-1 principal angle ~7 deg median over 144 modules) and comparable GSM8K accuracy (87-88%, n=1319; pairwise McNemar p >= 0.15); (ii) DFT diverges further in direction than any reward-weighted method despite using the same data; (iii) Offline GRPO adds a substantial component orthogonal to the SFT direction (~67% globally, up to ~86% in late layers) while staying in the SFT loss basin; (iv) DPO sits in a near-orthogonal subspace, shows a mode-connectivity barrier, and collapses late-layer CKA to ~0.46. DPO also reaches the highest accuracy in our protocol on both GSM8K (93.5%, McNemar p < 10^-9 vs. each other method) and AIME26 (30.0% vs. 3.3-10.0%); its training uses a 10x smaller learning rate than the others (the standard convention), so the update-norm and accuracy gaps reflect loss-function and optimizer choices jointly, and a learning-rate-matched DPO comparison is left for future work.",
+      "score": 74,
+      "primary": "models",
+      "tags": [
+        "razonamiento",
+        "entrenamiento",
+        "lora"
+      ],
+      "heuristic_score": 58,
+      "url": "https://arxiv.org/abs/2606.23740",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 58,
+      "_rid": 9,
+      "llm_score": 77,
+      "why": "Análisis geométrico que revela que diferentes métodos de entrenamiento offline convergen en deltas de pesos casi colineales.",
+      "title_es": "Geometría del espacio de pesos en el entrenamiento de razonamiento offline",
+      "entities": [
+        "Qwen3-4B",
+        "Weight",
+        "Space Geometry",
+        "Offline Reasoning Training"
+      ],
+      "noise_penalty": 0,
+      "final_score": 74,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Self-Recognition Finetuning can Prevent and Reverse Emergent Misalignment",
+      "link": "https://arxiv.org/abs/2606.23700",
+      "published": "2026-06-24T04:00:00+00:00",
+      "summary": "arXiv:2606.23700v1 Announce Type: new Abstract: Emergent misalignment (EM) has been linked to the activation of misaligned persona vectors and evil character traits, suggesting that EM operates through disruption of the model's aligned character rather than direct learning of harmful content. Motivated by this connection, we study self-generated text recognition (SGTR) finetuning as a character-targeted intervention that is distinct from existing in-training defenses. We conduct two-stage finetuning experiments across three models (GPT-4.1, Qwen2.5-32B-Instruct, Seed-OSS-36B-Instruct) and multiple EM datasets to compare SGTR finetuning against benign finetuning baselines (correct domain-specific data, general knowledge, and word counting) to find it an effective defense in both reversal and prevention settings. We find that all interventions produce comparable EM reversal, but only when restoring capabilities that EM had degraded. For prevention, only SGTR finetuning consistently reduces misalignment without exacerbating any individual metric, suggesting that character fortification specifically drives prevention. We provide further evidence for EM's relation to the LLM's default character by showing that EM finetuning induces diversity into the LLM's identity self-reports, artificially corrupting self-recognition exacerbates misalignment caused by EM finetuning, and that removing the model's identity-bearing system prompt substantially reduces the effect of EM finetuning. Together, these findings reframe EM not as the adoption of a coherent misaligned persona but as the destabilization of aligned character.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Self-Recognition Finetuning can Prevent and Reverse Emergent Misalignment",
+      "raw_summary": "arXiv:2606.23700v1 Announce Type: new Abstract: Emergent misalignment (EM) has been linked to the activation of misaligned persona vectors and evil character traits, suggesting that EM operates through disruption of the model's aligned character rather than direct learning of harmful content. Motivated by this connection, we study self-generated text recognition (SGTR) finetuning as a character-targeted intervention that is distinct from existing in-training defenses. We conduct two-stage finetuning experiments across three models (GPT-4.1, Qwen2.5-32B-Instruct, Seed-OSS-36B-Instruct) and multiple EM datasets to compare SGTR finetuning against benign finetuning baselines (correct domain-specific data, general knowledge, and word counting) to find it an effective defense in both reversal and prevention settings. We find that all interventions produce comparable EM reversal, but only when restoring capabilities that EM had degraded. For prevention, only SGTR finetuning consistently reduces misalignment without exacerbating any individual metric, suggesting that character fortification specifically drives prevention. We provide further evidence for EM's relation to the LLM's default character by showing that EM finetuning induces diversity into the LLM's identity self-reports, artificially corrupting self-recognition exacerbates misalignment caused by EM finetuning, and that removing the model's identity-bearing system prompt substantially reduces the effect of EM finetuning. Together, these findings reframe EM not as the adoption of a coherent misaligned persona but as the destabilization of aligned character.",
+      "score": 73,
+      "primary": "models",
+      "tags": [
+        "alineamiento",
+        "seguridad",
+        "llm"
+      ],
+      "heuristic_score": 59,
+      "url": "https://arxiv.org/abs/2606.23700",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 59,
+      "_rid": 8,
+      "llm_score": 85,
+      "why": "Demuestra que el ajuste fino de autorreconocimiento puede prevenir la activación de rasgos de personalidad dañinos en modelos grandes.",
+      "title_es": "El ajuste fino de autorreconocimiento puede prevenir y revertir el desajuste emergente",
+      "entities": [
+        "GPT-4.1",
+        "Qwen2.5",
+        "Seed-OSS",
+        "Self",
+        "Recognition Finetuning",
+        "Prevent",
+        "Reverse Emergent Misalignment"
+      ],
+      "noise_penalty": 8,
+      "final_score": 73,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(8)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Ground Then Rank: Revisiting Knowledge-Based VQA with Training-Free Entity Identification",
+      "link": "https://arxiv.org/abs/2606.23881",
+      "published": "2026-06-24T04:00:00+00:00",
+      "summary": "arXiv:2606.23881v1 Announce Type: new Abstract: Knowledge-Based Visual Question Answering (KB-VQA) requires grounding visual queries to external knowledge beyond directly observable content in s. While recent multi modal large language models (MLLMs) show strong perceptual abilities, they struggle on KB-VQA tasks requiring groundings from both fine-grained entity and evidence levels. Most existing multi-modal retrieval augmented generation (MM-RAG) methods tightly couple entity discrimination and section-level evidence ranking into a single re-ranking stage, leading to high cost and limited generalization. In this work, we revisit existing MM-RAG solutions from a workflow perspective and argue both entity-level and fact-level groundings are key bottlenecks. We observe that although MLLMs often fail under open-ended entity naming, they can better identify the correct entity when selecting from a small set of candidate names. Based on this insight, we propose a simple and training-free identify-before-answer IBA framework that decouples entity identification from section-level re-ranking. Our approach prompts an MLLM to select high-confidence entities using only candidate names, followed by an off-the-shelf textual re-ranker for evidence selection. Experiments on Encyclopedic-VQA and InfoSeek show that our method consistently outperforms fine-tuned multi-modal re-ranking baselines while reducing training and inference complexity. Additional analyses reveal that the improvements arise not only from better entity identification, but also from selecting more informative evidence once correct entity is fixed. Our implementation is made public to ease reproducibility.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Ground Then Rank: Revisiting Knowledge-Based VQA with Training-Free Entity Identification",
+      "raw_summary": "arXiv:2606.23881v1 Announce Type: new Abstract: Knowledge-Based Visual Question Answering (KB-VQA) requires grounding visual queries to external knowledge beyond directly observable content in images. While recent multi modal large language models (MLLMs) show strong perceptual abilities, they struggle on KB-VQA tasks requiring groundings from both fine-grained entity and evidence levels. Most existing multi-modal retrieval augmented generation (MM-RAG) methods tightly couple entity discrimination and section-level evidence ranking into a single re-ranking stage, leading to high cost and limited generalization. In this work, we revisit existing MM-RAG solutions from a workflow perspective and argue both entity-level and fact-level groundings are key bottlenecks. We observe that although MLLMs often fail under open-ended entity naming, they can better identify the correct entity when selecting from a small set of candidate names. Based on this insight, we propose a simple and training-free identify-before-answer IBA framework that decouples entity identification from section-level re-ranking. Our approach prompts an MLLM to select high-confidence entities using only candidate names, followed by an off-the-shelf textual re-ranker for evidence selection. Experiments on Encyclopedic-VQA and InfoSeek show that our method consistently outperforms fine-tuned multi-modal re-ranking baselines while reducing training and inference complexity. Additional analyses reveal that the improvements arise not only from better entity identification, but also from selecting more informative evidence once correct entity is fixed. Our implementation is made public to ease reproducibility.",
+      "score": 72,
+      "primary": "models",
+      "tags": [
+        "vqa",
+        "mm-rag",
+        "visión"
+      ],
+      "heuristic_score": 71,
+      "url": "https://arxiv.org/abs/2606.23881",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 71,
+      "_rid": 5,
+      "llm_score": 72,
+      "why": "Mejora el rendimiento en preguntas y respuestas visuales mediante la identificación de entidades sin necesidad de entrenamiento adicional.",
+      "title_es": "Ground Then Rank: Revisión de VQA basado en conocimiento con identificación de entidades sin entrenamiento",
+      "entities": [
+        "arXiv",
+        "VQA",
+        "Ground Then Rank",
+        "Revisiting Knowledge",
+        "Based",
+        "Training",
+        "Free Entity Identification"
+      ],
+      "noise_penalty": 0,
+      "final_score": 72,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Chips&Media Signs Next-Gen ‘AV2’ Video IP Licensing Deal with North American Big Tech, Strengthening Global Standards Leadership",
+      "link": "https://semiwiki.com/ip/chipsmedia/370439-chipsmedia-signs-next-gen-av2-video-ip-licensing-deal-with-north-american-big-tech-strengthening-global-standards-leadership/",
+      "published": "2026-06-23T17:00:59+00:00",
+      "summary": "Chips&38;Media, a leading provider of video intellectual property (IP) solutions, has announced a strategic licensing agreement with a major North American technology company for its next-generation AV2 video codec IP. The agreement marks a significant milestone for the company as demand accelerates for advanced video&8230; Read More The post Chips&038;Media Signs Next-Gen &8216;AV2&8217; Video IP Licensing Deal with North American Big Tech, Strengthening Global Standards Leadership appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "Chips&Media Signs Next-Gen ‘AV2’ Video IP Licensing Deal with North American Big Tech, Strengthening Global Standards Leadership",
+      "raw_summary": "Chips&#38;Media, a leading provider of video intellectual property (IP) solutions, has announced a strategic licensing agreement with a major North American technology company for its next-generation AV2 video codec IP. The agreement marks a significant milestone for the company as demand accelerates for advanced video&#8230; Read More The post Chips&#038;Media Signs Next-Gen &#8216;AV2&#8217; Video IP Licensing Deal with North American Big Tech, Strengthening Global Standards Leadership appeared first on SemiWiki .",
+      "score": 70,
+      "primary": "infra",
+      "tags": [
+        "video-codec",
+        "ip",
+        "hardware"
+      ],
+      "heuristic_score": 34,
+      "url": "https://semiwiki.com/ip/chipsmedia/370439-chipsmedia-signs-next-gen-av2-video-ip-licensing-deal-with-north-american-big-tech-strengthening-global-standards-leadership/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 34,
+      "_rid": 12,
+      "llm_score": 76,
+      "why": "Acuerdo estratégico con una Big Tech norteamericana para licenciar el códec AV2, fundamental para el procesamiento de vídeo futuro.",
+      "title_es": "Chips&Media firma un acuerdo de licencia de IP de vídeo 'AV2' de próxima generación con una Big Tech norteamericana",
+      "entities": [
+        "Chips&Media",
+        "AV2",
+        "Chips",
+        "Media Signs Next",
+        "Gen",
+        "Licensing Deal",
+        "North American Big",
+        "Tech"
+      ],
+      "noise_penalty": 0,
+      "final_score": 70,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "EXPO-SQL: Execution-based Clause-level Policy Optimization for Text-to-SQL",
+      "link": "https://arxiv.org/abs/2606.23693",
+      "published": "2026-06-24T04:00:00+00:00",
+      "summary": "arXiv:2606.23693v1 Announce Type: new Abstract: Text-to-SQL enables users to query databases using natural language by generating executable SQL queries. Recent methods have increasingly adopted Large Language Models based reinforcement learning (RL) to leverage execution feedback for training. However, existing RL methods assign uniform query-level rewards to all clauses in a SQL query, treating correct and incorrect clauses equally. This coarse-grained reward design leads to insufficient learning signals for correct SQL generation. To address this issue, we propose EXPO-SQL (EXecution-based clause-level Policy Optimization for Text-to-SQL) which provides fine-grained supervision through clause-level rewards. To assign clause-level rewards, our method identifies erroneous clauses by analyzing execution results, including error messages and clause-wise incremental execution. Experiments on widely-used Text-to-SQL benchmarks demonstrate that EXPO-SQL significantly outperforms existing supervised fine-tuning, prompting, and RL-based methods through fine-grained clause-level learning. Our code is available at com/jhn25/EXPO-SQL.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "EXPO-SQL: Execution-based Clause-level Policy Optimization for Text-to-SQL",
+      "raw_summary": "arXiv:2606.23693v1 Announce Type: new Abstract: Text-to-SQL enables users to query databases using natural language by generating executable SQL queries. Recent methods have increasingly adopted Large Language Models based reinforcement learning (RL) to leverage execution feedback for training. However, existing RL methods assign uniform query-level rewards to all clauses in a SQL query, treating correct and incorrect clauses equally. This coarse-grained reward design leads to insufficient learning signals for correct SQL generation. To address this issue, we propose EXPO-SQL (EXecution-based clause-level Policy Optimization for Text-to-SQL) which provides fine-grained supervision through clause-level rewards. To assign clause-level rewards, our method identifies erroneous clauses by analyzing execution results, including error messages and clause-wise incremental execution. Experiments on widely-used Text-to-SQL benchmarks demonstrate that EXPO-SQL significantly outperforms existing supervised fine-tuning, prompting, and RL-based methods through fine-grained clause-level learning. Our code is available at https://github. com/jhn25/EXPO-SQL.",
+      "score": 67,
+      "primary": "models",
+      "tags": [
+        "sql",
+        "rl",
+        "optimización"
+      ],
+      "heuristic_score": 52,
+      "url": "https://arxiv.org/abs/2606.23693",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 52,
+      "_rid": 10,
+      "llm_score": 70,
+      "why": "Optimización de políticas a nivel de cláusula para mejorar la precisión de la generación de SQL mediante retroalimentación de ejecución.",
+      "title_es": "EXPO-SQL: Optimización de políticas a nivel de cláusula basada en ejecución para Text-to-SQL",
+      "entities": [
+        "arXiv",
+        "EXPO",
+        "SQL",
+        "Execution",
+        "Clause",
+        "Policy Optimization",
+        "Text"
+      ],
+      "noise_penalty": 0,
+      "final_score": 67,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "geopolitics_power"
+    },
+    {
+      "title": "Evaluating LLM Usage for Efficient and Explainable Numerical and Classified Implicit Sentiment Analysis of Product Desirability",
+      "link": "https://arxiv.org/abs/2606.23701",
+      "published": "2026-06-24T04:00:00+00:00",
+      "summary": "arXiv:2606.23701v1 Announce Type: new Abstract: Qualitative product feedback can reveal nuanced user experiences, but its implicit sentiment is difficult to measure. This paper presents a scalable and interpretable framework that uses large language models (LLMs) to quantify product desirability from such data. Using two Product Desirability Toolkit (PDT) datasets from ZORQ and CARMA comprising 106 respondent term groupings with gold-standard human annotation, zero-shot continuous numerical sentiment scoring and categorical sentiment classification are evaluated without relying on explicit review scores. Across the datasets, LLMs generated numerical sentiment scores directly from qualitative responses and closely matched expert labels, achieving Pearson correlations up to 0.97 and classification accuracy up to 94%. LLMs maintained robustness even when handling data presented in multiple forms and consistently expressed high confidence. In contrast, lexicon-based and transformer baselines did not produce statistically significant results. Among the models tested, GPT-4o-mini achieved performance comparable to larger models at 94% lower cost, supporting scalable deployment. The framework also incorporates model confidence ratings and human-readable rationale explanations (xAI), improving interpretability, transparency, and trust while supporting practical use in product satisfaction assessment. In general, using the PDT tool as a survey method along with a cost efficient LLM for sentiment analysis has the potential to provide for product evaluation with results that are rich in terms of sentiment scores (both numerical and classified sentiment) and in terms of the high-level user impressions of the product that can be used to identify ideas for product development and improvement, as well as marketing ideas for target audiences.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Evaluating LLM Usage for Efficient and Explainable Numerical and Classified Implicit Sentiment Analysis of Product Desirability",
+      "raw_summary": "arXiv:2606.23701v1 Announce Type: new Abstract: Qualitative product feedback can reveal nuanced user experiences, but its implicit sentiment is difficult to measure. This paper presents a scalable and interpretable framework that uses large language models (LLMs) to quantify product desirability from such data. Using two Product Desirability Toolkit (PDT) datasets from ZORQ and CARMA comprising 106 respondent term groupings with gold-standard human annotation, zero-shot continuous numerical sentiment scoring and categorical sentiment classification are evaluated without relying on explicit review scores. Across the datasets, LLMs generated numerical sentiment scores directly from qualitative responses and closely matched expert labels, achieving Pearson correlations up to 0.97 and classification accuracy up to 94%. LLMs maintained robustness even when handling data presented in multiple forms and consistently expressed high confidence. In contrast, lexicon-based and transformer baselines did not produce statistically significant results. Among the models tested, GPT-4o-mini achieved performance comparable to larger models at 94% lower cost, supporting scalable deployment. The framework also incorporates model confidence ratings and human-readable rationale explanations (xAI), improving interpretability, transparency, and trust while supporting practical use in product satisfaction assessment. In general, using the PDT tool as a survey method along with a cost efficient LLM for sentiment analysis has the potential to provide for product evaluation with results that are rich in terms of sentiment scores (both numerical and classified sentiment) and in terms of the high-level user impressions of the product that can be used to identify ideas for product development and improvement, as well as marketing ideas for target audiences.",
+      "score": 66,
+      "primary": "misc",
+      "tags": [
+        "nlp",
+        "sentimiento",
+        "e-commerce"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2606.23701",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 2,
+      "llm_score": 60,
+      "why": "Uso de LLMs para transformar feedback cualitativo en puntuaciones numéricas de deseabilidad de producto de forma escalable.",
+      "title_es": "Evaluación del uso de LLM para el análisis de sentimiento implícito numérico y clasificado",
+      "entities": [
+        "ZORQ",
+        "CARMA",
+        "Evaluating",
+        "Usage",
+        "Efficient",
+        "Explainable Numerical",
+        "Classified Implicit Sentiment",
+        "Analysis"
+      ],
+      "noise_penalty": 0,
+      "final_score": 66,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "9 demos of Gemini Omni and Gemini 3.5 in action",
+      "link": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-omni-3-5-videos/",
+      "published": "2026-05-29T17:30:00+00:00",
+      "summary": "Gemini Omni & Gemini 3.5 hero",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "9 demos of Gemini Omni and Gemini 3.5 in action",
+      "raw_summary": "Gemini Omni & Gemini 3.5 hero",
+      "score": 66,
+      "primary": "models",
+      "tags": [
+        "gemini",
+        "multimodal",
+        "google"
+      ],
+      "heuristic_score": 22,
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-omni-3-5-videos/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 22,
+      "_rid": 14,
+      "llm_score": 92,
+      "why": "Lanzamiento de Gemini 3.5 y la versión Omni, marcando el nuevo estado del arte en modelos multimodales nativos.",
+      "title_es": "9 demostraciones de Gemini Omni y Gemini 3.5 en acción",
+      "entities": [
+        "Google",
+        "Gemini Omni",
+        "Gemini 3.5",
+        "Gemini"
+      ],
+      "noise_penalty": 16,
+      "final_score": 66,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(16)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "ModTGCN: Modularity-aware Graph Neural Networks for Text Classification",
+      "link": "https://arxiv.org/abs/2606.23694",
+      "published": "2026-06-24T04:00:00+00:00",
+      "summary": "arXiv:2606.23694v1 Announce Type: new Abstract: Graph-based text classification models typically rely on local neighborhood aggregation and overlook global community structure, despite semantic document graphs exhibiting strong class-consistent clustering. Ignoring this can blur class boundaries and lead to over-smoothing. We propose ModTGCN, a modularity-aware graph neural network for text classification that jointly optimizes cross-entropy and a modularity-based auxiliary objective to promote class-coherent document communities while preserving discriminative representations. The modularity term is computed on a document-document similarity graph derived from transformer embeddings (pretrained or fine-tuned). To improve scalability, we decouple the original heterogeneous TextGCN graph into separate document-word and word-word components, achieving 2x-10x faster training. We further study graph construction strategies, label-aware edge reweighting, and supervision choices for modularity optimization. Experiments on five benchmarks show consistent gains, with larger improvements on complex, low homophily datasets such as Ohsumed and 20NG.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "ModTGCN: Modularity-aware Graph Neural Networks for Text Classification",
+      "raw_summary": "arXiv:2606.23694v1 Announce Type: new Abstract: Graph-based text classification models typically rely on local neighborhood aggregation and overlook global community structure, despite semantic document graphs exhibiting strong class-consistent clustering. Ignoring this can blur class boundaries and lead to over-smoothing. We propose ModTGCN, a modularity-aware graph neural network for text classification that jointly optimizes cross-entropy and a modularity-based auxiliary objective to promote class-coherent document communities while preserving discriminative representations. The modularity term is computed on a document-document similarity graph derived from transformer embeddings (pretrained or fine-tuned). To improve scalability, we decouple the original heterogeneous TextGCN graph into separate document-word and word-word components, achieving 2x-10x faster training. We further study graph construction strategies, label-aware edge reweighting, and supervision choices for modularity optimization. Experiments on five benchmarks show consistent gains, with larger improvements on complex, low homophily datasets such as Ohsumed and 20NG.",
+      "score": 65,
+      "primary": "models",
+      "tags": [
+        "gnn",
+        "grafos",
+        "clasificación"
+      ],
+      "heuristic_score": 62,
+      "url": "https://arxiv.org/abs/2606.23694",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 62,
+      "_rid": 7,
+      "llm_score": 65,
+      "why": "Introduce objetivos de modularidad en GNN para evitar el sobre-suavizado y mejorar la clasificación de textos mediante estructuras globales.",
+      "title_es": "ModTGCN: Redes neuronales de grafos conscientes de la modularidad para clasificación de texto",
+      "entities": [
+        "arXiv",
+        "Modularity",
+        "Graph Neural Networks",
+        "Text Classification"
+      ],
+      "noise_penalty": 0,
+      "final_score": 65,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "How we used Gemini to build Google I/O 2026",
+      "link": "https://blog.google/innovation-and-ai/technology/ai/io-2026-google-ai/",
+      "published": "2026-06-01T16:00:00+00:00",
+      "summary": "A collage of I/O-related s, including the Antigravity Coffee Co. pop-up, a colorful jellyfish and a still from the Timmy TPU video. The word AI repeats three times on the left of the , and there are colorful icons, including a sparkle, as well.",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "How we used Gemini to build Google I/O 2026",
+      "raw_summary": "A collage of I/O-related images, including the Antigravity Coffee Co. pop-up, a colorful jellyfish and a still from the Timmy TPU video. The word AI repeats three times on the left of the image, and there are colorful icons, including a sparkle, as well.",
+      "score": 62,
+      "primary": "invest",
+      "tags": [
+        "google",
+        "gemini",
+        "estrategia"
+      ],
+      "heuristic_score": 22,
+      "url": "https://blog.google/innovation-and-ai/technology/ai/io-2026-google-ai/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 22,
+      "_rid": 13,
+      "llm_score": 88,
+      "why": "Google muestra la integración masiva de Gemini en sus servicios y la infraestructura de soporte durante su evento anual.",
+      "title_es": "Cómo usamos Gemini para construir Google I/O 2026",
+      "entities": [
+        "Google",
+        "Gemini",
+        "How"
+      ],
+      "noise_penalty": 16,
+      "final_score": 62,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(16)",
+      "strategic_theme": "compute_chips_dc"
+    }
+  ]
+}
