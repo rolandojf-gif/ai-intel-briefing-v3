@@ -1,0 +1,680 @@
+{
+  "date": "2026-06-25",
+  "score_avg": 68.87,
+  "primary_dist": {
+    "models": 9,
+    "invest": 1,
+    "infra": 3,
+    "misc": 2
+  },
+  "top_entities": [
+    {
+      "entity": "Why",
+      "count": 2
+    },
+    {
+      "entity": "Google",
+      "count": 2
+    },
+    {
+      "entity": "SemiWiki",
+      "count": 2
+    },
+    {
+      "entity": "ASR",
+      "count": 2
+    },
+    {
+      "entity": "Wikipedia",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "Gemini 3.5 Flash incorpora uso de ordenador, intensificando la carrera por agentes capaces de ejecutar flujos de trabajo.",
+      "La alianza OpenAI-Broadcom-Apollo consolida la tendencia de financiar infraestructura IA como activos de semiconductores.",
+      "La edición coordinada de Wikipedia demuestra una influencia masiva y desproporcionada en los valores de Llama 3.1.",
+      "La fotónica de silicio se posiciona como el relevo necesario del cobre para el escalado eficiente de centros de datos.",
+      "Surgen metodologías de red-teaming dinámico para evaluar la seguridad de agentes con capacidad de decisión autónoma."
+    ],
+    "risks": [
+      "Brecha de control: detectar un comportamiento en un LLM no garantiza la capacidad técnica de corregirlo o dirigirlo.",
+      "Sesgo por fuentes dominantes: la alta ponderación de Wikipedia permite que grupos pequeños moldeen la ética de modelos.",
+      "Cuellos de botella en interconexión: los límites físicos del cobre amenazan el rendimiento de los clústeres de nueva generación."
+    ],
+    "watch": [
+      "Adopción empresarial de Gemini 3.5 Flash para tareas de escritorio frente a las soluciones de Anthropic y OpenAI.",
+      "Evolución de los sistemas neuro-simbólicos para dotar de razonamiento lógico y causal a la conducción autónoma.",
+      "Implementación de análisis multifísico en el diseño de chiplets para gestionar el calor y el consumo energético."
+    ],
+    "entities_top": [
+      "Google DeepMind",
+      "OpenAI",
+      "Broadcom"
+    ]
+  },
+  "items": [
+    {
+      "title": "Small edits, large models: How Wikipedia advocacy shapes LLM values",
+      "link": "https://arxiv.org/abs/2606.24890",
+      "published": "2026-06-25T04:00:00+00:00",
+      "summary": "arXiv:2606.24890v1 Announce Type: new Abstract: Can a small group of volunteers shape how AI systems discuss animal welfare, just by editing Wikipedia? We show that they can. Wikipedia appears in nearly every major language model training dataset and is weighted more heavily than web-crawled text. The Pro-Animal Wikipedians (PAW), a group of advocates who add sourced animal welfare content to relevant articles, have made 125 edits across 115 pages. Using gradient-based data attribution (Bergson; MAGIC), we traced how these edits influence language model behavior. TrackStar retrieval attribution on Llama 3.1 8B found that PAW-edited sections made up 68 percent of the highest-attributed documents for animal welfare queries (p < 0.0001) but only 52 percent for unrelated queries about the same companies (p = 0.53): the model links PAW content specifically to animal welfare topics, not to the entities in general. MAGIC counterfactual influence estimation on Llama-3.2-1B, run across five random training-order seeds, gave the same picture even more sharply: in every seed, the top-10 most influential documents on animal welfare queries were all PAW edits (10 of 10, 5 of 5 seeds), while on general queries the same top-10 sat at chance (4 to 6 of 10). Mean PAW influence exceeded mean control influence on animal welfare queries with p < 0.0001 in every seed, an effect 6 to 30 times larger than on general queries. Leave-subset-out validation gave Spearman rho = 1.00 for all 10 runs. When we fine-tuned separate models on PAW content versus control content, each model performed better specifically on the type of text it was trained on: the PAW-trained model cut perplexity on animal welfare text from 12.4 to 8.4, while the control-trained model cut perplexity on control text from 16.1 to 11.4. A small, coordinated Wikipedia editing campaign therefore measurably shapes how language models handle the topics those edits address.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Small edits, large models: How Wikipedia advocacy shapes LLM values",
+      "raw_summary": "arXiv:2606.24890v1 Announce Type: new Abstract: Can a small group of volunteers shape how AI systems discuss animal welfare, just by editing Wikipedia? We show that they can. Wikipedia appears in nearly every major language model training dataset and is weighted more heavily than web-crawled text. The Pro-Animal Wikipedians (PAW), a group of advocates who add sourced animal welfare content to relevant articles, have made 125 edits across 115 pages. Using gradient-based data attribution (Bergson; MAGIC), we traced how these edits influence language model behavior. TrackStar retrieval attribution on Llama 3.1 8B found that PAW-edited sections made up 68 percent of the highest-attributed documents for animal welfare queries (p < 0.0001) but only 52 percent for unrelated queries about the same companies (p = 0.53): the model links PAW content specifically to animal welfare topics, not to the entities in general. MAGIC counterfactual influence estimation on Llama-3.2-1B, run across five random training-order seeds, gave the same picture even more sharply: in every seed, the top-10 most influential documents on animal welfare queries were all PAW edits (10 of 10, 5 of 5 seeds), while on general queries the same top-10 sat at chance (4 to 6 of 10). Mean PAW influence exceeded mean control influence on animal welfare queries with p < 0.0001 in every seed, an effect 6 to 30 times larger than on general queries. Leave-subset-out validation gave Spearman rho = 1.00 for all 10 runs. When we fine-tuned separate models on PAW content versus control content, each model performed better specifically on the type of text it was trained on: the PAW-trained model cut perplexity on animal welfare text from 12.4 to 8.4, while the control-trained model cut perplexity on control text from 16.1 to 11.4. A small, coordinated Wikipedia editing campaign therefore measurably shapes how language models handle the topics those edits address.",
+      "score": 80,
+      "primary": "models",
+      "tags": [
+        "wikipedia",
+        "sesgo",
+        "llama"
+      ],
+      "heuristic_score": 71,
+      "url": "https://arxiv.org/abs/2606.24890",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 71,
+      "_rid": 5,
+      "llm_score": 82,
+      "why": "Estudio crítico que revela cómo ediciones mínimas en Wikipedia dominan los valores y respuestas de modelos como Llama 3.1.",
+      "title_es": "Pequeñas ediciones, grandes modelos: Cómo el activismo en Wikipedia moldea los valores de los LLM",
+      "entities": [
+        "Wikipedia",
+        "Llama 3.1",
+        "PAW",
+        "Small",
+        "How Wikipedia"
+      ],
+      "noise_penalty": 0,
+      "final_score": 80,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "The Wedding of the Year: Why AI Infrastructure Financing Is Becoming a Semiconductor Story",
+      "link": "https://semiwiki.com/artificial-intelligence/370320-the-wedding-of-the-year-why-ai-infrastructure-financing-is-becoming-a-semiconductor-story/",
+      "published": "2026-06-24T21:00:50+00:00",
+      "summary": "Every family has that one wedding where, halfway through the toasts, someone leans over and whispers &8220;wait, who&8217;s paying for all this?&8221; This is that wedding. OpenAI and Broadcom are the happy couple. Apollo Global Management walked the bride down the aisle. Nvidia may have just stood up to offer a toast, a very&8230; Read More The post The Wedding of the Year: Why AI Infrastructure Financing Is Becoming a Semiconductor Story appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "The Wedding of the Year: Why AI Infrastructure Financing Is Becoming a Semiconductor Story",
+      "raw_summary": "Every family has that one wedding where, halfway through the toasts, someone leans over and whispers &#8220;wait, who&#8217;s paying for all this?&#8221; This is that wedding. OpenAI and Broadcom are the happy couple. Apollo Global Management walked the bride down the aisle. Nvidia may have just stood up to offer a toast, a very&#8230; Read More The post The Wedding of the Year: Why AI Infrastructure Financing Is Becoming a Semiconductor Story appeared first on SemiWiki .",
+      "score": 80,
+      "primary": "invest",
+      "tags": [
+        "financiación",
+        "openai",
+        "broadcom"
+      ],
+      "heuristic_score": 10,
+      "url": "https://semiwiki.com/artificial-intelligence/370320-the-wedding-of-the-year-why-ai-infrastructure-financing-is-becoming-a-semiconductor-story/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 10,
+      "_rid": 15,
+      "llm_score": 92,
+      "why": "Operación financiera masiva que posiciona el desarrollo de chips personalizados como el centro de la estrategia de inversión en IA.",
+      "title_es": "La boda del año: Por qué la financiación de infraestructura de IA se está convirtiendo en una historia de semiconductores",
+      "entities": [
+        "OpenAI",
+        "Broadcom",
+        "Apollo Global Management",
+        "NVIDIA",
+        "The Wedding",
+        "Year",
+        "Why",
+        "Infrastructure Financing Is"
+      ],
+      "noise_penalty": 0,
+      "final_score": 80,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "AgentOdyssey: Open-Ended Long-Horizon Text Game Generation for Test-Time Continual Learning Agents",
+      "link": "https://arxiv.org/abs/2606.24893",
+      "published": "2026-06-25T04:00:00+00:00",
+      "summary": "arXiv:2606.24893v1 Announce Type: new Abstract: For agents to learn continuously from interaction with the world at test time, they must be able to explore effectively, acquire new world knowledge and skills, retain relevant episodic experiences, and plan over long horizons. To evaluate these key abilities of test-time continual learning agents, we introduce AgentOdyssey, a novel evaluation framework that procedurally generates open-ended text games with rich entities, world dynamics, and long-horizon tasks. Critically, AgentOdyssey goes beyond the conventional machine learning assumption that learning does not occur at test time by placing agents in a continuous, long-horizon setting that interleaves learning and inference throughout deployment. We further propose a multifaceted evaluation methodology that measures not only game progress but also offers diagnostic tests on world knowledge acquisition, episodic memory, object and action exploration, action diversity, and model cost. We evaluate diverse agent paradigms in the generated games. Our experimental results reveal critical limits in agents' key abilities, as well as factors that influence their meaningful horizon. Although performance scales with stronger base models, even the top agent remains far below human performance, leaving substantial headroom for improvement. Among agent mechanisms, we find that short-term memory benefits multiple agent paradigms and is an important component of agent test-time training.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "AgentOdyssey: Open-Ended Long-Horizon Text Game Generation for Test-Time Continual Learning Agents",
+      "raw_summary": "arXiv:2606.24893v1 Announce Type: new Abstract: For agents to learn continuously from interaction with the world at test time, they must be able to explore effectively, acquire new world knowledge and skills, retain relevant episodic experiences, and plan over long horizons. To evaluate these key abilities of test-time continual learning agents, we introduce AgentOdyssey, a novel evaluation framework that procedurally generates open-ended text games with rich entities, world dynamics, and long-horizon tasks. Critically, AgentOdyssey goes beyond the conventional machine learning assumption that learning does not occur at test time by placing agents in a continuous, long-horizon setting that interleaves learning and inference throughout deployment. We further propose a multifaceted evaluation methodology that measures not only game progress but also offers diagnostic tests on world knowledge acquisition, episodic memory, object and action exploration, action diversity, and model cost. We evaluate diverse agent paradigms in the generated games. Our experimental results reveal critical limits in agents' key abilities, as well as factors that influence their meaningful horizon. Although performance scales with stronger base models, even the top agent remains far below human performance, leaving substantial headroom for improvement. Among agent mechanisms, we find that short-term memory benefits multiple agent paradigms and is an important component of agent test-time training.",
+      "score": 79,
+      "primary": "models",
+      "tags": [
+        "agentes",
+        "aprendizaje continuo",
+        "evaluación"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2606.24893",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 1,
+      "llm_score": 75,
+      "why": "Marco innovador para que los agentes aprendan y se adapten en tiempo real durante la ejecución, no solo en entrenamiento.",
+      "title_es": "AgentOdyssey: Generación de juegos de texto para agentes con aprendizaje continuo en tiempo de ejecución",
+      "entities": [
+        "AgentOdyssey",
+        "Open",
+        "Ended Long",
+        "Horizon Text Game",
+        "Generation",
+        "Test",
+        "Time Continual Learning",
+        "Agents"
+      ],
+      "noise_penalty": 0,
+      "final_score": 79,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Perfect Detection, Failed Control: The Geometry of Knowing vs. Steering in Language Models",
+      "link": "https://arxiv.org/abs/2606.24952",
+      "published": "2026-06-25T04:00:00+00:00",
+      "summary": "arXiv:2606.24952v1 Announce Type: new Abstract: A central aspiration of mechanistic interpretability is controllability: if we know where a behavior is represented in a model's activations, we should be able to modify it. This rests on a hidden premise -- that the direction which detects a behavior and the direction which controls it are the same, or close. We test this geometrically: what is the angle between the direction that best detects a behavior and the one that best causes it? If detection implies control the cosine is near 1; otherwise it quantifies a detection-intervention gap. On Gemma 2-2B-it, output format (clean JSON vs markdown fencing) collapses both roles onto one axis. Hallucination does not: the model detects fake entities with perfect linear separability (AUC = 1.000 from layer 5), yet that direction sits at cos = 0.12 (about 83 degrees) from the direction producing a refusal -- a small, reproducible alignment, far from the cos = 1 that \"detection is control\" would require. A detector built from activations, with no chosen tokens, likewise fails to align (cos = -0.06). The gap generalizes: across four models from three families and two scales (1B-9B), cos stays in [0.12, 0.20], identical before and after instruction tuning (0.1197 vs 0.1200), placing its origin in pretraining. A 15-degree rotation toward the refusal direction partially bridges it -- 73% and 60% refusal on two held-out fake-entity categories at 1.8% false positives. We then ask whether this cosine predicts steerability, and it does not: detection is a high-dimensional class, not a single direction, and what separates the steerable case is functional, not readable from a static angle. The cosine is a weight-computable signature of the dissociation between knowing and steering, not a predictor of it.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Perfect Detection, Failed Control: The Geometry of Knowing vs. Steering in Language Models",
+      "raw_summary": "arXiv:2606.24952v1 Announce Type: new Abstract: A central aspiration of mechanistic interpretability is controllability: if we know where a behavior is represented in a model's activations, we should be able to modify it. This rests on a hidden premise -- that the direction which detects a behavior and the direction which controls it are the same, or close. We test this geometrically: what is the angle between the direction that best detects a behavior and the one that best causes it? If detection implies control the cosine is near 1; otherwise it quantifies a detection-intervention gap. On Gemma 2-2B-it, output format (clean JSON vs markdown fencing) collapses both roles onto one axis. Hallucination does not: the model detects fake entities with perfect linear separability (AUC = 1.000 from layer 5), yet that direction sits at cos = 0.12 (about 83 degrees) from the direction producing a refusal -- a small, reproducible alignment, far from the cos = 1 that \"detection is control\" would require. A detector built from activations, with no chosen tokens, likewise fails to align (cos = -0.06). The gap generalizes: across four models from three families and two scales (1B-9B), cos stays in [0.12, 0.20], identical before and after instruction tuning (0.1197 vs 0.1200), placing its origin in pretraining. A 15-degree rotation toward the refusal direction partially bridges it -- 73% and 60% refusal on two held-out fake-entity categories at 1.8% false positives. We then ask whether this cosine predicts steerability, and it does not: detection is a high-dimensional class, not a single direction, and what separates the steerable case is functional, not readable from a static angle. The cosine is a weight-computable signature of the dissociation between knowing and steering, not a predictor of it.",
+      "score": 79,
+      "primary": "models",
+      "tags": [
+        "interpretabilidad",
+        "control",
+        "geometría"
+      ],
+      "heuristic_score": 73,
+      "url": "https://arxiv.org/abs/2606.24952",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 73,
+      "_rid": 4,
+      "llm_score": 80,
+      "why": "Demuestra que detectar un comportamiento no implica poder controlarlo, identificando un desfase geométrico clave en Gemma 2.",
+      "title_es": "Detección perfecta, control fallido: La geometría del conocimiento frente al direccionamiento en modelos de lenguaje",
+      "entities": [
+        "Gemma 2-2B-it",
+        "Google",
+        "Perfect Detection",
+        "Failed Control",
+        "The Geometry",
+        "Knowing",
+        "Steering",
+        "Language Models"
+      ],
+      "noise_penalty": 0,
+      "final_score": 79,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "The Modulator Is Not the Product: Why AI Photonics Needs an Electro-Optical Realization Corridor",
+      "link": "https://semiwiki.com/photonics/370505-the-modulator-is-not-the-product-why-ai-photonics-needs-an-electro-optical-realization-corridor/",
+      "published": "2026-06-24T17:00:56+00:00",
+      "summary": "Co-packaged optics, silicon photonics, optical I/O, and photonic engines are becoming central topics in the future of AI infrastructure. The common story is simple: Copper is reaching limits. Light can move data farther and more efficiently. Therefore, AI systems will move from electrical interconnects toward optical interconnects.&8230; Read More The post The Modulator Is Not the Product: Why AI Photonics Needs an Electro-Optical Realization Corridor appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "The Modulator Is Not the Product: Why AI Photonics Needs an Electro-Optical Realization Corridor",
+      "raw_summary": "Co-packaged optics, silicon photonics, optical I/O, and photonic engines are becoming central topics in the future of AI infrastructure. The common story is simple: Copper is reaching limits. Light can move data farther and more efficiently. Therefore, AI systems will move from electrical interconnects toward optical interconnects.&#8230; Read More The post The Modulator Is Not the Product: Why AI Photonics Needs an Electro-Optical Realization Corridor appeared first on SemiWiki .",
+      "score": 76,
+      "primary": "infra",
+      "tags": [
+        "fotónica",
+        "semiconductores",
+        "interconexión"
+      ],
+      "heuristic_score": 22,
+      "url": "https://semiwiki.com/photonics/370505-the-modulator-is-not-the-product-why-ai-photonics-needs-an-electro-optical-realization-corridor/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 22,
+      "_rid": 13,
+      "llm_score": 85,
+      "why": "Análisis sobre la necesidad crítica de pasar de conexiones de cobre a ópticas para sostener el crecimiento de la IA.",
+      "title_es": "El modulador no es el producto: Por qué la fotónica de IA necesita un corredor de realización electro-óptico",
+      "entities": [
+        "SemiWiki",
+        "The Modulator Is",
+        "Not",
+        "Product",
+        "Why",
+        "Photonics Needs",
+        "Electro",
+        "Optical Realization Corridor"
+      ],
+      "noise_penalty": 0,
+      "final_score": 76,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Dustin: Draft-Augmented Sparse Verification for Efficient Long-Context Generation with Speculative Decoding",
+      "link": "https://arxiv.org/abs/2606.24957",
+      "published": "2026-06-25T04:00:00+00:00",
+      "summary": "arXiv:2606.24957v1 Announce Type: new Abstract: While speculative decoding improves inference throughput for multi-batch long-context Large Language Models (LLMs), its efficiency is often limited by a verification bottleneck where Key-Value (KV) cache loading dominates latency. Existing compression methods fail in this regime: static eviction incurs accuracy loss due to saliency shift, while dynamic selection introduces prohibitive computational overhead during the verification path. We propose Dustin, a sparse verification framework designed for long-context speculative decoding. Dustin integrates lookahead signals from the draft model with historical attention from the target model to identify critical tokens with high fidelity across multi-step verification windows. To reduce recomputation latency, this approach further employs a sparse estimation scheme that restricts importance scoring to a minimal subset of attention heads. Evaluations on PG-19 and LongBench with Qwen2.5-72B demonstrate that Dustin achieves a 27.85x speedup in self-attention and a 9.17x end-to-end decoding speedup at a 32k sequence length, all with negligible accuracy degradation.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Dustin: Draft-Augmented Sparse Verification for Efficient Long-Context Generation with Speculative Decoding",
+      "raw_summary": "arXiv:2606.24957v1 Announce Type: new Abstract: While speculative decoding improves inference throughput for multi-batch long-context Large Language Models (LLMs), its efficiency is often limited by a verification bottleneck where Key-Value (KV) cache loading dominates latency. Existing compression methods fail in this regime: static eviction incurs accuracy loss due to saliency shift, while dynamic selection introduces prohibitive computational overhead during the verification path. We propose Dustin, a sparse verification framework designed for long-context speculative decoding. Dustin integrates lookahead signals from the draft model with historical attention from the target model to identify critical tokens with high fidelity across multi-step verification windows. To reduce recomputation latency, this approach further employs a sparse estimation scheme that restricts importance scoring to a minimal subset of attention heads. Evaluations on PG-19 and LongBench with Qwen2.5-72B demonstrate that Dustin achieves a 27.85x speedup in self-attention and a 9.17x end-to-end decoding speedup at a 32k sequence length, all with negligible accuracy degradation.",
+      "score": 75,
+      "primary": "infra",
+      "tags": [
+        "inferencia",
+        "contexto largo",
+        "eficiencia"
+      ],
+      "heuristic_score": 92,
+      "url": "https://arxiv.org/abs/2606.24957",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 92,
+      "_rid": 2,
+      "llm_score": 72,
+      "why": " Dustin optimiza la inferencia en contextos largos combinando señales del modelo borrador y atención histórica del modelo objetivo.",
+      "title_es": "Dustin: Verificación dispersa aumentada para generación eficiente de contexto largo con decodificación especulativa",
+      "entities": [
+        "Dustin",
+        "Draft",
+        "Augmented Sparse Verification",
+        "Efficient Long",
+        "Context Generation",
+        "Speculative Decoding"
+      ],
+      "noise_penalty": 0,
+      "final_score": 75,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Introducing computer use in Gemini 3.5 Flash",
+      "link": "https://deepmind.google/blog/introducing-computer-use-in-gemini-3-5-flash/",
+      "published": "2026-06-24T16:30:01+00:00",
+      "summary": "",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Introducing computer use in Gemini 3.5 Flash",
+      "raw_summary": "",
+      "score": 74,
+      "primary": "models",
+      "tags": [
+        "gemini",
+        "agentes",
+        "productividad"
+      ],
+      "heuristic_score": 22,
+      "url": "https://deepmind.google/blog/introducing-computer-use-in-gemini-3-5-flash/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 22,
+      "_rid": 12,
+      "llm_score": 88,
+      "why": "Google responde a la competencia permitiendo que Gemini 3.5 Flash interactúe directamente con la interfaz del ordenador.",
+      "title_es": "Presentamos el uso de ordenador en Gemini 3.5 Flash",
+      "entities": [
+        "Gemini 3.5 Flash",
+        "DeepMind",
+        "Gemini",
+        "Flash"
+      ],
+      "noise_penalty": 4,
+      "final_score": 74,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(4)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Neuro-Symbolic Drive: Rule-Grounded Faithful Reasoning for Driving VLAs",
+      "link": "https://arxiv.org/abs/2606.23938",
+      "published": "2026-06-25T04:00:00+00:00",
+      "summary": "arXiv:2606.23938v1 Announce Type: new Abstract: Driving VLA models incorporating Chain-of-Thought (CoT) reasoning are attractive because they leverage pretrained VLM representations and expose intermediate decisions in natural language, yet current rationales often lack the step-by-step decision semantics needed to keep the rationale causally connected to the planned motion. We introduce Neuro-Symbolic Drive, a neuro-symbolic driving framework that supervises a driving VLA with rule-grounded reasoning traces extracted directly from classical rule-based planners. Our key observation is that rule-based planners are symbolic AI systems that already function as executable reasoning engines: they reason about active safety constraints, search over candidate maneuvers, and select a final trajectory. We instrument these planners in simulation to capture both the executed trajectory and the internal decision trace at each rule-evaluation step. Each trace is serialized into structured rule-grounded reasoning and paired with the trajectory to fine-tune Qwen3.5-4B as a driving VLA. Because these traces are derived directly from the planner states that determine the action, they ensure reasoning is structurally coupled to motion generation by construction, rather than by post-hoc alignment. On our simulator-generated benchmark, detailed rule-grounded reasoning reduces ADE@3s from 0.47 to 0.26 and miss rate from 8.30% to 6.40% under three-camera perception, and from 0.54 to 0.26 and 10.13% to 5.99% under eight-camera perception. Neuro-Symbolic Drive thus converts neuro-symbolic planning logic into structured supervision. Code base:",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Neuro-Symbolic Drive: Rule-Grounded Faithful Reasoning for Driving VLAs",
+      "raw_summary": "arXiv:2606.23938v1 Announce Type: new Abstract: Driving VLA models incorporating Chain-of-Thought (CoT) reasoning are attractive because they leverage pretrained VLM representations and expose intermediate decisions in natural language, yet current rationales often lack the step-by-step decision semantics needed to keep the rationale causally connected to the planned motion. We introduce Neuro-Symbolic Drive, a neuro-symbolic driving framework that supervises a driving VLA with rule-grounded reasoning traces extracted directly from classical rule-based planners. Our key observation is that rule-based planners are symbolic AI systems that already function as executable reasoning engines: they reason about active safety constraints, search over candidate maneuvers, and select a final trajectory. We instrument these planners in simulation to capture both the executed trajectory and the internal decision trace at each rule-evaluation step. Each trace is serialized into structured rule-grounded reasoning and paired with the trajectory to fine-tune Qwen3.5-4B as a driving VLA. Because these traces are derived directly from the planner states that determine the action, they ensure reasoning is structurally coupled to motion generation by construction, rather than by post-hoc alignment. On our simulator-generated benchmark, detailed rule-grounded reasoning reduces ADE@3s from 0.47 to 0.26 and miss rate from 8.30% to 6.40% under three-camera perception, and from 0.54 to 0.26 and 10.13% to 5.99% under eight-camera perception. Neuro-Symbolic Drive thus converts neuro-symbolic planning logic into structured supervision. Code base: https://github.com/XiangboGaoBarry/Neural-Symbolic-Drive.",
+      "score": 71,
+      "primary": "models",
+      "tags": [
+        "vla",
+        "conducción autónoma",
+        "neuro-simbólico"
+      ],
+      "heuristic_score": 89,
+      "url": "https://arxiv.org/abs/2606.23938",
+      "is_repeat": true,
+      "novelty_score": 45,
+      "adjusted_score": 34,
+      "_rid": 8,
+      "llm_score": 78,
+      "why": "Integra planificación simbólica tradicional con modelos VLA para dotar de trazabilidad causal a las decisiones de conducción.",
+      "title_es": "Conducción neuro-simbólica: Razonamiento fiel basado en reglas para dirigir modelos VLA",
+      "entities": [
+        "Neuro-Symbolic Drive",
+        "Neuro",
+        "Symbolic Drive",
+        "Rule",
+        "Grounded Faithful Reasoning",
+        "Driving"
+      ],
+      "noise_penalty": 0,
+      "final_score": 71,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "All-Embracing Multiphysics Analysis for Chiplet-Based Systems",
+      "link": "https://semiwiki.com/5g/370474-all-embracing-multiphysics-analysis-for-chiplet-based-systems/",
+      "published": "2026-06-24T13:00:35+00:00",
+      "summary": "What systems can accomplish by combining semiconductors, AI, and software seems at times boundless. Chiplet-based semiconductors deliver this promise, allowing a myriad of complex digital, memory, analog and photonic functions to be condensed into a single semiconductor package for higher performance, lower power consumption&8230; Read More The post All-Embracing Multiphysics Analysis for Chiplet-Based Systems appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "All-Embracing Multiphysics Analysis for Chiplet-Based Systems",
+      "raw_summary": "What systems can accomplish by combining semiconductors, AI, and software seems at times boundless. Chiplet-based semiconductors deliver this promise, allowing a myriad of complex digital, memory, analog and photonic functions to be condensed into a single semiconductor package for higher performance, lower power consumption&#8230; Read More The post All-Embracing Multiphysics Analysis for Chiplet-Based Systems appeared first on SemiWiki .",
+      "score": 70,
+      "primary": "infra",
+      "tags": [
+        "chiplets",
+        "hardware",
+        "análisis multifísico"
+      ],
+      "heuristic_score": 22,
+      "url": "https://semiwiki.com/5g/370474-all-embracing-multiphysics-analysis-for-chiplet-based-systems/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 22,
+      "_rid": 14,
+      "llm_score": 79,
+      "why": "Aborda la complejidad del diseño de chiplets mediante análisis que integra señales, calor y potencia en un solo paquete.",
+      "title_es": "Análisis multifísico integral para sistemas basados en chiplets",
+      "entities": [
+        "SemiWiki",
+        "All",
+        "Embracing Multiphysics Analysis",
+        "Chiplet",
+        "Based Systems"
+      ],
+      "noise_penalty": 0,
+      "final_score": 70,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "RIFT-Bench: Dynamic Red-teaming For Agentic AI Systems",
+      "link": "https://arxiv.org/abs/2606.23927",
+      "published": "2026-06-25T04:00:00+00:00",
+      "summary": "arXiv:2606.23927v1 Announce Type: new Abstract: Agentic AI systems powered by large language models (LLMs) are rapidly evolving into autonomous decision-making systems, exposing attack vectors beyond those of traditional LLM vulnerabilities. Existing security evaluations are often tied to specific implementations or domains, limiting unified comparison across heterogeneous systems. To address this gap, we introduce RIFT-Bench, a graph representation-driven methodology for dynamic red-teaming that enables unified evaluations across diverse agentic architectures. Building on a novel hierarchical representation, RIFT-Bench operates in two automated phases: Discovery, which extracts system structure, and Scanning, which deploys adaptive adversarial attacks and produces a comprehensive evaluation report. It evaluates the examined system itself, leveraging a broad set of dynamically adaptable adversarial probes across diverse attack vectors and objectives. We demonstrate the effectiveness of the proposed evaluation pipeline across 45 agentic systems spanning a diverse range of implementations, showing that the approach generalizes effectively to heterogeneous agentic architectures. Beyond systems and attacks, RIFT-Bench also supports direct evaluation of mitigation strategies. These key capabilities make RIFT-Bench a scalable foundation for security evaluation of agentic AI systems.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "RIFT-Bench: Dynamic Red-teaming For Agentic AI Systems",
+      "raw_summary": "arXiv:2606.23927v1 Announce Type: new Abstract: Agentic AI systems powered by large language models (LLMs) are rapidly evolving into autonomous decision-making systems, exposing attack vectors beyond those of traditional LLM vulnerabilities. Existing security evaluations are often tied to specific implementations or domains, limiting unified comparison across heterogeneous systems. To address this gap, we introduce RIFT-Bench, a graph representation-driven methodology for dynamic red-teaming that enables unified evaluations across diverse agentic architectures. Building on a novel hierarchical representation, RIFT-Bench operates in two automated phases: Discovery, which extracts system structure, and Scanning, which deploys adaptive adversarial attacks and produces a comprehensive evaluation report. It evaluates the examined system itself, leveraging a broad set of dynamically adaptable adversarial probes across diverse attack vectors and objectives. We demonstrate the effectiveness of the proposed evaluation pipeline across 45 agentic systems spanning a diverse range of implementations, showing that the approach generalizes effectively to heterogeneous agentic architectures. Beyond systems and attacks, RIFT-Bench also supports direct evaluation of mitigation strategies. These key capabilities make RIFT-Bench a scalable foundation for security evaluation of agentic AI systems.",
+      "score": 69,
+      "primary": "models",
+      "tags": [
+        "seguridad",
+        "agentes",
+        "red-teaming"
+      ],
+      "heuristic_score": 86,
+      "url": "https://arxiv.org/abs/2606.23927",
+      "is_repeat": true,
+      "novelty_score": 45,
+      "adjusted_score": 31,
+      "_rid": 10,
+      "llm_score": 76,
+      "why": "Metodología de evaluación dinámica mediante grafos para detectar vulnerabilidades en arquitecturas de agentes autónomos.",
+      "title_es": "RIFT-Bench: Red-teaming dinámico para sistemas de IA de agentes",
+      "entities": [
+        "RIFT-Bench",
+        "RIFT",
+        "Bench",
+        "Dynamic Red",
+        "For Agentic",
+        "Systems"
+      ],
+      "noise_penalty": 0,
+      "final_score": 69,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Graph-Based Phonetic Error Correction of Noisy ASR",
+      "link": "https://arxiv.org/abs/2606.24889",
+      "published": "2026-06-25T04:00:00+00:00",
+      "summary": "arXiv:2606.24889v1 Announce Type: new Abstract: Automatic speech recognition (ASR) systems, despite low overall word error rates, produce residual lexical errors that disproportionately affect semantically critical tokens such as named entities, negations, and sentiment-bearing words. These errors are often structured, arising from phonetic similarity rather than random noise, making naive token-level correction insufficient. We propose a structured ASR correction framework, that we call G-SPIN, that combines phonetic graph modeling with contextual language understanding. A graph neural network (GNN) first constructs acoustically plausible candidate neighborhoods for flagged tokens, explicitly restricting the correction search space to phonetic alternatives. A masked language model (MLM) then provides local contextual scoring, and an instruction-tuned large language model (LLM) performs final context-aware re-ranking over this compact candidate set. By decoupling structured phonetic reasoning from contextual semantic selection, our method avoids unconstrained generation while improving correction accuracy. The framework is lightweight, modular, and operates entirely at inference time.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Graph-Based Phonetic Error Correction of Noisy ASR",
+      "raw_summary": "arXiv:2606.24889v1 Announce Type: new Abstract: Automatic speech recognition (ASR) systems, despite low overall word error rates, produce residual lexical errors that disproportionately affect semantically critical tokens such as named entities, negations, and sentiment-bearing words. These errors are often structured, arising from phonetic similarity rather than random noise, making naive token-level correction insufficient. We propose a structured ASR correction framework, that we call G-SPIN, that combines phonetic graph modeling with contextual language understanding. A graph neural network (GNN) first constructs acoustically plausible candidate neighborhoods for flagged tokens, explicitly restricting the correction search space to phonetic alternatives. A masked language model (MLM) then provides local contextual scoring, and an instruction-tuned large language model (LLM) performs final context-aware re-ranking over this compact candidate set. By decoupling structured phonetic reasoning from contextual semantic selection, our method avoids unconstrained generation while improving correction accuracy. The framework is lightweight, modular, and operates entirely at inference time.",
+      "score": 68,
+      "primary": "models",
+      "tags": [
+        "asr",
+        "corrección de errores",
+        "grafos"
+      ],
+      "heuristic_score": 88,
+      "url": "https://arxiv.org/abs/2606.24889",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 88,
+      "_rid": 3,
+      "llm_score": 65,
+      "why": "Propuesta de corrección fonética mediante grafos que mejora la precisión en términos críticos como entidades y negaciones.",
+      "title_es": "Corrección de errores fonéticos basada en grafos para sistemas de reconocimiento de voz con ruido",
+      "entities": [
+        "G-SPIN",
+        "ASR",
+        "Graph",
+        "Based Phonetic Error",
+        "Correction",
+        "Noisy"
+      ],
+      "noise_penalty": 0,
+      "final_score": 68,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Dense Supervision Is Not Enough: The Readout Blind Spot in Looped Language Models",
+      "link": "https://arxiv.org/abs/2606.24898",
+      "published": "2026-06-25T04:00:00+00:00",
+      "summary": "arXiv:2606.24898v1 Announce Type: new Abstract: Looped language models turn hidden states into runtime state: each state is decoded for prediction and fed back into future computation. This creates a basic supervision question: which state variables does cross-entropy actually control? We show that dense per-loop cross-entropy controls the variables exposed by the readout, not every variable active in the recurrent transition. Hidden-state scale gives a concrete failure mode. Scale-invariant readouts such as RMSNorm and LayerNorm hide radial scale from the immediate cross-entropy loss, while pre-norm residual recurrence continues to carry and update that same scale. Thus per-loop loss can make early exits usable without controlling recurrent scale. In 44M and 129M looped transformers without inter-loop normalization, per-loop cross-entropy through RMSNorm readouts still drives final hidden-state norms into the thousands or tens of thousands. Scale-visible readouts and explicit norm penalties keep norms in the tens, and scale-removing recurrence is the complementary architectural fix. The resulting design rule is simple: dense supervision trains exits; recurrent scale control requires either making scale visible to a loss or removing it from the loop. Consistent with this rule, scale-controlled variants achieve lower perplexity at matched inference-depth operating points in our variable-depth benchmarks.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Dense Supervision Is Not Enough: The Readout Blind Spot in Looped Language Models",
+      "raw_summary": "arXiv:2606.24898v1 Announce Type: new Abstract: Looped language models turn hidden states into runtime state: each state is decoded for prediction and fed back into future computation. This creates a basic supervision question: which state variables does cross-entropy actually control? We show that dense per-loop cross-entropy controls the variables exposed by the readout, not every variable active in the recurrent transition. Hidden-state scale gives a concrete failure mode. Scale-invariant readouts such as RMSNorm and LayerNorm hide radial scale from the immediate cross-entropy loss, while pre-norm residual recurrence continues to carry and update that same scale. Thus per-loop loss can make early exits usable without controlling recurrent scale. In 44M and 129M looped transformers without inter-loop normalization, per-loop cross-entropy through RMSNorm readouts still drives final hidden-state norms into the thousands or tens of thousands. Scale-visible readouts and explicit norm penalties keep norms in the tens, and scale-removing recurrence is the complementary architectural fix. The resulting design rule is simple: dense supervision trains exits; recurrent scale control requires either making scale visible to a loss or removing it from the loop. Consistent with this rule, scale-controlled variants achieve lower perplexity at matched inference-depth operating points in our variable-depth benchmarks.",
+      "score": 67,
+      "primary": "models",
+      "tags": [
+        "supervisión",
+        "arquitectura",
+        "redes recurrentes"
+      ],
+      "heuristic_score": 62,
+      "url": "https://arxiv.org/abs/2606.24898",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 62,
+      "_rid": 6,
+      "llm_score": 68,
+      "why": "Identifica un 'punto ciego' en modelos con bucles donde la pérdida de entropía cruzada no controla todas las variables internas.",
+      "title_es": "La supervisión densa no basta: El punto ciego de lectura en modelos de lenguaje con bucles",
+      "entities": [
+        "Dense Supervision Is",
+        "Not Enough",
+        "The Readout Blind",
+        "Spot",
+        "Looped Language Models"
+      ],
+      "noise_penalty": 0,
+      "final_score": 67,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "From Meta Idea to Advanced Mathematical Discovery -- Human-AI Co-Discovery of Sign-Embedding Quantum Algorithms",
+      "link": "https://arxiv.org/abs/2606.24899",
+      "published": "2026-06-25T04:00:00+00:00",
+      "summary": "arXiv:2606.24899v1 Announce Type: new Abstract: AI-assisted mathematics is often evaluated on solving predefined problems. In practice, however, many important advances begin earlier, when a vague research intuition is transformed into a concrete problem, a promising route, and a theorem family worth proving. This report studies that stage through a case study that led to sign-embedding quantum algorithms for matrix equations and matrix functions, foundational primitives in quantum linear algebra and operator-output quantum algorithms. The project began with a human-originated intuition that rational approximation is especially effective for jump-type functions such as the sign function, and might therefore serve as a design principle for quantum algorithms. Rather than merely assisting after the problem was fixed, AI-assisted exploration, including workflows later integrated into the agentic AI-mathematician system AIM, played a key role in expanding this intuition into a route map, comparing candidate formulations, and converging toward sign embedding as the central framework. AIM then helped connect a known matrix-sign identity to wider classes of matrix equations and matrix functions, and drafted proof and complexity calculations. The decisive scientific judgments remained human: selecting which human-AI-expanded routes were worth pursuing, rejecting a Cayley-trapezoidal approximation when its validity required a hidden condition, and refining the Sylvester implementation from a coarse quadratic-gap query route to the final factorized and scaled analysis. The report argues that human-AI co-discovery workflows, with systems such as AIM as important components, are most valuable not as standalone theorem provers, but as research partners for problem formation, connection discovery, derivation, and skeptical review inside a human-gated research loop.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "From Meta Idea to Advanced Mathematical Discovery -- Human-AI Co-Discovery of Sign-Embedding Quantum Algorithms",
+      "raw_summary": "arXiv:2606.24899v1 Announce Type: new Abstract: AI-assisted mathematics is often evaluated on solving predefined problems. In practice, however, many important advances begin earlier, when a vague research intuition is transformed into a concrete problem, a promising route, and a theorem family worth proving. This report studies that stage through a case study that led to sign-embedding quantum algorithms for matrix equations and matrix functions, foundational primitives in quantum linear algebra and operator-output quantum algorithms. The project began with a human-originated intuition that rational approximation is especially effective for jump-type functions such as the sign function, and might therefore serve as a design principle for quantum algorithms. Rather than merely assisting after the problem was fixed, AI-assisted exploration, including workflows later integrated into the agentic AI-mathematician system AIM, played a key role in expanding this intuition into a route map, comparing candidate formulations, and converging toward sign embedding as the central framework. AIM then helped connect a known matrix-sign identity to wider classes of matrix equations and matrix functions, and drafted proof and complexity calculations. The decisive scientific judgments remained human: selecting which human-AI-expanded routes were worth pursuing, rejecting a Cayley-trapezoidal approximation when its validity required a hidden condition, and refining the Sylvester implementation from a coarse quadratic-gap query route to the final factorized and scaled analysis. The report argues that human-AI co-discovery workflows, with systems such as AIM as important components, are most valuable not as standalone theorem provers, but as research partners for problem formation, connection discovery, derivation, and skeptical review inside a human-gated research loop.",
+      "score": 62,
+      "primary": "misc",
+      "tags": [
+        "matemáticas",
+        "cuántica",
+        "colaboración humana"
+      ],
+      "heuristic_score": 32,
+      "url": "https://arxiv.org/abs/2606.24899",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 32,
+      "_rid": 9,
+      "llm_score": 74,
+      "why": "Caso de éxito en el uso de IA para transformar intuiciones humanas en algoritmos cuánticos concretos para ecuaciones matriciales.",
+      "title_es": "De la idea meta al descubrimiento matemático avanzado: Co-descubrimiento humano-IA de algoritmos cuánticos",
+      "entities": [
+        "Meta",
+        "From Meta Idea",
+        "Advanced Mathematical Discovery",
+        "Human",
+        "Discovery",
+        "Sign",
+        "Embedding Quantum Algorithms"
+      ],
+      "noise_penalty": 6,
+      "final_score": 62,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(6)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Error-Aware TF-IDF Retrieval-Augmented Generation for ASR Error Correction",
+      "link": "https://arxiv.org/abs/2606.24915",
+      "published": "2026-06-25T04:00:00+00:00",
+      "summary": "arXiv:2606.24915v1 Announce Type: new Abstract: End-to-end automatic speech recognition systems frequently hallucinate rare entities and domain-specific terms, especially in low-resource languages. While retrieval-augmented generation frameworks can mitigate these errors using large language models, current architectures face significant challenges. They either rely on standard sparse retrieval that ignores phonetic misrecognitions or utilize heavyweight cross-modal embeddings that introduce high latency. This letter proposes a highly efficient, purely lexical error-aware framework designed to explicitly resolve phonetic and loop hallucinations. Our approach integrates a symmetric text normalization module with a novel error-aware term frequency-inverse document frequency algorithm. By constructing a sparse diagonal penalty matrix based on historical errors, the retriever mathematically prioritizes corrective documents containing specific high-risk misrecognitions. Evaluated on the Persian subset of the FLEURS dataset, our method increased the error-aware hit rate from 53.7% to 90.9%. In end-to-end evaluations, the integrated framework reduced the final word error rate from 23.06% to 18.83%, achieving significant accuracy gains with near-zero inference latency.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Error-Aware TF-IDF Retrieval-Augmented Generation for ASR Error Correction",
+      "raw_summary": "arXiv:2606.24915v1 Announce Type: new Abstract: End-to-end automatic speech recognition systems frequently hallucinate rare entities and domain-specific terms, especially in low-resource languages. While retrieval-augmented generation frameworks can mitigate these errors using large language models, current architectures face significant challenges. They either rely on standard sparse retrieval that ignores phonetic misrecognitions or utilize heavyweight cross-modal embeddings that introduce high latency. This letter proposes a highly efficient, purely lexical error-aware framework designed to explicitly resolve phonetic and loop hallucinations. Our approach integrates a symmetric text normalization module with a novel error-aware term frequency-inverse document frequency algorithm. By constructing a sparse diagonal penalty matrix based on historical errors, the retriever mathematically prioritizes corrective documents containing specific high-risk misrecognitions. Evaluated on the Persian subset of the FLEURS dataset, our method increased the error-aware hit rate from 53.7% to 90.9%. In end-to-end evaluations, the integrated framework reduced the final word error rate from 23.06% to 18.83%, achieving significant accuracy gains with near-zero inference latency.",
+      "score": 61,
+      "primary": "models",
+      "tags": [
+        "rag",
+        "asr",
+        "hallucinación"
+      ],
+      "heuristic_score": 44,
+      "url": "https://arxiv.org/abs/2606.24915",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 44,
+      "_rid": 7,
+      "llm_score": 64,
+      "why": "Framework de recuperación léxica eficiente para mitigar alucinaciones fonéticas en sistemas de reconocimiento de voz.",
+      "title_es": "Generación aumentada por recuperación TF-IDF consciente de errores para corrección en ASR",
+      "entities": [
+        "IDF",
+        "ASR",
+        "Error",
+        "Aware",
+        "Retrieval",
+        "Augmented Generation",
+        "Error Correction"
+      ],
+      "noise_penalty": 0,
+      "final_score": 61,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "5 ways Google Search can level up your thrift and vintage shopping",
+      "link": "https://blog.google/products-and-platforms/products/search/thrifting-tips/",
+      "published": "2026-06-03T13:00:00+00:00",
+      "summary": "A colorful, grain-textured collage of various items scattered across a light blue background. The items include a green bucket hat, a wooden clothes hanger, a blue-and-red striped collar, blue sunglasses, denim shorts, a yellow price tag, a red high-heele",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "5 ways Google Search can level up your thrift and vintage shopping",
+      "raw_summary": "A colorful, grain-textured collage of various items scattered across a light blue background. The items include a green bucket hat, a wooden clothes hanger, a blue-and-red striped collar, blue sunglasses, denim shorts, a yellow price tag, a red high-heele",
+      "score": 22,
+      "primary": "misc",
+      "tags": [
+        "search",
+        "ecommerce",
+        "google"
+      ],
+      "heuristic_score": 25,
+      "url": "https://blog.google/products-and-platforms/products/search/thrifting-tips/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 25,
+      "_rid": 11,
+      "llm_score": 35,
+      "why": "Mejoras menores en la experiencia de usuario para búsquedas de ropa de segunda mano sin impacto tecnológico disruptivo.",
+      "title_es": "5 formas en las que Google Search puede mejorar tus compras de ropa de segunda mano y vintage",
+      "entities": [
+        "Google",
+        "Google Search"
+      ],
+      "noise_penalty": 12,
+      "final_score": 22,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(12)",
+      "strategic_theme": "model_economics_pricing"
+    }
+  ]
+}
