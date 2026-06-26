@@ -1,0 +1,666 @@
+{
+  "date": "2026-06-26",
+  "score_avg": 64.73,
+  "primary_dist": {
+    "infra": 3,
+    "models": 9,
+    "invest": 1,
+    "misc": 2
+  },
+  "top_entities": [
+    {
+      "entity": "arXiv",
+      "count": 6
+    },
+    {
+      "entity": "DeepMind",
+      "count": 3
+    },
+    {
+      "entity": "ContextForge",
+      "count": 1
+    },
+    {
+      "entity": "Context Recycling",
+      "count": 1
+    },
+    {
+      "entity": "Long",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "Google invierte 1.500 millones de dólares en ampliar su infraestructura de centros de datos en Alabama.",
+      "Lanzamiento de Gemma 4 12B: modelo multimodal unificado que elimina la necesidad de codificadores externos.",
+      "El reciclaje de contexto mediante ContextForge permite optimizar la inferencia en conversaciones de largo horizonte.",
+      "DeepMind destina 10 millones de dólares a la investigación de seguridad en sistemas de IA multi-agente.",
+      "Chisao introduce la optimización paralela nativa en GPU para funciones de caja negra mediante oscilación."
+    ],
+    "risks": [
+      "La alineación para mejorar la utilidad (helpfulness) degrada valores morales previamente imbuidos en el modelo.",
+      "La saturación de benchmarks tradicionales impide medir dimensiones críticas como la fiabilidad y eficiencia de los agentes.",
+      "Riesgo de sincofonía persistente en modelos que priorizan agradar al usuario sobre la veracidad de los hechos."
+    ],
+    "watch": [
+      "Evolución de la arquitectura encoder-free tras el despliegue de Gemma 4 12B en entornos de producción.",
+      "Impacto real de Gemini 3.5 Live Translate en la eliminación de barreras lingüísticas en entornos corporativos.",
+      "Aplicación de hojas de ruta de control de IA para monitorizar agentes autónomos con acceso a sistemas internos."
+    ],
+    "entities_top": [
+      "Google DeepMind",
+      "Google",
+      "arXiv"
+    ]
+  },
+  "items": [
+    {
+      "title": "Context Recycling for Long-Horizon LLM Inference",
+      "link": "https://arxiv.org/abs/2606.26105",
+      "published": "2026-06-26T04:00:00+00:00",
+      "summary": "arXiv:2606.26105v1 Announce Type: new Abstract: Large language models (LLMs) exhibit strong capabilities in short-context reasoning but degrade in performance over long conversational horizons due to context window limitations and inefficient token usage. We introduce ContextForge, a system for context recycling that maintains task-relevant information across turns by combining structured query generation, external memory retrieval, and controlled synthesis. The system enables efficient reuse of prior computation without relying on full context replay, reducing token overhead while preserving answer quality. We evaluate ContextForge using a 15-turn conversational benchmark that tests multi-turn reasoning, back-references, and domain shifts across structured healthcare queries. Compared to a baseline agent using identical underlying models, ContextForge demonstrates improved consistency and reduced token consumption, while maintaining comparable response accuracy. These results suggest that context recycling provides a practical approach for extending LLM capabilities in long-horizon tasks without requiring larger context windows or model retraining. Code and evaluation artifacts are available at",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Context Recycling for Long-Horizon LLM Inference",
+      "raw_summary": "arXiv:2606.26105v1 Announce Type: new Abstract: Large language models (LLMs) exhibit strong capabilities in short-context reasoning but degrade in performance over long conversational horizons due to context window limitations and inefficient token usage. We introduce ContextForge, a system for context recycling that maintains task-relevant information across turns by combining structured query generation, external memory retrieval, and controlled synthesis. The system enables efficient reuse of prior computation without relying on full context replay, reducing token overhead while preserving answer quality. We evaluate ContextForge using a 15-turn conversational benchmark that tests multi-turn reasoning, back-references, and domain shifts across structured healthcare queries. Compared to a baseline agent using identical underlying models, ContextForge demonstrates improved consistency and reduced token consumption, while maintaining comparable response accuracy. These results suggest that context recycling provides a practical approach for extending LLM capabilities in long-horizon tasks without requiring larger context windows or model retraining. Code and evaluation artifacts are available at https://github.com/Betanu701/ContextForge.",
+      "score": 81,
+      "primary": "infra",
+      "tags": [
+        "inference",
+        "context-recycling",
+        "efficiency"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2606.26105",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 1,
+      "llm_score": 78,
+      "why": "Propone ContextForge para reducir el gasto de tokens en conversaciones largas mediante el reciclaje inteligente de computación previa.",
+      "title_es": "Reciclaje de contexto para la inferencia de LLM de largo horizonte",
+      "entities": [
+        "ContextForge",
+        "arXiv",
+        "Context Recycling",
+        "Long",
+        "Horizon",
+        "Inference"
+      ],
+      "noise_penalty": 0,
+      "final_score": 81,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "\\chisao{}: A GPU-Native Parallel Optimizer for Multimodal Black-Box Functions via Convergence-Anticonvergence Oscillation",
+      "link": "https://arxiv.org/abs/2606.26164",
+      "published": "2026-06-26T04:00:00+00:00",
+      "summary": "arXiv:2606.26164v1 Announce Type: new Abstract: Finding all modes of a multimodal black-box function is a fundamental challenge in optimization, Bayesian inference, and scientific computing. Existing approaches -- basin-hopping, CMA-ES, multistart gradient descent -- operate sequentially and cannot exploit the massive parallelism of modern GPU hardware. We introduce \\chisao{} (\\textbf{C}onvergence-\\textbf{H}alt-\\textbf{I}nvert-\\textbf{S}tick-\\textbf{A}nd-\\textbf{O}scillate), a GPU-native population optimizer that runs an entire sample batch simultaneously and exploits a deliberate convergence-anticonvergence oscillation cycle to escape local traps while freezing confirmed modes. The structural move is asymmetric: samples that reach true peaks are frozen (``stuck'') and preserved, while the rest keep exploring via momentum-based anti-convergence and stochastically smoothed gradients. Adaptive reseeding via two complementary strategies (Repulse Monkey and Golden Rooster) maintains population diversity throughout. On all 42 functions of the Simon Fraser University optimization benchmark suite across dimensions $d \\in \\{2, 4, 8, 16, 32, 64\\}$, \\chisao{} achieves \\textbf{100\\%} mode recovery where all CPU baselines collapse at $d \\geq 8$ on the hardest multimodal functions, at up to \\textbf{$34\\times$} speedup over basin-hopping on functions where all methods succeed (Michalewicz $d=64$) and up to \\textbf{$39\\times$} on unimodal functions (Rotated Hyper-Ellipsoid $d=64$, pure GPU dividend). All benchmarks evaluate the objective by value alone -- gradients come from finite differences -- so the reported speedups are a derivative-free worst case. Under substantial likelihood noise ($\\sigma_{\\mathrm{noise}}$ up to 1.0), mode detection remains 100\\% reliable. The algorithm is available as a standalone open-source Python package on PyPI.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "\\chisao{}: A GPU-Native Parallel Optimizer for Multimodal Black-Box Functions via Convergence-Anticonvergence Oscillation",
+      "raw_summary": "arXiv:2606.26164v1 Announce Type: new Abstract: Finding all modes of a multimodal black-box function is a fundamental challenge in optimization, Bayesian inference, and scientific computing. Existing approaches -- basin-hopping, CMA-ES, multistart gradient descent -- operate sequentially and cannot exploit the massive parallelism of modern GPU hardware. We introduce \\chisao{} (\\textbf{C}onvergence-\\textbf{H}alt-\\textbf{I}nvert-\\textbf{S}tick-\\textbf{A}nd-\\textbf{O}scillate), a GPU-native population optimizer that runs an entire sample batch simultaneously and exploits a deliberate convergence-anticonvergence oscillation cycle to escape local traps while freezing confirmed modes. The structural move is asymmetric: samples that reach true peaks are frozen (``stuck'') and preserved, while the rest keep exploring via momentum-based anti-convergence and stochastically smoothed gradients. Adaptive reseeding via two complementary strategies (Repulse Monkey and Golden Rooster) maintains population diversity throughout. On all 42 functions of the Simon Fraser University optimization benchmark suite across dimensions $d \\in \\{2, 4, 8, 16, 32, 64\\}$, \\chisao{} achieves \\textbf{100\\%} mode recovery where all CPU baselines collapse at $d \\geq 8$ on the hardest multimodal functions, at up to \\textbf{$34\\times$} speedup over basin-hopping on functions where all methods succeed (Michalewicz $d=64$) and up to \\textbf{$39\\times$} on unimodal functions (Rotated Hyper-Ellipsoid $d=64$, pure GPU dividend). All benchmarks evaluate the objective by value alone -- gradients come from finite differences -- so the reported speedups are a derivative-free worst case. Under substantial likelihood noise ($\\sigma_{\\mathrm{noise}}$ up to 1.0), mode detection remains 100\\% reliable. The algorithm is available as a standalone open-source Python package on PyPI.",
+      "score": 78,
+      "primary": "infra",
+      "tags": [
+        "gpu",
+        "optimization",
+        "parallel-computing"
+      ],
+      "heuristic_score": 58,
+      "url": "https://arxiv.org/abs/2606.26164",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 58,
+      "_rid": 8,
+      "llm_score": 82,
+      "why": "Introduce un optimizador paralelo nativo para GPU que mejora la eficiencia en la búsqueda de modos en funciones de caja negra.",
+      "title_es": "Chisao: un optimizador paralelo nativo de GPU para funciones multimodal de caja negra mediante oscilación de convergencia-anticonvergencia",
+      "entities": [
+        "Chisao",
+        "Native Parallel Optimizer",
+        "Multimodal Black",
+        "Box Functions",
+        "Convergence",
+        "Anticonvergence Oscillation"
+      ],
+      "noise_penalty": 0,
+      "final_score": 78,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Life After Benchmark Saturation: A Case Study of CORE-Bench",
+      "link": "https://arxiv.org/abs/2606.26158",
+      "published": "2026-06-26T04:00:00+00:00",
+      "summary": "arXiv:2606.26158v1 Announce Type: new Abstract: When a benchmark's accuracy saturates, it is often retired and replaced with a more challenging version. We show that this approach privileges accuracy and misses the opportunity to study six other key dimensions of agent performance: construct validity issues such as shortcuts, out-of-distribution generalizability, efficiency, reliability, the relative importance of the model versus the scaffold, and uplift from human-agent collaboration. We use CORE-Bench Hard, a benchmark for computational reproducibility of scientific code, as a case study to demonstrate that measuring agents along these dimensions yields meaningful insights into agent performance even after accuracy saturates. First, we surface threats to construct validity in CORE-Bench Hard that are difficult to anticipate with less capable agents. We introduce an improved benchmark, CORE-Bench v1.1, and an out-of-distribution task suite, CORE-Bench OOD. Second, we find that despite accuracy saturation, CORE-Bench v1.1 remains useful for measuring efficiency, reliability, model performance, and scaffold performance. Finally, we conduct a small-scale randomized experiment to measure uplift from human-agent collaboration on real-world computational reproducibility tasks. We find a statistically significant speedup by about a factor of two -- likely underestimated due to one-fifth of human-only reproductions reaching the time limit before completing -- and describe various other findings. Together, our contributions present a more rigorous alternative to the dominant accuracy-centric evaluation paradigm.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Life After Benchmark Saturation: A Case Study of CORE-Bench",
+      "raw_summary": "arXiv:2606.26158v1 Announce Type: new Abstract: When a benchmark's accuracy saturates, it is often retired and replaced with a more challenging version. We show that this approach privileges accuracy and misses the opportunity to study six other key dimensions of agent performance: construct validity issues such as shortcuts, out-of-distribution generalizability, efficiency, reliability, the relative importance of the model versus the scaffold, and uplift from human-agent collaboration. We use CORE-Bench Hard, a benchmark for computational reproducibility of scientific code, as a case study to demonstrate that measuring agents along these dimensions yields meaningful insights into agent performance even after accuracy saturates. First, we surface threats to construct validity in CORE-Bench Hard that are difficult to anticipate with less capable agents. We introduce an improved benchmark, CORE-Bench v1.1, and an out-of-distribution task suite, CORE-Bench OOD. Second, we find that despite accuracy saturation, CORE-Bench v1.1 remains useful for measuring efficiency, reliability, model performance, and scaffold performance. Finally, we conduct a small-scale randomized experiment to measure uplift from human-agent collaboration on real-world computational reproducibility tasks. We find a statistically significant speedup by about a factor of two -- likely underestimated due to one-fifth of human-only reproductions reaching the time limit before completing -- and describe various other findings. Together, our contributions present a more rigorous alternative to the dominant accuracy-centric evaluation paradigm.",
+      "score": 73,
+      "primary": "models",
+      "tags": [
+        "benchmarking",
+        "agent-performance",
+        "efficiency"
+      ],
+      "heuristic_score": 79,
+      "url": "https://arxiv.org/abs/2606.26158",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 79,
+      "_rid": 4,
+      "llm_score": 72,
+      "why": "Aboga por medir dimensiones como fiabilidad y generalización out-of-distribution una vez que la precisión en los benchmarks se satura.",
+      "title_es": "La vida tras la saturación de los benchmarks: un estudio de caso de CORE-Bench",
+      "entities": [
+        "CORE-Bench",
+        "arXiv",
+        "CORE",
+        "Life After Benchmark",
+        "Saturation",
+        "Case Study",
+        "Bench"
+      ],
+      "noise_penalty": 0,
+      "final_score": 73,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Introducing Gemma 4 12B: a unified, encoder-free multimodal model",
+      "link": "https://deepmind.google/blog/introducing-gemma-4-12b-a-unified-encoder-free-multimodal-model/",
+      "published": "2026-06-09T14:10:19+00:00",
+      "summary": "",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Introducing Gemma 4 12B: a unified, encoder-free multimodal model",
+      "raw_summary": "",
+      "score": 72,
+      "primary": "models",
+      "tags": [
+        "multimodal",
+        "open-weights",
+        "gemma"
+      ],
+      "heuristic_score": 28,
+      "url": "https://deepmind.google/blog/introducing-gemma-4-12b-a-unified-encoder-free-multimodal-model/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 28,
+      "_rid": 12,
+      "llm_score": 92,
+      "why": "Hito arquitectónico al presentar un modelo multimodal unificado de 12B parámetros que prescinde de codificadores externos.",
+      "title_es": "Presentación de Gemma 4 12B: un modelo multimodal unificado y sin codificador",
+      "entities": [
+        "Gemma 4",
+        "DeepMind",
+        "Introducing Gemma"
+      ],
+      "noise_penalty": 10,
+      "final_score": 72,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(10)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "We’re strengthening our presence in Alabama through new investments and community support.",
+      "link": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/alabama-investment-june-2026/",
+      "published": "2026-06-15T15:00:00+00:00",
+      "summary": "Google has announced a $1.5 billion investment for 2026 and 2027 to expand its data center campus in Jackson County, Alabama. Operating since 2019 on a repurposed former…",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "We’re strengthening our presence in Alabama through new investments and community support.",
+      "raw_summary": "Google has announced a $1.5 billion investment for 2026 and 2027 to expand its data center campus in Jackson County, Alabama. Operating since 2019 on a repurposed former…",
+      "score": 71,
+      "primary": "infra",
+      "tags": [
+        "data-centers",
+        "investment",
+        "infrastructure"
+      ],
+      "heuristic_score": 39,
+      "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/alabama-investment-june-2026/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 39,
+      "_rid": 11,
+      "llm_score": 88,
+      "why": "Inversión masiva de 1.500 millones para fortalecer la infraestructura de computación en la nube necesaria para el entrenamiento de IA.",
+      "title_es": "Fortalecemos nuestra presencia en Alabama mediante nuevas inversiones y apoyo comunitario",
+      "entities": [
+        "Google",
+        "Alabama"
+      ],
+      "noise_penalty": 10,
+      "final_score": 71,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(10)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Helpfulness Hurts: Domain-Dependent Degradation of Mid-Trained Compassion Values Under Post-Training",
+      "link": "https://arxiv.org/abs/2606.26102",
+      "published": "2026-06-26T04:00:00+00:00",
+      "summary": "arXiv:2606.26102v1 Announce Type: new Abstract: Standard post-training pipelines apply supervised fine-tuning (SFT) and reinforcement learning (RL) to make language models helpful, but these processes may inadvertently degrade values instilled during pre-training. We investigate whether the domain of post-training data differentially affects the retention of animal compassion values in a Llama 3.1 8B model mid-trained on compassion-oriented synthetic data, using both SFT (helpfulness via Dolly-15k vs. coding via Magicoder-110K) and GRPO (helpfulness via RLHFlow vs. coding via Magicoder), evaluated on the Animal Harm Benchmark (AHB 2.2) and MORU benchmark (Moral Reasoning Under Uncertainty). Helpfulness training significantly degrades animal compassion relative to coding training on AHB (SFT: 35.7% vs. 65.2%; GRPO: 18.7% vs. 32.0%), replicating across two independent helpfulness datasets and two training paradigms. On English MORU items, helpfulness training degrades general moral reasoning by 25.5 percentage points (46.4% vs. 71.9%), a striking gap that rivals the compassion effect in magnitude. However, this effect does not transfer cross-lingually: on the multilingual MORU benchmark, the domain effect disappears (SFT: 52.3% vs. 51.2%). In contrast, the animal compassion effect transfers consistently across languages, with Magicoder's AHB percentage-point gain over the base model 4.5 times larger on non-English items than English items. This divergence suggests that values instilled through mid-training are encoded more deeply and cross-lingually than reasoning improvements from domain-specific post-training. These results suggest that, for labs building on value-laden mid-training, coding-domain post-training may better preserve mid-trained values than helpfulness post-training without harming general reasoning capabilities.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Helpfulness Hurts: Domain-Dependent Degradation of Mid-Trained Compassion Values Under Post-Training",
+      "raw_summary": "arXiv:2606.26102v1 Announce Type: new Abstract: Standard post-training pipelines apply supervised fine-tuning (SFT) and reinforcement learning (RL) to make language models helpful, but these processes may inadvertently degrade values instilled during pre-training. We investigate whether the domain of post-training data differentially affects the retention of animal compassion values in a Llama 3.1 8B model mid-trained on compassion-oriented synthetic data, using both SFT (helpfulness via Dolly-15k vs. coding via Magicoder-110K) and GRPO (helpfulness via RLHFlow vs. coding via Magicoder), evaluated on the Animal Harm Benchmark (AHB 2.2) and MORU benchmark (Moral Reasoning Under Uncertainty). Helpfulness training significantly degrades animal compassion relative to coding training on AHB (SFT: 35.7% vs. 65.2%; GRPO: 18.7% vs. 32.0%), replicating across two independent helpfulness datasets and two training paradigms. On English MORU items, helpfulness training degrades general moral reasoning by 25.5 percentage points (46.4% vs. 71.9%), a striking gap that rivals the compassion effect in magnitude. However, this effect does not transfer cross-lingually: on the multilingual MORU benchmark, the domain effect disappears (SFT: 52.3% vs. 51.2%). In contrast, the animal compassion effect transfers consistently across languages, with Magicoder's AHB percentage-point gain over the base model 4.5 times larger on non-English items than English items. This divergence suggests that values instilled through mid-training are encoded more deeply and cross-lingually than reasoning improvements from domain-specific post-training. These results suggest that, for labs building on value-laden mid-training, coding-domain post-training may better preserve mid-trained values than helpfulness post-training without harming general reasoning capabilities.",
+      "score": 69,
+      "primary": "models",
+      "tags": [
+        "alignment",
+        "post-training",
+        "ethics"
+      ],
+      "heuristic_score": 92,
+      "url": "https://arxiv.org/abs/2606.26102",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 92,
+      "_rid": 2,
+      "llm_score": 65,
+      "why": "Demuestra que el ajuste fino para utilidad puede borrar valores éticos, como la compasión animal, integrados durante el pre-entrenamiento.",
+      "title_es": "La utilidad duele: degradación dependiente del dominio de los valores de compasión en el post-entrenamiento",
+      "entities": [
+        "Llama 3.1 8B",
+        "Animal Harm Benchmark",
+        "MORU",
+        "Helpfulness Hurts",
+        "Domain",
+        "Dependent Degradation",
+        "Mid",
+        "Trained Compassion Values"
+      ],
+      "noise_penalty": 0,
+      "final_score": 69,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Know2Guess: A Contamination-Aware Multi-Zone Benchmark for Knowledge-Boundary Evaluation in Large Language Models",
+      "link": "https://arxiv.org/abs/2606.26101",
+      "published": "2026-06-26T04:00:00+00:00",
+      "summary": "arXiv:2606.26101v1 Announce Type: new Abstract: Reliable evaluation of large language models should separate supported answering from unsupported guessing without conflating either with data contamination, prompt idiosyncrasy, or generic refusal behavior. We present a contamination-aware, multi-zone benchmark for measuring the transition from answerable knowledge to abstention-expected unknowns under frozen build-time labels. The benchmark contains 1,200 items across five domains, explicit abstention expectations, contamination-risk metadata, and dual parsing with an official strict parser plus a normalized robustness parser. We evaluate FLAN-T5, Qwen2.5-Instruct, and Llama-3-Instruct models under locked answer-or-abstain prompts, answer-only controls, and prompt-template variants. The benchmark is not solved by generic non-answer behavior: FLAN baselines remain weak on productive abstention, while stronger instruction-tuned models expose a selective but incomplete transition from answering to abstaining. Qwen2.5-3B-Instruct achieves the best overall reliability, but answer-expected zones remain difficult, calibration remains poor, and benign-item refusal persists. Prompt and parser robustness analyses preserve the main ranking and qualitative conclusions. The benchmark therefore provides a reproducible protocol for auditing answerability, abstention, refusal, and contamination as distinct but interacting dimensions of LLM reliability.The dataset is publicly available at",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Know2Guess: A Contamination-Aware Multi-Zone Benchmark for Knowledge-Boundary Evaluation in Large Language Models",
+      "raw_summary": "arXiv:2606.26101v1 Announce Type: new Abstract: Reliable evaluation of large language models should separate supported answering from unsupported guessing without conflating either with data contamination, prompt idiosyncrasy, or generic refusal behavior. We present a contamination-aware, multi-zone benchmark for measuring the transition from answerable knowledge to abstention-expected unknowns under frozen build-time labels. The benchmark contains 1,200 items across five domains, explicit abstention expectations, contamination-risk metadata, and dual parsing with an official strict parser plus a normalized robustness parser. We evaluate FLAN-T5, Qwen2.5-Instruct, and Llama-3-Instruct models under locked answer-or-abstain prompts, answer-only controls, and prompt-template variants. The benchmark is not solved by generic non-answer behavior: FLAN baselines remain weak on productive abstention, while stronger instruction-tuned models expose a selective but incomplete transition from answering to abstaining. Qwen2.5-3B-Instruct achieves the best overall reliability, but answer-expected zones remain difficult, calibration remains poor, and benign-item refusal persists. Prompt and parser robustness analyses preserve the main ranking and qualitative conclusions. The benchmark therefore provides a reproducible protocol for auditing answerability, abstention, refusal, and contamination as distinct but interacting dimensions of LLM reliability.The dataset is publicly available at https://github.com/renweimeng/Know2Guess-A-Contamination-Aware-Multi-Zone-Benchmark.",
+      "score": 68,
+      "primary": "models",
+      "tags": [
+        "data-contamination",
+        "evaluation",
+        "benchmarking"
+      ],
+      "heuristic_score": 68,
+      "url": "https://arxiv.org/abs/2606.26101",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 68,
+      "_rid": 6,
+      "llm_score": 68,
+      "why": "Presenta un benchmark para distinguir entre conocimiento real y adivinación por contaminación, crucial para evaluar modelos de forma honesta.",
+      "title_es": "Know2Guess: un benchmark multizona consciente de la contaminación para la evaluación de límites de conocimiento en LLM",
+      "entities": [
+        "FLAN-T5",
+        "Qwen2.5",
+        "Llama-3",
+        "Contamination",
+        "Aware Multi",
+        "Zone Benchmark",
+        "Knowledge",
+        "Boundary Evaluation"
+      ],
+      "noise_penalty": 0,
+      "final_score": 68,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Fluid, natural voice translation with Gemini 3.5 Live Translate",
+      "link": "https://deepmind.google/blog/fluid-natural-voice-translation-with-gemini-35-live-translate/",
+      "published": "2026-06-09T15:16:25+00:00",
+      "summary": "Gemini 3.5 Live Translate brings near real-time, natural speech translation to Google AI Studio, Google Translate and Google Meet.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Fluid, natural voice translation with Gemini 3.5 Live Translate",
+      "raw_summary": "Gemini 3.5 Live Translate brings near real-time, natural speech translation to Google AI Studio, Google Translate and Google Meet.",
+      "score": 66,
+      "primary": "models",
+      "tags": [
+        "translation",
+        "real-time",
+        "gemini"
+      ],
+      "heuristic_score": 22,
+      "url": "https://deepmind.google/blog/fluid-natural-voice-translation-with-gemini-35-live-translate/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 22,
+      "_rid": 15,
+      "llm_score": 85,
+      "why": "Lanzamiento de traducción de voz en tiempo real con latencia mínima, integrada en herramientas de productividad masiva.",
+      "title_es": "Traducción de voz fluida y natural con Gemini 3.5 Live Translate",
+      "entities": [
+        "Gemini 3.5",
+        "Google AI Studio",
+        "Google Meet",
+        "Gemini",
+        "Fluid",
+        "Live Translate"
+      ],
+      "noise_penalty": 10,
+      "final_score": 66,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(10)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Detecting and Controlling Sycophancy with Cascading Linear Features",
+      "link": "https://arxiv.org/abs/2606.26155",
+      "published": "2026-06-26T04:00:00+00:00",
+      "summary": "arXiv:2606.26155v1 Announce Type: new Abstract: Interpreting and controlling model behaviors through activation steering methods requires many pairs of contrastive samples that clearly exhibit desired or undesired behavior. These data pairs determine the degree to which interpretability frameworks can reliably detect model features responsible for a behavior, and therefore the ability to steer models toward or away from such behavior. In this work, we present an iterative data generation pipeline that isolates cascading linear features responsible for a behavior. Specifically, we show how moving beyond simple binary pairs of samples, and instead isolating samples that show degrees of features that scale linearly with behavior, allows for better disentanglement of features. We focus on detecting and steering away from sycophancy -- the tendency of language models to prioritize user validation. We demonstrate that sycophancy features discovered through cascading samples form linearly separable subspaces, and allow for selection of model activations that more clearly correspond to the desired behavior than baseline approaches. We also evaluate their ability to enable detection, deterministic scoring, and robust steering, and see that they either match or outperform LLM-as-a-judge and system prompting baselines while providing lower computational demand and more interpretability guarantees. Code & Data:",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Detecting and Controlling Sycophancy with Cascading Linear Features",
+      "raw_summary": "arXiv:2606.26155v1 Announce Type: new Abstract: Interpreting and controlling model behaviors through activation steering methods requires many pairs of contrastive samples that clearly exhibit desired or undesired behavior. These data pairs determine the degree to which interpretability frameworks can reliably detect model features responsible for a behavior, and therefore the ability to steer models toward or away from such behavior. In this work, we present an iterative data generation pipeline that isolates cascading linear features responsible for a behavior. Specifically, we show how moving beyond simple binary pairs of samples, and instead isolating samples that show degrees of features that scale linearly with behavior, allows for better disentanglement of features. We focus on detecting and steering away from sycophancy -- the tendency of language models to prioritize user validation. We demonstrate that sycophancy features discovered through cascading samples form linearly separable subspaces, and allow for selection of model activations that more clearly correspond to the desired behavior than baseline approaches. We also evaluate their ability to enable detection, deterministic scoring, and robust steering, and see that they either match or outperform LLM-as-a-judge and system prompting baselines while providing lower computational demand and more interpretability guarantees. Code & Data: https://cascading-feats.github.io/",
+      "score": 64,
+      "primary": "models",
+      "tags": [
+        "interpretability",
+        "sycophancy",
+        "activation-steering"
+      ],
+      "heuristic_score": 64,
+      "url": "https://arxiv.org/abs/2606.26155",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 64,
+      "_rid": 7,
+      "llm_score": 64,
+      "why": "Presenta un método para detectar y controlar comportamientos de sincofonía mediante la manipulación de funciones de activación lineales.",
+      "title_es": "Detección y control de la sincofonía con funciones lineales en cascada",
+      "entities": [
+        "arXiv",
+        "Detecting",
+        "Controlling Sycophancy",
+        "Cascading Linear Features"
+      ],
+      "noise_penalty": 0,
+      "final_score": 64,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Assert, don't describe: Linguistic features that shift LLM reasoning about animal welfare",
+      "link": "https://arxiv.org/abs/2606.26104",
+      "published": "2026-06-26T04:00:00+00:00",
+      "summary": "arXiv:2606.26104v1 Announce Type: new Abstract: Animal-welfare advocates produce a lot of writing, and increasingly that writing trains the language models that millions of people then ask about animal welfare. Using vocabulary-matched stance-contrast probes on a held-out animal-welfare benchmark, we measure how each of ten linguistic features changes Llama-3.2-1B's preference for pro-animal-welfare reasoning when used as fine-tuning data. Eight of the ten features produce statistically significant shifts. Seven move the model toward stronger pro-animal-welfare reasoning: assertive certainty, explicit moral vocabulary, emotion words, evaluative claims, narrative structure, depicted harm severity, and immediate temporal framing. Two move it the other way: hedged language and concrete sensory description both dilute the pro-animal-welfare stance. First-person perspective has no statistically significant effect. The practical recommendation for anyone writing animal-welfare text that may end up in LLM training corpora: assert a position rather than describe a scene neutrally. The features that shift the model are the ones that make the writer's position explicit; the features that dilute it hold animal-welfare content but withhold stance.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Assert, don't describe: Linguistic features that shift LLM reasoning about animal welfare",
+      "raw_summary": "arXiv:2606.26104v1 Announce Type: new Abstract: Animal-welfare advocates produce a lot of writing, and increasingly that writing trains the language models that millions of people then ask about animal welfare. Using vocabulary-matched stance-contrast probes on a held-out animal-welfare benchmark, we measure how each of ten linguistic features changes Llama-3.2-1B's preference for pro-animal-welfare reasoning when used as fine-tuning data. Eight of the ten features produce statistically significant shifts. Seven move the model toward stronger pro-animal-welfare reasoning: assertive certainty, explicit moral vocabulary, emotion words, evaluative claims, narrative structure, depicted harm severity, and immediate temporal framing. Two move it the other way: hedged language and concrete sensory description both dilute the pro-animal-welfare stance. First-person perspective has no statistically significant effect. The practical recommendation for anyone writing animal-welfare text that may end up in LLM training corpora: assert a position rather than describe a scene neutrally. The features that shift the model are the ones that make the writer's position explicit; the features that dilute it hold animal-welfare content but withhold stance.",
+      "score": 61,
+      "primary": "models",
+      "tags": [
+        "linguistics",
+        "fine-tuning",
+        "animal-welfare"
+      ],
+      "heuristic_score": 76,
+      "url": "https://arxiv.org/abs/2606.26104",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 76,
+      "_rid": 5,
+      "llm_score": 58,
+      "why": "Identifica qué rasgos lingüísticos en los datos de ajuste fino provocan cambios significativos en el razonamiento moral de los modelos.",
+      "title_es": "Afirma, no describas: características lingüísticas que cambian el razonamiento de los LLM sobre el bienestar animal",
+      "entities": [
+        "Llama-3.2-1B",
+        "arXiv",
+        "Assert",
+        "Linguistic"
+      ],
+      "noise_penalty": 0,
+      "final_score": 61,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Investing in multi-agent AI safety research",
+      "link": "https://deepmind.google/blog/investing-in-multi-agent-ai-safety-research/",
+      "published": "2026-06-10T10:21:19+00:00",
+      "summary": "Google DeepMind and partners announce a $10M funding call for multi-agent safety research.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Investing in multi-agent AI safety research",
+      "raw_summary": "Google DeepMind and partners announce a $10M funding call for multi-agent safety research.",
+      "score": 60,
+      "primary": "invest",
+      "tags": [
+        "safety",
+        "multi-agent",
+        "funding"
+      ],
+      "heuristic_score": 43,
+      "url": "https://deepmind.google/blog/investing-in-multi-agent-ai-safety-research/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 43,
+      "_rid": 10,
+      "llm_score": 75,
+      "why": "Inversión estratégica de 10 millones de dólares para abordar los riesgos emergentes en sistemas donde interactúan múltiples agentes.",
+      "title_es": "Inversión en investigación de seguridad de IA multi-agente",
+      "entities": [
+        "DeepMind",
+        "Investing"
+      ],
+      "noise_penalty": 10,
+      "final_score": 60,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(10)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Securing the future of AI agents",
+      "link": "https://deepmind.google/blog/securing-the-future-of-ai-agents/",
+      "published": "2026-06-16T15:46:31+00:00",
+      "summary": "Securing internal systems with an AI Control Roadmap, combining traditional safeguards and real-time monitoring.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Securing the future of AI agents",
+      "raw_summary": "Securing internal systems with an AI Control Roadmap, combining traditional safeguards and real-time monitoring.",
+      "score": 56,
+      "primary": "models",
+      "tags": [
+        "ai-agents",
+        "security",
+        "roadmap"
+      ],
+      "heuristic_score": 22,
+      "url": "https://deepmind.google/blog/securing-the-future-of-ai-agents/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 22,
+      "_rid": 14,
+      "llm_score": 70,
+      "why": "Hoja de ruta integral para proteger sistemas internos ante el despliegue de agentes de IA con capacidades autónomas.",
+      "title_es": "Asegurando el futuro de los agentes de IA",
+      "entities": [
+        "DeepMind",
+        "Securing"
+      ],
+      "noise_penalty": 7,
+      "final_score": 56,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(7)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Investigating LLM's Problem Solving Capability -- a Study on Statics Questions",
+      "link": "https://arxiv.org/abs/2606.26103",
+      "published": "2026-06-26T04:00:00+00:00",
+      "summary": "arXiv:2606.26103v1 Announce Type: new Abstract: Large Language Models (LLMs) have rapidly influenced many aspects of society, particularly education, due to their demonstrated ability to complete assignments and examinations across a wide range of subjects. Although prior studies have examined the educational impact of LLMs, much of the existing work relies on public or open problem datasets and lacks topic-specific analysis. In engineering education, especially within mechanical engineering, systematic investigations of LLM performance on specific problem types remain limited. Instead of using traditional methods that directly ask textbook questions to an LLM tool, our study adopts a model distillation process to evaluate LLM capabilities in solving statics problems. By distilling ChatGPT, we extracted 25 text-only statics questions and further constructed two additional datasets by adding diagrams and modifying their numerical values. Experimental results show that while LLMs perform well on text-only statics problems, their accuracy decreases when diagrams are introduced and the problems require multi-step reasoning. Further analysis suggests that this performance drop is not primarily caused by limitations in recognition, but rather by difficulties in multi-step reasoning and in consistently applying extracted visual information across successive solution stages.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Investigating LLM's Problem Solving Capability -- a Study on Statics Questions",
+      "raw_summary": "arXiv:2606.26103v1 Announce Type: new Abstract: Large Language Models (LLMs) have rapidly influenced many aspects of society, particularly education, due to their demonstrated ability to complete assignments and examinations across a wide range of subjects. Although prior studies have examined the educational impact of LLMs, much of the existing work relies on public or open problem datasets and lacks topic-specific analysis. In engineering education, especially within mechanical engineering, systematic investigations of LLM performance on specific problem types remain limited. Instead of using traditional methods that directly ask textbook questions to an LLM tool, our study adopts a model distillation process to evaluate LLM capabilities in solving statics problems. By distilling ChatGPT, we extracted 25 text-only statics questions and further constructed two additional datasets by adding diagrams and modifying their numerical values. Experimental results show that while LLMs perform well on text-only statics problems, their accuracy decreases when diagrams are introduced and the problems require multi-step reasoning. Further analysis suggests that this performance drop is not primarily caused by limitations in image recognition, but rather by difficulties in multi-step reasoning and in consistently applying extracted visual information across successive solution stages.",
+      "score": 55,
+      "primary": "misc",
+      "tags": [
+        "education",
+        "engineering",
+        "evaluation"
+      ],
+      "heuristic_score": 86,
+      "url": "https://arxiv.org/abs/2606.26103",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 86,
+      "_rid": 3,
+      "llm_score": 50,
+      "why": "Analiza la capacidad de los LLM para resolver problemas específicos de estática en ingeniería mecánica, superando el uso de datasets públicos.",
+      "title_es": "Investigación de la capacidad de resolución de problemas de los LLM: un estudio sobre preguntas de estática",
+      "entities": [
+        "arXiv",
+        "Investigating",
+        "Problem Solving Capability",
+        "Study",
+        "Statics Questions"
+      ],
+      "noise_penalty": 0,
+      "final_score": 55,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "HierBias: Context-Conditioned Hierarchical Media Bias Detection with Multi-Task Type Classification",
+      "link": "https://arxiv.org/abs/2606.26100",
+      "published": "2026-06-26T04:00:00+00:00",
+      "summary": "arXiv:2606.26100v1 Announce Type: new Abstract: Media bias detection is a critical task for ensuring fair and balanced information dissemination, yet existing sentence-level approaches classify each sentence independently, ignoring inter-sentence contextual signals that human annotators naturally exploit. We present \\textbf{HierBias}, a hierarchical context-conditioned media bias detector that formally models document context in bias prediction. We introduce the \\emph{context-conditioned bias probability} and prove theoretically that leveraging document context strictly reduces the Bayes error of sentence-level classification when inter-sentence mutual information is non-zero. A multi-task generalization bound further establishes that jointly training binary bias detection and fine-grained bias type classification improves sample efficiency on small annotated corpora. Architecturally, HierBias pairs a sentence-level RoBERTa encoder with a cross-sentence Transformer aggregator and dual output heads for binary detection and four-class type classification. Evaluated on BABE and BASIL, HierBias achieves 0.853 F1 and 0.723 MCC, surpassing the state-of-the-art bias-detector by $+2.6\\%$ F1 and $+4.3\\%$ MCC (McNemar's test, $p < 0.05$). Ablation experiments confirm that each theoretical component contributes independently and consistently.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "HierBias: Context-Conditioned Hierarchical Media Bias Detection with Multi-Task Type Classification",
+      "raw_summary": "arXiv:2606.26100v1 Announce Type: new Abstract: Media bias detection is a critical task for ensuring fair and balanced information dissemination, yet existing sentence-level approaches classify each sentence independently, ignoring inter-sentence contextual signals that human annotators naturally exploit. We present \\textbf{HierBias}, a hierarchical context-conditioned media bias detector that formally models document context in bias prediction. We introduce the \\emph{context-conditioned bias probability} and prove theoretically that leveraging document context strictly reduces the Bayes error of sentence-level classification when inter-sentence mutual information is non-zero. A multi-task generalization bound further establishes that jointly training binary bias detection and fine-grained bias type classification improves sample efficiency on small annotated corpora. Architecturally, HierBias pairs a sentence-level RoBERTa encoder with a cross-sentence Transformer aggregator and dual output heads for binary detection and four-class type classification. Evaluated on BABE and BASIL, HierBias achieves 0.853 F1 and 0.723 MCC, surpassing the state-of-the-art bias-detector by $+2.6\\%$ F1 and $+4.3\\%$ MCC (McNemar's test, $p < 0.05$). Ablation experiments confirm that each theoretical component contributes independently and consistently.",
+      "score": 55,
+      "primary": "models",
+      "tags": [
+        "media-bias",
+        "classification",
+        "nlp"
+      ],
+      "heuristic_score": 52,
+      "url": "https://arxiv.org/abs/2606.26100",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 52,
+      "_rid": 9,
+      "llm_score": 55,
+      "why": "Propone un modelo jerárquico que reduce errores de clasificación de sesgo mediático al considerar el contexto global del documento.",
+      "title_es": "HierBias: detección de sesgo mediático jerárquico condicionado al contexto con clasificación de tipos multitarea",
+      "entities": [
+        "HierBias",
+        "arXiv",
+        "Context",
+        "Conditioned Hierarchical Media",
+        "Bias Detection",
+        "Multi",
+        "Task Type Classification"
+      ],
+      "noise_penalty": 0,
+      "final_score": 55,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "How to Free Yourself from Inconsistent Engineering Documentation Before It’s Too Late",
+      "link": "https://semiwiki.com/events/370598-how-to-free-yourself-from-inconsistent-engineering-documentation-before-its-too-late/",
+      "published": "2026-06-25T17:00:00+00:00",
+      "summary": "Embedded systems programs often fail because critical engineering documentation drifts out of alignment over time and distance. This results in a team that is correctly following the wrong instructions. All forms of engineering documentation suffer from this problem, and it really is the silent killer of many programs. llmda.ai &8230; Read More The post How to Free Yourself from Inconsistent Engineering Documentation Before It’s Too Late appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "How to Free Yourself from Inconsistent Engineering Documentation Before It’s Too Late",
+      "raw_summary": "Embedded systems programs often fail because critical engineering documentation drifts out of alignment over time and distance. This results in a team that is correctly following the wrong instructions. All forms of engineering documentation suffer from this problem, and it really is the silent killer of many programs. llmda.ai &#8230; Read More The post How to Free Yourself from Inconsistent Engineering Documentation Before It’s Too Late appeared first on SemiWiki .",
+      "score": 42,
+      "primary": "misc",
+      "tags": [
+        "engineering",
+        "documentation",
+        "efficiency"
+      ],
+      "heuristic_score": 28,
+      "url": "https://semiwiki.com/events/370598-how-to-free-yourself-from-inconsistent-engineering-documentation-before-its-too-late/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 28,
+      "_rid": 13,
+      "llm_score": 45,
+      "why": "Propone el uso de IA para resolver el problema de la documentación técnica desincronizada en el desarrollo de sistemas embebidos.",
+      "title_es": "Cómo liberarse de la documentación de ingeniería inconsistente antes de que sea demasiado tarde",
+      "entities": [
+        "SemiWiki",
+        "llmda.ai",
+        "How",
+        "Free Yourself",
+        "Inconsistent Engineering Documentation",
+        "Before It",
+        "Too Late"
+      ],
+      "noise_penalty": 0,
+      "final_score": 42,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    }
+  ]
+}
