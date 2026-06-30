@@ -1,0 +1,670 @@
+{
+  "date": "2026-06-30",
+  "score_avg": 61.4,
+  "primary_dist": {
+    "models": 9,
+    "invest": 2,
+    "infra": 2,
+    "misc": 2
+  },
+  "top_entities": [
+    {
+      "entity": "arXiv",
+      "count": 4
+    },
+    {
+      "entity": "Google",
+      "count": 2
+    },
+    {
+      "entity": "Data",
+      "count": 1
+    },
+    {
+      "entity": "Evaluation Closed",
+      "count": 1
+    },
+    {
+      "entity": "Loop",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "Agentes auto-evolutivos (RSEA) que mejoran playbooks y estrategias sin necesidad de actualizar pesos del modelo.",
+      "Necesidad de un 'sustrato líquido' para permitir inteligencia descentralizada en mallas de agentes soberanos.",
+      "Uso de Sparse Autoencoders (SAEs) promediados por turno para mejorar la interpretabilidad en contextos de IA largos.",
+      "La teoría de la mente en LLMs surge como una propiedad tardía ligada al volumen de entrenamiento y post-entrenamiento.",
+      "El 'Stack Económico de la IA' desplaza el foco del token a la infraestructura crítica: energía, memoria y computación."
+    ],
+    "risks": [
+      "Desconexión lingüística y metodológica entre la ingeniería de datos y los procesos de evaluación de capacidades.",
+      "Trade-off crítico en generación: la mayor cobertura de lenguaje conlleva un aumento inevitable de alucinaciones.",
+      "El desarrollo de software de IA está superando la capacidad de validación del hardware (silicio) tradicional."
+    ],
+    "watch": [
+      "Eficacia de ModernBERT en dominios específicos como el legal frente a modelos de propósito general.",
+      "Nuevos benchmarks como SciDraw-Bench para medir la utilidad real de figuras científicas generadas por IA.",
+      "Inversiones de hiperescaladores en la red eléctrica local, como el caso de Google en Virginia."
+    ],
+    "entities_top": [
+      "Google",
+      "Dylan Patel",
+      "arXiv"
+    ]
+  },
+  "items": [
+    {
+      "title": "Data and Evaluation Closed-Loop for Model Capability Enhancement",
+      "link": "https://arxiv.org/abs/2606.28471",
+      "published": "2026-06-30T04:00:00+00:00",
+      "summary": "arXiv:2606.28471v1 Announce Type: new Abstract: Model capability is the central variable in LLM pre-training, yet is never observed directly: data shapes it prospectively, while evaluation reveals it only retrospectively, compressing samples, prompts, decoding, and scoring rules into one noisy score. Practical optimization runs this backward: a failure is observed first, and the engineer must infer the corpus fix. The two sides speak incompatible vocabularies -- benchmark names and per-sample correctness versus data sources, domains, and quality labels -- so this inference is usually intuition, not method. We close this gap with the \\emph{capability slice}: a group of evaluation samples sharing background condition, task type, solving operation, and output constraint -- precise enough to localize a single weakness yet stable enough to survive aggregation, unlike a benchmark name, too coarse, or a single sample, too noisy. Built around this unit, an evaluation taxonomy, a non-instruction data taxonomy, and mapping rules form a closed loop turning a benchmark-level failure into a targeted, testable data intervention. We test this loop on two case studies pulling in opposite directions. First, the loop rules the data out: continued pre-training drives BBH down by $-46.82\\%$, but diagnosis traces this to a single masked \\texttt{\\textless EOS\\textgreater} loss rather than weakened reasoning; restoring it recovers BBH to $66.44$, above the original checkpoint, without changing the data. Second, the loop rules the data in: a persistent math-reasoning weakness is decomposed by solving operation into specific failing combinations, and a weakness-targeted sampling procedure built from it lifts AIME2025/AIME2026 Pass@128 from $6.67$/$0.00$ to $26.67$ each. The same unmodified loop reaches opposite, correct verdicts in both cases, showing the evaluation-to-data inference can be routine, auditable, and experimentally validated rather than intuitive.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Data and Evaluation Closed-Loop for Model Capability Enhancement",
+      "raw_summary": "arXiv:2606.28471v1 Announce Type: new Abstract: Model capability is the central variable in LLM pre-training, yet is never observed directly: data shapes it prospectively, while evaluation reveals it only retrospectively, compressing samples, prompts, decoding, and scoring rules into one noisy score. Practical optimization runs this backward: a failure is observed first, and the engineer must infer the corpus fix. The two sides speak incompatible vocabularies -- benchmark names and per-sample correctness versus data sources, domains, and quality labels -- so this inference is usually intuition, not method. We close this gap with the \\emph{capability slice}: a group of evaluation samples sharing background condition, task type, solving operation, and output constraint -- precise enough to localize a single weakness yet stable enough to survive aggregation, unlike a benchmark name, too coarse, or a single sample, too noisy. Built around this unit, an evaluation taxonomy, a non-instruction data taxonomy, and mapping rules form a closed loop turning a benchmark-level failure into a targeted, testable data intervention. We test this loop on two case studies pulling in opposite directions. First, the loop rules the data out: continued pre-training drives BBH down by $-46.82\\%$, but diagnosis traces this to a single masked \\texttt{\\textless EOS\\textgreater} loss rather than weakened reasoning; restoring it recovers BBH to $66.44$, above the original checkpoint, without changing the data. Second, the loop rules the data in: a persistent math-reasoning weakness is decomposed by solving operation into specific failing combinations, and a weakness-targeted sampling procedure built from it lifts AIME2025/AIME2026 Pass@128 from $6.67$/$0.00$ to $26.67$ each. The same unmodified loop reaches opposite, correct verdicts in both cases, showing the evaluation-to-data inference can be routine, auditable, and experimentally validated rather than intuitive.",
+      "score": 87,
+      "primary": "models",
+      "tags": [
+        "evaluation",
+        "data-loop",
+        "optimization"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2606.28471",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 1,
+      "llm_score": 85,
+      "why": "Propone un bucle cerrado para mejorar LLMs conectando fallos de evaluación con correcciones específicas en el corpus de datos.",
+      "title_es": "Bucle cerrado de datos y evaluación para la mejora de capacidades de modelos",
+      "entities": [
+        "arXiv",
+        "Data",
+        "Evaluation Closed",
+        "Loop",
+        "Model Capability Enhancement"
+      ],
+      "noise_penalty": 0,
+      "final_score": 87,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "From Tokens to Infrastructure: Why Compute, Memory, and Power Will Determine the Future of AI",
+      "link": "https://semiwiki.com/artificial-intelligence/370460-from-tokens-to-infrastructure-why-compute-memory-and-power-will-determine-the-future-of-ai/",
+      "published": "2026-06-29T17:00:58+00:00",
+      "summary": "Based on Dylan Patel’s SEMI Industry Strategy Symposium (ISS): Tokens to Infrastructure presentation, one of the most important themes is the emergence of the AI Economic Stack, where every layer of artificial intelligence—from semiconductor manufacturing to cloud infrastructure, model providers, and applications—is&8230; Read More The post From Tokens to Infrastructure: Why Compute, Memory, and Power Will Determine the Future of AI appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "From Tokens to Infrastructure: Why Compute, Memory, and Power Will Determine the Future of AI",
+      "raw_summary": "Based on Dylan Patel’s SEMI Industry Strategy Symposium (ISS): Tokens to Infrastructure presentation, one of the most important themes is the emergence of the AI Economic Stack, where every layer of artificial intelligence—from semiconductor manufacturing to cloud infrastructure, model providers, and applications—is&#8230; Read More The post From Tokens to Infrastructure: Why Compute, Memory, and Power Will Determine the Future of AI appeared first on SemiWiki .",
+      "score": 87,
+      "primary": "invest",
+      "tags": [
+        "infrastructure",
+        "semiconductors",
+        "economics"
+      ],
+      "heuristic_score": 61,
+      "url": "https://semiwiki.com/artificial-intelligence/370460-from-tokens-to-infrastructure-why-compute-memory-and-power-will-determine-the-future-of-ai/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 61,
+      "_rid": 8,
+      "llm_score": 92,
+      "why": "Analiza cómo la energía, memoria y computación dictan la viabilidad económica de la IA actual.",
+      "title_es": "De los tokens a la infraestructura: por qué el cómputo, la memoria y la energía determinarán el futuro de la IA",
+      "entities": [
+        "Dylan Patel",
+        "SEMI",
+        "From Tokens",
+        "Infrastructure",
+        "Why Compute",
+        "Memory",
+        "Power Will Determine",
+        "Future"
+      ],
+      "noise_penalty": 0,
+      "final_score": 87,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Turn-Averaged SAEs for Feature Discovery and Long-Context Attribution",
+      "link": "https://arxiv.org/abs/2606.28548",
+      "published": "2026-06-30T04:00:00+00:00",
+      "summary": "arXiv:2606.28548v1 Announce Type: new Abstract: Sparse autoencoders (SAEs) have become a useful tool for extracting interpretable features in language models. However, standard SAE architectures operate on individual token activations, meaning that the number of active features scales linearly with context length, and studying long model transcripts becomes difficult. We introduce turn-averaged SAEs, which represent a single Human or Assistant turn with a fixed number of features by learning to reconstruct the average model activation across the turn. We find that turn-averaged features describe a single turn's high-level characteristics more completely than per-token features when judged by an LLM. We also demonstrate that turn-averaged SAEs greatly simplify common downstream uses of SAEs like attribution graphs. Broadly, turn-averaged SAEs make interpretability techniques practical at long context lengths.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Turn-Averaged SAEs for Feature Discovery and Long-Context Attribution",
+      "raw_summary": "arXiv:2606.28548v1 Announce Type: new Abstract: Sparse autoencoders (SAEs) have become a useful tool for extracting interpretable features in language models. However, standard SAE architectures operate on individual token activations, meaning that the number of active features scales linearly with context length, and studying long model transcripts becomes difficult. We introduce turn-averaged SAEs, which represent a single Human or Assistant turn with a fixed number of features by learning to reconstruct the average model activation across the turn. We find that turn-averaged features describe a single turn's high-level characteristics more completely than per-token features when judged by an LLM. We also demonstrate that turn-averaged SAEs greatly simplify common downstream uses of SAEs like attribution graphs. Broadly, turn-averaged SAEs make interpretability techniques practical at long context lengths.",
+      "score": 85,
+      "primary": "models",
+      "tags": [
+        "sae",
+        "interpretability",
+        "long-context"
+      ],
+      "heuristic_score": 68,
+      "url": "https://arxiv.org/abs/2606.28548",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 68,
+      "_rid": 6,
+      "llm_score": 88,
+      "why": "Utiliza autoencoders dispersos para extraer características interpretables de turnos completos en diálogos largos.",
+      "title_es": "SAEs promediados por turno para el descubrimiento de funciones y atribución de contexto largo",
+      "entities": [
+        "arXiv",
+        "Turn",
+        "Averaged",
+        "Feature Discovery",
+        "Long",
+        "Context Attribution"
+      ],
+      "noise_penalty": 0,
+      "final_score": 85,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Recursive Self-Evolving Agents via Held-Out Selection",
+      "link": "https://arxiv.org/abs/2606.28374",
+      "published": "2026-06-30T04:00:00+00:00",
+      "summary": "arXiv:2606.28374v1 Announce Type: new Abstract: LLM agents are increasingly improved without weight updates by evolving a natural-language artifact, such as reflections, workflows, playbooks, cheatsheets, or optimized prompts, that conditions a frozen policy. Such methods are typically reported as wins on the single benchmark where they help. We study them apples-to-apples and surface a sharper picture. We introduce RSEA, a Recursive Self-Evolving Agent that carries a compact three-layer natural-language state: an imperative strategy, reusable skills, and a procedural playbook. Across generations, RSEA rewrites all three layers from its own trajectories and commits a candidate only if it does not regress on a disjoint held-out split, using a strict keep-better gate. Across four diverse benchmarks, ALFWorld, GAIA, (\\tau)-bench, and WebShop, and six faithful baselines, ReAct, Reflexion, GEPA, AWM, ACE, and Dynamic Cheatsheet, all evaluated on one shared local backbone, we find three main results. First, no artifact universally wins. RSEA is the strongest single-pass method on ALFWorld, reaching 69.3% compared with 64.6% for ReAct (McNemar (p=0.015)), and reaches 79.4% with retry, the best overall result. However, concrete-workflow induction, represented by AWM, is best on the strong-backbone tool-use tasks. Second, unguarded context evolution is high-variance and unsafe. Dynamic Cheatsheet, which curates context online without a held-out gate, is near-best on ALFWorld at 70.7%, yet collapses on WebShop, with a score of 0.14 compared with 0.43 for ReAct. Third, RSEA's strict held-out selection is what makes recursive self-evolution monotone-safe: it never significantly underperforms the base agent on any benchmark and falls back to vanilla ReAct when evolved context would hurt.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Recursive Self-Evolving Agents via Held-Out Selection",
+      "raw_summary": "arXiv:2606.28374v1 Announce Type: new Abstract: LLM agents are increasingly improved without weight updates by evolving a natural-language artifact, such as reflections, workflows, playbooks, cheatsheets, or optimized prompts, that conditions a frozen policy. Such methods are typically reported as wins on the single benchmark where they help. We study them apples-to-apples and surface a sharper picture. We introduce RSEA, a Recursive Self-Evolving Agent that carries a compact three-layer natural-language state: an imperative strategy, reusable skills, and a procedural playbook. Across generations, RSEA rewrites all three layers from its own trajectories and commits a candidate only if it does not regress on a disjoint held-out split, using a strict keep-better gate. Across four diverse benchmarks, ALFWorld, GAIA, (\\tau)-bench, and WebShop, and six faithful baselines, ReAct, Reflexion, GEPA, AWM, ACE, and Dynamic Cheatsheet, all evaluated on one shared local backbone, we find three main results. First, no artifact universally wins. RSEA is the strongest single-pass method on ALFWorld, reaching 69.3% compared with 64.6% for ReAct (McNemar (p=0.015)), and reaches 79.4% with retry, the best overall result. However, concrete-workflow induction, represented by AWM, is best on the strong-backbone tool-use tasks. Second, unguarded context evolution is high-variance and unsafe. Dynamic Cheatsheet, which curates context online without a held-out gate, is near-best on ALFWorld at 70.7%, yet collapses on WebShop, with a score of 0.14 compared with 0.43 for ReAct. Third, RSEA's strict held-out selection is what makes recursive self-evolution monotone-safe: it never significantly underperforms the base agent on any benchmark and falls back to vanilla ReAct when evolved context would hurt.",
+      "score": 84,
+      "primary": "models",
+      "tags": [
+        "agents",
+        "self-evolving",
+        "prompts"
+      ],
+      "heuristic_score": 96,
+      "url": "https://arxiv.org/abs/2606.28374",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 96,
+      "_rid": 3,
+      "llm_score": 82,
+      "why": "Presenta agentes que optimizan sus propias estrategias y habilidades en lenguaje natural de forma recursiva.",
+      "title_es": "Agentes recursivos auto-evolutivos mediante selección de datos retenidos",
+      "entities": [
+        "RSEA",
+        "Recursive Self",
+        "Evolving Agents",
+        "Held",
+        "Out Selection"
+      ],
+      "noise_penalty": 0,
+      "final_score": 84,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Developmental Trajectories of Situation Modeling and Mentalizing in Transformer Language Models",
+      "link": "https://arxiv.org/abs/2606.28524",
+      "published": "2026-06-30T04:00:00+00:00",
+      "summary": "arXiv:2606.28524v1 Announce Type: new Abstract: Recent work suggests that Large Language Models (LLMs) are sensitive to the belief states of agents described by text, as measured by the false belief task (FBT), yet persistent concerns of construct validity remain. We adopt a **developmental perspective**, tracing the pattern of mental state reasoning behavior -- and likely **preconditions** for this behavior -- across multiple training stages in the Olmo2 and Pythia language model suites. We find that above-chance FBT performance depends both on model size and sufficient training volume, emerges relatively late in pretraining, and is most improved by post-training interventions (SFT, DPO) in the condition most diagnostic of mentalizing (False Belief, Implicit). However, FBT performance is fragile: consistent with past work, the use of non-factive verbs (e.g., thinks) increases false belief attributions even in the True Belief condition. To contextualize these findings, we track the emergence of **situation modeling**: the ability to report on basic factual properties of a described scene. Situation modeling accuracy generally precedes and exceeds FBT accuracy, yet situational representations also prove surprisingly incoherent in certain respects: when asked about the knowledge states of the Antagonist agent -- who always knows the item's true location -- Olmo2 13b is consistently influenced both by the Target agent's knowledge state and the presence of non-factive verbs. Together, these results suggest that larger, sufficiently trained models build partially coherent situation models in a developmentally appropriate sequence, yet display surprising fragility -- highlighting the value of developmental and stress-testing approaches for evaluating LLM capabilities.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Developmental Trajectories of Situation Modeling and Mentalizing in Transformer Language Models",
+      "raw_summary": "arXiv:2606.28524v1 Announce Type: new Abstract: Recent work suggests that Large Language Models (LLMs) are sensitive to the belief states of agents described by text, as measured by the false belief task (FBT), yet persistent concerns of construct validity remain. We adopt a **developmental perspective**, tracing the pattern of mental state reasoning behavior -- and likely **preconditions** for this behavior -- across multiple training stages in the Olmo2 and Pythia language model suites. We find that above-chance FBT performance depends both on model size and sufficient training volume, emerges relatively late in pretraining, and is most improved by post-training interventions (SFT, DPO) in the condition most diagnostic of mentalizing (False Belief, Implicit). However, FBT performance is fragile: consistent with past work, the use of non-factive verbs (e.g., thinks) increases false belief attributions even in the True Belief condition. To contextualize these findings, we track the emergence of **situation modeling**: the ability to report on basic factual properties of a described scene. Situation modeling accuracy generally precedes and exceeds FBT accuracy, yet situational representations also prove surprisingly incoherent in certain respects: when asked about the knowledge states of the Antagonist agent -- who always knows the item's true location -- Olmo2 13b is consistently influenced both by the Target agent's knowledge state and the presence of non-factive verbs. Together, these results suggest that larger, sufficiently trained models build partially coherent situation models in a developmentally appropriate sequence, yet display surprising fragility -- highlighting the value of developmental and stress-testing approaches for evaluating LLM capabilities.",
+      "score": 81,
+      "primary": "models",
+      "tags": [
+        "theory-of-mind",
+        "transformers",
+        "development"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2606.28524",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 2,
+      "llm_score": 78,
+      "why": "Estudio sobre cómo la sensibilidad a estados mentales ajenos emerge tras fases críticas de entrenamiento y DPO.",
+      "title_es": "Trayectorias de desarrollo del modelado de situaciones y mentalización en modelos de lenguaje Transformer",
+      "entities": [
+        "Olmo2",
+        "Pythia",
+        "Developmental Trajectories",
+        "Situation Modeling",
+        "Mentalizing",
+        "Transformer Language Models"
+      ],
+      "noise_penalty": 0,
+      "final_score": 81,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Legal Domain Adaptation of Modern BERT Models",
+      "link": "https://arxiv.org/abs/2606.28538",
+      "published": "2026-06-30T04:00:00+00:00",
+      "summary": "arXiv:2606.28538v1 Announce Type: new Abstract: We investigate domain adaptation of modern BERT models in the legal domain. We further pre-train ModernBERT on all US court opinions using the masked language modeling objective. Although ModernBERT has been trained on roughly 500x more data than original BERT, we still find that this model benefits from further pre-training and domain adaptation in the legal domain: we report significant improvements compared to vanilla ModernBERT on all datasets connected to US court opinions. We find gains similar to those reported in early work on domain adaptation of BERT-like models. However, from scratch pre-training does not match the performance of further pre-training an existing ModernBERT checkpoint in our experiments. The resulting models are capable of processing sequences up to 8,192 tokens, and can be used to compute meaningful embeddings of legal passages, or could quickly rerank hundreds of legal passages for a given search query. We release all model checkpoints publicly.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Legal Domain Adaptation of Modern BERT Models",
+      "raw_summary": "arXiv:2606.28538v1 Announce Type: new Abstract: We investigate domain adaptation of modern BERT models in the legal domain. We further pre-train ModernBERT on all US court opinions using the masked language modeling objective. Although ModernBERT has been trained on roughly 500x more data than original BERT, we still find that this model benefits from further pre-training and domain adaptation in the legal domain: we report significant improvements compared to vanilla ModernBERT on all datasets connected to US court opinions. We find gains similar to those reported in early work on domain adaptation of BERT-like models. However, from scratch pre-training does not match the performance of further pre-training an existing ModernBERT checkpoint in our experiments. The resulting models are capable of processing sequences up to 8,192 tokens, and can be used to compute meaningful embeddings of legal passages, or could quickly rerank hundreds of legal passages for a given search query. We release all model checkpoints publicly.",
+      "score": 73,
+      "primary": "models",
+      "tags": [
+        "modernbert",
+        "legal-tech",
+        "nlp"
+      ],
+      "heuristic_score": 62,
+      "url": "https://arxiv.org/abs/2606.28538",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 62,
+      "_rid": 7,
+      "llm_score": 75,
+      "why": "Demuestra que incluso los modelos BERT más recientes requieren adaptación específica para rendir en el dominio legal.",
+      "title_es": "Adaptación al dominio legal de los modelos BERT modernos",
+      "entities": [
+        "ModernBERT",
+        "BERT",
+        "Legal Domain Adaptation",
+        "Modern",
+        "Models"
+      ],
+      "noise_penalty": 0,
+      "final_score": 73,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "On the Necessity of a Liquid Substrate for Mesh Intelligence",
+      "link": "https://arxiv.org/abs/2606.28413",
+      "published": "2026-06-30T04:00:00+00:00",
+      "summary": "arXiv:2606.28413v1 Announce Type: new Abstract: A mesh of sovereign agents has no center: no shared clock, no shared model, and no coordinator to gather data or retrain. Its competence rests on each agent folding the projections its peers emit into a single internal state, online, from observations that arrive at irregular, unscheduled times, on a substrate whose weights it cannot retrain. Any one of these constraints is tractable on its own; folding optimally under all three at once is not. We ask what such a substrate must be, and prove two necessary conditions from one model of a self-evolving latent observed at irregular, exogenous times. Because the latent changes, its optimal estimator is time-varying: an adaptive timescale is necessary, and every fixed-gain filter is strictly suboptimal. And because arrivals are clock-free, the optimal estimate depends on the elapsed gap between them, which no gap-blind network recovers at any width or depth. This second condition is capacity-independent: scale cannot substitute for the missing dependence. The two conditions intersect in the continuous-time liquid class. An LSTM satisfies the first, a fixed continuous-time filter the second, and a multi-timescale liquid network both. Synthetic experiments confirm each: the network attains the timescale, and the separation is computed exactly. The characterization is necessary, not sufficient, and binds fixed-weight substrates: a network free to retrain reaches the class by other means. Proved per agent, the necessity binds every agent of a mesh, a structural condition on mesh intelligence.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "On the Necessity of a Liquid Substrate for Mesh Intelligence",
+      "raw_summary": "arXiv:2606.28413v1 Announce Type: new Abstract: A mesh of sovereign agents has no center: no shared clock, no shared model, and no coordinator to gather data or retrain. Its competence rests on each agent folding the projections its peers emit into a single internal state, online, from observations that arrive at irregular, unscheduled times, on a substrate whose weights it cannot retrain. Any one of these constraints is tractable on its own; folding optimally under all three at once is not. We ask what such a substrate must be, and prove two necessary conditions from one model of a self-evolving latent observed at irregular, exogenous times. Because the latent changes, its optimal estimator is time-varying: an adaptive timescale is necessary, and every fixed-gain filter is strictly suboptimal. And because arrivals are clock-free, the optimal estimate depends on the elapsed gap between them, which no gap-blind network recovers at any width or depth. This second condition is capacity-independent: scale cannot substitute for the missing dependence. The two conditions intersect in the continuous-time liquid class. An LSTM satisfies the first, a fixed continuous-time filter the second, and a multi-timescale liquid network both. Synthetic experiments confirm each: the network attains the timescale, and the separation is computed exactly. The characterization is necessary, not sufficient, and binds fixed-weight substrates: a network free to retrain reaches the class by other means. Proved per agent, the necessity binds every agent of a mesh, a structural condition on mesh intelligence.",
+      "score": 71,
+      "primary": "infra",
+      "tags": [
+        "mesh-intelligence",
+        "decentralized",
+        "agents"
+      ],
+      "heuristic_score": 78,
+      "url": "https://arxiv.org/abs/2606.28413",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 78,
+      "_rid": 4,
+      "llm_score": 70,
+      "why": "Establece las condiciones matemáticas necesarias para la inteligencia en mallas de agentes sin coordinación central.",
+      "title_es": "Sobre la necesidad de un sustrato líquido para la inteligencia en malla",
+      "entities": [
+        "arXiv",
+        "Necessity",
+        "Liquid Substrate",
+        "Mesh Intelligence"
+      ],
+      "noise_penalty": 0,
+      "final_score": 71,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Can AI Draw Science? A Benchmark for Evaluating Scientific Figure Generation by Text-to- and Multimodal Models",
+      "link": "https://arxiv.org/abs/2606.28406",
+      "published": "2026-06-30T04:00:00+00:00",
+      "summary": "arXiv:2606.28406v1 Announce Type: new Abstract: Text-to- and multimodal generative models are increasingly used to produce scientific figures such as mechanism diagrams, experimental-design schematics, conceptual frameworks, and graphical abstracts. Yet existing -generation benchmarks (e.g., GenEval, T2I-CompBench, DPG-Bench) evaluate natural s and measure compositionality, object counting, or photorealism. None of them measure what makes a generated scientific figure usable: correct and legible text labels, faithful depiction of entities and their relations, coherent diagrammatic structure, and adherence to disciplinary drawing conventions. We introduce SciDraw-Bench, a benchmark of 32 structured scientific-figure generation tasks spanning eight figure types and ten disciplines, where each task pairs a natural-language prompt with a machine-checkable specification of required labels, relations, components, conventions, and negative constraints. We propose a four-dimensional evaluation protocol: Text Fidelity (OCR-based label recall and character error rate), Semantic Correctness (vision-language-model judging against the specification), Structural Quality, and Convention Adherence, together with a meta-evaluation protocol and a preliminary inter-judge reliability analysis (human-rating validation is ongoing). We evaluate a domain-specific system, SciDraw AI, against representative general-purpose text-to- models, and outline a code-to-figure baseline as a planned extension. In a pilot over all eight figure types, the domain-specific system substantially outperforms the general-purpose baselines on every dimension and figure type, with the largest gaps on semantic correctness and convention adherence; text fidelity remains the hardest dimension for all systems.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Can AI Draw Science? A Benchmark for Evaluating Scientific Figure Generation by Text-to-Image and Multimodal Models",
+      "raw_summary": "arXiv:2606.28406v1 Announce Type: new Abstract: Text-to-image and multimodal generative models are increasingly used to produce scientific figures such as mechanism diagrams, experimental-design schematics, conceptual frameworks, and graphical abstracts. Yet existing image-generation benchmarks (e.g., GenEval, T2I-CompBench, DPG-Bench) evaluate natural images and measure compositionality, object counting, or photorealism. None of them measure what makes a generated scientific figure usable: correct and legible text labels, faithful depiction of entities and their relations, coherent diagrammatic structure, and adherence to disciplinary drawing conventions. We introduce SciDraw-Bench, a benchmark of 32 structured scientific-figure generation tasks spanning eight figure types and ten disciplines, where each task pairs a natural-language prompt with a machine-checkable specification of required labels, relations, components, conventions, and negative constraints. We propose a four-dimensional evaluation protocol: Text Fidelity (OCR-based label recall and character error rate), Semantic Correctness (vision-language-model judging against the specification), Structural Quality, and Convention Adherence, together with a meta-evaluation protocol and a preliminary inter-judge reliability analysis (human-rating validation is ongoing). We evaluate a domain-specific system, SciDraw AI, against representative general-purpose text-to-image models, and outline a code-to-figure baseline as a planned extension. In a pilot over all eight figure types, the domain-specific system substantially outperforms the general-purpose baselines on every dimension and figure type, with the largest gaps on semantic correctness and convention adherence; text fidelity remains the hardest dimension for all systems.",
+      "score": 66,
+      "primary": "models",
+      "tags": [
+        "benchmark",
+        "multimodal",
+        "science"
+      ],
+      "heuristic_score": 71,
+      "url": "https://arxiv.org/abs/2606.28406",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 71,
+      "_rid": 5,
+      "llm_score": 65,
+      "why": "Introduce SciDraw-Bench para evaluar si la IA genera figuras científicas con etiquetas y relaciones correctas.",
+      "title_es": "¿Puede la IA dibujar ciencia? Un benchmark para evaluar la generación de figuras científicas",
+      "entities": [
+        "SciDraw-Bench",
+        "Can",
+        "Draw Science",
+        "Benchmark",
+        "Evaluating Scientific Figure",
+        "Generation",
+        "Text",
+        "Multimodal Models"
+      ],
+      "noise_penalty": 0,
+      "final_score": 66,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "When Software Outruns Silicon: Hardware-Assisted Test Generation to the Rescue",
+      "link": "https://semiwiki.com/eda/synopsys/370629-when-software-outruns-silicon-hardware-assisted-test-generation-to-the-rescue/",
+      "published": "2026-06-29T21:00:56+00:00",
+      "summary": "For the past decade, the semiconductor industry has been moving in one direction: shift-left, specifically, shifting more validation into the pre-silicon phase. The idea was straightforward: if software ultimately determines how a system behaves, then software should become a primary vehicle for verification. The industry&8230; Read More The post When Software Outruns Silicon: Hardware-Assisted Test Generation to the Rescue appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "When Software Outruns Silicon: Hardware-Assisted Test Generation to the Rescue",
+      "raw_summary": "For the past decade, the semiconductor industry has been moving in one direction: shift-left, specifically, shifting more validation into the pre-silicon phase. The idea was straightforward: if software ultimately determines how a system behaves, then software should become a primary vehicle for verification. The industry&#8230; Read More The post When Software Outruns Silicon: Hardware-Assisted Test Generation to the Rescue appeared first on SemiWiki .",
+      "score": 63,
+      "primary": "infra",
+      "tags": [
+        "semiconductors",
+        "verification",
+        "chip-design"
+      ],
+      "heuristic_score": 10,
+      "url": "https://semiwiki.com/eda/synopsys/370629-when-software-outruns-silicon-hardware-assisted-test-generation-to-the-rescue/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 10,
+      "_rid": 14,
+      "llm_score": 72,
+      "why": "La velocidad del software obliga a nuevas técnicas de validación asistida por hardware en semiconductores.",
+      "title_es": "Cuando el software supera al silicio: la generación de pruebas asistida por hardware al rescate",
+      "entities": [
+        "SemiWiki",
+        "Synopsys",
+        "When Software Outruns",
+        "Silicon",
+        "Hardware",
+        "Assisted Test Generation",
+        "Rescue"
+      ],
+      "noise_penalty": 0,
+      "final_score": 63,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "A French OSCE Dialogue Dataset and Controllable Virtual Patient System for Clinical Training",
+      "link": "https://arxiv.org/abs/2606.28526",
+      "published": "2026-06-30T04:00:00+00:00",
+      "summary": "arXiv:2606.28526v1 Announce Type: new Abstract: The clinical and communication skills of medical students are commonly assessed through Objective Structured Clinical Examinations (OSCEs), which consist of brief scenario-driven simulations of doctor-patient interactions. However, training is often limited by the low availability of human standardized patients, motivating the development of realistic virtual patients (VPs). To address this gap, we introduce a French OSCE dialogue dataset comprising 240 student-patient training interactions. We build upon it a controllable LLM-based pipeline to generate synthetic OSCE dialogues. The pipeline integrates modular components, such as retrieval-based grounding and a reflection loop, to ensure patient fidelity, coherence, and realism. Additionally, we propose a multi-level evaluation framework assessing patient simulation quality, student performance, and linguistic quality, using an LLM-as-a-Judge approach. Experiments suggest that controllability modules generally improve patient fidelity and student evaluation consistency. Finally, we implement an interactive prototype in which students can practice with a VP and receive automatic feedback.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "A French OSCE Dialogue Dataset and Controllable Virtual Patient System for Clinical Training",
+      "raw_summary": "arXiv:2606.28526v1 Announce Type: new Abstract: The clinical and communication skills of medical students are commonly assessed through Objective Structured Clinical Examinations (OSCEs), which consist of brief scenario-driven simulations of doctor-patient interactions. However, training is often limited by the low availability of human standardized patients, motivating the development of realistic virtual patients (VPs). To address this gap, we introduce a French OSCE dialogue dataset comprising 240 student-patient training interactions. We build upon it a controllable LLM-based pipeline to generate synthetic OSCE dialogues. The pipeline integrates modular components, such as retrieval-based grounding and a reflection loop, to ensure patient fidelity, coherence, and realism. Additionally, we propose a multi-level evaluation framework assessing patient simulation quality, student performance, and linguistic quality, using an LLM-as-a-Judge approach. Experiments suggest that controllability modules generally improve patient fidelity and student evaluation consistency. Finally, we implement an interactive prototype in which students can practice with a VP and receive automatic feedback.",
+      "score": 53,
+      "primary": "models",
+      "tags": [
+        "medical-training",
+        "virtual-patients",
+        "french"
+      ],
+      "heuristic_score": 44,
+      "url": "https://arxiv.org/abs/2606.28526",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 44,
+      "_rid": 10,
+      "llm_score": 55,
+      "why": "Sistema de pacientes virtuales para que estudiantes de medicina practiquen diagnósticos en francés.",
+      "title_es": "Un conjunto de datos de diálogos OSCE en francés y un sistema de paciente virtual controlable para formación clínica",
+      "entities": [
+        "OSCE",
+        "French",
+        "Dialogue Dataset",
+        "Controllable Virtual Patient",
+        "System",
+        "Clinical Training"
+      ],
+      "noise_penalty": 0,
+      "final_score": 53,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Generating in the Limit with Infinitely Many Hallucinations",
+      "link": "https://arxiv.org/abs/2606.28354",
+      "published": "2026-06-30T04:00:00+00:00",
+      "summary": "arXiv:2606.28354v1 Announce Type: new Abstract: The classic paradigm of language identification in the limit models learning as a game between an adversary, who reveals strings from an unknown target language, and a learner tasked with identifying that language. The recently introduced framework of language generation in the limit shifted the objective to better reflect modern language modeling, requiring the learner to produce valid, unseen strings from the target language. Related work highlighted a fundamental tension: a broad coverage of the target often comes at the cost of validity. We introduce a new notion of precision and recast this problem as the classic recall-precision trade-off. We analyze generation in the limit under varying constraints on enumeration, novelty, and validity, aimed at reflecting settings closer to those encountered by large language models. A key contribution is our analysis of learners that are not eventually valid: we allow infinitely many mistakes, provided their frequency tends to zero so that precision remains one. We show that this relaxation can strictly increase recall when the adversary permanently withholds a large portion of the target language. We also study a continuous relaxation of the novelty constraint that requires only a fixed fraction of outputs to be novel. Taken together, our results move toward a more realistic model of language generation where occasional errors and repetitions are unavoidable, but their rates are controlled.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Generating in the Limit with Infinitely Many Hallucinations",
+      "raw_summary": "arXiv:2606.28354v1 Announce Type: new Abstract: The classic paradigm of language identification in the limit models learning as a game between an adversary, who reveals strings from an unknown target language, and a learner tasked with identifying that language. The recently introduced framework of language generation in the limit shifted the objective to better reflect modern language modeling, requiring the learner to produce valid, unseen strings from the target language. Related work highlighted a fundamental tension: a broad coverage of the target often comes at the cost of validity. We introduce a new notion of precision and recast this problem as the classic recall-precision trade-off. We analyze generation in the limit under varying constraints on enumeration, novelty, and validity, aimed at reflecting settings closer to those encountered by large language models. A key contribution is our analysis of learners that are not eventually valid: we allow infinitely many mistakes, provided their frequency tends to zero so that precision remains one. We show that this relaxation can strictly increase recall when the adversary permanently withholds a large portion of the target language. We also study a continuous relaxation of the novelty constraint that requires only a fixed fraction of outputs to be novel. Taken together, our results move toward a more realistic model of language generation where occasional errors and repetitions are unavoidable, but their rates are controlled.",
+      "score": 50,
+      "primary": "models",
+      "tags": [
+        "hallucinations",
+        "formal-languages",
+        "precision"
+      ],
+      "heuristic_score": 47,
+      "url": "https://arxiv.org/abs/2606.28354",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 47,
+      "_rid": 9,
+      "llm_score": 60,
+      "why": "Enmarca el problema de las alucinaciones en IA como un dilema clásico entre precisión y cobertura (recall).",
+      "title_es": "Generando al límite con infinitas alucinaciones",
+      "entities": [
+        "arXiv",
+        "Generating",
+        "Limit",
+        "Infinitely Many Hallucinations"
+      ],
+      "noise_penalty": 8,
+      "final_score": 50,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(8)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Our new community investments in Virginia support local jobs and expand energy affordability.",
+      "link": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/virginia-community-investments/",
+      "published": "2026-06-11T20:00:00+00:00",
+      "summary": "We’re helping build the state’s next-generation workforce and investing in energy programs.",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Our new community investments in Virginia support local jobs and expand energy affordability.",
+      "raw_summary": "We’re helping build the state’s next-generation workforce and investing in energy programs.",
+      "score": 50,
+      "primary": "invest",
+      "tags": [
+        "energy",
+        "datacenters",
+        "infrastructure"
+      ],
+      "heuristic_score": 18,
+      "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/virginia-community-investments/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 18,
+      "_rid": 12,
+      "llm_score": 68,
+      "why": "Inversión en la infraestructura energética de Virginia para sostener el crecimiento de centros de datos.",
+      "title_es": "Nuestras nuevas inversiones comunitarias en Virginia apoyan el empleo local y amplían la asequibilidad energética",
+      "entities": [
+        "Google",
+        "Virginia"
+      ],
+      "noise_penalty": 10,
+      "final_score": 50,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(10)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Extracting Knowledge from an Arabic-English Machine-Readable Dictionary Using Information Extraction",
+      "link": "https://arxiv.org/abs/2606.28457",
+      "published": "2026-06-30T04:00:00+00:00",
+      "summary": "arXiv:2606.28457v1 Announce Type: new Abstract: Natural language processing (NLP) applications need large and rich amount of linguistic knowledge. Furthermore, electronic language sources such as dictionaries, encyclopedia, and corpora became available. So, automatic methods are emerged to extract lexical information from those sources to overcome the knowledge acquisition bottleneck. We presented a method to automatically extract lexical information from a machine-readable version of the Arabic-English Al-Mawrid dictionary. We used n-gram analysis and key-word-in-context (KWIC) analysis to discover lexical patterns that manifest morphologic, syntactic, or semantic information. Then, we used hand-crafted rule-based information extraction to extract that information. Furthermore, we used punctuation marks and some heuristics to extract a set of synonyms in a subentry. This study registered high precision for all types of information, high recall for synonyms, and low recall for the other information. The study also showed that the Al-Mawrid has significant amount of derivations (morphologic information) and synonyms, domain labels, and hyponym/hypernym relations (semantic information).",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Extracting Knowledge from an Arabic-English Machine-Readable Dictionary Using Information Extraction",
+      "raw_summary": "arXiv:2606.28457v1 Announce Type: new Abstract: Natural language processing (NLP) applications need large and rich amount of linguistic knowledge. Furthermore, electronic language sources such as dictionaries, encyclopedia, and corpora became available. So, automatic methods are emerged to extract lexical information from those sources to overcome the knowledge acquisition bottleneck. We presented a method to automatically extract lexical information from a machine-readable version of the Arabic-English Al-Mawrid dictionary. We used n-gram analysis and key-word-in-context (KWIC) analysis to discover lexical patterns that manifest morphologic, syntactic, or semantic information. Then, we used hand-crafted rule-based information extraction to extract that information. Furthermore, we used punctuation marks and some heuristics to extract a set of synonyms in a subentry. This study registered high precision for all types of information, high recall for synonyms, and low recall for the other information. The study also showed that the Al-Mawrid has significant amount of derivations (morphologic information) and synonyms, domain labels, and hyponym/hypernym relations (semantic information).",
+      "score": 40,
+      "primary": "models",
+      "tags": [
+        "arabic",
+        "nlp",
+        "knowledge-extraction"
+      ],
+      "heuristic_score": 14,
+      "url": "https://arxiv.org/abs/2606.28457",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 14,
+      "_rid": 13,
+      "llm_score": 45,
+      "why": "Método para automatizar la extracción de conocimiento léxico de diccionarios clásicos árabe-inglés.",
+      "title_es": "Extracción de conocimiento de un diccionario árabe-inglés legible por máquina mediante extracción de información",
+      "entities": [
+        "Al-Mawrid",
+        "Extracting Knowledge",
+        "Arabic",
+        "English Machine",
+        "Readable Dictionary Using",
+        "Information Extraction"
+      ],
+      "noise_penalty": 0,
+      "final_score": 40,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "8051: The Core That’s Still Probably in Your House or Car",
+      "link": "https://semiwiki.com/ip/cast/370664-8051-the-core-thats-still-probably-in-your-house-or-car/",
+      "published": "2026-06-29T13:00:56+00:00",
+      "summary": "When a small team at Intel began work on its second-generation 8-bit microcontroller in the summer of 1978, they took lessons from their first effort, the 8048, hoping to create something more flexible and enduring. Approaching five decades later, their creation, the 8051, is still going strong, although the current offerings&8230; Read More The post 8051: The Core That’s Still Probably in Your House or Car appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "8051: The Core That’s Still Probably in Your House or Car",
+      "raw_summary": "When a small team at Intel began work on its second-generation 8-bit microcontroller in the summer of 1978, they took lessons from their first effort, the 8048, hoping to create something more flexible and enduring. Approaching five decades later, their creation, the 8051, is still going strong, although the current offerings&#8230; Read More The post 8051: The Core That’s Still Probably in Your House or Car appeared first on SemiWiki .",
+      "score": 18,
+      "primary": "misc",
+      "tags": [
+        "legacy",
+        "8051",
+        "microcontrollers"
+      ],
+      "heuristic_score": 10,
+      "url": "https://semiwiki.com/ip/cast/370664-8051-the-core-thats-still-probably-in-your-house-or-car/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 10,
+      "_rid": 15,
+      "llm_score": 20,
+      "why": "Repaso histórico y técnico sobre la persistencia del núcleo 8051 en la electrónica moderna.",
+      "title_es": "8051: El núcleo que probablemente todavía esté en su casa o coche",
+      "entities": [
+        "Intel",
+        "8051",
+        "The Core That",
+        "Still Probably",
+        "Your House",
+        "Car"
+      ],
+      "noise_penalty": 0,
+      "final_score": 18,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "other"
+    },
+    {
+      "title": "How we used Gemini to build Google I/O 2026",
+      "link": "https://blog.google/innovation-and-ai/technology/ai/io-2026-google-ai/",
+      "published": "2026-06-01T16:00:00+00:00",
+      "summary": "A collage of I/O-related s, including the Antigravity Coffee Co. pop-up, a colorful jellyfish and a still from the Timmy TPU video. The word AI repeats three times on the left of the , and there are colorful icons, including a sparkle, as well.",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "How we used Gemini to build Google I/O 2026",
+      "raw_summary": "A collage of I/O-related images, including the Antigravity Coffee Co. pop-up, a colorful jellyfish and a still from the Timmy TPU video. The word AI repeats three times on the left of the image, and there are colorful icons, including a sparkle, as well.",
+      "score": 13,
+      "primary": "misc",
+      "tags": [
+        "marketing",
+        "google-io",
+        "gemini"
+      ],
+      "heuristic_score": 22,
+      "url": "https://blog.google/innovation-and-ai/technology/ai/io-2026-google-ai/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 22,
+      "_rid": 11,
+      "llm_score": 30,
+      "why": "Uso de Gemini para la organización y generación de contenidos en el evento corporativo Google I/O.",
+      "title_es": "Cómo usamos Gemini para construir el Google I/O 2026",
+      "entities": [
+        "Google",
+        "Gemini",
+        "How"
+      ],
+      "noise_penalty": 16,
+      "final_score": 13,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(16)",
+      "strategic_theme": "compute_chips_dc"
+    }
+  ]
+}
