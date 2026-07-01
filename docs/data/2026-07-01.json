@@ -1,0 +1,660 @@
+{
+  "date": "2026-07-01",
+  "score_avg": 63.33,
+  "primary_dist": {
+    "models": 9,
+    "infra": 2,
+    "misc": 3,
+    "invest": 1
+  },
+  "top_entities": [
+    {
+      "entity": "arXiv",
+      "count": 3
+    },
+    {
+      "entity": "Google",
+      "count": 2
+    },
+    {
+      "entity": "DeepMind",
+      "count": 2
+    },
+    {
+      "entity": "Omni-MATH",
+      "count": 1
+    },
+    {
+      "entity": "Codeforces",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "Google DeepMind lanza Gemma 4 12B, un modelo multimodal unificado y sin codificador que escala en eficiencia.",
+      "Los modelos de recompensa (ORM) emergen como solución crítica para la fiabilidad de Text-to-SQL en tiempo de inferencia.",
+      "La optimización de agentes empresariales vira hacia la automatización para evitar colisiones de habilidades y errores.",
+      "Nuevos métodos de verificación QED resuelven cuellos de botella en el diseño de aceleradores de hardware para IA.",
+      "La investigación en seguridad multi-agente recibe un impulso de 10 millones de dólares liderado por Google DeepMind."
+    ],
+    "risks": [
+      "La colisión de habilidades en agentes de producción degrada el rendimiento al escalar más allá de una decena de funciones.",
+      "Las métricas de calibración actuales para LLMs están sesgadas por la precisión, falseando comparaciones entre modelos.",
+      "El sesgo de los Transformers hacia lenguajes humanos estándar limita su aprendizaje en estructuras sintácticas no naturales."
+    ],
+    "watch": [
+      "Integración de la hoja de ruta de control de IA para monitorizar y asegurar agentes autónomos en tiempo real.",
+      "Evolución de TabPFN v2 como modelo fundacional para datos tabulares en contextos de medicina de precisión.",
+      "Adopción de estándares FMI de cosimulación para verificar sistemas de hardware de IA en entornos multi-dominio."
+    ],
+    "entities_top": [
+      "Google DeepMind",
+      "Cadence",
+      "Google"
+    ]
+  },
+  "items": [
+    {
+      "title": "What Drives Interactive Improvement from Feedback?",
+      "link": "https://arxiv.org/abs/2606.30774",
+      "published": "2026-07-01T04:00:00+00:00",
+      "summary": "arXiv:2606.30774v1 Announce Type: new Abstract: We study when natural-language feedback produces improvement beyond the gains obtainable from repeated attempts alone. In multi-turn language agent setting, higher final accuracy can reflect useful feedback, but it can also arise from resampling, format correction, or additional test-time computation. To separate these effects, we introduce a controlled student-teacher protocol across Omni-MATH, Codeforces, BBEH Linguini, and ARC-AGI1, evaluating thirteen open-weight models in both student and teacher roles. We compare external feedback, self-feedback, and unguided self-refinement, while varying interaction history, task difficulty, and teacher access to privileged task information. Across settings, we find that multi-turn improvement is often not evidence of feedback use: self-generated feedback adds little beyond unguided self-refinement, whereas the strongest external teachers produce substantially larger feedback-specific gains, suggesting that useful feedback must provide guidance beyond generic retry. Dense student-teacher interaction matrices further show that interactive gains are driven more by the student's ability to use feedback than by the teacher's identity, although teacher choice remains important for a fixed student. These results suggest that feedback-based agents should be evaluated against repeated-attempt baselines, and that ability to act on feedback, not merely feedback availability, is a central bottleneck for interactive improvement. We release our controlled student-teacher evaluation framework at",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "What Drives Interactive Improvement from Feedback?",
+      "raw_summary": "arXiv:2606.30774v1 Announce Type: new Abstract: We study when natural-language feedback produces improvement beyond the gains obtainable from repeated attempts alone. In multi-turn language agent setting, higher final accuracy can reflect useful feedback, but it can also arise from resampling, format correction, or additional test-time computation. To separate these effects, we introduce a controlled student-teacher protocol across Omni-MATH, Codeforces, BBEH Linguini, and ARC-AGI1, evaluating thirteen open-weight models in both student and teacher roles. We compare external feedback, self-feedback, and unguided self-refinement, while varying interaction history, task difficulty, and teacher access to privileged task information. Across settings, we find that multi-turn improvement is often not evidence of feedback use: self-generated feedback adds little beyond unguided self-refinement, whereas the strongest external teachers produce substantially larger feedback-specific gains, suggesting that useful feedback must provide guidance beyond generic retry. Dense student-teacher interaction matrices further show that interactive gains are driven more by the student's ability to use feedback than by the teacher's identity, although teacher choice remains important for a fixed student. These results suggest that feedback-based agents should be evaluated against repeated-attempt baselines, and that ability to act on feedback, not merely feedback availability, is a central bottleneck for interactive improvement. We release our controlled student-teacher evaluation framework at https://j-lojek.github.io/feedback-generation-is-a-bottleneck/.",
+      "score": 80,
+      "primary": "models",
+      "tags": [
+        "feedback",
+        "agentic-ai",
+        "refinement"
+      ],
+      "heuristic_score": 74,
+      "url": "https://arxiv.org/abs/2606.30774",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 74,
+      "_rid": 3,
+      "llm_score": 81,
+      "why": "Estudio fundamental para distinguir si la mejora de un modelo se debe al feedback real o simplemente a la computación adicional en inferencia.",
+      "title_es": "¿Qué impulsa la mejora interactiva a partir del feedback?",
+      "entities": [
+        "Omni-MATH",
+        "Codeforces",
+        "ARC-AGI",
+        "What Drives Interactive",
+        "Improvement",
+        "Feedback"
+      ],
+      "noise_penalty": 0,
+      "final_score": 80,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Test-Time Verification for Text-to-SQL via Outcome Reward Models",
+      "link": "https://arxiv.org/abs/2606.30851",
+      "published": "2026-07-01T04:00:00+00:00",
+      "summary": "arXiv:2606.30851v1 Announce Type: new Abstract: Improving the reliability of large language models (LLMs) at inference time is a central challenge in structured reasoning tasks such as Text-to-SQL. Common test-time inference strategies, including Best-of-N sampling and Majority Voting, rely on heuristic signals such as execution success or output frequency, which provide limited semantic discrimination across candidate outputs. In this work, we study Outcome Reward Models (ORMs) as learned semantic scoring functions for test-time verification in Text-to-SQL. While ORMs have been previously explored for test-time scaling and alignment, their application to structured query generation remains underexplored. We introduce GradeSQL, a scalable framework for training task-specific ORMs via automated candidate generation and execution-based labeling, enabling verifier training without manual annotation. We integrate ORMs into a verification-driven Best-of-N pipeline and evaluate our approach on the BIRD and Spider benchmarks across multiple open-source LLM families. ORM-based selection consistently outperforms execution-based Best-of-N and Majority Voting, with gains of up to +4.33% on BIRD and +2.10% on Spider. We further show that ORMs scale effectively with larger candidate sets and yield stronger improvements on complex queries. Overall, our results demonstrate that ORM-based verification provides a simple, effective, and scalable alternative to heuristic test-time selection strategies for Text-to-SQL. Code datasets and models are publicly available.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Test-Time Verification for Text-to-SQL via Outcome Reward Models",
+      "raw_summary": "arXiv:2606.30851v1 Announce Type: new Abstract: Improving the reliability of large language models (LLMs) at inference time is a central challenge in structured reasoning tasks such as Text-to-SQL. Common test-time inference strategies, including Best-of-N sampling and Majority Voting, rely on heuristic signals such as execution success or output frequency, which provide limited semantic discrimination across candidate outputs. In this work, we study Outcome Reward Models (ORMs) as learned semantic scoring functions for test-time verification in Text-to-SQL. While ORMs have been previously explored for test-time scaling and alignment, their application to structured query generation remains underexplored. We introduce GradeSQL, a scalable framework for training task-specific ORMs via automated candidate generation and execution-based labeling, enabling verifier training without manual annotation. We integrate ORMs into a verification-driven Best-of-N pipeline and evaluate our approach on the BIRD and Spider benchmarks across multiple open-source LLM families. ORM-based selection consistently outperforms execution-based Best-of-N and Majority Voting, with gains of up to +4.33% on BIRD and +2.10% on Spider. We further show that ORMs scale effectively with larger candidate sets and yield stronger improvements on complex queries. Overall, our results demonstrate that ORM-based verification provides a simple, effective, and scalable alternative to heuristic test-time selection strategies for Text-to-SQL. Code datasets and models are publicly available.",
+      "score": 79,
+      "primary": "models",
+      "tags": [
+        "text-to-sql",
+        "orm",
+        "inference",
+        "reliability"
+      ],
+      "heuristic_score": 83,
+      "url": "https://arxiv.org/abs/2606.30851",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 83,
+      "_rid": 1,
+      "llm_score": 78,
+      "why": "El uso de ORM para verificación semántica en tiempo de inferencia es un paso clave para automatizar la generación fiable de bases de datos.",
+      "title_es": "Verificación en tiempo de prueba para Text-to-SQL mediante modelos de recompensa de resultados",
+      "entities": [
+        "arXiv",
+        "SQL",
+        "Test",
+        "Time Verification",
+        "Text",
+        "Outcome Reward Models"
+      ],
+      "noise_penalty": 0,
+      "final_score": 79,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Applying QED to Hardware Accelerator Verification. Innovation in Verification",
+      "link": "https://semiwiki.com/eda/370002-applying-qed-to-hardware-accelerator-verification-innovation-in-verification/",
+      "published": "2026-06-30T13:00:53+00:00",
+      "summary": "QED (Quick Error Detection) can be a powerful complementary addition to verification but can be subject to size constraints. This month’s paper looks at a fix for that limitation. Paul Cunningham (GM, Verification at Cadence), Raúl Camposano (Silicon Catalyst, entrepreneur, former Synopsys CTO and lecturer at Stanford, EE292A)&8230; Read More The post Applying QED to Hardware Accelerator Verification. Innovation in Verification appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "Applying QED to Hardware Accelerator Verification. Innovation in Verification",
+      "raw_summary": "QED (Quick Error Detection) can be a powerful complementary addition to verification but can be subject to size constraints. This month’s paper looks at a fix for that limitation. Paul Cunningham (GM, Verification at Cadence), Raúl Camposano (Silicon Catalyst, entrepreneur, former Synopsys CTO and lecturer at Stanford, EE292A)&#8230; Read More The post Applying QED to Hardware Accelerator Verification. Innovation in Verification appeared first on SemiWiki .",
+      "score": 77,
+      "primary": "infra",
+      "tags": [
+        "hardware",
+        "verification",
+        "eda"
+      ],
+      "heuristic_score": 46,
+      "url": "https://semiwiki.com/eda/370002-applying-qed-to-hardware-accelerator-verification-innovation-in-verification/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 46,
+      "_rid": 10,
+      "llm_score": 83,
+      "why": "La aplicación de QED en aceleradores es vital para reducir fallos en silicio y acelerar el ciclo de desarrollo de hardware para IA.",
+      "title_es": "Aplicando QED a la verificación de aceleradores de hardware. Innovación en verificación",
+      "entities": [
+        "Cadence",
+        "Synopsys",
+        "Stanford",
+        "QED",
+        "Applying",
+        "Hardware Accelerator Verification",
+        "Innovation",
+        "Verification"
+      ],
+      "noise_penalty": 0,
+      "final_score": 77,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Contrastive Reflection for Iterative Prompt Optimization",
+      "link": "https://arxiv.org/abs/2606.30840",
+      "published": "2026-07-01T04:00:00+00:00",
+      "summary": "arXiv:2606.30840v1 Announce Type: new Abstract: LLM agents are becoming central to information retrieval: they issue retrieval queries, synthesize answers, and increasingly serve as judges for IR evaluation. Improving the prompts that control these agents is an optimization problem, but in applied IR settings it often looks less like blind search and more like debugging. Engineers need to know which behavior failed, which nearby behavior still worked, what distinguishes the two, and whether a prompt edit improves held-out quality without introducing regressions. We present Contrastive Reflection, an iterative prompt-optimization framework for agentic IR workflows. The framework starts from a task-centric quality definition: QA agents expose retrieval or reasoning traces, and grading agents expose dimension-level scores and rationales. These structured traces are used to identify error-anchored behavioral slices, add nearby successful examples from the same region, and ask a Teacher LLM to propose a targeted prompt edit. Candidate edits are accepted only when validation performance improves, optionally subject to regression checks. We instantiate the framework with a tree-based slice selector, but the contribution is the contrastive reflection loop rather than the tree itself. On a public HotpotQA retrieval-augmented QA setup, one tree-selected contrastive repair improves held-out exact-match accuracy from 51.4% to 60.4%. Failure-only and random-evidence variants improve less and break more previously correct examples. A light instruction-only comparison places the method near modern prompt optimizers: MIPROv2 reaches 59.4% and GEPA 57.0%. The result is an interpretable optimization loop for IR agents, aimed at making prompt repair more inspectable and validation-driven.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Contrastive Reflection for Iterative Prompt Optimization",
+      "raw_summary": "arXiv:2606.30840v1 Announce Type: new Abstract: LLM agents are becoming central to information retrieval: they issue retrieval queries, synthesize answers, and increasingly serve as judges for IR evaluation. Improving the prompts that control these agents is an optimization problem, but in applied IR settings it often looks less like blind search and more like debugging. Engineers need to know which behavior failed, which nearby behavior still worked, what distinguishes the two, and whether a prompt edit improves held-out quality without introducing regressions. We present Contrastive Reflection, an iterative prompt-optimization framework for agentic IR workflows. The framework starts from a task-centric quality definition: QA agents expose retrieval or reasoning traces, and grading agents expose dimension-level scores and rationales. These structured traces are used to identify error-anchored behavioral slices, add nearby successful examples from the same region, and ask a Teacher LLM to propose a targeted prompt edit. Candidate edits are accepted only when validation performance improves, optionally subject to regression checks. We instantiate the framework with a tree-based slice selector, but the contribution is the contrastive reflection loop rather than the tree itself. On a public HotpotQA retrieval-augmented QA setup, one tree-selected contrastive repair improves held-out exact-match accuracy from 51.4% to 60.4%. Failure-only and random-evidence variants improve less and break more previously correct examples. A light instruction-only comparison places the method near modern prompt optimizers: MIPROv2 reaches 59.4% and GEPA 57.0%. The result is an interpretable optimization loop for IR agents, aimed at making prompt repair more inspectable and validation-driven.",
+      "score": 73,
+      "primary": "models",
+      "tags": [
+        "prompt-optimization",
+        "ir",
+        "debugging"
+      ],
+      "heuristic_score": 68,
+      "url": "https://arxiv.org/abs/2606.30840",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 68,
+      "_rid": 4,
+      "llm_score": 74,
+      "why": "Transforma la optimización de prompts de un proceso de prueba y error en una metodología técnica de depuración para flujos de recuperación.",
+      "title_es": "Reflexión contrastiva para la optimización iterativa de prompts",
+      "entities": [
+        "arXiv",
+        "Contrastive Reflection",
+        "Iterative Prompt Optimization"
+      ],
+      "noise_penalty": 0,
+      "final_score": 73,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "A Single Rewrite Suffices: Empirical Lessons from Production Skill Description Optimization",
+      "link": "https://arxiv.org/abs/2606.30775",
+      "published": "2026-07-01T04:00:00+00:00",
+      "summary": "arXiv:2606.30775v1 Announce Type: new Abstract: Enterprise AI agents route user queries to specialized skills by matching queries against natural language skill descriptions. When two skills share overlapping descriptions, the routing LLM misroutes queries, a failure we term skill collision. As agents scale to dozens of skills, manually tuning descriptions to maintain routing accuracy becomes a significant engineering bottleneck. We deploy an automated description optimization pipeline on a production enterprise group chat agent (9 skills, 372 regression cases). The pipeline produces descriptions averaging 79.2% F1, matching manually tuned descriptions at 79.4% F1 (average per-skill difference -0.20%, within the 0.78% multi-seed noise floor), while reducing per-skill engineering effort from 120 minutes to 3.8 minutes (32 times speedup). We then examine which pipeline components actually drive this match. Systematic ablation on both the production system and ToolBench (16k tools) reveals that a single LLM rewrite using any available false-positive and false-negative cases captures most of the available improvement. Other design choices we tested (iteration budget, feedback signal composition, dual editing of confused pairs, and training set size) each affect final F1 by less than 0.5%. Description optimization addresses skill collisions caused by overlapping descriptions but cannot resolve cases where two skills intended scopes genuinely overlap. We identify a diagnostic (a large train-validation F1 gap) that flags the latter cases for architectural rather than text-level intervention.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "A Single Rewrite Suffices: Empirical Lessons from Production Skill Description Optimization",
+      "raw_summary": "arXiv:2606.30775v1 Announce Type: new Abstract: Enterprise AI agents route user queries to specialized skills by matching queries against natural language skill descriptions. When two skills share overlapping descriptions, the routing LLM misroutes queries, a failure we term skill collision. As agents scale to dozens of skills, manually tuning descriptions to maintain routing accuracy becomes a significant engineering bottleneck. We deploy an automated description optimization pipeline on a production enterprise group chat agent (9 skills, 372 regression cases). The pipeline produces descriptions averaging 79.2% F1, matching manually tuned descriptions at 79.4% F1 (average per-skill difference -0.20%, within the 0.78% multi-seed noise floor), while reducing per-skill engineering effort from 120 minutes to 3.8 minutes (32 times speedup). We then examine which pipeline components actually drive this match. Systematic ablation on both the production system and ToolBench (16k tools) reveals that a single LLM rewrite using any available false-positive and false-negative cases captures most of the available improvement. Other design choices we tested (iteration budget, feedback signal composition, dual editing of confused pairs, and training set size) each affect final F1 by less than 0.5%. Description optimization addresses skill collisions caused by overlapping descriptions but cannot resolve cases where two skills intended scopes genuinely overlap. We identify a diagnostic (a large train-validation F1 gap) that flags the latter cases for architectural rather than text-level intervention.",
+      "score": 73,
+      "primary": "models",
+      "tags": [
+        "enterprise-ai",
+        "agents",
+        "optimization"
+      ],
+      "heuristic_score": 59,
+      "url": "https://arxiv.org/abs/2606.30775",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 59,
+      "_rid": 7,
+      "llm_score": 76,
+      "why": "Soluciona un problema real de producción en la asignación de tareas a agentes mediante la optimización automática de descripciones.",
+      "title_es": "Un solo reescrito basta: Lecciones empíricas de la optimización de descripción de habilidades en producción",
+      "entities": [
+        "Single Rewrite Suffices",
+        "Empirical Lessons",
+        "Production Skill Description",
+        "Optimization"
+      ],
+      "noise_penalty": 0,
+      "final_score": 73,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Accelerometry-Derived Digital Biomarkers for Cardiometabolic Risk: A Population-Representative Tabular Benchmark with Uncertainty Quantification",
+      "link": "https://arxiv.org/abs/2606.30702",
+      "published": "2026-07-01T04:00:00+00:00",
+      "summary": "arXiv:2606.30702v1 Announce Type: new Abstract: Structured tabular data dominates clinical medicine, yet existing benchmarks fail to reflect real-world properties like complex survey sampling, demographic oversampling, and subgroup fairness. We introduce the NHANES Accelerometry Cardiometabolic Benchmark, derived from NHANES 2003-2006, comprising 1,381 adults with hip-worn accelerometry, fasting laboratory biomarkers, dietary intake, and anthropometrics. We evaluate three tabular learning methods -- ridge regression, XGBoost, and the foundation model TabPFN v2 -- to predict glycated haemoglobin (HbA1c), fasting triglycerides, and C-reactive protein (CRP) from activity phenotypes and lifestyle covariates. TabPFN v2 achieves the best overall performance (HbA1c R^2=0.156, CRP R^2=0.383), while triglycerides remain largely unpredictable (R^2 < 0.05), consistent with known genetic dominance. We apply split conformal prediction to generate distribution-free 90% prediction intervals and evaluate demographic coverage equity across sex and race/ethnicity subgroups. Marginal coverage aligns with the 90% target for CRP and HbA1c but falls below for triglycerides. At the subgroup level, we observe localized undercoverage (e.g., HbA1c for Mexican American participants), illustrating the gap between marginal guarantees and the conditional coverage required for clinical fairness. Code and data are at",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Accelerometry-Derived Digital Biomarkers for Cardiometabolic Risk: A Population-Representative Tabular Benchmark with Uncertainty Quantification",
+      "raw_summary": "arXiv:2606.30702v1 Announce Type: new Abstract: Structured tabular data dominates clinical medicine, yet existing benchmarks fail to reflect real-world properties like complex survey sampling, demographic oversampling, and subgroup fairness. We introduce the NHANES Accelerometry Cardiometabolic Benchmark, derived from NHANES 2003-2006, comprising 1,381 adults with hip-worn accelerometry, fasting laboratory biomarkers, dietary intake, and anthropometrics. We evaluate three tabular learning methods -- ridge regression, XGBoost, and the foundation model TabPFN v2 -- to predict glycated haemoglobin (HbA1c), fasting triglycerides, and C-reactive protein (CRP) from activity phenotypes and lifestyle covariates. TabPFN v2 achieves the best overall performance (HbA1c R^2=0.156, CRP R^2=0.383), while triglycerides remain largely unpredictable (R^2 < 0.05), consistent with known genetic dominance. We apply split conformal prediction to generate distribution-free 90% prediction intervals and evaluate demographic coverage equity across sex and race/ethnicity subgroups. Marginal coverage aligns with the 90% target for CRP and HbA1c but falls below for triglycerides. At the subgroup level, we observe localized undercoverage (e.g., HbA1c for Mexican American participants), illustrating the gap between marginal guarantees and the conditional coverage required for clinical fairness. Code and data are at https://github.com/felizzi/nhanes-accel-cardiometabolic-benchmark.",
+      "score": 67,
+      "primary": "misc",
+      "tags": [
+        "biomarkers",
+        "tabular-data",
+        "health"
+      ],
+      "heuristic_score": 59,
+      "url": "https://arxiv.org/abs/2606.30702",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 59,
+      "_rid": 6,
+      "llm_score": 68,
+      "why": "Propone un benchmark riguroso para medicina con datos tabulares complejos, evaluando modelos fundacionales como TabPFN.",
+      "title_es": "Biomarcadores digitales derivados de acelerometría para riesgo cardiometabólico: Un benchmark tabular representativo",
+      "entities": [
+        "NHANES",
+        "XGBoost",
+        "TabPFN",
+        "Accelerometry",
+        "Derived Digital Biomarkers",
+        "Cardiometabolic Risk",
+        "Population",
+        "Representative Tabular Benchmark"
+      ],
+      "noise_penalty": 0,
+      "final_score": 67,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "When Calibration Rankings Reverse: Accuracy-Controlled Evaluation for Fair Comparison of LLMs",
+      "link": "https://arxiv.org/abs/2606.30814",
+      "published": "2026-07-01T04:00:00+00:00",
+      "summary": "arXiv:2606.30814v1 Announce Type: new Abstract: Calibration evaluates whether a model confidence aligns with its empirical accuracy. Existing studies often compare the calibration of different large language models using global calibration metrics such as Expected Calibration Error and Brier Score. We begin by showing, both theoretically and empirically, that such comparisons are confounded by differences in model accuracy. For fairer cross-model comparison, we then propose ACE, an accuracy-controlled evaluation framework with three complementary views: Instance-Aligned, Distribution-Aligned, and Candidate-Aligned calibration. Across multiple benchmarks, model families, and confidence elicitation methods, we use ACE to study two practically important comparison axes, small versus large models and thinking versus non-thinking models. We find that many previously reported calibration advantages under raw global metrics weaken substantially after accuracy control. We also find that ranking reversal is frequent: models favored by raw metrics often cease to be favored once accuracy is controlled. Our results show that raw global calibration metrics are not robust for cross-model comparison, and that fair calibration comparison requires accuracy-aware evaluation.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "When Calibration Rankings Reverse: Accuracy-Controlled Evaluation for Fair Comparison of LLMs",
+      "raw_summary": "arXiv:2606.30814v1 Announce Type: new Abstract: Calibration evaluates whether a model confidence aligns with its empirical accuracy. Existing studies often compare the calibration of different large language models using global calibration metrics such as Expected Calibration Error and Brier Score. We begin by showing, both theoretically and empirically, that such comparisons are confounded by differences in model accuracy. For fairer cross-model comparison, we then propose ACE, an accuracy-controlled evaluation framework with three complementary views: Instance-Aligned, Distribution-Aligned, and Candidate-Aligned calibration. Across multiple benchmarks, model families, and confidence elicitation methods, we use ACE to study two practically important comparison axes, small versus large models and thinking versus non-thinking models. We find that many previously reported calibration advantages under raw global metrics weaken substantially after accuracy control. We also find that ranking reversal is frequent: models favored by raw metrics often cease to be favored once accuracy is controlled. Our results show that raw global calibration metrics are not robust for cross-model comparison, and that fair calibration comparison requires accuracy-aware evaluation.",
+      "score": 67,
+      "primary": "models",
+      "tags": [
+        "calibration",
+        "evaluation",
+        "fairness"
+      ],
+      "heuristic_score": 53,
+      "url": "https://arxiv.org/abs/2606.30814",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 53,
+      "_rid": 9,
+      "llm_score": 70,
+      "why": "Introduce un marco para comparar la confianza de los LLMs de forma justa, eliminando el ruido de la precisión base del modelo.",
+      "title_es": "Cuando las clasificaciones de calibración se invierten: Evaluación controlada por precisión para comparación justa de LLMs",
+      "entities": [
+        "When Calibration Rankings",
+        "Reverse",
+        "Accuracy",
+        "Controlled Evaluation",
+        "Fair Comparison"
+      ],
+      "noise_penalty": 0,
+      "final_score": 67,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Introducing Gemma 4 12B: a unified, encoder-free multimodal model",
+      "link": "https://deepmind.google/blog/introducing-gemma-4-12b-a-unified-encoder-free-multimodal-model/",
+      "published": "2026-06-09T14:10:19+00:00",
+      "summary": "",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Introducing Gemma 4 12B: a unified, encoder-free multimodal model",
+      "raw_summary": "",
+      "score": 66,
+      "primary": "models",
+      "tags": [
+        "multimodal",
+        "gemma",
+        "encoder-free"
+      ],
+      "heuristic_score": 28,
+      "url": "https://deepmind.google/blog/introducing-gemma-4-12b-a-unified-encoder-free-multimodal-model/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 28,
+      "_rid": 12,
+      "llm_score": 92,
+      "why": "Representa un avance arquitectónico significativo al eliminar codificadores separados para una multimodalidad más nativa y eficiente.",
+      "title_es": "Presentando Gemma 4 12B: un modelo multimodal unificado y sin codificador",
+      "entities": [
+        "Google",
+        "Gemma",
+        "Introducing Gemma"
+      ],
+      "noise_penalty": 16,
+      "final_score": 66,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(16)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Indi-RomCoM: Code-Mixed Benchmark for Evaluating LLMs on Romanized Indic-English Instructions",
+      "link": "https://arxiv.org/abs/2606.30790",
+      "published": "2026-07-01T04:00:00+00:00",
+      "summary": "arXiv:2606.30790v1 Announce Type: new Abstract: Romanized Code Mixing (RCM), where bilingual speakers fluidly blend local languages with English in Roman script, has emerged as the dominant form of communication across multilingual communities. While Large Language Models (LLMs) perform strongly on monolingual and native-script benchmarks, their ability to follow instructions and reason over RCM-based content remains largely unexplored. To this end, we introduce the Indi-RomCoM benchmark for facilitating systematic evaluation on Indic Romanized Code-Mixed instructions. Our benchmark spans seven instruction-following tasks, four widely spoken Indic languages, and three controlled code-mixing intensity levels. We extensively evaluate a suite of LLMs covering proprietary, open-weight, and Indic-focused models under zero- and few-shot settings. LLMs consistently underperform on RCM instructions, with performance degrading as code-mixing density increases. Furthermore, reasoning tasks suffer less degradation than detection tasks (e.g., Toxicity) because the generated explanations offer necessary context. We believe Indi-RomCoM helps the community in developing inclusive multilingual systems.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Indi-RomCoM: Code-Mixed Benchmark for Evaluating LLMs on Romanized Indic-English Instructions",
+      "raw_summary": "arXiv:2606.30790v1 Announce Type: new Abstract: Romanized Code Mixing (RCM), where bilingual speakers fluidly blend local languages with English in Roman script, has emerged as the dominant form of communication across multilingual communities. While Large Language Models (LLMs) perform strongly on monolingual and native-script benchmarks, their ability to follow instructions and reason over RCM-based content remains largely unexplored. To this end, we introduce the Indi-RomCoM benchmark for facilitating systematic evaluation on Indic Romanized Code-Mixed instructions. Our benchmark spans seven instruction-following tasks, four widely spoken Indic languages, and three controlled code-mixing intensity levels. We extensively evaluate a suite of LLMs covering proprietary, open-weight, and Indic-focused models under zero- and few-shot settings. LLMs consistently underperform on RCM instructions, with performance degrading as code-mixing density increases. Furthermore, reasoning tasks suffer less degradation than detection tasks (e.g., Toxicity) because the generated explanations offer necessary context. We believe Indi-RomCoM helps the community in developing inclusive multilingual systems.",
+      "score": 64,
+      "primary": "models",
+      "tags": [
+        "benchmark",
+        "multilingual",
+        "romanized-indic"
+      ],
+      "heuristic_score": 77,
+      "url": "https://arxiv.org/abs/2606.30790",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 77,
+      "_rid": 2,
+      "llm_score": 62,
+      "why": "Evalúa LLMs en lenguajes índicos romanizados, un área crítica para el despliegue de modelos en mercados emergentes masivos.",
+      "title_es": "Indi-RomCoM: Benchmark de código mixto para evaluar LLMs en instrucciones de índico-inglés romanizado",
+      "entities": [
+        "arXiv",
+        "Indi",
+        "Code",
+        "Mixed Benchmark",
+        "Evaluating",
+        "Romanized Indic",
+        "English Instructions"
+      ],
+      "noise_penalty": 0,
+      "final_score": 64,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Using AI Agents to Automate Black-Box Audits of Personalization Algorithms at Scale",
+      "link": "https://arxiv.org/abs/2606.30801",
+      "published": "2026-07-01T04:00:00+00:00",
+      "summary": "arXiv:2606.30801v1 Announce Type: new Abstract: Personalization algorithms determine what content users encounter on online platforms. Auditing these systems is difficult because independent auditors have only black-box access to the algorithms, while personalization depends on users' attributes, behavior, and evolving interaction histories. Existing auditing methods face a tradeoff: studies with real users capture realistic behavior but are costly and hard to control, whereas sock-puppet audits scale more easily but often rely on scripted behavior that limits realism. Beyond this, both approaches struggle to decouple user attributes from user behavior, limiting our ability to causally understand personalization. To address this gap, we introduce a framework for black-box audits of personalization algorithms using generative AI agents as behavioral engines for synthetic accounts. Each agent is instantiated with a fixed persona, grounded in demographic and political survey data, and interacts with a platform's content by reasoning about it and choosing actions. Because behavior is fixed within each persona while platform-visible signals such as age, gender, or location can be experimentally perturbed, our design enables counterfactual auditing of how platforms respond to user attributes. As a case study, we deploy 1,120 agents on X shortly after the 2024 U.S. election, spanning 14 personas and three counterfactual conditions, collecting over 200,000 content exposures. We find that X's algorithmic feed amplifies toxic, polarizing, political, and right-leaning content relative to the chronological feed, with amplification varying sharply by user ideology. Counterfactual analyses show that demographic signals affect content delivery in persona-dependent ways: pooled effects are largely null, while subgroup-level effects vary in direction and magnitude. Our work establishes GenAI-based agents as a new tool for algorithmic auditing.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Using AI Agents to Automate Black-Box Audits of Personalization Algorithms at Scale",
+      "raw_summary": "arXiv:2606.30801v1 Announce Type: new Abstract: Personalization algorithms determine what content users encounter on online platforms. Auditing these systems is difficult because independent auditors have only black-box access to the algorithms, while personalization depends on users' attributes, behavior, and evolving interaction histories. Existing auditing methods face a tradeoff: studies with real users capture realistic behavior but are costly and hard to control, whereas sock-puppet audits scale more easily but often rely on scripted behavior that limits realism. Beyond this, both approaches struggle to decouple user attributes from user behavior, limiting our ability to causally understand personalization. To address this gap, we introduce a framework for black-box audits of personalization algorithms using generative AI agents as behavioral engines for synthetic accounts. Each agent is instantiated with a fixed persona, grounded in demographic and political survey data, and interacts with a platform's content by reasoning about it and choosing actions. Because behavior is fixed within each persona while platform-visible signals such as age, gender, or location can be experimentally perturbed, our design enables counterfactual auditing of how platforms respond to user attributes. As a case study, we deploy 1,120 agents on X shortly after the 2024 U.S. election, spanning 14 personas and three counterfactual conditions, collecting over 200,000 content exposures. We find that X's algorithmic feed amplifies toxic, polarizing, political, and right-leaning content relative to the chronological feed, with amplification varying sharply by user ideology. Counterfactual analyses show that demographic signals affect content delivery in persona-dependent ways: pooled effects are largely null, while subgroup-level effects vary in direction and magnitude. Our work establishes GenAI-based agents as a new tool for algorithmic auditing.",
+      "score": 64,
+      "primary": "misc",
+      "tags": [
+        "auditing",
+        "personalization",
+        "agents"
+      ],
+      "heuristic_score": 59,
+      "url": "https://arxiv.org/abs/2606.30801",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 59,
+      "_rid": 8,
+      "llm_score": 72,
+      "why": "Utiliza agentes para automatizar la auditoría de algoritmos de caja negra, permitiendo un escalado masivo de la transparencia algorítmica.",
+      "title_es": "Uso de agentes de IA para automatizar auditorías de caja negra de algoritmos de personalización a escala",
+      "entities": [
+        "Using",
+        "Agents",
+        "Automate Black",
+        "Box Audits",
+        "Personalization Algorithms",
+        "Scale"
+      ],
+      "noise_penalty": 6,
+      "final_score": 64,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(6)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "When transformers learn \"impossible\" languages, what do they learn?",
+      "link": "https://arxiv.org/abs/2606.30815",
+      "published": "2026-07-01T04:00:00+00:00",
+      "summary": "arXiv:2606.30815v1 Announce Type: new Abstract: Recent work suggests that transformer language models show a bias towards human languages over unnatural (\"impossible\") languages argued to be unacquirable by humans. However, this literature has largely based these claims on differences in sample efficiency and test-set perplexity, rather than on direct evaluations of the linguistic capacities that could plausibly explain non-attestation in human languages. We evaluate two theoretically motivated linking hypotheses: impossibility arising from deficiencies in grammatical sensitivity or generative production. Using GPT-2 style models trained on perturbed \"impossible\" variants of English, we measure sensitivity to grammaticality using BLiMP minimal pairs, finding that model performance exhibits only gradual degradation, mediated by the language's information locality. In contrast, these models exhibited pronounced failures in generation, producing substantially fewer high-quality sentences at longer lengths. Together, these results suggest generative deficiency and transmission failures as a plausible linking hypothesis between language model behaviour and non-attestation of impossible languages.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "When transformers learn \"impossible\" languages, what do they learn?",
+      "raw_summary": "arXiv:2606.30815v1 Announce Type: new Abstract: Recent work suggests that transformer language models show a bias towards human languages over unnatural (\"impossible\") languages argued to be unacquirable by humans. However, this literature has largely based these claims on differences in sample efficiency and test-set perplexity, rather than on direct evaluations of the linguistic capacities that could plausibly explain non-attestation in human languages. We evaluate two theoretically motivated linking hypotheses: impossibility arising from deficiencies in grammatical sensitivity or generative production. Using GPT-2 style models trained on perturbed \"impossible\" variants of English, we measure sensitivity to grammaticality using BLiMP minimal pairs, finding that model performance exhibits only gradual degradation, mediated by the language's information locality. In contrast, these models exhibited pronounced failures in generation, producing substantially fewer high-quality sentences at longer lengths. Together, these results suggest generative deficiency and transmission failures as a plausible linking hypothesis between language model behaviour and non-attestation of impossible languages.",
+      "score": 56,
+      "primary": "models",
+      "tags": [
+        "linguistics",
+        "transformers",
+        "theory"
+      ],
+      "heuristic_score": 62,
+      "url": "https://arxiv.org/abs/2606.30815",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 62,
+      "_rid": 5,
+      "llm_score": 55,
+      "why": "Investiga los límites teóricos del aprendizaje de lenguajes en Transformers y su sesgo innato hacia estructuras humanas.",
+      "title_es": "Cuando los Transformers aprenden lenguajes 'imposibles', ¿qué están aprendiendo?",
+      "entities": [
+        "GPT-2",
+        "When"
+      ],
+      "noise_penalty": 0,
+      "final_score": 56,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Enhancing Multi-Domain System Simulation with FMI Co-Simulation",
+      "link": "https://semiwiki.com/eda/siemens-eda/370580-enhancing-multi-domain-system-simulation-with-fmi-co-simulation/",
+      "published": "2026-06-30T21:00:54+00:00",
+      "summary": "As systems become increasingly complex across every field of science and engineering, the importance of computer simulation in design, analysis, and verification continues to increase over time. The traditional process in which a system is modeled and simulated in a single tool is called monolithic simulation . On the other&8230; Read More The post Enhancing Multi-Domain System Simulation with FMI Co-Simulation appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "Enhancing Multi-Domain System Simulation with FMI Co-Simulation",
+      "raw_summary": "As systems become increasingly complex across every field of science and engineering, the importance of computer simulation in design, analysis, and verification continues to increase over time. The traditional process in which a system is modeled and simulated in a single tool is called monolithic simulation . On the other&#8230; Read More The post Enhancing Multi-Domain System Simulation with FMI Co-Simulation appeared first on SemiWiki .",
+      "score": 55,
+      "primary": "infra",
+      "tags": [
+        "simulation",
+        "fmi",
+        "engineering"
+      ],
+      "heuristic_score": 28,
+      "url": "https://semiwiki.com/eda/siemens-eda/370580-enhancing-multi-domain-system-simulation-with-fmi-co-simulation/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 28,
+      "_rid": 13,
+      "llm_score": 60,
+      "why": "Mejora la simulación de sistemas complejos, permitiendo integrar componentes de IA con entornos físicos y mecánicos tradicionales.",
+      "title_es": "Mejora de la simulación de sistemas multi-dominio con co-simulación FMI",
+      "entities": [
+        "Siemens EDA",
+        "SemiWiki",
+        "FMI",
+        "Enhancing Multi",
+        "Domain System Simulation",
+        "Simulation"
+      ],
+      "noise_penalty": 0,
+      "final_score": 55,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Securing the future of AI agents",
+      "link": "https://deepmind.google/blog/securing-the-future-of-ai-agents/",
+      "published": "2026-06-16T15:46:31+00:00",
+      "summary": "Securing internal systems with an AI Control Roadmap, combining traditional safeguards and real-time monitoring.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Securing the future of AI agents",
+      "raw_summary": "Securing internal systems with an AI Control Roadmap, combining traditional safeguards and real-time monitoring.",
+      "score": 55,
+      "primary": "models",
+      "tags": [
+        "agents",
+        "security",
+        "roadmap"
+      ],
+      "heuristic_score": 22,
+      "url": "https://deepmind.google/blog/securing-the-future-of-ai-agents/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 22,
+      "_rid": 15,
+      "llm_score": 73,
+      "why": "Establece los protocolos necesarios para el despliegue seguro de agentes de IA dentro de infraestructuras corporativas críticas.",
+      "title_es": "Asegurando el futuro de los agentes de IA",
+      "entities": [
+        "DeepMind",
+        "Securing"
+      ],
+      "noise_penalty": 10,
+      "final_score": 55,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(10)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Investing in multi-agent AI safety research",
+      "link": "https://deepmind.google/blog/investing-in-multi-agent-ai-safety-research/",
+      "published": "2026-06-10T10:21:19+00:00",
+      "summary": "Google DeepMind and partners announce a $10M funding call for multi-agent safety research.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Investing in multi-agent AI safety research",
+      "raw_summary": "Google DeepMind and partners announce a $10M funding call for multi-agent safety research.",
+      "score": 52,
+      "primary": "invest",
+      "tags": [
+        "safety",
+        "multi-agent",
+        "funding"
+      ],
+      "heuristic_score": 43,
+      "url": "https://deepmind.google/blog/investing-in-multi-agent-ai-safety-research/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 43,
+      "_rid": 11,
+      "llm_score": 65,
+      "why": "Aunque la cifra es moderada, el enfoque en seguridad multi-agente es una prioridad estratégica para la gobernanza de sistemas autónomos.",
+      "title_es": "Invirtiendo en investigación de seguridad de IA multi-agente",
+      "entities": [
+        "DeepMind",
+        "Investing"
+      ],
+      "noise_penalty": 10,
+      "final_score": 52,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(10)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "5 ways Google Search can level up your thrift and vintage shopping",
+      "link": "https://blog.google/products-and-platforms/products/search/thrifting-tips/",
+      "published": "2026-06-03T13:00:00+00:00",
+      "summary": "A colorful, grain-textured collage of various items scattered across a light blue background. The items include a green bucket hat, a wooden clothes hanger, a blue-and-red striped collar, blue sunglasses, denim shorts, a yellow price tag, a red high-heele",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "5 ways Google Search can level up your thrift and vintage shopping",
+      "raw_summary": "A colorful, grain-textured collage of various items scattered across a light blue background. The items include a green bucket hat, a wooden clothes hanger, a blue-and-red striped collar, blue sunglasses, denim shorts, a yellow price tag, a red high-heele",
+      "score": 22,
+      "primary": "misc",
+      "tags": [
+        "search",
+        "ecommerce",
+        "consumer-ai"
+      ],
+      "heuristic_score": 25,
+      "url": "https://blog.google/products-and-platforms/products/search/thrifting-tips/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 25,
+      "_rid": 14,
+      "llm_score": 35,
+      "why": "Aplicación de consumo final con bajo impacto en el desarrollo tecnológico o la infraestructura de la IA.",
+      "title_es": "5 formas en que Google Search puede mejorar tus compras de segunda mano y vintage",
+      "entities": [
+        "Google",
+        "Google Search"
+      ],
+      "noise_penalty": 12,
+      "final_score": 22,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(12)",
+      "strategic_theme": "model_economics_pricing"
+    }
+  ]
+}
