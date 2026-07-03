@@ -1,0 +1,668 @@
+{
+  "date": "2026-07-03",
+  "score_avg": 57.6,
+  "primary_dist": {
+    "models": 7,
+    "infra": 2,
+    "geopol": 1,
+    "misc": 3,
+    "invest": 2
+  },
+  "top_entities": [
+    {
+      "entity": "DeepMind",
+      "count": 2
+    },
+    {
+      "entity": "Qwen",
+      "count": 1
+    },
+    {
+      "entity": "Gemma",
+      "count": 1
+    },
+    {
+      "entity": "Llama",
+      "count": 1
+    },
+    {
+      "entity": "Mistral",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "Huawei proyecta alcanzar la capacidad tecnológica de TSMC en chips avanzados para el año 2031.",
+      "La tokenización BPE se identifica como un vector de ataque crítico que permite evadir la seguridad de los LLM.",
+      "La compresión de KV cache mediante ventanas deslizantes optimiza el razonamiento de cadena de pensamiento (CoT).",
+      "La IA se integra profundamente en el diseño de SoCs (EDA) para reducir la dependencia de expertos humanos.",
+      "Google DeepMind entra en la gestión administrativa estatal agilizando permisos de construcción en el Reino Unido."
+    ],
+    "risks": [
+      "Vulnerabilidad estructural en la alineación de modelos debido a la fragmentación de tokens en el proceso BPE.",
+      "Inflación de métricas F1 en evaluaciones de LLM causada por el anclaje numérico en el diseño de los prompts.",
+      "Inviabilidad de explicaciones contrafactuales en modelos puramente basados en datos sin capas neuro-simbólicas."
+    ],
+    "watch": [
+      "Evolución de agentes de codificación autónomos aplicados a la investigación de aprendizaje federado.",
+      "Adopción de herramientas de interpretabilidad a nivel de token en flujos de trabajo de desarrollo de software.",
+      "Impacto de las inversiones de Google en infraestructura energética en Virginia para sostener su red de IA."
+    ],
+    "entities_top": [
+      "Huawei",
+      "Google DeepMind",
+      "TSMC"
+    ]
+  },
+  "items": [
+    {
+      "title": "Breaking Safety at the Token Boundary: How BPE Tokenization Creates Exploitable Gaps in LLM Alignment",
+      "link": "https://arxiv.org/abs/2607.01239",
+      "published": "2026-07-03T04:00:00+00:00",
+      "summary": "arXiv:2607.01239v1 Announce Type: new Abstract: Character-level perturbations bypass safety alignment in modern LLMs despite leaving prompts human-readable. We identify and test a central structural mechanism: BPE tokenization fragments safety-critical words into sub-word pieces, and the three public alignment datasets we surveyed contain no intentionally fragmented inputs. The mechanism is a chain, tested end-to-end on five model families (Qwen-3-4B, Qwen-2.5-7B, Gemma-3-4B, Llama-3.1-8B, Mistral-7B). An optimization targeting safety-token fragmentation flips the first-token refusal trigger on 80-100% of refused HarmBench prompts, with 48% of those flips producing genuinely harmful outputs (per-model 29-65%; gap-vs-behavior ROC-AUC 0.66-0.98, pooled 0.84). Activation patching localizes the disrupted signal to the last ${\\sim}30\\%$ of layers; an alignment-data scan finds zero fragmented prompts among 30,000 examples (positive-control recall $\\geq 99\\%$ at attack-relevant intensities); and targeted-mutation experiments isolate safety words as the disruption locus. On the defense side, a 68-cell grid (55 trained checkpoints) shows that no DPO configuration achieves seed- and pool-stable ASR closure on the three families with closed pool-size confounds. SFT trained on fragmented prompts closes ASR on 3/5 families but only via global collapse that raises refusal on benign prompts as well, indicating the missing distribution is necessary but not sufficient under the LoRA-16 recipe we tested. To distinguish selective repair from global collapse, we introduce Conv-Benign, a candidate paired diagnostic. All ASR claims are 3-judge-calibrated (cell rankings stable across judges; absolute levels $\\pm$18pp; see App.~B.13).",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Breaking Safety at the Token Boundary: How BPE Tokenization Creates Exploitable Gaps in LLM Alignment",
+      "raw_summary": "arXiv:2607.01239v1 Announce Type: new Abstract: Character-level perturbations bypass safety alignment in modern LLMs despite leaving prompts human-readable. We identify and test a central structural mechanism: BPE tokenization fragments safety-critical words into sub-word pieces, and the three public alignment datasets we surveyed contain no intentionally fragmented inputs. The mechanism is a chain, tested end-to-end on five model families (Qwen-3-4B, Qwen-2.5-7B, Gemma-3-4B, Llama-3.1-8B, Mistral-7B). An optimization targeting safety-token fragmentation flips the first-token refusal trigger on 80-100% of refused HarmBench prompts, with 48% of those flips producing genuinely harmful outputs (per-model 29-65%; gap-vs-behavior ROC-AUC 0.66-0.98, pooled 0.84). Activation patching localizes the disrupted signal to the last ${\\sim}30\\%$ of layers; an alignment-data scan finds zero fragmented prompts among 30,000 examples (positive-control recall $\\geq 99\\%$ at attack-relevant intensities); and targeted-mutation experiments isolate safety words as the disruption locus. On the defense side, a 68-cell grid (55 trained checkpoints) shows that no DPO configuration achieves seed- and pool-stable ASR closure on the three families with closed pool-size confounds. SFT trained on fragmented prompts closes ASR on 3/5 families but only via global collapse that raises refusal on benign prompts as well, indicating the missing distribution is necessary but not sufficient under the LoRA-16 recipe we tested. To distinguish selective repair from global collapse, we introduce Conv-Benign, a candidate paired diagnostic. All ASR claims are 3-judge-calibrated (cell rankings stable across judges; absolute levels $\\pm$18pp; see App.~B.13).",
+      "score": 85,
+      "primary": "models",
+      "tags": [
+        "security",
+        "tokenization",
+        "jailbreak"
+      ],
+      "heuristic_score": 82,
+      "url": "https://arxiv.org/abs/2607.01239",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 82,
+      "_rid": 5,
+      "llm_score": 85,
+      "why": "Hallazgo crítico: la tokenización BPE permite saltarse las protecciones de seguridad mediante perturbaciones de caracteres simples.",
+      "title_es": "Ruptura de la seguridad en el límite del token: Cómo la tokenización BPE crea brechas explotables",
+      "entities": [
+        "Qwen",
+        "Gemma",
+        "Llama",
+        "Mistral",
+        "BPE",
+        "Breaking Safety",
+        "Token Boundary",
+        "How"
+      ],
+      "noise_penalty": 0,
+      "final_score": 85,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Kara: Efficient Reasoning LLM Serving via Sliding-Window KV Cache Compression",
+      "link": "https://arxiv.org/abs/2607.01237",
+      "published": "2026-07-03T04:00:00+00:00",
+      "summary": "arXiv:2607.01237v1 Announce Type: new Abstract: Reasoning language models often generate long chain-of-thought (CoT), which accumulates a massive KV cache during the decoding phase and incurs high decoding latency and limited throughput. To address these issues, KV cache compression has emerged as a promising technique for reducing memory overhead by selectively removing unimportant KV pairs while preserving useful ones for subsequent decoding. Nevertheless, we identify two key limitations in existing KV cache compression methods: 1) their threshold-triggered compression policy may provide limited throughput improvement or even reduce throughput, and may fully eliminate KV pairs from certain blocks of the sequence, potentially worsening information loss. 2) they typically retain either isolated KV pairs or fixed-size chunks with rigid boundaries, failing to preserve important flexible-sized chunks at arbitrary token positions. To overcome these limitations, we propose Kara, a sliding-window KV cache compression method that performs decoding-time compression by operating only on the recently generated context. Kara leverages bidirectional attention to score and select informative KV pairs in the window. To enable flexible preservation of important semantic information, we design a Token2Chunk module to expand a subset of selected KV pairs into chunks. Furthermore, we adapt Kara to PagedAttention and develop KvLLM, an inference framework built upon vLLM, which reduces KV cache memory usage and effectively improves output throughput. Extensive experiments demonstrate consistent performance improvements of proposed Kara and KvLLM.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Kara: Efficient Reasoning LLM Serving via Sliding-Window KV Cache Compression",
+      "raw_summary": "arXiv:2607.01237v1 Announce Type: new Abstract: Reasoning language models often generate long chain-of-thought (CoT), which accumulates a massive KV cache during the decoding phase and incurs high decoding latency and limited throughput. To address these issues, KV cache compression has emerged as a promising technique for reducing memory overhead by selectively removing unimportant KV pairs while preserving useful ones for subsequent decoding. Nevertheless, we identify two key limitations in existing KV cache compression methods: 1) their threshold-triggered compression policy may provide limited throughput improvement or even reduce throughput, and may fully eliminate KV pairs from certain blocks of the sequence, potentially worsening information loss. 2) they typically retain either isolated KV pairs or fixed-size chunks with rigid boundaries, failing to preserve important flexible-sized chunks at arbitrary token positions. To overcome these limitations, we propose Kara, a sliding-window KV cache compression method that performs decoding-time compression by operating only on the recently generated context. Kara leverages bidirectional attention to score and select informative KV pairs in the window. To enable flexible preservation of important semantic information, we design a Token2Chunk module to expand a subset of selected KV pairs into chunks. Furthermore, we adapt Kara to PagedAttention and develop KvLLM, an inference framework built upon vLLM, which reduces KV cache memory usage and effectively improves output throughput. Extensive experiments demonstrate consistent performance improvements of proposed Kara and KvLLM.",
+      "score": 79,
+      "primary": "infra",
+      "tags": [
+        "kv-cache",
+        "inference",
+        "llm"
+      ],
+      "heuristic_score": 87,
+      "url": "https://arxiv.org/abs/2607.01237",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 87,
+      "_rid": 2,
+      "llm_score": 78,
+      "why": "Mejora drásticamente el rendimiento de modelos de razonamiento (CoT) mediante compresión inteligente de la memoria KV cache.",
+      "title_es": "Kara: Inferencia eficiente de LLM de razonamiento mediante compresión de KV Cache por ventana deslizante",
+      "entities": [
+        "Kara",
+        "Efficient Reasoning",
+        "Serving",
+        "Sliding",
+        "Window",
+        "Cache Compression"
+      ],
+      "noise_penalty": 0,
+      "final_score": 79,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Why Huawei Says It Will Match TSMC’s Most Advanced Chips by 2031",
+      "link": "https://semiwiki.com/semiconductor-manufacturers/tsmc/369804-why-huawei-says-it-will-match-tsmcs-most-advanced-chips-by-2031/",
+      "published": "2026-07-01T17:00:51+00:00",
+      "summary": "Huawei’s assertion that it could match TSMC in producing the world’s most advanced chips by 2031 reflects both technological ambition and geopolitical necessity. As one of China’s leading technology companies, Huawei has faced significant restrictions on access to advanced semiconductor technology due to U.S. export controls.&8230; Read More The post Why Huawei Says It Will Match TSMC&8217;s Most Advanced Chips by 2031 appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "Why Huawei Says It Will Match TSMC’s Most Advanced Chips by 2031",
+      "raw_summary": "Huawei’s assertion that it could match TSMC in producing the world’s most advanced chips by 2031 reflects both technological ambition and geopolitical necessity. As one of China’s leading technology companies, Huawei has faced significant restrictions on access to advanced semiconductor technology due to U.S. export controls.&#8230; Read More The post Why Huawei Says It Will Match TSMC&#8217;s Most Advanced Chips by 2031 appeared first on SemiWiki .",
+      "score": 79,
+      "primary": "geopol",
+      "tags": [
+        "china",
+        "foundry",
+        "semiconductors"
+      ],
+      "heuristic_score": 72,
+      "url": "https://semiwiki.com/semiconductor-manufacturers/tsmc/369804-why-huawei-says-it-will-match-tsmcs-most-advanced-chips-by-2031/",
+      "is_repeat": true,
+      "novelty_score": 45,
+      "adjusted_score": 17,
+      "_rid": 13,
+      "llm_score": 90,
+      "why": "Declaración de intenciones estratégica de China para alcanzar la paridad tecnológica con TSMC en la próxima década.",
+      "title_es": "Por qué Huawei afirma que igualará los chips más avanzados de TSMC para 2031",
+      "entities": [
+        "Huawei",
+        "TSMC",
+        "Why Huawei Says",
+        "It Will Match",
+        "Most Advanced Chips"
+      ],
+      "noise_penalty": 0,
+      "final_score": 79,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Safeguarding LLM Agents from Misalignment through Provenance Analysis",
+      "link": "https://arxiv.org/abs/2607.01236",
+      "published": "2026-07-03T04:00:00+00:00",
+      "summary": "arXiv:2607.01236v1 Announce Type: new Abstract: As LLM agents gain increasing access to powerful tools, ensuring that their actions are aligned with the user's intent becomes critical. When an agent's proposed tool invocation deviates from the user's intent -- a phenomenon called misalignment -- it may lead to harmful consequences that are difficult to undo. Existing runtime guardrails rely on an LLM-as-a-judge paradigm that lacks a systematic framework for reasoning about alignment, often producing judgments that are inconsistent or difficult to audit. Motivated by provenance analysis, we propose a provenance-based conceptual framework that formalizes misalignment detection as determining whether a proposed tool call is supported by traceable evidence in the agent's context. Building on this framework, we propose ProvenanceGuard, a multi-stage pipeline that analyzes the agent's action for three types of misalignment before the selected tool is executed and only allows the action to take place when it is considered aligned with the user's input query. We evaluated our proposed approach on two different benchmarks, Agent-SafetyBench and WorkBench, across 10 backbone LLMs. Compared to the LLM-as-a-judge baseline, ProvenanceGuard reduces error rate on misaligned traces from 42.9% to 1.8% on Agent-SafetyBench and from 32.1% to 17.3% on WorkBench, while reducing intervention burden on task-successful traces from 30.5% to 12.8% and introducing no statistically significant increase in unnecessary interventions on aligned traces. These results demonstrate that structured, provenance-based reasoning provides an effective and practical foundation for safeguarding LLM agents from misalignment.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Safeguarding LLM Agents from Misalignment through Provenance Analysis",
+      "raw_summary": "arXiv:2607.01236v1 Announce Type: new Abstract: As LLM agents gain increasing access to powerful tools, ensuring that their actions are aligned with the user's intent becomes critical. When an agent's proposed tool invocation deviates from the user's intent -- a phenomenon called misalignment -- it may lead to harmful consequences that are difficult to undo. Existing runtime guardrails rely on an LLM-as-a-judge paradigm that lacks a systematic framework for reasoning about alignment, often producing judgments that are inconsistent or difficult to audit. Motivated by provenance analysis, we propose a provenance-based conceptual framework that formalizes misalignment detection as determining whether a proposed tool call is supported by traceable evidence in the agent's context. Building on this framework, we propose ProvenanceGuard, a multi-stage pipeline that analyzes the agent's action for three types of misalignment before the selected tool is executed and only allows the action to take place when it is considered aligned with the user's input query. We evaluated our proposed approach on two different benchmarks, Agent-SafetyBench and WorkBench, across 10 backbone LLMs. Compared to the LLM-as-a-judge baseline, ProvenanceGuard reduces error rate on misaligned traces from 42.9% to 1.8% on Agent-SafetyBench and from 32.1% to 17.3% on WorkBench, while reducing intervention burden on task-successful traces from 30.5% to 12.8% and introducing no statistically significant increase in unnecessary interventions on aligned traces. These results demonstrate that structured, provenance-based reasoning provides an effective and practical foundation for safeguarding LLM agents from misalignment.",
+      "score": 70,
+      "primary": "models",
+      "tags": [
+        "alignment",
+        "agents",
+        "provenance"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2607.01236",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 1,
+      "llm_score": 65,
+      "why": "Propone un marco de trazabilidad para evitar que los agentes de IA tomen acciones no deseadas fuera de su mandato original.",
+      "title_es": "Protección de agentes LLM contra el desalineamiento mediante el análisis de procedencia",
+      "entities": [
+        "LLM agents",
+        "Safeguarding",
+        "Agents",
+        "Misalignment",
+        "Provenance Analysis"
+      ],
+      "noise_penalty": 0,
+      "final_score": 70,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "TokenScope: Token-Level Explainability and Interpretability for Code-Oriented Tasks in Large Language Models",
+      "link": "https://arxiv.org/abs/2607.01235",
+      "published": "2026-07-03T04:00:00+00:00",
+      "summary": "arXiv:2607.01235v1 Announce Type: new Abstract: Understanding how Large Language Models (LLMs) make token-level decisions during code generation remains a major challenge for both researchers and practitioners. While recent tools provide insights into model internals or generation outcomes, they often lack decoding-time signals, fine-grained uncertainty measures, and interactive mechanisms for exploring alternative generation paths. We present TokenScope, an interactive interpretability and analysis tool for decoder-based LLMs that exposes token-level metrics, attention patterns, and structural information during generation. TokenScope supports interactive token replacement, counterfactual branching, and code-aware aggregation via abstract syntax trees. By unifying decoding-time signals with structural program analysis, TokenScope enables systematic investigation of LLM behaviour during code generation.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "TokenScope: Token-Level Explainability and Interpretability for Code-Oriented Tasks in Large Language Models",
+      "raw_summary": "arXiv:2607.01235v1 Announce Type: new Abstract: Understanding how Large Language Models (LLMs) make token-level decisions during code generation remains a major challenge for both researchers and practitioners. While recent tools provide insights into model internals or generation outcomes, they often lack decoding-time signals, fine-grained uncertainty measures, and interactive mechanisms for exploring alternative generation paths. We present TokenScope, an interactive interpretability and analysis tool for decoder-based LLMs that exposes token-level metrics, attention patterns, and structural information during generation. TokenScope supports interactive token replacement, counterfactual branching, and code-aware aggregation via abstract syntax trees. By unifying decoding-time signals with structural program analysis, TokenScope enables systematic investigation of LLM behaviour during code generation.",
+      "score": 69,
+      "primary": "models",
+      "tags": [
+        "interpretability",
+        "coding",
+        "transparency"
+      ],
+      "heuristic_score": 62,
+      "url": "https://arxiv.org/abs/2607.01235",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 62,
+      "_rid": 6,
+      "llm_score": 70,
+      "why": "Nueva herramienta interactiva para analizar el proceso de generación de código token a token en tiempo real.",
+      "title_es": "TokenScope: Explicabilidad e interpretabilidad a nivel de token para tareas orientadas a código en LLM",
+      "entities": [
+        "TokenScope",
+        "Token",
+        "Level Explainability",
+        "Interpretability",
+        "Code",
+        "Oriented Tasks",
+        "Large Language Models"
+      ],
+      "noise_penalty": 0,
+      "final_score": 69,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Auto-FL-Research: Agentic Search for Federated Learning Algorithms",
+      "link": "https://arxiv.org/abs/2607.01366",
+      "published": "2026-07-03T04:00:00+00:00",
+      "summary": "arXiv:2607.01366v1 Announce Type: new Abstract: Federated learning (FL) research often depends on many small but consequential algorithmic choices: optimizer variants, server aggregation rules, local training schedules, normalization, regularization, and model architecture. These choices are expensive to explore manually and difficult to compare fairly when candidate changes can also alter the FL training or evaluation path. In this work, we present Auto-FL-Research (AFR), a constrained coding-agent workflow for FL algorithmic recipe search. Agents may propose and implement candidate training algorithms, including server aggregation rules, client update schedules, local objectives, and registered model variants, while task profiles fix the mutation surface, compute budget, communication contract, and final model evaluation. Each campaign records candidate scores, runtime, edited files, artifacts, and failure status. We evaluate AFR on five healthcare cross-silo FLamby tasks and on grouped-client profiles for the five fixed LEAF datasets plus the LEAF synthetic task. Five-seed repeat evaluations support gains on four FLamby tasks and five of six LEAF profiles, while also exposing seed-sensitive and search-selected failure cases. Same-budget controls show that several gains correspond to FL-recipe changes, whereas other improvements are recovered by fixed-surface scalar controls or fail under repeat or held-out evaluation. These mixed outcomes are part of the contribution: they show how agent-generated candidates can be separated into repeated FL mechanisms, fixed-surface tuning effects, and selected single-run artifacts.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Auto-FL-Research: Agentic Search for Federated Learning Algorithms",
+      "raw_summary": "arXiv:2607.01366v1 Announce Type: new Abstract: Federated learning (FL) research often depends on many small but consequential algorithmic choices: optimizer variants, server aggregation rules, local training schedules, normalization, regularization, and model architecture. These choices are expensive to explore manually and difficult to compare fairly when candidate changes can also alter the FL training or evaluation path. In this work, we present Auto-FL-Research (AFR), a constrained coding-agent workflow for FL algorithmic recipe search. Agents may propose and implement candidate training algorithms, including server aggregation rules, client update schedules, local objectives, and registered model variants, while task profiles fix the mutation surface, compute budget, communication contract, and final model evaluation. Each campaign records candidate scores, runtime, edited files, artifacts, and failure status. We evaluate AFR on five healthcare cross-silo FLamby tasks and on grouped-client profiles for the five fixed LEAF datasets plus the LEAF synthetic task. Five-seed repeat evaluations support gains on four FLamby tasks and five of six LEAF profiles, while also exposing seed-sensitive and search-selected failure cases. Same-budget controls show that several gains correspond to FL-recipe changes, whereas other improvements are recovered by fixed-surface scalar controls or fail under repeat or held-out evaluation. These mixed outcomes are part of the contribution: they show how agent-generated candidates can be separated into repeated FL mechanisms, fixed-surface tuning effects, and selected single-run artifacts.",
+      "score": 64,
+      "primary": "models",
+      "tags": [
+        "federated-learning",
+        "agents",
+        "automl"
+      ],
+      "heuristic_score": 85,
+      "url": "https://arxiv.org/abs/2607.01366",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 85,
+      "_rid": 3,
+      "llm_score": 60,
+      "why": "Automatiza la búsqueda de algoritmos en aprendizaje federado usando agentes, optimizando procesos tradicionalmente manuales.",
+      "title_es": "Auto-FL-Research: Búsqueda mediante agentes para algoritmos de aprendizaje federado",
+      "entities": [
+        "AFR",
+        "Auto",
+        "Agentic Search",
+        "Federated Learning Algorithms"
+      ],
+      "noise_penalty": 0,
+      "final_score": 64,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Prompt Framing Distorts Count-Based Evaluation of LLM Error Detection: Evidence from Numeric Anchoring",
+      "link": "https://arxiv.org/abs/2607.01240",
+      "published": "2026-07-03T04:00:00+00:00",
+      "summary": "arXiv:2607.01240v1 Announce Type: new Abstract: Count-based F1 is widely used as a proxy for LLM error-detection quality, but this paper shows that it can rise dramatically without a corresponding improvement in span localization, a gap termed F1 Inflation. The paper introduces ErrorBench, a controlled stress-test protocol for prompt-induced count distortion. ErrorBench evaluates six contemporary LLMs under five prompt conditions over 4,290 responses from 143 CoNLL-2014 passages. Under CoNLL-2014 M2-style scoring, anchored prompts produce up to 0.79 points of F1 Inflation, and up to 0.96 under strict matching. A 100-passage replication using the official ERRANT 3.0.0 pipeline and multi-reference scoring reproduces the pattern: averaged over six models, the Blind-to-Anchored prompt shift raises Count-F1 by +0.21 while raising multi-reference ERRANT F0.5 by only +0.04. The study finds larger count responses in highly instruction-compliant GPT/Claude systems and smaller responses in the Gemini family under this stress-test protocol. The findings suggest that LLM proofreading and document-review evaluations should avoid pre-populated error counts and should report span-aware metrics alongside count-based metrics.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Prompt Framing Distorts Count-Based Evaluation of LLM Error Detection: Evidence from Numeric Anchoring",
+      "raw_summary": "arXiv:2607.01240v1 Announce Type: new Abstract: Count-based F1 is widely used as a proxy for LLM error-detection quality, but this paper shows that it can rise dramatically without a corresponding improvement in span localization, a gap termed F1 Inflation. The paper introduces ErrorBench, a controlled stress-test protocol for prompt-induced count distortion. ErrorBench evaluates six contemporary LLMs under five prompt conditions over 4,290 responses from 143 CoNLL-2014 passages. Under CoNLL-2014 M2-style scoring, anchored prompts produce up to 0.79 points of F1 Inflation, and up to 0.96 under strict matching. A 100-passage replication using the official ERRANT 3.0.0 pipeline and multi-reference scoring reproduces the pattern: averaged over six models, the Blind-to-Anchored prompt shift raises Count-F1 by +0.21 while raising multi-reference ERRANT F0.5 by only +0.04. The study finds larger count responses in highly instruction-compliant GPT/Claude systems and smaller responses in the Gemini family under this stress-test protocol. The findings suggest that LLM proofreading and document-review evaluations should avoid pre-populated error counts and should report span-aware metrics alongside count-based metrics.",
+      "score": 59,
+      "primary": "models",
+      "tags": [
+        "benchmarking",
+        "evaluation",
+        "prompting"
+      ],
+      "heuristic_score": 83,
+      "url": "https://arxiv.org/abs/2607.01240",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 83,
+      "_rid": 4,
+      "llm_score": 55,
+      "why": "Revela cómo la forma de preguntar (prompt framing) distorsiona las métricas de detección de errores en los LLM actuales.",
+      "title_es": "El encuadre de los prompts distorsiona la evaluación basada en recuento de la detección de errores en LLM",
+      "entities": [
+        "ErrorBench",
+        "Prompt Framing Distorts",
+        "Count",
+        "Based Evaluation",
+        "Error Detection",
+        "Evidence",
+        "Numeric Anchoring"
+      ],
+      "noise_penalty": 0,
+      "final_score": 59,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "WEBINAR: Defacto is Boosting Front-end SoC Design With AI-Powered EDA tools",
+      "link": "https://semiwiki.com/eda/defacto-technologies/370738-webinar-defacto-is-boosting-front-end-soc-design-with-ai-powered-eda-tools/",
+      "published": "2026-07-02T21:00:00+00:00",
+      "summary": "The real promise of AI in EDA is not to replace EDA tools or reinvent design flows, it is to help engineers accomplish existing tasks even more complex design tasks faster, more safely, and with far less tool expertise than was previously required. The webinar explores what a truly effective AI-powered EDA tool should look like, &8230; Read More The post WEBINAR: Defacto is Boosting Front-end SoC Design With AI-Powered EDA tools appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "WEBINAR: Defacto is Boosting Front-end SoC Design With AI-Powered EDA tools",
+      "raw_summary": "The real promise of AI in EDA is not to replace EDA tools or reinvent design flows, it is to help engineers accomplish existing tasks even more complex design tasks faster, more safely, and with far less tool expertise than was previously required. The webinar explores what a truly effective AI-powered EDA tool should look like, &#8230; Read More The post WEBINAR: Defacto is Boosting Front-end SoC Design With AI-Powered EDA tools appeared first on SemiWiki .",
+      "score": 57,
+      "primary": "infra",
+      "tags": [
+        "eda",
+        "semiconductors",
+        "chip-design"
+      ],
+      "heuristic_score": 23,
+      "url": "https://semiwiki.com/eda/defacto-technologies/370738-webinar-defacto-is-boosting-front-end-soc-design-with-ai-powered-eda-tools/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 23,
+      "_rid": 10,
+      "llm_score": 72,
+      "why": "El uso de IA en herramientas EDA acelera el diseño de semiconductores complejos reduciendo la necesidad de expertos humanos.",
+      "title_es": "Defacto impulsa el diseño front-end de SoC con herramientas EDA basadas en IA",
+      "entities": [
+        "Defacto Technologies",
+        "WEBINAR",
+        "EDA",
+        "Defacto",
+        "Boosting Front",
+        "Design With",
+        "Powered"
+      ],
+      "noise_penalty": 8,
+      "final_score": 57,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(8)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Unlocking UK house-building with AI-accelerated planning",
+      "link": "https://deepmind.google/blog/unlocking-uk-house-building-with-ai-accelerated-planning/",
+      "published": "2026-06-16T21:29:50+00:00",
+      "summary": "UK government partners with Google DeepMind to build a new AI-powered prototype aimed at faster housing decisions.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Unlocking UK house-building with AI-accelerated planning",
+      "raw_summary": "UK government partners with Google DeepMind to build a new AI-powered prototype aimed at faster housing decisions.",
+      "score": 50,
+      "primary": "misc",
+      "tags": [
+        "government",
+        "efficiency",
+        "uk"
+      ],
+      "heuristic_score": 18,
+      "url": "https://deepmind.google/blog/unlocking-uk-house-building-with-ai-accelerated-planning/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 18,
+      "_rid": 11,
+      "llm_score": 68,
+      "why": "Aplicación pragmática de la IA para desatascar procesos administrativos críticos en la construcción de viviendas en el Reino Unido.",
+      "title_es": "Impulsando la construcción de viviendas en el Reino Unido con planificación acelerada por IA",
+      "entities": [
+        "DeepMind",
+        "Reino Unido",
+        "Unlocking"
+      ],
+      "noise_penalty": 10,
+      "final_score": 50,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(10)",
+      "strategic_theme": "other"
+    },
+    {
+      "title": "PACE: A Neuro-Symbolic Framework for Plausible and Actionable Counterfactual Explanations",
+      "link": "https://arxiv.org/abs/2607.01306",
+      "published": "2026-07-03T04:00:00+00:00",
+      "summary": "arXiv:2607.01306v1 Announce Type: new Abstract: Counterfactual explanations explain machine learning predictions by identifying minimal input changes that would alter a model's decision. Although many existing methods successfully generate prediction-changing alternatives, they often produce unrealistic or infeasible recommendations due to a lack of explicit mechanisms for incorporating domain knowledge and intervention constraints. Neuro-symbolic AI offers a promising direction by combining data-driven predictive models with symbolic reasoning capable of representing human-understandable rules and feasible actions. This paper presents PACE, a modular neuro-symbolic framework for generating feasibility-aware counterfactual explanations. The framework separates prediction and reasoning into two components: a neural predictive model for classification and a symbolic reasoning layer that enforces domain-specific constraints during counterfactual generation. By explicitly modeling feasible interventions, the framework produces explanations consistent with domain knowledge while remaining interpretable and actionable. The approach is model-agnostic and adaptable to domains requiring realistic decision support. A case study is conducted on the Adult Income dataset, combining a multilayer perceptron classifier with Answer Set Programming (ASP) rules encoding feasible modifications to education, occupation, and working hours while preserving immutable attributes. Results highlight the trade-off between counterfactual validity and plausibility and show that symbolic constraints yield explanations that better satisfy domain-specific feasibility requirements, illustrating the potential of neuro-symbolic methods for transparent, feasibility-aware counterfactual explanation in explainable AI.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "PACE: A Neuro-Symbolic Framework for Plausible and Actionable Counterfactual Explanations",
+      "raw_summary": "arXiv:2607.01306v1 Announce Type: new Abstract: Counterfactual explanations explain machine learning predictions by identifying minimal input changes that would alter a model's decision. Although many existing methods successfully generate prediction-changing alternatives, they often produce unrealistic or infeasible recommendations due to a lack of explicit mechanisms for incorporating domain knowledge and intervention constraints. Neuro-symbolic AI offers a promising direction by combining data-driven predictive models with symbolic reasoning capable of representing human-understandable rules and feasible actions. This paper presents PACE, a modular neuro-symbolic framework for generating feasibility-aware counterfactual explanations. The framework separates prediction and reasoning into two components: a neural predictive model for classification and a symbolic reasoning layer that enforces domain-specific constraints during counterfactual generation. By explicitly modeling feasible interventions, the framework produces explanations consistent with domain knowledge while remaining interpretable and actionable. The approach is model-agnostic and adaptable to domains requiring realistic decision support. A case study is conducted on the Adult Income dataset, combining a multilayer perceptron classifier with Answer Set Programming (ASP) rules encoding feasible modifications to education, occupation, and working hours while preserving immutable attributes. Results highlight the trade-off between counterfactual validity and plausibility and show that symbolic constraints yield explanations that better satisfy domain-specific feasibility requirements, illustrating the potential of neuro-symbolic methods for transparent, feasibility-aware counterfactual explanation in explainable AI.",
+      "score": 49,
+      "primary": "models",
+      "tags": [
+        "explainability",
+        "neuro-symbolic",
+        "counterfactuals"
+      ],
+      "heuristic_score": 41,
+      "url": "https://arxiv.org/abs/2607.01306",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 41,
+      "_rid": 9,
+      "llm_score": 50,
+      "why": "Marco neuro-simbólico que garantiza que las explicaciones contrafactuales de la IA sean realistas y aplicables en el mundo real.",
+      "title_es": "PACE: Un marco neuro-simbólico para explicaciones contrafactuales plausibles y accionables",
+      "entities": [
+        "PACE",
+        "Neuro",
+        "Symbolic Framework",
+        "Plausible",
+        "Actionable Counterfactual Explanations"
+      ],
+      "noise_penalty": 0,
+      "final_score": 49,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "SPARCLE: SPeaker-aware Aligned Representations via Contrastive Language Embeddings",
+      "link": "https://arxiv.org/abs/2607.01238",
+      "published": "2026-07-03T04:00:00+00:00",
+      "summary": "arXiv:2607.01238v1 Announce Type: new Abstract: Recent advances in speech synthesis have shifted from phoneme representations to direct grapheme modeling. While phonemes address the one-to-many mapping between text and acoustics, they rely on grapheme-to-phoneme (G2P) systems that fail to capture speaker-specific acoustic variation. Prior work demonstrates that grapheme-based models outperform phoneme-based systems at scale, but not in low-resource settings. In this paper, we propose SPARCLE, a speaker-aware grapheme representation model that enriches characters with their precise acoustic realizations. SPARCLE is trained with a contrastive objective to align graphemes with corresponding Wav2Vec2 acoustic representations while conditioned on speaker identity. The resulting model serves as a replacement to G2P systems for downstream text-to-speech (TTS) tasks. We demonstrate that SPARCLE improves generation quality, reducing word error rates by half in extreme low-resource settings compared to standard grapheme-based models.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "SPARCLE: SPeaker-aware Aligned Representations via Contrastive Language Embeddings",
+      "raw_summary": "arXiv:2607.01238v1 Announce Type: new Abstract: Recent advances in speech synthesis have shifted from phoneme representations to direct grapheme modeling. While phonemes address the one-to-many mapping between text and acoustics, they rely on grapheme-to-phoneme (G2P) systems that fail to capture speaker-specific acoustic variation. Prior work demonstrates that grapheme-based models outperform phoneme-based systems at scale, but not in low-resource settings. In this paper, we propose SPARCLE, a speaker-aware grapheme representation model that enriches characters with their precise acoustic realizations. SPARCLE is trained with a contrastive objective to align graphemes with corresponding Wav2Vec2 acoustic representations while conditioned on speaker identity. The resulting model serves as a replacement to G2P systems for downstream text-to-speech (TTS) tasks. We demonstrate that SPARCLE improves generation quality, reducing word error rates by half in extreme low-resource settings compared to standard grapheme-based models.",
+      "score": 46,
+      "primary": "models",
+      "tags": [
+        "speech-synthesis",
+        "graphemes",
+        "contrastive-learning"
+      ],
+      "heuristic_score": 14,
+      "url": "https://arxiv.org/abs/2607.01238",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 14,
+      "_rid": 15,
+      "llm_score": 52,
+      "why": "Modelo que alinea texto y audio capturando matices específicos del hablante sin depender de fonemas tradicionales.",
+      "title_es": "SPARCLE: Representaciones alineadas con el hablante mediante embeddings de lenguaje contrastivo",
+      "entities": [
+        "SPARCLE",
+        "Aligned Representations",
+        "Contrastive Language Embeddings"
+      ],
+      "noise_penalty": 0,
+      "final_score": 46,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Multilayer Q-Matrix-Embedded Neural Network for Cognitive Diagnosis (M-QCDNet): Structure-Aware Deep Learning Architecture for Psychometric Interpretability",
+      "link": "https://arxiv.org/abs/2607.01278",
+      "published": "2026-07-03T04:00:00+00:00",
+      "summary": "arXiv:2607.01278v1 Announce Type: new Abstract: The research proposes a multilayer Q-matrix-embedded neural network for cognitive diagnosis (M-QCDNet), which integrates the structural interpretability of cognitive diagnostic models (CDMs) with the deep learning neural network (NN). M-QCDNet structures the item-skill relationship using the Q-matrix as a structural prior, ensuring latent mastery profiles remain interpretable and consistent with cognitive theory, followed by the proposed loss function with an L2 penalty to penalize skills not aligned with the Q-matrix and to balance predictive performance and structural alignment. Corresponding evaluation matrices, the interpretable alignment-based metrics that quantify the degree to which predicted skill activations correspond to item-level skills, were further developed. M-QCDNet offers practical benefits for classroom practice, enabling early detection of learning difficulties and supporting mastery-based interventions. By embedding diagnostic validity into model design, M-QCDNet bridges psychometric transparency and neural flexibility, advancing interpretable, fair, and actionable AI for cognitive diagnostics.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Multilayer Q-Matrix-Embedded Neural Network for Cognitive Diagnosis (M-QCDNet): Structure-Aware Deep Learning Architecture for Psychometric Interpretability",
+      "raw_summary": "arXiv:2607.01278v1 Announce Type: new Abstract: The research proposes a multilayer Q-matrix-embedded neural network for cognitive diagnosis (M-QCDNet), which integrates the structural interpretability of cognitive diagnostic models (CDMs) with the deep learning neural network (NN). M-QCDNet structures the item-skill relationship using the Q-matrix as a structural prior, ensuring latent mastery profiles remain interpretable and consistent with cognitive theory, followed by the proposed loss function with an L2 penalty to penalize skills not aligned with the Q-matrix and to balance predictive performance and structural alignment. Corresponding evaluation matrices, the interpretable alignment-based metrics that quantify the degree to which predicted skill activations correspond to item-level skills, were further developed. M-QCDNet offers practical benefits for classroom practice, enabling early detection of learning difficulties and supporting mastery-based interventions. By embedding diagnostic validity into model design, M-QCDNet bridges psychometric transparency and neural flexibility, advancing interpretable, fair, and actionable AI for cognitive diagnostics.",
+      "score": 42,
+      "primary": "misc",
+      "tags": [
+        "psychometrics",
+        "education",
+        "deep-learning"
+      ],
+      "heuristic_score": 53,
+      "url": "https://arxiv.org/abs/2607.01278",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 53,
+      "_rid": 8,
+      "llm_score": 40,
+      "why": "Integra teoría cognitiva psicométrica en redes neuronales para mejorar la interpretabilidad en diagnósticos educativos.",
+      "title_es": "Red neuronal multicapa con matriz Q integrada para diagnóstico cognitivo (M-QCDNet)",
+      "entities": [
+        "M-QCDNet",
+        "Multilayer",
+        "Matrix",
+        "Embedded Neural Network",
+        "Cognitive Diagnosis",
+        "Structure",
+        "Aware Deep Learning",
+        "Architecture"
+      ],
+      "noise_penalty": 0,
+      "final_score": 42,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "I\\textsuperscript{2}RiMA: Spectral Riemannian Representation with Temporal Attention for Mental Stress Detection based on EEG Signals",
+      "link": "https://arxiv.org/abs/2607.01279",
+      "published": "2026-07-03T04:00:00+00:00",
+      "summary": "arXiv:2607.01279v1 Announce Type: new Abstract: Cross-subject EEG stress detection remains challenging because discriminative stress-related patterns are both subject-dependent and frequency-specific. Conventional Riemannian methods model spatial covariance mainly in the time domain, overlooking neural oscillations that are critical for high-level cognitive state decoding, while standard temporal tokenization often fragments inter-slice temporal coherence. To address these limitations, we propose \\method{}, an Intra-Inter Riemannian Manifold Attention Network for EEG-based stress detection. \\method{} constructs spatial covariance matrices independently at each frequency point and maps them to the SPD tangent space, preserving channel-wise geometry together with frequency-specific discriminative cues. It further introduces frequency cluster aggregation to select informative spectral components and reduce redundancy by forming compact, data-driven frequency clusters aligned with EEG rhythms. Finally, an intra-inter slice attention module adaptively integrates local slice-level spectral dynamics and global temporal context across EEG sequences. Experiments on three datasets show that \\method{} consistently outperforms five state-of-the-art baselines, achieving up to 82.78\\% balanced accuracy while remaining efficient with only 1.60M parameters and 31.95M FLOPs.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "I\\textsuperscript{2}RiMA: Spectral Riemannian Representation with Temporal Attention for Mental Stress Detection based on EEG Signals",
+      "raw_summary": "arXiv:2607.01279v1 Announce Type: new Abstract: Cross-subject EEG stress detection remains challenging because discriminative stress-related patterns are both subject-dependent and frequency-specific. Conventional Riemannian methods model spatial covariance mainly in the time domain, overlooking neural oscillations that are critical for high-level cognitive state decoding, while standard temporal tokenization often fragments inter-slice temporal coherence. To address these limitations, we propose \\method{}, an Intra-Inter Riemannian Manifold Attention Network for EEG-based stress detection. \\method{} constructs spatial covariance matrices independently at each frequency point and maps them to the SPD tangent space, preserving channel-wise geometry together with frequency-specific discriminative cues. It further introduces frequency cluster aggregation to select informative spectral components and reduce redundancy by forming compact, data-driven frequency clusters aligned with EEG rhythms. Finally, an intra-inter slice attention module adaptively integrates local slice-level spectral dynamics and global temporal context across EEG sequences. Experiments on three datasets show that \\method{} consistently outperforms five state-of-the-art baselines, achieving up to 82.78\\% balanced accuracy while remaining efficient with only 1.60M parameters and 31.95M FLOPs.",
+      "score": 40,
+      "primary": "misc",
+      "tags": [
+        "healthcare",
+        "eeg",
+        "signal-processing"
+      ],
+      "heuristic_score": 55,
+      "url": "https://arxiv.org/abs/2607.01279",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 55,
+      "_rid": 7,
+      "llm_score": 45,
+      "why": "Aplica redes Riemannianas y atención temporal a señales EEG para una detección de estrés más precisa y generalizable.",
+      "title_es": "I2RiMA: Representación riemanniana espectral con atención temporal para detección de estrés mental",
+      "entities": [
+        "EEG",
+        "Spectral Riemannian Representation",
+        "Temporal Attention",
+        "Mental Stress Detection",
+        "Signals"
+      ],
+      "noise_penalty": 6,
+      "final_score": 40,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(6)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Powering the future of robotics in Europe",
+      "link": "https://deepmind.google/blog/powering-the-future-of-robotics-in-europe/",
+      "published": "2026-06-09T14:02:33+00:00",
+      "summary": "",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Powering the future of robotics in Europe",
+      "raw_summary": "",
+      "score": 39,
+      "primary": "invest",
+      "tags": [
+        "robotics",
+        "europe",
+        "investment"
+      ],
+      "heuristic_score": 16,
+      "url": "https://deepmind.google/blog/powering-the-future-of-robotics-in-europe/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 16,
+      "_rid": 14,
+      "llm_score": 62,
+      "why": "DeepMind expande su presencia en Europa para liderar la próxima generación de robótica impulsada por modelos de lenguaje.",
+      "title_es": "Impulsando el futuro de la robótica en Europa",
+      "entities": [
+        "DeepMind",
+        "Powering",
+        "Europe"
+      ],
+      "noise_penalty": 16,
+      "final_score": 39,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(16)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Our new community investments in Virginia support local jobs and expand energy affordability.",
+      "link": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/virginia-community-investments/",
+      "published": "2026-06-11T20:00:00+00:00",
+      "summary": "We’re helping build the state’s next-generation workforce and investing in energy programs.",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Our new community investments in Virginia support local jobs and expand energy affordability.",
+      "raw_summary": "We’re helping build the state’s next-generation workforce and investing in energy programs.",
+      "score": 36,
+      "primary": "invest",
+      "tags": [
+        "infrastructure",
+        "energy",
+        "datacenters"
+      ],
+      "heuristic_score": 18,
+      "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/virginia-community-investments/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 18,
+      "_rid": 12,
+      "llm_score": 58,
+      "why": "Google refuerza su red de centros de datos en Virginia vinculándola a programas de formación y asequibilidad energética.",
+      "title_es": "Nuestras nuevas inversiones comunitarias en Virginia apoyan el empleo local y la energía asequible",
+      "entities": [
+        "Google",
+        "Virginia"
+      ],
+      "noise_penalty": 16,
+      "final_score": 36,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(16)",
+      "strategic_theme": "model_economics_pricing"
+    }
+  ]
+}
