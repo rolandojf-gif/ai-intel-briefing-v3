@@ -1,0 +1,682 @@
+{
+  "date": "2026-07-07",
+  "score_avg": 58.13,
+  "primary_dist": {
+    "models": 7,
+    "invest": 2,
+    "misc": 4,
+    "infra": 2
+  },
+  "top_entities": [
+    {
+      "entity": "arXiv",
+      "count": 5
+    },
+    {
+      "entity": "Google",
+      "count": 3
+    },
+    {
+      "entity": "Gemma",
+      "count": 1
+    },
+    {
+      "entity": "Technical Report",
+      "count": 1
+    },
+    {
+      "entity": "iFLYTEK",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "Google lanza Gemma 4 con modo de pensamiento nativo y arquitectura MoE optimizada de hasta 31B de parámetros.",
+      "CoreWeave culmina su transformación de minería cripto a pilar de IA entrando en el índice Nasdaq-100.",
+      "iFLYTEK presenta un modelo fundacional unificado para robótica que integra visión, lenguaje y acción en un solo marco.",
+      "Se identifican vulnerabilidades críticas de 'inyección retórica' en modelos autónomos mediante marcos narrativos.",
+      "Nuevos métodos de aprendizaje por refuerzo permiten adaptar modelos de voz a idiomas híbridos con solo 10% de los datos."
+    ],
+    "risks": [
+      "Fragilidad detectada en las auditorías de seguridad de IA cuyos resultados dependen en exceso de detalles de implementación.",
+      "Riesgo de contaminación de datos en benchmarks de series temporales para sectores críticos como el eléctrico.",
+      "Inconsistencia entre generación y validación en LLMs que invalida respuestas correctas por baja probabilidad estadística."
+    ],
+    "watch": [
+      "Efectividad real del 'modo pensamiento' de Gemma 4 en tareas complejas de razonamiento y eficiencia de inferencia.",
+      "Consolidación de CoreWeave como alternativa de infraestructura cloud frente a los gigantes tradicionales (Hyperscalers).",
+      "Integración de modelos multimodales nativos en hardware de consumo tras las actualizaciones de junio de Google Pixel."
+    ],
+    "entities_top": [
+      "Google",
+      "CoreWeave",
+      "iFLYTEK"
+    ]
+  },
+  "items": [
+    {
+      "title": "Gemma 4 Technical Report",
+      "link": "https://arxiv.org/abs/2607.02770",
+      "published": "2026-07-07T04:00:00+00:00",
+      "summary": "arXiv:2607.02770v1 Announce Type: new Abstract: We introduce Gemma 4, a new generation of open-weight, natively multimodal language models in the Gemma model family. Designed to advance compute efficiency and reasoning, the Gemma 4 model suite features dense and Mixture-of-Experts architectures, ranging from 2.3B to 31B parameters. Alongside improved vision and audio encoders for all model sizes, we propose a unified, encoder-free architecture for our 12B model, which ingests raw audio and patches. Furthermore, we integrate a thinking mode, enabling Gemma models to generate reasoning traces prior to responding. We improve inference speed, memory, and compute efficiency, as well as long-context abilities through critical design choices. Gemma 4 establishes a leap in performance across STEM, multimodal, and long-context benchmarks, and rivals larger, frontier open models in human-rated tasks.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Gemma 4 Technical Report",
+      "raw_summary": "arXiv:2607.02770v1 Announce Type: new Abstract: We introduce Gemma 4, a new generation of open-weight, natively multimodal language models in the Gemma model family. Designed to advance compute efficiency and reasoning, the Gemma 4 model suite features dense and Mixture-of-Experts architectures, ranging from 2.3B to 31B parameters. Alongside improved vision and audio encoders for all model sizes, we propose a unified, encoder-free architecture for our 12B model, which ingests raw audio and image patches. Furthermore, we integrate a thinking mode, enabling Gemma models to generate reasoning traces prior to responding. We improve inference speed, memory, and compute efficiency, as well as long-context abilities through critical design choices. Gemma 4 establishes a leap in performance across STEM, multimodal, and long-context benchmarks, and rivals larger, frontier open models in human-rated tasks.",
+      "score": 92,
+      "primary": "models",
+      "tags": [
+        "google",
+        "gemma",
+        "open weights",
+        "moe",
+        "razonamiento"
+      ],
+      "heuristic_score": 74,
+      "url": "https://arxiv.org/abs/2607.02770",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 74,
+      "_rid": 5,
+      "llm_score": 95,
+      "why": "Lanzamiento mayor de modelos abiertos con arquitectura MoE y modo de razonamiento explícito que redefine la eficiencia en pesos abiertos.",
+      "title_es": "Informe Técnico de Gemma 4",
+      "entities": [
+        "Google",
+        "Gemma",
+        "Technical Report"
+      ],
+      "noise_penalty": 0,
+      "final_score": 92,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "iFLYTEK-Embodied-Omni Technical Report",
+      "link": "https://arxiv.org/abs/2607.02542",
+      "published": "2026-07-07T04:00:00+00:00",
+      "summary": "arXiv:2607.02542v1 Announce Type: new Abstract: General-purpose embodied agents must understand multimodal instructions, anticipate how their environment will evolve, and produce precise control actions over extended horizons. Existing approaches typically specialize in visual-language reasoning, video-based world modeling, or action generation, while cascaded pipelines that first synthesize future observations and then infer actions can introduce interface bottlenecks and compound prediction errors. We present iFLYTEK-Embodied-Omni, a unified multimodal foundation model that jointly models vision(videos and s), language, and action within a single Omni framework. Its modality-specific visual-language, video-generation, and action-generation components communicate through shared multimodal self-attention. This design establishes brain-cerebellum collaboration: the vision-language modeland video generation model form a high-level brain for instruction understanding, task planning, progress tracking, and future visual-state prediction, whereas the action generation modelserves as a low-level cerebellum that directly converts planned subgoals and shared multimodal context into executable action chunks. To develop these capabilities, we combine action-annotated and action-free embodied videos from human demonstrations and robot interactions with embodied reasoning, embodied perception, and general-purpose -text data to construct a comprehensive dataset. We further adopt a four-stage strategy that progressively trains the VLM, VGM, and AGM before jointly fine-tuning the complete model.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "iFLYTEK-Embodied-Omni Technical Report",
+      "raw_summary": "arXiv:2607.02542v1 Announce Type: new Abstract: General-purpose embodied agents must understand multimodal instructions, anticipate how their environment will evolve, and produce precise control actions over extended horizons. Existing approaches typically specialize in visual-language reasoning, video-based world modeling, or action generation, while cascaded pipelines that first synthesize future observations and then infer actions can introduce interface bottlenecks and compound prediction errors. We present iFLYTEK-Embodied-Omni, a unified multimodal foundation model that jointly models vision(videos and images), language, and action within a single Omni framework. Its modality-specific visual-language, video-generation, and action-generation components communicate through shared multimodal self-attention. This design establishes brain-cerebellum collaboration: the vision-language modeland video generation model form a high-level brain for instruction understanding, task planning, progress tracking, and future visual-state prediction, whereas the action generation modelserves as a low-level cerebellum that directly converts planned subgoals and shared multimodal context into executable action chunks. To develop these capabilities, we combine action-annotated and action-free embodied videos from human demonstrations and robot interactions with embodied reasoning, embodied perception, and general-purpose image-text data to construct a comprehensive dataset. We further adopt a four-stage strategy that progressively trains the VLM, VGM, and AGM before jointly fine-tuning the complete model.",
+      "score": 85,
+      "primary": "models",
+      "tags": [
+        "robotica",
+        "multimodal",
+        "agentes",
+        "embodied ai"
+      ],
+      "heuristic_score": 88,
+      "url": "https://arxiv.org/abs/2607.02542",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 88,
+      "_rid": 2,
+      "llm_score": 85,
+      "why": "Avanza en la robótica generalista mediante un modelo que unifica visión y acción sin los cuellos de botella de sistemas en cascada.",
+      "title_es": "Informe técnico de iFLYTEK-Embodied-Omni",
+      "entities": [
+        "iFLYTEK",
+        "Embodied",
+        "Omni Technical Report"
+      ],
+      "noise_penalty": 0,
+      "final_score": 85,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "The Accidental Infrastructure: How Crypto Miners Built the Foundation of the AI Boom",
+      "link": "https://semiwiki.com/artificial-intelligence/370845-the-accidental-infrastructure-how-crypto-miners-built-the-foundation-of-the-ai-boom/",
+      "published": "2026-07-06T21:00:15+00:00",
+      "summary": "Most crypto forty-niners died broke in a warehouse full of their computing rigs. Former Ethereum miner CoreWeave took its gold to Wall Street. On June 22, 2026, it joined the Nasdaq-100 — fifteen months after its IPO, nine years after its founders assembled their first GPU rig in a New Jersey office. The people who built the physical&8230; Read More The post The Accidental Infrastructure: How Crypto Miners Built the Foundation of the AI Boom appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "The Accidental Infrastructure: How Crypto Miners Built the Foundation of the AI Boom",
+      "raw_summary": "Most crypto forty-niners died broke in a warehouse full of their computing rigs. Former Ethereum miner CoreWeave took its gold to Wall Street. On June 22, 2026, it joined the Nasdaq-100 — fifteen months after its IPO, nine years after its founders assembled their first GPU rig in a New Jersey office. The people who built the physical&#8230; Read More The post The Accidental Infrastructure: How Crypto Miners Built the Foundation of the AI Boom appeared first on SemiWiki .",
+      "score": 80,
+      "primary": "invest",
+      "tags": [
+        "infraestructura",
+        "inversion",
+        "coreweave",
+        "gpu"
+      ],
+      "heuristic_score": 21,
+      "url": "https://semiwiki.com/artificial-intelligence/370845-the-accidental-infrastructure-how-crypto-miners-built-the-foundation-of-the-ai-boom/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 21,
+      "_rid": 13,
+      "llm_score": 90,
+      "why": "Hito financiero que valida la importancia de los proveedores de computación especializada frente a las nubes tradicionales.",
+      "title_es": "La infraestructura accidental: Cómo los mineros de cripto construyeron la base del auge de la IA",
+      "entities": [
+        "CoreWeave",
+        "Nasdaq",
+        "Ethereum",
+        "The Accidental Infrastructure",
+        "How Crypto Miners",
+        "Built",
+        "Foundation",
+        "Boom"
+      ],
+      "noise_penalty": 0,
+      "final_score": 80,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Auditing the Audit: Five Failure Modes in Benchmark-Validity Audits",
+      "link": "https://arxiv.org/abs/2607.02586",
+      "published": "2026-07-07T04:00:00+00:00",
+      "summary": "arXiv:2607.02586v1 Announce Type: new Abstract: Governance frameworks ask AI providers and auditors for documented evaluation evidence, and perturbation-based construct-validity audits are a common form of that evidence. We argue the audits are themselves fragile: their conclusions can be silently manufactured by implementation details that readers cannot see in the reported numbers. We name five classes of pipeline failure and demonstrate each in a self-audit over safety benchmarks and open-weight instruction-tuned models. Under a unified six-point due-diligence gate, every cell lands in a non-confirmatory bucket, and no cell reaches confirmatory. The evidence here is a single two-model, five-benchmark case study, and F1--F5 is an illustrative, deliberately non-exhaustive starting taxonomy -- not a comprehensive partition of audit failures. We position the gate as a withholding and disclosure protocol for assurance-grade evidence, supplementary to (not a replacement for) classical construct-validity evidence, and not as a route to benchmark-validity verdicts.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Auditing the Audit: Five Failure Modes in Benchmark-Validity Audits",
+      "raw_summary": "arXiv:2607.02586v1 Announce Type: new Abstract: Governance frameworks ask AI providers and auditors for documented evaluation evidence, and perturbation-based construct-validity audits are a common form of that evidence. We argue the audits are themselves fragile: their conclusions can be silently manufactured by implementation details that readers cannot see in the reported numbers. We name five classes of pipeline failure and demonstrate each in a self-audit over safety benchmarks and open-weight instruction-tuned models. Under a unified six-point due-diligence gate, every cell lands in a non-confirmatory bucket, and no cell reaches confirmatory. The evidence here is a single two-model, five-benchmark case study, and F1--F5 is an illustrative, deliberately non-exhaustive starting taxonomy -- not a comprehensive partition of audit failures. We position the gate as a withholding and disclosure protocol for assurance-grade evidence, supplementary to (not a replacement for) classical construct-validity evidence, and not as a route to benchmark-validity verdicts.",
+      "score": 73,
+      "primary": "invest",
+      "tags": [
+        "seguridad",
+        "gobernanza",
+        "benchmarks",
+        "auditoria"
+      ],
+      "heuristic_score": 59,
+      "url": "https://arxiv.org/abs/2607.02586",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 59,
+      "_rid": 6,
+      "llm_score": 75,
+      "why": "Cuestiona la validez de las auditorías de seguridad actuales, sugiriendo que la gobernanza de la IA se basa en métricas frágiles.",
+      "title_es": "Auditando la auditoría: Cinco modos de fallo en las auditorías de validez de benchmarks",
+      "entities": [
+        "arXiv",
+        "Auditing",
+        "Audit",
+        "Five Failure Modes",
+        "Benchmark",
+        "Validity Audits"
+      ],
+      "noise_penalty": 0,
+      "final_score": 73,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Improving LLMs via Validator-to-Generator Alignment",
+      "link": "https://arxiv.org/abs/2607.02668",
+      "published": "2026-07-07T04:00:00+00:00",
+      "summary": "arXiv:2607.02668v1 Announce Type: new Abstract: Large language models are inconsistent: varying prompts or including unrelated information can lead to unexpected changes in model outputs. The generator-validator (G-V) gap is one manifestation of this phenomenon, where LLMs generate responses that they then deem as invalid if re-queried to validate them. In this work, we introduce a new formulation of G-V consistency that involves a principled correction for utterance frequency. Specifically, generators often assign low likelihood to valid strings simply because those strings are a priori unlikely, which makes naive notions of G-V consistency unworkable. We show that under a natural model of rational agents answering questions with multiple answers, consistency of the validator with a frequency-corrected generator score emerges naturally. Our method, \\emph{\\FCPAname} (\\FCPA), is a training objective implementing frequency-corrected G-V consistency for real-world LLMs. Our experimental results show that training with \\FCPA{} substantially improves both G-V consistency and generator performance over prior methods, with gains of up to $+27$pp in Pearson correlation on IFEval and HumanEval, while preserving validator quality across all evaluated tasks.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Improving LLMs via Validator-to-Generator Alignment",
+      "raw_summary": "arXiv:2607.02668v1 Announce Type: new Abstract: Large language models are inconsistent: varying prompts or including unrelated information can lead to unexpected changes in model outputs. The generator-validator (G-V) gap is one manifestation of this phenomenon, where LLMs generate responses that they then deem as invalid if re-queried to validate them. In this work, we introduce a new formulation of G-V consistency that involves a principled correction for utterance frequency. Specifically, generators often assign low likelihood to valid strings simply because those strings are a priori unlikely, which makes naive notions of G-V consistency unworkable. We show that under a natural model of rational agents answering questions with multiple answers, consistency of the validator with a frequency-corrected generator score emerges naturally. Our method, \\emph{\\FCPAname} (\\FCPA), is a training objective implementing frequency-corrected G-V consistency for real-world LLMs. Our experimental results show that training with \\FCPA{} substantially improves both G-V consistency and generator performance over prior methods, with gains of up to $+27$pp in Pearson correlation on IFEval and HumanEval, while preserving validator quality across all evaluated tasks.",
+      "score": 71,
+      "primary": "models",
+      "tags": [
+        "llm",
+        "optimizacion",
+        "consistencia",
+        "razonamiento"
+      ],
+      "heuristic_score": 77,
+      "url": "https://arxiv.org/abs/2607.02668",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 77,
+      "_rid": 3,
+      "llm_score": 70,
+      "why": "Propone corregir la discrepancia donde un modelo genera algo que luego no reconoce como válido, mejorando la fiabilidad del output.",
+      "title_es": "Mejorando los LLM mediante el alineamiento de Validador a Generador",
+      "entities": [
+        "arXiv",
+        "Improving",
+        "Validator",
+        "Generator Alignment"
+      ],
+      "noise_penalty": 0,
+      "final_score": 71,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Seduced by the Narrative: Assessing Rule Adherence in Semi-Open Textual Sandboxes",
+      "link": "https://arxiv.org/abs/2607.02802",
+      "published": "2026-07-07T04:00:00+00:00",
+      "summary": "arXiv:2607.02802v1 Announce Type: new Abstract: As LLMs are increasingly deployed as autonomous adjudicators in semi-open textual game environments, robust rule adherence becomes critical when user intent conflicts with system rules. However, these models are trained to be helpful and compliant, leaving them vulnerable to a class of attacks we term \\textit{Rhetorical Injection}, where adversarial users exploit narrative framing techniques such as pseudo-logical reasoning and authoritative coercion to bypass adjudication logic. We present CoC-Seduce, a multi-agent adversarial benchmark built on Tabletop Role-Playing Game (TRPG) mechanics, an ideal instantiation of semi-open environments where rules are explicit for adjudication, yet interaction remains entirely in natural language. Three frontier models, i.e., GPT-5.4, Claude Sonnet 4.6, Gemini 3.5 Flash, serve as adversarial generators producing 5,376 samples across 4 world settings and 16 skill categories. We then benchmark 20 target adjudicators against this corpus. Evaluation across 20 models reveals that neither model scale nor explicit reasoning mechanisms reliably confer adjudication robustness, with \\textsc{Pseudo-Logic} emerging as the dominant attack vector and cross-cultural settings exposing systematic knowledge gaps across all evaluated families. Project page:",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Seduced by the Narrative: Assessing Rule Adherence in Semi-Open Textual Sandboxes",
+      "raw_summary": "arXiv:2607.02802v1 Announce Type: new Abstract: As LLMs are increasingly deployed as autonomous adjudicators in semi-open textual game environments, robust rule adherence becomes critical when user intent conflicts with system rules. However, these models are trained to be helpful and compliant, leaving them vulnerable to a class of attacks we term \\textit{Rhetorical Injection}, where adversarial users exploit narrative framing techniques such as pseudo-logical reasoning and authoritative coercion to bypass adjudication logic. We present CoC-Seduce, a multi-agent adversarial benchmark built on Tabletop Role-Playing Game (TRPG) mechanics, an ideal instantiation of semi-open environments where rules are explicit for adjudication, yet interaction remains entirely in natural language. Three frontier models, i.e., GPT-5.4, Claude Sonnet 4.6, Gemini 3.5 Flash, serve as adversarial generators producing 5,376 samples across 4 world settings and 16 skill categories. We then benchmark 20 target adjudicators against this corpus. Evaluation across 20 models reveals that neither model scale nor explicit reasoning mechanisms reliably confer adjudication robustness, with \\textsc{Pseudo-Logic} emerging as the dominant attack vector and cross-cultural settings exposing systematic knowledge gaps across all evaluated families. Project page: https://github.com/answerrtx/CoC-Seduce",
+      "score": 70,
+      "primary": "models",
+      "tags": [
+        "seguridad",
+        "llm",
+        "red teaming",
+        "jailbreak"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2607.02802",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 1,
+      "llm_score": 65,
+      "why": "Identifica una nueva clase de ataque de manipulación narrativa que burla la lógica de adjudicación en entornos autónomos.",
+      "title_es": "Seducidos por la narrativa: Evaluación del cumplimiento de reglas en cajas de arena textuales semiabiertas",
+      "entities": [
+        "arXiv",
+        "Seduced",
+        "Narrative",
+        "Assessing Rule Adherence",
+        "Semi",
+        "Open Textual Sandboxes"
+      ],
+      "noise_penalty": 0,
+      "final_score": 70,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Evaluating Time Series Foundation Models for Electricity Price Forecasting: Contamination Risk, Distributional Shifts, and Covariate Dependence",
+      "link": "https://arxiv.org/abs/2607.02623",
+      "published": "2026-07-07T04:00:00+00:00",
+      "summary": "arXiv:2607.02623v1 Announce Type: new Abstract: Time series foundation models (TSFMs) have shown strong zero-shot forecasting performance, but their generalization in covariate-driven, non-stationary settings is underexplored. Electricity price forecasting (EPF) presents a challenging testbed due to complex temporal dependencies, distributional shifts, and strong reliance on structural and contextual information. We propose a two-dataset-benchmarking framework for EPF to mitigate contamination risk and enable fair evaluation of TSFMs. We examine key aspects of EPF including point and probabilistic forecasting performance, tail behavior, price spikes, and comparisons against domain-specific methods. We find that TSFMs are highly competitive and often outperform general-purpose baselines. Yet, their performance depends critically on covariate support, and they do not consistently surpass domain-specific methods tailored to EPF. Interestingly, simple ensembles of TSFMs and domain-specific methods appear to have significant potential, suggesting that the two approaches capture complementary predictive information.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Evaluating Time Series Foundation Models for Electricity Price Forecasting: Contamination Risk, Distributional Shifts, and Covariate Dependence",
+      "raw_summary": "arXiv:2607.02623v1 Announce Type: new Abstract: Time series foundation models (TSFMs) have shown strong zero-shot forecasting performance, but their generalization in covariate-driven, non-stationary settings is underexplored. Electricity price forecasting (EPF) presents a challenging testbed due to complex temporal dependencies, distributional shifts, and strong reliance on structural and contextual information. We propose a two-dataset-benchmarking framework for EPF to mitigate contamination risk and enable fair evaluation of TSFMs. We examine key aspects of EPF including point and probabilistic forecasting performance, tail behavior, price spikes, and comparisons against domain-specific methods. We find that TSFMs are highly competitive and often outperform general-purpose baselines. Yet, their performance depends critically on covariate support, and they do not consistently surpass domain-specific methods tailored to EPF. Interestingly, simple ensembles of TSFMs and domain-specific methods appear to have significant potential, suggesting that the two approaches capture complementary predictive information.",
+      "score": 62,
+      "primary": "misc",
+      "tags": [
+        "series temporales",
+        "energia",
+        "benchmarks",
+        "forecasting"
+      ],
+      "heuristic_score": 74,
+      "url": "https://arxiv.org/abs/2607.02623",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 74,
+      "_rid": 4,
+      "llm_score": 60,
+      "why": "Crucial para la aplicación de IA en redes eléctricas, alertando sobre la falta de generalización en entornos no estacionarios.",
+      "title_es": "Evaluación de modelos fundacionales de series temporales para la previsión de precios eléctricos",
+      "entities": [
+        "arXiv",
+        "Evaluating Time Series",
+        "Foundation Models",
+        "Electricity Price Forecasting",
+        "Contamination Risk",
+        "Distributional Shifts",
+        "Covariate Dependence"
+      ],
+      "noise_penalty": 0,
+      "final_score": 62,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Reinforcement Learning for Data-Efficient Code-Switched ASR",
+      "link": "https://arxiv.org/abs/2607.02757",
+      "published": "2026-07-07T04:00:00+00:00",
+      "summary": "arXiv:2607.02757v1 Announce Type: new Abstract: Audio-language models can be prompted for code-switched speech, but their decoding is not optimized for code-switching and often fails at language boundaries. We propose a practical reinforcement learning with verifiable rewards recipe for data-efficient adaptation of audio-language models to code-switched ASR using group relative policy optimization, combining an error rate reward with a script fidelity reward that penalizes wrong writing systems and a two-pass draft-and-refinement procedure. Using Qwen2-Audio as a reproducible testbed across 10 language pairs, training on only TTS code-switched speech, we show that RLVR with 10% of the data matches LoRA supervised fine-tuning trained on the full dataset, with the largest gains on typologically distant pairs. The error rate reward eliminates translation errors while the script fidelity reward separately reduces script contamination without degradation. These gains transfer zero-shot to a human-recorded code-switching corpus.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Reinforcement Learning for Data-Efficient Code-Switched ASR",
+      "raw_summary": "arXiv:2607.02757v1 Announce Type: new Abstract: Audio-language models can be prompted for code-switched speech, but their decoding is not optimized for code-switching and often fails at language boundaries. We propose a practical reinforcement learning with verifiable rewards recipe for data-efficient adaptation of audio-language models to code-switched ASR using group relative policy optimization, combining an error rate reward with a script fidelity reward that penalizes wrong writing systems and a two-pass draft-and-refinement procedure. Using Qwen2-Audio as a reproducible testbed across 10 language pairs, training on only TTS code-switched speech, we show that RLVR with 10% of the data matches LoRA supervised fine-tuning trained on the full dataset, with the largest gains on typologically distant pairs. The error rate reward eliminates translation errors while the script fidelity reward separately reduces script contamination without degradation. These gains transfer zero-shot to a human-recorded code-switching corpus.",
+      "score": 58,
+      "primary": "models",
+      "tags": [
+        "habla",
+        "asr",
+        "rl",
+        "multilingue"
+      ],
+      "heuristic_score": 45,
+      "url": "https://arxiv.org/abs/2607.02757",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 45,
+      "_rid": 10,
+      "llm_score": 60,
+      "why": "Optimiza el reconocimiento de voz en contextos multilingües mediante RL, superando limitaciones de los modelos de audio actuales.",
+      "title_es": "Aprendizaje por refuerzo para el reconocimiento de voz con alternancia de códigos eficiente en datos",
+      "entities": [
+        "Qwen2-Audio",
+        "ASR",
+        "Reinforcement Learning",
+        "Data",
+        "Efficient Code",
+        "Switched"
+      ],
+      "noise_penalty": 0,
+      "final_score": 58,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Internal Pluralism and the Limits of Pairwise Comparisons",
+      "link": "https://arxiv.org/abs/2607.02672",
+      "published": "2026-07-07T04:00:00+00:00",
+      "summary": "arXiv:2607.02672v1 Announce Type: new Abstract: Local pairwise comparisons are a standard tool for learning how people want decision rules to work, e.g., in participatory design or alignment. However, their use builds in two strong assumptions: that local comparisons are sufficient evidence about how a person wants an automated decision rule to behave, and that people can always answer those comparisons decisively. We investigate how these assumptions may be compromised under internal pluralism: the idea that an individual evaluates decision rules according to multiple authoritative priorities about how the rule should behave. We provide a formal model of such pluralistic preferences over decision rules, which then lets us identify two distinct failures of forced local pairwise comparison data. First, priorities such as proportionality, egalitarianism, and equal treatment are inherently global: what they imply in one case can depend on what happens elsewhere, so local comparisons may fail to capture them. Second, even when priorities are representable locally, tension between strongly-held priorities can generate internal conflict, producing potentially costly behavioral distortions when comparisons are forced. We then use our model to investigate the alternative -- allowing people to report indecision -- and our findings suggest that doing so can considerably reduce the number of queries needed to learn preferences accurately. We conclude by describing how our model points toward preference-learning methods that elicit these priorities directly, yielding more faithful and interpretable accounts of what people value.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Internal Pluralism and the Limits of Pairwise Comparisons",
+      "raw_summary": "arXiv:2607.02672v1 Announce Type: new Abstract: Local pairwise comparisons are a standard tool for learning how people want decision rules to work, e.g., in participatory design or alignment. However, their use builds in two strong assumptions: that local comparisons are sufficient evidence about how a person wants an automated decision rule to behave, and that people can always answer those comparisons decisively. We investigate how these assumptions may be compromised under internal pluralism: the idea that an individual evaluates decision rules according to multiple authoritative priorities about how the rule should behave. We provide a formal model of such pluralistic preferences over decision rules, which then lets us identify two distinct failures of forced local pairwise comparison data. First, priorities such as proportionality, egalitarianism, and equal treatment are inherently global: what they imply in one case can depend on what happens elsewhere, so local comparisons may fail to capture them. Second, even when priorities are representable locally, tension between strongly-held priorities can generate internal conflict, producing potentially costly behavioral distortions when comparisons are forced. We then use our model to investigate the alternative -- allowing people to report indecision -- and our findings suggest that doing so can considerably reduce the number of queries needed to learn preferences accurately. We conclude by describing how our model points toward preference-learning methods that elicit these priorities directly, yielding more faithful and interpretable accounts of what people value.",
+      "score": 55,
+      "primary": "models",
+      "tags": [
+        "alineamiento",
+        "rlhf",
+        "etica",
+        "teoria"
+      ],
+      "heuristic_score": 55,
+      "url": "https://arxiv.org/abs/2607.02672",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 55,
+      "_rid": 7,
+      "llm_score": 55,
+      "why": "Plantea retos teóricos sobre cómo alinear modelos con humanos que tienen múltiples prioridades contradictorias internamente.",
+      "title_es": "Pluralismo interno y los límites de las comparaciones por pares",
+      "entities": [
+        "arXiv",
+        "Internal Pluralism",
+        "Limits",
+        "Pairwise Comparisons"
+      ],
+      "noise_penalty": 0,
+      "final_score": 55,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "LuxSQA: Ask Me in Luxembourgish with TTS-Augmented Spoken Question Answering",
+      "link": "https://arxiv.org/abs/2607.02763",
+      "published": "2026-07-07T04:00:00+00:00",
+      "summary": "arXiv:2607.02763v1 Announce Type: new Abstract: Spoken Question Answering (SQA) remains largely focused on high-resource languages and carefully recorded speech, limiting the reach of speech-LLM methods in low-resource settings. This paper investigates whether text-to-speech (TTS) can provide task-specific training data for Luxembourgish SQA without requiring a large human-recorded QA corpus. Starting from existing text-based QA resources, we translate questions into Luxembourgish, synthesize spoken questions with multiple TTS systems, and pair them with textual answers. We train a parameter-efficient SLAM-style architecture that connects a frozen Whisper encoder to frozen multilingual LLM backends through a learned projector and LoRA adapters. We compare MMS-TTS, Qwen3-TTS, and OmniVoice variants, including single-source corpora of about 48k questions and a 4TTS multi-source mix of approximately 230k questions. Evaluation on LLAMA-LB-Test with two real Luxembourgish speaker conditions shows that multi-source and voice-design-based synthetic training configurations yield the strongest SQA performance. The results also show that no-reference TTS quality scores do not monotonically predict downstream QA performance, indicating that synthetic speech must be evaluated as task-specific training data rather than only as natural-sounding audio.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "LuxSQA: Ask Me in Luxembourgish with TTS-Augmented Spoken Question Answering",
+      "raw_summary": "arXiv:2607.02763v1 Announce Type: new Abstract: Spoken Question Answering (SQA) remains largely focused on high-resource languages and carefully recorded speech, limiting the reach of speech-LLM methods in low-resource settings. This paper investigates whether text-to-speech (TTS) can provide task-specific training data for Luxembourgish SQA without requiring a large human-recorded QA corpus. Starting from existing text-based QA resources, we translate questions into Luxembourgish, synthesize spoken questions with multiple TTS systems, and pair them with textual answers. We train a parameter-efficient SLAM-style architecture that connects a frozen Whisper encoder to frozen multilingual LLM backends through a learned projector and LoRA adapters. We compare MMS-TTS, Qwen3-TTS, and OmniVoice variants, including single-source corpora of about 48k questions and a 4TTS multi-source mix of approximately 230k questions. Evaluation on LLAMA-LB-Test with two real Luxembourgish speaker conditions shows that multi-source and voice-design-based synthetic training configurations yield the strongest SQA performance. The results also show that no-reference TTS quality scores do not monotonically predict downstream QA performance, indicating that synthetic speech must be evaluated as task-specific training data rather than only as natural-sounding audio.",
+      "score": 54,
+      "primary": "models",
+      "tags": [
+        "habla",
+        "tts",
+        "low-resource",
+        "nlp"
+      ],
+      "heuristic_score": 46,
+      "url": "https://arxiv.org/abs/2607.02763",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 46,
+      "_rid": 9,
+      "llm_score": 55,
+      "why": "Demuestra cómo usar TTS para entrenar modelos en idiomas con pocos recursos, democratizando el acceso a interfaces de voz.",
+      "title_es": "LuxSQA: Pregúntame en luxemburgués con respuestas a preguntas habladas aumentadas por TTS",
+      "entities": [
+        "Whisper",
+        "TTS",
+        "Ask Me",
+        "Luxembourgish",
+        "Augmented Spoken Question",
+        "Answering"
+      ],
+      "noise_penalty": 0,
+      "final_score": 54,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Echoes of Unrest: A Multimodal NLP Framework for Early Warning of Fake News and Violence-Driven Mob Activity",
+      "link": "https://arxiv.org/abs/2607.02734",
+      "published": "2026-07-07T04:00:00+00:00",
+      "summary": "arXiv:2607.02734v1 Announce Type: new Abstract: Rapid growth in social media has transformed global communication by enabling fast information exchange, but it has also accelerated the spread of misinformation. Fake news, manipulated content, and provocative narratives are increasingly linked to social unrest, political instability, and mob violence. Incidents in South Asia and elsewhere demonstrate how false information disseminated via platforms such as Facebook and WhatsApp can trigger real-world harm, often spreading faster than fact-checking efforts can respond. To address this challenge, this chapter presents a multilingual, multimodal Natural Language Processing (NLP) framework for early detection of misinformation and violence-prone dynamics. A fused dataset of 138,256 Bangla and English samples was created by combining multiple benchmark datasets. The framework integrates XLM-RoBERTa for multilingual text representation, CLIP for visual embedding, and a multi-head attention mechanism for multimodal fusion, enhanced with auxiliary features such as sarcasm and geospatial metadata. Experiments on a stratified 30% subset achieved 98% test accuracy with strong precision and recall. The outcomes show the efficacy of multimodal approaches in early misinformation detection and highlight the added value of geospatial signals for anticipating real-world escalation.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Echoes of Unrest: A Multimodal NLP Framework for Early Warning of Fake News and Violence-Driven Mob Activity",
+      "raw_summary": "arXiv:2607.02734v1 Announce Type: new Abstract: Rapid growth in social media has transformed global communication by enabling fast information exchange, but it has also accelerated the spread of misinformation. Fake news, manipulated content, and provocative narratives are increasingly linked to social unrest, political instability, and mob violence. Incidents in South Asia and elsewhere demonstrate how false information disseminated via platforms such as Facebook and WhatsApp can trigger real-world harm, often spreading faster than fact-checking efforts can respond. To address this challenge, this chapter presents a multilingual, multimodal Natural Language Processing (NLP) framework for early detection of misinformation and violence-prone dynamics. A fused dataset of 138,256 Bangla and English samples was created by combining multiple benchmark datasets. The framework integrates XLM-RoBERTa for multilingual text representation, CLIP for visual embedding, and a multi-head attention mechanism for multimodal fusion, enhanced with auxiliary features such as sarcasm and geospatial metadata. Experiments on a stratified 30% subset achieved 98% test accuracy with strong precision and recall. The outcomes show the efficacy of multimodal approaches in early misinformation detection and highlight the added value of geospatial signals for anticipating real-world escalation.",
+      "score": 50,
+      "primary": "misc",
+      "tags": [
+        "nlp",
+        "seguridad social",
+        "multimodal",
+        "desinformacion"
+      ],
+      "heuristic_score": 50,
+      "url": "https://arxiv.org/abs/2607.02734",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 50,
+      "_rid": 8,
+      "llm_score": 50,
+      "why": "Aplicación de IA multimodal para mitigar violencia real derivada de noticias falsas, relevante para la estabilidad geopolítica.",
+      "title_es": "Ecos de disturbios: Un marco de NLP multimodal para la alerta temprana de noticias falsas",
+      "entities": [
+        "Facebook",
+        "WhatsApp",
+        "NLP",
+        "Echoes",
+        "Unrest",
+        "Multimodal",
+        "Framework",
+        "Early Warning"
+      ],
+      "noise_penalty": 0,
+      "final_score": 50,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "From Detection to Safety: Reframing Fault Simulation for Functional Safety",
+      "link": "https://semiwiki.com/eda/synopsys/370624-from-detection-to-safety-reframing-fault-simulation-for-functional-safety/",
+      "published": "2026-07-06T17:00:26+00:00",
+      "summary": "In the early 1980s, when computer-aided engineering (CAE), the precursor to modern electronic design automation (EDA), was just taking shape, my professional trajectory shifted in a way that would prove foundational. I joined Teradyne, the Boston-based leader in automated test equipment (ATE), and I encountered for the first &8230; Read More The post From Detection to Safety: Reframing Fault Simulation for Functional Safety appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "From Detection to Safety: Reframing Fault Simulation for Functional Safety",
+      "raw_summary": "In the early 1980s, when computer-aided engineering (CAE), the precursor to modern electronic design automation (EDA), was just taking shape, my professional trajectory shifted in a way that would prove foundational. I joined Teradyne, the Boston-based leader in automated test equipment (ATE), and I encountered for the first &#8230; Read More The post From Detection to Safety: Reframing Fault Simulation for Functional Safety appeared first on SemiWiki .",
+      "score": 38,
+      "primary": "infra",
+      "tags": [
+        "eda",
+        "hardware",
+        "seguridad",
+        "automocion"
+      ],
+      "heuristic_score": 28,
+      "url": "https://semiwiki.com/eda/synopsys/370624-from-detection-to-safety-reframing-fault-simulation-for-functional-safety/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 28,
+      "_rid": 11,
+      "llm_score": 40,
+      "why": "Evolución necesaria de las herramientas de diseño electrónico para garantizar la seguridad funcional en chips de IA críticos.",
+      "title_es": "De la detección a la seguridad: Reencuadrando la simulación de fallos para la seguridad funcional",
+      "entities": [
+        "Teradyne",
+        "Synopsys",
+        "From Detection",
+        "Safety",
+        "Reframing Fault Simulation",
+        "Functional Safety"
+      ],
+      "noise_penalty": 0,
+      "final_score": 38,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Executive Interview with Chris Morrison, VP Product Marketing at Agile Analog",
+      "link": "https://semiwiki.com/ip/agile-analog/370825-executive-interview-with-chris-morrison-vp-product-marketing-at-agile-analog/",
+      "published": "2026-07-06T13:00:50+00:00",
+      "summary": "Chris Morrison is VP Product Marketing at Agile Analog, the customizable analog IP company. He has over 18 years’ experience of developing strong relationships with key partners across the semiconductor industry and delivering innovative analog, digital, power management and audio products, working for international companies&8230; Read More The post Executive Interview with Chris Morrison, VP Product Marketing at Agile Analog appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "Executive Interview with Chris Morrison, VP Product Marketing at Agile Analog",
+      "raw_summary": "Chris Morrison is VP Product Marketing at Agile Analog, the customizable analog IP company. He has over 18 years’ experience of developing strong relationships with key partners across the semiconductor industry and delivering innovative analog, digital, power management and audio products, working for international companies&#8230; Read More The post Executive Interview with Chris Morrison, VP Product Marketing at Agile Analog appeared first on SemiWiki .",
+      "score": 33,
+      "primary": "infra",
+      "tags": [
+        "semiconductores",
+        "analogico",
+        "ip",
+        "hardware"
+      ],
+      "heuristic_score": 22,
+      "url": "https://semiwiki.com/ip/agile-analog/370825-executive-interview-with-chris-morrison-vp-product-marketing-at-agile-analog/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 22,
+      "_rid": 12,
+      "llm_score": 35,
+      "why": "Destaca la importancia de la IP analógica personalizable en el ecosistema de hardware para aceleradores de IA.",
+      "title_es": "Entrevista ejecutiva con Chris Morrison, vicepresidente de marketing de producto en Agile Analog",
+      "entities": [
+        "Agile Analog",
+        "Executive Interview",
+        "Chris Morrison",
+        "Product Marketing"
+      ],
+      "noise_penalty": 0,
+      "final_score": 33,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "The latest AI news we announced in June 2026",
+      "link": "https://blog.google/innovation-and-ai/technology/ai/google-ai-updates-june-2026/",
+      "published": "2026-07-01T18:15:00+00:00",
+      "summary": "June Pixel Drop hero",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "The latest AI news we announced in June 2026",
+      "raw_summary": "June Pixel Drop hero",
+      "score": 32,
+      "primary": "misc",
+      "tags": [
+        "google",
+        "pixel",
+        "actualizaciones",
+        "misc"
+      ],
+      "heuristic_score": 6,
+      "url": "https://blog.google/innovation-and-ai/technology/ai/google-ai-updates-june-2026/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 6,
+      "_rid": 14,
+      "llm_score": 45,
+      "why": "Resumen de mejoras incrementales en la integración de IA en dispositivos móviles de consumo.",
+      "title_es": "Últimas noticias de IA anunciadas en junio de 2026",
+      "entities": [
+        "Google",
+        "Pixel",
+        "June"
+      ],
+      "noise_penalty": 7,
+      "final_score": 32,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(7)",
+      "strategic_theme": "other"
+    },
+    {
+      "title": "New York City educators and industry leaders gathered at Google’s offices to shape the future of AI in classrooms.",
+      "link": "https://blog.google/products-and-platforms/products/education/nyc-ai-summit/",
+      "published": "2026-07-01T16:00:00+00:00",
+      "summary": "Google, the New York Jobs CEO Council and Urban Assembly hosted an AI summit for 150 education and industry leaders.",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "New York City educators and industry leaders gathered at Google’s offices to shape the future of AI in classrooms.",
+      "raw_summary": "Google, the New York Jobs CEO Council and Urban Assembly hosted an AI summit for 150 education and industry leaders.",
+      "score": 19,
+      "primary": "misc",
+      "tags": [
+        "educacion",
+        "google",
+        "sociedad",
+        "impacto"
+      ],
+      "heuristic_score": 6,
+      "url": "https://blog.google/products-and-platforms/products/education/nyc-ai-summit/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 6,
+      "_rid": 15,
+      "llm_score": 30,
+      "why": "Iniciativas de adopción de IA en el sector educativo para formar a la futura fuerza laboral.",
+      "title_es": "Educadores de Nueva York y líderes de la industria se reúnen en las oficinas de Google para dar forma a la IA en las aulas",
+      "entities": [
+        "Google",
+        "Urban Assembly",
+        "New York City"
+      ],
+      "noise_penalty": 7,
+      "final_score": 19,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(7)",
+      "strategic_theme": "other"
+    }
+  ]
+}
