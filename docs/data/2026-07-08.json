@@ -1,0 +1,692 @@
+{
+  "date": "2026-07-08",
+  "score_avg": 69.87,
+  "primary_dist": {
+    "models": 9,
+    "infra": 5,
+    "invest": 1
+  },
+  "top_entities": [
+    {
+      "entity": "Design",
+      "count": 2
+    },
+    {
+      "entity": "arXiv",
+      "count": 2
+    },
+    {
+      "entity": "DAC",
+      "count": 2
+    },
+    {
+      "entity": "Google",
+      "count": 2
+    },
+    {
+      "entity": "RFdiffusion 3",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "Google invertirá 1.500 millones de dólares en Alabama para expandir su infraestructura de centros de datos de IA.",
+      "La fotónica integrada (Co-Packaged Optics) requiere nuevos PDK de empaquetado para superar límites de ancho de banda.",
+      "El diseño de chips alcanza la autonomía total con agentes de IA capaces de gestionar flujos de verificación en DAC 2026.",
+      "Nuevas estrategias de paralelismo de contexto (Design-CP) permiten diseñar proteínas masivas en hardware estándar.",
+      "Los sesgos de respuesta en LLM se deben más a la estructura del prompt que a un cambio real en el juicio moral."
+    ],
+    "risks": [
+      "Crecimiento insostenible de la memoria KV-cache en modelos de contexto largo sin técnicas de compresión unificadas.",
+      "Falta de fundamentación determinista en sistemas multi-agente que generan literatura científica automatizada.",
+      "Sesgos de conformidad en evaluaciones de IA que confunden la repetición del error con la influencia social real."
+    ],
+    "watch": [
+      "Estandarización de PDKs para óptica co-empaquetada como pieza clave para la escalabilidad de la infraestructura.",
+      "Integración de protocolos MCP remotos en la API de Gemini para la gestión avanzada de agentes.",
+      "Validación de marcos geométricos (SMG) para distinguir entre interpolación estadística e inteligencia real."
+    ],
+    "entities_top": [
+      "Google",
+      "DAC 2026",
+      "RFdiffusion"
+    ]
+  },
+  "items": [
+    {
+      "title": "Design-CP: Context Parallelism for Design of Protein Nanoparticles",
+      "link": "https://arxiv.org/abs/2607.05439",
+      "published": "2026-07-08T04:00:00+00:00",
+      "summary": "arXiv:2607.05439v1 Announce Type: new Abstract: Many all-atom generative protein models can in principle design large multimeric complexes by jointly modelling all chains, but their quadratic token- and atom-pair representations quickly exceed single-GPU memory as the number of chains and residues modelled grows. We introduce Design-CP, two context-parallel (CP) inference strategies for RFdiffusion 3 (1D row-sharding and 2D grid sharding with ring attention) that distribute the quadratic activations across a multi-GPU mesh while preserving pretrained weights. We characterise their scaling when sampling icosahedral assemblies, showing that the maximum feasible asymmetric subunit (ASU) size grows with the expected square-root trend in GPU count and that 2D sharding achieves better wall-clock scaling. Moreover, we show how strong point-group symmetry constraints make CP usable out of the box for end-to-end, all-atom design of icosahedral nanoparticles, yielding favourable in silico structural and interface metrics. Finally, we demonstrate octahedral nanoparticle design on a small cluster of workstation-grade 16GB GPUs, illustrating how Design-CP can be a practical path towards democratising large-assembly protein design.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Design-CP: Context Parallelism for Design of Protein Nanoparticles",
+      "raw_summary": "arXiv:2607.05439v1 Announce Type: new Abstract: Many all-atom generative protein models can in principle design large multimeric complexes by jointly modelling all chains, but their quadratic token- and atom-pair representations quickly exceed single-GPU memory as the number of chains and residues modelled grows. We introduce Design-CP, two context-parallel (CP) inference strategies for RFdiffusion 3 (1D row-sharding and 2D grid sharding with ring attention) that distribute the quadratic activations across a multi-GPU mesh while preserving pretrained weights. We characterise their scaling when sampling icosahedral assemblies, showing that the maximum feasible asymmetric subunit (ASU) size grows with the expected square-root trend in GPU count and that 2D sharding achieves better wall-clock scaling. Moreover, we show how strong point-group symmetry constraints make CP usable out of the box for end-to-end, all-atom design of icosahedral nanoparticles, yielding favourable in silico structural and interface metrics. Finally, we demonstrate octahedral nanoparticle design on a small cluster of workstation-grade 16GB GPUs, illustrating how Design-CP can be a practical path towards democratising large-assembly protein design.",
+      "score": 86,
+      "primary": "models",
+      "tags": [
+        "biología-computacional",
+        "proteínas",
+        "paralelismo",
+        "gpu"
+      ],
+      "heuristic_score": 95,
+      "url": "https://arxiv.org/abs/2607.05439",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 95,
+      "_rid": 3,
+      "llm_score": 85,
+      "why": "Introduce estrategias de paralelismo de contexto para diseñar complejos proteicos que antes excedían la memoria GPU.",
+      "title_es": "Design-CP: Paralelismo de contexto para el diseño de nanopartículas proteicas",
+      "entities": [
+        "RFdiffusion 3",
+        "Design-CP",
+        "Design",
+        "Context Parallelism",
+        "Protein Nanoparticles"
+      ],
+      "noise_penalty": 0,
+      "final_score": 86,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "The yes-no bias of large language models reflects answer order and wording, not shifts in moral judgment",
+      "link": "https://arxiv.org/abs/2607.05552",
+      "published": "2026-07-08T04:00:00+00:00",
+      "summary": "arXiv:2607.05552v1 Announce Type: new Abstract: Large language models (LLMs) increasingly issue judgments read as binary verdicts, and a growing literature reports such judgments shifting under logically irrelevant changes of wording - among them an amplified yes-no bias on moral dilemmas, absent in humans. A single framing cannot say what such a shift is: in a yes/no question the word \"no\" is at once logical verdict, lexical token, and last-printed option. We introduce a psychometric battery that separates these: crossed symmetrization - every logically irrelevant factor flipped in balanced pairs - across a corpus of question forms. A graded rating across logically equivalent forms recovers a coherent internal moral scale: frontier models' stance $\\theta$ is nearly format-invariant (cross-form incoherence 0.12-0.21 on a $\\pm 1$ axis); small open-weight models fail in model-specific ways. Forcing the verdict through yes/no overlays a decomposable artifact: an order bias toward the last-printed option - opposite to classic human primacy - plus a lexical pull toward the word \"no\"; the artifact is substantial only in the Claude models (story-averaged -0.32 to -0.86), $\\approx 0$ for GPT-5.5 and Gemini, and shrinks under extended reasoning. The word and the verdict share one token; swapping the words for arbitrary labels separates them, and the verdict-attached logical bias proves $\\approx 0$ for every frontier model, while model-specific label and order attachments remain: the models are not drawn toward rejecting - the pull follows the printed surface, not the verdict it carries. A minimal model, $P = \\sigma((\\theta \\pm m)/s)$, summarizes any such artifact by a framing susceptibility m and a moral decisiveness s, measurably distinct from sampling temperature. The battery applies unchanged to any dilemma set and binary format: measuring what a model values requires crossing the frames of the question, not asking once.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "The yes-no bias of large language models reflects answer order and wording, not shifts in moral judgment",
+      "raw_summary": "arXiv:2607.05552v1 Announce Type: new Abstract: Large language models (LLMs) increasingly issue judgments read as binary verdicts, and a growing literature reports such judgments shifting under logically irrelevant changes of wording - among them an amplified yes-no bias on moral dilemmas, absent in humans. A single framing cannot say what such a shift is: in a yes/no question the word \"no\" is at once logical verdict, lexical token, and last-printed option. We introduce a psychometric battery that separates these: crossed symmetrization - every logically irrelevant factor flipped in balanced pairs - across a corpus of question forms. A graded rating across logically equivalent forms recovers a coherent internal moral scale: frontier models' stance $\\theta$ is nearly format-invariant (cross-form incoherence 0.12-0.21 on a $\\pm 1$ axis); small open-weight models fail in model-specific ways. Forcing the verdict through yes/no overlays a decomposable artifact: an order bias toward the last-printed option - opposite to classic human primacy - plus a lexical pull toward the word \"no\"; the artifact is substantial only in the Claude models (story-averaged -0.32 to -0.86), $\\approx 0$ for GPT-5.5 and Gemini, and shrinks under extended reasoning. The word and the verdict share one token; swapping the words for arbitrary labels separates them, and the verdict-attached logical bias proves $\\approx 0$ for every frontier model, while model-specific label and order attachments remain: the models are not drawn toward rejecting - the pull follows the printed surface, not the verdict it carries. A minimal model, $P = \\sigma((\\theta \\pm m)/s)$, summarizes any such artifact by a framing susceptibility m and a moral decisiveness s, measurably distinct from sampling temperature. The battery applies unchanged to any dilemma set and binary format: measuring what a model values requires crossing the frames of the question, not asking once.",
+      "score": 83,
+      "primary": "models",
+      "tags": [
+        "llm",
+        "psicometría",
+        "sesgos",
+        "evaluación"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2607.05552",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 1,
+      "llm_score": 80,
+      "why": "Desmonta la idea de juicios morales en LLMs, atribuyendo sesgos a la estructura léxica y el orden de respuesta.",
+      "title_es": "El sesgo sí-no de los grandes modelos de lenguaje refleja el orden de las palabras, no cambios en el juicio moral",
+      "entities": [
+        "arXiv"
+      ],
+      "noise_penalty": 0,
+      "final_score": 83,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Prompt-to-Paper: Agentic AI System for Bioinformatics",
+      "link": "https://arxiv.org/abs/2607.05456",
+      "published": "2026-07-08T04:00:00+00:00",
+      "summary": "arXiv:2607.05456v1 Announce Type: new Abstract: While recent advances in large language models have enabled end-to-end automated manuscript generation, existing systems suffer from three critical deficiencies: (i) generated claims are not deterministically grounded in verifiable literature, (ii) experimental results are frequently fabricated rather than executed, and (iii) there exists no standardized, multi-dimensional framework to assess whether AI-generated manuscripts meet the quality and rigor required for real-world publication. We present Prompt-to-Paper, a multi-agent framework that directly addresses this evaluation gap through three integrated innovations. First, a deterministic retrieval-augmented generation pipeline with section-aware relevance scoring and snowball citation expansion grounds every claim in a verifiable corpus of 60--100 papers. Second, an autonomous coding agent executes real computational biology experiments replacing synthetic outputs with genuine numerical results. Third, an eight-dimensional automated quality scorer, benchmarked with approximate reference statistics from published papers and augmented with explicit hallucination penalties, provides standardized, reproducible quality assessments. The quality-driven improvement loop uses a context-rich reviser that routes each iteration to one of three researcher actions and fires a deep research cycle every ten iterations to re-run experiments and re-manuscript from stronger outputs. We validate the system on five bioinformatics case studies; all five cases compiled submission-formatted PDFs with zero out-of-range citations. The improvement loop raises manuscript quality by an average of +17.96 points on a 0--100 scale (maximum +26.04. As partial external checks, a human reviewer scored the five manuscripts at an average of 7.0 out of 10. Complete manuscripts are produced at approximately 0.31 USD per paper.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Prompt-to-Paper: Agentic AI System for Bioinformatics",
+      "raw_summary": "arXiv:2607.05456v1 Announce Type: new Abstract: While recent advances in large language models have enabled end-to-end automated manuscript generation, existing systems suffer from three critical deficiencies: (i) generated claims are not deterministically grounded in verifiable literature, (ii) experimental results are frequently fabricated rather than executed, and (iii) there exists no standardized, multi-dimensional framework to assess whether AI-generated manuscripts meet the quality and rigor required for real-world publication. We present Prompt-to-Paper, a multi-agent framework that directly addresses this evaluation gap through three integrated innovations. First, a deterministic retrieval-augmented generation pipeline with section-aware relevance scoring and snowball citation expansion grounds every claim in a verifiable corpus of 60--100 papers. Second, an autonomous coding agent executes real computational biology experiments replacing synthetic outputs with genuine numerical results. Third, an eight-dimensional automated quality scorer, benchmarked with approximate reference statistics from published papers and augmented with explicit hallucination penalties, provides standardized, reproducible quality assessments. The quality-driven improvement loop uses a context-rich reviser that routes each iteration to one of three researcher actions and fires a deep research cycle every ten iterations to re-run experiments and re-manuscript from stronger outputs. We validate the system on five bioinformatics case studies; all five cases compiled submission-formatted PDFs with zero out-of-range citations. The improvement loop raises manuscript quality by an average of +17.96 points on a 0--100 scale (maximum +26.04. As partial external checks, a human reviewer scored the five manuscripts at an average of 7.0 out of 10. Complete manuscripts are produced at approximately 0.31 USD per paper.",
+      "score": 80,
+      "primary": "models",
+      "tags": [
+        "agentes",
+        "bioinformática",
+        "automatización",
+        "ciencia"
+      ],
+      "heuristic_score": 93,
+      "url": "https://arxiv.org/abs/2607.05456",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 93,
+      "_rid": 5,
+      "llm_score": 78,
+      "why": "Marco multi-agente para generar artículos científicos con verificación de literatura y ejecución de experimentos.",
+      "title_es": "Prompt-to-Paper: Sistema de IA agéntica para bioinformática",
+      "entities": [
+        "Prompt-to-Paper",
+        "Prompt",
+        "Paper",
+        "Agentic",
+        "System",
+        "Bioinformatics"
+      ],
+      "noise_penalty": 0,
+      "final_score": 80,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "The Packaging PDK Is the Missing Layer for Co-Packaged Optics",
+      "link": "https://semiwiki.com/3dic/370709-the-packaging-pdk-is-the-missing-layer-for-co-packaged-optics/",
+      "published": "2026-07-07T17:00:16+00:00",
+      "summary": "From Photonic Device Design to Electro-Optical Realization Co-packaged optics will not scale through photonic device performance alone. As AI infrastructure pushes bandwidth, power, latency, and reach to new limits, optics is moving closer to the compute engine. The industry is no longer asking only whether a photonic device&8230; Read More The post The Packaging PDK Is the Missing Layer for Co-Packaged Optics appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "The Packaging PDK Is the Missing Layer for Co-Packaged Optics",
+      "raw_summary": "From Photonic Device Design to Electro-Optical Realization Co-packaged optics will not scale through photonic device performance alone. As AI infrastructure pushes bandwidth, power, latency, and reach to new limits, optics is moving closer to the compute engine. The industry is no longer asking only whether a photonic device&#8230; Read More The post The Packaging PDK Is the Missing Layer for Co-Packaged Optics appeared first on SemiWiki .",
+      "score": 80,
+      "primary": "infra",
+      "tags": [
+        "hardware",
+        "fotónica",
+        "semiconductores",
+        "pdk"
+      ],
+      "heuristic_score": 36,
+      "url": "https://semiwiki.com/3dic/370709-the-packaging-pdk-is-the-missing-layer-for-co-packaged-optics/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 36,
+      "_rid": 12,
+      "llm_score": 88,
+      "why": "Identifica los PDK de empaquetado como el eslabón perdido para escalar la infraestructura de IA mediante óptica.",
+      "title_es": "El PDK de empaquetado es la capa que falta para la óptica co-empaquetada",
+      "entities": [
+        "SemiWiki",
+        "PDK",
+        "The Packaging",
+        "Missing Layer",
+        "Packaged Optics"
+      ],
+      "noise_penalty": 0,
+      "final_score": 80,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Benchmarking KV-Cache Optimizations across Task Quality and System Performance for Long-Context Serving",
+      "link": "https://arxiv.org/abs/2607.05399",
+      "published": "2026-07-08T04:00:00+00:00",
+      "summary": "arXiv:2607.05399v1 Announce Type: new Abstract: Large language model serving is increasingly limited by KV-cache growth under long-context workloads, yet existing KV-cache compression techniques are difficult to compare because they were evaluated on different models, tasks, budgets, and serving stacks. This paper presents a workload-aware benchmark of representative KV-cache optimization mechanisms spanning quantization, pruning, and merging, including KIVI, TurboQuant, SnapKV, and CaM, evaluated on LongBench-style multi-document QA, single-document QA, few-shot learning, and summarization workloads using Llama-3.1-8B-Instruct and Mistral-7B-Instruct-v0.3. The benchmark measures task quality, mean output throughput, mean time-to-first-token, and realized compression ratio across context-length buckets. The results show that the compression ratio alone is a poor predictor of end-to-end performance. KIVI4 provides the most stable quality across models, SnapKV delivers the strongest long-context throughput, and CaM yields large gains on selected QA workloads but exhibits substantial workload sensitivity in both quality and realized compression ratio. These findings motivate workload-aware selection of KV-cache mechanisms rather than one-size-fits-all compression and provide deployment guidance for long-context serving systems.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Benchmarking KV-Cache Optimizations across Task Quality and System Performance for Long-Context Serving",
+      "raw_summary": "arXiv:2607.05399v1 Announce Type: new Abstract: Large language model serving is increasingly limited by KV-cache growth under long-context workloads, yet existing KV-cache compression techniques are difficult to compare because they were evaluated on different models, tasks, budgets, and serving stacks. This paper presents a workload-aware benchmark of representative KV-cache optimization mechanisms spanning quantization, pruning, and merging, including KIVI, TurboQuant, SnapKV, and CaM, evaluated on LongBench-style multi-document QA, single-document QA, few-shot learning, and summarization workloads using Llama-3.1-8B-Instruct and Mistral-7B-Instruct-v0.3. The benchmark measures task quality, mean output throughput, mean time-to-first-token, and realized compression ratio across context-length buckets. The results show that the compression ratio alone is a poor predictor of end-to-end performance. KIVI4 provides the most stable quality across models, SnapKV delivers the strongest long-context throughput, and CaM yields large gains on selected QA workloads but exhibits substantial workload sensitivity in both quality and realized compression ratio. These findings motivate workload-aware selection of KV-cache mechanisms rather than one-size-fits-all compression and provide deployment guidance for long-context serving systems.",
+      "score": 78,
+      "primary": "infra",
+      "tags": [
+        "kv-cache",
+        "benchmarking",
+        "optimización",
+        "llm"
+      ],
+      "heuristic_score": 97,
+      "url": "https://arxiv.org/abs/2607.05399",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 97,
+      "_rid": 2,
+      "llm_score": 75,
+      "why": "Estudio crítico sobre la eficiencia en servir contextos largos, comparando técnicas de cuantización y poda.",
+      "title_es": "Evaluación de optimizaciones de KV-Cache en calidad de tareas y rendimiento del sistema para contextos largos",
+      "entities": [
+        "Llama-3.1-8B-Instruct",
+        "Mistral-7B-Instruct",
+        "Benchmarking",
+        "Cache Optimizations",
+        "Task Quality",
+        "System Performance",
+        "Long",
+        "Context Serving"
+      ],
+      "noise_penalty": 0,
+      "final_score": 78,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "See Autonomous Chip Design in Action with ChipAgents at DAC 2026",
+      "link": "https://semiwiki.com/eda/chipagents-ai/370911-see-autonomous-chip-design-in-action-with-chipagents-at-dac-2026/",
+      "published": "2026-07-07T21:00:12+00:00",
+      "summary": "Making the AI wave at DAC 2026 in Long Beach DAC comes to Long Beach for the first time in 2026, with artificial intelligence expected to be one of the central topics across the conference program and exhibition floor. For semiconductor design and verification teams, the discussion has moved beyond whether AI can assist engineers.&8230; Read More The post See Autonomous Chip Design in Action with ChipAgents at DAC 2026 appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "See Autonomous Chip Design in Action with ChipAgents at DAC 2026",
+      "raw_summary": "Making the AI wave at DAC 2026 in Long Beach DAC comes to Long Beach for the first time in 2026, with artificial intelligence expected to be one of the central topics across the conference program and exhibition floor. For semiconductor design and verification teams, the discussion has moved beyond whether AI can assist engineers.&#8230; Read More The post See Autonomous Chip Design in Action with ChipAgents at DAC 2026 appeared first on SemiWiki .",
+      "score": 74,
+      "primary": "infra",
+      "tags": [
+        "eda",
+        "chips",
+        "automatización",
+        "dac2026"
+      ],
+      "heuristic_score": 28,
+      "url": "https://semiwiki.com/eda/chipagents-ai/370911-see-autonomous-chip-design-in-action-with-chipagents-at-dac-2026/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 28,
+      "_rid": 13,
+      "llm_score": 82,
+      "why": "Muestra el avance hacia el diseño de chips autónomo mediante agentes de IA, transformando el flujo de trabajo EDA.",
+      "title_es": "Vea el diseño autónomo de chips en acción con ChipAgents en DAC 2026",
+      "entities": [
+        "ChipAgents",
+        "DAC 2026",
+        "DAC",
+        "See Autonomous Chip",
+        "Design",
+        "Action"
+      ],
+      "noise_penalty": 0,
+      "final_score": 74,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "How Personas Can Influence Agents to Play Split or Steal",
+      "link": "https://arxiv.org/abs/2607.05398",
+      "published": "2026-07-08T04:00:00+00:00",
+      "summary": "arXiv:2607.05398v1 Announce Type: new Abstract: Personas are often employed to guide large language model agents, yet their effectiveness in shaping strategic behavior in social dilemma settings remains uncertain. To address this, we examined the impact of persona prompts in an iterated Split or Steal game where persona-driven agents interacted with a Virtual Human (VH) controlled by a fixed prompt. Agents were instantiated from four open models (Ministral 3:3b, phi4:14b, Gemma3:12b, and Gemma4:e4b) at two temperature settings (0.3 and 0.7) and deterministic decision with zero temperature, while the VH was powered by GPT 4.1 mini. Across 160 sessions of 15 rounds each conducted in European Portuguese, mutual Split outcomes dominated (roughly 74 percent of rounds), with exploitation occurring in fewer than 11 percent of rounds. Model choice significantly influenced behavior: phi4 and Ministral 3:3b remained consistently cooperative across temperatures, whereas Gemma3:12b and Gemma4:e4b exhibited more varied strategies and outcomes. Analyses based on Big Five personality traits indicated that Prosocial and Principled personas were most consistently cooperative, while Analytical personas were more likely to exploit the VH. Topic analysis revealed that friendship-related dialogue aligns with Split decisions, whereas money and vengeance-related content is more prevalent in Steal outcomes; sentiment labels were predominantly neutral or happy and provided limited additional explanatory value. These findings characterize the interaction between persona prompts and model differences in repeated trust games and serve as a baseline for planned virtual reality studies involving human participants interacting with an embodied VH.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "How Personas Can Influence Agents to Play Split or Steal",
+      "raw_summary": "arXiv:2607.05398v1 Announce Type: new Abstract: Personas are often employed to guide large language model agents, yet their effectiveness in shaping strategic behavior in social dilemma settings remains uncertain. To address this, we examined the impact of persona prompts in an iterated Split or Steal game where persona-driven agents interacted with a Virtual Human (VH) controlled by a fixed prompt. Agents were instantiated from four open models (Ministral 3:3b, phi4:14b, Gemma3:12b, and Gemma4:e4b) at two temperature settings (0.3 and 0.7) and deterministic decision with zero temperature, while the VH was powered by GPT 4.1 mini. Across 160 sessions of 15 rounds each conducted in European Portuguese, mutual Split outcomes dominated (roughly 74 percent of rounds), with exploitation occurring in fewer than 11 percent of rounds. Model choice significantly influenced behavior: phi4 and Ministral 3:3b remained consistently cooperative across temperatures, whereas Gemma3:12b and Gemma4:e4b exhibited more varied strategies and outcomes. Analyses based on Big Five personality traits indicated that Prosocial and Principled personas were most consistently cooperative, while Analytical personas were more likely to exploit the VH. Topic analysis revealed that friendship-related dialogue aligns with Split decisions, whereas money and vengeance-related content is more prevalent in Steal outcomes; sentiment labels were predominantly neutral or happy and provided limited additional explanatory value. These findings characterize the interaction between persona prompts and model differences in repeated trust games and serve as a baseline for planned virtual reality studies involving human participants interacting with an embodied VH.",
+      "score": 69,
+      "primary": "models",
+      "tags": [
+        "agentes",
+        "teoría de juegos",
+        "personas",
+        "comportamiento"
+      ],
+      "heuristic_score": 94,
+      "url": "https://arxiv.org/abs/2607.05398",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 94,
+      "_rid": 4,
+      "llm_score": 65,
+      "why": "Analiza cómo los roles asignados influyen en la toma de decisiones estratégicas de agentes de IA en dilemas sociales.",
+      "title_es": "Cómo los perfiles de personalidad pueden influir en los agentes al jugar a Split o Steal",
+      "entities": [
+        "Ministral",
+        "Gemma3",
+        "GPT 4.1 mini",
+        "How Personas Can",
+        "Influence Agents",
+        "Play Split",
+        "Steal"
+      ],
+      "noise_penalty": 0,
+      "final_score": 69,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "We’re strengthening our presence in Alabama through new investments and community support.",
+      "link": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/alabama-investment-june-2026/",
+      "published": "2026-06-15T15:00:00+00:00",
+      "summary": "Google has announced a $1.5 billion investment for 2026 and 2027 to expand its data center campus in Jackson County, Alabama. Operating since 2019 on a repurposed former…",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "We’re strengthening our presence in Alabama through new investments and community support.",
+      "raw_summary": "Google has announced a $1.5 billion investment for 2026 and 2027 to expand its data center campus in Jackson County, Alabama. Operating since 2019 on a repurposed former…",
+      "score": 68,
+      "primary": "invest",
+      "tags": [
+        "infraestructura",
+        "google",
+        "datacenters",
+        "inversión"
+      ],
+      "heuristic_score": 39,
+      "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/alabama-investment-june-2026/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 39,
+      "_rid": 11,
+      "llm_score": 92,
+      "why": "Inversión masiva de 1.500 millones para ampliar la capacidad de cómputo en Alabama, clave para el escalado de IA.",
+      "title_es": "Reforzamos nuestra presencia en Alabama mediante nuevas inversiones y apoyo comunitario",
+      "entities": [
+        "Google",
+        "Alabama"
+      ],
+      "noise_penalty": 16,
+      "final_score": 68,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(16)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Expanding Managed Agents in Gemini API: background tasks, remote MCP and more",
+      "link": "https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api/",
+      "published": "2026-07-07T08:54:00+00:00",
+      "summary": "Managed agents feature bundle launch",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Expanding Managed Agents in Gemini API:  background tasks, remote MCP and more",
+      "raw_summary": "Managed agents feature bundle launch",
+      "score": 67,
+      "primary": "infra",
+      "tags": [
+        "api",
+        "gemini",
+        "agentes",
+        "mcp"
+      ],
+      "heuristic_score": 63,
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 63,
+      "_rid": 6,
+      "llm_score": 72,
+      "why": "Google expande su ecosistema de agentes gestionados añadiendo tareas en segundo plano y protocolos remotos.",
+      "title_es": "Expansión de agentes gestionados en la API de Gemini: tareas en segundo plano y MCP remoto",
+      "entities": [
+        "Google",
+        "Gemini API",
+        "Gemini",
+        "MCP",
+        "Expanding Managed Agents"
+      ],
+      "noise_penalty": 4,
+      "final_score": 67,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(4)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Prompt Robustness Is Task-Dependent: Comparing Objective and Belief-Style Questions in LLM Evaluation",
+      "link": "https://arxiv.org/abs/2607.05554",
+      "published": "2026-07-08T04:00:00+00:00",
+      "summary": "arXiv:2607.05554v1 Announce Type: new Abstract: Survey-style evaluations of large language models often treat a prompted response as a measure of a model's values or beliefs. This assumption is particularly fragile when responses are read as evidence of political values, social attitudes, or beliefs. We ask whether prompt robustness differs between objective questions with fixed answers and subjective questions that ask for opinions or values. We evaluate four instruction-tuned model families on three objective datasets (MMLU, ARC, and CulturalBench) and three subjective datasets (Political Compass Test, ValueBench, and World Values Survey). For each question/statement, we apply multiple types of prompt changes, such as variations in wording, framing, and format, and measure whether the model gives the same answer across variants. Using a binomial generalized estimating equation, we find significant effects of model, dataset, prompt category, and their interactions. The dataset type effect is also significant, and the interaction between dataset type and prompt category is large. These results show that prompt robustness depends on the question type, the prompt change, and the model.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Prompt Robustness Is Task-Dependent: Comparing Objective and Belief-Style Questions in LLM Evaluation",
+      "raw_summary": "arXiv:2607.05554v1 Announce Type: new Abstract: Survey-style evaluations of large language models often treat a prompted response as a measure of a model's values or beliefs. This assumption is particularly fragile when responses are read as evidence of political values, social attitudes, or beliefs. We ask whether prompt robustness differs between objective questions with fixed answers and subjective questions that ask for opinions or values. We evaluate four instruction-tuned model families on three objective datasets (MMLU, ARC, and CulturalBench) and three subjective datasets (Political Compass Test, ValueBench, and World Values Survey). For each question/statement, we apply multiple types of prompt changes, such as variations in wording, framing, and format, and measure whether the model gives the same answer across variants. Using a binomial generalized estimating equation, we find significant effects of model, dataset, prompt category, and their interactions. The dataset type effect is also significant, and the interaction between dataset type and prompt category is large. These results show that prompt robustness depends on the question type, the prompt change, and the model.",
+      "score": 66,
+      "primary": "models",
+      "tags": [
+        "robustez",
+        "prompts",
+        "evaluación",
+        "subjetividad"
+      ],
+      "heuristic_score": 53,
+      "url": "https://arxiv.org/abs/2607.05554",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 53,
+      "_rid": 8,
+      "llm_score": 68,
+      "why": "Demuestra que la robustez de los prompts varía drásticamente entre preguntas objetivas y opiniones subjetivas.",
+      "title_es": "La robustez del prompt depende de la tarea: comparación de preguntas objetivas y de creencias en la evaluación de LLM",
+      "entities": [
+        "MMLU",
+        "ARC",
+        "ValueBench",
+        "Prompt Robustness Is",
+        "Task",
+        "Dependent",
+        "Comparing Objective",
+        "Belief"
+      ],
+      "noise_penalty": 0,
+      "final_score": 66,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Demonstrating the EasyAI ECO Suite – An AI-Powered Functional ECO Solution at DAC 2026",
+      "link": "https://semiwiki.com/eda/easy-logic/370861-demonstrating-the-easyai-eco-suite-an-ai-powered-functional-eco-solution-at-dac-2026/",
+      "published": "2026-07-07T13:00:06+00:00",
+      "summary": "Easy-Logic , a leading provider of high-performance Engineering Change Order (ECO) solutions in Electronic Design Automation (EDA), will showcase its latest innovation — the EasyAI ECO Suite — at DAC in Los Angeles, July 27–29, 2026. This intelligent ECO solution integrates AI engines into the entire ECO workflow and systematically&8230; Read More The post Demonstrating the EasyAI ECO Suite – An AI-Powered Functional ECO Solution at DAC 2026 appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "Demonstrating the EasyAI ECO Suite – An AI-Powered Functional ECO Solution at DAC 2026",
+      "raw_summary": "Easy-Logic , a leading provider of high-performance Engineering Change Order (ECO) solutions in Electronic Design Automation (EDA), will showcase its latest innovation — the EasyAI ECO Suite — at DAC in Los Angeles, July 27–29, 2026. This intelligent ECO solution integrates AI engines into the entire ECO workflow and systematically&#8230; Read More The post Demonstrating the EasyAI ECO Suite – An AI-Powered Functional ECO Solution at DAC 2026 appeared first on SemiWiki .",
+      "score": 66,
+      "primary": "infra",
+      "tags": [
+        "eda",
+        "eco",
+        "automatización",
+        "chips"
+      ],
+      "heuristic_score": 22,
+      "url": "https://semiwiki.com/eda/easy-logic/370861-demonstrating-the-easyai-eco-suite-an-ai-powered-functional-eco-solution-at-dac-2026/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 22,
+      "_rid": 15,
+      "llm_score": 74,
+      "why": "Integración de motores de IA en flujos de diseño de hardware para optimizar cambios de ingeniería (ECO).",
+      "title_es": "Demostración de la suite EasyAI ECO: una solución ECO funcional impulsada por IA en DAC 2026",
+      "entities": [
+        "Easy-Logic",
+        "EasyAI ECO Suite",
+        "ECO",
+        "DAC",
+        "Demonstrating",
+        "Suite",
+        "Powered Functional",
+        "Solution"
+      ],
+      "noise_penalty": 0,
+      "final_score": 66,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Most LLM Conformity Needs No Speaker: Measuring the Speaker-Free Floor in Peer-Pressure Benchmarks",
+      "link": "https://arxiv.org/abs/2607.05545",
+      "published": "2026-07-08T04:00:00+00:00",
+      "summary": "arXiv:2607.05545v1 Announce Type: new Abstract: LLM conformity is often used to describe cases where a model changes a correct answer toward a peer or group response. We show that most of this apparent conformity survives even after the peer is removed. The reason is a confound: standard conformity prompts mix two cues at once, the presence of a speaker and the repeated wrong answer itself. Existing benchmarks vary these cues together, so they cannot tell how much of the revision actually depends on the speaker. We introduce a no-source condition: the same asserted answer with the explicit speaker removed. Across six open-weight LLMs and seven QA and reasoning datasets, this condition alone causes harmful revision in $66.5\\%$ of initially correct cases, compared with $10.3\\%$ under a plain re-ask. The effect also remains when the repeated answer is paraphrased and when answer options are hidden in an open-ended setting. Source framing mainly modulates this floor: expert-panel framing raises it, while minimal person labels do not reliably raise it. When models flip, they are usually confidently wrong, and simple recalibration does not recover the original answer. Source attribution still matters, but it should be measured as an increment above this speaker-free floor. The methodological lesson is that conformity benchmarks should first measure what remains after the speaker is removed; without this step, benchmarks may mistake repeated text for social influence.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Most LLM Conformity Needs No Speaker: Measuring the Speaker-Free Floor in Peer-Pressure Benchmarks",
+      "raw_summary": "arXiv:2607.05545v1 Announce Type: new Abstract: LLM conformity is often used to describe cases where a model changes a correct answer toward a peer or group response. We show that most of this apparent conformity survives even after the peer is removed. The reason is a confound: standard conformity prompts mix two cues at once, the presence of a speaker and the repeated wrong answer itself. Existing benchmarks vary these cues together, so they cannot tell how much of the revision actually depends on the speaker. We introduce a no-source condition: the same asserted answer with the explicit speaker removed. Across six open-weight LLMs and seven QA and reasoning datasets, this condition alone causes harmful revision in $66.5\\%$ of initially correct cases, compared with $10.3\\%$ under a plain re-ask. The effect also remains when the repeated answer is paraphrased and when answer options are hidden in an open-ended setting. Source framing mainly modulates this floor: expert-panel framing raises it, while minimal person labels do not reliably raise it. When models flip, they are usually confidently wrong, and simple recalibration does not recover the original answer. Source attribution still matters, but it should be measured as an increment above this speaker-free floor. The methodological lesson is that conformity benchmarks should first measure what remains after the speaker is removed; without this step, benchmarks may mistake repeated text for social influence.",
+      "score": 63,
+      "primary": "models",
+      "tags": [
+        "conformidad",
+        "peer-pressure",
+        "psicología",
+        "benchmarking"
+      ],
+      "heuristic_score": 49,
+      "url": "https://arxiv.org/abs/2607.05545",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 49,
+      "_rid": 9,
+      "llm_score": 66,
+      "why": "Revela que la supuesta conformidad de los LLM es a menudo un artefacto del prompt y no influencia social real.",
+      "title_es": "La mayoría de la conformidad en LLM no necesita hablante: medición del suelo sin fuente en benchmarks de presión de grupo",
+      "entities": [
+        "arXiv",
+        "Most",
+        "Conformity Needs No",
+        "Speaker",
+        "Measuring",
+        "Free Floor",
+        "Peer",
+        "Pressure Benchmarks"
+      ],
+      "noise_penalty": 0,
+      "final_score": 63,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Statistically Meaningful Geometry and Gauge Symmetry Breaking: A Geometric Foundation for Scientific Discovery and Intelligence Emergence",
+      "link": "https://arxiv.org/abs/2607.05436",
+      "published": "2026-07-08T04:00:00+00:00",
+      "summary": "arXiv:2607.05436v1 Announce Type: new Abstract: The rapid scaling of over-parameterized machine learning architectures, particularly LLMs, raises a profound crisis: do these systems exhibit genuine intelligence, or are they merely sophisticated statistical pattern matchers? Classical flat Euclidean statistics cannot differentiate continuous interpolation from the autonomous discovery of novel causal laws. To resolve this, we introduce Statistically Meaningful Geometry (SMG), a framework modeling over-parameterized learning systems as infinite-dimensional non-parametric Orlicz fiber bundles. We prove that under persistent out-of-distribution (OOD) stimuli governed by unmodeled causal mechanisms, continuous optimization fails. Unmodeled variance is rejected by the visible horizontal base manifold, leaking into the unobservable vertical fiber space and generating an accumulation of Active Acausal Tension. Driven by the statistical manifold's non-linear curvature, this tension inevitably strikes a conjugate focal boundary ($T_{\\text{crit}} = \\pi^2 / K_{\\text{max}}$), triggering localized volumetric collapse and a catastrophic matrix singularity ($[G_f]^{-1} \\to \\infty$). We demonstrate this geometric breakdown acts as the strict non-equilibrium trigger for a Gauge Symmetry Break (GSB). The system purges hidden tension from unobservable gauge redundancies, spontaneously crystallizing a new, mathematically independent horizontal coordinate axis. This non-parametric phase transition registers as a discrete $+1.0$ integer step-jump in observable Structural G-Entropy. By decoupling parameter charts and subjecting emergent axes to a Minimal Energy Path Criterion and a Causal Invariance Filter, we distinguish genuine discovery from malignant hallucinations. Ultimately, SMG provides a parameter-free, falsifiable dashboard to mathematically certify true intelligence, transforming AI for Science into an engine of autonomous paradigm shifts.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Statistically Meaningful Geometry and Gauge Symmetry Breaking: A Geometric Foundation for Scientific Discovery and Intelligence Emergence",
+      "raw_summary": "arXiv:2607.05436v1 Announce Type: new Abstract: The rapid scaling of over-parameterized machine learning architectures, particularly LLMs, raises a profound crisis: do these systems exhibit genuine intelligence, or are they merely sophisticated statistical pattern matchers? Classical flat Euclidean statistics cannot differentiate continuous interpolation from the autonomous discovery of novel causal laws. To resolve this, we introduce Statistically Meaningful Geometry (SMG), a framework modeling over-parameterized learning systems as infinite-dimensional non-parametric Orlicz fiber bundles. We prove that under persistent out-of-distribution (OOD) stimuli governed by unmodeled causal mechanisms, continuous optimization fails. Unmodeled variance is rejected by the visible horizontal base manifold, leaking into the unobservable vertical fiber space and generating an accumulation of Active Acausal Tension. Driven by the statistical manifold's non-linear curvature, this tension inevitably strikes a conjugate focal boundary ($T_{\\text{crit}} = \\pi^2 / K_{\\text{max}}$), triggering localized volumetric collapse and a catastrophic matrix singularity ($[G_f]^{-1} \\to \\infty$). We demonstrate this geometric breakdown acts as the strict non-equilibrium trigger for a Gauge Symmetry Break (GSB). The system purges hidden tension from unobservable gauge redundancies, spontaneously crystallizing a new, mathematically independent horizontal coordinate axis. This non-parametric phase transition registers as a discrete $+1.0$ integer step-jump in observable Structural G-Entropy. By decoupling parameter charts and subjecting emergent axes to a Minimal Energy Path Criterion and a Causal Invariance Filter, we distinguish genuine discovery from malignant hallucinations. Ultimately, SMG provides a parameter-free, falsifiable dashboard to mathematically certify true intelligence, transforming AI for Science into an engine of autonomous paradigm shifts.",
+      "score": 59,
+      "primary": "models",
+      "tags": [
+        "geometría",
+        "teoría",
+        "inteligencia",
+        "emergencia"
+      ],
+      "heuristic_score": 53,
+      "url": "https://arxiv.org/abs/2607.05436",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 53,
+      "_rid": 7,
+      "llm_score": 60,
+      "why": "Propuesta teórica para distinguir si los LLM poseen inteligencia real o son meros estimadores estadísticos.",
+      "title_es": "Geometría estadísticamente significativa y ruptura de simetría: una base geométrica para la emergencia de inteligencia",
+      "entities": [
+        "SMG",
+        "Statistically Meaningful Geometry",
+        "Gauge Symmetry Breaking",
+        "Geometric Foundation",
+        "Scientific Discovery",
+        "Intelligence Emergence"
+      ],
+      "noise_penalty": 0,
+      "final_score": 59,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "From Graphs to Gradients: Physics-Inspired Structural Attribution for Cyber-Physical IoT Systems and Beyond",
+      "link": "https://arxiv.org/abs/2607.05563",
+      "published": "2026-07-08T04:00:00+00:00",
+      "summary": "arXiv:2607.05563v1 Announce Type: new Abstract: Interpretable explanation methods in Artificial Intelligence aim to uncover the underlying causes and their effects, enabling a deeper understanding of why a system behaves in a certain way under different inputs. Unlike traditional explainability methods, which mainly highlight correlations between input and output variables, causal explanation focuses on interventional questions. By doing so, it provides more robust insights, helping users understand automated decisions, especially in high-risk domains. Recovering an explicit directed causal structure, however, is often impractical in large-scale, hybrid cyber-physical systems with feedback loops and partial observability. This paper introduces a novel framework inspired by statistical mechanics that instead models variable dependencies through an undirected, energy-based representation of cyber-physical IoT systems. Our approach enables rigorous dependency-aware attribution by analysing how variations in the energy landscape reflect the influence of individual components, without recovering a directed causal graph. It also supports reasoning about perturbation effects across hybrid interactions, providing reliable explanations of abnormal behaviours. We empirically examined our framework through simulations on an industrial IoT testbed with hybrid continuous and discrete variables, demonstrating higher attribution accuracy, improved robustness and better scalability than state-of-the-art graph-based approaches. While the attributions are not intended to fully recover the system's generative dynamics, they provide valuable, dependency-aware explanations supporting both human interpretation and downstream predictive and diagnostic tasks. Although demonstrated in industrial IoT security, our framework also applies to other high-dimensional cyber-physical and socio-technical systems requiring principled, structural explanations.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "From Graphs to Gradients: Physics-Inspired Structural Attribution for Cyber-Physical IoT Systems and Beyond",
+      "raw_summary": "arXiv:2607.05563v1 Announce Type: new Abstract: Interpretable explanation methods in Artificial Intelligence aim to uncover the underlying causes and their effects, enabling a deeper understanding of why a system behaves in a certain way under different inputs. Unlike traditional explainability methods, which mainly highlight correlations between input and output variables, causal explanation focuses on interventional questions. By doing so, it provides more robust insights, helping users understand automated decisions, especially in high-risk domains. Recovering an explicit directed causal structure, however, is often impractical in large-scale, hybrid cyber-physical systems with feedback loops and partial observability. This paper introduces a novel framework inspired by statistical mechanics that instead models variable dependencies through an undirected, energy-based representation of cyber-physical IoT systems. Our approach enables rigorous dependency-aware attribution by analysing how variations in the energy landscape reflect the influence of individual components, without recovering a directed causal graph. It also supports reasoning about perturbation effects across hybrid interactions, providing reliable explanations of abnormal behaviours. We empirically examined our framework through simulations on an industrial IoT testbed with hybrid continuous and discrete variables, demonstrating higher attribution accuracy, improved robustness and better scalability than state-of-the-art graph-based approaches. While the attributions are not intended to fully recover the system's generative dynamics, they provide valuable, dependency-aware explanations supporting both human interpretation and downstream predictive and diagnostic tasks. Although demonstrated in industrial IoT security, our framework also applies to other high-dimensional cyber-physical and socio-technical systems requiring principled, structural explanations.",
+      "score": 59,
+      "primary": "models",
+      "tags": [
+        "xai",
+        "causalidad",
+        "iot",
+        "física"
+      ],
+      "heuristic_score": 40,
+      "url": "https://arxiv.org/abs/2607.05563",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 40,
+      "_rid": 10,
+      "llm_score": 62,
+      "why": "Método de explicabilidad inspirado en la física para sistemas IoT complejos donde la causalidad es difícil de trazar.",
+      "title_es": "De grafos a gradientes: atribución estructural inspirada en la física para sistemas IoT ciber-físicos",
+      "entities": [
+        "IoT",
+        "From Graphs",
+        "Gradients",
+        "Physics",
+        "Inspired Structural Attribution",
+        "Cyber",
+        "Physical",
+        "Systems"
+      ],
+      "noise_penalty": 0,
+      "final_score": 59,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Text Distance from Nested and Hierarchical Repetitions: A Compression-Based Perspective",
+      "link": "https://arxiv.org/abs/2607.05416",
+      "published": "2026-07-08T04:00:00+00:00",
+      "summary": "arXiv:2607.05416v1 Announce Type: new Abstract: We present a new method for structural sequence analysis grounded in Algorithmic Information Theory (AIT). At its core is the Ladderpath approach, which extracts nested and hierarchical relationships among repeated substructures in linguistic sequences -- an instantiation of AIT's principle of describing data through minimal generative programs. These structures are then used to define three distance measures: a normalized compression distance (NCD), and two alternative distances derived directly from the Ladderpath representation. Integrated with a $k$-nearest neighbor classifier, these distances achieve strong and consistent performance across in-distribution, out-of-distribution (OOD), and few-shot text classification tasks. In particular, all three methods outperform both gzip-based NCD and BERT under OOD and low-resource settings. These results demonstrate that the structured representations captured by Ladderpath preserve intrinsic properties of sequences and provide a lightweight, interpretable, and training-free alternative for text modeling. This work highlights the potential of AIT-based approaches for structural and domain-agnostic sequence understanding.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Text Distance from Nested and Hierarchical Repetitions: A Compression-Based Perspective",
+      "raw_summary": "arXiv:2607.05416v1 Announce Type: new Abstract: We present a new method for structural sequence analysis grounded in Algorithmic Information Theory (AIT). At its core is the Ladderpath approach, which extracts nested and hierarchical relationships among repeated substructures in linguistic sequences -- an instantiation of AIT's principle of describing data through minimal generative programs. These structures are then used to define three distance measures: a normalized compression distance (NCD), and two alternative distances derived directly from the Ladderpath representation. Integrated with a $k$-nearest neighbor classifier, these distances achieve strong and consistent performance across in-distribution, out-of-distribution (OOD), and few-shot text classification tasks. In particular, all three methods outperform both gzip-based NCD and BERT under OOD and low-resource settings. These results demonstrate that the structured representations captured by Ladderpath preserve intrinsic properties of sequences and provide a lightweight, interpretable, and training-free alternative for text modeling. This work highlights the potential of AIT-based approaches for structural and domain-agnostic sequence understanding.",
+      "score": 50,
+      "primary": "models",
+      "tags": [
+        "ait",
+        "compresión",
+        "algoritmos",
+        "lingüística"
+      ],
+      "heuristic_score": 23,
+      "url": "https://arxiv.org/abs/2607.05416",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 23,
+      "_rid": 14,
+      "llm_score": 55,
+      "why": "Nueva técnica de análisis estructural basada en la teoría de la información algorítmica para secuencias de texto.",
+      "title_es": "Distancia de texto a partir de repeticiones anidadas y jerárquicas: una perspectiva basada en la compresión",
+      "entities": [
+        "Ladderpath",
+        "Text Distance",
+        "Nested",
+        "Hierarchical Repetitions",
+        "Compression",
+        "Based Perspective"
+      ],
+      "noise_penalty": 0,
+      "final_score": 50,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    }
+  ]
+}
