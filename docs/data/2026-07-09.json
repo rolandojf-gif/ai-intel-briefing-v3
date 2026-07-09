@@ -1,0 +1,664 @@
+{
+  "date": "2026-07-09",
+  "score_avg": 68.2,
+  "primary_dist": {
+    "models": 11,
+    "infra": 2,
+    "misc": 1,
+    "invest": 1
+  },
+  "top_entities": [
+    {
+      "entity": "DeepMind",
+      "count": 3
+    },
+    {
+      "entity": "Model",
+      "count": 2
+    },
+    {
+      "entity": "When Does In",
+      "count": 1
+    },
+    {
+      "entity": "Context Search Help",
+      "count": 1
+    },
+    {
+      "entity": "Sampling",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "Gemma 4 introduce una arquitectura multimodal unificada sin codificadores externos para mayor eficiencia.",
+      "Gemini 3.5 Flash habilita el uso de ordenadores, democratizando agentes autónomos en modelos de baja latencia.",
+      "TriRoute propone optimizar simultáneamente MoE, MoD y caché KV para reducir costes operativos de inferencia.",
+      "Nuevos benchmarks como AgentLens evalúan la trayectoria completa del agente y no solo el resultado final binario.",
+      "Caspia Technologies integra agentes en el diseño de chips para automatizar la verificación de seguridad en silicio."
+    ],
+    "risks": [
+      "Los modelos de predicción conforme en farmacia fallan al detectar clases minoritarias como toxicidades raras.",
+      "Persistencia de sesgos dialécticos que fuerzan la corrección automática de variantes lingüísticas no estándar.",
+      "La falta de marcos de seguridad robustos para sistemas multi-agente ante la creciente inversión en autonomía."
+    ],
+    "watch": [
+      "Despliegue comercial de capacidades de uso de ordenador en modelos ligeros tipo Flash.",
+      "Transición hacia arquitecturas multimodal 'encoder-free' para simplificar el procesamiento de datos mixtos.",
+      "Resultados de la convocatoria de 10 millones de dólares de DeepMind para investigación en seguridad multi-agente."
+    ],
+    "entities_top": [
+      "Google DeepMind",
+      "NVIDIA",
+      "Caspia Technologies"
+    ]
+  },
+  "items": [
+    {
+      "title": "When Does In-Context Search Help? A Sampling-Complexity Theory of Reflection-Driven Reasoning",
+      "link": "https://arxiv.org/abs/2607.06720",
+      "published": "2026-07-09T04:00:00+00:00",
+      "summary": "arXiv:2607.06720v1 Announce Type: new Abstract: Training large language models (LLMs) with extended reasoning has enabled in-context search, in which models iteratively generate, critique, and revise solution attempts. We provide a theoretical analysis of in-context search by modeling it as approximate inference over reasoning traces, where the base model defines a prior and self-reflection provides feedback for posterior updates, and study the resulting inference-time sampling complexity - the number of sequential attempts needed to achieve high success probability. We show that when reflections reliably localize early mistakes, in-context search can yield exponential improvements over the base model, solving problems with exponentially small zero-shot pass rates using only a polynomial number of sequential attempts, whereas when this property fails, conditioning on past attempts offers no asymptotic benefit over parallel sampling. We further show that these gains are robust and learnable: approximate posterior updates suffice, and cross-entropy training on search rollouts recovers the required behavior with polynomial sample complexity. Finally, we show that under a stagewise abstraction of reinforcement learning with verifiable rewards, the optimal policy extension implements the same posterior reweighting rule. We validate key qualitative predictions of the theory on real large reasoning models.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "When Does In-Context Search Help? A Sampling-Complexity Theory of Reflection-Driven Reasoning",
+      "raw_summary": "arXiv:2607.06720v1 Announce Type: new Abstract: Training large language models (LLMs) with extended reasoning has enabled in-context search, in which models iteratively generate, critique, and revise solution attempts. We provide a theoretical analysis of in-context search by modeling it as approximate inference over reasoning traces, where the base model defines a prior and self-reflection provides feedback for posterior updates, and study the resulting inference-time sampling complexity - the number of sequential attempts needed to achieve high success probability. We show that when reflections reliably localize early mistakes, in-context search can yield exponential improvements over the base model, solving problems with exponentially small zero-shot pass rates using only a polynomial number of sequential attempts, whereas when this property fails, conditioning on past attempts offers no asymptotic benefit over parallel sampling. We further show that these gains are robust and learnable: approximate posterior updates suffice, and cross-entropy training on search rollouts recovers the required behavior with polynomial sample complexity. Finally, we show that under a stagewise abstraction of reinforcement learning with verifiable rewards, the optimal policy extension implements the same posterior reweighting rule. We validate key qualitative predictions of the theory on real large reasoning models.",
+      "score": 88,
+      "primary": "models",
+      "tags": [
+        "reasoning",
+        "inference-time",
+        "theory"
+      ],
+      "heuristic_score": 85,
+      "url": "https://arxiv.org/abs/2607.06720",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 85,
+      "_rid": 5,
+      "llm_score": 88,
+      "why": "Proporciona base teórica al éxito de modelos con razonamiento extendido, demostrando mejoras exponenciales mediante búsqueda en contexto y reflexión.",
+      "title_es": "¿Cuándo ayuda la búsqueda en contexto? Una teoría de complejidad de muestreo para el razonamiento impulsado por reflexión",
+      "entities": [
+        "When Does In",
+        "Context Search Help",
+        "Sampling",
+        "Complexity Theory",
+        "Reflection",
+        "Driven Reasoning"
+      ],
+      "noise_penalty": 0,
+      "final_score": 88,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "geopolitics_power"
+    },
+    {
+      "title": "TriRoute: Unified Learned Routing for Joint Adaptive Attention, Experts, and KV-Cache Allocation",
+      "link": "https://arxiv.org/abs/2607.06601",
+      "published": "2026-07-09T04:00:00+00:00",
+      "summary": "arXiv:2607.06601v1 Announce Type: new Abstract: Conditional computation can decouple language model quality from per-token inference cost, yet leading techniques act on a single axis in isolation: Mixture-of-Experts (MoE) sparsifies the FFN, Mixture-of-Depths (MoD) skips whole transformer blocks, and KV-cache quantization compresses attention memory. We argue these three decisions (attention resolution, expert selection, and cache bit-width) are strongly coupled and should be made jointly: a token rare enough to warrant full attention may also need high-precision caching regardless of which expert processes it. We introduce TriRoute, a single lightweight controller shared across all three axes that, for every token at every layer, emits a coordinated policy: (i) an attention mode (skip/local/full), (ii) a sparse set of FFN experts (with a null expert recovering MoD), and (iii) a KV-cache bit-width. The controller trains end-to-end via a heterogeneous relaxation (Gumbel-Softmax with straight-through estimation for categorical decisions and load-balanced top-k gating for experts) under a Lagrangian budget constraint that turns the average compute and memory cost into a controllable knob. We identify a cross-axis routing-collapse cascade in naive joint training, where collapse on one axis propagates to the others, and address it with per-axis normalization and a coupling-aware balancing loss. On decoder-only models from 160M to 1.3B parameters at compute-optimal token counts, TriRoute Pareto-dominates the best independent MoD+MoE+KV-quantization combination at matched inference FLOPs and memory, while better preserving tail-case robustness on rare entities, code, and arithmetic that pure perplexity optimization erodes. Post-hoc analysis reveals interpretable structure: the controller allocates full attention and high-precision cache to sentence-initial positions, rare subwords, and named entities, while cheaply routing function words.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "TriRoute: Unified Learned Routing for Joint Adaptive Attention, Experts, and KV-Cache Allocation",
+      "raw_summary": "arXiv:2607.06601v1 Announce Type: new Abstract: Conditional computation can decouple language model quality from per-token inference cost, yet leading techniques act on a single axis in isolation: Mixture-of-Experts (MoE) sparsifies the FFN, Mixture-of-Depths (MoD) skips whole transformer blocks, and KV-cache quantization compresses attention memory. We argue these three decisions (attention resolution, expert selection, and cache bit-width) are strongly coupled and should be made jointly: a token rare enough to warrant full attention may also need high-precision caching regardless of which expert processes it. We introduce TriRoute, a single lightweight controller shared across all three axes that, for every token at every layer, emits a coordinated policy: (i) an attention mode (skip/local/full), (ii) a sparse set of FFN experts (with a null expert recovering MoD), and (iii) a KV-cache bit-width. The controller trains end-to-end via a heterogeneous relaxation (Gumbel-Softmax with straight-through estimation for categorical decisions and load-balanced top-k gating for experts) under a Lagrangian budget constraint that turns the average compute and memory cost into a controllable knob. We identify a cross-axis routing-collapse cascade in naive joint training, where collapse on one axis propagates to the others, and address it with per-axis normalization and a coupling-aware balancing loss. On decoder-only models from 160M to 1.3B parameters at compute-optimal token counts, TriRoute Pareto-dominates the best independent MoD+MoE+KV-quantization combination at matched inference FLOPs and memory, while better preserving tail-case robustness on rare entities, code, and arithmetic that pure perplexity optimization erodes. Post-hoc analysis reveals interpretable structure: the controller allocates full attention and high-precision cache to sentence-initial positions, rare subwords, and named entities, while cheaply routing function words.",
+      "score": 87,
+      "primary": "infra",
+      "tags": [
+        "inference",
+        "moe",
+        "kv-cache",
+        "optimization"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2607.06601",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 1,
+      "llm_score": 85,
+      "why": "Propone optimizar conjuntamente MoE, MoD y la cuantización de caché KV, atacando los tres cuellos de botella de la inferencia de LLM de forma unificada.",
+      "title_es": "TriRoute: Enrutamiento unificado para atención adaptativa, expertos y asignación de caché KV",
+      "entities": [
+        "TriRoute",
+        "Unified Learned Routing",
+        "Joint Adaptive Attention",
+        "Experts",
+        "Cache Allocation"
+      ],
+      "noise_penalty": 0,
+      "final_score": 87,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "AgentLens: Production-Assessed Trajectory Reviews for Coding Agent Evaluation",
+      "link": "https://arxiv.org/abs/2607.06624",
+      "published": "2026-07-09T04:00:00+00:00",
+      "summary": "arXiv:2607.06624v1 Announce Type: new Abstract: We present AgentLens, a production-assessed benchmark for interactive code agents. Most code-agent benchmarks reduce a run to a single bit -- did the task pass? -- but the people who actually use these agents experience the entire trajectory: how the agent follows instructions, uses its tools, verifies its own work, recovers from mistakes, and talks to them along the way. AgentLens evaluates that whole trajectory. It pairs formal verification, where an objective check exists, with LLM-written trajectory reviews and side-by-side comparisons, so that each run yields a readable explanation of why the score is what it is. This makes AgentLens useful for more than ranking models: we use it to diagnose model behavior, compare successive versions of our own agent, and catch product regressions in a nightly evaluation pipeline. We release the benchmark as open source at",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "AgentLens: Production-Assessed Trajectory Reviews for Coding Agent Evaluation",
+      "raw_summary": "arXiv:2607.06624v1 Announce Type: new Abstract: We present AgentLens, a production-assessed benchmark for interactive code agents. Most code-agent benchmarks reduce a run to a single bit -- did the task pass? -- but the people who actually use these agents experience the entire trajectory: how the agent follows instructions, uses its tools, verifies its own work, recovers from mistakes, and talks to them along the way. AgentLens evaluates that whole trajectory. It pairs formal verification, where an objective check exists, with LLM-written trajectory reviews and side-by-side comparisons, so that each run yields a readable explanation of why the score is what it is. This makes AgentLens useful for more than ranking models: we use it to diagnose model behavior, compare successive versions of our own agent, and catch product regressions in a nightly evaluation pipeline. We release the benchmark as open source at https://github.com/agent-lens/agent-lens-bench.",
+      "score": 83,
+      "primary": "models",
+      "tags": [
+        "agents",
+        "coding",
+        "benchmarking"
+      ],
+      "heuristic_score": 86,
+      "url": "https://arxiv.org/abs/2607.06624",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 86,
+      "_rid": 4,
+      "llm_score": 82,
+      "why": "Desplaza el foco del éxito binario a la evaluación de la trayectoria del agente, crucial para la adopción de agentes de código en producción.",
+      "title_es": "AgentLens: Revisiones de trayectoria evaluadas en producción para la validación de agentes de programación",
+      "entities": [
+        "AgentLens",
+        "Production",
+        "Assessed Trajectory Reviews",
+        "Coding Agent Evaluation"
+      ],
+      "noise_penalty": 0,
+      "final_score": 83,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Caspia Technologies is pioneering a new, agentic chip and system security approach at DAC 2026",
+      "link": "https://semiwiki.com/security/caspia-technologies/370802-caspia-dac-plan-2026/",
+      "published": "2026-07-08T17:00:20+00:00",
+      "summary": "Caspia’s advanced tools and agents blend seamlessly with existing design flows to add expert-level security verification capabilities for all design teams. Founded in 2020 and headquartered in Gainesville, Florida, Caspia brings together expertise in chip design, fabrication, test, and verification with a deep understanding&8230; Read More The post Caspia Technologies is pioneering a new, agentic chip and system security approach at DAC 2026 appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "Caspia Technologies is pioneering a new, agentic chip and system security approach at DAC 2026",
+      "raw_summary": "Caspia’s advanced tools and agents blend seamlessly with existing design flows to add expert-level security verification capabilities for all design teams. Founded in 2020 and headquartered in Gainesville, Florida, Caspia brings together expertise in chip design, fabrication, test, and verification with a deep understanding&#8230; Read More The post Caspia Technologies is pioneering a new, agentic chip and system security approach at DAC 2026 appeared first on SemiWiki .",
+      "score": 76,
+      "primary": "infra",
+      "tags": [
+        "chips",
+        "security",
+        "hardware"
+      ],
+      "heuristic_score": 39,
+      "url": "https://semiwiki.com/security/caspia-technologies/370802-caspia-dac-plan-2026/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 39,
+      "_rid": 13,
+      "llm_score": 82,
+      "why": "Aplica el paradigma de agentes a la seguridad de hardware, un área crítica para la soberanía tecnológica y la integridad de sistemas.",
+      "title_es": "Caspia Technologies pionera en un nuevo enfoque de seguridad de sistemas y chips basado en agentes en DAC 2026",
+      "entities": [
+        "Caspia Technologies",
+        "DAC"
+      ],
+      "noise_penalty": 0,
+      "final_score": 76,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "NVIDIA Nemotron Achieves Benchmark-Leading Performance With LangChain Deep Agents Harness",
+      "link": "https://blogs.nvidia.com/blog/nemotron-langchain-agents-open-stack/",
+      "published": "2026-07-08T15:00:27+00:00",
+      "summary": "NVIDIA Nemotron 3 Ultra is offering leading performance at lower cost than top closed models with the largest and most widely adopted AI agent orchestration platform. LangChain tuned its Deep Agents harness for NVIDIA Nemotron 3 Ultra, achieving the highest accuracy among open models, while completing more tasks at higher throughput and running at 10x [&8230;]",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "NVIDIA Nemotron Achieves Benchmark-Leading Performance With LangChain Deep Agents Harness",
+      "raw_summary": "NVIDIA Nemotron 3 Ultra is offering leading performance at lower cost than top closed models with the largest and most widely adopted AI agent orchestration platform. LangChain tuned its Deep Agents harness for NVIDIA Nemotron 3 Ultra, achieving the highest accuracy among open models, while completing more tasks at higher throughput and running at 10x [&#8230;]",
+      "score": 74,
+      "primary": "models",
+      "tags": [
+        "open-source",
+        "agents",
+        "orchestration"
+      ],
+      "heuristic_score": 68,
+      "url": "https://blogs.nvidia.com/blog/nemotron-langchain-agents-open-stack/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 68,
+      "_rid": 7,
+      "llm_score": 80,
+      "why": "Nemotron 3 Ultra demuestra que el stack abierto puede superar a modelos cerrados en tareas de agentes complejos con menor coste.",
+      "title_es": "NVIDIA Nemotron logra un rendimiento líder en benchmarks con el marco Deep Agents de LangChain",
+      "entities": [
+        "NVIDIA",
+        "LangChain",
+        "Nemotron",
+        "Nemotron Achieves Benchmark",
+        "Leading Performance With",
+        "Deep Agents Harness"
+      ],
+      "noise_penalty": 4,
+      "final_score": 74,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(4)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Healthier LLMs: Retrieval-Augmented Generation for Public Health Question Answering",
+      "link": "https://arxiv.org/abs/2607.06641",
+      "published": "2026-07-09T04:00:00+00:00",
+      "summary": "arXiv:2607.06641v1 Announce Type: new Abstract: Large language models (LLMs) achieve promising results on medical question answering benchmarks, yet their use in public health is constrained by hallucinations and the rapid evolution of official guidance. Retrieval-Augmented Generation (RAG) mitigates these risks by grounding responses in an explicitly maintained corpus, but end-to-end performance depends critically on retrieval configuration and on evaluation beyond multiple-choice formats. We extend PubHealthBench, a question answering (QA) benchmark of 7,929 questions derived from UK Government public health guidance, into a retrieval-augmented setting and systematically evaluate retrieval and generation choices. We compare dense, sparse, and hybrid retrieval across multiple embedding models and corpus variants, and show that hybrid retrieval consistently improves recall and ranking quality, with chunk length and topic interacting with ranking performance. Providing retrieved context substantially increases multiple-choice accuracy across a diverse set of LLMs, enabling smaller open-weight models to match or outperform larger models used without retrieval, with gains primarily driven by retrieval quality and careful context selection. To assess realistic free-form answering, we introduce a rubric-based LLM-as-a-judge covering faithfulness, completeness, clarity, and factual consistency, and validate it against dual human annotations. Judge-human agreement is strongest for faithfulness and completeness, while factual consistency and clarity are less reliably reproduced, motivating caution when interpreting those dimensions at scale. Overall, our results highlight retrieval as a primary lever for reliable public health QA and provide practical guidance for building and evaluating RAG systems grounded in official guidance.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Healthier LLMs: Retrieval-Augmented Generation for Public Health Question Answering",
+      "raw_summary": "arXiv:2607.06641v1 Announce Type: new Abstract: Large language models (LLMs) achieve promising results on medical question answering benchmarks, yet their use in public health is constrained by hallucinations and the rapid evolution of official guidance. Retrieval-Augmented Generation (RAG) mitigates these risks by grounding responses in an explicitly maintained corpus, but end-to-end performance depends critically on retrieval configuration and on evaluation beyond multiple-choice formats. We extend PubHealthBench, a question answering (QA) benchmark of 7,929 questions derived from UK Government public health guidance, into a retrieval-augmented setting and systematically evaluate retrieval and generation choices. We compare dense, sparse, and hybrid retrieval across multiple embedding models and corpus variants, and show that hybrid retrieval consistently improves recall and ranking quality, with chunk length and topic interacting with ranking performance. Providing retrieved context substantially increases multiple-choice accuracy across a diverse set of LLMs, enabling smaller open-weight models to match or outperform larger models used without retrieval, with gains primarily driven by retrieval quality and careful context selection. To assess realistic free-form answering, we introduce a rubric-based LLM-as-a-judge covering faithfulness, completeness, clarity, and factual consistency, and validate it against dual human annotations. Judge-human agreement is strongest for faithfulness and completeness, while factual consistency and clarity are less reliably reproduced, motivating caution when interpreting those dimensions at scale. Overall, our results highlight retrieval as a primary lever for reliable public health QA and provide practical guidance for building and evaluating RAG systems grounded in official guidance.",
+      "score": 70,
+      "primary": "models",
+      "tags": [
+        "rag",
+        "public-health",
+        "benchmarking"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2607.06641",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 2,
+      "llm_score": 65,
+      "why": "Mejora la fiabilidad de respuestas médicas mediante RAG y un nuevo benchmark basado en guías oficiales del Reino Unido.",
+      "title_es": "LLMs más saludables: Generación Aumentada por Recuperación para consultas de salud pública",
+      "entities": [
+        "UK Government",
+        "PubHealthBench",
+        "Healthier",
+        "Retrieval",
+        "Augmented Generation",
+        "Public Health Question",
+        "Answering"
+      ],
+      "noise_penalty": 0,
+      "final_score": 70,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "A Quiet Failure in Calibrated Virtual Screening: Marginal Conformal Prediction Under-Covers the Minority Class, and a Class-Conditional Fix Recovers It",
+      "link": "https://arxiv.org/abs/2607.06605",
+      "published": "2026-07-09T04:00:00+00:00",
+      "summary": "arXiv:2607.06605v1 Announce Type: new Abstract: Conformal prediction is being adopted in drug discovery to put an honest number on model reliability: pick an error rate alpha, and the method returns prediction sets containing the true label with probability at least 1 - alpha. We show this guarantee can be dangerous on imbalanced datasets. Across four datasets, standard (marginal) conformal prediction hits its global 90% coverage target while leaving the minority class badly exposed: realized minority coverage falls to 64.8% on blood-brain-barrier penetration and to 4.2% on clinical-trial toxicity, where the rare class is nearly abandoned. The failure is not tied to one model: a random forest, a graph network, and a frozen chemical language model all reproduce it (p < 0.001 in every case), with severity tracking baseline calibration on rare labels rather than architecture. A conservation identity explains the effect: the minority's shortfall equals the majority's surplus amplified by the imbalance ratio, predicting the measured gap to within one point and ordering severity across datasets. The failure survives realistic scaffold splits and a second conformal score, while aggregate accuracy and overall coverage stay reassuringly high, which is exactly why it is easy to miss. Class-conditional (Mondrian) conformal prediction closes the gap on every dataset, restoring minority coverage to target for a modest increase in prediction-set size. We localize the failures to generic molecular scaffolds - plain benzene and pyridine cores occurring in both classes - propose a one-number diagnostic, and show with a cost model that abstaining on affected compounds flips a screening campaign from net-negative to net-positive utility. Our contribution is demonstrating on real chemistry how severe and invisible this known conformal-theory gap becomes under imbalance, and laying out a practical protocol restoring per-class reliability.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "A Quiet Failure in Calibrated Virtual Screening: Marginal Conformal Prediction Under-Covers the Minority Class, and a Class-Conditional Fix Recovers It",
+      "raw_summary": "arXiv:2607.06605v1 Announce Type: new Abstract: Conformal prediction is being adopted in drug discovery to put an honest number on model reliability: pick an error rate alpha, and the method returns prediction sets containing the true label with probability at least 1 - alpha. We show this guarantee can be dangerous on imbalanced datasets. Across four datasets, standard (marginal) conformal prediction hits its global 90% coverage target while leaving the minority class badly exposed: realized minority coverage falls to 64.8% on blood-brain-barrier penetration and to 4.2% on clinical-trial toxicity, where the rare class is nearly abandoned. The failure is not tied to one model: a random forest, a graph network, and a frozen chemical language model all reproduce it (p < 0.001 in every case), with severity tracking baseline calibration on rare labels rather than architecture. A conservation identity explains the effect: the minority's shortfall equals the majority's surplus amplified by the imbalance ratio, predicting the measured gap to within one point and ordering severity across datasets. The failure survives realistic scaffold splits and a second conformal score, while aggregate accuracy and overall coverage stay reassuringly high, which is exactly why it is easy to miss. Class-conditional (Mondrian) conformal prediction closes the gap on every dataset, restoring minority coverage to target for a modest increase in prediction-set size. We localize the failures to generic molecular scaffolds - plain benzene and pyridine cores occurring in both classes - propose a one-number diagnostic, and show with a cost model that abstaining on affected compounds flips a screening campaign from net-negative to net-positive utility. Our contribution is demonstrating on real chemistry how severe and invisible this known conformal-theory gap becomes under imbalance, and laying out a practical protocol restoring per-class reliability.",
+      "score": 70,
+      "primary": "misc",
+      "tags": [
+        "drug-discovery",
+        "safety",
+        "bias"
+      ],
+      "heuristic_score": 68,
+      "url": "https://arxiv.org/abs/2607.06605",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 68,
+      "_rid": 6,
+      "llm_score": 78,
+      "why": "Alerta sobre un fallo crítico de fiabilidad en IA para fármacos donde la cobertura de seguridad ignora sistemáticamente los casos de toxicidad minoritarios.",
+      "title_es": "Un fallo silencioso en el cribado virtual calibrado: la predicción conforme marginal infravalora la clase minoritaria",
+      "entities": [
+        "Quiet Failure",
+        "Calibrated Virtual Screening",
+        "Marginal Conformal Prediction",
+        "Under",
+        "Covers",
+        "Minority Class",
+        "Class",
+        "Conditional Fix Recovers"
+      ],
+      "noise_penalty": 6,
+      "final_score": 70,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(6)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Introducing computer use in Gemini 3.5 Flash",
+      "link": "https://deepmind.google/blog/introducing-computer-use-in-gemini-3-5-flash/",
+      "published": "2026-06-24T16:30:01+00:00",
+      "summary": "",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Introducing computer use in Gemini 3.5 Flash",
+      "raw_summary": "",
+      "score": 70,
+      "primary": "models",
+      "tags": [
+        "agents",
+        "automation",
+        "gemini"
+      ],
+      "heuristic_score": 22,
+      "url": "https://deepmind.google/blog/introducing-computer-use-in-gemini-3-5-flash/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 22,
+      "_rid": 15,
+      "llm_score": 90,
+      "why": "Hito en la democratización de agentes capaces de interactuar con interfaces humanas en un modelo optimizado para velocidad y coste.",
+      "title_es": "Introducción de la función 'computer use' en Gemini 3.5 Flash",
+      "entities": [
+        "DeepMind",
+        "Gemini",
+        "Flash"
+      ],
+      "noise_penalty": 10,
+      "final_score": 70,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(10)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Gradient-Based Speech-to-Text Alignment for Any ASR Model: From CTC to Speech LLMs",
+      "link": "https://arxiv.org/abs/2607.06831",
+      "published": "2026-07-09T04:00:00+00:00",
+      "summary": "arXiv:2607.06831v1 Announce Type: new Abstract: Speech-to-text alignment means finding the temporal boundaries of each word in the audio. Some models provide such an alignment directly and others do not. Connectionist temporal classification (CTC) and transducer models have an alignment by construction, whereas attention-based encoder-decoders (AED) and speech large language models (LLMs) do not, and their word timings are usually read off the attention weights instead. All of these signals live on the encoder frame grid, which bounds their temporal precision. We study a generic gradient-based alignment that applies to any differentiable ASR model. We take the gradient of each teacher-forced token log probability with respect to the input, reduce it to a per-frame saliency, and decode the resulting matrix into word boundaries with a single dynamic-programming pass. The method needs no training, no model modification and no alignment heads, works across all model families including the speech LLMs, and aligns on the input grid rather than on the coarser encoder grid. We evaluate it on sixteen models from four families, on read (TIMIT) and spontaneous (Buckeye) speech, each against the model's own native or attention-based alignment. We find that the gradient yields a usable alignment for every model, that it is usually somewhat behind a strong native aligner but better where the native alignment is weak, as for the streaming models, and that its main disadvantage is the cost of one backward pass per token.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Gradient-Based Speech-to-Text Alignment for Any ASR Model: From CTC to Speech LLMs",
+      "raw_summary": "arXiv:2607.06831v1 Announce Type: new Abstract: Speech-to-text alignment means finding the temporal boundaries of each word in the audio. Some models provide such an alignment directly and others do not. Connectionist temporal classification (CTC) and transducer models have an alignment by construction, whereas attention-based encoder-decoders (AED) and speech large language models (LLMs) do not, and their word timings are usually read off the attention weights instead. All of these signals live on the encoder frame grid, which bounds their temporal precision. We study a generic gradient-based alignment that applies to any differentiable ASR model. We take the gradient of each teacher-forced token log probability with respect to the input, reduce it to a per-frame saliency, and decode the resulting matrix into word boundaries with a single dynamic-programming pass. The method needs no training, no model modification and no alignment heads, works across all model families including the speech LLMs, and aligns on the input grid rather than on the coarser encoder grid. We evaluate it on sixteen models from four families, on read (TIMIT) and spontaneous (Buckeye) speech, each against the model's own native or attention-based alignment. We find that the gradient yields a usable alignment for every model, that it is usually somewhat behind a strong native aligner but better where the native alignment is weak, as for the streaming models, and that its main disadvantage is the cost of one backward pass per token.",
+      "score": 66,
+      "primary": "models",
+      "tags": [
+        "asr",
+        "alignment",
+        "speech-to-text"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2607.06831",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 3,
+      "llm_score": 60,
+      "why": "Técnica genérica basada en gradientes para alinear texto y voz en cualquier modelo diferenciable, superando límites de precisión temporal previos.",
+      "title_es": "Alineación de habla a texto basada en gradientes para cualquier modelo ASR: de CTC a LLMs de voz",
+      "entities": [
+        "ASR",
+        "CTC",
+        "Gradient",
+        "Based Speech",
+        "Text Alignment",
+        "Any",
+        "Model",
+        "From"
+      ],
+      "noise_penalty": 0,
+      "final_score": 66,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "LLMs Silently Correct African American English: Auditing and Mitigating Dialect Bias via Activation Steering",
+      "link": "https://arxiv.org/abs/2607.06845",
+      "published": "2026-07-09T04:00:00+00:00",
+      "summary": "arXiv:2607.06845v1 Announce Type: new Abstract: African American English (AAE), a rule-governed dialect spoken by over 30 million people, is routinely misinterpreted and \"corrected\" by large language models (LLMs). Across six instruction-tuned LLMs (14B to 70B), we show that state-of-the-art models systematically prefer Standard American English (SAE) continuations even when the preceding context is in AAE, effectively rewriting AAE into SAE. We present an end-to-end framework to audit and mitigate this bias. For auditing, we introduce conditional Dialect Group Invariance (cDGI), which isolates true model bias from translator-induced artifacts, and a feature-level localization analysis that identifies which AAE markers most strongly trigger bias; we find that syntactic constructions, especially negative concord (e.g., \"ain't nobody\"), are universal triggers across all models. For mitigation, we introduce, to our knowledge, the first application of activation steering to dialect bias: a training-free, test-time method that extracts dialect directions via causal tracing and injects them into bias-relevant layers. Activation steering reduces bias 5 to 20 times more than prompting while preserving SAE fluency. To enable this work, we release REAL-AAE , the largest real-AAE parallel corpus to date: 17,479 AAE/SAE/ AAE_back triplets from natural tweets (2 to 6 times larger than prior real-AAE resources), validated automatically (BERTScore F1 = 0.95) and by three native AAE speakers (83.0% semantic agreement).",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "LLMs Silently Correct African American English: Auditing and Mitigating Dialect Bias via Activation Steering",
+      "raw_summary": "arXiv:2607.06845v1 Announce Type: new Abstract: African American English (AAE), a rule-governed dialect spoken by over 30 million people, is routinely misinterpreted and \"corrected\" by large language models (LLMs). Across six instruction-tuned LLMs (14B to 70B), we show that state-of-the-art models systematically prefer Standard American English (SAE) continuations even when the preceding context is in AAE, effectively rewriting AAE into SAE. We present an end-to-end framework to audit and mitigate this bias. For auditing, we introduce conditional Dialect Group Invariance (cDGI), which isolates true model bias from translator-induced artifacts, and a feature-level localization analysis that identifies which AAE markers most strongly trigger bias; we find that syntactic constructions, especially negative concord (e.g., \"ain't nobody\"), are universal triggers across all models. For mitigation, we introduce, to our knowledge, the first application of activation steering to dialect bias: a training-free, test-time method that extracts dialect directions via causal tracing and injects them into bias-relevant layers. Activation steering reduces bias 5 to 20 times more than prompting while preserving SAE fluency. To enable this work, we release REAL-AAE , the largest real-AAE parallel corpus to date: 17,479 AAE/SAE/ AAE_back triplets from natural tweets (2 to 6 times larger than prior real-AAE resources), validated automatically (BERTScore F1 = 0.95) and by three native AAE speakers (83.0% semantic agreement).",
+      "score": 66,
+      "primary": "models",
+      "tags": [
+        "ethics",
+        "bias",
+        "linguistics"
+      ],
+      "heuristic_score": 45,
+      "url": "https://arxiv.org/abs/2607.06845",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 45,
+      "_rid": 11,
+      "llm_score": 70,
+      "why": "Revela y propone mitigación para la tendencia de los LLMs de 'corregir' dialectos específicos hacia el estándar, ocultando la identidad cultural.",
+      "title_es": "Los LLMs corrigen silenciosamente el inglés afroamericano: auditoría y mitigación del sesgo dialectal vía activación dirigida",
+      "entities": [
+        "Silently Correct African",
+        "American English",
+        "Auditing",
+        "Mitigating Dialect Bias",
+        "Activation Steering"
+      ],
+      "noise_penalty": 0,
+      "final_score": 66,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Introducing Gemma 4 12B: a unified, encoder-free multimodal model",
+      "link": "https://deepmind.google/blog/introducing-gemma-4-12b-a-unified-encoder-free-multimodal-model/",
+      "published": "2026-06-09T14:10:19+00:00",
+      "summary": "",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Introducing Gemma 4 12B: a unified, encoder-free multimodal model",
+      "raw_summary": "",
+      "score": 66,
+      "primary": "models",
+      "tags": [
+        "multimodal",
+        "efficiency",
+        "architecture"
+      ],
+      "heuristic_score": 28,
+      "url": "https://deepmind.google/blog/introducing-gemma-4-12b-a-unified-encoder-free-multimodal-model/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 28,
+      "_rid": 14,
+      "llm_score": 92,
+      "why": "Cambio de paradigma hacia modelos multimodales sin codificadores externos, simplificando la arquitectura y mejorando la integración de señales.",
+      "title_es": "Presentación de Gemma 4 12B: un modelo multimodal unificado y sin codificador",
+      "entities": [
+        "DeepMind",
+        "Gemma",
+        "Introducing Gemma"
+      ],
+      "noise_penalty": 16,
+      "final_score": 66,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(16)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Comprehensive Evaluation of Large Language Model Responses: A Multi-Factor Scoring System",
+      "link": "https://arxiv.org/abs/2607.06940",
+      "published": "2026-07-09T04:00:00+00:00",
+      "summary": "arXiv:2607.06940v1 Announce Type: new Abstract: The remarkable performance of large language models (LLMs) in linguistic tasks underscores an urgent need for comprehensive evaluation of their response quality. Prevailing methods, often confined to singular dimensions, fall short of capturing the full spectrum of model capabilities. This study introduces a multifactor scoring paradigm, integrating accuracy, conciseness, factual consistency, readability, and coherence, complemented by a graphical user interface (GUI) for visualizing outcomes. Evaluations on the TruthfulQA dataset unveil mainstream LLMs' strengths in reasoning tasks (peaking at a composite score of 0.6104) alongside pervasive limitations in navigating complex facts and ambiguities. Transcending the narrow lens of traditional metrics, this framework offers a transparent, adaptable avenue to illuminate model potential and deficiencies. Though presently focused on English tasks, its horizons beckon toward multilingual domains. This work carves a novel path for knowledge engineering and model refinement.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Comprehensive Evaluation of Large Language Model Responses: A Multi-Factor Scoring System",
+      "raw_summary": "arXiv:2607.06940v1 Announce Type: new Abstract: The remarkable performance of large language models (LLMs) in linguistic tasks underscores an urgent need for comprehensive evaluation of their response quality. Prevailing methods, often confined to singular dimensions, fall short of capturing the full spectrum of model capabilities. This study introduces a multifactor scoring paradigm, integrating accuracy, conciseness, factual consistency, readability, and coherence, complemented by a graphical user interface (GUI) for visualizing outcomes. Evaluations on the TruthfulQA dataset unveil mainstream LLMs' strengths in reasoning tasks (peaking at a composite score of 0.6104) alongside pervasive limitations in navigating complex facts and ambiguities. Transcending the narrow lens of traditional metrics, this framework offers a transparent, adaptable avenue to illuminate model potential and deficiencies. Though presently focused on English tasks, its horizons beckon toward multilingual domains. This work carves a novel path for knowledge engineering and model refinement.",
+      "score": 56,
+      "primary": "models",
+      "tags": [
+        "evaluation",
+        "llm-quality",
+        "metrics"
+      ],
+      "heuristic_score": 59,
+      "url": "https://arxiv.org/abs/2607.06940",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 59,
+      "_rid": 8,
+      "llm_score": 55,
+      "why": "Introduce un sistema de puntuación multifactorial que busca normalizar la evaluación de calidad más allá de la precisión simple.",
+      "title_es": "Evaluación exhaustiva de respuestas de modelos de lenguaje: un sistema de puntuación multifactorial",
+      "entities": [
+        "TruthfulQA",
+        "Comprehensive Evaluation",
+        "Large Language Model",
+        "Responses",
+        "Multi",
+        "Factor Scoring System"
+      ],
+      "noise_penalty": 0,
+      "final_score": 56,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Investing in multi-agent AI safety research",
+      "link": "https://deepmind.google/blog/investing-in-multi-agent-ai-safety-research/",
+      "published": "2026-06-10T10:21:19+00:00",
+      "summary": "Google DeepMind and partners announce a $10M funding call for multi-agent safety research.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Investing in multi-agent AI safety research",
+      "raw_summary": "Google DeepMind and partners announce a $10M funding call for multi-agent safety research.",
+      "score": 54,
+      "primary": "invest",
+      "tags": [
+        "safety",
+        "multi-agent",
+        "funding"
+      ],
+      "heuristic_score": 43,
+      "url": "https://deepmind.google/blog/investing-in-multi-agent-ai-safety-research/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 43,
+      "_rid": 12,
+      "llm_score": 75,
+      "why": "Inversión significativa de Google para abordar los riesgos emergentes de la interacción entre múltiples agentes autónomos.",
+      "title_es": "Inversión en investigación sobre seguridad de IA multi-agente",
+      "entities": [
+        "DeepMind",
+        "Investing"
+      ],
+      "noise_penalty": 16,
+      "final_score": 54,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(16)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Audio Sentiment Analysis via Distillation and Cross-Modal Integration of Generated Multilingual Transcripts",
+      "link": "https://arxiv.org/abs/2607.06611",
+      "published": "2026-07-09T04:00:00+00:00",
+      "summary": "arXiv:2607.06611v1 Announce Type: new Abstract: Automatically recognizing the sentiment, positive or negative, from speech is a challenging task, requiring both the analysis of vocal inflections and the interpretation of uttered words. Recent solutions rely on audio foundation models to solve the task, but it remains unclear if such models can take all aspects into account. To this end, we propose a multimodal solution that integrates audio and text information via cross-modal transformers, where text transcripts are automatically generated via an automatic speech recognition (ASR) tool. Moreover, we create multiple text modalities by automatically translating the transcripts into multiple languages via machine translation tools. Audio and multilingual text features are combined via a cascaded architecture comprising cross-modal transformer blocks that integrate modalities one by one. We further distill knowledge from the multimodal model, called teacher, into a unimodal (audio only) model, called student. We conduct experiments on a large-scale dataset, demonstrating that the automatically generated textual information can bring significant performance boosts in multimodal sentiment polarity classification. Our ablation study confirms that both automatic transcripts and automatic translations are helpful. Moreover, we show that the audio-only model can be enhanced via distillation, boosting performance without any computational overhead during inference. To reproduce the reported results, we publicly release our code at",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Audio Sentiment Analysis via Distillation and Cross-Modal Integration of Generated Multilingual Transcripts",
+      "raw_summary": "arXiv:2607.06611v1 Announce Type: new Abstract: Automatically recognizing the sentiment, positive or negative, from speech is a challenging task, requiring both the analysis of vocal inflections and the interpretation of uttered words. Recent solutions rely on audio foundation models to solve the task, but it remains unclear if such models can take all aspects into account. To this end, we propose a multimodal solution that integrates audio and text information via cross-modal transformers, where text transcripts are automatically generated via an automatic speech recognition (ASR) tool. Moreover, we create multiple text modalities by automatically translating the transcripts into multiple languages via machine translation tools. Audio and multilingual text features are combined via a cascaded architecture comprising cross-modal transformer blocks that integrate modalities one by one. We further distill knowledge from the multimodal model, called teacher, into a unimodal (audio only) model, called student. We conduct experiments on a large-scale dataset, demonstrating that the automatically generated textual information can bring significant performance boosts in multimodal sentiment polarity classification. Our ablation study confirms that both automatic transcripts and automatic translations are helpful. Moreover, we show that the audio-only model can be enhanced via distillation, boosting performance without any computational overhead during inference. To reproduce the reported results, we publicly release our code at https://github.com/andreidurdun/cross-modal-audio-sentiment.",
+      "score": 51,
+      "primary": "models",
+      "tags": [
+        "audio",
+        "sentiment-analysis",
+        "multimodal"
+      ],
+      "heuristic_score": 56,
+      "url": "https://arxiv.org/abs/2607.06611",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 56,
+      "_rid": 9,
+      "llm_score": 50,
+      "why": "Propone la integración de audio y transcripciones multilingües mediante transformadores de modalidad cruzada para mejorar el análisis de sentimiento.",
+      "title_es": "Análisis de sentimiento en audio mediante destilación e integración cross-modal de transcripciones multilingües generadas",
+      "entities": [
+        "Audio Sentiment Analysis",
+        "Distillation",
+        "Cross",
+        "Modal Integration",
+        "Generated Multilingual Transcripts"
+      ],
+      "noise_penalty": 0,
+      "final_score": 51,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Ad Headline Generation using Self-Critical Masked Language Model",
+      "link": "https://arxiv.org/abs/2607.06818",
+      "published": "2026-07-09T04:00:00+00:00",
+      "summary": "arXiv:2607.06818v1 Announce Type: new Abstract: For any E-commerce website it is a nontrivial problem to build enduring advertisements that attract shoppers. It is hard to pass the creative quality bar of the website, especially at a large scale. We thus propose a programmatic solution to generate product advertising headlines using retail content. We propose a state of the art application of Reinforcement Learning (RL) Policy gradient methods on Transformer based Masked Language Models. Our method creates the advertising headline by jointly conditioning on multiple products that a seller wishes to advertise. We demonstrate that our method outperforms existing Transformer and LSTM + RL methods in overlap metrics and quality audits. We also show that our model-generated headlines outperform human submitted headlines in terms of both grammar and creative quality as determined by audits.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Ad Headline Generation using Self-Critical Masked Language Model",
+      "raw_summary": "arXiv:2607.06818v1 Announce Type: new Abstract: For any E-commerce website it is a nontrivial problem to build enduring advertisements that attract shoppers. It is hard to pass the creative quality bar of the website, especially at a large scale. We thus propose a programmatic solution to generate product advertising headlines using retail content. We propose a state of the art application of Reinforcement Learning (RL) Policy gradient methods on Transformer based Masked Language Models. Our method creates the advertising headline by jointly conditioning on multiple products that a seller wishes to advertise. We demonstrate that our method outperforms existing Transformer and LSTM + RL methods in overlap metrics and quality audits. We also show that our model-generated headlines outperform human submitted headlines in terms of both grammar and creative quality as determined by audits.",
+      "score": 46,
+      "primary": "models",
+      "tags": [
+        "e-commerce",
+        "rl",
+        "advertising"
+      ],
+      "heuristic_score": 55,
+      "url": "https://arxiv.org/abs/2607.06818",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 55,
+      "_rid": 10,
+      "llm_score": 45,
+      "why": "Aplica RL a modelos de lenguaje enmascarados para optimizar la generación de titulares publicitarios condicionados por múltiples productos.",
+      "title_es": "Generación de titulares publicitarios mediante modelos de lenguaje enmascarados con política crítica",
+      "entities": [
+        "Ad Headline Generation",
+        "Self",
+        "Critical Masked Language",
+        "Model"
+      ],
+      "noise_penalty": 0,
+      "final_score": 46,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "geopolitics_power"
+    }
+  ]
+}
