@@ -1,0 +1,687 @@
+{
+  "date": "2026-07-10",
+  "score_avg": 64.33,
+  "primary_dist": {
+    "models": 8,
+    "infra": 3,
+    "invest": 1,
+    "geopol": 1,
+    "misc": 2
+  },
+  "top_entities": [
+    {
+      "entity": "arXiv",
+      "count": 4
+    },
+    {
+      "entity": "SemiWiki",
+      "count": 2
+    },
+    {
+      "entity": "EDA",
+      "count": 2
+    },
+    {
+      "entity": "DeepMind",
+      "count": 2
+    },
+    {
+      "entity": "From Solvers",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "El diseño de chips (EDA) evoluciona hacia sistemas agénticos para gestionar la complejidad de los nodos avanzados.",
+      "Los agentes empresariales pasan de ser reactivos a proactivos mediante el uso de grafos de contexto dinámicos.",
+      "El mercado de IP de interfaz de 4.500 millones de dólares se desplaza de los móviles hacia HPC e infraestructuras de IA.",
+      "La matemática formal se convierte en la nueva frontera para validar el razonamiento de nivel de investigación en LLM.",
+      "La autodespildación en entornos verificables permite a los agentes de búsqueda mejorar sin supervisión humana directa."
+    ],
+    "risks": [
+      "Los métodos actuales de mitigación de sesgos (debiasing) pueden generar efectos secundarios contraproducentes inesperados.",
+      "La brecha de ingeniería en semiconductores no se soluciona solo con IA generativa, requiere agentes autónomos de diseño.",
+      "La seguridad de los agentes con acceso a sistemas internos exige nuevas hojas de ruta de control en tiempo real."
+    ],
+    "watch": [
+      "La adopción de Gemini 3.5 Live Translate en entornos profesionales y su latencia en traducción multimodal.",
+      "El crecimiento de la industria de EDA en China frente al dominio tradicional de Synopsys y Cadence.",
+      "La implementación de motores de detección de cambios (Delta Detection) en herramientas de productividad corporativa."
+    ],
+    "entities_top": [
+      "Google DeepMind",
+      "TSMC",
+      "Synopsys"
+    ]
+  },
+  "items": [
+    {
+      "title": "From Solvers to Research: Large Language Model-Driven Formal Mathematics at the Research Frontier",
+      "link": "https://arxiv.org/abs/2607.07779",
+      "published": "2026-07-10T04:00:00+00:00",
+      "summary": "arXiv:2607.07779v1 Announce Type: new Abstract: Recent developments in AI for Mathematics (AI4Math), especially Large Language Model (LLM)-driven theorem provers, has achieved remarkable success in formal proof generation for well-defined mathematical problems through Interactive Theorem Proving (ITP) languages. However, current systems remain fundamentally limited in tackling frontier research mathematics, such as discovering new theorems or resolving open conjectures, which are often open-ended, under-specified, and involve multiple layers of abstraction. We argue that the next leap in AI4Math systems requires a decisive shift from predefined problem-solvers to research agents that can address frontier mathematical challenges with rigorous formal mathematical reasoning. In this position paper, we provide a systematic review of the field, covering datasets, auto-formalization, and proof synthesis. More importantly, we identify core limitations of existing systems in serving as mathematical research agents, examining issues across datasets, relational structure, mathematical exploration, tool ecosystem, and human-AI collaboration, outlining a strategic road-map for the future of AI4Math.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "From Solvers to Research: Large Language Model-Driven Formal Mathematics at the Research Frontier",
+      "raw_summary": "arXiv:2607.07779v1 Announce Type: new Abstract: Recent developments in AI for Mathematics (AI4Math), especially Large Language Model (LLM)-driven theorem provers, has achieved remarkable success in formal proof generation for well-defined mathematical problems through Interactive Theorem Proving (ITP) languages. However, current systems remain fundamentally limited in tackling frontier research mathematics, such as discovering new theorems or resolving open conjectures, which are often open-ended, under-specified, and involve multiple layers of abstraction. We argue that the next leap in AI4Math systems requires a decisive shift from predefined problem-solvers to research agents that can address frontier mathematical challenges with rigorous formal mathematical reasoning. In this position paper, we provide a systematic review of the field, covering datasets, auto-formalization, and proof synthesis. More importantly, we identify core limitations of existing systems in serving as mathematical research agents, examining issues across datasets, relational structure, mathematical exploration, tool ecosystem, and human-AI collaboration, outlining a strategic road-map for the future of AI4Math.",
+      "score": 83,
+      "primary": "models",
+      "tags": [
+        "matemáticas",
+        "razonamiento",
+        "research agents",
+        "formal logic"
+      ],
+      "heuristic_score": 74,
+      "url": "https://arxiv.org/abs/2607.07779",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 74,
+      "_rid": 3,
+      "llm_score": 85,
+      "why": "Mover el foco de resolver problemas predefinidos a descubrir nuevos teoremas es esencial para la próxima frontera de la IA.",
+      "title_es": "De solucionadores a investigación: Matemáticas formales impulsadas por LLM en la frontera de la ciencia",
+      "entities": [
+        "arXiv",
+        "From Solvers",
+        "Large Language Model",
+        "Driven Formal Mathematics",
+        "Research Frontier"
+      ],
+      "noise_penalty": 0,
+      "final_score": 83,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Context Graphs for Proactive Enterprise Agents",
+      "link": "https://arxiv.org/abs/2607.07721",
+      "published": "2026-07-10T04:00:00+00:00",
+      "summary": "arXiv:2607.07721v1 Announce Type: new Abstract: Retrieval-Augmented Generation (RAG) and agentic frameworks have advanced enterprise AI considerably, yet agents remain fundamentally reactive: they wait for a human query before acting. This paper argues that genuine enterprise productivity gains require proactive agents: systems that surface relevant, actionable information to workers before they ask. We propose the Context Graph, a live relational data structure that models enterprise entities, their relationships, and state transitions over time. Built on this graph, we define a Delta Detection Engine that continuously monitors state changes, a Proactivity Scorer that ranks candidate insights by urgency, relevance, and persona-fit, and a Surfacing Layer powered by an LLM that delivers ranked notifications with grounded explanations. We formalize each component, derive a unified Proactivity Score function, and provide a complete end-to-end Python implementation using NetworkX and the Anthropic Claude API. Evaluation across three generic enterprise case studies (contract lifecycle management, engineering incident response, and sales pipeline hygiene) demonstrates that context-graph-driven proactivity achieves Precision@5 of 0.83, a false positive rate of 0.11, and reduces mean time to surface from 47 minutes (reactive baseline) to under 30 second.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Context Graphs for Proactive Enterprise Agents",
+      "raw_summary": "arXiv:2607.07721v1 Announce Type: new Abstract: Retrieval-Augmented Generation (RAG) and agentic frameworks have advanced enterprise AI considerably, yet agents remain fundamentally reactive: they wait for a human query before acting. This paper argues that genuine enterprise productivity gains require proactive agents: systems that surface relevant, actionable information to workers before they ask. We propose the Context Graph, a live relational data structure that models enterprise entities, their relationships, and state transitions over time. Built on this graph, we define a Delta Detection Engine that continuously monitors state changes, a Proactivity Scorer that ranks candidate insights by urgency, relevance, and persona-fit, and a Surfacing Layer powered by an LLM that delivers ranked notifications with grounded explanations. We formalize each component, derive a unified Proactivity Score function, and provide a complete end-to-end Python implementation using NetworkX and the Anthropic Claude API. Evaluation across three generic enterprise case studies (contract lifecycle management, engineering incident response, and sales pipeline hygiene) demonstrates that context-graph-driven proactivity achieves Precision@5 of 0.83, a false positive rate of 0.11, and reduces mean time to surface from 47 minutes (reactive baseline) to under 30 second.",
+      "score": 81,
+      "primary": "infra",
+      "tags": [
+        "agentes",
+        "context graphs",
+        "productividad",
+        "enterprise"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2607.07721",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 1,
+      "llm_score": 78,
+      "why": "El paso de sistemas reactivos a proactivos mediante estructuras de datos relacionales en vivo es clave para la IA empresarial.",
+      "title_es": "Grafos de contexto para agentes proactivos en la empresa",
+      "entities": [
+        "arXiv",
+        "Context Graphs",
+        "Proactive Enterprise Agents"
+      ],
+      "noise_penalty": 0,
+      "final_score": 81,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Beyond Workflow Agents: Toward Design Intelligence in Analog EDA",
+      "link": "https://semiwiki.com/eda/370912-beyond-workflow-agents-toward-design-intelligence-in-analog-eda/",
+      "published": "2026-07-09T13:00:15+00:00",
+      "summary": "Over the last year, the EDA industry has started using a new vocabulary: agents, super agents, mental models, native skills, playbooks, RAG, MCP, autonomous workflows, and AI-first design. The language is new, but the motivation is familiar to anyone who has worked in chip design. Design complexity keeps increasing. The number&8230; Read More The post Beyond Workflow Agents: Toward Design Intelligence in Analog EDA appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "Beyond Workflow Agents: Toward Design Intelligence in Analog EDA",
+      "raw_summary": "Over the last year, the EDA industry has started using a new vocabulary: agents, super agents, mental models, native skills, playbooks, RAG, MCP, autonomous workflows, and AI-first design. The language is new, but the motivation is familiar to anyone who has worked in chip design. Design complexity keeps increasing. The number&#8230; Read More The post Beyond Workflow Agents: Toward Design Intelligence in Analog EDA appeared first on SemiWiki .",
+      "score": 77,
+      "primary": "infra",
+      "tags": [
+        "semiconductores",
+        "eda",
+        "analog design",
+        "agentes"
+      ],
+      "heuristic_score": 48,
+      "url": "https://semiwiki.com/eda/370912-beyond-workflow-agents-toward-design-intelligence-in-analog-eda/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 48,
+      "_rid": 8,
+      "llm_score": 82,
+      "why": "La complejidad del diseño analógico requiere una transición de simples flujos de trabajo a inteligencia de diseño agéntica.",
+      "title_es": "Más allá de los agentes de flujo de trabajo: Hacia la inteligencia de diseño en EDA analógico",
+      "entities": [
+        "SemiWiki",
+        "EDA",
+        "Beyond Workflow Agents",
+        "Toward Design Intelligence",
+        "Analog"
+      ],
+      "noise_penalty": 0,
+      "final_score": 77,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Consolidation and Competition: Who is Winning the $4.5 Billion Interface IP Race?",
+      "link": "https://semiwiki.com/ip/370809-consolidation-and-competition-who-is-winning-the-4-5-billion-interface-ip-race/",
+      "published": "2026-07-09T21:00:18+00:00",
+      "summary": "The semiconductor landscape is currently undergoing a structural transformation as the &8220;Data-Centric Shift&8221; moves the industry&8217;s center of gravity from smartphones toward High-Performance Computing (HPC) and AI infrastructure. This transition is clearly validated by TSMC’s 2025 filings, which show&8230; Read More The post Consolidation and Competition: Who is Winning the $4.5 Billion Interface IP Race? appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "Consolidation and Competition: Who is Winning the $4.5 Billion Interface IP Race?",
+      "raw_summary": "The semiconductor landscape is currently undergoing a structural transformation as the &#8220;Data-Centric Shift&#8221; moves the industry&#8217;s center of gravity from smartphones toward High-Performance Computing (HPC) and AI infrastructure. This transition is clearly validated by TSMC’s 2025 filings, which show&#8230; Read More The post Consolidation and Competition: Who is Winning the $4.5 Billion Interface IP Race? appeared first on SemiWiki .",
+      "score": 76,
+      "primary": "invest",
+      "tags": [
+        "semiconductores",
+        "hpc",
+        "ip",
+        "mercado"
+      ],
+      "heuristic_score": 31,
+      "url": "https://semiwiki.com/ip/370809-consolidation-and-competition-who-is-winning-the-4-5-billion-interface-ip-race/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 31,
+      "_rid": 11,
+      "llm_score": 84,
+      "why": "El cambio masivo de inversión de móviles a centros de datos de IA redefine los ganadores en propiedad intelectual de semiconductores.",
+      "title_es": "Consolidación y competencia: ¿Quién está ganando la carrera de 4.500 millones de dólares en IP de interfaz?",
+      "entities": [
+        "TSMC",
+        "SemiWiki",
+        "Consolidation",
+        "Competition",
+        "Who",
+        "Winning",
+        "Billion Interface",
+        "Race"
+      ],
+      "noise_penalty": 0,
+      "final_score": 76,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "DeepSearch-World: Self-Distillation for Deep Search Agents in a Verifiable Environment",
+      "link": "https://arxiv.org/abs/2607.07820",
+      "published": "2026-07-10T04:00:00+00:00",
+      "summary": "arXiv:2607.07820v1 Announce Type: new Abstract: Training tool-use agents to improve from their own experience remains challenging, as supervised fine-tuning relies on fixed teacher-distilled trajectories, while sparse-reward reinforcement learning provides weak supervision for long-horizon interactions. We present DeepSearch-Evolve, a self-distillation framework for web agents built on DeepSearch-World, a deterministic and verifiable environment with reproducible search and page-reading tools. DeepSearch-World contains 420K multi-hop QA tasks constructed from entity-level random walks and supports key agentic cognitive behaviors useful for self-evolving, including progress verification, grounded reflection, and failure recovery. DeepSearch-Evolve iteratively performs trajectory generation, filtering, data mixing, and fine-tuning to train stronger agents. Without distillation from more capable models, DeepSearch-World-9B achieves competitive performance compared with open-source agents, reaching 31.2% on BrowseComp, 61.5% on GAIA, and 93.4% on HotpotQA, showing that verifiable environments enable scalable self-evolution for long-horizon web agents. We will release the environment, 420K training pool, validation set, model, and code to facilitate future research on self-improving deep search agents.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "DeepSearch-World: Self-Distillation for Deep Search Agents in a Verifiable Environment",
+      "raw_summary": "arXiv:2607.07820v1 Announce Type: new Abstract: Training tool-use agents to improve from their own experience remains challenging, as supervised fine-tuning relies on fixed teacher-distilled trajectories, while sparse-reward reinforcement learning provides weak supervision for long-horizon interactions. We present DeepSearch-Evolve, a self-distillation framework for web agents built on DeepSearch-World, a deterministic and verifiable environment with reproducible search and page-reading tools. DeepSearch-World contains 420K multi-hop QA tasks constructed from entity-level random walks and supports key agentic cognitive behaviors useful for self-evolving, including progress verification, grounded reflection, and failure recovery. DeepSearch-Evolve iteratively performs trajectory generation, filtering, data mixing, and fine-tuning to train stronger agents. Without distillation from more capable models, DeepSearch-World-9B achieves competitive performance compared with open-source agents, reaching 31.2% on BrowseComp, 61.5% on GAIA, and 93.4% on HotpotQA, showing that verifiable environments enable scalable self-evolution for long-horizon web agents. We will release the environment, 420K training pool, validation set, model, and code to facilitate future research on self-improving deep search agents.",
+      "score": 74,
+      "primary": "models",
+      "tags": [
+        "agentes",
+        "self-distillation",
+        "búsqueda",
+        "web agents"
+      ],
+      "heuristic_score": 70,
+      "url": "https://arxiv.org/abs/2607.07820",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 70,
+      "_rid": 5,
+      "llm_score": 75,
+      "why": "Un entorno verificable para que los agentes aprendan de su propia experiencia es fundamental para la autonomía real.",
+      "title_es": "DeepSearch-World: Autodestilación para agentes de búsqueda profunda en entornos verificables",
+      "entities": [
+        "DeepSearch-Evolve",
+        "World",
+        "Self",
+        "Distillation",
+        "Deep Search Agents",
+        "Verifiable Environment"
+      ],
+      "noise_penalty": 0,
+      "final_score": 74,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "MooresLabAI at DAC 2026: Why the Future of Semiconductor Engineering Is Agentic, Not Just Generative",
+      "link": "https://semiwiki.com/eda/moores-lab-ai/370928-mooreslabai-at-dac-2026-why-the-future-of-semiconductor-engineering-is-agentic-not-just-generative/",
+      "published": "2026-07-08T21:00:31+00:00",
+      "summary": "For decades, semiconductor innovation has been constrained not by imagination, but by engineering capacity. While transistor density has continued to advance, the process of building chips has remained fundamentally manual, fragmented across specifications, RTL, verification, debugging, coverage analysis, and signoff.&8230; Read More The post MooresLabAI at DAC 2026: Why the Future of Semiconductor Engineering Is Agentic, Not Just Generative appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "MooresLabAI at DAC 2026: Why the Future of Semiconductor Engineering Is Agentic, Not Just Generative",
+      "raw_summary": "For decades, semiconductor innovation has been constrained not by imagination, but by engineering capacity. While transistor density has continued to advance, the process of building chips has remained fundamentally manual, fragmented across specifications, RTL, verification, debugging, coverage analysis, and signoff.&#8230; Read More The post MooresLabAI at DAC 2026: Why the Future of Semiconductor Engineering Is Agentic, Not Just Generative appeared first on SemiWiki .",
+      "score": 73,
+      "primary": "infra",
+      "tags": [
+        "semiconductores",
+        "agentes",
+        "ingeniería",
+        "eficiencia"
+      ],
+      "heuristic_score": 19,
+      "url": "https://semiwiki.com/eda/moores-lab-ai/370928-mooreslabai-at-dac-2026-why-the-future-of-semiconductor-engineering-is-agentic-not-just-generative/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 19,
+      "_rid": 15,
+      "llm_score": 83,
+      "why": "La automatización agéntica de la verificación y el depurado de chips aborda el cuello de botella de la capacidad de ingeniería.",
+      "title_es": "MooresLabAI en DAC 2026: Por qué el futuro de la ingeniería de semiconductores es agéntico",
+      "entities": [
+        "MooresLabAI",
+        "DAC",
+        "Why",
+        "Future",
+        "Semiconductor Engineering Is",
+        "Agentic",
+        "Not Just Generative"
+      ],
+      "noise_penalty": 0,
+      "final_score": 73,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "SemiAnalysis EDA Market Primer – Market Dynamics, Cadence, Synopsys, Siemens, China EDA Rise",
+      "link": "https://semiwiki.com/eda/371026-semianalysis-eda-market-primer-market-dynamics-cadence-synopsys-siemens-china-eda-rise/",
+      "published": "2026-07-09T17:00:46+00:00",
+      "summary": "Electronic Design Automation, or EDA, is the software infrastructure that transforms a hardware specification into a manufacturable integrated circuit. At advanced process nodes, the problem is no longer simply drawing transistors or connecting gates. A modern system-on-chip contains billions of standard cells, hundreds&8230; Read More The post SemiAnalysis EDA Market Primer &8211; Market Dynamics, Cadence, Synopsys, Siemens, China EDA Rise appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "SemiAnalysis EDA Market Primer – Market Dynamics, Cadence, Synopsys, Siemens, China EDA Rise",
+      "raw_summary": "Electronic Design Automation, or EDA, is the software infrastructure that transforms a hardware specification into a manufacturable integrated circuit. At advanced process nodes, the problem is no longer simply drawing transistors or connecting gates. A modern system-on-chip contains billions of standard cells, hundreds&#8230; Read More The post SemiAnalysis EDA Market Primer &#8211; Market Dynamics, Cadence, Synopsys, Siemens, China EDA Rise appeared first on SemiWiki .",
+      "score": 72,
+      "primary": "geopol",
+      "tags": [
+        "eda",
+        "china",
+        "chips",
+        "mercado"
+      ],
+      "heuristic_score": 29,
+      "url": "https://semiwiki.com/eda/371026-semianalysis-eda-market-primer-market-dynamics-cadence-synopsys-siemens-china-eda-rise/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 29,
+      "_rid": 12,
+      "llm_score": 80,
+      "why": "Análisis estratégico del mercado de software de diseño de chips y el ascenso de alternativas chinas frente al oligopolio.",
+      "title_es": "Guía del mercado EDA de SemiAnalysis: Dinámicas de mercado y el ascenso de la IA en China",
+      "entities": [
+        "Synopsys",
+        "Cadence",
+        "Siemens",
+        "EDA",
+        "Market Primer",
+        "Market Dynamics",
+        "China",
+        "Rise"
+      ],
+      "noise_penalty": 0,
+      "final_score": 72,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "When Debiasing Backfires: Counterintuitive Side Effects of Preprocessing-Based Stereotype Mitigation",
+      "link": "https://arxiv.org/abs/2607.07937",
+      "published": "2026-07-10T04:00:00+00:00",
+      "summary": "arXiv:2607.07937v1 Announce Type: new Abstract: Preprocessing-based methods for stereotype mitigation, such as pre-/post-training on debiased corpora, are widely used in NLP. While these approaches reduce measurable stereotypes for targeted groups, we find they often induce unintended shifts-side effects, where stereotyping or counter-stereotyping can increase relative to neutral baselines for other demographics, including across unrelated demographic categories. We demonstrate these side effects across two model families (encoder-only and decoder-only), multiple preprocessing strategies (removing stereotypical sentences, removing group mentions, and swapping group references), and both pre- and post-training at different data scales on Wikipedia. Standard benchmarks frequently miss these shifts. Using attention-rollout analysis, we observe that such side effects are not accompanied by large changes in attention flow, complicating mechanistic explanations. We discuss implications for evaluation, provide actionable diagnostics, and argue for side-effect-aware, transparent mitigation practices.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "When Debiasing Backfires: Counterintuitive Side Effects of Preprocessing-Based Stereotype Mitigation",
+      "raw_summary": "arXiv:2607.07937v1 Announce Type: new Abstract: Preprocessing-based methods for stereotype mitigation, such as pre-/post-training on debiased corpora, are widely used in NLP. While these approaches reduce measurable stereotypes for targeted groups, we find they often induce unintended shifts-side effects, where stereotyping or counter-stereotyping can increase relative to neutral baselines for other demographics, including across unrelated demographic categories. We demonstrate these side effects across two model families (encoder-only and decoder-only), multiple preprocessing strategies (removing stereotypical sentences, removing group mentions, and swapping group references), and both pre- and post-training at different data scales on Wikipedia. Standard benchmarks frequently miss these shifts. Using attention-rollout analysis, we observe that such side effects are not accompanied by large changes in attention flow, complicating mechanistic explanations. We discuss implications for evaluation, provide actionable diagnostics, and argue for side-effect-aware, transparent mitigation practices.",
+      "score": 69,
+      "primary": "models",
+      "tags": [
+        "seguridad",
+        "sesgos",
+        "nlp",
+        "robustez"
+      ],
+      "heuristic_score": 73,
+      "url": "https://arxiv.org/abs/2607.07937",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 73,
+      "_rid": 4,
+      "llm_score": 68,
+      "why": "Identifica riesgos críticos donde la corrección de sesgos en una demografía perjudica la neutralidad en otras.",
+      "title_es": "Cuando mitigar sesgos sale mal: Efectos secundarios contraintuitivos en el preprocesamiento de estereotipos",
+      "entities": [
+        "arXiv",
+        "When Debiasing Backfires",
+        "Counterintuitive Side Effects",
+        "Preprocessing",
+        "Based Stereotype Mitigation"
+      ],
+      "noise_penalty": 0,
+      "final_score": 69,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Scalable and Culturally Specific Stereotype Dataset Construction via Human-LLM Collaboration",
+      "link": "https://arxiv.org/abs/2607.07895",
+      "published": "2026-07-10T04:00:00+00:00",
+      "summary": "arXiv:2607.07895v1 Announce Type: new Abstract: Research on stereotypes in large language models (LLMs) has largely focused on English-speaking contexts, due to the lack of datasets in other languages and the high cost of manual annotation in underrepresented cultures. To address this gap, we introduce a cost-efficient human-LLM collaborative annotation framework and apply it to construct EspanStereo, a Spanish-language stereotype dataset spanning multiple Spanish-speaking countries across Europe and Latin America. EspanStereo captures both well-documented stereotypes from prior literature and culturally specific biases absent from English-centric resources. Using LLMs to generate candidate stereotypes and in-culture annotators to validate them, we demonstrate the framework's effectiveness in identifying nuanced, region-specific biases. Our evaluation of Spanish-supporting LLMs using EspanStereo reveals significant variation in stereotypical behavior across countries, highlighting the need for more culturally grounded assessments. Beyond Spanish, our framework is adaptable to other languages and regions, offering a scalable path toward multilingual stereotype benchmarks. This work broadens the scope of stereotype analysis in LLMs and lays the groundwork for comprehensive cross-cultural bias evaluation.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Scalable and Culturally Specific Stereotype Dataset Construction via Human-LLM Collaboration",
+      "raw_summary": "arXiv:2607.07895v1 Announce Type: new Abstract: Research on stereotypes in large language models (LLMs) has largely focused on English-speaking contexts, due to the lack of datasets in other languages and the high cost of manual annotation in underrepresented cultures. To address this gap, we introduce a cost-efficient human-LLM collaborative annotation framework and apply it to construct EspanStereo, a Spanish-language stereotype dataset spanning multiple Spanish-speaking countries across Europe and Latin America. EspanStereo captures both well-documented stereotypes from prior literature and culturally specific biases absent from English-centric resources. Using LLMs to generate candidate stereotypes and in-culture annotators to validate them, we demonstrate the framework's effectiveness in identifying nuanced, region-specific biases. Our evaluation of Spanish-supporting LLMs using EspanStereo reveals significant variation in stereotypical behavior across countries, highlighting the need for more culturally grounded assessments. Beyond Spanish, our framework is adaptable to other languages and regions, offering a scalable path toward multilingual stereotype benchmarks. This work broadens the scope of stereotype analysis in LLMs and lays the groundwork for comprehensive cross-cultural bias evaluation.",
+      "score": 65,
+      "primary": "models",
+      "tags": [
+        "datasets",
+        "sesgos",
+        "español",
+        "llm"
+      ],
+      "heuristic_score": 83,
+      "url": "https://arxiv.org/abs/2607.07895",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 83,
+      "_rid": 2,
+      "llm_score": 62,
+      "why": "La creación de datasets específicos de estereotipos en español mejora la seguridad de modelos fuera del ámbito anglosajón.",
+      "title_es": "Construcción escalable de datasets de estereotipos culturales mediante colaboración humano-LLM",
+      "entities": [
+        "EspanStereo",
+        "Scalable",
+        "Culturally Specific Stereotype",
+        "Dataset Construction",
+        "Human",
+        "Collaboration"
+      ],
+      "noise_penalty": 0,
+      "final_score": 65,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Fluid, natural voice translation with Gemini 3.5 Live Translate",
+      "link": "https://deepmind.google/blog/fluid-natural-voice-translation-with-gemini-35-live-translate/",
+      "published": "2026-06-09T15:16:25+00:00",
+      "summary": "Gemini 3.5 Live Translate brings near real-time, natural speech translation to Google AI Studio, Google Translate and Google Meet.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Fluid, natural voice translation with Gemini 3.5 Live Translate",
+      "raw_summary": "Gemini 3.5 Live Translate brings near real-time, natural speech translation to Google AI Studio, Google Translate and Google Meet.",
+      "score": 62,
+      "primary": "models",
+      "tags": [
+        "traducción",
+        "multimodal",
+        "gemini",
+        "voz"
+      ],
+      "heuristic_score": 22,
+      "url": "https://deepmind.google/blog/fluid-natural-voice-translation-with-gemini-35-live-translate/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 22,
+      "_rid": 14,
+      "llm_score": 88,
+      "why": "Impacto directo en productividad global con traducción de voz casi instantánea integrada en herramientas de trabajo.",
+      "title_es": "Traducción de voz fluida y natural con Gemini 3.5 Live Translate",
+      "entities": [
+        "DeepMind",
+        "Google Meet",
+        "Gemini",
+        "Fluid",
+        "Live Translate"
+      ],
+      "noise_penalty": 16,
+      "final_score": 62,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(16)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Securing the future of AI agents",
+      "link": "https://deepmind.google/blog/securing-the-future-of-ai-agents/",
+      "published": "2026-06-16T15:46:31+00:00",
+      "summary": "Securing internal systems with an AI Control Roadmap, combining traditional safeguards and real-time monitoring.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Securing the future of AI agents",
+      "raw_summary": "Securing internal systems with an AI Control Roadmap, combining traditional safeguards and real-time monitoring.",
+      "score": 60,
+      "primary": "models",
+      "tags": [
+        "seguridad",
+        "agentes",
+        "control",
+        "gobernanza"
+      ],
+      "heuristic_score": 22,
+      "url": "https://deepmind.google/blog/securing-the-future-of-ai-agents/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 22,
+      "_rid": 13,
+      "llm_score": 86,
+      "why": "DeepMind establece un marco crítico para la monitorización en tiempo real y salvaguardas de agentes con acceso a sistemas.",
+      "title_es": "Asegurando el futuro de los agentes de IA",
+      "entities": [
+        "DeepMind",
+        "Securing"
+      ],
+      "noise_penalty": 16,
+      "final_score": 60,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(16)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "AI-integrated models for assessing agricultural resilience",
+      "link": "https://arxiv.org/abs/2607.07759",
+      "published": "2026-07-10T04:00:00+00:00",
+      "summary": "arXiv:2607.07759v1 Announce Type: new Abstract: Agricultural supply chains are vulnerable to disruptions through linked biophysical and economic systems. We develop an AI-powered tool that integrates economic models (GTAP) with biophysical models (APSIM) to analyze supply chain shocks, enabling policymakers and market participants to assess cross-disciplinary impacts through queries and responses written in natural language.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "AI-integrated models for assessing agricultural resilience",
+      "raw_summary": "arXiv:2607.07759v1 Announce Type: new Abstract: Agricultural supply chains are vulnerable to disruptions through linked biophysical and economic systems. We develop an AI-powered tool that integrates economic models (GTAP) with biophysical models (APSIM) to analyze supply chain shocks, enabling policymakers and market participants to assess cross-disciplinary impacts through queries and responses written in natural language.",
+      "score": 55,
+      "primary": "misc",
+      "tags": [
+        "agricultura",
+        "resiliencia",
+        "supply chain",
+        "policy"
+      ],
+      "heuristic_score": 58,
+      "url": "https://arxiv.org/abs/2607.07759",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 58,
+      "_rid": 6,
+      "llm_score": 55,
+      "why": "Integración vertical de modelos económicos y biofísicos para toma de decisiones políticas asistida por IA.",
+      "title_es": "Modelos integrados con IA para evaluar la resiliencia agrícola",
+      "entities": [
+        "GTAP",
+        "APSIM"
+      ],
+      "noise_penalty": 0,
+      "final_score": 55,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "geopolitics_power"
+    },
+    {
+      "title": "Towards the Explainability of Temporal Graph Networks via Memory Backtracking and Topological Attribution",
+      "link": "https://arxiv.org/abs/2607.07716",
+      "published": "2026-07-10T04:00:00+00:00",
+      "summary": "arXiv:2607.07716v1 Announce Type: new Abstract: Temporal graphs are ubiquitous in real-world applications and Temporal Graph Networks (TGNs) have achieved superior predictive accuracy. Understanding which historical events drive model predictions can enhance trustworthiness of TGNs. Existing explanation methods overlook the memory module, the core component that records and updates node histories, leaving the influence of past events unexplored. To address this, we attribute TGNs predictions through the topology attribution tree and memory backtracking tree. The topology attribution tree captures the influence of neighbors and their memory vectors, then the memory backtracking tree quantifies how historical events shape node memory vectors. We apply the LRP in TGNs, ensuring that the total contribution of events equals the logits of model. Finally, top-k selection may be unfaithful due to the nonlinear mapping from logits to probabilities, we design optimization objectives to identify the important events. Experiments on nine temporal graph datasets, spanning node property prediction, link prediction tasks and graph classification tasks, show that our method provides faithful explanations and outperforms state-of-the-art baselines. The code is available at",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Towards the Explainability of Temporal Graph Networks via Memory Backtracking and Topological Attribution",
+      "raw_summary": "arXiv:2607.07716v1 Announce Type: new Abstract: Temporal graphs are ubiquitous in real-world applications and Temporal Graph Networks (TGNs) have achieved superior predictive accuracy. Understanding which historical events drive model predictions can enhance trustworthiness of TGNs. Existing explanation methods overlook the memory module, the core component that records and updates node histories, leaving the influence of past events unexplored. To address this, we attribute TGNs predictions through the topology attribution tree and memory backtracking tree. The topology attribution tree captures the influence of neighbors and their memory vectors, then the memory backtracking tree quantifies how historical events shape node memory vectors. We apply the LRP in TGNs, ensuring that the total contribution of events equals the logits of model. Finally, top-k selection may be unfaithful due to the nonlinear mapping from logits to probabilities, we design optimization objectives to identify the important events. Experiments on nine temporal graph datasets, spanning node property prediction, link prediction tasks and graph classification tasks, show that our method provides faithful explanations and outperforms state-of-the-art baselines. The code is available at https://github.com/yazhengliu/MemExplainer",
+      "score": 52,
+      "primary": "models",
+      "tags": [
+        "explicabilidad",
+        "tgn",
+        "grafos temporales",
+        "confianza"
+      ],
+      "heuristic_score": 31,
+      "url": "https://arxiv.org/abs/2607.07716",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 31,
+      "_rid": 10,
+      "llm_score": 65,
+      "why": "Mejora la transparencia de las redes de grafos temporales mediante el rastreo de memoria y atribución topológica.",
+      "title_es": "Hacia la explicabilidad de las redes de grafos temporales mediante rastreo de memoria y atribución topológica",
+      "entities": [
+        "arXiv",
+        "Towards",
+        "Explainability",
+        "Temporal Graph Networks",
+        "Memory Backtracking",
+        "Topological Attribution"
+      ],
+      "noise_penalty": 8,
+      "final_score": 52,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(8)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "How Do I Know What to Say Next? Barenholtz's Autogenerative Theory as an Enrichment of Harrisean Integrationism",
+      "link": "https://arxiv.org/abs/2607.07891",
+      "published": "2026-07-10T04:00:00+00:00",
+      "summary": "arXiv:2607.07891v1 Announce Type: new Abstract: Roy Harris's Integrationist linguistics offers a compelling critique of the referentialist tradition embedded deep at the heart of computational approaches to language, arguing that language is not a code that maps onto a pre-given world but a situated, bipartite activity oriented toward prospective joint action. Yet Integrationism leaves certain explanatory gaps: it does not fully account for the structural mechanism by which signs sustain prospective openness, it undertheorises the continuity between linguistic and non-linguistic semiotic activity, and it offers no detailed account of the structural properties of the accumulated archive of past integrations. This paper argues that Elan Barenholtz's autogenerative theory of language, developed in response to the behaviour of Large Language Models (LLMs), can fill precisely these gaps, enriching Integrationism without undermining any of its core commitments. Specifically, the autogenerative account provides: a structural mechanism for the prospective openness that Harris identifies as central to bipartite communication; a computational correlate for Harris's thesis of semiotic continuity between language and other sign-making activity; and a theory of the archive: what the accumulated residue of past integrations looks like and how new participants draw upon it. The synthesis preserves Harris's ontological primacy of the situated integrative act while adding explanatory content that Integrationism itself does not supply. For practitioners and researchers in natural language processing and large language model design, the argument offers a principled account of what the statistical structure that LLMs so effectively exploit actually is, and of what it cannot, by its nature, provide.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "How Do I Know What to Say Next? Barenholtz's Autogenerative Theory as an Enrichment of Harrisean Integrationism",
+      "raw_summary": "arXiv:2607.07891v1 Announce Type: new Abstract: Roy Harris's Integrationist linguistics offers a compelling critique of the referentialist tradition embedded deep at the heart of computational approaches to language, arguing that language is not a code that maps onto a pre-given world but a situated, bipartite activity oriented toward prospective joint action. Yet Integrationism leaves certain explanatory gaps: it does not fully account for the structural mechanism by which signs sustain prospective openness, it undertheorises the continuity between linguistic and non-linguistic semiotic activity, and it offers no detailed account of the structural properties of the accumulated archive of past integrations. This paper argues that Elan Barenholtz's autogenerative theory of language, developed in response to the behaviour of Large Language Models (LLMs), can fill precisely these gaps, enriching Integrationism without undermining any of its core commitments. Specifically, the autogenerative account provides: a structural mechanism for the prospective openness that Harris identifies as central to bipartite communication; a computational correlate for Harris's thesis of semiotic continuity between language and other sign-making activity; and a theory of the archive: what the accumulated residue of past integrations looks like and how new participants draw upon it. The synthesis preserves Harris's ontological primacy of the situated integrative act while adding explanatory content that Integrationism itself does not supply. For practitioners and researchers in natural language processing and large language model design, the argument offers a principled account of what the statistical structure that LLMs so effectively exploit actually is, and of what it cannot, by its nature, provide.",
+      "score": 42,
+      "primary": "misc",
+      "tags": [
+        "lingüística",
+        "teoría",
+        "semiótica",
+        "comunicación"
+      ],
+      "heuristic_score": 55,
+      "url": "https://arxiv.org/abs/2607.07891",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 55,
+      "_rid": 7,
+      "llm_score": 40,
+      "why": "Análisis teórico sobre las limitaciones de la lingüística computacional tradicional frente a la actividad situada.",
+      "title_es": "¿Cómo sé qué decir a continuación? La teoría autogenerativa de Barenholtz como enriquecimiento del integracionismo",
+      "entities": [
+        "Roy Harris",
+        "How Do",
+        "Know What",
+        "Say Next",
+        "Barenholtz",
+        "Autogenerative Theory",
+        "Enrichment",
+        "Harrisean Integrationism"
+      ],
+      "noise_penalty": 0,
+      "final_score": 42,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Unveiling Public Opinion: A Study of Sentiment Analysis Using LSTM and Traditional Models",
+      "link": "https://arxiv.org/abs/2607.07772",
+      "published": "2026-07-10T04:00:00+00:00",
+      "summary": "arXiv:2607.07772v1 Announce Type: new Abstract: In this age of social media, sites like Twitter have become meeting places for people to share their views and feelings on a wide range of issues and current events as they unfold in real time. Sentiment analysis, a critical application of NLP, has become indispensable due to the massive influx of user-generated content, enabling the extraction of meaningful insights from the opinions and emotions expressed in textual data. Sentiment analysis on Twitter employs sophisticated computational techniques to categorize tweets into positive, negative, or neutral sentiments. This method not only examines individual expressions but also analyzes vast databases related to specific subjects or events. By spotting these emotions, machine learning models help improve public opinion interpretation and trend forecasting. This paper examines the effectiveness of various machine learning and deep learning approaches. Designed for this use, the system evaluates logistic regression, random forest, na\\\"ive bayes, gradient boosting, and LSTM networks, among other algorithms applied in sentiment classification. This work identifies the optimal sentiment analysis model using a Kaggle Twitter dataset that has been preprocessed through tokenization, lemmatization, and stopword elimination. Emphasizing the better performance of the LSTM approach, the model attained a training accuracy of 90.98%, a testing accuracy of 80.00%, and a micro-average ROC- AUC score of 0.92. These results show that the model outperforms conventional machine learning techniques in capturing contextual and sequential textual aspects.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Unveiling Public Opinion: A Study of Sentiment Analysis Using LSTM and Traditional Models",
+      "raw_summary": "arXiv:2607.07772v1 Announce Type: new Abstract: In this age of social media, sites like Twitter have become meeting places for people to share their views and feelings on a wide range of issues and current events as they unfold in real time. Sentiment analysis, a critical application of NLP, has become indispensable due to the massive influx of user-generated content, enabling the extraction of meaningful insights from the opinions and emotions expressed in textual data. Sentiment analysis on Twitter employs sophisticated computational techniques to categorize tweets into positive, negative, or neutral sentiments. This method not only examines individual expressions but also analyzes vast databases related to specific subjects or events. By spotting these emotions, machine learning models help improve public opinion interpretation and trend forecasting. This paper examines the effectiveness of various machine learning and deep learning approaches. Designed for this use, the system evaluates logistic regression, random forest, na\\\"ive bayes, gradient boosting, and LSTM networks, among other algorithms applied in sentiment classification. This work identifies the optimal sentiment analysis model using a Kaggle Twitter dataset that has been preprocessed through tokenization, lemmatization, and stopword elimination. Emphasizing the better performance of the LSTM approach, the model attained a training accuracy of 90.98%, a testing accuracy of 80.00%, and a micro-average ROC- AUC score of 0.92. These results show that the model outperforms conventional machine learning techniques in capturing contextual and sequential textual aspects.",
+      "score": 24,
+      "primary": "models",
+      "tags": [
+        "sentiment analysis",
+        "lstm",
+        "twitter",
+        "social media"
+      ],
+      "heuristic_score": 44,
+      "url": "https://arxiv.org/abs/2607.07772",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 44,
+      "_rid": 9,
+      "llm_score": 30,
+      "why": "Estudio comparativo con tecnologías superadas (LSTM), de bajo impacto en el estado del arte actual.",
+      "title_es": "Revelando la opinión pública: Un estudio de análisis de sentimiento usando LSTM y modelos tradicionales",
+      "entities": [
+        "Twitter",
+        "LSTM",
+        "Unveiling Public Opinion",
+        "Study",
+        "Sentiment Analysis Using",
+        "Traditional Models"
+      ],
+      "noise_penalty": 8,
+      "final_score": 24,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(8)",
+      "strategic_theme": "model_economics_pricing"
+    }
+  ]
+}
