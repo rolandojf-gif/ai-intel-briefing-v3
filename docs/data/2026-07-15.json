@@ -1,0 +1,672 @@
+{
+  "date": "2026-07-15",
+  "score_avg": 66.93,
+  "primary_dist": {
+    "models": 6,
+    "invest": 1,
+    "misc": 3,
+    "geopol": 1,
+    "infra": 4
+  },
+  "top_entities": [
+    {
+      "entity": "DAC",
+      "count": 2
+    },
+    {
+      "entity": "DeepMind",
+      "count": 2
+    },
+    {
+      "entity": "Google",
+      "count": 2
+    },
+    {
+      "entity": "Scaling Point",
+      "count": 1
+    },
+    {
+      "entity": "Time Language Models",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "Google compromete 1.500 millones de dólares para expandir su infraestructura crítica de centros de datos en Alabama.",
+      "Gemini 3.5 Flash introduce 'computer use', permitiendo a agentes interactuar directamente con interfaces de usuario.",
+      "Avanza la destilación de datasets de texto, logrando reducciones del 99,9% manteniendo la fidelidad del modelo.",
+      "Los modelos 'point-in-time' escalados resuelven el sesgo de anticipación en aplicaciones financieras críticas.",
+      "La atención de Fourier semidirecta emerge como alternativa eficiente para gestionar contextos largos en LLMs."
+    ],
+    "risks": [
+      "Fallo crítico de accesibilidad: los LLM actuales no logran procesar correctamente estructuras de Braille.",
+      "Riesgos de seguridad en agentes autónomos requieren nuevas hojas de ruta de control y monitorización en tiempo real.",
+      "La no-estacionariedad en el aprendizaje por refuerzo in-context sigue limitando la adaptación a entornos cambiantes."
+    ],
+    "watch": [
+      "Adopción de modelos de IA basados en física para la verificación de circuitos analógicos en el sector semiconductores.",
+      "Implementación del framework G-SHARE en diagnósticos de seguridad para plantas de energía nuclear.",
+      "Uso de análisis de grafos para detectar la propagación de desinformación en ecosistemas de mensajería cifrada."
+    ],
+    "entities_top": [
+      "Google",
+      "DeepMind",
+      "GlobalFoundries"
+    ]
+  },
+  "items": [
+    {
+      "title": "Scaling Point-in-Time Language Models",
+      "link": "https://arxiv.org/abs/2607.11889",
+      "published": "2026-07-15T04:00:00+00:00",
+      "summary": "arXiv:2607.11889v1 Announce Type: new Abstract: Large language models trained on unrestricted internet corpora inevitably embed information from the future, introducing lookahead bias that compromises the validity of backtests and causal inference in finance and the social sciences. Point-in-time language models--trained exclusively on text available up to each calendar date--eliminate this leakage by construction, but existing efforts typically produce models that lag substantially behind their unconstrained counterparts. We show that this performance gap can be substantially narrowed through scale. Training decoder-only transformers with up to 4 billion parameters on 1 trillion chronologically filtered tokens from FineWeb, we construct a sequence of monthly model checkpoints spanning 2013-2024. Across a range of common-sense reasoning and language understanding benchmarks, our models approach the performance of leading open-weight models of comparable size (e.g., Gemma-3-4B and LLaMA-7B) trained on temporally unrestricted data, although a performance gap remains on several tasks. Instruction fine-tuning via LoRA further improves downstream usability. We release the complete pipeline--including dataset construction, training infrastructure, and evaluation code--to enable reproducible point-in-time language modeling and to support research applications that require strict temporal validity.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Scaling Point-in-Time Language Models",
+      "raw_summary": "arXiv:2607.11889v1 Announce Type: new Abstract: Large language models trained on unrestricted internet corpora inevitably embed information from the future, introducing lookahead bias that compromises the validity of backtests and causal inference in finance and the social sciences. Point-in-time language models--trained exclusively on text available up to each calendar date--eliminate this leakage by construction, but existing efforts typically produce models that lag substantially behind their unconstrained counterparts. We show that this performance gap can be substantially narrowed through scale. Training decoder-only transformers with up to 4 billion parameters on 1 trillion chronologically filtered tokens from FineWeb, we construct a sequence of monthly model checkpoints spanning 2013-2024. Across a range of common-sense reasoning and language understanding benchmarks, our models approach the performance of leading open-weight models of comparable size (e.g., Gemma-3-4B and LLaMA-7B) trained on temporally unrestricted data, although a performance gap remains on several tasks. Instruction fine-tuning via LoRA further improves downstream usability. We release the complete pipeline--including dataset construction, training infrastructure, and evaluation code--to enable reproducible point-in-time language modeling and to support research applications that require strict temporal validity.",
+      "score": 83,
+      "primary": "models",
+      "tags": [
+        "finanzas",
+        "llm",
+        "backtesting",
+        "datos-cronologicos"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2607.11889",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 3,
+      "llm_score": 80,
+      "why": "Solución al sesgo de anticipación en finanzas mediante el escalado de modelos entrenados estrictamente con datos históricos disponibles.",
+      "title_es": "Escalado de modelos de lenguaje point-in-time",
+      "entities": [
+        "Scaling Point",
+        "Time Language Models"
+      ],
+      "noise_penalty": 0,
+      "final_score": 83,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "TAKE: Trajectory-Aware Knowledge Estimation for Text Dataset Distillation",
+      "link": "https://arxiv.org/abs/2607.11898",
+      "published": "2026-07-15T04:00:00+00:00",
+      "summary": "arXiv:2607.11898v1 Announce Type: new Abstract: Large-scale text corpora have become a quiet bottleneck in modern NLP, not just in storage, but in the accumulated cost of training, fine-tuning, and continual learning. We propose a text dataset distillation framework that reduces corpora to as little as 0.1% of their original size while preserving downstream task fidelity. We approach distillation through the lens of influence functions, which quantify each sample's contribution to the downstream objective, a natural and principled basis for selection. We introduce Trajectory-Aware Knowledge Estimation (TAKE), which convolves the knowledge-based influence along the training trajectory into a single per-sample knowledge score, capturing informative samples. These scores serve as sample weights within a discrete Optimal Transport objective, guiding prototype selection from a synthetically generated candidate pool. We evaluate TAKE on downstream accuracy across text classification and natural language inference tasks at extreme compression (0.1% or 20 samples/class), showing that data efficiency is achievable without sacrificing task fidelity. The approach is theoretically grounded, with broader implications for coreset construction and data-centric AI. We release our source code at",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "TAKE: Trajectory-Aware Knowledge Estimation for Text Dataset Distillation",
+      "raw_summary": "arXiv:2607.11898v1 Announce Type: new Abstract: Large-scale text corpora have become a quiet bottleneck in modern NLP, not just in storage, but in the accumulated cost of training, fine-tuning, and continual learning. We propose a text dataset distillation framework that reduces corpora to as little as 0.1% of their original size while preserving downstream task fidelity. We approach distillation through the lens of influence functions, which quantify each sample's contribution to the downstream objective, a natural and principled basis for selection. We introduce Trajectory-Aware Knowledge Estimation (TAKE), which convolves the knowledge-based influence along the training trajectory into a single per-sample knowledge score, capturing informative samples. These scores serve as sample weights within a discrete Optimal Transport objective, guiding prototype selection from a synthetically generated candidate pool. We evaluate TAKE on downstream accuracy across text classification and natural language inference tasks at extreme compression (0.1% or 20 samples/class), showing that data efficiency is achievable without sacrificing task fidelity. The approach is theoretically grounded, with broader implications for coreset construction and data-centric AI. We release our source code at https://github.com/votrinhan88/take.",
+      "score": 78,
+      "primary": "models",
+      "tags": [
+        "destilacion",
+        "eficiencia",
+        "nlp",
+        "entrenamiento"
+      ],
+      "heuristic_score": 53,
+      "url": "https://arxiv.org/abs/2607.11898",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 53,
+      "_rid": 7,
+      "llm_score": 82,
+      "why": "Técnica de destilación de datasets que permite reducir drásticamente los costes de entrenamiento sin pérdida significativa de calidad.",
+      "title_es": "TAKE: Estimación de conocimiento consciente de la trayectoria para la destilación de datasets de texto",
+      "entities": [
+        "TAKE",
+        "Trajectory",
+        "Aware Knowledge Estimation",
+        "Text Dataset Distillation"
+      ],
+      "noise_penalty": 0,
+      "final_score": 78,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "In-Context Reinforcement Learning under Non-Stationarity: A Survey",
+      "link": "https://arxiv.org/abs/2607.11906",
+      "published": "2026-07-15T04:00:00+00:00",
+      "summary": "arXiv:2607.11906v1 Announce Type: new Abstract: The development of decision-pretrained transformers, algorithm distillation, long-context meta-RL, and retrieval-augmented agents has renewed interest in in-context reinforcement learning (ICRL): the ability of a pretrained or fine-tuned decision model to infer latent task rules and improve future behavior from interaction context, without test-time parameter updates. This line of work asks when trial-and-error evidence, rewards, transitions, demonstrations, feedback, or retrieved experience can make learning-like computation happen inside the context window. However, existing surveys of ICRL mainly organize the field around pretraining objectives, architectures, context formats, evaluation protocols, and theoretical mechanisms, while the non-stationary setting remains comparatively underexamined. In changing environments, accumulated context is not merely more evidence about a fixed task: the reward specification, transition kernel, observation channel, action interface, constraint model, or demonstration and memory distribution can fall out of alignment with the current regime. Previously useful context can therefore become stale, misleading, or useful again when an old regime returns. We survey non-stationary ICRL as the problem of adapting through context while deployed policy parameters remain fixed: the policy must infer both the current decision rule and which parts of its accumulated evidence still support that rule. We define non-stationary ICRL, relate it to meta-RL, decision sequence modeling, retrieval-augmented RL, value- and model-aware ICRL, and reward-feedback agents, and organize the literature along three questions: what changes, how the change unfolds, and how observable the change is to the agent.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "In-Context Reinforcement Learning under Non-Stationarity: A Survey",
+      "raw_summary": "arXiv:2607.11906v1 Announce Type: new Abstract: The development of decision-pretrained transformers, algorithm distillation, long-context meta-RL, and retrieval-augmented agents has renewed interest in in-context reinforcement learning (ICRL): the ability of a pretrained or fine-tuned decision model to infer latent task rules and improve future behavior from interaction context, without test-time parameter updates. This line of work asks when trial-and-error evidence, rewards, transitions, demonstrations, feedback, or retrieved experience can make learning-like computation happen inside the context window. However, existing surveys of ICRL mainly organize the field around pretraining objectives, architectures, context formats, evaluation protocols, and theoretical mechanisms, while the non-stationary setting remains comparatively underexamined. In changing environments, accumulated context is not merely more evidence about a fixed task: the reward specification, transition kernel, observation channel, action interface, constraint model, or demonstration and memory distribution can fall out of alignment with the current regime. Previously useful context can therefore become stale, misleading, or useful again when an old regime returns. We survey non-stationary ICRL as the problem of adapting through context while deployed policy parameters remain fixed: the policy must infer both the current decision rule and which parts of its accumulated evidence still support that rule. We define non-stationary ICRL, relate it to meta-RL, decision sequence modeling, retrieval-augmented RL, value- and model-aware ICRL, and reward-feedback agents, and organize the literature along three questions: what changes, how the change unfolds, and how observable the change is to the agent.",
+      "score": 76,
+      "primary": "models",
+      "tags": [
+        "rl",
+        "icrl",
+        "transformers",
+        "meta-learning"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2607.11906",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 2,
+      "llm_score": 72,
+      "why": "Estudio relevante sobre la capacidad de los modelos preentrenados para aprender nuevas tareas en el contexto sin actualizar parámetros.",
+      "title_es": "Aprendizaje por refuerzo in-context bajo no-estacionariedad: una revisión",
+      "entities": [
+        "Context Reinforcement Learning",
+        "Non",
+        "Stationarity",
+        "Survey"
+      ],
+      "noise_penalty": 0,
+      "final_score": 76,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Semidirect Fourier Delta Attention: Phase-Controlled Delta Memory with Constructive Chunk-WY Kernels",
+      "link": "https://arxiv.org/abs/2607.11897",
+      "published": "2026-07-15T04:00:00+00:00",
+      "summary": "arXiv:2607.11897v1 Announce Type: new Abstract: Linear attention replaces softmax attention's growing KV cache with a fixed recurrent state, but this compression limits exact state tracking and long-context memory. We introduce \\emph{Semidirect Fourier Delta Attention} (SFDA), a phase-controlled generalization of Kimi Delta Attention that replaces real diagonal decay with block-rotational Fourier control: \\[ S_t=(I-\\beta_t k_tk_t^*)\\Lambda_tS_{t-1}+\\beta_tk_tv_t^*, \\qquad \\Lambda_t=\\diag(\\alpha_t\\odot e^{i\\theta_t}). \\] Our main result is a constructive chunk-WY factorization for products \\(A_t=\\Lambda_t-u_tr_t^*\\), giving \\[ A_t\\cdots A_1=\\Gamma_t-Y_tM_tW_t^* \\] with rank growth bounded inside fixed chunks. This yields an exact affine chunk transfer, formal stability and complexity bounds, and a compact characterization of phase-plus-low-rank memory. We verify the algebra numerically and show in toy state-tracking experiments that SFDA learns cyclic memory where the phase-disabled KDA baseline remains near chance. Fused kernels and large-scale language-model comparisons are left to future work.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Semidirect Fourier Delta Attention: Phase-Controlled Delta Memory with Constructive Chunk-WY Kernels",
+      "raw_summary": "arXiv:2607.11897v1 Announce Type: new Abstract: Linear attention replaces softmax attention's growing KV cache with a fixed recurrent state, but this compression limits exact state tracking and long-context memory. We introduce \\emph{Semidirect Fourier Delta Attention} (SFDA), a phase-controlled generalization of Kimi Delta Attention that replaces real diagonal decay with block-rotational Fourier control: \\[ S_t=(I-\\beta_t k_tk_t^*)\\Lambda_tS_{t-1}+\\beta_tk_tv_t^*, \\qquad \\Lambda_t=\\diag(\\alpha_t\\odot e^{i\\theta_t}). \\] Our main result is a constructive chunk-WY factorization for products \\(A_t=\\Lambda_t-u_tr_t^*\\), giving \\[ A_t\\cdots A_1=\\Gamma_t-Y_tM_tW_t^* \\] with rank growth bounded inside fixed chunks. This yields an exact affine chunk transfer, formal stability and complexity bounds, and a compact characterization of phase-plus-low-rank memory. We verify the algebra numerically and show in toy state-tracking experiments that SFDA learns cyclic memory where the phase-disabled KDA baseline remains near chance. Fused kernels and large-scale language-model comparisons are left to future work.",
+      "score": 72,
+      "primary": "models",
+      "tags": [
+        "atencion-lineal",
+        "arquitectura",
+        "fourier",
+        "eficiencia"
+      ],
+      "heuristic_score": 35,
+      "url": "https://arxiv.org/abs/2607.11897",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 35,
+      "_rid": 11,
+      "llm_score": 78,
+      "why": "Innovación en mecanismos de atención que permite un manejo más eficiente de la memoria en secuencias largas.",
+      "title_es": "Atención Delta de Fourier semidirecta: Memoria delta controlada por fase con núcleos constructivos Chunk-WY",
+      "entities": [
+        "Kimi",
+        "Semidirect Fourier Delta",
+        "Attention",
+        "Phase",
+        "Controlled Delta Memory",
+        "Constructive Chunk",
+        "Kernels"
+      ],
+      "noise_penalty": 0,
+      "final_score": 72,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "CANDI: Contextual Alignment for Niche Domains Question Answering",
+      "link": "https://arxiv.org/abs/2607.11891",
+      "published": "2026-07-15T04:00:00+00:00",
+      "summary": "arXiv:2607.11891v1 Announce Type: new Abstract: The deployment of large language models (LLMs) in specialized domains like medical diagnostics and financial advisory necessitates evaluating capabilities beyond general knowledge. Traditional question-answering benchmarks often fail to capture the nuanced contextual grounding, user awareness, and domain understanding these fields require. To address this, we introduce CANDI-QA (Contextual Alignment for Niche Domains Question Answering), a novel dataset evaluating LLMs on delivering accurate, context-sensitive, and user-aligned answers in specialized settings. CANDI-QA features expert-curated question-answer pairs structured into two categories: (1) Information Assistance Questions, which are direct, factual queries requiring precise extraction, and (2) Applied Inference Questions, which are multi-hop reasoning tasks needing situational inference to generate actionable insights. We evaluate over ten diverse language models, from compact open-source to state-of-the-art proprietary systems. As a robust baseline, we present MTSS-Net, a lightweight neuro-symbolic framework combining neural retrieval with rule-based reasoning. Our findings highlight the profound challenges of achieving contextual alignment in niche domains, revealing the limitations of current LLMs without enhanced contextual or symbolic integration. Ultimately, CANDI-QA serves as a critical benchmark for advancing research in context-aware language models, stimulating the development of robust, trustworthy AI for high-stakes domains.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "CANDI: Contextual Alignment for Niche Domains Question Answering",
+      "raw_summary": "arXiv:2607.11891v1 Announce Type: new Abstract: The deployment of large language models (LLMs) in specialized domains like medical diagnostics and financial advisory necessitates evaluating capabilities beyond general knowledge. Traditional question-answering benchmarks often fail to capture the nuanced contextual grounding, user awareness, and domain understanding these fields require. To address this, we introduce CANDI-QA (Contextual Alignment for Niche Domains Question Answering), a novel dataset evaluating LLMs on delivering accurate, context-sensitive, and user-aligned answers in specialized settings. CANDI-QA features expert-curated question-answer pairs structured into two categories: (1) Information Assistance Questions, which are direct, factual queries requiring precise extraction, and (2) Applied Inference Questions, which are multi-hop reasoning tasks needing situational inference to generate actionable insights. We evaluate over ten diverse language models, from compact open-source to state-of-the-art proprietary systems. As a robust baseline, we present MTSS-Net, a lightweight neuro-symbolic framework combining neural retrieval with rule-based reasoning. Our findings highlight the profound challenges of achieving contextual alignment in niche domains, revealing the limitations of current LLMs without enhanced contextual or symbolic integration. Ultimately, CANDI-QA serves as a critical benchmark for advancing research in context-aware language models, stimulating the development of robust, trustworthy AI for high-stakes domains.",
+      "score": 71,
+      "primary": "models",
+      "tags": [
+        "evaluacion",
+        "qa",
+        "dominios-nicho",
+        "medicina"
+      ],
+      "heuristic_score": 85,
+      "url": "https://arxiv.org/abs/2607.11891",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 85,
+      "_rid": 4,
+      "llm_score": 68,
+      "why": "Dataset especializado para validar la precisión y el alineamiento de LLMs en sectores donde el conocimiento general es insuficiente.",
+      "title_es": "CANDI: Alineamiento contextual para la resolución de preguntas en dominios de nicho",
+      "entities": [
+        "CANDI",
+        "Contextual Alignment",
+        "Niche Domains Question",
+        "Answering"
+      ],
+      "noise_penalty": 0,
+      "final_score": 71,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Optimal Adaptive Market Making: A Theoretical Framework for High-Yield Liquidity Provision in Perpetual Futures Markets",
+      "link": "https://arxiv.org/abs/2607.11888",
+      "published": "2026-07-15T04:00:00+00:00",
+      "summary": "arXiv:2607.11888v1 Announce Type: new Abstract: We develop a rigorous theoretical framework for optimal market making in perpetual futures markets with zero maker fees. We model the market maker's problem as a stochastic optimal control problem on a filtered probability space, where the controls are adaptive bid-ask spreads and inventory hedging decisions across two exchanges. Our contributions include: (i) a PnL decomposition theorem separating revenue into spread income, adverse selection loss, inventory carrying cost, hedging friction, and funding rate exposure; (ii) the Hamilton-Jacobi-Bellman equation for the joint spread-inventory-hedging control problem under CARA utility with a verification theorem; (iii) High-APY Regime Theorems characterizing profitable regions via five dimensionless parameters, culminating in a Master APY Formula; (iv) analysis of zero-fee economics on decentralized perpetual exchanges with optimal entry-exit thresholds; (v) optimal cross-exchange hedging policies with funding rate dynamics and a hedge regime trichotomy; (vi) a robustness margin quantifying parameter uncertainty tolerance; (vii) exponential drawdown probability bounds and a universal APY-VaR identity; (viii) ergodic inventory distribution under optimal control with Bayesian adaptive estimation; (ix) Kelly-optimal leverage with ruin boundaries; and (x) multi-pair portfolio allocation with diversification saturation results. Numerical analysis with twenty-three figures reveals phase transitions between profitable and unprofitable regimes. Our framework unifies and extends the Avellaneda-Stoikov, Gueant-Lehalle-Fernandez-Tapia, and Glosten-Milgrom paradigms for modern decentralized venue microstructure.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Optimal Adaptive Market Making: A Theoretical Framework for High-Yield Liquidity Provision in Perpetual Futures Markets",
+      "raw_summary": "arXiv:2607.11888v1 Announce Type: new Abstract: We develop a rigorous theoretical framework for optimal market making in perpetual futures markets with zero maker fees. We model the market maker's problem as a stochastic optimal control problem on a filtered probability space, where the controls are adaptive bid-ask spreads and inventory hedging decisions across two exchanges. Our contributions include: (i) a PnL decomposition theorem separating revenue into spread income, adverse selection loss, inventory carrying cost, hedging friction, and funding rate exposure; (ii) the Hamilton-Jacobi-Bellman equation for the joint spread-inventory-hedging control problem under CARA utility with a verification theorem; (iii) High-APY Regime Theorems characterizing profitable regions via five dimensionless parameters, culminating in a Master APY Formula; (iv) analysis of zero-fee economics on decentralized perpetual exchanges with optimal entry-exit thresholds; (v) optimal cross-exchange hedging policies with funding rate dynamics and a hedge regime trichotomy; (vi) a robustness margin quantifying parameter uncertainty tolerance; (vii) exponential drawdown probability bounds and a universal APY-VaR identity; (viii) ergodic inventory distribution under optimal control with Bayesian adaptive estimation; (ix) Kelly-optimal leverage with ruin boundaries; and (x) multi-pair portfolio allocation with diversification saturation results. Numerical analysis with twenty-three figures reveals phase transitions between profitable and unprofitable regimes. Our framework unifies and extends the Avellaneda-Stoikov, Gueant-Lehalle-Fernandez-Tapia, and Glosten-Milgrom paradigms for modern decentralized venue microstructure.",
+      "score": 70,
+      "primary": "invest",
+      "tags": [
+        "finanzas",
+        "market-making",
+        "rl",
+        "liquidez"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2607.11888",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 1,
+      "llm_score": 65,
+      "why": "Framework teórico avanzado para optimizar la liquidez en mercados de futuros mediante control estocástico y aprendizaje adaptativo.",
+      "title_es": "Market Making adaptativo óptimo: un marco teórico para la provisión de liquidez de alto rendimiento en mercados de futuros perpetuos",
+      "entities": [
+        "CARA",
+        "Optimal Adaptive Market",
+        "Theoretical Framework",
+        "High",
+        "Yield Liquidity Provision",
+        "Perpetual Futures Markets"
+      ],
+      "noise_penalty": 0,
+      "final_score": 70,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "G-SHARE: A Guideline-Based Structured Reasoning Framework for Human-Factor Event Diagnosis",
+      "link": "https://arxiv.org/abs/2607.11892",
+      "published": "2026-07-15T04:00:00+00:00",
+      "summary": "arXiv:2607.11892v1 Announce Type: new Abstract: Human-factor event diagnosis is essential for learning from operational events in nuclear power plants, yet its quality depends strongly on expert interpretation of narrative reports and guideline-based reasoning.Existing data-driven or one-shot large language model approaches often lack structured reasoning, have limited alignment with formal diagnostic guidelines, and may generate logically inconsistent conclusions. To address this issue, this study proposes G-SHARE, a guideline-based structured reasoning framework that operationalizes the CNNP nine-step human-factor event diagnosis guideline into a multi-stage diagnostic pipeline.The framework consists of evidence extraction, stepwise diagnostic reasoning, and post-hoc consistency repair, enabling explicit use of report evidence, intermediate rationale generation, and logical validation of diagnostic outputs. A dataset of real human-factor event reports was constructed from Chinese nuclear industry sources, and a gold-standard subset annotated by domain experts was used for evaluation. Results show that G-SHARE substantially outperforms one-shot prompting and traditional machine learning baselines, with the strongest version achieving the best overall accuracy and macro-F1. Ablation results further indicate that structured reasoning and consistency enforcement are critical to robust diagnosis, especially under weak prompting conditions. The findings demonstrate the value of transforming expert diagnostic guidelines into auditable reasoning workflows, providing a practical pathway for intelligent human-factor analysis in safety-critical industries.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "G-SHARE: A Guideline-Based Structured Reasoning Framework for Human-Factor Event Diagnosis",
+      "raw_summary": "arXiv:2607.11892v1 Announce Type: new Abstract: Human-factor event diagnosis is essential for learning from operational events in nuclear power plants, yet its quality depends strongly on expert interpretation of narrative reports and guideline-based reasoning.Existing data-driven or one-shot large language model approaches often lack structured reasoning, have limited alignment with formal diagnostic guidelines, and may generate logically inconsistent conclusions. To address this issue, this study proposes G-SHARE, a guideline-based structured reasoning framework that operationalizes the CNNP nine-step human-factor event diagnosis guideline into a multi-stage diagnostic pipeline.The framework consists of evidence extraction, stepwise diagnostic reasoning, and post-hoc consistency repair, enabling explicit use of report evidence, intermediate rationale generation, and logical validation of diagnostic outputs. A dataset of real human-factor event reports was constructed from Chinese nuclear industry sources, and a gold-standard subset annotated by domain experts was used for evaluation. Results show that G-SHARE substantially outperforms one-shot prompting and traditional machine learning baselines, with the strongest version achieving the best overall accuracy and macro-F1. Ablation results further indicate that structured reasoning and consistency enforcement are critical to robust diagnosis, especially under weak prompting conditions. The findings demonstrate the value of transforming expert diagnostic guidelines into auditable reasoning workflows, providing a practical pathway for intelligent human-factor analysis in safety-critical industries.",
+      "score": 67,
+      "primary": "misc",
+      "tags": [
+        "seguridad-nuclear",
+        "razonamiento",
+        "diagnostico",
+        "llm"
+      ],
+      "heuristic_score": 72,
+      "url": "https://arxiv.org/abs/2607.11892",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 72,
+      "_rid": 5,
+      "llm_score": 75,
+      "why": "Framework que aplica razonamiento estructurado basado en guías oficiales para mejorar la seguridad operativa en plantas nucleares.",
+      "title_es": "G-SHARE: Un marco de razonamiento estructurado basado en directrices para el diagnóstico de eventos de factor humano",
+      "entities": [
+        "CNNP",
+        "SHARE",
+        "Guideline",
+        "Based Structured Reasoning",
+        "Framework",
+        "Human",
+        "Factor Event Diagnosis"
+      ],
+      "noise_penalty": 8,
+      "final_score": 67,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(8)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Graph-Based Detection of Disinformation Narrative Diffusion between Russian and Ukrainian Telegram Channels",
+      "link": "https://arxiv.org/abs/2607.11894",
+      "published": "2026-07-15T04:00:00+00:00",
+      "summary": "arXiv:2607.11894v1 Announce Type: new Abstract: Detecting disinformation narratives on social media is challenging due to the scale of amplification, rapid evolution, and linguistic variability of online content. We propose a graph-based framework for identifying and analyzing disinformation narratives in Telegram ecosystems by combining weak supervision with propagation graph analysis. The approach aggregates semantically related claims into narrative-level clusters and models their diffusion across interconnected channels. This enables the detection of coordinated narrative amplification that is difficult to capture through post-level analysis alone. Our results demonstrate that integrating textual signals with network structure provides a scalable method for detecting disinformation narratives and offers insights into how they propagate within large-scale messaging environments.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Graph-Based Detection of Disinformation Narrative Diffusion between Russian and Ukrainian Telegram Channels",
+      "raw_summary": "arXiv:2607.11894v1 Announce Type: new Abstract: Detecting disinformation narratives on social media is challenging due to the scale of amplification, rapid evolution, and linguistic variability of online content. We propose a graph-based framework for identifying and analyzing disinformation narratives in Telegram ecosystems by combining weak supervision with propagation graph analysis. The approach aggregates semantically related claims into narrative-level clusters and models their diffusion across interconnected channels. This enables the detection of coordinated narrative amplification that is difficult to capture through post-level analysis alone. Our results demonstrate that integrating textual signals with network structure provides a scalable method for detecting disinformation narratives and offers insights into how they propagate within large-scale messaging environments.",
+      "score": 67,
+      "primary": "geopol",
+      "tags": [
+        "desinformacion",
+        "telegram",
+        "grafos",
+        "guerra"
+      ],
+      "heuristic_score": 50,
+      "url": "https://arxiv.org/abs/2607.11894",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 50,
+      "_rid": 9,
+      "llm_score": 70,
+      "why": "Uso de análisis de grafos para rastrear la amplificación coordinada de narrativas políticas en plataformas de mensajería.",
+      "title_es": "Detección basada en grafos de la difusión de narrativas de desinformación entre canales de Telegram rusos y ucranianos",
+      "entities": [
+        "Telegram",
+        "Graph",
+        "Based Detection",
+        "Disinformation Narrative Diffusion",
+        "Russian",
+        "Ukrainian Telegram Channels"
+      ],
+      "noise_penalty": 0,
+      "final_score": 67,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "DAC 2026 Mach42: A new generation of physics-driven AI models for analog circuit verification",
+      "link": "https://semiwiki.com/eda/mach42/371063-dac-2026-mach42-a-new-generation-of-physics-driven-ai-models-for-analog-circuit-verification/",
+      "published": "2026-07-14T17:00:08+00:00",
+      "summary": "Mach42 spun out of the Department of Physics at the University of Oxford in 2019 with a mission to establish software tools capable of drastically accelerating expensive physics simulations while supporting complex computational workflows. The prototype tools were successfully applied in the emulation of extreme states &8230; Read More The post DAC 2026 Mach42: A new generation of physics-driven AI models for analog circuit verification appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "DAC 2026 Mach42:  A new generation of physics-driven AI models for analog circuit verification",
+      "raw_summary": "Mach42 spun out of the Department of Physics at the University of Oxford in 2019 with a mission to establish software tools capable of drastically accelerating expensive physics simulations while supporting complex computational workflows. The prototype tools were successfully applied in the emulation of extreme states &#8230; Read More The post DAC 2026 Mach42: A new generation of physics-driven AI models for analog circuit verification appeared first on SemiWiki .",
+      "score": 67,
+      "primary": "infra",
+      "tags": [
+        "eda",
+        "semiconductores",
+        "chips",
+        "simulacion"
+      ],
+      "heuristic_score": 30,
+      "url": "https://semiwiki.com/eda/mach42/371063-dac-2026-mach42-a-new-generation-of-physics-driven-ai-models-for-analog-circuit-verification/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 30,
+      "_rid": 12,
+      "llm_score": 74,
+      "why": "Aplicación de IA para acelerar el diseño y verificación de hardware, reduciendo tiempos de simulación física.",
+      "title_es": "DAC 2026 Mach42: Una nueva generación de modelos de IA impulsados por física para la verificación de circuitos analógicos",
+      "entities": [
+        "Mach42",
+        "University of Oxford",
+        "DAC"
+      ],
+      "noise_penalty": 0,
+      "final_score": 67,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Introducing computer use in Gemini 3.5 Flash",
+      "link": "https://deepmind.google/blog/introducing-computer-use-in-gemini-3-5-flash/",
+      "published": "2026-06-24T16:30:01+00:00",
+      "summary": "",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Introducing computer use in Gemini 3.5 Flash",
+      "raw_summary": "",
+      "score": 66,
+      "primary": "models",
+      "tags": [
+        "agentes",
+        "computer-use",
+        "gemini",
+        "automatizacion"
+      ],
+      "heuristic_score": 22,
+      "url": "https://deepmind.google/blog/introducing-computer-use-in-gemini-3-5-flash/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 22,
+      "_rid": 14,
+      "llm_score": 85,
+      "why": "Hito en la autonomía de modelos que ahora pueden operar sistemas informáticos como lo haría un humano.",
+      "title_es": "Presentamos el uso de ordenador en Gemini 3.5 Flash",
+      "entities": [
+        "DeepMind",
+        "Google",
+        "Gemini",
+        "Flash"
+      ],
+      "noise_penalty": 10,
+      "final_score": 66,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(10)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "We’re strengthening our presence in Alabama through new investments and community support.",
+      "link": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/alabama-investment-june-2026/",
+      "published": "2026-06-15T15:00:00+00:00",
+      "summary": "Google has announced a $1.5 billion investment for 2026 and 2027 to expand its data center campus in Jackson County, Alabama. Operating since 2019 on a repurposed former…",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "We’re strengthening our presence in Alabama through new investments and community support.",
+      "raw_summary": "Google has announced a $1.5 billion investment for 2026 and 2027 to expand its data center campus in Jackson County, Alabama. Operating since 2019 on a repurposed former…",
+      "score": 65,
+      "primary": "infra",
+      "tags": [
+        "centros-de-datos",
+        "inversion",
+        "nube",
+        "google"
+      ],
+      "heuristic_score": 39,
+      "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/alabama-investment-june-2026/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 39,
+      "_rid": 10,
+      "llm_score": 88,
+      "why": "Inversión de capital masiva que subraya la necesidad continua de capacidad de cómputo para sostener el avance de la IA.",
+      "title_es": "Estamos reforzando nuestra presencia en Alabama mediante nuevas inversiones y apoyo a la comunidad",
+      "entities": [
+        "Google",
+        "Alabama"
+      ],
+      "noise_penalty": 16,
+      "final_score": 65,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(16)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "OmniPMNet: Bridging discrete and gridded PM10 forecasts via omni-query neural processes",
+      "link": "https://arxiv.org/abs/2607.11896",
+      "published": "2026-07-15T04:00:00+00:00",
+      "summary": "arXiv:2607.11896v1 Announce Type: new Abstract: Forecasting particulate matter (PM10) requires both station-scale accuracy and continuous spatial fields, especially during severe dust storms. Chemical transport models (CTMs) provide gridded forecasts but retain local biases, whereas graph neural networks (GNNs) track monitoring sites well at short lead times but do not produce gridded outputs. Here we present OmniPM-Net, a Convolutional Conditional Neural Process (ConvCNP)-based fusion model that reconciles these two forecast types within a shared spatial representation. A terrain-aware Gaussian set convolution lifts irregular GNN station forecasts onto a regular grid, where a multi-scale Spatial Source Attention (SSA) module blends them with Copernicus Atmosphere Monitoring Service (CAMS) forecasts; a shared omni-query readout then decodes this representation into consistent PM10 predictions at either stations or grid cells over a 108 h horizon. Evaluated across 1,618 air-quality monitoring stations throughout China over the full year of 2024, OmniPM-Net matches the station-level accuracy of the stronger GNN baseline (mean absolute error 21.14 versus 22.00 ug/m3) and reduces the CAMS mean absolute error by 30%, while simultaneously delivering the gridded fields that the discrete GNN cannot. Its clearest gains are in the high-concentration tail, where the 90th-percentile MAE falls by 9% relative to the GNN and 25% relative to CAMS, and during dust episodes, where it improves categorical detection skill while tracking the evolving spatial trajectory.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "OmniPMNet: Bridging discrete and gridded PM10 forecasts via omni-query neural processes",
+      "raw_summary": "arXiv:2607.11896v1 Announce Type: new Abstract: Forecasting particulate matter (PM10) requires both station-scale accuracy and continuous spatial fields, especially during severe dust storms. Chemical transport models (CTMs) provide gridded forecasts but retain local biases, whereas graph neural networks (GNNs) track monitoring sites well at short lead times but do not produce gridded outputs. Here we present OmniPM-Net, a Convolutional Conditional Neural Process (ConvCNP)-based fusion model that reconciles these two forecast types within a shared spatial representation. A terrain-aware Gaussian set convolution lifts irregular GNN station forecasts onto a regular grid, where a multi-scale Spatial Source Attention (SSA) module blends them with Copernicus Atmosphere Monitoring Service (CAMS) forecasts; a shared omni-query readout then decodes this representation into consistent PM10 predictions at either stations or grid cells over a 108 h horizon. Evaluated across 1,618 air-quality monitoring stations throughout China over the full year of 2024, OmniPM-Net matches the station-level accuracy of the stronger GNN baseline (mean absolute error 21.14 versus 22.00 ug/m3) and reduces the CAMS mean absolute error by 30%, while simultaneously delivering the gridded fields that the discrete GNN cannot. Its clearest gains are in the high-concentration tail, where the 90th-percentile MAE falls by 9% relative to the GNN and 25% relative to CAMS, and during dust episodes, where it improves categorical detection skill while tracking the evolving spatial trajectory.",
+      "score": 61,
+      "primary": "infra",
+      "tags": [
+        "meteorologia",
+        "gnn",
+        "redes-neuronales",
+        "calidad-aire"
+      ],
+      "heuristic_score": 66,
+      "url": "https://arxiv.org/abs/2607.11896",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 66,
+      "_rid": 6,
+      "llm_score": 60,
+      "why": "Modelo híbrido que combina precisión local de sensores con campos espaciales continuos para pronósticos ambientales.",
+      "title_es": "OmniPMNet: Uniendo pronósticos de PM10 discretos y cuadriculados mediante procesos neuronales de consulta omnidireccional",
+      "entities": [
+        "ConvCNP",
+        "PM10",
+        "Bridging"
+      ],
+      "noise_penalty": 0,
+      "final_score": 61,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "DAC 2026: Certus Semiconductor Brings Two New I/O Libraries to GlobalFoundries 12nm",
+      "link": "https://semiwiki.com/ip/certus-semiconductor/370883-certus-semiconductor-brings-two-new-i-o-libraries-to-globalfoundries-12nm-certus-sem/",
+      "published": "2026-07-14T21:00:14+00:00",
+      "summary": "Certus Semiconductor, a trusted leader in custom I/O and ESD solutions, will exhibit at Booth 839 during DAC 2026 , July 27–29 in Long Beach. This year, Certus is announcing two new developments in GlobalFoundries 12LP and 12LP+ Processes: one I/O library built for commercial SoC and ASIC design teams, and one library purpose-built&8230; Read More The post DAC 2026: Certus Semiconductor Brings Two New I/O Libraries to GlobalFoundries 12nm appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "DAC 2026: Certus Semiconductor Brings Two New I/O Libraries to GlobalFoundries 12nm",
+      "raw_summary": "Certus Semiconductor, a trusted leader in custom I/O and ESD solutions, will exhibit at Booth 839 during DAC 2026 , July 27–29 in Long Beach. This year, Certus is announcing two new developments in GlobalFoundries 12LP and 12LP+ Processes: one I/O library built for commercial SoC and ASIC design teams, and one library purpose-built&#8230; Read More The post DAC 2026: Certus Semiconductor Brings Two New I/O Libraries to GlobalFoundries 12nm appeared first on SemiWiki .",
+      "score": 59,
+      "primary": "infra",
+      "tags": [
+        "semiconductores",
+        "io-libraries",
+        "12nm",
+        "asic"
+      ],
+      "heuristic_score": 24,
+      "url": "https://semiwiki.com/ip/certus-semiconductor/370883-certus-semiconductor-brings-two-new-i-o-libraries-to-globalfoundries-12nm-certus-sem/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 24,
+      "_rid": 13,
+      "llm_score": 65,
+      "why": "Desarrollo de componentes fundamentales para la fabricación de chips especializados en procesos de 12nm.",
+      "title_es": "DAC 2026: Certus Semiconductor lleva dos nuevas librerías de E/S a GlobalFoundries 12nm",
+      "entities": [
+        "Certus Semiconductor",
+        "GlobalFoundries",
+        "DAC",
+        "Certus Semiconductor Brings",
+        "Two New",
+        "Libraries"
+      ],
+      "noise_penalty": 0,
+      "final_score": 59,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Securing the future of AI agents",
+      "link": "https://deepmind.google/blog/securing-the-future-of-ai-agents/",
+      "published": "2026-06-16T15:46:31+00:00",
+      "summary": "Securing internal systems with an AI Control Roadmap, combining traditional safeguards and real-time monitoring.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Securing the future of AI agents",
+      "raw_summary": "Securing internal systems with an AI Control Roadmap, combining traditional safeguards and real-time monitoring.",
+      "score": 53,
+      "primary": "misc",
+      "tags": [
+        "seguridad",
+        "agentes",
+        "gobernanza",
+        "control"
+      ],
+      "heuristic_score": 22,
+      "url": "https://deepmind.google/blog/securing-the-future-of-ai-agents/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 22,
+      "_rid": 15,
+      "llm_score": 77,
+      "why": "Estrategia proactiva para mitigar riesgos derivados del despliegue masivo de agentes autónomos de IA.",
+      "title_es": "Asegurando el futuro de los agentes de IA",
+      "entities": [
+        "DeepMind",
+        "Securing"
+      ],
+      "noise_penalty": 16,
+      "final_score": 53,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(16)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "I'm Sorry, but I Can't Help with Braille: Revealing Accessibility Failures in State-of-the-Art LLMs",
+      "link": "https://arxiv.org/abs/2607.11893",
+      "published": "2026-07-15T04:00:00+00:00",
+      "summary": "arXiv:2607.11893v1 Announce Type: new Abstract: Large Language Models (LLMs) perform strongly on many language tasks, but their capability in structurally constrained, accessibility-critical modalities such as Braille remains unclear. We evaluate state-of-the-art LLMs on bidirectional Korean-Braille translation using a human-annotated dataset. Despite expectations that multilingual, instruction-tuned models can generalize to Braille via text representations, we find consistently poor, unstable outputs and substantial disagreement with human judgments. These results point to missing Braille-aware tokenization and weak alignment between Korean and Braille patterns. In contrast, supervised fine-tuning of a small model (T5-small) on the same data yields large and stable gains over zero-shot and prompted LLM baselines across standard metrics (SacreBLEU, ChrF++, CER, BLEU, ROUGE-L, METEOR, CIDEr). Our findings reveal a systematic limitation of current LLMs and demonstrate the effectiveness of modest task-specific supervision.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "I'm Sorry, but I Can't Help with Braille: Revealing Accessibility Failures in State-of-the-Art LLMs",
+      "raw_summary": "arXiv:2607.11893v1 Announce Type: new Abstract: Large Language Models (LLMs) perform strongly on many language tasks, but their capability in structurally constrained, accessibility-critical modalities such as Braille remains unclear. We evaluate state-of-the-art LLMs on bidirectional Korean-Braille translation using a human-annotated dataset. Despite expectations that multilingual, instruction-tuned models can generalize to Braille via text representations, we find consistently poor, unstable outputs and substantial disagreement with human judgments. These results point to missing Braille-aware tokenization and weak alignment between Korean and Braille patterns. In contrast, supervised fine-tuning of a small model (T5-small) on the same data yields large and stable gains over zero-shot and prompted LLM baselines across standard metrics (SacreBLEU, ChrF++, CER, BLEU, ROUGE-L, METEOR, CIDEr). Our findings reveal a systematic limitation of current LLMs and demonstrate the effectiveness of modest task-specific supervision.",
+      "score": 49,
+      "primary": "misc",
+      "tags": [
+        "accesibilidad",
+        "braille",
+        "multimodal",
+        "fallo-llm"
+      ],
+      "heuristic_score": 52,
+      "url": "https://arxiv.org/abs/2607.11893",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 52,
+      "_rid": 8,
+      "llm_score": 55,
+      "why": "Identificación de una brecha crítica en la capacidad multimodal de los modelos actuales para asistir a personas con discapacidad visual.",
+      "title_es": "Lo siento, pero no puedo ayudar con el Braille: revelando fallos de accesibilidad en LLMs de última generación",
+      "entities": [
+        "Sorry",
+        "Can",
+        "Help",
+        "Braille",
+        "Revealing Accessibility Failures",
+        "State",
+        "Art"
+      ],
+      "noise_penalty": 6,
+      "final_score": 49,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(6)",
+      "strategic_theme": "compute_chips_dc"
+    }
+  ]
+}
