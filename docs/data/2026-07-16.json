@@ -1,0 +1,674 @@
+{
+  "date": "2026-07-16",
+  "score_avg": 63.73,
+  "primary_dist": {
+    "invest": 1,
+    "infra": 5,
+    "models": 7,
+    "misc": 2
+  },
+  "top_entities": [
+    {
+      "entity": "DAC",
+      "count": 3
+    },
+    {
+      "entity": "DeepMind",
+      "count": 3
+    },
+    {
+      "entity": "Gemini",
+      "count": 2
+    },
+    {
+      "entity": "Google",
+      "count": 2
+    },
+    {
+      "entity": "Wikipedia",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "La convergencia de agentes IA y robótica bimanual se acelera mediante marcos de depuración sistemática.",
+      "El hardware para IA gira hacia arquitecturas de 2nm (TSMC N2P) con foco en la eficiencia del movimiento de datos.",
+      "Surge la necesidad crítica de trazabilidad a nivel de token (data provenance) para cumplir con el derecho al olvido.",
+      "Los modelos de lenguaje 'punto en el tiempo' buscan eliminar el sesgo de anticipación en finanzas y ciencias sociales.",
+      "NVIDIA Nemotron y LangChain consolidan el ecosistema de agentes abiertos frente a modelos cerrados propietarios."
+    ],
+    "risks": [
+      "El sesgo de información futura (lookahead bias) invalida pruebas retrospectivas en modelos financieros tradicionales.",
+      "El sobre-borrado de datos en peticiones de revocación amenaza la integridad de los datasets de entrenamiento masivos.",
+      "La brecha entre la inteligencia del modelo y la calibración física de los robots frena el escalado de la IA física."
+    ],
+    "watch": [
+      "Evolución de la asociación de investigación entre Google DeepMind y la productora cinematográfica A24.",
+      "Implementación de la API de Gemini para agentes gestionados con tareas en segundo plano y MCP remoto.",
+      "Resultados de la aplicación de IA en la planificación urbanística y construcción de viviendas en el Reino Unido."
+    ],
+    "entities_top": [
+      "NVIDIA",
+      "Google DeepMind",
+      "TSMC"
+    ]
+  },
+  "items": [
+    {
+      "title": "OriginBlame: Record- and Token-Level Data Provenance for AI Training Datasets",
+      "link": "https://arxiv.org/abs/2607.13037",
+      "published": "2026-07-16T04:00:00+00:00",
+      "summary": "arXiv:2607.13037v1 Announce Type: new Abstract: When a data contributor requests removal, model trainers face a practical gap: unlearning algorithms require a forget set, yet no tool can locate which training records belong to a given author. Existing provenance systems operate at file or dataset level, forcing catastrophic over-deletion. We present ob, a record- and token-level data provenance system that propagates author identity through data processing pipelines and resolves revocation requests into precise forget sets via deterministic queries. Evaluation on 219,555 Wikipedia pages demonstrates that record-level provenance eliminates dataset-level over-deletion (from 101x to 1.3x), while integration adds 1.3-4.0% throughput overhead (HuggingFace) and 2.1-19.0% (Datatrove) on wiki data. On a 1.7B model, provenance-based forget sets improve unlearning by 42% over random baselines.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "OriginBlame: Record- and Token-Level Data Provenance for AI Training Datasets",
+      "raw_summary": "arXiv:2607.13037v1 Announce Type: new Abstract: When a data contributor requests removal, model trainers face a practical gap: unlearning algorithms require a forget set, yet no tool can locate which training records belong to a given author. Existing provenance systems operate at file or dataset level, forcing catastrophic over-deletion. We present ob, a record- and token-level data provenance system that propagates author identity through data processing pipelines and resolves revocation requests into precise forget sets via deterministic queries. Evaluation on 219,555 Wikipedia pages demonstrates that record-level provenance eliminates dataset-level over-deletion (from 101x to 1.3x), while integration adds 1.3-4.0% throughput overhead (HuggingFace) and 2.1-19.0% (Datatrove) on wiki data. On a 1.7B model, provenance-based forget sets improve unlearning by 42% over random baselines.",
+      "score": 82,
+      "primary": "invest",
+      "tags": [
+        "data provenance",
+        "privacy",
+        "compliance",
+        "copyright"
+      ],
+      "heuristic_score": 84,
+      "url": "https://arxiv.org/abs/2607.13037",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 84,
+      "_rid": 2,
+      "llm_score": 82,
+      "why": "Presenta un sistema de trazabilidad a nivel de registro que permite eliminar datos específicos sin destruir el dataset completo, clave para regulación.",
+      "title_es": "OriginBlame: trazabilidad de datos a nivel de registro y token para conjuntos de entrenamiento de IA",
+      "entities": [
+        "Wikipedia",
+        "Record",
+        "Token",
+        "Level Data Provenance",
+        "Training Datasets"
+      ],
+      "noise_penalty": 0,
+      "final_score": 82,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Beyond Backbone Backpropagation: A Decoupled Strategy for Efficient Transfer Learning",
+      "link": "https://arxiv.org/abs/2607.13043",
+      "published": "2026-07-16T04:00:00+00:00",
+      "summary": "arXiv:2607.13043v1 Announce Type: new Abstract: Deep learning models achieve state-of-the-art classification but face deployment challenges due to computational costs and energy demands. We propose a lightweight training strategy that adapts normalization layers of the model to the new domain and decouples feature extraction from classifier optimization, reducing overhead by precomputing features only once. A redesigned classifier head with margin-based weighted loss further minimizes ambiguity without end-to-end backpropagation. Evaluated across four CNN architectures (ResNet18, ResNet50, MobileNet, DenseNet121), three Transformer models (ViT, Swin and DeiT) and three medical datasets (Brain Cancer MRI, BreakHis and PatchCamelyon), our approach significantly reduces the required training time with only a marginal accuracy trade-off, often matching or surpassing baseline performance. This efficiency translates to reducing CO2 by orders of magnitude, offering a practical and environmentally sustainable solution for resource-constrained clinical or prototyping environments.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Beyond Backbone Backpropagation: A Decoupled Strategy for Efficient Transfer Learning",
+      "raw_summary": "arXiv:2607.13043v1 Announce Type: new Abstract: Deep learning models achieve state-of-the-art image classification but face deployment challenges due to computational costs and energy demands. We propose a lightweight training strategy that adapts normalization layers of the model to the new domain and decouples feature extraction from classifier optimization, reducing overhead by precomputing features only once. A redesigned classifier head with margin-based weighted loss further minimizes ambiguity without end-to-end backpropagation. Evaluated across four CNN architectures (ResNet18, ResNet50, MobileNet, DenseNet121), three Transformer models (ViT, Swin and DeiT) and three medical datasets (Brain Cancer MRI, BreakHis and PatchCamelyon), our approach significantly reduces the required training time with only a marginal accuracy trade-off, often matching or surpassing baseline performance. This efficiency translates to reducing CO2 by orders of magnitude, offering a practical and environmentally sustainable solution for resource-constrained clinical or prototyping environments.",
+      "score": 77,
+      "primary": "infra",
+      "tags": [
+        "transfer learning",
+        "efficiency",
+        "backpropagation",
+        "edge ai"
+      ],
+      "heuristic_score": 88,
+      "url": "https://arxiv.org/abs/2607.13043",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 88,
+      "_rid": 1,
+      "llm_score": 75,
+      "why": "Propone una estrategia de entrenamiento ligero reduciendo costes energéticos, vital para el despliegue de modelos en dispositivos limitados.",
+      "title_es": "Más allá de la retropropagación: una estrategia desacoplada para un aprendizaje por transferencia eficiente",
+      "entities": [
+        "ResNet",
+        "MobileNet",
+        "ViT",
+        "Beyond Backbone Backpropagation",
+        "Decoupled Strategy",
+        "Efficient Transfer Learning"
+      ],
+      "noise_penalty": 0,
+      "final_score": 77,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "SPINE: Bridging the Cyber-Physical Gap with Agentic AI",
+      "link": "https://arxiv.org/abs/2607.13049",
+      "published": "2026-07-16T04:00:00+00:00",
+      "summary": "arXiv:2607.13049v1 Announce Type: new Abstract: Foundation models have given robots a sophisticated brain for complex decision-making, yet deploying that intelligence into a physical platform still demands tedious, expert-driven calibration. This deployment gap, the robot's spinal cord, remains a primary bottleneck to scalable Embodied AI. Hence, we propose SPINE (Scalable Physical Integration with ageNtic Expertise): an agentic framework for systematically debugging and deploying bimanual robots with minimal robotics expertise. SPINE's harness comprises two orchestrated multi-agent workflows: a profile builder that creates robot-specific context, and a debugger that cycles through diagnosis, repair, and validation until teleoperation works. Across seven DOBOT X-Trainer debugging scenarios, a robotics novice using SPINE outperformed human operators using Claude Code with the same reference materials, but without SPINE's structured workflow, improving operationalization success from 75% to 100% and reducing mean time-to-teleoperation from 16 min 45 s to 13 min 47 s. On AgileX PiPER, a distinct ROS/CAN bimanual arm, SPINE resolved all 10 implanted bugs, versus 9 out of 10 for the expert baseline, in nearly the same amount of time. Together, these results show that SPINE can transfer across bimanual platforms, reduce dependence on expert calibration, and move embodied AI closer to scalable real-world deployment.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "SPINE: Bridging the Cyber-Physical Gap with Agentic AI",
+      "raw_summary": "arXiv:2607.13049v1 Announce Type: new Abstract: Foundation models have given robots a sophisticated brain for complex decision-making, yet deploying that intelligence into a physical platform still demands tedious, expert-driven calibration. This deployment gap, the robot's spinal cord, remains a primary bottleneck to scalable Embodied AI. Hence, we propose SPINE (Scalable Physical Integration with ageNtic Expertise): an agentic framework for systematically debugging and deploying bimanual robots with minimal robotics expertise. SPINE's harness comprises two orchestrated multi-agent workflows: a profile builder that creates robot-specific context, and a debugger that cycles through diagnosis, repair, and validation until teleoperation works. Across seven DOBOT X-Trainer debugging scenarios, a robotics novice using SPINE outperformed human operators using Claude Code with the same reference materials, but without SPINE's structured workflow, improving operationalization success from 75% to 100% and reducing mean time-to-teleoperation from 16 min 45 s to 13 min 47 s. On AgileX PiPER, a distinct ROS/CAN bimanual arm, SPINE resolved all 10 implanted bugs, versus 9 out of 10 for the expert baseline, in nearly the same amount of time. Together, these results show that SPINE can transfer across bimanual platforms, reduce dependence on expert calibration, and move embodied AI closer to scalable real-world deployment.",
+      "score": 77,
+      "primary": "models",
+      "tags": [
+        "robotics",
+        "agentic ai",
+        "embodied ai",
+        "automation"
+      ],
+      "heuristic_score": 71,
+      "url": "https://arxiv.org/abs/2607.13049",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 71,
+      "_rid": 3,
+      "llm_score": 78,
+      "why": "Facilita el despliegue de robots bimanuales mediante un marco agéntico que reduce la necesidad de expertos en calibración física.",
+      "title_es": "SPINE: cerrando la brecha ciberfísica con IA agéntica",
+      "entities": [
+        "SPINE",
+        "Bridging",
+        "Cyber",
+        "Physical Gap",
+        "Agentic"
+      ],
+      "noise_penalty": 0,
+      "final_score": 77,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "DAC 2026 See Analog Bits TSMC N2P IP portfolio and meet with its engineering experts!",
+      "link": "https://semiwiki.com/ip/analog-bits/371049-dac-2026-see-analog-bits-tsmc-n2p-ip-portfolio-and-meet-with-its-engineering-experts/",
+      "published": "2026-07-15T21:00:04+00:00",
+      "summary": "Analog Bits , Inc. is an established provider of mixed-signal semiconductor IP that integrates into advanced system-on-chip (SoC) designs to enable intelligent energy and power management. Its full portfolio of IP blocks includes precision clocking macros, power and temperature sensors including LDO and regulators, programmable&8230; Read More The post DAC 2026 See Analog Bits TSMC N2P IP portfolio and meet with its engineering experts! appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "DAC 2026 See Analog Bits TSMC N2P IP portfolio and meet with its engineering experts!",
+      "raw_summary": "Analog Bits , Inc. is an established provider of mixed-signal semiconductor IP that integrates into advanced system-on-chip (SoC) designs to enable intelligent energy and power management. Its full portfolio of IP blocks includes precision clocking macros, power and temperature sensors including LDO and regulators, programmable&#8230; Read More The post DAC 2026 See Analog Bits TSMC N2P IP portfolio and meet with its engineering experts! appeared first on SemiWiki .",
+      "score": 77,
+      "primary": "infra",
+      "tags": [
+        "tsmc",
+        "semiconductors",
+        "2nm",
+        "analog bits"
+      ],
+      "heuristic_score": 34,
+      "url": "https://semiwiki.com/ip/analog-bits/371049-dac-2026-see-analog-bits-tsmc-n2p-ip-portfolio-and-meet-with-its-engineering-experts/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 34,
+      "_rid": 5,
+      "llm_score": 85,
+      "why": "La disponibilidad de IP para el nodo N2P de TSMC es fundamental para la próxima generación de SoCs optimizados para potencia e IA.",
+      "title_es": "DAC 2026: ¡Vea el catálogo de IP TSMC N2P de Analog Bits y reúnase con sus expertos!",
+      "entities": [
+        "Analog Bits",
+        "TSMC",
+        "DAC",
+        "N2P",
+        "See Analog Bits"
+      ],
+      "noise_penalty": 0,
+      "final_score": 77,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Arteris at DAC 2026 Connecting Innovation for Silicon Success",
+      "link": "https://semiwiki.com/ip/arteris/371060-arteris-at-dac-2026-connecting-innovation-for-silicon-success/",
+      "published": "2026-07-15T13:00:43+00:00",
+      "summary": "The semiconductor industry has entered a new era as AI workloads, chiplets, heterogeneous computing, software-defined vehicles, and intelligent edge devices are transforming how chips are designed. Silicon success is no longer determined by transistor counts alone, but by how efficiently data moves across increasingly&8230; Read More The post Arteris at DAC 2026 Connecting Innovation for Silicon Success appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "Arteris at DAC 2026 Connecting Innovation for Silicon Success",
+      "raw_summary": "The semiconductor industry has entered a new era as AI workloads, chiplets, heterogeneous computing, software-defined vehicles, and intelligent edge devices are transforming how chips are designed. Silicon success is no longer determined by transistor counts alone, but by how efficiently data moves across increasingly&#8230; Read More The post Arteris at DAC 2026 Connecting Innovation for Silicon Success appeared first on SemiWiki .",
+      "score": 73,
+      "primary": "infra",
+      "tags": [
+        "chiplets",
+        "heterogeneous computing",
+        "noc",
+        "semiconductors"
+      ],
+      "heuristic_score": 12,
+      "url": "https://semiwiki.com/ip/arteris/371060-arteris-at-dac-2026-connecting-innovation-for-silicon-success/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 12,
+      "_rid": 13,
+      "llm_score": 84,
+      "why": "Destaca que la eficiencia en el movimiento de datos es ahora más crítica que el número de transistores en diseños para cargas de IA.",
+      "title_es": "Arteris en DAC 2026: conectando la innovación para el éxito del silicio",
+      "entities": [
+        "Arteris",
+        "DAC",
+        "Connecting Innovation",
+        "Silicon Success"
+      ],
+      "noise_penalty": 0,
+      "final_score": 73,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "NVIDIA Nemotron Achieves Benchmark-Leading Performance With LangChain Deep Agents Harness",
+      "link": "https://blogs.nvidia.com/blog/nemotron-langchain-agents-open-stack/",
+      "published": "2026-07-08T15:00:27+00:00",
+      "summary": "NVIDIA Nemotron 3 Ultra is offering leading performance at lower cost than top closed models with the largest and most widely adopted AI agent orchestration platform. LangChain tuned its Deep Agents harness for NVIDIA Nemotron 3 Ultra, achieving the highest accuracy among open models, while completing more tasks at higher throughput and running at 10x [&8230;]",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "NVIDIA Nemotron Achieves Benchmark-Leading Performance With LangChain Deep Agents Harness",
+      "raw_summary": "NVIDIA Nemotron 3 Ultra is offering leading performance at lower cost than top closed models with the largest and most widely adopted AI agent orchestration platform. LangChain tuned its Deep Agents harness for NVIDIA Nemotron 3 Ultra, achieving the highest accuracy among open models, while completing more tasks at higher throughput and running at 10x [&#8230;]",
+      "score": 70,
+      "primary": "models",
+      "tags": [
+        "nvidia",
+        "langchain",
+        "agents",
+        "open models"
+      ],
+      "heuristic_score": 68,
+      "url": "https://blogs.nvidia.com/blog/nemotron-langchain-agents-open-stack/",
+      "is_repeat": true,
+      "novelty_score": 45,
+      "adjusted_score": 13,
+      "_rid": 12,
+      "llm_score": 88,
+      "why": "Competencia directa contra modelos cerrados al ofrecer rendimiento líder en orquestación de agentes con menores costes operativos.",
+      "title_es": "NVIDIA Nemotron logra un rendimiento líder en benchmarks con el marco Deep Agents de LangChain",
+      "entities": [
+        "NVIDIA",
+        "LangChain",
+        "Nemotron",
+        "Nemotron Achieves Benchmark",
+        "Leading Performance With",
+        "Deep Agents Harness"
+      ],
+      "noise_penalty": 7,
+      "final_score": 70,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(7)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Scaling Point-in-Time Language Models",
+      "link": "https://arxiv.org/abs/2607.11889",
+      "published": "2026-07-16T04:00:00+00:00",
+      "summary": "arXiv:2607.11889v1 Announce Type: new Abstract: Large language models trained on unrestricted internet corpora inevitably embed information from the future, introducing lookahead bias that compromises the validity of backtests and causal inference in finance and the social sciences. Point-in-time language models--trained exclusively on text available up to each calendar date--eliminate this leakage by construction, but existing efforts typically produce models that lag substantially behind their unconstrained counterparts. We show that this performance gap can be substantially narrowed through scale. Training decoder-only transformers with up to 4 billion parameters on 1 trillion chronologically filtered tokens from FineWeb, we construct a sequence of monthly model checkpoints spanning 2013-2024. Across a range of common-sense reasoning and language understanding benchmarks, our models approach the performance of leading open-weight models of comparable size (e.g., Gemma-3-4B and LLaMA-7B) trained on temporally unrestricted data, although a performance gap remains on several tasks. Instruction fine-tuning via LoRA further improves downstream usability. We release the complete pipeline--including dataset construction, training infrastructure, and evaluation code--to enable reproducible point-in-time language modeling and to support research applications that require strict temporal validity.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Scaling Point-in-Time Language Models",
+      "raw_summary": "arXiv:2607.11889v1 Announce Type: new Abstract: Large language models trained on unrestricted internet corpora inevitably embed information from the future, introducing lookahead bias that compromises the validity of backtests and causal inference in finance and the social sciences. Point-in-time language models--trained exclusively on text available up to each calendar date--eliminate this leakage by construction, but existing efforts typically produce models that lag substantially behind their unconstrained counterparts. We show that this performance gap can be substantially narrowed through scale. Training decoder-only transformers with up to 4 billion parameters on 1 trillion chronologically filtered tokens from FineWeb, we construct a sequence of monthly model checkpoints spanning 2013-2024. Across a range of common-sense reasoning and language understanding benchmarks, our models approach the performance of leading open-weight models of comparable size (e.g., Gemma-3-4B and LLaMA-7B) trained on temporally unrestricted data, although a performance gap remains on several tasks. Instruction fine-tuning via LoRA further improves downstream usability. We release the complete pipeline--including dataset construction, training infrastructure, and evaluation code--to enable reproducible point-in-time language modeling and to support research applications that require strict temporal validity.",
+      "score": 66,
+      "primary": "models",
+      "tags": [
+        "finance",
+        "backtesting",
+        "lookahead bias",
+        "scaling laws"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2607.11889",
+      "is_repeat": true,
+      "novelty_score": 45,
+      "adjusted_score": 45,
+      "_rid": 4,
+      "llm_score": 70,
+      "why": "Aborda el sesgo de información futura en modelos entrenados con datos de internet, permitiendo inferencias causales más válidas en economía.",
+      "title_es": "Escalado de modelos de lenguaje de punto en el tiempo",
+      "entities": [
+        "Scaling Point",
+        "Time Language Models"
+      ],
+      "noise_penalty": 0,
+      "final_score": 66,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "CANDI: Contextual Alignment for Niche Domains Question Answering",
+      "link": "https://arxiv.org/abs/2607.11891",
+      "published": "2026-07-16T04:00:00+00:00",
+      "summary": "arXiv:2607.11891v1 Announce Type: new Abstract: The deployment of large language models (LLMs) in specialized domains like medical diagnostics and financial advisory necessitates evaluating capabilities beyond general knowledge. Traditional question-answering benchmarks often fail to capture the nuanced contextual grounding, user awareness, and domain understanding these fields require. To address this, we introduce CANDI-QA (Contextual Alignment for Niche Domains Question Answering), a novel dataset evaluating LLMs on delivering accurate, context-sensitive, and user-aligned answers in specialized settings. CANDI-QA features expert-curated question-answer pairs structured into two categories: (1) Information Assistance Questions, which are direct, factual queries requiring precise extraction, and (2) Applied Inference Questions, which are multi-hop reasoning tasks needing situational inference to generate actionable insights. We evaluate over ten diverse language models, from compact open-source to state-of-the-art proprietary systems. As a robust baseline, we present MTSS-Net, a lightweight neuro-symbolic framework combining neural retrieval with rule-based reasoning. Our findings highlight the profound challenges of achieving contextual alignment in niche domains, revealing the limitations of current LLMs without enhanced contextual or symbolic integration. Ultimately, CANDI-QA serves as a critical benchmark for advancing research in context-aware language models, stimulating the development of robust, trustworthy AI for high-stakes domains.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "CANDI: Contextual Alignment for Niche Domains Question Answering",
+      "raw_summary": "arXiv:2607.11891v1 Announce Type: new Abstract: The deployment of large language models (LLMs) in specialized domains like medical diagnostics and financial advisory necessitates evaluating capabilities beyond general knowledge. Traditional question-answering benchmarks often fail to capture the nuanced contextual grounding, user awareness, and domain understanding these fields require. To address this, we introduce CANDI-QA (Contextual Alignment for Niche Domains Question Answering), a novel dataset evaluating LLMs on delivering accurate, context-sensitive, and user-aligned answers in specialized settings. CANDI-QA features expert-curated question-answer pairs structured into two categories: (1) Information Assistance Questions, which are direct, factual queries requiring precise extraction, and (2) Applied Inference Questions, which are multi-hop reasoning tasks needing situational inference to generate actionable insights. We evaluate over ten diverse language models, from compact open-source to state-of-the-art proprietary systems. As a robust baseline, we present MTSS-Net, a lightweight neuro-symbolic framework combining neural retrieval with rule-based reasoning. Our findings highlight the profound challenges of achieving contextual alignment in niche domains, revealing the limitations of current LLMs without enhanced contextual or symbolic integration. Ultimately, CANDI-QA serves as a critical benchmark for advancing research in context-aware language models, stimulating the development of robust, trustworthy AI for high-stakes domains.",
+      "score": 62,
+      "primary": "models",
+      "tags": [
+        "qa",
+        "niche domains",
+        "medical ai",
+        "benchmarking"
+      ],
+      "heuristic_score": 85,
+      "url": "https://arxiv.org/abs/2607.11891",
+      "is_repeat": true,
+      "novelty_score": 45,
+      "adjusted_score": 30,
+      "_rid": 7,
+      "llm_score": 68,
+      "why": "Introduce un dataset especializado para evaluar modelos en contextos donde el conocimiento general es insuficiente frente al rigor técnico.",
+      "title_es": "CANDI: alineación contextual para respuestas a preguntas en dominios de nicho",
+      "entities": [
+        "CANDI-QA",
+        "CANDI",
+        "Contextual Alignment",
+        "Niche Domains Question",
+        "Answering"
+      ],
+      "noise_penalty": 0,
+      "final_score": 62,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Start building with Nano Banana 2 Lite and Gemini Omni Flash",
+      "link": "https://deepmind.google/blog/start-building-with-nano-banana-2-lite-and-gemini-omni-flash/",
+      "published": "2026-06-30T16:02:40+00:00",
+      "summary": "",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Start building with Nano Banana 2 Lite and Gemini Omni Flash",
+      "raw_summary": "",
+      "score": 60,
+      "primary": "models",
+      "tags": [
+        "gemini",
+        "edge computing",
+        "developers",
+        "llm"
+      ],
+      "heuristic_score": 13,
+      "url": "https://deepmind.google/blog/start-building-with-nano-banana-2-lite-and-gemini-omni-flash/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 13,
+      "_rid": 11,
+      "llm_score": 80,
+      "why": "Nuevos modelos ligeros y herramientas de desarrollo para integrar la familia Gemini en aplicaciones de baja latencia.",
+      "title_es": "Empiece a construir con Nano Banana 2 Lite y Gemini Omni Flash",
+      "entities": [
+        "DeepMind",
+        "Gemini",
+        "Start",
+        "Nano Banana",
+        "Lite",
+        "Gemini Omni Flash"
+      ],
+      "noise_penalty": 10,
+      "final_score": 60,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(10)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Expanding Managed Agents in Gemini API: background tasks, remote MCP and more",
+      "link": "https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api/",
+      "published": "2026-07-07T08:54:00+00:00",
+      "summary": "Managed agents feature bundle launch",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Expanding Managed Agents in Gemini API:  background tasks, remote MCP and more",
+      "raw_summary": "Managed agents feature bundle launch",
+      "score": 59,
+      "primary": "models",
+      "tags": [
+        "api",
+        "agents",
+        "mcp",
+        "automation"
+      ],
+      "heuristic_score": 63,
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api/",
+      "is_repeat": true,
+      "novelty_score": 45,
+      "adjusted_score": 8,
+      "_rid": 14,
+      "llm_score": 76,
+      "why": "Expansión de capacidades para agentes autónomos que pueden gestionar tareas en segundo plano e interactuar con servidores remotos.",
+      "title_es": "Expandiendo los agentes gestionados en la API de Gemini: tareas en segundo plano, MCP remoto y más",
+      "entities": [
+        "Gemini",
+        "Google",
+        "MCP",
+        "Expanding Managed Agents"
+      ],
+      "noise_penalty": 7,
+      "final_score": 59,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(7)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Perforce Enabling Innovation Without Introducing Risk at DAC 2026",
+      "link": "https://semiwiki.com/eda/371079-perforce-enabling-innovation-without-introducing-risk-at-dac-2026/",
+      "published": "2026-07-15T17:00:28+00:00",
+      "summary": "Perforce delivers a DevOps Tech Stack for teams building and running high-stakes software systems and revenue-critical applications, where failure is not an option. As a trusted partner helping organizations govern software delivery for AI, Perforce solutions enforce guardrails across code quality, infrastructure, and&8230; Read More The post Perforce Enabling Innovation Without Introducing Risk at DAC 2026 appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "Perforce Enabling Innovation Without Introducing Risk at DAC 2026",
+      "raw_summary": "Perforce delivers a DevOps Tech Stack for teams building and running high-stakes software systems and revenue-critical applications, where failure is not an option. As a trusted partner helping organizations govern software delivery for AI, Perforce solutions enforce guardrails across code quality, infrastructure, and&#8230; Read More The post Perforce Enabling Innovation Without Introducing Risk at DAC 2026 appeared first on SemiWiki .",
+      "score": 56,
+      "primary": "infra",
+      "tags": [
+        "devops",
+        "guardrails",
+        "software delivery",
+        "compliance"
+      ],
+      "heuristic_score": 31,
+      "url": "https://semiwiki.com/eda/371079-perforce-enabling-innovation-without-introducing-risk-at-dac-2026/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 31,
+      "_rid": 6,
+      "llm_score": 60,
+      "why": "Enfocado en el gobierno y la calidad del código en sistemas críticos de IA donde el fallo no es una opción aceptable.",
+      "title_es": "Perforce: permitiendo la innovación sin introducir riesgos en DAC 2026",
+      "entities": [
+        "Perforce",
+        "DAC",
+        "Perforce Enabling Innovation",
+        "Without Introducing Risk"
+      ],
+      "noise_penalty": 0,
+      "final_score": 56,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "G-SHARE: A Guideline-Based Structured Reasoning Framework for Human-Factor Event Diagnosis",
+      "link": "https://arxiv.org/abs/2607.11892",
+      "published": "2026-07-16T04:00:00+00:00",
+      "summary": "arXiv:2607.11892v1 Announce Type: new Abstract: Human-factor event diagnosis is essential for learning from operational events in nuclear power plants, yet its quality depends strongly on expert interpretation of narrative reports and guideline-based reasoning.Existing data-driven or one-shot large language model approaches often lack structured reasoning, have limited alignment with formal diagnostic guidelines, and may generate logically inconsistent conclusions. To address this issue, this study proposes G-SHARE, a guideline-based structured reasoning framework that operationalizes the CNNP nine-step human-factor event diagnosis guideline into a multi-stage diagnostic pipeline.The framework consists of evidence extraction, stepwise diagnostic reasoning, and post-hoc consistency repair, enabling explicit use of report evidence, intermediate rationale generation, and logical validation of diagnostic outputs. A dataset of real human-factor event reports was constructed from Chinese nuclear industry sources, and a gold-standard subset annotated by domain experts was used for evaluation. Results show that G-SHARE substantially outperforms one-shot prompting and traditional machine learning baselines, with the strongest version achieving the best overall accuracy and macro-F1. Ablation results further indicate that structured reasoning and consistency enforcement are critical to robust diagnosis, especially under weak prompting conditions. The findings demonstrate the value of transforming expert diagnostic guidelines into auditable reasoning workflows, providing a practical pathway for intelligent human-factor analysis in safety-critical industries.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "G-SHARE: A Guideline-Based Structured Reasoning Framework for Human-Factor Event Diagnosis",
+      "raw_summary": "arXiv:2607.11892v1 Announce Type: new Abstract: Human-factor event diagnosis is essential for learning from operational events in nuclear power plants, yet its quality depends strongly on expert interpretation of narrative reports and guideline-based reasoning.Existing data-driven or one-shot large language model approaches often lack structured reasoning, have limited alignment with formal diagnostic guidelines, and may generate logically inconsistent conclusions. To address this issue, this study proposes G-SHARE, a guideline-based structured reasoning framework that operationalizes the CNNP nine-step human-factor event diagnosis guideline into a multi-stage diagnostic pipeline.The framework consists of evidence extraction, stepwise diagnostic reasoning, and post-hoc consistency repair, enabling explicit use of report evidence, intermediate rationale generation, and logical validation of diagnostic outputs. A dataset of real human-factor event reports was constructed from Chinese nuclear industry sources, and a gold-standard subset annotated by domain experts was used for evaluation. Results show that G-SHARE substantially outperforms one-shot prompting and traditional machine learning baselines, with the strongest version achieving the best overall accuracy and macro-F1. Ablation results further indicate that structured reasoning and consistency enforcement are critical to robust diagnosis, especially under weak prompting conditions. The findings demonstrate the value of transforming expert diagnostic guidelines into auditable reasoning workflows, providing a practical pathway for intelligent human-factor analysis in safety-critical industries.",
+      "score": 56,
+      "primary": "models",
+      "tags": [
+        "nuclear safety",
+        "reasoning",
+        "diagnostics",
+        "critical systems"
+      ],
+      "heuristic_score": 72,
+      "url": "https://arxiv.org/abs/2607.11892",
+      "is_repeat": true,
+      "novelty_score": 45,
+      "adjusted_score": 17,
+      "_rid": 9,
+      "llm_score": 72,
+      "why": "Marco de razonamiento estructurado para diagnosticar eventos en plantas nucleares, priorizando la lógica frente a la generación estocástica.",
+      "title_es": "G-SHARE: un marco de razonamiento estructurado basado en directrices para el diagnóstico de eventos de factor humano",
+      "entities": [
+        "CNNP",
+        "SHARE",
+        "Guideline",
+        "Based Structured Reasoning",
+        "Framework",
+        "Human",
+        "Factor Event Diagnosis"
+      ],
+      "noise_penalty": 8,
+      "final_score": 56,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(8)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Automatic Differentiation from Scratch: How PyTorch Computes Gradients in Physics-Informed Neural Networks",
+      "link": "https://arxiv.org/abs/2607.13042",
+      "published": "2026-07-16T04:00:00+00:00",
+      "summary": "arXiv:2607.13042v1 Announce Type: new Abstract: This paper traces, with explicit numerical values, how PyTorch's automatic differentiation (AD) engine computes gradients for Physics-Informed Neural Network (PINN) training -- a setting that requires two levels of differentiation: computing the physics derivative $\\hat{y}'(t)=d\\hat{y}/dt$ through the network, and computing parameter gradients $\\nabla_\\theta L$ of a loss that itself depends on $\\hat{y}'(t)$. Using a 1-3-3-1 multilayer perceptron and the initial value problem $y'(t)+y(t)=0$, $y(0)=1$, we trace the complete pipeline at every node: the computational graph built during the forward pass, the reverse-mode backward traversal that computes all 22 parameter gradients in a single pass, and the graph-on-graph mechanism by which \\texttt{create\\_graph=True} enables correct differentiation through the physics-informed residual. Every adjoint value is verified against the hand derivations of Tahimi (2026), connecting the $P/Q$ sensitivity framework to the vector--Jacobian products used by PyTorch's autograd engine.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Automatic Differentiation from Scratch: How PyTorch Computes Gradients in Physics-Informed Neural Networks",
+      "raw_summary": "arXiv:2607.13042v1 Announce Type: new Abstract: This paper traces, with explicit numerical values, how PyTorch's automatic differentiation (AD) engine computes gradients for Physics-Informed Neural Network (PINN) training -- a setting that requires two levels of differentiation: computing the physics derivative $\\hat{y}'(t)=d\\hat{y}/dt$ through the network, and computing parameter gradients $\\nabla_\\theta L$ of a loss that itself depends on $\\hat{y}'(t)$. Using a 1-3-3-1 multilayer perceptron and the initial value problem $y'(t)+y(t)=0$, $y(0)=1$, we trace the complete pipeline at every node: the computational graph built during the forward pass, the reverse-mode backward traversal that computes all 22 parameter gradients in a single pass, and the graph-on-graph mechanism by which \\texttt{create\\_graph=True} enables correct differentiation through the physics-informed residual. Every adjoint value is verified against the hand derivations of Tahimi (2026), connecting the $P/Q$ sensitivity framework to the vector--Jacobian products used by PyTorch's autograd engine.",
+      "score": 55,
+      "primary": "infra",
+      "tags": [
+        "pytorch",
+        "physics-informed nn",
+        "gradients",
+        "differentiation"
+      ],
+      "heuristic_score": 14,
+      "url": "https://arxiv.org/abs/2607.13042",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 14,
+      "_rid": 10,
+      "llm_score": 62,
+      "why": "Análisis técnico sobre cómo PyTorch gestiona gradientes en redes neuronales informadas por la física, esencial para simulación científica.",
+      "title_es": "Diferenciación automática desde cero: cómo PyTorch computa gradientes en redes neuronales informadas por la física",
+      "entities": [
+        "PyTorch",
+        "Automatic Differentiation",
+        "Scratch",
+        "How",
+        "Computes Gradients",
+        "Physics",
+        "Informed Neural Networks"
+      ],
+      "noise_penalty": 0,
+      "final_score": 55,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Google DeepMind and A24 announce first-of-its-kind research partnership",
+      "link": "https://deepmind.google/blog/google-deepmind-and-a24-announce-first-of-its-kind-research-partnership/",
+      "published": "2026-07-03T14:25:43+00:00",
+      "summary": "",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Google DeepMind and A24 announce first-of-its-kind research partnership",
+      "raw_summary": "",
+      "score": 44,
+      "primary": "misc",
+      "tags": [
+        "media",
+        "film",
+        "research",
+        "partnership"
+      ],
+      "heuristic_score": 6,
+      "url": "https://deepmind.google/blog/google-deepmind-and-a24-announce-first-of-its-kind-research-partnership/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 6,
+      "_rid": 15,
+      "llm_score": 63,
+      "why": "Colaboración estratégica para explorar el impacto de la IA en la narrativa cinematográfica y la producción audiovisual.",
+      "title_es": "Google DeepMind y A24 anuncian una asociación de investigación pionera en su clase",
+      "entities": [
+        "DeepMind",
+        "A24",
+        "Google"
+      ],
+      "noise_penalty": 10,
+      "final_score": 44,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(10)",
+      "strategic_theme": "other"
+    },
+    {
+      "title": "Unlocking UK house-building with AI-accelerated planning",
+      "link": "https://deepmind.google/blog/unlocking-uk-house-building-with-ai-accelerated-planning/",
+      "published": "2026-06-16T21:29:50+00:00",
+      "summary": "UK government partners with Google DeepMind to build a new AI-powered prototype aimed at faster housing decisions.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Unlocking UK house-building with AI-accelerated planning",
+      "raw_summary": "UK government partners with Google DeepMind to build a new AI-powered prototype aimed at faster housing decisions.",
+      "score": 42,
+      "primary": "misc",
+      "tags": [
+        "public sector",
+        "housing",
+        "urban planning",
+        "efficiency"
+      ],
+      "heuristic_score": 18,
+      "url": "https://deepmind.google/blog/unlocking-uk-house-building-with-ai-accelerated-planning/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 18,
+      "_rid": 8,
+      "llm_score": 65,
+      "why": "Aplicación práctica de la IA para agilizar procesos burocráticos y decisiones de planificación urbana en el sector público.",
+      "title_es": "Desbloqueando la construcción de viviendas en el Reino Unido con planificación acelerada por IA",
+      "entities": [
+        "DeepMind",
+        "UK Government",
+        "Reino Unido",
+        "Unlocking"
+      ],
+      "noise_penalty": 16,
+      "final_score": 42,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(16)",
+      "strategic_theme": "other"
+    }
+  ]
+}
