@@ -1,0 +1,679 @@
+{
+  "date": "2026-07-20",
+  "score_avg": 68.2,
+  "primary_dist": {
+    "infra": 5,
+    "models": 8,
+    "misc": 2
+  },
+  "top_entities": [
+    {
+      "entity": "VarRate",
+      "count": 1
+    },
+    {
+      "entity": "Training",
+      "count": 1
+    },
+    {
+      "entity": "Free Variable",
+      "count": 1
+    },
+    {
+      "entity": "Rate",
+      "count": 1
+    },
+    {
+      "entity": "Cache Compression",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "La compresión dinámica de KV Cache sin entrenamiento permite inferencia eficiente en contextos extremadamente largos.",
+      "El empaquetado avanzado de semiconductores se posiciona como el principal campo de batalla entre TSMC e Intel.",
+      "Los sistemas multi-agente en medicina evolucionan hacia la audibilidad causal y la optimización de costes diagnósticos.",
+      "El ecosistema de chiplets para infraestructura de IA gana tracción frente a los diseños monolíticos tradicionales.",
+      "El aprendizaje por refuerzo para agentes transiciona de trayectorias lineales a estructuras de árbol más exploratorias."
+    ],
+    "risks": [
+      "El escalado probabilístico de LLMs falla al generar código cuántico por falta de semántica física matemática.",
+      "Inconsistencias y omisiones de datos críticos en la generación automática de narrativas para salud pública.",
+      "Colapso de precisión en modelos de contexto largo al reutilizar señales de importancia de tokens degradadas."
+    ],
+    "watch": [
+      "Migración de clientes de TSMC hacia el empaquetado EMIB de Intel por diversificación de cadena de suministro.",
+      "Integración del Model Context Protocol (MCP) en la API de Gemini para estandarizar la conectividad de agentes.",
+      "Impacto de la técnica Jacobian lens en la interpretabilidad de la toma de decisiones interna de los LLMs."
+    ],
+    "entities_top": [
+      "TSMC",
+      "Intel",
+      "NVIDIA"
+    ]
+  },
+  "items": [
+    {
+      "title": "VarRate: Training-Free Variable-Rate KV Cache Compression for Long-Context LLMs",
+      "link": "https://arxiv.org/abs/2607.15498",
+      "published": "2026-07-20T04:00:00+00:00",
+      "summary": "arXiv:2607.15498v1 Announce Type: new Abstract: The key-value (KV) cache is the main memory bottleneck in long-context large language model (LLM) inference. Two leading training-free families are both structurally limited: token-selection methods (SnapKV, Ada-KV) score importance from an observation window and evict low-scoring tokens, but eviction is irreversible -- so when the importance signal degrades under query-agnostic reuse, accuracy collapses by 11-15 points; uniform low-rank coding keeps every token but spends equal rank everywhere, wasting budget. We observe that both failures share one cure: rank should be allocated, not evicted. We present VarRate, a training-free KV codec that assigns each token a variable low-rank budget by its query salience, keeping every token at a nonzero rank. Comparable adaptive-rank codecs reach this allocation only through training; VarRate requires none. Because no token is dropped, it degrades by only 3.5-5.5 points where query-aware selection collapses. At a matched 20% budget on LongBench (16 tasks), VarRate stays within 0.8 points of the uncompressed model on both Llama-3.1-8B and Qwen2.5-7B. Averaged over the two, it is the strongest matched-memory compressor. It significantly beats its uniform-rank ablation on both models. Against KVzip, a method purpose-built for query-agnostic reuse, it is accuracy-equivalent in three of four settings and within a point overall, at about one-eighth the prefill overhead.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "VarRate: Training-Free Variable-Rate KV Cache Compression for Long-Context LLMs",
+      "raw_summary": "arXiv:2607.15498v1 Announce Type: new Abstract: The key-value (KV) cache is the main memory bottleneck in long-context large language model (LLM) inference. Two leading training-free families are both structurally limited: token-selection methods (SnapKV, Ada-KV) score importance from an observation window and evict low-scoring tokens, but eviction is irreversible -- so when the importance signal degrades under query-agnostic reuse, accuracy collapses by 11-15 points; uniform low-rank coding keeps every token but spends equal rank everywhere, wasting budget. We observe that both failures share one cure: rank should be allocated, not evicted. We present VarRate, a training-free KV codec that assigns each token a variable low-rank budget by its query salience, keeping every token at a nonzero rank. Comparable adaptive-rank codecs reach this allocation only through training; VarRate requires none. Because no token is dropped, it degrades by only 3.5-5.5 points where query-aware selection collapses. At a matched 20% budget on LongBench (16 tasks), VarRate stays within 0.8 points of the uncompressed model on both Llama-3.1-8B and Qwen2.5-7B. Averaged over the two, it is the strongest matched-memory compressor. It significantly beats its uniform-rank ablation on both models. Against KVzip, a method purpose-built for query-agnostic reuse, it is accuracy-equivalent in three of four settings and within a point overall, at about one-eighth the prefill overhead.",
+      "score": 86,
+      "primary": "infra",
+      "tags": [
+        "kv cache",
+        "long context",
+        "inference",
+        "optimization"
+      ],
+      "heuristic_score": 98,
+      "url": "https://arxiv.org/abs/2607.15498",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 98,
+      "_rid": 3,
+      "llm_score": 84,
+      "why": "Solución técnica crucial para el cuello de botella de memoria en inferencia de contexto largo sin necesidad de reentrenamiento.",
+      "title_es": "VarRate: Compresión de KV Cache de tasa variable sin entrenamiento para LLMs de contexto largo",
+      "entities": [
+        "VarRate",
+        "Training",
+        "Free Variable",
+        "Rate",
+        "Cache Compression",
+        "Long",
+        "Context"
+      ],
+      "noise_penalty": 0,
+      "final_score": 86,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "TSMC CoWoS versus Intel EMIB Semiconductor Packaging",
+      "link": "https://semiwiki.com/semiconductor-manufacturers/tsmc/371412-tsmc-cowos-versus-intel-emib-semiconductor-packaging/",
+      "published": "2026-07-17T15:00:34+00:00",
+      "summary": "There has been talk at the latest conferences about TSMC customers taking wafers to Intel for packaging. The question is why? Is it competitive pricing? Capacity? Supply chain diversity? CC Wei was asked about this during the last investor call and his perfect response was: Jeff Su: I guess very simply put, EMIB-T, in his view, is &8230; Read More The post TSMC CoWoS versus Intel EMIB Semiconductor Packaging appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "TSMC CoWoS versus Intel EMIB Semiconductor Packaging",
+      "raw_summary": "There has been talk at the latest conferences about TSMC customers taking wafers to Intel for packaging. The question is why? Is it competitive pricing? Capacity? Supply chain diversity? CC Wei was asked about this during the last investor call and his perfect response was: Jeff Su: I guess very simply put, EMIB-T, in his view, is &#8230; Read More The post TSMC CoWoS versus Intel EMIB Semiconductor Packaging appeared first on SemiWiki .",
+      "score": 85,
+      "primary": "infra",
+      "tags": [
+        "packaging",
+        "tsmc",
+        "intel",
+        "cowos",
+        "emib"
+      ],
+      "heuristic_score": 100,
+      "url": "https://semiwiki.com/semiconductor-manufacturers/tsmc/371412-tsmc-cowos-versus-intel-emib-semiconductor-packaging/",
+      "is_repeat": true,
+      "novelty_score": 45,
+      "adjusted_score": 45,
+      "_rid": 10,
+      "llm_score": 92,
+      "why": "Analiza el punto crítico del hardware de IA: la capacidad y tecnología de empaquetado avanzado entre los dos líderes del sector.",
+      "title_es": "Empaquetado de semiconductores: TSMC CoWoS frente a Intel EMIB",
+      "entities": [
+        "TSMC",
+        "Intel",
+        "CC Wei",
+        "EMIB",
+        "Semiconductor Packaging"
+      ],
+      "noise_penalty": 0,
+      "final_score": 85,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Process Reward Informed Tree Rollout for Effective Multi-Turn RL",
+      "link": "https://arxiv.org/abs/2607.15610",
+      "published": "2026-07-20T04:00:00+00:00",
+      "summary": "arXiv:2607.15610v1 Announce Type: new Abstract: Reinforcement learning (RL) has become a key approach for training LLM agents, yet popular methods such as GRPO/RLOO rely on multiple independently sampled complete trajectories for advantage estimation. In long-horizon agentic tasks, such a uniform rollout strategy can waste budget on uninformative dead-end attempts, while promising intermediate states do not receive sufficient exploration. The multi-turn structure of agentic trajectories, with interleaved actions and observations, naturally supports organizing a trajectory group as a tree, where each turn serves as a decision point for exploration. This perspective reframes effective exploration as the problem of deciding where to branch. We propose Process-Scorer Guided Adaptive Tree Rollout (PATR), a quality-aware rollout framework for multi-turn agent RL. PATR uses task-appropriate process feedback to score partial trajectories, selectively branches from promising states, reuses shared prefixes, and conservatively stops degenerate paths to reduce wasted sampling. The resulting rollout groups remain compatible with standard policy optimization while providing more efficient exploration under the same training budget. We evaluate PATR on FrozenLake and the challenging SWE-Bench, which is largely unexplored by prior tree-rollout agent RL methods. Experiments show that PATR improves performance by up to +5.0 points on SWE-Bench and +9.3 points on FrozenLake, highlighting process-guided tree rollouts as an effective strategy for scalable multi-turn RL.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Process Reward Informed Tree Rollout for Effective Multi-Turn RL",
+      "raw_summary": "arXiv:2607.15610v1 Announce Type: new Abstract: Reinforcement learning (RL) has become a key approach for training LLM agents, yet popular methods such as GRPO/RLOO rely on multiple independently sampled complete trajectories for advantage estimation. In long-horizon agentic tasks, such a uniform rollout strategy can waste budget on uninformative dead-end attempts, while promising intermediate states do not receive sufficient exploration. The multi-turn structure of agentic trajectories, with interleaved actions and observations, naturally supports organizing a trajectory group as a tree, where each turn serves as a decision point for exploration. This perspective reframes effective exploration as the problem of deciding where to branch. We propose Process-Scorer Guided Adaptive Tree Rollout (PATR), a quality-aware rollout framework for multi-turn agent RL. PATR uses task-appropriate process feedback to score partial trajectories, selectively branches from promising states, reuses shared prefixes, and conservatively stops degenerate paths to reduce wasted sampling. The resulting rollout groups remain compatible with standard policy optimization while providing more efficient exploration under the same training budget. We evaluate PATR on FrozenLake and the challenging SWE-Bench, which is largely unexplored by prior tree-rollout agent RL methods. Experiments show that PATR improves performance by up to +5.0 points on SWE-Bench and +9.3 points on FrozenLake, highlighting process-guided tree rollouts as an effective strategy for scalable multi-turn RL.",
+      "score": 79,
+      "primary": "models",
+      "tags": [
+        "reinforcement learning",
+        "agents",
+        "exploration",
+        "tree search"
+      ],
+      "heuristic_score": 70,
+      "url": "https://arxiv.org/abs/2607.15610",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 70,
+      "_rid": 7,
+      "llm_score": 81,
+      "why": "Optimiza el entrenamiento de agentes en tareas largas evitando callejones sin salida mediante una exploración basada en árboles.",
+      "title_es": "Rollout de árbol informado por recompensa de proceso para RL multi-turno efectivo",
+      "entities": [
+        "GRPO",
+        "RLOO",
+        "Process Reward Informed",
+        "Tree Rollout",
+        "Effective Multi",
+        "Turn"
+      ],
+      "noise_penalty": 0,
+      "final_score": 79,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Causal-Audit: Explicit and Auditable Graph-based Reasoning via Target-Aware Causal Chain Construction",
+      "link": "https://arxiv.org/abs/2607.15281",
+      "published": "2026-07-20T04:00:00+00:00",
+      "summary": "arXiv:2607.15281v1 Announce Type: new Abstract: Causal and intervention-based question answering is fundamental to advancing large language models (LLMs) toward reasoning beyond surface-level correlations and understanding underlying causal mechanisms. However, existing LLM-based methods often rely on implicit language-level reasoning, resulting in opaque causal assumptions, unverifiable reasoning paths, and fragile predictions under complex interventions, particularly in context-free settings. In this paper, we propose an explicit and auditable causal reasoning framework for context-free intervention-based question answering. Our method formulates causal inference as structured reasoning over an explicit causal graph through four modular stages, rather than implicit end-to-end prediction. A key innovation is a target-aware causal graph construction strategy that treats the target variable as a core constraint during graph expansion, effectively suppressing irrelevant variables, spurious causal relations, and reasoning noise. We further introduce a path-level causal evidence aggregation mechanism that combines multiple causal paths while modeling both reinforcing and counteracting effects, enabling robust decision-making beyond single-chain reasoning. Extensive experiments on three benchmarks demonstrate that our framework consistently outperforms existing LLM-based methods while providing interpretable and auditable causal reasoning traces.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Causal-Audit: Explicit and Auditable Graph-based Reasoning via Target-Aware Causal Chain Construction",
+      "raw_summary": "arXiv:2607.15281v1 Announce Type: new Abstract: Causal and intervention-based question answering is fundamental to advancing large language models (LLMs) toward reasoning beyond surface-level correlations and understanding underlying causal mechanisms. However, existing LLM-based methods often rely on implicit language-level reasoning, resulting in opaque causal assumptions, unverifiable reasoning paths, and fragile predictions under complex interventions, particularly in context-free settings. In this paper, we propose an explicit and auditable causal reasoning framework for context-free intervention-based question answering. Our method formulates causal inference as structured reasoning over an explicit causal graph through four modular stages, rather than implicit end-to-end prediction. A key innovation is a target-aware causal graph construction strategy that treats the target variable as a core constraint during graph expansion, effectively suppressing irrelevant variables, spurious causal relations, and reasoning noise. We further introduce a path-level causal evidence aggregation mechanism that combines multiple causal paths while modeling both reinforcing and counteracting effects, enabling robust decision-making beyond single-chain reasoning. Extensive experiments on three benchmarks demonstrate that our framework consistently outperforms existing LLM-based methods while providing interpretable and auditable causal reasoning traces.",
+      "score": 78,
+      "primary": "models",
+      "tags": [
+        "causal reasoning",
+        "audit",
+        "reliability",
+        "graphs"
+      ],
+      "heuristic_score": 86,
+      "url": "https://arxiv.org/abs/2607.15281",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 86,
+      "_rid": 5,
+      "llm_score": 76,
+      "why": "Avanza en la fiabilidad de la IA al sustituir la correlación superficial por cadenas causales auditables y estructuradas.",
+      "title_es": "Causal-Audit: Razonamiento explícito y auditable basado en grafos mediante construcción de cadenas causales",
+      "entities": [
+        "Causal-Audit",
+        "Causal",
+        "Audit",
+        "Explicit",
+        "Auditable Graph",
+        "Reasoning",
+        "Target",
+        "Aware Causal Chain"
+      ],
+      "noise_penalty": 0,
+      "final_score": 78,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "GraphDx: A Cost-Aware Knowledge-Enhanced Multi-Agent Framework for Sequential Diagnosis",
+      "link": "https://arxiv.org/abs/2607.15280",
+      "published": "2026-07-20T04:00:00+00:00",
+      "summary": "arXiv:2607.15280v1 Announce Type: new Abstract: Sequential diagnosis requires balancing diagnostic accuracy against resource costs through iterative information gathering. Existing Large Language Model (LLM) approaches exhibit a critical knowledge-reasoning gap: despite encoding extensive medical knowledge, they struggle to reason systematically under cost constraints, often resorting to excessive testing. We propose GraphDx, a knowledge-enhanced framework with two core innovations. First, we design an automated pipeline that leverages LLMs to construct Medical Diagnosis Knowledge Graphs (MDKGs) with quantized typicality, action-centric topology, and dual-objective attributes for both diagnostic relevance and cost-sensitivity. Second, we introduce three collaborative agents (Perception, Reasoning, and Decision) where the Perception and Decision Agents handle language understanding and generation, while the Reasoning Agent performs deterministic evidence scoring and cost-aware planning on the MDKG. Experiments on MedQA and MIMIC-IV across three LLM backbones (DeepSeek-V3, Kimi-k2, Llama-3.3) show that GraphDx improves diagnostic success rates from 50--68% to 79--93% while reducing test costs by 20--54%, providing a robust, economical, and interpretable solution for automated clinical diagnosis.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "GraphDx: A Cost-Aware Knowledge-Enhanced Multi-Agent Framework for Sequential Diagnosis",
+      "raw_summary": "arXiv:2607.15280v1 Announce Type: new Abstract: Sequential diagnosis requires balancing diagnostic accuracy against resource costs through iterative information gathering. Existing Large Language Model (LLM) approaches exhibit a critical knowledge-reasoning gap: despite encoding extensive medical knowledge, they struggle to reason systematically under cost constraints, often resorting to excessive testing. We propose GraphDx, a knowledge-enhanced framework with two core innovations. First, we design an automated pipeline that leverages LLMs to construct Medical Diagnosis Knowledge Graphs (MDKGs) with quantized typicality, action-centric topology, and dual-objective attributes for both diagnostic relevance and cost-sensitivity. Second, we introduce three collaborative agents (Perception, Reasoning, and Decision) where the Perception and Decision Agents handle language understanding and generation, while the Reasoning Agent performs deterministic evidence scoring and cost-aware planning on the MDKG. Experiments on MedQA and MIMIC-IV across three LLM backbones (DeepSeek-V3, Kimi-k2, Llama-3.3) show that GraphDx improves diagnostic success rates from 50--68% to 79--93% while reducing test costs by 20--54%, providing a robust, economical, and interpretable solution for automated clinical diagnosis.",
+      "score": 76,
+      "primary": "models",
+      "tags": [
+        "agents",
+        "healthcare",
+        "knowledge graphs",
+        "diagnosis"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2607.15280",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 1,
+      "llm_score": 72,
+      "why": "Propone una gestión eficiente del coste diagnóstico mediante grafos de conocimiento, superando el razonamiento opaco de los LLMs.",
+      "title_es": "GraphDx: Un marco multi-agente para diagnóstico secuencial sensible al coste y mejorado con conocimiento",
+      "entities": [
+        "GraphDx",
+        "Cost",
+        "Aware Knowledge",
+        "Enhanced Multi",
+        "Agent Framework",
+        "Sequential Diagnosis"
+      ],
+      "noise_penalty": 0,
+      "final_score": 76,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "SkillCorpus: Consolidating and Evaluating the Open Skill Ecosystem for Real-World LLM Agents",
+      "link": "https://arxiv.org/abs/2607.15557",
+      "published": "2026-07-20T04:00:00+00:00",
+      "summary": "arXiv:2607.15557v1 Announce Type: new Abstract: Agent skills, SKILL.md files that package reusable procedural knowledge for an LLM agent, are a popular mechanism for extending agent capabilities. Public repositories now host them in large and growing numbers, yet these artifacts are fragmented, redundant, and uneven in quality, and their value in practice is unclear. A core question remains open, namely how to consolidate this open-source SKILL.md ecosystem into a single usable corpus, and what bounds its benefit on real-world agent tasks. We present SkillCorpus, a framework that aggregates, curates, matches, and evaluates the open skill ecosystem at scale. It filters ~821,000 crawled skills through a multi-stage pipeline into 96,401 skills organised by a 16-class taxonomy and three quality facets (utility, robustness, safety), and pairs them with a fine-tuned retrieval-and-selection stack that matches task-relevant skills. We evaluate end-to-end across three benchmarks (SkillsBench, GDPVal, QwenClawBench), two harnesses, and two open backbones with a frontier robustness check. Integrating SkillCorpus yields consistent gains across all three benchmarks, largest on SkillsBench (+7.5 pp). An operational analysis traces the gains to a coverage boundary and a harness boundary. SkillCorpus is, to our knowledge, the first end-to-end account of when a curated, retrieval-served community corpus improves real agent tasks, and where it does not. The dataset, models, and code will be released upon acceptance.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "SkillCorpus: Consolidating and Evaluating the Open Skill Ecosystem for Real-World LLM Agents",
+      "raw_summary": "arXiv:2607.15557v1 Announce Type: new Abstract: Agent skills, SKILL.md files that package reusable procedural knowledge for an LLM agent, are a popular mechanism for extending agent capabilities. Public repositories now host them in large and growing numbers, yet these artifacts are fragmented, redundant, and uneven in quality, and their value in practice is unclear. A core question remains open, namely how to consolidate this open-source SKILL.md ecosystem into a single usable corpus, and what bounds its benefit on real-world agent tasks. We present SkillCorpus, a framework that aggregates, curates, matches, and evaluates the open skill ecosystem at scale. It filters ~821,000 crawled skills through a multi-stage pipeline into 96,401 skills organised by a 16-class taxonomy and three quality facets (utility, robustness, safety), and pairs them with a fine-tuned retrieval-and-selection stack that matches task-relevant skills. We evaluate end-to-end across three benchmarks (SkillsBench, GDPVal, QwenClawBench), two harnesses, and two open backbones with a frontier robustness check. Integrating SkillCorpus yields consistent gains across all three benchmarks, largest on SkillsBench (+7.5 pp). An operational analysis traces the gains to a coverage boundary and a harness boundary. SkillCorpus is, to our knowledge, the first end-to-end account of when a curated, retrieval-served community corpus improves real agent tasks, and where it does not. The dataset, models, and code will be released upon acceptance.",
+      "score": 73,
+      "primary": "models",
+      "tags": [
+        "agents",
+        "open source",
+        "skill ecosystem",
+        "benchmarking"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2607.15557",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 2,
+      "llm_score": 68,
+      "why": "Intenta poner orden en el fragmentado ecosistema de habilidades para agentes mediante un corpus curado y evaluado a escala.",
+      "title_es": "SkillCorpus: Consolidación y evaluación del ecosistema de habilidades abiertas para agentes LLM en el mundo real",
+      "entities": [
+        "SkillCorpus",
+        "Consolidating",
+        "Evaluating",
+        "Open Skill Ecosystem",
+        "Real",
+        "World",
+        "Agents"
+      ],
+      "noise_penalty": 0,
+      "final_score": 73,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Large Language Models as Unified Multimodal Learners for Clinical Prediction",
+      "link": "https://arxiv.org/abs/2607.15380",
+      "published": "2026-07-20T04:00:00+00:00",
+      "summary": "arXiv:2607.15380v1 Announce Type: new Abstract: Electronic health records combine free-text clinical narratives with structured measurements such as vital signs, laboratory values, and comorbidities. Yet most clinical prediction systems still rely on task-specific fusion architectures, pairing dedicated encoders for each modality with learned combination mechanisms that must be re-engineered for every new task and clinical setting. We propose a simpler alternative: convert all patient data, regardless of modality, into a single natural language sequence and fine-tune a pretrained language model end-to-end, with no architectural modification for fusion. We evaluate this approach across three clinically distinct prediction tasks: in-hospital mortality on MIMIC-III, graft failure prediction using longitudinal data from a German transplant center, and emergency triage classification from ambulance records - comparing encoder-based (ModernBERT) and decoder-based (Llama 3.1, Gemma, DeepSeek-R1-Qwen, Qwen3) fine-tuning against established multimodal baselines and, for graft failure, a gradient boosting model currently used in clinical practice for post-transplant patient management. Across all three tasks, unified textual serialization matches or exceeds task-specific multimodal baselines, and outperforms the clinically deployed gradient boosting system on graft failure prediction. These results indicate that a single serialization-based paradigm, without bespoke fusion architectures, is sufficient for multimodal clinical prediction - substantially reducing system complexity while matching or exceeding specialized designs.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Large Language Models as Unified Multimodal Learners for Clinical Prediction",
+      "raw_summary": "arXiv:2607.15380v1 Announce Type: new Abstract: Electronic health records combine free-text clinical narratives with structured measurements such as vital signs, laboratory values, and comorbidities. Yet most clinical prediction systems still rely on task-specific fusion architectures, pairing dedicated encoders for each modality with learned combination mechanisms that must be re-engineered for every new task and clinical setting. We propose a simpler alternative: convert all patient data, regardless of modality, into a single natural language sequence and fine-tune a pretrained language model end-to-end, with no architectural modification for fusion. We evaluate this approach across three clinically distinct prediction tasks: in-hospital mortality on MIMIC-III, graft failure prediction using longitudinal data from a German transplant center, and emergency triage classification from ambulance records - comparing encoder-based (ModernBERT) and decoder-based (Llama 3.1, Gemma, DeepSeek-R1-Qwen, Qwen3) fine-tuning against established multimodal baselines and, for graft failure, a gradient boosting model currently used in clinical practice for post-transplant patient management. Across all three tasks, unified textual serialization matches or exceeds task-specific multimodal baselines, and outperforms the clinically deployed gradient boosting system on graft failure prediction. These results indicate that a single serialization-based paradigm, without bespoke fusion architectures, is sufficient for multimodal clinical prediction - substantially reducing system complexity while matching or exceeding specialized designs.",
+      "score": 72,
+      "primary": "models",
+      "tags": [
+        "healthcare",
+        "multimodal",
+        "clinical prediction",
+        "fine-tuning"
+      ],
+      "heuristic_score": 58,
+      "url": "https://arxiv.org/abs/2607.15380",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 58,
+      "_rid": 9,
+      "llm_score": 74,
+      "why": "Demuestra que la simplificación de datos clínicos a lenguaje natural compite con arquitecturas de fusión complejas y pesadas.",
+      "title_es": "Modelos de lenguaje como aprendices multimodales unificados para predicción clínica",
+      "entities": [
+        "Large Language Models",
+        "Unified Multimodal Learners",
+        "Clinical Prediction"
+      ],
+      "noise_penalty": 0,
+      "final_score": 72,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "china_stack"
+    },
+    {
+      "title": "Verbalizable Representations Form a Global Workspace in Language Models",
+      "link": "https://arxiv.org/abs/2607.15495",
+      "published": "2026-07-20T04:00:00+00:00",
+      "summary": "arXiv:2607.15495v1 Announce Type: new Abstract: Out of everything the human brain processes, only a small fraction is consciously accessible, in the sense of being available for verbal report, deliberate control, and flexible reasoning. In this paper, we present evidence that an analogous functional distinction has emerged in large language models. Using a new interpretability technique, the Jacobian lens, we identify the representations a model is poised to verbalize at any point in its processing. These representations, which we collectively call the J-space, exhibit the functional properties characteristic of a global workspace: their contents can be reported, deliberately summoned and held, used to carry the intermediate steps of silent reasoning, and passed as arguments to arbitrary downstream computations, while automatic processing such as text parsing and routine inference proceeds without them. The J-space also has structural signatures that global workspace theory associates with conscious access: it carries coherent content only in an intermediate band of layers, holds on the order of tens of concepts at a time, and is broadcast by the model's weights more widely than other representations. These properties make it a practical window into a model's unspoken thinking. In alignment audits, it reveals strategic deliberation, evaluation awareness, and trained-in misaligned dispositions that never appear in the model's outputs. We find that post-training installs the Assistant's point of view in the workspace, and we introduce counterfactual reflection training, which improves behavior by training only what a model would say if interrupted and asked to reflect. These results indicate that language models maintain a small, privileged set of representations bearing some of the functional hallmarks of conscious access, and that decoding these representations sheds light on ongoing cognitive processes.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Verbalizable Representations Form a Global Workspace in Language Models",
+      "raw_summary": "arXiv:2607.15495v1 Announce Type: new Abstract: Out of everything the human brain processes, only a small fraction is consciously accessible, in the sense of being available for verbal report, deliberate control, and flexible reasoning. In this paper, we present evidence that an analogous functional distinction has emerged in large language models. Using a new interpretability technique, the Jacobian lens, we identify the representations a model is poised to verbalize at any point in its processing. These representations, which we collectively call the J-space, exhibit the functional properties characteristic of a global workspace: their contents can be reported, deliberately summoned and held, used to carry the intermediate steps of silent reasoning, and passed as arguments to arbitrary downstream computations, while automatic processing such as text parsing and routine inference proceeds without them. The J-space also has structural signatures that global workspace theory associates with conscious access: it carries coherent content only in an intermediate band of layers, holds on the order of tens of concepts at a time, and is broadcast by the model's weights more widely than other representations. These properties make it a practical window into a model's unspoken thinking. In alignment audits, it reveals strategic deliberation, evaluation awareness, and trained-in misaligned dispositions that never appear in the model's outputs. We find that post-training installs the Assistant's point of view in the workspace, and we introduce counterfactual reflection training, which improves behavior by training only what a model would say if interrupted and asked to reflect. These results indicate that language models maintain a small, privileged set of representations bearing some of the functional hallmarks of conscious access, and that decoding these representations sheds light on ongoing cognitive processes.",
+      "score": 70,
+      "primary": "models",
+      "tags": [
+        "interpretability",
+        "cognitive science",
+        "llms",
+        "jacobian lens"
+      ],
+      "heuristic_score": 95,
+      "url": "https://arxiv.org/abs/2607.15495",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 95,
+      "_rid": 4,
+      "llm_score": 65,
+      "why": "Aporta evidencia sobre cómo los modelos de lenguaje organizan la información de forma análoga a la conciencia humana para razonar.",
+      "title_es": "Las representaciones verbalizables forman un espacio de trabajo global en modelos de lenguaje",
+      "entities": [
+        "Verbalizable Representations Form",
+        "Global Workspace",
+        "Language Models"
+      ],
+      "noise_penalty": 0,
+      "final_score": 70,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Position: Quantum Program Generation Must Prioritize Validity Over Probabilistic Scaling",
+      "link": "https://arxiv.org/abs/2607.15313",
+      "published": "2026-07-20T04:00:00+00:00",
+      "summary": "arXiv:2607.15313v1 Announce Type: new Abstract: The scaling hypothesis assumes that increasing model parameters yields emergent reasoning capabilities. This position paper argues that applying this probabilistic paradigm to generic quantum circuit synthesis is a directional error. Unlike natural languages, quantum circuits require strict adherence to mathematical constraints that manifest a significant syntax-semantics gap. Training on unverified quantum programs means that models learn syntax but fail to capture the physical semantics of the Hilbert space. Since the valid subset of circuit designs decays exponentially with the number of qubits, post-hoc filtering is mathematically intractable. We propose a pivot from human-centric copilots to verifier-centric agents. We integrate hierarchical constraints, topological masks, and symbolic proxies directly into generation. Our analysis suggests that scale alone cannot bridge the validity gap. Verification-aware architectures offer a viable path for modular quantum program generation. These considerations point toward generation methods that encode task-specific rules of quantum information, rather than relying on imitation alone.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Position: Quantum Program Generation Must Prioritize Validity Over Probabilistic Scaling",
+      "raw_summary": "arXiv:2607.15313v1 Announce Type: new Abstract: The scaling hypothesis assumes that increasing model parameters yields emergent reasoning capabilities. This position paper argues that applying this probabilistic paradigm to generic quantum circuit synthesis is a directional error. Unlike natural languages, quantum circuits require strict adherence to mathematical constraints that manifest a significant syntax-semantics gap. Training on unverified quantum programs means that models learn syntax but fail to capture the physical semantics of the Hilbert space. Since the valid subset of circuit designs decays exponentially with the number of qubits, post-hoc filtering is mathematically intractable. We propose a pivot from human-centric copilots to verifier-centric agents. We integrate hierarchical constraints, topological masks, and symbolic proxies directly into generation. Our analysis suggests that scale alone cannot bridge the validity gap. Verification-aware architectures offer a viable path for modular quantum program generation. These considerations point toward generation methods that encode task-specific rules of quantum information, rather than relying on imitation alone.",
+      "score": 70,
+      "primary": "misc",
+      "tags": [
+        "quantum computing",
+        "scaling laws",
+        "formal verification",
+        "circuit synthesis"
+      ],
+      "heuristic_score": 68,
+      "url": "https://arxiv.org/abs/2607.15313",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 68,
+      "_rid": 8,
+      "llm_score": 78,
+      "why": "Desafía la tesis de que 'más parámetros' resolverán la síntesis cuántica, exigiendo rigor matemático sobre probabilidad.",
+      "title_es": "Posición: La generación de programas cuánticos debe priorizar la validez sobre el escalado probabilístico",
+      "entities": [
+        "Position",
+        "Quantum Program Generation",
+        "Must Prioritize Validity",
+        "Over Probabilistic Scaling"
+      ],
+      "noise_penalty": 6,
+      "final_score": 70,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(6)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "EpiNarrate: Agentic Generation of Grounded Narratives from Epidemiological Scenario Projections",
+      "link": "https://arxiv.org/abs/2607.15544",
+      "published": "2026-07-20T04:00:00+00:00",
+      "summary": "arXiv:2607.15544v1 Announce Type: new Abstract: Generation of clear and accessible public health narratives is critical for communicating complex epidemiological projections to policymakers and the general public at large. Such narratives require more than simply reporting numbers: projections must be contextualized and quantitatively grounded across multiple dimensions. Further, projections are often derived from large ensemble datasets which combine intervention assumptions, geographic and demographic strata, outcomes, time horizons, and uncertainty quantiles. However, directly using large language models (LLMs) to summarize and contextualize such data often leads to inconsistencies, omissions, and fragile behavior. We introduce an agentic framework (EpiNarrate) for public health report generation that separates structured numerical reasoning from natural-language generation. The framework first extracts scenario axes and organizes them into a partial-order schema, enabling systematic traversal of the underlying multidimensional space. It then constructs an augmented dataset and derives valid quantitative statements through a comparison grammar that enforces semantic and arithmetic consistency. To balance coverage and non-redundancy, we introduce an interestingness-driven selection mechanism based on maximum-entropy principles. Experiments on the COVID-19 Scenario Modeling Hub demonstrate that our model produces narratives with improved factual grounding and broader coverage of salient epidemiological patterns, while preserving the style of expert-written reports.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "EpiNarrate: Agentic Generation of Grounded Narratives from Epidemiological Scenario Projections",
+      "raw_summary": "arXiv:2607.15544v1 Announce Type: new Abstract: Generation of clear and accessible public health narratives is critical for communicating complex epidemiological projections to policymakers and the general public at large. Such narratives require more than simply reporting numbers: projections must be contextualized and quantitatively grounded across multiple dimensions. Further, projections are often derived from large ensemble datasets which combine intervention assumptions, geographic and demographic strata, outcomes, time horizons, and uncertainty quantiles. However, directly using large language models (LLMs) to summarize and contextualize such data often leads to inconsistencies, omissions, and fragile behavior. We introduce an agentic framework (EpiNarrate) for public health report generation that separates structured numerical reasoning from natural-language generation. The framework first extracts scenario axes and organizes them into a partial-order schema, enabling systematic traversal of the underlying multidimensional space. It then constructs an augmented dataset and derives valid quantitative statements through a comparison grammar that enforces semantic and arithmetic consistency. To balance coverage and non-redundancy, we introduce an interestingness-driven selection mechanism based on maximum-entropy principles. Experiments on the COVID-19 Scenario Modeling Hub demonstrate that our model produces narratives with improved factual grounding and broader coverage of salient epidemiological patterns, while preserving the style of expert-written reports.",
+      "score": 63,
+      "primary": "misc",
+      "tags": [
+        "healthcare",
+        "epidemiology",
+        "agents",
+        "data narrative"
+      ],
+      "heuristic_score": 78,
+      "url": "https://arxiv.org/abs/2607.15544",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 78,
+      "_rid": 6,
+      "llm_score": 60,
+      "why": "Automatiza la comunicación de datos complejos de salud pública, aunque depende críticamente de la precisión del grounding.",
+      "title_es": "EpiNarrate: Generación agentica de narrativas fundamentadas a partir de proyecciones de escenarios epidemiológicos",
+      "entities": [
+        "EpiNarrate",
+        "Agentic Generation",
+        "Grounded Narratives",
+        "Epidemiological Scenario Projections"
+      ],
+      "noise_penalty": 0,
+      "final_score": 63,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "CEO Interview with Mohit Gupta of TYLsemi",
+      "link": "https://semiwiki.com/ceo-interviews/371041-ceo-interview-with-mohit-gupta-of-tylsemi/",
+      "published": "2026-07-19T23:00:09+00:00",
+      "summary": "Mohit Gupta founded TYLsemi to build chiplet-based intelligent power and connectivity solutions for AI infrastructure—an area where custom silicon has long been underserved. TYLsemi exists to provide the foundational chiplet platform that enables tailored custom silicon solutions for the evolving needs of AI infrastructure.&8230; Read More The post CEO Interview with Mohit Gupta of TYLsemi appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "CEO Interview with Mohit Gupta of TYLsemi",
+      "raw_summary": "Mohit Gupta founded TYLsemi to build chiplet-based intelligent power and connectivity solutions for AI infrastructure—an area where custom silicon has long been underserved. TYLsemi exists to provide the foundational chiplet platform that enables tailored custom silicon solutions for the evolving needs of AI infrastructure.&#8230; Read More The post CEO Interview with Mohit Gupta of TYLsemi appeared first on SemiWiki .",
+      "score": 58,
+      "primary": "infra",
+      "tags": [
+        "chiplets",
+        "custom silicon",
+        "ai infrastructure",
+        "power management"
+      ],
+      "heuristic_score": 22,
+      "url": "https://semiwiki.com/ceo-interviews/371041-ceo-interview-with-mohit-gupta-of-tylsemi/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 22,
+      "_rid": 13,
+      "llm_score": 64,
+      "why": "Foco en la personalización de silicio para infraestructura de IA, un mercado en expansión frente a las soluciones genéricas.",
+      "title_es": "Entrevista al CEO con Mohit Gupta de TYLsemi",
+      "entities": [
+        "TYLsemi",
+        "Mohit Gupta"
+      ],
+      "noise_penalty": 0,
+      "final_score": 58,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "CEO Interview with Dr. Il Park of Primemas",
+      "link": "https://semiwiki.com/ceo-interviews/371285-ceo-interview-with-dr-il-park-of-primemas/",
+      "published": "2026-07-20T01:00:35+00:00",
+      "summary": "Dr. Il Park is the Founder and CEO of Primemas Inc. Prior to founding Primemas, he was Vice President at SK hynix where he led memory solutions, design innovation, and CAE. Prior to that he was the head of the SOC architecture development and engineering team at Samsung Electronics. Earlier in his career, Il was at IBM T.J. Watson Research&8230; Read More The post CEO Interview with Dr. Il Park of Primemas appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "CEO Interview with Dr. Il Park of Primemas",
+      "raw_summary": "Dr. Il Park is the Founder and CEO of Primemas Inc. Prior to founding Primemas, he was Vice President at SK hynix where he led memory solutions, design innovation, and CAE. Prior to that he was the head of the SOC architecture development and engineering team at Samsung Electronics. Earlier in his career, Il was at IBM T.J. Watson Research&#8230; Read More The post CEO Interview with Dr. Il Park of Primemas appeared first on SemiWiki .",
+      "score": 57,
+      "primary": "infra",
+      "tags": [
+        "chiplets",
+        "memory",
+        "semiconductors",
+        "design"
+      ],
+      "heuristic_score": 31,
+      "url": "https://semiwiki.com/ceo-interviews/371285-ceo-interview-with-dr-il-park-of-primemas/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 31,
+      "_rid": 11,
+      "llm_score": 62,
+      "why": "La experiencia de liderazgo en SK hynix y Samsung aplicada a nuevas soluciones de memoria para la era de la IA.",
+      "title_es": "Entrevista al CEO con el Dr. Il Park de Primemas",
+      "entities": [
+        "Primemas",
+        "SK hynix",
+        "Samsung",
+        "Il Park"
+      ],
+      "noise_penalty": 0,
+      "final_score": 57,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Expanding Managed Agents in Gemini API: background tasks, remote MCP and more",
+      "link": "https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api/",
+      "published": "2026-07-07T08:54:00+00:00",
+      "summary": "Managed agents feature bundle launch",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Expanding Managed Agents in Gemini API:  background tasks, remote MCP and more",
+      "raw_summary": "Managed agents feature bundle launch",
+      "score": 55,
+      "primary": "models",
+      "tags": [
+        "gemini",
+        "agents",
+        "mcp",
+        "google"
+      ],
+      "heuristic_score": 63,
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api/",
+      "is_repeat": true,
+      "novelty_score": 45,
+      "adjusted_score": 8,
+      "_rid": 15,
+      "llm_score": 75,
+      "why": "Google refuerza su ecosistema de agentes con soporte para protocolos abiertos y ejecución de tareas en segundo plano.",
+      "title_es": "Expansión de agentes gestionados en la API de Gemini: tareas en segundo plano, MCP remoto y más",
+      "entities": [
+        "Google",
+        "Gemini",
+        "Gemini API",
+        "MCP",
+        "Expanding Managed Agents"
+      ],
+      "noise_penalty": 10,
+      "final_score": 55,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(10)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "NVIDIA Nemotron Achieves Benchmark-Leading Performance With LangChain Deep Agents Harness",
+      "link": "https://blogs.nvidia.com/blog/nemotron-langchain-agents-open-stack/",
+      "published": "2026-07-08T15:00:27+00:00",
+      "summary": "NVIDIA Nemotron 3 Ultra is offering leading performance at lower cost than top closed models with the largest and most widely adopted AI agent orchestration platform. LangChain tuned its Deep Agents harness for NVIDIA Nemotron 3 Ultra, achieving the highest accuracy among open models, while completing more tasks at higher throughput and running at 10x [&8230;]",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "NVIDIA Nemotron Achieves Benchmark-Leading Performance With LangChain Deep Agents Harness",
+      "raw_summary": "NVIDIA Nemotron 3 Ultra is offering leading performance at lower cost than top closed models with the largest and most widely adopted AI agent orchestration platform. LangChain tuned its Deep Agents harness for NVIDIA Nemotron 3 Ultra, achieving the highest accuracy among open models, while completing more tasks at higher throughput and running at 10x [&#8230;]",
+      "score": 51,
+      "primary": "models",
+      "tags": [
+        "agents",
+        "nvidia",
+        "nemotron",
+        "langchain"
+      ],
+      "heuristic_score": 68,
+      "url": "https://blogs.nvidia.com/blog/nemotron-langchain-agents-open-stack/",
+      "is_repeat": true,
+      "novelty_score": 45,
+      "adjusted_score": 13,
+      "_rid": 14,
+      "llm_score": 70,
+      "why": "Validación de rendimiento de modelos abiertos de NVIDIA en flujos de trabajo de agentes complejos con LangChain.",
+      "title_es": "NVIDIA Nemotron logra un rendimiento líder con el arnés Deep Agents de LangChain",
+      "entities": [
+        "NVIDIA",
+        "Nemotron",
+        "LangChain",
+        "Nemotron Achieves Benchmark",
+        "Leading Performance With",
+        "Deep Agents Harness"
+      ],
+      "noise_penalty": 10,
+      "final_score": 51,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(10)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Structure of the Circular-Dyadic Convolution Error",
+      "link": "https://arxiv.org/abs/2607.15293",
+      "published": "2026-07-20T04:00:00+00:00",
+      "summary": "arXiv:2607.15293v1 Announce Type: new Abstract: Dyadic and circular convolution can both be computed in $O(N\\log N)$ time using the Hadamard transform and the FFT-computed discrete Fourier transform (DFT), respectively. The Hadamard transform is preferable for its real-valued sign flips, yet its substitution for the DFT introduces algebraic error. We present three complementary results that characterize this error. First, we identify exact error cancellation: two input and two output positions are universally error-free, and no reordering of the output can eliminate this error. Second, the error operator is nearly full rank, while its null space has only logarithmic dimension. Third, the expected error is governed by a single alignment scalar, with a closed-form expression obtained by averaging over random filters. In general, the substitution error asymptotically doubles the output energy, except for filters in the universal zero-error subspace, which incur no error. Collectively, these results show that the substitution error is structured, predictable, and governed by alignment.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Structure of the Circular-Dyadic Convolution Error",
+      "raw_summary": "arXiv:2607.15293v1 Announce Type: new Abstract: Dyadic and circular convolution can both be computed in $O(N\\log N)$ time using the Hadamard transform and the FFT-computed discrete Fourier transform (DFT), respectively. The Hadamard transform is preferable for its real-valued sign flips, yet its substitution for the DFT introduces algebraic error. We present three complementary results that characterize this error. First, we identify exact error cancellation: two input and two output positions are universally error-free, and no reordering of the output can eliminate this error. Second, the error operator is nearly full rank, while its null space has only logarithmic dimension. Third, the expected error is governed by a single alignment scalar, with a closed-form expression obtained by averaging over random filters. In general, the substitution error asymptotically doubles the output energy, except for filters in the universal zero-error subspace, which incur no error. Collectively, these results show that the substitution error is structured, predictable, and governed by alignment.",
+      "score": 50,
+      "primary": "infra",
+      "tags": [
+        "mathematics",
+        "algorithms",
+        "hardware optimization",
+        "hadamard transform"
+      ],
+      "heuristic_score": 25,
+      "url": "https://arxiv.org/abs/2607.15293",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 25,
+      "_rid": 12,
+      "llm_score": 55,
+      "why": "Investigación teórica sobre errores de computación que impacta en la eficiencia de transformadas matemáticas en hardware.",
+      "title_es": "Estructura del error de convolución circular-diádica",
+      "entities": [
+        "FFT",
+        "Hadamard transform",
+        "Structure",
+        "Circular",
+        "Dyadic Convolution Error"
+      ],
+      "noise_penalty": 0,
+      "final_score": 50,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    }
+  ]
+}
