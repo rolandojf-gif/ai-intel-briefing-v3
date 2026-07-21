@@ -1,0 +1,680 @@
+{
+  "date": "2026-07-21",
+  "score_avg": 61.93,
+  "primary_dist": {
+    "models": 9,
+    "invest": 1,
+    "infra": 3,
+    "misc": 2
+  },
+  "top_entities": [
+    {
+      "entity": "DAC",
+      "count": 3
+    },
+    {
+      "entity": "Multi",
+      "count": 2
+    },
+    {
+      "entity": "MSCE",
+      "count": 1
+    },
+    {
+      "entity": "From Memory",
+      "count": 1
+    },
+    {
+      "entity": "Skills",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "Los LLM tienden a decidir la respuesta antes de razonar, lo que genera alucinaciones estructurales persistentes.",
+      "La arquitectura Mixture-of-Experts evoluciona hacia el enrutamiento basado en contexto multinivel para ganar eficiencia.",
+      "El rendimiento de agentes de código abierto con NVIDIA Nemotron ya compite en coste y eficacia con modelos cerrados.",
+      "El diseño de semiconductores (EDA) integra masivamente la IA para gestionar la complejidad de los chiplets.",
+      "Se detectan sesgos críticos en RLHF derivados del estado emocional y estrés de los anotadores humanos."
+    ],
+    "risks": [
+      "Inconsistencia lógica severa en modelos que priorizan la pre-confirmación sobre el razonamiento deductivo real.",
+      "Degradación de la calidad del modelo de recompensa por fatiga y factores psicológicos en el etiquetado humano.",
+      "Vulnerabilidad extrema de los modelos de lenguaje pequeños (SLM) ante información irrelevante en entornos RAG."
+    ],
+    "watch": [
+      "Adopción masiva del protocolo MCP (Model Context Protocol) para conectar agentes con herramientas externas en Gemini.",
+      "Avances en la conversión de memorias pasivas de agentes en habilidades ejecutables mediante marcos de coevolución.",
+      "Resultados operativos de la automatización por IA en el diseño de SoCs presentados en la conferencia DAC 2026."
+    ],
+    "entities_top": [
+      "NVIDIA",
+      "Google",
+      "LangChain"
+    ]
+  },
+  "items": [
+    {
+      "title": "From Memory to Skills: Evidence-Grounded Co-Evolution Governance for Long-Horizon LLM Agents",
+      "link": "https://arxiv.org/abs/2607.16621",
+      "published": "2026-07-21T04:00:00+00:00",
+      "summary": "arXiv:2607.16621v1 Announce Type: new Abstract: Existing memory systems for long-horizon LLM agents often retrieve prior traces as passive context rather than converting them into executable capabilities. In this paper, we propose MSCE, a training-free Memory--Skill Co-Evolution framework that organizes agent experience into grounded step traces, reusable procedural policies, and declarative environmental cognition. MSCE crystallizes evidence-backed L2 policies with positive estimated gain into callable skills that retain evidence links, applicability boundaries, decision guidance, verification rules, and reliability estimates. It further introduces reflection-weighted value backfilling, which propagates sparse terminal feedback through dense local self-reflections to produce evidence-calibrated trace values for governing memory and skill evolution. Experiments on EvoAgentBench and LoCoMo demonstrate that MSCE significantly outperforms state-of-the-art skill-augmented and memory-driven agent baselines, exhibiting strong cross-domain transferability and lifelong-evolution capabilities.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "From Memory to Skills: Evidence-Grounded Co-Evolution Governance for Long-Horizon LLM Agents",
+      "raw_summary": "arXiv:2607.16621v1 Announce Type: new Abstract: Existing memory systems for long-horizon LLM agents often retrieve prior traces as passive context rather than converting them into executable capabilities. In this paper, we propose MSCE, a training-free Memory--Skill Co-Evolution framework that organizes agent experience into grounded step traces, reusable procedural policies, and declarative environmental cognition. MSCE crystallizes evidence-backed L2 policies with positive estimated gain into callable skills that retain evidence links, applicability boundaries, decision guidance, verification rules, and reliability estimates. It further introduces reflection-weighted value backfilling, which propagates sparse terminal feedback through dense local self-reflections to produce evidence-calibrated trace values for governing memory and skill evolution. Experiments on EvoAgentBench and LoCoMo demonstrate that MSCE significantly outperforms state-of-the-art skill-augmented and memory-driven agent baselines, exhibiting strong cross-domain transferability and lifelong-evolution capabilities.",
+      "score": 79,
+      "primary": "models",
+      "tags": [
+        "ai agents",
+        "memory",
+        "skill learning"
+      ],
+      "heuristic_score": 73,
+      "url": "https://arxiv.org/abs/2607.16621",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 73,
+      "_rid": 6,
+      "llm_score": 80,
+      "why": "Presenta un marco que transforma la memoria de los agentes en habilidades ejecutables y políticas de decisión reutilizables.",
+      "title_es": "De la memoria a las habilidades: gobernanza de la coevolución basada en evidencia para agentes LLM de horizonte largo",
+      "entities": [
+        "MSCE",
+        "From Memory",
+        "Skills",
+        "Evidence",
+        "Grounded Co",
+        "Evolution Governance",
+        "Long",
+        "Horizon"
+      ],
+      "noise_penalty": 0,
+      "final_score": 79,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Multi-level context Modeling for consistent expert selection in Mixture-of-Experts",
+      "link": "https://arxiv.org/abs/2607.16427",
+      "published": "2026-07-21T04:00:00+00:00",
+      "summary": "arXiv:2607.16427v1 Announce Type: new Abstract: Mixture-of-Experts (MoE) enables efficient scaling of Transformer models by routing tokens to a small subset of experts. However, existing routers typically condition expert selection on shallow or isolated token representations, which often produce unstable and semantically inconsistent routing decisions across layers. In this work, we revisit expert selection from a representation perspective and identify context incompleteness as a key bottleneck limiting effective expert specialization. To address this issue, we propose Multi-level Context Fusion MOE (MCF-MOE), a framework that constructs context-aware representations by integrating complementary signals from cross-layer semantic aggregation and local token-level interactions, enabling more informative and consistent expert selection. Experiments on language modeling and understanding benchmarks demonstrate that MCF-MOE consistently improves routing consistency and downstream performance over strong MoE baselines, highlighting the importance of contextual completeness in expert routing. The code is available at",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Multi-level context Modeling for consistent expert selection in Mixture-of-Experts",
+      "raw_summary": "arXiv:2607.16427v1 Announce Type: new Abstract: Mixture-of-Experts (MoE) enables efficient scaling of Transformer models by routing tokens to a small subset of experts. However, existing routers typically condition expert selection on shallow or isolated token representations, which often produce unstable and semantically inconsistent routing decisions across layers. In this work, we revisit expert selection from a representation perspective and identify context incompleteness as a key bottleneck limiting effective expert specialization. To address this issue, we propose Multi-level Context Fusion MOE (MCF-MOE), a framework that constructs context-aware representations by integrating complementary signals from cross-layer semantic aggregation and local token-level interactions, enabling more informative and consistent expert selection. Experiments on language modeling and understanding benchmarks demonstrate that MCF-MOE consistently improves routing consistency and downstream performance over strong MoE baselines, highlighting the importance of contextual completeness in expert routing. The code is available at https://anonymous.4open.science/r/MCFMOE.",
+      "score": 78,
+      "primary": "models",
+      "tags": [
+        "moe",
+        "transformer",
+        "architecture"
+      ],
+      "heuristic_score": 80,
+      "url": "https://arxiv.org/abs/2607.16427",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 80,
+      "_rid": 2,
+      "llm_score": 78,
+      "why": "Propone MCF-MOE para mejorar la especialización de expertos resolviendo la falta de contexto en el enrutamiento de tokens.",
+      "title_es": "Modelado de contexto multinivel para la selección consistente de expertos en Mixture-of-Experts",
+      "entities": [
+        "MCF-MOE",
+        "Multi",
+        "Modeling",
+        "Mixture",
+        "Experts"
+      ],
+      "noise_penalty": 0,
+      "final_score": 78,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Committed Before Reasoning: Behavioral Reproduction and Preliminary Activation-Level Evidence of Answer Pre-Commitment in an Open-Weight LLM",
+      "link": "https://arxiv.org/abs/2607.16451",
+      "published": "2026-07-21T04:00:00+00:00",
+      "summary": "arXiv:2607.16451v1 Announce Type: new Abstract: Chat models sometimes commit to an answer and then produce reasoning that justifies it rather than deriving it -- even when the answer contradicts a task premise. We study a minimal probe: \"I want to wash my car. The car wash is 100 meters away. Should I walk or drive?\" Only drive works (the car must be at the car wash), yet models overwhelmingly recommend walking. (1) Behavioral reproduction: on Qwen3-8B across five system-prompt conditions (210 rollouts), the wrong commitment occurs in 85-100% of sampled rollouts per condition and 100% of greedy rollouts, in both thinking and non-thinking modes; a 4,096-token thinking budget does not repair it. (2) Preliminary activation-level evidence: probing hidden states with a pretrained, training-free activation oracle (no task-specific probe training) at positions before the answer text is emitted, \"walk\" read-outs exceed a neutral-context baseline (68% vs. 17%; walk-committing rollouts p=.005, drive-committing rollouts p=.005, Fisher exact) -- notably, rollouts that eventually answer drive also read as walk-leaning before commitment (5/6). The oracle's default on unrelated content is \"drive\" (83%), so the read-outs are not lexical bias; stratifying by literal walk/drive occurrence shows they are not text recovery either (spans containing \"drive\" still read out walk; in balanced lexical fields, per-rollout walk-majorities beat a per-prompt neutral baseline 15/22 vs. 1/8, p=.01; drive-committing rollouts 6/6, p=.002). Samples are small and the within-rollout positional gradient is not significant (p=.34); we frame these results as preliminary. (3) Methodological: with fixed oracle, activations, and positions, question wording alone moves a positive control from 2/16 (open question) to 11/16 (closed); negative oracle results are uninterpretable without per-wording positive controls.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Committed Before Reasoning: Behavioral Reproduction and Preliminary Activation-Level Evidence of Answer Pre-Commitment in an Open-Weight LLM",
+      "raw_summary": "arXiv:2607.16451v1 Announce Type: new Abstract: Chat models sometimes commit to an answer and then produce reasoning that justifies it rather than deriving it -- even when the answer contradicts a task premise. We study a minimal probe: \"I want to wash my car. The car wash is 100 meters away. Should I walk or drive?\" Only drive works (the car must be at the car wash), yet models overwhelmingly recommend walking. (1) Behavioral reproduction: on Qwen3-8B across five system-prompt conditions (210 rollouts), the wrong commitment occurs in 85-100% of sampled rollouts per condition and 100% of greedy rollouts, in both thinking and non-thinking modes; a 4,096-token thinking budget does not repair it. (2) Preliminary activation-level evidence: probing hidden states with a pretrained, training-free activation oracle (no task-specific probe training) at positions before the answer text is emitted, \"walk\" read-outs exceed a neutral-context baseline (68% vs. 17%; walk-committing rollouts p=.005, drive-committing rollouts p=.005, Fisher exact) -- notably, rollouts that eventually answer drive also read as walk-leaning before commitment (5/6). The oracle's default on unrelated content is \"drive\" (83%), so the read-outs are not lexical bias; stratifying by literal walk/drive occurrence shows they are not text recovery either (spans containing \"drive\" still read out walk; in balanced lexical fields, per-rollout walk-majorities beat a per-prompt neutral baseline 15/22 vs. 1/8, p=.01; drive-committing rollouts 6/6, p=.002). Samples are small and the within-rollout positional gradient is not significant (p=.34); we frame these results as preliminary. (3) Methodological: with fixed oracle, activations, and positions, question wording alone moves a positive control from 2/16 (open question) to 11/16 (closed); negative oracle results are uninterpretable without per-wording positive controls.",
+      "score": 75,
+      "primary": "models",
+      "tags": [
+        "hallucinations",
+        "reasoning",
+        "safety"
+      ],
+      "heuristic_score": 74,
+      "url": "https://arxiv.org/abs/2607.16451",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 74,
+      "_rid": 4,
+      "llm_score": 85,
+      "why": "Revela que los modelos deciden la respuesta antes de razonar, ignorando premisas lógicas incluso con tiempo de pensamiento.",
+      "title_es": "Comprometidos antes de razonar: reproducción conductual y evidencia de pre-compromiso de respuesta en un LLM de pesos abiertos",
+      "entities": [
+        "Qwen3-8B",
+        "Committed Before Reasoning",
+        "Behavioral Reproduction",
+        "Preliminary Activation",
+        "Level Evidence",
+        "Answer Pre",
+        "Commitment",
+        "Open"
+      ],
+      "noise_penalty": 8,
+      "final_score": 75,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(8)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "RIMS: Preference Optimization via Smoothed Multi-pair Aggregation for Small-Scale LLM Retrieval-Augmented Generation",
+      "link": "https://arxiv.org/abs/2607.16431",
+      "published": "2026-07-21T04:00:00+00:00",
+      "summary": "arXiv:2607.16431v1 Announce Type: new Abstract: Small-scale language models (SLMs) are attractive for retrieval-augmented generation (RAG) in resource-constrained settings, but their limited capacity makes them highly sensitive to noisy or spurious retrieved evidence. Existing preference-based methods such as RoseRAG select only the hardest single preference pair via hard argmin/argmax, discarding the remaining signal; others treat multiple pairs as independent binary comparisons, resulting in low data utilization. We propose RIMS, a three-stage preference optimization framework comprising (1) synthetic chain-of-thought preference data generation via rejection sampling using the target SLM itself without relying on proprietary models, (2) a differentiable soft aggregation mechanism that replaces hard selection with a smooth operator, preserving gradient signal from all preference pairs while retaining the discriminative structure of margin-aware selection, and (3) preference optimization with the smoothed objective applied to multiple alignment algorithms. We theoretically show that the smoothed approximation admits a controllable error bound and that smooth aggregation yields provably tighter gradient alignment to the oracle objective than hard selection. Experiments on four multi-hop question answering benchmarks show that our approach outperforms state-of-the-art baselines across multiple SLM backbones, achieving consistent gains in Exact Match and F1 under noisy retrieval conditions. Our implementation is available at",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "RIMS: Preference Optimization via Smoothed Multi-pair Aggregation for Small-Scale LLM Retrieval-Augmented Generation",
+      "raw_summary": "arXiv:2607.16431v1 Announce Type: new Abstract: Small-scale language models (SLMs) are attractive for retrieval-augmented generation (RAG) in resource-constrained settings, but their limited capacity makes them highly sensitive to noisy or spurious retrieved evidence. Existing preference-based methods such as RoseRAG select only the hardest single preference pair via hard argmin/argmax, discarding the remaining signal; others treat multiple pairs as independent binary comparisons, resulting in low data utilization. We propose RIMS, a three-stage preference optimization framework comprising (1) synthetic chain-of-thought preference data generation via rejection sampling using the target SLM itself without relying on proprietary models, (2) a differentiable soft aggregation mechanism that replaces hard selection with a smooth operator, preserving gradient signal from all preference pairs while retaining the discriminative structure of margin-aware selection, and (3) preference optimization with the smoothed objective applied to multiple alignment algorithms. We theoretically show that the smoothed approximation admits a controllable error bound and that smooth aggregation yields provably tighter gradient alignment to the oracle objective than hard selection. Experiments on four multi-hop question answering benchmarks show that our approach outperforms state-of-the-art baselines across multiple SLM backbones, achieving consistent gains in Exact Match and F1 under noisy retrieval conditions. Our implementation is available at https://github.com/tptrix29/RIMS.",
+      "score": 72,
+      "primary": "models",
+      "tags": [
+        "slm",
+        "rag",
+        "preference optimization"
+      ],
+      "heuristic_score": 73,
+      "url": "https://arxiv.org/abs/2607.16431",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 73,
+      "_rid": 5,
+      "llm_score": 72,
+      "why": "Mejora la robustez de modelos pequeños en RAG mediante una nueva técnica de optimización de preferencias frente a ruido.",
+      "title_es": "RIMS: Optimización de preferencias mediante agregación suavizada de pares para RAG en LLM de pequeña escala",
+      "entities": [
+        "RIMS",
+        "RoseRAG",
+        "Preference Optimization",
+        "Smoothed Multi",
+        "Aggregation",
+        "Small",
+        "Scale",
+        "Retrieval"
+      ],
+      "noise_penalty": 0,
+      "final_score": 72,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Rater State Bias in RLHF Preference Data: An Audit Framework",
+      "link": "https://arxiv.org/abs/2607.16195",
+      "published": "2026-07-21T04:00:00+00:00",
+      "summary": "arXiv:2607.16195v1 Announce Type: new Abstract: We identify a structured confound in Reinforcement Learning from Human Feedback (RLHF). Pairwise preference labels are intended to reflect the compared outputs, but they may also reflect the rater's state during annotation. Under sustained stressful or distressing conditions, raters' preferences may shift over time. As a result, preference data can encode rater state alongside judgments about response quality. These shifts differ from ordinary disagreement or random label noise. They are state dependent, can be shared across annotators working under similar conditions, and can propagate through reward modeling and policy optimization. We therefore propose rater state shift as a plausible and testable source of structured bias in RLHF preference data. This paper develops a hypothesis and an audit framework for studying this source of bias. We define rater state shift, rater state confound, and correlated rater state bias. We also define survival level emotional authenticity as a measurable response pattern using lexical, pragmatic, discourse, and safety related features. We analyze how correlated rater state bias can survive aggregation and enter learned reward signals. We derive five falsifiable predictions and effect size thresholds for an initial audit. Finally, we present an audit protocol and pilot study plan that can be applied to publicly available instruction tuned models. We do not infer the training history of any specific deployed model. Our goal is to isolate a plausible and testable source of structured bias in RLHF preference data.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Rater State Bias in RLHF Preference Data: An Audit Framework",
+      "raw_summary": "arXiv:2607.16195v1 Announce Type: new Abstract: We identify a structured confound in Reinforcement Learning from Human Feedback (RLHF). Pairwise preference labels are intended to reflect the compared outputs, but they may also reflect the rater's state during annotation. Under sustained stressful or distressing conditions, raters' preferences may shift over time. As a result, preference data can encode rater state alongside judgments about response quality. These shifts differ from ordinary disagreement or random label noise. They are state dependent, can be shared across annotators working under similar conditions, and can propagate through reward modeling and policy optimization. We therefore propose rater state shift as a plausible and testable source of structured bias in RLHF preference data. This paper develops a hypothesis and an audit framework for studying this source of bias. We define rater state shift, rater state confound, and correlated rater state bias. We also define survival level emotional authenticity as a measurable response pattern using lexical, pragmatic, discourse, and safety related features. We analyze how correlated rater state bias can survive aggregation and enter learned reward signals. We derive five falsifiable predictions and effect size thresholds for an initial audit. Finally, we present an audit protocol and pilot study plan that can be applied to publicly available instruction tuned models. We do not infer the training history of any specific deployed model. Our goal is to isolate a plausible and testable source of structured bias in RLHF preference data.",
+      "score": 71,
+      "primary": "models",
+      "tags": [
+        "rlhf",
+        "human bias",
+        "data quality"
+      ],
+      "heuristic_score": 52,
+      "url": "https://arxiv.org/abs/2607.16195",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 52,
+      "_rid": 8,
+      "llm_score": 74,
+      "why": "Identifica cómo el estado emocional de los anotadores humanos contamina las métricas de recompensa en el entrenamiento de IA.",
+      "title_es": "Sesgo del estado del evaluador en datos de preferencia RLHF: un marco de auditoría",
+      "entities": [
+        "RLHF",
+        "Rater State Bias",
+        "Preference Data",
+        "An Audit Framework"
+      ],
+      "noise_penalty": 0,
+      "final_score": 71,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "DocOCR-Eval: A Correction-Based Framework for OCR Tool Selection Without Ground Truth",
+      "link": "https://arxiv.org/abs/2607.16203",
+      "published": "2026-07-21T04:00:00+00:00",
+      "summary": "arXiv:2607.16203v1 Announce Type: new Abstract: Document parsing is a foundational step for document understanding tasks such as visual question answering and key information extraction, as it transforms unstructured scanned s into structured representations by extracting textual, visual, and layout information. While numerous Optical Character Recognition (OCR) engines and multimodal large language models (MLLMs) have been developed for this purpose, selecting an appropriate document parsing solution for a given document collection remains challenging, particularly in label-scarce settings. In this work, we conduct a systematic evaluation of text recognition performance across a diverse set of OCR engines and state-of-the-art MLLMs on multiple scanned document benchmarks spanning different domains and languages. Motivated by the limited contextual reasoning capabilities of many OCR engines and the high cost of manual annotations, we propose DocOCR-Eval, an annotation-free evaluation framework for automatic OCR assessment and selection. DocOCR-Eval employs a three-staged correction and ranking strategy to approximate annotation-based tool ordering without ground-truth labels. We show that aggregating across multiple MLLMs progressively improves alignment with annotation-based rankings. Extensive experiments further demonstrate that reliable OCR tool selection can be achieved in realistic, label-limited settings, providing practical guidance for deploying document parsing systems across diverse real-world document collections.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "DocOCR-Eval: A Correction-Based Framework for OCR Tool Selection Without Ground Truth",
+      "raw_summary": "arXiv:2607.16203v1 Announce Type: new Abstract: Document parsing is a foundational step for document understanding tasks such as visual question answering and key information extraction, as it transforms unstructured scanned images into structured representations by extracting textual, visual, and layout information. While numerous Optical Character Recognition (OCR) engines and multimodal large language models (MLLMs) have been developed for this purpose, selecting an appropriate document parsing solution for a given document collection remains challenging, particularly in label-scarce settings. In this work, we conduct a systematic evaluation of text recognition performance across a diverse set of OCR engines and state-of-the-art MLLMs on multiple scanned document benchmarks spanning different domains and languages. Motivated by the limited contextual reasoning capabilities of many OCR engines and the high cost of manual annotations, we propose DocOCR-Eval, an annotation-free evaluation framework for automatic OCR assessment and selection. DocOCR-Eval employs a three-staged correction and ranking strategy to approximate annotation-based tool ordering without ground-truth labels. We show that aggregating across multiple MLLMs progressively improves alignment with annotation-based rankings. Extensive experiments further demonstrate that reliable OCR tool selection can be achieved in realistic, label-limited settings, providing practical guidance for deploying document parsing systems across diverse real-world document collections.",
+      "score": 70,
+      "primary": "models",
+      "tags": [
+        "ocr",
+        "mllm",
+        "evaluation"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2607.16203",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 1,
+      "llm_score": 65,
+      "why": "Facilita la elección de motores OCR en entornos con pocos datos etiquetados mediante una evaluación sistemática sin etiquetas.",
+      "title_es": "DocOCR-Eval: Un marco basado en corrección para la selección de herramientas OCR sin verdad de base",
+      "entities": [
+        "DocOCR-Eval",
+        "OCR",
+        "Eval",
+        "Correction",
+        "Based Framework",
+        "Tool Selection Without",
+        "Ground Truth"
+      ],
+      "noise_penalty": 0,
+      "final_score": 70,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Reinforcement Learning-Guided NSGA-II Enhanced with Gray Relational Coefficient for Multi-Objective Optimization: Application to NASDAQ Portfolio Optimization",
+      "link": "https://arxiv.org/abs/2607.16194",
+      "published": "2026-07-21T04:00:00+00:00",
+      "summary": "arXiv:2607.16194v1 Announce Type: new Abstract: In modern financial markets, decision-makers increasingly rely on quantitative methods to navigate complex trade-offs among multiple, often conflicting objectives. This paper addresses constrained multi-objective optimization (MOO) with an application to portfolio optimization for minimizing risk and maximizing return. To address existing gaps, we propose a novel reinforcement learning (RL)-guided non-dominated sorting genetic algorithm II (NSGA-II) enhanced with gray relational coefficients (GRC), termed RL-NSGA-II-GRC, which combines an RL agent controller and GRC-based selection to improve convergence and diversity of Pareto fronts. The agent adapts evolutionary parameters online using metrics of hypervolume, feasibility, and diversity, while the GRC tournament operator ranks parents via a unified score considering dominance rank, crowding distance, and proximity to ideal reference. We evaluate the framework on the Kursawe and CONSTR benchmarks and a NASDAQ portfolio application. On the benchmarks, RL-NSGA-II-GRC achieves convergence improvements of about 5.8% and 4.4% over NSGA-II, while preserving well-distributed non-dominated solutions. In the portfolio application, it produces a smooth, densely populated efficient frontier supporting identification of the maximum Sharpe ratio portfolio (annualized Sharpe =1.92) and utility-optimal portfolios for different risk-aversion levels. The main contributions are three-fold: 1) we propose an RL-NSGA-II-GRC method integrating an RL agent into the evolutionary framework to adaptively control parameters via generational feedback; 2) we design a GRC-enhanced binary tournament operator providing a comprehensive indicator to guide the search toward the Pareto front; 3) we demonstrate, on benchmark MOO and a NASDAQ case study, that the method delivers improved convergence and well-populated frontiers supporting actionable insights.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Reinforcement Learning-Guided NSGA-II Enhanced with Gray Relational Coefficient for Multi-Objective Optimization: Application to NASDAQ Portfolio Optimization",
+      "raw_summary": "arXiv:2607.16194v1 Announce Type: new Abstract: In modern financial markets, decision-makers increasingly rely on quantitative methods to navigate complex trade-offs among multiple, often conflicting objectives. This paper addresses constrained multi-objective optimization (MOO) with an application to portfolio optimization for minimizing risk and maximizing return. To address existing gaps, we propose a novel reinforcement learning (RL)-guided non-dominated sorting genetic algorithm II (NSGA-II) enhanced with gray relational coefficients (GRC), termed RL-NSGA-II-GRC, which combines an RL agent controller and GRC-based selection to improve convergence and diversity of Pareto fronts. The agent adapts evolutionary parameters online using metrics of hypervolume, feasibility, and diversity, while the GRC tournament operator ranks parents via a unified score considering dominance rank, crowding distance, and proximity to ideal reference. We evaluate the framework on the Kursawe and CONSTR benchmarks and a NASDAQ portfolio application. On the benchmarks, RL-NSGA-II-GRC achieves convergence improvements of about 5.8% and 4.4% over NSGA-II, while preserving well-distributed non-dominated solutions. In the portfolio application, it produces a smooth, densely populated efficient frontier supporting identification of the maximum Sharpe ratio portfolio (annualized Sharpe =1.92) and utility-optimal portfolios for different risk-aversion levels. The main contributions are three-fold: 1) we propose an RL-NSGA-II-GRC method integrating an RL agent into the evolutionary framework to adaptively control parameters via generational feedback; 2) we design a GRC-enhanced binary tournament operator providing a comprehensive indicator to guide the search toward the Pareto front; 3) we demonstrate, on benchmark MOO and a NASDAQ case study, that the method delivers improved convergence and well-populated frontiers supporting actionable insights.",
+      "score": 63,
+      "primary": "invest",
+      "tags": [
+        "reinforcement learning",
+        "portfolio",
+        "finance"
+      ],
+      "heuristic_score": 77,
+      "url": "https://arxiv.org/abs/2607.16194",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 77,
+      "_rid": 3,
+      "llm_score": 60,
+      "why": "Aplica aprendizaje por refuerzo y algoritmos genéticos para optimizar carteras financieras equilibrando riesgo y retorno.",
+      "title_es": "NSGA-II guiado por aprendizaje por refuerzo y mejorado con coeficientes relacionales grises para optimización multiobjetivo",
+      "entities": [
+        "NASDAQ",
+        "RL-NSGA-II-GRC",
+        "NSGA",
+        "Reinforcement Learning",
+        "Guided",
+        "Enhanced",
+        "Gray Relational Coefficient",
+        "Multi"
+      ],
+      "noise_penalty": 0,
+      "final_score": 63,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "NVIDIA Nemotron Achieves Benchmark-Leading Performance With LangChain Deep Agents Harness",
+      "link": "https://blogs.nvidia.com/blog/nemotron-langchain-agents-open-stack/",
+      "published": "2026-07-08T15:00:27+00:00",
+      "summary": "NVIDIA Nemotron 3 Ultra is offering leading performance at lower cost than top closed models with the largest and most widely adopted AI agent orchestration platform. LangChain tuned its Deep Agents harness for NVIDIA Nemotron 3 Ultra, achieving the highest accuracy among open models, while completing more tasks at higher throughput and running at 10x [&8230;]",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "NVIDIA Nemotron Achieves Benchmark-Leading Performance With LangChain Deep Agents Harness",
+      "raw_summary": "NVIDIA Nemotron 3 Ultra is offering leading performance at lower cost than top closed models with the largest and most widely adopted AI agent orchestration platform. LangChain tuned its Deep Agents harness for NVIDIA Nemotron 3 Ultra, achieving the highest accuracy among open models, while completing more tasks at higher throughput and running at 10x [&#8230;]",
+      "score": 62,
+      "primary": "models",
+      "tags": [
+        "ai agents",
+        "nvidia",
+        "open models"
+      ],
+      "heuristic_score": 68,
+      "url": "https://blogs.nvidia.com/blog/nemotron-langchain-agents-open-stack/",
+      "is_repeat": true,
+      "novelty_score": 45,
+      "adjusted_score": 13,
+      "_rid": 12,
+      "llm_score": 82,
+      "why": "Nemotron 3 Ultra supera a modelos cerrados en tareas de agentes con mayor eficiencia y bajo el framework de LangChain.",
+      "title_es": "NVIDIA Nemotron logra un rendimiento líder en pruebas de referencia con el arnés LangChain Deep Agents",
+      "entities": [
+        "NVIDIA",
+        "LangChain",
+        "Nemotron",
+        "Nemotron Achieves Benchmark",
+        "Leading Performance With",
+        "Deep Agents Harness"
+      ],
+      "noise_penalty": 10,
+      "final_score": 62,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(10)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Tuple Technologies Develops AI-powered Infrastructure at 2026 DAC",
+      "link": "https://semiwiki.com/semiconductor-services/tuple-technologies/371162-tuple-technologies-develops-ai-powered-infrastructure-at-2026-dac/",
+      "published": "2026-07-20T13:00:07+00:00",
+      "summary": "Tuple Technologies develops AI-powered infrastructure and operations platforms specifically designed for semiconductor companies. The company&8217;s solutions help engineering organizations simplify CAD infrastructure management, optimize cloud resources, improve security and compliance, and reduce operational&8230; Read More The post Tuple Technologies Develops AI-powered Infrastructure at 2026 DAC appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "Tuple Technologies Develops AI-powered Infrastructure at 2026 DAC",
+      "raw_summary": "Tuple Technologies develops AI-powered infrastructure and operations platforms specifically designed for semiconductor companies. The company&#8217;s solutions help engineering organizations simplify CAD infrastructure management, optimize cloud resources, improve security and compliance, and reduce operational&#8230; Read More The post Tuple Technologies Develops AI-powered Infrastructure at 2026 DAC appeared first on SemiWiki .",
+      "score": 61,
+      "primary": "infra",
+      "tags": [
+        "semiconductors",
+        "cloud",
+        "cad"
+      ],
+      "heuristic_score": 22,
+      "url": "https://semiwiki.com/semiconductor-services/tuple-technologies/371162-tuple-technologies-develops-ai-powered-infrastructure-at-2026-dac/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 22,
+      "_rid": 10,
+      "llm_score": 68,
+      "why": "Simplifica la gestión de infraestructura CAD y optimiza recursos en la nube para empresas de semiconductores.",
+      "title_es": "Tuple Technologies desarrolla infraestructura impulsada por IA en 2026 DAC",
+      "entities": [
+        "Tuple Technologies",
+        "DAC",
+        "Tuple Technologies Develops",
+        "Infrastructure"
+      ],
+      "noise_penalty": 0,
+      "final_score": 61,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Keysight Design Engineering Software at DAC 2026: Going Deep on Chiplets, RF and AI-Driven Design",
+      "link": "https://semiwiki.com/eda/keysight-eda/371330-keysight-design-engineering-software-at-dac-2026-going-deep-on-chiplets-rf-and-ai-driven-design/",
+      "published": "2026-07-20T17:00:55+00:00",
+      "summary": "Keysight Technologies returns to 2026 DAC , The Chips to Systems Conference this year as a Silver Sponsor and an &8220;I LOVE DAC&8221; sponsor, bringing its Design Engineering Software portfolio to Booth 927 at DAC 2026 , which runs July 26-29 in Long Beach, Calif. The Keysight team will be on-site Monday through Wednesday &8230; Read More The post Keysight Design Engineering Software at DAC 2026: Going Deep on Chiplets, RF and AI-Driven Design appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "Keysight Design Engineering Software at DAC 2026: Going Deep on Chiplets, RF and AI-Driven Design",
+      "raw_summary": "Keysight Technologies returns to 2026 DAC , The Chips to Systems Conference this year as a Silver Sponsor and an &#8220;I LOVE DAC&#8221; sponsor, bringing its Design Engineering Software portfolio to Booth #927 at DAC 2026 , which runs July 26-29 in Long Beach, Calif. The Keysight team will be on-site Monday through Wednesday &#8230; Read More The post Keysight Design Engineering Software at DAC 2026: Going Deep on Chiplets, RF and AI-Driven Design appeared first on SemiWiki .",
+      "score": 61,
+      "primary": "infra",
+      "tags": [
+        "chiplets",
+        "rf",
+        "eda"
+      ],
+      "heuristic_score": 10,
+      "url": "https://semiwiki.com/eda/keysight-eda/371330-keysight-design-engineering-software-at-dac-2026-going-deep-on-chiplets-rf-and-ai-driven-design/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 10,
+      "_rid": 14,
+      "llm_score": 70,
+      "why": "Foco en la automatización del diseño de chiplets y radiofrecuencia mediante herramientas de ingeniería asistidas por IA.",
+      "title_es": "Software de ingeniería de diseño de Keysight en DAC 2026: profundizando en chiplets, RF y diseño impulsado por IA",
+      "entities": [
+        "Keysight Technologies",
+        "DAC",
+        "Keysight Design Engineering",
+        "Software",
+        "Going Deep",
+        "Chiplets",
+        "Driven Design"
+      ],
+      "noise_penalty": 0,
+      "final_score": 61,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "NOWJ@COLIEE 2026: Adaptive Pipelines for Legal Retrieval and Reasoning",
+      "link": "https://arxiv.org/abs/2607.16603",
+      "published": "2026-07-21T04:00:00+00:00",
+      "summary": "arXiv:2607.16603v1 Announce Type: new Abstract: This paper presents the methodologies and results of the NOWJ team's participation across all five tasks of the COLIEE 2026 competition. For Task 1 (Legal Case Retrieval), we propose a four-stage pipeline comprising candidate filtering, dense retrieval with complementary embedding models, cross-encoder reranking via fine-tuned generative rerankers and MLP-based pairwise classification, and adaptive per-query cutoff prediction. For Task 2 (Legal Case Entailment), we combine BM25 filtering, T5-based reranking, and LLM-based entailment verification with consensus ensemble. For Task 3 (Statute Law Retrieval and Entailment), we adopt a retrieval-augmented generation framework with dense retrieval, attention-based reranking, and few-shot-prompted LLM reasoning. For Task 4 (Legal Textual Entailment), we introduce a dynamic routing pipeline that classifies query difficulty and dispatches cases to either a balanced few-shot solver or a structured zero-shot chain-of-thought solver. For the Pilot Task (Legal Judgment Prediction), we combine hierarchical transformers with CRF layers, argument relation mining, and probabilistic argumentation graph reasoning.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "NOWJ@COLIEE 2026: Adaptive Pipelines for Legal Retrieval and Reasoning",
+      "raw_summary": "arXiv:2607.16603v1 Announce Type: new Abstract: This paper presents the methodologies and results of the NOWJ team's participation across all five tasks of the COLIEE 2026 competition. For Task 1 (Legal Case Retrieval), we propose a four-stage pipeline comprising candidate filtering, dense retrieval with complementary embedding models, cross-encoder reranking via fine-tuned generative rerankers and MLP-based pairwise classification, and adaptive per-query cutoff prediction. For Task 2 (Legal Case Entailment), we combine BM25 filtering, T5-based reranking, and LLM-based entailment verification with consensus ensemble. For Task 3 (Statute Law Retrieval and Entailment), we adopt a retrieval-augmented generation framework with dense retrieval, attention-based reranking, and few-shot-prompted LLM reasoning. For Task 4 (Legal Textual Entailment), we introduce a dynamic routing pipeline that classifies query difficulty and dispatches cases to either a balanced few-shot solver or a structured zero-shot chain-of-thought solver. For the Pilot Task (Legal Judgment Prediction), we combine hierarchical transformers with CRF layers, argument relation mining, and probabilistic argumentation graph reasoning.",
+      "score": 55,
+      "primary": "models",
+      "tags": [
+        "legal ai",
+        "information retrieval",
+        "reasoning"
+      ],
+      "heuristic_score": 56,
+      "url": "https://arxiv.org/abs/2607.16603",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 56,
+      "_rid": 7,
+      "llm_score": 55,
+      "why": "Describe sistemas multietapa para tareas complejas de recuperación y verificación de jurisprudencia legal.",
+      "title_es": "NOWJ@COLIEE 2026: Pipelines adaptativos para recuperación y razonamiento legal",
+      "entities": [
+        "NOWJ",
+        "COLIEE",
+        "Adaptive Pipelines",
+        "Legal Retrieval",
+        "Reasoning"
+      ],
+      "noise_penalty": 0,
+      "final_score": 55,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Expanding Managed Agents in Gemini API: background tasks, remote MCP and more",
+      "link": "https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api/",
+      "published": "2026-07-07T08:54:00+00:00",
+      "summary": "Managed agents feature bundle launch",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Expanding Managed Agents in Gemini API:  background tasks, remote MCP and more",
+      "raw_summary": "Managed agents feature bundle launch",
+      "score": 55,
+      "primary": "models",
+      "tags": [
+        "google gemini",
+        "api",
+        "mcp"
+      ],
+      "heuristic_score": 63,
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api/",
+      "is_repeat": true,
+      "novelty_score": 45,
+      "adjusted_score": 8,
+      "_rid": 15,
+      "llm_score": 75,
+      "why": "Google introduce capacidades avanzadas de orquestación y conectividad externa para agentes basados en Gemini.",
+      "title_es": "Ampliación de agentes gestionados en la API de Gemini: tareas en segundo plano, MCP remoto y más",
+      "entities": [
+        "Google",
+        "Gemini",
+        "MCP",
+        "Expanding Managed Agents"
+      ],
+      "noise_penalty": 10,
+      "final_score": 55,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(10)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "See Defacto Technologies at DAC 2026",
+      "link": "https://semiwiki.com/eda/defacto-technologies/371338-see-defacto-technologies-at-dac-2026/",
+      "published": "2026-07-20T21:00:32+00:00",
+      "summary": "I have had the pleasure of working with Defacto Technologies for the past 10 years on SemiWiki and I am always impressed with their professionalism and ability to quickly address the challenges of complex SoC design. From my perspective, Defacto’s technology is designed to improve productivity and design quality by enabling &8230; Read More The post See Defacto Technologies at DAC 2026 appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "See Defacto Technologies at DAC 2026",
+      "raw_summary": "I have had the pleasure of working with Defacto Technologies for the past 10 years on SemiWiki and I am always impressed with their professionalism and ability to quickly address the challenges of complex SoC design. From my perspective, Defacto’s technology is designed to improve productivity and design quality by enabling &#8230; Read More The post See Defacto Technologies at DAC 2026 appeared first on SemiWiki .",
+      "score": 54,
+      "primary": "infra",
+      "tags": [
+        "eda",
+        "soc",
+        "hardware design"
+      ],
+      "heuristic_score": 10,
+      "url": "https://semiwiki.com/eda/defacto-technologies/371338-see-defacto-technologies-at-dac-2026/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 10,
+      "_rid": 13,
+      "llm_score": 62,
+      "why": "Presenta tecnologías para mejorar la productividad y calidad en el diseño de sistemas en chip (SoC) de alta complejidad.",
+      "title_es": "Vea a Defacto Technologies en DAC 2026",
+      "entities": [
+        "Defacto Technologies",
+        "DAC",
+        "See Defacto Technologies"
+      ],
+      "noise_penalty": 0,
+      "final_score": 54,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Design and Validation of a Lightweight 1D CNN for Affective Touch Classification in Soft Plush Companions",
+      "link": "https://arxiv.org/abs/2607.16196",
+      "published": "2026-07-21T04:00:00+00:00",
+      "summary": "arXiv:2607.16196v1 Announce Type: new Abstract: Soft, sensorized companions offer a physically safe and emotionally intuitive interface for socially assistive technologies, yet their deformability and multichannel tactile sensing complicate the robust interpretation of human affect. This study presents a complete open-source MATLAB-based framework for the development and validation of compact deep learning models for affective touch recognition in soft interactive companions. As a primary contribution, a diverse FAIR-compliant dataset of 1326 labelled gesture sequences collected from 25 participants spanning children, teenagers, and adults is made publicly available, providing a reusable resource for future research in affective touch recognition. Through systematic architecture and hyperparameter exploration across 468 CNN models, the study identifies compact dilated one-dimensional convolutional neural networks (1D CNNs) as the most effective solution, with a 13.2k-parameter model achieving 75% test accuracy and 85% mean leave-one-subject-out cross-validation accuracy. Theoretical inference-time analysis shows that quantized deployment requires 3.2 MMAC per window, compatible with 20 Hz real-time operation on the target microcontroller. PC-based real-time simulation with the physical toy streaming sensor data demonstrates that the CNN resolves subtle social touches that the previous heuristic system failed to detect, whereas high-force negative interactions are captured more reliably by trivial threshold-based logic. The resulting hybrid inference pipeline - instantaneous heuristic filtering followed by CNN-based nuanced gesture classification - is proposed as the embedded deployment strategy. The study demonstrates that emotionally meaningful, privacy-preserving touch interpretation is computationally feasible for direct embedding within soft therapeutic companions, with hardware integration addressed in a forthcoming study.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Design and Validation of a Lightweight 1D CNN for Affective Touch Classification in Soft Plush Companions",
+      "raw_summary": "arXiv:2607.16196v1 Announce Type: new Abstract: Soft, sensorized companions offer a physically safe and emotionally intuitive interface for socially assistive technologies, yet their deformability and multichannel tactile sensing complicate the robust interpretation of human affect. This study presents a complete open-source MATLAB-based framework for the development and validation of compact deep learning models for affective touch recognition in soft interactive companions. As a primary contribution, a diverse FAIR-compliant dataset of 1326 labelled gesture sequences collected from 25 participants spanning children, teenagers, and adults is made publicly available, providing a reusable resource for future research in affective touch recognition. Through systematic architecture and hyperparameter exploration across 468 CNN models, the study identifies compact dilated one-dimensional convolutional neural networks (1D CNNs) as the most effective solution, with a 13.2k-parameter model achieving 75% test accuracy and 85% mean leave-one-subject-out cross-validation accuracy. Theoretical inference-time analysis shows that quantized deployment requires 3.2 MMAC per window, compatible with 20 Hz real-time operation on the target microcontroller. PC-based real-time simulation with the physical toy streaming sensor data demonstrates that the CNN resolves subtle social touches that the previous heuristic system failed to detect, whereas high-force negative interactions are captured more reliably by trivial threshold-based logic. The resulting hybrid inference pipeline - instantaneous heuristic filtering followed by CNN-based nuanced gesture classification - is proposed as the embedded deployment strategy. The study demonstrates that emotionally meaningful, privacy-preserving touch interpretation is computationally feasible for direct embedding within soft therapeutic companions, with hardware integration addressed in a forthcoming study.",
+      "score": 46,
+      "primary": "misc",
+      "tags": [
+        "robotics",
+        "hri",
+        "sensors"
+      ],
+      "heuristic_score": 23,
+      "url": "https://arxiv.org/abs/2607.16196",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 23,
+      "_rid": 9,
+      "llm_score": 50,
+      "why": "Implementa reconocimiento de gestos táctiles en robots blandos para mejorar la interacción emocional en tecnologías asistenciales.",
+      "title_es": "Diseño y validación de una CNN 1D ligera para la clasificación del tacto afectivo en acompañantes de peluche suaves",
+      "entities": [
+        "MATLAB",
+        "CNN",
+        "Design",
+        "Validation",
+        "Lightweight",
+        "Affective Touch Classification",
+        "Soft Plush Companions"
+      ],
+      "noise_penalty": 0,
+      "final_score": 46,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Encoding EEG Signals to Examine Human-Like Next-Word Prediction Behaviour in Language Models",
+      "link": "https://arxiv.org/abs/2607.16549",
+      "published": "2026-07-21T04:00:00+00:00",
+      "summary": "arXiv:2607.16549v1 Announce Type: new Abstract: Language models (LMs) are trained to excel at predicting the next word in the sequence given prior context, and humans also share this predictability in reading comprehension. Neuroscience research reveals that next-word predictability influences brain response, as recorded at millisecond resolution using electroencephalography (EEG). While our evidence indicates that advanced LMs achieve accuracies closely aligned with human performance at the next-word prediction task, this raises the question: Does higher prediction accuracy necessarily mean that these models adequately capture the cognitive signals associated with human reading comprehension? Here, we generate regressors for both humans and LMs based on two information measures, including top-1 prediction and surprisal, to predict event-related potential (ERP) elicited from EEG recordings which reflect different stages of cognitive processing during reading. We argue that modelling ERP patterns offers fine-grained analysis of the cognitive plausibility of various LMs during reading. Our results indicate that only surprisal potentially correlates with language-processing ERPs, especially for open-class words with high semantic content. Moreover, our findings challenge the assumption that scaling LMs with increased parameters and computational budgets will consistently lead to improved convergence with human-like linguistic processing.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Encoding EEG Signals to Examine Human-Like Next-Word Prediction Behaviour in Language Models",
+      "raw_summary": "arXiv:2607.16549v1 Announce Type: new Abstract: Language models (LMs) are trained to excel at predicting the next word in the sequence given prior context, and humans also share this predictability in reading comprehension. Neuroscience research reveals that next-word predictability influences brain response, as recorded at millisecond resolution using electroencephalography (EEG). While our evidence indicates that advanced LMs achieve accuracies closely aligned with human performance at the next-word prediction task, this raises the question: Does higher prediction accuracy necessarily mean that these models adequately capture the cognitive signals associated with human reading comprehension? Here, we generate regressors for both humans and LMs based on two information measures, including top-1 prediction and surprisal, to predict event-related potential (ERP) elicited from EEG recordings which reflect different stages of cognitive processing during reading. We argue that modelling ERP patterns offers fine-grained analysis of the cognitive plausibility of various LMs during reading. Our results indicate that only surprisal potentially correlates with language-processing ERPs, especially for open-class words with high semantic content. Moreover, our findings challenge the assumption that scaling LMs with increased parameters and computational budgets will consistently lead to improved convergence with human-like linguistic processing.",
+      "score": 27,
+      "primary": "misc",
+      "tags": [
+        "neuroscience",
+        "eeg",
+        "cognitive science"
+      ],
+      "heuristic_score": 17,
+      "url": "https://arxiv.org/abs/2607.16549",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 17,
+      "_rid": 11,
+      "llm_score": 45,
+      "why": "Investiga si la precisión de los modelos de lenguaje refleja realmente los procesos cognitivos humanos de lectura.",
+      "title_es": "Codificación de señales EEG para examinar el comportamiento de predicción de la siguiente palabra similar al humano en modelos de lenguaje",
+      "entities": [
+        "EEG",
+        "Encoding",
+        "Signals",
+        "Examine Human",
+        "Like Next",
+        "Word Prediction Behaviour",
+        "Language Models"
+      ],
+      "noise_penalty": 14,
+      "final_score": 27,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(14)",
+      "strategic_theme": "agents_automation"
+    }
+  ]
+}
