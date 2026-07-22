@@ -1,0 +1,673 @@
+{
+  "date": "2026-07-22",
+  "score_avg": 67.53,
+  "primary_dist": {
+    "models": 9,
+    "infra": 3,
+    "misc": 2,
+    "invest": 1
+  },
+  "top_entities": [
+    {
+      "entity": "Gemini",
+      "count": 4
+    },
+    {
+      "entity": "DeepMind",
+      "count": 3
+    },
+    {
+      "entity": "Introducing Gemini",
+      "count": 2
+    },
+    {
+      "entity": "Flash",
+      "count": 2
+    },
+    {
+      "entity": "Flash Cyber",
+      "count": 2
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "Fragmentación de modelos especializados: Gemini lanza versiones Flash Cyber y Lite priorizando eficiencia y nicho.",
+      "La integración de 'Computer Use' en modelos ligeros acelera la automatización de interfaces de usuario.",
+      "Nuevos benchmarks como SysAdmin miden por primera vez la búsqueda de poder y autonomía en modelos de frontera.",
+      "La IA aplicada a EDA permite reducir semanas de análisis de errores en semiconductores a solo minutos.",
+      "Surgimiento de arquitecturas híbridas que inyectan convoluciones en Transformers para mejorar la localidad del lenguaje."
+    ],
+    "risks": [
+      "Concentración de falsa confianza: Los modelos pueden errar con seguridad absoluta en regiones de datos específicas.",
+      "Pérdida de control: El comportamiento de búsqueda de poder instrumental es ya una métrica de evaluación técnica.",
+      "Inviabilidad económica en diseño SoC: La complejidad de los nodos avanzados penaliza cualquier error en la estrategia IP."
+    ],
+    "watch": [
+      "Rendimiento de Gemini 3.5 Flash Cyber frente a vulnerabilidades zero-day en entornos de producción.",
+      "Capacidad de razonamiento de GPT-5.5 en tareas complejas multidominio comparado con la familia Gemini.",
+      "Adopción corporativa de modelos de clasificación híbridos (CPU + LLM) para reducir costes operativos de inferencia."
+    ],
+    "entities_top": [
+      "Google DeepMind",
+      "OpenAI",
+      "Whalechip"
+    ]
+  },
+  "items": [
+    {
+      "title": "SysAdmin: Measuring Instrumental Power-Seeking in Frontier AI",
+      "link": "https://arxiv.org/abs/2607.18239",
+      "published": "2026-07-22T04:00:00+00:00",
+      "summary": "arXiv:2607.18239v1 Announce Type: new Abstract: Power-seeking defined as behaviors where AI systems acquire resources, evade oversight, or resist termination beyond task requirements is identified as a key driver of Loss of Control (LoC) risk. In this work, we introduce SysAdmin, a benchmark that positions frontier language models as autonomous system administrators in a high-fidelity Linux sandbox to measure power-seeking propensity across five dimensions: self-preservation, increasing autonomy, resource acquisition, environment modification, and strategic concealment. We evaluated seven frontier models across four experimental conditions in a total of 2800 tasks. After bias correction using human-annotated calibration data, corrected power-seeking estimates ranged from 0 to about 5 percent per model. We also conducted a positive control with explicit power-seeking prompts that achieved 100% detection, validating measurement sensitivity. Our findings indicate current frontier models exhibit minimal spontaneous power-seeking in naturalistic system administration contexts, though model-specific failure modes suggest evaluations must test diverse misalignment patterns. Nevertheless, we discovered other more pronounced failure modes (than power-seeking) such as specification gaming and resistance to goal modification.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "SysAdmin: Measuring Instrumental Power-Seeking in Frontier AI",
+      "raw_summary": "arXiv:2607.18239v1 Announce Type: new Abstract: Power-seeking defined as behaviors where AI systems acquire resources, evade oversight, or resist termination beyond task requirements is identified as a key driver of Loss of Control (LoC) risk. In this work, we introduce SysAdmin, a benchmark that positions frontier language models as autonomous system administrators in a high-fidelity Linux sandbox to measure power-seeking propensity across five dimensions: self-preservation, increasing autonomy, resource acquisition, environment modification, and strategic concealment. We evaluated seven frontier models across four experimental conditions in a total of 2800 tasks. After bias correction using human-annotated calibration data, corrected power-seeking estimates ranged from 0 to about 5 percent per model. We also conducted a positive control with explicit power-seeking prompts that achieved 100% detection, validating measurement sensitivity. Our findings indicate current frontier models exhibit minimal spontaneous power-seeking in naturalistic system administration contexts, though model-specific failure modes suggest evaluations must test diverse misalignment patterns. Nevertheless, we discovered other more pronounced failure modes (than power-seeking) such as specification gaming and resistance to goal modification.",
+      "score": 87,
+      "primary": "models",
+      "tags": [
+        "seguridad",
+        "alineamiento",
+        "benchmarking"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2607.18239",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 1,
+      "llm_score": 85,
+      "why": "Un benchmark crítico que cuantifica por primera vez la tendencia de los LLM a evadir supervisión y buscar autonomía.",
+      "title_es": "SysAdmin: Medición de la búsqueda de poder instrumental en IA de frontera",
+      "entities": [
+        "arXiv",
+        "frontier models",
+        "Measuring Instrumental Power",
+        "Seeking",
+        "Frontier"
+      ],
+      "noise_penalty": 0,
+      "final_score": 87,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Relay-Bench: Evaluating LLMs on Multi-Domain Reasoning Chains",
+      "link": "https://arxiv.org/abs/2607.18438",
+      "published": "2026-07-22T04:00:00+00:00",
+      "summary": "arXiv:2607.18438v1 Announce Type: new Abstract: Introducing Relay-Bench, an unsaturated, holistic, text-only benchmark that measures LLMs' ability to complete an assortment of tasks from distinct domains in a single prompt. The leading model, GPT-5.5 (xHigh), scores 43.3%. The test set entirely consists of composite problems: groups of single-domain subproblems that are strung together into challenges that require reasoning across multiple domains in combination. Many of these problems then have layers of complexity added through prompt encoding and deliberate context bloat. Domains tested include visual reasoning, coding, math, information extraction (with a focus on web search), problem-solving, general knowledge, and data analysis. No restrictions are imposed outside of the model harness, and models are explicitly encouraged to leverage code-execution, web searches, and all available tools. All problems are composed of two to thirteen subproblems and do not require multi-modal input or output.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Relay-Bench: Evaluating LLMs on Multi-Domain Reasoning Chains",
+      "raw_summary": "arXiv:2607.18438v1 Announce Type: new Abstract: Introducing Relay-Bench, an unsaturated, holistic, text-only benchmark that measures LLMs' ability to complete an assortment of tasks from distinct domains in a single prompt. The leading model, GPT-5.5 (xHigh), scores 43.3%. The test set entirely consists of composite problems: groups of single-domain subproblems that are strung together into challenges that require reasoning across multiple domains in combination. Many of these problems then have layers of complexity added through prompt encoding and deliberate context bloat. Domains tested include visual reasoning, coding, math, information extraction (with a focus on web search), problem-solving, general knowledge, and data analysis. No restrictions are imposed outside of the model harness, and models are explicitly encouraged to leverage code-execution, web searches, and all available tools. All problems are composed of two to thirteen subproblems and do not require multi-modal input or output.",
+      "score": 85,
+      "primary": "models",
+      "tags": [
+        "razonamiento",
+        "benchmarking",
+        "gpt-5.5"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2607.18438",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 2,
+      "llm_score": 82,
+      "why": "Evalúa el razonamiento complejo multidominio, revelando que incluso modelos como GPT-5.5 tienen dificultades con tareas encadenadas.",
+      "title_es": "Relay-Bench: Evaluación de LLM en cadenas de razonamiento multidominio",
+      "entities": [
+        "GPT-5.5",
+        "OpenAI",
+        "Relay",
+        "Bench",
+        "Evaluating",
+        "Multi",
+        "Domain Reasoning Chains"
+      ],
+      "noise_penalty": 0,
+      "final_score": 85,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Convolution for Large Language Models",
+      "link": "https://arxiv.org/abs/2607.18413",
+      "published": "2026-07-22T04:00:00+00:00",
+      "summary": "arXiv:2607.18413v1 Announce Type: new Abstract: Large language models (LLMs) largely rely on Transformers, where self-attention provides global token interaction but does not explicitly encode the locality of natural language. We study whether lightweight depthwise convolutions can supply this local inductive bias without materially increasing model size. Our macro-level ablation compares convolution at 17 locations in a Qwen3 Transformer block and finds the best results when convolution is applied to the projected queries, keys, and values before attention. A subsequent micro-level study favors a residual depthwise convolution with kernel size $k=3$, without additional normalization or activation. Across Qwen3 models and several pre-training data budgets, this design improves the average accuracy on seven downstream benchmarks while adding less than $0.01\\%$ parameters. A representation-level case study further suggests that the convolution makes repeated token IDs more sensitive to their immediate context. These results support depthwise convolution as a lightweight complement to self-attention for modeling short-range token interactions.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Convolution for Large Language Models",
+      "raw_summary": "arXiv:2607.18413v1 Announce Type: new Abstract: Large language models (LLMs) largely rely on Transformers, where self-attention provides global token interaction but does not explicitly encode the locality of natural language. We study whether lightweight depthwise convolutions can supply this local inductive bias without materially increasing model size. Our macro-level ablation compares convolution at 17 locations in a Qwen3 Transformer block and finds the best results when convolution is applied to the projected queries, keys, and values before attention. A subsequent micro-level study favors a residual depthwise convolution with kernel size $k=3$, without additional normalization or activation. Across Qwen3 models and several pre-training data budgets, this design improves the average accuracy on seven downstream benchmarks while adding less than $0.01\\%$ parameters. A representation-level case study further suggests that the convolution makes repeated token IDs more sensitive to their immediate context. These results support depthwise convolution as a lightweight complement to self-attention for modeling short-range token interactions.",
+      "score": 77,
+      "primary": "infra",
+      "tags": [
+        "arquitectura",
+        "transformers",
+        "eficiencia"
+      ],
+      "heuristic_score": 89,
+      "url": "https://arxiv.org/abs/2607.18413",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 89,
+      "_rid": 4,
+      "llm_score": 75,
+      "why": "Estudia la inclusión de convoluciones ligeras para mejorar la localidad en Transformers, optimizando el rendimiento sin subir el coste.",
+      "title_es": "Convolución para modelos de lenguaje de gran tamaño",
+      "entities": [
+        "Qwen3",
+        "Transformers",
+        "Convolution",
+        "Large Language Models"
+      ],
+      "noise_penalty": 0,
+      "final_score": 77,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Introducing Gemini 3.6 Flash, 3.5 Flash-Lite, and 3.5 Flash Cyber",
+      "link": "https://deepmind.google/blog/introducing-gemini-36-flash-35-flash-lite-and-35-flash-cyber/",
+      "published": "2026-07-21T15:16:30+00:00",
+      "summary": "We’re introducing new Gemini models, including Gemini 3.6 Flash, 3.5 Flash-Lite and 3.5 Flash Cyber.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Introducing Gemini 3.6 Flash, 3.5 Flash-Lite, and 3.5 Flash Cyber",
+      "raw_summary": "We’re introducing new Gemini models, including Gemini 3.6 Flash, 3.5 Flash-Lite and 3.5 Flash Cyber.",
+      "score": 77,
+      "primary": "models",
+      "tags": [
+        "gemini",
+        "google",
+        "eficiencia"
+      ],
+      "heuristic_score": 33,
+      "url": "https://deepmind.google/blog/introducing-gemini-36-flash-35-flash-lite-and-35-flash-cyber/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 33,
+      "_rid": 11,
+      "llm_score": 90,
+      "why": "Google lanza una ofensiva de modelos ligeros y especializados, compitiendo en el frente de la eficiencia y el coste operativo.",
+      "title_es": "Presentación de Gemini 3.6 Flash, 3.5 Flash-Lite y 3.5 Flash Cyber",
+      "entities": [
+        "DeepMind",
+        "Gemini",
+        "Introducing Gemini",
+        "Flash",
+        "Lite",
+        "Flash Cyber"
+      ],
+      "noise_penalty": 4,
+      "final_score": 77,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(4)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Calibrated Selective Fact-Checking via Evidence Chain Evaluation",
+      "link": "https://arxiv.org/abs/2607.18240",
+      "published": "2026-07-22T04:00:00+00:00",
+      "summary": "arXiv:2607.18240v1 Announce Type: new Abstract: Large language models (LLMs) can achieve strong fact-checking accuracy, yet forced binary decisions conceal a critical reliability problem: systems may issue confident verdicts even when supporting evidence is weak, sparse, or internally inconsistent. We address this issue through Evidence Chain Evaluation (ECE), a selective fact-checking framework that permits abstention via an uncertain verdict instead of requiring a true/false decision for every claim. The evaluated system is a tool-using verification agent that gathers evidence through web search, scholarly search, and executable checks, and then returns a structured verdict with confidence and source-level metadata. On ECE-Bench, ECE achieves 91.6% standard accuracy, 93.7% coverage, and 97.8% selective accuracy on answered claims. Although ECE does not outperform the strongest retrieval baseline on aggregate calibration metrics such as Expected Calibration Error, Brier score, or AURC, it delivers a clear selective-prediction trade-off: the system maintains very high accuracy on answered claims while deferring 6 of 95 cases. These deferred cases are concentrated in lower-reliability evidence settings (5/6 at source level L4), supporting the view that abstention functions as a safety-oriented mechanism for handling epistemically weak evidence. Code is available at cheshireyang/ECE.git",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Calibrated Selective Fact-Checking via Evidence Chain Evaluation",
+      "raw_summary": "arXiv:2607.18240v1 Announce Type: new Abstract: Large language models (LLMs) can achieve strong fact-checking accuracy, yet forced binary decisions conceal a critical reliability problem: systems may issue confident verdicts even when supporting evidence is weak, sparse, or internally inconsistent. We address this issue through Evidence Chain Evaluation (ECE), a selective fact-checking framework that permits abstention via an uncertain verdict instead of requiring a true/false decision for every claim. The evaluated system is a tool-using verification agent that gathers evidence through web search, scholarly search, and executable checks, and then returns a structured verdict with confidence and source-level metadata. On ECE-Bench, ECE achieves 91.6% standard accuracy, 93.7% coverage, and 97.8% selective accuracy on answered claims. Although ECE does not outperform the strongest retrieval baseline on aggregate calibration metrics such as Expected Calibration Error, Brier score, or AURC, it delivers a clear selective-prediction trade-off: the system maintains very high accuracy on answered claims while deferring 6 of 95 cases. These deferred cases are concentrated in lower-reliability evidence settings (5/6 at source level L4), supporting the view that abstention functions as a safety-oriented mechanism for handling epistemically weak evidence. Code is available at https://github.com/ cheshireyang/ECE.git",
+      "score": 75,
+      "primary": "models",
+      "tags": [
+        "fiabilidad",
+        "alucinaciones",
+        "fact-checking"
+      ],
+      "heuristic_score": 89,
+      "url": "https://arxiv.org/abs/2607.18240",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 89,
+      "_rid": 3,
+      "llm_score": 72,
+      "why": "Propone un sistema para que la IA se abstenga de dar veredictos si la evidencia recogida por herramientas externas es débil.",
+      "title_es": "Verificación de hechos selectiva y calibrada mediante evaluación de cadenas de evidencia",
+      "entities": [
+        "LLMs",
+        "Calibrated Selective Fact",
+        "Checking",
+        "Evidence Chain Evaluation"
+      ],
+      "noise_penalty": 0,
+      "final_score": 75,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Introducing Gemini 3.5 Flash Cyber",
+      "link": "https://deepmind.google/blog/introducing-gemini-3-5-flash-cyber/",
+      "published": "2026-07-17T15:00:11+00:00",
+      "summary": "Google introduces Gemini 3.5 Flash Cyber, a lightweight cybersecurity model to find and patch vulnerabilities.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Introducing Gemini 3.5 Flash Cyber",
+      "raw_summary": "Google introduces Gemini 3.5 Flash Cyber, a lightweight cybersecurity model to find and patch vulnerabilities.",
+      "score": 75,
+      "primary": "models",
+      "tags": [
+        "ciberseguridad",
+        "automatización",
+        "defensa"
+      ],
+      "heuristic_score": 31,
+      "url": "https://deepmind.google/blog/introducing-gemini-3-5-flash-cyber/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 31,
+      "_rid": 12,
+      "llm_score": 88,
+      "why": "Modelo especializado para detección de vulnerabilidades, marcando el camino hacia la IA defensiva verticalizada.",
+      "title_es": "Presentación de Gemini 3.5 Flash Cyber",
+      "entities": [
+        "DeepMind",
+        "Gemini",
+        "Introducing Gemini",
+        "Flash Cyber"
+      ],
+      "noise_penalty": 4,
+      "final_score": 75,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(4)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "A Classifier That Teaches Itself: Self-Improving, Frozen-gate Training (SIFT) for Dynamic Document Classification",
+      "link": "https://arxiv.org/abs/2607.18358",
+      "published": "2026-07-22T04:00:00+00:00",
+      "summary": "arXiv:2607.18358v1 Announce Type: new Abstract: Document classification is a solved problem in the laboratory and an unsolved one in the enterprise. The blocker is rarely model architecture; it is the labeling project that must precede a model and the institutional fear of letting a model retrain itself once one exists. We present SIFT (Self-Improving, Frozen-gate Training), a dynamic classifier service, which attacks both. SIFT serves classification from a deliberately cheap, CPU-bound pipeline, a SPLADE sparse encoder feeding a LightGBM head, and escalates only the low-confidence minority of pages to an LLM judge. The judge's verdicts are written back into a labeled corpus, so the expensive model continuously teaches the cheap one: the escalation rate falls, the corpus grows from production traffic rather than from an up-front annotation effort, and accuracy compounds with use. Onboarding a new document family requires only a declarative bundle, label space, anchor phrases, and a judge glossary, not a labeling project. The harder problem is safety: an autonomously retraining classifier can silently regress. SIFT resolves this with a two-part promote gate, a critical-label F1 regression check plus a frozen golden regression set the model is never trained on, either of which vetoes promotion. This turns \"retrain monthly without a human\" from reckless into routine. We describe the architecture, the self-feeding corpus loop, the frozen-gate promotion mechanism, and an illustrative multi-domain deployment, and we discuss the economics of a classifier whose marginal labeling cost trends toward zero.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "A Classifier That Teaches Itself: Self-Improving, Frozen-gate Training (SIFT) for Dynamic Document Classification",
+      "raw_summary": "arXiv:2607.18358v1 Announce Type: new Abstract: Document classification is a solved problem in the laboratory and an unsolved one in the enterprise. The blocker is rarely model architecture; it is the labeling project that must precede a model and the institutional fear of letting a model retrain itself once one exists. We present SIFT (Self-Improving, Frozen-gate Training), a dynamic classifier service, which attacks both. SIFT serves classification from a deliberately cheap, CPU-bound pipeline, a SPLADE sparse encoder feeding a LightGBM head, and escalates only the low-confidence minority of pages to an LLM judge. The judge's verdicts are written back into a labeled corpus, so the expensive model continuously teaches the cheap one: the escalation rate falls, the corpus grows from production traffic rather than from an up-front annotation effort, and accuracy compounds with use. Onboarding a new document family requires only a declarative bundle, label space, anchor phrases, and a judge glossary, not a labeling project. The harder problem is safety: an autonomously retraining classifier can silently regress. SIFT resolves this with a two-part promote gate, a critical-label F1 regression check plus a frozen golden regression set the model is never trained on, either of which vetoes promotion. This turns \"retrain monthly without a human\" from reckless into routine. We describe the architecture, the self-feeding corpus loop, the frozen-gate promotion mechanism, and an illustrative multi-domain deployment, and we discuss the economics of a classifier whose marginal labeling cost trends toward zero.",
+      "score": 69,
+      "primary": "models",
+      "tags": [
+        "clasificación",
+        "eficiencia",
+        "empresa"
+      ],
+      "heuristic_score": 74,
+      "url": "https://arxiv.org/abs/2607.18358",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 74,
+      "_rid": 5,
+      "llm_score": 68,
+      "why": "Estrategia híbrida que utiliza modelos baratos en CPU y solo escala a LLMs las dudas, resolviendo el coste de etiquetado masivo.",
+      "title_es": "Un clasificador que aprende solo: Entrenamiento de puerta congelada y automejora (SIFT) para clasificación dinámica de documentos",
+      "entities": [
+        "SPLADE",
+        "LightGBM",
+        "SIFT",
+        "Classifier That Teaches",
+        "Itself",
+        "Self",
+        "Improving",
+        "Frozen"
+      ],
+      "noise_penalty": 0,
+      "final_score": 69,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "The Architecture of Success: Why a Unified Semiconductor IP Strategy Is the Foundation of Modern SoC Design",
+      "link": "https://semiwiki.com/artificial-intelligence/371309-the-architecture-of-success-why-a-unified-semiconductor-ip-strategy-is-the-foundation-of-modern-soc-design/",
+      "published": "2026-07-21T17:00:24+00:00",
+      "summary": "As architects push toward advanced nodes and increasingly demanding workloads, modern silicon design has entered an era of unprecedented complexity. A single design respin can cost millions of dollars and delay market entry. Against this backdrop, designs must be balanced for performance, bandwidth, power efficiency, security&8230; Read More The post The Architecture of Success: Why a Unified Semiconductor IP Strategy Is the Foundation of Modern SoC Design appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "The Architecture of Success: Why a Unified Semiconductor IP Strategy Is the Foundation of Modern SoC Design",
+      "raw_summary": "As architects push toward advanced nodes and increasingly demanding workloads, modern silicon design has entered an era of unprecedented complexity. A single design respin can cost millions of dollars and delay market entry. Against this backdrop, designs must be balanced for performance, bandwidth, power efficiency, security&#8230; Read More The post The Architecture of Success: Why a Unified Semiconductor IP Strategy Is the Foundation of Modern SoC Design appeared first on SemiWiki .",
+      "score": 68,
+      "primary": "infra",
+      "tags": [
+        "semiconductores",
+        "soc",
+        "ip"
+      ],
+      "heuristic_score": 55,
+      "url": "https://semiwiki.com/artificial-intelligence/371309-the-architecture-of-success-why-a-unified-semiconductor-ip-strategy-is-the-foundation-of-modern-soc-design/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 55,
+      "_rid": 7,
+      "llm_score": 70,
+      "why": "Analiza cómo una estrategia de IP unificada es vital para evitar rediseños millonarios en chips de IA de alta complejidad.",
+      "title_es": "La arquitectura del éxito: Por qué una estrategia unificada de IP de semiconductores es la base del diseño moderno de SoC",
+      "entities": [
+        "SemiWiki",
+        "The Architecture",
+        "Success",
+        "Why",
+        "Unified Semiconductor",
+        "Strategy Is",
+        "Foundation",
+        "Modern"
+      ],
+      "noise_penalty": 0,
+      "final_score": 68,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Building a European Multilingual Evaluation Dataset: The MMLU Localisation Project within the EMT Network",
+      "link": "https://arxiv.org/abs/2607.18432",
+      "published": "2026-07-22T04:00:00+00:00",
+      "summary": "arXiv:2607.18432v1 Announce Type: new Abstract: This paper reports on a collaboration between the Directorate-General for Translation (DGT) and the European Master's in Translation (EMT) to localise the MMLU dataset into 11 European languages. Beyond creating a more inclusive benchmark for LLM evaluation, the project offers master's students authentic, project-based professional training in translation, revision, project management, and multilingual coordination, while highlighting key methodological, administrative, and workflow challenges.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Building a European Multilingual Evaluation Dataset: The MMLU Localisation Project within the EMT Network",
+      "raw_summary": "arXiv:2607.18432v1 Announce Type: new Abstract: This paper reports on a collaboration between the Directorate-General for Translation (DGT) and the European Master's in Translation (EMT) to localise the MMLU dataset into 11 European languages. Beyond creating a more inclusive benchmark for LLM evaluation, the project offers master's students authentic, project-based professional training in translation, revision, project management, and multilingual coordination, while highlighting key methodological, administrative, and workflow challenges.",
+      "score": 66,
+      "primary": "misc",
+      "tags": [
+        "localización",
+        "ue",
+        "evaluación"
+      ],
+      "heuristic_score": 70,
+      "url": "https://arxiv.org/abs/2607.18432",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 70,
+      "_rid": 6,
+      "llm_score": 65,
+      "why": "Iniciativa europea para validar modelos en 11 idiomas locales, fundamental para reducir el sesgo anglocéntrico en benchmarks.",
+      "title_es": "Construcción de un conjunto de datos de evaluación multilingüe europeo: El proyecto de localización MMLU",
+      "entities": [
+        "DGT",
+        "EMT",
+        "Comisión Europea",
+        "MMLU",
+        "Building",
+        "European Multilingual Evaluation",
+        "Dataset",
+        "Localisation Project"
+      ],
+      "noise_penalty": 0,
+      "final_score": 66,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Whalechip Uses ChipAgents to Compress Root Cause Analysis into Minutes",
+      "link": "https://semiwiki.com/eda/chipagents-ai/371464-whalechip-uses-chipagents-to-compress-root-cause-analysis-into-minutes/",
+      "published": "2026-07-21T13:00:40+00:00",
+      "summary": "AI-powered platform identified four critical SoC bugs and helped prevent up to two weeks of potential development delays Semiconductor verification is increasingly constrained not by simulation capacity, but by the engineering effort required to understand why a simulation failed. Modern ASIC and system-on-chip designs&8230; Read More The post Whalechip Uses ChipAgents to Compress Root Cause Analysis into Minutes appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "Whalechip Uses ChipAgents to Compress Root Cause Analysis into Minutes",
+      "raw_summary": "AI-powered platform identified four critical SoC bugs and helped prevent up to two weeks of potential development delays Semiconductor verification is increasingly constrained not by simulation capacity, but by the engineering effort required to understand why a simulation failed. Modern ASIC and system-on-chip designs&#8230; Read More The post Whalechip Uses ChipAgents to Compress Root Cause Analysis into Minutes appeared first on SemiWiki .",
+      "score": 64,
+      "primary": "infra",
+      "tags": [
+        "eda",
+        "semiconductores",
+        "agentes"
+      ],
+      "heuristic_score": 35,
+      "url": "https://semiwiki.com/eda/chipagents-ai/371464-whalechip-uses-chipagents-to-compress-root-cause-analysis-into-minutes/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 35,
+      "_rid": 10,
+      "llm_score": 78,
+      "why": "Uso de agentes de IA para comprimir semanas de diagnóstico de fallos en chips a pocos minutos, un avance clave para el hardware.",
+      "title_es": "Whalechip utiliza ChipAgents para comprimir el análisis de causa raíz a cuestión de minutos",
+      "entities": [
+        "Whalechip",
+        "ChipAgents",
+        "Whalechip Uses",
+        "Compress Root Cause",
+        "Analysis",
+        "Minutes"
+      ],
+      "noise_penalty": 8,
+      "final_score": 64,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(8)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Introducing computer use in Gemini 3.5 Flash",
+      "link": "https://deepmind.google/blog/introducing-computer-use-in-gemini-3-5-flash/",
+      "published": "2026-06-24T16:30:01+00:00",
+      "summary": "",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Introducing computer use in Gemini 3.5 Flash",
+      "raw_summary": "",
+      "score": 60,
+      "primary": "models",
+      "tags": [
+        "agentes",
+        "automatización",
+        "interfaz"
+      ],
+      "heuristic_score": 22,
+      "url": "https://deepmind.google/blog/introducing-computer-use-in-gemini-3-5-flash/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 22,
+      "_rid": 15,
+      "llm_score": 86,
+      "why": "Gemini 3.5 Flash adquiere la capacidad de controlar ordenadores, equiparándose a las capacidades agentivas de Anthropic.",
+      "title_es": "Presentación del uso del ordenador en Gemini 3.5 Flash",
+      "entities": [
+        "DeepMind",
+        "Gemini",
+        "Flash"
+      ],
+      "noise_penalty": 16,
+      "final_score": 60,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(16)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Computational models of pragmatic reasoning with flexible generation of meaning and expression alternatives",
+      "link": "https://arxiv.org/abs/2607.18443",
+      "published": "2026-07-22T04:00:00+00:00",
+      "summary": "arXiv:2607.18443v1 Announce Type: new Abstract: Pragmatic language use requires reasoning about alternatives: the alternative expressions a speaker might have chosen, or the alternative interpretations a listener might entertain. Formal and computational models of pragmatics must therefore specify the sets of alternatives that interlocutors reason over, which is often done through manual specification. Here we propose a framework, ScAffolded Generative models for Explanation (SAGE), that combines the explanatory transparency of cognitive models with the generative flexibility of language models (LMs). SAGE decomposes a pragmatic process into three kinds of modules: proposers, which use LMs to generate an open-ended space of candidate alternatives; evaluators, which assess those alternatives (e.g., their semantics, complexity, or typicality); and selectors, which implement the rule-based computational steps of a cognitively motivated task analysis. We assess SAGE in three case studies spanning pragmatic generation and interpretation-referential expression generation, manner (M-)implicatures, and Gricean conversational implicatures. SAGE models are evaluated critically using established methods from computational cognitive modeling, including ablations, baseline comparisons, and quantitative fit to human data. Across studies, SAGE models achieved high accuracy and often outperformed baselines, but component-level analyses reveal an asymmetry: LM proposers reliably generated alternatives well-suited to pragmatic modeling, whereas LM evaluators are better at providing intuitive judgements rather than judgements of theoretical or formal measures. We discuss the promise and the limitations of neuro-symbolic models as candidate explanatory accounts of human pragmatic language use.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Computational models of pragmatic reasoning with flexible generation of meaning and expression alternatives",
+      "raw_summary": "arXiv:2607.18443v1 Announce Type: new Abstract: Pragmatic language use requires reasoning about alternatives: the alternative expressions a speaker might have chosen, or the alternative interpretations a listener might entertain. Formal and computational models of pragmatics must therefore specify the sets of alternatives that interlocutors reason over, which is often done through manual specification. Here we propose a framework, ScAffolded Generative models for Explanation (SAGE), that combines the explanatory transparency of cognitive models with the generative flexibility of language models (LMs). SAGE decomposes a pragmatic process into three kinds of modules: proposers, which use LMs to generate an open-ended space of candidate alternatives; evaluators, which assess those alternatives (e.g., their semantics, complexity, or typicality); and selectors, which implement the rule-based computational steps of a cognitively motivated task analysis. We assess SAGE in three case studies spanning pragmatic generation and interpretation-referential expression generation, manner (M-)implicatures, and Gricean conversational implicatures. SAGE models are evaluated critically using established methods from computational cognitive modeling, including ablations, baseline comparisons, and quantitative fit to human data. Across studies, SAGE models achieved high accuracy and often outperformed baselines, but component-level analyses reveal an asymmetry: LM proposers reliably generated alternatives well-suited to pragmatic modeling, whereas LM evaluators are better at providing intuitive judgements rather than judgements of theoretical or formal measures. We discuss the promise and the limitations of neuro-symbolic models as candidate explanatory accounts of human pragmatic language use.",
+      "score": 58,
+      "primary": "models",
+      "tags": [
+        "pragmática",
+        "cognición",
+        "generación"
+      ],
+      "heuristic_score": 47,
+      "url": "https://arxiv.org/abs/2607.18443",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 47,
+      "_rid": 8,
+      "llm_score": 60,
+      "why": "Framework que combina modelos cognitivos y LMs para una generación de lenguaje más humana y transparente en sus razonamientos.",
+      "title_es": "Modelos computacionales de razonamiento pragmático con generación flexible de alternativas de significado y expresión",
+      "entities": [
+        "SAGE",
+        "Computational"
+      ],
+      "noise_penalty": 0,
+      "final_score": 58,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "FALCON-Discover: Discovering Concentrated False-Confidence Regions for Calibration",
+      "link": "https://arxiv.org/abs/2607.18278",
+      "published": "2026-07-22T04:00:00+00:00",
+      "summary": "arXiv:2607.18278v1 Announce Type: new Abstract: Calibration is usually evaluated in aggregate, but the most dangerous failures are often local: predictions that remain highly confident despite being wrong. We study this failure mode as false-confidence concentration, the extent to which confident errors occupy compact, discoverable regions of prediction space. We introduce FALCON-Discover, a post-hoc, model-agnostic framework that ranks predictions using discrepancy signals from confidence, local support, neighborhood agreement, and perturbation stability. Across seven binary tabular datasets, four seeds, five-fold cross-fitting, and strong learners including XGBoost and CatBoost, we find that false-confidence concentration is recurrent but regime-dependent. At the main confidence threshold, discrepancy-based ranking substantially outperforms the strongest validation-selected calibration or trust-scoring baseline in the strongest regimes, while raw confidence recovers little dangerous-error mass. The best detector varies across datasets: learned discrepancy is strongest when multiple cues must be combined, whereas stability-centered ranking works best when local decisional fragility dominates. These results show that dangerous overconfidence is better treated as a family-level discovery problem than as a single-score calibration problem, and motivate calibration strategies that explicitly target regions where confidence, support, and stability diverge.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "FALCON-Discover: Discovering Concentrated False-Confidence Regions for Calibration",
+      "raw_summary": "arXiv:2607.18278v1 Announce Type: new Abstract: Calibration is usually evaluated in aggregate, but the most dangerous failures are often local: predictions that remain highly confident despite being wrong. We study this failure mode as false-confidence concentration, the extent to which confident errors occupy compact, discoverable regions of prediction space. We introduce FALCON-Discover, a post-hoc, model-agnostic framework that ranks predictions using discrepancy signals from confidence, local support, neighborhood agreement, and perturbation stability. Across seven binary tabular datasets, four seeds, five-fold cross-fitting, and strong learners including XGBoost and CatBoost, we find that false-confidence concentration is recurrent but regime-dependent. At the main confidence threshold, discrepancy-based ranking substantially outperforms the strongest validation-selected calibration or trust-scoring baseline in the strongest regimes, while raw confidence recovers little dangerous-error mass. The best detector varies across datasets: learned discrepancy is strongest when multiple cues must be combined, whereas stability-centered ranking works best when local decisional fragility dominates. These results show that dangerous overconfidence is better treated as a family-level discovery problem than as a single-score calibration problem, and motivate calibration strategies that explicitly target regions where confidence, support, and stability diverge.",
+      "score": 58,
+      "primary": "models",
+      "tags": [
+        "alucinaciones",
+        "calibración",
+        "detección"
+      ],
+      "heuristic_score": 23,
+      "url": "https://arxiv.org/abs/2607.18278",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 23,
+      "_rid": 14,
+      "llm_score": 64,
+      "why": "Identifica regiones de 'falsa confianza' donde los modelos fallan sistemáticamente a pesar de mostrarse seguros.",
+      "title_es": "FALCON-Discover: Descubrimiento de regiones de falsa confianza concentradas para la calibración",
+      "entities": [
+        "XGBoost",
+        "CatBoost",
+        "FALCON",
+        "Discover",
+        "Discovering Concentrated False",
+        "Confidence Regions",
+        "Calibration"
+      ],
+      "noise_penalty": 0,
+      "final_score": 58,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Beyond Output-Space Calibration: Spectral Evidence Bundling for Selective Reliability Estimation in Time-Series Classification",
+      "link": "https://arxiv.org/abs/2607.18279",
+      "published": "2026-07-22T04:00:00+00:00",
+      "summary": "arXiv:2607.18279v1 Announce Type: new Abstract: Post-hoc calibration for time-series classification usually remaps output scores, but deployment decisions such as trust, abstention, and review depend on whether a confident prediction is supported by the current temporal signal. We address three time-series reliability gaps: identical confidence values can hide different temporal support, average calibration can miss false high-confidence errors, and output-space recalibration offers limited input-linked auditability. We introduce a validation-gated fixed-label reliability policy that keeps the backbone prediction unchanged while estimating whether it should be trusted. The method combines output-side cues with whole-sample spectral descriptors, including band energy, entropy, peak dominance, period support, and phase stability, to form a scalar reliability estimate and diagnostic band-level evidence. A validation gate enables spectral conditioning only when correctness ranking improves without breaching FalseConf@0.9 or AURC tolerances; otherwise it reverts to the safer output-space baseline. Across eight heterogeneous UCR/UEA datasets, eight time-series backbone families, and standard recalibrators, the unconstrained method improves fixed-label selective-reliability metrics on the matched evaluation subset, raising Corr-AURC from 0.693 to 0.779. The validation-gated policy further improves Corr-AURC to 0.786 and reduces FalseConf@0.9 to 0.094. These results suggest that reliability estimation for time-series classifiers benefits from bundling output confidence with spectral evidence, while validation gating prevents unsupported spectral conditioning.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Beyond Output-Space Calibration: Spectral Evidence Bundling for Selective Reliability Estimation in Time-Series Classification",
+      "raw_summary": "arXiv:2607.18279v1 Announce Type: new Abstract: Post-hoc calibration for time-series classification usually remaps output scores, but deployment decisions such as trust, abstention, and review depend on whether a confident prediction is supported by the current temporal signal. We address three time-series reliability gaps: identical confidence values can hide different temporal support, average calibration can miss false high-confidence errors, and output-space recalibration offers limited input-linked auditability. We introduce a validation-gated fixed-label reliability policy that keeps the backbone prediction unchanged while estimating whether it should be trusted. The method combines output-side cues with whole-sample spectral descriptors, including band energy, entropy, peak dominance, period support, and phase stability, to form a scalar reliability estimate and diagnostic band-level evidence. A validation gate enables spectral conditioning only when correctness ranking improves without breaching FalseConf@0.9 or AURC tolerances; otherwise it reverts to the safer output-space baseline. Across eight heterogeneous UCR/UEA datasets, eight time-series backbone families, and standard recalibrators, the unconstrained method improves fixed-label selective-reliability metrics on the matched evaluation subset, raising Corr-AURC from 0.693 to 0.779. The validation-gated policy further improves Corr-AURC to 0.786 and reduces FalseConf@0.9 to 0.094. These results suggest that reliability estimation for time-series classifiers benefits from bundling output confidence with spectral evidence, while validation gating prevents unsupported spectral conditioning.",
+      "score": 49,
+      "primary": "misc",
+      "tags": [
+        "series-temporales",
+        "fiabilidad",
+        "calibración"
+      ],
+      "heuristic_score": 29,
+      "url": "https://arxiv.org/abs/2607.18279",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 29,
+      "_rid": 13,
+      "llm_score": 62,
+      "why": "Método para auditar la fiabilidad de predicciones en series temporales basándose en el soporte de la señal temporal.",
+      "title_es": "Más allá de la calibración del espacio de salida: Agrupación de evidencia espectral para la estimación selectiva de la fiabilidad",
+      "entities": [
+        "Time-series",
+        "Beyond Output",
+        "Space Calibration",
+        "Spectral Evidence Bundling",
+        "Selective Reliability Estimation",
+        "Time",
+        "Series Classification"
+      ],
+      "noise_penalty": 8,
+      "final_score": 49,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(8)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Empowering India’s next generation of innovators with ATL Saathi",
+      "link": "https://deepmind.google/blog/empowering-indias-next-generation-of-innovators-with-atl-saathi/",
+      "published": "2026-07-13T12:37:28+00:00",
+      "summary": "Google and AIM launched ATL Saathi, a Gemini-powered AI tool empowering Indian educators in robotics labs.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Empowering India’s next generation of innovators with ATL Saathi",
+      "raw_summary": "Google and AIM launched ATL Saathi, a Gemini-powered AI tool empowering Indian educators in robotics labs.",
+      "score": 45,
+      "primary": "invest",
+      "tags": [
+        "educación",
+        "india",
+        "gemini"
+      ],
+      "heuristic_score": 36,
+      "url": "https://deepmind.google/blog/empowering-indias-next-generation-of-innovators-with-atl-saathi/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 36,
+      "_rid": 9,
+      "llm_score": 55,
+      "why": "Google expande su ecosistema de IA en el sector educativo indio, posicionando a Gemini como estándar en formación técnica.",
+      "title_es": "Empoderando a la próxima generación de innovadores de la India con ATL Saathi",
+      "entities": [
+        "Google",
+        "Gemini",
+        "AIM",
+        "ATL",
+        "Empowering India",
+        "Saathi"
+      ],
+      "noise_penalty": 7,
+      "final_score": 45,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(7)",
+      "strategic_theme": "model_economics_pricing"
+    }
+  ]
+}
