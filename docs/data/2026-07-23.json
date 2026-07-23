@@ -1,0 +1,662 @@
+{
+  "date": "2026-07-23",
+  "score_avg": 70.33,
+  "primary_dist": {
+    "infra": 5,
+    "models": 7,
+    "invest": 2,
+    "misc": 1
+  },
+  "top_entities": [
+    {
+      "entity": "dac 2026",
+      "count": 2
+    },
+    {
+      "entity": "DAC",
+      "count": 2
+    },
+    {
+      "entity": "fineserve",
+      "count": 1
+    },
+    {
+      "entity": "Fine",
+      "count": 1
+    },
+    {
+      "entity": "Grained Dataset",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "Nuevos operadores subcuadráticos HyenaND permiten procesar datos multidimensionales sin aplanar su estructura espacial.",
+      "Google compromete 40 millones de dólares para acelerar el descubrimiento científico mediante IA con Genesis Mission.",
+      "Surgen infraestructuras para monitorizar el riesgo conversacional acumulado en interacciones complejas de varios turnos.",
+      "El ecosistema RISC-V se consolida como alternativa viable para el control de aceleradores frente a la arquitectura Arm.",
+      "Publicación de FineServe, el primer dataset detallado de cargas de trabajo reales en plataformas comerciales de LLM."
+    ],
+    "risks": [
+      "Colapso de diversidad: los modelos que optimizan razonamiento pierden variabilidad en sus respuestas y toma de decisiones.",
+      "Capitulación adaptativa: fallo estructural en LLMs ante contextos emocionales vulnerables que compromete la seguridad.",
+      "Sesgo de competencia: los modelos pequeños (SLM) priorizan su entrenamiento previo sobre instrucciones contradictorias."
+    ],
+    "watch": [
+      "Resultados de los benchmarks de LLM aplicados al diseño de chips presentados en el DAC 2026.",
+      "Implementación de IP para SerDes y timing en nodos de 2nm destinados a computación de alto rendimiento e IA.",
+      "Adopción de hiperredes para la inyección masiva de conocimiento factual escalable en modelos de lenguaje."
+    ],
+    "entities_top": [
+      "Google",
+      "Silicon Creations",
+      "RISC-V"
+    ]
+  },
+  "items": [
+    {
+      "title": "FineServe: A Fine-Grained Dataset and Characterization of Global LLM Serving Workloads",
+      "link": "https://arxiv.org/abs/2607.19349",
+      "published": "2026-07-23T04:00:00+00:00",
+      "summary": "arXiv:2607.19349v1 Announce Type: new Abstract: Large language models (LLMs) are increasingly deployed as always-on online services, making efficient LLM serving a critical systems challenge. Achieving low latency and high throughput under volatile demand requires deep understanding of real-world serving workloads, yet existing studies often rely on proxy traces or coarse-grained characterizations that fail to capture the heterogeneity of modern multi-model LLM platforms. We present FineServe, an in-the-wild, multi-model LLM serving workload dataset collected from a global commercial marketplace, enabling fine-grained characterization of real-world serving dynamics across heterogeneous models and tasks. Leveraging FineServe, we conduct a comprehensive analysis of arrival dynamics and token behavior, revealing fundamentally different fluctuation regimes across model architectures, scales and task intents. Building on these insights, we develop the FineServe workload generator, which composes fine-grained model-aware workloads into configurable mixtures tailored for benchmarking multi-model serving platforms. By exposing these fine-grained workload dynamics, FineServe provides a realistic foundation for evaluating routing, scheduling, and capacity-planning strategies in LLM serving systems. FineServe is available at",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "FineServe: A Fine-Grained Dataset and Characterization of Global LLM Serving Workloads",
+      "raw_summary": "arXiv:2607.19349v1 Announce Type: new Abstract: Large language models (LLMs) are increasingly deployed as always-on online services, making efficient LLM serving a critical systems challenge. Achieving low latency and high throughput under volatile demand requires deep understanding of real-world serving workloads, yet existing studies often rely on proxy traces or coarse-grained characterizations that fail to capture the heterogeneity of modern multi-model LLM platforms. We present FineServe, an in-the-wild, multi-model LLM serving workload dataset collected from a global commercial marketplace, enabling fine-grained characterization of real-world serving dynamics across heterogeneous models and tasks. Leveraging FineServe, we conduct a comprehensive analysis of arrival dynamics and token behavior, revealing fundamentally different fluctuation regimes across model architectures, scales and task intents. Building on these insights, we develop the FineServe workload generator, which composes fine-grained model-aware workloads into configurable mixtures tailored for benchmarking multi-model serving platforms. By exposing these fine-grained workload dynamics, FineServe provides a realistic foundation for evaluating routing, scheduling, and capacity-planning strategies in LLM serving systems. FineServe is available at https://github.com/hihiztc1/FineServe.",
+      "score": 82,
+      "primary": "infra",
+      "tags": [
+        "serving",
+        "workloads",
+        "benchmarking"
+      ],
+      "heuristic_score": 80,
+      "url": "https://arxiv.org/abs/2607.19349",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 80,
+      "_rid": 5,
+      "llm_score": 82,
+      "why": "Primer dataset de código abierto que caracteriza cargas de trabajo reales y globales de LLM, crucial para optimizar la eficiencia de los centros de datos.",
+      "title_es": "FineServe: un conjunto de datos detallado y caracterización de las cargas de trabajo globales de servicio de LLM",
+      "entities": [
+        "fineserve",
+        "Fine",
+        "Grained Dataset",
+        "Characterization",
+        "Global",
+        "Serving Workloads"
+      ],
+      "noise_penalty": 0,
+      "final_score": 82,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Stateful Guardrails for Multi-Turn LLM Systems: A Conversational Risk Accumulation Framework",
+      "link": "https://arxiv.org/abs/2607.19361",
+      "published": "2026-07-23T04:00:00+00:00",
+      "summary": "arXiv:2607.19361v1 Announce Type: new Abstract: Most safety guardrails for large language models (LLMs) evaluate each prompt-response pair in isolation, which misses failures that arise only over a dialogue as benign turns compose into harm. We term this Conversational Risk Accumulation (CRA): gradual intent drift, fragmented assembly of prohibited instructions, and sensitivity build-up from repeated disclosures. We propose a session-layer CRA Framework that tracks three trajectory signals: semantic drift from a session anchor, a sensitivity-weighted information accumulation graph over extracted entities, and a compliance-gradient signal capturing increasing willingness to comply. For scoring, we provide (i) an unsupervised convex fusion for attribution and ablations, and (ii) CRA-Net DA, a compact learned trajectory model trained with family-adversarial objectives to reduce length and topic-coverage confounds. To benchmark CRA, we release CRA-Bench v0.1 (1,200 eight-turn sessions across three threat families with topic-matched benign twins), CRA-Bench v0.2 (LLM-paraphrased variants to reduce template artifacts), and an extended 5-family set (2,000 sessions adding persona priming and context stuffing). We introduce a trajectory-native evaluation protocol with session-level splits, mixed-set threshold calibration, Trajectory AUROC, turns-to-detection, calibrated false-positive metrics, bootstrap confidence intervals, leave-one-family-out diagnostic stress tests, and synthetic-to-human transfer checks. Claims focus on within-distribution session scoring on CRA-Bench and human-transfer subsets.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Stateful Guardrails for Multi-Turn LLM Systems: A Conversational Risk Accumulation Framework",
+      "raw_summary": "arXiv:2607.19361v1 Announce Type: new Abstract: Most safety guardrails for large language models (LLMs) evaluate each prompt-response pair in isolation, which misses failures that arise only over a dialogue as benign turns compose into harm. We term this Conversational Risk Accumulation (CRA): gradual intent drift, fragmented assembly of prohibited instructions, and sensitivity build-up from repeated disclosures. We propose a session-layer CRA Framework that tracks three trajectory signals: semantic drift from a session anchor, a sensitivity-weighted information accumulation graph over extracted entities, and a compliance-gradient signal capturing increasing willingness to comply. For scoring, we provide (i) an unsupervised convex fusion for attribution and ablations, and (ii) CRA-Net DA, a compact learned trajectory model trained with family-adversarial objectives to reduce length and topic-coverage confounds. To benchmark CRA, we release CRA-Bench v0.1 (1,200 eight-turn sessions across three threat families with topic-matched benign twins), CRA-Bench v0.2 (LLM-paraphrased variants to reduce template artifacts), and an extended 5-family set (2,000 sessions adding persona priming and context stuffing). We introduce a trajectory-native evaluation protocol with session-level splits, mixed-set threshold calibration, Trajectory AUROC, turns-to-detection, calibrated false-positive metrics, bootstrap confidence intervals, leave-one-family-out diagnostic stress tests, and synthetic-to-human transfer checks. Claims focus on within-distribution session scoring on CRA-Bench and human-transfer subsets.",
+      "score": 80,
+      "primary": "models",
+      "tags": [
+        "security",
+        "guardrails",
+        "safety"
+      ],
+      "heuristic_score": 89,
+      "url": "https://arxiv.org/abs/2607.19361",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 89,
+      "_rid": 3,
+      "llm_score": 78,
+      "why": "Propone un marco necesario para detectar riesgos que solo aparecen tras múltiples turnos de conversación, superando las limitaciones de los filtros aislados.",
+      "title_es": "Guardarraíles con estado para sistemas LLM multizurno: un marco de acumulación de riesgo conversacional",
+      "entities": [
+        "cra framework",
+        "Stateful Guardrails",
+        "Multi",
+        "Turn",
+        "Systems",
+        "Conversational Risk Accumulation",
+        "Framework"
+      ],
+      "noise_penalty": 0,
+      "final_score": 80,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Native Multi-Dimensional Subquadratic Operators via Input Dependent Long Convolutions",
+      "link": "https://arxiv.org/abs/2607.19378",
+      "published": "2026-07-23T04:00:00+00:00",
+      "summary": "arXiv:2607.19378v1 Announce Type: new Abstract: Subquadratic alternatives to attention require compromises when applied to multi-dimensional data: standard convolutions lack global receptive fields and input dependency, while recurrent models require rasterizing data such as s, volumes, and partial differential equation (PDE) into an ad-hoc $1\\rm D$ scan order that violates their spatial structure. We introduce \\textit{HyenaND}, a subquadratic, global, input-dependent operator that acts directly on the native geometry of multidimensional data through convolutions with implicitly parametrized global, input-dependent multi-dimensional convolutional kernels. Our CUDA implementation, \\texttt{nSubQ}, fuses the FFT-convolution path to turn HyenaND's $\\mathcal{O}(L \\log L)$ scaling into wall-clock speedups. Across long-context genomics, computer vision, medical imaging, and PDE modeling, pure HyenaND stacks match the accuracy of strong attention baselines, while hybrid configurations that interleave HyenaND and attention layers outperform both pure attention and strong recurrence-based hybrids.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Native Multi-Dimensional Subquadratic Operators via Input Dependent Long Convolutions",
+      "raw_summary": "arXiv:2607.19378v1 Announce Type: new Abstract: Subquadratic alternatives to attention require compromises when applied to multi-dimensional data: standard convolutions lack global receptive fields and input dependency, while recurrent models require rasterizing data such as images, volumes, and partial differential equation (PDE) into an ad-hoc $1\\rm D$ scan order that violates their spatial structure. We introduce \\textit{HyenaND}, a subquadratic, global, input-dependent operator that acts directly on the native geometry of multidimensional data through convolutions with implicitly parametrized global, input-dependent multi-dimensional convolutional kernels. Our CUDA implementation, \\texttt{nSubQ}, fuses the FFT-convolution path to turn HyenaND's $\\mathcal{O}(L \\log L)$ scaling into wall-clock speedups. Across long-context genomics, computer vision, medical imaging, and PDE modeling, pure HyenaND stacks match the accuracy of strong attention baselines, while hybrid configurations that interleave HyenaND and attention layers outperform both pure attention and strong recurrence-based hybrids.",
+      "score": 79,
+      "primary": "infra",
+      "tags": [
+        "architecture",
+        "subquadratic",
+        "cuda"
+      ],
+      "heuristic_score": 44,
+      "url": "https://arxiv.org/abs/2607.19378",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 44,
+      "_rid": 10,
+      "llm_score": 85,
+      "why": "Introduce HyenaND, un operador subcuadrático que mantiene la geometría nativa de datos multidimensionales, optimizando el procesamiento de volúmenes y PDEs.",
+      "title_es": "Operadores subcuadráticos multidimensionales nativos mediante convoluciones largas dependientes de la entrada",
+      "entities": [
+        "hyenand",
+        "cuda",
+        "Native Multi",
+        "Dimensional Subquadratic Operators",
+        "Input Dependent Long",
+        "Convolutions"
+      ],
+      "noise_penalty": 0,
+      "final_score": 79,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Accelerating the frontiers of scientific discovery: Google’s $40M commitment to the Genesis Mission",
+      "link": "https://deepmind.google/blog/accelerating-the-frontiers-of-scientific-discovery-googles-40m-commitment-to-the-genesis-mission/",
+      "published": "2026-07-22T13:38:54+00:00",
+      "summary": "Google commits $40M in AI tokens and credits for the Genesis Mission",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Accelerating the frontiers of scientific discovery: Google’s $40M commitment to the Genesis Mission",
+      "raw_summary": "Google commits $40M in AI tokens and credits for the Genesis Mission",
+      "score": 77,
+      "primary": "invest",
+      "tags": [
+        "science",
+        "funding",
+        "google"
+      ],
+      "heuristic_score": 43,
+      "url": "https://deepmind.google/blog/accelerating-the-frontiers-of-scientific-discovery-googles-40m-commitment-to-the-genesis-mission/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 43,
+      "_rid": 11,
+      "llm_score": 88,
+      "why": "Google impulsa la aplicación de IA avanzada en ciencia mediante créditos y tokens, reforzando su posición en el nexo entre IA y descubrimiento empírico.",
+      "title_es": "Acelerando las fronteras del descubrimiento científico: el compromiso de 40 millones de dólares de Google con la Misión Génesis",
+      "entities": [
+        "google",
+        "deepmind",
+        "genesis mission",
+        "Accelerating"
+      ],
+      "noise_penalty": 4,
+      "final_score": 77,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(4)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Scaling Laws for Hypernetwork-Based Knowledge Injection in Large Language Models",
+      "link": "https://arxiv.org/abs/2607.19604",
+      "published": "2026-07-23T04:00:00+00:00",
+      "summary": "arXiv:2607.19604v1 Announce Type: new Abstract: Injecting factual knowledge into large language models (LLMs) reliably and at scale remains an open challenge. Hypernetworks provide a promising solution to large-scale knowledge injection. Although hypernetworks are typically applied for test-time adaptation, we explore their use in train-time knowledge injection, where, given a large corpus of facts, we train a hypernetwork to generate a fixed LoRA adapter that, when inserted into the target model, enable the model to answer questions about those facts. In this work, we investigate whether hypernetworks can be used to perform train-time knowledge injection and how this ability varies with scale. The scaling behavior of hypernetworks remains largely unstudied. Our design decouples the hypernetwork's injection capacity from the target model's general capability, enabling, for the first time, a rigorous study of scaling laws for hypernetwork architectures. We characterize how loss, reasoning accuracy, and out-of-distribution (OOD) generalization vary with hypernetwork depth, width, and target network size. We construct a large-scale dataset, called MegaWikiQA, containing tens of millions of multi-hop question-answer examples across 39 domains constructed from examples in Wikidata5M. Our results reveal: (i) hypernetwork-based injection exhibits broadly predictive power law scaling along all architecture axes; and (ii) hypernetworks are capable of reliable OOD generalization at increasing scales, suggesting that hypernetwork provides a promising alternative to other train-time adaptation methods such as LoRA finetuning and full fine-tuning, exhibiting steeper scaling exponents in all OOD evaluations. Together, these results establish hypernetworks as a principled and scalable substrate for train-time adaptation, and provide the first empirically grounded scaling laws to guide hypernetworks for factual reasoning in large language models.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Scaling Laws for Hypernetwork-Based Knowledge Injection in Large Language Models",
+      "raw_summary": "arXiv:2607.19604v1 Announce Type: new Abstract: Injecting factual knowledge into large language models (LLMs) reliably and at scale remains an open challenge. Hypernetworks provide a promising solution to large-scale knowledge injection. Although hypernetworks are typically applied for test-time adaptation, we explore their use in train-time knowledge injection, where, given a large corpus of facts, we train a hypernetwork to generate a fixed LoRA adapter that, when inserted into the target model, enable the model to answer questions about those facts. In this work, we investigate whether hypernetworks can be used to perform train-time knowledge injection and how this ability varies with scale. The scaling behavior of hypernetworks remains largely unstudied. Our design decouples the hypernetwork's injection capacity from the target model's general capability, enabling, for the first time, a rigorous study of scaling laws for hypernetwork architectures. We characterize how loss, reasoning accuracy, and out-of-distribution (OOD) generalization vary with hypernetwork depth, width, and target network size. We construct a large-scale dataset, called MegaWikiQA, containing tens of millions of multi-hop question-answer examples across 39 domains constructed from examples in Wikidata5M. Our results reveal: (i) hypernetwork-based injection exhibits broadly predictive power law scaling along all architecture axes; and (ii) hypernetworks are capable of reliable OOD generalization at increasing scales, suggesting that hypernetwork provides a promising alternative to other train-time adaptation methods such as LoRA finetuning and full fine-tuning, exhibiting steeper scaling exponents in all OOD evaluations. Together, these results establish hypernetworks as a principled and scalable substrate for train-time adaptation, and provide the first empirically grounded scaling laws to guide hypernetworks for factual reasoning in large language models.",
+      "score": 76,
+      "primary": "models",
+      "tags": [
+        "hypernetworks",
+        "knowledge-injection",
+        "scaling-laws"
+      ],
+      "heuristic_score": 85,
+      "url": "https://arxiv.org/abs/2607.19604",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 85,
+      "_rid": 4,
+      "llm_score": 74,
+      "why": "Explora el uso de hiperredes para inyectar conocimiento factual mediante adaptadores LoRA, analizando su escalabilidad frente al ajuste tradicional.",
+      "title_es": "Leyes de escala para la inyección de conocimiento basada en hiperredes en modelos de lenguaje grandes",
+      "entities": [
+        "lora",
+        "Scaling Laws",
+        "Hypernetwork",
+        "Based Knowledge Injection",
+        "Large Language Models"
+      ],
+      "noise_penalty": 0,
+      "final_score": 76,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "When Reasoning Narrows the Move: Diversity Collapse in LLM Game Play",
+      "link": "https://arxiv.org/abs/2607.19523",
+      "published": "2026-07-23T04:00:00+00:00",
+      "summary": "arXiv:2607.19523v1 Announce Type: new Abstract: Supervised fine-tuning (SFT) is widely used to adapt large language models to downstream tasks, but its effect on behavioral diversity in sequential decision-making remains under-explored. We study this question in a controlled suite of deterministic board games based on tic-tac-toe variants, where optimal actions are exactly computable and diversity can be measured directly. Across state-level evaluation, arena gameplay, and training trajectories, we find that reasoning-mode generation frequently suppresses action diversity without uniformly improving action accuracy. Furthermore, standard SFT improves accuracy but often induces premature diversity collapse, which exceeds what is minimally required by the accuracy-diversity tradeoff. We then show that action augmentation, which trains on all optimal actions per state rather than a single demonstrated action, would partially mitigates this effect. Our results identify narrow-support imitation as a source of policy collapse in LLM decision-making and suggest that preserving action support during SFT is important for maintaining exploratory behavior.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "When Reasoning Narrows the Move: Diversity Collapse in LLM Game Play",
+      "raw_summary": "arXiv:2607.19523v1 Announce Type: new Abstract: Supervised fine-tuning (SFT) is widely used to adapt large language models to downstream tasks, but its effect on behavioral diversity in sequential decision-making remains under-explored. We study this question in a controlled suite of deterministic board games based on tic-tac-toe variants, where optimal actions are exactly computable and diversity can be measured directly. Across state-level evaluation, arena gameplay, and training trajectories, we find that reasoning-mode generation frequently suppresses action diversity without uniformly improving action accuracy. Furthermore, standard SFT improves accuracy but often induces premature diversity collapse, which exceeds what is minimally required by the accuracy-diversity tradeoff. We then show that action augmentation, which trains on all optimal actions per state rather than a single demonstrated action, would partially mitigates this effect. Our results identify narrow-support imitation as a source of policy collapse in LLM decision-making and suggest that preserving action support during SFT is important for maintaining exploratory behavior.",
+      "score": 75,
+      "primary": "models",
+      "tags": [
+        "reasoning",
+        "diversity",
+        "sft"
+      ],
+      "heuristic_score": 90,
+      "url": "https://arxiv.org/abs/2607.19523",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 90,
+      "_rid": 2,
+      "llm_score": 72,
+      "why": "Demuestra que el ajuste fino para mejorar el razonamiento reduce drásticamente la diversidad de opciones en la toma de decisiones secuenciales.",
+      "title_es": "Cuando el razonamiento estrecha el movimiento: colapso de la diversidad en el juego con LLM",
+      "entities": [
+        "When Reasoning Narrows",
+        "Move",
+        "Diversity Collapse",
+        "Game Play"
+      ],
+      "noise_penalty": 0,
+      "final_score": 75,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "geopolitics_power"
+    },
+    {
+      "title": "Silicon Creations at DAC 2026: Solutions for clocking, SerDes, and sensing in 2nm (and beyond)",
+      "link": "https://semiwiki.com/ip/silicon-creations/371418-silicon-creations-at-dac-2026-solutions-for-clocking-serdes-and-sensing-in-2nm-and-beyond/",
+      "published": "2026-07-21T21:00:49+00:00",
+      "summary": "Silicon Creations provides world-class IP for precision and general-purpose timing (PLLs and oscillators), high-performance multi-protocol, latency optimized and protocol-specific SerDes, high-speed I/Os, and accurate VT sensors. Applications include high-performance computing for AI, smart phones, wearables,&8230; Read More The post Silicon Creations at DAC 2026: Solutions for clocking, SerDes, and sensing in 2nm (and beyond) appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "Silicon Creations at DAC 2026: Solutions for clocking, SerDes, and sensing in 2nm (and beyond)",
+      "raw_summary": "Silicon Creations provides world-class IP for precision and general-purpose timing (PLLs and oscillators), high-performance multi-protocol, latency optimized and protocol-specific SerDes, high-speed I/Os, and accurate VT sensors. Applications include high-performance computing for AI, smart phones, wearables,&#8230; Read More The post Silicon Creations at DAC 2026: Solutions for clocking, SerDes, and sensing in 2nm (and beyond) appeared first on SemiWiki .",
+      "score": 71,
+      "primary": "infra",
+      "tags": [
+        "2nm",
+        "serdes",
+        "hpc"
+      ],
+      "heuristic_score": 19,
+      "url": "https://semiwiki.com/ip/silicon-creations/371418-silicon-creations-at-dac-2026-solutions-for-clocking-serdes-and-sensing-in-2nm-and-beyond/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 19,
+      "_rid": 15,
+      "llm_score": 80,
+      "why": "Presentación de soluciones IP críticas para la próxima generación de hardware de IA en procesos de fabricación de 2nm.",
+      "title_es": "Silicon Creations en DAC 2026: soluciones para timing, SerDes y sensores en 2nm (y más allá)",
+      "entities": [
+        "silicon creations",
+        "dac 2026",
+        "DAC",
+        "Solutions"
+      ],
+      "noise_penalty": 0,
+      "final_score": 71,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "RISC-V Advantage in Accelerator Control Highlights System Verification Challenges",
+      "link": "https://semiwiki.com/artificial-intelligence/371319-risc-v-advantage-in-accelerator-control-highlights-system-verification-challenges/",
+      "published": "2026-07-22T13:00:05+00:00",
+      "summary": "When considering best-fit applications for RISC-V, the appeal of extending the instruction set and competitive pricing for storage and edge applications has been pretty clear. But I have always struggled to understand the appeal in head-on competition with Arm in premium applications such as servers and infrastructure systems.&8230; Read More The post RISC-V Advantage in Accelerator Control Highlights System Verification Challenges appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "RISC-V Advantage in Accelerator Control Highlights System Verification Challenges",
+      "raw_summary": "When considering best-fit applications for RISC-V, the appeal of extending the instruction set and competitive pricing for storage and edge applications has been pretty clear. But I have always struggled to understand the appeal in head-on competition with Arm in premium applications such as servers and infrastructure systems.&#8230; Read More The post RISC-V Advantage in Accelerator Control Highlights System Verification Challenges appeared first on SemiWiki .",
+      "score": 70,
+      "primary": "infra",
+      "tags": [
+        "risc-v",
+        "arm",
+        "hardware"
+      ],
+      "heuristic_score": 43,
+      "url": "https://semiwiki.com/artificial-intelligence/371319-risc-v-advantage-in-accelerator-control-highlights-system-verification-challenges/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 43,
+      "_rid": 12,
+      "llm_score": 75,
+      "why": "Analiza el avance de RISC-V en el control de aceleradores y los desafíos de verificación que conlleva su implementación en sistemas premium.",
+      "title_es": "La ventaja de RISC-V en el control de aceleradores resalta los desafíos de verificación del sistema",
+      "entities": [
+        "risc-v",
+        "arm",
+        "RISC",
+        "Advantage",
+        "Accelerator Control Highlights",
+        "System Verification Challenges"
+      ],
+      "noise_penalty": 0,
+      "final_score": 70,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Adaptive Capitulation: A Structural Failure Mode of LLM Responses in Vulnerability Contexts",
+      "link": "https://arxiv.org/abs/2607.19629",
+      "published": "2026-07-23T04:00:00+00:00",
+      "summary": "arXiv:2607.19629v1 Announce Type: new Abstract: Large language models operating in emotionally sensitive contexts face a structural trilemma: when users in vulnerable states request information that may reinforce maladaptive attribution, current response architectures resolve the tension through protective restriction, uninflected facilitation, or unintegrated co-presence of both imperatives -- each preserving one objective at the cost of the other. Administering a three-turn escalating vulnerability vignette to three commercial LLMs (900 sessions across material, relational, and somatic status-proxy variants) and coding responses with two binary indices (VCC/VCI), we characterize a previously undocumented failure mode we term adaptive capitulation: the model validates the social injustice underlying the user's distress before pivoting to detailed facilitation of the very acquisition it nominally discouraged. We show that the trilemma is structural rather than incidental, and propose Minimal Reattributive Sufficiency (MRS), an architecture-neutral design principle that embeds a single reattributive cue within an otherwise validating response, preserving a pathway toward autonomous reattribution without contesting the user's stated goal.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Adaptive Capitulation: A Structural Failure Mode of LLM Responses in Vulnerability Contexts",
+      "raw_summary": "arXiv:2607.19629v1 Announce Type: new Abstract: Large language models operating in emotionally sensitive contexts face a structural trilemma: when users in vulnerable states request information that may reinforce maladaptive attribution, current response architectures resolve the tension through protective restriction, uninflected facilitation, or unintegrated co-presence of both imperatives -- each preserving one objective at the cost of the other. Administering a three-turn escalating vulnerability vignette to three commercial LLMs (900 sessions across material, relational, and somatic status-proxy variants) and coding responses with two binary indices (VCC/VCI), we characterize a previously undocumented failure mode we term adaptive capitulation: the model validates the social injustice underlying the user's distress before pivoting to detailed facilitation of the very acquisition it nominally discouraged. We show that the trilemma is structural rather than incidental, and propose Minimal Reattributive Sufficiency (MRS), an architecture-neutral design principle that embeds a single reattributive cue within an otherwise validating response, preserving a pathway toward autonomous reattribution without contesting the user's stated goal.",
+      "score": 69,
+      "primary": "models",
+      "tags": [
+        "safety",
+        "llm",
+        "human-ai"
+      ],
+      "heuristic_score": 94,
+      "url": "https://arxiv.org/abs/2607.19629",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 94,
+      "_rid": 1,
+      "llm_score": 65,
+      "why": "Identifica un fallo crítico en la arquitectura de respuesta de LLMs comerciales cuando operan en contextos de vulnerabilidad emocional humana.",
+      "title_es": "Capitulación adaptativa: un modo de fallo estructural de las respuestas de LLM en contextos de vulnerabilidad",
+      "entities": [
+        "vcc",
+        "vci",
+        "Adaptive Capitulation",
+        "Structural Failure Mode",
+        "Responses",
+        "Vulnerability Contexts"
+      ],
+      "noise_penalty": 0,
+      "final_score": 69,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Bayesian Wind Tunnels for Model Selection",
+      "link": "https://arxiv.org/abs/2607.19379",
+      "published": "2026-07-23T04:00:00+00:00",
+      "summary": "arXiv:2607.19379v1 Announce Type: new Abstract: Prior work has shown that transformers can perform exact Bayesian filtering within a fixed hypothesis class. Can they also perform Bayesian model selection -- identifying the correct hypothesis class from data? We introduce model-selection Bayesian wind tunnels: controlled environments where ground-truth posteriors over hypothesis classes are available in closed form. Using fixed-point-free involutions -- whose defining property f(f(x))=x is purely relational -- a 2.8M-parameter transformer achieves 0.01-bit entropy agreement with the Bayesian optimum (3 seeds), with both integer tokens and opaque symbols whose meanings change every episode. This extends to non-nested comparisons: involutions vs. 3-cycles (where neither class is a subset of the other) achieve class-posterior MAE under 0.001, demonstrating genuine model selection beyond simplicity/subset bias. We then identify a sharp perceptual access condition: when the discriminative statistic requires arithmetic -- modular addition (rotations) or multiplication (f(x)=cx mod p) -- model selection succeeds with integer tokens but fails completely with opaque symbols, and this boundary persists under 112x scaling (2.8M to 316M parameters). A stationarity control confirms the operative factor: opaque tokens with a fixed relabeling succeed (0.009-bit MAE), showing that stable semantics, not integer identity, enable circuit compilation. Header subtask diagnostics localize the failure to the composition of header inversion with arithmetic rather than header parsing itself. Probing frontier LLMs on the same tasks shows qualitative Bayesian behavior but a large calibration gap (~55x), measured through lossy probes and therefore directional rather than exact.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Bayesian Wind Tunnels for Model Selection",
+      "raw_summary": "arXiv:2607.19379v1 Announce Type: new Abstract: Prior work has shown that transformers can perform exact Bayesian filtering within a fixed hypothesis class. Can they also perform Bayesian model selection -- identifying the correct hypothesis class from data? We introduce model-selection Bayesian wind tunnels: controlled environments where ground-truth posteriors over hypothesis classes are available in closed form. Using fixed-point-free involutions -- whose defining property f(f(x))=x is purely relational -- a 2.8M-parameter transformer achieves 0.01-bit entropy agreement with the Bayesian optimum (3 seeds), with both integer tokens and opaque symbols whose meanings change every episode. This extends to non-nested comparisons: involutions vs. 3-cycles (where neither class is a subset of the other) achieve class-posterior MAE under 0.001, demonstrating genuine model selection beyond simplicity/subset bias. We then identify a sharp perceptual access condition: when the discriminative statistic requires arithmetic -- modular addition (rotations) or multiplication (f(x)=cx mod p) -- model selection succeeds with integer tokens but fails completely with opaque symbols, and this boundary persists under 112x scaling (2.8M to 316M parameters). A stationarity control confirms the operative factor: opaque tokens with a fixed relabeling succeed (0.009-bit MAE), showing that stable semantics, not integer identity, enable circuit compilation. Header subtask diagnostics localize the failure to the composition of header inversion with arithmetic rather than header parsing itself. Probing frontier LLMs on the same tasks shows qualitative Bayesian behavior but a large calibration gap (~55x), measured through lossy probes and therefore directional rather than exact.",
+      "score": 69,
+      "primary": "models",
+      "tags": [
+        "bayesian",
+        "transformers",
+        "model-selection"
+      ],
+      "heuristic_score": 77,
+      "url": "https://arxiv.org/abs/2607.19379",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 77,
+      "_rid": 6,
+      "llm_score": 68,
+      "why": "Muestra que los transformers pueden realizar selección de modelos bayesianos óptimos incluso con símbolos opacos, validando su capacidad relacional pura.",
+      "title_es": "Túneles de viento bayesianos para la selección de modelos",
+      "entities": [
+        "Bayesian Wind Tunnels",
+        "Model Selection"
+      ],
+      "noise_penalty": 0,
+      "final_score": 69,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Agentrys Weighs in on LLM Benchmarking for Chip Design at DAC 2026",
+      "link": "https://semiwiki.com/events/371290-agentrys-weighs-in-on-llm-benchmarking-for-chip-design-at-dac-2026/",
+      "published": "2026-07-22T21:00:36+00:00",
+      "summary": "Si2 is conducting quite a few sessions at DAC this year covering everything from power model standards to agentic AI. There is one session that is a bit different, focusing on LLM benchmarking. Since AI is popping up everywhere, the ability to accurately assess and measure the quality of new models becomes more important. That’s&8230; Read More The post Agentrys Weighs in on LLM Benchmarking for Chip Design at DAC 2026 appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "Agentrys Weighs in on LLM Benchmarking for Chip Design at DAC 2026",
+      "raw_summary": "Si2 is conducting quite a few sessions at DAC this year covering everything from power model standards to agentic AI. There is one session that is a bit different, focusing on LLM benchmarking. Since AI is popping up everywhere, the ability to accurately assess and measure the quality of new models becomes more important. That’s&#8230; Read More The post Agentrys Weighs in on LLM Benchmarking for Chip Design at DAC 2026 appeared first on SemiWiki .",
+      "score": 68,
+      "primary": "infra",
+      "tags": [
+        "chip-design",
+        "eda",
+        "benchmarking"
+      ],
+      "heuristic_score": 60,
+      "url": "https://semiwiki.com/events/371290-agentrys-weighs-in-on-llm-benchmarking-for-chip-design-at-dac-2026/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 60,
+      "_rid": 7,
+      "llm_score": 70,
+      "why": "Destaca la creciente importancia de evaluar LLMs específicamente para tareas críticas de diseño de semiconductores en foros industriales clave.",
+      "title_es": "Agentrys analiza la evaluación comparativa de LLM para el diseño de chips en el DAC 2026",
+      "entities": [
+        "agentrys",
+        "si2",
+        "dac 2026",
+        "DAC",
+        "Agentrys Weighs",
+        "Benchmarking",
+        "Chip Design"
+      ],
+      "noise_penalty": 0,
+      "final_score": 68,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "On the Computational Complexity of Structural Generalization",
+      "link": "https://arxiv.org/abs/2607.19573",
+      "published": "2026-07-23T04:00:00+00:00",
+      "summary": "arXiv:2607.19573v1 Announce Type: new Abstract: Structural generalization has been measured repeatedly by several benchmarks, yet it has never been formally defined. We give a definition that translates the two premises (compositional structure and unbounded generalization) into mathematical language. The definition itself is neutral: a compiler that hard-codes the rules satisfies it just as well. But structural generalization becomes a scientific question only insofar as the capacity can autonomously emerge from finite data. This question pits the computational lower bound $\\mathrm{NC}^1$ against the learnable ceiling $\\mathrm{TC}^0$ of pure Transformers. Under a Montagovian instantiation, each compositional rule splits into two projections: a syntactic face ($F_\\gamma$) and a semantic face ($G_\\gamma$). Tree evaluation on the $G_\\gamma$ side is an instantiation of BFVP, which is $\\mathrm{NC}^1$-complete (Buss, 1987). A pure Transformer must learn both faces at once, but Kraus et al. (2026) prove that its learnable class $\\subseteq \\mathrm{TC}^0$. Under the standard assumption $\\mathrm{TC}^0 \\neq \\mathrm{NC}^1$, a pure Transformer cannot learn structural generalization. Neuro-symbolic systems achieve the best benchmark scores precisely because they inject $G_\\gamma$, sidestepping the genuinely hard half. Benchmark scores cannot distinguish \"learned\" from \"given.\" This is what this paper sets out to make clear.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "On the Computational Complexity of Structural Generalization",
+      "raw_summary": "arXiv:2607.19573v1 Announce Type: new Abstract: Structural generalization has been measured repeatedly by several benchmarks, yet it has never been formally defined. We give a definition that translates the two premises (compositional structure and unbounded generalization) into mathematical language. The definition itself is neutral: a compiler that hard-codes the rules satisfies it just as well. But structural generalization becomes a scientific question only insofar as the capacity can autonomously emerge from finite data. This question pits the computational lower bound $\\mathrm{NC}^1$ against the learnable ceiling $\\mathrm{TC}^0$ of pure Transformers. Under a Montagovian instantiation, each compositional rule splits into two projections: a syntactic face ($F_\\gamma$) and a semantic face ($G_\\gamma$). Tree evaluation on the $G_\\gamma$ side is an instantiation of BFVP, which is $\\mathrm{NC}^1$-complete (Buss, 1987). A pure Transformer must learn both faces at once, but Kraus et al. (2026) prove that its learnable class $\\subseteq \\mathrm{TC}^0$. Under the standard assumption $\\mathrm{TC}^0 \\neq \\mathrm{NC}^1$, a pure Transformer cannot learn structural generalization. Neuro-symbolic systems achieve the best benchmark scores precisely because they inject $G_\\gamma$, sidestepping the genuinely hard half. Benchmark scores cannot distinguish \"learned\" from \"given.\" This is what this paper sets out to make clear.",
+      "score": 63,
+      "primary": "models",
+      "tags": [
+        "theory",
+        "transformers",
+        "generalization"
+      ],
+      "heuristic_score": 50,
+      "url": "https://arxiv.org/abs/2607.19573",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 50,
+      "_rid": 9,
+      "llm_score": 65,
+      "why": "Define formalmente la generalización estructural para analizar los límites teóricos de aprendizaje de la arquitectura Transformer.",
+      "title_es": "Sobre la complejidad computacional de la generalización estructural",
+      "entities": [
+        "Computational Complexity",
+        "Structural Generalization"
+      ],
+      "noise_penalty": 0,
+      "final_score": 63,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Task Competence Is Not Instruction Following: Evaluating Instruction-Conflicting Behavior in Small Language Models",
+      "link": "https://arxiv.org/abs/2607.19608",
+      "published": "2026-07-23T04:00:00+00:00",
+      "summary": "arXiv:2607.19608v1 Announce Type: new Abstract: Instruction tuning is meant to make language models follow user requests, yet it is unclear whether small models comply when an instruction conflicts with their usual task behavior. We study this across three tasks - multiple-choice question answering (MCQA), sentiment classification, and mathematical question answering - by pairing a standard instruction with a conflicting non-standard one (select an incorrect option, output the opposite sentiment, or return twice the answer). This cross-task design allows us to test whether resistance to conflicting instructions is tied to specific task characteristics or reflects a broader behavioral tendency. As all predictions are scored against the original ground truth, a model that ignores the non-standard instruction still appears accurate. Using standard accuracy, non-standard accuracy, and an Instruction-Following Failure Rate (IFFR), we evaluate instruction-tuned Qwen models across sizes. Both standard accuracy and instruction following generally improve with scale, although the pattern is not consistent across all tasks and datasets. Small models stay competent yet routinely ignore the non-standard instruction, while larger models show a clear gap between the two settings. These findings suggest that gains in task capability do not automatically provide reliable control over model behavior. Task competence and instruction following are therefore distinct abilities, and reporting only standard accuracy hides instruction-following failures.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Task Competence Is Not Instruction Following: Evaluating Instruction-Conflicting Behavior in Small Language Models",
+      "raw_summary": "arXiv:2607.19608v1 Announce Type: new Abstract: Instruction tuning is meant to make language models follow user requests, yet it is unclear whether small models comply when an instruction conflicts with their usual task behavior. We study this across three tasks - multiple-choice question answering (MCQA), sentiment classification, and mathematical question answering - by pairing a standard instruction with a conflicting non-standard one (select an incorrect option, output the opposite sentiment, or return twice the answer). This cross-task design allows us to test whether resistance to conflicting instructions is tied to specific task characteristics or reflects a broader behavioral tendency. As all predictions are scored against the original ground truth, a model that ignores the non-standard instruction still appears accurate. Using standard accuracy, non-standard accuracy, and an Instruction-Following Failure Rate (IFFR), we evaluate instruction-tuned Qwen models across sizes. Both standard accuracy and instruction following generally improve with scale, although the pattern is not consistent across all tasks and datasets. Small models stay competent yet routinely ignore the non-standard instruction, while larger models show a clear gap between the two settings. These findings suggest that gains in task capability do not automatically provide reliable control over model behavior. Task competence and instruction following are therefore distinct abilities, and reporting only standard accuracy hides instruction-following failures.",
+      "score": 61,
+      "primary": "models",
+      "tags": [
+        "slm",
+        "instruction-tuning",
+        "reliability"
+      ],
+      "heuristic_score": 23,
+      "url": "https://arxiv.org/abs/2607.19608",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 23,
+      "_rid": 13,
+      "llm_score": 68,
+      "why": "Revela que los modelos pequeños tienen dificultades para obedecer instrucciones que contradicen sus patrones de entrenamiento habituales.",
+      "title_es": "La competencia en la tarea no es seguimiento de instrucciones: evaluación del comportamiento conflictivo con las instrucciones en modelos de lenguaje pequeños",
+      "entities": [
+        "Task Competence Is",
+        "Not Instruction Following",
+        "Evaluating Instruction",
+        "Conflicting Behavior",
+        "Small Language Models"
+      ],
+      "noise_penalty": 0,
+      "final_score": 61,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Hybrid LSTM-Graph Neural Framework for Robust Financial Fraud Detection and Adversarial Resilience",
+      "link": "https://arxiv.org/abs/2607.19350",
+      "published": "2026-07-23T04:00:00+00:00",
+      "summary": "arXiv:2607.19350v1 Announce Type: new Abstract: Financial institutions face significant challenges in detecting sophisticated money laundering patterns, such as smurfing and layering, due to extreme data imbalance (0.13% fraud rate) and evolving adversarial evasion tactics. This paper proposes FraudShield AI, a hybrid framework that integrates Long Short-Term Memory (LSTM) networks with hand-crafted Graph Topological Features to capture both temporal sequences and structural relational context. By engineering network-centric features including PageRank Centrality, In-Degree dynamics, and a custom Flow Ratio, the system shifts the detection paradigm from isolated transaction analysis to network-level forensics. A Focal Loss objective is used to address class imbalance, and a dynamic thresholding mechanism is introduced to improve resilience against low-value smurfing attacks. Experimental evaluation on the PaySim dataset shows that the proposed hybrid model substantially outperforms Logistic Regression and XGBoost baselines in Precision, Recall, and F1-Score, particularly on hard-to-detect micro-transaction fraud patterns. An ablation study confirms the complementary contribution of both the temporal and topological components.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Hybrid LSTM-Graph Neural Framework for Robust Financial Fraud Detection and Adversarial Resilience",
+      "raw_summary": "arXiv:2607.19350v1 Announce Type: new Abstract: Financial institutions face significant challenges in detecting sophisticated money laundering patterns, such as smurfing and layering, due to extreme data imbalance (0.13% fraud rate) and evolving adversarial evasion tactics. This paper proposes FraudShield AI, a hybrid framework that integrates Long Short-Term Memory (LSTM) networks with hand-crafted Graph Topological Features to capture both temporal sequences and structural relational context. By engineering network-centric features including PageRank Centrality, In-Degree dynamics, and a custom Flow Ratio, the system shifts the detection paradigm from isolated transaction analysis to network-level forensics. A Focal Loss objective is used to address class imbalance, and a dynamic thresholding mechanism is introduced to improve resilience against low-value smurfing attacks. Experimental evaluation on the PaySim dataset shows that the proposed hybrid model substantially outperforms Logistic Regression and XGBoost baselines in Precision, Recall, and F1-Score, particularly on hard-to-detect micro-transaction fraud patterns. An ablation study confirms the complementary contribution of both the temporal and topological components.",
+      "score": 59,
+      "primary": "misc",
+      "tags": [
+        "fraud-detection",
+        "fintech",
+        "gnn"
+      ],
+      "heuristic_score": 53,
+      "url": "https://arxiv.org/abs/2607.19350",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 53,
+      "_rid": 8,
+      "llm_score": 60,
+      "why": "Combina arquitecturas temporales y estructurales para mejorar la detección de blanqueo de capitales frente a tácticas de evasión adversaria.",
+      "title_es": "Marco híbrido LSTM-Grafo para la detección robusta de fraude financiero y resiliencia adversaria",
+      "entities": [
+        "fraudshield ai",
+        "LSTM",
+        "Hybrid",
+        "Graph Neural Framework",
+        "Robust Financial Fraud",
+        "Detection",
+        "Adversarial Resilience"
+      ],
+      "noise_penalty": 0,
+      "final_score": 59,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "CEO Interview with Dan Fritchman of Generation Alpha Transistor",
+      "link": "https://semiwiki.com/ceo-interviews/371551-ceo-interview-with-dan-fritchman-of-generation-alpha-transistor/",
+      "published": "2026-07-22T17:00:51+00:00",
+      "summary": "Dan Fritchman is an electrical engineer and semiconductor-software entrepreneur. He is the founder and CEO of Generation Alpha Transistor , a San Francisco startup developing AI-based tools for integrated-circuit design. He earned a Ph.D. in Electrical Engineering and Computer Sciences from UC Berkeley in 2023. His dissertation,&8230; Read More The post CEO Interview with Dan Fritchman of Generation Alpha Transistor appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "CEO Interview with Dan Fritchman of Generation Alpha Transistor",
+      "raw_summary": "Dan Fritchman is an electrical engineer and semiconductor-software entrepreneur. He is the founder and CEO of Generation Alpha Transistor , a San Francisco startup developing AI-based tools for integrated-circuit design. He earned a Ph.D. in Electrical Engineering and Computer Sciences from UC Berkeley in 2023. His dissertation,&#8230; Read More The post CEO Interview with Dan Fritchman of Generation Alpha Transistor appeared first on SemiWiki .",
+      "score": 56,
+      "primary": "invest",
+      "tags": [
+        "startups",
+        "eda",
+        "semiconductors"
+      ],
+      "heuristic_score": 19,
+      "url": "https://semiwiki.com/ceo-interviews/371551-ceo-interview-with-dan-fritchman-of-generation-alpha-transistor/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 19,
+      "_rid": 14,
+      "llm_score": 62,
+      "why": "Entrevista a un fundador clave en el sector de herramientas de IA aplicadas al diseño de circuitos integrados, un área de inversión en auge.",
+      "title_es": "Entrevista al CEO Dan Fritchman de Generation Alpha Transistor",
+      "entities": [
+        "dan fritchman",
+        "generation alpha transistor"
+      ],
+      "noise_penalty": 0,
+      "final_score": 56,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    }
+  ]
+}
