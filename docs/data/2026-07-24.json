@@ -1,0 +1,689 @@
+{
+  "date": "2026-07-24",
+  "score_avg": 65,
+  "primary_dist": {
+    "models": 7,
+    "infra": 4,
+    "invest": 1,
+    "misc": 3
+  },
+  "top_entities": [
+    {
+      "entity": "SemiWiki",
+      "count": 2
+    },
+    {
+      "entity": "GPT-5.5",
+      "count": 1
+    },
+    {
+      "entity": "When",
+      "count": 1
+    },
+    {
+      "entity": "Form Demands",
+      "count": 1
+    },
+    {
+      "entity": "Answer",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "El diseño de chips mediante agentes IA (EDA) pasa de teoría a realidad con hitos de diseño físico real",
+      "Se descubre que los modelos MoE funcionan internamente como códigos Huffman, optimizando recursos por rareza de tokens",
+      "El formato de salida, especialmente JSON, actúa como un disparador crítico de alucinaciones en modelos de lenguaje",
+      "NVIDIA y Google consolidan infraestructuras para agentes autónomos con integraciones en LangChain y protocolos remotos",
+      "El mercado de hardware de consumo (PC y móviles) prevé una contracción severa de doble dígito para el año 2026"
+    ],
+    "risks": [
+      "Las alucinaciones estructurales en salidas JSON comprometen la fiabilidad de automatizaciones empresariales críticas",
+      "La caída de demanda en hardware tradicional podría desincentivar la inversión en nuevas arquitecturas de computación",
+      "La ineficacia de las marcas de agua actuales en dominios médicos arriesga la trazabilidad de datos clínicos sensibles"
+    ],
+    "watch": [
+      "Rendimiento real de los primeros chips comerciales diseñados íntegramente por agentes de IA como los de Agentrys",
+      "Adopción del protocolo MCP remoto por parte de Google para la interoperabilidad de agentes en la nube",
+      "Nuevas métricas de diversidad para evitar la homogeneización de opiniones en modelos entrenados con datos sintéticos"
+    ],
+    "entities_top": [
+      "NVIDIA",
+      "Google",
+      "Agentrys"
+    ]
+  },
+  "items": [
+    {
+      "title": "PhantomFill: When the Form Demands an Answer, Language Models Invent One",
+      "link": "https://arxiv.org/abs/2607.20492",
+      "published": "2026-07-24T04:00:00+00:00",
+      "summary": "arXiv:2607.20492v1 Announce Type: new Abstract: Language models in production do not write prose. They fill forms: JSON fields, function arguments, extraction templates. We show that the form itself causes hallucination. We ask thirteen models the same question about the same input and change only the answer format. The inputs are built so the question cannot be answered: a viral post showing 12,400 likes but no visible replies, a support ticket whose call was never transcribed. In free text, GPT-5.5 answers honestly. It says there is no reply data, 98% of the time. Given a required JSON field for sentiment, the same model invents an answer 40 times out of 40. It fabricates the mood of crowds it never saw and quotes customers it never heard. The pattern holds with force. Required fields drive fabrication to 100% in ten of thirteen models. An explicit \"insufficient evidence\" option rescues only the frontier: all nine open-weight models ignore it. A direct instruction, do not infer sentiment, is overridden by the schema in four of six models. Resistance does not come with scale: within a single model family, the smallest model refuses, the mid-sized model fabricates, the largest refuses again. Honesty under format pressure is a training outcome that no one is measuring. The fabrication hides exactly where hedging is impossible: in required enums and minimum-count arrays, fields where no disclaimer fits. We release PhantomFill, a benchmark with deterministic scoring and two reportable numbers: the Coerced Fabrication Rate and the Escape Utilization Rate. The fix we test is one line of schema. The failure we measure is everywhere.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "PhantomFill: When the Form Demands an Answer, Language Models Invent One",
+      "raw_summary": "arXiv:2607.20492v1 Announce Type: new Abstract: Language models in production do not write prose. They fill forms: JSON fields, function arguments, extraction templates. We show that the form itself causes hallucination. We ask thirteen models the same question about the same input and change only the answer format. The inputs are built so the question cannot be answered: a viral post showing 12,400 likes but no visible replies, a support ticket whose call was never transcribed. In free text, GPT-5.5 answers honestly. It says there is no reply data, 98% of the time. Given a required JSON field for sentiment, the same model invents an answer 40 times out of 40. It fabricates the mood of crowds it never saw and quotes customers it never heard. The pattern holds with force. Required fields drive fabrication to 100% in ten of thirteen models. An explicit \"insufficient evidence\" option rescues only the frontier: all nine open-weight models ignore it. A direct instruction, do not infer sentiment, is overridden by the schema in four of six models. Resistance does not come with scale: within a single model family, the smallest model refuses, the mid-sized model fabricates, the largest refuses again. Honesty under format pressure is a training outcome that no one is measuring. The fabrication hides exactly where hedging is impossible: in required enums and minimum-count arrays, fields where no disclaimer fits. We release PhantomFill, a benchmark with deterministic scoring and two reportable numbers: the Coerced Fabrication Rate and the Escape Utilization Rate. The fix we test is one line of schema. The failure we measure is everywhere.",
+      "score": 87,
+      "primary": "models",
+      "tags": [
+        "hallucination",
+        "json",
+        "reliability",
+        "structured-output"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2607.20492",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 3,
+      "llm_score": 85,
+      "why": "Estudio crítico que demuestra que exigir formatos estructurados como JSON induce alucinaciones incluso en modelos punteros.",
+      "title_es": "PhantomFill: Cuando el formulario exige una respuesta, los modelos de lenguaje inventan una",
+      "entities": [
+        "GPT-5.5",
+        "When",
+        "Form Demands",
+        "Answer",
+        "Language Models Invent",
+        "One"
+      ],
+      "noise_penalty": 0,
+      "final_score": 87,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Is MoE Routing a Huffman Code? Discovering the Frequency-Diversity Law in Chain-of-Thought",
+      "link": "https://arxiv.org/abs/2607.20427",
+      "published": "2026-07-24T04:00:00+00:00",
+      "summary": "arXiv:2607.20427v1 Announce Type: new Abstract: Mixture-of-Experts architectures have revolutionized scaling, yet the underlying logic of their routing remains a black box. In this paper, we uncover a fundamental governing principle: MoE routing is not merely selection, but a manifestation of Huffman Coding. We introduce the Frequency-Diversity Law, revealing that state-of-the-art models, such as Phi-3.5-MoE and Gemma-4-27B-A4B, spontaneously act as information-theoretic engines. These models allocate sparse expert resources for common tokens while invoking high-diversity expert committees for rare, complex tasks found in chain-of-thought trajectories. However, we identify a critical redundancy trap in Qwen3.5-35B-A3B: when effective sparsity (k/E_eff) is sufficiently low, load-balancing inadvertently imposes functional redundancy, masking the underlying Huffman efficiency signal. To bridge this gap, we propose Subset Difference Pruning, a surgical strategy to eliminate functional duplicates. We demonstrate that pruning does not degrade reasoning; instead, it unleashes the model's latent Huffman efficiency, forcing the logic to collapse into streamlined, high-density paths. Our findings suggest that the next generation of MoEs should move beyond forced load-balancing toward Minimum Description Length (MDL) optimality, assigning shorter expert-routing codes to high-frequency information and longer, more diverse codes to low-frequency information, thereby transforming routing from a heuristic into a principled compression engine.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Is MoE Routing a Huffman Code? Discovering the Frequency-Diversity Law in Chain-of-Thought",
+      "raw_summary": "arXiv:2607.20427v1 Announce Type: new Abstract: Mixture-of-Experts architectures have revolutionized scaling, yet the underlying logic of their routing remains a black box. In this paper, we uncover a fundamental governing principle: MoE routing is not merely selection, but a manifestation of Huffman Coding. We introduce the Frequency-Diversity Law, revealing that state-of-the-art models, such as Phi-3.5-MoE and Gemma-4-27B-A4B, spontaneously act as information-theoretic engines. These models allocate sparse expert resources for common tokens while invoking high-diversity expert committees for rare, complex tasks found in chain-of-thought trajectories. However, we identify a critical redundancy trap in Qwen3.5-35B-A3B: when effective sparsity (k/E_eff) is sufficiently low, load-balancing inadvertently imposes functional redundancy, masking the underlying Huffman efficiency signal. To bridge this gap, we propose Subset Difference Pruning, a surgical strategy to eliminate functional duplicates. We demonstrate that pruning does not degrade reasoning; instead, it unleashes the model's latent Huffman efficiency, forcing the logic to collapse into streamlined, high-density paths. Our findings suggest that the next generation of MoEs should move beyond forced load-balancing toward Minimum Description Length (MDL) optimality, assigning shorter expert-routing codes to high-frequency information and longer, more diverse codes to low-frequency information, thereby transforming routing from a heuristic into a principled compression engine.",
+      "score": 77,
+      "primary": "models",
+      "tags": [
+        "moe",
+        "architecture",
+        "research",
+        "efficiency"
+      ],
+      "heuristic_score": 88,
+      "url": "https://arxiv.org/abs/2607.20427",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 88,
+      "_rid": 5,
+      "llm_score": 75,
+      "why": "Descubrimiento de que las arquitecturas MoE operan bajo principios de teoría de la información (Huffman), optimizando el uso de expertos.",
+      "title_es": "¿Es el enrutamiento MoE un código Huffman? Descubriendo la ley de frecuencia-diversidad en Chain-of-Thought",
+      "entities": [
+        "Phi-3.5-MoE",
+        "Gemma-4-27B-A4B",
+        "Routing",
+        "Huffman Code",
+        "Discovering",
+        "Frequency",
+        "Diversity Law",
+        "Chain"
+      ],
+      "noise_penalty": 0,
+      "final_score": 77,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Agentrys Designs a Real Chip with its Multi-Agent Workforce",
+      "link": "https://semiwiki.com/eda/agentrys/371377-agentrys-designs-a-real-chip-with-its-multi-agent-workforce/",
+      "published": "2026-07-23T21:00:37+00:00",
+      "summary": "The face of EDA is changing. For forty years, this industry has focused on optimizing algorithms for design, verification and implementation of chips. That work has delivered some ground-breaking innovations. Logic synthesis is a good example. There are so many more. Thanks to the innovations commonly referred to as Frontier &8230; Read More The post Agentrys Designs a Real Chip with its Multi-Agent Workforce appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "Agentrys Designs a Real Chip with its Multi-Agent Workforce",
+      "raw_summary": "The face of EDA is changing. For forty years, this industry has focused on optimizing algorithms for design, verification and implementation of chips. That work has delivered some ground-breaking innovations. Logic synthesis is a good example. There are so many more. Thanks to the innovations commonly referred to as Frontier &#8230; Read More The post Agentrys Designs a Real Chip with its Multi-Agent Workforce appeared first on SemiWiki .",
+      "score": 76,
+      "primary": "infra",
+      "tags": [
+        "eda",
+        "hardware",
+        "chip-design",
+        "agents"
+      ],
+      "heuristic_score": 43,
+      "url": "https://semiwiki.com/eda/agentrys/371377-agentrys-designs-a-real-chip-with-its-multi-agent-workforce/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 43,
+      "_rid": 13,
+      "llm_score": 82,
+      "why": "Hito en la industria de semiconductores: uso de agentes autónomos para el diseño físico de un chip real, optimizando procesos EDA.",
+      "title_es": "Agentrys diseña un chip real con su fuerza de trabajo multi-agente",
+      "entities": [
+        "Agentrys",
+        "SemiWiki",
+        "Agentrys Designs",
+        "Real Chip",
+        "Multi",
+        "Agent Workforce"
+      ],
+      "noise_penalty": 0,
+      "final_score": 76,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "DataPrep-Bench: Benchmarking LLMs as Training Data Preparators",
+      "link": "https://arxiv.org/abs/2607.20465",
+      "published": "2026-07-24T04:00:00+00:00",
+      "summary": "arXiv:2607.20465v1 Announce Type: new Abstract: The quality of training data fundamentally determines the capabilities of large language models (LLMs), yet no unified benchmark exists to measure how well LLMs, agents, and data-centric workflows actually prepare training data end to end. We view LLM-driven data preparation as comprising two complementary capabilities: data construction, which transforms raw sources into supervised training data, and data quality evaluation, which predicts the training value of candidate datasets before downstream training; throughout, \"quality\" refers to downstream training utility rather than surface-level textual properties. We introduce DataPrep-Bench, the first unified benchmark that jointly evaluates both capabilities under a shared downstream-grounded protocol over six domains and multiple base models. For data construction, methods consume identical raw sources and are scored by fine-tuning a base model on their outputs jointly with Dolly-15k; alongside this track we release Data-Construction-Skill, a skill-guided agent that lifts the Dolly-only baseline by nearly 20 points absolute on Llama-3.1-8B Finance and is competitive with the strongest agent- and DataFlow-based methods in knowledge-extraction-dense domains. For data quality evaluation, scoring functions are scored by Pearson correlation with downstream performance on a shared candidate pool; we release the Distributional Alignment Score (DAS), a distribution-based evaluator that uses MMD between a candidate dataset and a domain proxy. DAS attains the strongest cross-model correlation in four of six domains and is the only metric clearing r > 0.70 simultaneously in Math, Science, and Medical, outperforming existing quality-, diversity-, and heuristic-based evaluators. DataPrep-Bench provides a unified, downstream-grounded framework for measuring progress on both capabilities as co-equal targets of LLM-driven data preparation.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "DataPrep-Bench: Benchmarking LLMs as Training Data Preparators",
+      "raw_summary": "arXiv:2607.20465v1 Announce Type: new Abstract: The quality of training data fundamentally determines the capabilities of large language models (LLMs), yet no unified benchmark exists to measure how well LLMs, agents, and data-centric workflows actually prepare training data end to end. We view LLM-driven data preparation as comprising two complementary capabilities: data construction, which transforms raw sources into supervised training data, and data quality evaluation, which predicts the training value of candidate datasets before downstream training; throughout, \"quality\" refers to downstream training utility rather than surface-level textual properties. We introduce DataPrep-Bench, the first unified benchmark that jointly evaluates both capabilities under a shared downstream-grounded protocol over six domains and multiple base models. For data construction, methods consume identical raw sources and are scored by fine-tuning a base model on their outputs jointly with Dolly-15k; alongside this track we release Data-Construction-Skill, a skill-guided agent that lifts the Dolly-only baseline by nearly 20 points absolute on Llama-3.1-8B Finance and is competitive with the strongest agent- and DataFlow-based methods in knowledge-extraction-dense domains. For data quality evaluation, scoring functions are scored by Pearson correlation with downstream performance on a shared candidate pool; we release the Distributional Alignment Score (DAS), a distribution-based evaluator that uses MMD between a candidate dataset and a domain proxy. DAS attains the strongest cross-model correlation in four of six domains and is the only metric clearing r > 0.70 simultaneously in Math, Science, and Medical, outperforming existing quality-, diversity-, and heuristic-based evaluators. DataPrep-Bench provides a unified, downstream-grounded framework for measuring progress on both capabilities as co-equal targets of LLM-driven data preparation.",
+      "score": 74,
+      "primary": "models",
+      "tags": [
+        "benchmark",
+        "datasets",
+        "llm",
+        "training"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2607.20465",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 2,
+      "llm_score": 70,
+      "why": "Nuevo benchmark necesario para evaluar cómo los LLMs preparan datos de entrenamiento, midiendo utilidad real en lugar de estética.",
+      "title_es": "DataPrep-Bench: Evaluando LLMs como preparadores de datos de entrenamiento",
+      "entities": [
+        "DataPrep-Bench",
+        "Bench",
+        "Benchmarking",
+        "Training Data Preparators"
+      ],
+      "noise_penalty": 0,
+      "final_score": 74,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "AINTMA: Agentic AI Architecture for Autonomous Test Management with Generative Intelligence, Secure Cloud Communication and Adaptive Quality Analytics",
+      "link": "https://arxiv.org/abs/2607.20452",
+      "published": "2026-07-24T04:00:00+00:00",
+      "summary": "arXiv:2607.20452v1 Announce Type: new Abstract: Modern software quality assurance demands intelligent, autonomous systems capable of adaptive decision-making across distributed cloud environments. This paper presents AINTMA (Agentic Intelligent Test Management Architecture), a multi-agent agentic AI system that transforms traditional test management into an autonomous quality intelligence ecosystem. AINTMA deploys six specialized AI agents (Test Discovery, Risk Assessment, Reinforcement Learning Prioritization, Execution Orchestration, Generative Quality Intelligence, and Cloud Security Monitor) coordinated through a secure multi-agent communication framework over a cloud-native microservices infrastructure. The Generative Quality Intelligence agent employs large language models to produce plain language quality narratives, defect risk summaries, and data-augmented test recommendations. The RL Prioritization agent models test selection as a Markov Decision Process, learning contextual policies from large-scale historical test execution data (47 features, rolling 36-month window). Secure cloud communication is enforced through a zero-trust API gateway with OAuth2/JWT authentication, encrypted inter-agent messaging, and multi-tenant isolation. Evaluation across 12 heterogeneous software projects over 18 months demonstrates: 88.4% test prioritization accuracy (APFD, vs. 51.2% random, 82.1% best commercial baseline); 43% test cycle time reduction; defect escape rate reduced from 8.3% to 2.1%; 340% ROI at 9-month payback. The agentic architecture scales to 50,000+ test cases with sub-400ms response time, and the generative intelligence module achieves 4.3/5.0 developer usefulness rating. AINTMA demonstrates that agentic AI, combining autonomous multi-agent coordination, generative intelligence and secure smart connectivity, can fundamentally advance software quality management in cloud-scale enterprise environments.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "AINTMA: Agentic AI Architecture for Autonomous Test Management with Generative Intelligence, Secure Cloud Communication and Adaptive Quality Analytics",
+      "raw_summary": "arXiv:2607.20452v1 Announce Type: new Abstract: Modern software quality assurance demands intelligent, autonomous systems capable of adaptive decision-making across distributed cloud environments. This paper presents AINTMA (Agentic Intelligent Test Management Architecture), a multi-agent agentic AI system that transforms traditional test management into an autonomous quality intelligence ecosystem. AINTMA deploys six specialized AI agents (Test Discovery, Risk Assessment, Reinforcement Learning Prioritization, Execution Orchestration, Generative Quality Intelligence, and Cloud Security Monitor) coordinated through a secure multi-agent communication framework over a cloud-native microservices infrastructure. The Generative Quality Intelligence agent employs large language models to produce plain language quality narratives, defect risk summaries, and data-augmented test recommendations. The RL Prioritization agent models test selection as a Markov Decision Process, learning contextual policies from large-scale historical test execution data (47 features, rolling 36-month window). Secure cloud communication is enforced through a zero-trust API gateway with OAuth2/JWT authentication, encrypted inter-agent messaging, and multi-tenant isolation. Evaluation across 12 heterogeneous software projects over 18 months demonstrates: 88.4% test prioritization accuracy (APFD, vs. 51.2% random, 82.1% best commercial baseline); 43% test cycle time reduction; defect escape rate reduced from 8.3% to 2.1%; 340% ROI at 9-month payback. The agentic architecture scales to 50,000+ test cases with sub-400ms response time, and the generative intelligence module achieves 4.3/5.0 developer usefulness rating. AINTMA demonstrates that agentic AI, combining autonomous multi-agent coordination, generative intelligence and secure smart connectivity, can fundamentally advance software quality management in cloud-scale enterprise environments.",
+      "score": 70,
+      "primary": "models",
+      "tags": [
+        "agents",
+        "qa",
+        "cloud",
+        "automation"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2607.20452",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 1,
+      "llm_score": 65,
+      "why": "Arquitectura multi-agente que automatiza el ciclo de pruebas de software, mejorando la eficiencia en entornos cloud nativos.",
+      "title_es": "AINTMA: Arquitectura de IA de agentes para la gestión autónoma de pruebas con inteligencia generativa",
+      "entities": [
+        "AINTMA",
+        "Agentic",
+        "Architecture",
+        "Autonomous Test Management",
+        "Generative Intelligence",
+        "Secure Cloud Communication",
+        "Adaptive Quality Analytics"
+      ],
+      "noise_penalty": 0,
+      "final_score": 70,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "BRONCO AI: WIN THE RACE TO TAPE-OUT | BOOTH 935",
+      "link": "https://semiwiki.com/eda/bronco-ai/371650-bronco-ai-win-the-race-to-tape-out-booth-935/",
+      "published": "2026-07-23T15:00:40+00:00",
+      "summary": "Bronco AI builds AI agents for chip design and verification. Our goal is to get teams from spec to RTL-freeze as fast as possible by surfacing the nastiest bugs sooner and fixing them faster. Our agents work the way strong engineers do: they read the spec, form hypotheses, run experiments, and chase a problem until it is root-caused,&8230; Read More The post BRONCO AI: WIN THE RACE TO TAPE-OUT | BOOTH 935 appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "BRONCO AI: WIN THE RACE TO TAPE-OUT | BOOTH 935",
+      "raw_summary": "Bronco AI builds AI agents for chip design and verification. Our goal is to get teams from spec to RTL-freeze as fast as possible by surfacing the nastiest bugs sooner and fixing them faster. Our agents work the way strong engineers do: they read the spec, form hypotheses, run experiments, and chase a problem until it is root-caused,&#8230; Read More The post BRONCO AI: WIN THE RACE TO TAPE-OUT | BOOTH 935 appeared first on SemiWiki .",
+      "score": 70,
+      "primary": "infra",
+      "tags": [
+        "eda",
+        "hardware",
+        "rtl",
+        "agents"
+      ],
+      "heuristic_score": 28,
+      "url": "https://semiwiki.com/eda/bronco-ai/371650-bronco-ai-win-the-race-to-tape-out-booth-935/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 28,
+      "_rid": 14,
+      "llm_score": 78,
+      "why": "Agentes especializados en acelerar el tiempo de llegada al mercado de chips mediante la detección temprana de errores complejos.",
+      "title_es": "BRONCO AI: Gana la carrera hacia el tape-out",
+      "entities": [
+        "Bronco AI",
+        "BRONCO",
+        "WIN",
+        "RACE",
+        "TAPE",
+        "OUT",
+        "BOOTH"
+      ],
+      "noise_penalty": 0,
+      "final_score": 70,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Expanding Managed Agents in Gemini API: background tasks, remote MCP and more",
+      "link": "https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api/",
+      "published": "2026-07-07T08:54:00+00:00",
+      "summary": "Managed agents feature bundle launch",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Expanding Managed Agents in Gemini API:  background tasks, remote MCP and more",
+      "raw_summary": "Managed agents feature bundle launch",
+      "score": 66,
+      "primary": "infra",
+      "tags": [
+        "google",
+        "gemini",
+        "agents",
+        "mcp",
+        "api"
+      ],
+      "heuristic_score": 63,
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 63,
+      "_rid": 10,
+      "llm_score": 78,
+      "why": "Google expande su ecosistema de agentes con soporte para tareas en segundo plano y el protocolo MCP, clave para la interoperabilidad.",
+      "title_es": "Ampliación de agentes gestionados en la API de Gemini: tareas en segundo plano, MCP remoto y más",
+      "entities": [
+        "Google",
+        "Gemini",
+        "MCP",
+        "Expanding Managed Agents"
+      ],
+      "noise_penalty": 10,
+      "final_score": 66,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(10)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "PCs & Smartphones Supply Constrained",
+      "link": "https://semiwiki.com/semiconductor-services/semiconductor-intelligence/371662-pcs-smartphones-supply-constrained/",
+      "published": "2026-07-23T22:00:08+00:00",
+      "summary": "Global unit shipments of PCs and smartphones were both down versus a year ago in the 2nd quarter of 2026, according to IDC. PCs were down 4.9% and smartphones were down 6.7%. Both PCs and smartphones showed growth in 2024 and 2025. IDC is predicting an 11.3% decline in PCs and a 13.9% decline in smartphones in 2026. What is causing the&8230; Read More The post PCs &038; Smartphones Supply Constrained appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "PCs & Smartphones Supply Constrained",
+      "raw_summary": "Global unit shipments of PCs and smartphones were both down versus a year ago in the 2nd quarter of 2026, according to IDC. PCs were down 4.9% and smartphones were down 6.7%. Both PCs and smartphones showed growth in 2024 and 2025. IDC is predicting an 11.3% decline in PCs and a 13.9% decline in smartphones in 2026. What is causing the&#8230; Read More The post PCs &#038; Smartphones Supply Constrained appeared first on SemiWiki .",
+      "score": 66,
+      "primary": "invest",
+      "tags": [
+        "supply-chain",
+        "hardware",
+        "economy",
+        "forecast"
+      ],
+      "heuristic_score": 22,
+      "url": "https://semiwiki.com/semiconductor-services/semiconductor-intelligence/371662-pcs-smartphones-supply-constrained/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 22,
+      "_rid": 15,
+      "llm_score": 74,
+      "why": "Previsión de caída significativa en el mercado de hardware para 2026, lo que podría afectar a la renovación del parque tecnológico de IA.",
+      "title_es": "Suministro de PCs y smartphones restringido",
+      "entities": [
+        "IDC",
+        "SemiWiki",
+        "Smartphones Supply Constrained"
+      ],
+      "noise_penalty": 0,
+      "final_score": 66,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Knowledge Injection Exists in MoE? Exploring Expert-Aware Contrast Decoding in MoE for Mitigating LLMs'Hallucinations",
+      "link": "https://arxiv.org/abs/2607.20426",
+      "published": "2026-07-24T04:00:00+00:00",
+      "summary": "arXiv:2607.20426v1 Announce Type: new Abstract: Existing LLM hallucination mitigation methods, including prompt engineering and model optimization, either hardly alter models'internal knowledge or have poor cross-domain generalization. Contrastive decoding mitigates hallucinations by using layer-wise differences in LLMs. However, prior studies only explore transformer-based models (e.g., GPT), ignoring other effective frameworks like mixture-of-experts (MoE) models. Since MoE alters the traditional transformer architecture, we conduct empirical studies to investigate whether similar layer-wise differences exist in MoEs. Our results show that they do not exist in MoE with shared experts; nevertheless, across different MoEs, higher layers exhibit distinct expert activation patterns between factual and non-factual outputs. Building on these, we propose EAACD, an expert-aware adaptive contrast decoding that uses expert differences in MoE's higher layers to mitigate hallucinations on QA tasks. EAACD splits high-layer experts into a higher-reliability group and several lower-reliability groups based on their confidence and consistency. It contrasts the higher-reliability group's prediction with each lower-reliability group's prediction to calibrate the model's original predictions. To strengthen this contrast, EAACD amplifies hallucinations from lower-reliability experts via attention and masking to provide stronger negative references. EAACD outperforms all baselines on four datasets.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Knowledge Injection Exists in MoE? Exploring Expert-Aware Contrast Decoding in MoE for Mitigating LLMs'Hallucinations",
+      "raw_summary": "arXiv:2607.20426v1 Announce Type: new Abstract: Existing LLM hallucination mitigation methods, including prompt engineering and model optimization, either hardly alter models'internal knowledge or have poor cross-domain generalization. Contrastive decoding mitigates hallucinations by using layer-wise differences in LLMs. However, prior studies only explore transformer-based models (e.g., GPT), ignoring other effective frameworks like mixture-of-experts (MoE) models. Since MoE alters the traditional transformer architecture, we conduct empirical studies to investigate whether similar layer-wise differences exist in MoEs. Our results show that they do not exist in MoE with shared experts; nevertheless, across different MoEs, higher layers exhibit distinct expert activation patterns between factual and non-factual outputs. Building on these, we propose EAACD, an expert-aware adaptive contrast decoding that uses expert differences in MoE's higher layers to mitigate hallucinations on QA tasks. EAACD splits high-layer experts into a higher-reliability group and several lower-reliability groups based on their confidence and consistency. It contrasts the higher-reliability group's prediction with each lower-reliability group's prediction to calibrate the model's original predictions. To strengthen this contrast, EAACD amplifies hallucinations from lower-reliability experts via attention and masking to provide stronger negative references. EAACD outperforms all baselines on four datasets.",
+      "score": 65,
+      "primary": "models",
+      "tags": [
+        "moe",
+        "hallucination",
+        "architecture"
+      ],
+      "heuristic_score": 50,
+      "url": "https://arxiv.org/abs/2607.20426",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 50,
+      "_rid": 11,
+      "llm_score": 68,
+      "why": "Investigación técnica que revela que las técnicas de mitigación de alucinaciones por capas fallan en modelos MoE con expertos compartidos.",
+      "title_es": "¿Existe la inyección de conocimiento en MoE? Explorando la decodificación por contraste consciente de expertos",
+      "entities": [
+        "Knowledge Injection Exists",
+        "Exploring Expert",
+        "Aware Contrast Decoding",
+        "Mitigating",
+        "Hallucinations"
+      ],
+      "noise_penalty": 0,
+      "final_score": 65,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "LLM-INSTRUCT at UZH Shared Task 2026: Constraint-Aware Retrieval and Selective Debate for Paragraph-Level Argument Mining",
+      "link": "https://arxiv.org/abs/2607.20430",
+      "published": "2026-07-24T04:00:00+00:00",
+      "summary": "arXiv:2607.20430v1 Announce Type: new Abstract: We present LLM-INSTRUCT, the winning system for the UZH Shared Task at ArgMining 2026 on paragraph-level argument mining in UN and UNESCO resolutions. The task requires paragraph-type classification, prediction of a subset of 141 official tags, and directed relation prediction under a strict JSON schema setting using only open-weight models up to 8B parameters. We frame the task as constrained structured prediction. The system first narrows the candidate tag space with metadata-aware dense retrieval, then applies constrained decoding with per-dimension caps, escalates only uncertain cases to a three-agent debate branch, and finally validates the output schema. On the official leaderboard, LLM-INSTRUCT ranked 1st overall, with 1st in F1 and 5th in LLM-as-a-Judge. During development, our configuration search further improved Task 1b Micro-F1 from 35.83% to 40.08% while keeping the internal Task 2 score at 4.421. The main lesson is simple: reducing the decision space before generation improves both accuracy and submission robustness. Our code and supporting scripts are publicly available at:",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "LLM-INSTRUCT at UZH Shared Task 2026: Constraint-Aware Retrieval and Selective Debate for Paragraph-Level Argument Mining",
+      "raw_summary": "arXiv:2607.20430v1 Announce Type: new Abstract: We present LLM-INSTRUCT, the winning system for the UZH Shared Task at ArgMining 2026 on paragraph-level argument mining in UN and UNESCO resolutions. The task requires paragraph-type classification, prediction of a subset of 141 official tags, and directed relation prediction under a strict JSON schema setting using only open-weight models up to 8B parameters. We frame the task as constrained structured prediction. The system first narrows the candidate tag space with metadata-aware dense retrieval, then applies constrained decoding with per-dimension caps, escalates only uncertain cases to a three-agent debate branch, and finally validates the output schema. On the official leaderboard, LLM-INSTRUCT ranked 1st overall, with 1st in F1 and 5th in LLM-as-a-Judge. During development, our configuration search further improved Task 1b Micro-F1 from 35.83% to 40.08% while keeping the internal Task 2 score at 4.421. The main lesson is simple: reducing the decision space before generation improves both accuracy and submission robustness. Our code and supporting scripts are publicly available at: https://github.com/LLM-Instruct-at-UZH-Shared-Task-2026/Method",
+      "score": 62,
+      "primary": "models",
+      "tags": [
+        "nlp",
+        "json",
+        "constraints",
+        "reasoning"
+      ],
+      "heuristic_score": 64,
+      "url": "https://arxiv.org/abs/2607.20430",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 64,
+      "_rid": 9,
+      "llm_score": 62,
+      "why": "Sistema ganador en minería de argumentos que utiliza debate entre agentes y restricciones de esquema JSON bajo limitaciones de hardware.",
+      "title_es": "LLM-INSTRUCT en la tarea compartida de UZH 2026: Recuperación consciente de restricciones y debate selectivo",
+      "entities": [
+        "UZH",
+        "UNESCO",
+        "Shared Task",
+        "Constraint",
+        "Aware Retrieval",
+        "Selective Debate",
+        "Paragraph",
+        "Level Argument Mining"
+      ],
+      "noise_penalty": 0,
+      "final_score": 62,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "NVIDIA Nemotron Achieves Benchmark-Leading Performance With LangChain Deep Agents Harness",
+      "link": "https://blogs.nvidia.com/blog/nemotron-langchain-agents-open-stack/",
+      "published": "2026-07-08T15:00:27+00:00",
+      "summary": "NVIDIA Nemotron 3 Ultra is offering leading performance at lower cost than top closed models with the largest and most widely adopted AI agent orchestration platform. LangChain tuned its Deep Agents harness for NVIDIA Nemotron 3 Ultra, achieving the highest accuracy among open models, while completing more tasks at higher throughput and running at 10x [&8230;]",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "NVIDIA Nemotron Achieves Benchmark-Leading Performance With LangChain Deep Agents Harness",
+      "raw_summary": "NVIDIA Nemotron 3 Ultra is offering leading performance at lower cost than top closed models with the largest and most widely adopted AI agent orchestration platform. LangChain tuned its Deep Agents harness for NVIDIA Nemotron 3 Ultra, achieving the highest accuracy among open models, while completing more tasks at higher throughput and running at 10x [&#8230;]",
+      "score": 61,
+      "primary": "infra",
+      "tags": [
+        "nvidia",
+        "langchain",
+        "agents",
+        "performance"
+      ],
+      "heuristic_score": 68,
+      "url": "https://blogs.nvidia.com/blog/nemotron-langchain-agents-open-stack/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 68,
+      "_rid": 6,
+      "llm_score": 72,
+      "why": "NVIDIA posiciona a Nemotron como líder en coste-rendimiento para agentes abiertos mediante la integración con LangChain.",
+      "title_es": "NVIDIA Nemotron logra un rendimiento líder en benchmarks con el arnés LangChain Deep Agents",
+      "entities": [
+        "NVIDIA",
+        "LangChain",
+        "Nemotron",
+        "Nemotron Achieves Benchmark",
+        "Leading Performance With",
+        "Deep Agents Harness"
+      ],
+      "noise_penalty": 10,
+      "final_score": 61,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(10)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Marking the Wrong Symptoms: Evaluating LLM Watermarks in Medical Texts",
+      "link": "https://arxiv.org/abs/2607.20462",
+      "published": "2026-07-24T04:00:00+00:00",
+      "summary": "arXiv:2607.20462v1 Announce Type: new Abstract: Large language models (LLMs) are increasingly integrated into clinical workflows, stressing the need for reliable traceability of model-generated output with watermarking. Yet, most watermarks are evaluated on general-purpose benchmarks, leaving domains like medicine, where small token-level perturbations can result in significant semantic changes, underexplored. In this work, we present the first rigorous study of how LLM watermarks affect medical performance, benchmarking 5 watermarking schemes across 11 LLMs and 7 VLMs on various tasks spanning unimodal and multimodal clinical reasoning. Importantly, we complement existing evaluations by introducing a human-expert-validated pipeline for systematically auditing medical reasoning quality, terminological precision, and induced hallucinations. Our results reveal that watermarking can induce substantial degradation across multiple failure modes, including lexical corruption, hallucinated terminology, and amplified misattribution or omission of findings. Notably, we find that the absence of domain-specific analyses, combined with aggregate metrics that miss failures inherent to clinical text, can systematically obscure practical watermark-induced degradations. Our findings establish domain-specific evaluation as a prerequisite for the safe deployment of watermarked models in medicine, where current benchmarks can otherwise mask clinically consequential failures.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Marking the Wrong Symptoms: Evaluating LLM Watermarks in Medical Texts",
+      "raw_summary": "arXiv:2607.20462v1 Announce Type: new Abstract: Large language models (LLMs) are increasingly integrated into clinical workflows, stressing the need for reliable traceability of model-generated output with watermarking. Yet, most watermarks are evaluated on general-purpose benchmarks, leaving domains like medicine, where small token-level perturbations can result in significant semantic changes, underexplored. In this work, we present the first rigorous study of how LLM watermarks affect medical performance, benchmarking 5 watermarking schemes across 11 LLMs and 7 VLMs on various tasks spanning unimodal and multimodal clinical reasoning. Importantly, we complement existing evaluations by introducing a human-expert-validated pipeline for systematically auditing medical reasoning quality, terminological precision, and induced hallucinations. Our results reveal that watermarking can induce substantial degradation across multiple failure modes, including lexical corruption, hallucinated terminology, and amplified misattribution or omission of image findings. Notably, we find that the absence of domain-specific analyses, combined with aggregate metrics that miss failures inherent to clinical text, can systematically obscure practical watermark-induced degradations. Our findings establish domain-specific evaluation as a prerequisite for the safe deployment of watermarked models in medicine, where current benchmarks can otherwise mask clinically consequential failures.",
+      "score": 60,
+      "primary": "misc",
+      "tags": [
+        "security",
+        "medical",
+        "watermarking",
+        "ethics"
+      ],
+      "heuristic_score": 97,
+      "url": "https://arxiv.org/abs/2607.20462",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 97,
+      "_rid": 4,
+      "llm_score": 60,
+      "why": "Investigación sobre el impacto negativo de las marcas de agua en la precisión de modelos médicos, un área crítica para la seguridad.",
+      "title_es": "Marcando los síntomas equivocados: Evaluación de marcas de agua de LLM en textos médicos",
+      "entities": [
+        "Marking",
+        "Wrong Symptoms",
+        "Evaluating",
+        "Watermarks",
+        "Medical Texts"
+      ],
+      "noise_penalty": 6,
+      "final_score": 60,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(6)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Human-in-the-Loop Large Language Model Framework for Identification of Cutaneous Immune-Related Adverse Events",
+      "link": "https://arxiv.org/abs/2607.20428",
+      "published": "2026-07-24T04:00:00+00:00",
+      "summary": "arXiv:2607.20428v1 Announce Type: new Abstract: This study evaluated a retrieval-augmented, multi-agent large language model (LLM)-driven, human-in-the-loop framework for detecting cutaneous immune-related adverse events (cirAEs) from clinical notes. Compared with unassisted manual review, the LLM-assisted workflow improved accuracy (F1 = 0.88 vs 0.77), inter-rater agreement measured by Cohen's kappa (kappa = 0.82 vs 0.50), and reduced average review time by approximately half. This framework pilots how LLMs can be applied to identify immune-related toxicities across organ systems and, more broadly, enable accurate, scalable, and transparent adverse event data extraction.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Human-in-the-Loop Large Language Model Framework for Identification of Cutaneous Immune-Related Adverse Events",
+      "raw_summary": "arXiv:2607.20428v1 Announce Type: new Abstract: This study evaluated a retrieval-augmented, multi-agent large language model (LLM)-driven, human-in-the-loop framework for detecting cutaneous immune-related adverse events (cirAEs) from clinical notes. Compared with unassisted manual review, the LLM-assisted workflow improved accuracy (F1 = 0.88 vs 0.77), inter-rater agreement measured by Cohen's kappa (kappa = 0.82 vs 0.50), and reduced average review time by approximately half. This framework pilots how LLMs can be applied to identify immune-related toxicities across organ systems and, more broadly, enable accurate, scalable, and transparent adverse event data extraction.",
+      "score": 51,
+      "primary": "misc",
+      "tags": [
+        "health",
+        "hitl",
+        "accuracy",
+        "clinical"
+      ],
+      "heuristic_score": 50,
+      "url": "https://arxiv.org/abs/2607.20428",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 50,
+      "_rid": 12,
+      "llm_score": 68,
+      "why": "Framework que combina IA y humanos para detectar efectos adversos en dermatología, duplicando la velocidad y mejorando la precisión.",
+      "title_es": "Marco de modelo de lenguaje de gran tamaño con intervención humana para la identificación de eventos adversos inmunológicos cutáneos",
+      "entities": [
+        "Human",
+        "Loop Large Language",
+        "Model Framework",
+        "Identification",
+        "Cutaneous Immune",
+        "Related Adverse Events"
+      ],
+      "noise_penalty": 14,
+      "final_score": 51,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(14)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "More Is Not More: What Matters for Diversity in LLM Opinions?",
+      "link": "https://arxiv.org/abs/2607.20429",
+      "published": "2026-07-24T04:00:00+00:00",
+      "summary": "arXiv:2607.20429v1 Announce Type: new Abstract: Large language models are increasingly used to simulate diverse human opinions in open-ended tasks such as synthetic surveys, focus group modeling, and public opinion prediction. However, LLM outputs exhibit systematic opinion homogenization. Practitioners have explored various interventions to increase diversity, but the landscape remains fragmented: different methods are evaluated in isolation with incomparable metrics, and in practice they are typically deployed and upgraded simultaneously, making it difficult to attribute gains to specific components. To advance a more scientific understanding of LLM output diversity, we design a factorial experiment that separates two primary intervention dimensions: input conditioning (operationalized through persona depth) and interaction architecture. We evaluate all conditions on 100 real-user open-ended questions across 7 models, measuring diversity with multiple complementary metrics. Our findings challenge several common assumptions. First, more persona detail does not monotonically increase diversity. The initial step of persona conditioning already captures the majority of the gain, while further elaboration with demographic detail does not consistently improve and can reduce diversity on some models. Second, rather than seeking a single best interaction architecture, we find that different architectures explore largely non-overlapping opinion regions. Combining multiple architectures yields broader coverage than optimizing any one. Third, commonly attempted low-cost alternatives such as raising sampling temperature and adding diversity instructions produce negligible effects compared to structured interventions. Overall, our work demonstrates that diversity is not a product of scaling along any single dimension, but is highly sensitive to the structural form and combination of interventions.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "More Is Not More: What Matters for Diversity in LLM Opinions?",
+      "raw_summary": "arXiv:2607.20429v1 Announce Type: new Abstract: Large language models are increasingly used to simulate diverse human opinions in open-ended tasks such as synthetic surveys, focus group modeling, and public opinion prediction. However, LLM outputs exhibit systematic opinion homogenization. Practitioners have explored various interventions to increase diversity, but the landscape remains fragmented: different methods are evaluated in isolation with incomparable metrics, and in practice they are typically deployed and upgraded simultaneously, making it difficult to attribute gains to specific components. To advance a more scientific understanding of LLM output diversity, we design a factorial experiment that separates two primary intervention dimensions: input conditioning (operationalized through persona depth) and interaction architecture. We evaluate all conditions on 100 real-user open-ended questions across 7 models, measuring diversity with multiple complementary metrics. Our findings challenge several common assumptions. First, more persona detail does not monotonically increase diversity. The initial step of persona conditioning already captures the majority of the gain, while further elaboration with demographic detail does not consistently improve and can reduce diversity on some models. Second, rather than seeking a single best interaction architecture, we find that different architectures explore largely non-overlapping opinion regions. Combining multiple architectures yields broader coverage than optimizing any one. Third, commonly attempted low-cost alternatives such as raising sampling temperature and adding diversity instructions produce negligible effects compared to structured interventions. Overall, our work demonstrates that diversity is not a product of scaling along any single dimension, but is highly sensitive to the structural form and combination of interventions.",
+      "score": 50,
+      "primary": "misc",
+      "tags": [
+        "bias",
+        "diversity",
+        "sociology",
+        "synthetic-data"
+      ],
+      "heuristic_score": 64,
+      "url": "https://arxiv.org/abs/2607.20429",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 64,
+      "_rid": 8,
+      "llm_score": 55,
+      "why": "Análisis de cómo los LLMs tienden a homogeneizar opiniones, un riesgo para el uso de modelos en estudios de mercado y encuestas.",
+      "title_es": "Más no es más: ¿Qué importa para la diversidad de opiniones en los LLM?",
+      "entities": [
+        "More Is Not",
+        "What Matters",
+        "Diversity",
+        "Opinions"
+      ],
+      "noise_penalty": 6,
+      "final_score": 50,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(6)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "What is Good? Extracting and Testing Implicit Theories of Literary Quality from LLM Reasoning Traces",
+      "link": "https://arxiv.org/abs/2607.20425",
+      "published": "2026-07-24T04:00:00+00:00",
+      "summary": "arXiv:2607.20425v1 Announce Type: new Abstract: What makes writing \"good\" remains a persistent question in literary studies and computational linguistics. We present a two-study investigation of how reasoning-enabled LLMs evaluate literary quality. In Study 1, we construct a benchmark of 30 real texts spanning six quality tiers, from canonical literature to anonymous forum posts, and extract the model's implicit theory of quality from its reasoning traces. Across five DeepSeek replications, the model achieves 79.3% mean tier-classification accuracy. The traces reveal a consistent stated theory: the model values intentionality over correctness, prioritizing craft, depth, and distinctive voice. A familiarity experiment with style-matched but unrecognizable passages suggests that source recognition may inflate scores, although this is confounded by genuine quality differences between canonical originals and researcher-written pastiches. In Study 2, we probe this theory through systematic degradation of five canonical prose passages. We apply six manipulations - vocabulary simplification, rhythm flattening, ry removal, voice genericization, structure simplification, and combined degradation - and reevaluate each version. Vocabulary simplification causes the smallest quality loss (0.41 +/- 0.46 points), far below structure (2.78) or voice (2.34) loss. Combined degradation is devastating (-5.64) but subadditive. An exploratory comparison with Qwen QwQ shows the same broad qualitative pattern. Together, these studies suggest that LLM judgments of writing quality are holistic, author-specific, and more sensitive to structural than lexical features, with implications for automated writing feedback and computational aesthetics.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "What is Good? Extracting and Testing Implicit Theories of Literary Quality from LLM Reasoning Traces",
+      "raw_summary": "arXiv:2607.20425v1 Announce Type: new Abstract: What makes writing \"good\" remains a persistent question in literary studies and computational linguistics. We present a two-study investigation of how reasoning-enabled LLMs evaluate literary quality. In Study 1, we construct a benchmark of 30 real texts spanning six quality tiers, from canonical literature to anonymous forum posts, and extract the model's implicit theory of quality from its reasoning traces. Across five DeepSeek replications, the model achieves 79.3% mean tier-classification accuracy. The traces reveal a consistent stated theory: the model values intentionality over correctness, prioritizing craft, depth, and distinctive voice. A familiarity experiment with style-matched but unrecognizable passages suggests that source recognition may inflate scores, although this is confounded by genuine quality differences between canonical originals and researcher-written pastiches. In Study 2, we probe this theory through systematic degradation of five canonical prose passages. We apply six manipulations - vocabulary simplification, rhythm flattening, imagery removal, voice genericization, structure simplification, and combined degradation - and reevaluate each version. Vocabulary simplification causes the smallest quality loss (0.41 +/- 0.46 points), far below structure (2.78) or voice (2.34) loss. Combined degradation is devastating (-5.64) but subadditive. An exploratory comparison with Qwen QwQ shows the same broad qualitative pattern. Together, these studies suggest that LLM judgments of writing quality are holistic, author-specific, and more sensitive to structural than lexical features, with implications for automated writing feedback and computational aesthetics.",
+      "score": 40,
+      "primary": "models",
+      "tags": [
+        "evaluation",
+        "literature",
+        "reasoning"
+      ],
+      "heuristic_score": 65,
+      "url": "https://arxiv.org/abs/2607.20425",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 65,
+      "_rid": 7,
+      "llm_score": 45,
+      "why": "Uso de trazas de razonamiento para extraer teorías implícitas de calidad literaria, con alta precisión en clasificación de textos.",
+      "title_es": "¿Qué es lo bueno? Extracción y prueba de teorías implícitas de calidad literaria a partir de trazas de razonamiento de LLM",
+      "entities": [
+        "DeepSeek",
+        "What",
+        "Good",
+        "Extracting",
+        "Testing Implicit Theories",
+        "Literary Quality",
+        "Reasoning Traces"
+      ],
+      "noise_penalty": 8,
+      "final_score": 40,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(8)",
+      "strategic_theme": "china_stack"
+    }
+  ]
+}
