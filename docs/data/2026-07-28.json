@@ -1,0 +1,680 @@
+{
+  "date": "2026-07-28",
+  "score_avg": 63.67,
+  "primary_dist": {
+    "models": 9,
+    "infra": 3,
+    "invest": 1,
+    "misc": 2
+  },
+  "top_entities": [
+    {
+      "entity": "DeepMind",
+      "count": 2
+    },
+    {
+      "entity": "Gemini",
+      "count": 2
+    },
+    {
+      "entity": "Lite",
+      "count": 2
+    },
+    {
+      "entity": "Semalith",
+      "count": 1
+    },
+    {
+      "entity": "Llama-Guard",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "Google acelera el ciclo de lanzamientos con Gemini 3.6 Flash y variantes optimizadas para ciberseguridad.",
+      "La eficiencia en inferencia evoluciona hacia un razonamiento dinámico que omite pasos costosos en tareas simples.",
+      "Modelos de seguridad especializados y ligeros empiezan a superar en rendimiento a guardrails generalistas pesados.",
+      "La gestión de centros de datos HPC adopta modelos fundacionales para crear gemelos digitales dinámicos y escalables.",
+      "El diseño de silicio integra validación de simetría temprana para reducir costes críticos en el proceso de fabricación."
+    ],
+    "risks": [
+      "El desaprendizaje (unlearning) actual en LLM muestra debilidades al intentar suprimir narrativas de desinformación.",
+      "El acoplamiento rígido de estados de archivos en agentes de código genera redundancias masivas y costes de contexto.",
+      "La falta de explicabilidad en modelos de visión para medicina y seguridad limita su despliegue en entornos reales."
+    ],
+    "watch": [
+      "Adopción de Gemini 3.5 Flash-Lite en hardware de borde (edge) con recursos extremadamente limitados.",
+      "Integración de capas de conceptos interpretables en modelos de difusión para auditoría técnica.",
+      "Consolidación de la verificación formal asistida por IA en el flujo de diseño de semiconductores."
+    ],
+    "entities_top": [
+      "Google DeepMind",
+      "Siemens",
+      "Silimate"
+    ]
+  },
+  "items": [
+    {
+      "title": "Semalith v1.4: A Calibrated 184M Safety Classifier Achieving State-of-the-Art Prompt-Injection Detection at 44x Fewer Parameters than Llama-Guard-3-8B",
+      "link": "https://arxiv.org/abs/2607.22545",
+      "published": "2026-07-28T04:00:00+00:00",
+      "summary": "arXiv:2607.22545v1 Announce Type: new Abstract: Deploying large language models in financial-services and agentic settings requires safety classifiers that simultaneously handle prompt injection, regulatory compliance, and general harm, a combination no existing open guardrail addresses in a single inference pass. Semalith v1.4 is a 184M-parameter DeBERTa-v3-base classifier performing simultaneous three-axis safety classification including prompt injection, general harm, and financial-services regulatory compliance, in a single forward pass. Its 22-class head (BENIGN, nine prompt-injection sub-types, general-harm, eleven BFSI labels) is trained with a 4-class auxiliary super-category head under jointly weighted loss, on a 76,204-row corpus mined from 49 public sources with SHA-1 deduplication against every held-out evaluation set, with 21 of 22 benchmarks at zero contamination (max 0.22%). Against Llama-Guard-3-8B on 22 held-out benchmarks, Semalith v1.4 wins every prompt-injection evaluation (7/7) and 11 of 18 benchmarks overall at 44x fewer parameters, with FPR = 0.000 on 208 benign agentic prompts vs 0.063 for Llama-Guard-3-8B. On general-harm benchmarks (WildGuardMix, HEx-PHI, HarmBench), Llama-Guard-3 leads; this complementary split is documented in Section 4. Six measured weak spots are disclosed in Section 6. Deployment guidance: v1.3 is recommended for conversational moderation deployments (ToxicChat F1 0.624); v1.4 is recommended when BFSI label coverage or zero-FPR on benign agentic prompts is the priority.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Semalith v1.4: A Calibrated 184M Safety Classifier Achieving State-of-the-Art Prompt-Injection Detection at 44x Fewer Parameters than Llama-Guard-3-8B",
+      "raw_summary": "arXiv:2607.22545v1 Announce Type: new Abstract: Deploying large language models in financial-services and agentic settings requires safety classifiers that simultaneously handle prompt injection, regulatory compliance, and general harm, a combination no existing open guardrail addresses in a single inference pass. Semalith v1.4 is a 184M-parameter DeBERTa-v3-base classifier performing simultaneous three-axis safety classification including prompt injection, general harm, and financial-services regulatory compliance, in a single forward pass. Its 22-class head (BENIGN, nine prompt-injection sub-types, general-harm, eleven BFSI labels) is trained with a 4-class auxiliary super-category head under jointly weighted loss, on a 76,204-row corpus mined from 49 public sources with SHA-1 deduplication against every held-out evaluation set, with 21 of 22 benchmarks at zero contamination (max 0.22%). Against Llama-Guard-3-8B on 22 held-out benchmarks, Semalith v1.4 wins every prompt-injection evaluation (7/7) and 11 of 18 benchmarks overall at 44x fewer parameters, with FPR = 0.000 on 208 benign agentic prompts vs 0.063 for Llama-Guard-3-8B. On general-harm benchmarks (WildGuardMix, HEx-PHI, HarmBench), Llama-Guard-3 leads; this complementary split is documented in Section 4. Six measured weak spots are disclosed in Section 6. Deployment guidance: v1.3 is recommended for conversational moderation deployments (ToxicChat F1 0.624); v1.4 is recommended when BFSI label coverage or zero-FPR on benign agentic prompts is the priority.",
+      "score": 86,
+      "primary": "models",
+      "tags": [
+        "seguridad",
+        "guardrails",
+        "prompt-injection",
+        "bfsi"
+      ],
+      "heuristic_score": 94,
+      "url": "https://arxiv.org/abs/2607.22545",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 94,
+      "_rid": 3,
+      "llm_score": 85,
+      "why": "Semalith v1.4 ofrece detección de inyecciones de prompts y cumplimiento regulatorio en un modelo de 184M, siendo mucho más eficiente que Llama-Guard-3-8B.",
+      "title_es": "Semalith v1.4: Un clasificador de seguridad calibrado de 184M que logra detección de inyecciones de última generación",
+      "entities": [
+        "Semalith",
+        "Llama-Guard",
+        "Calibrated",
+        "Safety Classifier Achieving",
+        "State",
+        "Art Prompt",
+        "Injection Detection",
+        "Fewer Parameters"
+      ],
+      "noise_penalty": 0,
+      "final_score": 86,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "CORVUS: Context Optimization and Reduction Via Underlying Synchronization for LLM Coding Agents",
+      "link": "https://arxiv.org/abs/2607.22711",
+      "published": "2026-07-28T04:00:00+00:00",
+      "summary": "arXiv:2607.22711v1 Announce Type: new Abstract: LLM coding agents operate by constructing trajectories that accumulate reasoning, tool calls, and results to enable multi-step decision-making. However, the conventional append-only trajectory architecture found in practice tightly couples file-read actions with their observations, capturing snapshots that become permanently fixed in the chronological history. As files change through agent edits or concurrent human modifications, these snapshots become stale, causing reasoning errors and causing agents to redundantly re-read files, with each re-read appending yet another copy to the trajectory. To mitigate this, we propose CORVUS, a novel trajectory architecture that decouples file-read actions from their observations by maintaining a synchronized registry of relevant files and injecting only their current contents at each reasoning cycle. This structural change produces significantly lighter-weight trajectories that remain synchronized with the actual codebase state by construction, eliminating redundant file copies and stale snapshots that bloat conventional trajectories. We evaluated CORVUS on SWE- POLYBENCH_VERIFIED and SWE-BENCH PRO across four LLMs, achieving 9-50% reduction in average input tokens per task, 15-32% shorter final prompts, and up to 37% fewer reasoning cycles while maintaining comparable pass rates.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "CORVUS: Context Optimization and Reduction Via Underlying Synchronization for LLM Coding Agents",
+      "raw_summary": "arXiv:2607.22711v1 Announce Type: new Abstract: LLM coding agents operate by constructing trajectories that accumulate reasoning, tool calls, and results to enable multi-step decision-making. However, the conventional append-only trajectory architecture found in practice tightly couples file-read actions with their observations, capturing snapshots that become permanently fixed in the chronological history. As files change through agent edits or concurrent human modifications, these snapshots become stale, causing reasoning errors and causing agents to redundantly re-read files, with each re-read appending yet another copy to the trajectory. To mitigate this, we propose CORVUS, a novel trajectory architecture that decouples file-read actions from their observations by maintaining a synchronized registry of relevant files and injecting only their current contents at each reasoning cycle. This structural change produces significantly lighter-weight trajectories that remain synchronized with the actual codebase state by construction, eliminating redundant file copies and stale snapshots that bloat conventional trajectories. We evaluated CORVUS on SWE- POLYBENCH_VERIFIED and SWE-BENCH PRO across four LLMs, achieving 9-50% reduction in average input tokens per task, 15-32% shorter final prompts, and up to 37% fewer reasoning cycles while maintaining comparable pass rates.",
+      "score": 85,
+      "primary": "models",
+      "tags": [
+        "agentes",
+        "codigo",
+        "contexto",
+        "llm"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2607.22711",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 1,
+      "llm_score": 82,
+      "why": "CORVUS optimiza el contexto de agentes de código sincronizando cambios de archivos, reduciendo redundancia y errores de razonamiento en procesos iterativos.",
+      "title_es": "CORVUS: Optimización y reducción de contexto mediante sincronización subyacente para agentes de programación con LLM",
+      "entities": [
+        "CORVUS",
+        "Context Optimization",
+        "Reduction Via Underlying",
+        "Synchronization",
+        "Coding Agents"
+      ],
+      "noise_penalty": 0,
+      "final_score": 85,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "SeT-Diff: Towards Semantic Foundation Models for HPC Telemetry and Time-Series",
+      "link": "https://arxiv.org/abs/2607.22548",
+      "published": "2026-07-28T04:00:00+00:00",
+      "summary": "arXiv:2607.22548v1 Announce Type: new Abstract: Data centers and their compute nodes require accurate and flexible digital twins capable of modeling the complex interplay of workloads, environmental parameters, and physical metrics. Current machine learning approaches for HPC and its telemetry typically rely on a static subset of anonymous, fixed-position sensor variables tailored to single tasks. Consequently, these models become obsolete when target tasks change or sensor metrics vary. We propose SeT-Diff, the first foundational model for compute node telemetry and time-series. Unlike rigid architectures, our diffusion-based approach conditions the generative process on each sensor's semantic description, decoupling the system dynamics from the structure of the dataset. Experiments on a real-world supercomputer dataset demonstrate a Mean Absolute Error (MAE) of 0.0470 on reconstruction tasks. SeT-Diff exhibits zero-shot permutation stability, maintaining accuracy with negligible degradation even when sensors are shuffled. A single pre-trained model effectively performs data imputation, forecasting, and virtual sensing - achieving a 0.033 MAE in thermal inference - making SeT-Diff an effective data-driven digital twin for HPC systems.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "SeT-Diff: Towards Semantic Foundation Models for HPC Telemetry and Time-Series",
+      "raw_summary": "arXiv:2607.22548v1 Announce Type: new Abstract: Data centers and their compute nodes require accurate and flexible digital twins capable of modeling the complex interplay of workloads, environmental parameters, and physical metrics. Current machine learning approaches for HPC and its telemetry typically rely on a static subset of anonymous, fixed-position sensor variables tailored to single tasks. Consequently, these models become obsolete when target tasks change or sensor metrics vary. We propose SeT-Diff, the first foundational model for compute node telemetry and time-series. Unlike rigid architectures, our diffusion-based approach conditions the generative process on each sensor's semantic description, decoupling the system dynamics from the structure of the dataset. Experiments on a real-world supercomputer dataset demonstrate a Mean Absolute Error (MAE) of 0.0470 on reconstruction tasks. SeT-Diff exhibits zero-shot permutation stability, maintaining accuracy with negligible degradation even when sensors are shuffled. A single pre-trained model effectively performs data imputation, forecasting, and virtual sensing - achieving a 0.033 MAE in thermal inference - making SeT-Diff an effective data-driven digital twin for HPC systems.",
+      "score": 82,
+      "primary": "infra",
+      "tags": [
+        "hpc",
+        "telemetria",
+        "digital-twins",
+        "difusion"
+      ],
+      "heuristic_score": 46,
+      "url": "https://arxiv.org/abs/2607.22548",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 46,
+      "_rid": 8,
+      "llm_score": 88,
+      "why": "SeT-Diff utiliza difusión para crear gemelos digitales en HPC, permitiendo monitorizar telemetría de forma flexible sin depender de sensores estáticos.",
+      "title_es": "SeT-Diff: Hacia modelos fundacionales semánticos para telemetría HPC y series temporales",
+      "entities": [
+        "SeT-Diff",
+        "HPC",
+        "Diff",
+        "Towards Semantic Foundation",
+        "Models",
+        "Telemetry",
+        "Time",
+        "Series"
+      ],
+      "noise_penalty": 0,
+      "final_score": 82,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Learning When to Reason for Text-to-SQL via SFT and DPO",
+      "link": "https://arxiv.org/abs/2607.22622",
+      "published": "2026-07-28T04:00:00+00:00",
+      "summary": "arXiv:2607.22622v1 Announce Type: new Abstract: Recent Text-to-SQL methods rely heavily on reasoning-centric paradigms such as Chain-of-Thought (CoT), achieving substantial gains on complex benchmarks at the cost of high inference-time overhead. However, a large fraction of real-world queries are simple lookups or aggregations that can be resolved without multi-step deduction, making forced reasoning wasteful. Thus, we propose AutoThinkSQL, a framework that integrates an auto-thinking mechanism into both Supervised Fine-Tuning (SFT) and Direct Preference Optimization (DPO) on Text-to-SQL. Our approach enables the model to dynamically bypass reasoning for simple queries while invoking deep CoT for complex queries. On Qwen3-Coder-30B-A3B, our method achieves consistent gains compared to the best counterpart baseline on both Spider and BIRD benchmarks while simultaneously reducing average output tokens by 24.6% and 18.3%, and average latency by 17.1% and 11.5% compared to CoT-only generation. Further analysis indicates that the model learns to align its reasoning decisions with query difficulty.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Learning When to Reason for Text-to-SQL via SFT and DPO",
+      "raw_summary": "arXiv:2607.22622v1 Announce Type: new Abstract: Recent Text-to-SQL methods rely heavily on reasoning-centric paradigms such as Chain-of-Thought (CoT), achieving substantial gains on complex benchmarks at the cost of high inference-time overhead. However, a large fraction of real-world queries are simple lookups or aggregations that can be resolved without multi-step deduction, making forced reasoning wasteful. Thus, we propose AutoThinkSQL, a framework that integrates an auto-thinking mechanism into both Supervised Fine-Tuning (SFT) and Direct Preference Optimization (DPO) on Text-to-SQL. Our approach enables the model to dynamically bypass reasoning for simple queries while invoking deep CoT for complex queries. On Qwen3-Coder-30B-A3B, our method achieves consistent gains compared to the best counterpart baseline on both Spider and BIRD benchmarks while simultaneously reducing average output tokens by 24.6% and 18.3%, and average latency by 17.1% and 11.5% compared to CoT-only generation. Further analysis indicates that the model learns to align its reasoning decisions with query difficulty.",
+      "score": 81,
+      "primary": "models",
+      "tags": [
+        "text-to-sql",
+        "razonamiento",
+        "eficiencia",
+        "dpo"
+      ],
+      "heuristic_score": 98,
+      "url": "https://arxiv.org/abs/2607.22622",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 98,
+      "_rid": 2,
+      "llm_score": 78,
+      "why": "AutoThinkSQL permite a los modelos omitir pasos de razonamiento costosos para consultas SQL sencillas, mejorando la latencia sin perder precisión.",
+      "title_es": "Aprender cuándo razonar para Text-to-SQL mediante SFT y DPO",
+      "entities": [
+        "AutoThinkSQL",
+        "SQL",
+        "SFT",
+        "DPO",
+        "Learning When",
+        "Reason",
+        "Text"
+      ],
+      "noise_penalty": 0,
+      "final_score": 81,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Introducing Gemini 3.6 Flash, 3.5 Flash-Lite, and 3.5 Flash Cyber",
+      "link": "https://deepmind.google/blog/introducing-gemini-3-6-flash-3-5-flash-lite-and-3-5-flash-cyber/",
+      "published": "2026-07-21T15:16:30+00:00",
+      "summary": "We’re introducing new Gemini models, including Gemini 3.6 Flash, 3.5 Flash-Lite and 3.5 Flash Cyber.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Introducing Gemini 3.6 Flash, 3.5 Flash-Lite, and 3.5 Flash Cyber",
+      "raw_summary": "We’re introducing new Gemini models, including Gemini 3.6 Flash, 3.5 Flash-Lite and 3.5 Flash Cyber.",
+      "score": 73,
+      "primary": "models",
+      "tags": [
+        "google",
+        "gemini",
+        "ciberseguridad",
+        "inferencia"
+      ],
+      "heuristic_score": 33,
+      "url": "https://deepmind.google/blog/introducing-gemini-3-6-flash-3-5-flash-lite-and-3-5-flash-cyber/",
+      "is_repeat": true,
+      "novelty_score": 80,
+      "adjusted_score": 13,
+      "_rid": 14,
+      "llm_score": 92,
+      "why": "Google actualiza su familia Gemini con enfoques en velocidad (Flash) y aplicaciones críticas de ciberseguridad, manteniendo presión competitiva.",
+      "title_es": "Presentamos Gemini 3.6 Flash, 3.5 Flash-Lite y 3.5 Flash Cyber",
+      "entities": [
+        "DeepMind",
+        "Gemini",
+        "Introducing Gemini",
+        "Flash",
+        "Lite",
+        "Flash Cyber"
+      ],
+      "noise_penalty": 7,
+      "final_score": 73,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(7)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Concept-based Visual Counterfactual Explanations with Diffusion Models",
+      "link": "https://arxiv.org/abs/2607.22544",
+      "published": "2026-07-28T04:00:00+00:00",
+      "summary": "arXiv:2607.22544v1 Announce Type: new Abstract: Visual counterfactual explanations aim to answer \"what minimal change to this would flip the model's prediction?\", and are increasingly important as vision models are deployed in safety-critical domains (e.g., medicine). Existing diffusion-based methods can produce realistic edits, but they rely on external classifiers that must work reliably on noisy s, which makes them fragile and hard to deploy for robust explanations. We introduce C-VCE, a new diffusion framework that builds the classifier directly into the generative model via a concept bottleneck layer, so that counterfactuals are guided by human-interpretable features (concepts) instead of a separate noise robust classifier that works with pixel-level edits. Our model lets users to toggle on/off semantic concepts during sampling, then minimally adjusts relevant regions, while preserving the rest of the , respecting feature correlations. To keep edits small and controlled, we add a simple probabilistic regularizer that balances \"change the prediction\" against \"stay close to the original\", plus a gradient-based mask that confines modifications to the most relevant regions. On benchmarks such as CelebA, C-VCE matches or improves flip rates while producing counterfactuals that are visually closer to the input and less distorted than baselines that depend on separate noisy- classifiers. These properties make C-VCE a practical tool for vision systems where users need concrete \"what-if\" s without having to trust an additional, noise-robust classifier. More broadly, our results suggest that exposing and controlling an internal concept layer is a promising way to make powerful generative models easier to understand and safer to use.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Concept-based Visual Counterfactual Explanations with Diffusion Models",
+      "raw_summary": "arXiv:2607.22544v1 Announce Type: new Abstract: Visual counterfactual explanations aim to answer \"what minimal change to this image would flip the model's prediction?\", and are increasingly important as vision models are deployed in safety-critical domains (e.g., medicine). Existing diffusion-based methods can produce realistic edits, but they rely on external classifiers that must work reliably on noisy images, which makes them fragile and hard to deploy for robust explanations. We introduce C-VCE, a new diffusion framework that builds the classifier directly into the generative model via a concept bottleneck layer, so that counterfactuals are guided by human-interpretable features (concepts) instead of a separate noise robust classifier that works with pixel-level edits. Our model lets users to toggle on/off semantic concepts during sampling, then minimally adjusts relevant image regions, while preserving the rest of the image, respecting feature correlations. To keep edits small and controlled, we add a simple probabilistic regularizer that balances \"change the prediction\" against \"stay close to the original\", plus a gradient-based mask that confines modifications to the most relevant regions. On benchmarks such as CelebA, C-VCE matches or improves flip rates while producing counterfactuals that are visually closer to the input and less distorted than baselines that depend on separate noisy-image classifiers. These properties make C-VCE a practical tool for vision systems where users need concrete \"what-if\" images without having to trust an additional, noise-robust classifier. More broadly, our results suggest that exposing and controlling an internal concept layer is a promising way to make powerful generative models easier to understand and safer to use.",
+      "score": 69,
+      "primary": "models",
+      "tags": [
+        "explicabilidad",
+        "vision",
+        "difusion",
+        "seguridad"
+      ],
+      "heuristic_score": 53,
+      "url": "https://arxiv.org/abs/2607.22544",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 53,
+      "_rid": 7,
+      "llm_score": 72,
+      "why": "C-VCE integra explicaciones contrafactuales basadas en conceptos interpretables dentro del modelo de difusión, mejorando la robustez en dominios críticos.",
+      "title_es": "Explicaciones visuales contrafactuales basadas en conceptos con modelos de difusión",
+      "entities": [
+        "C-VCE",
+        "Concept",
+        "Visual Counterfactual Explanations",
+        "Diffusion Models"
+      ],
+      "noise_penalty": 0,
+      "final_score": 69,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "How early symmetry validation eliminates costly late-stage respins",
+      "link": "https://semiwiki.com/eda/siemens-eda/371569-how-early-symmetry-validation-eliminates-costly-late-stage-respins/",
+      "published": "2026-07-27T21:00:07+00:00",
+      "summary": "By Mauli Shah, Product Engineer, Siemens Analog and mixed-signal design teams face a persistent challenge that directly impacts tape-out schedules and project predictability: symmetry violations discovered at signoff trigger expensive respins, delay schedules and create unpredictable iteration cycles. Despite symmetry&8230; Read More The post How early symmetry validation eliminates costly late-stage respins appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "How early symmetry validation eliminates costly late-stage respins",
+      "raw_summary": "By Mauli Shah, Product Engineer, Siemens Analog and mixed-signal design teams face a persistent challenge that directly impacts tape-out schedules and project predictability: symmetry violations discovered at signoff trigger expensive respins, delay schedules and create unpredictable iteration cycles. Despite symmetry&#8230; Read More The post How early symmetry validation eliminates costly late-stage respins appeared first on SemiWiki .",
+      "score": 68,
+      "primary": "infra",
+      "tags": [
+        "eda",
+        "chips",
+        "manufactura",
+        "siemens"
+      ],
+      "heuristic_score": 31,
+      "url": "https://semiwiki.com/eda/siemens-eda/371569-how-early-symmetry-validation-eliminates-costly-late-stage-respins/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 31,
+      "_rid": 10,
+      "llm_score": 75,
+      "why": "La validación temprana de simetría en el diseño de chips analógicos evita costosos retrasos y repeticiones de fabricación al final del ciclo de diseño.",
+      "title_es": "Cómo la validación temprana de la simetría elimina los costosos rediseños en las fases finales",
+      "entities": [
+        "Siemens",
+        "Mauli Shah",
+        "How"
+      ],
+      "noise_penalty": 0,
+      "final_score": 68,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Between Suppression and Collapse: Evaluating Narrative Unlearning with LENS",
+      "link": "https://arxiv.org/abs/2607.22657",
+      "published": "2026-07-28T04:00:00+00:00",
+      "summary": "arXiv:2607.22657v1 Announce Type: new Abstract: Large language models (LLMs) can reproduce disinformation-aligned narrative frames as plausible explanations, raising the question of whether existing machine-unlearning algorithms can suppress this behavior. We introduce Level-based Evaluation of Narrative Suppression (LENS), a contextualization based evaluation protocol for testing target narrative reproduction across direct, attributed, contrastive, and abstract resistance levels. We evaluate two source-grounded narratives: one framing Russia's war against Ukraine as forced by NATO expansion, and one framing the United States as exploiting or abandoning Taiwan. The experiments cover four near-12B multilingual instruction models: Lapa LLM, Gemma-12B, Qwen-14B, and TAIDE-Gemma. We introduce the Suppression-Collapse Efficiency (SCE) score as a checkpoint selection summary that rewards target-narrative suppression while penalizing degraded outputs. Our results shows that selected checkpoints can reduce narrative reproduction and suppression may transfer beyond direct forget prompts. We also report entity recovery as a separate side effect: abstract A/B/C prompts can cause models to recover the real-world actors associated with the target frame after unlearning. These findings demonstrate that LENS is a successful diagnostic protocol for both reporting and guiding the further study of the deeper structure of narrative unlearning.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Between Suppression and Collapse: Evaluating Narrative Unlearning with LENS",
+      "raw_summary": "arXiv:2607.22657v1 Announce Type: new Abstract: Large language models (LLMs) can reproduce disinformation-aligned narrative frames as plausible explanations, raising the question of whether existing machine-unlearning algorithms can suppress this behavior. We introduce Level-based Evaluation of Narrative Suppression (LENS), a contextualization based evaluation protocol for testing target narrative reproduction across direct, attributed, contrastive, and abstract resistance levels. We evaluate two source-grounded narratives: one framing Russia's war against Ukraine as forced by NATO expansion, and one framing the United States as exploiting or abandoning Taiwan. The experiments cover four near-12B multilingual instruction models: Lapa LLM, Gemma-12B, Qwen-14B, and TAIDE-Gemma. We introduce the Suppression-Collapse Efficiency (SCE) score as a checkpoint selection summary that rewards target-narrative suppression while penalizing degraded outputs. Our results shows that selected checkpoints can reduce narrative reproduction and suppression may transfer beyond direct forget prompts. We also report entity recovery as a separate side effect: abstract A/B/C prompts can cause models to recover the real-world actors associated with the target frame after unlearning. These findings demonstrate that LENS is a successful diagnostic protocol for both reporting and guiding the further study of the deeper structure of narrative unlearning.",
+      "score": 66,
+      "primary": "models",
+      "tags": [
+        "unlearning",
+        "desinformacion",
+        "benchmarking",
+        "etica"
+      ],
+      "heuristic_score": 73,
+      "url": "https://arxiv.org/abs/2607.22657",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 73,
+      "_rid": 4,
+      "llm_score": 65,
+      "why": "El protocolo LENS revela las dificultades de los algoritmos de desaprendizaje para eliminar por completo marcos narrativos de desinformación en LLMs.",
+      "title_es": "Entre la supresión y el colapso: Evaluación del desaprendizaje narrativo con LENS",
+      "entities": [
+        "LENS",
+        "Between Suppression",
+        "Collapse",
+        "Evaluating Narrative Unlearning"
+      ],
+      "noise_penalty": 0,
+      "final_score": 66,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Rethinking Formal Verification in the AI Era",
+      "link": "https://semiwiki.com/eda/chipagents-ai/371335-rethinking-formal-verification-in-the-ai-era/",
+      "published": "2026-07-27T17:00:11+00:00",
+      "summary": "By Kanav Arora, ML Researcher at ChipAgents Most hardware teams already understand why formal verification matters. It can expose corner cases that simulation may never reach and establish critical behaviors across the modeled state space. The unresolved question is not whether formal works. It is why formal remains a specialist&8230; Read More The post Rethinking Formal Verification in the AI Era appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "Rethinking Formal Verification in the AI Era",
+      "raw_summary": "By Kanav Arora, ML Researcher at ChipAgents Most hardware teams already understand why formal verification matters. It can expose corner cases that simulation may never reach and establish critical behaviors across the modeled state space. The unresolved question is not whether formal works. It is why formal remains a specialist&#8230; Read More The post Rethinking Formal Verification in the AI Era appeared first on SemiWiki .",
+      "score": 64,
+      "primary": "infra",
+      "tags": [
+        "verificacion-formal",
+        "hardware",
+        "eda",
+        "automatizacion"
+      ],
+      "heuristic_score": 28,
+      "url": "https://semiwiki.com/eda/chipagents-ai/371335-rethinking-formal-verification-in-the-ai-era/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 28,
+      "_rid": 12,
+      "llm_score": 70,
+      "why": "La aplicación de IA a la verificación formal promete democratizar una técnica esencial pero difícil de escalar en el diseño de hardware moderno.",
+      "title_es": "Repensar la verificación formal en la era de la IA",
+      "entities": [
+        "ChipAgents",
+        "Kanav Arora",
+        "Rethinking Formal Verification",
+        "Era"
+      ],
+      "noise_penalty": 0,
+      "final_score": 64,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "CEO Interview with Ann Wu and Akash Levy of Silimate",
+      "link": "https://semiwiki.com/eda/371696-ceo-interview-with-ann-wu-and-akash-levy-of-silimate/",
+      "published": "2026-07-27T15:00:13+00:00",
+      "summary": "Ann Wu is Co-founder &38; CEO of Silimate. Before Silimate, Ann designed several generations of custom silicon at Apple, helped manage inference ASIC programs at Meta, and led product strategy and execution at Celestial AI. Ann has a M.S. in Electrical Engineering from Stanford University and a B.S. in Electrical Engineering&8230; Read More The post CEO Interview with Ann Wu and Akash Levy of Silimate appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "CEO Interview with Ann Wu and Akash Levy of Silimate",
+      "raw_summary": "Ann Wu is Co-founder &#38; CEO of Silimate. Before Silimate, Ann designed several generations of custom silicon at Apple, helped manage inference ASIC programs at Meta, and led product strategy and execution at Celestial AI. Ann has a M.S. in Electrical Engineering from Stanford University and a B.S. in Electrical Engineering&#8230; Read More The post CEO Interview with Ann Wu and Akash Levy of Silimate appeared first on SemiWiki .",
+      "score": 62,
+      "primary": "invest",
+      "tags": [
+        "silicio",
+        "startups",
+        "asics",
+        "hardware"
+      ],
+      "heuristic_score": 31,
+      "url": "https://semiwiki.com/eda/371696-ceo-interview-with-ann-wu-and-akash-levy-of-silimate/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 31,
+      "_rid": 11,
+      "llm_score": 68,
+      "why": "La trayectoria de los fundadores de Silimate en Apple y Meta subraya la tendencia de crear hardware especializado para inferencia eficiente.",
+      "title_es": "Entrevista a los CEO Ann Wu y Akash Levy de Silimate",
+      "entities": [
+        "Silimate",
+        "Ann Wu",
+        "Akash Levy"
+      ],
+      "noise_penalty": 0,
+      "final_score": 62,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Start building with Nano Banana 2 Lite and Gemini Omni Flash",
+      "link": "https://deepmind.google/blog/start-building-with-nano-banana-2-lite-and-gemini-omni-flash/",
+      "published": "2026-06-30T16:02:40+00:00",
+      "summary": "",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Start building with Nano Banana 2 Lite and Gemini Omni Flash",
+      "raw_summary": "",
+      "score": 62,
+      "primary": "models",
+      "tags": [
+        "edge-ai",
+        "nano-modelos",
+        "multimodal",
+        "google"
+      ],
+      "heuristic_score": 13,
+      "url": "https://deepmind.google/blog/start-building-with-nano-banana-2-lite-and-gemini-omni-flash/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 13,
+      "_rid": 15,
+      "llm_score": 90,
+      "why": "El lanzamiento de modelos ultra-pequeños como Nano Banana 2 Lite apunta a la ejecución eficiente de IA multimodal directamente en dispositivos.",
+      "title_es": "Comience a construir con Nano Banana 2 Lite y Gemini Omni Flash",
+      "entities": [
+        "DeepMind",
+        "Gemini",
+        "Nano Banana",
+        "Start",
+        "Lite",
+        "Gemini Omni Flash"
+      ],
+      "noise_penalty": 16,
+      "final_score": 62,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(16)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "MioFFAn: an Annotation Software for Formula Formalization with LLM Automation Capabilities",
+      "link": "https://arxiv.org/abs/2607.22552",
+      "published": "2026-07-28T04:00:00+00:00",
+      "summary": "arXiv:2607.22552v1 Announce Type: new Abstract: The automatic translation of mathematical expressions in scientific literature into executable symbolic code (a process we refer to as Formula Formalization) is hindered by a severe scarcity of high-quality, ground-truth datasets specialized for technical scientific domains. In this paper, we present MioFFAn, an open-source, document-centric, and customizable framework designed to facilitate rapid annotation for this task. Building upon the MioGatto architecture, we extend existing features to overcome structural limitations and pivot its scope by introducing specific functionalities for Formula Formalization, such as selection of equations of interest and aided symbolic code specification. By allowing users to configure custom taxonomies and properties for identified symbols, and compatible symbolic operators, we ensure the framework is adaptable to diverse specialized scientific fields. Furthermore, MioFFAn is designed to incorporate partial automation via Large Language Models. By defining a modular set of automated sub-tasks with strict output formats, we enable researchers to iteratively refine automation capabilities and evaluate competing strategies using standard NLP metrics. We specify the current automation methodology and perform a preliminary evaluation that demonstrates to efficacy of this human-in-the-loop approach.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "MioFFAn: an Annotation Software for Formula Formalization with LLM Automation Capabilities",
+      "raw_summary": "arXiv:2607.22552v1 Announce Type: new Abstract: The automatic translation of mathematical expressions in scientific literature into executable symbolic code (a process we refer to as Formula Formalization) is hindered by a severe scarcity of high-quality, ground-truth datasets specialized for technical scientific domains. In this paper, we present MioFFAn, an open-source, document-centric, and customizable framework designed to facilitate rapid annotation for this task. Building upon the MioGatto architecture, we extend existing features to overcome structural limitations and pivot its scope by introducing specific functionalities for Formula Formalization, such as selection of equations of interest and aided symbolic code specification. By allowing users to configure custom taxonomies and properties for identified symbols, and compatible symbolic operators, we ensure the framework is adaptable to diverse specialized scientific fields. Furthermore, MioFFAn is designed to incorporate partial automation via Large Language Models. By defining a modular set of automated sub-tasks with strict output formats, we enable researchers to iteratively refine automation capabilities and evaluate competing strategies using standard NLP metrics. We specify the current automation methodology and perform a preliminary evaluation that demonstrates to efficacy of this human-in-the-loop approach.",
+      "score": 47,
+      "primary": "misc",
+      "tags": [
+        "datasets",
+        "matematicas",
+        "anotacion",
+        "software"
+      ],
+      "heuristic_score": 56,
+      "url": "https://arxiv.org/abs/2607.22552",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 56,
+      "_rid": 5,
+      "llm_score": 45,
+      "why": "MioFFAn facilita la creación de datasets de alta calidad para la traducción de fórmulas matemáticas en código simbólico ejecutable.",
+      "title_es": "MioFFAn: Un software de anotación para la formalización de fórmulas con capacidades de automatización mediante LLM",
+      "entities": [
+        "MioFFAn",
+        "Annotation Software",
+        "Formula Formalization",
+        "Automation Capabilities"
+      ],
+      "noise_penalty": 0,
+      "final_score": 47,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Explaining GAND: A Resource on Gender-Ambiguous Natural Data & Contrastive Attribution",
+      "link": "https://arxiv.org/abs/2607.22546",
+      "published": "2026-07-28T04:00:00+00:00",
+      "summary": "arXiv:2607.22546v1 Announce Type: new Abstract: Machine translation (MT) systems continue to produce gender-biased translations. In a time where self-expression is paramount, mistranslations based on default behaviour and stereotyping can lead to harm for users of these systems. To better understand how these systems translate gender in the absence of clear gender cues, we need benchmarking resources that reflect gender-ambiguous scenarios in a natural way. To this end, we present GAND, a gender-ambiguous natural data benchmarking resource for MT consisting of English source sentences, specifically designed to analyse the influence of contextual cues on gender in translation. We leverage GAND to conduct an interpretability analysis: we translate a subset of GAND into two grammatical gender languages and extend these with manually crafted contrastive translations. A following feature attribution analysis reveals source words in context that inform the gender translation of an ambiguous referent entity in the target translation.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Explaining GAND: A Resource on Gender-Ambiguous Natural Data & Contrastive Attribution",
+      "raw_summary": "arXiv:2607.22546v1 Announce Type: new Abstract: Machine translation (MT) systems continue to produce gender-biased translations. In a time where self-expression is paramount, mistranslations based on default behaviour and stereotyping can lead to harm for users of these systems. To better understand how these systems translate gender in the absence of clear gender cues, we need benchmarking resources that reflect gender-ambiguous scenarios in a natural way. To this end, we present GAND, a gender-ambiguous natural data benchmarking resource for MT consisting of English source sentences, specifically designed to analyse the influence of contextual cues on gender in translation. We leverage GAND to conduct an interpretability analysis: we translate a subset of GAND into two grammatical gender languages and extend these with manually crafted contrastive translations. A following feature attribution analysis reveals source words in context that inform the gender translation of an ambiguous referent entity in the target translation.",
+      "score": 39,
+      "primary": "models",
+      "tags": [
+        "sesgo-de-genero",
+        "traduccion",
+        "benchmarking",
+        "etica"
+      ],
+      "heuristic_score": 23,
+      "url": "https://arxiv.org/abs/2607.22546",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 23,
+      "_rid": 13,
+      "llm_score": 42,
+      "why": "GAND proporciona un recurso necesario para analizar y corregir los sesgos de género en sistemas de traducción automática en contextos ambiguos.",
+      "title_es": "Explicando GAND: Un recurso sobre datos naturales de género ambiguo y atribución contrastiva",
+      "entities": [
+        "GAND",
+        "Explaining",
+        "Resource",
+        "Gender",
+        "Ambiguous Natural Data",
+        "Contrastive Attribution"
+      ],
+      "noise_penalty": 0,
+      "final_score": 39,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Evaluating the Impact of Reviewer Guideline Design on LLM-Based Automated Peer Review",
+      "link": "https://arxiv.org/abs/2607.22553",
+      "published": "2026-07-28T04:00:00+00:00",
+      "summary": "arXiv:2607.22553v1 Announce Type: new Abstract: Peer review is an essential process in scientific research, yet the growing workload has made its automation increasingly necessary. In this study, we analyze how different types of reviewer guidelines, such as official conference guidelines and reviewer-imitating ones generated from high-quality human reviews using LLMs, affect automated peer review. Our experiments show that official conference guidelines produce review results most consistent with human judgments, suggesting that evaluation criteria refined through conference practice serve as effective guidance for automated reviewing as well. In contrast, reviewer-imitating guidelines were generally less effective than official conference guidelines. Furthermore, enforcing strict rubric-style scoring consistently degraded performance, highlighting the importance of allowing subjective and holistic scoring.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Evaluating the Impact of Reviewer Guideline Design on LLM-Based Automated Peer Review",
+      "raw_summary": "arXiv:2607.22553v1 Announce Type: new Abstract: Peer review is an essential process in scientific research, yet the growing workload has made its automation increasingly necessary. In this study, we analyze how different types of reviewer guidelines, such as official conference guidelines and reviewer-imitating ones generated from high-quality human reviews using LLMs, affect automated peer review. Our experiments show that official conference guidelines produce review results most consistent with human judgments, suggesting that evaluation criteria refined through conference practice serve as effective guidance for automated reviewing as well. In contrast, reviewer-imitating guidelines were generally less effective than official conference guidelines. Furthermore, enforcing strict rubric-style scoring consistently degraded performance, highlighting the importance of allowing subjective and holistic scoring.",
+      "score": 36,
+      "primary": "misc",
+      "tags": [
+        "peer-review",
+        "evaluacion",
+        "academia",
+        "llm"
+      ],
+      "heuristic_score": 56,
+      "url": "https://arxiv.org/abs/2607.22553",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 56,
+      "_rid": 6,
+      "llm_score": 40,
+      "why": "El estudio demuestra que las guías oficiales de conferencias son más efectivas que las imitadas para automatizar revisiones científicas con LLM.",
+      "title_es": "Evaluación del impacto del diseño de las directrices para revisores en la revisión por pares automatizada basada en LLM",
+      "entities": [
+        "Evaluating",
+        "Impact",
+        "Reviewer Guideline Design",
+        "Based Automated Peer",
+        "Review"
+      ],
+      "noise_penalty": 6,
+      "final_score": 36,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(6)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "PatiGonit22K: A Comprehensive Dataset for Solving Complex Bengali MWPs",
+      "link": "https://arxiv.org/abs/2607.22859",
+      "published": "2026-07-28T04:00:00+00:00",
+      "summary": "arXiv:2607.22859v1 Announce Type: new Abstract: Mathematical Word Problems (MWPs) are an important benchmark for evaluating natural language understanding and quantitative reasoning. Despite recent progress in high resource languages, Bengali remains underexplored due to the limited availability of large scale annotated datasets. In this work, we introduce PatiGonit22K, an expanded Bengali MWP dataset containing 22,441 problems, developed by extending the original PatiGonit dataset with a substantially larger collection of complex mathematical problems. The dataset includes both simple and multi operation equations, providing a balanced benchmark for evaluating mathematical reasoning across different difficulty levels. Each problem is carefully translated, annotated, culturally adapted, and verified to ensure linguistic consistency and mathematical correctness. By increasing both the scale and complexity of Bengali MWPs, PatiGonit22K provides a more comprehensive resource for future research on mathematical reasoning and educational NLP applications in low resource languages.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "PatiGonit22K: A Comprehensive Dataset for Solving Complex Bengali MWPs",
+      "raw_summary": "arXiv:2607.22859v1 Announce Type: new Abstract: Mathematical Word Problems (MWPs) are an important benchmark for evaluating natural language understanding and quantitative reasoning. Despite recent progress in high resource languages, Bengali remains underexplored due to the limited availability of large scale annotated datasets. In this work, we introduce PatiGonit22K, an expanded Bengali MWP dataset containing 22,441 problems, developed by extending the original PatiGonit dataset with a substantially larger collection of complex mathematical problems. The dataset includes both simple and multi operation equations, providing a balanced benchmark for evaluating mathematical reasoning across different difficulty levels. Each problem is carefully translated, annotated, culturally adapted, and verified to ensure linguistic consistency and mathematical correctness. By increasing both the scale and complexity of Bengali MWPs, PatiGonit22K provides a more comprehensive resource for future research on mathematical reasoning and educational NLP applications in low resource languages.",
+      "score": 35,
+      "primary": "models",
+      "tags": [
+        "bengali",
+        "razonamiento-matematico",
+        "datasets",
+        "idiomas"
+      ],
+      "heuristic_score": 38,
+      "url": "https://arxiv.org/abs/2607.22859",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 38,
+      "_rid": 9,
+      "llm_score": 35,
+      "why": "PatiGonit22K expande significativamente los recursos para evaluar el razonamiento cuantitativo en bengalí, un idioma con pocos recursos en IA.",
+      "title_es": "PatiGonit22K: Un conjunto de datos exhaustivo para resolver problemas matemáticos complejos en bengalí",
+      "entities": [
+        "PatiGonit22K",
+        "Comprehensive Dataset",
+        "Solving Complex Bengali"
+      ],
+      "noise_penalty": 0,
+      "final_score": 35,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    }
+  ]
+}
