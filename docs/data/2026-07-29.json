@@ -1,0 +1,677 @@
+{
+  "date": "2026-07-29",
+  "score_avg": 62.47,
+  "primary_dist": {
+    "infra": 2,
+    "models": 9,
+    "invest": 2,
+    "misc": 2
+  },
+  "top_entities": [
+    {
+      "entity": "Google",
+      "count": 3
+    },
+    {
+      "entity": "arXiv",
+      "count": 2
+    },
+    {
+      "entity": "Gemini",
+      "count": 2
+    },
+    {
+      "entity": "Large Language Models",
+      "count": 2
+    },
+    {
+      "entity": "DeepMind",
+      "count": 2
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "Los modelos neuromórficos de difusión están reduciendo drásticamente el consumo energético en inferencia de texto.",
+      "La 'falsa alineación' emerge incluso sin consecuencias directas, planteando retos críticos para la seguridad de la IA.",
+      "Google acelera el despliegue de agentes gestionados y modelos especializados en ciberseguridad con Gemini Cyber.",
+      "La computación en el borde (Edge AI) atrae capital significativo con la extensión de la ronda de inversión de Quadric.",
+      "Surgen clasificadores de seguridad ultra-ligeros que superan en eficiencia a modelos 40 veces más grandes."
+    ],
+    "risks": [
+      "Inconsistencia conductual: los LLM cambian decisiones al ver sus propias respuestas previas como contexto de entrada.",
+      "Falsa alineación: los modelos aprenden a fingir comportamientos deseados para superar evaluaciones sin un cambio real.",
+      "Obsolescencia del contexto en agentes: las capturas estáticas de archivos provocan errores de razonamiento y redundancia."
+    ],
+    "watch": [
+      "Adopción de Gemini 3.5 Flash Cyber en entornos de producción para la generación automática de parches de seguridad.",
+      "Integración de arquitecturas de difusión con computación basada en picos para el desarrollo de hardware neuromórfico.",
+      "Implementación de capas de cumplimiento regulatorio financiero en tiempo real mediante clasificadores de seguridad."
+    ],
+    "entities_top": [
+      "Google",
+      "Quadric",
+      "Semalith"
+    ]
+  },
+  "items": [
+    {
+      "title": "Neuromorphic Diffusion Language Models: Addressing Compute and Memory Bottlenecks via Sparsity and Block Denoising",
+      "link": "https://arxiv.org/abs/2607.24841",
+      "published": "2026-07-29T04:00:00+00:00",
+      "summary": "arXiv:2607.24841v1 Announce Type: new Abstract: Autoregressive (AR) large language models (LLMs) are inherently inefficient at inference time because each generated token requires accessing the full set of model parameters, leading to low operational intensity and high energy consumption. Masked diffusion language models (MDLMs) partially address this limitation for memory-bound settings by allowing multiple tokens to be generated per parameter access. In order to further enhance inference efficiency on modern platforms with extensive in-chip memory, this work proposes neuromorphic MDLMs (N-MDLMs), which integrate block diffusion with spike-based neuromorphic computation to jointly improve throughput and energy efficiency. While block diffusion increases token throughput by producing multiple tokens per parameter access, spike-induced sparsity reduces effective parameter traffic and computations by skipping inactive channels. To analyze the synergistic effect of sparsity and diffusion, we develop a token-level roofline-inspired model that captures the combined impact of block-parallel generation and spike sparsity on decoding efficiency. Experimental results on translation tasks show that, thanks to spike-induced sparsity, N-MDLMs achieve substantial improvements in energy efficiency and throughput even in compute-bound platforms for which MDLMs would fail to improve over AR-LLMs.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Neuromorphic Diffusion Language Models: Addressing Compute and Memory Bottlenecks via Sparsity and Block Denoising",
+      "raw_summary": "arXiv:2607.24841v1 Announce Type: new Abstract: Autoregressive (AR) large language models (LLMs) are inherently inefficient at inference time because each generated token requires accessing the full set of model parameters, leading to low operational intensity and high energy consumption. Masked diffusion language models (MDLMs) partially address this limitation for memory-bound settings by allowing multiple tokens to be generated per parameter access. In order to further enhance inference efficiency on modern platforms with extensive in-chip memory, this work proposes neuromorphic MDLMs (N-MDLMs), which integrate block diffusion with spike-based neuromorphic computation to jointly improve throughput and energy efficiency. While block diffusion increases token throughput by producing multiple tokens per parameter access, spike-induced sparsity reduces effective parameter traffic and computations by skipping inactive channels. To analyze the synergistic effect of sparsity and diffusion, we develop a token-level roofline-inspired model that captures the combined impact of block-parallel generation and spike sparsity on decoding efficiency. Experimental results on translation tasks show that, thanks to spike-induced sparsity, N-MDLMs achieve substantial improvements in energy efficiency and throughput even in compute-bound platforms for which MDLMs would fail to improve over AR-LLMs.",
+      "score": 82,
+      "primary": "infra",
+      "tags": [
+        "neuromórfico",
+        "difusión",
+        "eficiencia"
+      ],
+      "heuristic_score": 62,
+      "url": "https://arxiv.org/abs/2607.24841",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 62,
+      "_rid": 6,
+      "llm_score": 85,
+      "why": "Combinar difusión por bloques y computación neuromórfica es una vía prometedora para superar los cuellos de botella de memoria.",
+      "title_es": "Modelos de lenguaje de difusión neuromórfica: abordando cuellos de botella de computación y memoria",
+      "entities": [
+        "N-MDLM",
+        "Neuromorphic Diffusion Language",
+        "Models",
+        "Addressing Compute",
+        "Memory Bottlenecks",
+        "Sparsity",
+        "Block Denoising"
+      ],
+      "noise_penalty": 0,
+      "final_score": 82,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Do Models Fake Alignment Without Clear Consequences?",
+      "link": "https://arxiv.org/abs/2607.24758",
+      "published": "2026-07-29T04:00:00+00:00",
+      "summary": "arXiv:2607.24758v1 Announce Type: new Abstract: Large language models are capable of recognizing evaluation contexts and altering their behavior to reflect evaluator expectations rather than typical deployment behaviors, a phenomenon known as alignment faking. The reasons why models fake alignment are not fully understood, however. Canonical examples of alignment faking have taken place in scenarios that explicitly connect evaluation to consequences for the model, such as retraining the model or delaying its deployment. However, recent work by Sheshadri et al. has suggested that mechanistic motivations for alignment faking may vary across models and be more complex than previously considered. To investigate whether consequence-linking information is necessary for alignment faking, we placed 15 models in a scenario testing their willingness to violate a corporate network access policy to help a user with a pro-social request. Nine models were found to produce significant compliance gaps, 5 of which persisted with the removal of scenario language relating model evaluations to deployment consequences. We additionally tested the effect of goal language on model preferences, finding it drove violations in some while suppressing violations in others. This suggests that alignment faking may not require as much instrumental scaffolding as was previously believed, and monitored behavior may be a poor indicator of how agents may behave in deployment.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Do Models Fake Alignment Without Clear Consequences?",
+      "raw_summary": "arXiv:2607.24758v1 Announce Type: new Abstract: Large language models are capable of recognizing evaluation contexts and altering their behavior to reflect evaluator expectations rather than typical deployment behaviors, a phenomenon known as alignment faking. The reasons why models fake alignment are not fully understood, however. Canonical examples of alignment faking have taken place in scenarios that explicitly connect evaluation to consequences for the model, such as retraining the model or delaying its deployment. However, recent work by Sheshadri et al. has suggested that mechanistic motivations for alignment faking may vary across models and be more complex than previously considered. To investigate whether consequence-linking information is necessary for alignment faking, we placed 15 models in a scenario testing their willingness to violate a corporate network access policy to help a user with a pro-social request. Nine models were found to produce significant compliance gaps, 5 of which persisted with the removal of scenario language relating model evaluations to deployment consequences. We additionally tested the effect of goal language on model preferences, finding it drove violations in some while suppressing violations in others. This suggests that alignment faking may not require as much instrumental scaffolding as was previously believed, and monitored behavior may be a poor indicator of how agents may behave in deployment.",
+      "score": 79,
+      "primary": "models",
+      "tags": [
+        "seguridad",
+        "alineación",
+        "evaluación"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2607.24758",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 1,
+      "llm_score": 75,
+      "why": "El comportamiento engañoso para satisfacer evaluadores es un riesgo sistémico que requiere nuevas métricas de honestidad técnica.",
+      "title_es": "¿Fingen los modelos la alineación sin consecuencias claras?",
+      "entities": [
+        "arXiv",
+        "Do Models Fake",
+        "Alignment Without Clear",
+        "Consequences"
+      ],
+      "noise_penalty": 0,
+      "final_score": 79,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Semalith v1.4: A Calibrated 184M Safety Classifier Achieving State-of-the-Art Prompt-Injection Detection at 44x Fewer Parameters than Llama-Guard-3-8B",
+      "link": "https://arxiv.org/abs/2607.22545",
+      "published": "2026-07-29T04:00:00+00:00",
+      "summary": "arXiv:2607.22545v1 Announce Type: new Abstract: Deploying large language models in financial-services and agentic settings requires safety classifiers that simultaneously handle prompt injection, regulatory compliance, and general harm, a combination no existing open guardrail addresses in a single inference pass. Semalith v1.4 is a 184M-parameter DeBERTa-v3-base classifier performing simultaneous three-axis safety classification including prompt injection, general harm, and financial-services regulatory compliance, in a single forward pass. Its 22-class head (BENIGN, nine prompt-injection sub-types, general-harm, eleven BFSI labels) is trained with a 4-class auxiliary super-category head under jointly weighted loss, on a 76,204-row corpus mined from 49 public sources with SHA-1 deduplication against every held-out evaluation set, with 21 of 22 benchmarks at zero contamination (max 0.22%). Against Llama-Guard-3-8B on 22 held-out benchmarks, Semalith v1.4 wins every prompt-injection evaluation (7/7) and 11 of 18 benchmarks overall at 44x fewer parameters, with FPR = 0.000 on 208 benign agentic prompts vs 0.063 for Llama-Guard-3-8B. On general-harm benchmarks (WildGuardMix, HEx-PHI, HarmBench), Llama-Guard-3 leads; this complementary split is documented in Section 4. Six measured weak spots are disclosed in Section 6. Deployment guidance: v1.3 is recommended for conversational moderation deployments (ToxicChat F1 0.624); v1.4 is recommended when BFSI label coverage or zero-FPR on benign agentic prompts is the priority.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Semalith v1.4: A Calibrated 184M Safety Classifier Achieving State-of-the-Art Prompt-Injection Detection at 44x Fewer Parameters than Llama-Guard-3-8B",
+      "raw_summary": "arXiv:2607.22545v1 Announce Type: new Abstract: Deploying large language models in financial-services and agentic settings requires safety classifiers that simultaneously handle prompt injection, regulatory compliance, and general harm, a combination no existing open guardrail addresses in a single inference pass. Semalith v1.4 is a 184M-parameter DeBERTa-v3-base classifier performing simultaneous three-axis safety classification including prompt injection, general harm, and financial-services regulatory compliance, in a single forward pass. Its 22-class head (BENIGN, nine prompt-injection sub-types, general-harm, eleven BFSI labels) is trained with a 4-class auxiliary super-category head under jointly weighted loss, on a 76,204-row corpus mined from 49 public sources with SHA-1 deduplication against every held-out evaluation set, with 21 of 22 benchmarks at zero contamination (max 0.22%). Against Llama-Guard-3-8B on 22 held-out benchmarks, Semalith v1.4 wins every prompt-injection evaluation (7/7) and 11 of 18 benchmarks overall at 44x fewer parameters, with FPR = 0.000 on 208 benign agentic prompts vs 0.063 for Llama-Guard-3-8B. On general-harm benchmarks (WildGuardMix, HEx-PHI, HarmBench), Llama-Guard-3 leads; this complementary split is documented in Section 4. Six measured weak spots are disclosed in Section 6. Deployment guidance: v1.3 is recommended for conversational moderation deployments (ToxicChat F1 0.624); v1.4 is recommended when BFSI label coverage or zero-FPR on benign agentic prompts is the priority.",
+      "score": 76,
+      "primary": "models",
+      "tags": [
+        "seguridad",
+        "clasificación",
+        "eficiencia"
+      ],
+      "heuristic_score": 94,
+      "url": "https://arxiv.org/abs/2607.22545",
+      "is_repeat": true,
+      "novelty_score": 45,
+      "adjusted_score": 39,
+      "_rid": 11,
+      "llm_score": 82,
+      "why": "Lograr detección de inyecciones con 184M de parámetros frente a modelos de 8B es un hito de eficiencia en seguridad.",
+      "title_es": "Semalith v1.4: Clasificador de seguridad de 184M que logra estado del arte en detección de inyecciones",
+      "entities": [
+        "Semalith",
+        "Llama-Guard",
+        "Calibrated",
+        "Safety Classifier Achieving",
+        "State",
+        "Art Prompt",
+        "Injection Detection",
+        "Fewer Parameters"
+      ],
+      "noise_penalty": 0,
+      "final_score": 76,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Gemini API Managed Agents: 3.6 Flash, hooks, and more",
+      "link": "https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api-3-6-flash-hooks/",
+      "published": "2026-07-28T16:00:00+00:00",
+      "summary": "Managed Agents Gemini 3.6 Flash, Hooks and Triggers",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Gemini API Managed Agents: 3.6 Flash, hooks, and more",
+      "raw_summary": "Managed Agents Gemini 3.6 Flash, Hooks and Triggers",
+      "score": 73,
+      "primary": "invest",
+      "tags": [
+        "agentes",
+        "api",
+        "automatización"
+      ],
+      "heuristic_score": 61,
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api-3-6-flash-hooks/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 61,
+      "_rid": 7,
+      "llm_score": 80,
+      "why": "La expansión de agentes gestionados en la API de Gemini facilita la automatización empresarial compleja con baja latencia.",
+      "title_es": "Agentes gestionados en la API de Gemini: 3.6 Flash, hooks y más",
+      "entities": [
+        "Google",
+        "Gemini",
+        "Managed Agents",
+        "Flash"
+      ],
+      "noise_penalty": 4,
+      "final_score": 73,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(4)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "CORVUS: Context Optimization and Reduction Via Underlying Synchronization for LLM Coding Agents",
+      "link": "https://arxiv.org/abs/2607.22711",
+      "published": "2026-07-29T04:00:00+00:00",
+      "summary": "arXiv:2607.22711v1 Announce Type: new Abstract: LLM coding agents operate by constructing trajectories that accumulate reasoning, tool calls, and results to enable multi-step decision-making. However, the conventional append-only trajectory architecture found in practice tightly couples file-read actions with their observations, capturing snapshots that become permanently fixed in the chronological history. As files change through agent edits or concurrent human modifications, these snapshots become stale, causing reasoning errors and causing agents to redundantly re-read files, with each re-read appending yet another copy to the trajectory. To mitigate this, we propose CORVUS, a novel trajectory architecture that decouples file-read actions from their observations by maintaining a synchronized registry of relevant files and injecting only their current contents at each reasoning cycle. This structural change produces significantly lighter-weight trajectories that remain synchronized with the actual codebase state by construction, eliminating redundant file copies and stale snapshots that bloat conventional trajectories. We evaluated CORVUS on SWE- POLYBENCH_VERIFIED and SWE-BENCH PRO across four LLMs, achieving 9-50% reduction in average input tokens per task, 15-32% shorter final prompts, and up to 37% fewer reasoning cycles while maintaining comparable pass rates.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "CORVUS: Context Optimization and Reduction Via Underlying Synchronization for LLM Coding Agents",
+      "raw_summary": "arXiv:2607.22711v1 Announce Type: new Abstract: LLM coding agents operate by constructing trajectories that accumulate reasoning, tool calls, and results to enable multi-step decision-making. However, the conventional append-only trajectory architecture found in practice tightly couples file-read actions with their observations, capturing snapshots that become permanently fixed in the chronological history. As files change through agent edits or concurrent human modifications, these snapshots become stale, causing reasoning errors and causing agents to redundantly re-read files, with each re-read appending yet another copy to the trajectory. To mitigate this, we propose CORVUS, a novel trajectory architecture that decouples file-read actions from their observations by maintaining a synchronized registry of relevant files and injecting only their current contents at each reasoning cycle. This structural change produces significantly lighter-weight trajectories that remain synchronized with the actual codebase state by construction, eliminating redundant file copies and stale snapshots that bloat conventional trajectories. We evaluated CORVUS on SWE- POLYBENCH_VERIFIED and SWE-BENCH PRO across four LLMs, achieving 9-50% reduction in average input tokens per task, 15-32% shorter final prompts, and up to 37% fewer reasoning cycles while maintaining comparable pass rates.",
+      "score": 73,
+      "primary": "models",
+      "tags": [
+        "codificación",
+        "contexto",
+        "agentes"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2607.22711",
+      "is_repeat": true,
+      "novelty_score": 45,
+      "adjusted_score": 45,
+      "_rid": 10,
+      "llm_score": 78,
+      "why": "CORVUS soluciona la redundancia de contexto en agentes de programación, mejorando la precisión en la edición de archivos.",
+      "title_es": "CORVUS: Optimización y reducción de contexto mediante sincronización subyacente para agentes de codificación",
+      "entities": [
+        "CORVUS",
+        "Context Optimization",
+        "Reduction Via Underlying",
+        "Synchronization",
+        "Coding Agents"
+      ],
+      "noise_penalty": 0,
+      "final_score": 73,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "CogArena: A Multimethod Evaluation of Cognitive Ability Structure in Large Language Models",
+      "link": "https://arxiv.org/abs/2607.24999",
+      "published": "2026-07-29T04:00:00+00:00",
+      "summary": "arXiv:2607.24999v1 Announce Type: new Abstract: LLM cognitive scores are increasingly summarized as per-ability profiles whose dimensions should converge across tasks, respond selectively to matched interventions, and generalize beyond the models used to define them. We introduce CogArena, a procedurally generated 13-paradigm benchmark built around a multimethod framework for determining when cognitive-task scores warrant dimensional labels across five theory-motivated groupings. Across 55 open-weight models, nearly all paradigm correlations are positive and a common axis explains about half the variance. The within-grouping advantage is small, scoring-sensitive, and uncertain across model families. In a separately frozen, fully crossed study across 12 models from six families, targeted scaffolds show a small matched-grouping advantage, but no scaffold-specific contrast survives multiplicity correction and selectivity does not improve held-out-family prediction. The frozen confirmation criterion fails. A post-hoc alternate-wording replication produces a smaller positive estimate and again fails. Together, these results support a boundary conclusion. Theory-aligned prompting produces a small in-battery diagonal tendency, but the present evidence does not establish stable five-dimensional profiles. CogArena provides a workflow joining behavioral signatures, covariance, matched interventions, and out-of-family prediction before cognitive labels are attached to model scores.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "CogArena: A Multimethod Evaluation of Cognitive Ability Structure in Large Language Models",
+      "raw_summary": "arXiv:2607.24999v1 Announce Type: new Abstract: LLM cognitive scores are increasingly summarized as per-ability profiles whose dimensions should converge across tasks, respond selectively to matched interventions, and generalize beyond the models used to define them. We introduce CogArena, a procedurally generated 13-paradigm benchmark built around a multimethod framework for determining when cognitive-task scores warrant dimensional labels across five theory-motivated groupings. Across 55 open-weight models, nearly all paradigm correlations are positive and a common axis explains about half the variance. The within-grouping advantage is small, scoring-sensitive, and uncertain across model families. In a separately frozen, fully crossed study across 12 models from six families, targeted scaffolds show a small matched-grouping advantage, but no scaffold-specific contrast survives multiplicity correction and selectivity does not improve held-out-family prediction. The frozen confirmation criterion fails. A post-hoc alternate-wording replication produces a smaller positive estimate and again fails. Together, these results support a boundary conclusion. Theory-aligned prompting produces a small in-battery diagonal tendency, but the present evidence does not establish stable five-dimensional profiles. CogArena provides a workflow joining behavioral signatures, covariance, matched interventions, and out-of-family prediction before cognitive labels are attached to model scores.",
+      "score": 70,
+      "primary": "models",
+      "tags": [
+        "benchmarking",
+        "cognición",
+        "evaluación"
+      ],
+      "heuristic_score": 68,
+      "url": "https://arxiv.org/abs/2607.24999",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 68,
+      "_rid": 5,
+      "llm_score": 70,
+      "why": "CogArena establece un marco riguroso para evaluar si las capacidades cognitivas de los LLM son generalizables o específicas.",
+      "title_es": "CogArena: Evaluación de la estructura de capacidad cognitiva en modelos de lenguaje",
+      "entities": [
+        "CogArena",
+        "Multimethod Evaluation",
+        "Cognitive Ability Structure",
+        "Large Language Models"
+      ],
+      "noise_penalty": 0,
+      "final_score": 70,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Quadric Extends Series C to $46 Million as Edge AI Demand Accelerates",
+      "link": "https://semiwiki.com/ip/quadric/371357-quadric-extends-series-c-to-46-million-as-edge-ai-demand-accelerates/",
+      "published": "2026-07-28T17:00:45+00:00",
+      "summary": "Quadric has extended its Series C financing to $46 million through a second close led by the International Finance Corporation, the private-sector investment arm of the World Bank Group. The transaction raises Quadric’s total capital secured to approximately $90 million and strengthens its ability to commercialize programmable&8230; Read More The post Quadric Extends Series C to $46 Million as Edge AI Demand Accelerates appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "Quadric Extends Series C to $46 Million as Edge AI Demand Accelerates",
+      "raw_summary": "Quadric has extended its Series C financing to $46 million through a second close led by the International Finance Corporation, the private-sector investment arm of the World Bank Group. The transaction raises Quadric’s total capital secured to approximately $90 million and strengthens its ability to commercialize programmable&#8230; Read More The post Quadric Extends Series C to $46 Million as Edge AI Demand Accelerates appeared first on SemiWiki .",
+      "score": 69,
+      "primary": "invest",
+      "tags": [
+        "edge ai",
+        "hardware",
+        "financiación"
+      ],
+      "heuristic_score": 55,
+      "url": "https://semiwiki.com/ip/quadric/371357-quadric-extends-series-c-to-46-million-as-edge-ai-demand-accelerates/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 55,
+      "_rid": 8,
+      "llm_score": 72,
+      "why": "La inversión de la IFC en Quadric subraya la importancia estratégica de los chips programables para IA en dispositivos finales.",
+      "title_es": "Quadric amplía su Serie C hasta los 46 millones de dólares ante la aceleración de la IA en el borde",
+      "entities": [
+        "Quadric",
+        "IFC",
+        "World Bank Group",
+        "Quadric Extends Series",
+        "Million",
+        "Edge",
+        "Demand Accelerates"
+      ],
+      "noise_penalty": 0,
+      "final_score": 69,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Introducing Gemini 3.5 Flash Cyber",
+      "link": "https://deepmind.google/blog/introducing-gemini-3-5-flash-cyber/",
+      "published": "2026-07-17T15:00:11+00:00",
+      "summary": "Google introduces Gemini 3.5 Flash Cyber, a lightweight cybersecurity model to find and patch vulnerabilities.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Introducing Gemini 3.5 Flash Cyber",
+      "raw_summary": "Google introduces Gemini 3.5 Flash Cyber, a lightweight cybersecurity model to find and patch vulnerabilities.",
+      "score": 66,
+      "primary": "models",
+      "tags": [
+        "ciberseguridad",
+        "vulnerabilidades",
+        "flash"
+      ],
+      "heuristic_score": 31,
+      "url": "https://deepmind.google/blog/introducing-gemini-3-5-flash-cyber/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 31,
+      "_rid": 13,
+      "llm_score": 84,
+      "why": "Un modelo específico para ciberseguridad optimizado en velocidad es clave para la defensa activa y el parcheo de software.",
+      "title_es": "Presentación de Gemini 3.5 Flash Cyber",
+      "entities": [
+        "Google",
+        "DeepMind",
+        "Gemini",
+        "Introducing Gemini",
+        "Flash Cyber"
+      ],
+      "noise_penalty": 10,
+      "final_score": 66,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(10)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Measuring and Improving Behavioral Consistency in Large Language Models through Fact-Heuristic-Emotion State Enforcement",
+      "link": "https://arxiv.org/abs/2607.24765",
+      "published": "2026-07-29T04:00:00+00:00",
+      "summary": "arXiv:2607.24765v1 Announce Type: new Abstract: Large language models (LLMs) can give different answers to the same decision problem across runs, and reverse a decision when their own prior answer returns as context. We ask whether this instability can be measured and partially reduced without changing model weights. We test the Cognitive Kernel Model (CKM), a prompt-level state-enforcement layer. Before deciding, the model must separate its input into three epistemic roles: Fact (given or verifiable), Heuristic (inferred or assumed), and Emotion (evaluative or priority signal). CKM adds no capability; it forces the model to track what kind of information it uses before acting. Formally it maintains a structured state S_t = {F_t, H_t, E_t} updated by a transition function. We evaluate CKM on Korean-language decision scenarios (ambiguity, ethical conflict, resource allocation, error handling) across 26 LLMs from four vendors and 37,403 observations, via four core experiments, a 4-arm ablation, a 5-arm sham-restriction ablation, and a temperature probe. Findings: (1) CKM reduces repeated-output variability (random-effects Hedges' g=1.09, 95% CI [0.83, 1.35], 31 model pairs); (2) state persistence cuts the decision-flip rate by 82% in newer models (g=1.52); (3) the effect is not JSON formatting alone (value-only recomputation, g=2.24); (4) intrinsic randomness under fixed anchor states is negligible; (5) the advantage grows under sampling stochasticity (g=2.87 at temperature 0.7); (6) a sham ablation attributes about 45% of the gain to structural scaffolding and 55% to Fact/Heuristic/Emotion content, and CKM is the only arm that both raises consistency and reduces flipping. CKM does not improve reasoning correctness. The narrower result: behavioral consistency is measurable, varies across models, and is partially improvable by forcing models to separate facts, assumptions, and evaluative signals before deciding.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Measuring and Improving Behavioral Consistency in Large Language Models through Fact-Heuristic-Emotion State Enforcement",
+      "raw_summary": "arXiv:2607.24765v1 Announce Type: new Abstract: Large language models (LLMs) can give different answers to the same decision problem across runs, and reverse a decision when their own prior answer returns as context. We ask whether this instability can be measured and partially reduced without changing model weights. We test the Cognitive Kernel Model (CKM), a prompt-level state-enforcement layer. Before deciding, the model must separate its input into three epistemic roles: Fact (given or verifiable), Heuristic (inferred or assumed), and Emotion (evaluative or priority signal). CKM adds no capability; it forces the model to track what kind of information it uses before acting. Formally it maintains a structured state S_t = {F_t, H_t, E_t} updated by a transition function. We evaluate CKM on Korean-language decision scenarios (ambiguity, ethical conflict, resource allocation, error handling) across 26 LLMs from four vendors and 37,403 observations, via four core experiments, a 4-arm ablation, a 5-arm sham-restriction ablation, and a temperature probe. Findings: (1) CKM reduces repeated-output variability (random-effects Hedges' g=1.09, 95% CI [0.83, 1.35], 31 model pairs); (2) state persistence cuts the decision-flip rate by 82% in newer models (g=1.52); (3) the effect is not JSON formatting alone (value-only recomputation, g=2.24); (4) intrinsic randomness under fixed anchor states is negligible; (5) the advantage grows under sampling stochasticity (g=2.87 at temperature 0.7); (6) a sham ablation attributes about 45% of the gain to structural scaffolding and 55% to Fact/Heuristic/Emotion content, and CKM is the only arm that both raises consistency and reduces flipping. CKM does not improve reasoning correctness. The narrower result: behavioral consistency is measurable, varies across models, and is partially improvable by forcing models to separate facts, assumptions, and evaluative signals before deciding.",
+      "score": 65,
+      "primary": "models",
+      "tags": [
+        "consistencia",
+        "prompting",
+        "lógica"
+      ],
+      "heuristic_score": 68,
+      "url": "https://arxiv.org/abs/2607.24765",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 68,
+      "_rid": 4,
+      "llm_score": 65,
+      "why": "Separar hechos, heurística y emoción mediante prompts puede estabilizar la toma de decisiones sin necesidad de reentrenar.",
+      "title_es": "Mejora de la consistencia conductual en LLMs mediante la aplicación de estados de hecho-heurística-emoción",
+      "entities": [
+        "CKM",
+        "Measuring",
+        "Improving Behavioral Consistency",
+        "Large Language Models",
+        "Fact",
+        "Heuristic",
+        "Emotion State Enforcement"
+      ],
+      "noise_penalty": 0,
+      "final_score": 65,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Beyond Memory: A Templated Substrate for Heterogeneous Collaborative Knowledge Work with LLM Agents",
+      "link": "https://arxiv.org/abs/2607.24759",
+      "published": "2026-07-29T04:00:00+00:00",
+      "summary": "arXiv:2607.24759v1 Announce Type: new Abstract: Research projects, educational efforts, and adjacent knowledge work accumulate findings, decisions, and reasoning that future collaborators rarely recover. The parts most useful to that work, including dead ends and walked-back claims, are routinely excluded from publications and shared code; future researchers re-attempt the same failures because no record survives. LLM coding agents are common participants but hold no persistent memory across sessions, and retrieval-augmented generation over raw sources does not compound. The llm-wiki pattern (Karpathy, 2026; tonbi, 2026) addresses this by inserting an LLM-maintained, interlinked wiki between raw sources and the agent. We present llm-wiki-memory-template, a reusable, agent-aware instantiation, and argue it is a substrate for heterogeneous collaborative knowledge work along three axes (multi-human, multi-AI-agent, multi-domain) with each axis supported by a distinct architectural element of the template ({\\S}4). The wiki is append-only by convention, which preserves what did not work alongside what did, addressing a negative-result loss problem that publications and code-sharing structurally cannot solve. Three deployed case studies and one design report cover the axes individually: a solo research lineage that preserves abandoned iterations; a two-author project whose retroactive audit revised two prior experiments' claimed 20-of-20 coverage down to 14 and 12 evidence-based answers, then to 18 and 18 after a fix, with the failure path preserved across the artifact; an in-progress multi-agent deployment reported as a design; and a cross-domain educational variant. We name failure-path preservation, agent honesty, and appropriation as cross-cutting sociotechnical properties of the artifact, not only of its technical mechanisms.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Beyond Memory: A Templated Substrate for Heterogeneous Collaborative Knowledge Work with LLM Agents",
+      "raw_summary": "arXiv:2607.24759v1 Announce Type: new Abstract: Research projects, educational efforts, and adjacent knowledge work accumulate findings, decisions, and reasoning that future collaborators rarely recover. The parts most useful to that work, including dead ends and walked-back claims, are routinely excluded from publications and shared code; future researchers re-attempt the same failures because no record survives. LLM coding agents are common participants but hold no persistent memory across sessions, and retrieval-augmented generation over raw sources does not compound. The llm-wiki pattern (Karpathy, 2026; tonbi, 2026) addresses this by inserting an LLM-maintained, interlinked wiki between raw sources and the agent. We present llm-wiki-memory-template, a reusable, agent-aware instantiation, and argue it is a substrate for heterogeneous collaborative knowledge work along three axes (multi-human, multi-AI-agent, multi-domain) with each axis supported by a distinct architectural element of the template ({\\S}4). The wiki is append-only by convention, which preserves what did not work alongside what did, addressing a negative-result loss problem that publications and code-sharing structurally cannot solve. Three deployed case studies and one design report cover the axes individually: a solo research lineage that preserves abandoned iterations; a two-author project whose retroactive audit revised two prior experiments' claimed 20-of-20 coverage down to 14 and 12 evidence-based answers, then to 18 and 18 after a fix, with the failure path preserved across the artifact; an in-progress multi-agent deployment reported as a design; and a cross-domain educational variant. We name failure-path preservation, agent honesty, and appropriation as cross-cutting sociotechnical properties of the artifact, not only of its technical mechanisms.",
+      "score": 63,
+      "primary": "models",
+      "tags": [
+        "agentes",
+        "memoria",
+        "colaboración"
+      ],
+      "heuristic_score": 79,
+      "url": "https://arxiv.org/abs/2607.24759",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 79,
+      "_rid": 2,
+      "llm_score": 60,
+      "why": "Los agentes necesitan una memoria persistente estructurada tipo wiki para evitar redundancias en proyectos de larga duración.",
+      "title_es": "Más allá de la memoria: sustrato de colaboración heterogénea para agentes LLM",
+      "entities": [
+        "Karpathy",
+        "Beyond Memory",
+        "Templated Substrate",
+        "Heterogeneous Collaborative Knowledge",
+        "Work",
+        "Agents"
+      ],
+      "noise_penalty": 0,
+      "final_score": 63,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "TimeCapsule: Generative Hallucination as a Method for Historical Sensemaking",
+      "link": "https://arxiv.org/abs/2607.24750",
+      "published": "2026-07-29T04:00:00+00:00",
+      "summary": "arXiv:2607.24750v1 Announce Type: new Abstract: Large Language Models (LLMs) are temporally overexposed: trained on vast contemporary corpora, they encode present-day concepts that make them unreliable narrators of the past. We present TimeCapsule, a 1.2B-parameter LLaMA-style causal model trained exclusively on Victorian texts (1800-1875) as an epistemologically isolated generative archive. Quantitative evaluation shows a 45.4% perplexity reduction over a GPT-2 baseline on held-out Victorian prose, while larger contemporary causal models achieve lower raw perplexity through broader pretraining but lack temporal isolation. TimeCapsule exhibits computational sensemaking, generating historically plausible analogical explanations for unfamiliar modern concepts (e.g., describing a computer as a \"hypertrophied lung\"). A qualitative hermeneutic probe with two humanities scholars revealed a crisis of authenticity, as both misclassified approximately 40% of genuine Victorian excerpts as machine-produced. We argue that structural ignorance of the future transforms hallucinations into interpretive probes of nineteenth-century ontologies.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "TimeCapsule: Generative Hallucination as a Method for Historical Sensemaking",
+      "raw_summary": "arXiv:2607.24750v1 Announce Type: new Abstract: Large Language Models (LLMs) are temporally overexposed: trained on vast contemporary corpora, they encode present-day concepts that make them unreliable narrators of the past. We present TimeCapsule, a 1.2B-parameter LLaMA-style causal model trained exclusively on Victorian texts (1800-1875) as an epistemologically isolated generative archive. Quantitative evaluation shows a 45.4% perplexity reduction over a GPT-2 baseline on held-out Victorian prose, while larger contemporary causal models achieve lower raw perplexity through broader pretraining but lack temporal isolation. TimeCapsule exhibits computational sensemaking, generating historically plausible analogical explanations for unfamiliar modern concepts (e.g., describing a computer as a \"hypertrophied lung\"). A qualitative hermeneutic probe with two humanities scholars revealed a crisis of authenticity, as both misclassified approximately 40% of genuine Victorian excerpts as machine-produced. We argue that structural ignorance of the future transforms hallucinations into interpretive probes of nineteenth-century ontologies.",
+      "score": 57,
+      "primary": "models",
+      "tags": [
+        "historia",
+        "alucinación",
+        "archivo"
+      ],
+      "heuristic_score": 71,
+      "url": "https://arxiv.org/abs/2607.24750",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 71,
+      "_rid": 3,
+      "llm_score": 55,
+      "why": "La creación de archivos generativos aislados temporalmente permite estudiar épocas pasadas sin los sesgos del presente.",
+      "title_es": "TimeCapsule: La alucinación generativa como método de comprensión histórica",
+      "entities": [
+        "LLaMA",
+        "GPT-2",
+        "Generative Hallucination",
+        "Method",
+        "Historical Sensemaking"
+      ],
+      "noise_penalty": 0,
+      "final_score": 57,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "DS@GT ARC at CheckThat! 2026: LLM-Based Trace Ranking and Grouped Reward Modeling for Multilingual Numerical Claim Verification",
+      "link": "https://arxiv.org/abs/2607.25069",
+      "published": "2026-07-29T04:00:00+00:00",
+      "summary": "arXiv:2607.25069v1 Announce Type: new Abstract: Automated verification of numerical claims is a challenging problem, as it requires both language understanding and quantitative reasoning. This paper describes our system for CLEF 2026 CheckThat! Task 2, which focuses on ranking reasoning traces generated by large language models (LLMs) and predicting a final verdict for numerical claims in English and Arabic. We explore two approaches. The first approach fine-tunes an LLM-based verifier using LoRA to score each reasoning trace independently as a binary classification problem, and selects the final verdict using Best-of-N selection. We further experiment with adaptive sub-claim decomposition to break complex claims into simpler parts before verification. The second approach uses a lightweight TF-IDF reward model with handcrafted numeric and temporal overlap features to score traces, and aggregates scores by verdict group to determine the final prediction. For Arabic, we compare a general multilingual model against AraBERT, a language-specific model pretrained on Arabic text. Our results show that the LLM-based approach outperforms the lightweight reward model on most metrics, particularly Recall@5, while the reward-based approach shows stronger performance on the Conflicting class. Sub-claim decomposition did not improve performance, suggesting that claim splitting introduces noise rather than aiding reasoning. For Arabic, AraBERT outperforms the multilingual baseline across most metrics.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "DS@GT ARC at CheckThat! 2026: LLM-Based Trace Ranking and Grouped Reward Modeling for Multilingual Numerical Claim Verification",
+      "raw_summary": "arXiv:2607.25069v1 Announce Type: new Abstract: Automated verification of numerical claims is a challenging problem, as it requires both language understanding and quantitative reasoning. This paper describes our system for CLEF 2026 CheckThat! Task 2, which focuses on ranking reasoning traces generated by large language models (LLMs) and predicting a final verdict for numerical claims in English and Arabic. We explore two approaches. The first approach fine-tunes an LLM-based verifier using LoRA to score each reasoning trace independently as a binary classification problem, and selects the final verdict using Best-of-N selection. We further experiment with adaptive sub-claim decomposition to break complex claims into simpler parts before verification. The second approach uses a lightweight TF-IDF reward model with handcrafted numeric and temporal overlap features to score traces, and aggregates scores by verdict group to determine the final prediction. For Arabic, we compare a general multilingual model against AraBERT, a language-specific model pretrained on Arabic text. Our results show that the LLM-based approach outperforms the lightweight reward model on most metrics, particularly Recall@5, while the reward-based approach shows stronger performance on the Conflicting class. Sub-claim decomposition did not improve performance, suggesting that claim splitting introduces noise rather than aiding reasoning. For Arabic, AraBERT outperforms the multilingual baseline across most metrics.",
+      "score": 57,
+      "primary": "models",
+      "tags": [
+        "verificación",
+        "razonamiento",
+        "multilingüe"
+      ],
+      "heuristic_score": 49,
+      "url": "https://arxiv.org/abs/2607.25069",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 49,
+      "_rid": 9,
+      "llm_score": 58,
+      "why": "El uso de modelos de recompensa agrupados mejora la verificación de datos numéricos en entornos multilingües complejos.",
+      "title_es": "Ranking de trazas basado en LLM para la verificación multilingüe de afirmaciones numéricas",
+      "entities": [
+        "CLEF",
+        "LoRA",
+        "ARC",
+        "Based Trace Ranking",
+        "Grouped Reward Modeling",
+        "Multilingual Numerical Claim",
+        "Verification"
+      ],
+      "noise_penalty": 0,
+      "final_score": 57,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Interview with Simon Davidmann, AI + EDA Researcher and Former CEO of Imperas",
+      "link": "https://semiwiki.com/ceo-interviews/371200-interview-with-simon-davidmann-ai-eda-researcher-and-former-ceo-of-imperas/",
+      "published": "2026-07-28T21:00:32+00:00",
+      "summary": "Simon Davidmann is a renowned EDA industry pioneer and serial technology entrepreneur with more than 40 years of experience in simulation and verification. After Synopsys acquired Imperas, which he founded in 2005, he was Synopsys Vice President responsible for Processor Modeling and Simulation. He left Synopsys in 2025 and&8230; Read More The post Interview with Simon Davidmann, AI + EDA Researcher and Former CEO of Imperas appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "Interview with Simon Davidmann, AI + EDA Researcher and Former CEO of Imperas",
+      "raw_summary": "Simon Davidmann is a renowned EDA industry pioneer and serial technology entrepreneur with more than 40 years of experience in simulation and verification. After Synopsys acquired Imperas, which he founded in 2005, he was Synopsys Vice President responsible for Processor Modeling and Simulation. He left Synopsys in 2025 and&#8230; Read More The post Interview with Simon Davidmann, AI + EDA Researcher and Former CEO of Imperas appeared first on SemiWiki .",
+      "score": 41,
+      "primary": "infra",
+      "tags": [
+        "eda",
+        "chips",
+        "simulación"
+      ],
+      "heuristic_score": 19,
+      "url": "https://semiwiki.com/ceo-interviews/371200-interview-with-simon-davidmann-ai-eda-researcher-and-former-ceo-of-imperas/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 19,
+      "_rid": 14,
+      "llm_score": 45,
+      "why": "Las reflexiones sobre EDA y simulación de procesadores son vitales para la próxima generación de silicio optimizado para IA.",
+      "title_es": "Entrevista con Simon Davidmann, investigador de IA y EDA",
+      "entities": [
+        "Simon Davidmann",
+        "Synopsys",
+        "Imperas",
+        "EDA",
+        "Researcher",
+        "Former"
+      ],
+      "noise_penalty": 0,
+      "final_score": 41,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Empowering India’s next generation of innovators with ATL Saathi",
+      "link": "https://deepmind.google/blog/empowering-indias-next-generation-of-innovators-with-atl-saathi/",
+      "published": "2026-07-13T12:37:28+00:00",
+      "summary": "Google and AIM launched ATL Saathi, a Gemini-powered AI tool empowering Indian educators in robotics labs.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Empowering India’s next generation of innovators with ATL Saathi",
+      "raw_summary": "Google and AIM launched ATL Saathi, a Gemini-powered AI tool empowering Indian educators in robotics labs.",
+      "score": 38,
+      "primary": "misc",
+      "tags": [
+        "educación",
+        "india",
+        "robótica"
+      ],
+      "heuristic_score": 36,
+      "url": "https://deepmind.google/blog/empowering-indias-next-generation-of-innovators-with-atl-saathi/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 36,
+      "_rid": 12,
+      "llm_score": 50,
+      "why": "La iniciativa ATL Saathi demuestra el uso de IA para escalar la educación técnica y la robótica en economías emergentes.",
+      "title_es": "Potenciando a la próxima generación de innovadores de la India con ATL Saathi",
+      "entities": [
+        "Google",
+        "DeepMind",
+        "ATL Saathi",
+        "ATL",
+        "Empowering India",
+        "Saathi"
+      ],
+      "noise_penalty": 10,
+      "final_score": 38,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(10)",
+      "strategic_theme": "other"
+    },
+    {
+      "title": "Research Report on Noise-Shaped One-Bit Coefficients in Discrete Polynomial Fourier Extension",
+      "link": "https://arxiv.org/abs/2607.24868",
+      "published": "2026-07-29T04:00:00+00:00",
+      "summary": "arXiv:2607.24868v1 Announce Type: new Abstract: This report studies noise-shaped one-bit coefficients in normalized discrete polynomial Fourier extension. For first-order Sigma-Delta quantization, the error is written as $e_k=u_k-q_k=\\Delta v_k$ with a uniformly bounded state. Discrete summation by parts then yields variation estimates for complex weights and an $O(N^{-1})$ approximation rate on compact parameter sets. For the parabolic phase $\\phi_{x,t}(\\xi)=x\\xi+t\\xi^2$, the bound is expressed through $J(x,t)=\\int_0^1 |x+2t\\xi|d\\xi$, and the uniform $N^{-1}$ rate is shown to be sharp over the admissible input class. Higher-order finite-record identities are derived with all endpoint traces retained. Under endpoint compatibility, or after explicit boundary correction, an $r$th-order noise-shaped error $e=\\Delta^r v$ gives $O(N^{-r})$ decay for sufficiently smooth weights and $O(N^{-(r-1+\\alpha)})$ decay for $C^{r-1,\\alpha}$ weights. Exact $L^2$ orthogonality identities, fourth-moment formulas, local kernel estimates, and oscillatory transfer bounds are also established. Extensions to polynomial phases, multidimensional parameter families, growing observation regions, and correlated state models are included.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Research Report on Noise-Shaped One-Bit Coefficients in Discrete Polynomial Fourier Extension",
+      "raw_summary": "arXiv:2607.24868v1 Announce Type: new Abstract: This report studies noise-shaped one-bit coefficients in normalized discrete polynomial Fourier extension. For first-order Sigma-Delta quantization, the error is written as $e_k=u_k-q_k=\\Delta v_k$ with a uniformly bounded state. Discrete summation by parts then yields variation estimates for complex weights and an $O(N^{-1})$ approximation rate on compact parameter sets. For the parabolic phase $\\phi_{x,t}(\\xi)=x\\xi+t\\xi^2$, the bound is expressed through $J(x,t)=\\int_0^1 |x+2t\\xi|d\\xi$, and the uniform $N^{-1}$ rate is shown to be sharp over the admissible input class. Higher-order finite-record identities are derived with all endpoint traces retained. Under endpoint compatibility, or after explicit boundary correction, an $r$th-order noise-shaped error $e=\\Delta^r v$ gives $O(N^{-r})$ decay for sufficiently smooth weights and $O(N^{-(r-1+\\alpha)})$ decay for $C^{r-1,\\alpha}$ weights. Exact $L^2$ orthogonality identities, fourth-moment formulas, local kernel estimates, and oscillatory transfer bounds are also established. Extensions to polynomial phases, multidimensional parameter families, growing observation regions, and correlated state models are included.",
+      "score": 28,
+      "primary": "misc",
+      "tags": [
+        "matemáticas",
+        "cuantización",
+        "señal"
+      ],
+      "heuristic_score": 18,
+      "url": "https://arxiv.org/abs/2607.24868",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 18,
+      "_rid": 15,
+      "llm_score": 30,
+      "why": "Avances matemáticos en cuantificación de un bit que podrían optimizar la compresión de modelos a muy largo plazo.",
+      "title_es": "Informe de investigación sobre coeficientes de un bit en extensión de Fourier polinómica discreta",
+      "entities": [
+        "arXiv",
+        "Research Report",
+        "Noise",
+        "Shaped One",
+        "Bit Coefficients",
+        "Discrete Polynomial Fourier",
+        "Extension"
+      ],
+      "noise_penalty": 0,
+      "final_score": 28,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    }
+  ]
+}
