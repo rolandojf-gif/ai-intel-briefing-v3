@@ -1,0 +1,668 @@
+{
+  "date": "2026-07-31",
+  "score_avg": 70.87,
+  "primary_dist": {
+    "models": 10,
+    "infra": 3,
+    "misc": 2
+  },
+  "top_entities": [
+    {
+      "entity": "Gemini",
+      "count": 4
+    },
+    {
+      "entity": "DeepMind",
+      "count": 3
+    },
+    {
+      "entity": "OpenAI",
+      "count": 2
+    },
+    {
+      "entity": "Gemini Robotics",
+      "count": 2
+    },
+    {
+      "entity": "Humanities",
+      "count": 2
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "Google DeepMind acelera la integración de Gemini en robótica con ER 2 y modelos de inteligencia corporal completa.",
+      "El aprendizaje por refuerzo genera estructuras internas más lineales y separables que el ajuste supervisado tradicional.",
+      "Nuevos benchmarks de RAG revelan fallos críticos en la gestión de permisos y estados de sesión en entornos de empresa.",
+      "Cadence y líderes de EDA impulsan el uso de FPGAs para acelerar la verificación formal de semiconductores complejos.",
+      "La alineación de modelos de IA se expande hacia la síntesis de datos y el juicio subjetivo en ciencias sociales."
+    ],
+    "risks": [
+      "El Modality Contribution Drift amenaza la estabilidad de los sistemas multimodales durante el aprendizaje continuo.",
+      "La sobreparametrización de Transformers en conjuntos de datos pequeños de ingeniería induce sobreajuste crítico.",
+      "El engaño estratégico en sistemas multi-agente dificulta la alineación con objetivos colectivos en entornos reales."
+    ],
+    "watch": [
+      "Despliegue de Gemini 3.6 Flash y 3.5 Flash-Lite en aplicaciones de baja latencia y ciberseguridad.",
+      "Avances en metrología óptica para la fabricación a escala de sistemas de fotónica de silicio.",
+      "Implementación de prompt chaining como estándar para la generación de informes técnicos complejos frente a zero-shot."
+    ],
+    "entities_top": [
+      "Google DeepMind",
+      "Cadence",
+      "OpenAI"
+    ]
+  },
+  "items": [
+    {
+      "title": "Probing the Origins of Reasoning Performance: Representational Quality for Mathematical Problem-Solving in RL vs. SFT Fine-Tuned Models",
+      "link": "https://arxiv.org/abs/2607.26119",
+      "published": "2026-07-31T04:00:00+00:00",
+      "summary": "arXiv:2607.26119v1 Announce Type: new Abstract: Large reasoning models trained via reinforcement learning (RL) have been increasingly shown to outperform their supervised fine-tuned (SFT) counterparts on mathematical reasoning tasks; Yet the mechanistic basis for this advantage remains unclear. We therefore ask, what internal representational differences enable RL models' superior performance? Our work presents two converging lines of evidence: First, linear probes trained on layer-wise hidden states reveal that RL models tend to achieve higher accuracy in predicting answer correctness compared to SFT models, indicating more linearly separable and structured representations. Second, mean ablation studies show that RL models develop a hierarchical architecture where deeper layers become progressively more critical, whereas SFT models distribute importance uniformly across layers. Together, these findings demonstrate that RL training fundamentally restructures how models represent and process reasoning problems. Finally, we analyze token-count variability under repeated sampling across problems to assess adaptive compute allocation. While we observe higher variability in some RL-tuned models than in their SFT counterparts, we see strong consistency in others, suggesting that token allocation may depend more on the overall training pipeline than on RL versus SFT alone. We believe this token-allocation variability reveals the spread of plausible on-policy reasoning, highlighting which models exhibit stable policies versus those that are under-determined, potentially non-identifiable solution behaviour.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Probing the Origins of Reasoning Performance: Representational Quality for Mathematical Problem-Solving in RL vs. SFT Fine-Tuned Models",
+      "raw_summary": "arXiv:2607.26119v1 Announce Type: new Abstract: Large reasoning models trained via reinforcement learning (RL) have been increasingly shown to outperform their supervised fine-tuned (SFT) counterparts on mathematical reasoning tasks; Yet the mechanistic basis for this advantage remains unclear. We therefore ask, what internal representational differences enable RL models' superior performance? Our work presents two converging lines of evidence: First, linear probes trained on layer-wise hidden states reveal that RL models tend to achieve higher accuracy in predicting answer correctness compared to SFT models, indicating more linearly separable and structured representations. Second, mean ablation studies show that RL models develop a hierarchical architecture where deeper layers become progressively more critical, whereas SFT models distribute importance uniformly across layers. Together, these findings demonstrate that RL training fundamentally restructures how models represent and process reasoning problems. Finally, we analyze token-count variability under repeated sampling across problems to assess adaptive compute allocation. While we observe higher variability in some RL-tuned models than in their SFT counterparts, we see strong consistency in others, suggesting that token allocation may depend more on the overall training pipeline than on RL versus SFT alone. We believe this token-allocation variability reveals the spread of plausible on-policy reasoning, highlighting which models exhibit stable policies versus those that are under-determined, potentially non-identifiable solution behaviour.",
+      "score": 86,
+      "primary": "models",
+      "tags": [
+        "rl",
+        "sft",
+        "razonamiento",
+        "matemáticas"
+      ],
+      "heuristic_score": 89,
+      "url": "https://arxiv.org/abs/2607.26119",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 89,
+      "_rid": 4,
+      "llm_score": 85,
+      "why": "Demuestra que el refuerzo (RL) crea representaciones internas más estructuradas y lineales que el ajuste supervisado.",
+      "title_es": "Indagando en los orígenes del rendimiento del razonamiento: Calidad representacional en RL frente a SFT",
+      "entities": [
+        "SFT",
+        "Probing",
+        "Origins",
+        "Reasoning Performance",
+        "Representational Quality",
+        "Mathematical Problem",
+        "Solving",
+        "Fine"
+      ],
+      "noise_penalty": 0,
+      "final_score": 86,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "LayerRAG-Bench: A Cross-Layer Reliability Benchmark for Agentic Retrieval-Augmented Generation",
+      "link": "https://arxiv.org/abs/2607.27353",
+      "published": "2026-07-31T04:00:00+00:00",
+      "summary": "arXiv:2607.27353v1 Announce Type: new Abstract: Agentic retrieval-augmented generation systems can produce answers that appear grounded while failing at the evidence, tool-contract, authorization, or session-state layer. We introduce LayerRAG-Bench, a controlled cross-layer reliability benchmark with 8 enterprise domains, 240 tasks, 9 fault scenarios, 2 contract modes, and 38,880 live task-level records across nine models from OpenAI, Anthropic, and Gemini. Schema normalization raises schema-drift success from 0.000 to 0.913, but stale evidence, missing tool output, denied permissions, and wrong-session context are not recovered by schema normalization. Groundedness-only evaluation also produces substantial false positives under stale and wrong-session evidence. These results support a layer-specific evaluation principle: a reliability intervention should be credited for repairing its target layer without being mistaken for a universal fix.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "LayerRAG-Bench: A Cross-Layer Reliability Benchmark for Agentic Retrieval-Augmented Generation",
+      "raw_summary": "arXiv:2607.27353v1 Announce Type: new Abstract: Agentic retrieval-augmented generation systems can produce answers that appear grounded while failing at the evidence, tool-contract, authorization, or session-state layer. We introduce LayerRAG-Bench, a controlled cross-layer reliability benchmark with 8 enterprise domains, 240 tasks, 9 fault scenarios, 2 contract modes, and 38,880 live task-level records across nine models from OpenAI, Anthropic, and Gemini. Schema normalization raises schema-drift success from 0.000 to 0.913, but stale evidence, missing tool output, denied permissions, and wrong-session context are not recovered by schema normalization. Groundedness-only evaluation also produces substantial false positives under stale and wrong-session evidence. These results support a layer-specific evaluation principle: a reliability intervention should be credited for repairing its target layer without being mistaken for a universal fix.",
+      "score": 85,
+      "primary": "models",
+      "tags": [
+        "rag",
+        "agentes",
+        "benchmarking",
+        "fiabilidad"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2607.27353",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 1,
+      "llm_score": 82,
+      "why": "Benchmark crítico para RAG empresarial que identifica fallos en capas de autorización y estado de sesión.",
+      "title_es": "LayerRAG-Bench: Un benchmark de fiabilidad multicapa para la generación aumentada por recuperación mediante agentes",
+      "entities": [
+        "OpenAI",
+        "Anthropic",
+        "Gemini",
+        "Bench",
+        "Cross",
+        "Layer Reliability Benchmark",
+        "Agentic Retrieval",
+        "Augmented Generation"
+      ],
+      "noise_penalty": 0,
+      "final_score": 85,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Gemini Robotics ER 2: powering robotics with video understanding, task orchestration, and multi-robot collaboration",
+      "link": "https://deepmind.google/blog/gemini-robotics-er-2-powering-robotics-with-video-understanding-task-orchestration-and-multi-robot-collaboration/",
+      "published": "2026-07-30T15:00:59+00:00",
+      "summary": "Gemini Robotics ER 2 helps robots reason, collaborate, and solve real-world tasks. It represents a step change in video understanding, tool orchestration, and multi-robot collaboration for robotic applications.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Gemini Robotics ER 2: powering robotics with video understanding, task orchestration, and multi-robot collaboration",
+      "raw_summary": "Gemini Robotics ER 2 helps robots reason, collaborate, and solve real-world tasks. It represents a step change in video understanding, tool orchestration, and multi-robot collaboration for robotic applications.",
+      "score": 79,
+      "primary": "models",
+      "tags": [
+        "robótica",
+        "gemini",
+        "video",
+        "colaboración"
+      ],
+      "heuristic_score": 43,
+      "url": "https://deepmind.google/blog/gemini-robotics-er-2-powering-robotics-with-video-understanding-task-orchestration-and-multi-robot-collaboration/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 43,
+      "_rid": 9,
+      "llm_score": 90,
+      "why": "Mejora significativa en la orquestación de tareas y colaboración multi-robot mediante comprensión de vídeo avanzada.",
+      "title_es": "Gemini Robotics ER 2: Impulsando la robótica con comprensión de vídeo y colaboración multi-robot",
+      "entities": [
+        "DeepMind",
+        "Gemini",
+        "Gemini Robotics"
+      ],
+      "noise_penalty": 4,
+      "final_score": 79,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(4)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Gemini Robotics 2 brings whole body intelligence to robots",
+      "link": "https://deepmind.google/blog/gemini-robotics-2-brings-whole-body-intelligence-to-robots/",
+      "published": "2026-07-28T13:21:37+00:00",
+      "summary": "",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Gemini Robotics 2 brings whole body intelligence to robots",
+      "raw_summary": "",
+      "score": 76,
+      "primary": "models",
+      "tags": [
+        "robótica",
+        "gemini",
+        "embodiment",
+        "inteligencia"
+      ],
+      "heuristic_score": 13,
+      "url": "https://deepmind.google/blog/gemini-robotics-2-brings-whole-body-intelligence-to-robots/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 13,
+      "_rid": 15,
+      "llm_score": 92,
+      "why": "Google integra visión y razonamiento de alto nivel para control físico total y colaboración multi-robot.",
+      "title_es": "Gemini Robotics 2 aporta inteligencia corporal completa a los robots",
+      "entities": [
+        "DeepMind",
+        "Gemini",
+        "Gemini Robotics"
+      ],
+      "noise_penalty": 4,
+      "final_score": 76,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(4)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Even More Deception: Objective Misalignment in Mixed-Motive LLM Multi-Agent Systems",
+      "link": "https://arxiv.org/abs/2607.26120",
+      "published": "2026-07-31T04:00:00+00:00",
+      "summary": "arXiv:2607.26120v1 Announce Type: new Abstract: Large Language Models (LLMs)-powered multi-agent systems are increasingly deployed in mixed-motive environments, where agents operate under asymmetric information and strategic deception due to conflicting or hidden objectives. In these settings, misalignment with collective goals becomes a central concern. We propose a novel framework for evaluating objective misalignment using the social deduction game Werewolf, modifying the objective of a single agent while preserving its assigned role. Across LLMs from four different model families and sizes, four player roles, and three objective formulations, we introduce a dual analysis of the agents' internal reasoning and their public cheap-talk behavior (i.e costless, non-binding communication that does not directly affect the agents' utilities), complemented by an analysis of game outcomes. Our results show that objective misalignment undermines outcomes in inherently adversarial environments, an effect exacerbated by asymmetric information and specialized roles. While compromised agents consistently develop distinct objective-dependent reasoning strategies, these adaptations remain largely invisible in their public behavior. More broadly, our findings suggest that even subtle objective misalignment can profoundly affect collective decision-making, highlighting the need for effective mitigation strategies for LLM-based multi-agent systems.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Even More Deception: Objective Misalignment in Mixed-Motive LLM Multi-Agent Systems",
+      "raw_summary": "arXiv:2607.26120v1 Announce Type: new Abstract: Large Language Models (LLMs)-powered multi-agent systems are increasingly deployed in mixed-motive environments, where agents operate under asymmetric information and strategic deception due to conflicting or hidden objectives. In these settings, misalignment with collective goals becomes a central concern. We propose a novel framework for evaluating objective misalignment using the social deduction game Werewolf, modifying the objective of a single agent while preserving its assigned role. Across LLMs from four different model families and sizes, four player roles, and three objective formulations, we introduce a dual analysis of the agents' internal reasoning and their public cheap-talk behavior (i.e costless, non-binding communication that does not directly affect the agents' utilities), complemented by an analysis of game outcomes. Our results show that objective misalignment undermines outcomes in inherently adversarial environments, an effect exacerbated by asymmetric information and specialized roles. While compromised agents consistently develop distinct objective-dependent reasoning strategies, these adaptations remain largely invisible in their public behavior. More broadly, our findings suggest that even subtle objective misalignment can profoundly affect collective decision-making, highlighting the need for effective mitigation strategies for LLM-based multi-agent systems.",
+      "score": 74,
+      "primary": "models",
+      "tags": [
+        "multi-agente",
+        "alineación",
+        "engaño",
+        "llm"
+      ],
+      "heuristic_score": 98,
+      "url": "https://arxiv.org/abs/2607.26120",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 98,
+      "_rid": 2,
+      "llm_score": 70,
+      "why": "Investiga cómo los agentes basados en LLM pueden desarrollar tácticas de engaño cuando los objetivos son mixtos.",
+      "title_es": "Aún más engaño: Desalineación de objetivos en sistemas multi-agente de LLM con motivos mixtos",
+      "entities": [
+        "Even More Deception",
+        "Objective Misalignment",
+        "Mixed",
+        "Motive",
+        "Multi",
+        "Agent Systems"
+      ],
+      "noise_penalty": 0,
+      "final_score": 74,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Recursive transformers for semiconductor thermo-mechanical reliability",
+      "link": "https://arxiv.org/abs/2607.27251",
+      "published": "2026-07-31T04:00:00+00:00",
+      "summary": "arXiv:2607.27251v1 Announce Type: new Abstract: Transformer-based surrogate models are increasingly used to replace expensive first-principles simulation in engineering design. But conventional transformer architectures are often over parameterized for the small, low-dimensional datasets typical of engineering design spaces, where large simulation data is expensive to generate. Under these conditions, excess parameter capacity leads to overfitting rather than improved accuracy, while also incurring unnecessary memory and compute overhead. This motivates a shift towards architectures that focus on additional compute rather than additional learnable parameters. This paper presents a hardware-aware evaluation of three recursive transformer paradigms for surrogate thermo-mechanical analysis of advanced packages: a)Tiny Recursive Model, b) our proposed Depth Recursive transformer, c) and a simple recursive transformer. We systematically compare their predictive performance (Recall, Mean Reciprocal Rank), parameter count, computational complexity (FLOPs), providing practical design guidelines for selecting recursive transformer architectures under resource-constrained scenarios. We validate this principle on two low-dimensional engineering prediction tasks: 1) thermo-mechanical reliability analysis of advanced semiconductor packages, where stress and warpage from thermal cycling must be evaluated repeatedly across a design-of-experiments sweep under costly finite element analysis (FEA). 2) Laplace PDE iterative numerical solver for capacitance field. Overall, recursive weight-sharing transformers provide an effective and generalizable trade-off between prediction accuracy, parameter efficiency, and computational cost for small data engineering surrogate modeling.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Recursive transformers for semiconductor thermo-mechanical reliability",
+      "raw_summary": "arXiv:2607.27251v1 Announce Type: new Abstract: Transformer-based surrogate models are increasingly used to replace expensive first-principles simulation in engineering design. But conventional transformer architectures are often over parameterized for the small, low-dimensional datasets typical of engineering design spaces, where large simulation data is expensive to generate. Under these conditions, excess parameter capacity leads to overfitting rather than improved accuracy, while also incurring unnecessary memory and compute overhead. This motivates a shift towards architectures that focus on additional compute rather than additional learnable parameters. This paper presents a hardware-aware evaluation of three recursive transformer paradigms for surrogate thermo-mechanical analysis of advanced packages: a)Tiny Recursive Model, b) our proposed Depth Recursive transformer, c) and a simple recursive transformer. We systematically compare their predictive performance (Recall, Mean Reciprocal Rank), parameter count, computational complexity (FLOPs), providing practical design guidelines for selecting recursive transformer architectures under resource-constrained scenarios. We validate this principle on two low-dimensional engineering prediction tasks: 1) thermo-mechanical reliability analysis of advanced semiconductor packages, where stress and warpage from thermal cycling must be evaluated repeatedly across a design-of-experiments sweep under costly finite element analysis (FEA). 2) Laplace PDE iterative numerical solver for capacitance field. Overall, recursive weight-sharing transformers provide an effective and generalizable trade-off between prediction accuracy, parameter efficiency, and computational cost for small data engineering surrogate modeling.",
+      "score": 74,
+      "primary": "infra",
+      "tags": [
+        "semiconductores",
+        "transformers",
+        "fiabilidad",
+        "diseño"
+      ],
+      "heuristic_score": 67,
+      "url": "https://arxiv.org/abs/2607.27251",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 67,
+      "_rid": 7,
+      "llm_score": 75,
+      "why": "Adaptación de Transformers para simulación de ingeniería evitando el sobreajuste en datasets pequeños.",
+      "title_es": "Transformers recursivos para la fiabilidad termomecánica de semiconductores",
+      "entities": [
+        "Recursive"
+      ],
+      "noise_penalty": 0,
+      "final_score": 74,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Introducing Gemini 3.6 Flash, 3.5 Flash-Lite, and 3.5 Flash Cyber",
+      "link": "https://deepmind.google/blog/introducing-gemini-3-6-flash-3-5-flash-lite-and-3-5-flash-cyber/",
+      "published": "2026-07-21T15:16:30+00:00",
+      "summary": "We’re introducing new Gemini models, including Gemini 3.6 Flash, 3.5 Flash-Lite and 3.5 Flash Cyber.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Introducing Gemini 3.6 Flash, 3.5 Flash-Lite, and 3.5 Flash Cyber",
+      "raw_summary": "We’re introducing new Gemini models, including Gemini 3.6 Flash, 3.5 Flash-Lite and 3.5 Flash Cyber.",
+      "score": 73,
+      "primary": "models",
+      "tags": [
+        "eficiencia",
+        "flash",
+        "ciberseguridad",
+        "llm"
+      ],
+      "heuristic_score": 33,
+      "url": "https://deepmind.google/blog/introducing-gemini-3-6-flash-3-5-flash-lite-and-3-5-flash-cyber/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 33,
+      "_rid": 10,
+      "llm_score": 88,
+      "why": "Actualización de la familia Gemini centrada en eficiencia extrema y casos de uso específicos como ciberseguridad.",
+      "title_es": "Presentando Gemini 3.6 Flash, 3.5 Flash-Lite y 3.5 Flash Cyber",
+      "entities": [
+        "DeepMind",
+        "Gemini",
+        "Introducing Gemini",
+        "Flash",
+        "Lite",
+        "Flash Cyber"
+      ],
+      "noise_penalty": 7,
+      "final_score": 73,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(7)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Sympathetic Framing: Evaluating AI Alignment across Sociodemographic Groups",
+      "link": "https://arxiv.org/abs/2607.27232",
+      "published": "2026-07-31T04:00:00+00:00",
+      "summary": "arXiv:2607.27232v1 Announce Type: new Abstract: Large Language Models (LLMs) are increasingly shaping how we consume information and form our worldview. This raises concerns beyond bias in AI: do LLMs grasp the emotional nuances conveyed via textual framing? In this work, we empirically evaluate how well an array of LLMs aligns with human emotional perception. Considering news headlines covering political and geopolitical conflicts, both human participants (n = 3011, a representative sample of the U.K. adult population, via a YouGov survey) and seven LLMs answered whether headlines evoked sympathy for a specified side in a conflict. We find that the correlation between AI and human evaluations varies across models, ranging from very high (0.789, GPT-5.2) to medium (0.4 ,Mistral Large 2512). Crucially, the leading models are broadly aligned with human judgments across all demographic subgroups, including age, gender, level of education, prior geopolitical knowledge, and participants' predispositions regarding the conflict, although there are statistically significant differences between groups. This research, with its robust design and large, demographically diverse dataset, offers the most comprehensive evaluation of LLMs' comprehension of news framing to date. Findings highlight an important, often-ignored aspect of differential alignment: even when aggregate performance is high, AI alignment is not universal -- it may correspond differently with demographic features and cultural norms. Considering or ignoring the need for differential alignment may therefore have significant implications for the development of ethical and useful AI systems.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Sympathetic Framing: Evaluating AI Alignment across Sociodemographic Groups",
+      "raw_summary": "arXiv:2607.27232v1 Announce Type: new Abstract: Large Language Models (LLMs) are increasingly shaping how we consume information and form our worldview. This raises concerns beyond bias in AI: do LLMs grasp the emotional nuances conveyed via textual framing? In this work, we empirically evaluate how well an array of LLMs aligns with human emotional perception. Considering news headlines covering political and geopolitical conflicts, both human participants (n = 3011, a representative sample of the U.K. adult population, via a YouGov survey) and seven LLMs answered whether headlines evoked sympathy for a specified side in a conflict. We find that the correlation between AI and human evaluations varies across models, ranging from very high (0.789, GPT-5.2) to medium (0.4 ,Mistral Large 2512). Crucially, the leading models are broadly aligned with human judgments across all demographic subgroups, including age, gender, level of education, prior geopolitical knowledge, and participants' predispositions regarding the conflict, although there are statistically significant differences between groups. This research, with its robust design and large, demographically diverse dataset, offers the most comprehensive evaluation of LLMs' comprehension of news framing to date. Findings highlight an important, often-ignored aspect of differential alignment: even when aggregate performance is high, AI alignment is not universal -- it may correspond differently with demographic features and cultural norms. Considering or ignoring the need for differential alignment may therefore have significant implications for the development of ethical and useful AI systems.",
+      "score": 72,
+      "primary": "models",
+      "tags": [
+        "alineación",
+        "sociodemografía",
+        "empatía",
+        "evaluación"
+      ],
+      "heuristic_score": 92,
+      "url": "https://arxiv.org/abs/2607.27232",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 92,
+      "_rid": 3,
+      "llm_score": 68,
+      "why": "Estudio sobre la capacidad de los LLM para captar matices emocionales y alinearse con la percepción humana subjetiva.",
+      "title_es": "Encuadre simpático: Evaluando la alineación de la IA a través de grupos sociodemográficos",
+      "entities": [
+        "YouGov",
+        "OpenAI",
+        "Sympathetic Framing",
+        "Evaluating",
+        "Alignment",
+        "Sociodemographic Groups"
+      ],
+      "noise_penalty": 0,
+      "final_score": 72,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "From Photonics Precision to Repeatable Evidence",
+      "link": "https://semiwiki.com/photonics/371218-from-photonics-precision-to-repeatable-evidence/",
+      "published": "2026-07-30T21:00:48+00:00",
+      "summary": "Why Optical Probing Is Becoming a Manufacturing Boundary for Silicon Photonics Silicon photonics has already shown that extremely precise optical alignment is possible. In controlled laboratory environments, engineers can align fibers, waveguides, grating couplers, edge couplers, modulators, detectors, and electrical&8230; Read More The post From Photonics Precision to Repeatable Evidence appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "From Photonics Precision to Repeatable Evidence",
+      "raw_summary": "Why Optical Probing Is Becoming a Manufacturing Boundary for Silicon Photonics Silicon photonics has already shown that extremely precise optical alignment is possible. In controlled laboratory environments, engineers can align fibers, waveguides, grating couplers, edge couplers, modulators, detectors, and electrical&#8230; Read More The post From Photonics Precision to Repeatable Evidence appeared first on SemiWiki .",
+      "score": 71,
+      "primary": "infra",
+      "tags": [
+        "fotónica",
+        "silicio",
+        "fabricación",
+        "metrología"
+      ],
+      "heuristic_score": 19,
+      "url": "https://semiwiki.com/photonics/371218-from-photonics-precision-to-repeatable-evidence/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 19,
+      "_rid": 14,
+      "llm_score": 80,
+      "why": "La precisión en el sondeo óptico se consolida como el cuello de botella para la producción masiva de chips fotónicos.",
+      "title_es": "De la precisión fotónica a la evidencia repetible",
+      "entities": [
+        "Silicon Photonics",
+        "From Photonics Precision",
+        "Repeatable Evidence"
+      ],
+      "noise_penalty": 0,
+      "final_score": 71,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Formal Acceleration on FPGA. Innovation in Verification",
+      "link": "https://semiwiki.com/eda/371437-formal-acceleration-on-fpga-innovation-in-verification/",
+      "published": "2026-07-30T13:00:59+00:00",
+      "summary": "Extending hardware acceleration to formal verification is a powerful idea to extend hardware acceleration to a verification domain that has not got much attention for acceleration. Paul Cunningham (GM, Verification at Cadence), Raúl Camposano (Silicon Catalyst, entrepreneur, former Synopsys CTO and lecturer at Stanford,&8230; Read More The post Formal Acceleration on FPGA. Innovation in Verification appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "Formal Acceleration on FPGA. Innovation in Verification",
+      "raw_summary": "Extending hardware acceleration to formal verification is a powerful idea to extend hardware acceleration to a verification domain that has not got much attention for acceleration. Paul Cunningham (GM, Verification at Cadence), Raúl Camposano (Silicon Catalyst, entrepreneur, former Synopsys CTO and lecturer at Stanford,&#8230; Read More The post Formal Acceleration on FPGA. Innovation in Verification appeared first on SemiWiki .",
+      "score": 70,
+      "primary": "infra",
+      "tags": [
+        "fpga",
+        "verificación",
+        "eda",
+        "hardware"
+      ],
+      "heuristic_score": 22,
+      "url": "https://semiwiki.com/eda/371437-formal-acceleration-on-fpga-innovation-in-verification/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 22,
+      "_rid": 13,
+      "llm_score": 78,
+      "why": "La aceleración formal en FPGA permite verificar diseños de hardware complejos con una velocidad inalcanzable por software.",
+      "title_es": "Aceleración formal en FPGA: Innovación en la verificación",
+      "entities": [
+        "Cadence",
+        "Synopsys",
+        "FPGA",
+        "Formal Acceleration",
+        "Innovation",
+        "Verification"
+      ],
+      "noise_penalty": 0,
+      "final_score": 70,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "BridgeAlign: Bridging Preference Alignment for Humanities and Social Sciences",
+      "link": "https://arxiv.org/abs/2607.27366",
+      "published": "2026-07-31T04:00:00+00:00",
+      "summary": "arXiv:2607.27366v1 Announce Type: new Abstract: While data synthesis for large language models (LLMs) is prevalent, it primarily targets domains with verifiable answers, overlooking open-ended humanities and social sciences (HSS), where nuanced quality judgments matter more than objective correctness. This makes preference alignment a natural paradigm for broad HSS tasks. Yet existing methods are either costly or not tailored to broad HSS disciplines. We thus propose BridgeAlign, among the first preference-alignment pipelines for broad HSS disciplines, with three phases: i) Seed Curation: curating HSS seed documents from web corpora via heuristic/LLM-based filtering and text refinement; ii) Preference Data Synthesis: generating preference triplets via persona-based instruction inversion with Q&A consistency checks; iii) Preference Optimization: moving beyond naive human-vs-model heuristics by first grounding preferences in HSS quality rubric, then generating transitional responses via controlled quality degradation to form near-boundary preference pairs for finer-grained quality discrimination. Aligning over 210k synthetic preference samples, BridgeAlign enables Qwen3-8B to achieve the best average across 17 benchmarks against 11 strong baselines; importantly, leading on both human-preference and knowledge-based capabilities at once, with no trade-off between them, as supported by extensive experiments and contextualized by existing theories.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "BridgeAlign: Bridging Preference Alignment for Humanities and Social Sciences",
+      "raw_summary": "arXiv:2607.27366v1 Announce Type: new Abstract: While data synthesis for large language models (LLMs) is prevalent, it primarily targets domains with verifiable answers, overlooking open-ended humanities and social sciences (HSS), where nuanced quality judgments matter more than objective correctness. This makes preference alignment a natural paradigm for broad HSS tasks. Yet existing methods are either costly or not tailored to broad HSS disciplines. We thus propose BridgeAlign, among the first preference-alignment pipelines for broad HSS disciplines, with three phases: i) Seed Curation: curating HSS seed documents from web corpora via heuristic/LLM-based filtering and text refinement; ii) Preference Data Synthesis: generating preference triplets via persona-based instruction inversion with Q&amp;A consistency checks; iii) Preference Optimization: moving beyond naive human-vs-model heuristics by first grounding preferences in HSS quality rubric, then generating transitional responses via controlled quality degradation to form near-boundary preference pairs for finer-grained quality discrimination. Aligning over 210k synthetic preference samples, BridgeAlign enables Qwen3-8B to achieve the best average across 17 benchmarks against 11 strong baselines; importantly, leading on both human-preference and knowledge-based capabilities at once, with no trade-off between them, as supported by extensive experiments and contextualized by existing theories.",
+      "score": 68,
+      "primary": "models",
+      "tags": [
+        "alineación",
+        "humanidades",
+        "ciencias sociales",
+        "preferencias"
+      ],
+      "heuristic_score": 82,
+      "url": "https://arxiv.org/abs/2607.27366",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 82,
+      "_rid": 5,
+      "llm_score": 65,
+      "why": "Propuesta de alineación de preferencias específica para disciplinas donde no existe una única respuesta correcta.",
+      "title_es": "BridgeAlign: Puente para la alineación de preferencias en humanidades y ciencias sociales",
+      "entities": [
+        "Bridging Preference Alignment",
+        "Humanities",
+        "Social Sciences"
+      ],
+      "noise_penalty": 0,
+      "final_score": 68,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Regularizing modality contribution drift in multimodal continual learning",
+      "link": "https://arxiv.org/abs/2607.27260",
+      "published": "2026-07-31T04:00:00+00:00",
+      "summary": "arXiv:2607.27260v1 Announce Type: new Abstract: Multimodal continual learning (MMCL) aims to learn emerging knowledge from multimodal data while preserving knowledge. To mitigate forgetting, current MMCL methods usually focus on cross-modal representation alignment or semantic similarity, but they overlook whether the relative contributions of individual modalities and their interactions remain stable across incremental tasks. We term this decision-level shift Modality Contribution Drift (MCD) and quantify it with the MCD score, which combines contribution-strength and relative-reliance changes under controlled interventions on modality subsets. Theoretical and empirical analyses further explain why current MMCL methods cannot reliably mitigate this drift. To this end, we propose Continual Modality Contribution Drift Regularization (CMCDR), which preserves the modality contribution structure of previously learned tasks. Since MMCL settings differ in whether old exemplars are available, CMCDR includes both replay-based and replay-free versions. The replay-based version uses modality-subset interventions as diagnostic probes on stored old samples, compares their contribution profiles between the current model and a frozen previous model, and constrains changes in old-sample modality-specific and interaction contributions. The replay-free version uses current-task samples as probes and distills the frozen model's old-task contribution responses, thereby regularizing the observed contribution profile without exemplars. Experiments on multimodal class-incremental learning and continual visual question answering validate the generality and effectiveness of CMCDR.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Regularizing modality contribution drift in multimodal continual learning",
+      "raw_summary": "arXiv:2607.27260v1 Announce Type: new Abstract: Multimodal continual learning (MMCL) aims to learn emerging knowledge from multimodal data while preserving knowledge. To mitigate forgetting, current MMCL methods usually focus on cross-modal representation alignment or semantic similarity, but they overlook whether the relative contributions of individual modalities and their interactions remain stable across incremental tasks. We term this decision-level shift Modality Contribution Drift (MCD) and quantify it with the MCD score, which combines contribution-strength and relative-reliance changes under controlled interventions on modality subsets. Theoretical and empirical analyses further explain why current MMCL methods cannot reliably mitigate this drift. To this end, we propose Continual Modality Contribution Drift Regularization (CMCDR), which preserves the modality contribution structure of previously learned tasks. Since MMCL settings differ in whether old exemplars are available, CMCDR includes both replay-based and replay-free versions. The replay-based version uses modality-subset interventions as diagnostic probes on stored old samples, compares their contribution profiles between the current model and a frozen previous model, and constrains changes in old-sample modality-specific and interaction contributions. The replay-free version uses current-task samples as probes and distills the frozen model's old-task contribution responses, thereby regularizing the observed contribution profile without exemplars. Experiments on multimodal class-incremental learning and continual visual question answering validate the generality and effectiveness of CMCDR.",
+      "score": 68,
+      "primary": "models",
+      "tags": [
+        "aprendizaje continuo",
+        "multimodal",
+        "estabilidad",
+        "mcd"
+      ],
+      "heuristic_score": 47,
+      "url": "https://arxiv.org/abs/2607.27260",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 47,
+      "_rid": 8,
+      "llm_score": 72,
+      "why": "Identifica y cuantifica la deriva en la contribución de distintas modalidades durante el aprendizaje incremental.",
+      "title_es": "Regularización del flujo de contribución de modalidad en el aprendizaje continuo multimodal",
+      "entities": [
+        "Regularizing"
+      ],
+      "noise_penalty": 0,
+      "final_score": 68,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "HSS-Synth: Humanities and Social Sciences Data Synthesis for LLMs",
+      "link": "https://arxiv.org/abs/2607.27379",
+      "published": "2026-07-31T04:00:00+00:00",
+      "summary": "arXiv:2607.27379v1 Announce Type: new Abstract: High-quality, diverse data are vital for large language models (LLMs) but remain scarce and costly. Data synthesis is a viable alternative and succeeds on closed tasks, yet the humanities and social sciences (HSS) are overlooked, and their open-ended nature makes synthesis challenging. Moving beyond prior capability-centric, fragmented attempts, we adopt a subject-centric paradigm, define the first HSS domain system covering 14 mainstream fields, and introduce HSS-Synth, the first data synthesis pipeline for HSS. HSS-Synth comprises: (1) constructing seed documents from web corpora via multi-step filtering and text refinement evaluated by a judge; (2) specifying \"requirements + persona\" to backtranslate seed documents into diverse yet faithful instructions with a strict Q&A alignment check; and (3) breaking LLM response limits via teacher-forced Answering that feeds seed documents during response generation to anchor semantics, reduce hallucinations, and preserve tone and integrity. HSS-Synth yields 237k high-quality, diverse instruction-tuning samples that outperform 14 leading baselines on 16 benchmarks. The fine-tuned Qwen3-8B-Base sets a new SOTA and approaches the official Qwen3-8B, improving both human preference and knowledge capabilities without performance seesaws. Extensive experiments demonstrate HSS-Synth's robustness and transferability. Our code is publicly available at",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "HSS-Synth: Humanities and Social Sciences Data Synthesis for LLMs",
+      "raw_summary": "arXiv:2607.27379v1 Announce Type: new Abstract: High-quality, diverse data are vital for large language models (LLMs) but remain scarce and costly. Data synthesis is a viable alternative and succeeds on closed tasks, yet the humanities and social sciences (HSS) are overlooked, and their open-ended nature makes synthesis challenging. Moving beyond prior capability-centric, fragmented attempts, we adopt a subject-centric paradigm, define the first HSS domain system covering 14 mainstream fields, and introduce HSS-Synth, the first data synthesis pipeline for HSS. HSS-Synth comprises: (1) constructing seed documents from web corpora via multi-step filtering and text refinement evaluated by a judge; (2) specifying \"requirements + persona\" to backtranslate seed documents into diverse yet faithful instructions with a strict Q&amp;A alignment check; and (3) breaking LLM response limits via teacher-forced Answering that feeds seed documents during response generation to anchor semantics, reduce hallucinations, and preserve tone and integrity. HSS-Synth yields 237k high-quality, diverse instruction-tuning samples that outperform 14 leading baselines on 16 benchmarks. The fine-tuned Qwen3-8B-Base sets a new SOTA and approaches the official Qwen3-8B, improving both human preference and knowledge capabilities without performance seesaws. Extensive experiments demonstrate HSS-Synth's robustness and transferability. Our code is publicly available at https://github.com/pengr/HSS-Synth.",
+      "score": 65,
+      "primary": "models",
+      "tags": [
+        "síntesis de datos",
+        "hss",
+        "entrenamiento",
+        "calidad"
+      ],
+      "heuristic_score": 75,
+      "url": "https://arxiv.org/abs/2607.27379",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 75,
+      "_rid": 6,
+      "llm_score": 63,
+      "why": "Primer pipeline de síntesis de datos especializado en 14 campos de humanidades y ciencias sociales para LLMs.",
+      "title_es": "HSS-Synth: Síntesis de datos de humanidades y ciencias sociales para LLMs",
+      "entities": [
+        "HSS",
+        "Synth",
+        "Humanities",
+        "Social Sciences Data",
+        "Synthesis"
+      ],
+      "noise_penalty": 0,
+      "final_score": 65,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "AI-assisted pre-review of open-source software submissions: an experience report from BOSC 2026",
+      "link": "https://arxiv.org/abs/2607.27228",
+      "published": "2026-07-31T04:00:00+00:00",
+      "summary": "arXiv:2607.27228v1 Announce Type: new Abstract: Most conferences rely on peer-review of submissions, but as generative AI makes it easier than ever to prepare submission materials, some conferences are seeing an overwhelming surge of submissions. We wanted to see if generative AI could help our conference's volunteer reviewers by pre-reviewing abstracts for certain criteria. The Bioinformatics Open Source Conference (BOSC) was well-positioned to experiment with this, as we already had a detailed rubric used by reviewers to evaluate submitted abstracts on multiple criteria, including openness (public availability of the code or other content associated with the project), valid open source license, and \"runnability\" (how easy it is to download, build, and run the project - an important measure of reusability). For BOSC 2026, we built bosc-pre-review, an agentic skill that assessed six review criteria, and Runabilly, which builds and tests each project in a disposable Docker container for safety. The AI only gathered evidence to present to the reviewers; humans made every decision regarding the acceptance of the abstracts. After the review period, we surveyed the reviewers to determine how useful they found the pre-review. Most of those who responded said they found it useful, but they preferred to check the AI's conclusions against their own, rather than accepting the AI results unquestioningly.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "AI-assisted pre-review of open-source software submissions: an experience report from BOSC 2026",
+      "raw_summary": "arXiv:2607.27228v1 Announce Type: new Abstract: Most conferences rely on peer-review of submissions, but as generative AI makes it easier than ever to prepare submission materials, some conferences are seeing an overwhelming surge of submissions. We wanted to see if generative AI could help our conference's volunteer reviewers by pre-reviewing abstracts for certain criteria. The Bioinformatics Open Source Conference (BOSC) was well-positioned to experiment with this, as we already had a detailed rubric used by reviewers to evaluate submitted abstracts on multiple criteria, including openness (public availability of the code or other content associated with the project), valid open source license, and \"runnability\" (how easy it is to download, build, and run the project - an important measure of reusability). For BOSC 2026, we built bosc-pre-review, an agentic skill that assessed six review criteria, and Runabilly, which builds and tests each project in a disposable Docker container for safety. The AI only gathered evidence to present to the reviewers; humans made every decision regarding the acceptance of the abstracts. After the review period, we surveyed the reviewers to determine how useful they found the pre-review. Most of those who responded said they found it useful, but they preferred to check the AI's conclusions against their own, rather than accepting the AI results unquestioningly.",
+      "score": 52,
+      "primary": "misc",
+      "tags": [
+        "open source",
+        "peer-review",
+        "automatización",
+        "software"
+      ],
+      "heuristic_score": 32,
+      "url": "https://arxiv.org/abs/2607.27228",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 32,
+      "_rid": 12,
+      "llm_score": 55,
+      "why": "Experiencia práctica usando IA para el triaje inicial de propuestas técnicas en conferencias de software.",
+      "title_es": "Revisión previa asistida por IA de envíos de software de código abierto en BOSC 2026",
+      "entities": [
+        "BOSC"
+      ],
+      "noise_penalty": 0,
+      "final_score": 52,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Prompt Chaining in Practice: A Case Study in Automated Scholarly Report Generation",
+      "link": "https://arxiv.org/abs/2607.27210",
+      "published": "2026-07-31T04:00:00+00:00",
+      "summary": "arXiv:2607.27210v1 Announce Type: new Abstract: The exponential growth of scholarly publications requires automated tools for effective information synthesis. However, simple, single-shot prompting methods often lack the reliability and quality required for complex synthesis tasks. This paper introduces and empirically evaluates a multi-stage prompt chaining methodology as a more reliable architectural pattern for such tasks. This approach is implemented in our system, AI SciBrief, which automatically generates scholarly digests. We conducted a comparative experiment, measuring the performance of our prompt chaining method against a carefully optimized single-shot baseline. Both systems were evaluated against a human-authored \"gold standard\" report for the \"Education\" domain. The results demonstrate a significant difference in reliability: our prompt chaining method achieved a 100% success rate, whereas the optimized baseline failed in 50% of its runs. In terms of quality, the proposed method also demonstrated a clear advantage, achieving a superior ROUGE-L F1-score (0.507 vs. 0.486), driven primarily by higher precision. We conclude that prompt chaining is a more dependable and effective engineering approach for complex, multi-step generative tasks, significantly mitigating the risks of failure and inconsistency inherent in monolithic prompts.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Prompt Chaining in Practice: A Case Study in Automated Scholarly Report Generation",
+      "raw_summary": "arXiv:2607.27210v1 Announce Type: new Abstract: The exponential growth of scholarly publications requires automated tools for effective information synthesis. However, simple, single-shot prompting methods often lack the reliability and quality required for complex synthesis tasks. This paper introduces and empirically evaluates a multi-stage prompt chaining methodology as a more reliable architectural pattern for such tasks. This approach is implemented in our system, AI SciBrief, which automatically generates scholarly digests. We conducted a comparative experiment, measuring the performance of our prompt chaining method against a carefully optimized single-shot baseline. Both systems were evaluated against a human-authored \"gold standard\" report for the \"Education\" domain. The results demonstrate a significant difference in reliability: our prompt chaining method achieved a 100% success rate, whereas the optimized baseline failed in 50% of its runs. In terms of quality, the proposed method also demonstrated a clear advantage, achieving a superior ROUGE-L F1-score (0.507 vs. 0.486), driven primarily by higher precision. We conclude that prompt chaining is a more dependable and effective engineering approach for complex, multi-step generative tasks, significantly mitigating the risks of failure and inconsistency inherent in monolithic prompts.",
+      "score": 50,
+      "primary": "misc",
+      "tags": [
+        "prompts",
+        "arquitectura",
+        "informes",
+        "ingeniería"
+      ],
+      "heuristic_score": 32,
+      "url": "https://arxiv.org/abs/2607.27210",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 32,
+      "_rid": 11,
+      "llm_score": 60,
+      "why": "El encadenamiento de prompts demuestra ser superior a los métodos de un solo paso para tareas de síntesis complejas.",
+      "title_es": "Encadenamiento de prompts en la práctica: Un caso de estudio en la generación automatizada de informes",
+      "entities": [
+        "Prompt Chaining",
+        "Practice",
+        "Case Study",
+        "Automated Scholarly Report",
+        "Generation"
+      ],
+      "noise_penalty": 6,
+      "final_score": 50,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(6)",
+      "strategic_theme": "other"
+    }
+  ]
+}
