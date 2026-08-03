@@ -1,0 +1,688 @@
+{
+  "date": "2026-08-03",
+  "score_avg": 67.67,
+  "primary_dist": {
+    "infra": 4,
+    "models": 9,
+    "invest": 1,
+    "misc": 1
+  },
+  "top_entities": [
+    {
+      "entity": "Can",
+      "count": 2
+    },
+    {
+      "entity": "Bias",
+      "count": 2
+    },
+    {
+      "entity": "Using",
+      "count": 2
+    },
+    {
+      "entity": "DistServe",
+      "count": 1
+    },
+    {
+      "entity": "Splitwise",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "La inferencia desagregada de LLMs exige orquestación consciente de la topología para evitar cuellos de botella de red.",
+      "El empaquetado avanzado CoWoS de TSMC se diversifica en versiones S y R para optimizar la integración de HBM.",
+      "La IA agéntica evoluciona hacia sistemas con memoria persistente y ejecución autónoma en lugar de chats reactivos.",
+      "La fotónica de silicio alcanza la fase de repetibilidad industrial mediante técnicas avanzadas de sondeo óptico.",
+      "La destilación de conocimiento en modelos pequeños mejora el seguimiento de contexto pero degrada la calibración del sesgo."
+    ],
+    "risks": [
+      "Brecha de ancho de banda de hasta 72x entre transferencias NVLink e InfiniBand en arquitecturas de GPU desagregadas.",
+      "Vulnerabilidad persistente a sesgos cognitivos en LLMs utilizados como jueces automáticos en pipelines de evaluación.",
+      "Heurísticas quebradizas en agentes IA que dependen de resúmenes episódicos en lugar de conocimiento predictivo de estado."
+    ],
+    "watch": [
+      "Adopción de procesadores asíncronos y clockless como los de Lattrex para procesamiento de señales en tiempo real.",
+      "Rendimiento de NVIDIA Nemotron 3 Ultra frente a modelos cerrados en orquestación de agentes con LangChain.",
+      "Eficacia de los sistemas 'AI Scientist' para generar investigación original con rigor científico evaluable."
+    ],
+    "entities_top": [
+      "TSMC",
+      "NVIDIA",
+      "LangChain"
+    ]
+  },
+  "items": [
+    {
+      "title": "Topology-Aware Data Movement for Disaggregated GPU Inference",
+      "link": "https://arxiv.org/abs/2607.28633",
+      "published": "2026-08-03T04:00:00+00:00",
+      "summary": "arXiv:2607.28633v1 Announce Type: new Abstract: Disaggregated LLM inference creates a datacenter networking problem that no existing system solves correctly. When prefill and decode run on separate GPU pools, the KV cache must be transferred between them. For a 70B model this is 2.6 GB per request, exceeding 100 GB/s aggregate at production scale. Yet DistServe, Splitwise, and Mooncake all use uniform RDMA, ignoring that bandwidth between two GPUs varies by 72x depending on their physical relationship: 900 GB/s via NVLink within a domain, 50 GB/s via InfiniBand across nodes, 12.5 GB/s via TCP across data centers. We design a topology-aware transfer orchestrator that discovers interconnect hierarchy at startup and selects optimal transport per transfer. Three mechanisms work together: (1) pipelined layer-by-layer transfer that overlaps transmission with ongoing prefill, hiding 60 to 85 percent of latency behind computation; (2) NVLink domain-aware placement for Mixture-of-Experts models that co-optimizes expert dispatch with KV cache locality; and (3) CXL 3.0 memory expanders as a shared overflow tier providing 6x capacity at 86x lower latency than NVMe. Full evaluation requires multi-node clusters with heterogeneous interconnects and CXL 3.0 hardware that is beyond academic resources and not yet available in GPU clouds. We present analytical bandwidth models, component implementations, and projected analysis across three architectures showing 3 to 18x transfer latency reduction over uniform RDMA.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Topology-Aware Data Movement for Disaggregated GPU Inference",
+      "raw_summary": "arXiv:2607.28633v1 Announce Type: new Abstract: Disaggregated LLM inference creates a datacenter networking problem that no existing system solves correctly. When prefill and decode run on separate GPU pools, the KV cache must be transferred between them. For a 70B model this is 2.6 GB per request, exceeding 100 GB/s aggregate at production scale. Yet DistServe, Splitwise, and Mooncake all use uniform RDMA, ignoring that bandwidth between two GPUs varies by 72x depending on their physical relationship: 900 GB/s via NVLink within a domain, 50 GB/s via InfiniBand across nodes, 12.5 GB/s via TCP across data centers. We design a topology-aware transfer orchestrator that discovers interconnect hierarchy at startup and selects optimal transport per transfer. Three mechanisms work together: (1) pipelined layer-by-layer transfer that overlaps transmission with ongoing prefill, hiding 60 to 85 percent of latency behind computation; (2) NVLink domain-aware placement for Mixture-of-Experts models that co-optimizes expert dispatch with KV cache locality; and (3) CXL 3.0 memory expanders as a shared overflow tier providing 6x capacity at 86x lower latency than NVMe. Full evaluation requires multi-node clusters with heterogeneous interconnects and CXL 3.0 hardware that is beyond academic resources and not yet available in GPU clouds. We present analytical bandwidth models, component implementations, and projected analysis across three architectures showing 3 to 18x transfer latency reduction over uniform RDMA.",
+      "score": 90,
+      "primary": "infra",
+      "tags": [
+        "gpu",
+        "inference",
+        "networking",
+        "topología",
+        "kv-cache"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2607.28633",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 3,
+      "llm_score": 88,
+      "why": "Optimización crítica del movimiento de datos del KV cache en arquitecturas donde el prefill y el decode corren en pools de GPU separados.",
+      "title_es": "Movimiento de datos consciente de la topología para inferencia de GPU desagregada",
+      "entities": [
+        "DistServe",
+        "Splitwise",
+        "Mooncake",
+        "Topology",
+        "Aware Data Movement",
+        "Disaggregated",
+        "Inference"
+      ],
+      "noise_penalty": 0,
+      "final_score": 90,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "The Difference Between TSMC CoWoS-S and CoWoS-R",
+      "link": "https://semiwiki.com/semiconductor-manufacturers/tsmc/371759-the-difference-between-cowos-s-and-cowos-r/",
+      "published": "2026-07-31T13:00:45+00:00",
+      "summary": "CoWoS-S and CoWoS-R are two versions of TSMC’s Chip-on-Wafer-on-Substrate advanced packaging platform. Both technologies are designed to combine high-performance processors, chiplets and high-bandwidth memory, or HBM, within a single package. This shortens the electrical connections between computing and memory components,&8230; Read More The post The Difference Between TSMC CoWoS-S and CoWoS-R appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "The Difference Between TSMC CoWoS-S and CoWoS-R",
+      "raw_summary": "CoWoS-S and CoWoS-R are two versions of TSMC’s Chip-on-Wafer-on-Substrate advanced packaging platform. Both technologies are designed to combine high-performance processors, chiplets and high-bandwidth memory, or HBM, within a single package. This shortens the electrical connections between computing and memory components,&#8230; Read More The post The Difference Between TSMC CoWoS-S and CoWoS-R appeared first on SemiWiki .",
+      "score": 87,
+      "primary": "infra",
+      "tags": [
+        "cowos",
+        "tsmc",
+        "packaging",
+        "hbm",
+        "chiplets"
+      ],
+      "heuristic_score": 91,
+      "url": "https://semiwiki.com/semiconductor-manufacturers/tsmc/371759-the-difference-between-cowos-s-and-cowos-r/",
+      "is_repeat": true,
+      "novelty_score": 65,
+      "adjusted_score": 56,
+      "_rid": 9,
+      "llm_score": 92,
+      "why": "Detalles técnicos sobre las variantes de empaquetado avanzado de TSMC fundamentales para el rendimiento de procesadores de IA.",
+      "title_es": "La diferencia entre TSMC CoWoS-S y CoWoS-R",
+      "entities": [
+        "TSMC",
+        "The Difference Between"
+      ],
+      "noise_penalty": 0,
+      "final_score": 87,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "OpenClaw and Ollama in Agentic AI: Toward Fully Autonomous and Scalable AI Agent Systems",
+      "link": "https://arxiv.org/abs/2607.28629",
+      "published": "2026-08-03T04:00:00+00:00",
+      "summary": "arXiv:2607.28629v1 Announce Type: new Abstract: The rapid transition from reactive large language models (LLMs) to persistent, action-capable systems has exposed critical gaps in the architectural understanding of Agentic AI, particularly in separating inference, orchestration, and execution layers for autonomous AI agents. Despite recent advances, unified frameworks for designing and evaluating full-stack agentic systems remain limited. This paper presents a comprehensive, layered architecture for Agentic AI, outlining the evolution from reactive LLM interfaces to persistent, goal-driven autonomous AI agents with memory, planning, and continuous execution. We analyze OpenClaw and Ollama as a full-stack Agentic AI system, where Ollama serves as the LLM inference layer and OpenClaw enables agent runtime orchestration, integrating reasoning, tool use, and action execution. A prototype experimental validation of the OpenClaw-Ollama architecture demonstrates that capabilities such as persistent memory, tool utilization, and adaptive decision-making emerge from system-level integration rather than standalone models, with performance improving consistently as architectural complexity increases. The study further examines challenges in scalability, security, privacy, governance, and evaluation of agentic systems, highlighting the need for robust benchmarking and system-level design. Future directions include scalable multi-agent architectures, distributed autonomous systems, and human-aware Agentic AI frameworks for responsible deployment. Overall, this work establishes a unified architectural foundation for Agentic AI, validates the effectiveness of full-stack autonomous AI agents, and provides a roadmap for building scalable, secure, and trustworthy agentic systems. All models, code, and datasets are publicly released to support reproducibility and benchmarking.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "OpenClaw and Ollama in Agentic AI: Toward Fully Autonomous and Scalable AI Agent Systems",
+      "raw_summary": "arXiv:2607.28629v1 Announce Type: new Abstract: The rapid transition from reactive large language models (LLMs) to persistent, action-capable systems has exposed critical gaps in the architectural understanding of Agentic AI, particularly in separating inference, orchestration, and execution layers for autonomous AI agents. Despite recent advances, unified frameworks for designing and evaluating full-stack agentic systems remain limited. This paper presents a comprehensive, layered architecture for Agentic AI, outlining the evolution from reactive LLM interfaces to persistent, goal-driven autonomous AI agents with memory, planning, and continuous execution. We analyze OpenClaw and Ollama as a full-stack Agentic AI system, where Ollama serves as the LLM inference layer and OpenClaw enables agent runtime orchestration, integrating reasoning, tool use, and action execution. A prototype experimental validation of the OpenClaw-Ollama architecture demonstrates that capabilities such as persistent memory, tool utilization, and adaptive decision-making emerge from system-level integration rather than standalone models, with performance improving consistently as architectural complexity increases. The study further examines challenges in scalability, security, privacy, governance, and evaluation of agentic systems, highlighting the need for robust benchmarking and system-level design. Future directions include scalable multi-agent architectures, distributed autonomous systems, and human-aware Agentic AI frameworks for responsible deployment. Overall, this work establishes a unified architectural foundation for Agentic AI, validates the effectiveness of full-stack autonomous AI agents, and provides a roadmap for building scalable, secure, and trustworthy agentic systems. All models, code, and datasets are publicly released to support reproducibility and benchmarking.",
+      "score": 79,
+      "primary": "models",
+      "tags": [
+        "agentic-ai",
+        "ollama",
+        "openclaw",
+        "arquitectura"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2607.28629",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 1,
+      "llm_score": 75,
+      "why": "Propuesta de arquitectura por capas para agentes autónomos escalables, separando inferencia, orquestación y ejecución.",
+      "title_es": "OpenClaw y Ollama en IA Agéntica: Hacia sistemas de agentes de IA totalmente autónomos y escalables",
+      "entities": [
+        "OpenClaw",
+        "Ollama",
+        "Agentic",
+        "Toward Fully Autonomous",
+        "Scalable",
+        "Agent Systems"
+      ],
+      "noise_penalty": 0,
+      "final_score": 79,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Can AI Evaluate AI Scientists? A Benchmarking Study of Autonomous Research Generation Systems Using Automated Multi-Model Review",
+      "link": "https://arxiv.org/abs/2607.28631",
+      "published": "2026-08-03T04:00:00+00:00",
+      "summary": "arXiv:2607.28631v1 Announce Type: new Abstract: AI Scientist systems capable of autonomous research have the potential to significantly accelerate scientific discovery. However, evaluating and comparing the quality of AI-generated papers remains an open challenge. We propose and implement a rigorous benchmarking protocol using an automated peer-review system that harnesses frontier large language models to assess scientific papers across four core dimensions: originality, scientific rigor, clarity, and significance. We evaluate four leading AI Scientist frameworks: \\textit{Sakana AI (v1 & v2)}, \\textit{CycleResearcher}, and \\textit{Data-to-Paper}. Each framework was run on a consistent set of 15 research proposals published by a commercial autonomous AI scientist company (FARS), generating 60 papers that we evaluate alongside 15 FARS benchmark papers. Using three independent LLM reviewers (GPT-5.4, Gemini, and Claude), we find that FARS benchmark papers significantly outperform all competing frameworks, achieving mean scores of 2.14--2.47 on a 1--5 scale compared to 1.00--1.87 for other systems. Notably, FARS scores are more than 2$\\times$ higher than the next-best systems on Gemini and Claude evaluations. We find strong agreement among Gemini and Claude ($\\rho$ = 0.907, $p < 0.001$), and both correlate extremely strongly with the synthesis score ($\\rho$ = 0.961, $p < 0.001$), validating the reliability of automated evaluation. However, GPT-5.4 exhibits weaker agreement ($\\rho \\approx 0.32$), suggesting it evaluates papers using different criteria. These results establish the first quantitative benchmark for AI Scientist systems and demonstrate that multi-model LLM evaluation provides a scalable, consistent framework for assessing autonomous research quality.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Can AI Evaluate AI Scientists? A Benchmarking Study of Autonomous Research Generation Systems Using Automated Multi-Model Review",
+      "raw_summary": "arXiv:2607.28631v1 Announce Type: new Abstract: AI Scientist systems capable of autonomous research have the potential to significantly accelerate scientific discovery. However, evaluating and comparing the quality of AI-generated papers remains an open challenge. We propose and implement a rigorous benchmarking protocol using an automated peer-review system that harnesses frontier large language models to assess scientific papers across four core dimensions: originality, scientific rigor, clarity, and significance. We evaluate four leading AI Scientist frameworks: \\textit{Sakana AI (v1 & v2)}, \\textit{CycleResearcher}, and \\textit{Data-to-Paper}. Each framework was run on a consistent set of 15 research proposals published by a commercial autonomous AI scientist company (FARS), generating 60 papers that we evaluate alongside 15 FARS benchmark papers. Using three independent LLM reviewers (GPT-5.4, Gemini, and Claude), we find that FARS benchmark papers significantly outperform all competing frameworks, achieving mean scores of 2.14--2.47 on a 1--5 scale compared to 1.00--1.87 for other systems. Notably, FARS scores are more than 2$\\times$ higher than the next-best systems on Gemini and Claude evaluations. We find strong agreement among Gemini and Claude ($\\rho$ = 0.907, $p < 0.001$), and both correlate extremely strongly with the synthesis score ($\\rho$ = 0.961, $p < 0.001$), validating the reliability of automated evaluation. However, GPT-5.4 exhibits weaker agreement ($\\rho \\approx 0.32$), suggesting it evaluates papers using different criteria. These results establish the first quantitative benchmark for AI Scientist systems and demonstrate that multi-model LLM evaluation provides a scalable, consistent framework for assessing autonomous research quality.",
+      "score": 76,
+      "primary": "models",
+      "tags": [
+        "ai-scientist",
+        "benchmarking",
+        "automatización",
+        "investigación"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2607.28631",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 2,
+      "llm_score": 72,
+      "why": "Estudio de sistemas que generan investigación científica de forma autónoma, evaluando su rigor y originalidad con modelos frontera.",
+      "title_es": "¿Puede la IA evaluar a científicos de IA? Un estudio de benchmarking de sistemas de generación de investigación autónoma",
+      "entities": [
+        "Sakana AI",
+        "CycleResearcher",
+        "Data-to-Paper",
+        "Can",
+        "Evaluate",
+        "Scientists",
+        "Benchmarking Study",
+        "Autonomous Research Generation"
+      ],
+      "noise_penalty": 0,
+      "final_score": 76,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Learning Stateful Predictive Knowledge From Experience",
+      "link": "https://arxiv.org/abs/2607.28638",
+      "published": "2026-08-03T04:00:00+00:00",
+      "summary": "arXiv:2607.28638v1 Announce Type: new Abstract: As large language model (LLM) agents increasingly learn from experience, they primarily rely on trajectory-level reflection to extract insights. Viewed through the lens of predictive knowledge, we argue that this approach operates on episodic hindsight rather than predictive foresight, yielding brittle, path-dependent heuristics. To address this, we propose Stateful Knowledge Learning (SKL). SKL shifts the agent's focus from trajectory-level summarization to maintaining Stateful Knowledge: explicit, declarative predictive assessments anchored to state. We first demonstrate a motivating example showing how stateful knowledge provides granularity, enhances generalization, and enables knowledge bootstrapping. To further scale up the idea, we introduce two algorithms via self-distillation (SKL-SD) and reinforcement learning (SKL-RL), training agents to autonomously extract state-grounded predictive knowledge from experience and learn to leverage it for policy making. Experiments on interactive environments (WebShop, ScienceWorld) and a complex reasoning task (ChessPuzzles) demonstrate that equipping models with the inherent ability to learn stateful predictive knowledge significantly outpaces current reflection-based training paradigms.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Learning Stateful Predictive Knowledge From Experience",
+      "raw_summary": "arXiv:2607.28638v1 Announce Type: new Abstract: As large language model (LLM) agents increasingly learn from experience, they primarily rely on trajectory-level reflection to extract insights. Viewed through the lens of predictive knowledge, we argue that this approach operates on episodic hindsight rather than predictive foresight, yielding brittle, path-dependent heuristics. To address this, we propose Stateful Knowledge Learning (SKL). SKL shifts the agent's focus from trajectory-level summarization to maintaining Stateful Knowledge: explicit, declarative predictive assessments anchored to state. We first demonstrate a motivating example showing how stateful knowledge provides granularity, enhances generalization, and enables knowledge bootstrapping. To further scale up the idea, we introduce two algorithms via self-distillation (SKL-SD) and reinforcement learning (SKL-RL), training agents to autonomously extract state-grounded predictive knowledge from experience and learn to leverage it for policy making. Experiments on interactive environments (WebShop, ScienceWorld) and a complex reasoning task (ChessPuzzles) demonstrate that equipping models with the inherent ability to learn stateful predictive knowledge significantly outpaces current reflection-based training paradigms.",
+      "score": 76,
+      "primary": "models",
+      "tags": [
+        "agents",
+        "memory",
+        "stateful-knowledge",
+        "aprendizaje"
+      ],
+      "heuristic_score": 87,
+      "url": "https://arxiv.org/abs/2607.28638",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 87,
+      "_rid": 5,
+      "llm_score": 74,
+      "why": "Introduce el aprendizaje de conocimiento declarativo anclado al estado para que los agentes superen las limitaciones de la reflexión episódica.",
+      "title_es": "Aprendizaje de conocimiento predictivo con estado a partir de la experiencia",
+      "entities": [
+        "SKL",
+        "Learning Stateful Predictive",
+        "Knowledge From Experience"
+      ],
+      "noise_penalty": 0,
+      "final_score": 76,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "From Photonics Precision to Repeatable Evidence",
+      "link": "https://semiwiki.com/photonics/371218-from-photonics-precision-to-repeatable-evidence/",
+      "published": "2026-07-30T21:00:48+00:00",
+      "summary": "Why Optical Probing Is Becoming a Manufacturing Boundary for Silicon Photonics Silicon photonics has already shown that extremely precise optical alignment is possible. In controlled laboratory environments, engineers can align fibers, waveguides, grating couplers, edge couplers, modulators, detectors, and electrical&8230; Read More The post From Photonics Precision to Repeatable Evidence appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "From Photonics Precision to Repeatable Evidence",
+      "raw_summary": "Why Optical Probing Is Becoming a Manufacturing Boundary for Silicon Photonics Silicon photonics has already shown that extremely precise optical alignment is possible. In controlled laboratory environments, engineers can align fibers, waveguides, grating couplers, edge couplers, modulators, detectors, and electrical&#8230; Read More The post From Photonics Precision to Repeatable Evidence appeared first on SemiWiki .",
+      "score": 75,
+      "primary": "infra",
+      "tags": [
+        "photonics",
+        "silicon-photonics",
+        "manufacturing",
+        "interconnect"
+      ],
+      "heuristic_score": 19,
+      "url": "https://semiwiki.com/photonics/371218-from-photonics-precision-to-repeatable-evidence/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 19,
+      "_rid": 12,
+      "llm_score": 85,
+      "why": "La fotónica de silicio avanza hacia la madurez industrial mediante procesos de prueba y alineación óptica repetibles.",
+      "title_es": "De la precisión fotónica a la evidencia repetible",
+      "entities": [
+        "SemiWiki",
+        "From Photonics Precision",
+        "Repeatable Evidence"
+      ],
+      "noise_penalty": 0,
+      "final_score": 75,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Chain-of-Models: Cross-Model Auditing for Bias-Robust LLM Judges",
+      "link": "https://arxiv.org/abs/2607.28636",
+      "published": "2026-08-03T04:00:00+00:00",
+      "summary": "arXiv:2607.28636v1 Announce Type: new Abstract: LLMs increasingly serve as automated judges, but their judgments remain vulnerable to cognitive biases. Existing mitigations mostly rely on prompt-driven debiasing, which is brittle across bias types, or human evaluation, which does not scale. We study \\emph{Chain-of-Models} (CoM), an automated audit pipeline in which a second model inspects the first model's reasoning trace before producing the final judgment. The key design question is whether the auditor should be the same model, a same-family model, or a different-family model. Across 9 models from 6 families, 4 cognitive biases, and 4 factual datasets, we find that auditor identity matters in two ways. First, standalone bias resistance does not predict audit effectiveness: Kimi-K2.5 is the strongest standalone model on several biases, yet is a weak auditor for Qwen2.5-72B's biased traces. Second, the best auditor is bias-specific: GPT-4o is strongest on bandwagon, authority, and distraction, while GLM-5 is strongest on sycophancy. We operationalize these findings with a per-bias auditor selection rule that, given the bias type, scores candidates along functional diversity, per-bias standalone resistance, and calibrated audit effectiveness. Under a calibration/test split, the selector reaches the highest accuracy across the four biased slices ($0.884$ vs.\\ $0.824$ for the strongest single fixed auditor and $0.805$ for the no-audit baseline). We release data, configurations, and an LLM-agent skill at .",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Chain-of-Models: Cross-Model Auditing for Bias-Robust LLM Judges",
+      "raw_summary": "arXiv:2607.28636v1 Announce Type: new Abstract: LLMs increasingly serve as automated judges, but their judgments remain vulnerable to cognitive biases. Existing mitigations mostly rely on prompt-driven debiasing, which is brittle across bias types, or human evaluation, which does not scale. We study \\emph{Chain-of-Models} (CoM), an automated audit pipeline in which a second model inspects the first model's reasoning trace before producing the final judgment. The key design question is whether the auditor should be the same model, a same-family model, or a different-family model. Across 9 models from 6 families, 4 cognitive biases, and 4 factual datasets, we find that auditor identity matters in two ways. First, standalone bias resistance does not predict audit effectiveness: Kimi-K2.5 is the strongest standalone model on several biases, yet is a weak auditor for Qwen2.5-72B's biased traces. Second, the best auditor is bias-specific: GPT-4o is strongest on bandwagon, authority, and distraction, while GLM-5 is strongest on sycophancy. We operationalize these findings with a per-bias auditor selection rule that, given the bias type, scores candidates along functional diversity, per-bias standalone resistance, and calibrated audit effectiveness. Under a calibration/test split, the selector reaches the highest accuracy across the four biased slices ($0.884$ vs.\\ $0.824$ for the strongest single fixed auditor and $0.805$ for the no-audit baseline). We release data, configurations, and an LLM-agent skill at https://anonymous.4open.science/r/chain-of-models-B585 .",
+      "score": 72,
+      "primary": "models",
+      "tags": [
+        "llm-judges",
+        "debiasing",
+        "auditoría",
+        "evaluación"
+      ],
+      "heuristic_score": 97,
+      "url": "https://arxiv.org/abs/2607.28636",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 97,
+      "_rid": 4,
+      "llm_score": 68,
+      "why": "Pipeline de auditoría cruzada entre modelos para mitigar los sesgos cognitivos cuando los LLMs actúan como jueces automáticos.",
+      "title_es": "Chain-of-Models: Auditoría entre modelos para jueces LLM robustos al sesgo",
+      "entities": [
+        "CoM",
+        "Chain",
+        "Models",
+        "Cross",
+        "Model Auditing",
+        "Bias",
+        "Robust",
+        "Judges"
+      ],
+      "noise_penalty": 0,
+      "final_score": 72,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "CEO Interview with Chuck McClish of of Lattrex Inc.",
+      "link": "https://semiwiki.com/ceo-interviews/371425-ceo-interview-with-chuck-mcclish-of-of-lattrex-inc/",
+      "published": "2026-08-02T22:00:21+00:00",
+      "summary": "Chuck McClish is the founder of Lattrex Inc., a fabless semiconductor startup building Kyttar, an asynchronous, clockless reconfigurable processor for real-time signal processing. He spent 15 years at Microchip Technology in chip design and verification, working across RTL design, UVM verification, synthesis, place-and-route,&8230; Read More The post CEO Interview with Chuck McClish of of Lattrex Inc. appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "CEO Interview with Chuck McClish of of Lattrex Inc.",
+      "raw_summary": "Chuck McClish is the founder of Lattrex Inc., a fabless semiconductor startup building Kyttar, an asynchronous, clockless reconfigurable processor for real-time signal processing. He spent 15 years at Microchip Technology in chip design and verification, working across RTL design, UVM verification, synthesis, place-and-route,&#8230; Read More The post CEO Interview with Chuck McClish of of Lattrex Inc. appeared first on SemiWiki .",
+      "score": 68,
+      "primary": "infra",
+      "tags": [
+        "asynchronous",
+        "semiconductor",
+        "clockless",
+        "dsp"
+      ],
+      "heuristic_score": 10,
+      "url": "https://semiwiki.com/ceo-interviews/371425-ceo-interview-with-chuck-mcclish-of-of-lattrex-inc/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 10,
+      "_rid": 15,
+      "llm_score": 78,
+      "why": "Startup desarrolla procesadores asíncronos reconfigurables para procesamiento de señales sin las limitaciones de los ciclos de reloj tradicionales.",
+      "title_es": "Entrevista al CEO con Chuck McClish de Lattrex Inc.",
+      "entities": [
+        "Lattrex Inc",
+        "Chuck McClish",
+        "Chuck"
+      ],
+      "noise_penalty": 0,
+      "final_score": 68,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "The Asymmetric Effects of Knowledge Distillation on Bias in Small Language Models",
+      "link": "https://arxiv.org/abs/2607.28639",
+      "published": "2026-08-03T04:00:00+00:00",
+      "summary": "arXiv:2607.28639v1 Announce Type: new Abstract: We show that knowledge distillation in small instruction-tuned language models has asymmetric effects on bias. On unambiguous tasks (BBQ-disambig), response-based distillation from a Gemma-2-9B teacher improves context-following: for the most biased baseline (SmolLM2-1.7B-Instruct), it cuts the context-overriding error rate from 44% to 24%. On ambiguous tasks (BBQ-ambig), the same distillation destroys per-item refusal calibration: 15% of items where the baseline correctly abstained instead receive stereotype answers, even when overall refusal rate is preserved. The pattern reproduces on a second student family (OLMo-2-1B-Instruct), with silence-loss of 8% and filled-silence accounting for 89% of new bias. Across the full 28-configuration grid, the magnitudes of silence-loss and filled-silence are uncorrelated (Spearman $\\rho=0.19$, n.s.), indicating that the two effects arise from distinct mechanisms. Aggregate stereotype metrics (CrowS-Pairs, overall BBQ Stereotype Reliance Score) average over both effects and conceal the per-item harm. We trace the calibration loss to a data-side mechanism: an audit of four training corpora finds <0.5% refusal-as-answer-shape. Supervised fine-tuning (SFT) with refusal injection either breaks parsing or over-corrects into a trivial-refuser regime (refusal rate 99.8%, disambig accuracy 0.2%) that aggregate metrics would call perfectly calibrated. We propose Per-Condition Calibration Diagnosis (PCCD), a three-step protocol that evaluates refusal calibration, context-following, and capability preservation. PCCD catches both the asymmetric harm and the trivial-refuser failure mode that aggregate evaluations miss.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "The Asymmetric Effects of Knowledge Distillation on Bias in Small Language Models",
+      "raw_summary": "arXiv:2607.28639v1 Announce Type: new Abstract: We show that knowledge distillation in small instruction-tuned language models has asymmetric effects on bias. On unambiguous tasks (BBQ-disambig), response-based distillation from a Gemma-2-9B teacher improves context-following: for the most biased baseline (SmolLM2-1.7B-Instruct), it cuts the context-overriding error rate from 44% to 24%. On ambiguous tasks (BBQ-ambig), the same distillation destroys per-item refusal calibration: 15% of items where the baseline correctly abstained instead receive stereotype answers, even when overall refusal rate is preserved. The pattern reproduces on a second student family (OLMo-2-1B-Instruct), with silence-loss of 8% and filled-silence accounting for 89% of new bias. Across the full 28-configuration grid, the magnitudes of silence-loss and filled-silence are uncorrelated (Spearman $\\rho=0.19$, n.s.), indicating that the two effects arise from distinct mechanisms. Aggregate stereotype metrics (CrowS-Pairs, overall BBQ Stereotype Reliance Score) average over both effects and conceal the per-item harm. We trace the calibration loss to a data-side mechanism: an audit of four training corpora finds <0.5% refusal-as-answer-shape. Supervised fine-tuning (SFT) with refusal injection either breaks parsing or over-corrects into a trivial-refuser regime (refusal rate 99.8%, disambig accuracy 0.2%) that aggregate metrics would call perfectly calibrated. We propose Per-Condition Calibration Diagnosis (PCCD), a three-step protocol that evaluates refusal calibration, context-following, and capability preservation. PCCD catches both the asymmetric harm and the trivial-refuser failure mode that aggregate evaluations miss.",
+      "score": 66,
+      "primary": "models",
+      "tags": [
+        "distillation",
+        "slm",
+        "bias",
+        "calibration"
+      ],
+      "heuristic_score": 74,
+      "url": "https://arxiv.org/abs/2607.28639",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 74,
+      "_rid": 6,
+      "llm_score": 65,
+      "why": "La destilación en modelos pequeños reduce errores de contexto pero aumenta respuestas estereotipadas en tareas ambiguas.",
+      "title_es": "Los efectos asimétricos de la destilación de conocimiento sobre el sesgo en modelos de lenguaje pequeños",
+      "entities": [
+        "Gemma-2-9B",
+        "SmolLM2",
+        "OLMo-2",
+        "The Asymmetric Effects",
+        "Knowledge Distillation",
+        "Bias",
+        "Small Language Models"
+      ],
+      "noise_penalty": 0,
+      "final_score": 66,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "ZeroR@CHiPSAL 2026: Two-Stage Vision-Language Adaptation with Contrastive Learning for Nepali Meme Classification",
+      "link": "https://arxiv.org/abs/2607.28637",
+      "published": "2026-08-03T04:00:00+00:00",
+      "summary": "arXiv:2607.28637v1 Announce Type: new Abstract: This paper presents our system for the CHiPSAL 2026 shared task on multimodal hate speech and sentiment detection in Nepali memes. We address both subtasks: binary hate speech classification and three-class sentiment analysis. Our approach adapts the Robust Adaptation of Hateful Meme Detection (RA-HMD) framework using Qwen3-VL-8B-Instruct, a state-of-the-art vision-language model with native Devanagari support. We employ a two-stage training pipeline: (1) LoRA fine-tuning with an MLP projection head for generative classification, and (2) contrastive backbone fine-tuning with supervised InfoNCE loss. We handle class imbalance through minority oversampling, augmentation, and focal loss. At inference, we ensemble Stage 1 token probabilities with Stage 2 classifier scores using validation-tuned weights. Our end-to-end approach eliminates error propagation from separate OCR and translation pipelines by leveraging the model's native Devanagari understanding. Our system achieved \\textbf{2nd place} on hate speech detection (F1: 0.797) and \\textbf{4th place} on sentiment analysis (F1: 0.518). We provide detailed ablations, error analysis, and insights into adapting large vision-language models for low-resource South Asian languages.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "ZeroR@CHiPSAL 2026: Two-Stage Vision-Language Adaptation with Contrastive Learning for Nepali Meme Classification",
+      "raw_summary": "arXiv:2607.28637v1 Announce Type: new Abstract: This paper presents our system for the CHiPSAL 2026 shared task on multimodal hate speech and sentiment detection in Nepali memes. We address both subtasks: binary hate speech classification and three-class sentiment analysis. Our approach adapts the Robust Adaptation of Hateful Meme Detection (RA-HMD) framework using Qwen3-VL-8B-Instruct, a state-of-the-art vision-language model with native Devanagari support. We employ a two-stage training pipeline: (1) LoRA fine-tuning with an MLP projection head for generative classification, and (2) contrastive backbone fine-tuning with supervised InfoNCE loss. We handle class imbalance through minority oversampling, image augmentation, and focal loss. At inference, we ensemble Stage 1 token probabilities with Stage 2 classifier scores using validation-tuned weights. Our end-to-end approach eliminates error propagation from separate OCR and translation pipelines by leveraging the model's native Devanagari understanding. Our system achieved \\textbf{2nd place} on hate speech detection (F1: 0.797) and \\textbf{4th place} on sentiment analysis (F1: 0.518). We provide detailed ablations, error analysis, and insights into adapting large vision-language models for low-resource South Asian languages.",
+      "score": 57,
+      "primary": "models",
+      "tags": [
+        "multimodal",
+        "nepali",
+        "qwen3",
+        "hate-speech"
+      ],
+      "heuristic_score": 67,
+      "url": "https://arxiv.org/abs/2607.28637",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 67,
+      "_rid": 7,
+      "llm_score": 55,
+      "why": "Uso de Qwen3-VL con fine-tuning contrastivo para clasificación multimodal de memes en idiomas con pocos recursos.",
+      "title_es": "ZeroR@CHiPSAL 2026: Adaptación visión-lenguaje en dos etapas con aprendizaje contrastivo para clasificación de memes nepalíes",
+      "entities": [
+        "Qwen3-VL-8B-Instruct",
+        "CHiPSAL",
+        "Two",
+        "Stage Vision",
+        "Language Adaptation",
+        "Contrastive Learning",
+        "Nepali Meme Classification"
+      ],
+      "noise_penalty": 0,
+      "final_score": 57,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Imbalanced Data Clustering via Targeted Data Augmentation Using GMM and LLM",
+      "link": "https://arxiv.org/abs/2607.28635",
+      "published": "2026-08-03T04:00:00+00:00",
+      "summary": "arXiv:2607.28635v1 Announce Type: new Abstract: In Natural Language Processing (NLP), dealing with underrepresented topics is challenging, especially in unsupervised tasks where clustering might not adequately capture minority topics. To tackle this challenge, our paper presents a novel unsupervised data augmentation method that integrates Gaussian Mixture Models (GMMs) and Large Language Models (LLMs). Due to their flexibility and robustness, GMMs can detect clusters corresponding to underrepresented areas in the data, while LLMs create synthetic documents to enrich these clusters and improve their representation. Experiments on various imbalanced text datasets demonstrate that our approach preserves clustering performance in all cases and often enhances cluster interpretability, offering a robust and scalable solution for improving data representation in unsupervised NLP tasks.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Imbalanced Data Clustering via Targeted Data Augmentation Using GMM and LLM",
+      "raw_summary": "arXiv:2607.28635v1 Announce Type: new Abstract: In Natural Language Processing (NLP), dealing with underrepresented topics is challenging, especially in unsupervised tasks where clustering might not adequately capture minority topics. To tackle this challenge, our paper presents a novel unsupervised data augmentation method that integrates Gaussian Mixture Models (GMMs) and Large Language Models (LLMs). Due to their flexibility and robustness, GMMs can detect clusters corresponding to underrepresented areas in the data, while LLMs create synthetic documents to enrich these clusters and improve their representation. Experiments on various imbalanced text datasets demonstrate that our approach preserves clustering performance in all cases and often enhances cluster interpretability, offering a robust and scalable solution for improving data representation in unsupervised NLP tasks.",
+      "score": 56,
+      "primary": "models",
+      "tags": [
+        "clustering",
+        "data-augmentation",
+        "gmm",
+        "nlp"
+      ],
+      "heuristic_score": 47,
+      "url": "https://arxiv.org/abs/2607.28635",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 47,
+      "_rid": 10,
+      "llm_score": 58,
+      "why": "Método de aumento de datos sintéticos mediante LLMs para equilibrar clusters en tareas no supervisadas con temas poco representados.",
+      "title_es": "Agrupación de datos desequilibrados mediante aumento de datos dirigido usando GMM y LLM",
+      "entities": [
+        "GMM",
+        "Imbalanced Data Clustering",
+        "Targeted Data Augmentation",
+        "Using"
+      ],
+      "noise_penalty": 0,
+      "final_score": 56,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "CEO Interview with Joseph Krause of Radical AI",
+      "link": "https://semiwiki.com/ceo-interviews/371353-ceo-interview-with-joseph-krause-of-radical-ai/",
+      "published": "2026-08-03T01:00:20+00:00",
+      "summary": "Joseph F. Krause is an American materials scientist, entrepreneur, and U.S. Army National Guard veteran. He is the cofounder and CEO of Radical AI, a New York deep-tech startup founded to accelerate the discovery of advanced materials. Before Radical AI, Krause conducted nanomaterials research at Rice University, worked on&8230; Read More The post CEO Interview with Joseph Krause of Radical AI appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "CEO Interview with Joseph Krause of Radical AI",
+      "raw_summary": "Joseph F. Krause is an American materials scientist, entrepreneur, and U.S. Army National Guard veteran. He is the cofounder and CEO of Radical AI, a New York deep-tech startup founded to accelerate the discovery of advanced materials. Before Radical AI, Krause conducted nanomaterials research at Rice University, worked on&#8230; Read More The post CEO Interview with Joseph Krause of Radical AI appeared first on SemiWiki .",
+      "score": 56,
+      "primary": "invest",
+      "tags": [
+        "startup",
+        "materials-science",
+        "deep-tech",
+        "discovery"
+      ],
+      "heuristic_score": 12,
+      "url": "https://semiwiki.com/ceo-interviews/371353-ceo-interview-with-joseph-krause-of-radical-ai/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 12,
+      "_rid": 14,
+      "llm_score": 64,
+      "why": "Entrevista al CEO de Radical AI sobre el uso de deep-tech para acelerar el descubrimiento de materiales avanzados.",
+      "title_es": "Entrevista al CEO con Joseph Krause de Radical AI",
+      "entities": [
+        "Radical AI",
+        "Joseph Krause",
+        "Radical"
+      ],
+      "noise_penalty": 0,
+      "final_score": 56,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "NVIDIA Nemotron Achieves Benchmark-Leading Performance With LangChain Deep Agents Harness",
+      "link": "https://blogs.nvidia.com/blog/nemotron-langchain-agents-open-stack/",
+      "published": "2026-07-08T15:00:27+00:00",
+      "summary": "NVIDIA Nemotron 3 Ultra is offering leading performance at lower cost than top closed models with the largest and most widely adopted AI agent orchestration platform. LangChain tuned its Deep Agents harness for NVIDIA Nemotron 3 Ultra, achieving the highest accuracy among open models, while completing more tasks at higher throughput and running at 10x [&8230;]",
+      "source": "NVIDIA Blog (AI)",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "NVIDIA Nemotron Achieves Benchmark-Leading Performance With LangChain Deep Agents Harness",
+      "raw_summary": "NVIDIA Nemotron 3 Ultra is offering leading performance at lower cost than top closed models with the largest and most widely adopted AI agent orchestration platform. LangChain tuned its Deep Agents harness for NVIDIA Nemotron 3 Ultra, achieving the highest accuracy among open models, while completing more tasks at higher throughput and running at 10x [&#8230;]",
+      "score": 54,
+      "primary": "models",
+      "tags": [
+        "nemotron",
+        "nvidia",
+        "langchain",
+        "agents"
+      ],
+      "heuristic_score": 68,
+      "url": "https://blogs.nvidia.com/blog/nemotron-langchain-agents-open-stack/",
+      "is_repeat": true,
+      "novelty_score": 45,
+      "adjusted_score": 13,
+      "_rid": 13,
+      "llm_score": 80,
+      "why": "NVIDIA posiciona su modelo abierto Nemotron como líder en eficiencia y coste para la orquestación de agentes frente a modelos propietarios.",
+      "title_es": "NVIDIA Nemotron alcanza un rendimiento líder en benchmarks con el arnés de agentes profundos de LangChain",
+      "entities": [
+        "NVIDIA",
+        "Nemotron",
+        "LangChain",
+        "Nemotron Achieves Benchmark",
+        "Leading Performance With",
+        "Deep Agents Harness"
+      ],
+      "noise_penalty": 16,
+      "final_score": 54,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(16)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Sensitivity Analysis of GRU, LSTM and Transformer Encoder in Classification of Automated Driving Systems",
+      "link": "https://arxiv.org/abs/2607.28665",
+      "published": "2026-08-03T04:00:00+00:00",
+      "summary": "arXiv:2607.28665v1 Announce Type: new Abstract: Automated driving systems (ADSs) are becoming ubiquitous. Future Software Defined Vehicles (SDVs) may be able to run multiple ADSs, both native and aftermarket such as Comma.ai's Openpilot. Monitoring systems to independently verify which automated driving system is active are important for safety monitoring, regulatory compliance, insurance assessment, and anomaly detection. In this paper, we first evaluate the effectiveness of three sequence-based classification models: Gated Recurrent Units (GRU), Long Short-Term Memory (LSTM) networks, and a Transformer encoder model for identifying Level 2 automated driving systems using vehicle telematics data alone: Comma Openpilot, Tesla Autopilot, and Cadillac Super Cruise, along with manual driving. All three models achieve strong clean-data performance with macro F1-scores of 0.92 (GRU), 0.90 (LSTM), and 0.93 (Transformer encoder model) when trained on clean data; threat-matched training yields 0.904-0.916 macro F1 with only a modest clean-data penalty. Second, we introduce a modular robustness evaluation framework that simulates realistic telematics degradation through five corruption families at five severity levels (L1-L5). Continuous channels are perturbed using additive white Gaussian noise with cumulative drift, correlated cross-channel noise, and temporal jitter. Binary event signals are subjected to burst loss, delayed transitions, spurious toggles and cross-feature inconsistencies inspired by communication errors. Robustness is measured using macro-F1, which gives equal weight to each class and is suitable for imbalanced multiclass evaluation. Our evaluation reveals a sharp failure-mode split: event-level corruptions reduce macro-F1 only slightly (greater than equal to 0.87 at L5), while temporal jitter collapses macro-F1 to 0.44-0.50 across GRU, LSTM, and Transformer encoder model.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Sensitivity Analysis of GRU, LSTM and Transformer Encoder in Classification of Automated Driving Systems",
+      "raw_summary": "arXiv:2607.28665v1 Announce Type: new Abstract: Automated driving systems (ADSs) are becoming ubiquitous. Future Software Defined Vehicles (SDVs) may be able to run multiple ADSs, both native and aftermarket such as Comma.ai's Openpilot. Monitoring systems to independently verify which automated driving system is active are important for safety monitoring, regulatory compliance, insurance assessment, and anomaly detection. In this paper, we first evaluate the effectiveness of three sequence-based classification models: Gated Recurrent Units (GRU), Long Short-Term Memory (LSTM) networks, and a Transformer encoder model for identifying Level 2 automated driving systems using vehicle telematics data alone: Comma Openpilot, Tesla Autopilot, and Cadillac Super Cruise, along with manual driving. All three models achieve strong clean-data performance with macro F1-scores of 0.92 (GRU), 0.90 (LSTM), and 0.93 (Transformer encoder model) when trained on clean data; threat-matched training yields 0.904-0.916 macro F1 with only a modest clean-data penalty. Second, we introduce a modular robustness evaluation framework that simulates realistic telematics degradation through five corruption families at five severity levels (L1-L5). Continuous channels are perturbed using additive white Gaussian noise with cumulative drift, correlated cross-channel noise, and temporal jitter. Binary event signals are subjected to burst loss, delayed transitions, spurious toggles and cross-feature inconsistencies inspired by communication errors. Robustness is measured using macro-F1, which gives equal weight to each class and is suitable for imbalanced multiclass evaluation. Our evaluation reveals a sharp failure-mode split: event-level corruptions reduce macro-F1 only slightly (greater than equal to 0.87 at L5), while temporal jitter collapses macro-F1 to 0.44-0.50 across GRU, LSTM, and Transformer encoder model.",
+      "score": 53,
+      "primary": "misc",
+      "tags": [
+        "ads",
+        "telematics",
+        "transformers",
+        "automoción"
+      ],
+      "heuristic_score": 56,
+      "url": "https://arxiv.org/abs/2607.28665",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 56,
+      "_rid": 8,
+      "llm_score": 62,
+      "why": "Evaluación de modelos de secuencias para verificar de forma externa qué sistema de conducción autónoma está operando en un vehículo.",
+      "title_es": "Análisis de sensibilidad de GRU, LSTM y codificador Transformer en la clasificación de sistemas de conducción automatizada",
+      "entities": [
+        "Comma.ai",
+        "Openpilot",
+        "GRU",
+        "LSTM",
+        "Sensitivity Analysis",
+        "Transformer Encoder",
+        "Classification",
+        "Automated Driving Systems"
+      ],
+      "noise_penalty": 8,
+      "final_score": 53,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(8)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Can LLMs Really Understand Item Difficulty Levels? Implications for Automated Item Generation Using LLMs",
+      "link": "https://arxiv.org/abs/2607.28634",
+      "published": "2026-08-03T04:00:00+00:00",
+      "summary": "arXiv:2607.28634v1 Announce Type: new Abstract: The estimation of item difficulty plays a key role in both formative assessment and large-scale high-stakes summative assessments. This study explores how large language models (LLMs) perform in predicting item difficulty levels using items from a large-scale Reading and Writing test. The study investigated various prompting strategies and parameter settings across multiple LLMs. LLM performance was compared with encoder-only language models and feature-based supervised machine learning models. Zero-shot GPT-4.1 with a temperature of 0 yielded the highest item difficulty level prediction accuracy, with a quadratic weighted kappa (QWK) of 0.578. However, LLMs' prediction accuracy was lower than that of ConvBERT (QWK = 0.625), which outperformed the best feature-based supervised machine learning model. Further analysis showed that all LLMs struggled to label hard items; in particular, the current advanced GPT-5.4 tended to underestimate item difficulty levels. Dimension reduction of embeddings showed that item embeddings from different difficulty levels were mixed together, indicating that semantic information from items alone is likely insufficient for item difficulty level prediction. The findings suggest that if LLMs cannot understand item difficulty levels as evidenced by empirical data and tend to treat most items as easy when their own capabilities increase, caution should be exercised when using LLMs to generate items with targeted difficulty levels.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Can LLMs Really Understand Item Difficulty Levels? Implications for Automated Item Generation Using LLMs",
+      "raw_summary": "arXiv:2607.28634v1 Announce Type: new Abstract: The estimation of item difficulty plays a key role in both formative assessment and large-scale high-stakes summative assessments. This study explores how large language models (LLMs) perform in predicting item difficulty levels using items from a large-scale Reading and Writing test. The study investigated various prompting strategies and parameter settings across multiple LLMs. LLM performance was compared with encoder-only language models and feature-based supervised machine learning models. Zero-shot GPT-4.1 with a temperature of 0 yielded the highest item difficulty level prediction accuracy, with a quadratic weighted kappa (QWK) of 0.578. However, LLMs' prediction accuracy was lower than that of ConvBERT (QWK = 0.625), which outperformed the best feature-based supervised machine learning model. Further analysis showed that all LLMs struggled to label hard items; in particular, the current advanced GPT-5.4 tended to underestimate item difficulty levels. Dimension reduction of embeddings showed that item embeddings from different difficulty levels were mixed together, indicating that semantic information from items alone is likely insufficient for item difficulty level prediction. The findings suggest that if LLMs cannot understand item difficulty levels as evidenced by empirical data and tend to treat most items as easy when their own capabilities increase, caution should be exercised when using LLMs to generate items with targeted difficulty levels.",
+      "score": 50,
+      "primary": "models",
+      "tags": [
+        "edtech",
+        "evaluation",
+        "gpt-4",
+        "zero-shot"
+      ],
+      "heuristic_score": 41,
+      "url": "https://arxiv.org/abs/2607.28634",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 41,
+      "_rid": 11,
+      "llm_score": 52,
+      "why": "Comparativa de LLMs frente a modelos supervisados en la predicción de dificultad de ítems para pruebas de lectura y escritura.",
+      "title_es": "¿Pueden los LLM comprender realmente los niveles de dificultad de los ítems? Implicaciones para la generación automatizada de ítems",
+      "entities": [
+        "GPT-4.1",
+        "Can",
+        "Really Understand Item",
+        "Difficulty Levels",
+        "Implications",
+        "Automated Item Generation",
+        "Using"
+      ],
+      "noise_penalty": 0,
+      "final_score": 50,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    }
+  ]
+}
