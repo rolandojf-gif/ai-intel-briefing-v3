@@ -1,0 +1,690 @@
+{
+  "date": "2026-08-04",
+  "score_avg": 65.8,
+  "primary_dist": {
+    "invest": 1,
+    "models": 7,
+    "infra": 3,
+    "misc": 4
+  },
+  "top_entities": [
+    {
+      "entity": "arXiv",
+      "count": 7
+    },
+    {
+      "entity": "Google",
+      "count": 4
+    },
+    {
+      "entity": "Agents",
+      "count": 2
+    },
+    {
+      "entity": "DeepSeek",
+      "count": 1
+    },
+    {
+      "entity": "Anthropic",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "Modelos abiertos de tamaño medio igualan a los líderes en evaluación lógica con costes 100 veces inferiores.",
+      "El diseño de chips (EDA) se consolida como el principal beneficiario de la optimización mediante IA generativa.",
+      "Los sistemas de memoria a largo plazo evolucionan de simples ventanas de contexto a bases autobiográficas dinámicas.",
+      "El empaquetado multi-die se vuelve crítico para superar los límites físicos de los ASICs de IA de nueva generación.",
+      "Surge una infraestructura estandarizada para separar inferencia, orquestación y ejecución en agentes autónomos."
+    ],
+    "risks": [
+      "Alucinaciones persistentes en modelos de investigación operativa que requieren inferencia consciente de la incertidumbre.",
+      "Saturación del sistema de revisión académica ante el aluvión de artículos generados o evaluados autónomamente por IA.",
+      "Cuellos de botella físicos en la fabricación de chips avanzados que el diseño multi-die intenta mitigar."
+    ],
+    "watch": [
+      "Consolidación de benchmarks ejecutables que miden la capacidad de los agentes para delegar tareas complejas.",
+      "Adopción de difusión discreta por bloques en síntesis de voz para equilibrar latencia y precisión lingüística.",
+      "Despliegue de MLLMs en emergencias reales mediante flujos de observación terrestre en tiempo real."
+    ],
+    "entities_top": [
+      "Synopsys",
+      "Google",
+      "Alchip"
+    ]
+  },
+  "items": [
+    {
+      "title": "Cost-Effective Automated Judging of Natural-Language Mathematical Proofs",
+      "link": "https://arxiv.org/abs/2608.00004",
+      "published": "2026-08-04T04:00:00+00:00",
+      "summary": "arXiv:2608.00004v1 Announce Type: new Abstract: Grading natural-language mathematical proofs is a recurring cost in evaluating math-reasoning systems, and frontier LLM judges are expensive. We ask whether cheap open-weight models can serve as reliable judges given a candidate proof, a ground-truth proof, and a human-grading rubric. On a 200-instance validation sample of IMO-GradingBench, three cheap judges (GPT-OSS 120B, DeepSeek-V4 Flash, Gemma-4 31B) agree with human pass/fail decisions at rates statistically indistinguishable from Claude Opus 4.7 and Gemini 3.1 Pro, at up to $100\\times$ lower cost. We had expected a majority vote of the three to be the best budget option; it matched the frontier but did not improve on its strongest member. Extending to the full 1000-instance benchmark and exploring consensus rules, we found that requiring unanimous agreement (all-three-pass) reaches the highest pass-agreement and precision and, on four replicate runs, the smallest run-to-run spread. The headline finding is that cheap judges are competitive with the frontier at one to two orders of magnitude lower cost; as a deployable default we recommend all-three-pass, with the caveat that this rule was identified post-hoc and warrants independent replication.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Cost-Effective Automated Judging of Natural-Language Mathematical Proofs",
+      "raw_summary": "arXiv:2608.00004v1 Announce Type: new Abstract: Grading natural-language mathematical proofs is a recurring cost in evaluating math-reasoning systems, and frontier LLM judges are expensive. We ask whether cheap open-weight models can serve as reliable judges given a candidate proof, a ground-truth proof, and a human-grading rubric. On a 200-instance validation sample of IMO-GradingBench, three cheap judges (GPT-OSS 120B, DeepSeek-V4 Flash, Gemma-4 31B) agree with human pass/fail decisions at rates statistically indistinguishable from Claude Opus 4.7 and Gemini 3.1 Pro, at up to $100\\times$ lower cost. We had expected a majority vote of the three to be the best budget option; it matched the frontier but did not improve on its strongest member. Extending to the full 1000-instance benchmark and exploring consensus rules, we found that requiring unanimous agreement (all-three-pass) reaches the highest pass-agreement and precision and, on four replicate runs, the smallest run-to-run spread. The headline finding is that cheap judges are competitive with the frontier at one to two orders of magnitude lower cost; as a deployable default we recommend all-three-pass, with the caveat that this rule was identified post-hoc and warrants independent replication.",
+      "score": 85,
+      "primary": "invest",
+      "tags": [
+        "costes",
+        "llm",
+        "matemáticas",
+        "open-weight"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2608.00004",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 2,
+      "llm_score": 82,
+      "why": "Demuestra que modelos abiertos baratos pueden sustituir a modelos de frontera para evaluar razonamiento lógico con un ahorro del 99%.",
+      "title_es": "Juicio automatizado y rentable de demostraciones matemáticas en lenguaje natural",
+      "entities": [
+        "DeepSeek",
+        "Google",
+        "Anthropic",
+        "Cost",
+        "Effective Automated Judging",
+        "Natural",
+        "Language Mathematical Proofs"
+      ],
+      "noise_penalty": 0,
+      "final_score": 85,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "AgentMemBench: A Systematic Benchmark for Evaluating Long-Term Memory Management Strategies in Conversational AI Agents",
+      "link": "https://arxiv.org/abs/2608.00009",
+      "published": "2026-08-04T04:00:00+00:00",
+      "summary": "arXiv:2608.00009v1 Announce Type: new Abstract: Long-term memory remains a critical bottleneck for conversational AI agents, whose finite context windows cannot support coherent recall across thousands of turns. We present AgentMemBench, a unified, reproducible benchmark evaluating five memory management strategies under identical conditions: in-context windowing (ICW), external key-value store (EKV), graph-based episodic memory (GEM), compression-based summarisation (CBS), and web-augmented memory (WAM). All are assessed across three public datasets covering long-term multi-session dialogue (LoCoMo), task-oriented document grounding (MultiDoc2Dial), and persona-grounded multi-session chat (MSC), using Recall@k, MRR, nDCG@k, Answer F1, an LLM-judge Faithfulness score, Memory Footprint, and Latency over 491 annotated question turns. Generation and judging both use Qwen2.5-7B-Instruct (4-bit), with greedy decoding for determinism. Our results show that (1) EKV dominates on every quality axis (macro Recall@5 0.792, MRR 0.677, F1 0.156, Faithfulness 0.354); (2) long-range recall is decisive: on LoCoMo, where the gold turn lies many sessions back, ICW, WAM, GEM, and CBS retrieve almost nothing (Recall@5 <= 0.005) while EKV alone reaches 0.573, showing that recency windows, summaries, and entity graphs collapse at long horizons and only dense retrieval scales; (3) CBS is the runner-up on retrieval (0.556); (4) WAM equals ICW on in-corpus recall by construction, since external results carry no in-corpus provenance; and (5) EKV's recall advantage carries a footprint cost (~5,100 vs ~300 tokens for ICW/WAM), an explicit accuracy-efficiency trade-off. We additionally evaluate two published memory systems (MemGPT/Letta, HippoRAG) against the same harness, and release all code, environment, and result artefacts for full reproducibility.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "AgentMemBench: A Systematic Benchmark for Evaluating Long-Term Memory Management Strategies in Conversational AI Agents",
+      "raw_summary": "arXiv:2608.00009v1 Announce Type: new Abstract: Long-term memory remains a critical bottleneck for conversational AI agents, whose finite context windows cannot support coherent recall across thousands of turns. We present AgentMemBench, a unified, reproducible benchmark evaluating five memory management strategies under identical conditions: in-context windowing (ICW), external key-value store (EKV), graph-based episodic memory (GEM), compression-based summarisation (CBS), and web-augmented memory (WAM). All are assessed across three public datasets covering long-term multi-session dialogue (LoCoMo), task-oriented document grounding (MultiDoc2Dial), and persona-grounded multi-session chat (MSC), using Recall@k, MRR, nDCG@k, Answer F1, an LLM-judge Faithfulness score, Memory Footprint, and Latency over 491 annotated question turns. Generation and judging both use Qwen2.5-7B-Instruct (4-bit), with greedy decoding for determinism. Our results show that (1) EKV dominates on every quality axis (macro Recall@5 0.792, MRR 0.677, F1 0.156, Faithfulness 0.354); (2) long-range recall is decisive: on LoCoMo, where the gold turn lies many sessions back, ICW, WAM, GEM, and CBS retrieve almost nothing (Recall@5 <= 0.005) while EKV alone reaches 0.573, showing that recency windows, summaries, and entity graphs collapse at long horizons and only dense retrieval scales; (3) CBS is the runner-up on retrieval (0.556); (4) WAM equals ICW on in-corpus recall by construction, since external results carry no in-corpus provenance; and (5) EKV's recall advantage carries a footprint cost (~5,100 vs ~300 tokens for ICW/WAM), an explicit accuracy-efficiency trade-off. We additionally evaluate two published memory systems (MemGPT/Letta, HippoRAG) against the same harness, and release all code, environment, and result artefacts for full reproducibility.",
+      "score": 81,
+      "primary": "models",
+      "tags": [
+        "memoria",
+        "agentes",
+        "long-term-memory",
+        "benchmarking"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2608.00009",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 3,
+      "llm_score": 78,
+      "why": "Evalúa críticamente las estrategias de gestión de memoria a largo plazo, superando las limitaciones de las ventanas de contexto finitas.",
+      "title_es": "AgentMemBench: un benchmark sistemático para evaluar estrategias de gestión de memoria a largo plazo en agentes de IA",
+      "entities": [
+        "arXiv",
+        "Systematic Benchmark",
+        "Evaluating Long",
+        "Term Memory Management",
+        "Strategies",
+        "Conversational",
+        "Agents"
+      ],
+      "noise_penalty": 0,
+      "final_score": 81,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Executive Interview with James Huang of AlChip",
+      "link": "https://semiwiki.com/semiconductor-services/alchip/371680-executive-interview-with-james-huang-of-alchip/",
+      "published": "2026-08-03T21:00:27+00:00",
+      "summary": "I had a chance sit down with James Huang, Director of Engineering at Alchip Technologies, to discuss the company’s recent multi-die packaging achievements and learn about Alchip’s next steps in pushing the boundaries of innovation for next generation AI ASIC. James is acknowledged as a leading light in advanced node ASICs, based&8230; Read More The post Executive Interview with James Huang of AlChip appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "Executive Interview with James Huang of AlChip",
+      "raw_summary": "I had a chance sit down with James Huang, Director of Engineering at Alchip Technologies, to discuss the company’s recent multi-die packaging achievements and learn about Alchip’s next steps in pushing the boundaries of innovation for next generation AI ASIC. James is acknowledged as a leading light in advanced node ASICs, based&#8230; Read More The post Executive Interview with James Huang of AlChip appeared first on SemiWiki .",
+      "score": 80,
+      "primary": "infra",
+      "tags": [
+        "asic",
+        "multi-die",
+        "semiconductores",
+        "hardware"
+      ],
+      "heuristic_score": 34,
+      "url": "https://semiwiki.com/semiconductor-services/alchip/371680-executive-interview-with-james-huang-of-alchip/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 34,
+      "_rid": 12,
+      "llm_score": 88,
+      "why": "El avance en empaquetado multi-die es fundamental para la viabilidad de los chips de IA de alto rendimiento en nodos avanzados.",
+      "title_es": "Entrevista ejecutiva con James Huang de AlChip",
+      "entities": [
+        "Alchip Technologies",
+        "James Huang",
+        "Executive Interview"
+      ],
+      "noise_penalty": 0,
+      "final_score": 80,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Learning Compositional Meta-Routing for Agentic Workflows: An Executable Benchmark",
+      "link": "https://arxiv.org/abs/2608.00106",
+      "published": "2026-08-04T04:00:00+00:00",
+      "summary": "arXiv:2608.00106v1 Announce Type: new Abstract: Agentic systems must decide not only what answer to produce, but which reasoning and execution operations should precede it. A controller may answer directly, decompose a request, retrieve evidence, execute code, delegate to a specialist, or verify an intermediate result. Existing routing work largely selects model endpoints, retrieval depth, or tools in isolation. We introduce an executable benchmark and a budget-aware meta-router that composes heterogeneous operations from raw task text. The benchmark contains 216 training, 72 development, 108 held-out test, and 108 locked lexical-shift challenge tasks across data analysis, frozen-corpus research, and document processing. Outcomes are machine checked after operations execute. Independent regularized logistic heads predict operation probabilities from word and character features, are temperature-scaled on development data, and are greedily composed under route-cost and action-count budgets. On the held-out test, the learned policy achieves 100% success versus 93.5% for strong static and fixed workflows, with 43% lower cost than the static policy; a matched learned one-shot router reaches 56.5%. On the untouched challenge split, learned success falls to 75.9% and trails static routing at 93.5%, while remaining 49% cheaper and exceeding one-shot routing by 34.3 points. The gap identifies lexical generalization, rather than route execution, as the principal limitation. These results establish a reproducible testbed and a bounded proof of concept, not evidence of live-LLM performance.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Learning Compositional Meta-Routing for Agentic Workflows: An Executable Benchmark",
+      "raw_summary": "arXiv:2608.00106v1 Announce Type: new Abstract: Agentic systems must decide not only what answer to produce, but which reasoning and execution operations should precede it. A controller may answer directly, decompose a request, retrieve evidence, execute code, delegate to a specialist, or verify an intermediate result. Existing routing work largely selects model endpoints, retrieval depth, or tools in isolation. We introduce an executable benchmark and a budget-aware meta-router that composes heterogeneous operations from raw task text. The benchmark contains 216 training, 72 development, 108 held-out test, and 108 locked lexical-shift challenge tasks across data analysis, frozen-corpus research, and document processing. Outcomes are machine checked after operations execute. Independent regularized logistic heads predict operation probabilities from word and character features, are temperature-scaled on development data, and are greedily composed under route-cost and action-count budgets. On the held-out test, the learned policy achieves 100% success versus 93.5% for strong static and fixed workflows, with 43% lower cost than the static policy; a matched learned one-shot router reaches 56.5%. On the untouched challenge split, learned success falls to 75.9% and trails static routing at 93.5%, while remaining 49% cheaper and exceeding one-shot routing by 34.3 points. The gap identifies lexical generalization, rather than route execution, as the principal limitation. These results establish a reproducible testbed and a bounded proof of concept, not evidence of live-LLM performance.",
+      "score": 79,
+      "primary": "models",
+      "tags": [
+        "agentes",
+        "routing",
+        "workflows",
+        "benchmarking"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2608.00106",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 1,
+      "llm_score": 75,
+      "why": "Introduce una arquitectura para que los agentes decidan dinámicamente qué herramientas y procesos de razonamiento ejecutar.",
+      "title_es": "Aprendizaje de meta-enrutamiento compositivo para flujos de trabajo de agentes: un benchmark ejecutable",
+      "entities": [
+        "arXiv",
+        "Meta",
+        "Learning Compositional Meta",
+        "Routing",
+        "Agentic Workflows",
+        "An Executable Benchmark"
+      ],
+      "noise_penalty": 0,
+      "final_score": 79,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Synopsys Demonstrates Leadership in AI-Powered Engineering at 2026 DAC Chips to Systems Conference",
+      "link": "https://semiwiki.com/eda/synopsys/371800-synopsys-demonstrates-leadership-in-ai-powered-engineering-at-2026-dac-chips-to-systems-conference/",
+      "published": "2026-08-03T17:00:49+00:00",
+      "summary": "Purple was in fashion at the 2026 Design Automation Conference, where Synopsys reinforced its position at the forefront of AI-powered engineering. Under the conference’s “Chips to Systems” theme, the company showcased intelligent, end-to-end technologies designed to help the semiconductor industry manage unprecedented&8230; Read More The post Synopsys Demonstrates Leadership in AI-Powered Engineering at 2026 DAC Chips to Systems Conference appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "Synopsys Demonstrates Leadership in AI-Powered Engineering at 2026 DAC Chips to Systems Conference",
+      "raw_summary": "Purple was in fashion at the 2026 Design Automation Conference, where Synopsys reinforced its position at the forefront of AI-powered engineering. Under the conference’s “Chips to Systems” theme, the company showcased intelligent, end-to-end technologies designed to help the semiconductor industry manage unprecedented&#8230; Read More The post Synopsys Demonstrates Leadership in AI-Powered Engineering at 2026 DAC Chips to Systems Conference appeared first on SemiWiki .",
+      "score": 76,
+      "primary": "infra",
+      "tags": [
+        "eda",
+        "chips",
+        "diseño-asistido",
+        "hardware"
+      ],
+      "heuristic_score": 22,
+      "url": "https://semiwiki.com/eda/synopsys/371800-synopsys-demonstrates-leadership-in-ai-powered-engineering-at-2026-dac-chips-to-systems-conference/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 22,
+      "_rid": 13,
+      "llm_score": 85,
+      "why": "La integración de IA en las herramientas de diseño de chips es clave para gestionar la complejidad de los semiconductores actuales.",
+      "title_es": "Synopsys demuestra su liderazgo en ingeniería impulsada por IA en la conferencia DAC 2026",
+      "entities": [
+        "Synopsys",
+        "DAC",
+        "Synopsys Demonstrates Leadership",
+        "Powered Engineering",
+        "Chips",
+        "Systems Conference"
+      ],
+      "noise_penalty": 0,
+      "final_score": 76,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Can AI Evaluate AI Scientists? A Benchmarking Study of Autonomous Research Generation Systems Using Automated Multi-Model Review",
+      "link": "https://arxiv.org/abs/2607.28631",
+      "published": "2026-08-04T04:00:00+00:00",
+      "summary": "arXiv:2607.28631v1 Announce Type: new Abstract: AI Scientist systems capable of autonomous research have the potential to significantly accelerate scientific discovery. However, evaluating and comparing the quality of AI-generated papers remains an open challenge. We propose and implement a rigorous benchmarking protocol using an automated peer-review system that harnesses frontier large language models to assess scientific papers across four core dimensions: originality, scientific rigor, clarity, and significance. We evaluate four leading AI Scientist frameworks: \\textit{Sakana AI (v1 & v2)}, \\textit{CycleResearcher}, and \\textit{Data-to-Paper}. Each framework was run on a consistent set of 15 research proposals published by a commercial autonomous AI scientist company (FARS), generating 60 papers that we evaluate alongside 15 FARS benchmark papers. Using three independent LLM reviewers (GPT-5.4, Gemini, and Claude), we find that FARS benchmark papers significantly outperform all competing frameworks, achieving mean scores of 2.14--2.47 on a 1--5 scale compared to 1.00--1.87 for other systems. Notably, FARS scores are more than 2$\\times$ higher than the next-best systems on Gemini and Claude evaluations. We find strong agreement among Gemini and Claude ($\\rho$ = 0.907, $p < 0.001$), and both correlate extremely strongly with the synthesis score ($\\rho$ = 0.961, $p < 0.001$), validating the reliability of automated evaluation. However, GPT-5.4 exhibits weaker agreement ($\\rho \\approx 0.32$), suggesting it evaluates papers using different criteria. These results establish the first quantitative benchmark for AI Scientist systems and demonstrate that multi-model LLM evaluation provides a scalable, consistent framework for assessing autonomous research quality.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Can AI Evaluate AI Scientists? A Benchmarking Study of Autonomous Research Generation Systems Using Automated Multi-Model Review",
+      "raw_summary": "arXiv:2607.28631v1 Announce Type: new Abstract: AI Scientist systems capable of autonomous research have the potential to significantly accelerate scientific discovery. However, evaluating and comparing the quality of AI-generated papers remains an open challenge. We propose and implement a rigorous benchmarking protocol using an automated peer-review system that harnesses frontier large language models to assess scientific papers across four core dimensions: originality, scientific rigor, clarity, and significance. We evaluate four leading AI Scientist frameworks: \\textit{Sakana AI (v1 & v2)}, \\textit{CycleResearcher}, and \\textit{Data-to-Paper}. Each framework was run on a consistent set of 15 research proposals published by a commercial autonomous AI scientist company (FARS), generating 60 papers that we evaluate alongside 15 FARS benchmark papers. Using three independent LLM reviewers (GPT-5.4, Gemini, and Claude), we find that FARS benchmark papers significantly outperform all competing frameworks, achieving mean scores of 2.14--2.47 on a 1--5 scale compared to 1.00--1.87 for other systems. Notably, FARS scores are more than 2$\\times$ higher than the next-best systems on Gemini and Claude evaluations. We find strong agreement among Gemini and Claude ($\\rho$ = 0.907, $p < 0.001$), and both correlate extremely strongly with the synthesis score ($\\rho$ = 0.961, $p < 0.001$), validating the reliability of automated evaluation. However, GPT-5.4 exhibits weaker agreement ($\\rho \\approx 0.32$), suggesting it evaluates papers using different criteria. These results establish the first quantitative benchmark for AI Scientist systems and demonstrate that multi-model LLM evaluation provides a scalable, consistent framework for assessing autonomous research quality.",
+      "score": 75,
+      "primary": "models",
+      "tags": [
+        "ciencia",
+        "autonomía",
+        "benchmarking",
+        "evaluación"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2607.28631",
+      "is_repeat": true,
+      "novelty_score": 45,
+      "adjusted_score": 45,
+      "_rid": 10,
+      "llm_score": 80,
+      "why": "Establece un protocolo riguroso para medir la calidad de la investigación producida de forma autónoma por sistemas 'AI Scientist'.",
+      "title_es": "¿Puede la IA evaluar a científicos de IA? Un estudio de benchmark de sistemas autónomos de generación de investigación",
+      "entities": [
+        "Sakana AI",
+        "CycleResearcher",
+        "Can",
+        "Evaluate",
+        "Scientists",
+        "Benchmarking Study",
+        "Autonomous Research Generation",
+        "Systems Using Automated"
+      ],
+      "noise_penalty": 0,
+      "final_score": 75,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "DLLM-TTS: Block Discrete Diffusion Language Model for Text-to-Speech Synthesis",
+      "link": "https://arxiv.org/abs/2608.00011",
+      "published": "2026-08-04T04:00:00+00:00",
+      "summary": "arXiv:2608.00011v1 Announce Type: new Abstract: Current text-to-speech systems face a trade-off: autoregres- sive codec language models produce highly intelligible speech but require large-scale models and training data and decode tokens sequentially, while non-autoregressive approaches im- prove speed at the cost of linguistic accuracy. We present DLLM-TTS, a framework that formulates TTS as conditional block discrete diffusion over X-Codec2 neural audio codec to- kens. The model decomposes sequences into blocks and applies masked diffusion within each block while processing blocks se- quentially, learning both local acoustic coherence and global text-speech alignment. During inference, parallel token pre- diction within blocks enables efficient generation with a real- time factor (RTF) of 0.15. A 0.6B-parameter model trained on 20K hours achieves competitive performance on the Seed- TTS-eval benchmark, demonstrating that block discrete diffu- sion language models enable practical and data-efficient speech synthesis with parallel generation.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "DLLM-TTS: Block Discrete Diffusion Language Model for Text-to-Speech Synthesis",
+      "raw_summary": "arXiv:2608.00011v1 Announce Type: new Abstract: Current text-to-speech systems face a trade-off: autoregres- sive codec language models produce highly intelligible speech but require large-scale models and training data and decode tokens sequentially, while non-autoregressive approaches im- prove speed at the cost of linguistic accuracy. We present DLLM-TTS, a framework that formulates TTS as conditional block discrete diffusion over X-Codec2 neural audio codec to- kens. The model decomposes sequences into blocks and applies masked diffusion within each block while processing blocks se- quentially, learning both local acoustic coherence and global text-speech alignment. During inference, parallel token pre- diction within blocks enables efficient generation with a real- time factor (RTF) of 0.15. A 0.6B-parameter model trained on 20K hours achieves competitive performance on the Seed- TTS-eval benchmark, demonstrating that block discrete diffu- sion language models enable practical and data-efficient speech synthesis with parallel generation.",
+      "score": 74,
+      "primary": "models",
+      "tags": [
+        "tts",
+        "difusión",
+        "audio",
+        "latencia"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2608.00011",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 4,
+      "llm_score": 70,
+      "why": "Propone un marco de difusión por bloques que mejora la precisión lingüística en síntesis de voz sin sacrificar la velocidad de inferencia.",
+      "title_es": "DLLM-TTS: modelo de lenguaje de difusión discreta por bloques para la síntesis de texto a voz",
+      "entities": [
+        "arXiv",
+        "DLLM",
+        "TTS",
+        "Block Discrete Diffusion",
+        "Language Model",
+        "Text",
+        "Speech Synthesis"
+      ],
+      "noise_penalty": 0,
+      "final_score": 74,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Uncertainty-Aware Simulation-Based Inference for Operations Research with Large Language Models",
+      "link": "https://arxiv.org/abs/2608.00019",
+      "published": "2026-08-04T04:00:00+00:00",
+      "summary": "arXiv:2608.00019v1 Announce Type: new Abstract: Deploying large language models (LLMs) for operations research (OR) tasks remains challenging because correctness depends on a coherent modeling process, not merely a correct final answer. Standard autoregressive generation operates on a myopic policy, which sometimes fails to anticipate whether a partial formulation can be validly extended into a globally consistent optimization model. Consequently, locally plausible steps may propagate into catastrophic downstream formulation or solver code errors. To address this, we propose an uncertainty-aware, training-free inference framework for OR mathematical modeling. Without updating model parameters, our method evaluates intermediate candidate steps using short lookahead simulations to quantify downstream predictive uncertainty or probability concentration. Candidates that demonstrate a higher likelihood of yielding coherent mathematical formulations are then dynamically selected via importance resampling. Empirical evaluations across multiple OR benchmarks (including NL4OPT, MAMO, and IndustryOR) demonstrate that our framework consistently outperforms both standard and low-temperature baselines, establishing an efficient, training-free paradigm for reliable OR formulation generation.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Uncertainty-Aware Simulation-Based Inference for Operations Research with Large Language Models",
+      "raw_summary": "arXiv:2608.00019v1 Announce Type: new Abstract: Deploying large language models (LLMs) for operations research (OR) tasks remains challenging because correctness depends on a coherent modeling process, not merely a correct final answer. Standard autoregressive generation operates on a myopic policy, which sometimes fails to anticipate whether a partial formulation can be validly extended into a globally consistent optimization model. Consequently, locally plausible steps may propagate into catastrophic downstream formulation or solver code errors. To address this, we propose an uncertainty-aware, training-free inference framework for OR mathematical modeling. Without updating model parameters, our method evaluates intermediate candidate steps using short lookahead simulations to quantify downstream predictive uncertainty or probability concentration. Candidates that demonstrate a higher likelihood of yielding coherent mathematical formulations are then dynamically selected via importance resampling. Empirical evaluations across multiple OR benchmarks (including NL4OPT, MAMO, and IndustryOR) demonstrate that our framework consistently outperforms both standard and low-temperature baselines, establishing an efficient, training-free paradigm for reliable OR formulation generation.",
+      "score": 74,
+      "primary": "models",
+      "tags": [
+        "investigación-operativa",
+        "incertidumbre",
+        "optimización",
+        "razonamiento"
+      ],
+      "heuristic_score": 82,
+      "url": "https://arxiv.org/abs/2608.00019",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 82,
+      "_rid": 6,
+      "llm_score": 72,
+      "why": "Aborda el problema de la coherencia global en modelos matemáticos generados por LLM mediante inferencia consciente de la incertidumbre.",
+      "title_es": "Inferencia basada en simulación y consciente de la incertidumbre para investigación operativa con LLMs",
+      "entities": [
+        "arXiv",
+        "Uncertainty",
+        "Aware Simulation",
+        "Based Inference",
+        "Operations Research",
+        "Large Language Models"
+      ],
+      "noise_penalty": 0,
+      "final_score": 74,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "geopolitics_power"
+    },
+    {
+      "title": "MemoryForge: Synthesize Lifelong Memory for Human-Like LLM Agents",
+      "link": "https://arxiv.org/abs/2608.00007",
+      "published": "2026-08-04T04:00:00+00:00",
+      "summary": "arXiv:2608.00007v1 Announce Type: new Abstract: Equipping Large Language Models (LLMs) with human-like personas is crucial for agentic applications, such as role-play and user simulation. Traditional prompt-based methods rely on descriptive conditioning by injecting static textual profiles, which often makes agents show generic behaviors due to a lack of realistic life memory. To fill this gap, we introduce memory-based conditioning, a paradigm inspired by the cognitive psychology, which replaces abstract profiles with an autobiographical memory base, enabling frozen LLMs to dynamically retrieve situation-relevant memory to guide their behaviors. We formalize its enabling task as customized lifelong memory synthesis and propose MemoryForge, a novel framework to synthesize such lifelong memory from brief target personas. MemoryForge has three key components: a context generator for socio-historical grounding, a life organizer for developmental coherence toward the target identity, and a multi-resolution simulator that balances broad temporal summaries with high-fidelity episodic experiences. Experiments on PersonaGym for role-play and SimulatorArena for user-simulation, show that the synthesized memory base by MemoryForge enables frozen LLMs to exhibit more human-like behaviors than strong descriptive conditioning baselines across multiple metrics and LLM backbones.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "MemoryForge: Synthesize Lifelong Memory for Human-Like LLM Agents",
+      "raw_summary": "arXiv:2608.00007v1 Announce Type: new Abstract: Equipping Large Language Models (LLMs) with human-like personas is crucial for agentic applications, such as role-play and user simulation. Traditional prompt-based methods rely on descriptive conditioning by injecting static textual profiles, which often makes agents show generic behaviors due to a lack of realistic life memory. To fill this gap, we introduce memory-based conditioning, a paradigm inspired by the cognitive psychology, which replaces abstract profiles with an autobiographical memory base, enabling frozen LLMs to dynamically retrieve situation-relevant memory to guide their behaviors. We formalize its enabling task as customized lifelong memory synthesis and propose MemoryForge, a novel framework to synthesize such lifelong memory from brief target personas. MemoryForge has three key components: a context generator for socio-historical grounding, a life organizer for developmental coherence toward the target identity, and a multi-resolution simulator that balances broad temporal summaries with high-fidelity episodic experiences. Experiments on PersonaGym for role-play and SimulatorArena for user-simulation, show that the synthesized memory base by MemoryForge enables frozen LLMs to exhibit more human-like behaviors than strong descriptive conditioning baselines across multiple metrics and LLM backbones.",
+      "score": 70,
+      "primary": "models",
+      "tags": [
+        "agentes",
+        "memoria-autobiográfica",
+        "personalidad",
+        "simulación"
+      ],
+      "heuristic_score": 50,
+      "url": "https://arxiv.org/abs/2608.00007",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 50,
+      "_rid": 8,
+      "llm_score": 74,
+      "why": "Sustituye los perfiles estáticos de los agentes por memoria autobiográfica recuperable para lograr comportamientos más humanos.",
+      "title_es": "MemoryForge: síntesis de memoria vitalicia para agentes de LLM de comportamiento humano",
+      "entities": [
+        "arXiv",
+        "Synthesize Lifelong Memory",
+        "Human",
+        "Like",
+        "Agents"
+      ],
+      "noise_penalty": 0,
+      "final_score": 70,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Obshazard-bench: Benchmarking Multimodal Foundation Models for Real-Time Disaster Intelligence from Raw Earth Observation Streams",
+      "link": "https://arxiv.org/abs/2608.00012",
+      "published": "2026-08-04T04:00:00+00:00",
+      "summary": "arXiv:2608.00012v1 Announce Type: new Abstract: Multimodal Large Language Models (MLLMs) are increasingly used to interpret Earth observation data, yet their capability to support real-world disaster emergency response remains insufficiently evaluated. Existing remote sensing benchmarks largely rely on static, post-hoc, and expert-processed products, such as gridded reanalysis data, which are difficult to align with operational disaster scenarios where hazards evolve rapidly and decisions must be made under strict time constraints. To bridge this gap, we introduce Obshazard-bench, a real-time, observation-driven benchmark for evaluating disaster intelligence in MLLMs. Unlike -centric or post-event benchmarks, Obshazard-bench directly integrates raw, high-frequency satellite sounding streams from diverse satellite sensors with concurrent ground-station observations, historical disaster records, and socio-economic indicators, bypassing delayed expert-processing and physical-inversion pipelines. The benchmark covers 8 major disaster categories and 28 sub-categories across more than 60 countries, incorporating over 120 historically documented extreme-event cases and thousands of lifecycle-oriented VQA samples. Moreover, Obshazard-bench further defines a three-stage evaluation taxonomy aligned with the operational disaster workflow: Predictive Crisis Anticipation for pre-disaster risk detection and early forecasting, Active Evolution Reasoning for in-situ disaster tracking and termination prediction, and Multi-faceted Impact Quantification for post-disaster magnitude deduction, humanitarian burden estimation, and socio-economic impact assessment. Experiments on representative general-purpose and Earth-focused foundation models reveal substantial limitations in transforming raw multi-channel physical observations into temporally grounded and decision-relevant disaster reasoning.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Obshazard-bench: Benchmarking Multimodal Foundation Models for Real-Time Disaster Intelligence from Raw Earth Observation Streams",
+      "raw_summary": "arXiv:2608.00012v1 Announce Type: new Abstract: Multimodal Large Language Models (MLLMs) are increasingly used to interpret Earth observation data, yet their capability to support real-world disaster emergency response remains insufficiently evaluated. Existing remote sensing benchmarks largely rely on static, post-hoc, and expert-processed products, such as gridded reanalysis data, which are difficult to align with operational disaster scenarios where hazards evolve rapidly and decisions must be made under strict time constraints. To bridge this gap, we introduce Obshazard-bench, a real-time, observation-driven benchmark for evaluating disaster intelligence in MLLMs. Unlike image-centric or post-event benchmarks, Obshazard-bench directly integrates raw, high-frequency satellite sounding streams from diverse satellite sensors with concurrent ground-station observations, historical disaster records, and socio-economic indicators, bypassing delayed expert-processing and physical-inversion pipelines. The benchmark covers 8 major disaster categories and 28 sub-categories across more than 60 countries, incorporating over 120 historically documented extreme-event cases and thousands of lifecycle-oriented VQA samples. Moreover, Obshazard-bench further defines a three-stage evaluation taxonomy aligned with the operational disaster workflow: Predictive Crisis Anticipation for pre-disaster risk detection and early forecasting, Active Evolution Reasoning for in-situ disaster tracking and termination prediction, and Multi-faceted Impact Quantification for post-disaster magnitude deduction, humanitarian burden estimation, and socio-economic impact assessment. Experiments on representative general-purpose and Earth-focused foundation models reveal substantial limitations in transforming raw multi-channel physical observations into temporally grounded and decision-relevant disaster reasoning.",
+      "score": 65,
+      "primary": "models",
+      "tags": [
+        "mllm",
+        "observación-terrestre",
+        "emergencias",
+        "benchmarking"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2608.00012",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 5,
+      "llm_score": 68,
+      "why": "Nuevo estándar para medir la capacidad de respuesta de modelos multimodales en desastres naturales usando datos en tiempo real.",
+      "title_es": "Obshazard-bench: evaluación de modelos fundacionales multimodales para inteligencia de desastres en tiempo real",
+      "entities": [
+        "arXiv",
+        "Obshazard",
+        "Benchmarking Multimodal Foundation",
+        "Models",
+        "Real",
+        "Time Disaster Intelligence",
+        "Raw Earth Observation",
+        "Streams"
+      ],
+      "noise_penalty": 8,
+      "final_score": 65,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(8)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "OpenClaw and Ollama in Agentic AI: Toward Fully Autonomous and Scalable AI Agent Systems",
+      "link": "https://arxiv.org/abs/2607.28629",
+      "published": "2026-08-04T04:00:00+00:00",
+      "summary": "arXiv:2607.28629v1 Announce Type: new Abstract: The rapid transition from reactive large language models (LLMs) to persistent, action-capable systems has exposed critical gaps in the architectural understanding of Agentic AI, particularly in separating inference, orchestration, and execution layers for autonomous AI agents. Despite recent advances, unified frameworks for designing and evaluating full-stack agentic systems remain limited. This paper presents a comprehensive, layered architecture for Agentic AI, outlining the evolution from reactive LLM interfaces to persistent, goal-driven autonomous AI agents with memory, planning, and continuous execution. We analyze OpenClaw and Ollama as a full-stack Agentic AI system, where Ollama serves as the LLM inference layer and OpenClaw enables agent runtime orchestration, integrating reasoning, tool use, and action execution. A prototype experimental validation of the OpenClaw-Ollama architecture demonstrates that capabilities such as persistent memory, tool utilization, and adaptive decision-making emerge from system-level integration rather than standalone models, with performance improving consistently as architectural complexity increases. The study further examines challenges in scalability, security, privacy, governance, and evaluation of agentic systems, highlighting the need for robust benchmarking and system-level design. Future directions include scalable multi-agent architectures, distributed autonomous systems, and human-aware Agentic AI frameworks for responsible deployment. Overall, this work establishes a unified architectural foundation for Agentic AI, validates the effectiveness of full-stack autonomous AI agents, and provides a roadmap for building scalable, secure, and trustworthy agentic systems. All models, code, and datasets are publicly released to support reproducibility and benchmarking.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "OpenClaw and Ollama in Agentic AI: Toward Fully Autonomous and Scalable AI Agent Systems",
+      "raw_summary": "arXiv:2607.28629v1 Announce Type: new Abstract: The rapid transition from reactive large language models (LLMs) to persistent, action-capable systems has exposed critical gaps in the architectural understanding of Agentic AI, particularly in separating inference, orchestration, and execution layers for autonomous AI agents. Despite recent advances, unified frameworks for designing and evaluating full-stack agentic systems remain limited. This paper presents a comprehensive, layered architecture for Agentic AI, outlining the evolution from reactive LLM interfaces to persistent, goal-driven autonomous AI agents with memory, planning, and continuous execution. We analyze OpenClaw and Ollama as a full-stack Agentic AI system, where Ollama serves as the LLM inference layer and OpenClaw enables agent runtime orchestration, integrating reasoning, tool use, and action execution. A prototype experimental validation of the OpenClaw-Ollama architecture demonstrates that capabilities such as persistent memory, tool utilization, and adaptive decision-making emerge from system-level integration rather than standalone models, with performance improving consistently as architectural complexity increases. The study further examines challenges in scalability, security, privacy, governance, and evaluation of agentic systems, highlighting the need for robust benchmarking and system-level design. Future directions include scalable multi-agent architectures, distributed autonomous systems, and human-aware Agentic AI frameworks for responsible deployment. Overall, this work establishes a unified architectural foundation for Agentic AI, validates the effectiveness of full-stack autonomous AI agents, and provides a roadmap for building scalable, secure, and trustworthy agentic systems. All models, code, and datasets are publicly released to support reproducibility and benchmarking.",
+      "score": 65,
+      "primary": "infra",
+      "tags": [
+        "agentes",
+        "orquestación",
+        "ollama",
+        "arquitectura"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2607.28629",
+      "is_repeat": true,
+      "novelty_score": 45,
+      "adjusted_score": 45,
+      "_rid": 9,
+      "llm_score": 69,
+      "why": "Define una arquitectura por capas necesaria para escalar sistemas de agentes autónomos separando ejecución e inferencia.",
+      "title_es": "OpenClaw y Ollama en IA agéntica: hacia sistemas de agentes de IA plenamente autónomos y escalables",
+      "entities": [
+        "OpenClaw",
+        "Ollama",
+        "Agentic",
+        "Toward Fully Autonomous",
+        "Scalable",
+        "Agent Systems"
+      ],
+      "noise_penalty": 0,
+      "final_score": 65,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "RubricReviewer: From Direct Critique to Objective and Comprehensive Rubric-Driven Peer Review",
+      "link": "https://arxiv.org/abs/2608.00005",
+      "published": "2026-08-04T04:00:00+00:00",
+      "summary": "arXiv:2608.00005v1 Announce Type: new Abstract: Peer review at major venues is under unprecedented submission pressure, motivating the use of large language models (LLMs) as review assistants. Existing LLM-based reviewers, however, face two structural limitations. First, they map manuscripts directly to reviews, leaving the underlying rubric implicit and entangling its derivation with the judgement. Second, the prevailing paradigms each capture only half of a good review: training-free agents gather broad evidence but produce undirected critiques, while training-based reviewers inherit human discriminative judgement together with its noise and uneven coverage. We introduce RubricReviewer, a fully rubric-driven framework that addresses both limitations. It makes rubric generation an explicit intermediate step, so that both review generation and the final assessment are conditioned on paper-adaptive rubrics. It further combines a training-free agent (Scout) that gathers external evidence with a human-aligned trained model (Aligner) that consumes this evidence, fusing the strengths of both supervision sources. Experiments on real-world submissions show that RubricReviewer produces reviews that are markedly more comprehensive and more discriminative than prior systems, and exhibits the strongest robustness against adversarial prompt-injection attacks. Ablation studies further confirm the necessity of each component.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "RubricReviewer: From Direct Critique to Objective and Comprehensive Rubric-Driven Peer Review",
+      "raw_summary": "arXiv:2608.00005v1 Announce Type: new Abstract: Peer review at major venues is under unprecedented submission pressure, motivating the use of large language models (LLMs) as review assistants. Existing LLM-based reviewers, however, face two structural limitations. First, they map manuscripts directly to reviews, leaving the underlying rubric implicit and entangling its derivation with the judgement. Second, the prevailing paradigms each capture only half of a good review: training-free agents gather broad evidence but produce undirected critiques, while training-based reviewers inherit human discriminative judgement together with its noise and uneven coverage. We introduce RubricReviewer, a fully rubric-driven framework that addresses both limitations. It makes rubric generation an explicit intermediate step, so that both review generation and the final assessment are conditioned on paper-adaptive rubrics. It further combines a training-free agent (Scout) that gathers external evidence with a human-aligned trained model (Aligner) that consumes this evidence, fusing the strengths of both supervision sources. Experiments on real-world submissions show that RubricReviewer produces reviews that are markedly more comprehensive and more discriminative than prior systems, and exhibits the strongest robustness against adversarial prompt-injection attacks. Ablation studies further confirm the necessity of each component.",
+      "score": 64,
+      "primary": "misc",
+      "tags": [
+        "peer-review",
+        "rubricas",
+        "academia",
+        "llm"
+      ],
+      "heuristic_score": 61,
+      "url": "https://arxiv.org/abs/2608.00005",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 61,
+      "_rid": 7,
+      "llm_score": 65,
+      "why": "Mejora la objetividad de las revisiones académicas asistidas por IA mediante el uso explícito de rúbricas en lugar de críticas directas.",
+      "title_es": "RubricReviewer: de la crítica directa a la revisión por pares objetiva y exhaustiva basada en rúbricas",
+      "entities": [
+        "arXiv",
+        "From Direct Critique",
+        "Objective",
+        "Comprehensive Rubric",
+        "Driven Peer Review"
+      ],
+      "noise_penalty": 0,
+      "final_score": 64,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Empowering India’s next generation of innovators with ATL Saathi",
+      "link": "https://deepmind.google/blog/empowering-indias-next-generation-of-innovators-with-atl-saathi/",
+      "published": "2026-07-13T12:37:28+00:00",
+      "summary": "Google and AIM launched ATL Saathi, a Gemini-powered AI tool empowering Indian educators in robotics labs.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Empowering India’s next generation of innovators with ATL Saathi",
+      "raw_summary": "Google and AIM launched ATL Saathi, a Gemini-powered AI tool empowering Indian educators in robotics labs.",
+      "score": 36,
+      "primary": "misc",
+      "tags": [
+        "educación",
+        "india",
+        "robótica",
+        "gemini"
+      ],
+      "heuristic_score": 36,
+      "url": "https://deepmind.google/blog/empowering-indias-next-generation-of-innovators-with-atl-saathi/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 36,
+      "_rid": 11,
+      "llm_score": 55,
+      "why": "Iniciativa de impacto social y educativo que integra herramientas de IA de Google en laboratorios de robótica en la India.",
+      "title_es": "Capacitando a la próxima generación de innovadores de la India con ATL Saathi",
+      "entities": [
+        "Google",
+        "AIM",
+        "ATL",
+        "Empowering India",
+        "Saathi"
+      ],
+      "noise_penalty": 16,
+      "final_score": 36,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(16)",
+      "strategic_theme": "other"
+    },
+    {
+      "title": "Create, edit and star in videos with two Google Vids updates",
+      "link": "https://blog.google/products-and-platforms/products/workspace/gemini-omni-personal-avatars/",
+      "published": "2026-07-16T16:00:00+00:00",
+      "summary": "Text \"Gemini Omni and Personal Avatars in Google Vids\" surrounded by various s",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Create, edit and star in videos with two Google Vids updates",
+      "raw_summary": "Text \"Gemini Omni and Personal Avatars in Google Vids\" surrounded by various images",
+      "score": 34,
+      "primary": "misc",
+      "tags": [
+        "video",
+        "vids",
+        "productividad",
+        "workspace"
+      ],
+      "heuristic_score": 13,
+      "url": "https://blog.google/products-and-platforms/products/workspace/gemini-omni-personal-avatars/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 13,
+      "_rid": 15,
+      "llm_score": 50,
+      "why": "Mejoras en la creación de contenido corporativo mediante avatares personales y modelos multimodales.",
+      "title_es": "Crea, edita y protagoniza vídeos con dos actualizaciones de Google Vids",
+      "entities": [
+        "Google",
+        "Gemini",
+        "Create",
+        "Google Vids"
+      ],
+      "noise_penalty": 10,
+      "final_score": 34,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(10)",
+      "strategic_theme": "other"
+    },
+    {
+      "title": "5 ways AI Mode in Search helps you enjoy the real world",
+      "link": "https://blog.google/products-and-platforms/products/search/ai-mode-real-world-tips/",
+      "published": "2026-07-28T13:00:00+00:00",
+      "summary": "Illustration of a black magnifying glass in a white circle on green grass surrounded by items related to fun activities like tennis and games",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "5 ways AI Mode in Search helps you enjoy the real world",
+      "raw_summary": "Illustration of a black magnifying glass in a white circle on green grass surrounded by items related to fun activities like tennis and games",
+      "score": 29,
+      "primary": "misc",
+      "tags": [
+        "búsqueda",
+        "usuario-final",
+        "google",
+        "ux"
+      ],
+      "heuristic_score": 13,
+      "url": "https://blog.google/products-and-platforms/products/search/ai-mode-real-world-tips/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 13,
+      "_rid": 14,
+      "llm_score": 40,
+      "why": "Actualización de producto centrada en el consumidor con bajo impacto en la infraestructura o el desarrollo tecnológico de la IA.",
+      "title_es": "5 formas en que el modo IA en la búsqueda te ayuda a disfrutar del mundo real",
+      "entities": [
+        "Google",
+        "Mode",
+        "Search"
+      ],
+      "noise_penalty": 7,
+      "final_score": 29,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(7)",
+      "strategic_theme": "other"
+    }
+  ]
+}
