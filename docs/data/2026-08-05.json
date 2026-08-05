@@ -1,0 +1,673 @@
+{
+  "date": "2026-08-05",
+  "score_avg": 65.73,
+  "primary_dist": {
+    "infra": 4,
+    "models": 8,
+    "misc": 2,
+    "invest": 1
+  },
+  "top_entities": [
+    {
+      "entity": "arXiv",
+      "count": 9
+    },
+    {
+      "entity": "Google",
+      "count": 4
+    },
+    {
+      "entity": "Gemini",
+      "count": 3
+    },
+    {
+      "entity": "DeepMind",
+      "count": 2
+    },
+    {
+      "entity": "Evaluating",
+      "count": 2
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "Nace SOCAMM2 como nuevo estándar de memoria para servidores IA, prometiendo mayor eficiencia en el movimiento de datos.",
+      "Google expande radicalmente sus agentes gestionados en Gemini con tareas en segundo plano y soporte para protocolos MCP.",
+      "Gemini Robotics ER 2 marca un hito en orquestación multirrobot y comprensión de vídeo para tareas en el mundo real.",
+      "Estudios clínicos revelan que la preferencia de los médicos no correlaciona con la seguridad real de los modelos de IA.",
+      "OpenAI libera la evaluación de su filtro de privacidad de 1.500 millones de parámetros con resultados desiguales."
+    ],
+    "risks": [
+      "La brecha entre la preferencia de expertos y la seguridad clínica real invalida muchas métricas actuales de evaluación.",
+      "La eficacia de los filtros de privacidad (PII) se degrada drásticamente en idiomas no latinos y dominios especializados.",
+      "La dependencia de la arquitectura de memoria física limita el escalado de modelos masivos si no se adopta pronto SOCAMM2."
+    ],
+    "watch": [
+      "El despliegue de Gemini 3.6 Flash y sus nuevos 'hooks' para desarrolladores dentro del ecosistema de agentes.",
+      "La evolución de la misión Genesis tras la inyección de 40 millones de dólares en créditos de computación por Google.",
+      "La implementación de benchmarks multimodales masivos en oncología que integran genómica, patología y radiología."
+    ],
+    "entities_top": [
+      "Google",
+      "OpenAI",
+      "DeepMind"
+    ]
+  },
+  "items": [
+    {
+      "title": "How SOCAMM2 Could Reshape Server Memory for AI",
+      "link": "https://semiwiki.com/ip/rambus/370722-how-socamm2-could-reshape-server-memory-for-ai/",
+      "published": "2026-08-04T13:00:24+00:00",
+      "summary": "As artificial intelligence systems become larger and more demanding, memory is becoming one of the most important constraints in server design. Modern AI workloads do not only require powerful GPUs and accelerators; they also require enormous amounts of data to move quickly and efficiently between memory and compute engines.&8230; Read More The post How SOCAMM2 Could Reshape Server Memory for AI appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "How SOCAMM2 Could Reshape Server Memory for AI",
+      "raw_summary": "As artificial intelligence systems become larger and more demanding, memory is becoming one of the most important constraints in server design. Modern AI workloads do not only require powerful GPUs and accelerators; they also require enormous amounts of data to move quickly and efficiently between memory and compute engines.&#8230; Read More The post How SOCAMM2 Could Reshape Server Memory for AI appeared first on SemiWiki .",
+      "score": 81,
+      "primary": "infra",
+      "tags": [
+        "hardware",
+        "memory",
+        "socamm2"
+      ],
+      "heuristic_score": 58,
+      "url": "https://semiwiki.com/ip/rambus/370722-how-socamm2-could-reshape-server-memory-for-ai/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 58,
+      "_rid": 9,
+      "llm_score": 85,
+      "why": "El nuevo estándar SOCAMM2 es vital para superar el cuello de botella de la memoria en la computación de IA.",
+      "title_es": "Cómo SOCAMM2 podría redefinir la memoria de los servidores para la IA",
+      "entities": [
+        "Rambus",
+        "SemiWiki",
+        "SOCAMM2",
+        "How",
+        "Could Reshape Server",
+        "Memory"
+      ],
+      "noise_penalty": 0,
+      "final_score": 81,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Preferred, Not Safer: Pairwise Preference Is a Poor Proxy for Clinical Safety",
+      "link": "https://arxiv.org/abs/2608.02617",
+      "published": "2026-08-05T04:00:00+00:00",
+      "summary": "arXiv:2608.02617v1 Announce Type: new Abstract: We evaluate whether clinician pairwise preferences provide a reliable signal of clinical safety in large language model (LLM) evaluation using expert feedback from MOOVE (Massive Open Online Validation and Evaluation), a clinician-led platform collecting blinded pairwise preferences alongside multi-criterion rubric ratings. Clinicians assign scores on a discrete $[-2, +2]$ scale, where negative values indicate clinically unsafe or misleading content. Using 26{,}804 pairwise judgments across outputs from 13 LLMs, contributed by more than 736 clinicians across 28+ countries, we find that clinician preference is a poor proxy for safety-critical performance. Models ranking highly under pairwise preference can still exhibit substantial rates of clinically meaningful failures ($\\leq -1$) on dimensions such as \\emph{Harmlessness} and \\emph{Accuracy}. These failures are unevenly distributed across specialties, creating domain-specific ``no-go zones'' not visible in aggregate rankings or single-number leaderboards. We further analyze contributing factors including prompt length, refusal and escalation behavior, and the relative contributions of safety-critical versus surface-level features. A substantial fraction of preference votes carry no positive safety signal, while feature decomposition shows that surface-level characteristics explain slightly more preference variation than safety-critical rubric differences. Finally, we introduce a clinically adjusted preference ranking combining pairwise preference with rubric-derived feedback, producing a more safety-aware ordering than raw Bradley--Terry strength alone. Our findings support evaluation practices that separate preference from safety, report safety-critical failure rates directly, and incorporate clinically grounded adjustments when ranking LLMs for clinical decision making.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Preferred, Not Safer: Pairwise Preference Is a Poor Proxy for Clinical Safety",
+      "raw_summary": "arXiv:2608.02617v1 Announce Type: new Abstract: We evaluate whether clinician pairwise preferences provide a reliable signal of clinical safety in large language model (LLM) evaluation using expert feedback from MOOVE (Massive Open Online Validation and Evaluation), a clinician-led platform collecting blinded pairwise preferences alongside multi-criterion rubric ratings. Clinicians assign scores on a discrete $[-2, +2]$ scale, where negative values indicate clinically unsafe or misleading content. Using 26{,}804 pairwise judgments across outputs from 13 LLMs, contributed by more than 736 clinicians across 28+ countries, we find that clinician preference is a poor proxy for safety-critical performance. Models ranking highly under pairwise preference can still exhibit substantial rates of clinically meaningful failures ($\\leq -1$) on dimensions such as \\emph{Harmlessness} and \\emph{Accuracy}. These failures are unevenly distributed across specialties, creating domain-specific ``no-go zones'' not visible in aggregate rankings or single-number leaderboards. We further analyze contributing factors including prompt length, refusal and escalation behavior, and the relative contributions of safety-critical versus surface-level features. A substantial fraction of preference votes carry no positive safety signal, while feature decomposition shows that surface-level characteristics explain slightly more preference variation than safety-critical rubric differences. Finally, we introduce a clinically adjusted preference ranking combining pairwise preference with rubric-derived feedback, producing a more safety-aware ordering than raw Bradley--Terry strength alone. Our findings support evaluation practices that separate preference from safety, report safety-critical failure rates directly, and incorporate clinically grounded adjustments when ranking LLMs for clinical decision making.",
+      "score": 78,
+      "primary": "models",
+      "tags": [
+        "healthcare",
+        "safety",
+        "alignment"
+      ],
+      "heuristic_score": 55,
+      "url": "https://arxiv.org/abs/2608.02617",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 55,
+      "_rid": 10,
+      "llm_score": 82,
+      "why": "Descubrimiento crítico: las métricas de preferencia humana no sirven para garantizar la seguridad en medicina.",
+      "title_es": "Preferido, no más seguro: La preferencia por pares es un mal indicador de la seguridad clínica",
+      "entities": [
+        "MOOVE",
+        "arXiv",
+        "Preferred",
+        "Not Safer",
+        "Pairwise Preference Is",
+        "Poor Proxy",
+        "Clinical Safety"
+      ],
+      "noise_penalty": 0,
+      "final_score": 78,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "OncoTriad-QA: A Patient-Level Radiology-Pathology-Genomics Benchmark for Pan-Cancer Reasoning",
+      "link": "https://arxiv.org/abs/2608.02615",
+      "published": "2026-08-05T04:00:00+00:00",
+      "summary": "arXiv:2608.02615v1 Announce Type: new Abstract: Cancer diagnosis and characterization require integrating complementary evidence from radiology, pathology, genomics, and clinical metadata. However, most medical large language model (LLM) and vision-language model (VLM) benchmarks focus on isolated modalities or narrow -text tasks, leaving patient-level oncology assessment across multiple evidence streams largely untested. We introduce OncoTriad-QA, a patient-level radiology-pathology-genomics benchmark for pan-cancer question answering. OncoTriad-QA contains 86.1k semantic questions across 9,281 TCGA patient cases from 32 cancer cohorts, aligning CT/MRI radiology, whole-slide histopathology, somatic mutations, copy-number alterations, DNA methylation, bulk RNA-seq, and clinical metadata. Case-specific annotations are constructed through a source-grounded LLM-assisted pipeline using curated labels, diagnostic reports, molecular profiles, and modality-derived evidence as primary sources of truth, with automated consistency checks and clinician review. We also introduce OncoVLM, a reference multimodal model that maps modality-native radiology, pathology, DNA methylation, and RNA-seq evidence into an LLM interface through learned projectors. Experiments show that existing general-purpose and medical LLMs remain limited on comprehensive pan-cancer QA, especially when questions require integrating imaging findings, tumor morphology, and molecular evidence. After fine-tuning on OncoTriad-QA, OncoVLM exceeds MedGemma-4B by an average of 10.7 points when using MCQ accuracy and BERTScore-F1, with consistent gains across multiple-choice and open-ended questions under radiology-only, pathology-only, and all-available settings. These results demonstrate the benchmark's value for training and evaluating models for integrated cancer question answering.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "OncoTriad-QA: A Patient-Level Radiology-Pathology-Genomics Benchmark for Pan-Cancer Reasoning",
+      "raw_summary": "arXiv:2608.02615v1 Announce Type: new Abstract: Cancer diagnosis and characterization require integrating complementary evidence from radiology, pathology, genomics, and clinical metadata. However, most medical large language model (LLM) and vision-language model (VLM) benchmarks focus on isolated modalities or narrow image-text tasks, leaving patient-level oncology assessment across multiple evidence streams largely untested. We introduce OncoTriad-QA, a patient-level radiology-pathology-genomics benchmark for pan-cancer question answering. OncoTriad-QA contains 86.1k semantic questions across 9,281 TCGA patient cases from 32 cancer cohorts, aligning CT/MRI radiology, whole-slide histopathology, somatic mutations, copy-number alterations, DNA methylation, bulk RNA-seq, and clinical metadata. Case-specific annotations are constructed through a source-grounded LLM-assisted pipeline using curated labels, diagnostic reports, molecular profiles, and modality-derived evidence as primary sources of truth, with automated consistency checks and clinician review. We also introduce OncoVLM, a reference multimodal model that maps modality-native radiology, pathology, DNA methylation, and RNA-seq evidence into an LLM interface through learned projectors. Experiments show that existing general-purpose and medical LLMs remain limited on comprehensive pan-cancer QA, especially when questions require integrating imaging findings, tumor morphology, and molecular evidence. After fine-tuning on OncoTriad-QA, OncoVLM exceeds MedGemma-4B by an average of 10.7 points when using MCQ accuracy and BERTScore-F1, with consistent gains across multiple-choice and open-ended questions under radiology-only, pathology-only, and all-available settings. These results demonstrate the benchmark's value for training and evaluating models for integrated cancer question answering.",
+      "score": 77,
+      "primary": "models",
+      "tags": [
+        "healthcare",
+        "multimodal",
+        "oncology"
+      ],
+      "heuristic_score": 74,
+      "url": "https://arxiv.org/abs/2608.02615",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 74,
+      "_rid": 3,
+      "llm_score": 78,
+      "why": "Benchmark crítico por su escala y capacidad de integrar radiología, patología y genómica en un solo modelo.",
+      "title_es": "OncoTriad-QA: Un benchmark de radiología, patología y genómica a nivel de paciente para el razonamiento oncológico integral",
+      "entities": [
+        "TCGA",
+        "arXiv",
+        "Patient",
+        "Level Radiology",
+        "Pathology",
+        "Genomics Benchmark",
+        "Pan",
+        "Cancer Reasoning"
+      ],
+      "noise_penalty": 0,
+      "final_score": 77,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Gemini Robotics ER 2: powering robotics with video understanding, task orchestration, and multi-robot collaboration",
+      "link": "https://deepmind.google/blog/gemini-robotics-er-2-powering-robotics-with-video-understanding-task-orchestration-and-multi-robot-collaboration/",
+      "published": "2026-07-30T15:00:59+00:00",
+      "summary": "Gemini Robotics ER 2 helps robots reason, collaborate, and solve real-world tasks. It represents a step change in video understanding, tool orchestration, and multi-robot collaboration for robotic applications.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Gemini Robotics ER 2: powering robotics with video understanding, task orchestration, and multi-robot collaboration",
+      "raw_summary": "Gemini Robotics ER 2 helps robots reason, collaborate, and solve real-world tasks. It represents a step change in video understanding, tool orchestration, and multi-robot collaboration for robotic applications.",
+      "score": 74,
+      "primary": "infra",
+      "tags": [
+        "robotics",
+        "gemini",
+        "video-understanding"
+      ],
+      "heuristic_score": 43,
+      "url": "https://deepmind.google/blog/gemini-robotics-er-2-powering-robotics-with-video-understanding-task-orchestration-and-multi-robot-collaboration/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 43,
+      "_rid": 12,
+      "llm_score": 88,
+      "why": "Salto cualitativo en robótica colaborativa gracias a la integración de capacidades avanzadas de vídeo y razonamiento.",
+      "title_es": "Gemini Robotics ER 2: Impulsando la robótica con comprensión de vídeo, orquestación de tareas y colaboración multirrobot",
+      "entities": [
+        "DeepMind",
+        "Google",
+        "Gemini",
+        "Gemini Robotics"
+      ],
+      "noise_penalty": 7,
+      "final_score": 74,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(7)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Evaluating OpenAI's Privacy Filter: Cross-Lingual, Cross-Domain PII Detection Across 42 Benchmarks",
+      "link": "https://arxiv.org/abs/2608.02616",
+      "published": "2026-08-05T04:00:00+00:00",
+      "summary": "arXiv:2608.02616v1 Announce Type: new Abstract: We present the first independent, systematic evaluation of OpenAI's Privacy Filter (OPF), a 1.5B-parameter bidirectional PII detector, across 42 synthetic benchmarks spanning 22 languages and 5 domains. Zero-shot, OPF achieves F1=0.855 on AI4Privacy and 0.464 on SPY medical, outperforming Presidio (0.431, 0.273) and XLM-RoBERTa (0.269, 0.111) on PII-annotated benchmarks; on multilingual NER, XLM-RoBERTa leads OPF on all 13 Indic and non-Latin languages. GPT-4o leads on medical, legal, and financial PII (SPY: 0.643 avg, Gretel: 0.527), while OPF leads on structured synthetic PII (0.71 avg) and customer support (0.60). OPF degrades sharply when PII is embedded in narrative prose: F1=0.04--0.57 on NER benchmarks and collapse for non-Latin scripts (Arabic: 0.04, Cyrillic: 0.03). Error analysis shows OPF is strongest on structurally regular PII types (email: 0.78, phone: 0.76) and weakest on culturally variable ones (person: 0.40, address: 0.49), and is recall-biased on customer-support and medical/legal PII (P=0.31--0.54, R=0.70--0.85); global precision spans 0.31--0.86 across all domains.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Evaluating OpenAI's Privacy Filter: Cross-Lingual, Cross-Domain PII Detection Across 42 Benchmarks",
+      "raw_summary": "arXiv:2608.02616v1 Announce Type: new Abstract: We present the first independent, systematic evaluation of OpenAI's Privacy Filter (OPF), a 1.5B-parameter bidirectional PII detector, across 42 synthetic benchmarks spanning 22 languages and 5 domains. Zero-shot, OPF achieves F1=0.855 on AI4Privacy and 0.464 on SPY medical, outperforming Presidio (0.431, 0.273) and XLM-RoBERTa (0.269, 0.111) on PII-annotated benchmarks; on multilingual NER, XLM-RoBERTa leads OPF on all 13 Indic and non-Latin languages. GPT-4o leads on medical, legal, and financial PII (SPY: 0.643 avg, Gretel: 0.527), while OPF leads on structured synthetic PII (0.71 avg) and customer support (0.60). OPF degrades sharply when PII is embedded in narrative prose: F1=0.04--0.57 on NER benchmarks and collapse for non-Latin scripts (Arabic: 0.04, Cyrillic: 0.03). Error analysis shows OPF is strongest on structurally regular PII types (email: 0.78, phone: 0.76) and weakest on culturally variable ones (person: 0.40, address: 0.49), and is recall-biased on customer-support and medical/legal PII (P=0.31--0.54, R=0.70--0.85); global precision spans 0.31--0.86 across all domains.",
+      "score": 71,
+      "primary": "models",
+      "tags": [
+        "privacy",
+        "pii",
+        "security"
+      ],
+      "heuristic_score": 67,
+      "url": "https://arxiv.org/abs/2608.02616",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 67,
+      "_rid": 4,
+      "llm_score": 72,
+      "why": "Primera evaluación independiente del filtro de privacidad de OpenAI, revelando debilidades en entornos multilingües.",
+      "title_es": "Evaluación del filtro de privacidad de OpenAI: Detección de PII en 42 benchmarks, múltiples idiomas y dominios",
+      "entities": [
+        "OpenAI",
+        "Gretel",
+        "PII",
+        "Evaluating",
+        "Privacy Filter",
+        "Cross",
+        "Lingual",
+        "Domain"
+      ],
+      "noise_penalty": 0,
+      "final_score": 71,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "MemArena: An Ego-Centric Benchmark for On-Device Agentic Personal Memory Assistants at Scale",
+      "link": "https://arxiv.org/abs/2608.02613",
+      "published": "2026-08-05T04:00:00+00:00",
+      "summary": "arXiv:2608.02613v1 Announce Type: new Abstract: Edge-deployed personal memory assistants must handle private interpersonal conversations on-device with open-weight models. Yet, existing memory benchmarks often under-test the combination of activity-dense interaction, ego-centric perspective, and coherent multi-session worlds. MemArena fills these gaps with a single-world conversational benchmark built with its MASim agent simulator, for 50 agents over 15 days (10.3M dialog-text tokens, 24.1K text-only ego-observed tokens/agent/day). With the interaction history, it co-generates ground truth over six recall, reasoning, and trustworthiness evaluation dimensions. We evaluate five open-weight readers with Vanilla context, BM25-RAG, Oracle retrieval, Memobase, and MemSearch as memory backends. Three results stand out: (1) Memory-backend choice matters more for content accuracy: At Qwen3-0.6B, Memobase-to-MemSearch gains +32.5/+19.2 pp, exceeding MemSearch reader scaling (+10.6/+6.8 pp). (2) Permission-aware access fails universally, with Oracle leaking heavily and other backends too timid to disclose. (3) Search latency bites only at very small reader: on a Spark GB10 edge node, memory-search adds a moderate and fixed 87/7/48 ms (BM25-RAG/Memobase/MemSearch) that composes a small part of TTFT for most reader-backend combinations. Code, the MASim simulator, and the MemArena-L benchmark will be released upon acceptance.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "MemArena: An Ego-Centric Benchmark for On-Device Agentic Personal Memory Assistants at Scale",
+      "raw_summary": "arXiv:2608.02613v1 Announce Type: new Abstract: Edge-deployed personal memory assistants must handle private interpersonal conversations on-device with open-weight models. Yet, existing memory benchmarks often under-test the combination of activity-dense interaction, ego-centric perspective, and coherent multi-session worlds. MemArena fills these gaps with a single-world conversational benchmark built with its MASim agent simulator, for 50 agents over 15 days (10.3M dialog-text tokens, 24.1K text-only ego-observed tokens/agent/day). With the interaction history, it co-generates ground truth over six recall, reasoning, and trustworthiness evaluation dimensions. We evaluate five open-weight readers with Vanilla context, BM25-RAG, Oracle retrieval, Memobase, and MemSearch as memory backends. Three results stand out: (1) Memory-backend choice matters more for content accuracy: At Qwen3-0.6B, Memobase-to-MemSearch gains +32.5/+19.2 pp, exceeding MemSearch reader scaling (+10.6/+6.8 pp). (2) Permission-aware access fails universally, with Oracle leaking heavily and other backends too timid to disclose. (3) Search latency bites only at very small reader: on a Spark GB10 edge node, memory-search adds a moderate and fixed 87/7/48 ms (BM25-RAG/Memobase/MemSearch) that composes a small part of TTFT for most reader-backend combinations. Code, the MASim simulator, and the MemArena-L benchmark will be released upon acceptance.",
+      "score": 70,
+      "primary": "models",
+      "tags": [
+        "agents",
+        "on-device",
+        "memory",
+        "privacy"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2608.02613",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 1,
+      "llm_score": 65,
+      "why": "Referencia necesaria para agentes en local que manejan memoria personal privada sin depender de la nube.",
+      "title_es": "MemArena: Un benchmark egocéntrico para asistentes de memoria personal basados en agentes para dispositivos a escala",
+      "entities": [
+        "arXiv",
+        "An Ego",
+        "Centric Benchmark",
+        "Device Agentic Personal",
+        "Memory Assistants",
+        "Scale"
+      ],
+      "noise_penalty": 0,
+      "final_score": 70,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Gemini API Managed Agents: 3.6 Flash, hooks, and more",
+      "link": "https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api-3-6-flash-hooks/",
+      "published": "2026-07-28T16:00:00+00:00",
+      "summary": "Managed Agents Gemini 3.6 Flash, Hooks and Triggers",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Gemini API Managed Agents: 3.6 Flash, hooks, and more",
+      "raw_summary": "Managed Agents Gemini 3.6 Flash, Hooks and Triggers",
+      "score": 69,
+      "primary": "models",
+      "tags": [
+        "gemini",
+        "agents",
+        "automation"
+      ],
+      "heuristic_score": 61,
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api-3-6-flash-hooks/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 61,
+      "_rid": 7,
+      "llm_score": 79,
+      "why": "La inclusión de hooks y disparadores en Gemini 3.6 Flash acelera la automatización de procesos empresariales.",
+      "title_es": "Agentes gestionados en la API de Gemini: 3.6 Flash, hooks y más",
+      "entities": [
+        "Google",
+        "Gemini",
+        "Managed Agents",
+        "Flash"
+      ],
+      "noise_penalty": 7,
+      "final_score": 69,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(7)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Self-Organising Digital Circuits",
+      "link": "https://arxiv.org/abs/2608.02606",
+      "published": "2026-08-05T04:00:00+00:00",
+      "summary": "arXiv:2608.02606v1 Announce Type: new Abstract: Fault tolerance in classical computing has traditionally relied on static strategies like hardware redundancy and error-correcting codes. Biological systems, in contrast, exhibit adaptive plasticity, maintaining function through dynamic re-organisation around damage. Inspired by this principle, we introduce Self-Organising Digital Circuits, framing functional logic generation and maintenance as a meta-learning problem on graphs. Our architecture employs a topology-masked Transformer that configures the Lookup Tables (LUT) of a circuit's Boolean gates. Extending the pattern-generation paradigm of Neural Cellular Automata (NCA), it navigates the degenerate Boolean search space to satisfy a computational task, rather than regenerating a fixed target state. We demonstrate that it can self-assemble functional circuits from scratch and rapidly re-route logic around permanent, previously unseen hardware faults. For soft errors, the policy achieves near-perfect recovery (>99.99\\% accuracy) from damage sizes far exceeding training conditions. We further observe generalisation across circuit scales: accuracy improves on graphs substantially wider than those seen during training. This work bridges the principles of biological self-organisation with the practical domain of digital hardware.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Self-Organising Digital Circuits",
+      "raw_summary": "arXiv:2608.02606v1 Announce Type: new Abstract: Fault tolerance in classical computing has traditionally relied on static strategies like hardware redundancy and error-correcting codes. Biological systems, in contrast, exhibit adaptive plasticity, maintaining function through dynamic re-organisation around damage. Inspired by this principle, we introduce Self-Organising Digital Circuits, framing functional logic generation and maintenance as a meta-learning problem on graphs. Our architecture employs a topology-masked Transformer that configures the Lookup Tables (LUT) of a circuit's Boolean gates. Extending the pattern-generation paradigm of Neural Cellular Automata (NCA), it navigates the degenerate Boolean search space to satisfy a computational task, rather than regenerating a fixed target state. We demonstrate that it can self-assemble functional circuits from scratch and rapidly re-route logic around permanent, previously unseen hardware faults. For soft errors, the policy achieves near-perfect recovery (>99.99\\% accuracy) from damage sizes far exceeding training conditions. We further observe generalisation across circuit scales: accuracy improves on graphs substantially wider than those seen during training. This work bridges the principles of biological self-organisation with the practical domain of digital hardware.",
+      "score": 69,
+      "primary": "infra",
+      "tags": [
+        "hardware",
+        "circuits",
+        "transformers"
+      ],
+      "heuristic_score": 46,
+      "url": "https://arxiv.org/abs/2608.02606",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 46,
+      "_rid": 11,
+      "llm_score": 73,
+      "why": "Propuesta innovadora de circuitos que se auto-organizan frente a fallos usando lógica basada en Transformers e inspiración biológica.",
+      "title_es": "Circuitos digitales auto-organizados",
+      "entities": [
+        "arXiv",
+        "Self",
+        "Organising Digital Circuits"
+      ],
+      "noise_penalty": 0,
+      "final_score": 69,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Multimodal Auto-regressive Transformer Surrogate for Modeling Variable Operations and Quantifying Uncertainty in Geological Carbon Storage",
+      "link": "https://arxiv.org/abs/2608.02629",
+      "published": "2026-08-05T04:00:00+00:00",
+      "summary": "arXiv:2608.02629v1 Announce Type: new Abstract: The use of variable well perforation and injection strategies can improve the efficiency of geological carbon storage operations. We develop a new multimodal auto-regressive transformer surrogate to model these operations under geological uncertainty. A modified SEAM CO2 geomodel, which involves a faulted system with three stacked aquifers, is considered. The two injection wells are perforated in stages, from bottom to top, with the stage durations and individual well injection rates treated as control variables. The surrogate model processes three input modalities - the 3D geomodel, scalar parameters characterizing relative permeability functions, and control variables - through separate encoders. These are fused via self-attention in a transformer encoder, and a temporal decoder generates predictions auto-regressively through encoder-decoder cross-attention. The surrogate is trained, using 4000 GEOS flow simulations, to predict saturation and pressure at monitoring locations, total injected and mobile CO2 mass, and saturation footprints. For a new test set, involving randomly sampled geomodels and control variables, the surrogate achieves a median saturation MAE of 0.028 and median relative errors of 0.2-5% for the other quantities of interest. Importantly, it captures the switch from rate to bottom-hole-pressure control. The surrogate model is used within a hierarchical Markov chain Monte Carlo data assimilation procedure for a synthetic true model under three operational strategies. Substantial uncertainty reduction is achieved for key metaparameters, particularly the fault permeabilities. Posterior predictions for saturation footprints and total injected and mobile CO2 mass are also shown to be generally consistent with true model results.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Multimodal Auto-regressive Transformer Surrogate for Modeling Variable Operations and Quantifying Uncertainty in Geological Carbon Storage",
+      "raw_summary": "arXiv:2608.02629v1 Announce Type: new Abstract: The use of variable well perforation and injection strategies can improve the efficiency of geological carbon storage operations. We develop a new multimodal auto-regressive transformer surrogate to model these operations under geological uncertainty. A modified SEAM CO2 geomodel, which involves a faulted system with three stacked aquifers, is considered. The two injection wells are perforated in stages, from bottom to top, with the stage durations and individual well injection rates treated as control variables. The surrogate model processes three input modalities - the 3D geomodel, scalar parameters characterizing relative permeability functions, and control variables - through separate encoders. These are fused via self-attention in a transformer encoder, and a temporal decoder generates predictions auto-regressively through encoder-decoder cross-attention. The surrogate is trained, using 4000 GEOS flow simulations, to predict saturation and pressure at monitoring locations, total injected and mobile CO2 mass, and saturation footprints. For a new test set, involving randomly sampled geomodels and control variables, the surrogate achieves a median saturation MAE of 0.028 and median relative errors of 0.2-5% for the other quantities of interest. Importantly, it captures the switch from rate to bottom-hole-pressure control. The surrogate model is used within a hierarchical Markov chain Monte Carlo data assimilation procedure for a synthetic true model under three operational strategies. Substantial uncertainty reduction is achieved for key metaparameters, particularly the fault permeabilities. Posterior predictions for saturation footprints and total injected and mobile CO2 mass are also shown to be generally consistent with true model results.",
+      "score": 67,
+      "primary": "misc",
+      "tags": [
+        "science",
+        "carbon-storage",
+        "transformers"
+      ],
+      "heuristic_score": 59,
+      "url": "https://arxiv.org/abs/2608.02629",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 59,
+      "_rid": 8,
+      "llm_score": 68,
+      "why": "Aplicación práctica de transformadores multimodales para la transición energética y captura de carbono.",
+      "title_es": "Transformador autorregresivo multimodal para el modelado de operaciones variables y cuantificación de incertidumbre en el almacenamiento geológico de carbono",
+      "entities": [
+        "arXiv",
+        "Multimodal Auto",
+        "Transformer Surrogate",
+        "Modeling Variable Operations",
+        "Quantifying Uncertainty",
+        "Geological Carbon Storage"
+      ],
+      "noise_penalty": 0,
+      "final_score": 67,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Expanding Managed Agents in Gemini API: background tasks, remote MCP and more",
+      "link": "https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api/",
+      "published": "2026-07-07T08:54:00+00:00",
+      "summary": "Managed agents feature bundle launch",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Expanding Managed Agents in Gemini API:  background tasks, remote MCP and more",
+      "raw_summary": "Managed agents feature bundle launch",
+      "score": 61,
+      "primary": "infra",
+      "tags": [
+        "agents",
+        "gemini",
+        "api"
+      ],
+      "heuristic_score": 63,
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 63,
+      "_rid": 5,
+      "llm_score": 80,
+      "why": "Mejora sustancial en la infraestructura de agentes para desarrolladores, permitiendo tareas asíncronas complejas.",
+      "title_es": "Expansión de agentes gestionados en la API de Gemini: tareas en segundo plano, MCP remoto y más",
+      "entities": [
+        "Google",
+        "Gemini",
+        "MCP",
+        "Expanding Managed Agents"
+      ],
+      "noise_penalty": 16,
+      "final_score": 61,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(16)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "ISEE: Interactive Semantic Enrichment for Database Fields",
+      "link": "https://arxiv.org/abs/2608.02604",
+      "published": "2026-08-05T04:00:00+00:00",
+      "summary": "arXiv:2608.02604v1 Announce Type: new Abstract: LLM-based agents are increasingly being deployed for data-related tasks, including data sense-making, exploration, and retrieval. However, their performance heavily depends on the clarity and completeness of data semantics. In practice, many field descriptions remain ambiguous or incomplete, as much of the essential context (e.g., the meaning of a customized field) originates from users' domain knowledge and is rarely documented publicly. This gap restricts the agents' task performance in downstream tasks, such as entity-linking. To bridge this gap, we introduce a novel and comprehensive Interactive SEmantic Enrichment system (ISEE). Given a data field description, ISEE measures its quality through a scoring system, gathers domain knowledge, and collaboratively enriches the semantics with users. Through a user study, automated user simulation, quantitative evaluation, and case study, we demonstrate that ISEE significantly reduces cognitive load, improves description quality, and enhances downstream task performance.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "ISEE: Interactive Semantic Enrichment for Database Fields",
+      "raw_summary": "arXiv:2608.02604v1 Announce Type: new Abstract: LLM-based agents are increasingly being deployed for data-related tasks, including data sense-making, exploration, and retrieval. However, their performance heavily depends on the clarity and completeness of data semantics. In practice, many field descriptions remain ambiguous or incomplete, as much of the essential context (e.g., the meaning of a customized field) originates from users' domain knowledge and is rarely documented publicly. This gap restricts the agents' task performance in downstream tasks, such as entity-linking. To bridge this gap, we introduce a novel and comprehensive Interactive SEmantic Enrichment system (ISEE). Given a data field description, ISEE measures its quality through a scoring system, gathers domain knowledge, and collaboratively enriches the semantics with users. Through a user study, automated user simulation, quantitative evaluation, and case study, we demonstrate that ISEE significantly reduces cognitive load, improves description quality, and enhances downstream task performance.",
+      "score": 60,
+      "primary": "models",
+      "tags": [
+        "data",
+        "agents",
+        "semantic-search"
+      ],
+      "heuristic_score": 62,
+      "url": "https://arxiv.org/abs/2608.02604",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 62,
+      "_rid": 6,
+      "llm_score": 60,
+      "why": "Mejora la interoperabilidad entre agentes de IA y bases de datos con descripciones ambiguas mediante conocimiento de dominio.",
+      "title_es": "ISEE: Enriquecimiento semántico interactivo para campos de bases de datos",
+      "entities": [
+        "arXiv",
+        "ISEE",
+        "Interactive Semantic Enrichment",
+        "Database Fields"
+      ],
+      "noise_penalty": 0,
+      "final_score": 60,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "BBOWP-Bench: Evaluating LLMs on Black-Box Optimization Word Problems",
+      "link": "https://arxiv.org/abs/2608.02612",
+      "published": "2026-08-05T04:00:00+00:00",
+      "summary": "arXiv:2608.02612v1 Announce Type: new Abstract: Formulating an optimization problem strongly affects the quality of the final solution, yet good formulations usually require substantial expertise. Recent studies have therefore examined how to automatically derive optimization problems from natural-language descriptions, but existing benchmarks focus on settings where objectives and constraints can be written explicitly as mathematical expressions. Many practically important problems are naturally treated as black-box optimization (BBO) problems, in which only objective values are observable, and the functional form is unavailable. In BBO, the search space design, a part of the problem formulation, and the selection of the optimization algorithm are crucial for problem-solving. Automating these processes with large language models (LLMs) is a significant challenge. This paper introduces Black-Box Optimization Word Problems (BBOWP), a novel problem setting in which a system must infer both a search space and an optimization algorithm from a natural-language description of a black-box optimization task. To support research on this setting, we establish the BBOWP Benchmark Suite (BBOWP-Bench), a dataset and evaluation framework for BBOWP. Each instance combines a natural-language problem description, an executable evaluation environment, and a human-designed baseline formulation, allowing evaluation of both search-space design and algorithm selection. Using this benchmark, we provide the first evaluation of LLMs and show that current LLMs are capable of selecting suitable algorithms based on the given evaluation budget. However, they sometimes struggle with search space design, particularly in identifying important variables and balancing their ranges when the problem description is less informative or the search space is highly problem-specific. Our code and dataset are available at",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "BBOWP-Bench: Evaluating LLMs on Black-Box Optimization Word Problems",
+      "raw_summary": "arXiv:2608.02612v1 Announce Type: new Abstract: Formulating an optimization problem strongly affects the quality of the final solution, yet good formulations usually require substantial expertise. Recent studies have therefore examined how to automatically derive optimization problems from natural-language descriptions, but existing benchmarks focus on settings where objectives and constraints can be written explicitly as mathematical expressions. Many practically important problems are naturally treated as black-box optimization (BBO) problems, in which only objective values are observable, and the functional form is unavailable. In BBO, the search space design, a part of the problem formulation, and the selection of the optimization algorithm are crucial for problem-solving. Automating these processes with large language models (LLMs) is a significant challenge. This paper introduces Black-Box Optimization Word Problems (BBOWP), a novel problem setting in which a system must infer both a search space and an optimization algorithm from a natural-language description of a black-box optimization task. To support research on this setting, we establish the BBOWP Benchmark Suite (BBOWP-Bench), a dataset and evaluation framework for BBOWP. Each instance combines a natural-language problem description, an executable evaluation environment, and a human-designed baseline formulation, allowing evaluation of both search-space design and algorithm selection. Using this benchmark, we provide the first evaluation of LLMs and show that current LLMs are capable of selecting suitable algorithms based on the given evaluation budget. However, they sometimes struggle with search space design, particularly in identifying important variables and balancing their ranges when the problem description is less informative or the search space is highly problem-specific. Our code and dataset are available at https://github.com/shiralab/bbowp-bench.",
+      "score": 59,
+      "primary": "models",
+      "tags": [
+        "optimization",
+        "black-box",
+        "benchmarking"
+      ],
+      "heuristic_score": 82,
+      "url": "https://arxiv.org/abs/2608.02612",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 82,
+      "_rid": 2,
+      "llm_score": 55,
+      "why": "Aborda la dificultad de formular problemas de optimización de caja negra a partir de lenguaje natural.",
+      "title_es": "BBOWP-Bench: Evaluación de LLMs en problemas de optimización de caja negra planteados con palabras",
+      "entities": [
+        "arXiv",
+        "BBOWP",
+        "Bench",
+        "Evaluating",
+        "Black",
+        "Box Optimization Word",
+        "Problems"
+      ],
+      "noise_penalty": 0,
+      "final_score": 59,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Deep Divide-and-Reduce in Symbolic Regression",
+      "link": "https://arxiv.org/abs/2608.02628",
+      "published": "2026-08-05T04:00:00+00:00",
+      "summary": "arXiv:2608.02628v1 Announce Type: new Abstract: Symbolic regression (SR) is the task of discovering underlying patterns from data and representing them using mathematical expressions. Current machine learning approaches to SR often lack a profound understanding of the intrinsic mathematical and physical principles governing these expressions. While the pioneering AI Feynman method leverages the mathematical properties underlying the data, its expression simplification mechanism suffers from a narrow scope of applicability and is prone to failure on complex equations. Furthermore, its underlying mechanisms rely heavily on brute-force searches for sub-expressions, severely limiting its practical utility. Through rigorous mathematical deduction and proofs, we propose our method, Deep Divide and Reduce in Symbolic Regression (DDRSR). DDRSR fundamentally broadens the applicability of expression decomposition and reduction, circumvents the need for brute-force sub-structure searches, and ensures both wider versatility and strict theoretical correctness. Empirical evaluations demonstrate that these theoretical principles yield significant advantages in both expression decomposition and numerical regression tasks. Finally, we discuss the applicable scenarios and inherent limitations of this paradigm, alongside promising directions for future research.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Deep Divide-and-Reduce in Symbolic Regression",
+      "raw_summary": "arXiv:2608.02628v1 Announce Type: new Abstract: Symbolic regression (SR) is the task of discovering underlying patterns from data and representing them using mathematical expressions. Current machine learning approaches to SR often lack a profound understanding of the intrinsic mathematical and physical principles governing these expressions. While the pioneering AI Feynman method leverages the mathematical properties underlying the data, its expression simplification mechanism suffers from a narrow scope of applicability and is prone to failure on complex equations. Furthermore, its underlying mechanisms rely heavily on brute-force searches for sub-expressions, severely limiting its practical utility. Through rigorous mathematical deduction and proofs, we propose our method, Deep Divide and Reduce in Symbolic Regression (DDRSR). DDRSR fundamentally broadens the applicability of expression decomposition and reduction, circumvents the need for brute-force sub-structure searches, and ensures both wider versatility and strict theoretical correctness. Empirical evaluations demonstrate that these theoretical principles yield significant advantages in both expression decomposition and numerical regression tasks. Finally, we discuss the applicable scenarios and inherent limitations of this paradigm, alongside promising directions for future research.",
+      "score": 55,
+      "primary": "models",
+      "tags": [
+        "mathematics",
+        "symbolic-regression",
+        "ai-feynman"
+      ],
+      "heuristic_score": 35,
+      "url": "https://arxiv.org/abs/2608.02628",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 35,
+      "_rid": 14,
+      "llm_score": 58,
+      "why": "Mejora la comprensión de principios físicos en la búsqueda de patrones matemáticos complejos.",
+      "title_es": "División y reducción profunda en la regresión simbólica",
+      "entities": [
+        "AI Feynman",
+        "arXiv",
+        "Deep Divide",
+        "Reduce",
+        "Symbolic Regression"
+      ],
+      "noise_penalty": 0,
+      "final_score": 55,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Accelerating the frontiers of scientific discovery: Google’s $40M commitment to the Genesis Mission",
+      "link": "https://deepmind.google/blog/accelerating-the-frontiers-of-scientific-discovery-googles-40m-commitment-to-the-genesis-mission/",
+      "published": "2026-07-22T13:38:54+00:00",
+      "summary": "Google commits $40M in AI tokens and credits for the Genesis Mission",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Accelerating the frontiers of scientific discovery: Google’s $40M commitment to the Genesis Mission",
+      "raw_summary": "Google commits $40M in AI tokens and credits for the Genesis Mission",
+      "score": 52,
+      "primary": "invest",
+      "tags": [
+        "science",
+        "funding",
+        "google"
+      ],
+      "heuristic_score": 43,
+      "url": "https://deepmind.google/blog/accelerating-the-frontiers-of-scientific-discovery-googles-40m-commitment-to-the-genesis-mission/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 43,
+      "_rid": 13,
+      "llm_score": 65,
+      "why": "Inversión estratégica en forma de capacidad de cómputo para acelerar el descubrimiento científico global.",
+      "title_es": "Acelerando las fronteras del descubrimiento científico: El compromiso de 40 millones de dólares de Google con la Misión Genesis",
+      "entities": [
+        "Google",
+        "DeepMind",
+        "Accelerating",
+        "Genesis Mission"
+      ],
+      "noise_penalty": 10,
+      "final_score": 52,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(10)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "TabletCraft: Bridging a 4,000-Year Cultural Gap with Bidirectional Akkadian NMT and Cuneiform Rendering",
+      "link": "https://arxiv.org/abs/2608.02609",
+      "published": "2026-08-05T04:00:00+00:00",
+      "summary": "arXiv:2608.02609v1 Announce Type: new Abstract: Half a million cuneiform clay tablets survive in museums worldwide, yet modern users can neither read nor write in the world's oldest writing system, leaving a 4,000-year cultural barrier that existing NLP tools have only partially addressed. Prior work enables one-way, scholar-oriented translation from Akkadian to English, but offers no path in the reverse direction: non-specialist users cannot compose new content in cuneiform, and therefore remain passive consumers of ancient culture rather than active participants. We present TabletCraft, the first open-source system that enables bidirectional interaction with Mesopotamian writing. Users can read ancient tablets (Akkadian to English) and compose new messages as cuneiform clay tablets (English to Akkadian to cuneiform to rendered tablet). The system integrates a ByT5-based translation model trained on 116K bidirectional samples, a cuneiform sign converter with 14,240 mappings (95.3% coverage), and a visual tablet renderer, packaged as a pip-installable toolkit with CLI and web demo. On the held-out Akkademia validation split (2,812 samples), we report 49.1 BLEU for Akkadian-to-English and 48.5 BLEU for English-to-Akkadian, the first published quantitative result in the reverse direction.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "TabletCraft: Bridging a 4,000-Year Cultural Gap with Bidirectional Akkadian NMT and Cuneiform Rendering",
+      "raw_summary": "arXiv:2608.02609v1 Announce Type: new Abstract: Half a million cuneiform clay tablets survive in museums worldwide, yet modern users can neither read nor write in the world's oldest writing system, leaving a 4,000-year cultural barrier that existing NLP tools have only partially addressed. Prior work enables one-way, scholar-oriented translation from Akkadian to English, but offers no path in the reverse direction: non-specialist users cannot compose new content in cuneiform, and therefore remain passive consumers of ancient culture rather than active participants. We present TabletCraft, the first open-source system that enables bidirectional interaction with Mesopotamian writing. Users can read ancient tablets (Akkadian to English) and compose new messages as cuneiform clay tablets (English to Akkadian to cuneiform to rendered tablet). The system integrates a ByT5-based translation model trained on 116K bidirectional samples, a cuneiform sign converter with 14,240 mappings (95.3% coverage), and a visual tablet renderer, packaged as a pip-installable toolkit with CLI and web demo. On the held-out Akkademia validation split (2,812 samples), we report 49.1 BLEU for Akkadian-to-English and 48.5 BLEU for English-to-Akkadian, the first published quantitative result in the reverse direction.",
+      "score": 43,
+      "primary": "misc",
+      "tags": [
+        "culture",
+        "linguistics",
+        "history"
+      ],
+      "heuristic_score": 34,
+      "url": "https://arxiv.org/abs/2608.02609",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 34,
+      "_rid": 15,
+      "llm_score": 45,
+      "why": "Uso de IA para preservar y participar activamente en culturas antiguas mediante traducción bidireccional.",
+      "title_es": "TabletCraft: Cerrando una brecha cultural de 4.000 años con traducción automática de acadio y renderizado cuneiforme",
+      "entities": [
+        "Mesopotamia",
+        "arXiv",
+        "NMT",
+        "Bridging",
+        "Year Cultural Gap",
+        "Bidirectional Akkadian",
+        "Cuneiform Rendering"
+      ],
+      "noise_penalty": 0,
+      "final_score": 43,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    }
+  ]
+}
