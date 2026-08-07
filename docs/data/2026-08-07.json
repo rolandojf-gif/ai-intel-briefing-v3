@@ -1,0 +1,696 @@
+{
+  "date": "2026-08-07",
+  "score_avg": 60.67,
+  "primary_dist": {
+    "infra": 4,
+    "models": 7,
+    "invest": 1,
+    "misc": 2,
+    "geopol": 1
+  },
+  "top_entities": [
+    {
+      "entity": "Qwen",
+      "count": 1
+    },
+    {
+      "entity": "CCSS-IX",
+      "count": 1
+    },
+    {
+      "entity": "Simulator",
+      "count": 1
+    },
+    {
+      "entity": "Grounded Large Language",
+      "count": 1
+    },
+    {
+      "entity": "Models",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "Integración de LLMs en simuladores industriales para razonamiento causal preciso en plantas de tratamiento (Qwen2.5)",
+      "Crítica técnica a GraphRAG por problemas de sobre-citación y baja precisión frente a sistemas RAG vectoriales",
+      "Transición en la industria de semiconductores hacia un diseño asistido por IA nativa (EDA) más allá de complementos",
+      "Modelización matemática del razonamiento 'Chain-of-Thought' mediante aproximaciones de campo medio y física estadística",
+      "Despliegue de agentes autónomos para sustituir infraestructuras rígidas de integración empresarial como RPA o ESB"
+    ],
+    "risks": [
+      "Colapso neutral en NLP tradicional: incapacidad de modelos antiguos para captar matices ideológicos en análisis político",
+      "Patologías estructurales en RAG de grafos que generan ruido documental excesivo en tareas de trazabilidad compleja",
+      "Interferencia cross-modal en modelos multimodales debido a la asignación estática de coordenadas espaciales y temporales"
+    ],
+    "watch": [
+      "WeatherNext de DeepMind y su efectividad real en la predicción temprana de ciclones y eventos climáticos extremos",
+      "Adopción del estándar Bluetooth HDT en SoCs de audio de alta capacidad para dispositivos de consumo inalámbricos",
+      "Impacto del programa ATL Saathi de Google en la formación técnica de la nueva generación de innovadores en la India"
+    ],
+    "entities_top": [
+      "Google DeepMind",
+      "Qwen",
+      "Ceva"
+    ]
+  },
+  "items": [
+    {
+      "title": "Simulator-Grounded Large Language Models for Industrial Causal Reasoning: Tool-Use, Structured Injection, and Plant-Portable Retrieval for Wastewater Treatment Decision Support",
+      "link": "https://arxiv.org/abs/2608.05151",
+      "published": "2026-08-07T04:00:00+00:00",
+      "summary": "arXiv:2608.05151v1 Announce Type: new Abstract: Wastewater operators need answers grounded in how their plant's variables interact and how fast effects propagate, not in generic pretraining text, when asking causal questions such as \"why is N2O rising?\" or \"what happens if I cut aeration by 20%?\". We compare three concrete ways to ground a frozen Qwen2.5-32B-Instruct model in an architecturally interpretable wastewater simulator (CCSS-IX): a live simulator oracle (Method 1), structured parameter injection (Method 2), and a Decoupled Recall-Reasoning (DRR) retriever (Method 3). On a 198-question causal benchmark the three reach 99.5%, 79%, and 75.8%, forming a deployment ladder above the strongest retrieval-augmented baseline at 48%. The DRR retriever has 110M parameters and trains per plant in ~17 seconds; after cross-plant transfer to a biologically distinct plant it still reaches 88%, while Method 2's static table cannot transfer. On a 60-question counterfactual benchmark only Method 3 handles queries about what happens after an intervention: +16.3 pp over Method 2, paired 95% CI [+7.1, +26.4] pp, with 100% on the timescale and operating-regime categories. On the AI2 Reasoning Challenge (ARC) with an OpenBookQA fact corpus, the same selective-retrieval mechanism reaches 79% versus unconstrained Llama-3.1-8B 76% and full-injection 74%, a +3 pp out-of-domain replication that argues against a result specific to wastewater treatment. We provide the first single-simulator comparison of live tool-use, static parameter injection, and learned numerical-parameter retrieval for industrial causal question answering.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Simulator-Grounded Large Language Models for Industrial Causal Reasoning: Tool-Use, Structured Injection, and Plant-Portable Retrieval for Wastewater Treatment Decision Support",
+      "raw_summary": "arXiv:2608.05151v1 Announce Type: new Abstract: Wastewater operators need answers grounded in how their plant's variables interact and how fast effects propagate, not in generic pretraining text, when asking causal questions such as \"why is N2O rising?\" or \"what happens if I cut aeration by 20%?\". We compare three concrete ways to ground a frozen Qwen2.5-32B-Instruct model in an architecturally interpretable wastewater simulator (CCSS-IX): a live simulator oracle (Method 1), structured parameter injection (Method 2), and a Decoupled Recall-Reasoning (DRR) retriever (Method 3). On a 198-question causal benchmark the three reach 99.5%, 79%, and 75.8%, forming a deployment ladder above the strongest retrieval-augmented baseline at 48%. The DRR retriever has 110M parameters and trains per plant in ~17 seconds; after cross-plant transfer to a biologically distinct plant it still reaches 88%, while Method 2's static table cannot transfer. On a 60-question counterfactual benchmark only Method 3 handles queries about what happens after an intervention: +16.3 pp over Method 2, paired 95% CI [+7.1, +26.4] pp, with 100% on the timescale and operating-regime categories. On the AI2 Reasoning Challenge (ARC) with an OpenBookQA fact corpus, the same selective-retrieval mechanism reaches 79% versus unconstrained Llama-3.1-8B 76% and full-injection 74%, a +3 pp out-of-domain replication that argues against a result specific to wastewater treatment. We provide the first single-simulator comparison of live tool-use, static parameter injection, and learned numerical-parameter retrieval for industrial causal question answering.",
+      "score": 78,
+      "primary": "infra",
+      "tags": [
+        "industrial",
+        "simulator",
+        "qwen",
+        "reasoning"
+      ],
+      "heuristic_score": 76,
+      "url": "https://arxiv.org/abs/2608.05151",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 76,
+      "_rid": 3,
+      "llm_score": 78,
+      "why": "Demuestra que anclar LLMs en simuladores industriales mejora drásticamente el razonamiento causal en entornos de infraestructuras críticas.",
+      "title_es": "LLMs basados en simuladores para razonamiento causal industrial en el tratamiento de aguas residuales",
+      "entities": [
+        "Qwen",
+        "CCSS-IX",
+        "Simulator",
+        "Grounded Large Language",
+        "Models",
+        "Industrial Causal Reasoning",
+        "Tool",
+        "Structured Injection"
+      ],
+      "noise_penalty": 0,
+      "final_score": 78,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Universal Pathologies, Conditional Consequences: A Triple-Robustness Analysis of RAG for Multi-Hop Traceability",
+      "link": "https://arxiv.org/abs/2608.05153",
+      "published": "2026-08-07T04:00:00+00:00",
+      "summary": "arXiv:2608.05153v1 Announce Type: new Abstract: GraphRAG underperforms vector RAG on citation precision in many reports, but where and why have remained corpus-bound. We present a triple-robustness analysis that holds the retrieval architecture fixed and varies three orthogonal axes embedder (local e5-small -> Azure text-embedding-3-small), corpus (DO-178C typed-edge requirements -> Wikipedia paragraph chains via MuSiQue), and judge (paired GPT-5.4 x GPT-4.1) across 4,440 main-matrix runs, 600 cross-corpus runs, and 1,200 paired faithfulness judgments. (C2a) Over-citation is architecturally universal: GraphRAG emits 11-15 IDs per answer at citation precision 0.12-0.23 and retrieval recall 0.68-0.87 across all three settings. (C2b) Its faithfulness consequence is corpus-conditional: in typed-edge DO-178C, GraphRAG faithfulness collapses 74%->40% across hops; on Wikipedia chains the same pipeline rises 42%->58% because over-cited paragraphs remain topically supporting. (C1) Stratum-conditional winners are corpus-conditional but embedder-robust: vanilla wins 2-hop on DO-178C, GraphRAG wins 2-hop on MuSiQue, identical under either embedder. (C3) Single-judge LLM faithfulness is fragile to retrieval state: same-judge self-kappa across embedders is 0.137 for GPT-5.4 (verdict change on 41% of items). A learned router on dense embeddings alone reaches macro-F1 0.86 on hop classification (C4). We argue triple-robustness is the minimum bar for trustworthy RAG architecture claims.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Universal Pathologies, Conditional Consequences: A Triple-Robustness Analysis of RAG for Multi-Hop Traceability",
+      "raw_summary": "arXiv:2608.05153v1 Announce Type: new Abstract: GraphRAG underperforms vector RAG on citation precision in many reports, but where and why have remained corpus-bound. We present a triple-robustness analysis that holds the retrieval architecture fixed and varies three orthogonal axes embedder (local e5-small -> Azure text-embedding-3-small), corpus (DO-178C typed-edge requirements -> Wikipedia paragraph chains via MuSiQue), and judge (paired GPT-5.4 x GPT-4.1) across 4,440 main-matrix runs, 600 cross-corpus runs, and 1,200 paired faithfulness judgments. (C2a) Over-citation is architecturally universal: GraphRAG emits 11-15 IDs per answer at citation precision 0.12-0.23 and retrieval recall 0.68-0.87 across all three settings. (C2b) Its faithfulness consequence is corpus-conditional: in typed-edge DO-178C, GraphRAG faithfulness collapses 74%->40% across hops; on Wikipedia chains the same pipeline rises 42%->58% because over-cited paragraphs remain topically supporting. (C1) Stratum-conditional winners are corpus-conditional but embedder-robust: vanilla wins 2-hop on DO-178C, GraphRAG wins 2-hop on MuSiQue, identical under either embedder. (C3) Single-judge LLM faithfulness is fragile to retrieval state: same-judge self-kappa across embedders is 0.137 for GPT-5.4 (verdict change on 41% of items). A learned router on dense embeddings alone reaches macro-F1 0.86 on hop classification (C4). We argue triple-robustness is the minimum bar for trustworthy RAG architecture claims.",
+      "score": 74,
+      "primary": "models",
+      "tags": [
+        "rag",
+        "graphrag",
+        "precision",
+        "citation"
+      ],
+      "heuristic_score": 41,
+      "url": "https://arxiv.org/abs/2608.05153",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 41,
+      "_rid": 9,
+      "llm_score": 80,
+      "why": "Estudio que revela que GraphRAG tiende a la sobre-citación masiva y baja precisión en comparativa con RAG vectorial.",
+      "title_es": "Patologías universales: Un análisis de triple robustez de RAG para la trazabilidad multi-salto",
+      "entities": [
+        "GraphRAG",
+        "GPT-5.4",
+        "Azure",
+        "Universal Pathologies",
+        "Conditional Consequences",
+        "Triple",
+        "Robustness Analysis",
+        "Multi"
+      ],
+      "noise_penalty": 0,
+      "final_score": 74,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Agentic Nesting: A New Methodology for Existing Enterprise Application Integration and Services",
+      "link": "https://arxiv.org/abs/2608.05159",
+      "published": "2026-08-07T04:00:00+00:00",
+      "summary": "arXiv:2608.05159v1 Announce Type: new Abstract: Enterprise operations extensively rely on multiple heterogeneous business systems and information applications, which also result in severe data silos and process fragmentation. Enterprises have invested considerable financial and material resources in building these applications, however, effectively leveraging and orchestrating them remains a formidable challenge. Conventional approaches to enterprise application integration, encompassing middleware architectures such as Enterprise Service Bus (ESB), API gateway infrastructures, and Robotic Process Automation (RPA), suffer from inherent limitations like high architectural coupling, escalating operation and maintenance costs, and limited intelligence capabilities. This paper proposes Agentic Nesting, a multi-agent collaboration framework in which existing enterprise applications are encapsulated as autonomous AI agents within a hierarchically nested structure. Rather than flat interconnection, agents are organized into layered stewardship topologies that mirror the compositional complexity of enterprise ecosystems. The framework extracts a digital agent proxy from each legacy application to enable natural-language interaction and autonomous manipulation, coordinates multiple agents through a central orchestrator for task decomposition and dynamic dispatching, and exposes a unified conversational interface for cross-application querying and process orchestration. The main contributions of this paper are the proposition of the \"Application-as-Agent\" integration paradigm and the \"Conversation-as-Integration\" interaction philosophy, together with an exploration of the generalization potential of this methodology in scenarios encompassing heterogeneous system coordination, and large-scale data applications.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Agentic Nesting: A New Methodology for Existing Enterprise Application Integration and Services",
+      "raw_summary": "arXiv:2608.05159v1 Announce Type: new Abstract: Enterprise operations extensively rely on multiple heterogeneous business systems and information applications, which also result in severe data silos and process fragmentation. Enterprises have invested considerable financial and material resources in building these applications, however, effectively leveraging and orchestrating them remains a formidable challenge. Conventional approaches to enterprise application integration, encompassing middleware architectures such as Enterprise Service Bus (ESB), API gateway infrastructures, and Robotic Process Automation (RPA), suffer from inherent limitations like high architectural coupling, escalating operation and maintenance costs, and limited intelligence capabilities. This paper proposes Agentic Nesting, a multi-agent collaboration framework in which existing enterprise applications are encapsulated as autonomous AI agents within a hierarchically nested structure. Rather than flat interconnection, agents are organized into layered stewardship topologies that mirror the compositional complexity of enterprise ecosystems. The framework extracts a digital agent proxy from each legacy application to enable natural-language interaction and autonomous manipulation, coordinates multiple agents through a central orchestrator for task decomposition and dynamic dispatching, and exposes a unified conversational interface for cross-application querying and process orchestration. The main contributions of this paper are the proposition of the \"Application-as-Agent\" integration paradigm and the \"Conversation-as-Integration\" interaction philosophy, together with an exploration of the generalization potential of this methodology in scenarios encompassing heterogeneous system coordination, and large-scale data applications.",
+      "score": 71,
+      "primary": "invest",
+      "tags": [
+        "enterprise",
+        "agents",
+        "rpa",
+        "integration"
+      ],
+      "heuristic_score": 68,
+      "url": "https://arxiv.org/abs/2608.05159",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 68,
+      "_rid": 4,
+      "llm_score": 72,
+      "why": "Nueva metodología de agentes para orquestar sistemas empresariales heterogéneos y superar los silos de datos del RPA tradicional.",
+      "title_es": "Nidificación agéntica: Una nueva metodología para la integración de servicios y aplicaciones empresariales",
+      "entities": [
+        "Agentic Nesting",
+        "New Methodology",
+        "Existing Enterprise Application",
+        "Integration",
+        "Services"
+      ],
+      "noise_penalty": 0,
+      "final_score": 71,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "RIG-RoPE: Relation- and Instance-Gated Rotary Positional Encoding with Duration-Aware Temporal Coordinates",
+      "link": "https://arxiv.org/abs/2608.05154",
+      "published": "2026-08-07T04:00:00+00:00",
+      "summary": "arXiv:2608.05154v1 Announce Type: new Abstract: Rotary positional encoding (RoPE) is a core component of modern language models and has been extended to multimodal LLMs through multidimensional variants such as multimodal RoPE (M-RoPE), which split positional channels into temporal, height, and width subspaces. This report identifies two limitations of static multidimensional position assignment in interleaved multimodal contexts. First, height/width rotations may be applied to token pairs whose spatial displacement is not a well-defined geometric object, producing cross-modal and inter-instance spatial interference. Second, temporal coordinates are often treated as equal-step counters, so a text token, an block, and a video segment can advance the temporal phase by comparable amounts despite different information density. We propose RIG-RoPE, a relation- and instance-gated RoPE mechanism with duration-aware temporal coordinates. RIG-RoPE augments each token with a modality indicator, a visual instance identifier, and a scalar information-duration coordinate. It enables H/W rotations only for query-key pairs from the same visual instance; otherwise the unknown spatial displacement is marginalized rather than set to zero. Temporal rotations use interpolated cumulative block durations: text tokens consume unit duration, s use a dimension-aware logarithmic spatial scale, and videos further apply a logarithmic temporal extension over effective frames. We provide a gauge-invariance argument for avoiding ordinary cross-instance spatial rotation, an impossibility result for static IDs under shared H/W subspaces, and a duration-consistency argument against equal-step multimodal time. RIG-RoPE adds no learned parameters and can be implemented inside tiled attention kernels with constant additional metadata per token. This preliminary report establishes the formulation and validation path without claiming empirical superiority.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "RIG-RoPE: Relation- and Instance-Gated Rotary Positional Encoding with Duration-Aware Temporal Coordinates",
+      "raw_summary": "arXiv:2608.05154v1 Announce Type: new Abstract: Rotary positional encoding (RoPE) is a core component of modern language models and has been extended to multimodal LLMs through multidimensional variants such as multimodal RoPE (M-RoPE), which split positional channels into temporal, height, and width subspaces. This report identifies two limitations of static multidimensional position assignment in interleaved multimodal contexts. First, height/width rotations may be applied to token pairs whose spatial displacement is not a well-defined geometric object, producing cross-modal and inter-instance spatial interference. Second, temporal coordinates are often treated as equal-step counters, so a text token, an image block, and a video segment can advance the temporal phase by comparable amounts despite different information density. We propose RIG-RoPE, a relation- and instance-gated RoPE mechanism with duration-aware temporal coordinates. RIG-RoPE augments each token with a modality indicator, a visual instance identifier, and a scalar information-duration coordinate. It enables H/W rotations only for query-key pairs from the same visual instance; otherwise the unknown spatial displacement is marginalized rather than set to zero. Temporal rotations use interpolated cumulative block durations: text tokens consume unit duration, images use a dimension-aware logarithmic spatial scale, and videos further apply a logarithmic temporal extension over effective frames. We provide a gauge-invariance argument for avoiding ordinary cross-instance spatial rotation, an impossibility result for static IDs under shared H/W subspaces, and a duration-consistency argument against equal-step multimodal time. RIG-RoPE adds no learned parameters and can be implemented inside tiled attention kernels with constant additional metadata per token. This preliminary report establishes the formulation and validation path without claiming empirical superiority.",
+      "score": 70,
+      "primary": "models",
+      "tags": [
+        "llm",
+        "multimodal",
+        "rope",
+        "encoding"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2608.05154",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 1,
+      "llm_score": 65,
+      "why": "Propone RIG-RoPE para solucionar interferencias espaciales y temporales en la codificación posicional de modelos multimodales.",
+      "title_es": "RIG-RoPE: Codificación posicional rotatoria con puertas de instancia y relación para coordenadas temporales",
+      "entities": [
+        "arXiv",
+        "RIG",
+        "Relation",
+        "Instance",
+        "Gated Rotary Positional",
+        "Encoding",
+        "Duration",
+        "Aware Temporal Coordinates"
+      ],
+      "noise_penalty": 0,
+      "final_score": 70,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Scaffold-Mediated Post-Training: Co-Evolving Model Parameters and Procedural Scaffold Graphs",
+      "link": "https://arxiv.org/abs/2608.05156",
+      "published": "2026-08-07T04:00:00+00:00",
+      "summary": "arXiv:2608.05156v1 Announce Type: new Abstract: Post-training of large language models optimizes only parameters, while inference-time procedural scaffolds are typically designed independently of parameter training. This disconnect makes it difficult to automatically acquire and internalize complex strategies. We propose scaffold-mediated post-training: procedural scaffolds are organized into an evolvable graph structure that co-evolves with model parameters through discovery, distillation, and dynamic recompilation. We instantiate this paradigm as Skill Training. On FeatureBench, automatically discovered skills improve the passed rate by 8.1pp, and after progressive distillation the model still achieves a 27.7% passed rate without any external scaffold (distillation retention rate 85.2%, defined as post-distillation / with-skill passed rate), significantly outperforming standard SFT on the same data.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Scaffold-Mediated Post-Training: Co-Evolving Model Parameters and Procedural Scaffold Graphs",
+      "raw_summary": "arXiv:2608.05156v1 Announce Type: new Abstract: Post-training of large language models optimizes only parameters, while inference-time procedural scaffolds are typically designed independently of parameter training. This disconnect makes it difficult to automatically acquire and internalize complex strategies. We propose scaffold-mediated post-training: procedural scaffolds are organized into an evolvable graph structure that co-evolves with model parameters through discovery, distillation, and dynamic recompilation. We instantiate this paradigm as Skill Training. On FeatureBench, automatically discovered skills improve the passed rate by 8.1pp, and after progressive distillation the model still achieves a 27.7% passed rate without any external scaffold (distillation retention rate 85.2%, defined as post-distillation / with-skill passed rate), significantly outperforming standard SFT on the same data.",
+      "score": 69,
+      "primary": "models",
+      "tags": [
+        "post-training",
+        "scaffolds",
+        "distillation",
+        "skills"
+      ],
+      "heuristic_score": 41,
+      "url": "https://arxiv.org/abs/2608.05156",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 41,
+      "_rid": 10,
+      "llm_score": 74,
+      "why": "Propone el entrenamiento por habilidades mediante la evolución conjunta de parámetros y grafos de procedimiento.",
+      "title_es": "Post-entrenamiento mediado por andamios: Co-evolución de parámetros y grafos de procedimiento",
+      "entities": [
+        "FeatureBench",
+        "Scaffold",
+        "Mediated Post",
+        "Training",
+        "Evolving Model Parameters",
+        "Procedural Scaffold Graphs"
+      ],
+      "noise_penalty": 0,
+      "final_score": 69,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "WeatherNext: AI model achieves breakthrough in forecasting cyclones",
+      "link": "https://deepmind.google/blog/weathernext-ai-model-achieves-breakthrough-in-forecasting-cyclones/",
+      "published": "2026-08-06T15:06:15+00:00",
+      "summary": "",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "WeatherNext: AI model achieves breakthrough in forecasting cyclones",
+      "raw_summary": "",
+      "score": 68,
+      "primary": "misc",
+      "tags": [
+        "weather",
+        "forecasting",
+        "climate",
+        "deepmind"
+      ],
+      "heuristic_score": 15,
+      "url": "https://deepmind.google/blog/weathernext-ai-model-achieves-breakthrough-in-forecasting-cyclones/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 15,
+      "_rid": 15,
+      "llm_score": 82,
+      "why": "Logro de DeepMind en meteorología predictiva aplicando IA para mejorar la precisión en el seguimiento de ciclones.",
+      "title_es": "WeatherNext: El modelo de IA logra un avance en la predicción de ciclones",
+      "entities": [
+        "DeepMind",
+        "WeatherNext"
+      ],
+      "noise_penalty": 4,
+      "final_score": 68,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(4)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Mach42 Delivers a Different Take on AI in the Design Flow at DAC 2026",
+      "link": "https://semiwiki.com/eda/mach42/371812-mach42-delivers-a-different-take-on-ai-in-the-design-flow-at-dac-2026/",
+      "published": "2026-08-06T13:00:42+00:00",
+      "summary": "I believe DAC 2026 will be remembered as the turning point for AI assisted design. There has been discussion about AI infusion in EDA for a while now. Most of it was about how AI can be added to traditional tools to make existing methodologies better. This year, that changed. There were several new companies that highlighted a fundamentally&8230; Read More The post Mach42 Delivers a Different Take on AI in the Design Flow at DAC 2026 appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "Mach42 Delivers a Different Take on AI in the Design Flow at DAC 2026",
+      "raw_summary": "I believe DAC 2026 will be remembered as the turning point for AI assisted design. There has been discussion about AI infusion in EDA for a while now. Most of it was about how AI can be added to traditional tools to make existing methodologies better. This year, that changed. There were several new companies that highlighted a fundamentally&#8230; Read More The post Mach42 Delivers a Different Take on AI in the Design Flow at DAC 2026 appeared first on SemiWiki .",
+      "score": 67,
+      "primary": "infra",
+      "tags": [
+        "ed",
+        "semiconductor-design",
+        "ai-native",
+        "hardware"
+      ],
+      "heuristic_score": 21,
+      "url": "https://semiwiki.com/eda/mach42/371812-mach42-delivers-a-different-take-on-ai-in-the-design-flow-at-dac-2026/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 21,
+      "_rid": 14,
+      "llm_score": 75,
+      "why": "Identifica un punto de inflexión donde la IA pasa de ser un complemento a ser la base nativa del diseño de semiconductores.",
+      "title_es": "Mach42 ofrece un enfoque distinto de la IA en el flujo de diseño en el DAC 2026",
+      "entities": [
+        "Mach42",
+        "DAC 2026",
+        "DAC",
+        "Delivers",
+        "Different Take",
+        "Design Flow"
+      ],
+      "noise_penalty": 0,
+      "final_score": 67,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "When Do Corrective Features Help? An Agent for Corrective Feature Discovery on Black-Box Forecasters",
+      "link": "https://arxiv.org/abs/2608.05207",
+      "published": "2026-08-07T04:00:00+00:00",
+      "summary": "arXiv:2608.05207v1 Announce Type: new Abstract: Frozen pretrained forecasters often fail in structured, recurring ways that are costly to repair through fine-tuning. We study corrective feature discovery: mining interpretable features of a frozen forecaster's residual to drive a lightweight post-hoc corrector. Prior automated feature engineering models the data-generating process; corrective features instead model the model-failure process. We present CRAFTER (Corrective Residual Agent with Feature-based Temporal Exploration and Reasoning), which keeps the backbone frozen and mines its residual with two complementary generators: a compositional search over the raw input channels, and a large language model (LLM) that proposes named feature combinations, binary flags, and short executable code. A single validation-grounded gate accepts or rejects every candidate regardless of its origin, and a validation-selected corrector applies the accepted features or leaves the forecast unchanged. This source-agnostic pipeline also allows prior feature-engineering systems to be evaluated under identical conditions, making CRAFTER an instrument for attributing forecast improvements to the feature source alone. Across six public datasets and six frozen backbones, CRAFTER surpasses every dedicated feature-engineering system at every feature budget, roughly doubling the improvement achieved by the corrector alone and reducing the error of the weakest backbones by up to 27%. These gains are robust across different LLM backends and persist even when applied on top of fine-tuned backbones.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "When Do Corrective Features Help? An Agent for Corrective Feature Discovery on Black-Box Forecasters",
+      "raw_summary": "arXiv:2608.05207v1 Announce Type: new Abstract: Frozen pretrained forecasters often fail in structured, recurring ways that are costly to repair through fine-tuning. We study corrective feature discovery: mining interpretable features of a frozen forecaster's residual to drive a lightweight post-hoc corrector. Prior automated feature engineering models the data-generating process; corrective features instead model the model-failure process. We present CRAFTER (Corrective Residual Agent with Feature-based Temporal Exploration and Reasoning), which keeps the backbone frozen and mines its residual with two complementary generators: a compositional search over the raw input channels, and a large language model (LLM) that proposes named feature combinations, binary flags, and short executable code. A single validation-grounded gate accepts or rejects every candidate regardless of its origin, and a validation-selected corrector applies the accepted features or leaves the forecast unchanged. This source-agnostic pipeline also allows prior feature-engineering systems to be evaluated under identical conditions, making CRAFTER an instrument for attributing forecast improvements to the feature source alone. Across six public datasets and six frozen backbones, CRAFTER surpasses every dedicated feature-engineering system at every feature budget, roughly doubling the improvement achieved by the corrector alone and reducing the error of the weakest backbones by up to 27%. These gains are robust across different LLM backends and persist even when applied on top of fine-tuned backbones.",
+      "score": 63,
+      "primary": "models",
+      "tags": [
+        "agents",
+        "debugging",
+        "black-box",
+        "forecasting"
+      ],
+      "heuristic_score": 77,
+      "url": "https://arxiv.org/abs/2608.05207",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 77,
+      "_rid": 2,
+      "llm_score": 60,
+      "why": "Presenta CRAFTER, un agente que descubre y corrige errores recurrentes en modelos de predicción congelados mediante ingeniería de características.",
+      "title_es": "CRAFTER: Un agente para el descubrimiento de características correctivas en predictores de caja negra",
+      "entities": [
+        "CRAFTER",
+        "When Do Corrective",
+        "Features Help",
+        "An Agent",
+        "Corrective Feature Discovery",
+        "Black",
+        "Box Forecasters"
+      ],
+      "noise_penalty": 0,
+      "final_score": 63,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "White Paper: The Semiconductor Foundation of Modern AI Data Centers",
+      "link": "https://semiwiki.com/artificial-intelligence/370090-white-paper-the-semiconductor-foundation-of-modern-ai-data-centers/",
+      "published": "2026-08-06T17:00:18+00:00",
+      "summary": "Artificial intelligence AI has become one of the most significant drivers of semiconductor innovation in history. While AI applications often receive the most attention, the underlying hardware infrastructure that enables AI consists of a highly sophisticated ecosystem of semiconductor technologies. Modern AI data centers&8230; Read More The post White Paper: The Semiconductor Foundation of Modern AI Data Centers appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "White Paper: The Semiconductor Foundation of Modern AI Data Centers",
+      "raw_summary": "Artificial intelligence AI has become one of the most significant drivers of semiconductor innovation in history. While AI applications often receive the most attention, the underlying hardware infrastructure that enables AI consists of a highly sophisticated ecosystem of semiconductor technologies. Modern AI data centers&#8230; Read More The post White Paper: The Semiconductor Foundation of Modern AI Data Centers appeared first on SemiWiki .",
+      "score": 62,
+      "primary": "infra",
+      "tags": [
+        "semiconductors",
+        "datacenter",
+        "hardware",
+        "infrastructure"
+      ],
+      "heuristic_score": 31,
+      "url": "https://semiwiki.com/artificial-intelligence/370090-white-paper-the-semiconductor-foundation-of-modern-ai-data-centers/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 31,
+      "_rid": 12,
+      "llm_score": 68,
+      "why": "Informe sobre la importancia crítica del ecosistema de semiconductores para sostener la infraestructura de los centros de datos de IA.",
+      "title_es": "Libro blanco: La base de semiconductores de los centros de datos de IA modernos",
+      "entities": [
+        "SemiWiki",
+        "White Paper",
+        "The Semiconductor Foundation",
+        "Modern",
+        "Data Centers"
+      ],
+      "noise_penalty": 0,
+      "final_score": 62,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "The Ignition Index: Measuring Global Workspace Dynamics in Language Models",
+      "link": "https://arxiv.org/abs/2608.05160",
+      "published": "2026-08-07T04:00:00+00:00",
+      "summary": "arXiv:2608.05160v1 Announce Type: new Abstract: We introduce the Ignition Index (I), a validated scalar metric that operationalizes Global Workspace Theory's (GWT) all-or-none ignition prediction in transformer language models. The metric fits a four-parameter sigmoid to per-layer linear probe accuracy as a function of input signal strength, extracting steepness parameter beta-hat: high values indicate abrupt, ignition-like transitions; low values indicate graded build-up. Across 11 models spanning five architecture families, shuffled-label controls demonstrate 9.6-fold selectivity for genuine linguistic structure over spurious probe capacity (p < 0.001, Mann-Whitney U-test). We find: (1) Feedforward transformers exceed SSMs by 89% in aggregate beta-hat (p < 1e-13, Cohen's d = 0.52), with Mamba exhibiting near-linear profiles consistent with absent global broadcast. (2) Huginn-3.5B exhibits 2.12-fold higher ignition along its iteration axis than its depth axis, demonstrating that recurrent architectures manifest workspace-like transitions along the recurrence dimension. (3) Pythia-410M shows a PELT-detected phase transition at training step 256 (+67%), preceding induction-head formation. (4) Hypotheses linking ignition to model scale and signal strength were not confirmed, suggesting transformer architectures may saturate available ignition mechanisms. The Ignition Index provides the first validated quantitative bridge between GWT's dynamical predictions and mechanistic interpretability, with 9.6-fold measurement selectivity and architecture-level discriminability not previously characterized in the scaling literature. Code:",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "The Ignition Index: Measuring Global Workspace Dynamics in Language Models",
+      "raw_summary": "arXiv:2608.05160v1 Announce Type: new Abstract: We introduce the Ignition Index (I), a validated scalar metric that operationalizes Global Workspace Theory's (GWT) all-or-none ignition prediction in transformer language models. The metric fits a four-parameter sigmoid to per-layer linear probe accuracy as a function of input signal strength, extracting steepness parameter beta-hat: high values indicate abrupt, ignition-like transitions; low values indicate graded build-up. Across 11 models spanning five architecture families, shuffled-label controls demonstrate 9.6-fold selectivity for genuine linguistic structure over spurious probe capacity (p < 0.001, Mann-Whitney U-test). We find: (1) Feedforward transformers exceed SSMs by 89% in aggregate beta-hat (p < 1e-13, Cohen's d = 0.52), with Mamba exhibiting near-linear profiles consistent with absent global broadcast. (2) Huginn-3.5B exhibits 2.12-fold higher ignition along its iteration axis than its depth axis, demonstrating that recurrent architectures manifest workspace-like transitions along the recurrence dimension. (3) Pythia-410M shows a PELT-detected phase transition at training step 256 (+67%), preceding induction-head formation. (4) Hypotheses linking ignition to model scale and signal strength were not confirmed, suggesting transformer architectures may saturate available ignition mechanisms. The Ignition Index provides the first validated quantitative bridge between GWT's dynamical predictions and mechanistic interpretability, with 9.6-fold measurement selectivity and architecture-level discriminability not previously characterized in the scaling literature. Code: https://github.com/saman-rahbar/ignition-index",
+      "score": 59,
+      "primary": "models",
+      "tags": [
+        "transformers",
+        "cognitive-science",
+        "metrics",
+        "interpretability"
+      ],
+      "heuristic_score": 45,
+      "url": "https://arxiv.org/abs/2608.05160",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 45,
+      "_rid": 7,
+      "llm_score": 62,
+      "why": "Métrica que mide si los Transformers procesan información de forma abrupta (ignición) o gradual, validada con neurociencia cognitiva.",
+      "title_es": "El Índice de Ignición: Midiendo la dinámica del espacio de trabajo global en modelos de lenguaje",
+      "entities": [
+        "The Ignition Index",
+        "Measuring Global Workspace",
+        "Dynamics",
+        "Language Models"
+      ],
+      "noise_penalty": 0,
+      "final_score": 59,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Mean-Field Dynamics of Chain-of-Thought Reasoning in Large Language Models",
+      "link": "https://arxiv.org/abs/2608.05152",
+      "published": "2026-08-07T04:00:00+00:00",
+      "summary": "arXiv:2608.05152v1 Announce Type: new Abstract: Large language models (LLMs) with chain-of-thought reasoning have been widely applied in recent years, and theoretical explanations of their behavior may help deepen our understanding and guide model optimization. In this study, we introduce a framework that seeks statistical regularities and theoretical interpretations in LLM reasoning without simplifying the model architecture or making analogies to existing physical systems. We formulate LLM reasoning as a guided discovery process on a clue graph, and derive a one-dimensional ordinary differential equation for the fraction of discovered clues using the mean-field approximation. Experimentally, clue tokens are identified using the normalized surprisal of a student LLM on the outputs of a teacher LLM, and statistical regularities are obtained by averaging over many reasoning chains of thought. Our experiments show that the resulting statistical regularities are reproducible within the same dataset and can be fitted by the solving the proposed theoretical equation.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Mean-Field Dynamics of Chain-of-Thought Reasoning in Large Language Models",
+      "raw_summary": "arXiv:2608.05152v1 Announce Type: new Abstract: Large language models (LLMs) with chain-of-thought reasoning have been widely applied in recent years, and theoretical explanations of their behavior may help deepen our understanding and guide model optimization. In this study, we introduce a framework that seeks statistical regularities and theoretical interpretations in LLM reasoning without simplifying the model architecture or making analogies to existing physical systems. We formulate LLM reasoning as a guided discovery process on a clue graph, and derive a one-dimensional ordinary differential equation for the fraction of discovered clues using the mean-field approximation. Experimentally, clue tokens are identified using the normalized surprisal of a student LLM on the outputs of a teacher LLM, and statistical regularities are obtained by averaging over many reasoning chains of thought. Our experiments show that the resulting statistical regularities are reproducible within the same dataset and can be fitted by the solving the proposed theoretical equation.",
+      "score": 57,
+      "primary": "models",
+      "tags": [
+        "theory",
+        "reasoning",
+        "cot",
+        "math"
+      ],
+      "heuristic_score": 68,
+      "url": "https://arxiv.org/abs/2608.05152",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 68,
+      "_rid": 5,
+      "llm_score": 55,
+      "why": "Aplica física estadística para crear un marco teórico que explica cómo los LLMs razonan mediante procesos de descubrimiento de pistas.",
+      "title_es": "Dinámica de campo medio del razonamiento Chain-of-Thought en modelos de lenguaje extensos",
+      "entities": [
+        "Mean",
+        "Field Dynamics",
+        "Chain",
+        "Thought Reasoning",
+        "Large Language Models"
+      ],
+      "noise_penalty": 0,
+      "final_score": 57,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "MS-MLB: An Open Machine Learning Benchmark for Blood-Based MS Classification",
+      "link": "https://arxiv.org/abs/2608.05196",
+      "published": "2026-08-07T04:00:00+00:00",
+      "summary": "arXiv:2608.05196v1 Announce Type: new Abstract: Multiple sclerosis (MS) is diagnosed through clinical assessment, magnetic resonance imaging, laboratory evidence when appropriate, and exclusion of better explanations. Blood RNA expression data may contain disease associated immune signal, but a blood RNA classifier cannot be treated as a replacement for clinical diagnosis. This paper presents MS-MLB (Multiple Sclerosis Machine Learning Benchmark), a reproducible open benchmark for machine learning based MS research classification from whole blood RNA expression data. MS-MLB uses the public GSE17048 cohort, converts it into an MS versus healthy control task, and evaluates multiple algorithms under a shared, leakage controlled pipeline that a researcher can rerun without reconfiguring the evaluation. The evaluation includes nested cross-validation, an untouched stratified holdout set, bootstrap confidence intervals, ROC and precision recall analysis, calibration measurement, and an exploratory MS Research Score. In the final benchmark summary, Gradient Boosting ranked first by MS Research Score on the holdout set, with an MS Research Score of 93.83, AUC-ROC of 0.989, sensitivity of 0.950, specificity of 0.778, $F_{1}$ score of 0.927, and Brier score of 0.050. Prior studies have applied machine learning to MS blood transcriptomic data, including PBMC stage classification and whole blood diagnostic signature modeling. The contribution here is different and narrower. To our knowledge, MS-MLB is the first open benchmark focused on MS versus healthy control classification from GSE17048 whole blood RNA expression data with a documented external model submission pathway built into the framework. The score is intended for research comparison only and has not been clinically validated. The benchmark is accessible here:",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "MS-MLB: An Open Machine Learning Benchmark for Blood-Based MS Classification",
+      "raw_summary": "arXiv:2608.05196v1 Announce Type: new Abstract: Multiple sclerosis (MS) is diagnosed through clinical assessment, magnetic resonance imaging, laboratory evidence when appropriate, and exclusion of better explanations. Blood RNA expression data may contain disease associated immune signal, but a blood RNA classifier cannot be treated as a replacement for clinical diagnosis. This paper presents MS-MLB (Multiple Sclerosis Machine Learning Benchmark), a reproducible open benchmark for machine learning based MS research classification from whole blood RNA expression data. MS-MLB uses the public GSE17048 cohort, converts it into an MS versus healthy control task, and evaluates multiple algorithms under a shared, leakage controlled pipeline that a researcher can rerun without reconfiguring the evaluation. The evaluation includes nested cross-validation, an untouched stratified holdout set, bootstrap confidence intervals, ROC and precision recall analysis, calibration measurement, and an exploratory MS Research Score. In the final benchmark summary, Gradient Boosting ranked first by MS Research Score on the holdout set, with an MS Research Score of 93.83, AUC-ROC of 0.989, sensitivity of 0.950, specificity of 0.778, $F_{1}$ score of 0.927, and Brier score of 0.050. Prior studies have applied machine learning to MS blood transcriptomic data, including PBMC stage classification and whole blood diagnostic signature modeling. The contribution here is different and narrower. To our knowledge, MS-MLB is the first open benchmark focused on MS versus healthy control classification from GSE17048 whole blood RNA expression data with a documented external model submission pathway built into the framework. The score is intended for research comparison only and has not been clinically validated. The benchmark is accessible here: https://github.com/duckyquang/MS-MLB.",
+      "score": 50,
+      "primary": "misc",
+      "tags": [
+        "healthcare",
+        "benchmark",
+        "rna",
+        "ms"
+      ],
+      "heuristic_score": 52,
+      "url": "https://arxiv.org/abs/2608.05196",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 52,
+      "_rid": 6,
+      "llm_score": 50,
+      "why": "Establece un benchmark abierto para la clasificación de esclerosis múltiple utilizando datos de expresión de ARN en sangre.",
+      "title_es": "MS-MLB: Un benchmark abierto de aprendizaje automático para la clasificación de esclerosis múltiple en sangre",
+      "entities": [
+        "MS-MLB",
+        "MLB",
+        "An Open Machine",
+        "Learning Benchmark",
+        "Blood",
+        "Based",
+        "Classification"
+      ],
+      "noise_penalty": 0,
+      "final_score": 50,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Beyond Sentiment: Comparing Traditional NLP and LLM-Based Multi-Dimensional Analysis for Political News Evaluation",
+      "link": "https://arxiv.org/abs/2608.05155",
+      "published": "2026-08-07T04:00:00+00:00",
+      "summary": "arXiv:2608.05155v1 Announce Type: new Abstract: Traditional sentiment analysis (SA) models, while effective for polarity classification, provide limited insight into the rhetorical, ideological, and framing dimensions of political discourse -- dimensions that are central to research in the social sciences and humanities (SSH). In this paper, we present a comparative study of RoBERTa-based sentiment analysis and an LLM-based multi-dimensional framing analysis platform applied to a corpus of 50 political news articles from 17 international media outlets. The results reveal a critical limitation we term neutral collapse: RoBERTa classifies 70% of articles as neutral, effectively flattening substantively rich political content into an analytically uninformative category. We find that 23% of neutral-classified articles exhibit negative probability scores above 0.30. By contrast, the LLM-based approach captures political bias direction and intensity, sensationalism, emotional appeal, and political framing -- yielding multi-dimensional analytical outputs aligned with SSH epistemologies. We argue that for political media analysis, traditional SA alone is insufficient, and that LLM-based multi-dimensional frameworks offer a more epistemologically adequate computational lens for SSH research needs.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Beyond Sentiment: Comparing Traditional NLP and LLM-Based Multi-Dimensional Analysis for Political News Evaluation",
+      "raw_summary": "arXiv:2608.05155v1 Announce Type: new Abstract: Traditional sentiment analysis (SA) models, while effective for polarity classification, provide limited insight into the rhetorical, ideological, and framing dimensions of political discourse -- dimensions that are central to research in the social sciences and humanities (SSH). In this paper, we present a comparative study of RoBERTa-based sentiment analysis and an LLM-based multi-dimensional framing analysis platform applied to a corpus of 50 political news articles from 17 international media outlets. The results reveal a critical limitation we term neutral collapse: RoBERTa classifies 70% of articles as neutral, effectively flattening substantively rich political content into an analytically uninformative category. We find that 23% of neutral-classified articles exhibit negative probability scores above 0.30. By contrast, the LLM-based approach captures political bias direction and intensity, sensationalism, emotional appeal, and political framing -- yielding multi-dimensional analytical outputs aligned with SSH epistemologies. We argue that for political media analysis, traditional SA alone is insufficient, and that LLM-based multi-dimensional frameworks offer a more epistemologically adequate computational lens for SSH research needs.",
+      "score": 45,
+      "primary": "models",
+      "tags": [
+        "nlp",
+        "sentiment-analysis",
+        "political-science",
+        "llm"
+      ],
+      "heuristic_score": 44,
+      "url": "https://arxiv.org/abs/2608.05155",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 44,
+      "_rid": 8,
+      "llm_score": 45,
+      "why": "Identifica el 'colapso neutral' donde modelos tipo RoBERTa fallan al detectar matices ideológicos frente a los LLM actuales.",
+      "title_es": "Más allá del sentimiento: Comparativa de NLP tradicional y LLM para la evaluación de noticias políticas",
+      "entities": [
+        "RoBERTa",
+        "NLP",
+        "Beyond Sentiment",
+        "Comparing Traditional",
+        "Based Multi",
+        "Dimensional Analysis",
+        "Political News Evaluation"
+      ],
+      "noise_penalty": 0,
+      "final_score": 45,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Empowering India’s next generation of innovators with ATL Saathi",
+      "link": "https://deepmind.google/blog/empowering-indias-next-generation-of-innovators-with-atl-saathi/",
+      "published": "2026-07-13T12:37:28+00:00",
+      "summary": "Google and AIM launched ATL Saathi, a Gemini-powered AI tool empowering Indian educators in robotics labs.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Empowering India’s next generation of innovators with ATL Saathi",
+      "raw_summary": "Google and AIM launched ATL Saathi, a Gemini-powered AI tool empowering Indian educators in robotics labs.",
+      "score": 39,
+      "primary": "geopol",
+      "tags": [
+        "india",
+        "education",
+        "gemini",
+        "robotics"
+      ],
+      "heuristic_score": 36,
+      "url": "https://deepmind.google/blog/empowering-indias-next-generation-of-innovators-with-atl-saathi/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 36,
+      "_rid": 11,
+      "llm_score": 58,
+      "why": "Google y AIM lanzan una herramienta basada en Gemini para fortalecer la educación técnica en laboratorios de robótica en India.",
+      "title_es": "Potenciando a los innovadores de la India con ATL Saathi",
+      "entities": [
+        "Google",
+        "Gemini",
+        "ATL Saathi",
+        "ATL",
+        "Empowering India",
+        "Saathi"
+      ],
+      "noise_penalty": 16,
+      "final_score": 39,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(16)",
+      "strategic_theme": "geopolitics_power"
+    },
+    {
+      "title": "New Audio SoCs Combine Bluetooth HDT with Dual-RF Technology",
+      "link": "https://semiwiki.com/ip/ceva/372013-new-audio-socs-combine-bluetooth-hdt-with-dual-rf-technology/",
+      "published": "2026-08-06T21:00:22+00:00",
+      "summary": "Ceva and Actions Technology have expanded their longstanding partnership with the introduction of the ATS296X series, a new family of Bluetooth audio chips designed to bring High Data Throughput technology into commercial wireless products. Powered by the Ceva-Waves Bluetooth HDT platform, the series is positioned as one&8230; Read More The post New Audio SoCs Combine Bluetooth HDT with Dual-RF Technology appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "New Audio SoCs Combine Bluetooth HDT with Dual-RF Technology",
+      "raw_summary": "Ceva and Actions Technology have expanded their longstanding partnership with the introduction of the ATS296X series, a new family of Bluetooth audio chips designed to bring High Data Throughput technology into commercial wireless products. Powered by the Ceva-Waves Bluetooth HDT platform, the series is positioned as one&#8230; Read More The post New Audio SoCs Combine Bluetooth HDT with Dual-RF Technology appeared first on SemiWiki .",
+      "score": 38,
+      "primary": "infra",
+      "tags": [
+        "semiconductors",
+        "bluetooth",
+        "audio",
+        "soc"
+      ],
+      "heuristic_score": 24,
+      "url": "https://semiwiki.com/ip/ceva/372013-new-audio-socs-combine-bluetooth-hdt-with-dual-rf-technology/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 24,
+      "_rid": 13,
+      "llm_score": 40,
+      "why": "Nuevos chips de audio que implementan Bluetooth HDT para mejorar el ancho de banda en dispositivos inalámbricos comerciales.",
+      "title_es": "Nuevos SoCs de audio combinan Bluetooth HDT con tecnología Dual-RF",
+      "entities": [
+        "Ceva",
+        "Actions Technology",
+        "HDT",
+        "New Audio",
+        "Combine Bluetooth",
+        "Dual",
+        "Technology"
+      ],
+      "noise_penalty": 0,
+      "final_score": 38,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    }
+  ]
+}
