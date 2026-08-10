@@ -1,0 +1,668 @@
+{
+  "date": "2026-08-10",
+  "score_avg": 61.07,
+  "primary_dist": {
+    "invest": 3,
+    "infra": 2,
+    "models": 8,
+    "misc": 2
+  },
+  "top_entities": [
+    {
+      "entity": "arXiv",
+      "count": 10
+    },
+    {
+      "entity": "SemiWiki",
+      "count": 3
+    },
+    {
+      "entity": "Google",
+      "count": 2
+    },
+    {
+      "entity": "ChipAgent",
+      "count": 1
+    },
+    {
+      "entity": "Raises",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "Inversión masiva en automatización del diseño de semiconductores (EDA) con el éxito de financiación de ChipAgent.",
+      "Evolución de arquitecturas de Mezcla de Expertos (MoE) hacia modelos más eficientes sin tokenizadores tradicionales.",
+      "Integración de agentes gestionados en APIs comerciales como Gemini 3.6 Flash para flujos de trabajo automatizados.",
+      "Avance crítico en la aplicación de modelos de IA para la predicción meteorológica extrema y el análisis de ciclones.",
+      "Uso de ingeniería de activaciones para detectar desinformación analizando la geometría interna de los modelos."
+    ],
+    "risks": [
+      "Desajuste significativo entre la capacidad de respuesta y la lógica interna en modelos de lenguaje de voz.",
+      "Vulnerabilidad crítica en la toma de decisiones de agentes autónomos bajo condiciones de percepción con ruido.",
+      "Limitaciones en la precisión de los LLM actuales para extraer información causal específica en entornos industriales."
+    ],
+    "watch": [
+      "Rendimiento real de los agentes gestionados de Gemini en despliegues comerciales de gran escala.",
+      "Adopción por parte de las fundiciones de las nuevas herramientas de diseño de chips basadas en inteligencia artificial.",
+      "Impacto de los modelos fundacionales de grafos en la transferencia de conocimiento entre dominios técnicos."
+    ],
+    "entities_top": [
+      "Google",
+      "DeepMind",
+      "ChipAgent"
+    ]
+  },
+  "items": [
+    {
+      "title": "ChipAgent Raises $130 Million and Why it Matters",
+      "link": "https://semiwiki.com/eda/chipagents-ai/372067-chipagent-raises-130-million-and-why-it-matters/",
+      "published": "2026-08-09T17:00:25+00:00",
+      "summary": "In my 45 years experience in the semiconductor industry, 43 of that in EDA and IP, I have never seen such a meteoric rise of an EDA company. I do remember money being raised for EDA in the early days but never have I seen such a customer success in such a short amount of time. I first met ChipAgents at DVCon Silicon Valley in 2025. It was an &8230; Read More The post ChipAgent Raises $130 Million and Why it Matters appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "ChipAgent Raises $130 Million and Why it Matters",
+      "raw_summary": "In my 45 years experience in the semiconductor industry, 43 of that in EDA and IP, I have never seen such a meteoric rise of an EDA company. I do remember money being raised for EDA in the early days but never have I seen such a customer success in such a short amount of time. I first met ChipAgents at DVCon Silicon Valley in 2025. It was an &#8230; Read More The post ChipAgent Raises $130 Million and Why it Matters appeared first on SemiWiki .",
+      "score": 81,
+      "primary": "invest",
+      "tags": [
+        "eda",
+        "semiconductors",
+        "fundraising"
+      ],
+      "heuristic_score": 40,
+      "url": "https://semiwiki.com/eda/chipagents-ai/372067-chipagent-raises-130-million-and-why-it-matters/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 40,
+      "_rid": 9,
+      "llm_score": 88,
+      "why": "La ronda de 130 millones de dólares en ChipAgent señala una aceleración masiva en la integración de IA para el diseño de hardware.",
+      "title_es": "ChipAgent recauda 130 millones de dólares y por qué es importante",
+      "entities": [
+        "ChipAgent",
+        "SemiWiki",
+        "Raises",
+        "Million",
+        "Why",
+        "Matters"
+      ],
+      "noise_penalty": 0,
+      "final_score": 81,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "EntropyMoE: Entropy-Aware Sparse Expert Routing for Tokenizer-Free LLMs",
+      "link": "https://arxiv.org/abs/2608.06398",
+      "published": "2026-08-10T04:00:00+00:00",
+      "summary": "arXiv:2608.06398v1 Announce Type: new Abstract: Recent byte-level large language models (LLMs) have made tokenizer-free modeling increasingly competitive by grouping bytes into dynamically sized patches. However, existing byte-patch architectures still apply the same dense feed-forward computation to every patch. This uniform computation cannot adapt model capacity to variations in patch semantics and granularity. We address this limitation with EntropyMoE, a Mixture-of-Experts (MoE) architecture designed for dynamic byte patches. EntropyMoE replaces the dense feed-forward modules in the global patch Transformer with Top-K expert layers. Each dynamic patch serves as the basic unit of expert routing, and its byte coverage determines its contribution to workload accounting. The router selects experts directly from patch entropy, using the same granularity signal that underlies dynamic patch construction to organize sparse computation. Patch entropy and length jointly define the feature space for regulating expert specialization. Experiments show that EntropyMoE achieves the lowest held-out bits-per-byte among matched dense and sparse baselines while maintaining comparable downstream accuracy. These results establish patch entropy as an effective routing coordinate for sparse conditional computation and extend Mixture-of-Experts modeling beyond tokenizer-based representations.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "EntropyMoE: Entropy-Aware Sparse Expert Routing for Tokenizer-Free LLMs",
+      "raw_summary": "arXiv:2608.06398v1 Announce Type: new Abstract: Recent byte-level large language models (LLMs) have made tokenizer-free modeling increasingly competitive by grouping bytes into dynamically sized patches. However, existing byte-patch architectures still apply the same dense feed-forward computation to every patch. This uniform computation cannot adapt model capacity to variations in patch semantics and granularity. We address this limitation with EntropyMoE, a Mixture-of-Experts (MoE) architecture designed for dynamic byte patches. EntropyMoE replaces the dense feed-forward modules in the global patch Transformer with Top-K expert layers. Each dynamic patch serves as the basic unit of expert routing, and its byte coverage determines its contribution to workload accounting. The router selects experts directly from patch entropy, using the same granularity signal that underlies dynamic patch construction to organize sparse computation. Patch entropy and length jointly define the feature space for regulating expert specialization. Experiments show that EntropyMoE achieves the lowest held-out bits-per-byte among matched dense and sparse baselines while maintaining comparable downstream accuracy. These results establish patch entropy as an effective routing coordinate for sparse conditional computation and extend Mixture-of-Experts modeling beyond tokenizer-based representations.",
+      "score": 77,
+      "primary": "infra",
+      "tags": [
+        "moe",
+        "tokenizer-free",
+        "efficiency",
+        "byte-level"
+      ],
+      "heuristic_score": 71,
+      "url": "https://arxiv.org/abs/2608.06398",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 71,
+      "_rid": 4,
+      "llm_score": 78,
+      "why": "Optimiza modelos sin tokenizador mediante una arquitectura MoE que ajusta el cómputo según la entropía de los parches de datos.",
+      "title_es": "EntropyMoE: enrutamiento de expertos dispersos consciente de la entropía para LLM sin tokenizador",
+      "entities": [
+        "arXiv",
+        "Entropy",
+        "Aware Sparse Expert",
+        "Routing",
+        "Tokenizer",
+        "Free"
+      ],
+      "noise_penalty": 0,
+      "final_score": 77,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Latent Fact-Checking: Detecting Misinformation through Activation Engineering",
+      "link": "https://arxiv.org/abs/2608.06417",
+      "published": "2026-08-10T04:00:00+00:00",
+      "summary": "arXiv:2608.06417v1 Announce Type: new Abstract: The proliferation of misinformation online has driven demand for scalable detection systems. While most existing approaches rely on surface-level linguistic features or external knowledge retrieval, we examine truthfulness as a geometric property of a language model's representation space. We introduce a misinformation detection framework grounded in activation engineering, which leverages the latent geometry of transformer models. Our approach elicits a misinformation direction in the residual stream by contrasting activations from paired truthful and false statements, following the difference-in-means principle of Contrastive Activation Addition (CAA). At inference time, the last-token activation of an unseen claim is projected onto this direction, and the projected representation is fed to an Multilayer Perceptron (MLP) for classification. The procedure requires no fine-tuning of the backbone model, no external evidence retrieval, and no task-specific supervision beyond the contrastive pairs used to estimate the direction. We evaluate the method across 11 models from the Gemma, Llama, and Qwen families, ranging from 270M to 12B parameters, on three fact-checking benchmarks: AVeriTeC, LIAR, and FACTors. The falsehood direction is recoverable across model scales and architectural families, and last-token projection matches or surpasses zero-shot and few-shot prompting baselines on LIAR and FACTors, with the largest gains observed for smaller models. Performance on AVeriTeC is more limited, which we attribute to its evidence-grounded labeling scheme. These findings provide evidence that truthfulness is a structured, linearly separable concept in the latent space of pretrained language models, and point toward interpretability-driven misinformation detection as a practical complement to retrieval-based pipelines. The code is available on",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Latent Fact-Checking: Detecting Misinformation through Activation Engineering",
+      "raw_summary": "arXiv:2608.06417v1 Announce Type: new Abstract: The proliferation of misinformation online has driven demand for scalable detection systems. While most existing approaches rely on surface-level linguistic features or external knowledge retrieval, we examine truthfulness as a geometric property of a language model's representation space. We introduce a misinformation detection framework grounded in activation engineering, which leverages the latent geometry of transformer models. Our approach elicits a misinformation direction in the residual stream by contrasting activations from paired truthful and false statements, following the difference-in-means principle of Contrastive Activation Addition (CAA). At inference time, the last-token activation of an unseen claim is projected onto this direction, and the projected representation is fed to an Multilayer Perceptron (MLP) for classification. The procedure requires no fine-tuning of the backbone model, no external evidence retrieval, and no task-specific supervision beyond the contrastive pairs used to estimate the direction. We evaluate the method across 11 models from the Gemma, Llama, and Qwen families, ranging from 270M to 12B parameters, on three fact-checking benchmarks: AVeriTeC, LIAR, and FACTors. The falsehood direction is recoverable across model scales and architectural families, and last-token projection matches or surpasses zero-shot and few-shot prompting baselines on LIAR and FACTors, with the largest gains observed for smaller models. Performance on AVeriTeC is more limited, which we attribute to its evidence-grounded labeling scheme. These findings provide evidence that truthfulness is a structured, linearly separable concept in the latent space of pretrained language models, and point toward interpretability-driven misinformation detection as a practical complement to retrieval-based pipelines. The code is available on https://github.com/Malta-Lab/LaFaCt.",
+      "score": 75,
+      "primary": "models",
+      "tags": [
+        "misinformation",
+        "activation engineering",
+        "interpretability"
+      ],
+      "heuristic_score": 89,
+      "url": "https://arxiv.org/abs/2608.06417",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 89,
+      "_rid": 1,
+      "llm_score": 72,
+      "why": "Propone detectar falsedades analizando el espacio de representación latente en lugar de basarse únicamente en texto superficial.",
+      "title_es": "Fact-checking latente: detección de desinformación mediante ingeniería de activaciones",
+      "entities": [
+        "arXiv",
+        "Latent Fact",
+        "Checking",
+        "Detecting Misinformation",
+        "Activation Engineering"
+      ],
+      "noise_penalty": 0,
+      "final_score": 75,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "TEXAS: Task-Expert-Aware Supervision for Downstream Mixture-of-Experts LLM Adaptation",
+      "link": "https://arxiv.org/abs/2608.06396",
+      "published": "2026-08-10T04:00:00+00:00",
+      "summary": "arXiv:2608.06396v1 Announce Type: new Abstract: Mixture-of-Experts (MoE) language models route each token through a small subset of experts, making routing patterns useful for identifying task-relevant experts during downstream adaptation. Yet current approaches have two limitations: task experts are typically identified from aggregate routing statistics that reflect usage rather than association with successful task completion, and task-expert activations remain underexplored as signals for supervision allocation. We introduce Task-Expert-Aware Supervision (TEXAS), which combines correctness-conditioned task expert discovery with token-level supervision allocation. TEXAS compares expert activations on instances that the base model solves successfully and those it fails to solve, and retains experts more strongly activated on successful instances. During fine-tuning, it upweights answer tokens in failed instances when they activate these experts. TEXAS therefore leverages existing routing behavior without restricting adaptation to a fixed expert subset or imposing an explicit target routing distribution. Across three MoE models and six benchmarks, TEXAS achieves the best or tied-best performance in 17 of 18 settings and improves over the strongest baseline by 1.3--1.5 points on average. Ablations and further analyses validate both the discovered experts and the resulting supervision strategy.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "TEXAS: Task-Expert-Aware Supervision for Downstream Mixture-of-Experts LLM Adaptation",
+      "raw_summary": "arXiv:2608.06396v1 Announce Type: new Abstract: Mixture-of-Experts (MoE) language models route each token through a small subset of experts, making routing patterns useful for identifying task-relevant experts during downstream adaptation. Yet current approaches have two limitations: task experts are typically identified from aggregate routing statistics that reflect usage rather than association with successful task completion, and task-expert activations remain underexplored as signals for supervision allocation. We introduce Task-Expert-Aware Supervision (TEXAS), which combines correctness-conditioned task expert discovery with token-level supervision allocation. TEXAS compares expert activations on instances that the base model solves successfully and those it fails to solve, and retains experts more strongly activated on successful instances. During fine-tuning, it upweights answer tokens in failed instances when they activate these experts. TEXAS therefore leverages existing routing behavior without restricting adaptation to a fixed expert subset or imposing an explicit target routing distribution. Across three MoE models and six benchmarks, TEXAS achieves the best or tied-best performance in 17 of 18 settings and improves over the strongest baseline by 1.3--1.5 points on average. Ablations and further analyses validate both the discovered experts and the resulting supervision strategy.",
+      "score": 74,
+      "primary": "infra",
+      "tags": [
+        "moe",
+        "adaptation",
+        "fine-tuning"
+      ],
+      "heuristic_score": 71,
+      "url": "https://arxiv.org/abs/2608.06396",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 71,
+      "_rid": 5,
+      "llm_score": 75,
+      "why": "Mejora la eficiencia en modelos MoE al seleccionar expertos basados en el éxito de la tarea y no solo en estadísticas de uso.",
+      "title_es": "TEXAS: supervisión consciente de expertos en tareas para la adaptación de LLM con mezcla de expertos",
+      "entities": [
+        "arXiv",
+        "TEXAS",
+        "Task",
+        "Expert",
+        "Aware Supervision",
+        "Downstream Mixture",
+        "Experts",
+        "Adaptation"
+      ],
+      "noise_penalty": 0,
+      "final_score": 74,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Recovering Lesion Parameters from Aphasic Picture Naming Error Profiles in Large Language Models",
+      "link": "https://arxiv.org/abs/2608.06429",
+      "published": "2026-08-10T04:00:00+00:00",
+      "summary": "arXiv:2608.06429v1 Announce Type: new Abstract: Interpretability methods for large language models (LLMs) describe internal state but do not directly test whether that state is causally sufficient to produce the observed behavior. In earlier work, we lesioned LLMs to produce error profiles in picture naming, a central task for assessing aphasia, and found that specific lesions produced errors resembling those of individual stroke survivors. Here we ask the inverse question: given an error profile, can the lesion parameters that produced it be recovered, and what does this inverse problem reveal about transformer computation? Lesions in LLaVA-Vicuna 13B were parameterized by layer index, modification percentage, and noise sigma across 4,840 configurations, and error profiles were characterized by a seven-category clinical taxonomy (correct, semantic, unrelated, formal, mixed, neologism, no-response). We trained a multi-task neural network to map error profiles back to perturbation parameters. The problem admitted a partial solution: across 10 independently trained inverse models, modification percentage and noise sigma were recoverable, whereas layer index was recoverable only within a neighborhood. In counterfactual validation, a fresh model instance perturbed with the recovered parameters reproduced the target behavior in 81.4% of cases. This dissociation between low layer recovery and high counterfactual fidelity is consistent with functional redundancy across transformer layers, a property not captured by standard interpretability methods. As an out-of-distribution test, we applied the trained model to picture-naming error profiles from 278 stroke survivors; recovered parameters were syndrome-discriminative, most strongly for perturbation intensity, indicating generalization beyond the training distribution. Counterfactual validation provides a general framework for LLM interpretability claims beyond inverse mapping.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Recovering Lesion Parameters from Aphasic Picture Naming Error Profiles in Large Language Models",
+      "raw_summary": "arXiv:2608.06429v1 Announce Type: new Abstract: Interpretability methods for large language models (LLMs) describe internal state but do not directly test whether that state is causally sufficient to produce the observed behavior. In earlier work, we lesioned LLMs to produce error profiles in picture naming, a central task for assessing aphasia, and found that specific lesions produced errors resembling those of individual stroke survivors. Here we ask the inverse question: given an error profile, can the lesion parameters that produced it be recovered, and what does this inverse problem reveal about transformer computation? Lesions in LLaVA-Vicuna 13B were parameterized by layer index, modification percentage, and noise sigma across 4,840 configurations, and error profiles were characterized by a seven-category clinical taxonomy (correct, semantic, unrelated, formal, mixed, neologism, no-response). We trained a multi-task neural network to map error profiles back to perturbation parameters. The problem admitted a partial solution: across 10 independently trained inverse models, modification percentage and noise sigma were recoverable, whereas layer index was recoverable only within a neighborhood. In counterfactual validation, a fresh model instance perturbed with the recovered parameters reproduced the target behavior in 81.4% of cases. This dissociation between low layer recovery and high counterfactual fidelity is consistent with functional redundancy across transformer layers, a property not captured by standard interpretability methods. As an out-of-distribution test, we applied the trained model to picture-naming error profiles from 278 stroke survivors; recovered parameters were syndrome-discriminative, most strongly for perturbation intensity, indicating generalization beyond the training distribution. Counterfactual validation provides a general framework for LLM interpretability claims beyond inverse mapping.",
+      "score": 67,
+      "primary": "misc",
+      "tags": [
+        "interpretability",
+        "healthcare",
+        "neuroscience"
+      ],
+      "heuristic_score": 62,
+      "url": "https://arxiv.org/abs/2608.06429",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 62,
+      "_rid": 6,
+      "llm_score": 68,
+      "why": "Utiliza lesiones artificiales en LLMs para replicar errores del habla humana, abriendo vías para el diagnóstico clínico de la afasia.",
+      "title_es": "Recuperación de parámetros de lesiones a partir de perfiles de error en denominación de imágenes en LLM",
+      "entities": [
+        "LLaVA-Vicuna",
+        "arXiv",
+        "Recovering Lesion Parameters",
+        "Aphasic Picture Naming",
+        "Error Profiles",
+        "Large Language Models"
+      ],
+      "noise_penalty": 0,
+      "final_score": 67,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Separating Decision-Rule Misalignment from Readout-Coverage Limitations in Speech Language Models",
+      "link": "https://arxiv.org/abs/2608.06409",
+      "published": "2026-08-10T04:00:00+00:00",
+      "summary": "arXiv:2608.06409v1 Announce Type: new Abstract: Speech language models are increasingly evaluated on paralinguistic tasks by the accuracy of prompted answers, but answer accuracy combines failures at different stages of the audio-to-answer computation. We introduce a generation-aligned diagnostic ladder that compares the emitted answer, the option logits, an affine readout of those logits, and a linear readout of the hidden state at the same answer token. Successive differences separate endpoint, decision-rule, and readout-coverage gaps. Across five systems and two emotion corpora, state decoding exceeds generation by 27.8 accuracy points on average, and both the decision-rule and readout-coverage gaps are positive in all ten conditions. A label-free logit correction improves generated accuracy in every condition, showing that part of the decision-rule gap is actionable. In rank-matched comparisons, emotion information outside the native readout generalizes to held-out speakers and survives controls for measured acoustic descriptors, but replacing the selected readout-external directions usually has little effect on emitted answers. These results distinguish information availability from behavioral use and localize performance losses across the decision rule and the state-to-answer readout.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Separating Decision-Rule Misalignment from Readout-Coverage Limitations in Speech Language Models",
+      "raw_summary": "arXiv:2608.06409v1 Announce Type: new Abstract: Speech language models are increasingly evaluated on paralinguistic tasks by the accuracy of prompted answers, but answer accuracy combines failures at different stages of the audio-to-answer computation. We introduce a generation-aligned diagnostic ladder that compares the emitted answer, the option logits, an affine readout of those logits, and a linear readout of the hidden state at the same answer token. Successive differences separate endpoint, decision-rule, and readout-coverage gaps. Across five systems and two emotion corpora, state decoding exceeds generation by 27.8 accuracy points on average, and both the decision-rule and readout-coverage gaps are positive in all ten conditions. A label-free logit correction improves generated accuracy in every condition, showing that part of the decision-rule gap is actionable. In rank-matched comparisons, emotion information outside the native readout generalizes to held-out speakers and survives controls for measured acoustic descriptors, but replacing the selected readout-external directions usually has little effect on emitted answers. These results distinguish information availability from behavioral use and localize performance losses across the decision rule and the state-to-answer readout.",
+      "score": 67,
+      "primary": "models",
+      "tags": [
+        "speech ai",
+        "interpretability",
+        "audio"
+      ],
+      "heuristic_score": 50,
+      "url": "https://arxiv.org/abs/2608.06409",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 50,
+      "_rid": 7,
+      "llm_score": 70,
+      "why": "Revela que los modelos de voz tienen fallos lógicos internos que la precisión superficial de las respuestas no siempre muestra.",
+      "title_es": "Separación del desajuste de reglas de decisión y las limitaciones de lectura en modelos de lenguaje de voz",
+      "entities": [
+        "arXiv",
+        "Separating Decision",
+        "Rule Misalignment",
+        "Readout",
+        "Coverage Limitations",
+        "Speech Language Models"
+      ],
+      "noise_penalty": 0,
+      "final_score": 67,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "WeatherNext: AI model achieves breakthrough in forecasting cyclones",
+      "link": "https://deepmind.google/blog/weathernext-ai-model-achieves-breakthrough-in-forecasting-cyclones/",
+      "published": "2026-08-06T15:06:15+00:00",
+      "summary": "",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "WeatherNext: AI model achieves breakthrough in forecasting cyclones",
+      "raw_summary": "",
+      "score": 66,
+      "primary": "models",
+      "tags": [
+        "weather forecasting",
+        "climate",
+        "deep learning"
+      ],
+      "heuristic_score": 15,
+      "url": "https://deepmind.google/blog/weathernext-ai-model-achieves-breakthrough-in-forecasting-cyclones/",
+      "is_repeat": true,
+      "novelty_score": 45,
+      "adjusted_score": 0,
+      "_rid": 15,
+      "llm_score": 82,
+      "why": "Hito en meteorología computacional al lograr una precisión superior en la predicción de la trayectoria e intensidad de ciclones.",
+      "title_es": "WeatherNext: el modelo de IA logra un avance en la predicción de ciclones",
+      "entities": [
+        "DeepMind",
+        "Google"
+      ],
+      "noise_penalty": 4,
+      "final_score": 66,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(4)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "NTDH: Complex Reasoning for Comprehensive Affective Analysis",
+      "link": "https://arxiv.org/abs/2608.06425",
+      "published": "2026-08-10T04:00:00+00:00",
+      "summary": "arXiv:2608.06425v1 Announce Type: new Abstract: Comprehensive affective analysis is challenging for two reasons: it spans heterogeneous prediction tasks with continuous, ordinal, and multi-label outputs, and affective meaning is context-dependent, requiring conflicting cues to be reconciled rather than mapped directly to labels. Existing methods learn this mapping directly and do not model the reconciliation explicitly. We recast the task as a complex-reasoning problem, which yields one output interface across heterogeneous label spaces and a trajectory over which a verifiable reward can be optimised; to our knowledge, this is the first such treatment covering both sentiment and emotion. The obstacle is on the data side: affective reasoning traces must be synthesised, and generic synthesis is misaligned with the targets, tolerances, and phenomena of affect, and discards or leaks its failure cases. We propose NTDH, which addresses these four failures. Naturalisation sets the training answer to the gold label, so it is correct by construction. A Tolerance-aware gate checks each answer against the task's own scoring margin. Domain-aware strategies refine the reasoning using ideas from affective science. Directional Hints report only the type and direction of an error, without exposing the target. We train Qwen3-8B with SFT and then GRPO under the same tolerance used for verification (up to a more permissive construction gate on the multi-label subtask), and a component ablation quantifies the data-quality effect of each part. Using 16,302 training records, about 14x fewer than comparable instruction-tuned systems, the final policy improves over its SFT checkpoint on five of six official-test metrics and achieves the strongest EI-reg result among the compared systems, at a Pearson correlation of 0.862.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "NTDH: Complex Reasoning for Comprehensive Affective Analysis",
+      "raw_summary": "arXiv:2608.06425v1 Announce Type: new Abstract: Comprehensive affective analysis is challenging for two reasons: it spans heterogeneous prediction tasks with continuous, ordinal, and multi-label outputs, and affective meaning is context-dependent, requiring conflicting cues to be reconciled rather than mapped directly to labels. Existing methods learn this mapping directly and do not model the reconciliation explicitly. We recast the task as a complex-reasoning problem, which yields one output interface across heterogeneous label spaces and a trajectory over which a verifiable reward can be optimised; to our knowledge, this is the first such treatment covering both sentiment and emotion. The obstacle is on the data side: affective reasoning traces must be synthesised, and generic synthesis is misaligned with the targets, tolerances, and phenomena of affect, and discards or leaks its failure cases. We propose NTDH, which addresses these four failures. Naturalisation sets the training answer to the gold label, so it is correct by construction. A Tolerance-aware gate checks each answer against the task's own scoring margin. Domain-aware strategies refine the reasoning using ideas from affective science. Directional Hints report only the type and direction of an error, without exposing the target. We train Qwen3-8B with SFT and then GRPO under the same tolerance used for verification (up to a more permissive construction gate on the multi-label subtask), and a component ablation quantifies the data-quality effect of each part. Using 16,302 training records, about 14x fewer than comparable instruction-tuned systems, the final policy improves over its SFT checkpoint on five of six official-test metrics and achieves the strongest EI-reg result among the compared systems, at a Pearson correlation of 0.862.",
+      "score": 63,
+      "primary": "models",
+      "tags": [
+        "sentiment analysis",
+        "reasoning",
+        "emotion ai"
+      ],
+      "heuristic_score": 83,
+      "url": "https://arxiv.org/abs/2608.06425",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 83,
+      "_rid": 2,
+      "llm_score": 60,
+      "why": "Reformula el análisis de sentimientos como un problema de razonamiento complejo para mejorar la coherencia emocional en las respuestas.",
+      "title_es": "NTDH: razonamiento complejo para un análisis afectivo integral",
+      "entities": [
+        "arXiv",
+        "NTDH",
+        "Complex Reasoning",
+        "Comprehensive Affective Analysis"
+      ],
+      "noise_penalty": 0,
+      "final_score": 63,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Gemini API Managed Agents: 3.6 Flash, hooks, and more",
+      "link": "https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api-3-6-flash-hooks/",
+      "published": "2026-07-28T16:00:00+00:00",
+      "summary": "Managed Agents Gemini 3.6 Flash, Hooks and Triggers",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Gemini API Managed Agents: 3.6 Flash, hooks, and more",
+      "raw_summary": "Managed Agents Gemini 3.6 Flash, Hooks and Triggers",
+      "score": 63,
+      "primary": "models",
+      "tags": [
+        "gemini",
+        "agents",
+        "api"
+      ],
+      "heuristic_score": 61,
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api-3-6-flash-hooks/",
+      "is_repeat": true,
+      "novelty_score": 45,
+      "adjusted_score": 6,
+      "_rid": 14,
+      "llm_score": 85,
+      "why": "La inclusión de agentes gestionados y disparadores en la API de Gemini 3.6 Flash facilita la creación de sistemas autónomos complejos.",
+      "title_es": "Agentes gestionados de la API de Gemini: 3.6 Flash, hooks y más",
+      "entities": [
+        "Google",
+        "Gemini",
+        "Managed Agents",
+        "Flash"
+      ],
+      "noise_penalty": 10,
+      "final_score": 63,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(10)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Risk-Aware Decision Policies for Agents Under Noisy Perception",
+      "link": "https://arxiv.org/abs/2608.06420",
+      "published": "2026-08-10T04:00:00+00:00",
+      "summary": "arXiv:2608.06420v1 Announce Type: new Abstract: Perception in biological systems is inherently noisy, requiring organisms to make decisions under uncertainty where misclassification can be costly or fatal. We present an Artificial Life predator-prey model of foraging under noisy perception, and compare agent performance when using various policies that take into account their noisy predictions. Through controlled experiments under both symmetric and asymmetric perceptual noise, we show that blindly trusting perceptual labels leads to catastrophic failure as noise increases, while uncertainty-aware strategies significantly improve survival and reduce fatal errors. We further observe qualitative regime shifts in behaviour, with agents transitioning from exploratory to conservative strategies as uncertainty increases. Our model links risk-sensitive foraging, ecological information use, and Artificial Life by showing that explicit information gathering can improve robustness when perception is unreliable. These results highlight the importance of uncertainty-aware decision-making and provide an interpretable artificial life analogue to robust learning with noisy labels.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Risk-Aware Decision Policies for Agents Under Noisy Perception",
+      "raw_summary": "arXiv:2608.06420v1 Announce Type: new Abstract: Perception in biological systems is inherently noisy, requiring organisms to make decisions under uncertainty where misclassification can be costly or fatal. We present an Artificial Life predator-prey model of foraging under noisy perception, and compare agent performance when using various policies that take into account their noisy predictions. Through controlled experiments under both symmetric and asymmetric perceptual noise, we show that blindly trusting perceptual labels leads to catastrophic failure as noise increases, while uncertainty-aware strategies significantly improve survival and reduce fatal errors. We further observe qualitative regime shifts in behaviour, with agents transitioning from exploratory to conservative strategies as uncertainty increases. Our model links risk-sensitive foraging, ecological information use, and Artificial Life by showing that explicit information gathering can improve robustness when perception is unreliable. These results highlight the importance of uncertainty-aware decision-making and provide an interpretable artificial life analogue to robust learning with noisy labels.",
+      "score": 62,
+      "primary": "models",
+      "tags": [
+        "uncertainty",
+        "agents",
+        "perception"
+      ],
+      "heuristic_score": 44,
+      "url": "https://arxiv.org/abs/2608.06420",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 44,
+      "_rid": 8,
+      "llm_score": 65,
+      "why": "Demuestra que los agentes que no consideran la incertidumbre perceptual fracasan catastróficamente en entornos dinámicos y ruidosos.",
+      "title_es": "Políticas de decisión conscientes del riesgo para agentes bajo percepción ruidosa",
+      "entities": [
+        "arXiv",
+        "Risk",
+        "Aware Decision Policies",
+        "Agents Under Noisy",
+        "Perception"
+      ],
+      "noise_penalty": 0,
+      "final_score": 62,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Towards Multi-Label Graph Foundation Models: from Single-Vector Representation Learning to Multi-Semantic Basis Learning",
+      "link": "https://arxiv.org/abs/2608.06394",
+      "published": "2026-08-10T04:00:00+00:00",
+      "summary": "arXiv:2608.06394v1 Announce Type: new Abstract: Multi-label node classification is an important yet challenging task in graph learning, where nodes exhibit multiple semantics simultaneously. Existing methods for multi-label node classification can effectively model multiple labels, while only considering in-domain scenarios where the model needs to be trained and tested within the same graph domain, resulting in limited cross-domain generalization. Recently, Graph Foundation Models (GFMs) have emerged as a promising paradigm for learning transferable graph representations across diverse graph domains and downstream tasks. However, existing GFMs are built upon single-label assumption, where all nodes are arbitrarily regarded as containing only one class of semantic and embedded into a single representation. For multi-label nodes, such a representation essentially approximates multiple semantics with a single point in the representation space, inevitably leading to semantic entanglement and making simultaneous discrimination of multiple labels difficult. To address these limitations, we propose a Multi-Semantic Basis Graph Foundation Model (MSB-GFM), a framework for cross-domain multi-label node classification. Specifically, we introduce a multi-semantic basis representation learning paradigm that models each multi-label node as an adaptive composition of semantic bases, thereby enabling flexible representational capacity for modeling multiple semantics. Furthermore, we develop a semantic-structure dual-channel architecture with domain adversarial training for effective cross-domain knowledge transfer. Extensive experiments demonstrate the effectiveness of our model.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Towards Multi-Label Graph Foundation Models: from Single-Vector Representation Learning to Multi-Semantic Basis Learning",
+      "raw_summary": "arXiv:2608.06394v1 Announce Type: new Abstract: Multi-label node classification is an important yet challenging task in graph learning, where nodes exhibit multiple semantics simultaneously. Existing methods for multi-label node classification can effectively model multiple labels, while only considering in-domain scenarios where the model needs to be trained and tested within the same graph domain, resulting in limited cross-domain generalization. Recently, Graph Foundation Models (GFMs) have emerged as a promising paradigm for learning transferable graph representations across diverse graph domains and downstream tasks. However, existing GFMs are built upon single-label assumption, where all nodes are arbitrarily regarded as containing only one class of semantic and embedded into a single representation. For multi-label nodes, such a representation essentially approximates multiple semantics with a single point in the representation space, inevitably leading to semantic entanglement and making simultaneous discrimination of multiple labels difficult. To address these limitations, we propose a Multi-Semantic Basis Graph Foundation Model (MSB-GFM), a framework for cross-domain multi-label node classification. Specifically, we introduce a multi-semantic basis representation learning paradigm that models each multi-label node as an adaptive composition of semantic bases, thereby enabling flexible representational capacity for modeling multiple semantics. Furthermore, we develop a semantic-structure dual-channel architecture with domain adversarial training for effective cross-domain knowledge transfer. Extensive experiments demonstrate the effectiveness of our model.",
+      "score": 56,
+      "primary": "models",
+      "tags": [
+        "graph learning",
+        "foundation models",
+        "multi-label"
+      ],
+      "heuristic_score": 23,
+      "url": "https://arxiv.org/abs/2608.06394",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 23,
+      "_rid": 11,
+      "llm_score": 62,
+      "why": "Extiende los modelos fundacionales de grafos para manejar múltiples etiquetas por nodo, mejorando su generalización entre dominios.",
+      "title_es": "Hacia modelos fundacionales de grafos multietiqueta: del aprendizaje de representación única al aprendizaje multiesemántico",
+      "entities": [
+        "arXiv",
+        "Towards Multi",
+        "Label Graph Foundation",
+        "Models",
+        "Single",
+        "Vector Representation Learning",
+        "Multi",
+        "Semantic Basis Learning"
+      ],
+      "noise_penalty": 0,
+      "final_score": 56,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Do AI Personas Grow? Analyzing and Benchmarking Personality Evolution in LLM Agents After Life Events",
+      "link": "https://arxiv.org/abs/2608.06485",
+      "published": "2026-08-10T04:00:00+00:00",
+      "summary": "arXiv:2608.06485v1 Announce Type: new Abstract: Personality-conditioned LLM agents (PC-Agents) are increasingly used in emotional support, social simulation, and role-playing, motivating the development of lifelong agents that remain coherent over extended interactions. A key component of such coherence is personality evolution: agents should undergo plausible, psychology-grounded changes as they experience life events in different contexts. Although prior work shows that LLM personalities can shift under contextual perturbations, how these shifts vary across traits, events, personas, and models remains poorly understood. We study event-induced personality change after 11 major life events, using the Big Five traits as a psychometric anchor and interpreting the resulting trajectories against longitudinal evidence from human personality psychology. Across four diagnostic axes, PC-Agents exhibit measurable trait shifts at similar rates for event-trait pairs with and without documented human change directions. Even when shifts follow the expected direction, their magnitudes usually fall below human effect-size ranges. Gender and cultural-region prompts show little moderating effect, while persona-level dispersion is compressed three- to four-fold relative to human samples. To enable systematic comparison, we introduce BFI-Adapt, a reusable benchmark for scoring the directional fidelity of event-induced personality change, and use it to rank 14 models. A validation suite shows that the measured shifts exceed no-event retest noise, remain stable under independently paraphrased prompts, exhibit limited and model-dependent convergence with scenario-based behavioral choices, and persist across intervening unrelated dialogue. Together, these checks establish the measured trajectories as robust event-conditioned response patterns. Our results suggest that current PC-Agents simulate the mean of human personality dynamics, but not its shape.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Do AI Personas Grow? Analyzing and Benchmarking Personality Evolution in LLM Agents After Life Events",
+      "raw_summary": "arXiv:2608.06485v1 Announce Type: new Abstract: Personality-conditioned LLM agents (PC-Agents) are increasingly used in emotional support, social simulation, and role-playing, motivating the development of lifelong agents that remain coherent over extended interactions. A key component of such coherence is personality evolution: agents should undergo plausible, psychology-grounded changes as they experience life events in different contexts. Although prior work shows that LLM personalities can shift under contextual perturbations, how these shifts vary across traits, events, personas, and models remains poorly understood. We study event-induced personality change after 11 major life events, using the Big Five traits as a psychometric anchor and interpreting the resulting trajectories against longitudinal evidence from human personality psychology. Across four diagnostic axes, PC-Agents exhibit measurable trait shifts at similar rates for event-trait pairs with and without documented human change directions. Even when shifts follow the expected direction, their magnitudes usually fall below human effect-size ranges. Gender and cultural-region prompts show little moderating effect, while persona-level dispersion is compressed three- to four-fold relative to human samples. To enable systematic comparison, we introduce BFI-Adapt, a reusable benchmark for scoring the directional fidelity of event-induced personality change, and use it to rank 14 models. A validation suite shows that the measured shifts exceed no-event retest noise, remain stable under independently paraphrased prompts, exhibit limited and model-dependent convergence with scenario-based behavioral choices, and persist across intervening unrelated dialogue. Together, these checks establish the measured trajectories as robust event-conditioned response patterns. Our results suggest that current PC-Agents simulate the mean of human personality dynamics, but not its shape.",
+      "score": 50,
+      "primary": "models",
+      "tags": [
+        "llm agents",
+        "personality",
+        "social simulation"
+      ],
+      "heuristic_score": 74,
+      "url": "https://arxiv.org/abs/2608.06485",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 74,
+      "_rid": 3,
+      "llm_score": 55,
+      "why": "Investiga cómo la personalidad de los agentes de IA evoluciona tras eventos vitales simulados, buscando mayor coherencia a largo plazo.",
+      "title_es": "¿Crecen las personalidades de IA? Análisis de la evolución de la personalidad en agentes LLM",
+      "entities": [
+        "arXiv",
+        "Personas Grow",
+        "Analyzing",
+        "Benchmarking Personality Evolution",
+        "Agents After Life",
+        "Events"
+      ],
+      "noise_penalty": 8,
+      "final_score": 50,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(8)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "ConstructCIE: A Dataset for Extracting Causal Information from Construction Accident Narratives",
+      "link": "https://arxiv.org/abs/2608.06495",
+      "published": "2026-08-10T04:00:00+00:00",
+      "summary": "arXiv:2608.06495v1 Announce Type: new Abstract: Construction accident narratives contain rich causal information, but the evidence is often implicit, long-span, and distributed. We introduce ConstructCIE, a manually annotated dataset for Causal Information Extraction from OSHA construction accident reports. The dataset uses a hierarchical schema for accident types, causal factors, sub-causal factors, and supporting evidence spans. We evaluate supervised sequence taggers and instruction-tuned LLMs in an end-to-end hierarchical extraction setting. Results show that most evaluated models achieve strong accident-type prediction and recover broad causal meaning but remain limited in precise span-level extraction. JHE generally achieves stronger exact and soft matching, while IHE sometimes achieves higher keyword F1. Error distributions vary by extraction strategy, but evidence-selection and span-boundary errors remain common. These findings show that reliable Causal Information Extraction for construction accidents requires stronger domain grounding and more accurate evidence extraction.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "ConstructCIE: A Dataset for Extracting Causal Information from Construction Accident Narratives",
+      "raw_summary": "arXiv:2608.06495v1 Announce Type: new Abstract: Construction accident narratives contain rich causal information, but the evidence is often implicit, long-span, and distributed. We introduce ConstructCIE, a manually annotated dataset for Causal Information Extraction from OSHA construction accident reports. The dataset uses a hierarchical schema for accident types, causal factors, sub-causal factors, and supporting evidence spans. We evaluate supervised sequence taggers and instruction-tuned LLMs in an end-to-end hierarchical extraction setting. Results show that most evaluated models achieve strong accident-type prediction and recover broad causal meaning but remain limited in precise span-level extraction. JHE generally achieves stronger exact and soft matching, while IHE sometimes achieves higher keyword F1. Error distributions vary by extraction strategy, but evidence-selection and span-boundary errors remain common. These findings show that reliable Causal Information Extraction for construction accidents requires stronger domain grounding and more accurate evidence extraction.",
+      "score": 47,
+      "primary": "misc",
+      "tags": [
+        "dataset",
+        "construction safety",
+        "causal extraction"
+      ],
+      "heuristic_score": 32,
+      "url": "https://arxiv.org/abs/2608.06495",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 32,
+      "_rid": 10,
+      "llm_score": 50,
+      "why": "Nuevo dataset para seguridad laboral que evidencia que los LLMs aún sufren para extraer detalles causales precisos en textos largos.",
+      "title_es": "ConstructCIE: conjunto de datos para extraer información causal de narrativas de accidentes de construcción",
+      "entities": [
+        "OSHA",
+        "arXiv",
+        "Dataset",
+        "Extracting Causal Information",
+        "Construction Accident Narratives"
+      ],
+      "noise_penalty": 0,
+      "final_score": 47,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "CEO Interview with David Reeder from Entegris",
+      "link": "https://semiwiki.com/ceo-interviews/371583-ceo-interview-with-david-reeder-from-entegris/",
+      "published": "2026-08-09T13:00:04+00:00",
+      "summary": "David Reeder became president and CEO of Entegris in 2025, with more than 20 years of semiconductor expertise across IDMs, fabless, foundry, systems, and component companies. Most recently, Dave served as Chief Financial Officer at Chewy where he successfully oversaw all financial functions. Prior to that, Dave was Chief Financial&8230; Read More The post CEO Interview with David Reeder from Entegris appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "CEO Interview with David Reeder from Entegris",
+      "raw_summary": "David Reeder became president and CEO of Entegris in 2025, with more than 20 years of semiconductor expertise across IDMs, fabless, foundry, systems, and component companies. Most recently, Dave served as Chief Financial Officer at Chewy where he successfully oversaw all financial functions. Prior to that, Dave was Chief Financial&#8230; Read More The post CEO Interview with David Reeder from Entegris appeared first on SemiWiki .",
+      "score": 37,
+      "primary": "invest",
+      "tags": [
+        "semiconductor",
+        "leadership",
+        "manufacturing"
+      ],
+      "heuristic_score": 22,
+      "url": "https://semiwiki.com/ceo-interviews/371583-ceo-interview-with-david-reeder-from-entegris/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 22,
+      "_rid": 12,
+      "llm_score": 40,
+      "why": "Nombramiento de un nuevo CEO con perfil financiero en Entegris, proveedor crítico de la cadena de suministro de chips.",
+      "title_es": "Entrevista con el CEO David Reeder de Entegris",
+      "entities": [
+        "Entegris",
+        "David Reeder",
+        "SemiWiki"
+      ],
+      "noise_penalty": 0,
+      "final_score": 37,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "CEO Interview with Brendan Emery of iQ Sense",
+      "link": "https://semiwiki.com/semiconductor-services/372028-ceo-interview-with-brendan-emery-of-iq-sense/",
+      "published": "2026-08-09T15:00:30+00:00",
+      "summary": "Brendan Emery is Co-Founder and Chief Executive Officer of iQ Sense Technology. He has more than 25 years of international experience in animal health, having held senior commercial leadership roles with organisations including Boehringer Ingelheim and Norbrook Laboratories. Together with Co-Founder and CTO Madhu Jambunathan,&8230; Read More The post CEO Interview with Brendan Emery of iQ Sense appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "CEO Interview with Brendan Emery of iQ Sense",
+      "raw_summary": "Brendan Emery is Co-Founder and Chief Executive Officer of iQ Sense Technology. He has more than 25 years of international experience in animal health, having held senior commercial leadership roles with organisations including Boehringer Ingelheim and Norbrook Laboratories. Together with Co-Founder and CTO Madhu Jambunathan,&#8230; Read More The post CEO Interview with Brendan Emery of iQ Sense appeared first on SemiWiki .",
+      "score": 31,
+      "primary": "invest",
+      "tags": [
+        "sensors",
+        "animal health",
+        "leadership"
+      ],
+      "heuristic_score": 10,
+      "url": "https://semiwiki.com/semiconductor-services/372028-ceo-interview-with-brendan-emery-of-iq-sense/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 10,
+      "_rid": 13,
+      "llm_score": 35,
+      "why": "Liderazgo en tecnología de sensores para salud animal, un mercado nicho con aplicaciones crecientes de hardware inteligente.",
+      "title_es": "Entrevista con el CEO Brendan Emery de iQ Sense",
+      "entities": [
+        "iQ Sense",
+        "Brendan Emery",
+        "SemiWiki",
+        "Sense"
+      ],
+      "noise_penalty": 0,
+      "final_score": 31,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    }
+  ]
+}
