@@ -1,0 +1,672 @@
+{
+  "date": "2026-08-12",
+  "score_avg": 63.33,
+  "primary_dist": {
+    "models": 10,
+    "infra": 2,
+    "misc": 2,
+    "invest": 1
+  },
+  "top_entities": [
+    {
+      "entity": "arXiv",
+      "count": 7
+    },
+    {
+      "entity": "Gemini",
+      "count": 4
+    },
+    {
+      "entity": "DeepMind",
+      "count": 3
+    },
+    {
+      "entity": "Introducing Gemini",
+      "count": 2
+    },
+    {
+      "entity": "Flash Cyber",
+      "count": 2
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "Google despliega versiones Flash especializadas en ciberseguridad, marcando un giro hacia modelos de uso vertical.",
+      "La IA de agentes llega al diseño industrial de semiconductores de la mano de la alianza estratégica Siemens-NVIDIA.",
+      "La cuantización en modelos pequeños (SLM) penaliza desproporcionadamente a los idiomas con alfabetos no latinos.",
+      "Investigaciones confirman que el Chain-of-Thought solo es útil ante cuellos de botella de profundidad serial.",
+      "DeepMind impulsa la robótica colaborativa multimodal con Gemini ER 2, enfocándose en la orquestación de tareas físicas."
+    ],
+    "risks": [
+      "Colapso estructural en la representación de idiomas minoritarios al reducir la precisión de los modelos para borde.",
+      "Límites arquitectónicos en Transformers que impiden que el razonamiento mejore solo con prompting si la tarea es serial.",
+      "Riesgos de seguridad y estabilidad en la transición hacia el control autónomo de sistemas biológicos y hardware."
+    ],
+    "watch": [
+      "Rendimiento comparativo de Gemini 3.6 Flash frente a GPT-4o-mini en latencia para aplicaciones empresariales.",
+      "Adopción real de flujos de diseño de chips asistidos por agentes en el ecosistema de Siemens y NVIDIA.",
+      "Evolución de los métodos de codificación de posición para soportar contextos masivos tras los últimos estudios."
+    ],
+    "entities_top": [
+      "Google DeepMind",
+      "NVIDIA",
+      "Siemens"
+    ]
+  },
+  "items": [
+    {
+      "title": "When Chain-of-Thought Helps and When It Hurts: An Empirical Investigation of the Serial-Depth Bottleneck in LLM Reasoning",
+      "link": "https://arxiv.org/abs/2608.09942",
+      "published": "2026-08-12T04:00:00+00:00",
+      "summary": "arXiv:2608.09942v1 Announce Type: new Abstract: It is widely assumed that chain-of-thought (CoT) prompting universally improves LLM reasoning. We investigate this through the conceptual framework of the H_dp bandwidth bound (Chen et al., 2024): although the formal bound binds only asymptotically (at astronomically large prompt lengths), it identifies a real architectural bottleneck -- serial computation exceeding a transformer's single-pass capacity must be externalised, which is what CoT does. Our central finding is a within-benchmark serial-depth gradient: single-pass (no-CoT) accuracy degrades monotonically with per-item serial depth, while CoT is approximately depth-invariant. We measure CoT effects across three instruction-tuned models (Qwen-2.5-7B/32B, Llama-3.1-8B) and five standard NLP benchmarks at practical context lengths. On high-depth P-complete tasks (GSM8K, MATH), CoT gives a +54 to +68 pp recovery gap across all models. On shallow TC^0 tasks (MMLU, ARC), CoT is structurally redundant (Delta in [0.0, +4.6] pp, no significant negative effect) -- though high no-CoT baselines (up to 95% on ARC) may reflect contamination, so this null is not a clean architectural test. The intermediate class L (HumanEval) shows a model-size-dependent transition: +23.2 pp (32B), +9.1 pp (8B), -28.7 pp (7B). The cross-benchmark depth-recovery correlation is Spearman rho = 0.661 (p = 0.007, n = 15); 9 of 15 benchmark-level McNemar tests are significant after Bonferroni correction. Pre-registered on OSF, our results indicate that CoT is not a universal reasoning enhancer but acts as a bandwidth bypass: it helps serial computation that strains single-pass capacity and is redundant for tasks that already fit.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "When Chain-of-Thought Helps and When It Hurts: An Empirical Investigation of the Serial-Depth Bottleneck in LLM Reasoning",
+      "raw_summary": "arXiv:2608.09942v1 Announce Type: new Abstract: It is widely assumed that chain-of-thought (CoT) prompting universally improves LLM reasoning. We investigate this through the conceptual framework of the H_dp bandwidth bound (Chen et al., 2024): although the formal bound binds only asymptotically (at astronomically large prompt lengths), it identifies a real architectural bottleneck -- serial computation exceeding a transformer's single-pass capacity must be externalised, which is what CoT does. Our central finding is a within-benchmark serial-depth gradient: single-pass (no-CoT) accuracy degrades monotonically with per-item serial depth, while CoT is approximately depth-invariant. We measure CoT effects across three instruction-tuned models (Qwen-2.5-7B/32B, Llama-3.1-8B) and five standard NLP benchmarks at practical context lengths. On high-depth P-complete tasks (GSM8K, MATH), CoT gives a +54 to +68 pp recovery gap across all models. On shallow TC^0 tasks (MMLU, ARC), CoT is structurally redundant (Delta in [0.0, +4.6] pp, no significant negative effect) -- though high no-CoT baselines (up to 95% on ARC) may reflect contamination, so this null is not a clean architectural test. The intermediate class L (HumanEval) shows a model-size-dependent transition: +23.2 pp (32B), +9.1 pp (8B), -28.7 pp (7B). The cross-benchmark depth-recovery correlation is Spearman rho = 0.661 (p = 0.007, n = 15); 9 of 15 benchmark-level McNemar tests are significant after Bonferroni correction. Pre-registered on OSF, our results indicate that CoT is not a universal reasoning enhancer but acts as a bandwidth bypass: it helps serial computation that strains single-pass capacity and is redundant for tasks that already fit.",
+      "score": 76,
+      "primary": "models",
+      "tags": [
+        "cot",
+        "reasoning",
+        "transformers"
+      ],
+      "heuristic_score": 83,
+      "url": "https://arxiv.org/abs/2608.09942",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 83,
+      "_rid": 4,
+      "llm_score": 75,
+      "why": "Identifica empíricamente que el Chain-of-Thought solo beneficia tareas que exceden la capacidad de cómputo en un solo paso.",
+      "title_es": "Cuándo ayuda y cuándo perjudica el Chain-of-Thought: investigación del cuello de botella de profundidad serial",
+      "entities": [
+        "arXiv",
+        "When Chain",
+        "Thought Helps",
+        "When It Hurts",
+        "An Empirical Investigation",
+        "Serial",
+        "Depth Bottleneck",
+        "Reasoning"
+      ],
+      "noise_penalty": 0,
+      "final_score": 76,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "The Multilingual Quantization Tax: Structural Collapse and Typological Fragility in Edge SLMs",
+      "link": "https://arxiv.org/abs/2608.09941",
+      "published": "2026-08-12T04:00:00+00:00",
+      "summary": "arXiv:2608.09941v1 Announce Type: new Abstract: While 4-bit weight quantization is critical for deploying Small Language Models (SLMs) on edge devices, evaluations of the resulting performance degradation-the quantization tax-remain overwhelmingly English-centric. We present a zero-shot multilingual evaluation of 4-bit quantization across the Gemma 4 and Qwen 3.5 architectures. Evaluating on eight typo-logically diverse languages using MMLU ProX Lite and GlobalPIQA, we show parameter truncation exposes deep pre-training inequalities. We identify four phenomena: (1) Typological Fragility: low-resource and specific non-Latin scripts suffer representational collapse via architecture-specific double dissociations, failing to generate valid task logits; (2) Home Language Fragility Paradox: foundational pre-training pathways provide limited precision loss protection; (3) Domain-Specific Forgetting: multi-step cross-lingual routing degrades while associative soft-science recall remains robust; and (4) Quantization Resistance: highly saturated, typologically aligned domains resist deterministic degradation, with post-quantization performance gains bounded by statistical noise.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "The Multilingual Quantization Tax: Structural Collapse and Typological Fragility in Edge SLMs",
+      "raw_summary": "arXiv:2608.09941v1 Announce Type: new Abstract: While 4-bit weight quantization is critical for deploying Small Language Models (SLMs) on edge devices, evaluations of the resulting performance degradation-the quantization tax-remain overwhelmingly English-centric. We present a zero-shot multilingual evaluation of 4-bit quantization across the Gemma 4 and Qwen 3.5 architectures. Evaluating on eight typo-logically diverse languages using MMLU ProX Lite and GlobalPIQA, we show parameter truncation exposes deep pre-training inequalities. We identify four phenomena: (1) Typological Fragility: low-resource and specific non-Latin scripts suffer representational collapse via architecture-specific double dissociations, failing to generate valid task logits; (2) Home Language Fragility Paradox: foundational pre-training pathways provide limited precision loss protection; (3) Domain-Specific Forgetting: multi-step cross-lingual routing degrades while associative soft-science recall remains robust; and (4) Quantization Resistance: highly saturated, typologically aligned domains resist deterministic degradation, with post-quantization performance gains bounded by statistical noise.",
+      "score": 76,
+      "primary": "models",
+      "tags": [
+        "quantization",
+        "multilingual",
+        "slm"
+      ],
+      "heuristic_score": 55,
+      "url": "https://arxiv.org/abs/2608.09941",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 55,
+      "_rid": 6,
+      "llm_score": 80,
+      "why": "Demuestra que la cuantización a 4 bits degrada severamente el rendimiento en idiomas no latinos en modelos de borde.",
+      "title_es": "El impuesto de cuantización multilingüe: colapso estructural y fragilidad tipológica en SLMs de borde",
+      "entities": [
+        "Gemma",
+        "Qwen",
+        "MMLU",
+        "The Multilingual Quantization",
+        "Tax",
+        "Structural Collapse",
+        "Typological Fragility",
+        "Edge"
+      ],
+      "noise_penalty": 0,
+      "final_score": 76,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Siemens and NVIDIA tout Agentic AI",
+      "link": "https://semiwiki.com/eda/372073-siemens-and-nvidia-tout-agentic-ai/",
+      "published": "2026-08-11T17:00:20+00:00",
+      "summary": "Siemens has EDA tools and flows, NVIDIA has AI infrastructure, so what happens when these two companies collaborate? I’m at DAC 2026 and all the buzz this year is Agentic AI, so an came out on Sunday evening about how semiconductor and PCB design flows are being improved by this teamwork. Amit Gupta from Siemens and Timothy Costa from&8230; Read More The post Siemens and NVIDIA tout Agentic AI appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "Siemens and NVIDIA tout Agentic AI",
+      "raw_summary": "Siemens has EDA tools and flows, NVIDIA has AI infrastructure, so what happens when these two companies collaborate? I’m at DAC 2026 and all the buzz this year is Agentic AI, so an came out on Sunday evening about how semiconductor and PCB design flows are being improved by this teamwork. Amit Gupta from Siemens and Timothy Costa from&#8230; Read More The post Siemens and NVIDIA tout Agentic AI appeared first on SemiWiki .",
+      "score": 76,
+      "primary": "infra",
+      "tags": [
+        "eda",
+        "semiconductors",
+        "agents"
+      ],
+      "heuristic_score": 40,
+      "url": "https://semiwiki.com/eda/372073-siemens-and-nvidia-tout-agentic-ai/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 40,
+      "_rid": 12,
+      "llm_score": 82,
+      "why": "Colaboración clave para integrar IA agente en el diseño de semiconductores y placas de circuito impreso.",
+      "title_es": "Siemens y NVIDIA promocionan la IA agente",
+      "entities": [
+        "Siemens",
+        "NVIDIA",
+        "Amit Gupta",
+        "Timothy Costa",
+        "Agentic"
+      ],
+      "noise_penalty": 0,
+      "final_score": 76,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Position Encoding in Transformers: From Absolute and Relative Methods to Rotary Position Embeddings and Long-Context Scaling",
+      "link": "https://arxiv.org/abs/2608.10021",
+      "published": "2026-08-12T04:00:00+00:00",
+      "summary": "arXiv:2608.10021v1 Announce Type: new Abstract: Self-attention models content-dependent interactions between tokens but does not by itself encode token order. Position encoding addresses this limitation by introducing absolute coordinates, relative distances, or position-dependent rotations into Transformer representations and attention scores. This technical survey develops a unified account of sinusoidal and learned absolute position embeddings, Shaw-style relative position representations, Transformer-XL, T5 relative position bias, ALiBi, and Rotary Position Embeddings (RoPE). We derive how RoPE converts absolute position indices into relative phase differences in Query-Key inner products and compare these methods in terms of where position is injected, computational cost, compatibility with KV caching, and length extrapolation. We then examine long-context extensions, including Position Interpolation, RoPE scaling laws, NTK-aware scaling, Dynamic NTK, NTK-by-parts, YaRN, LongRoPE, and LongRoPE2, with emphasis on frequency allocation, attention rescaling, training length, and target context length. We also summarize implementation considerations, evaluation protocols, and position-encoding choices in representative large language models. A central conclusion is that the ability to compute positional features beyond the training length does not imply reliable long-context generalization; context extension must be evaluated through short-context retention, position-wise perplexity, retrieval, reasoning, and long-context code tasks.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Position Encoding in Transformers: From Absolute and Relative Methods to Rotary Position Embeddings and Long-Context Scaling",
+      "raw_summary": "arXiv:2608.10021v1 Announce Type: new Abstract: Self-attention models content-dependent interactions between tokens but does not by itself encode token order. Position encoding addresses this limitation by introducing absolute coordinates, relative distances, or position-dependent rotations into Transformer representations and attention scores. This technical survey develops a unified account of sinusoidal and learned absolute position embeddings, Shaw-style relative position representations, Transformer-XL, T5 relative position bias, ALiBi, and Rotary Position Embeddings (RoPE). We derive how RoPE converts absolute position indices into relative phase differences in Query-Key inner products and compare these methods in terms of where position is injected, computational cost, compatibility with KV caching, and length extrapolation. We then examine long-context extensions, including Position Interpolation, RoPE scaling laws, NTK-aware scaling, Dynamic NTK, NTK-by-parts, YaRN, LongRoPE, and LongRoPE2, with emphasis on frequency allocation, attention rescaling, training length, and target context length. We also summarize implementation considerations, evaluation protocols, and position-encoding choices in representative large language models. A central conclusion is that the ability to compute positional features beyond the training length does not imply reliable long-context generalization; context extension must be evaluated through short-context retention, position-wise perplexity, retrieval, reasoning, and long-context code tasks.",
+      "score": 74,
+      "primary": "models",
+      "tags": [
+        "transformers",
+        "rope",
+        "embeddings"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2608.10021",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 1,
+      "llm_score": 70,
+      "why": "Estudio técnico fundamental que unifica métodos de codificación de posición, clave para el escalado de contextos largos.",
+      "title_es": "Codificación de posición en Transformers: de métodos absolutos y relativos a RoPE y escalado de contexto",
+      "entities": [
+        "arXiv",
+        "Position Encoding",
+        "Transformers",
+        "From Absolute",
+        "Relative Methods",
+        "Rotary Position Embeddings",
+        "Long",
+        "Context Scaling"
+      ],
+      "noise_penalty": 0,
+      "final_score": 74,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Closed-Loop LLM Co-Pilots for Digital Agriculture",
+      "link": "https://arxiv.org/abs/2608.09949",
+      "published": "2026-08-12T04:00:00+00:00",
+      "summary": "arXiv:2608.09949v1 Announce Type: new Abstract: This study evaluates the application of Large Language Models (LLMs) in complex biological systems, evolving from data analysis to autonomous, AI-guided experimentation. The framework is driven by data from a 49-channel phytosensor network, encompassing multispectral, electrochemical, and dielectric modalities. To enhance accessibility, the system provides real-time natural-language interpretation for both specialists and non-experts. However, its core advantage lies in the transition from human-in-the-loop analysis to autonomous control. Processing biophysical data, the LLM evaluates plant physiology and triggers hardware actuators to optimize microclimates, execute phenotyping protocols, or induce controlled stress scenarios. This closed-loop architecture establishes a direct AI-biology interface, enabling data-driven exploration of complex biosystems and ecologies. The framework was validated across three case studies, based on a vertical farm and a single-plant setup and deciphered complex micro- and macro-fluctuations in plant physiology. Agents in a production-scale deployment executed multi-parameter optimization, balancing biomass accumulation, chlorophyll content, and energy consumption. The LLM processed biosensing telemetry to modulate full-spectrum, 450 nm, and 660 nm lighting at 2-hour intervals. Compared to periodic control, the system in minimal-time mode reduced the production cycle by 35%. In the energy-optimization mode, it reduced energy consumption by 18% with only a marginal increase in cultivation time, exploiting physiological inertia via light pulses. Finally, the agents autonomously developed an unforeseen strategy of dark-induced chlorophyll accumulation, resulting in a 67.9% energy saving. This framework transforms LLMs into autonomous co-pilots for digital agriculture, improving the cost-to-value ratio and lowering computational and expert-labor constraints.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Closed-Loop LLM Co-Pilots for Digital Agriculture",
+      "raw_summary": "arXiv:2608.09949v1 Announce Type: new Abstract: This study evaluates the application of Large Language Models (LLMs) in complex biological systems, evolving from data analysis to autonomous, AI-guided experimentation. The framework is driven by data from a 49-channel phytosensor network, encompassing multispectral, electrochemical, and dielectric modalities. To enhance accessibility, the system provides real-time natural-language interpretation for both specialists and non-experts. However, its core advantage lies in the transition from human-in-the-loop analysis to autonomous control. Processing biophysical data, the LLM evaluates plant physiology and triggers hardware actuators to optimize microclimates, execute phenotyping protocols, or induce controlled stress scenarios. This closed-loop architecture establishes a direct AI-biology interface, enabling data-driven exploration of complex biosystems and ecologies. The framework was validated across three case studies, based on a vertical farm and a single-plant setup and deciphered complex micro- and macro-fluctuations in plant physiology. Agents in a production-scale deployment executed multi-parameter optimization, balancing biomass accumulation, chlorophyll content, and energy consumption. The LLM processed biosensing telemetry to modulate full-spectrum, 450 nm, and 660 nm lighting at 2-hour intervals. Compared to periodic control, the system in minimal-time mode reduced the production cycle by 35%. In the energy-optimization mode, it reduced energy consumption by 18% with only a marginal increase in cultivation time, exploiting physiological inertia via light pulses. Finally, the agents autonomously developed an unforeseen strategy of dark-induced chlorophyll accumulation, resulting in a 67.9% energy saving. This framework transforms LLMs into autonomous co-pilots for digital agriculture, improving the cost-to-value ratio and lowering computational and expert-labor constraints.",
+      "score": 70,
+      "primary": "misc",
+      "tags": [
+        "agriculture",
+        "iot",
+        "closed-loop"
+      ],
+      "heuristic_score": 95,
+      "url": "https://arxiv.org/abs/2608.09949",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 95,
+      "_rid": 2,
+      "llm_score": 65,
+      "why": "Mueve el uso de LLM desde el análisis de datos hacia el control autónomo de hardware en entornos biológicos complejos.",
+      "title_es": "Co-pilotos LLM de bucle cerrado para agricultura digital",
+      "entities": [
+        "arXiv",
+        "Closed",
+        "Loop",
+        "Pilots",
+        "Digital Agriculture"
+      ],
+      "noise_penalty": 0,
+      "final_score": 70,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Gemini Robotics ER 2: powering robotics with video understanding, task orchestration, and multi-robot collaboration",
+      "link": "https://deepmind.google/blog/gemini-robotics-er-2-powering-robotics-with-video-understanding-task-orchestration-and-multi-robot-collaboration/",
+      "published": "2026-07-30T15:00:59+00:00",
+      "summary": "Gemini Robotics ER 2 helps robots reason, collaborate, and solve real-world tasks. It represents a step change in video understanding, tool orchestration, and multi-robot collaboration for robotic applications.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Gemini Robotics ER 2: powering robotics with video understanding, task orchestration, and multi-robot collaboration",
+      "raw_summary": "Gemini Robotics ER 2 helps robots reason, collaborate, and solve real-world tasks. It represents a step change in video understanding, tool orchestration, and multi-robot collaboration for robotic applications.",
+      "score": 69,
+      "primary": "infra",
+      "tags": [
+        "robotics",
+        "gemini",
+        "orchestration"
+      ],
+      "heuristic_score": 43,
+      "url": "https://deepmind.google/blog/gemini-robotics-er-2-powering-robotics-with-video-understanding-task-orchestration-and-multi-robot-collaboration/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 43,
+      "_rid": 9,
+      "llm_score": 85,
+      "why": "Avance en robótica que integra comprensión de vídeo y colaboración multi-robot para tareas del mundo real.",
+      "title_es": "Gemini Robotics ER 2: potenciando la robótica con comprensión de vídeo y colaboración multi-robot",
+      "entities": [
+        "DeepMind",
+        "Gemini",
+        "Gemini Robotics"
+      ],
+      "noise_penalty": 10,
+      "final_score": 69,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(10)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "LLM Agents Factory: Retrieval of Domain-Specific LLM Agents",
+      "link": "https://arxiv.org/abs/2608.09934",
+      "published": "2026-08-12T04:00:00+00:00",
+      "summary": "arXiv:2608.09934v1 Announce Type: new Abstract: Large language model (LLM) agents improve task performance by decomposing problems into role-specialized behaviors. However, their practical deployment is often limited by the computational cost and instability associated with the on-the-fly agent design for each user request. To address this, we present LLM Agents Factory, a retrieval-based framework that constructs domain-specific and Wikipedia-grounded agents on demand using a base of over 20K predetermined agent profiles. Our framework supports two modes: (1) agent profile retrieval via semantic search and (2) distillation into a compact model fine-tuned for direct agent generation. Experiments on MMLU, BIG-bench, and BIG-bench Hard in a single-agent scenario demonstrate that our retrieval-based agent construction surpasses non-agent baselines in accuracy while matching AutoGen generation quality with a 120B backbone at a substantially lower inference cost. Our work reveals that retrieval from a structured agent repository provides a cost-efficient, accurate, and controllable alternative to dynamic agent generation, responding to the strict demands of industrial applications. We provide the implementation code and the agent base in",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "LLM Agents Factory: Retrieval of Domain-Specific LLM Agents",
+      "raw_summary": "arXiv:2608.09934v1 Announce Type: new Abstract: Large language model (LLM) agents improve task performance by decomposing problems into role-specialized behaviors. However, their practical deployment is often limited by the computational cost and instability associated with the on-the-fly agent design for each user request. To address this, we present LLM Agents Factory, a retrieval-based framework that constructs domain-specific and Wikipedia-grounded agents on demand using a base of over 20K predetermined agent profiles. Our framework supports two modes: (1) agent profile retrieval via semantic search and (2) distillation into a compact model fine-tuned for direct agent generation. Experiments on MMLU, BIG-bench, and BIG-bench Hard in a single-agent scenario demonstrate that our retrieval-based agent construction surpasses non-agent baselines in accuracy while matching AutoGen generation quality with a 120B backbone at a substantially lower inference cost. Our work reveals that retrieval from a structured agent repository provides a cost-efficient, accurate, and controllable alternative to dynamic agent generation, responding to the strict demands of industrial applications. We provide the implementation code and the agent base in https://huggingface.co/frontier-ai/llm-agent-factory.",
+      "score": 65,
+      "primary": "models",
+      "tags": [
+        "agents",
+        "retrieval",
+        "scalability"
+      ],
+      "heuristic_score": 92,
+      "url": "https://arxiv.org/abs/2608.09934",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 92,
+      "_rid": 3,
+      "llm_score": 60,
+      "why": "Propone un marco de recuperación para generar agentes especializados bajo demanda, optimizando el coste computacional.",
+      "title_es": "Fábrica de agentes LLM: recuperación de agentes específicos por dominio",
+      "entities": [
+        "arXiv",
+        "Wikipedia",
+        "Agents Factory",
+        "Retrieval",
+        "Domain",
+        "Specific",
+        "Agents"
+      ],
+      "noise_penalty": 0,
+      "final_score": 65,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Introducing Gemini 3.6 Flash, 3.5 Flash-Lite, and 3.5 Flash Cyber",
+      "link": "https://deepmind.google/blog/introducing-gemini-3-6-flash-3-5-flash-lite-and-3-5-flash-cyber/",
+      "published": "2026-07-21T15:16:30+00:00",
+      "summary": "We’re introducing new Gemini models, including Gemini 3.6 Flash, 3.5 Flash-Lite and 3.5 Flash Cyber.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Introducing Gemini 3.6 Flash, 3.5 Flash-Lite, and 3.5 Flash Cyber",
+      "raw_summary": "We’re introducing new Gemini models, including Gemini 3.6 Flash, 3.5 Flash-Lite and 3.5 Flash Cyber.",
+      "score": 64,
+      "primary": "models",
+      "tags": [
+        "gemini",
+        "flash",
+        "latency"
+      ],
+      "heuristic_score": 33,
+      "url": "https://deepmind.google/blog/introducing-gemini-3-6-flash-3-5-flash-lite-and-3-5-flash-cyber/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 33,
+      "_rid": 14,
+      "llm_score": 88,
+      "why": "Lanzamiento de nuevas iteraciones de modelos Gemini optimizados para velocidad, eficiencia y casos de uso específicos.",
+      "title_es": "Presentando Gemini 3.6 Flash, 3.5 Flash-Lite y 3.5 Flash Cyber",
+      "entities": [
+        "DeepMind",
+        "Gemini",
+        "Introducing Gemini",
+        "Flash",
+        "Lite",
+        "Flash Cyber"
+      ],
+      "noise_penalty": 16,
+      "final_score": 64,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(16)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Carefully Considering Culture: Analyzing LLM Alignment in Single- and Multi-Cultural Settings using Cultural Consensus Theory",
+      "link": "https://arxiv.org/abs/2608.09937",
+      "published": "2026-08-12T04:00:00+00:00",
+      "summary": "arXiv:2608.09937v1 Announce Type: new Abstract: Recent work in NLP has probed large language models for their understanding of cultural norms across countries. However, this work typically considers distributional patterns, ignoring group consensus or possible multicultural environments within a country. In this work, we leverage cultural consensus theory (CCT) from cultural anthropology to model such multidimensional nuance. Applying CCT to the World Values Survey (WVS) across 10 countries and 12 domains, we demonstrate that models frequently misrepresent cultural structures by either failing to form cohesive consensus or severely over-regularizing consensus. Through explicit representation of intra-group variance, CCT provides actionable diagnostics to evaluate when models reflect true human diversity versus algorithmic homogenization.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Carefully Considering Culture: Analyzing LLM Alignment in Single- and Multi-Cultural Settings using Cultural Consensus Theory",
+      "raw_summary": "arXiv:2608.09937v1 Announce Type: new Abstract: Recent work in NLP has probed large language models for their understanding of cultural norms across countries. However, this work typically considers distributional patterns, ignoring group consensus or possible multicultural environments within a country. In this work, we leverage cultural consensus theory (CCT) from cultural anthropology to model such multidimensional nuance. Applying CCT to the World Values Survey (WVS) across 10 countries and 12 domains, we demonstrate that models frequently misrepresent cultural structures by either failing to form cohesive consensus or severely over-regularizing consensus. Through explicit representation of intra-group variance, CCT provides actionable diagnostics to evaluate when models reflect true human diversity versus algorithmic homogenization.",
+      "score": 63,
+      "primary": "models",
+      "tags": [
+        "culture",
+        "alignment",
+        "bias"
+      ],
+      "heuristic_score": 50,
+      "url": "https://arxiv.org/abs/2608.09937",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 50,
+      "_rid": 8,
+      "llm_score": 65,
+      "why": "Utiliza teoría antropológica para evaluar cómo los LLM sobre-regularizan o fallan al representar consensos culturales.",
+      "title_es": "Consideración cuidadosa de la cultura: análisis del alineamiento de LLM mediante la teoría del consenso cultural",
+      "entities": [
+        "World Values Survey",
+        "Carefully Considering Culture",
+        "Analyzing",
+        "Alignment",
+        "Single",
+        "Multi",
+        "Cultural Settings",
+        "Cultural Consensus Theory"
+      ],
+      "noise_penalty": 0,
+      "final_score": 63,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "SPOTting the Future: Lookahead Explanations for Deep Reinforcement Learning",
+      "link": "https://arxiv.org/abs/2608.09967",
+      "published": "2026-08-12T04:00:00+00:00",
+      "summary": "arXiv:2608.09967v1 Announce Type: new Abstract: Deep reinforcement learning (DRL) agents achieve strong performance in complex environments, yet their decision-making processes remain difficult to interpret. We introduce SPOT (Sampling Policy Observation Tree), a novel model-agnostic, sampling-based framework for interpreting DRL policies. Given access to the policy and an environment simulator, SPOT constructs an interpretable finite-horizon tree by sampling actions and recursively simulating the resulting successor states. The tree provides an empirical representation of the policy's action preferences and their possible downstream evolution. We provide formal guarantees establishing SPOT's asymptotic recovery of the policy's unique most probable action and characterizing its disagreement behavior under high-entropy policies. We demonstrate SPOT in the SUMO-RL traffic-signal control domain. The case study illustrates how its tree-based representation can be used to inspect policy preferences, compare alternative future trajectories, and reveal downstream behaviors that are not visible through single-timestep feature-attribution methods.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "SPOTting the Future: Lookahead Explanations for Deep Reinforcement Learning",
+      "raw_summary": "arXiv:2608.09967v1 Announce Type: new Abstract: Deep reinforcement learning (DRL) agents achieve strong performance in complex environments, yet their decision-making processes remain difficult to interpret. We introduce SPOT (Sampling Policy Observation Tree), a novel model-agnostic, sampling-based framework for interpreting DRL policies. Given access to the policy and an environment simulator, SPOT constructs an interpretable finite-horizon tree by sampling actions and recursively simulating the resulting successor states. The tree provides an empirical representation of the policy's action preferences and their possible downstream evolution. We provide formal guarantees establishing SPOT's asymptotic recovery of the policy's unique most probable action and characterizing its disagreement behavior under high-entropy policies. We demonstrate SPOT in the SUMO-RL traffic-signal control domain. The case study illustrates how its tree-based representation can be used to inspect policy preferences, compare alternative future trajectories, and reveal downstream behaviors that are not visible through single-timestep feature-attribution methods.",
+      "score": 59,
+      "primary": "models",
+      "tags": [
+        "reinforcement-learning",
+        "interpretability",
+        "spot"
+      ],
+      "heuristic_score": 52,
+      "url": "https://arxiv.org/abs/2608.09967",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 52,
+      "_rid": 7,
+      "llm_score": 60,
+      "why": "Introduce un marco para interpretar las políticas de aprendizaje por refuerzo mediante árboles de observación por muestreo.",
+      "title_es": "SPOT: explicaciones prospectivas para el aprendizaje por refuerzo profundo",
+      "entities": [
+        "arXiv",
+        "Future",
+        "Lookahead Explanations",
+        "Deep Reinforcement Learning"
+      ],
+      "noise_penalty": 0,
+      "final_score": 59,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Accelerating the frontiers of scientific discovery: Google’s $40M commitment to the Genesis Mission",
+      "link": "https://deepmind.google/blog/accelerating-the-frontiers-of-scientific-discovery-googles-40m-commitment-to-the-genesis-mission/",
+      "published": "2026-07-22T13:38:54+00:00",
+      "summary": "Google commits $40M in AI tokens and credits for the Genesis Mission",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Accelerating the frontiers of scientific discovery: Google’s $40M commitment to the Genesis Mission",
+      "raw_summary": "Google commits $40M in AI tokens and credits for the Genesis Mission",
+      "score": 58,
+      "primary": "invest",
+      "tags": [
+        "scientific-discovery",
+        "funding",
+        "genesis"
+      ],
+      "heuristic_score": 43,
+      "url": "https://deepmind.google/blog/accelerating-the-frontiers-of-scientific-discovery-googles-40m-commitment-to-the-genesis-mission/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 43,
+      "_rid": 10,
+      "llm_score": 72,
+      "why": "Inversión significativa de 40 millones de dólares para acelerar el uso de IA en misiones de descubrimiento científico.",
+      "title_es": "Acelerando las fronteras del descubrimiento científico: compromiso de 40 millones de dólares de Google",
+      "entities": [
+        "Google",
+        "Genesis Mission",
+        "Accelerating"
+      ],
+      "noise_penalty": 10,
+      "final_score": 58,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(10)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Introducing Gemini 3.5 Flash Cyber",
+      "link": "https://deepmind.google/blog/introducing-gemini-3-5-flash-cyber/",
+      "published": "2026-07-17T15:00:11+00:00",
+      "summary": "Google introduces Gemini 3.5 Flash Cyber, a lightweight cybersecurity model to find and patch vulnerabilities.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Introducing Gemini 3.5 Flash Cyber",
+      "raw_summary": "Google introduces Gemini 3.5 Flash Cyber, a lightweight cybersecurity model to find and patch vulnerabilities.",
+      "score": 57,
+      "primary": "models",
+      "tags": [
+        "cybersecurity",
+        "gemini",
+        "vulnerabilities"
+      ],
+      "heuristic_score": 31,
+      "url": "https://deepmind.google/blog/introducing-gemini-3-5-flash-cyber/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 31,
+      "_rid": 15,
+      "llm_score": 80,
+      "why": "Modelo especializado diseñado específicamente para la detección y corrección de vulnerabilidades de ciberseguridad.",
+      "title_es": "Presentando Gemini 3.5 Flash Cyber",
+      "entities": [
+        "DeepMind",
+        "Gemini",
+        "Introducing Gemini",
+        "Flash Cyber"
+      ],
+      "noise_penalty": 16,
+      "final_score": 57,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(16)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Uncertainty-Aware Ensemble Deep Randomized Neural Networks for Classification",
+      "link": "https://arxiv.org/abs/2608.10007",
+      "published": "2026-08-12T04:00:00+00:00",
+      "summary": "arXiv:2608.10007v1 Announce Type: new Abstract: The current state-of-the-art (SOTA) deep randomized neural networks, such as deep Random Vector Functional Link (dRVFL) and ensemble deep RVFL (edRVFL), treat all training samples uniformly, which limits their robustness and effectiveness when applied to real-world datasets containing noise and outliers. Furthermore, the propagation of contaminated features across hidden layers negatively influences the decision-making capability of these models. To overcome these limitations, we propose intuitionistic fuzzy dRVFL (IF-dRVFL) and intuitionistic fuzzy edRVFL (IF-edRVFL) frameworks that enhance model robustness. The proposed models unify intuitionistic fuzzy theory to exploit sample neighborhood information in the kernel space by jointly considering membership and non-membership degrees for each sample. Membership degrees are computed based on the distance of samples from their respective class centroids, while non-membership degrees quantify sample heterogeneity within local neighborhoods. These measures are employed to assign adaptive weights to training samples, enabling effective discrimination among clean, noisy, and outlier data points. Extensive experiments conducted on UCI and KEEL benchmark datasets, with and without the presence of Gaussian noise, demonstrate the superiority of the proposed IF-dRVFL and IF-edRVFL models over existing SOTA fuzzy and non-fuzzy approaches. The source code is available at",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Uncertainty-Aware Ensemble Deep Randomized Neural Networks for Classification",
+      "raw_summary": "arXiv:2608.10007v1 Announce Type: new Abstract: The current state-of-the-art (SOTA) deep randomized neural networks, such as deep Random Vector Functional Link (dRVFL) and ensemble deep RVFL (edRVFL), treat all training samples uniformly, which limits their robustness and effectiveness when applied to real-world datasets containing noise and outliers. Furthermore, the propagation of contaminated features across hidden layers negatively influences the decision-making capability of these models. To overcome these limitations, we propose intuitionistic fuzzy dRVFL (IF-dRVFL) and intuitionistic fuzzy edRVFL (IF-edRVFL) frameworks that enhance model robustness. The proposed models unify intuitionistic fuzzy theory to exploit sample neighborhood information in the kernel space by jointly considering membership and non-membership degrees for each sample. Membership degrees are computed based on the distance of samples from their respective class centroids, while non-membership degrees quantify sample heterogeneity within local neighborhoods. These measures are employed to assign adaptive weights to training samples, enabling effective discrimination among clean, noisy, and outlier data points. Extensive experiments conducted on UCI and KEEL benchmark datasets, with and without the presence of Gaussian noise, demonstrate the superiority of the proposed IF-dRVFL and IF-edRVFL models over existing SOTA fuzzy and non-fuzzy approaches. The source code is available at https://github.com/mtanveer1/IF-edRVFL.",
+      "score": 56,
+      "primary": "models",
+      "tags": [
+        "fuzzy-logic",
+        "robustness",
+        "random-networks"
+      ],
+      "heuristic_score": 62,
+      "url": "https://arxiv.org/abs/2608.10007",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 62,
+      "_rid": 5,
+      "llm_score": 55,
+      "why": "Aplica lógica difusa para mejorar la robustez de redes neuronales aleatorias frente a ruido y datos atípicos en el mundo real.",
+      "title_es": "Redes neuronales aleatorias profundas en conjunto conscientes de la incertidumbre para clasificación",
+      "entities": [
+        "arXiv",
+        "Uncertainty",
+        "Aware Ensemble Deep",
+        "Randomized Neural Networks",
+        "Classification"
+      ],
+      "noise_penalty": 0,
+      "final_score": 56,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Transformer Geometry Observatory TGO-IV: Developmental Topology Observatory",
+      "link": "https://arxiv.org/abs/2608.09997",
+      "published": "2026-08-12T04:00:00+00:00",
+      "summary": "arXiv:2608.09997v1 Announce Type: new Abstract: Transformers have had a profound impact on the world of language processing and computer vision. As efforts to answer the million-dollar question of ``How does a Transformer learn?\" have been increasing, existing interpretability studies primarily analyze representations at isolated layers or the network as a whole, while the developmental evolution of individual representations and its manifolds across transformer layers remains underexplored. With this work, we aim at providing a comprehensive analysis of the evolution of representations as the representation point cloud transforms across the layers; thereby attempting to isolate layers or establish a trend which comes closer to justifying how and when raw input representations evolve into task-relevant feature representations. Thus, Transformer Geometry Observatory-TGO-IV introduces a topological framework for analysing the evolution of Transformer representations through the lens of Persistent Homology. Rather than studying local geometric properties alone, TGO-IV constructs Vietoris--Rips simplicial complexes from token-level representation point clouds and investigates the evolution of their persistent topological signatures across Transformer layers. The proposed framework comprises complementary topological observatories including Persistence Diagrams, Barcode Diagrams, Betti Curves, Persistence Landscapes, Bottleneck Distance, and Wasserstein Distance, enabling a comprehensive analysis of how the global topology of representation point clouds develops throughout the forward pass.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Transformer Geometry Observatory TGO-IV: Developmental Topology Observatory",
+      "raw_summary": "arXiv:2608.09997v1 Announce Type: new Abstract: Transformers have had a profound impact on the world of language processing and computer vision. As efforts to answer the million-dollar question of ``How does a Transformer learn?\" have been increasing, existing interpretability studies primarily analyze representations at isolated layers or the network as a whole, while the developmental evolution of individual representations and its manifolds across transformer layers remains underexplored. With this work, we aim at providing a comprehensive analysis of the evolution of representations as the representation point cloud transforms across the layers; thereby attempting to isolate layers or establish a trend which comes closer to justifying how and when raw input representations evolve into task-relevant feature representations. Thus, Transformer Geometry Observatory-TGO-IV introduces a topological framework for analysing the evolution of Transformer representations through the lens of Persistent Homology. Rather than studying local geometric properties alone, TGO-IV constructs Vietoris--Rips simplicial complexes from token-level representation point clouds and investigates the evolution of their persistent topological signatures across Transformer layers. The proposed framework comprises complementary topological observatories including Persistence Diagrams, Barcode Diagrams, Betti Curves, Persistence Landscapes, Bottleneck Distance, and Wasserstein Distance, enabling a comprehensive analysis of how the global topology of representation point clouds develops throughout the forward pass.",
+      "score": 55,
+      "primary": "models",
+      "tags": [
+        "interpretability",
+        "geometry",
+        "topology"
+      ],
+      "heuristic_score": 41,
+      "url": "https://arxiv.org/abs/2608.09997",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 41,
+      "_rid": 11,
+      "llm_score": 58,
+      "why": "Analiza la evolución topológica de las representaciones en Transformers para entender cómo aprenden internamente.",
+      "title_es": "Transformer Geometry Observatory TGO-IV: observatorio de topología del desarrollo",
+      "entities": [
+        "arXiv",
+        "TGO",
+        "Transformer Geometry Observatory",
+        "Developmental Topology Observatory"
+      ],
+      "noise_penalty": 0,
+      "final_score": 55,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Empowering India’s next generation of innovators with ATL Saathi",
+      "link": "https://deepmind.google/blog/empowering-indias-next-generation-of-innovators-with-atl-saathi/",
+      "published": "2026-07-13T12:37:28+00:00",
+      "summary": "Google and AIM launched ATL Saathi, a Gemini-powered AI tool empowering Indian educators in robotics labs.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Empowering India’s next generation of innovators with ATL Saathi",
+      "raw_summary": "Google and AIM launched ATL Saathi, a Gemini-powered AI tool empowering Indian educators in robotics labs.",
+      "score": 32,
+      "primary": "misc",
+      "tags": [
+        "education",
+        "india",
+        "robotics"
+      ],
+      "heuristic_score": 36,
+      "url": "https://deepmind.google/blog/empowering-indias-next-generation-of-innovators-with-atl-saathi/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 36,
+      "_rid": 13,
+      "llm_score": 50,
+      "why": "Iniciativa educativa en India que utiliza Gemini para apoyar a docentes en laboratorios de robótica.",
+      "title_es": "Empoderando a la próxima generación de innovadores de la India con ATL Saathi",
+      "entities": [
+        "Google",
+        "AIM",
+        "Gemini",
+        "ATL",
+        "Empowering India",
+        "Saathi"
+      ],
+      "noise_penalty": 16,
+      "final_score": 32,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(16)",
+      "strategic_theme": "other"
+    }
+  ]
+}
