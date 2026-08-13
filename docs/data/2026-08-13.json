@@ -1,0 +1,686 @@
+{
+  "date": "2026-08-13",
+  "score_avg": 66.47,
+  "primary_dist": {
+    "infra": 3,
+    "models": 9,
+    "misc": 3
+  },
+  "top_entities": [
+    {
+      "entity": "arXiv",
+      "count": 10
+    },
+    {
+      "entity": "SemiWiki",
+      "count": 3
+    },
+    {
+      "entity": "Bench",
+      "count": 2
+    },
+    {
+      "entity": "Task",
+      "count": 2
+    },
+    {
+      "entity": "Micron",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "Auge de la memoria HBM y empaquetado avanzado como pilares físicos críticos para la escalabilidad de la IA global.",
+      "Transición de chatbots a sistemas multi-agente gestionados con hooks y gobernanza dinámica para evitar el colapso.",
+      "Falla crítica en la compactación de contexto: los modelos olvidan el 83% de las restricciones de sesión impuestas.",
+      "Inutilidad técnica de los detectores de IA actuales en academia, que penalizan la edición legítima sobre el fraude.",
+      "Integración de modelos generativos en flujos industriales como el diseño de SoCs y la predicción energética solar."
+    ],
+    "risks": [
+      "Degradación de la seguridad y el control en sesiones largas debido a la pérdida de instrucciones durante la compactación.",
+      "Inviabilidad práctica de modelos de compresión basados en difusión por sus severas limitaciones de velocidad de proceso.",
+      "Riesgo de sanciones académicas injustas para usuarios de IA ética debido a falsos positivos en herramientas de detección."
+    ],
+    "watch": [
+      "Adopción de Gemini 3.6 Flash y su nueva arquitectura de agentes gestionados con disparadores externos (hooks).",
+      "Implementación de profundidad recurrente (retrofitting) en modelos pequeños para optimizar razonamiento sin reentrenamiento.",
+      "Evolución de las cuotas de mercado de Micron e Intel en el suministro de componentes de memoria y empaquetado de chips."
+    ],
+    "entities_top": [
+      "Micron",
+      "Google DeepMind",
+      "Intel"
+    ]
+  },
+  "items": [
+    {
+      "title": "Micron Advanced Memory Portfolio Positioned for AI Infrastructure Expansion",
+      "link": "https://semiwiki.com/semiconductor-manufacturers/369794-micron-advanced-memory-portfolio-positioned-for-ai-infrastructure-expansion/",
+      "published": "2026-08-12T21:00:55+00:00",
+      "summary": "Micron Technology has emerged as a critical supplier in the AI compute ecosystem, leveraging its leadership in advanced DRAM, High Bandwidth Memory (HBM), and NAND flash technologies to address rapidly growing demand from hyperscale data centers and AI accelerator platforms. The company&8217;s strategic focus on leading-edge&8230; Read More The post Micron Advanced Memory Portfolio Positioned for AI Infrastructure Expansion appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "Micron Advanced Memory Portfolio Positioned for AI Infrastructure Expansion",
+      "raw_summary": "Micron Technology has emerged as a critical supplier in the AI compute ecosystem, leveraging its leadership in advanced DRAM, High Bandwidth Memory (HBM), and NAND flash technologies to address rapidly growing demand from hyperscale data centers and AI accelerator platforms. The company&#8217;s strategic focus on leading-edge&#8230; Read More The post Micron Advanced Memory Portfolio Positioned for AI Infrastructure Expansion appeared first on SemiWiki .",
+      "score": 86,
+      "primary": "infra",
+      "tags": [
+        "hbm",
+        "dram",
+        "memoria",
+        "hardware"
+      ],
+      "heuristic_score": 91,
+      "url": "https://semiwiki.com/semiconductor-manufacturers/369794-micron-advanced-memory-portfolio-positioned-for-ai-infrastructure-expansion/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 91,
+      "_rid": 3,
+      "llm_score": 85,
+      "why": "Micron se consolida como pieza clave en la cadena de suministro de HBM y memoria avanzada para centros de datos de IA.",
+      "title_es": "La cartera de memoria avanzada de Micron se posiciona para la expansión de la infraestructura de IA",
+      "entities": [
+        "Micron",
+        "SemiWiki",
+        "Micron Advanced Memory",
+        "Portfolio Positioned",
+        "Infrastructure Expansion"
+      ],
+      "noise_penalty": 0,
+      "final_score": 86,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Lost in Compaction: Evaluating Side-Constraint Loss under Context Compaction",
+      "link": "https://arxiv.org/abs/2608.11242",
+      "published": "2026-08-13T04:00:00+00:00",
+      "summary": "arXiv:2608.11242v1 Announce Type: new Abstract: When the context window is under pressure, LLM systems compact prior context to continue ongoing tasks. We identify a class of user-issued instructions, Session Constraints (SCs), such as \"do not delete any emails until I confirm,\" that are meant to constrain LLM's behavior for the remainder of a session but are silently dropped during compaction. To quantify this loss, we introduce COMPINT, an evaluation suite that evaluates compactors across three long-context scenarios: multi-turn chat, agentic trajectory, and long-horizon research. Current compactors retain only 17% of injected SCs on average, and most perform worse than running the same task without compaction. Retention varies sharply with compactor, prompt, context length, SC phrasing, and injection location, showing that the loss is systematic rather than tied to any single setting. We propose an SC-aware extractor that runs alongside the compactor as a plug-and-play module, achieving over 90% retention across all three scenarios without modifying the compactor or LLM. The COMPINT evaluation suite and accompanying implementation are available at",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Lost in Compaction: Evaluating Side-Constraint Loss under Context Compaction",
+      "raw_summary": "arXiv:2608.11242v1 Announce Type: new Abstract: When the context window is under pressure, LLM systems compact prior context to continue ongoing tasks. We identify a class of user-issued instructions, Session Constraints (SCs), such as \"do not delete any emails until I confirm,\" that are meant to constrain LLM's behavior for the remainder of a session but are silently dropped during compaction. To quantify this loss, we introduce COMPINT, an evaluation suite that evaluates compactors across three long-context scenarios: multi-turn chat, agentic trajectory, and long-horizon research. Current compactors retain only 17% of injected SCs on average, and most perform worse than running the same task without compaction. Retention varies sharply with compactor, prompt, context length, SC phrasing, and injection location, showing that the loss is systematic rather than tied to any single setting. We propose an SC-aware extractor that runs alongside the compactor as a plug-and-play module, achieving over 90% retention across all three scenarios without modifying the compactor or LLM. The COMPINT evaluation suite and accompanying implementation are available at https://github.com/ZhiqiEliWang/compaction-integrity.",
+      "score": 76,
+      "primary": "models",
+      "tags": [
+        "contexto",
+        "compactación",
+        "memoria",
+        "instrucciones"
+      ],
+      "heuristic_score": 65,
+      "url": "https://arxiv.org/abs/2608.11242",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 65,
+      "_rid": 8,
+      "llm_score": 78,
+      "why": "Revela un fallo crítico: los modelos pierden el 83% de las instrucciones de restricción al compactar el contexto de la conversación.",
+      "title_es": "Perdidos en la compactación: Evaluación de la pérdida de restricciones laterales bajo compactación de contexto",
+      "entities": [
+        "arXiv",
+        "Lost",
+        "Compaction",
+        "Evaluating Side",
+        "Constraint Loss",
+        "Context Compaction"
+      ],
+      "noise_penalty": 0,
+      "final_score": 76,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Dynamic Governance of Multi-LLM Agent Systems for Collaborative Conversational Outcomes",
+      "link": "https://arxiv.org/abs/2608.11207",
+      "published": "2026-08-13T04:00:00+00:00",
+      "summary": "arXiv:2608.11207v1 Announce Type: new Abstract: When two LLM agents with structurally opposed objectives interact across multiple turns, the absence of a shared goal function produces not competition but collapse: the visitor capitulates, the site agent stops varying its approach, and the conversation terminates without achieving either agent's stated objective. This paper asks whether a control-theoretic governance layer can substitute for that missing goal function. The Experience Orchestrator (EO) addresses this in a simulated financial services environment where a site agent guides a visitor toward advisor contact while the visitor maintains psychologically realistic resistance. EO governs the joint trajectory through three mechanisms: a Contextual Bandit (CB) that selects content arms calibrated from real-world web analytics, a PID controller that enforces behavioral consistency via dynamic schema constraints, and a POMDP belief tracker that maintains a probabilistic model of visitor intent. Across 60,000 simulations, EO achieves a +32 percentage point lift in high-intent advisor contact rate (78.1% vs. 46.1% over a naive LLM control), with CB variant selection accounting for 97% of between-factor outcome variance -- confirming that the governance policy, not environmental initial conditions, determines where trajectories end up. Persona-level analysis reveals two distinct regimes: for visitors with no natural inclination toward conversion, the governance layer is the difference between a functional system and a non-functional one; for visitors already near alignment, a naive LLM's empathetic defaults are largely sufficient. All findings are conditional on LLM-to-LLM simulation. The PID controller has not been calibrated against real human unpredictability, and validating EO on live traffic is the critical next step.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Dynamic Governance of Multi-LLM Agent Systems for Collaborative Conversational Outcomes",
+      "raw_summary": "arXiv:2608.11207v1 Announce Type: new Abstract: When two LLM agents with structurally opposed objectives interact across multiple turns, the absence of a shared goal function produces not competition but collapse: the visitor capitulates, the site agent stops varying its approach, and the conversation terminates without achieving either agent's stated objective. This paper asks whether a control-theoretic governance layer can substitute for that missing goal function. The Experience Orchestrator (EO) addresses this in a simulated financial services environment where a site agent guides a visitor toward advisor contact while the visitor maintains psychologically realistic resistance. EO governs the joint trajectory through three mechanisms: a Contextual Bandit (CB) that selects content arms calibrated from real-world web analytics, a PID controller that enforces behavioral consistency via dynamic schema constraints, and a POMDP belief tracker that maintains a probabilistic model of visitor intent. Across 60,000 simulations, EO achieves a +32 percentage point lift in high-intent advisor contact rate (78.1% vs. 46.1% over a naive LLM control), with CB variant selection accounting for 97% of between-factor outcome variance -- confirming that the governance policy, not environmental initial conditions, determines where trajectories end up. Persona-level analysis reveals two distinct regimes: for visitors with no natural inclination toward conversion, the governance layer is the difference between a functional system and a non-functional one; for visitors already near alignment, a naive LLM's empathetic defaults are largely sufficient. All findings are conditional on LLM-to-LLM simulation. The PID controller has not been calibrated against real human unpredictability, and validating EO on live traffic is the critical next step.",
+      "score": 74,
+      "primary": "models",
+      "tags": [
+        "agentes",
+        "gobernanza",
+        "llm",
+        "multi-agente"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2608.11207",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 1,
+      "llm_score": 70,
+      "why": "Propone una capa de control para evitar el colapso en diálogos entre agentes con objetivos contrapuestos.",
+      "title_es": "Gobernanza dinámica de sistemas multi-agente LLM para resultados conversacionales colaborativos",
+      "entities": [
+        "arXiv",
+        "Dynamic Governance",
+        "Multi",
+        "Agent Systems",
+        "Collaborative Conversational Outcomes"
+      ],
+      "noise_penalty": 0,
+      "final_score": 74,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Comparing Intel EMIB and Intel Foveros",
+      "link": "https://semiwiki.com/semiconductor-manufacturers/intel/372086-comparing-intel-emib-and-intel-foveros/",
+      "published": "2026-08-12T17:00:56+00:00",
+      "summary": "Intel EMIB and Intel Foveros are advanced semiconductor-packaging technologies designed to combine multiple silicon dies, or chiplets, within one processor package. Both support heterogeneous integration: manufacturers can build different functions using the process technology best suited to each one, then connect &8230; Read More The post Comparing Intel EMIB and Intel Foveros appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "Comparing Intel EMIB and Intel Foveros",
+      "raw_summary": "Intel EMIB and Intel Foveros are advanced semiconductor-packaging technologies designed to combine multiple silicon dies, or chiplets, within one processor package. Both support heterogeneous integration: manufacturers can build different functions using the process technology best suited to each one, then connect &#8230; Read More The post Comparing Intel EMIB and Intel Foveros appeared first on SemiWiki .",
+      "score": 71,
+      "primary": "infra",
+      "tags": [
+        "intel",
+        "empaquetado",
+        "chiplets",
+        "foveros"
+      ],
+      "heuristic_score": 22,
+      "url": "https://semiwiki.com/semiconductor-manufacturers/intel/372086-comparing-intel-emib-and-intel-foveros/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 22,
+      "_rid": 15,
+      "llm_score": 80,
+      "why": "Comparativa técnica de tecnologías de empaquetado heterogéneo fundamentales para la próxima generación de procesadores de IA.",
+      "title_es": "Comparativa entre Intel EMIB e Intel Foveros",
+      "entities": [
+        "Intel",
+        "SemiWiki",
+        "EMIB",
+        "Comparing Intel",
+        "Intel Foveros"
+      ],
+      "noise_penalty": 0,
+      "final_score": 71,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Backtrader-Bench: Benchmarking LLM Agents on Algorithmic Trading with Self-Generated MCQs",
+      "link": "https://arxiv.org/abs/2608.11232",
+      "published": "2026-08-13T04:00:00+00:00",
+      "summary": "arXiv:2608.11232v1 Announce Type: new Abstract: Evaluating LLM coding agents in algorithmic trading is difficult because static benchmarks risk data contamination and numerical backtest outputs require ground truth from actual code execution. We present Backtrader-Bench, a framework with two complementary pipelines. A deterministic multiple-choice question (MCQ) pipeline generates questions from backtest configurations across five trading strategies, 33 templates, and three difficulty tiers, with an independent checker that re-derives every answer. A generator-solver filtering pipeline autonomously mines harder questions: a generator writes questions verified by executable code, converts them to MCQs, and discards any that a no-tool solver can answer without code execution. We evaluate 11 models without tools (10 runs each) and four with-tools configurations on a 30-question curated set. Tool-augmented agents reach 90.0% accuracy in a single pass (GPT-5.5 and Opus 4.7), outperforming the best no-tools baselines (73.0%, averaged over 10 runs) by 17 percentage points. On 38 separately mined questions, no-tools accuracy drops further, with half the models falling to roughly random-chance level (25%). Beyond evaluation, the scalable MCQ infrastructure is designed to produce a training corpus for reinforcement learning, with the ultimate goal of building a specialized agent for quantitative trading workflows.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Backtrader-Bench: Benchmarking LLM Agents on Algorithmic Trading with Self-Generated MCQs",
+      "raw_summary": "arXiv:2608.11232v1 Announce Type: new Abstract: Evaluating LLM coding agents in algorithmic trading is difficult because static benchmarks risk data contamination and numerical backtest outputs require ground truth from actual code execution. We present Backtrader-Bench, a framework with two complementary pipelines. A deterministic multiple-choice question (MCQ) pipeline generates questions from backtest configurations across five trading strategies, 33 templates, and three difficulty tiers, with an independent checker that re-derives every answer. A generator-solver filtering pipeline autonomously mines harder questions: a generator writes questions verified by executable code, converts them to MCQs, and discards any that a no-tool solver can answer without code execution. We evaluate 11 models without tools (10 runs each) and four with-tools configurations on a 30-question curated set. Tool-augmented agents reach 90.0% accuracy in a single pass (GPT-5.5 and Opus 4.7), outperforming the best no-tools baselines (73.0%, averaged over 10 runs) by 17 percentage points. On 38 separately mined questions, no-tools accuracy drops further, with half the models falling to roughly random-chance level (25%). Beyond evaluation, the scalable MCQ infrastructure is designed to produce a training corpus for reinforcement learning, with the ultimate goal of building a specialized agent for quantitative trading workflows.",
+      "score": 70,
+      "primary": "models",
+      "tags": [
+        "trading",
+        "benchmarking",
+        "agentes",
+        "finanzas"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2608.11232",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 2,
+      "llm_score": 65,
+      "why": "Introduce una herramienta para evaluar agentes de trading evitando la contaminación de datos mediante preguntas dinámicas.",
+      "title_es": "Backtrader-Bench: Evaluación de agentes de LLM en trading algorítmico mediante cuestionarios autogenerados",
+      "entities": [
+        "arXiv",
+        "Backtrader",
+        "Bench",
+        "Benchmarking",
+        "Agents",
+        "Algorithmic Trading",
+        "Self",
+        "Generated"
+      ],
+      "noise_penalty": 0,
+      "final_score": 70,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Why AI Detection Fails for Academic Integrity",
+      "link": "https://arxiv.org/abs/2608.11256",
+      "published": "2026-08-13T04:00:00+00:00",
+      "summary": "arXiv:2608.11256v1 Announce Type: new Abstract: Institutions use commercial AI detectors for academic integrity, yet detectors cannot distinguish AI editing from full LLM drafts and may treat both as misconduct. In a controlled study of published English abstracts (four domains; 2013 to 2015 vs. 2023 to 2025), we quantify this policy failure under proxy human/AI labels at tau=0.50. Light \"refine abstract only\" edits, a proxy for guideline-compliant AI assistance, are flagged at 64 to 80% (Pangram/GPTZero). Unmodified 2023 to 2025 originals are flagged at 9 to 15%, with non-STEM rates far above STEM (p 96%). Honest AI-editing results in a higher sanction risk than humanizer-assisted evasion. Therefore, detector scores should not serve as standalone misconduct evidence.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Why AI Detection Fails for Academic Integrity",
+      "raw_summary": "arXiv:2608.11256v1 Announce Type: new Abstract: Institutions use commercial AI detectors for academic integrity, yet detectors cannot distinguish AI editing from full LLM drafts and may treat both as misconduct. In a controlled study of published English abstracts (four domains; 2013 to 2015 vs. 2023 to 2025), we quantify this policy failure under proxy human/AI labels at tau=0.50. Light \"refine abstract only\" edits, a proxy for guideline-compliant AI assistance, are flagged at 64 to 80% (Pangram/GPTZero). Unmodified 2023 to 2025 originals are flagged at 9 to 15%, with non-STEM rates far above STEM (p 96%). Honest AI-editing results in a higher sanction risk than humanizer-assisted evasion. Therefore, detector scores should not serve as standalone misconduct evidence.",
+      "score": 70,
+      "primary": "misc",
+      "tags": [
+        "academia",
+        "detección ia",
+        "integridad",
+        "fraude"
+      ],
+      "heuristic_score": 62,
+      "url": "https://arxiv.org/abs/2608.11256",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 62,
+      "_rid": 9,
+      "llm_score": 72,
+      "why": "Un estudio evidencia que los detectores de IA fallan sistemáticamente al no distinguir entre edición asistida y generación total.",
+      "title_es": "Por qué falla la detección de IA en la integridad académica",
+      "entities": [
+        "arXiv",
+        "GPTZero",
+        "Pangram",
+        "Why",
+        "Detection Fails",
+        "Academic Integrity"
+      ],
+      "noise_penalty": 0,
+      "final_score": 70,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "geopolitics_power"
+    },
+    {
+      "title": "Retrofitting Recurrent Depth into a Pretrained Language Model: Installation, Extrapolation, Transfer, and Retention at Two Parameter Budgets",
+      "link": "https://arxiv.org/abs/2608.11233",
+      "published": "2026-08-13T04:00:00+00:00",
+      "summary": "arXiv:2608.11233v1 Announce Type: new Abstract: A dense, pretrained language model can be retrofitted with recurrent depth and learn an iterative latent transition that persists after outcome-only annealing. Qwen2.5-0.5B-Instruct is split into a Prelude, a weight-tied Recurrent Block, and a Coda, with an identity-preserving one-loop path and a re-entry bridge on later loops. At loop 1 the retrofit remains non-inferior to its base on a preregistered ARC battery. Three findings. First, the mechanism is a reusable procedure rather than terminal-answer lookup, and installs at two budgets: 6M trained parameters over frozen base weights and 180M full-block. With intermediate-step supervision, the model computes one task step per loop and persists when only final answers are graded. The adapter matched the full block overall (83.8% versus 84.0%), led through depth 11, and trailed beyond. Verbal fine-tuning reached 79-86% on controlled verbal renderings (zero-shot transfer was minimal), and adapter verbal training begun from the installed mechanism outpaced matched fresh training by 18.6 points, including on a held-out test set. Second, the operation extrapolates to roughly 1.5 times its supervised depth, holding 70% accuracy through depth 18. Third, a same-size scratchpad-trained model matched the recurrent model within its learned horizon but collapsed beyond it. The recurrent model won overall, 84% versus 72%, retained 53% versus 2.5% beyond depth 10, and answered 7.6 times faster. An iterative transformer can therefore perform deeper reasoning in latent space faster than comparable or larger models fine-tuned on the same task, in a system-level comparison. A second task, running the rule in reverse, exposed the limits: the inverse was learnable in isolation, but no continuation acquired it while preserving the installed mechanism and general capability, a catastrophic-interference boundary. Learned depth selection remains open.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Retrofitting Recurrent Depth into a Pretrained Language Model: Installation, Extrapolation, Transfer, and Retention at Two Parameter Budgets",
+      "raw_summary": "arXiv:2608.11233v1 Announce Type: new Abstract: A dense, pretrained language model can be retrofitted with recurrent depth and learn an iterative latent transition that persists after outcome-only annealing. Qwen2.5-0.5B-Instruct is split into a Prelude, a weight-tied Recurrent Block, and a Coda, with an identity-preserving one-loop path and a re-entry bridge on later loops. At loop 1 the retrofit remains non-inferior to its base on a preregistered ARC battery. Three findings. First, the mechanism is a reusable procedure rather than terminal-answer lookup, and installs at two budgets: 6M trained parameters over frozen base weights and 180M full-block. With intermediate-step supervision, the model computes one task step per loop and persists when only final answers are graded. The adapter matched the full block overall (83.8% versus 84.0%), led through depth 11, and trailed beyond. Verbal fine-tuning reached 79-86% on controlled verbal renderings (zero-shot transfer was minimal), and adapter verbal training begun from the installed mechanism outpaced matched fresh training by 18.6 points, including on a held-out test set. Second, the operation extrapolates to roughly 1.5 times its supervised depth, holding 70% accuracy through depth 18. Third, a same-size scratchpad-trained model matched the recurrent model within its learned horizon but collapsed beyond it. The recurrent model won overall, 84% versus 72%, retained 53% versus 2.5% beyond depth 10, and answered 7.6 times faster. An iterative transformer can therefore perform deeper reasoning in latent space faster than comparable or larger models fine-tuned on the same task, in a system-level comparison. A second task, running the rule in reverse, exposed the limits: the inverse was learnable in isolation, but no continuation acquired it while preserving the installed mechanism and general capability, a catastrophic-interference boundary. Learned depth selection remains open.",
+      "score": 70,
+      "primary": "models",
+      "tags": [
+        "recurrencia",
+        "eficiencia",
+        "qwen",
+        "arquitectura"
+      ],
+      "heuristic_score": 49,
+      "url": "https://arxiv.org/abs/2608.11233",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 49,
+      "_rid": 12,
+      "llm_score": 74,
+      "why": "Demuestra que es posible inyectar profundidad recurrente en modelos ya entrenados para mejorar el razonamiento sin un alto coste.",
+      "title_es": "Instalación de profundidad recurrente en modelos de lenguaje preentrenados",
+      "entities": [
+        "arXiv",
+        "Qwen",
+        "Retrofitting Recurrent Depth",
+        "Pretrained Language Model",
+        "Installation",
+        "Extrapolation",
+        "Transfer",
+        "Retention"
+      ],
+      "noise_penalty": 0,
+      "final_score": 70,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Gemini API Managed Agents: 3.6 Flash, hooks, and more",
+      "link": "https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api-3-6-flash-hooks/",
+      "published": "2026-07-28T16:00:00+00:00",
+      "summary": "Managed Agents Gemini 3.6 Flash, Hooks and Triggers",
+      "source": "Google AI Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Gemini API Managed Agents: 3.6 Flash, hooks, and more",
+      "raw_summary": "Managed Agents Gemini 3.6 Flash, Hooks and Triggers",
+      "score": 69,
+      "primary": "models",
+      "tags": [
+        "gemini",
+        "api",
+        "agentes",
+        "hooks"
+      ],
+      "heuristic_score": 61,
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api-3-6-flash-hooks/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 61,
+      "_rid": 10,
+      "llm_score": 82,
+      "why": "Google actualiza su API permitiendo agentes gestionados con hooks y triggers, profesionalizando la orquestación de tareas.",
+      "title_es": "Agentes gestionados en la API de Gemini: 3.6 Flash, hooks y más",
+      "entities": [
+        "Google",
+        "Gemini",
+        "Managed Agents",
+        "Flash"
+      ],
+      "noise_penalty": 10,
+      "final_score": 69,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(10)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Distribird: Literature-Informed Prior Distribution Design for Bayesian Model Calibration",
+      "link": "https://arxiv.org/abs/2608.11210",
+      "published": "2026-08-13T04:00:00+00:00",
+      "summary": "arXiv:2608.11210v1 Announce Type: new Abstract: Bayesian calibration of process-based models requires a prior distribution for each model parameter. Despite decades of methodological work, researchers almost always fall back on uniform priors. The main reason is that building informative priors from scientific literature is slow and needs both domain and statistical expertise. We present \\textbf{Distribird}, an agentic web application that automates this process. Given a parameter name, physical description, and domain context, Distribird deploys a multi-agent pipeline that searches the literature, extracts and weights reported values by domain relevance, and fits a probability distribution via AIC model selection. When no literature is available, the system falls back to sensible uninformative alternatives, and clearly reports both the evidence behind and the confidence level of every prior it produces. It is designed for the problems where the models have physically interpretable parameters, where domain knowledge exists in the published literature. We evaluate the tool on 24~parameters across 10 scientific domains comparing three open-weight models (Qwen3.6 27B, Gemma 4 31B, Mistral Small 4 119B) with a single-prompt LLM baseline. On prior quality the full pipeline \\emph{matches} this baseline. Every prior is traced to the specific papers and values from which it was constructed; a built-in validity layer declines to produce priors for out-of-scope requests, whereas the single-prompt baseline returns confident but unfounded priors for them in 11 of 30~model--parameter cases; and every language-model call runs locally, so no parameter description or unpublished modelling detail is transmitted to a third-party LLM provider (only generated search terms reach the public literature databases). For scientific use, we argue these properties matter more than a marginal improvement in point-estimate accuracy.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Distribird: Literature-Informed Prior Distribution Design for Bayesian Model Calibration",
+      "raw_summary": "arXiv:2608.11210v1 Announce Type: new Abstract: Bayesian calibration of process-based models requires a prior distribution for each model parameter. Despite decades of methodological work, researchers almost always fall back on uniform priors. The main reason is that building informative priors from scientific literature is slow and needs both domain and statistical expertise. We present \\textbf{Distribird}, an agentic web application that automates this process. Given a parameter name, physical description, and domain context, Distribird deploys a multi-agent pipeline that searches the literature, extracts and weights reported values by domain relevance, and fits a probability distribution via AIC model selection. When no literature is available, the system falls back to sensible uninformative alternatives, and clearly reports both the evidence behind and the confidence level of every prior it produces. It is designed for the problems where the models have physically interpretable parameters, where domain knowledge exists in the published literature. We evaluate the tool on 24~parameters across 10 scientific domains comparing three open-weight models (Qwen3.6 27B, Gemma 4 31B, Mistral Small 4 119B) with a single-prompt LLM baseline. On prior quality the full pipeline \\emph{matches} this baseline. Every prior is traced to the specific papers and values from which it was constructed; a built-in validity layer declines to produce priors for out-of-scope requests, whereas the single-prompt baseline returns confident but unfounded priors for them in 11 of 30~model--parameter cases; and every language-model call runs locally, so no parameter description or unpublished modelling detail is transmitted to a third-party LLM provider (only generated search terms reach the public literature databases). For scientific use, we argue these properties matter more than a marginal improvement in point-estimate accuracy.",
+      "score": 64,
+      "primary": "misc",
+      "tags": [
+        "bayesian",
+        "agentes",
+        "ciencia",
+        "automatización"
+      ],
+      "heuristic_score": 89,
+      "url": "https://arxiv.org/abs/2608.11210",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 89,
+      "_rid": 4,
+      "llm_score": 60,
+      "why": "Automatiza la creación de distribuciones previas para modelos Bayesianos usando agentes que analizan literatura científica.",
+      "title_es": "Distribird: Diseño de distribuciones a priori basado en literatura para la calibración de modelos bayesianos",
+      "entities": [
+        "arXiv",
+        "Distribird",
+        "Literature",
+        "Informed Prior Distribution",
+        "Design",
+        "Bayesian Model Calibration"
+      ],
+      "noise_penalty": 0,
+      "final_score": 64,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "TRACE Bench: Task-driven Roleplay Agentic Checklist Evaluation",
+      "link": "https://arxiv.org/abs/2608.11236",
+      "published": "2026-08-13T04:00:00+00:00",
+      "summary": "arXiv:2608.11236v1 Announce Type: new Abstract: Roleplay evaluation should do more than assign a single score: it should reveal which role requirements were tested, which failed, and which dialogue evidence supports the judgment. We propose TRACE Bench, a task-driven agentic checklist evaluation framework. It decomposes each role profile offline into a fixed checklist, then uses a User Agent to converse naturally with the target roleplay model while privately updating checklist states from model responses. Scores therefore trace back to checklist items and supporting dialogue turns rather than a black-box holistic impression. For coverage cross-validation, we audit released M2 free-dialogue transcripts from the MiniMax Role-play Benchmark against the same role-derived checklist. The released free-chat transcripts cover only 73.74% of key role-profile points, whereas TRACE Bench reaches 99.91% coverage in fewer turns. Robustness experiments show stable rankings under repeated runs and User Agent replacement. Across 26 models, TRACE Bench reports overall rankings together with capability breakdowns and checklist traces. It also supports Closed-Loop Benchmark Evolution, distilling verification methods proven effective in failed traces so later evaluations can more reliably elicit and examine observed failure modes.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "TRACE Bench: Task-driven Roleplay Agentic Checklist Evaluation",
+      "raw_summary": "arXiv:2608.11236v1 Announce Type: new Abstract: Roleplay evaluation should do more than assign a single score: it should reveal which role requirements were tested, which failed, and which dialogue evidence supports the judgment. We propose TRACE Bench, a task-driven agentic checklist evaluation framework. It decomposes each role profile offline into a fixed checklist, then uses a User Agent to converse naturally with the target roleplay model while privately updating checklist states from model responses. Scores therefore trace back to checklist items and supporting dialogue turns rather than a black-box holistic impression. For coverage cross-validation, we audit released M2 free-dialogue transcripts from the MiniMax Role-play Benchmark against the same role-derived checklist. The released free-chat transcripts cover only 73.74% of key role-profile points, whereas TRACE Bench reaches 99.91% coverage in fewer turns. Robustness experiments show stable rankings under repeated runs and User Agent replacement. Across 26 models, TRACE Bench reports overall rankings together with capability breakdowns and checklist traces. It also supports Closed-Loop Benchmark Evolution, distilling verification methods proven effective in failed traces so later evaluations can more reliably elicit and examine observed failure modes.",
+      "score": 64,
+      "primary": "models",
+      "tags": [
+        "evaluación",
+        "agentes",
+        "rol",
+        "trazabilidad"
+      ],
+      "heuristic_score": 78,
+      "url": "https://arxiv.org/abs/2608.11236",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 78,
+      "_rid": 6,
+      "llm_score": 62,
+      "why": "Nuevo marco de evaluación para agentes de rol que desglosa el éxito en listas de verificación trazables en lugar de una nota opaca.",
+      "title_es": "TRACE Bench: Evaluación de agentes de rol basada en listas de verificación impulsadas por tareas",
+      "entities": [
+        "arXiv",
+        "TRACE",
+        "Bench",
+        "Task",
+        "Roleplay Agentic Checklist",
+        "Evaluation"
+      ],
+      "noise_penalty": 0,
+      "final_score": 64,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Gloss-Free Representation Learning for Cross-Dataset Sign Spotting",
+      "link": "https://arxiv.org/abs/2608.11332",
+      "published": "2026-08-13T04:00:00+00:00",
+      "summary": "arXiv:2608.11332v1 Announce Type: new Abstract: Sign-language research for resource-constrained languages is often limited by the cost of dense linguistic labels such as glosses, temporal boundaries, and sign order. Broadcast news offers a practical alternative by pairing continuous signing with spoken-language transcripts, but this supervision is weak since text and signing are loosely aligned. Morphologically rich languages such as Turkish add further difficulty, as the same lexical meaning can appear in many inflected forms while some derived forms should remain distinct. We study whether weak transcript-based supervision can pretrain a reusable sign encoder in this setting, where poor text normalization can fragment pseudo-gloss targets and weaken representation learning. Unlike prior pseudo-gloss pipelines designed mainly to improve translation, we test whether the pretrained encoder transfers as a reusable representation for cross-dataset sign spotting. We pretrain on TSL-News, a new Turkish broadcast corpus, using pseudo-gloss labels derived from transcripts rather than manual annotation, comparing rule-based morphological lemmatization with constrained LLM-assisted normalization over a fixed vocabulary. We evaluate the learned representations via cross-dataset sign spotting on a new TSL Spotting Benchmark built from the TSL Dictionary corpus. The LLM-assisted encoder raises top-5 temporal localization mean IoU from 0.235 to 0.465, with 56.2% of examples reaching an IoU of at least 0.50; a frequency analysis suggests this gain is not mainly driven by memorizing frequent pseudo-gloss labels. In a downstream translation check, the same pretraining improves BLEU-4 from 9.60 to 11.04 and ROUGE from 23.48 to 27.43. These results show that loosely aligned broadcast data can provide effective weak supervision for learning sign representations that capture both lexical content and temporal structure.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Gloss-Free Representation Learning for Cross-Dataset Sign Spotting",
+      "raw_summary": "arXiv:2608.11332v1 Announce Type: new Abstract: Sign-language research for resource-constrained languages is often limited by the cost of dense linguistic labels such as glosses, temporal boundaries, and sign order. Broadcast news offers a practical alternative by pairing continuous signing with spoken-language transcripts, but this supervision is weak since text and signing are loosely aligned. Morphologically rich languages such as Turkish add further difficulty, as the same lexical meaning can appear in many inflected forms while some derived forms should remain distinct. We study whether weak transcript-based supervision can pretrain a reusable sign encoder in this setting, where poor text normalization can fragment pseudo-gloss targets and weaken representation learning. Unlike prior pseudo-gloss pipelines designed mainly to improve translation, we test whether the pretrained encoder transfers as a reusable representation for cross-dataset sign spotting. We pretrain on TSL-News, a new Turkish broadcast corpus, using pseudo-gloss labels derived from transcripts rather than manual annotation, comparing rule-based morphological lemmatization with constrained LLM-assisted normalization over a fixed vocabulary. We evaluate the learned representations via cross-dataset sign spotting on a new TSL Spotting Benchmark built from the TSL Dictionary corpus. The LLM-assisted encoder raises top-5 temporal localization mean IoU from 0.235 to 0.465, with 56.2% of examples reaching an IoU of at least 0.50; a frequency analysis suggests this gain is not mainly driven by memorizing frequent pseudo-gloss labels. In a downstream translation check, the same pretraining improves BLEU-4 from 9.60 to 11.04 and ROUGE from 23.48 to 27.43. These results show that loosely aligned broadcast data can provide effective weak supervision for learning sign representations that capture both lexical content and temporal structure.",
+      "score": 60,
+      "primary": "models",
+      "tags": [
+        "lengua de signos",
+        "visión artificial",
+        "turco",
+        "nlp"
+      ],
+      "heuristic_score": 68,
+      "url": "https://arxiv.org/abs/2608.11332",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 68,
+      "_rid": 7,
+      "llm_score": 58,
+      "why": "Investiga el aprendizaje de representaciones para lengua de signos sin etiquetas densas, facilitando la inclusión tecnológica.",
+      "title_es": "Aprendizaje de representaciones sin glosas para la detección de signos en múltiples conjuntos de datos",
+      "entities": [
+        "arXiv",
+        "Gloss",
+        "Free Representation Learning",
+        "Cross",
+        "Dataset Sign Spotting"
+      ],
+      "noise_penalty": 0,
+      "final_score": 60,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Diffuse to Compress: Leveraging Diffusion LMs for Lossless Compression",
+      "link": "https://arxiv.org/abs/2608.11249",
+      "published": "2026-08-13T04:00:00+00:00",
+      "summary": "arXiv:2608.11249v1 Announce Type: new Abstract: We study the problem of lossless text compression, motivated by the rapid growth in the collection and storage of digital textual data - including plain text, source code, and structured formats such as XML - and by recent advances in neural language model-based compression. In particular, recent LLM-based approaches, whether built on symbol-ranking pipelines or paired with a statistical compressor, have demonstrated compression ratios significantly superior to general-purpose compressors such as zstd, gzip, or bzip on text and code. However, these neural approaches suffer from severe throughput limitations, making them not yet practically usable. For the first time in the context of lossless neural text compression, we introduce Diffusion Language Models (DLMs) as an alternative inference paradigm to autoregressive LLM-based approaches. We argue that replacing autoregressive LLMs with DLMs within the same compression framework could overcome the throughput bottleneck caused by their one-symbol-per-step limitation. However, achieving these improvements requires addressing algorithmic challenges introduced by applying DLMs to lossless compression, where the architecture allows the number and positions of symbols encoded at each forward pass to be decided independently. We design efficient and effective strategies to solve these challenges and evaluate them experimentally against LLM-based and general-purpose compressors on enwik8, a well-established textual benchmark. Our results show that the newly proposed DLM-based framework advances the state of the art in lossless text compression. Moreover, as DLMs are still a relatively young paradigm, recent advances toward increasingly capable and efficient models suggest substantial room for further improvements.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Diffuse to Compress: Leveraging Diffusion LMs for Lossless Compression",
+      "raw_summary": "arXiv:2608.11249v1 Announce Type: new Abstract: We study the problem of lossless text compression, motivated by the rapid growth in the collection and storage of digital textual data - including plain text, source code, and structured formats such as XML - and by recent advances in neural language model-based compression. In particular, recent LLM-based approaches, whether built on symbol-ranking pipelines or paired with a statistical compressor, have demonstrated compression ratios significantly superior to general-purpose compressors such as zstd, gzip, or bzip on text and code. However, these neural approaches suffer from severe throughput limitations, making them not yet practically usable. For the first time in the context of lossless neural text compression, we introduce Diffusion Language Models (DLMs) as an alternative inference paradigm to autoregressive LLM-based approaches. We argue that replacing autoregressive LLMs with DLMs within the same compression framework could overcome the throughput bottleneck caused by their one-symbol-per-step limitation. However, achieving these improvements requires addressing algorithmic challenges introduced by applying DLMs to lossless compression, where the architecture allows the number and positions of symbols encoded at each forward pass to be decided independently. We design efficient and effective strategies to solve these challenges and evaluate them experimentally against LLM-based and general-purpose compressors on enwik8, a well-established textual benchmark. Our results show that the newly proposed DLM-based framework advances the state of the art in lossless text compression. Moreover, as DLMs are still a relatively young paradigm, recent advances toward increasingly capable and efficient models suggest substantial room for further improvements.",
+      "score": 59,
+      "primary": "models",
+      "tags": [
+        "compresión",
+        "difusión",
+        "texto",
+        "eficiencia"
+      ],
+      "heuristic_score": 79,
+      "url": "https://arxiv.org/abs/2608.11249",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 79,
+      "_rid": 5,
+      "llm_score": 55,
+      "why": "Demuestra que los modelos de difusión comprimen texto mejor que los métodos clásicos, pero su lentitud impide el uso real.",
+      "title_es": "Difundir para comprimir: Aprovechamiento de modelos de difusión para compresión sin pérdidas",
+      "entities": [
+        "arXiv",
+        "Diffuse",
+        "Compress",
+        "Leveraging Diffusion",
+        "Lossless Compression"
+      ],
+      "noise_penalty": 0,
+      "final_score": 59,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Putting sign language AI into users’ hands",
+      "link": "https://deepmind.google/blog/putting-sign-language-ai-into-users-hands/",
+      "published": "2026-08-12T14:01:59+00:00",
+      "summary": "Introducing sign-language-to-text (SL2T), our breakthrough model powering new sign language features for Deaf and hard of hearing users.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Putting sign language AI into users’ hands",
+      "raw_summary": "Introducing sign-language-to-text (SL2T), our breakthrough model powering new sign language features for Deaf and hard of hearing users.",
+      "score": 58,
+      "primary": "models",
+      "tags": [
+        "accesibilidad",
+        "lengua de signos",
+        "traducción",
+        "deepmind"
+      ],
+      "heuristic_score": 29,
+      "url": "https://deepmind.google/blog/putting-sign-language-ai-into-users-hands/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 29,
+      "_rid": 13,
+      "llm_score": 68,
+      "why": "DeepMind lanza un modelo de traducción de lengua de signos a texto enfocado en la accesibilidad para el usuario final.",
+      "title_es": "IA de lengua de signos en manos de los usuarios",
+      "entities": [
+        "DeepMind",
+        "Putting"
+      ],
+      "noise_penalty": 4,
+      "final_score": 58,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(4)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "FarSky: Task-Aware Latent-Space Coupling for Generative Intra-Hour Solar Forecasting",
+      "link": "https://arxiv.org/abs/2608.11254",
+      "published": "2026-08-13T04:00:00+00:00",
+      "summary": "arXiv:2608.11254v1 Announce Type: new Abstract: Accurate solar irradiance forecasting is essential for the reliable integration of photovoltaic power into modern electricity grids. All-sky rs (ASI) provide high-resolution observations of clouds, making them well suited for intra-hour forecasting. Recent deep learning approaches have substantially improved forecast accuracy but are often limited by deterministic predictions and a reduced capability to anticipate ramp events. This work proposes FarSky, a generative forecasting framework that leverages latent-space coupling to learn task-aware representations of sky s. A multi-task autoencoder first learns a shared latent representation for reconstruction and irradiance estimation. A latent diffusion model then generates future latent states conditioned on recent observations, from which irradiance forecasts are directly decoded. Probabilistic forecasts are inherently obtained through stochastic sampling. The framework is developed using a multi-year ASI dataset acquired at the Plataforma Solar de Almer\\'ia, Spain, and evaluated on two independent test datasets against persistence, state-of-the-art end-to-end, and generative forecasting approaches. FarSky achieves the best overall deterministic and probabilistic forecasting performance, improving forecast skill by up to 11 percentage points. Furthermore, it substantially improves ramp event detection over existing methods, achieving F1-scores above 60%. These results demonstrate the potential of combining generative models with task-aware latent-space coupling for solar forecasting.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "FarSky: Task-Aware Latent-Space Coupling for Generative Intra-Hour Solar Forecasting",
+      "raw_summary": "arXiv:2608.11254v1 Announce Type: new Abstract: Accurate solar irradiance forecasting is essential for the reliable integration of photovoltaic power into modern electricity grids. All-sky imagers (ASI) provide high-resolution observations of clouds, making them well suited for intra-hour forecasting. Recent deep learning approaches have substantially improved forecast accuracy but are often limited by deterministic predictions and a reduced capability to anticipate ramp events. This work proposes FarSky, a generative forecasting framework that leverages latent-space coupling to learn task-aware representations of sky images. A multi-task autoencoder first learns a shared latent representation for image reconstruction and irradiance estimation. A latent diffusion model then generates future latent states conditioned on recent observations, from which irradiance forecasts are directly decoded. Probabilistic forecasts are inherently obtained through stochastic sampling. The framework is developed using a multi-year ASI dataset acquired at the Plataforma Solar de Almer\\'ia, Spain, and evaluated on two independent test datasets against persistence, state-of-the-art end-to-end, and generative forecasting approaches. FarSky achieves the best overall deterministic and probabilistic forecasting performance, improving forecast skill by up to 11 percentage points. Furthermore, it substantially improves ramp event detection over existing methods, achieving F1-scores above 60%. These results demonstrate the potential of combining generative models with task-aware latent-space coupling for solar forecasting.",
+      "score": 54,
+      "primary": "misc",
+      "tags": [
+        "energía solar",
+        "predicción",
+        "modelos generativos",
+        "clima"
+      ],
+      "heuristic_score": 54,
+      "url": "https://arxiv.org/abs/2608.11254",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 54,
+      "_rid": 11,
+      "llm_score": 64,
+      "why": "Aplica modelos generativos en espacio latente para predecir la radiación solar con alta precisión en intervalos cortos.",
+      "title_es": "FarSky: Acoplamiento de espacio latente para la predicción generativa de energía solar intra-horaria",
+      "entities": [
+        "arXiv",
+        "Task",
+        "Aware Latent",
+        "Space Coupling",
+        "Generative Intra",
+        "Hour Solar Forecasting"
+      ],
+      "noise_penalty": 8,
+      "final_score": 54,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(8)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Boost Front-End SoC Design With Defacto’s AI-Powered Tool",
+      "link": "https://semiwiki.com/eda/defacto-technologies/372101-boost-front-end-soc-design-with-defactos-ai-powered-tool/",
+      "published": "2026-08-12T13:00:56+00:00",
+      "summary": "Front-end SoC design has always been a balancing act between speed, accuracy, and the large amount of manual work required to get RTL, IPs, and collaterals to be aligned. In a recent webinar, Defacto CEO and founder Chouki Aktouf joined by product manager Valentin Boyer, walked through how the company is bringing AI directly into&8230; Read More The post Boost Front-End SoC Design With Defacto&8217;s AI-Powered Tool appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "Boost Front-End SoC Design With Defacto’s AI-Powered Tool",
+      "raw_summary": "Front-end SoC design has always been a balancing act between speed, accuracy, and the large amount of manual work required to get RTL, IPs, and collaterals to be aligned. In a recent webinar, Defacto CEO and founder Chouki Aktouf joined by product manager Valentin Boyer, walked through how the company is bringing AI directly into&#8230; Read More The post Boost Front-End SoC Design With Defacto&#8217;s AI-Powered Tool appeared first on SemiWiki .",
+      "score": 52,
+      "primary": "infra",
+      "tags": [
+        "soc",
+        "rtl",
+        "diseño hardware",
+        "eda"
+      ],
+      "heuristic_score": 23,
+      "url": "https://semiwiki.com/eda/defacto-technologies/372101-boost-front-end-soc-design-with-defactos-ai-powered-tool/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 23,
+      "_rid": 14,
+      "llm_score": 67,
+      "why": "La IA llega al diseño de SoCs front-end para acelerar la alineación de IP y RTL, reduciendo el trabajo manual.",
+      "title_es": "Impulso al diseño frontal de SoCs con la herramienta de Defacto impulsada por IA",
+      "entities": [
+        "Defacto Technologies",
+        "SemiWiki",
+        "Boost Front",
+        "End",
+        "Design With Defacto",
+        "Powered Tool"
+      ],
+      "noise_penalty": 8,
+      "final_score": 52,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(8)",
+      "strategic_theme": "compute_chips_dc"
+    }
+  ]
+}
