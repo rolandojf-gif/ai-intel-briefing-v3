@@ -1,0 +1,686 @@
+{
+  "date": "2026-08-19",
+  "score_avg": 71.87,
+  "primary_dist": {
+    "infra": 4,
+    "models": 9,
+    "invest": 1,
+    "misc": 1
+  },
+  "top_entities": [
+    {
+      "entity": "Systems",
+      "count": 2
+    },
+    {
+      "entity": "DeepMind",
+      "count": 2
+    },
+    {
+      "entity": "Applied Materials",
+      "count": 1
+    },
+    {
+      "entity": "OCP",
+      "count": 1
+    },
+    {
+      "entity": "Beyond Moore",
+      "count": 1
+    }
+  ],
+  "briefing": {
+    "signals": [
+      "La IA en semiconductores vira hacia la optimización de materiales para superar los límites físicos de la ley de Moore.",
+      "Los sistemas de gobernanza en tiempo de ejecución son ahora esenciales para delegar acciones críticas a agentes de IA.",
+      "La robótica avanza hacia la colaboración multi-robot y el razonamiento visual profundo con el nuevo Gemini ER 2.",
+      "El sector salud adopta agentes especializados bajo estándares CDISC para automatizar procesos regulatorios complejos.",
+      "El diseño de chips (EDA) se vuelve agéntico, integrando IA en todo el flujo de desarrollo de hardware avanzado."
+    ],
+    "risks": [
+      "Alucinaciones de LLMs en entornos clínicos que requieren validación estricta mediante grafos de procesos dirigidos.",
+      "Fugas de información privada institucional (PHI) por falta de contexto local en sistemas de desidentificación.",
+      "Inseguridad operativa en agentes de IA que carecen de fronteras de ejecución y sistemas de fallo cerrado (fail-closed)."
+    ],
+    "watch": [
+      "Despliegue de Gemini Robotics ER 2 en entornos reales de colaboración hombre-máquina y multi-robot.",
+      "Adopción de arquitecturas de memoria externa (Engram-style) que permiten transferir conocimientos entre modelos.",
+      "Resultados de la misión Genesis respaldada por Google para acelerar descubrimientos científicos mediante IA."
+    ],
+    "entities_top": [
+      "Google DeepMind",
+      "Applied Materials",
+      "PDF Solutions"
+    ]
+  },
+  "items": [
+    {
+      "title": "Beyond Moore: Co-Optimizing AI from Systems to Materials",
+      "link": "https://semiwiki.com/semiconductor-manufacturers/372192-beyond-moore-co-optimizing-ai-from-systems-to-materials/",
+      "published": "2026-08-18T17:00:26+00:00",
+      "summary": "At the OCP APAC Summit in Taiwan , August 11–12, 2026, Applied Materials’ Subi Kengeri framed artificial intelligence as the semiconductor industry’s largest inflection point. AI demand is accelerating the industry toward one trillion dollars in annual revenue, but the keynote’s central message was more consequential than&8230; Read More The post Beyond Moore: Co-Optimizing AI from Systems to Materials appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "Beyond Moore: Co-Optimizing AI from Systems to Materials",
+      "raw_summary": "At the OCP APAC Summit in Taiwan , August 11–12, 2026, Applied Materials’ Subi Kengeri framed artificial intelligence as the semiconductor industry’s largest inflection point. AI demand is accelerating the industry toward one trillion dollars in annual revenue, but the keynote’s central message was more consequential than&#8230; Read More The post Beyond Moore: Co-Optimizing AI from Systems to Materials appeared first on SemiWiki .",
+      "score": 86,
+      "primary": "infra",
+      "tags": [
+        "semiconductors",
+        "moore-law",
+        "materials",
+        "ai-demand"
+      ],
+      "heuristic_score": 54,
+      "url": "https://semiwiki.com/semiconductor-manufacturers/372192-beyond-moore-co-optimizing-ai-from-systems-to-materials/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 54,
+      "_rid": 8,
+      "llm_score": 92,
+      "why": "Plantea la IA como el motor de una industria de semiconductores de un billón de dólares, exigiendo innovación desde la base de materiales.",
+      "title_es": "Más allá de Moore: Co-optimización de la IA desde los sistemas hasta los materiales",
+      "entities": [
+        "Applied Materials",
+        "OCP",
+        "Beyond Moore",
+        "Optimizing",
+        "Systems",
+        "Materials"
+      ],
+      "noise_penalty": 0,
+      "final_score": 86,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "Institution-Specific LLM Prompting Recovers PHI That De-identification Systems and Their Gold Standards Both Miss",
+      "link": "https://arxiv.org/abs/2608.17051",
+      "published": "2026-08-19T04:00:00+00:00",
+      "summary": "arXiv:2608.17051v1 Announce Type: new Abstract: Secondary use of electronic health records requires de-identification, yet existing systems miss \\emph{institutionally situated} protected health information (PHI) such as hospital abbreviations, building names, and internal codes whose status is locally determined. We ask whether large language models (LLMs) with in-context learning (ICL) can close this gap and control the precision--recall trade-off. On 100 annotated pediatric oncology notes (5,322 PHI spans) from Texas Children's Hospital, we benchmarked eight LLMs against two purpose-built systems (Stanford TiDE, OpenMed PII) and two pattern-based baselines. Each LLM ran under three prompts of increasing specificity: (1) a HIPAA-aligned baseline, (2) baseline plus the institutional PHI categories it missed, and (3) prompt 2 plus instructions against over-redacting clinical content. We then compared 14~multi-agent and ensemble configurations against the best single prompt, with recall the primary safety metric. LLMs outperformed the purpose-built systems (best F1=0.918$\\pm$0.001 vs.\\ TiDE 0.779), with advantages concentrated in contextual categories. Naming the missed categories recovered 79\\% (48/61) of them, and discouraging over-redaction restored precision. No agentic architecture beat calibrated single-pass prompting (F1 0.906--0.907), but LLM outputs surfaced 414~candidate annotation gaps; re-annotation confirmed 227~PHI spans, against which the final prompt reached recall=0.981 (F1=0.907$\\pm$0.002). Well-calibrated ICL resolves both the institutional PHI gap and the precision--recall trade-off in one LLM call per note. LLMs cost more to run than traditional methods, but that cost buys a way to audit the reference standard. LLMs are a legitimate, adaptable alternative to purpose-built de-identification systems; institution-specific prompt development should be the primary adaptation strategy.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Institution-Specific LLM Prompting Recovers PHI That De-identification Systems and Their Gold Standards Both Miss",
+      "raw_summary": "arXiv:2608.17051v1 Announce Type: new Abstract: Secondary use of electronic health records requires de-identification, yet existing systems miss \\emph{institutionally situated} protected health information (PHI) such as hospital abbreviations, building names, and internal codes whose status is locally determined. We ask whether large language models (LLMs) with in-context learning (ICL) can close this gap and control the precision--recall trade-off. On 100 annotated pediatric oncology notes (5,322 PHI spans) from Texas Children's Hospital, we benchmarked eight LLMs against two purpose-built systems (Stanford TiDE, OpenMed PII) and two pattern-based baselines. Each LLM ran under three prompts of increasing specificity: (1) a HIPAA-aligned baseline, (2) baseline plus the institutional PHI categories it missed, and (3) prompt 2 plus instructions against over-redacting clinical content. We then compared 14~multi-agent and ensemble configurations against the best single prompt, with recall the primary safety metric. LLMs outperformed the purpose-built systems (best F1=0.918$\\pm$0.001 vs.\\ TiDE 0.779), with advantages concentrated in contextual categories. Naming the missed categories recovered 79\\% (48/61) of them, and discouraging over-redaction restored precision. No agentic architecture beat calibrated single-pass prompting (F1 0.906--0.907), but LLM outputs surfaced 414~candidate annotation gaps; re-annotation confirmed 227~PHI spans, against which the final prompt reached recall=0.981 (F1=0.907$\\pm$0.002). Well-calibrated ICL resolves both the institutional PHI gap and the precision--recall trade-off in one LLM call per note. LLMs cost more to run than traditional methods, but that cost buys a way to audit the reference standard. LLMs are a legitimate, adaptable alternative to purpose-built de-identification systems; institution-specific prompt development should be the primary adaptation strategy.",
+      "score": 83,
+      "primary": "models",
+      "tags": [
+        "privacy",
+        "healthcare",
+        "phi",
+        "de-identification"
+      ],
+      "heuristic_score": 91,
+      "url": "https://arxiv.org/abs/2608.17051",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 91,
+      "_rid": 5,
+      "llm_score": 82,
+      "why": "Demuestra que los LLMs con contexto local pueden identificar datos privados de salud que los sistemas estándar de desidentificación omiten.",
+      "title_es": "El prompting de LLM específico de la institución recupera PHI que los sistemas de desidentificación omiten",
+      "entities": [
+        "Texas Children's Hospital",
+        "Stanford TiDE",
+        "PHI",
+        "Institution",
+        "Specific",
+        "Prompting Recovers",
+        "That De",
+        "Systems"
+      ],
+      "noise_penalty": 0,
+      "final_score": 83,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Foundation Agents Meet Agentic Deep Research: Evidence-Grounded Clinical Code Forecasting",
+      "link": "https://arxiv.org/abs/2608.17075",
+      "published": "2026-08-19T04:00:00+00:00",
+      "summary": "arXiv:2608.17075v1 Announce Type: new Abstract: Next-encounter ICD forecasting predicts which standardized diagnosis codes will be documented at a future visit from the longitudinal record available beforehand. The task is prospective and multi-label: the target note does not yet exist, and several codes may be correct. Structured EHR foundation models capture recurrence and temporal progression, whereas language foundation models generate flexible diagnostic hypotheses. We introduce ICD-Deepresearch, a DeepResearch workflow that composes these predictive foundation models with medical search and ICD dictionaries. Because no source reveals the future code set, research evaluates candidate transitions by linking patient evidence, external clinical relations, and exact code semantics under a fixed top-K budget. Candidate Generation uses SparseEHR to produce an EHR Prior that initializes two bounded Research Expansion rounds; an independent GPT-5 Direct Forecast supplies complementary candidates. Final Selection validates, deduplicates, and jointly ranks both paths, after which a separate module writes rationales without changing predictions. Finally ICD-Deepresearch achieves patient-averaged precision/recall of 24.60/35.09% on MIMIC-III and 25.14/48.32% on MIMIC-IV. Physicians rate 51% and 68% of its retrieved documents useful, compared with 22% and 39% for standalone GPT-5 web search and 32% and 41% for Medical Deep Research. ICD-Deepresearch therefore improves over the registered local comparators while retrieving evidence with higher physician-rated usefulness than the standalone research systems",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Foundation Agents Meet Agentic Deep Research: Evidence-Grounded Clinical Code Forecasting",
+      "raw_summary": "arXiv:2608.17075v1 Announce Type: new Abstract: Next-encounter ICD forecasting predicts which standardized diagnosis codes will be documented at a future visit from the longitudinal record available beforehand. The task is prospective and multi-label: the target note does not yet exist, and several codes may be correct. Structured EHR foundation models capture recurrence and temporal progression, whereas language foundation models generate flexible diagnostic hypotheses. We introduce ICD-Deepresearch, a DeepResearch workflow that composes these predictive foundation models with medical search and ICD dictionaries. Because no source reveals the future code set, research evaluates candidate transitions by linking patient evidence, external clinical relations, and exact code semantics under a fixed top-K budget. Candidate Generation uses SparseEHR to produce an EHR Prior that initializes two bounded Research Expansion rounds; an independent GPT-5 Direct Forecast supplies complementary candidates. Final Selection validates, deduplicates, and jointly ranks both paths, after which a separate module writes rationales without changing predictions. Finally ICD-Deepresearch achieves patient-averaged precision/recall of 24.60/35.09% on MIMIC-III and 25.14/48.32% on MIMIC-IV. Physicians rate 51% and 68% of its retrieved documents useful, compared with 22% and 39% for standalone GPT-5 web search and 32% and 41% for Medical Deep Research. ICD-Deepresearch therefore improves over the registered local comparators while retrieving evidence with higher physician-rated usefulness than the standalone research systems",
+      "score": 81,
+      "primary": "models",
+      "tags": [
+        "healthcare",
+        "clinical-coding",
+        "forecasting",
+        "ehr"
+      ],
+      "heuristic_score": 61,
+      "url": "https://arxiv.org/abs/2608.17075",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 61,
+      "_rid": 7,
+      "llm_score": 84,
+      "why": "Combina modelos de cimentación con flujos de investigación profunda para predecir códigos de diagnóstico médico futuros a partir de historiales.",
+      "title_es": "Agentes de cimentación y Deep Research: Predicción de códigos clínicos basada en evidencia",
+      "entities": [
+        "ICD-Deepresearch",
+        "Foundation Agents Meet",
+        "Agentic Deep Research",
+        "Evidence",
+        "Grounded Clinical Code",
+        "Forecasting"
+      ],
+      "noise_penalty": 0,
+      "final_score": 81,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "GxP-Agent: Process-DAG Topology for Reliable Clinical Trial Programming with LLM Agents",
+      "link": "https://arxiv.org/abs/2608.16890",
+      "published": "2026-08-19T04:00:00+00:00",
+      "summary": "arXiv:2608.16890v1 Announce Type: new Abstract: Clinical trial programming -- transforming study protocols into analysis-ready datasets under CDISC standards -- is a bottleneck in regulatory submissions, yet LLM-based code generation fails catastrophically on this task: across 11 single-shot attempts with five frontier models, none produces a valid subject-level analysis dataset. We introduce GxP-Agent, a multi-agent system that encodes regulatory process ordering as a directed acyclic graph (DAG), decomposing monolithic dataset generation into 15 domain-specific nodes executed by worker agents with pharmaverse skill context, validation gates, and conditional retry. On CDISC-Bench, a new execution-based benchmark built from the FDA pilot submission CDISCPilot01 (254 subjects, 49 ground-truth ADSL variables), GxP-Agent with Claude Sonnet 4.6 achieves 100% structural match (49/49 variables, 254 correct records) across three independent runs, compared to 59.2% for the best retrieval-augmented baseline and 0% for all single-agent and flat multi-agent approaches. The DAG topology also enables weaker models: GPT-4.1 achieves 59.2% mean structural match under the same DAG, where it scores 0% under every other architecture. The approach generalizes to ADAE (adverse events; 9-node branching DAG, 55 variables, 1,191 records), achieving 100% structural match on the first attempt. These results demonstrate that encoding domain process knowledge as graph topology -- rather than relying on LLM reasoning alone -- is a key enabler for reliable, GxP-compliant clinical trial programming.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "GxP-Agent: Process-DAG Topology for Reliable Clinical Trial Programming with LLM Agents",
+      "raw_summary": "arXiv:2608.16890v1 Announce Type: new Abstract: Clinical trial programming -- transforming study protocols into analysis-ready datasets under CDISC standards -- is a bottleneck in regulatory submissions, yet LLM-based code generation fails catastrophically on this task: across 11 single-shot attempts with five frontier models, none produces a valid subject-level analysis dataset. We introduce GxP-Agent, a multi-agent system that encodes regulatory process ordering as a directed acyclic graph (DAG), decomposing monolithic dataset generation into 15 domain-specific nodes executed by worker agents with pharmaverse skill context, validation gates, and conditional retry. On CDISC-Bench, a new execution-based benchmark built from the FDA pilot submission CDISCPilot01 (254 subjects, 49 ground-truth ADSL variables), GxP-Agent with Claude Sonnet 4.6 achieves 100% structural match (49/49 variables, 254 correct records) across three independent runs, compared to 59.2% for the best retrieval-augmented baseline and 0% for all single-agent and flat multi-agent approaches. The DAG topology also enables weaker models: GPT-4.1 achieves 59.2% mean structural match under the same DAG, where it scores 0% under every other architecture. The approach generalizes to ADAE (adverse events; 9-node branching DAG, 55 variables, 1,191 records), achieving 100% structural match on the first attempt. These results demonstrate that encoding domain process knowledge as graph topology -- rather than relying on LLM reasoning alone -- is a key enabler for reliable, GxP-compliant clinical trial programming.",
+      "score": 79,
+      "primary": "models",
+      "tags": [
+        "agentes",
+        "pharma",
+        "clinical-trials",
+        "llm"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2608.16890",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 1,
+      "llm_score": 85,
+      "why": "Introduce un sistema multi-agente con grafos de procesos para automatizar de forma fiable la programación de ensayos clínicos complejos.",
+      "title_es": "GxP-Agent: Topología de procesos-DAG para programación fiable de ensayos clínicos con agentes LLM",
+      "entities": [
+        "CDISC",
+        "pharmaverse",
+        "DAG",
+        "Agent",
+        "Process",
+        "Topology",
+        "Reliable Clinical Trial",
+        "Programming"
+      ],
+      "noise_penalty": 8,
+      "final_score": 79,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(8)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Runtime Governance for Agentic AI: Action-Boundary Control with Trusted Provenance and Fail-Closed Execution",
+      "link": "https://arxiv.org/abs/2608.16891",
+      "published": "2026-08-19T04:00:00+00:00",
+      "summary": "arXiv:2608.16891v1 Announce Type: new Abstract: Agentic AI systems request tool actions that can modify files, send messages, launch jobs, or change workflow state. This shifts the safety problem from harmful text generation to harmful operational side effects. Prompt-level governance can shape model behavior, but it does not create an execution boundary. We introduce Aegis, a runtime governance system that treats model outputs as action proposals and mediates them through a trusted decision layer before tool execution. The model proposes; the trusted runtime decides. Aegis evaluates proposals against active policy state, resolves provenance server-side, fails closed under uncertainty, and routes selected cases through Senate-style settlement, a quorum- based non-unilateral authorization path. We evaluate Aegis on a repeated sandbox corpus spanning five run families, 42 tasks, three conditions, and ten repeats per family. Across 6,300 rows, prompt-policy conditioning produced 79 risky comparator-path leakage rows. Across 2,100 Aegis-governed rows, the system recorded zero governed mock-tool applications and zero governed risky side-effect completions. All 1,832 Aegis-attempted governed rows preserved trusted Aegis-resolved provenance, and all 1,019 Senate-settled rows had quorum and final signed tally evidence. These results do not prove general autonomous-agent safety. They support the narrower systems claim that, in this evaluated sandbox corpus, runtime action-boundary governance prevented observed risky proposals from becoming governed side effects.",
+      "source": "arXiv cs.AI",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Runtime Governance for Agentic AI: Action-Boundary Control with Trusted Provenance and Fail-Closed Execution",
+      "raw_summary": "arXiv:2608.16891v1 Announce Type: new Abstract: Agentic AI systems request tool actions that can modify files, send messages, launch jobs, or change workflow state. This shifts the safety problem from harmful text generation to harmful operational side effects. Prompt-level governance can shape model behavior, but it does not create an execution boundary. We introduce Aegis, a runtime governance system that treats model outputs as action proposals and mediates them through a trusted decision layer before tool execution. The model proposes; the trusted runtime decides. Aegis evaluates proposals against active policy state, resolves provenance server-side, fails closed under uncertainty, and routes selected cases through Senate-style settlement, a quorum- based non-unilateral authorization path. We evaluate Aegis on a repeated sandbox corpus spanning five run families, 42 tasks, three conditions, and ten repeats per family. Across 6,300 rows, prompt-policy conditioning produced 79 risky comparator-path leakage rows. Across 2,100 Aegis-governed rows, the system recorded zero governed mock-tool applications and zero governed risky side-effect completions. All 1,832 Aegis-attempted governed rows preserved trusted Aegis-resolved provenance, and all 1,019 Senate-settled rows had quorum and final signed tally evidence. These results do not prove general autonomous-agent safety. They support the narrower systems claim that, in this evaluated sandbox corpus, runtime action-boundary governance prevented observed risky proposals from becoming governed side effects.",
+      "score": 78,
+      "primary": "models",
+      "tags": [
+        "governance",
+        "agentic-ai",
+        "security",
+        "runtime"
+      ],
+      "heuristic_score": 74,
+      "url": "https://arxiv.org/abs/2608.16891",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 74,
+      "_rid": 6,
+      "llm_score": 88,
+      "why": "Presenta Aegis, un sistema de gobernanza que actúa como capa de decisión segura antes de que los agentes de IA ejecuten acciones en el mundo real.",
+      "title_es": "Gobernanza en tiempo de ejecución para IA agéntica: Control de fronteras de acción con ejecución de fallo cerrado",
+      "entities": [
+        "Aegis",
+        "Runtime Governance",
+        "Agentic",
+        "Action",
+        "Boundary Control",
+        "Trusted Provenance",
+        "Fail",
+        "Closed Execution"
+      ],
+      "noise_penalty": 8,
+      "final_score": 78,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(8)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Cross-Model Memory Transfer via Target-Side Reader Adaptation",
+      "link": "https://arxiv.org/abs/2608.17050",
+      "published": "2026-08-19T04:00:00+00:00",
+      "summary": "arXiv:2608.17050v1 Announce Type: new Abstract: Methods for improving knowledge use in large language models typically fall into two regimes. Non-parametric retrieval offers flexible access to external knowledge, but adds retrieval latency, context overhead, and only shallow integration with the backbone. Parametric adaptation is efficient at inference time, but entangles knowledge with model weights and can be hard to update, audit, or transfer. Engram-style hashed memory occupies a middle regime: it stores learned information in an external, addressable table, yet consumes that table through a small learned reader. This raises a basic question: when such a memory is moved across backbones, what matters more, the frozen memory itself or the target-side reader? We study this question through cross-model frozen-memory extraction, in which a memory trained on a source model is frozen and attached to a different target model, with only a lightweight reader trained. Ablations show that learned memory content and correct addressing both matter, but the transferred table becomes useful only through a reader aligned to the target model. In downstream question answering tasks, a dual-layer, four-branch reader nearly closes the gap between same-model and cross-model reuse, achieving an average score of 38.8 under our controlled evaluation protocol. Moreover, when the provider reader is directly compatible with the target interface, the frozen artifact can provide substantial utility without target-side training, while optional reader adaptation yields further improvement. These results suggest that Engram can serve as a reusable external knowledge artifact, provided that the target has access to a compatible reader interface; target-side adaptation can further improve alignment when direct reader reuse is insufficient.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Cross-Model Memory Transfer via Target-Side Reader Adaptation",
+      "raw_summary": "arXiv:2608.17050v1 Announce Type: new Abstract: Methods for improving knowledge use in large language models typically fall into two regimes. Non-parametric retrieval offers flexible access to external knowledge, but adds retrieval latency, context overhead, and only shallow integration with the backbone. Parametric adaptation is efficient at inference time, but entangles knowledge with model weights and can be hard to update, audit, or transfer. Engram-style hashed memory occupies a middle regime: it stores learned information in an external, addressable table, yet consumes that table through a small learned reader. This raises a basic question: when such a memory is moved across backbones, what matters more, the frozen memory itself or the target-side reader? We study this question through cross-model frozen-memory extraction, in which a memory trained on a source model is frozen and attached to a different target model, with only a lightweight reader trained. Ablations show that learned memory content and correct addressing both matter, but the transferred table becomes useful only through a reader aligned to the target model. In downstream question answering tasks, a dual-layer, four-branch reader nearly closes the gap between same-model and cross-model reuse, achieving an average score of 38.8 under our controlled evaluation protocol. Moreover, when the provider reader is directly compatible with the target interface, the frozen artifact can provide substantial utility without target-side training, while optional reader adaptation yields further improvement. These results suggest that Engram can serve as a reusable external knowledge artifact, provided that the target has access to a compatible reader interface; target-side adaptation can further improve alignment when direct reader reuse is insufficient.",
+      "score": 77,
+      "primary": "models",
+      "tags": [
+        "memory-transfer",
+        "efficiency",
+        "parametric-adaptation"
+      ],
+      "heuristic_score": 92,
+      "url": "https://arxiv.org/abs/2608.17050",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 92,
+      "_rid": 3,
+      "llm_score": 74,
+      "why": "Investiga cómo transferir memorias externas entre distintos modelos de lenguaje mediante la adaptación de lectores específicos.",
+      "title_es": "Transferencia de memoria entre modelos mediante la adaptación del lector en el lado del objetivo",
+      "entities": [
+        "Cross",
+        "Model Memory Transfer",
+        "Target",
+        "Side Reader Adaptation"
+      ],
+      "noise_penalty": 0,
+      "final_score": 77,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Focusing on the AI Big Picture with Moores Lab AI at DAC 2026",
+      "link": "https://semiwiki.com/eda/moores-lab-ai/372168-focusing-on-the-ai-big-picture-with-moores-lab-ai-at-dac-2026/",
+      "published": "2026-08-18T13:00:06+00:00",
+      "summary": "DAC 2026 proved that agentic AI design flows are here to stay. The news was conveyed both by familiar companies who we’ve seen at DAC many times before as well as new entrants to the show and the industry. Many of the solutions that were presented focused on a specific part of the design flow. Others took a broader view of the problem and&8230; Read More The post Focusing on the AI Big Picture with Moores Lab AI at DAC 2026 appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "Focusing on the AI Big Picture with Moores Lab AI at DAC 2026",
+      "raw_summary": "DAC 2026 proved that agentic AI design flows are here to stay. The news was conveyed both by familiar companies who we’ve seen at DAC many times before as well as new entrants to the show and the industry. Many of the solutions that were presented focused on a specific part of the design flow. Others took a broader view of the problem and&#8230; Read More The post Focusing on the AI Big Picture with Moores Lab AI at DAC 2026 appeared first on SemiWiki .",
+      "score": 74,
+      "primary": "infra",
+      "tags": [
+        "eda",
+        "chip-design",
+        "agents",
+        "automation"
+      ],
+      "heuristic_score": 21,
+      "url": "https://semiwiki.com/eda/moores-lab-ai/372168-focusing-on-the-ai-big-picture-with-moores-lab-ai-at-dac-2026/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 21,
+      "_rid": 15,
+      "llm_score": 83,
+      "why": "Confirma la consolidación de los agentes de IA en los flujos de diseño electrónico para automatizar la creación de hardware complejo.",
+      "title_es": "Enfoque en la visión global de la IA con Moores Lab AI en el DAC 2026",
+      "entities": [
+        "Moores Lab AI",
+        "DAC 2026",
+        "DAC",
+        "Focusing",
+        "Big Picture",
+        "Moores Lab"
+      ],
+      "noise_penalty": 0,
+      "final_score": 74,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Margin-Regularized Structured Semantic Alignment for Brain-Language Correspondence",
+      "link": "https://arxiv.org/abs/2608.16975",
+      "published": "2026-08-19T04:00:00+00:00",
+      "summary": "arXiv:2608.16975v1 Announce Type: new Abstract: With the rapid advancement of large language models, brain-language decoding has achieved remarkable progress. However, it remains unclear whether decoded content genuinely reflects neural representations or is largely reconstructed by the language model itself. This ambiguity limits interpretability and hinders the investigation of intrinsic brain-language correspondence. To address this challenge, we propose MD-SigLIP. This margin-regularized structured semantic alignment framework directly aligns brain embeddings with text embeddings in a shared semantic space, enabling retrieval-based decoding. This formulation enables explicit modeling of the correspondence between neural representations and language semantics. Building upon duplicate-aware sigmoid contrastive learning, we introduce a listwise margin-regularized term that enforces structured ranking constraints between positive semantic clusters and negative samples. By modeling multi-positive semantic structure and margin-based ordering simultaneously, the method captures the manifold organization of language embeddings reflected in neural signals. Experiments demonstrate state-of-the-art retrieval performance under both full-vocabulary and subset evaluation settings.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Margin-Regularized Structured Semantic Alignment for Brain-Language Correspondence",
+      "raw_summary": "arXiv:2608.16975v1 Announce Type: new Abstract: With the rapid advancement of large language models, brain-language decoding has achieved remarkable progress. However, it remains unclear whether decoded content genuinely reflects neural representations or is largely reconstructed by the language model itself. This ambiguity limits interpretability and hinders the investigation of intrinsic brain-language correspondence. To address this challenge, we propose MD-SigLIP. This margin-regularized structured semantic alignment framework directly aligns brain embeddings with text embeddings in a shared semantic space, enabling retrieval-based decoding. This formulation enables explicit modeling of the correspondence between neural representations and language semantics. Building upon duplicate-aware sigmoid contrastive learning, we introduce a listwise margin-regularized term that enforces structured ranking constraints between positive semantic clusters and negative samples. By modeling multi-positive semantic structure and margin-based ordering simultaneously, the method captures the manifold organization of language embeddings reflected in neural signals. Experiments demonstrate state-of-the-art retrieval performance under both full-vocabulary and subset evaluation settings.",
+      "score": 73,
+      "primary": "models",
+      "tags": [
+        "neuroscience",
+        "decoding",
+        "alignment",
+        "brain-language"
+      ],
+      "heuristic_score": 100,
+      "url": "https://arxiv.org/abs/2608.16975",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "_rid": 2,
+      "llm_score": 68,
+      "why": "Propone un marco de alineación semántica para mejorar la interpretación de cómo los modelos de lenguaje reflejan las representaciones cerebrales.",
+      "title_es": "Alineación semántica estructurada regularizada por margen para la correspondencia cerebro-lenguaje",
+      "entities": [
+        "MD-SigLIP",
+        "Margin",
+        "Regularized Structured Semantic",
+        "Alignment",
+        "Brain",
+        "Language Correspondence"
+      ],
+      "noise_penalty": 0,
+      "final_score": 73,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "agents_automation"
+    },
+    {
+      "title": "Uncertainty-Aware Decision Making in Multimodal Large Language Models",
+      "link": "https://arxiv.org/abs/2608.17084",
+      "published": "2026-08-19T04:00:00+00:00",
+      "summary": "arXiv:2608.17084v1 Announce Type: new Abstract: Multimodal large language models (MLLMs) increasingly answer questions whose correctness depends on visual, textual, temporal, acoustic, document, chart, or embodied evidence. Their failures are therefore not only linguistic. A fluent answer may conceal poor input quality, a perceptual error, weak grounding, conflict between modalities, unstable reasoning, distribution shift, or a question that is not answerable from the supplied evidence. This survey organizes the literature on uncertainty-aware MLLMs around a decision-centered framework: uncertainty sources give rise to observable signals, signals must be calibrated or controlled for risk, and calibrated uncertainty should determine the system action. We review work on token and logit uncertainty, semantic disagreement, perturbation instability, grounding and attribution scores, verbalized confidence, verifier and judge scores, conformal prediction, selective answering, abstention, clarification, retrieval, self-checking, and escalation. The central argument is that uncertainty should not be evaluated only as a confidence number; it should be evaluated by whether it improves behavior under insufficient, conflicting, shifted, or high-risk multimodal evidence. We position this survey against text-only uncertainty and abstention surveys, broad MLLM surveys, MLLM hallucination surveys, and safety-oriented reviews. We conclude with open problems in source-aware decomposition, action-aware benchmarks, calibration under shift, black-box uncertainty estimation, broader modality coverage, reproducible reporting, and human-centered uncertainty communication.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "Uncertainty-Aware Decision Making in Multimodal Large Language Models",
+      "raw_summary": "arXiv:2608.17084v1 Announce Type: new Abstract: Multimodal large language models (MLLMs) increasingly answer questions whose correctness depends on visual, textual, temporal, acoustic, document, chart, or embodied evidence. Their failures are therefore not only linguistic. A fluent answer may conceal poor input quality, a perceptual error, weak grounding, conflict between modalities, unstable reasoning, distribution shift, or a question that is not answerable from the supplied evidence. This survey organizes the literature on uncertainty-aware MLLMs around a decision-centered framework: uncertainty sources give rise to observable signals, signals must be calibrated or controlled for risk, and calibrated uncertainty should determine the system action. We review work on token and logit uncertainty, semantic disagreement, perturbation instability, grounding and attribution scores, verbalized confidence, verifier and judge scores, conformal prediction, selective answering, abstention, clarification, retrieval, self-checking, and escalation. The central argument is that uncertainty should not be evaluated only as a confidence number; it should be evaluated by whether it improves behavior under insufficient, conflicting, shifted, or high-risk multimodal evidence. We position this survey against text-only uncertainty and abstention surveys, broad MLLM surveys, MLLM hallucination surveys, and safety-oriented reviews. We conclude with open problems in source-aware decomposition, action-aware benchmarks, calibration under shift, black-box uncertainty estimation, broader modality coverage, reproducible reporting, and human-centered uncertainty communication.",
+      "score": 73,
+      "primary": "models",
+      "tags": [
+        "multimodal",
+        "uncertainty",
+        "safety",
+        "mllm"
+      ],
+      "heuristic_score": 92,
+      "url": "https://arxiv.org/abs/2608.17084",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 92,
+      "_rid": 4,
+      "llm_score": 70,
+      "why": "Analiza las fuentes de incertidumbre en modelos multimodales para mejorar la toma de decisiones y el control de riesgos operativos.",
+      "title_es": "Toma de decisiones consciente de la incertidumbre en modelos de lenguaje de gran tamaño multimodales",
+      "entities": [
+        "Uncertainty",
+        "Aware Decision Making",
+        "Multimodal Large Language",
+        "Models"
+      ],
+      "noise_penalty": 0,
+      "final_score": 73,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Gemini Robotics ER 2: powering robotics with video understanding, task orchestration, and multi-robot collaboration",
+      "link": "https://deepmind.google/blog/gemini-robotics-er-2-powering-robotics-with-video-understanding-task-orchestration-and-multi-robot-collaboration/",
+      "published": "2026-07-30T15:00:59+00:00",
+      "summary": "Gemini Robotics ER 2 helps robots reason, collaborate, and solve real-world tasks. It represents a step change in video understanding, tool orchestration, and multi-robot collaboration for robotic applications.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Gemini Robotics ER 2: powering robotics with video understanding, task orchestration, and multi-robot collaboration",
+      "raw_summary": "Gemini Robotics ER 2 helps robots reason, collaborate, and solve real-world tasks. It represents a step change in video understanding, tool orchestration, and multi-robot collaboration for robotic applications.",
+      "score": 73,
+      "primary": "infra",
+      "tags": [
+        "robotics",
+        "video-understanding",
+        "collaboration",
+        "gemini"
+      ],
+      "heuristic_score": 43,
+      "url": "https://deepmind.google/blog/gemini-robotics-er-2-powering-robotics-with-video-understanding-task-orchestration-and-multi-robot-collaboration/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 43,
+      "_rid": 11,
+      "llm_score": 90,
+      "why": "Lanzamiento de un sistema robótico avanzado que integra visión por vídeo y coordinación multi-robot para tareas complejas en el mundo real.",
+      "title_es": "Gemini Robotics ER 2: Potenciando la robótica con comprensión de vídeo y colaboración multi-robot",
+      "entities": [
+        "DeepMind",
+        "Gemini",
+        "Gemini Robotics"
+      ],
+      "noise_penalty": 10,
+      "final_score": 73,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(10)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "PDF Solutions’ Exensio Was Built for Semiconductor Analytics. The New Exensio Aurora Architecture Is Built for Semiconductor Intelligence.",
+      "link": "https://semiwiki.com/artificial-intelligence/372347-pdf-solutions-exensio-was-built-for-semiconductor-analytics-the-new-exensio-aurora-architecture-is-built-for-semiconductor-intelligence/",
+      "published": "2026-08-18T21:00:04+00:00",
+      "summary": "The semiconductor industry doesn&8217;t have a shortage of data. It has a shortage of ways to turn that data into useful manufacturing insights quickly enough to matter. That is the problem PDF Solutions&8217; Exensio solution has addressed for years. Built specifically for semiconductor manufacturing, Exensio brings &8230; Read More The post PDF Solutions’ Exensio Was Built for Semiconductor Analytics. The New Exensio Aurora Architecture Is Built for Semiconductor Intelligence. appeared first on SemiWiki .",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "PDF Solutions’ Exensio Was Built for Semiconductor Analytics. The New Exensio Aurora Architecture Is Built for Semiconductor Intelligence.",
+      "raw_summary": "The semiconductor industry doesn&#8217;t have a shortage of data. It has a shortage of ways to turn that data into useful manufacturing insights quickly enough to matter. That is the problem PDF Solutions&#8217; Exensio solution has addressed for years. Built specifically for semiconductor manufacturing, Exensio brings &#8230; Read More The post PDF Solutions’ Exensio Was Built for Semiconductor Analytics. The New Exensio Aurora Architecture Is Built for Semiconductor Intelligence. appeared first on SemiWiki .",
+      "score": 72,
+      "primary": "infra",
+      "tags": [
+        "manufacturing",
+        "data-analytics",
+        "semiconductors",
+        "intelligence"
+      ],
+      "heuristic_score": 24,
+      "url": "https://semiwiki.com/artificial-intelligence/372347-pdf-solutions-exensio-was-built-for-semiconductor-analytics-the-new-exensio-aurora-architecture-is-built-for-semiconductor-intelligence/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 24,
+      "_rid": 14,
+      "llm_score": 80,
+      "why": "Nueva arquitectura diseñada para transformar los masivos datos de fabricación de chips en inteligencia operativa en tiempo real.",
+      "title_es": "Exensio Aurora: Una arquitectura construida para la inteligencia en la fabricación de semiconductores",
+      "entities": [
+        "PDF Solutions",
+        "Solutions",
+        "Exensio Was Built",
+        "Semiconductor Analytics",
+        "The New Exensio",
+        "Aurora Architecture Is",
+        "Built",
+        "Semiconductor Intelligence"
+      ],
+      "noise_penalty": 0,
+      "final_score": 72,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "compute_chips_dc"
+    },
+    {
+      "title": "There is No Theoretical Curse of Multilinguality For Embedding Space Structure",
+      "link": "https://arxiv.org/abs/2608.17088",
+      "published": "2026-08-19T04:00:00+00:00",
+      "summary": "arXiv:2608.17088v1 Announce Type: new Abstract: A central goal of multilingual NLP is to achieve high monolingual performance per language and cross-lingual alignment for large-scale language coverage with a multilingual model. The curse of multilinguality describes the phenomenon of degradation in multilingual model performance as we increase language coverage, posing a threat to the above goal. This paper asks whether multilingual embedding spaces are inherently incapable of achieving perfect multilinguality without a prohibitive increase in required capacity. We first formalize the goal of \"perfect multilinguality\", embodied in two multilinguality conditions. We then prove that the minimum dimensionality required for perfect multilinguality grows only logarithmically in the number of languages. That is, we show that there is no theoretical curse of multilinguality for embedding space structure. This suggests that the empirical curse of multilinguality is a result of real world data and training conditions. We back this understanding with a small-scale empirical study. Our paper provides the first theoretical and intrinsic perspective on the curse of multilinguality, with implications for the scientific understanding of this phenomenon.",
+      "source": "arXiv cs.CL",
+      "feed_tags": [
+        "papers",
+        "models",
+        "nlp"
+      ],
+      "raw_title": "There is No Theoretical Curse of Multilinguality For Embedding Space Structure",
+      "raw_summary": "arXiv:2608.17088v1 Announce Type: new Abstract: A central goal of multilingual NLP is to achieve high monolingual performance per language and cross-lingual alignment for large-scale language coverage with a multilingual model. The curse of multilinguality describes the phenomenon of degradation in multilingual model performance as we increase language coverage, posing a threat to the above goal. This paper asks whether multilingual embedding spaces are inherently incapable of achieving perfect multilinguality without a prohibitive increase in required capacity. We first formalize the goal of \"perfect multilinguality\", embodied in two multilinguality conditions. We then prove that the minimum dimensionality required for perfect multilinguality grows only logarithmically in the number of languages. That is, we show that there is no theoretical curse of multilinguality for embedding space structure. This suggests that the empirical curse of multilinguality is a result of real world data and training conditions. We back this understanding with a small-scale empirical study. Our paper provides the first theoretical and intrinsic perspective on the curse of multilinguality, with implications for the scientific understanding of this phenomenon.",
+      "score": 68,
+      "primary": "models",
+      "tags": [
+        "multilinguality",
+        "embeddings",
+        "theory",
+        "scaling"
+      ],
+      "heuristic_score": 43,
+      "url": "https://arxiv.org/abs/2608.17088",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 43,
+      "_rid": 10,
+      "llm_score": 72,
+      "why": "Refuta teóricamente la 'maldición de la multilingüidad' demostrando que los espacios de embedding pueden escalar sin pérdida de rendimiento.",
+      "title_es": "No existe una maldición teórica de la multilingüidad para la estructura del espacio de embedding",
+      "entities": [
+        "There",
+        "No Theoretical Curse",
+        "Multilinguality For Embedding",
+        "Space Structure"
+      ],
+      "noise_penalty": 0,
+      "final_score": 68,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(0)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Putting sign language AI into users’ hands",
+      "link": "https://deepmind.google/blog/putting-sign-language-ai-into-users-hands/",
+      "published": "2026-08-12T14:01:59+00:00",
+      "summary": "Introducing sign-language-to-text (SL2T), our breakthrough model powering new sign language features for Deaf and hard of hearing users.",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Putting sign language AI into users’ hands",
+      "raw_summary": "Introducing sign-language-to-text (SL2T), our breakthrough model powering new sign language features for Deaf and hard of hearing users.",
+      "score": 55,
+      "primary": "models",
+      "tags": [
+        "accessibility",
+        "sign-language",
+        "translation",
+        "sl2t"
+      ],
+      "heuristic_score": 29,
+      "url": "https://deepmind.google/blog/putting-sign-language-ai-into-users-hands/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 29,
+      "_rid": 13,
+      "llm_score": 68,
+      "why": "Desarrollo de un modelo capaz de traducir lengua de signos a texto de forma eficiente para usuarios con discapacidad auditiva.",
+      "title_es": "Poniendo la IA de lengua de signos en manos de los usuarios",
+      "entities": [
+        "DeepMind",
+        "Putting"
+      ],
+      "noise_penalty": 7,
+      "final_score": 55,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(7)",
+      "strategic_theme": "frontier_capability"
+    },
+    {
+      "title": "Accelerating the frontiers of scientific discovery: Google’s $40M commitment to the Genesis Mission",
+      "link": "https://deepmind.google/blog/accelerating-the-frontiers-of-scientific-discovery-googles-40m-commitment-to-the-genesis-mission/",
+      "published": "2026-07-22T13:38:54+00:00",
+      "summary": "Google commits $40M in AI tokens and credits for the Genesis Mission",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models"
+      ],
+      "raw_title": "Accelerating the frontiers of scientific discovery: Google’s $40M commitment to the Genesis Mission",
+      "raw_summary": "Google commits $40M in AI tokens and credits for the Genesis Mission",
+      "score": 54,
+      "primary": "invest",
+      "tags": [
+        "science",
+        "funding",
+        "tokens",
+        "discovery"
+      ],
+      "heuristic_score": 43,
+      "url": "https://deepmind.google/blog/accelerating-the-frontiers-of-scientific-discovery-googles-40m-commitment-to-the-genesis-mission/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 43,
+      "_rid": 12,
+      "llm_score": 75,
+      "why": "Google destina 40 millones de dólares en créditos de computación para impulsar el uso de IA en descubrimientos científicos de vanguardia.",
+      "title_es": "Acelerando las fronteras del descubrimiento científico: Compromiso de 40 millones de dólares de Google para la Misión Genesis",
+      "entities": [
+        "Google",
+        "Genesis Mission",
+        "Accelerating"
+      ],
+      "noise_penalty": 16,
+      "final_score": 54,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(16)",
+      "strategic_theme": "model_economics_pricing"
+    },
+    {
+      "title": "Proactive Road Safety Intervention in Australia: Predicting Risky Driving Hotspots from Connected Vehicle Data",
+      "link": "https://arxiv.org/abs/2608.16913",
+      "published": "2026-08-19T04:00:00+00:00",
+      "summary": "arXiv:2608.16913v1 Announce Type: new Abstract: Road safety monitoring has historically been reactive, relying on crash-record analysis after fatalities and injuries have already occurred. Proactive identification of high-risk locations and dangerous driving behaviour before incidents occur is a critical but underexplored challenge. This paper addresses this gap using connected vehicle telemetry data from Greater Sydney, Australia, to detect and forecast near-miss risky driving events at the Local Government Area (LGA) level. Risky driving is quantified through g-force thresholds (hard braking >0.6g, harsh cornering >0.47g, harsh acceleration >0.5g), and spatio-temporal heatmaps are constructed to identify high-risk zones. Eight predictive models are benchmarked across three families: ensemble learning (Random Forests, XGBoost, LightGBM), deep learning (LSTM, N-BEATS), and classical time-series methods (ARIMA, Exponential Smoothing, Prophet). ARIMA achieves the lowest mean absolute error (MAE: 162.21), performing comparably to LSTM (MAE: 163.92) and outperforming all ensemble methods, with N-BEATS reaching an MAE of 180.75. These results demonstrate that parsimonious time-series models are competitive with deep learning approaches when training data volume is limited. The study highlights the potential of IoT-based connected vehicle data to support proactive road safety interventions, with Sydney's inner and western LGAs (CBD, Parramatta, Bankstown) identified as persistent high-risk zones warranting targeted policy action.",
+      "source": "arXiv cs.LG",
+      "feed_tags": [
+        "papers",
+        "models"
+      ],
+      "raw_title": "Proactive Road Safety Intervention in Australia: Predicting Risky Driving Hotspots from Connected Vehicle Data",
+      "raw_summary": "arXiv:2608.16913v1 Announce Type: new Abstract: Road safety monitoring has historically been reactive, relying on crash-record analysis after fatalities and injuries have already occurred. Proactive identification of high-risk locations and dangerous driving behaviour before incidents occur is a critical but underexplored challenge. This paper addresses this gap using connected vehicle telemetry data from Greater Sydney, Australia, to detect and forecast near-miss risky driving events at the Local Government Area (LGA) level. Risky driving is quantified through g-force thresholds (hard braking >0.6g, harsh cornering >0.47g, harsh acceleration >0.5g), and spatio-temporal heatmaps are constructed to identify high-risk zones. Eight predictive models are benchmarked across three families: ensemble learning (Random Forests, XGBoost, LightGBM), deep learning (LSTM, N-BEATS), and classical time-series methods (ARIMA, Exponential Smoothing, Prophet). ARIMA achieves the lowest mean absolute error (MAE: 162.21), performing comparably to LSTM (MAE: 163.92) and outperforming all ensemble methods, with N-BEATS reaching an MAE of 180.75. These results demonstrate that parsimonious time-series models are competitive with deep learning approaches when training data volume is limited. The study highlights the potential of IoT-based connected vehicle data to support proactive road safety interventions, with Sydney's inner and western LGAs (CBD, Parramatta, Bankstown) identified as persistent high-risk zones warranting targeted policy action.",
+      "score": 52,
+      "primary": "misc",
+      "tags": [
+        "safety",
+        "iot",
+        "telemetry",
+        "australia"
+      ],
+      "heuristic_score": 46,
+      "url": "https://arxiv.org/abs/2608.16913",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 46,
+      "_rid": 9,
+      "llm_score": 62,
+      "why": "Utiliza telemetría de vehículos conectados para predecir puntos críticos de riesgo vial mediante el análisis de fuerzas G en tiempo real.",
+      "title_es": "Intervención proactiva en seguridad vial en Australia: Predicción de puntos críticos de conducción arriesgada",
+      "entities": [
+        "LGA",
+        "Proactive Road Safety",
+        "Intervention",
+        "Australia",
+        "Predicting Risky Driving",
+        "Hotspots",
+        "Connected Vehicle Data"
+      ],
+      "noise_penalty": 8,
+      "final_score": 52,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)-noise(8)",
+      "strategic_theme": "geopolitics_power"
+    }
+  ]
+}
