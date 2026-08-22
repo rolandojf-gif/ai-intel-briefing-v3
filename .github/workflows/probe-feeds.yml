@@ -1,0 +1,137 @@
+name: Probe feeds
+
+# Job desechable de diagnostico. Comprueba que URLs de RSS responden de verdad
+# desde un runner con internet abierto. Ver PROBE en el log para el resumen.
+
+on:
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install feedparser requests
+      - name: Probe candidate feed URLs
+        run: |
+          python - <<'PY'
+          import feedparser, requests, warnings
+          warnings.filterwarnings("ignore")
+
+          CANDIDATES = {
+            "Anthropic": [
+              "https://www.anthropic.com/news/rss.xml",
+              "https://www.anthropic.com/rss.xml",
+              "https://www.anthropic.com/feed.xml",
+              "https://claude.com/blog/rss.xml",
+              "https://raw.githubusercontent.com/taobojlen/anthropic-rss-feed/main/anthropic_news_rss.xml",
+              "https://tim-hilde.github.io/anthropic-rss/rss.xml",
+            ],
+            "Meta AI": [
+              "https://ai.meta.com/blog/rss/",
+              "https://ai.meta.com/blog/feed/",
+              "https://ai.meta.com/feed/",
+              "https://engineering.fb.com/feed/",
+            ],
+            "Mistral": [
+              "https://mistral.ai/news/feed.xml",
+              "https://mistral.ai/feed.xml",
+              "https://mistral.ai/rss.xml",
+              "https://mistral.ai/news/rss.xml",
+            ],
+            "Moonshot": [
+              "https://github.com/MoonshotAI/Kimi-K2/releases.atom",
+              "https://github.com/MoonshotAI/Kimi-k2/releases.atom",
+              "https://github.com/MoonshotAI/Kimi-K1.5/releases.atom",
+              "https://github.com/MoonshotAI/Kimi-Linear/releases.atom",
+            ],
+            "Epoch AI": [
+              "https://epoch.ai/blog/rss.xml",
+              "https://epoch.ai/rss.xml",
+              "https://epoch.ai/feed.xml",
+              "https://epochai.substack.com/feed",
+            ],
+            "Import AI": [
+              "https://importai.substack.com/feed",
+              "https://jack-clark.net/feed",
+              "https://jack-clark.net/feed/",
+            ],
+            "DeepSeek": [
+              "https://github.com/deepseek-ai/DeepSeek-V3/releases.atom",
+              "https://github.com/deepseek-ai/DeepSeek-R1/releases.atom",
+              "https://api-docs.deepseek.com/rss.xml",
+            ],
+            "Zhipu GLM": [
+              "https://github.com/zai-org/GLM-4.5/releases.atom",
+              "https://github.com/THUDM/GLM-4/releases.atom",
+            ],
+            "-- ALTERNATIVAS --": [],
+            "Google Research": [
+              "https://research.google/blog/rss/",
+              "https://blog.research.google/feeds/posts/default",
+            ],
+            "Microsoft Research": [
+              "https://www.microsoft.com/en-us/research/feed/",
+            ],
+            "Ars Technica AI": [
+              "https://arstechnica.com/ai/feed/",
+              "https://feeds.arstechnica.com/arstechnica/technology-lab",
+            ],
+            "MIT Tech Review AI": [
+              "https://www.technologyreview.com/topic/artificial-intelligence/feed",
+            ],
+            "Stratechery": [
+              "https://stratechery.com/feed/",
+            ],
+            "AI2 (Allen)": [
+              "https://allenai.org/blog.rss",
+              "https://blog.allenai.org/feed",
+            ],
+            "Cohere": [
+              "https://cohere.com/blog/rss.xml",
+            ],
+            "Together AI": [
+              "https://www.together.ai/blog/rss.xml",
+ live             ],
+            "HN frontpage AI": [
+              "https://hnrss.org/newest?q=AI+OR+LLM+OR+OpenAI+OR+Anthropic&points=150",
+            ],
+            "Chip analysis": [
+              "https://www.fabricatedknowledge.com/feed",
+              "https://irrationalanalysis.substack.com/feed",
+            ],
+            "China AI": [
+              "https://www.chinatalk.media/feed",
+              "https://recode.substack.com/feed",
+              "https://chinai.substack.com/feed",
+            ],
+          }
+
+          print("PROBE RESULTS")
+          print("=" * 78)
+          for group, urls in CANDIDATES.items():
+              if not urls:
+                  print(f"\n{group}")
+                  continue
+              print(f"\n### {group}")
+              for u in urls:
+                  try:
+                      r = requests.get(u, timeout=20, headers={"User-Agent": "Mozilla/5.0 (compatible; AIRadar/1.0)"})
+                      code = r.status_code
+                      f = feedparser.parse(r.content)
+                      n = len(f.entries)
+                      if n:
+                          e = f.entries[0]
+                          when = e.get("published", e.get("updated", "?"))[:25]
+                          title = (e.get("title") or "")[:60]
+                          print(f"  OK   http={code} n={n:<3} {u}")
+                          print(f"         ultimo: [{when}] {title}")
+                      else:
+                          print(f"  VACIO http={code} n=0   {u}")
+                  except Exception as ex:
+                      print(f"  ERROR       {u} -> {type(ex).__name__}: {str(ex)[:60]}")
+          print("\n" + "=" * 78)
+          PY
