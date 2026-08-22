@@ -17,6 +17,13 @@ from src.fetch_x import fetch_x_search, fetch_x_user
 from src.render import render_index
 from src.score import score_item
 from src.llm_rank import rank_batch
+from src.memory import (
+    activity_level,
+    detect_threads,
+    entity_deltas,
+    load_history,
+    resolve_watchlist,
+)
 from src.config import CATEGORY_LABELS, KNOWN_ENTITIES, ENTITY_ALIASES, STOP_ENTITIES, ALLOW_ACRONYMS
 
 
@@ -56,6 +63,11 @@ def merge_briefings(briefs: list[dict]) -> dict:
     out["risks"] = dedup(out["risks"])[:3]
     out["watch"] = dedup(out["watch"])[:3]
     out["entities_top"] = dedup(out["entities_top"])[:5]
+    # La tesis no se acumula entre briefings: se toma la del primero que la traiga.
+    for b in briefs:
+        if (b.get("thesis") or "").strip():
+            out["thesis"] = b["thesis"].strip()
+            break
     return out
 
 
@@ -208,33 +220,38 @@ def clean_entities(raw_entities: list, title: str = "") -> list[str]:
         seen.add(key)
         out.append(e2)
 
-    for e in extract_entities_from_title(title):
-        e2 = normalize_entity(e)
-        if has_specific_gpt and e2.upper() == "GPT":
-            continue
-        if is_bad_entity(e2):
-            continue
-        key = e2.lower()
-        if key not in seen:
-            seen.add(key)
-            out.append(e2)
-        if len(out) >= 8:
-            break
-    return out[:8]
+    # El extractor por regex del titulo solo actua como FALLBACK. Cuando el LLM ya
+    # ha dado entidades, anadirlo contamina: produce frases en Title Case como
+    # "Contracted Power" o "Creating Scientific Figures", que no son entidades y
+    # ensucian el momentum y los deltas de la capa de memoria.
+    if not out:
+        for e in extract_entities_from_title(title):
+            e2 = normalize_entity(e)
+            if has_specific_gpt and e2.upper() == "GPT":
+                continue
+            if is_bad_entity(e2):
+                continue
+            key = e2.lower()
+            if key not in seen:
+                seen.add(key)
+                out.append(e2)
+            if len(out) >= 6:
+                break
+    return out[:6]
 
 
 def should_use_gemini_today() -> bool:
-    # Override explícito
+    # Override explicito
     if env_flag("FORCE_GEMINI", "0"):
         return True
-    
+
     event = (os.getenv("GITHUB_EVENT_NAME") or "").strip()
-    # Solo Gemini en schedule (por defecto). En workflow_dispatch también si se quiere probar manual.
+    # Solo Gemini en schedule (por defecto). En workflow_dispatch tambien si se quiere probar manual.
     if event == "schedule":
         return True
     if event == "workflow_dispatch":
         return True
-        
+
     return False
 
 
@@ -254,15 +271,18 @@ def ingest_feeds(cfg: dict, per_source_cap: dict) -> list[dict]:
             continue
         if limit <= 0:
             continue
-        if "limit" not in s and s["name"].startswith("arXiv"):
-            limit = 6
 
         fetched = []
         if stype == "rss":
             if not s.get("url"):
                 print(f"Invalid RSS source config (missing url): {s.get('name', 'unnamed')}")
                 continue
-            fetched = fetch_rss(s["url"], limit=limit)
+            try:
+                fetched = fetch_rss(s["url"], limit=limit)
+            except Exception as e:
+                # Una fuente rota no debe tumbar el run entero; el health-check la marca.
+                print(f"FETCH FAILED for {s.get('name', 'unnamed')}: {e!r}")
+                fetched = []
         elif stype == "x":
             if s.get("username"):
                 fetched = fetch_x_user(
@@ -429,12 +449,12 @@ def infer_strategic_theme(it: dict) -> str:
     if has_any(["chip", "gpu", "hbm", "datacenter", "data center", "tpu", "training cluster", "compute", "tsmc", "asml", "smic", "blackwell", "gb200", "b200"]):
         return "compute_chips_dc"
     if has_any(["price", "pricing", "api", "cost", "token", "margin", "capex", "opex", "revenue", "valuation"]):
-        return "model_economics_pricing"
+        return "model_economics"
     if has_any(["china", "huawei", "deepseek", "alibaba", "tencent", "bytedance", "zhipu", "glm", "moonshot", "kimi", "qwen", "minimax", "01.ai", "yi", "baichuan"]):
         return "china_stack"
     if has_any(["export control", "sanction", "regulation", "policy", "eu ai act", "bis", "sovereign", "national security"]):
         return "geopolitics_power"
-    if has_any(["agi", "reasoning", "frontier", "model", "multimodal", "benchmark", "alignment", "fable", "mythos", "sol", "gemini", "claude", "gpt", "o1", "o3", "mistral", "llama"]):
+    if has_any(["agi", "reasoning", "frontier", "model", "multimodal", "benchmark", "alignment", "gemini", "claude", "gpt", "o1", "o3", "mistral", "llama"]):
         return "frontier_capability"
     primary = (it.get("primary") or "").strip()
     if primary == "models":
@@ -442,7 +462,7 @@ def infer_strategic_theme(it: dict) -> str:
     if primary == "infra":
         return "compute_chips_dc"
     if primary == "invest":
-        return "model_economics_pricing"
+        return "model_economics"
     if primary == "geopol":
         return "geopolitics_power"
     return "other"
@@ -518,8 +538,6 @@ def is_fresh_enough(it: dict) -> bool:
     age = item_age_days(it)
     if age is None:
         return True
-    if "arxiv" in source:
-        return age <= 7
     if any(s in source for s in ("nvidia", "google ai", "deepmind", "semiwiki")):
         return age <= 7
     return age <= 5
@@ -527,7 +545,7 @@ def is_fresh_enough(it: dict) -> bool:
 
 def generate_llm_data(candidates: list[dict], llm_cache: Path, llm_done: Path) -> tuple[dict, list]:
     llm_payload = []
-    for idx, it in enumerate(candidates[:15], start=1):
+    for idx, it in enumerate(candidates[:20], start=1):
         llm_payload.append({
             "id": idx,
             "source": it.get("source", ""),
@@ -542,7 +560,7 @@ def generate_llm_data(candidates: list[dict], llm_cache: Path, llm_done: Path) -
     briefings = []
 
     force_refresh = env_flag("FORCE_GEMINI_REFRESH", "0")
-    
+
     # Cache HIT
     if llm_cache.exists() and not force_refresh:
         try:
@@ -566,13 +584,22 @@ def generate_llm_data(candidates: list[dict], llm_cache: Path, llm_done: Path) -
             print("Skipping Gemini: llm_done present (already attempted today).")
         else:
             gemini_ok = False
-            try:
-                out = rank_batch(llm_payload)
-                results_map.update(out.get("map", {}))
-                b = out.get("briefing", {}) or {}
-                briefings.append(b)
+            last_err = None
+            # Un fallo transitorio de la API dejaba el dia entero sin gate de
+            # relevancia (ver 2026-08-22). Reintentamos antes de degradar.
+            for attempt in (1, 2, 3):
+                try:
+                    out = rank_batch(llm_payload)
+                    results_map.update(out.get("map", {}))
+                    b = out.get("briefing", {}) or {}
+                    briefings.append(b)
+                    gemini_ok = True
+                    break
+                except Exception as e:
+                    last_err = e
+                    print(f"GEMINI rank_batch FAILED (intento {attempt}/3):", repr(e))
 
-                gemini_ok = True
+            if gemini_ok:
                 try:
                     llm_cache.write_text(
                         json.dumps(
@@ -589,13 +616,16 @@ def generate_llm_data(candidates: list[dict], llm_cache: Path, llm_done: Path) -
                     print("Gemini cache WRITTEN:", llm_cache.name)
                 except Exception as cache_err:
                     print("Gemini cache write FAILED:", repr(cache_err))
-            except Exception as e:
-                print("GEMINI rank_batch FAILED:", repr(e))
-            if gemini_ok:
                 # marca intento exitoso de hoy para no repetir llamadas LLM
                 llm_done.write_text(datetime.now().isoformat(), encoding="utf-8")
-                
+            else:
+                print(f"GEMINI agotó los reintentos; el dia sera degradado. Ultimo error: {last_err!r}")
+
     return results_map, briefings
+
+
+MAX_SIGNALS = 8      # techo de senales primarias; el suelo lo marca la realidad del dia
+MAX_CONTEXT = 5      # capa secundaria de contexto
 
 
 def apply_llm_results(candidates: list[dict], results_map: dict) -> list[dict]:
@@ -605,14 +635,26 @@ def apply_llm_results(candidates: list[dict], results_map: dict) -> list[dict]:
         llm = results_map.get(str(rid)) or results_map.get(rid) # handle string/int keys
 
         if llm:
-            it["llm_score"] = llm.get("score")
+            # Contrato v2: juicio de relevancia, no score de impacto generico.
+            it["llm_score"] = llm.get("relevance", llm.get("score"))
+            it["verdict"] = (llm.get("verdict") or "context").strip().lower()
+            it["so_what"] = (llm.get("so_what") or "").strip()
+            it["power_shift"] = (llm.get("power_shift") or "").strip()
+            it["watch_next"] = (llm.get("watch_next") or "").strip()
+            it["title_es"] = (llm.get("headline_es") or llm.get("title_es") or "").strip()
+            it["llm_theme"] = (llm.get("theme") or "").strip()
+            it["why"] = it["so_what"]          # alias legacy para render
             it["primary"] = llm.get("primary", it.get("primary", "misc"))
             it["tags"] = llm.get("tags", [])
-            it["why"] = llm.get("why", "")
-            it["title_es"] = llm.get("title_es", "")
             it["entities"] = llm.get("entities", [])
         else:
+            # Sin LLM no hay gate posible: se marca degradado y no se afirma relevancia.
             it["llm_score"] = None
+            it["verdict"] = "unrated"
+            it["so_what"] = ""
+            it["power_shift"] = ""
+            it["watch_next"] = ""
+            it["llm_theme"] = ""
             it["primary"] = it.get("primary", "misc")
             it["tags"] = it.get("tags", [])
             it["title_es"] = it.get("title_es", "")
@@ -657,39 +699,48 @@ def apply_llm_results(candidates: list[dict], results_map: dict) -> list[dict]:
 
         it["noise_penalty"] = noise_penalty
         it["final_score"] = final_score
-        it["score"] = final_score  # legacy alias for current render.py
+        it["score"] = final_score  # legacy alias
         it["ranking_reason"] = ranking_reason
-        it["strategic_theme"] = strategic_theme
+        # El tema del LLM manda sobre la heuristica de keywords cuando existe.
+        it["strategic_theme"] = it.get("llm_theme") or strategic_theme
         it["entities"] = clean_entities(it.get("entities") or [], it.get("title", ""))
 
         reranked.append(it)
 
     reranked.sort(key=lambda x: x.get("final_score", x.get("score", 0)), reverse=True)
-    final_items = reranked[:15]
 
-    min_x_items = max(0, env_int("MIN_X_ITEMS", 2))
-    if min_x_items > 0:
-        x_in_final = sum(1 for it in final_items if str(it.get("source", "")).startswith("X "))
-        need = max(0, min_x_items - x_in_final)
-        if need > 0:
-            remaining_x = [it for it in reranked if str(it.get("source", "")).startswith("X ") and it not in final_items]
-            for xit in remaining_x:
-                replace_idx = None
-                for i in range(len(final_items) - 1, -1, -1):
-                    if not str(final_items[i].get("source", "")).startswith("X "):
-                        replace_idx = i
-                        break
-                if replace_idx is None:
-                    break
-                final_items[replace_idx] = xit
-                need -= 1
-                if need <= 0:
-                    break
-            final_items.sort(key=lambda x: x.get("final_score", x.get("score", 0)), reverse=True)
-    
+    # -- Gate de relevancia --------------------------------------------------
+    # Lo marcado `noise` se ELIMINA. No se rankea mas abajo: desaparece.
+    # Esto es lo que permite que un dia flojo muestre 3 items en vez de rellenar
+    # hasta 15 con ruido.
+    signals = [it for it in reranked if it.get("verdict") == "signal"][:MAX_SIGNALS]
+    context = [it for it in reranked if it.get("verdict") == "context"][:MAX_CONTEXT]
+    dropped = sum(1 for it in reranked if it.get("verdict") == "noise")
+
+    # Distinguir "el LLM juzgo y descarto todo" de "el LLM no llego a correr":
+    # en el primer caso el resultado correcto es CERO items, no un fallback con ruido.
+    gate_ran = any(it.get("verdict") in ("signal", "context", "noise") for it in reranked)
+
+    if gate_ran:
+        for it in signals:
+            it["layer"] = "signal"
+        for it in context:
+            it["layer"] = "context"
+        final_items = signals + context
+        print(f"Relevance gate: {len(signals)} signal / {len(context)} context / {dropped} noise descartados")
+        if not final_items:
+            print("Gate: dia sin senal - todo lo ingerido era ruido. Se muestra vacio a proposito.")
+    else:
+        # Sin veredictos (Gemini caido): modo degradado. No afirmamos relevancia
+        # que no hemos podido juzgar; la UI avisa de que el filtro no se aplico.
+        final_items = reranked[:10]
+        for it in final_items:
+            it["layer"] = "unrated"
+        print(f"Relevance gate INACTIVO (sin veredictos LLM): {len(final_items)} items sin filtrar")
+
     for it in final_items:
         it["entities"] = clean_entities(it.get("entities") or [], it.get("title", ""))
-            
+
     return final_items
 
 
@@ -717,50 +768,30 @@ def calculate_stats(final_items: list[dict]) -> tuple[float, dict, list]:
 
 
 def generate_fallback_briefing(final_items: list[dict], primary_dist: dict, top_entities_list: list) -> dict:
-    top_cats = sorted(primary_dist.items(), key=lambda x: x[1], reverse=True)[:3]
+    """Briefing minimo cuando el LLM no esta disponible.
+
+    Deliberadamente escueto y honesto: sin el LLM no podemos emitir una tesis
+    estrategica, asi que no fingimos una.
+    """
+    if not final_items:
+        return {
+            "thesis": "Sin datos suficientes para emitir una lectura del dia.",
+            "signals": [],
+            "risks": [],
+            "watch": [],
+            "entities_top": [],
+        }
+
     top_items = sorted(final_items, key=lambda x: x.get("score", 0), reverse=True)[:3]
-    parts = [f"{CATEGORY_LABELS.get(c, c)} ({ncat}/{len(final_items)})" for c, ncat in top_cats]
-    cat_txt = ", ".join(parts) if parts else "Sin señal"
-    lead = top_items[0] if top_items else {}
-    lead_score = int(lead.get("score", 0) or 0)
-    lead_title = (lead.get("title") or "Sin lead claro").strip()
-    lead_theme = infer_strategic_theme(lead) if lead else "other"
-
-    max_cat = top_cats[0][1] if top_cats else 0
-    concentration = max_cat / max(1, len(final_items))
-    if lead_score < 35:
-        risk = "Convicción baja: hoy predominan señales blandas o promocionales; evitar sobreinterpretar."
-    elif concentration >= 0.60:
-        risk = "Concentración alta en una categoría: vigilar sesgo de fuente o narrativa única."
-    elif concentration >= 0.50:
-        risk = "Concentración media: vigilar si se consolida como narrativa dominante."
-    else:
-        risk = "Diversidad razonable de categorías (sin dominancia extrema)."
-
-    watch = []
-    if top_entities_list:
-        watch.append(f"Seguir: {', '.join(top_entities_list[:3])}.")
-    if top_cats:
-        lbl0 = CATEGORY_LABELS.get(top_cats[0][0], top_cats[0][0])
-        watch.append(f"Vigilar si '{lbl0}' mantiene dominancia mañana.")
-    if not watch:
-        watch = ["Aumentar histórico para detectar momentum real."]
-
-    signals = [
-        f"Señal principal: {lead_title[:130]} (score {lead_score}).",
-        f"Mix de hoy: {cat_txt}.",
-    ]
-    for it in top_items[1:4]:
-        title = (it.get("title") or "").strip()
-        if title:
-            signals.append(f"También importa: {title[:118]} (score {int(it.get('score', 0) or 0)}).")
-    if len(signals) < 5:
-        signals.append(f"Actores a vigilar: {', '.join(top_entities_list[:5]) if top_entities_list else 'sin entidad dominante'}.")
+    lead_title = (top_items[0].get("title") or "").strip() if top_items else ""
 
     return {
-        "signals": signals[:5],
-        "risks": [risk],
-        "watch": watch[:3],
+        "thesis": "Analisis no disponible hoy: el filtro de relevancia no se ha aplicado.",
+        "signals": [(it.get("title") or "").strip()[:130] for it in top_items if it.get("title")],
+        "risks": [
+            "Sin juicio del LLM no se puede distinguir senal de ruido: tratar todo como no verificado."
+        ],
+        "watch": ["Confirmar que el analisis vuelve a ejecutarse en el proximo run."],
         "entities_top": top_entities_list[:5],
     }
 
@@ -774,14 +805,12 @@ def main():
     if not cfg_path.exists():
         print("feeds/feeds.yaml not found!")
         return
-        
+
     cfg = yaml.safe_load(cfg_path.read_text(encoding="utf-8"))
 
-    per_source_cap = {
-        "arXiv cs.AI": 2,
-        "arXiv cs.LG": 2,
-        "NVIDIA Blog": 2,
-    }
+    # Los caps salen SOLO de feeds.yaml. Los hardcodeados apuntaban a nombres
+    # que ya no existian ("NVIDIA Blog" vs "NVIDIA Blog (AI)") y no se aplicaban.
+    per_source_cap: dict[str, int] = {}
     for source in cfg.get("sources", []):
         cap = source.get("cap")
         if cap is None:
@@ -801,18 +830,35 @@ def main():
     # 1) Ingest
     items = ingest_feeds(cfg, per_source_cap)
 
+    # 1.5) Source health - una fuente muerta debe ser visible, no fallar en silencio.
+    #      (X estuvo devolviendo 0 items durante 14+ dias sin que nadie lo notara.)
+    configured = [s.get("name", "?") for s in cfg.get("sources", [])]
+    got: dict[str, int] = {}
+    for it in items:
+        got[it.get("source", "?")] = got.get(it.get("source", "?"), 0) + 1
+    dead_sources = [n for n in configured if got.get(n, 0) == 0]
+    source_health = {
+        "configured": len(configured),
+        "alive": len(configured) - len(dead_sources),
+        "dead": dead_sources,
+        "counts": got,
+    }
+    print(f"Source health: {source_health['alive']}/{source_health['configured']} vivas")
+    if dead_sources:
+        print(f"  SIN ITEMS: {', '.join(dead_sources)}")
+
     # 2) Dedup
     deduped = dedup_items(items)
 
-    # 2.5) Novelty (anti-repetición respecto últimos días)
+    # 2.5) Novelty (anti-repeticion respecto ultimos dias)
     history_urls, history_titles = load_recent_history(data_dir, today=today, days=5)
     deduped = apply_novelty_penalty(deduped, history_urls, history_titles)
 
     before_age = len(deduped)
     deduped = [it for it in deduped if is_fresh_enough(it)]
-    dropped = before_age - len(deduped)
-    if dropped:
-        print(f"Age filter: removed {dropped} stale items exceeding freshness threshold.")
+    dropped_age = before_age - len(deduped)
+    if dropped_age:
+        print(f"Age filter: removed {dropped_age} stale items exceeding freshness threshold.")
 
     # 3) Preselect
     deduped.sort(key=lambda x: x.get("adjusted_score", x.get("score", 0)), reverse=True)
@@ -823,15 +869,34 @@ def main():
 
     briefing = merge_briefings(briefings) if briefings else {}
 
-    # 5) Apply LLM Results
+    # 5) Apply LLM Results (gate de relevancia)
     final_items = apply_llm_results(candidates, results_map)
 
     # 6) Stats & Fallback Briefing
     score_avg, primary_dist, top_entities = calculate_stats(final_items)
     top_entities_list = [e for e, _ in top_entities]
 
-    if not briefing or not (briefing.get("signals") or briefing.get("risks") or briefing.get("watch") or briefing.get("entities_top")):
+    if not briefing or not (briefing.get("thesis") or briefing.get("signals")):
         briefing = generate_fallback_briefing(final_items, primary_dist, top_entities_list)
+
+    # 6.5) Memoria: continuidad entre dias. Determinista, sobrevive a fallos del LLM.
+    degraded = not any(it.get("llm_score") is not None for it in final_items)
+    try:
+        history = load_history(data_dir, today=today, days=10)
+        memory = {
+            "watch_resolved": resolve_watchlist(history, final_items),
+            "entity_deltas": entity_deltas(history, final_items),
+            "threads": detect_threads(history, final_items),
+        }
+        level_label, level_class = activity_level(final_items, degraded=degraded)
+    except Exception:
+        print("MEMORY layer FAILED (traceback):")
+        traceback.print_exc()
+        memory = {"watch_resolved": [], "entity_deltas": {}, "threads": []}
+        level_label, level_class = ("SIN FILTRAR", "quiet")
+
+    if degraded:
+        print("AVISO: dia degradado - sin veredictos del LLM, el gate de relevancia no se aplico.")
 
     # 7) Save Data
     daily_snapshot = {
@@ -840,6 +905,16 @@ def main():
         "primary_dist": primary_dist,
         "top_entities": [{"entity": e, "count": c} for e, c in top_entities],
         "briefing": briefing,
+        "memory": memory,
+        "activity": {"label": level_label, "class": level_class},
+        "source_health": source_health,
+        "degraded": degraded,
+        # candidates fue mutado in-place por apply_llm_results, asi que lleva los veredictos
+        "dropped_noise": sum(1 for it in candidates if it.get("verdict") == "noise"),
+        "counts": {
+            "signal": sum(1 for it in final_items if it.get("layer") == "signal"),
+            "context": sum(1 for it in final_items if it.get("layer") == "context"),
+        },
         "items": final_items,
     }
 
@@ -849,7 +924,7 @@ def main():
     )
 
     # 8) Render HTML
-    html = render_index(final_items, briefing=briefing)
+    html = render_index(final_items, briefing=briefing, snapshot=daily_snapshot)
     Path("docs").mkdir(exist_ok=True)
     Path("docs/index.html").write_text(html, encoding="utf-8")
 
