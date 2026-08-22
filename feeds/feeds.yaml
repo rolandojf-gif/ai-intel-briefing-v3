@@ -7,6 +7,13 @@
 # `cap` = máximo de items por fuente y día. Mantenerlos bajos es deliberado:
 # obliga a que cada fuente compita por sus mejores piezas.
 #
+# Todas las URLs están verificadas contra la red real (workflow Probe feeds,
+# 2026-08-22). Dos aprendizajes que conviene recordar al añadir fuentes:
+#   - Los feeds *.substack.com devuelven 403 desde los runners de GitHub, pero
+#     los Substack con dominio propio funcionan (Interconnects, Latent Space).
+#   - Varios labs no publican RSS: Anthropic, Meta AI y Epoch AI no tienen feed
+#     oficial. Antes de configurar una fuente, comprobar que existe de verdad.
+#
 # NOTA: las fuentes X/Twitter se eliminaron en 2026-08. Los mirrors públicos
 # (xcancel, nitter) llevan meses caídos y devolvían 0 items desde hace 14+ días,
 # consumiendo timeout en cada run. Los labs publican lo relevante en RSS oficial,
@@ -21,19 +28,16 @@ sources:
     cap: 2
     tags: [labs, models, frontier]
 
+  # Anthropic no publica RSS oficial (verificado: news, engineering y feed.xml
+  # dan 404). Este mirror comunitario es la única vía con contenido fresco. Es
+  # una dependencia de un tercero: si deja de actualizarse, el health-check la
+  # marcará como muerta en el pie del radar.
   - name: Anthropic
     type: rss
-    url: https://www.anthropic.com/news/rss.xml
+    url: https://tim-hilde.github.io/anthropic-rss/rss.xml
     limit: 8
     cap: 2
     tags: [labs, models, frontier]
-
-  - name: Anthropic Engineering
-    type: rss
-    url: https://www.anthropic.com/engineering/rss.xml
-    limit: 6
-    cap: 1
-    tags: [labs, agents, engineering]
 
   - name: DeepMind Blog
     type: rss
@@ -42,16 +46,9 @@ sources:
     cap: 2
     tags: [labs, models, frontier]
 
-  - name: Meta AI
-    type: rss
-    url: https://ai.meta.com/blog/rss/
-    limit: 6
-    cap: 1
-    tags: [labs, models, open_weights]
-
   - name: Mistral
     type: rss
-    url: https://mistral.ai/news/feed.xml
+    url: https://mistral.ai/rss.xml
     limit: 6
     cap: 1
     tags: [labs, models, open_weights]
@@ -71,16 +68,11 @@ sources:
     cap: 2
     tags: [china, models, open_weights]
 
+  # Solo dispara cuando hay release real; el resto de días queda fuera por el
+  # filtro de antigüedad, que es el comportamiento deseado.
   - name: DeepSeek Releases
     type: rss
     url: https://github.com/deepseek-ai/DeepSeek-V3/releases.atom
-    limit: 5
-    cap: 1
-    tags: [china, models, open_weights]
-
-  - name: Moonshot Kimi Releases
-    type: rss
-    url: https://github.com/MoonshotAI/Kimi-k2/releases.atom
     limit: 5
     cap: 1
     tags: [china, models, open_weights]
@@ -91,6 +83,17 @@ sources:
     limit: 6
     cap: 1
     tags: [china, geopol, analysis]
+
+  # ── Economía de modelos: comparativas reales de coste y capacidad ─────────
+  # Together publica benchmarks cruzados entre modelos frontera occidentales y
+  # chinos con coste y routing. Cubre a la vez capacidad frontier, economía de
+  # modelos y stack chino, que es donde el radar se quedaba corto.
+  - name: Together AI
+    type: rss
+    url: https://www.together.ai/blog/rss.xml
+    limit: 8
+    cap: 2
+    tags: [models, economics, benchmarks, china]
 
   # ── Análisis independiente: compute, chips, economía de modelos ───────────
   - name: SemiAnalysis
@@ -114,12 +117,25 @@ sources:
     cap: 1
     tags: [infra, chips]
 
-  - name: Epoch AI
+  # Semis con lente financiera: capex, ciclos y timelines. Complementa a
+  # SemiAnalysis, que es más técnico.
+  - name: Fabricated Knowledge
     type: rss
-    url: https://epoch.ai/blog/rss.xml
-    limit: 6
+    url: https://www.fabricatedknowledge.com/feed
+    limit: 5
     cap: 1
-    tags: [compute, scaling, analysis]
+    tags: [chips, economics, analysis]
+
+  # ── Poder de mercado ──────────────────────────────────────────────────────
+  # Ben Thompson analiza desplazamientos de poder entre plataformas, que es
+  # exactamente el ángulo de "quién gana y quién pierde". Parcialmente de pago:
+  # el RSS trae el artículo semanal gratuito y extractos del resto.
+  - name: Stratechery
+    type: rss
+    url: https://stratechery.com/feed/
+    limit: 5
+    cap: 1
+    tags: [market_power, economics, analysis]
 
   # ── Análisis de research y capacidad frontier ────────────────────────────
   - name: Interconnects
@@ -131,7 +147,7 @@ sources:
 
   - name: Import AI
     type: rss
-    url: https://importai.substack.com/feed
+    url: https://jack-clark.net/feed
     limit: 5
     cap: 1
     tags: [research, analysis, geopol]
@@ -157,3 +173,14 @@ sources:
     limit: 6
     cap: 1
     tags: [models, open_weights]
+
+  # ── Señal de comunidad ────────────────────────────────────────────────────
+  # Modalidad distinta al resto: en vez de fuentes editoriales, lo que la
+  # comunidad técnica vota masivamente. Detecta cosas antes del ciclo de
+  # noticias. Umbral alto (150 puntos) y cap 1 para que no meta ruido.
+  - name: Hacker News (alto voltaje)
+    type: rss
+    url: https://hnrss.org/newest?q=AI+OR+LLM+OR+OpenAI+OR+Anthropic&points=150
+    limit: 10
+    cap: 1
+    tags: [community, signal]
