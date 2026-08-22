@@ -1,182 +1,159 @@
+# AI Strategic Radar — source portfolio
+#
+# Filosofía: pocas fuentes, alta densidad de señal. El gate de relevancia
+# (src/llm_rank.py) elimina lo que no mueve la carrera AGI, así que aquí
+# priorizamos FUENTES PRIMARIAS (labs) y ANÁLISIS INDEPENDIENTE, no agregadores.
+#
+# `cap` = máximo de items por fuente y día. Mantenerlos bajos es deliberado:
+# obliga a que cada fuente compita por sus mejores piezas.
+#
+# NOTA: las fuentes X/Twitter se eliminaron en 2026-08. Los mirrors públicos
+# (xcancel, nitter) llevan meses caídos y devolvían 0 items desde hace 14+ días,
+# consumiendo timeout en cada run. Los labs publican lo relevante en RSS oficial,
+# que además llega limpio (el scraping devolvía tweets mezclados y markdown roto).
+
 sources:
-  - name: Simon Willison (AI & LLMs)
+  # ── Frontier labs: fuentes primarias ──────────────────────────────────────
+  - name: OpenAI
     type: rss
-    url: https://simonwillison.net/atom/everything/
-    limit: 10
-    cap: 3
-    tags: [models, tools, frontier]
-
-  - name: MarkTechPost (AI Releases)
-    type: rss
-    url: https://www.marktechpost.com/category/technology/artificial-intelligence/feed/
-    limit: 10
-    cap: 3
-    tags: [models, research, releases]
-
-  - name: Hugging Face Blog
-    type: rss
-    url: https://huggingface.co/blog/feed.xml
+    url: https://openai.com/news/rss.xml
     limit: 8
     cap: 2
-    tags: [labs, models, open_source]
+    tags: [labs, models, frontier]
 
-  - name: VentureBeat AI
+  - name: Anthropic
     type: rss
-    url: https://venturebeat.com/category/ai/feed/
+    url: https://www.anthropic.com/news/rss.xml
     limit: 8
     cap: 2
-    tags: [industry, models]
+    tags: [labs, models, frontier]
 
-  - name: Latent Space
+  - name: Anthropic Engineering
     type: rss
-    url: https://www.latent.space/feed
+    url: https://www.anthropic.com/engineering/rss.xml
     limit: 6
-    cap: 2
-    tags: [analysis, engineering]
+    cap: 1
+    tags: [labs, agents, engineering]
 
   - name: DeepMind Blog
     type: rss
     url: https://deepmind.google/blog/rss.xml
-    limit: 6
+    limit: 8
     cap: 2
-    tags: [labs, models]
+    tags: [labs, models, frontier]
+
+  - name: Meta AI
+    type: rss
+    url: https://ai.meta.com/blog/rss/
+    limit: 6
+    cap: 1
+    tags: [labs, models, open_weights]
+
+  - name: Mistral
+    type: rss
+    url: https://mistral.ai/news/feed.xml
+    limit: 6
+    cap: 1
+    tags: [labs, models, open_weights]
 
   - name: Google AI Blog
     type: rss
     url: https://blog.google/technology/ai/rss/
     limit: 6
-    cap: 2
+    cap: 1
     tags: [labs, models]
+
+  # ── China stack ───────────────────────────────────────────────────────────
+  - name: Qwen (Alibaba)
+    type: rss
+    url: https://qwenlm.github.io/blog/index.xml
+    limit: 6
+    cap: 2
+    tags: [china, models, open_weights]
+
+  - name: DeepSeek Releases
+    type: rss
+    url: https://github.com/deepseek-ai/DeepSeek-V3/releases.atom
+    limit: 5
+    cap: 1
+    tags: [china, models, open_weights]
+
+  - name: Moonshot Kimi Releases
+    type: rss
+    url: https://github.com/MoonshotAI/Kimi-k2/releases.atom
+    limit: 5
+    cap: 1
+    tags: [china, models, open_weights]
+
+  - name: ChinaTalk
+    type: rss
+    url: https://www.chinatalk.media/feed
+    limit: 6
+    cap: 1
+    tags: [china, geopol, analysis]
+
+  # ── Análisis independiente: compute, chips, economía de modelos ───────────
+  - name: SemiAnalysis
+    type: rss
+    url: https://semianalysis.com/feed/
+    limit: 6
+    cap: 2
+    tags: [compute, chips, analysis, economics]
+
+  - name: SemiWiki
+    type: rss
+    url: https://semiwiki.com/feed/
+    limit: 8
+    cap: 2
+    tags: [infra, chips]
 
   - name: NVIDIA Blog (AI)
     type: rss
     url: https://blogs.nvidia.com/blog/category/deep-learning/feed/
     limit: 6
-    cap: 2
+    cap: 1
     tags: [infra, chips]
 
-  - name: SemiWiki
+  - name: Epoch AI
     type: rss
-    url: https://semiwiki.com/feed/
+    url: https://epoch.ai/blog/rss.xml
     limit: 6
-    cap: 2
-    tags: [infra, chips]
+    cap: 1
+    tags: [compute, scaling, analysis]
 
-  - name: arXiv cs.AI
+  # ── Análisis de research y capacidad frontier ────────────────────────────
+  - name: Interconnects
     type: rss
-    url: https://export.arxiv.org/rss/cs.AI
-    limit: 4
-    cap: 2
-    tags: [papers, models]
+    url: https://www.interconnects.ai/feed
+    limit: 6
+    cap: 1
+    tags: [research, analysis, frontier]
 
-  - name: arXiv cs.CL
+  - name: Import AI
     type: rss
-    url: https://export.arxiv.org/rss/cs.CL
-    limit: 4
-    cap: 2
-    tags: [papers, models, nlp]
-
-  - name: X @OpenAI
-    type: x
-    username: OpenAI
-    limit: 6
-    cap: 2
-    tags: [x, models, products]
-
-  - name: X @AnthropicAI
-    type: x
-    username: AnthropicAI
-    limit: 6
-    cap: 2
-    tags: [x, models, safety]
-
-  - name: X @GoogleDeepMind
-    type: x
-    username: GoogleDeepMind
-    limit: 6
-    cap: 2
-    tags: [x, research, models]
-
-  - name: X @MistralAI
-    type: x
-    username: MistralAI
-    limit: 6
-    cap: 2
-    tags: [x, models]
-
-  - name: X @deepseek_ai
-    type: x
-    username: deepseek_ai
-    limit: 6
-    cap: 2
-    tags: [x, models, china]
-
-  - name: X @ZhipuAI
-    type: x
-    username: ZhipuAI
-    limit: 6
-    cap: 2
-    tags: [x, models, china]
-
-  - name: X @MoonshotAI
-    type: x
-    username: MoonshotAI
-    limit: 6
-    cap: 2
-    tags: [x, models, china]
-
-  - name: X @Alibaba_Qwen
-    type: x
-    username: Alibaba_Qwen
-    limit: 6
-    cap: 2
-    tags: [x, models, china]
-
-  - name: X @xai
-    type: x
-    username: xai
-    limit: 6
-    cap: 2
-    tags: [x, models]
-
-  - name: X @NVIDIAAI
-    type: x
-    username: NVIDIAAI
-    limit: 6
-    cap: 2
-    tags: [x, infra, chips]
-
-  - name: X @karpathy
-    type: x
-    username: karpathy
-    limit: 4
+    url: https://importai.substack.com/feed
+    limit: 5
     cap: 1
-    tags: [x, agents, coding]
+    tags: [research, analysis, geopol]
 
-  - name: X @sama
-    type: x
-    username: sama
-    limit: 4
+  - name: Latent Space
+    type: rss
+    url: https://www.latent.space/feed
+    limit: 6
     cap: 1
-    tags: [x, labs, strategy]
+    tags: [analysis, engineering, agents]
 
-  - name: X @rowancheung
-    type: x
-    username: rowancheung
-    limit: 4
-    cap: 1
-    tags: [x, industry, tracker]
-
-  - name: X Frontier & LLM Releases
-    type: x
-    query: "(\"Gemini 3.5\" OR \"Gemini 3\" OR \"Claude 3.7\" OR \"Claude 3.5\" OR \"GPT-5\" OR \"GLM-5\" OR \"GLM 5\" OR \"Kimi k3\" OR \"Kimi K3\" OR \"DeepSeek-V3\" OR \"DeepSeek-R1\" OR \"Qwen2.5\" OR \"Qwen 3\" OR Mythos OR Sol OR Fable OR \"Llama 4\" OR \"Mistral\") (released OR launches OR weights OR benchmark OR api OR reasoning) -is:retweet -is:reply"
+  # ── Agents / coding agents / MCP ──────────────────────────────────────────
+  - name: Simon Willison (AI & LLMs)
+    type: rss
+    url: https://simonwillison.net/atom/everything/
     limit: 10
-    cap: 3
-    tags: [x, models, frontier]
+    cap: 1
+    tags: [agents, mcp, coding, tools]
 
-  - name: X AI policy/search
-    type: x
-    query: "(from:EU_Commission OR from:NIST) (\"AI Act\" OR \"export control\" OR semiconductor OR \"frontier AI\") -is:retweet -is:reply"
-    limit: 8
-    cap: 2
-    tags: [x, geopol, policy]
+  - name: Hugging Face Blog
+    type: rss
+    url: https://huggingface.co/blog/feed.xml
+    limit: 6
+    cap: 1
+    tags: [models, open_weights]
