@@ -364,10 +364,8 @@ def main():
     else:
         implications.append(f"Concentración moderada en categorías (HHI {cat_hhi:.3f}).")
 
-    if x_mentions_total > 0:
-        implications.append(f"Cobertura X: {x_mentions_total} menciones en la ventana (peso reciente {x_weighted_total:.2f}).")
-    else:
-        implications.append("Cobertura X: sin menciones en la ventana actual.")
+    active_sources_count = len([s for s in source_rows if s["total"] > 0])
+    implications.append(f"Fuentes activas: {active_sources_count} fuentes con cobertura en la ventana.")
 
     # HTML blocks
     def li_entity(r):
@@ -412,22 +410,24 @@ def main():
     new_li = "\n".join(li_entity(r) for r in new_ents) or "<li>Sin datos</li>"
     bo_li = "\n".join(li_entity(r) for r in breakouts) or "<li>Sin datos</li>"
 
-    # Clusters navegables: top 5 entidades + top 3 categorías
+    # Clusters navegables: top 5 entidades + top 3 categorías con miniaturas
     clusters = []
     for r in ent_rows[:5]:
         entity = r["name"]
         items = pick_items_for_entity(snapshots, entity, limit=6)
         li = []
         for it in items:
-            title = html_escape((it.get("title") or "").strip())
+            title = html_escape((it.get("title_es") or it.get("title") or "").strip())
             url = (it.get("url") or it.get("link") or "").strip()
             src = html_escape((it.get("source") or "").strip())
             cat = html_escape(((it.get("primary") or "misc").strip()))
+            img = (it.get("image_url") or "").strip()
+            img_html = f"<img src='{safe_href(img)}' class='w-thumb' alt='' loading='lazy' onerror=\"this.style.display='none'\"/>" if img else ""
             if url:
-                li.append(f"<li><a href='{safe_href(url)}' target='_blank' rel='noopener noreferrer'>{title}</a> <span class='m'>[{src}] [{cat}]</span></li>")
+                li.append(f"<li class='w-item'>{img_html}<div class='w-item-b'><a href='{safe_href(url)}' target='_blank' rel='noopener noreferrer'>{title}</a> <span class='m'>[{src}] [{cat}]</span></div></li>")
             else:
-                li.append(f"<li>{title} <span class='m'>[{src}] [{cat}]</span></li>")
-        clusters.append(f"<section class='card'><h2>{html_escape(entity)}</h2><ul>{''.join(li)}</ul></section>")
+                li.append(f"<li class='w-item'>{img_html}<div class='w-item-b'>{title} <span class='m'>[{src}] [{cat}]</span></div></li>")
+        clusters.append(f"<section class='card'><h2>{html_escape(entity)}</h2><ul class='w-list'>{''.join(li)}</ul></section>")
 
     cat_clusters = []
     for r in cat_rows[:3]:
@@ -435,20 +435,23 @@ def main():
         items = pick_items_for_category(snapshots, category, limit=6)
         li = []
         for it in items:
-            title = html_escape((it.get("title") or "").strip())
+            title = html_escape((it.get("title_es") or it.get("title") or "").strip())
             url = (it.get("url") or it.get("link") or "").strip()
             src = html_escape((it.get("source") or "").strip())
             cat = html_escape(((it.get("primary") or "misc").strip()))
+            img = (it.get("image_url") or "").strip()
+            img_html = f"<img src='{safe_href(img)}' class='w-thumb' alt='' loading='lazy' onerror=\"this.style.display='none'\"/>" if img else ""
             if url:
-                li.append(f"<li><a href='{safe_href(url)}' target='_blank' rel='noopener noreferrer'>{title}</a> <span class='m'>[{src}] [{cat}]</span></li>")
+                li.append(f"<li class='w-item'>{img_html}<div class='w-item-b'><a href='{safe_href(url)}' target='_blank' rel='noopener noreferrer'>{title}</a> <span class='m'>[{src}] [{cat}]</span></div></li>")
             else:
-                li.append(f"<li>{title} <span class='m'>[{src}] [{cat}]</span></li>")
-        cat_clusters.append(f"<section class='card'><h2>Categoria: {html_escape(human_category(category))}</h2><ul>{''.join(li)}</ul></section>")
+                li.append(f"<li class='w-item'>{img_html}<div class='w-item-b'>{title} <span class='m'>[{src}] [{cat}]</span></div></li>")
+        cat_clusters.append(f"<section class='card'><h2>Categoría: {html_escape(human_category(category))}</h2><ul class='w-list'>{''.join(li)}</ul></section>")
 
     clusters_html = "<div class='grid'>" + "".join(clusters) + "</div>" if clusters else ""
     cat_clusters_html = "<div class='grid'>" + "".join(cat_clusters) + "</div>" if cat_clusters else ""
 
     period = f"{days[0]} → {days[-1]}"
+    total_analyzed = sum(s['total'] for s in source_rows)
 
     html = f"""<!doctype html>
 <html lang="es">
@@ -495,6 +498,11 @@ def main():
     .m {{ color:var(--muted); margin-left:8px; font-size:12px; font-weight:600; }}
     .pill {{ display:inline-block; padding:4px 10px; border:1px solid var(--line); border-radius:999px; color:var(--muted); font-size:12px; margin:4px 8px 4px 0; background:rgba(13,17,23,0.5); font-weight:700; }}
     .metrics {{ margin-top:8px; display:flex; flex-wrap:wrap; gap:4px; }}
+    .w-list {{ list-style:none; padding:0; margin:0; }}
+    .w-item {{ display:flex; gap:12px; align-items:center; margin:10px 0; padding:6px 0; border-bottom:1px solid rgba(33,39,48,0.6); }}
+    .w-item:last-child {{ border-bottom:none; }}
+    .w-thumb {{ width:52px; height:38px; border-radius:4px; object-fit:cover; flex-shrink:0; border:1px solid #212730; background:#0d1420; }}
+    .w-item-b {{ flex:1; min-width:0; line-height:1.4rem; }}
     @media (max-width:900px) {{ .grid {{ grid-template-columns:1fr; }} }}
   </style>
 </head>
@@ -540,8 +548,8 @@ def main():
   <section class="card" style="margin-top:14px">
     <h2>Fuentes · presencia en la ventana</h2>
     <div class="metrics">
-      <span class="pill">X menciones: {x_mentions_total}</span>
-      <span class="pill">X peso reciente: {x_weighted_total:.2f}</span>
+      <span class="pill">fuentes activas: {active_sources_count}</span>
+      <span class="pill">items analizados: {total_analyzed}</span>
     </div>
     <ul>{source_li}</ul>
   </section>

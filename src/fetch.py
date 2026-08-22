@@ -19,6 +19,61 @@ def _clean_html(text: str) -> str:
     return re.sub(r"\s+", " ", no_tags).strip()
 
 
+def _extract_image_url(e) -> str:
+    """Extrae URL de imagen de un item RSS (media:content, media:thumbnail, enclosures, img tags)."""
+    # 1. Media content
+    media_content = getattr(e, "media_content", []) or []
+    for m in media_content:
+        if isinstance(m, dict) and m.get("url"):
+            url = m["url"].strip()
+            medium = str(m.get("medium", "") or m.get("type", "")).lower()
+            if "image" in medium or url.lower().endswith((".jpg", ".jpeg", ".png", ".webp", ".gif", ".avif")) or not medium:
+                return url
+
+    # 2. Media thumbnail
+    media_thumbnail = getattr(e, "media_thumbnail", []) or []
+    for m in media_thumbnail:
+        if isinstance(m, dict) and m.get("url"):
+            return m["url"].strip()
+
+    # 3. Enclosures
+    enclosures = getattr(e, "enclosures", []) or []
+    for enc in enclosures:
+        if isinstance(enc, dict) and enc.get("href"):
+            mtype = str(enc.get("type", "")).lower()
+            href = enc["href"].strip()
+            if "image" in mtype or href.lower().endswith((".jpg", ".jpeg", ".png", ".webp", ".gif", ".avif")):
+                return href
+
+    # 4. Links con rel=enclosure
+    links = getattr(e, "links", []) or []
+    for lk in links:
+        if isinstance(lk, dict) and lk.get("type", "").startswith("image/") and lk.get("href"):
+            return lk["href"].strip()
+
+    # 5. Raw HTML en content o summary/description
+    html_sources = []
+    if hasattr(e, "content") and isinstance(e.content, list):
+        for c in e.content:
+            if isinstance(c, dict) and c.get("value"):
+                html_sources.append(c["value"])
+    html_sources.append(getattr(e, "summary", "") or "")
+    html_sources.append(getattr(e, "description", "") or "")
+
+    for raw_html in html_sources:
+        if not raw_html or not isinstance(raw_html, str):
+            continue
+        img_matches = re.findall(r'<img[^>]+src=["\'](https?://[^"\'>\s]+)["\']', raw_html, flags=re.IGNORECASE)
+        for img_url in img_matches:
+            img_l = img_url.lower()
+            # Descartar píxeles de tracking, avatares o iconos miniatura
+            if any(bad in img_l for bad in ["1x1", "pixel", "feedburner", "tracker", "avatar", "emoji", "icon", "spacer"]):
+                continue
+            return img_url.strip()
+
+    return ""
+
+
 def _fetch_feed_with_retries(url: str):
     last_error = None
     for attempt in range(RSS_RETRIES + 1):
@@ -57,9 +112,11 @@ def fetch_rss(url: str, limit: int = 30, quiet: bool = False):
         if getattr(e, "published_parsed", None):
             published = datetime(*e.published_parsed[:6], tzinfo=timezone.utc).isoformat()
 
-        summary = _clean_html(getattr(e, "summary", "") or getattr(e, "description", ""))
+        raw_summary = getattr(e, "summary", "") or getattr(e, "description", "")
+        summary = _clean_html(raw_summary)
         link = (getattr(e, "link", "") or "").strip()
         title = (getattr(e, "title", "") or "").strip()
+        image_url = _extract_image_url(e)
 
         items.append(
             {
@@ -67,6 +124,7 @@ def fetch_rss(url: str, limit: int = 30, quiet: bool = False):
                 "link": link,
                 "published": published,
                 "summary": summary,
+                "image_url": image_url,
             }
         )
     return items

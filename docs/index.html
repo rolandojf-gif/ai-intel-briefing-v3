@@ -86,6 +86,21 @@
   .sig-n .num{font-family:var(--mono);font-size:15px;font-weight:700;color:var(--cyan)}
   .sig-n .sc{font-family:var(--mono);font-size:9.5px;color:var(--dimmer)}
   .sig-b{padding:19px 22px;min-width:0}
+  .sig-main-layout{display:flex;gap:20px;justify-content:space-between;align-items:flex-start}
+  .sig-content{flex:1;min-width:0}
+  .sig-thumb-link{flex-shrink:0;text-decoration:none;display:block}
+  .sig-thumb-wrap{width:148px;height:98px;border-radius:4px;overflow:hidden;border:1px solid var(--line-2);
+                  background:var(--panel-2);position:relative;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+  .sig-thumb{width:100%;height:100%;object-fit:cover;display:block;transition:transform .24s cubic-bezier(.2,0,0,1),filter .24s ease;
+             filter:saturate(.95) contrast(1.05)}
+  .sig:hover .sig-thumb{transform:scale(1.06);filter:saturate(1.12) contrast(1.1)}
+  .thumb-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+                  background:radial-gradient(circle at 50% 50%, rgba(94,234,212,.12), rgba(13,20,32,.95));}
+  .thumb-fallback img{width:34px;height:34px;border-radius:5px;opacity:.9;box-shadow:0 2px 8px rgba(0,0,0,.4)}
+  @media(max-width:680px){
+    .sig-main-layout{flex-direction:column-reverse;gap:14px}
+    .sig-thumb-wrap{width:100%;height:140px}
+  }
   .sig-top{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:11px}
   .tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;
        padding:3px 8px;border-radius:2px;border:1px solid var(--line-2);color:var(--dim)}
@@ -136,10 +151,16 @@
   .rk.w{color:#cdbdf8}
 
   .ctx{display:grid;gap:2px}
-  .cx{display:flex;gap:14px;align-items:baseline;padding:13px 15px;border:1px solid var(--line);
+  .cx{display:flex;gap:14px;align-items:center;padding:13px 15px;border:1px solid var(--line);
       border-radius:3px;background:rgba(10,15,24,.55)}
   .cx:hover{border-color:var(--line-2)}
   .cx-s{font-family:var(--mono);font-size:10.5px;color:var(--dimmer);flex-shrink:0;width:26px}
+  .cx-thumb-wrap{width:64px;height:46px;border-radius:3px;overflow:hidden;border:1px solid var(--line-2);
+                 flex-shrink:0;background:var(--panel-2)}
+  .cx-thumb{width:100%;height:100%;object-fit:cover;display:block}
+  .cx-thumb-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+                     background:rgba(255,255,255,.025);}
+  .cx-thumb-fallback img{width:20px;height:20px;border-radius:3px;opacity:.75}
   .cx-b{min-width:0;flex:1}
   .cx-t{font-size:14px;line-height:1.4;font-weight:500}
   .cx-t a:hover{color:var(--cyan)}
@@ -160,7 +181,7 @@
       <span class="date">2026-08-22</span>
     </div>
     <div class="bar-g">
-      <span class="state alert"><span class="dot"></span>ALERTA</span>
+      <span class="state quiet"><span class="dot"></span>SIN FILTRAR</span>
       <nav class="nav">
         <a class="on" href="index.html">Diario</a>
         <a href="weekly.html">Semanal</a>
@@ -170,14 +191,19 @@
 
   <div class="thesis">
     <span class="lbl">Tesis del día</span>
-    <h1>El día se caracteriza por la expansión de capacidades de modelos frontera en ciberseguridad y búsqueda agentica, junto con una intensificación de la competencia en rendimiento/coste de modelos y movimientos estratégicos en la infraestructura de chips y memoria.</h1>
+    <h1>Analisis no disponible hoy: el filtro de relevancia no se ha aplicado.</h1>
     <div class="meta-row">
-      <span class="m"><b>8</b> señales</span>
-      <span class="m"><b>1</b> contexto</span>
-      <span class="m">Dominante: <b>Economía de modelos</b></span>
+      <span class="m"><b>10</b> señales</span>
+      <span class="m"><b>0</b> contexto</span>
+      <span class="m">Dominante: <b>Agentes</b></span>
     </div>
   </div>
 
+  
+  <div class="degraded">
+    <b>Modo degradado.</b> El análisis del LLM no está disponible hoy, así que el filtro de
+    relevancia no se ha aplicado. Lo que ves está ordenado por heurística y puede contener ruido.
+  </div>
   
 
   
@@ -219,7 +245,7 @@
   <section>
     <div class="head">
       <h2>Señales</h2>
-      <span class="n">8 hoy</span>
+      <span class="n">10 hoy</span>
     </div>
     
     <div class="sigs">
@@ -227,29 +253,33 @@
       <article class="sig">
         <div class="sig-n">
           <span class="num">01</span>
-          <span class="sc">93</span>
+          <span class="sc">100</span>
         </div>
         <div class="sig-b">
-          <div class="sig-top">
-            <span class="tag th">Economía de modelos</span>
-            <span class="src"><img src="https://www.google.com/s2/favicons?domain=together.ai&amp;sz=64" alt="" loading="lazy"/>Together AI</span>
+          <div class="sig-main-layout">
+            <div class="sig-content">
+              <div class="sig-top">
+                <span class="tag th">Agentes</span>
+                <span class="src"><img src="https://www.google.com/s2/favicons?domain=together.ai&amp;sz=64" alt="" loading="lazy"/>Together AI</span>
+              </div>
+              <h3 class="sig-t">
+                <a href="https://www.together.ai/blog/glm-5-3-vs-gpt-5-6-sol-on-deepswe-cost-coding-and-routing" target="_blank" rel="noopener noreferrer">GLM-5.3 vs. GPT-5.6 Sol on DeepSWE: Cost, Coding, and Routing</a>
+              </h3>
+              <div class="sw">We ran 904 DeepSWE rollouts on GLM-5.3 and GPT-5.6 Sol. Sol leads pass@1 by 3.7 points; GLM-5.3 wins pass@4 at half the cost, and a GLM-first cascade hits 85.9%</div>
+            </div>
+            <a href="https://www.together.ai/blog/glm-5-3-vs-gpt-5-6-sol-on-deepswe-cost-coding-and-routing" target="_blank" rel="noopener noreferrer" class="sig-thumb-link">
+              <div class="sig-thumb-wrap">
+                
+                <div class="thumb-fallback">
+                  <img src="https://www.google.com/s2/favicons?domain=together.ai&amp;sz=64" alt="" loading="lazy"/>
+                </div>
+                
+              </div>
+            </a>
           </div>
-          <h3 class="sig-t">
-            <a href="https://www.together.ai/blog/glm-5-3-vs-gpt-5-6-sol-on-deepswe-cost-coding-and-routing" target="_blank" rel="noopener noreferrer">GLM-5.3 de Zhipu AI supera a GPT-5.6 Sol en DeepSWE en pass@4 con menor coste.</a>
-          </h3>
-          <div class="sw">Muestra que modelos más económicos pueden igualar o superar el rendimiento de modelos frontera en tareas de coding complejas, reduciendo la barrera de entrada para desarrollo de agentes autónomos.</div>
-          
-          <div class="sig-foot two">
-            
-            <div class="ff pw"><span class="k">Poder</span><span class="v">Zhipu AI gana en eficiencia/rendimiento en coding. OpenAI y Google Sol pierden liderazgo en coste-eficacia para ciertos…</span></div>
-            
-            
-            <div class="ff wn"><span class="k">Vigilar</span><span class="v">Validación independiente de estos benchmarks y su generalización a otras tareas de desarrollo de software.</span></div>
-            
-          </div>
           
           
-          <div class="ents"><span class="ent">Together AI</span><span class="ent">Zhipu AI</span><span class="ent">GLM-5</span><span class="ent">OpenAI</span><span class="ent">Google</span></div>
+          <div class="ents"><span class="ent">GPT-5</span><span class="ent">GLM-5</span><span class="ent">GLM</span><span class="ent">Sol</span><span class="ent">Cost</span></div>
           
         </div>
       </article>
@@ -257,29 +287,33 @@
       <article class="sig">
         <div class="sig-n">
           <span class="num">02</span>
-          <span class="sc">93</span>
+          <span class="sc">100</span>
         </div>
         <div class="sig-b">
-          <div class="sig-top">
-            <span class="tag th">Economía de modelos</span>
-            <span class="src"><img src="https://www.google.com/s2/favicons?domain=together.ai&amp;sz=64" alt="" loading="lazy"/>Together AI</span>
+          <div class="sig-main-layout">
+            <div class="sig-content">
+              <div class="sig-top">
+                <span class="tag th">Agentes</span>
+                <span class="src"><img src="https://www.google.com/s2/favicons?domain=together.ai&amp;sz=64" alt="" loading="lazy"/>Together AI</span>
+              </div>
+              <h3 class="sig-t">
+                <a href="https://www.together.ai/blog/glm-5-3-vs-claude-fable-5-on-deepswe-cost-coding-and-routing" target="_blank" rel="noopener noreferrer">GLM-5.3 vs. Claude Fable 5 on DeepSWE: Cost, Coding, and Routing</a>
+              </h3>
+              <div class="sw">We ran 904 DeepSWE rollouts on GLM-5.3 and Claude Fable 5. A tie on pass@1, but GLM-5.3 wins pass@4 and costs 5.4x less: \$3.99 per rollout vs. \$21.63.</div>
+            </div>
+            <a href="https://www.together.ai/blog/glm-5-3-vs-claude-fable-5-on-deepswe-cost-coding-and-routing" target="_blank" rel="noopener noreferrer" class="sig-thumb-link">
+              <div class="sig-thumb-wrap">
+                
+                <div class="thumb-fallback">
+                  <img src="https://www.google.com/s2/favicons?domain=together.ai&amp;sz=64" alt="" loading="lazy"/>
+                </div>
+                
+              </div>
+            </a>
           </div>
-          <h3 class="sig-t">
-            <a href="https://www.together.ai/blog/glm-5-3-vs-claude-fable-5-on-deepswe-cost-coding-and-routing" target="_blank" rel="noopener noreferrer">GLM-5.3 de Zhipu AI empata con Claude Fable 5 en DeepSWE y cuesta 5.4 veces menos.</a>
-          </h3>
-          <div class="sw">Refuerza la viabilidad de modelos con menor coste para tareas de coding críticas, presionando a los proveedores de modelos frontera a justificar sus precios más altos con capacidades diferenciadas.</div>
-          
-          <div class="sig-foot two">
-            
-            <div class="ff pw"><span class="k">Poder</span><span class="v">Zhipu AI afianza su posición de coste-efectividad. Anthropic pierde terreno en la relación rendimiento/precio en coding.</span></div>
-            
-            
-            <div class="ff wn"><span class="k">Vigilar</span><span class="v">Impacto de la relación coste/rendimiento de GLM-5.3 en la adopción por parte de startups y empresas.</span></div>
-            
-          </div>
           
           
-          <div class="ents"><span class="ent">Together AI</span><span class="ent">Zhipu AI</span><span class="ent">GLM-5</span><span class="ent">Anthropic</span><span class="ent">Claude Fable 5</span></div>
+          <div class="ents"><span class="ent">Claude</span><span class="ent">GLM-5</span><span class="ent">GLM</span><span class="ent">Fable</span><span class="ent">Claude Fable</span></div>
           
         </div>
       </article>
@@ -287,29 +321,31 @@
       <article class="sig">
         <div class="sig-n">
           <span class="num">03</span>
-          <span class="sc">88</span>
+          <span class="sc">100</span>
         </div>
         <div class="sig-b">
-          <div class="sig-top">
-            <span class="tag th">Compute &amp; chips</span>
-            <span class="src"><img src="https://www.google.com/s2/favicons?domain=semiwiki.com&amp;sz=64" alt="" loading="lazy"/>SemiWiki</span>
+          <div class="sig-main-layout">
+            <div class="sig-content">
+              <div class="sig-top">
+                <span class="tag th">Agentes</span>
+                <span class="src"><img src="https://www.google.com/s2/favicons?domain=simonwillison.net&amp;sz=64" alt="" loading="lazy"/>Simon Willison (AI &amp; LLMs)</span>
+              </div>
+              <h3 class="sig-t">
+                <a href="https://simonwillison.net/2026/Aug/22/llm/" target="_blank" rel="noopener noreferrer">llm 0.33</a>
+              </h3>
+              <div class="sw">Release: llm 0.33 My highlights from this release: Upgraded to the OpenAI Python library 3.x and switched the HTTP client dependency from httpx to httpx2 . 1608</div>
+            </div>
+            <a href="https://simonwillison.net/2026/Aug/22/llm/" target="_blank" rel="noopener noreferrer" class="sig-thumb-link">
+              <div class="sig-thumb-wrap">
+                
+                <div class="thumb-fallback">
+                  <img src="https://www.google.com/s2/favicons?domain=simonwillison.net&amp;sz=64" alt="" loading="lazy"/>
+                </div>
+                
+              </div>
+            </a>
           </div>
-          <h3 class="sig-t">
-            <a href="https://semiwiki.com/semiconductor-manufacturers/tsmc/372488-how-tsmc-is-wiring-the-ai-era-with-light/" target="_blank" rel="noopener noreferrer">TSMC integra fotónica para I/O óptica en lógica avanzada, clave para la era de la IA.</a>
-          </h3>
-          <div class="sw">La estrategia de TSMC de integrar fotónica en chips avanzados es crucial para superar las limitaciones de ancho de banda y latencia, acelerando el desarrollo de chips de IA más potentes y eficientes.</div>
           
-          <div class="sig-foot two">
-            
-            <div class="ff pw"><span class="k">Poder</span><span class="v">TSMC refuerza su liderazgo en fabricación de chips avanzados, vital para la capacidad de cómputo global de IA.</span></div>
-            
-            
-            <div class="ff wn"><span class="k">Vigilar</span><span class="v">Anuncios de productos que incorporen la plataforma fotónica de TSMC y su impacto en el rendimiento de los data centers…</span></div>
-            
-          </div>
-          
-          
-          <div class="ents"><span class="ent">TSMC</span></div>
           
         </div>
       </article>
@@ -317,29 +353,34 @@
       <article class="sig">
         <div class="sig-n">
           <span class="num">04</span>
-          <span class="sc">86</span>
+          <span class="sc">94</span>
         </div>
         <div class="sig-b">
-          <div class="sig-top">
-            <span class="tag th">Agentes</span>
-            <span class="src"><img src="https://www.google.com/s2/favicons?domain=latent.space&amp;sz=64" alt="" loading="lazy"/>Latent Space</span>
+          <div class="sig-main-layout">
+            <div class="sig-content">
+              <div class="sig-top">
+                <span class="tag th">Agentes</span>
+                <span class="src"><img src="https://www.google.com/s2/favicons?domain=anthropic.com&amp;sz=64" alt="" loading="lazy"/>Anthropic</span>
+              </div>
+              <h3 class="sig-t">
+                <a href="https://claude.com/blog/the-ai-native-sdlc-playbook" target="_blank" rel="noopener noreferrer">The AI-Native SDLC playbook</a>
+              </h3>
+              <div class="sw">Code is no longer the bottleneck Organizations have started using AI to write code at a speed unthinkable one year ago, yet the processes around the code haven&#39;</div>
+            </div>
+            <a href="https://claude.com/blog/the-ai-native-sdlc-playbook" target="_blank" rel="noopener noreferrer" class="sig-thumb-link">
+              <div class="sig-thumb-wrap">
+                
+                <img src="https://cdn.prod.website-files.com/68a44d4040f98a4adf2207b6/6a8739a1b934ffe55bfc9715_44592f18.png" alt="" class="sig-thumb" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
+                <div class="thumb-fallback" style="display:none;">
+                  <img src="https://www.google.com/s2/favicons?domain=anthropic.com&amp;sz=64" alt="" loading="lazy"/>
+                </div>
+                
+              </div>
+            </a>
           </div>
-          <h3 class="sig-t">
-            <a href="https://www.latent.space/p/simile" target="_blank" rel="noopener noreferrer">Simile AI avanza en simulación con agentes generativos y gemelos digitales, explorando la ley de escalado.</a>
-          </h3>
-          <div class="sw">La simulación a gran escala con gemelos digitales puede ser la próxima frontera para probar y desarrollar agentes autónomos, validando la tesis de que la simulación es una nueva ley de escalado para la IA.</div>
-          
-          <div class="sig-foot two">
-            
-            <div class="ff pw"><span class="k">Poder</span><span class="v">Simile AI gana tracción en un área emergente que podría ser clave para el desarrollo de AGI.</span></div>
-            
-            
-            <div class="ff wn"><span class="k">Vigilar</span><span class="v">Demostraciones de gemelos digitales operando a escala y su impacto en el entrenamiento de agentes complejos.</span></div>
-            
-          </div>
           
           
-          <div class="ents"><span class="ent">Simile AI</span><span class="ent">Joon Sung Park</span></div>
+          <div class="ents"><span class="ent">SDLC</span><span class="ent">Native</span></div>
           
         </div>
       </article>
@@ -347,29 +388,33 @@
       <article class="sig">
         <div class="sig-n">
           <span class="num">05</span>
-          <span class="sc">78</span>
+          <span class="sc">94</span>
         </div>
         <div class="sig-b">
-          <div class="sig-top">
-            <span class="tag th">Compute &amp; chips</span>
-            <span class="src"><img src="https://www.google.com/s2/favicons?domain=semiwiki.com&amp;sz=64" alt="" loading="lazy"/>SemiWiki</span>
+          <div class="sig-main-layout">
+            <div class="sig-content">
+              <div class="sig-top">
+                <span class="tag th">Compute &amp; chips</span>
+                <span class="src"><img src="https://www.google.com/s2/favicons?domain=anthropic.com&amp;sz=64" alt="" loading="lazy"/>Anthropic</span>
+              </div>
+              <h3 class="sig-t">
+                <a href="https://claude.com/blog/bringing-claude-mythos-5-to-more-defenders" target="_blank" rel="noopener noreferrer">Bringing the cybersecurity capabilities of Claude Mythos 5 to more defenders</a>
+              </h3>
+              <div class="sw">We&#39;re sharing an update on our efforts to help more teams use frontier capabilities for cyber defense. Claude Mythos 5 is now available in Claude Security , and</div>
+            </div>
+            <a href="https://claude.com/blog/bringing-claude-mythos-5-to-more-defenders" target="_blank" rel="noopener noreferrer" class="sig-thumb-link">
+              <div class="sig-thumb-wrap">
+                
+                <div class="thumb-fallback">
+                  <img src="https://www.google.com/s2/favicons?domain=anthropic.com&amp;sz=64" alt="" loading="lazy"/>
+                </div>
+                
+              </div>
+            </a>
           </div>
-          <h3 class="sig-t">
-            <a href="https://semiwiki.com/semiconductor-manufacturers/intel/372371-intel-eyes-a-memory-comeback-as-ai-rewrites-chip-economics/" target="_blank" rel="noopener noreferrer">Intel considera volver al negocio de la memoria, motivado por la reescritura de la economía de chips por la IA.</a>
-          </h3>
-          <div class="sw">La demanda de memoria de alto rendimiento y baja latencia para IA está reconfigurando el mercado de chips, empujando a Intel a reconsiderar su estrategia para capturar valor en la cadena de suministro de cómputo IA.</div>
-          
-          <div class="sig-foot two">
-            
-            <div class="ff pw"><span class="k">Poder</span><span class="v">Intel puede recuperar influencia en un segmento crítico del hardware de IA, desafiando a proveedores de memoria existen…</span></div>
-            
-            
-            <div class="ff wn"><span class="k">Vigilar</span><span class="v">Anuncios concretos de Intel sobre productos de memoria y asociaciones estratégicas en el sector de la IA.</span></div>
-            
-          </div>
           
           
-          <div class="ents"><span class="ent">Intel</span></div>
+          <div class="ents"><span class="ent">Claude</span><span class="ent">Mythos</span><span class="ent">Bringing</span><span class="ent">Claude Mythos</span></div>
           
         </div>
       </article>
@@ -377,29 +422,33 @@
       <article class="sig">
         <div class="sig-n">
           <span class="num">06</span>
-          <span class="sc">74</span>
+          <span class="sc">62</span>
         </div>
         <div class="sig-b">
-          <div class="sig-top">
-            <span class="tag th">Economía de modelos</span>
-            <span class="src"><img src="https://www.google.com/s2/favicons?domain=interconnects.ai&amp;sz=64" alt="" loading="lazy"/>Interconnects</span>
+          <div class="sig-main-layout">
+            <div class="sig-content">
+              <div class="sig-top">
+                <span class="tag th">Compute &amp; chips</span>
+                <span class="src"><img src="https://www.google.com/s2/favicons?domain=semiwiki.com&amp;sz=64" alt="" loading="lazy"/>SemiWiki</span>
+              </div>
+              <h3 class="sig-t">
+                <a href="https://semiwiki.com/semiconductor-manufacturers/tsmc/372488-how-tsmc-is-wiring-the-ai-era-with-light/" target="_blank" rel="noopener noreferrer">How TSMC Is Wiring the AI Era With Light</a>
+              </h3>
+              <div class="sw">TSMC’s photonics strategy is centered on integrating optical input-output with advanced logic, rather than selling conventional optical transceivers as standalo</div>
+            </div>
+            <a href="https://semiwiki.com/semiconductor-manufacturers/tsmc/372488-how-tsmc-is-wiring-the-ai-era-with-light/" target="_blank" rel="noopener noreferrer" class="sig-thumb-link">
+              <div class="sig-thumb-wrap">
+                
+                <div class="thumb-fallback">
+                  <img src="https://www.google.com/s2/favicons?domain=semiwiki.com&amp;sz=64" alt="" loading="lazy"/>
+                </div>
+                
+              </div>
+            </a>
           </div>
-          <h3 class="sig-t">
-            <a href="https://www.interconnects.ai/p/teaching-everyone-to-fish-for-tokens" target="_blank" rel="noopener noreferrer">Nvidia promueve el desarrollo de modelos propios frente a la compra a labs de frontera.</a>
-          </h3>
-          <div class="sw">Nvidia busca posicionarse como el habilitador principal de la infraestructura, incentivando a las empresas a entrenar sus propios modelos, lo que puede fragmentar el mercado de proveedores de API.</div>
-          
-          <div class="sig-foot two">
-            
-            <div class="ff pw"><span class="k">Poder</span><span class="v">Nvidia gana influencia como proveedor de infraestructura clave. OpenAI y Anthropic podrían ver erosionada su cuota de m…</span></div>
-            
-            
-            <div class="ff wn"><span class="k">Vigilar</span><span class="v">Aumento significativo en la demanda de hardware de inferencia y herramientas de orquestación por parte de grandes empre…</span></div>
-            
-          </div>
           
           
-          <div class="ents"><span class="ent">NVIDIA</span><span class="ent">Anthropic</span><span class="ent">OpenAI</span></div>
+          <div class="ents"><span class="ent">TSMC</span><span class="ent">Is Wiring</span></div>
           
         </div>
       </article>
@@ -407,29 +456,34 @@
       <article class="sig">
         <div class="sig-n">
           <span class="num">07</span>
-          <span class="sc">73</span>
+          <span class="sc">54</span>
         </div>
         <div class="sig-b">
-          <div class="sig-top">
-            <span class="tag th">Capacidad frontier</span>
-            <span class="src"><img src="https://www.google.com/s2/favicons?domain=anthropic.com&amp;sz=64" alt="" loading="lazy"/>Anthropic</span>
+          <div class="sig-main-layout">
+            <div class="sig-content">
+              <div class="sig-top">
+                <span class="tag th">Economía de modelos</span>
+                <span class="src"><img src="https://www.google.com/s2/favicons?domain=interconnects.ai&amp;sz=64" alt="" loading="lazy"/>Interconnects</span>
+              </div>
+              <h3 class="sig-t">
+                <a href="https://www.interconnects.ai/p/teaching-everyone-to-fish-for-tokens" target="_blank" rel="noopener noreferrer">Teaching Everyone to Fish for Tokens</a>
+              </h3>
+              <div class="sw">Nvidia wants you building your own model, not buying from Anthropic/OpenAI.</div>
+            </div>
+            <a href="https://www.interconnects.ai/p/teaching-everyone-to-fish-for-tokens" target="_blank" rel="noopener noreferrer" class="sig-thumb-link">
+              <div class="sig-thumb-wrap">
+                
+                <img src="https://substack-post-media.s3.amazonaws.com/public/images/b8608bb9-bf33-46e6-8ffe-dcf75a851f9b_3182x1790.png" alt="" class="sig-thumb" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
+                <div class="thumb-fallback" style="display:none;">
+                  <img src="https://www.google.com/s2/favicons?domain=interconnects.ai&amp;sz=64" alt="" loading="lazy"/>
+                </div>
+                
+              </div>
+            </a>
           </div>
-          <h3 class="sig-t">
-            <a href="https://claude.com/blog/bringing-claude-mythos-5-to-more-defenders" target="_blank" rel="noopener noreferrer">Anthropic extiende las capacidades de Claude Mythos 5 a la ciberseguridad para más defensores.</a>
-          </h3>
-          <div class="sw">La disponibilidad de un modelo frontera como Mythos 5 para ciberseguridad eleva las capacidades de defensa, permitiendo identificar y mitigar vulnerabilidades avanzadas antes de su explotación masiva.</div>
-          
-          <div class="sig-foot two">
-            
-            <div class="ff pw"><span class="k">Poder</span><span class="v">Anthropic gana posición en IA para seguridad. Empresas de ciberseguridad sin acceso a modelos frontera pierden.</span></div>
-            
-            
-            <div class="ff wn"><span class="k">Vigilar</span><span class="v">Resultados de detección de vulnerabilidades por parte de organizaciones usando Mythos 5, comparados con sistemas existe…</span></div>
-            
-          </div>
           
           
-          <div class="ents"><span class="ent">Anthropic</span><span class="ent">Claude Mythos 5</span><span class="ent">Claude Security</span><span class="ent">Project Glasswing</span></div>
+          <div class="ents"><span class="ent">Teaching Everyone</span><span class="ent">Fish</span><span class="ent">Tokens</span></div>
           
         </div>
       </article>
@@ -437,29 +491,100 @@
       <article class="sig">
         <div class="sig-n">
           <span class="num">08</span>
-          <span class="sc">70</span>
+          <span class="sc">48</span>
         </div>
         <div class="sig-b">
-          <div class="sig-top">
-            <span class="tag th">Agentes</span>
-            <span class="src"><img src="https://www.google.com/s2/favicons?domain=mistral.ai&amp;sz=64" alt="" loading="lazy"/>Mistral</span>
+          <div class="sig-main-layout">
+            <div class="sig-content">
+              <div class="sig-top">
+                <span class="tag th">Compute &amp; chips</span>
+                <span class="src"><img src="https://www.google.com/s2/favicons?domain=semiwiki.com&amp;sz=64" alt="" loading="lazy"/>SemiWiki</span>
+              </div>
+              <h3 class="sig-t">
+                <a href="https://semiwiki.com/semiconductor-manufacturers/intel/372371-intel-eyes-a-memory-comeback-as-ai-rewrites-chip-economics/" target="_blank" rel="noopener noreferrer">Intel Eyes a Memory Comeback as AI Rewrites Chip Economics</a>
+              </h3>
+              <div class="sw">Intel is considering a return to memory technology decades after abandoning mainstream DRAM and, more recently, selling its NAND business. Chief executive Lip-B</div>
+            </div>
+            <a href="https://semiwiki.com/semiconductor-manufacturers/intel/372371-intel-eyes-a-memory-comeback-as-ai-rewrites-chip-economics/" target="_blank" rel="noopener noreferrer" class="sig-thumb-link">
+              <div class="sig-thumb-wrap">
+                
+                <div class="thumb-fallback">
+                  <img src="https://www.google.com/s2/favicons?domain=semiwiki.com&amp;sz=64" alt="" loading="lazy"/>
+                </div>
+                
+              </div>
+            </a>
           </div>
-          <h3 class="sig-t">
-            <a href="https://mistral.ai/news/agentic-search/" target="_blank" rel="noopener noreferrer">Mistral AI lanza &#39;Agentic Search&#39; para resultados más precisos y eficientes en sistemas de IA.</a>
-          </h3>
-          <div class="sw">Mistral entra en el espacio de la búsqueda agentica, mejorando la capacidad de los sistemas de IA para navegar y verificar información, lo que es crítico para aplicaciones autónomas y la toma de decisiones basada en datos complej…</div>
           
-          <div class="sig-foot two">
-            
-            <div class="ff pw"><span class="k">Poder</span><span class="v">Mistral AI gana posición en el desarrollo de herramientas para agentes, compitiendo con otros labs que desarrollan capa…</span></div>
-            
-            
-            <div class="ff wn"><span class="k">Vigilar</span><span class="v">Casos de uso y métricas de rendimiento de &#39;Agentic Search&#39; en entornos reales con documentos complejos.</span></div>
-            
+          
+          <div class="ents"><span class="ent">Intel</span><span class="ent">Intel Eyes</span><span class="ent">Memory Comeback</span><span class="ent">Rewrites Chip Economics</span></div>
+          
+        </div>
+      </article>
+      
+      <article class="sig">
+        <div class="sig-n">
+          <span class="num">09</span>
+          <span class="sc">42</span>
+        </div>
+        <div class="sig-b">
+          <div class="sig-main-layout">
+            <div class="sig-content">
+              <div class="sig-top">
+                <span class="tag th">Agentes</span>
+                <span class="src"><img src="https://www.google.com/s2/favicons?domain=latent.space&amp;sz=64" alt="" loading="lazy"/>Latent Space</span>
+              </div>
+              <h3 class="sig-t">
+                <a href="https://www.latent.space/p/ainews-10-worse-100x-cheaper-10000x" target="_blank" rel="noopener noreferrer">[AINews] 10% worse, 100x cheaper, 10000x faster: Why Simulation is taking over</a>
+              </h3>
+              <div class="sw">Did you think RSI stopped at model training?</div>
+            </div>
+            <a href="https://www.latent.space/p/ainews-10-worse-100x-cheaper-10000x" target="_blank" rel="noopener noreferrer" class="sig-thumb-link">
+              <div class="sig-thumb-wrap">
+                
+                <img src="https://substackcdn.com/image/fetch/$s_!Vw9p!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc661e612-544b-4eaa-9603-78e5f28276b7_1956x1228.png" alt="" class="sig-thumb" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
+                <div class="thumb-fallback" style="display:none;">
+                  <img src="https://www.google.com/s2/favicons?domain=latent.space&amp;sz=64" alt="" loading="lazy"/>
+                </div>
+                
+              </div>
+            </a>
           </div>
           
           
-          <div class="ents"><span class="ent">Mistral AI</span></div>
+        </div>
+      </article>
+      
+      <article class="sig">
+        <div class="sig-n">
+          <span class="num">10</span>
+          <span class="sc">41</span>
+        </div>
+        <div class="sig-b">
+          <div class="sig-main-layout">
+            <div class="sig-content">
+              <div class="sig-top">
+                <span class="tag th">Capacidad frontier</span>
+                <span class="src"><img src="https://www.google.com/s2/favicons?domain=huggingface.co&amp;sz=64" alt="" loading="lazy"/>Hugging Face Blog</span>
+              </div>
+              <h3 class="sig-t">
+                <a href="https://huggingface.co/blog/asr-benchmark-optimization" target="_blank" rel="noopener noreferrer">Measuring benchmark optimization in speech recognition</a>
+              </h3>
+              
+            </div>
+            <a href="https://huggingface.co/blog/asr-benchmark-optimization" target="_blank" rel="noopener noreferrer" class="sig-thumb-link">
+              <div class="sig-thumb-wrap">
+                
+                <div class="thumb-fallback">
+                  <img src="https://www.google.com/s2/favicons?domain=huggingface.co&amp;sz=64" alt="" loading="lazy"/>
+                </div>
+                
+              </div>
+            </a>
+          </div>
+          
+          
+          <div class="ents"><span class="ent">Measuring</span></div>
           
         </div>
       </article>
@@ -480,7 +605,7 @@
             <span class="thr-d">DÍA 6</span>
             <div>
               <div class="thr-t">Agentes y automatización</div>
-              <div class="thr-l">Simile AI avanza en simulación con agentes generativos y gemelos digitales, explorando la ley de escalado.</div>
+              <div class="thr-l">GLM-5.3 vs. GPT-5.6 Sol on DeepSWE: Cost, Coding, and Routing</div>
             </div>
           </div>
           
@@ -490,27 +615,27 @@
         <span class="lbl">Movimiento de actores</span>
         
           
-          <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Claude Code</span>
+          <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Bringing</span>
             <span class="dt">primera aparición</span></div>
           
-          <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Claude Fable 5</span>
+          <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Claude Fable</span>
             <span class="dt">primera aparición</span></div>
           
-          <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Claude Mythos 5</span>
+          <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Claude Mythos</span>
             <span class="dt">primera aparición</span></div>
           
-          <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Claude Security</span>
+          <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Cost</span>
             <span class="dt">primera aparición</span></div>
           
-          <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">GLM-5</span>
+          <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Fable</span>
             <span class="dt">primera aparición</span></div>
           
           
-          <div class="mv"><span class="mv-b ret">Vuelve</span><span class="nm">NVIDIA</span>
-            <span class="dt">tras 9 días en silencio</span></div>
-          
-          <div class="mv"><span class="mv-b ret">Vuelve</span><span class="nm">Anthropic</span>
+          <div class="mv"><span class="mv-b ret">Vuelve</span><span class="nm">Claude</span>
             <span class="dt">tras 7 días en silencio</span></div>
+          
+          <div class="mv"><span class="mv-b ret">Vuelve</span><span class="nm">Tokens</span>
+            <span class="dt">tras 4 días en silencio</span></div>
           
           <div class="mv"><span class="mv-b ret">Vuelve</span><span class="nm">Intel</span>
             <span class="dt">tras 4 días en silencio</span></div>
@@ -532,45 +657,24 @@
       
       <div class="card">
         <span class="lbl">Riesgos</span>
-        <div class="rk">El coste por token y la eficiencia energética de los modelos frontera siguen siendo un cuello de botella para la adopción masiva.</div><div class="rk">La concentración de capacidades de entrenamiento en unos pocos actores que controlan la infraestructura de chips.</div>
+        <div class="rk">Sin juicio del LLM no se puede distinguir senal de ruido: tratar todo como no verificado.</div>
       </div>
       
       
       <div class="card">
         <span class="lbl">A vigilar</span>
-        <div class="rk w">Próximos resultados de rendimiento y coste de GLM-5.3 en otros benchmarks relevantes de coding/razonamiento.</div><div class="rk w">Anuncios concretos de TSMC o Intel sobre disponibilidad y rendimiento de sus nuevas soluciones en fotónica y memoria.</div><div class="rk w">Demostraciones públicas de las capacidades de &#39;Agentic Search&#39; de Mistral en entornos de información complejos.</div>
+        <div class="rk w">Confirmar que el analisis vuelve a ejecutarse en el proximo run.</div>
       </div>
       
     </div>
   </section>
   
 
-  
-  <section>
-    <div class="head">
-      <h2>Contexto</h2>
-      <span class="n">de fondo, no cambia nada hoy</span>
-    </div>
-    <div class="ctx">
-      
-      <div class="cx">
-        <span class="cx-s">43</span>
-        <div class="cx-b">
-          <div class="cx-t">
-            <a href="https://claude.com/blog/the-ai-native-sdlc-playbook" target="_blank" rel="noopener noreferrer">Anthropic publica una guía sobre el ciclo de vida del desarrollo de software nativo de IA.</a>
-          </div>
-          <div class="cx-w">Ofrece un marco para optimizar los procesos de desarrollo con soluciones de coding agentic como Claude Code, mostrando cómo integrar la IA en flujos de trabajo existentes para ganar productividad.</div>
-          <div class="cx-m">Agentes · Anthropic</div>
-        </div>
-      </div>
-      
-    </div>
-  </section>
   
 
   <footer>
-    <span>10 items descartados por el filtro de relevancia</span>
-    <span>19/20 fuentes activas · sin items: Hacker News (alto voltaje)</span>
+    <span>0 items descartados por el filtro de relevancia</span>
+    <span>20/20 fuentes activas</span>
   </footer>
 
 </div>

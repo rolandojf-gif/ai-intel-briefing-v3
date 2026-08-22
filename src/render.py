@@ -234,6 +234,21 @@ TEMPLATE = ENV.from_string("""
   .sig-n .num{font-family:var(--mono);font-size:15px;font-weight:700;color:var(--cyan)}
   .sig-n .sc{font-family:var(--mono);font-size:9.5px;color:var(--dimmer)}
   .sig-b{padding:19px 22px;min-width:0}
+  .sig-main-layout{display:flex;gap:20px;justify-content:space-between;align-items:flex-start}
+  .sig-content{flex:1;min-width:0}
+  .sig-thumb-link{flex-shrink:0;text-decoration:none;display:block}
+  .sig-thumb-wrap{width:148px;height:98px;border-radius:4px;overflow:hidden;border:1px solid var(--line-2);
+                  background:var(--panel-2);position:relative;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+  .sig-thumb{width:100%;height:100%;object-fit:cover;display:block;transition:transform .24s cubic-bezier(.2,0,0,1),filter .24s ease;
+             filter:saturate(.95) contrast(1.05)}
+  .sig:hover .sig-thumb{transform:scale(1.06);filter:saturate(1.12) contrast(1.1)}
+  .thumb-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+                  background:radial-gradient(circle at 50% 50%, rgba(94,234,212,.12), rgba(13,20,32,.95));}
+  .thumb-fallback img{width:34px;height:34px;border-radius:5px;opacity:.9;box-shadow:0 2px 8px rgba(0,0,0,.4)}
+  @media(max-width:680px){
+    .sig-main-layout{flex-direction:column-reverse;gap:14px}
+    .sig-thumb-wrap{width:100%;height:140px}
+  }
   .sig-top{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:11px}
   .tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;
        padding:3px 8px;border-radius:2px;border:1px solid var(--line-2);color:var(--dim)}
@@ -284,10 +299,16 @@ TEMPLATE = ENV.from_string("""
   .rk.w{color:#cdbdf8}
 
   .ctx{display:grid;gap:2px}
-  .cx{display:flex;gap:14px;align-items:baseline;padding:13px 15px;border:1px solid var(--line);
+  .cx{display:flex;gap:14px;align-items:center;padding:13px 15px;border:1px solid var(--line);
       border-radius:3px;background:rgba(10,15,24,.55)}
   .cx:hover{border-color:var(--line-2)}
   .cx-s{font-family:var(--mono);font-size:10.5px;color:var(--dimmer);flex-shrink:0;width:26px}
+  .cx-thumb-wrap{width:64px;height:46px;border-radius:3px;overflow:hidden;border:1px solid var(--line-2);
+                 flex-shrink:0;background:var(--panel-2)}
+  .cx-thumb{width:100%;height:100%;object-fit:cover;display:block}
+  .cx-thumb-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+                     background:rgba(255,255,255,.025);}
+  .cx-thumb-fallback img{width:20px;height:20px;border-radius:3px;opacity:.75}
   .cx-b{min-width:0;flex:1}
   .cx-t{font-size:14px;line-height:1.4;font-weight:500}
   .cx-t a:hover{color:var(--cyan)}
@@ -367,14 +388,32 @@ TEMPLATE = ENV.from_string("""
           <span class="sc">{{ it.score }}</span>
         </div>
         <div class="sig-b">
-          <div class="sig-top">
-            <span class="tag th">{{ it.theme_label }}</span>
-            <span class="src"><img src="{{ it.logo }}" alt="" loading="lazy"/>{{ it.source_label }}</span>
+          <div class="sig-main-layout">
+            <div class="sig-content">
+              <div class="sig-top">
+                <span class="tag th">{{ it.theme_label }}</span>
+                <span class="src"><img src="{{ it.logo }}" alt="" loading="lazy"/>{{ it.source_label }}</span>
+              </div>
+              <h3 class="sig-t">
+                <a href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ it.display_title }}</a>
+              </h3>
+              {% if it.so_what %}<div class="sw">{{ it.so_what }}</div>{% endif %}
+            </div>
+            <a href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer" class="sig-thumb-link">
+              <div class="sig-thumb-wrap">
+                {% if it.image_url %}
+                <img src="{{ it.image_url }}" alt="" class="sig-thumb" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
+                <div class="thumb-fallback" style="display:none;">
+                  <img src="{{ it.logo }}" alt="" loading="lazy"/>
+                </div>
+                {% else %}
+                <div class="thumb-fallback">
+                  <img src="{{ it.logo }}" alt="" loading="lazy"/>
+                </div>
+                {% endif %}
+              </div>
+            </a>
           </div>
-          <h3 class="sig-t">
-            <a href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ it.display_title }}</a>
-          </h3>
-          {% if it.so_what %}<div class="sw">{{ it.so_what }}</div>{% endif %}
           {% if it.power_shift or it.watch_next %}
           <div class="sig-foot {% if it.power_shift and it.watch_next %}two{% endif %}">
             {% if it.power_shift %}
@@ -476,6 +515,18 @@ TEMPLATE = ENV.from_string("""
       {% for it in context %}
       <div class="cx">
         <span class="cx-s">{{ it.score }}</span>
+        <div class="cx-thumb-wrap">
+          {% if it.image_url %}
+          <img src="{{ it.image_url }}" alt="" class="cx-thumb" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
+          <div class="cx-thumb-fallback" style="display:none;">
+            <img src="{{ it.logo }}" alt="" loading="lazy"/>
+          </div>
+          {% else %}
+          <div class="cx-thumb-fallback">
+            <img src="{{ it.logo }}" alt="" loading="lazy"/>
+          </div>
+          {% endif %}
+        </div>
         <div class="cx-b">
           <div class="cx-t">
             <a href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ it.display_title }}</a>
@@ -516,6 +567,7 @@ def render_index(items, briefing=None, snapshot=None):
         it["ents"] = item_entities(it)
         it["source_label"] = source_label(it.get("source", ""))
         it["logo"] = source_logo_url(it.get("source", ""), it.get("url") or it.get("link") or "")
+        it["image_url"] = (it.get("image_url") or "").strip()
         enriched.append(it)
 
     enriched.sort(key=lambda x: x.get("score", 0), reverse=True)

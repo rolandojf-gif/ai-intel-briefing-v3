@@ -1,5 +1,6 @@
 import unittest
 
+from src.fetch import _extract_image_url
 from src.main import clean_entities, clean_signal_text, apply_llm_results
 from src.memory import activity_level, detect_threads, entity_deltas, resolve_watchlist
 from src.render import _safe_url, display_title, human_theme, score_value
@@ -97,6 +98,31 @@ class CoreQualityTests(unittest.TestCase):
         self.assertEqual(len(resolved), 2)
         self.assertEqual(resolved[0]["status"], "hit")
         self.assertEqual(resolved[1]["status"], "open")
+
+    def test_image_extraction_from_rss_entry(self):
+        class DummyEntryMedia:
+            media_content = [{"url": "https://example.com/thumb.jpg", "medium": "image"}]
+            media_thumbnail = []
+            enclosures = []
+            links = []
+            summary = "<p>Sample summary</p>"
+            description = ""
+            content = []
+
+        img = _extract_image_url(DummyEntryMedia())
+        self.assertEqual(img, "https://example.com/thumb.jpg")
+
+        class DummyEntryHtml:
+            media_content = []
+            media_thumbnail = []
+            enclosures = []
+            links = []
+            summary = '<p>Check this <img src="https://example.com/featured.png" alt="ai"/> news</p>'
+            description = ""
+            content = []
+
+        img2 = _extract_image_url(DummyEntryHtml())
+        self.assertEqual(img2, "https://example.com/featured.png")
 
 
 if __name__ == "__main__":
