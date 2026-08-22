@@ -46,7 +46,7 @@ jobs:
 
       - name: Generate site
         env:
-          FORCE_GEMINI: ${{ github.event_name == 'workflow_dispatch' && inputs.force_gemini && '1' || (github.event_name == 'schedule' && '1' || '0') }}
+          FORCE_GEMINI: ${{ (github.event_name != 'workflow_dispatch' || inputs.force_gemini != false) && '1' || '0' }}
           FORCE_GEMINI_REFRESH: ${{ github.event_name == 'workflow_dispatch' && inputs.force_refresh && '1' || '0' }}
         run: |
           python -m src.main

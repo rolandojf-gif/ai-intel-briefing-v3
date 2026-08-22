@@ -19,37 +19,46 @@ def _clean_html(text: str) -> str:
     return re.sub(r"\s+", " ", no_tags).strip()
 
 
+import html
+
+
 def _extract_image_url(e) -> str:
     """Extrae URL de imagen de un item RSS (media:content, media:thumbnail, enclosures, img tags)."""
     # 1. Media content
     media_content = getattr(e, "media_content", []) or []
     for m in media_content:
         if isinstance(m, dict) and m.get("url"):
-            url = m["url"].strip()
+            url = html.unescape(m["url"].strip())
             medium = str(m.get("medium", "") or m.get("type", "")).lower()
             if "image" in medium or url.lower().endswith((".jpg", ".jpeg", ".png", ".webp", ".gif", ".avif")) or not medium:
-                return url
+                if url.startswith(("http://", "https://")):
+                    return url
 
     # 2. Media thumbnail
     media_thumbnail = getattr(e, "media_thumbnail", []) or []
     for m in media_thumbnail:
         if isinstance(m, dict) and m.get("url"):
-            return m["url"].strip()
+            url = html.unescape(m["url"].strip())
+            if url.startswith(("http://", "https://")):
+                return url
 
     # 3. Enclosures
     enclosures = getattr(e, "enclosures", []) or []
     for enc in enclosures:
         if isinstance(enc, dict) and enc.get("href"):
             mtype = str(enc.get("type", "")).lower()
-            href = enc["href"].strip()
+            href = html.unescape(enc["href"].strip())
             if "image" in mtype or href.lower().endswith((".jpg", ".jpeg", ".png", ".webp", ".gif", ".avif")):
-                return href
+                if href.startswith(("http://", "https://")):
+                    return href
 
     # 4. Links con rel=enclosure
     links = getattr(e, "links", []) or []
     for lk in links:
         if isinstance(lk, dict) and lk.get("type", "").startswith("image/") and lk.get("href"):
-            return lk["href"].strip()
+            url = html.unescape(lk["href"].strip())
+            if url.startswith(("http://", "https://")):
+                return url
 
     # 5. Raw HTML en content o summary/description
     html_sources = []
@@ -65,11 +74,12 @@ def _extract_image_url(e) -> str:
             continue
         img_matches = re.findall(r'<img[^>]+src=["\'](https?://[^"\'>\s]+)["\']', raw_html, flags=re.IGNORECASE)
         for img_url in img_matches:
-            img_l = img_url.lower()
+            img_clean = html.unescape(img_url.strip())
+            img_l = img_clean.lower()
             # Descartar píxeles de tracking, avatares o iconos miniatura
-            if any(bad in img_l for bad in ["1x1", "pixel", "feedburner", "tracker", "avatar", "emoji", "icon", "spacer"]):
+            if any(bad in img_l for bad in ["1x1", "pixel", "feedburner", "tracker", "avatar", "emoji", "icon", "spacer", "stat?"]):
                 continue
-            return img_url.strip()
+            return img_clean
 
     return ""
 

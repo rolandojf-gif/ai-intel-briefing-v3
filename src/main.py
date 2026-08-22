@@ -241,15 +241,18 @@ def clean_entities(raw_entities: list, title: str = "") -> list[str]:
 
 
 def should_use_gemini_today() -> bool:
-    # Override explicito
+    # Si FORCE_GEMINI esta explicitamente desactivado
+    if (os.getenv("FORCE_GEMINI") or "").strip() == "0":
+        return False
+    # Override explicito para activar
     if env_flag("FORCE_GEMINI", "0"):
+        return True
+    # Si la API key de Gemini esta presente en el entorno (GitHub Actions o local), usarla
+    if (os.getenv("GEMINI_API_KEY") or "").strip():
         return True
 
     event = (os.getenv("GITHUB_EVENT_NAME") or "").strip()
-    # Solo Gemini en schedule (por defecto). En workflow_dispatch tambien si se quiere probar manual.
-    if event == "schedule":
-        return True
-    if event == "workflow_dispatch":
+    if event in ("schedule", "workflow_dispatch", "push"):
         return True
 
     return False
