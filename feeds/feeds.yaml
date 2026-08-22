@@ -1,38 +1,80 @@
 sources:
-  - name: arXiv cs.AI
+  - name: Simon Willison (AI & LLMs)
     type: rss
-    url: https://export.arxiv.org/rss/cs.AI
-    tags: [papers, models]
+    url: https://simonwillison.net/atom/everything/
+    limit: 10
+    cap: 3
+    tags: [models, tools, frontier]
 
-  - name: arXiv cs.LG
+  - name: MarkTechPost (AI Releases)
     type: rss
-    url: https://export.arxiv.org/rss/cs.LG
-    tags: [papers, models]
+    url: https://www.marktechpost.com/category/technology/artificial-intelligence/feed/
+    limit: 10
+    cap: 3
+    tags: [models, research, releases]
 
-  - name: arXiv cs.CL
+  - name: Hugging Face Blog
     type: rss
-    url: https://export.arxiv.org/rss/cs.CL
-    tags: [papers, models, nlp]
+    url: https://huggingface.co/blog/feed.xml
+    limit: 8
+    cap: 2
+    tags: [labs, models, open_source]
+
+  - name: VentureBeat AI
+    type: rss
+    url: https://venturebeat.com/category/ai/feed/
+    limit: 8
+    cap: 2
+    tags: [industry, models]
+
+  - name: Latent Space
+    type: rss
+    url: https://www.latent.space/feed
+    limit: 6
+    cap: 2
+    tags: [analysis, engineering]
 
   - name: DeepMind Blog
     type: rss
     url: https://deepmind.google/blog/rss.xml
+    limit: 6
+    cap: 2
     tags: [labs, models]
 
   - name: Google AI Blog
     type: rss
     url: https://blog.google/technology/ai/rss/
+    limit: 6
+    cap: 2
     tags: [labs, models]
 
   - name: NVIDIA Blog (AI)
     type: rss
     url: https://blogs.nvidia.com/blog/category/deep-learning/feed/
+    limit: 6
+    cap: 2
     tags: [infra, chips]
 
   - name: SemiWiki
     type: rss
     url: https://semiwiki.com/feed/
+    limit: 6
+    cap: 2
     tags: [infra, chips]
+
+  - name: arXiv cs.AI
+    type: rss
+    url: https://export.arxiv.org/rss/cs.AI
+    limit: 4
+    cap: 2
+    tags: [papers, models]
+
+  - name: arXiv cs.CL
+    type: rss
+    url: https://export.arxiv.org/rss/cs.CL
+    limit: 4
+    cap: 2
+    tags: [papers, models, nlp]
 
   - name: X @OpenAI
     type: x
@@ -55,16 +97,9 @@ sources:
     cap: 2
     tags: [x, research, models]
 
-  - name: X @NVIDIAAI
+  - name: X @MistralAI
     type: x
-    username: NVIDIAAI
-    limit: 6
-    cap: 2
-    tags: [x, infra, chips]
-
-  - name: X @xai
-    type: x
-    username: xai
+    username: MistralAI
     limit: 6
     cap: 2
     tags: [x, models]
@@ -76,23 +111,72 @@ sources:
     cap: 2
     tags: [x, models, china]
 
+  - name: X @ZhipuAI
+    type: x
+    username: ZhipuAI
+    limit: 6
+    cap: 2
+    tags: [x, models, china]
+
+  - name: X @MoonshotAI
+    type: x
+    username: MoonshotAI
+    limit: 6
+    cap: 2
+    tags: [x, models, china]
+
+  - name: X @Alibaba_Qwen
+    type: x
+    username: Alibaba_Qwen
+    limit: 6
+    cap: 2
+    tags: [x, models, china]
+
+  - name: X @xai
+    type: x
+    username: xai
+    limit: 6
+    cap: 2
+    tags: [x, models]
+
+  - name: X @NVIDIAAI
+    type: x
+    username: NVIDIAAI
+    limit: 6
+    cap: 2
+    tags: [x, infra, chips]
+
   - name: X @karpathy
     type: x
     username: karpathy
-    limit: 6
+    limit: 4
     cap: 1
     tags: [x, agents, coding]
 
   - name: X @sama
     type: x
     username: sama
-    limit: 6
+    limit: 4
     cap: 1
     tags: [x, labs, strategy]
+
+  - name: X @rowancheung
+    type: x
+    username: rowancheung
+    limit: 4
+    cap: 1
+    tags: [x, industry, tracker]
+
+  - name: X Frontier & LLM Releases
+    type: x
+    query: "(\"Gemini 3.5\" OR \"Gemini 3\" OR \"Claude 3.7\" OR \"Claude 3.5\" OR \"GPT-5\" OR \"GLM-5\" OR \"GLM 5\" OR \"Kimi k3\" OR \"Kimi K3\" OR \"DeepSeek-V3\" OR \"DeepSeek-R1\" OR \"Qwen2.5\" OR \"Qwen 3\" OR Mythos OR Sol OR Fable OR \"Llama 4\" OR \"Mistral\") (released OR launches OR weights OR benchmark OR api OR reasoning) -is:retweet -is:reply"
+    limit: 10
+    cap: 3
+    tags: [x, models, frontier]
 
   - name: X AI policy/search
     type: x
     query: "(from:EU_Commission OR from:NIST) (\"AI Act\" OR \"export control\" OR semiconductor OR \"frontier AI\") -is:retweet -is:reply"
-    limit: 10
+    limit: 8
     cap: 2
     tags: [x, geopol, policy]

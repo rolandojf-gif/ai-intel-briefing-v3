@@ -30,13 +30,14 @@ class BatchOut(BaseModel):
     results: List[RankOut] = Field(default_factory=list)
 
 SYSTEM = (
-    "Eres analista de IA/hardware/inversión. "
-    "Puntúa impacto real (no hype). No inventes. "
-    "Usa solo título+resumen+fuente. "
-    "Escribe en castellano de España, natural y preciso."
+    "Eres analista senior de inteligencia en IA, LLMs, computación y hardware. "
+    "Prioriza lanzamientos reales de modelos de frontera (Gemini, Claude, GPT, DeepSeek, GLM, Kimi, Qwen, Mythos, Fable, Sol, Mistral, Llama), "
+    "pesos abiertos, nuevas arquitecturas de razonamiento, disponibilidad de APIs, precios y cuellos de botella reales de computación. "
+    "Penaliza notas de prensa blandas o hype corporativo reciclado. No inventes datos. "
+    "Escribe en castellano de España, natural, riguroso y conciso."
 )
 
-def rank_batch(items: list[dict], model: str = "gemini-3-flash-preview") -> dict:
+def rank_batch(items: list[dict], model: str = "gemini-2.5-flash") -> dict:
     """
     items: lista de dicts con keys: id, source, title, summary, url
     Devuelve dict:

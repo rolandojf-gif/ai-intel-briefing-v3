@@ -35,6 +35,22 @@ class CoreQualityTests(unittest.TestCase):
         self.assertIn("inteligencia de frontera", title)
         self.assertIn("capacidad de acción", title)
 
+    def test_frontier_models_scored_high(self):
+        kimi_test = score_item("Moonshot AI releases Kimi K3 with massive reasoning capabilities", "New frontier open weights and API pricing available", "Simon Willison (AI & LLMs)")
+        glm_test = score_item("Zhipu AI launches GLM-5 model family with new benchmark evals", "Weights and API now available", "MarkTechPost (AI Releases)")
+        mythos_test = score_item("Mythos AI and Sol frontier models benchmarked against Claude and Gemini", "New agentic reasoning architecture", "X Frontier & LLM Releases")
+        self.assertGreaterEqual(kimi_test["score"], 50)
+        self.assertEqual(kimi_test["primary"], "models")
+        self.assertGreaterEqual(glm_test["score"], 50)
+        self.assertGreaterEqual(mythos_test["score"], 50)
+
+    def test_frontier_entities_cleaned_correctly(self):
+        entities = clean_entities(["Kimi k3", "Moonshot", "GLM 5", "Zhipu", "Mythos", "Sol"], "Kimi K3 and GLM-5 released")
+        self.assertIn("Kimi K3", entities)
+        self.assertIn("Moonshot AI", entities)
+        self.assertIn("GLM-5", entities)
+        self.assertIn("Zhipu AI", entities)
+
 
 if __name__ == "__main__":
     unittest.main()

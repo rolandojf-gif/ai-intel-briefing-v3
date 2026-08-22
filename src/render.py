@@ -49,42 +49,36 @@ def translate_headline_es(title: str) -> str:
     if not raw:
         return ""
 
-    patterns = [
-        (r"Today, we share a breakthrough on the planar unit distance problem", "OpenAI anuncia un avance en el problema plano de la distancia unidad"),
-        (r"You can now use your .*X Premium subscription", "Ya puedes usar tu suscripción de X Premium con Grok"),
-        (r"In the EU, the online world serves people", "En la UE, el mundo online debe servir a las personas, no al revés"),
-        (r"Simulate real-world places with Project Genie and Street View", "Simula lugares reales con Project Genie y Street View"),
-        (r"Gemini for Science: AI experiments and tools for a new era of discovery", "Gemini para la ciencia: experimentos y herramientas de IA para una nueva era de descubrimientos"),
-        (r"100 things we announced at I/O 2026", "Las 100 novedades anunciadas en Google I/O 2026"),
-        (r"Introducing Gemini Omni", "Presentamos Gemini Omni"),
-        (r"Making it easier to understand how content was created and edited", "Más fácil entender cómo se creó y editó un contenido"),
-        (r"ASML High-NA EUV is Not Ready for High-Volume Production", "La tecnología High-NA EUV de ASML aún no está lista para la producción a gran escala"),
-        (r"What Winemakers and Chip Designers Have in Common", "Qué tienen en común los bodegueros y los diseñadores de chips"),
-        (r"Highlights from today’s Codex Thursday launches", "Lo más destacado de los lanzamientos de Codex Thursday"),
-        (r"Highlights from today's Codex Thursday launches", "Lo más destacado de los lanzamientos de Codex Thursday"),
-        (r"Last month we launched Project Glasswing", "Anthropic amplía Project Glasswing, su iniciativa colaborativa de ciberseguridad con IA"),
-        (r"From 8 hours to 80 seconds", "De 8 horas a 80 segundos: NVIDIA acelera el despliegue de infraestructura DGX SuperPOD"),
-        (r"In order to understand the universe, you must explore the universe", "Para entender el universo, hay que explorarlo"),
-        (r"Finding the molecular switches behind new infectious diseases", "Identifican los interruptores moleculares detrás de nuevas enfermedades infecciosas"),
-        (r"Gemini 3\.5: frontier intelligence with action", "Gemini 3.5: inteligencia de frontera con capacidad de acción"),
-        (r"New ways to balance cost and reliability in the Gemini API", "Nuevas formas de equilibrar coste y fiabilidad en la API de Gemini"),
-        (r"Update: GPT-5\.5 and GPT-5\.5 Pro are now available in the API", "Actualización: GPT-5.5 y GPT-5.5 Pro ya están disponibles en la API"),
-        (r"New ways to create personalized images in the Gemini app", "Nuevas formas de crear imágenes personalizadas en la aplicación Gemini"),
-        (r"NVIDIA GauGAN2", "NVIDIA GauGAN2 permite crear escenas a partir de frases simples"),
+    phrase_mappings = [
+        (r"frontier intelligence with action", "inteligencia de frontera con capacidad de acción"),
+        (r"now available in the api", "ya disponible en la API"),
+        (r"available in the api", "disponible en la API"),
+        (r"now available", "ya disponible"),
+        (r"open weights", "pesos abiertos"),
+        (r"open-source reasoning model", "modelo de razonamiento de código abierto"),
+        (r"reasoning model", "modelo de razonamiento"),
+        (r"release notes", "notas de la versión"),
+        (r"new benchmark results", "nuevos resultados de benchmark"),
+        (r"cost and reliability in the API", "coste y fiabilidad en la API"),
+        (r"balance cost and reliability", "equilibrar coste y fiabilidad"),
     ]
-    for pattern, translated in patterns:
-        if re.search(pattern, raw, flags=re.IGNORECASE):
-            return translated
+    for pat, rep in phrase_mappings:
+        raw = re.sub(pat, rep, raw, flags=re.IGNORECASE)
 
-    simple_prefixes = {
-        "Introducing ": "Presentamos ",
-        "Update: ": "Actualización: ",
-        "New ways to ": "Nuevas formas de ",
-        "Everything new in ": "Todas las novedades de ",
-    }
-    for src, dst in simple_prefixes.items():
-        if raw.startswith(src):
-            return dst + raw[len(src):]
+    simple_prefixes = [
+        (r"^Introducing\s+", "Presentamos "),
+        (r"^Announcing\s+", "Anuncio: "),
+        (r"^Update:\s*", "Actualización: "),
+        (r"^New ways to\s+", "Nuevas formas de "),
+        (r"^Everything new in\s+", "Todas las novedades de "),
+        (r"^Why we are launching\s+", "Por qué lanzamos "),
+        (r"^A new era of\s+", "Una nueva era de "),
+    ]
+    for pattern, prefix in simple_prefixes:
+        if re.search(pattern, raw, flags=re.IGNORECASE):
+            raw = re.sub(pattern, prefix, raw, flags=re.IGNORECASE)
+            break
+
     return raw
 
 

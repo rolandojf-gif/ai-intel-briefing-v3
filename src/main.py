@@ -154,7 +154,9 @@ def extract_entities_from_title(title: str) -> list[str]:
 
     for e in KNOWN_ENTITIES:
         if re.search(r"\b" + re.escape(e) + r"\b", t, flags=re.IGNORECASE):
-            hits.append(e)
+            norm = normalize_entity(e)
+            if not is_bad_entity(norm) and norm not in hits:
+                hits.append(norm)
 
     for m in re.findall(r"\b[A-Z][A-Z0-9]{1,6}\b", t):
         m2 = normalize_entity(m)
@@ -164,12 +166,13 @@ def extract_entities_from_title(title: str) -> list[str]:
             hits.append(m2)
 
     candidates = re.findall(r"\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,2})\b", t)
-    stop_words = {"The", "A", "An", "And", "Of", "In", "On", "For", "With", "New"} | STOP_ENTITIES
+    stop_words = {"The", "A", "An", "And", "Of", "In", "On", "For", "With", "New", "Stop", "Making", "Best", "Top", "Great", "Good", "Run", "Running", "Build", "Building", "Using", "How", "Why", "What", "When", "Where", "Which", "Who", "Free", "Open", "All", "Every", "Some", "One", "Two", "Three", "Four", "Five", "Fast", "Faster", "Guide", "Ranking", "Ranked", "Review", "Summary", "Overview"} | STOP_ENTITIES
     for c in candidates:
-        c2 = normalize_entity(c.strip())
-        if c2 in stop_words:
+        c_words = set(c.strip().split())
+        if c_words & stop_words:
             continue
-        if is_bad_entity(c2):
+        c2 = normalize_entity(c.strip())
+        if c2 in stop_words or is_bad_entity(c2):
             continue
         if c2 not in hits:
             hits.append(c2)
@@ -421,17 +424,17 @@ def infer_strategic_theme(it: dict) -> str:
     def has_any(words: list[str]) -> bool:
         return any(w in text for w in words) or any(w in tags for w in words) or any(w in source for w in words)
 
-    if has_any(["agent", "agents", "mcp", "workflow", "autonomous", "automation", "coding", "tool use"]):
+    if has_any(["agent", "agents", "mcp", "workflow", "autonomous", "automation", "coding", "tool use", "function calling", "browser use"]):
         return "agents_automation"
-    if has_any(["chip", "gpu", "hbm", "datacenter", "data center", "tpu", "training cluster", "compute", "tsmc", "blackwell", "gb200"]):
+    if has_any(["chip", "gpu", "hbm", "datacenter", "data center", "tpu", "training cluster", "compute", "tsmc", "asml", "smic", "blackwell", "gb200", "b200"]):
         return "compute_chips_dc"
-    if has_any(["price", "pricing", "api", "cost", "token", "margin", "capex", "opex"]):
+    if has_any(["price", "pricing", "api", "cost", "token", "margin", "capex", "opex", "revenue", "valuation"]):
         return "model_economics_pricing"
-    if has_any(["china", "huawei", "deepseek", "alibaba", "tencent", "bytedance"]):
+    if has_any(["china", "huawei", "deepseek", "alibaba", "tencent", "bytedance", "zhipu", "glm", "moonshot", "kimi", "qwen", "minimax", "01.ai", "yi", "baichuan"]):
         return "china_stack"
-    if has_any(["export control", "sanction", "regulation", "policy", "eu ai act", "bis", "sovereign"]):
+    if has_any(["export control", "sanction", "regulation", "policy", "eu ai act", "bis", "sovereign", "national security"]):
         return "geopolitics_power"
-    if has_any(["agi", "reasoning", "frontier", "model", "multimodal", "benchmark", "alignment"]):
+    if has_any(["agi", "reasoning", "frontier", "model", "multimodal", "benchmark", "alignment", "fable", "mythos", "sol", "gemini", "claude", "gpt", "o1", "o3", "mistral", "llama"]):
         return "frontier_capability"
     primary = (it.get("primary") or "").strip()
     if primary == "models":
@@ -456,23 +459,25 @@ def compute_noise_penalty(it: dict) -> int:
         "webinar",
         "forum",
         "applications now open",
-        "announces",
-        "preview",
         "award",
         "event",
         "sponsored",
+        "meet us",
+        "join us",
+        "booth",
+        "register now",
     ]
     if any(tok in text for tok in fluff_tokens):
-        penalty += 8
+        penalty += 12
 
     entities = [e for e in (it.get("entities") or []) if isinstance(e, str) and e.strip()]
     if (it.get("primary") or "").strip() == "misc" and not entities:
-        penalty += 6
+        penalty += 8
 
     promotional_sources = ["google ai blog", "nvidia blog", "deepmind blog"]
-    has_hard_signal = any(k in text for k in ["price", "pricing", "capex", "opex", "datacenter", "hbm", "gpu", "training", "inference"])
+    has_hard_signal = any(k in text for k in ["price", "pricing", "capex", "opex", "datacenter", "hbm", "gpu", "training", "inference", "weights", "benchmark", "reasoning"])
     if any(s in source for s in promotional_sources) and not has_hard_signal:
-        penalty += 4
+        penalty += 8
 
     if "nvidia" in source and not has_hard_signal:
         nvidia_pr_tokens = [
@@ -484,20 +489,20 @@ def compute_noise_penalty(it: dict) -> int:
             "introducing",
         ]
         if any(tok in text for tok in nvidia_pr_tokens):
-            penalty += 4
+            penalty += 6
 
     age_days = item_age_days(it)
     if age_days is not None:
-        if age_days >= 45:
-            penalty += 18
-        elif age_days >= 21:
+        if age_days >= 14:
+            penalty += 45
+        elif age_days >= 7:
+            penalty += 25
+        elif age_days >= 4:
             penalty += 12
-        elif age_days >= 10:
-            penalty += 6
-        elif age_days >= 5:
-            penalty += 3
+        elif age_days >= 2:
+            penalty += 4
 
-    return min(25, max(0, penalty))
+    return min(45, max(0, penalty))
 
 
 def _batch_fingerprint(payload: list[dict]) -> str:
@@ -508,18 +513,16 @@ def _batch_fingerprint(payload: list[dict]) -> str:
     return hashlib.md5(s.encode()).hexdigest()[:12]
 
 
-_PROMO_SOURCES = frozenset({"nvidia blog (ai)", "google ai blog", "deepmind blog"})
-_PROMO_MAX_AGE_DAYS = 30
-
-
 def is_fresh_enough(it: dict) -> bool:
     source = (it.get("source") or "").lower()
-    if not any(s in source for s in _PROMO_SOURCES):
-        return True
     age = item_age_days(it)
     if age is None:
         return True
-    return age <= _PROMO_MAX_AGE_DAYS
+    if "arxiv" in source:
+        return age <= 7
+    if any(s in source for s in ("nvidia", "google ai", "deepmind", "semiwiki")):
+        return age <= 7
+    return age <= 5
 
 
 def generate_llm_data(candidates: list[dict], llm_cache: Path, llm_done: Path) -> tuple[dict, list]:
@@ -634,13 +637,22 @@ def apply_llm_results(candidates: list[dict], results_map: dict) -> list[dict]:
         noise_penalty = compute_noise_penalty(it)
         strategic_theme = infer_strategic_theme(it)
 
+        # Freshness bonus: prioritize breaking/recent items (<24-48h)
+        age_days = item_age_days(it)
+        recency_boost = 0
+        if age_days is not None:
+            if age_days == 0:
+                recency_boost = 12
+            elif age_days == 1:
+                recency_boost = 6
+
         if llm_score_valid and llm_score_num is not None:
-            final_score = clamp_score((0.85 * llm_score_num) + (0.15 * it["adjusted_score"]) - noise_penalty)
-            ranking_reason = f"llm(0.85)+adjusted(0.15)-noise({noise_penalty})"
+            final_score = clamp_score((0.85 * llm_score_num) + (0.15 * it["adjusted_score"]) + recency_boost - noise_penalty)
+            ranking_reason = f"llm(0.85)+adjusted(0.15)+recency({recency_boost})-noise({noise_penalty})"
             it["llm_score"] = llm_score_num
         else:
-            final_score = clamp_score(it["adjusted_score"] - noise_penalty)
-            ranking_reason = f"fallback_adjusted-noise({noise_penalty})"
+            final_score = clamp_score(it["adjusted_score"] + recency_boost - noise_penalty)
+            ranking_reason = f"fallback_adjusted+recency({recency_boost})-noise({noise_penalty})"
             it["llm_score"] = None
 
         it["noise_penalty"] = noise_penalty
@@ -800,7 +812,7 @@ def main():
     deduped = [it for it in deduped if is_fresh_enough(it)]
     dropped = before_age - len(deduped)
     if dropped:
-        print(f"Age filter: removed {dropped} stale promo-blog items (>{_PROMO_MAX_AGE_DAYS} days)")
+        print(f"Age filter: removed {dropped} stale items exceeding freshness threshold.")
 
     # 3) Preselect
     deduped.sort(key=lambda x: x.get("adjusted_score", x.get("score", 0)), reverse=True)
