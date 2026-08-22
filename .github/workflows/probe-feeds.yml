@@ -1,7 +1,7 @@
 name: Probe feeds
 
 # Job desechable de diagnostico. Comprueba que URLs de RSS responden de verdad
-# desde un runner con internet abierto. Ver PROBE en el log para el resumen.
+# desde un runner con internet abierto. Ver PROBE RESULTS en el log.
 
 on:
   workflow_dispatch:
@@ -68,7 +68,6 @@ jobs:
               "https://github.com/zai-org/GLM-4.5/releases.atom",
               "https://github.com/THUDM/GLM-4/releases.atom",
             ],
-            "-- ALTERNATIVAS --": [],
             "Google Research": [
               "https://research.google/blog/rss/",
               "https://blog.research.google/feeds/posts/default",
@@ -86,7 +85,7 @@ jobs:
             "Stratechery": [
               "https://stratechery.com/feed/",
             ],
-            "AI2 (Allen)": [
+            "AI2 Allen": [
               "https://allenai.org/blog.rss",
               "https://blog.allenai.org/feed",
             ],
@@ -95,8 +94,8 @@ jobs:
             ],
             "Together AI": [
               "https://www.together.ai/blog/rss.xml",
- live             ],
-            "HN frontpage AI": [
+            ],
+            "HN alto voltaje": [
               "https://hnrss.org/newest?q=AI+OR+LLM+OR+OpenAI+OR+Anthropic&points=150",
             ],
             "Chip analysis": [
@@ -105,7 +104,6 @@ jobs:
             ],
             "China AI": [
               "https://www.chinatalk.media/feed",
-              "https://recode.substack.com/feed",
               "https://chinai.substack.com/feed",
             ],
           }
@@ -113,10 +111,8 @@ jobs:
           print("PROBE RESULTS")
           print("=" * 78)
           for group, urls in CANDIDATES.items():
-              if not urls:
-                  print(f"\n{group}")
-                  continue
-              print(f"\n### {group}")
+              print("")
+              print("### " + group)
               for u in urls:
                   try:
                       r = requests.get(u, timeout=20, headers={"User-Agent": "Mozilla/5.0 (compatible; AIRadar/1.0)"})
@@ -125,13 +121,14 @@ jobs:
                       n = len(f.entries)
                       if n:
                           e = f.entries[0]
-                          when = e.get("published", e.get("updated", "?"))[:25]
-                          title = (e.get("title") or "")[:60]
-                          print(f"  OK   http={code} n={n:<3} {u}")
-                          print(f"         ultimo: [{when}] {title}")
+                          when = str(e.get("published", e.get("updated", "?")))[:25]
+                          title = str(e.get("title") or "")[:60]
+                          print("  OK    http=%s n=%-3s %s" % (code, n, u))
+                          print("          ultimo: [%s] %s" % (when, title))
                       else:
-                          print(f"  VACIO http={code} n=0   {u}")
+                          print("  VACIO http=%s n=0   %s" % (code, u))
                   except Exception as ex:
-                      print(f"  ERROR       {u} -> {type(ex).__name__}: {str(ex)[:60]}")
-          print("\n" + "=" * 78)
+                      print("  ERROR       %s -> %s: %s" % (u, type(ex).__name__, str(ex)[:60]))
+          print("")
+          print("=" * 78)
           PY
