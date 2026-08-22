@@ -19,9 +19,9 @@ import os
 client = None
 
 
-# ── Tesis del lector ───────────────────────────────────────────────────
+# -- Tesis del lector --------------------------------------------------------
 # Esto es lo que convierte el radar en personal. Si cambian los intereses,
-# se cambia aquí y todo el ranking se realinea.
+# se cambia aqui y todo el ranking se realinea.
 READER_THESIS = """
 PERFIL DEL LECTOR
 Perfil técnico senior (calidad/SQA en automoción). Escéptico, directo, sin
@@ -159,8 +159,7 @@ def rank_batch(items: list[dict], model: str = "gemini-2.5-flash") -> dict:
 
     prompt = (
         f"{READER_THESIS}\n"
-        "═══════════════════════════════════════════════════════════
-"
+        "=========================================================\n"
         "TAREA\n\n"
         "1) Juzga CADA item contra la tesis del lector. Devuelve un objeto por item,\n"
         "   con el MISMO id que recibes. No omitas ninguno, no reordenes, no inventes ids.\n\n"
