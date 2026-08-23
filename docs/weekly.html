@@ -1,187 +1,175 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Weekly Radar · 2026-08-17 → 2026-08-23</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg:#07080a; --surface:rgba(17, 21, 27, 0.75); --line:#212730;
-      --text:#edf2f7; --muted:#8a99a8; --cyan:#67e8f9; --green:#4ade80;
-      --amber:#fbbf24; --red:#f43f5e;
-    }
-    * { box-sizing:border-box; }
-    body { font-family: 'Outfit', Inter, system-ui, -apple-system, sans-serif; margin:0; background:#07080a; color:var(--text); }
-    body:before { content:""; position:fixed; inset:0; pointer-events:none; background:linear-gradient(135deg,rgba(103,232,249,0.08),transparent 35%),linear-gradient(45deg,rgba(74,222,128,0.06),transparent 45%); z-index:-1; }
-    
-    ::-webkit-scrollbar { width: 8px; height: 8px; }
-    ::-webkit-scrollbar-track { background: #07080a; }
-    ::-webkit-scrollbar-thumb { background: #1c232e; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #2b3545; }
-
-    header { padding:20px 0; border-bottom:1px solid var(--line); background:rgba(7,8,10,0.85); position:sticky; top:0; z-index:5; backdrop-filter:blur(12px); box-shadow:0 8px 32px rgba(0,0,0,0.3); }
-    .wrap { max-width:1160px; margin:0 auto; padding:20px; }
-    .top { display:flex; align-items:center; justify-content:space-between; gap:12px; }
-    .nav { display:flex; gap:10px; flex-wrap:wrap; }
-    .nav a { border:1px solid var(--line); border-radius:10px; padding:8px 14px; color:var(--muted); background:rgba(17,21,27,0.5); font-size:13px; font-weight:600; transition:all 0.2s ease; }
-    .nav a:hover { color:var(--text); border-color:rgba(103,232,249,0.35); background:rgba(17,21,27,0.85); transform:translateY(-1px); }
-    .nav a.active { color:var(--text); border-color:rgba(103,232,249,0.55); background:rgba(103,232,249,0.12); }
-    .grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-    .card { background:var(--surface); backdrop-filter:blur(10px); border:1px solid var(--line); border-radius:12px; padding:18px; box-shadow:0 8px 30px rgba(0,0,0,0.2); transition:all 0.3s ease; }
-    .card:hover { border-color:rgba(103,232,249,0.25); }
-    h1 { margin:0 0 8px 0; font-size:28px; line-height:1.1; font-weight:900; letter-spacing:-0.5px; background:linear-gradient(to right, #ffffff, var(--cyan)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-    h2 { margin:0 0 12px 0; font-size:16px; color:#dbe7f3; font-weight:800; letter-spacing:-0.2px; }
-    ul { margin:0; padding-left:18px; }
-    li { margin:8px 0; line-height:1.45rem; font-weight:500; }
-    a { color:#cfe6ff; text-decoration:none; transition:color 0.2s ease; }
-    a:hover { text-decoration:underline; color:var(--cyan); }
-    .k { font-weight:700; }
-    .s { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; margin-left:8px; letter-spacing:1px; color:var(--cyan); }
-    .m { color:var(--muted); margin-left:8px; font-size:12px; font-weight:600; }
-    .pill { display:inline-block; padding:4px 10px; border:1px solid var(--line); border-radius:999px; color:var(--muted); font-size:12px; margin:4px 8px 4px 0; background:rgba(13,17,23,0.5); font-weight:700; }
-    .metrics { margin-top:8px; display:flex; flex-wrap:wrap; gap:4px; }
-    .w-list { list-style:none; padding:0; margin:0; }
-    .w-item { display:flex; gap:12px; align-items:center; margin:10px 0; padding:6px 0; border-bottom:1px solid rgba(33,39,48,0.6); }
-    .w-item:last-child { border-bottom:none; }
-    .w-thumb { width:52px; height:38px; border-radius:4px; object-fit:cover; flex-shrink:0; border:1px solid #212730; background:#0d1420; }
-    .w-item-b { flex:1; min-width:0; line-height:1.4rem; }
-    @media (max-width:900px) { .grid { grid-template-columns:1fr; } }
-  </style>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Semanal · AI Strategic Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#191a1a; --card:#202222; --card-hover:#262828; --line:#2f3131; --line-2:#3d4040;
+    --txt:#e8e8e6; --txt-dim:#c8cbca; --dim:#9b9f9e; --dimmer:#6b6f6e;
+    --accent:#20b8cd; --accent-soft:rgba(32,184,205,.12);
+    --green:#4bd48b; --rose:#f2665f; --amber:#e8b750; --violet:#b28bf2;
+    --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+    --sans:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+    --disp:'Space Grotesk','Inter',system-ui,sans-serif;
+    --r:16px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);font-family:var(--sans);line-height:1.5}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px 80px}
+  .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;
+          padding:18px 0;border-bottom:1px solid var(--line);margin-bottom:22px;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:10px;font-family:var(--disp);font-size:17px;font-weight:700}
+  .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}
+  .brand .date{font-family:var(--mono);font-size:11px;color:var(--dimmer);font-weight:400;margin-left:6px}
+  .nav{display:flex;gap:6px}
+  .nav a{font-size:13px;font-weight:600;padding:7px 15px;border-radius:999px;color:var(--dim)}
+  .nav a.on{color:var(--accent);background:var(--accent-soft)}
+  .nav a:hover{color:var(--txt)}
+  .lead h1{margin:0 0 8px;font-family:var(--disp);font-size:clamp(22px,3vw,30px);letter-spacing:-.02em}
+  .lead p{margin:0 0 22px;color:var(--dim);font-size:14.5px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .widget{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px}
+  .widget-title{font-family:var(--disp);font-size:15px;font-weight:700;margin-bottom:12px}
+  .wide{grid-column:1/-1}
+  ul.rows{list-style:none;padding:0;margin:0}
+  ul.rows li{display:flex;justify-content:space-between;gap:12px;align-items:baseline;
+             padding:8px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+  ul.rows li:last-child{border-bottom:none;padding-bottom:0}
+  .k{font-weight:600}
+  .m{font-family:var(--mono);font-size:11px;color:var(--dimmer);white-space:nowrap}
+  .thesis{padding:4px 0 6px}
+  .thesis li{padding:7px 0;border-bottom:1px solid var(--line);font-size:14.5px;color:var(--txt-dim)}
+  .thesis li:last-child{border-bottom:none}
+  .hit{display:flex;justify-content:space-between;gap:12px;align-items:baseline;
+        padding:8px 0;border-bottom:1px solid var(--line)}
+  .hit:last-child{border-bottom:none;padding-bottom:0}
+  .hit:hover .ht{color:var(--accent)}
+  .ht{font-size:13.5px;font-weight:600;line-height:1.4}
+  .hs{font-family:var(--mono);font-size:10px;color:var(--dimmer);flex-shrink:0}
+  .none{font-size:13px;color:var(--dimmer);font-style:italic}
+  .section-h{font-family:var(--disp);font-size:15px;font-weight:700;margin:28px 0 12px}
+  .clusters{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--line);
+         font-family:var(--mono);font-size:10px;color:var(--dimmer)}
+  @media(max-width:800px){
+    .wrap{padding:0 14px 60px}
+    .grid,.clusters{grid-template-columns:1fr}
+    ul.rows li,.hit{flex-direction:column;gap:4px}
+    .m{white-space:normal}
+  }
+</style>
 </head>
 <body>
-<header>
-  <div class="wrap top">
-    <div>
-      <h1>Weekly Radar · 2026-08-17 → 2026-08-23</h1>
-      <div class="metrics">
-        <span class="pill">ventana: 7 días</span>
-        <span class="pill">recency half-life: 3d</span>
-        <span class="pill">concentración entidades: 0.006 (top3 8.0%)</span>
-        <span class="pill">concentración categorías: 0.465 (top3 92.9%)</span>
-      </div>
-    </div>
-    <nav class="nav"><a href="./index.html">Daily</a><a class="active" href="./weekly.html">Weekly</a><a href="./archivo.html">Archivo</a></nav>
+<div class="wrap">
+  <div class="topbar">
+    <div class="brand"><span class="dot"></span> AI Strategic Radar <span class="date">2026-08-17 → 2026-08-23</span></div>
+    <nav class="nav">
+      <a href="index.html">Diario</a>
+      <a class="on" href="weekly.html">Semanal</a>
+      <a href="archivo.html">Archivo</a>
+    </nav>
   </div>
-</header>
 
-<main class="wrap">
-  <section class="card" style="margin-bottom:14px">
-    <h2>Cómo leer estas métricas</h2>
-    <ul>
-      <li><span class="k">peso</span>: importancia reciente (más peso a los últimos días).</li>
-      <li><span class="k">cambio</span>: diferencia entre periodo reciente y periodo inicial.</li>
-      <li><span class="k">días</span>: días consecutivos con presencia.</li>
-      <li><span class="k">menciones</span>: total de apariciones en la ventana.</li>
-    </ul>
+  <div class="lead">
+    <h1>Semanal</h1>
+    <p>7 días · 2026-08-17 → 2026-08-23 · 99 señales.</p>
+  </div>
+
+  <section class="widget thesis" style="margin-bottom:16px">
+    <div class="widget-title">Lectura</div>
+    <ul class="rows thesis"><li>Esta semana manda Economía de modelos.</li>
+<li>Anthropic es el tractor (2 días seguidos).</li>
+<li>La conversación está repartida entre varios actores.</li>
+<li>Los temas están repartidos.</li>
+<li>17 fuentes con cobertura esta semana.</li></ul>
   </section>
 
   <div class="grid">
-    <section class="card">
-      <h2>Entidades · impulso (ponderado)</h2>
-      <ul><li><span class='k'>Anthropic</span> <span class='s'>▁▁▁▁▁█▆</span><span class='m'>peso 6.17 · cambio +6.17 · días 2 · menciones 7</span></li>
-<li><span class='k'>OpenAI</span> <span class='s'>▁▁▁▁▁██</span><span class='m'>peso 5.38 · cambio +5.38 · días 2 · menciones 6</span></li>
-<li><span class='k'>DeepMind</span> <span class='s'>▅▁███▅▁</span><span class='m'>peso 4.10 · cambio +1.01 · días 0 · menciones 8</span></li>
-<li><span class='k'>Gemini</span> <span class='s'>██▅██▁▁</span><span class='m'>peso 3.79 · cambio -0.27 · días 0 · menciones 9</span></li>
-<li><span class='k'>Google</span> <span class='s'>▅█▅▅▁▅▅</span><span class='m'>peso 3.57 · cambio +0.52 · días 2 · menciones 7</span></li>
-<li><span class='k'>NVIDIA</span> <span class='s'>▁▁▁▁▁▅█</span><span class='m'>peso 2.79 · cambio +2.79 · días 2 · menciones 3</span></li>
-<li><span class='k'>Together AI</span> <span class='s'>▁▁▁▁▁█▅</span><span class='m'>peso 2.59 · cambio +2.59 · días 2 · menciones 3</span></li>
-<li><span class='k'>Zhipu AI</span> <span class='s'>▁▁▁▁▁█▅</span><span class='m'>peso 2.59 · cambio +2.59 · días 2 · menciones 3</span></li>
-<li><span class='k'>Flash</span> <span class='s'>█▅▁█▅▁▁</span><span class='m'>peso 2.44 · cambio -0.19 · días 0 · menciones 6</span></li>
-<li><span class='k'>TSMC</span> <span class='s'>▁█▁▁▁██</span><span class='m'>peso 2.11 · cambio +1.48 · días 2 · menciones 3</span></li>
-<li><span class='k'>Mistral</span> <span class='s'>▁▁▁▁▁██</span><span class='m'>peso 1.79 · cambio +1.79 · días 2 · menciones 2</span></li>
-<li><span class='k'>Introducing Gemini</span> <span class='s'>██▁██▁▁</span><span class='m'>peso 1.69 · cambio +0.06 · días 0 · menciones 4</span></li></ul>
+    <section class="widget">
+      <div class="widget-title">Quién tira</div>
+      <ul class="rows"><li><span class='k'>Anthropic</span><span class='m'>▁▁▁▁▁█▆ · racha 2d · 7 menciones</span></li>
+<li><span class='k'>OpenAI</span><span class='m'>▁▁▁▁▁██ · racha 2d · 6 menciones</span></li>
+<li><span class='k'>DeepMind</span><span class='m'>▅▁███▅▁ · 8 menciones</span></li>
+<li><span class='k'>Gemini</span><span class='m'>██▅██▁▁ · 9 menciones</span></li>
+<li><span class='k'>Google</span><span class='m'>▅█▅▅▁▅▅ · racha 2d · 7 menciones</span></li>
+<li><span class='k'>NVIDIA</span><span class='m'>▁▁▁▁▁▅█ · racha 2d · 3 menciones</span></li>
+<li><span class='k'>Together AI</span><span class='m'>▁▁▁▁▁█▅ · racha 2d · 3 menciones</span></li>
+<li><span class='k'>Zhipu AI</span><span class='m'>▁▁▁▁▁█▅ · racha 2d · 3 menciones</span></li>
+<li><span class='k'>Flash</span><span class='m'>█▅▁█▅▁▁ · 6 menciones</span></li>
+<li><span class='k'>TSMC</span><span class='m'>▁█▁▁▁██ · racha 2d · 3 menciones</span></li>
+<li><span class='k'>Mistral</span><span class='m'>▁▁▁▁▁██ · racha 2d · 2 menciones</span></li>
+<li><span class='k'>Introducing Gemini</span><span class='m'>██▁██▁▁ · 4 menciones</span></li></ul>
     </section>
-
-    <section class="card">
-      <h2>Categorías · impulso de participación</h2>
-      <ul><li><span class='k'>Frontier models</span> <span class='s'>▅▅▆█▅▆▇</span><span class='m'>tendencia_share +0.046 · peso 34.29 · menciones 60 · días 7</span></li>
-<li><span class='k'>Geopolitics</span> <span class='s'>▁▁▁▁▁▁█</span><span class='m'>tendencia_share +0.008 · peso 1.00 · menciones 1 · días 1</span></li>
-<li><span class='k'>Other</span> <span class='s'>▅▅▃▁█▃▁</span><span class='m'>tendencia_share -0.010 · peso 4.84 · menciones 10 · días 0</span></li>
-<li><span class='k'>Model economics</span> <span class='s'>█▁▃▁▃▁▃</span><span class='m'>tendencia_share -0.013 · peso 2.78 · menciones 6 · días 1</span></li>
-<li><span class='k'>Compute &amp; chips</span> <span class='s'>▅█▆▅▅▃▂</span><span class='m'>tendencia_share -0.031 · peso 10.20 · menciones 22 · días 7</span></li></ul>
+    <section class="widget">
+      <div class="widget-title">Temas</div>
+      <ul class="rows"><li><span class='k'>Economía de modelos</span><span class='m'>▁▁▁▁▁██ · racha 2d · 6 menciones · 0% → 23%</span></li>
+<li><span class='k'>Compute &amp; chips</span><span class='m'>▅█▆▃█▆▆ · racha 7d · 20 menciones · 13% → 23%</span></li>
+<li><span class='k'>Stack chino</span><span class='m'>▁▁▁▁▁▁█ · racha 1d · 1 menciones · 0% → 8%</span></li>
+<li><span class='k'>Agentes</span><span class='m'>▆▅▇█▅▄▆ · racha 7d · 34 menciones · 33% → 38%</span></li>
+<li><span class='k'>Geopolítica</span><span class='m'>▁▁█▁▁▁▁ · 1 menciones · 0% → 0%</span></li>
+<li><span class='k'>Otras señales</span><span class='m'>██▁▁█▁▁ · 3 menciones · 7% → 0%</span></li>
+<li><span class='k'>Capacidad frontier</span><span class='m'>▄▇▅█▅▄▂ · racha 7d · 20 menciones · 13% → 8%</span></li>
+<li><span class='k'>Economía de modelos</span><span class='m'>█▄▄▄▅▁▁ · 14 menciones · 33% → 0%</span></li></ul>
     </section>
-  </div>
-
-  <section class="card" style="margin-top:14px">
-    <h2>Fuentes · presencia en la ventana</h2>
-    <div class="metrics">
-      <span class="pill">fuentes activas: 17</span>
-      <span class="pill">items analizados: 99</span>
-    </div>
-    <ul><li><span class='k'>arXiv cs.CL</span> <span class='s'>█████▁▁</span><span class='m'>peso 12.55 · cambio -1.99 · días 0 · menciones 30</span></li>
-<li><span class='k'>SemiWiki</span> <span class='s'>▆██▆▆▆▃</span><span class='m'>peso 7.48 · cambio +1.21 · días 7 · menciones 15</span></li>
-<li><span class='k'>DeepMind Blog</span> <span class='s'>▃▃█▆▆▃▁</span><span class='m'>peso 4.81 · cambio +0.30 · días 0 · menciones 10</span></li>
-<li><span class='k'>arXiv cs.AI</span> <span class='s'>█████▁▁</span><span class='m'>peso 4.18 · cambio -0.66 · días 0 · menciones 10</span></li>
-<li><span class='k'>arXiv cs.LG</span> <span class='s'>██▅██▁▁</span><span class='m'>peso 3.79 · cambio -0.27 · días 0 · menciones 9</span></li>
-<li><span class='k'>Anthropic</span> <span class='s'>▁▁▁▁▁██</span><span class='m'>peso 3.59 · cambio +3.59 · días 2 · menciones 4</span></li>
-<li><span class='k'>Together AI</span> <span class='s'>▁▁▁▁▁█▅</span><span class='m'>peso 2.59 · cambio +2.59 · días 2 · menciones 3</span></li>
-<li><span class='k'>Google AI Blog</span> <span class='s'>█▅▁▅▅▁▁</span><span class='m'>peso 1.94 · cambio -0.19 · días 0 · menciones 5</span></li>
-<li><span class='k'>Mistral</span> <span class='s'>▁▁▁▁▁██</span><span class='m'>peso 1.79 · cambio +1.79 · días 2 · menciones 2</span></li>
-<li><span class='k'>Interconnects</span> <span class='s'>▁▁▁▁▁██</span><span class='m'>peso 1.79 · cambio +1.79 · días 2 · menciones 2</span></li></ul>
-  </section>
-
-  <div class="grid" style="margin-top:14px">
-    <section class="card">
-      <h2>Rotación narrativa · suben</h2>
-      <ul><li><span class='k'>Frontier models</span> <span class='m'>participación 51.11% → 65.44% (cambio +14.33%)</span></li>
-<li><span class='k'>Geopolitics</span> <span class='m'>participación 0.00% → 2.56% (cambio +2.56%)</span></li>
-<li><span class='k'>Other</span> <span class='m'>participación 11.11% → 11.92% (cambio +0.81%)</span></li>
-<li><span class='k'>Model economics</span> <span class='m'>participación 8.89% → 4.79% (cambio -4.10%)</span></li>
-<li><span class='k'>Compute &amp; chips</span> <span class='m'>participación 28.89% → 15.29% (cambio -13.60%)</span></li></ul>
+    <section class="widget">
+      <div class="widget-title">Temas que suben</div>
+      <ul class="rows"><li><span class='k'>Economía de modelos</span><span class='m'>0% → 17%</span></li>
+<li><span class='k'>Compute &amp; chips</span><span class='m'>20% → 26%</span></li>
+<li><span class='k'>Stack chino</span><span class='m'>0% → 3%</span></li>
+<li><span class='k'>Geopolítica</span><span class='m'>2% → 0%</span></li>
+<li><span class='k'>Otras señales</span><span class='m'>4% → 2%</span></li></ul>
     </section>
-
-    <section class="card">
-      <h2>Rotación narrativa · bajan</h2>
-      <ul><li><span class='k'>Compute &amp; chips</span> <span class='m'>participación 28.89% → 15.29% (cambio -13.60%)</span></li>
-<li><span class='k'>Model economics</span> <span class='m'>participación 8.89% → 4.79% (cambio -4.10%)</span></li>
-<li><span class='k'>Other</span> <span class='m'>participación 11.11% → 11.92% (cambio +0.81%)</span></li>
-<li><span class='k'>Geopolitics</span> <span class='m'>participación 0.00% → 2.56% (cambio +2.56%)</span></li>
-<li><span class='k'>Frontier models</span> <span class='m'>participación 51.11% → 65.44% (cambio +14.33%)</span></li></ul>
+    <section class="widget">
+      <div class="widget-title">Temas que bajan</div>
+      <ul class="rows"><li><span class='k'>Economía de modelos</span><span class='m'>20% → 7%</span></li>
+<li><span class='k'>Capacidad frontier</span><span class='m'>20% → 15%</span></li>
+<li><span class='k'>Agentes</span><span class='m'>33% → 31%</span></li>
+<li><span class='k'>Otras señales</span><span class='m'>4% → 2%</span></li>
+<li><span class='k'>Geopolítica</span><span class='m'>2% → 0%</span></li></ul>
     </section>
-  </div>
-
-  <section class="card" style="margin-top:14px">
-    <h2>Implicaciones</h2>
-    <ul><li>Dominante: models (share_slope 0.046, w_total 34.29).</li>
-<li>Tractor: Anthropic (w_total 6.17, delta 6.17, streak 2d).</li>
-<li>Concentración moderada en entidades (HHI 0.006).</li>
-<li>Concentración alta en categorías (HHI 0.465). Señal: el radar se está yendo a un tema único.</li>
-<li>Fuentes activas: 17 fuentes con cobertura en la ventana.</li></ul>
-  </section>
-
-  <div class="grid" style="margin-top:14px">
-    <section class="card">
-      <h2>New entrants (últimos días)</h2>
-      <ul><li><span class='k'>Anthropic</span> <span class='s'>▁▁▁▁▁█▆</span><span class='m'>peso 6.17 · cambio +6.17 · días 2 · menciones 7</span></li>
-<li><span class='k'>OpenAI</span> <span class='s'>▁▁▁▁▁██</span><span class='m'>peso 5.38 · cambio +5.38 · días 2 · menciones 6</span></li>
-<li><span class='k'>NVIDIA</span> <span class='s'>▁▁▁▁▁▅█</span><span class='m'>peso 2.79 · cambio +2.79 · días 2 · menciones 3</span></li>
-<li><span class='k'>Together AI</span> <span class='s'>▁▁▁▁▁█▅</span><span class='m'>peso 2.59 · cambio +2.59 · días 2 · menciones 3</span></li>
-<li><span class='k'>Zhipu AI</span> <span class='s'>▁▁▁▁▁█▅</span><span class='m'>peso 2.59 · cambio +2.59 · días 2 · menciones 3</span></li>
-<li><span class='k'>Mistral</span> <span class='s'>▁▁▁▁▁██</span><span class='m'>peso 1.79 · cambio +1.79 · días 2 · menciones 2</span></li>
-<li><span class='k'>Claude</span> <span class='s'>▁▁▁▁▁▁█</span><span class='m'>peso 1.00 · cambio +1.00 · días 1 · menciones 1</span></li>
-<li><span class='k'>Alibaba</span> <span class='s'>▁▁▁▁▁▁█</span><span class='m'>peso 1.00 · cambio +1.00 · días 1 · menciones 1</span></li></ul>
+    <section class="widget">
+      <div class="widget-title">Nuevos nombres</div>
+      <ul class="rows"><li><span class='k'>Anthropic</span><span class='m'>▁▁▁▁▁█▆ · racha 2d · 7 menciones</span></li>
+<li><span class='k'>OpenAI</span><span class='m'>▁▁▁▁▁██ · racha 2d · 6 menciones</span></li>
+<li><span class='k'>NVIDIA</span><span class='m'>▁▁▁▁▁▅█ · racha 2d · 3 menciones</span></li>
+<li><span class='k'>Together AI</span><span class='m'>▁▁▁▁▁█▅ · racha 2d · 3 menciones</span></li>
+<li><span class='k'>Zhipu AI</span><span class='m'>▁▁▁▁▁█▅ · racha 2d · 3 menciones</span></li>
+<li><span class='k'>Mistral</span><span class='m'>▁▁▁▁▁██ · racha 2d · 2 menciones</span></li>
+<li><span class='k'>Claude</span><span class='m'>▁▁▁▁▁▁█ · racha 1d · 1 menciones</span></li>
+<li><span class='k'>Alibaba</span><span class='m'>▁▁▁▁▁▁█ · racha 1d · 1 menciones</span></li></ul>
     </section>
-
-    <section class="card">
-      <h2>Breakouts (salto reciente)</h2>
-      <ul><li><span class='k'>OpenAI</span> <span class='s'>▁▁▁▁▁██</span><span class='m'>peso 5.38 · cambio +5.38 · días 2 · menciones 6</span></li>
-<li><span class='k'>NVIDIA</span> <span class='s'>▁▁▁▁▁▅█</span><span class='m'>peso 2.79 · cambio +2.79 · días 2 · menciones 3</span></li></ul>
+    <section class="widget">
+      <div class="widget-title">Saltos</div>
+      <ul class="rows"><li><span class='k'>OpenAI</span><span class='m'>▁▁▁▁▁██ · racha 2d · 6 menciones</span></li>
+<li><span class='k'>NVIDIA</span><span class='m'>▁▁▁▁▁▅█ · racha 2d · 3 menciones</span></li></ul>
+    </section>
+    <section class="widget wide">
+      <div class="widget-title">Quién cubre</div>
+      <ul class="rows"><li><span class='k'>arXiv cs.CL</span><span class='m'>█████▁▁ · 30 menciones</span></li>
+<li><span class='k'>SemiWiki</span><span class='m'>▆██▆▆▆▃ · racha 7d · 15 menciones</span></li>
+<li><span class='k'>DeepMind Blog</span><span class='m'>▃▃█▆▆▃▁ · 10 menciones</span></li>
+<li><span class='k'>arXiv cs.AI</span><span class='m'>█████▁▁ · 10 menciones</span></li>
+<li><span class='k'>arXiv cs.LG</span><span class='m'>██▅██▁▁ · 9 menciones</span></li>
+<li><span class='k'>Anthropic</span><span class='m'>▁▁▁▁▁██ · racha 2d · 4 menciones</span></li>
+<li><span class='k'>Together AI</span><span class='m'>▁▁▁▁▁█▅ · racha 2d · 3 menciones</span></li>
+<li><span class='k'>Google AI Blog</span><span class='m'>█▅▁▅▅▁▁ · 5 menciones</span></li>
+<li><span class='k'>Mistral</span><span class='m'>▁▁▁▁▁██ · racha 2d · 2 menciones</span></li>
+<li><span class='k'>Interconnects</span><span class='m'>▁▁▁▁▁██ · racha 2d · 2 menciones</span></li></ul>
     </section>
   </div>
 
-  <section style="margin-top:14px">
-    <h2 style="color:#cbd5e1; font-size:15px; margin:0 0 10px 0;">Clusters · top entidades</h2>
-    <div class='grid'><section class='card'><h2>Anthropic</h2><ul class='w-list'><li class='w-item'><img src='https://cdn.prod.website-files.com/68a44d4040f98a4adf2207b6/69051360369f8c1bb58fc2fe_og_build-artifacts.jpg' class='w-thumb' alt='' loading='lazy' onerror="this.style.display='none'"/><div class='w-item-b'><a href='https://claude.com/blog/computer-use-skills-api-files-api' target='_blank' rel='noopener noreferrer'>Anthropic habilita uso de ordenador, Skills API y Files API en Claude para agentes</a> <span class='m'>[Anthropic] [models]</span></div></li><li class='w-item'><img src='https://cdn.prod.website-files.com/68a44d4040f98a4adf2207b6/69f398245c0b3933c7940d49_og_claude-security-public-beta%20(1).jpg' class='w-thumb' alt='' loading='lazy' onerror="this.style.display='none'"/><div class='w-item-b'><a href='https://claude.com/blog/bringing-claude-mythos-5-to-more-defenders' target='_blank' rel='noopener noreferrer'>Anthropic expande acceso a Claude Mythos 5 para ciberdefensa y lanza fondo de 35M$</a> <span class='m'>[Anthropic] [models]</span></div></li><li class='w-item'><img src='https://substack-post-media.s3.amazonaws.com/public/images/b8608bb9-bf33-46e6-8ffe-dcf75a851f9b_3182x1790.png' class='w-thumb' alt='' loading='lazy' onerror="this.style.display='none'"/><div class='w-item-b'><a href='https://www.interconnects.ai/p/teaching-everyone-to-fish-for-tokens' target='_blank' rel='noopener noreferrer'>Nvidia busca que clientes entrenen modelos propios en lugar de usar APIs de terceros</a> <span class='m'>[Interconnects] [models]</span></div></li><li class='w-item'><div class='w-item-b'><a href='https://www.together.ai/blog/glm-5-3-vs-claude-fable-5-on-deepswe-cost-coding-and-routing' target='_blank' rel='noopener noreferrer'>Together AI: GLM-5.3 iguala a Claude Fable 5 en codificación, costando 5.4 veces menos</a> <span class='m'>[Together AI] [models]</span></div></li><li class='w-item'><div class='w-item-b'><a href='https://claude.com/blog/bringing-claude-mythos-5-to-more-defenders' target='_blank' rel='noopener noreferrer'>Anthropic extiende acceso a Claude Mythos 5 para ciberseguridad a más organizaciones</a> <span class='m'>[Anthropic] [models]</span></div></li><li class='w-item'><img src='https://substack-post-media.s3.amazonaws.com/public/images/b8608bb9-bf33-46e6-8ffe-dcf75a851f9b_3182x1790.png' class='w-thumb' alt='' loading='lazy' onerror="this.style.display='none'"/><div class='w-item-b'><a href='https://www.interconnects.ai/p/teaching-everyone-to-fish-for-tokens' target='_blank' rel='noopener noreferrer'>Nvidia promueve la construcción de modelos propios frente al consumo de APIs de frontier labs</a> <span class='m'>[Interconnects] [models]</span></div></li></ul></section><section class='card'><h2>OpenAI</h2><ul class='w-list'><li class='w-item'><img src='https://cdn.prod.website-files.com/69654e88dce9154b5f12070c/6a8934b9fcc541cde30c4b07_OG-image_202600821_GLM53vsGPT56Sol.png' class='w-thumb' alt='' loading='lazy' onerror="this.style.display='none'"/><div class='w-item-b'><a href='https://www.together.ai/blog/glm-5-3-vs-gpt-5-6-sol-on-deepswe-cost-coding-and-routing' target='_blank' rel='noopener noreferrer'>GLM-5.3 supera a GPT-5.6 Sol en pass@4 y coste en DeepSWE, GPT-5.6 Sol gana pass@1</a> <span class='m'>[Together AI] [models]</span></div></li><li class='w-item'><div class='w-item-b'><a href='https://openai.com/index/offering-zero-data-retention-for-frontier-models' target='_blank' rel='noopener noreferrer'>OpenAI ofrece Retención de Datos Cero para modelos frontera a clientes API</a> <span class='m'>[OpenAI] [models]</span></div></li><li class='w-item'><img src='https://substack-post-media.s3.amazonaws.com/public/images/b8608bb9-bf33-46e6-8ffe-dcf75a851f9b_3182x1790.png' class='w-thumb' alt='' loading='lazy' onerror="this.style.display='none'"/><div class='w-item-b'><a href='https://www.interconnects.ai/p/teaching-everyone-to-fish-for-tokens' target='_blank' rel='noopener noreferrer'>Nvidia busca que clientes entrenen modelos propios en lugar de usar APIs de terceros</a> <span class='m'>[Interconnects] [models]</span></div></li><li class='w-item'><div class='w-item-b'><a href='https://www.together.ai/blog/glm-5-3-vs-gpt-5-6-sol-on-deepswe-cost-coding-and-routing' target='_blank' rel='noopener noreferrer'>Comparativa Together AI: GLM-5.3 supera a GPT-5.6 Sol en eficiencia de código y coste</a> <span class='m'>[Together AI] [models]</span></div></li><li class='w-item'><img src='https://substack-post-media.s3.amazonaws.com/public/images/b8608bb9-bf33-46e6-8ffe-dcf75a851f9b_3182x1790.png' class='w-thumb' alt='' loading='lazy' onerror="this.style.display='none'"/><div class='w-item-b'><a href='https://www.interconnects.ai/p/teaching-everyone-to-fish-for-tokens' target='_blank' rel='noopener noreferrer'>Nvidia promueve la construcción de modelos propios frente al consumo de APIs de frontier labs</a> <span class='m'>[Interconnects] [models]</span></div></li><li class='w-item'><div class='w-item-b'><a href='https://openai.com/index/stampli' target='_blank' rel='noopener noreferrer'>Stampli reduce un 68% las horas de lanzamiento con ChatGPT Work de OpenAI</a> <span class='m'>[OpenAI] [models]</span></div></li></ul></section><section class='card'><h2>DeepMind</h2><ul class='w-list'><li class='w-item'><img src='https://lh3.googleusercontent.com/ymmK0Dgovn-_MGlnQJffYxKdTe5LAnkAZr-GNnIjiFzsGOAAmOmUDuVACbNgIy-tqrJhGBdaQ_PaElc8EKRKRWtYg4eWx8HVcaVzdYy7hg7Q_8k=w528-h297-n-nu-rw-lo' class='w-thumb' alt='' loading='lazy' onerror="this.style.display='none'"/><div class='w-item-b'><a href='https://deepmind.google/blog/from-atari-to-eve-online-building-on-15-years-of-ai-research-in-games/' target='_blank' rel='noopener noreferrer'>DeepMind colabora con estudios de juegos para innovar en gameplay con IA</a> <span class='m'>[DeepMind Blog] [misc]</span></div></li><li class='w-item'><div class='w-item-b'><a href='https://deepmind.google/blog/introducing-gemini-3-6-flash-3-5-flash-lite-and-3-5-flash-cyber/' target='_blank' rel='noopener noreferrer'>Presentación de Gemini 3.6 Flash, 3.5 Flash-Lite y 3.5 Flash Cyber</a> <span class='m'>[DeepMind Blog] [models]</span></div></li><li class='w-item'><div class='w-item-b'><a href='https://deepmind.google/blog/gemini-robotics-2-brings-whole-body-intelligence-to-robots/' target='_blank' rel='noopener noreferrer'>Gemini Robotics 2 aporta inteligencia de cuerpo completo a los robots</a> <span class='m'>[DeepMind Blog] [models]</span></div></li><li class='w-item'><div class='w-item-b'><a href='https://deepmind.google/blog/introducing-gemini-3-7-flash/' target='_blank' rel='noopener noreferrer'>Presentando Gemini 3.7 Flash</a> <span class='m'>[DeepMind Blog] [models]</span></div></li><li class='w-item'><div class='w-item-b'><a href='https://deepmind.google/blog/weathernext-ai-model-achieves-breakthrough-in-forecasting-cyclones/' target='_blank' rel='noopener noreferrer'>WeatherNext: El modelo de IA logra un avance en la predicción de ciclones</a> <span class='m'>[DeepMind Blog] [models]</span></div></li><li class='w-item'><div class='w-item-b'><a href='https://deepmind.google/blog/gemini-robotics-er-2-powering-robotics-with-video-understanding-task-orchestration-and-multi-robot-collaboration/' target='_blank' rel='noopener noreferrer'>Gemini Robotics ER 2: Potenciando la robótica con comprensión de vídeo y colaboración multi-robot</a> <span class='m'>[DeepMind Blog] [infra]</span></div></li></ul></section><section class='card'><h2>Gemini</h2><ul class='w-list'><li class='w-item'><div class='w-item-b'><a href='https://deepmind.google/blog/introducing-gemini-3-6-flash-3-5-flash-lite-and-3-5-flash-cyber/' target='_blank' rel='noopener noreferrer'>Presentación de Gemini 3.6 Flash, 3.5 Flash-Lite y 3.5 Flash Cyber</a> <span class='m'>[DeepMind Blog] [models]</span></div></li><li class='w-item'><div class='w-item-b'><a href='https://deepmind.google/blog/gemini-robotics-2-brings-whole-body-intelligence-to-robots/' target='_blank' rel='noopener noreferrer'>Gemini Robotics 2 aporta inteligencia de cuerpo completo a los robots</a> <span class='m'>[DeepMind Blog] [models]</span></div></li><li class='w-item'><div class='w-item-b'><a href='https://deepmind.google/blog/introducing-gemini-3-7-flash/' target='_blank' rel='noopener noreferrer'>Presentando Gemini 3.7 Flash</a> <span class='m'>[DeepMind Blog] [models]</span></div></li><li class='w-item'><div class='w-item-b'><a href='https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api-3-6-flash-hooks/' target='_blank' rel='noopener noreferrer'>Agentes gestionados de la API de Gemini: 3.6 Flash, hooks y más</a> <span class='m'>[Google AI Blog] [models]</span></div></li><li class='w-item'><div class='w-item-b'><a href='https://deepmind.google/blog/gemini-robotics-er-2-powering-robotics-with-video-understanding-task-orchestration-and-multi-robot-collaboration/' target='_blank' rel='noopener noreferrer'>Gemini Robotics ER 2: Potenciando la robótica con comprensión de vídeo y colaboración multi-robot</a> <span class='m'>[DeepMind Blog] [infra]</span></div></li><li class='w-item'><div class='w-item-b'><a href='https://deepmind.google/blog/introducing-gemini-3-6-flash-3-5-flash-lite-and-3-5-flash-cyber/' target='_blank' rel='noopener noreferrer'>Presentación de Gemini 3.6 Flash, 3.5 Flash-Lite y 3.5 Flash Cyber</a> <span class='m'>[DeepMind Blog] [models]</span></div></li></ul></section><section class='card'><h2>Google</h2><ul class='w-list'><li class='w-item'><img src='https://x.ai/images/news/og-google-enterprise-agent-platform.webp' class='w-thumb' alt='' loading='lazy' onerror="this.style.display='none'"/><div class='w-item-b'><a href='https://x.ai/news/grok-4-6-vertex-ai' target='_blank' rel='noopener noreferrer'>Grok 4.6 de xAI disponible en la Plataforma de Agentes Empresariales de Google</a> <span class='m'>[xAI] [models]</span></div></li><li class='w-item'><div class='w-item-b'><a href='https://www.together.ai/blog/glm-5-3-vs-gpt-5-6-sol-on-deepswe-cost-coding-and-routing' target='_blank' rel='noopener noreferrer'>Comparativa Together AI: GLM-5.3 supera a GPT-5.6 Sol en eficiencia de código y coste</a> <span class='m'>[Together AI] [models]</span></div></li><li class='w-item'><div class='w-item-b'><a href='https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api-3-6-flash-hooks/' target='_blank' rel='noopener noreferrer'>Agentes gestionados de la API de Gemini: 3.6 Flash, hooks y más</a> <span class='m'>[Google AI Blog] [models]</span></div></li><li class='w-item'><div class='w-item-b'><a href='https://deepmind.google/blog/accelerating-the-frontiers-of-scientific-discovery-googles-40m-commitment-to-the-genesis-mission/' target='_blank' rel='noopener noreferrer'>Acelerando las fronteras del descubrimiento científico: Compromiso de 40 millones de dólares de Google para la Misión Genesis</a> <span class='m'>[DeepMind Blog] [invest]</span></div></li><li class='w-item'><div class='w-item-b'><a href='https://deepmind.google/blog/introducing-gemini-3-6-flash-3-5-flash-lite-and-3-5-flash-cyber/' target='_blank' rel='noopener noreferrer'>Presentación de Gemini 3.6 Flash, 3.5 Flash-Lite y 3.5 Flash Cyber</a> <span class='m'>[DeepMind Blog] [models]</span></div></li><li class='w-item'><div class='w-item-b'><a href='https://blog.google/products-and-platforms/products/gemini/google-gemini-pixel-football-club-partnerships/' target='_blank' rel='noopener noreferrer'>Acércate al juego con Gemini y Pixel</a> <span class='m'>[Google AI Blog] [misc]</span></div></li></ul></section></div>
-  </section>
+  <div class="section-h">Hilos por entidad</div>
+  <div class="clusters"><section class='widget'><div class='widget-title'><span>Anthropic</span></div><a class='hit' href='https://claude.com/blog/computer-use-skills-api-files-api' target='_blank' rel='noopener noreferrer'><span class='ht'>Anthropic habilita uso de ordenador, Skills API y Files API en Claude para agentes</span><span class='hs'>Anthropic</span></a><a class='hit' href='https://claude.com/blog/bringing-claude-mythos-5-to-more-defenders' target='_blank' rel='noopener noreferrer'><span class='ht'>Anthropic expande acceso a Claude Mythos 5 para ciberdefensa y lanza fondo de 35M$</span><span class='hs'>Anthropic</span></a><a class='hit' href='https://www.interconnects.ai/p/teaching-everyone-to-fish-for-tokens' target='_blank' rel='noopener noreferrer'><span class='ht'>Nvidia busca que clientes entrenen modelos propios en lugar de usar APIs de terceros</span><span class='hs'>Interconnects</span></a><a class='hit' href='https://www.together.ai/blog/glm-5-3-vs-claude-fable-5-on-deepswe-cost-coding-and-routing' target='_blank' rel='noopener noreferrer'><span class='ht'>Together AI: GLM-5.3 iguala a Claude Fable 5 en codificación, costando 5.4 veces menos</span><span class='hs'>Together AI</span></a><a class='hit' href='https://claude.com/blog/bringing-claude-mythos-5-to-more-defenders' target='_blank' rel='noopener noreferrer'><span class='ht'>Anthropic extiende acceso a Claude Mythos 5 para ciberseguridad a más organizaciones</span><span class='hs'>Anthropic</span></a><a class='hit' href='https://www.interconnects.ai/p/teaching-everyone-to-fish-for-tokens' target='_blank' rel='noopener noreferrer'><span class='ht'>Nvidia promueve la construcción de modelos propios frente al consumo de APIs de frontier labs</span><span class='hs'>Interconnects</span></a></section><section class='widget'><div class='widget-title'><span>OpenAI</span></div><a class='hit' href='https://www.together.ai/blog/glm-5-3-vs-gpt-5-6-sol-on-deepswe-cost-coding-and-routing' target='_blank' rel='noopener noreferrer'><span class='ht'>GLM-5.3 supera a GPT-5.6 Sol en pass@4 y coste en DeepSWE, GPT-5.6 Sol gana pass@1</span><span class='hs'>Together AI</span></a><a class='hit' href='https://openai.com/index/offering-zero-data-retention-for-frontier-models' target='_blank' rel='noopener noreferrer'><span class='ht'>OpenAI ofrece Retención de Datos Cero para modelos frontera a clientes API</span><span class='hs'>OpenAI</span></a><a class='hit' href='https://www.interconnects.ai/p/teaching-everyone-to-fish-for-tokens' target='_blank' rel='noopener noreferrer'><span class='ht'>Nvidia busca que clientes entrenen modelos propios en lugar de usar APIs de terceros</span><span class='hs'>Interconnects</span></a><a class='hit' href='https://www.together.ai/blog/glm-5-3-vs-gpt-5-6-sol-on-deepswe-cost-coding-and-routing' target='_blank' rel='noopener noreferrer'><span class='ht'>Comparativa Together AI: GLM-5.3 supera a GPT-5.6 Sol en eficiencia de código y coste</span><span class='hs'>Together AI</span></a><a class='hit' href='https://www.interconnects.ai/p/teaching-everyone-to-fish-for-tokens' target='_blank' rel='noopener noreferrer'><span class='ht'>Nvidia promueve la construcción de modelos propios frente al consumo de APIs de frontier labs</span><span class='hs'>Interconnects</span></a><a class='hit' href='https://openai.com/index/stampli' target='_blank' rel='noopener noreferrer'><span class='ht'>Stampli reduce un 68% las horas de lanzamiento con ChatGPT Work de OpenAI</span><span class='hs'>OpenAI</span></a></section><section class='widget'><div class='widget-title'><span>DeepMind</span></div><a class='hit' href='https://deepmind.google/blog/from-atari-to-eve-online-building-on-15-years-of-ai-research-in-games/' target='_blank' rel='noopener noreferrer'><span class='ht'>DeepMind colabora con estudios de juegos para innovar en gameplay con IA</span><span class='hs'>DeepMind Blog</span></a><a class='hit' href='https://deepmind.google/blog/introducing-gemini-3-6-flash-3-5-flash-lite-and-3-5-flash-cyber/' target='_blank' rel='noopener noreferrer'><span class='ht'>Presentación de Gemini 3.6 Flash, 3.5 Flash-Lite y 3.5 Flash Cyber</span><span class='hs'>DeepMind Blog</span></a><a class='hit' href='https://deepmind.google/blog/gemini-robotics-2-brings-whole-body-intelligence-to-robots/' target='_blank' rel='noopener noreferrer'><span class='ht'>Gemini Robotics 2 aporta inteligencia de cuerpo completo a los robots</span><span class='hs'>DeepMind Blog</span></a><a class='hit' href='https://deepmind.google/blog/introducing-gemini-3-7-flash/' target='_blank' rel='noopener noreferrer'><span class='ht'>Presentando Gemini 3.7 Flash</span><span class='hs'>DeepMind Blog</span></a><a class='hit' href='https://deepmind.google/blog/weathernext-ai-model-achieves-breakthrough-in-forecasting-cyclones/' target='_blank' rel='noopener noreferrer'><span class='ht'>WeatherNext: El modelo de IA logra un avance en la predicción de ciclones</span><span class='hs'>DeepMind Blog</span></a><a class='hit' href='https://deepmind.google/blog/gemini-robotics-er-2-powering-robotics-with-video-understanding-task-orchestration-and-multi-robot-collaboration/' target='_blank' rel='noopener noreferrer'><span class='ht'>Gemini Robotics ER 2: Potenciando la robótica con comprensión de vídeo y colaboración multi-robot</span><span class='hs'>DeepMind Blog</span></a></section><section class='widget'><div class='widget-title'><span>Gemini</span></div><a class='hit' href='https://deepmind.google/blog/introducing-gemini-3-6-flash-3-5-flash-lite-and-3-5-flash-cyber/' target='_blank' rel='noopener noreferrer'><span class='ht'>Presentación de Gemini 3.6 Flash, 3.5 Flash-Lite y 3.5 Flash Cyber</span><span class='hs'>DeepMind Blog</span></a><a class='hit' href='https://deepmind.google/blog/gemini-robotics-2-brings-whole-body-intelligence-to-robots/' target='_blank' rel='noopener noreferrer'><span class='ht'>Gemini Robotics 2 aporta inteligencia de cuerpo completo a los robots</span><span class='hs'>DeepMind Blog</span></a><a class='hit' href='https://deepmind.google/blog/introducing-gemini-3-7-flash/' target='_blank' rel='noopener noreferrer'><span class='ht'>Presentando Gemini 3.7 Flash</span><span class='hs'>DeepMind Blog</span></a><a class='hit' href='https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api-3-6-flash-hooks/' target='_blank' rel='noopener noreferrer'><span class='ht'>Agentes gestionados de la API de Gemini: 3.6 Flash, hooks y más</span><span class='hs'>Google AI Blog</span></a><a class='hit' href='https://deepmind.google/blog/gemini-robotics-er-2-powering-robotics-with-video-understanding-task-orchestration-and-multi-robot-collaboration/' target='_blank' rel='noopener noreferrer'><span class='ht'>Gemini Robotics ER 2: Potenciando la robótica con comprensión de vídeo y colaboración multi-robot</span><span class='hs'>DeepMind Blog</span></a><a class='hit' href='https://deepmind.google/blog/introducing-gemini-3-6-flash-3-5-flash-lite-and-3-5-flash-cyber/' target='_blank' rel='noopener noreferrer'><span class='ht'>Presentación de Gemini 3.6 Flash, 3.5 Flash-Lite y 3.5 Flash Cyber</span><span class='hs'>DeepMind Blog</span></a></section><section class='widget'><div class='widget-title'><span>Google</span></div><a class='hit' href='https://x.ai/news/grok-4-6-vertex-ai' target='_blank' rel='noopener noreferrer'><span class='ht'>Grok 4.6 de xAI disponible en la Plataforma de Agentes Empresariales de Google</span><span class='hs'>xAI</span></a><a class='hit' href='https://www.together.ai/blog/glm-5-3-vs-gpt-5-6-sol-on-deepswe-cost-coding-and-routing' target='_blank' rel='noopener noreferrer'><span class='ht'>Comparativa Together AI: GLM-5.3 supera a GPT-5.6 Sol en eficiencia de código y coste</span><span class='hs'>Together AI</span></a><a class='hit' href='https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api-3-6-flash-hooks/' target='_blank' rel='noopener noreferrer'><span class='ht'>Agentes gestionados de la API de Gemini: 3.6 Flash, hooks y más</span><span class='hs'>Google AI Blog</span></a><a class='hit' href='https://deepmind.google/blog/accelerating-the-frontiers-of-scientific-discovery-googles-40m-commitment-to-the-genesis-mission/' target='_blank' rel='noopener noreferrer'><span class='ht'>Acelerando las fronteras del descubrimiento científico: Compromiso de 40 millones de dólares de Google para la Misión Genesis</span><span class='hs'>DeepMind Blog</span></a><a class='hit' href='https://deepmind.google/blog/introducing-gemini-3-6-flash-3-5-flash-lite-and-3-5-flash-cyber/' target='_blank' rel='noopener noreferrer'><span class='ht'>Presentación de Gemini 3.6 Flash, 3.5 Flash-Lite y 3.5 Flash Cyber</span><span class='hs'>DeepMind Blog</span></a><a class='hit' href='https://blog.google/products-and-platforms/products/gemini/google-gemini-pixel-football-club-partnerships/' target='_blank' rel='noopener noreferrer'><span class='ht'>Acércate al juego con Gemini y Pixel</span><span class='hs'>Google AI Blog</span></a></section></div>
+  <div class="section-h">Hilos por tema</div>
+  <div class="clusters"><section class='widget'><div class='widget-title'><span>Economía de modelos</span></div><a class='hit' href='https://www.together.ai/blog/glm-5-3-vs-gpt-5-6-sol-on-deepswe-cost-coding-and-routing' target='_blank' rel='noopener noreferrer'><span class='ht'>GLM-5.3 supera a GPT-5.6 Sol en pass@4 y coste en DeepSWE, GPT-5.6 Sol gana pass@1</span><span class='hs'>Together AI</span></a><a class='hit' href='https://openai.com/index/offering-zero-data-retention-for-frontier-models' target='_blank' rel='noopener noreferrer'><span class='ht'>OpenAI ofrece Retención de Datos Cero para modelos frontera a clientes API</span><span class='hs'>OpenAI</span></a><a class='hit' href='https://www.interconnects.ai/p/teaching-everyone-to-fish-for-tokens' target='_blank' rel='noopener noreferrer'><span class='ht'>Nvidia busca que clientes entrenen modelos propios en lugar de usar APIs de terceros</span><span class='hs'>Interconnects</span></a><a class='hit' href='https://www.together.ai/blog/glm-5-3-vs-gpt-5-6-sol-on-deepswe-cost-coding-and-routing' target='_blank' rel='noopener noreferrer'><span class='ht'>Comparativa Together AI: GLM-5.3 supera a GPT-5.6 Sol en eficiencia de código y coste</span><span class='hs'>Together AI</span></a><a class='hit' href='https://www.together.ai/blog/glm-5-3-vs-claude-fable-5-on-deepswe-cost-coding-and-routing' target='_blank' rel='noopener noreferrer'><span class='ht'>Together AI: GLM-5.3 iguala a Claude Fable 5 en codificación, costando 5.4 veces menos</span><span class='hs'>Together AI</span></a><a class='hit' href='https://www.interconnects.ai/p/teaching-everyone-to-fish-for-tokens' target='_blank' rel='noopener noreferrer'><span class='ht'>Nvidia promueve la construcción de modelos propios frente al consumo de APIs de frontier labs</span><span class='hs'>Interconnects</span></a></section><section class='widget'><div class='widget-title'><span>Compute &amp; chips</span></div><a class='hit' href='https://www.bloomberg.com/news/articles/2026-08-22/nvidia-customers-notified-about-ai-related-price-hikes-above-15' target='_blank' rel='noopener noreferrer'><span class='ht'>Nvidia notifica a clientes subidas de precios de IA superiores al 15%</span><span class='hs'>Bloomberg Tech</span></a><a class='hit' href='https://semiwiki.com/semiconductor-manufacturers/tsmc/372488-how-tsmc-is-wiring-the-ai-era-with-light/' target='_blank' rel='noopener noreferrer'><span class='ht'>TSMC desarrolla plataforma foundry fotónica y packaging TSMC-COUPE para IA</span><span class='hs'>SemiWiki</span></a><a class='hit' href='https://www.latent.space/p/ainews-10-worse-100x-cheaper-10000x' target='_blank' rel='noopener noreferrer'><span class='ht'>La simulación, más barata y rápida, se perfila como futuro del entrenamiento de IA</span><span class='hs'>Latent Space</span></a><a class='hit' href='https://semiwiki.com/semiconductor-manufacturers/tsmc/372488-how-tsmc-is-wiring-the-ai-era-with-light/' target='_blank' rel='noopener noreferrer'><span class='ht'>TSMC avanza en fotónica de silicio para integrar I/O óptico en chips de IA</span><span class='hs'>SemiWiki</span></a><a class='hit' href='https://semiwiki.com/semiconductor-manufacturers/intel/372371-intel-eyes-a-memory-comeback-as-ai-rewrites-chip-economics/' target='_blank' rel='noopener noreferrer'><span class='ht'>Intel planea volver al negocio de la memoria ante la redefinición de la economía de chips por la IA</span><span class='hs'>SemiWiki</span></a><a class='hit' href='https://www.latent.space/p/ainews-10-worse-100x-cheaper-10000x' target='_blank' rel='noopener noreferrer'><span class='ht'>La simulación como factor clave para modelos 100 veces más baratos y 10000 veces más rápidos</span><span class='hs'>Latent Space</span></a></section><section class='widget'><div class='widget-title'><span>Stack chino</span></div><a class='hit' href='https://www.reuters.com/business/retail-consumer/alibaba-proposes-hong-kong-share-placement-worth-10-billion-2026-08-23/' target='_blank' rel='noopener noreferrer'><span class='ht'>Alibaba planea captar 10.000 millones de dólares para inversión en IA</span><span class='hs'>Reuters AI</span></a></section></div>
 
-  <section style="margin-top:14px">
-    <h2 style="color:#cbd5e1; font-size:15px; margin:0 0 10px 0;">Clusters · top categorías</h2>
-    <div class='grid'><section class='card'><h2>Categoría: Frontier models</h2><ul class='w-list'><li class='w-item'><img src='https://cdn.prod.website-files.com/68a44d4040f98a4adf2207b6/69051360369f8c1bb58fc2fe_og_build-artifacts.jpg' class='w-thumb' alt='' loading='lazy' onerror="this.style.display='none'"/><div class='w-item-b'><a href='https://claude.com/blog/computer-use-skills-api-files-api' target='_blank' rel='noopener noreferrer'>Anthropic habilita uso de ordenador, Skills API y Files API en Claude para agentes</a> <span class='m'>[Anthropic] [models]</span></div></li><li class='w-item'><img src='https://x.ai/images/news/og-google-enterprise-agent-platform.webp' class='w-thumb' alt='' loading='lazy' onerror="this.style.display='none'"/><div class='w-item-b'><a href='https://x.ai/news/grok-4-6-vertex-ai' target='_blank' rel='noopener noreferrer'>Grok 4.6 de xAI disponible en la Plataforma de Agentes Empresariales de Google</a> <span class='m'>[xAI] [models]</span></div></li><li class='w-item'><img src='https://cdn.prod.website-files.com/69654e88dce9154b5f12070c/6a8934b9fcc541cde30c4b07_OG-image_202600821_GLM53vsGPT56Sol.png' class='w-thumb' alt='' loading='lazy' onerror="this.style.display='none'"/><div class='w-item-b'><a href='https://www.together.ai/blog/glm-5-3-vs-gpt-5-6-sol-on-deepswe-cost-coding-and-routing' target='_blank' rel='noopener noreferrer'>GLM-5.3 supera a GPT-5.6 Sol en pass@4 y coste en DeepSWE, GPT-5.6 Sol gana pass@1</a> <span class='m'>[Together AI] [models]</span></div></li><li class='w-item'><img src='https://mistral.ai/cms-media/api/media/file/Thumbnail-Blog-Agenticsearch.png' class='w-thumb' alt='' loading='lazy' onerror="this.style.display='none'"/><div class='w-item-b'><a href='https://mistral.ai/news/agentic-search/' target='_blank' rel='noopener noreferrer'>Mistral lanza Agentic Search para mejorar precisión y eficiencia en sistemas de IA</a> <span class='m'>[Mistral] [models]</span></div></li><li class='w-item'><img src='https://cdn.prod.website-files.com/68a44d4040f98a4adf2207b6/69f398245c0b3933c7940d49_og_claude-security-public-beta%20(1).jpg' class='w-thumb' alt='' loading='lazy' onerror="this.style.display='none'"/><div class='w-item-b'><a href='https://claude.com/blog/bringing-claude-mythos-5-to-more-defenders' target='_blank' rel='noopener noreferrer'>Anthropic expande acceso a Claude Mythos 5 para ciberdefensa y lanza fondo de 35M$</a> <span class='m'>[Anthropic] [models]</span></div></li><li class='w-item'><div class='w-item-b'><a href='https://openai.com/index/offering-zero-data-retention-for-frontier-models' target='_blank' rel='noopener noreferrer'>OpenAI ofrece Retención de Datos Cero para modelos frontera a clientes API</a> <span class='m'>[OpenAI] [models]</span></div></li></ul></section><section class='card'><h2>Categoría: Geopolitics</h2><ul class='w-list'><li class='w-item'><div class='w-item-b'><a href='https://www.reuters.com/business/retail-consumer/alibaba-proposes-hong-kong-share-placement-worth-10-billion-2026-08-23/' target='_blank' rel='noopener noreferrer'>Alibaba planea captar 10.000 millones de dólares para inversión en IA</a> <span class='m'>[Reuters AI] [geopol]</span></div></li></ul></section><section class='card'><h2>Categoría: Other</h2><ul class='w-list'><li class='w-item'><img src='https://lh3.googleusercontent.com/ymmK0Dgovn-_MGlnQJffYxKdTe5LAnkAZr-GNnIjiFzsGOAAmOmUDuVACbNgIy-tqrJhGBdaQ_PaElc8EKRKRWtYg4eWx8HVcaVzdYy7hg7Q_8k=w528-h297-n-nu-rw-lo' class='w-thumb' alt='' loading='lazy' onerror="this.style.display='none'"/><div class='w-item-b'><a href='https://deepmind.google/blog/from-atari-to-eve-online-building-on-15-years-of-ai-research-in-games/' target='_blank' rel='noopener noreferrer'>DeepMind colabora con estudios de juegos para innovar en gameplay con IA</a> <span class='m'>[DeepMind Blog] [misc]</span></div></li><li class='w-item'><div class='w-item-b'><a href='https://arxiv.org/abs/2608.19210' target='_blank' rel='noopener noreferrer'>Hacia la implementación a bordo de un estimador de peso de helicóptero basado en ML</a> <span class='m'>[arXiv cs.LG] [misc]</span></div></li><li class='w-item'><div class='w-item-b'><a href='https://arxiv.org/abs/2608.19201' target='_blank' rel='noopener noreferrer'>Reconocimiento automático de entidades nombradas de software bioinformático a partir de la literatura</a> <span class='m'>[arXiv cs.CL] [misc]</span></div></li><li class='w-item'><div class='w-item-b'><a href='https://arxiv.org/abs/2608.19214' target='_blank' rel='noopener noreferrer'>Metaheurísticas robustas bajo incertidumbre para la asignación de atraques y grúas de muelle</a> <span class='m'>[arXiv cs.AI] [misc]</span></div></li><li class='w-item'><div class='w-item-b'><a href='https://arxiv.org/abs/2608.19234' target='_blank' rel='noopener noreferrer'>Distancia de reescalado difuso triangular</a> <span class='m'>[arXiv cs.LG] [misc]</span></div></li><li class='w-item'><div class='w-item-b'><a href='https://arxiv.org/abs/2608.16913' target='_blank' rel='noopener noreferrer'>Intervención proactiva en seguridad vial en Australia: Predicción de puntos críticos de conducción arriesgada</a> <span class='m'>[arXiv cs.LG] [misc]</span></div></li></ul></section></div>
-  </section>
-</main>
-
+  <footer>7 días · 2026-08-17 → 2026-08-23</footer>
+</div>
 </body>
 </html>

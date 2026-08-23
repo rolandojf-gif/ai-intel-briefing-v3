@@ -815,6 +815,28 @@ class CoreQualityTests(unittest.TestCase):
         self.assertIn("navigator.clipboard", html)
         self.assertIn("Copiar", html)
 
+    def test_weekly_matches_daily_chrome_and_drops_jargon(self):
+        from src.weekly import main as weekly_main
+        weekly_main()
+        html = Path("docs/weekly.html").read_text(encoding="utf-8")
+        self.assertIn("--bg:#191a1a", html)
+        self.assertIn("Space Grotesk", html)
+        self.assertIn("Semanal", html)
+        self.assertIn('href="weekly.html"', html)
+        self.assertIn("archivo.html", html)
+        self.assertIn("index.html", html)
+        for ban in (
+            "share_slope",
+            "w_total",
+            "half-life",
+            "HHI",
+            "tendencia_share",
+            "Cómo leer estas métricas",
+            "Outfit",
+            "Weekly Radar",
+        ):
+            self.assertNotIn(ban, html)
+
 
 if __name__ == "__main__":
     unittest.main()
