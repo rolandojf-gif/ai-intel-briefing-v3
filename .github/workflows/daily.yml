@@ -68,5 +68,5 @@ jobs:
             docs/data/*.x_cache.json \
             docs/data/image_cache.json 2>/dev/null || true
           git commit -m "Daily briefing" || echo "No changes"
-          git pull --rebase origin main
+          git pull --rebase --autostash origin main
           git push origin main
