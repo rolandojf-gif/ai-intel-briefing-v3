@@ -12,10 +12,9 @@ USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
 
 
 def _generate_sparkline(points: list[float], positive: bool = True, width: int = 100, height: int = 24) -> str:
-    """Genera un path SVG para un sparkline suave."""
+    """Sparkline de la serie real. Sin puntos suficientes, nada: no se inventa curva."""
     if not points or len(points) < 2:
-        # Fallback dummy curve
-        points = [10.0, 10.2, 10.1, 10.5, 10.4, 10.8, 11.0] if positive else [11.0, 10.8, 10.9, 10.4, 10.5, 10.1, 9.8]
+        return ""
 
     min_val, max_val = min(points), max(points)
     val_range = max_val - min_val if max_val != min_val else 1.0
@@ -24,7 +23,6 @@ def _generate_sparkline(points: list[float], positive: bool = True, width: int =
     n = len(points)
     for i, p in enumerate(points):
         x = round((i / (n - 1)) * (width - 4) + 2, 1)
-        # Invert y because SVG y goes downwards
         y = round(height - 4 - ((p - min_val) / val_range) * (height - 8) + 2, 1)
         coords.append(f"{x},{y}")
 
@@ -36,7 +34,7 @@ def _generate_sparkline(points: list[float], positive: bool = True, width: int =
 def _fetch_yahoo_quote(symbol: str) -> dict | None:
     """Obtiene el valor del ultimo cierre y la variacion diaria real respecto al cierre anterior."""
     try:
-        url = f"https://query1.finance.yahoo.com/v8/finance/chart/{symbol}?interval=1d&range=5d"
+        url = f"https://query1.finance.yahoo.com/v8/finance/chart/{symbol}?interval=1d&range=1mo"
         resp = requests.get(url, headers={"User-Agent": USER_AGENT}, timeout=TIMEOUT)
         if resp.status_code != 200:
             return None
@@ -68,29 +66,46 @@ def _fetch_yahoo_quote(symbol: str) -> dict | None:
         return {
             "price": last_close,
             "change_pct": change_pct,
-            "sparkline_points": closes[-7:] if len(closes) >= 2 else [last_close],
+            "sparkline_points": closes[-14:] if len(closes) >= 2 else [],
         }
     except Exception:
         return None
 
 
-def _fetch_crypto_bitcoin() -> dict | None:
-    """Obtiene cotización y variación de Bitcoin."""
+def _fetch_coingecko(coin_id: str) -> dict | None:
+    """Serie de 7 días de CoinGecko. Fallback si Yahoo no responde para crypto."""
     try:
-        url = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_change=true"
+        url = (
+            f"https://api.coingecko.com/api/v3/coins/{coin_id}/market_chart"
+            "?vs_currency=usd&days=7"
+        )
         resp = requests.get(url, headers={"User-Agent": USER_AGENT}, timeout=TIMEOUT)
-        if resp.status_code == 200:
-            data = resp.json().get("bitcoin", {})
-            price = data.get("usd", 76000.0)
-            change = data.get("usd_24h_change", 0.0)
-            return {
-                "price": price,
-                "change_pct": change,
-                "sparkline_points": [price * (1 - change/200), price * (1 - change/400), price],
-            }
+        if resp.status_code != 200:
+            return None
+        raw_prices = resp.json().get("prices") or []
+        prices = [p[1] for p in raw_prices if isinstance(p, list) and len(p) >= 2 and isinstance(p[1], (int, float))]
+        if not prices:
+            return None
+        last = prices[-1]
+        # market_chart 7d suele ser horario: ~24 puntos atrás ≈ 24 h.
+        prev = prices[-25] if len(prices) > 25 else prices[0]
+        change = ((last - prev) / prev) * 100 if prev else 0.0
+        step = max(1, len(prices) // 14)
+        spark = prices[::step][:14]
+        if spark[-1] != last:
+            spark = spark + [last]
+        return {
+            "price": last,
+            "change_pct": change,
+            "sparkline_points": spark,
+        }
     except Exception:
-        pass
-    return None
+        return None
+
+
+def _fetch_crypto(coin_id: str, yahoo_symbol: str) -> dict | None:
+    """Yahoo primero (misma serie que el resto del panel); CoinGecko si falla."""
+    return _fetch_yahoo_quote(yahoo_symbol) or _fetch_coingecko(coin_id)
 
 
 def get_market_overview() -> dict:
@@ -105,7 +120,8 @@ def get_market_overview() -> dict:
     macro_targets = [
         {"key": "sp500", "label": "S&P Futures", "symbol": "ES=F"},
         {"key": "nasdaq", "label": "NASDAQ F.", "symbol": "NQ=F"},
-        {"key": "bitcoin", "label": "Bitcoin", "symbol": "BTC-USD"},
+        {"key": "bitcoin", "label": "Bitcoin", "symbol": "BTC-USD", "coingecko": "bitcoin"},
+        {"key": "ethereum", "label": "Ethereum", "symbol": "ETH-USD", "coingecko": "ethereum"},
         {"key": "vix", "label": "VIX", "symbol": "^VIX"},
     ]
 
@@ -124,8 +140,8 @@ def get_market_overview() -> dict:
 
     macro_items = []
     for m in macro_targets:
-        if m["key"] == "bitcoin":
-            q = _fetch_crypto_bitcoin() or _fetch_yahoo_quote(m["symbol"])
+        if m.get("coingecko"):
+            q = _fetch_crypto(m["coingecko"], m["symbol"])
         else:
             q = _fetch_yahoo_quote(m["symbol"])
 
