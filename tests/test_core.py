@@ -573,6 +573,79 @@ class CoreQualityTests(unittest.TestCase):
         self.assertNotIn("pull_request", cond)
         self.assertEqual(generate.get("needs"), "test")
 
+    # -- Archivo ------------------------------------------------------------
+
+    def test_archive_builds_index_and_day_pages(self):
+        import json
+        import tempfile
+        from src.archive import write_archive
+
+        with tempfile.TemporaryDirectory() as td:
+            docs = Path(td)
+            data = docs / "data"
+            data.mkdir()
+            (data / "2026-08-20.json").write_text(json.dumps({
+                "date": "2026-08-20",
+                "briefing": {"thesis": "Tesis de archivo"},
+                "items": [{
+                    "title": "Launch de prueba",
+                    "url": "https://openai.com/x",
+                    "source": "OpenAI",
+                    "score": 88,
+                    "so_what": "Cambia el tablero",
+                }],
+                "activity": {"label": "ACTIVO", "class": "active"},
+            }), encoding="utf-8")
+            (data / "2026-08-20.llm_cache.json").write_text("{}", encoding="utf-8")
+            (data / "image_cache.json").write_text("{}", encoding="utf-8")
+            (data / "2026-08-21.json").write_text(json.dumps({
+                "date": "2026-08-21",
+                "briefing": {"signals": ["Solo un signal viejo"]},
+                "items": [{
+                    "title": "Schema antiguo sin layer",
+                    "link": "https://www.anthropic.com/news/x",
+                    "source": "Anthropic",
+                    "score": 70,
+                    "why": "Contexto",
+                }],
+            }), encoding="utf-8")
+
+            n = write_archive(docs)
+            self.assertEqual(n, 2)
+
+            index = (docs / "archivo.html").read_text(encoding="utf-8")
+            self.assertIn("2026-08-20", index)
+            self.assertIn("Tesis de archivo", index)
+            self.assertIn("2026-08-21", index)
+            self.assertIn("Solo un signal viejo", index)
+            self.assertIn('href="d/2026-08-20.html"', index)
+            self.assertNotIn("llm_cache", index)
+            self.assertNotIn("image_cache", index)
+
+            day = (docs / "d" / "2026-08-20.html").read_text(encoding="utf-8")
+            self.assertIn("Launch de prueba", day)
+            self.assertIn("../archivo.html", day)
+            self.assertIn("2026-08-21", day)  # next
+            self.assertIn("../index.html", day)
+
+            old = (docs / "d" / "2026-08-21.html").read_text(encoding="utf-8")
+            self.assertIn("Schema antiguo sin layer", old)
+            self.assertIn("2026-08-20", old)  # prev
+
+    def test_index_redirects_date_query_to_day_page(self):
+        from src.render import render_index
+        html = render_index([], briefing={"thesis": "t"}, snapshot={"date": "2026-08-23"})
+        self.assertIn("URLSearchParams", html)
+        self.assertIn("d/' + d + '.html'", html)
+        self.assertIn("archivo.html", html)
+
+    def test_main_writes_archive(self):
+        import inspect
+        from src import main as main_mod
+        src = inspect.getsource(main_mod.main)
+        self.assertIn("write_archive", src)
+        self.assertIn("docs/archivo.html", src)
+
 
 if __name__ == "__main__":
     unittest.main()

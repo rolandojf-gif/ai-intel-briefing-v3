@@ -1,0 +1,1294 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Archivo · AI Strategic Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#191a1a; --card:#202222; --card-hover:#262828; --line:#2f3131; --line-2:#3d4040;
+    --txt:#e8e8e6; --txt-dim:#c8cbca; --dim:#9b9f9e; --dimmer:#6b6f6e;
+    --accent:#20b8cd; --accent-soft:rgba(32,184,205,.12);
+    --green:#4bd48b; --rose:#f2665f; --amber:#e8b750;
+    --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+    --sans:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+    --disp:'Space Grotesk','Inter',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);font-family:var(--sans);line-height:1.5}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:860px;margin:0 auto;padding:0 24px 80px}
+  .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;
+          padding:18px 0;border-bottom:1px solid var(--line);margin-bottom:22px;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:10px;font-family:var(--disp);font-size:17px;font-weight:700}
+  .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}
+  .nav{display:flex;gap:6px}
+  .nav a{font-size:13px;font-weight:600;padding:7px 15px;border-radius:999px;color:var(--dim)}
+  .nav a.on{color:var(--accent);background:var(--accent-soft)}
+  .nav a:hover{color:var(--txt)}
+  .lead h1{margin:0 0 8px;font-family:var(--disp);font-size:clamp(22px,3vw,30px);letter-spacing:-.02em}
+  .lead p{margin:0 0 18px;color:var(--dim);font-size:14.5px;max-width:60ch}
+  .toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:22px}
+  .toolbar input{flex:1;min-width:200px;background:var(--card);border:1px solid var(--line);
+                 color:var(--txt);border-radius:10px;padding:10px 12px;font:13px var(--sans)}
+  .toolbar input:focus{outline:none;border-color:var(--accent)}
+  .months{display:flex;gap:6px;flex-wrap:wrap}
+  .months a{font-family:var(--mono);font-size:10px;letter-spacing:.04em;color:var(--dim);
+            padding:5px 9px;border:1px solid var(--line);border-radius:999px}
+  .months a:hover{color:var(--txt);border-color:var(--line-2)}
+  .month{margin:28px 0 8px;font-family:var(--disp);font-size:15px;font-weight:700}
+  .day{display:grid;grid-template-columns:108px 1fr auto;gap:12px;align-items:baseline;
+       padding:11px 4px;border-bottom:1px solid var(--line)}
+  .day:hover{background:var(--card-hover)}
+  .day .dt{font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:600}
+  .day .th{font-size:14px;line-height:1.4;color:var(--txt-dim);
+           display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .day .n{font-family:var(--mono);font-size:10px;color:var(--dimmer);white-space:nowrap}
+  .empty{padding:40px 10px;color:var(--dim);text-align:center}
+  footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--line);
+         font-family:var(--mono);font-size:10px;color:var(--dimmer)}
+  @media(max-width:640px){
+    .wrap{padding:0 14px 60px}
+    .day{grid-template-columns:84px 1fr;gap:8px}
+    .day .n{grid-column:2;margin-top:-6px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <div class="brand"><span class="dot"></span> AI Strategic Radar</div>
+    <nav class="nav">
+      <a href="index.html">Diario</a>
+      <a href="weekly.html">Semanal</a>
+      <a class="on" href="archivo.html">Archivo</a>
+    </nav>
+  </div>
+  <div class="lead">
+    <h1>Archivo</h1>
+    <p>191 días · 2026-02-13 – 2026-08-23. Cada entrada es el radar de ese día, no un recorte.</p>
+  </div>
+  <div class="toolbar">
+    <input id="q" type="search" placeholder="Filtrar por fecha o tesis…" autocomplete="off"/>
+    <div class="months">
+      
+      <a href="#m-2026-08">Ago 2026</a>
+      
+      <a href="#m-2026-07">Jul 2026</a>
+      
+      <a href="#m-2026-06">Jun 2026</a>
+      
+      <a href="#m-2026-05">May 2026</a>
+      
+      <a href="#m-2026-04">Abr 2026</a>
+      
+      <a href="#m-2026-03">Mar 2026</a>
+      
+      <a href="#m-2026-02">Feb 2026</a>
+      
+    </div>
+  </div>
+  
+  <h2 class="month" id="m-2026-08">Agosto 2026</h2>
+  
+  <a class="day" href="d/2026-08-23.html" data-q="2026-08-23 El ecosistema de agentes avanza significativamente con nuevas herramientas y despliegues, mientras la economía del compute se tensa por las subidas de precios de Nvidia y las grandes inversiones en China, reconfigurando ">
+    <span class="dt">2026-08-23</span>
+    <span class="th">El ecosistema de agentes avanza significativamente con nuevas herramientas y despliegues, mientras la economía del compute se tensa por las subidas de precios de Nvidia y las grandes inversiones en China, reconfigurando </span>
+    <span class="n">10 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-08-22.html" data-q="2026-08-22 El mercado del cómputo para IA se reestructura con movimientos estratégicos de TSMC e Intel, mientras modelos como GLM-5.3 desafían la eficiencia de costes y capacidades de codificación de los labs de frontera.">
+    <span class="dt">2026-08-22</span>
+    <span class="th">El mercado del cómputo para IA se reestructura con movimientos estratégicos de TSMC e Intel, mientras modelos como GLM-5.3 desafían la eficiencia de costes y capacidades de codificación de los labs de frontera.</span>
+    <span class="n">7 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-08-21.html" data-q="2026-08-21 Google acelera el despliegue de modelos Flash especializados en eficiencia y ciberseguridad con la serie Gemini 3.5/3.6.">
+    <span class="dt">2026-08-21</span>
+    <span class="th">Google acelera el despliegue de modelos Flash especializados en eficiencia y ciberseguridad con la serie Gemini 3.5/3.6.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-08-20.html" data-q="2026-08-20 La computación agéntica impulsa un giro en el diseño de hardware hacia arquitecturas de sistema equilibradas.">
+    <span class="dt">2026-08-20</span>
+    <span class="th">La computación agéntica impulsa un giro en el diseño de hardware hacia arquitecturas de sistema equilibradas.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-08-19.html" data-q="2026-08-19 La IA en semiconductores vira hacia la optimización de materiales para superar los límites físicos de la ley de Moore.">
+    <span class="dt">2026-08-19</span>
+    <span class="th">La IA en semiconductores vira hacia la optimización de materiales para superar los límites físicos de la ley de Moore.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-08-18.html" data-q="2026-08-18 TSMC logra un hito de 0,42 nm con MoS2, abriendo el camino a la electrónica post-silicio para hardware de IA extremo.">
+    <span class="dt">2026-08-18</span>
+    <span class="th">TSMC logra un hito de 0,42 nm con MoS2, abriendo el camino a la electrónica post-silicio para hardware de IA extremo.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-08-17.html" data-q="2026-08-17 Aparición del concepto &#39;inflación de tokens&#39; para medir el coste real de los flujos de trabajo de agentes de IA.">
+    <span class="dt">2026-08-17</span>
+    <span class="th">Aparición del concepto &#39;inflación de tokens&#39; para medir el coste real de los flujos de trabajo de agentes de IA.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-08-16.html" data-q="2026-08-16 Gemini 3.7 Flash consolida la tendencia hacia modelos ultrarrápidos y de bajo coste para despliegue masivo.">
+    <span class="dt">2026-08-16</span>
+    <span class="th">Gemini 3.7 Flash consolida la tendencia hacia modelos ultrarrápidos y de bajo coste para despliegue masivo.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-08-15.html" data-q="2026-08-15 TSMC alcanza los 0,42 nm con monocapas de MoS₂ para superar los límites físicos del silicio en semiconductores.">
+    <span class="dt">2026-08-15</span>
+    <span class="th">TSMC alcanza los 0,42 nm con monocapas de MoS₂ para superar los límites físicos del silicio en semiconductores.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-08-14.html" data-q="2026-08-14 Google lanza Gemini 3.7 Flash, priorizando la velocidad y eficiencia en su ecosistema de modelos de última generación.">
+    <span class="dt">2026-08-14</span>
+    <span class="th">Google lanza Gemini 3.7 Flash, priorizando la velocidad y eficiencia en su ecosistema de modelos de última generación.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-08-13.html" data-q="2026-08-13 Auge de la memoria HBM y empaquetado avanzado como pilares físicos críticos para la escalabilidad de la IA global.">
+    <span class="dt">2026-08-13</span>
+    <span class="th">Auge de la memoria HBM y empaquetado avanzado como pilares físicos críticos para la escalabilidad de la IA global.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-08-12.html" data-q="2026-08-12 Google despliega versiones Flash especializadas en ciberseguridad, marcando un giro hacia modelos de uso vertical.">
+    <span class="dt">2026-08-12</span>
+    <span class="th">Google despliega versiones Flash especializadas en ciberseguridad, marcando un giro hacia modelos de uso vertical.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-08-11.html" data-q="2026-08-11 La interpretabilidad de los modelos escala junto a su capacidad técnica, eliminando la penalización por transparencia.">
+    <span class="dt">2026-08-11</span>
+    <span class="th">La interpretabilidad de los modelos escala junto a su capacidad técnica, eliminando la penalización por transparencia.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-08-10.html" data-q="2026-08-10 Inversión masiva en automatización del diseño de semiconductores (EDA) con el éxito de financiación de ChipAgent.">
+    <span class="dt">2026-08-10</span>
+    <span class="th">Inversión masiva en automatización del diseño de semiconductores (EDA) con el éxito de financiación de ChipAgent.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-08-09.html" data-q="2026-08-09 Google acelera su ciclo de despliegue con Gemini 3.6 Flash y versiones lite especializadas en eficiencia extrema.">
+    <span class="dt">2026-08-09</span>
+    <span class="th">Google acelera su ciclo de despliegue con Gemini 3.6 Flash y versiones lite especializadas en eficiencia extrema.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-08-08.html" data-q="2026-08-08 Avance crítico en robótica con inteligencia corporal completa y colaboración multi-robot mediante Gemini Robotics ER 2.">
+    <span class="dt">2026-08-08</span>
+    <span class="th">Avance crítico en robótica con inteligencia corporal completa y colaboración multi-robot mediante Gemini Robotics ER 2.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-08-07.html" data-q="2026-08-07 Integración de LLMs en simuladores industriales para razonamiento causal preciso en plantas de tratamiento (Qwen2.5)">
+    <span class="dt">2026-08-07</span>
+    <span class="th">Integración de LLMs en simuladores industriales para razonamiento causal preciso en plantas de tratamiento (Qwen2.5)</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-08-06.html" data-q="2026-08-06 El mercado de semiconductores proyecta un crecimiento del 98,3% impulsado por la demanda masiva de infraestructura IA.">
+    <span class="dt">2026-08-06</span>
+    <span class="th">El mercado de semiconductores proyecta un crecimiento del 98,3% impulsado por la demanda masiva de infraestructura IA.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-08-05.html" data-q="2026-08-05 Nace SOCAMM2 como nuevo estándar de memoria para servidores IA, prometiendo mayor eficiencia en el movimiento de datos.">
+    <span class="dt">2026-08-05</span>
+    <span class="th">Nace SOCAMM2 como nuevo estándar de memoria para servidores IA, prometiendo mayor eficiencia en el movimiento de datos.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-08-04.html" data-q="2026-08-04 Modelos abiertos de tamaño medio igualan a los líderes en evaluación lógica con costes 100 veces inferiores.">
+    <span class="dt">2026-08-04</span>
+    <span class="th">Modelos abiertos de tamaño medio igualan a los líderes en evaluación lógica con costes 100 veces inferiores.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-08-03.html" data-q="2026-08-03 La inferencia desagregada de LLMs exige orquestación consciente de la topología para evitar cuellos de botella de red.">
+    <span class="dt">2026-08-03</span>
+    <span class="th">La inferencia desagregada de LLMs exige orquestación consciente de la topología para evitar cuellos de botella de red.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-08-02.html" data-q="2026-08-02 Google segmenta su oferta con modelos Gemini especializados en ciberseguridad y eficiencia extrema para desarrolladores.">
+    <span class="dt">2026-08-02</span>
+    <span class="th">Google segmenta su oferta con modelos Gemini especializados en ciberseguridad y eficiencia extrema para desarrolladores.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-08-01.html" data-q="2026-08-01 TSMC diversifica su empaquetado avanzado CoWoS-S y R para optimizar costes y rendimiento en chips de IA de alta gama.">
+    <span class="dt">2026-08-01</span>
+    <span class="th">TSMC diversifica su empaquetado avanzado CoWoS-S y R para optimizar costes y rendimiento en chips de IA de alta gama.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  
+  <h2 class="month" id="m-2026-07">Julio 2026</h2>
+  
+  <a class="day" href="d/2026-07-31.html" data-q="2026-07-31 Google DeepMind acelera la integración de Gemini en robótica con ER 2 y modelos de inteligencia corporal completa.">
+    <span class="dt">2026-07-31</span>
+    <span class="th">Google DeepMind acelera la integración de Gemini en robótica con ER 2 y modelos de inteligencia corporal completa.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-07-30.html" data-q="2026-07-30 Google fragmenta su oferta con Gemini 3.5 Flash especializados en ciberseguridad y eficiencia de costes.">
+    <span class="dt">2026-07-30</span>
+    <span class="th">Google fragmenta su oferta con Gemini 3.5 Flash especializados en ciberseguridad y eficiencia de costes.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-07-29.html" data-q="2026-07-29 Los modelos neuromórficos de difusión están reduciendo drásticamente el consumo energético en inferencia de texto.">
+    <span class="dt">2026-07-29</span>
+    <span class="th">Los modelos neuromórficos de difusión están reduciendo drásticamente el consumo energético en inferencia de texto.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-07-28.html" data-q="2026-07-28 Google acelera el ciclo de lanzamientos con Gemini 3.6 Flash y variantes optimizadas para ciberseguridad.">
+    <span class="dt">2026-07-28</span>
+    <span class="th">Google acelera el ciclo de lanzamientos con Gemini 3.6 Flash y variantes optimizadas para ciberseguridad.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-07-27.html" data-q="2026-07-27 El empaquetado avanzado de semiconductores (TSMC vs Intel) se posiciona como el campo de batalla real de la eficiencia.">
+    <span class="dt">2026-07-27</span>
+    <span class="th">El empaquetado avanzado de semiconductores (TSMC vs Intel) se posiciona como el campo de batalla real de la eficiencia.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-07-26.html" data-q="2026-07-26 Google acelera la fragmentación de modelos con versiones Flash específicas para ciberseguridad y eficiencia extrema.">
+    <span class="dt">2026-07-26</span>
+    <span class="th">Google acelera la fragmentación de modelos con versiones Flash específicas para ciberseguridad y eficiencia extrema.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-07-25.html" data-q="2026-07-25 Aceleración de los ciclos de lanzamiento de modelos compactos y eficientes (Flash) para aplicaciones de baja latencia.">
+    <span class="dt">2026-07-25</span>
+    <span class="th">Aceleración de los ciclos de lanzamiento de modelos compactos y eficientes (Flash) para aplicaciones de baja latencia.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-07-24.html" data-q="2026-07-24 El diseño de chips mediante agentes IA (EDA) pasa de teoría a realidad con hitos de diseño físico real">
+    <span class="dt">2026-07-24</span>
+    <span class="th">El diseño de chips mediante agentes IA (EDA) pasa de teoría a realidad con hitos de diseño físico real</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-07-23.html" data-q="2026-07-23 Nuevos operadores subcuadráticos HyenaND permiten procesar datos multidimensionales sin aplanar su estructura espacial.">
+    <span class="dt">2026-07-23</span>
+    <span class="th">Nuevos operadores subcuadráticos HyenaND permiten procesar datos multidimensionales sin aplanar su estructura espacial.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-07-22.html" data-q="2026-07-22 Fragmentación de modelos especializados: Gemini lanza versiones Flash Cyber y Lite priorizando eficiencia y nicho.">
+    <span class="dt">2026-07-22</span>
+    <span class="th">Fragmentación de modelos especializados: Gemini lanza versiones Flash Cyber y Lite priorizando eficiencia y nicho.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-07-21.html" data-q="2026-07-21 Los LLM tienden a decidir la respuesta antes de razonar, lo que genera alucinaciones estructurales persistentes.">
+    <span class="dt">2026-07-21</span>
+    <span class="th">Los LLM tienden a decidir la respuesta antes de razonar, lo que genera alucinaciones estructurales persistentes.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-07-20.html" data-q="2026-07-20 La compresión dinámica de KV Cache sin entrenamiento permite inferencia eficiente en contextos extremadamente largos.">
+    <span class="dt">2026-07-20</span>
+    <span class="th">La compresión dinámica de KV Cache sin entrenamiento permite inferencia eficiente en contextos extremadamente largos.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-07-19.html" data-q="2026-07-19 Diversificación del packaging avanzado: Clientes de TSMC evalúan el uso de Intel EMIB para mitigar falta de capacidad.">
+    <span class="dt">2026-07-19</span>
+    <span class="th">Diversificación del packaging avanzado: Clientes de TSMC evalúan el uso de Intel EMIB para mitigar falta de capacidad.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-07-18.html" data-q="2026-07-18 TSMC eleva el CAPEX a 64.000 millones para 2026, confirmando la apuesta masiva por infraestructura física de IA.">
+    <span class="dt">2026-07-18</span>
+    <span class="th">TSMC eleva el CAPEX a 64.000 millones para 2026, confirmando la apuesta masiva por infraestructura física de IA.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-07-17.html" data-q="2026-07-17 El diseño de chips vira hacia la automatización mediante agentes (ADA) para reducir ciclos de desarrollo en semiconductores.">
+    <span class="dt">2026-07-17</span>
+    <span class="th">El diseño de chips vira hacia la automatización mediante agentes (ADA) para reducir ciclos de desarrollo en semiconductores.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-07-16.html" data-q="2026-07-16 La convergencia de agentes IA y robótica bimanual se acelera mediante marcos de depuración sistemática.">
+    <span class="dt">2026-07-16</span>
+    <span class="th">La convergencia de agentes IA y robótica bimanual se acelera mediante marcos de depuración sistemática.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-07-15.html" data-q="2026-07-15 Google compromete 1.500 millones de dólares para expandir su infraestructura crítica de centros de datos en Alabama.">
+    <span class="dt">2026-07-15</span>
+    <span class="th">Google compromete 1.500 millones de dólares para expandir su infraestructura crítica de centros de datos en Alabama.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-07-14.html" data-q="2026-07-14 Los SLM como Index-1.9B prueban que el entrenamiento masivo en tokens permite un rendimiento alto en tamaños reducidos.">
+    <span class="dt">2026-07-14</span>
+    <span class="th">Los SLM como Index-1.9B prueban que el entrenamiento masivo en tokens permite un rendimiento alto en tamaños reducidos.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-07-13.html" data-q="2026-07-13 Los agentes de IA pasan de la fase experimental a la orquestación industrial con NVIDIA y Google liderando el despliegue.">
+    <span class="dt">2026-07-13</span>
+    <span class="th">Los agentes de IA pasan de la fase experimental a la orquestación industrial con NVIDIA y Google liderando el despliegue.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-07-12.html" data-q="2026-07-12 Gemini 3.5 Flash introduce &#39;computer use&#39;, permitiendo a la IA interactuar con interfaces como un humano.">
+    <span class="dt">2026-07-12</span>
+    <span class="th">Gemini 3.5 Flash introduce &#39;computer use&#39;, permitiendo a la IA interactuar con interfaces como un humano.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-07-11.html" data-q="2026-07-11 TSMC alcanza la era angstrom con la tecnología A16 y Super Power Rail para entrega de energía trasera.">
+    <span class="dt">2026-07-11</span>
+    <span class="th">TSMC alcanza la era angstrom con la tecnología A16 y Super Power Rail para entrega de energía trasera.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-07-10.html" data-q="2026-07-10 El diseño de chips (EDA) evoluciona hacia sistemas agénticos para gestionar la complejidad de los nodos avanzados.">
+    <span class="dt">2026-07-10</span>
+    <span class="th">El diseño de chips (EDA) evoluciona hacia sistemas agénticos para gestionar la complejidad de los nodos avanzados.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-07-09.html" data-q="2026-07-09 Gemma 4 introduce una arquitectura multimodal unificada sin codificadores externos para mayor eficiencia.">
+    <span class="dt">2026-07-09</span>
+    <span class="th">Gemma 4 introduce una arquitectura multimodal unificada sin codificadores externos para mayor eficiencia.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-07-08.html" data-q="2026-07-08 Google invertirá 1.500 millones de dólares en Alabama para expandir su infraestructura de centros de datos de IA.">
+    <span class="dt">2026-07-08</span>
+    <span class="th">Google invertirá 1.500 millones de dólares en Alabama para expandir su infraestructura de centros de datos de IA.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-07-07.html" data-q="2026-07-07 Google lanza Gemma 4 con modo de pensamiento nativo y arquitectura MoE optimizada de hasta 31B de parámetros.">
+    <span class="dt">2026-07-07</span>
+    <span class="th">Google lanza Gemma 4 con modo de pensamiento nativo y arquitectura MoE optimizada de hasta 31B de parámetros.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-07-06.html" data-q="2026-07-06 Gemma 4 introduce una arquitectura multimodal sin codificador para mayor eficiencia en modelos de lenguaje abiertos.">
+    <span class="dt">2026-07-06</span>
+    <span class="th">Gemma 4 introduce una arquitectura multimodal sin codificador para mayor eficiencia en modelos de lenguaje abiertos.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-07-05.html" data-q="2026-07-05 Google inyecta 1.500 millones de dólares en Alabama para expandir su infraestructura crítica de centros de datos.">
+    <span class="dt">2026-07-05</span>
+    <span class="th">Google inyecta 1.500 millones de dólares en Alabama para expandir su infraestructura crítica de centros de datos.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-07-04.html" data-q="2026-07-04 Evolución hacia arquitecturas multimodales nativas sin codificadores independientes para mayor eficiencia en inferencia.">
+    <span class="dt">2026-07-04</span>
+    <span class="th">Evolución hacia arquitecturas multimodales nativas sin codificadores independientes para mayor eficiencia en inferencia.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-07-03.html" data-q="2026-07-03 Huawei proyecta alcanzar la capacidad tecnológica de TSMC en chips avanzados para el año 2031.">
+    <span class="dt">2026-07-03</span>
+    <span class="th">Huawei proyecta alcanzar la capacidad tecnológica de TSMC en chips avanzados para el año 2031.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-07-02.html" data-q="2026-07-02 Google compromete 1.500 millones de dólares adicionales en infraestructura física de centros de datos en Alabama.">
+    <span class="dt">2026-07-02</span>
+    <span class="th">Google compromete 1.500 millones de dólares adicionales en infraestructura física de centros de datos en Alabama.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-07-01.html" data-q="2026-07-01 Google DeepMind lanza Gemma 4 12B, un modelo multimodal unificado y sin codificador que escala en eficiencia.">
+    <span class="dt">2026-07-01</span>
+    <span class="th">Google DeepMind lanza Gemma 4 12B, un modelo multimodal unificado y sin codificador que escala en eficiencia.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  
+  <h2 class="month" id="m-2026-06">Junio 2026</h2>
+  
+  <a class="day" href="d/2026-06-30.html" data-q="2026-06-30 Agentes auto-evolutivos (RSEA) que mejoran playbooks y estrategias sin necesidad de actualizar pesos del modelo.">
+    <span class="dt">2026-06-30</span>
+    <span class="th">Agentes auto-evolutivos (RSEA) que mejoran playbooks y estrategias sin necesidad de actualizar pesos del modelo.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-06-29.html" data-q="2026-06-29 Google invierte 1.500M$ en infraestructura física en Alabama para escalar centros de datos y capacidad de computación.">
+    <span class="dt">2026-06-29</span>
+    <span class="th">Google invierte 1.500M$ en infraestructura física en Alabama para escalar centros de datos y capacidad de computación.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-06-28.html" data-q="2026-06-28 Gemini 3.5 integra capacidad de uso de ordenador, acelerando la autonomía de agentes en entornos operativos reales.">
+    <span class="dt">2026-06-28</span>
+    <span class="th">Gemini 3.5 integra capacidad de uso de ordenador, acelerando la autonomía de agentes en entornos operativos reales.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-06-27.html" data-q="2026-06-27 Intel avanza con 18A y 18A-P buscando liderar la fabricación de chips frente a TSMC.">
+    <span class="dt">2026-06-27</span>
+    <span class="th">Intel avanza con 18A y 18A-P buscando liderar la fabricación de chips frente a TSMC.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-06-26.html" data-q="2026-06-26 Google invierte 1.500 millones de dólares en ampliar su infraestructura de centros de datos en Alabama.">
+    <span class="dt">2026-06-26</span>
+    <span class="th">Google invierte 1.500 millones de dólares en ampliar su infraestructura de centros de datos en Alabama.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-06-25.html" data-q="2026-06-25 Gemini 3.5 Flash incorpora uso de ordenador, intensificando la carrera por agentes capaces de ejecutar flujos de trabajo.">
+    <span class="dt">2026-06-25</span>
+    <span class="th">Gemini 3.5 Flash incorpora uso de ordenador, intensificando la carrera por agentes capaces de ejecutar flujos de trabajo.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-06-24.html" data-q="2026-06-24 Google escala Gemini a las versiones 3.5 y Omni, priorizando la multimodalidad total y la integración en ecosistemas.">
+    <span class="dt">2026-06-24</span>
+    <span class="th">Google escala Gemini a las versiones 3.5 y Omni, priorizando la multimodalidad total y la integración en ecosistemas.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-06-23.html" data-q="2026-06-23 Chiplets y RISC-V aceleran la personalización de hardware para IA y edge computing.">
+    <span class="dt">2026-06-23</span>
+    <span class="th">Chiplets y RISC-V aceleran la personalización de hardware para IA y edge computing.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-06-22.html" data-q="2026-06-22 Google acelera su expansión física con 1.500 millones de dólares para centros de datos en Alabama.">
+    <span class="dt">2026-06-22</span>
+    <span class="th">Google acelera su expansión física con 1.500 millones de dólares para centros de datos en Alabama.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-06-21.html" data-q="2026-06-21 Aparición de arquitecturas multimodales sin encoder con el lanzamiento de Gemma 4 12B para mayor eficiencia.">
+    <span class="dt">2026-06-21</span>
+    <span class="th">Aparición de arquitecturas multimodales sin encoder con el lanzamiento de Gemma 4 12B para mayor eficiencia.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-06-20.html" data-q="2026-06-20 La inversión en infraestructura de IA desplaza al consumo como motor principal de la industria de semiconductores.">
+    <span class="dt">2026-06-20</span>
+    <span class="th">La inversión en infraestructura de IA desplaza al consumo como motor principal de la industria de semiconductores.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-06-19.html" data-q="2026-06-19 DeepSeek-V4 escala a 1.6 billones de parámetros MoE con un millón de tokens de contexto y arquitectura optimizada.">
+    <span class="dt">2026-06-19</span>
+    <span class="th">DeepSeek-V4 escala a 1.6 billones de parámetros MoE con un millón de tokens de contexto y arquitectura optimizada.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-06-18.html" data-q="2026-06-18 La IA alcanza la órbita terrestre con el primer despliegue de un VLM autónomo en satélites de baja cota.">
+    <span class="dt">2026-06-18</span>
+    <span class="th">La IA alcanza la órbita terrestre con el primer despliegue de un VLM autónomo en satélites de baja cota.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-06-17.html" data-q="2026-06-17 Google DeepMind lanza Gemma 4 12B, un modelo multimodal unificado y libre de codificador que simplifica arquitecturas.">
+    <span class="dt">2026-06-17</span>
+    <span class="th">Google DeepMind lanza Gemma 4 12B, un modelo multimodal unificado y libre de codificador que simplifica arquitecturas.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-06-16.html" data-q="2026-06-16 NVIDIA escala arquitecturas híbridas Mamba-Transformer a 550B parámetros con eficiencia de inferencia extrema.">
+    <span class="dt">2026-06-16</span>
+    <span class="th">NVIDIA escala arquitecturas híbridas Mamba-Transformer a 550B parámetros con eficiencia de inferencia extrema.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-06-15.html" data-q="2026-06-15 La optimización de la inferencia dLLM en dispositivos móviles mediante NPU permite reducir latencias críticas en el edge.">
+    <span class="dt">2026-06-15</span>
+    <span class="th">La optimización de la inferencia dLLM en dispositivos móviles mediante NPU permite reducir latencias críticas en el edge.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-06-14.html" data-q="2026-06-14 Gemma 4 elimina el codificador tradicional para lograr una multimodalidad nativa más eficiente y compacta.">
+    <span class="dt">2026-06-14</span>
+    <span class="th">Gemma 4 elimina el codificador tradicional para lograr una multimodalidad nativa más eficiente y compacta.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-06-13.html" data-q="2026-06-13 El sector de memorias se consolida como el principal beneficiario económico y técnico del despliegue masivo de IA.">
+    <span class="dt">2026-06-13</span>
+    <span class="th">El sector de memorias se consolida como el principal beneficiario económico y técnico del despliegue masivo de IA.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-06-12.html" data-q="2026-06-12 El sector de la memoria HBM y DRAM se posiciona como el mayor beneficiario financiero del despliegue de infraestructuras IA.">
+    <span class="dt">2026-06-12</span>
+    <span class="th">El sector de la memoria HBM y DRAM se posiciona como el mayor beneficiario financiero del despliegue de infraestructuras IA.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-06-11.html" data-q="2026-06-11 Google lanza Gemma 4 12B, un modelo multimodal unificado sin codificador para mayor eficiencia en el procesamiento.">
+    <span class="dt">2026-06-11</span>
+    <span class="th">Google lanza Gemma 4 12B, un modelo multimodal unificado sin codificador para mayor eficiencia en el procesamiento.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-06-10.html" data-q="2026-06-10 NVIDIA lanza Nemotron 3 Ultra (550B MoE), impulsando modelos abiertos masivos optimizados para agentes complejos.">
+    <span class="dt">2026-06-10</span>
+    <span class="th">NVIDIA lanza Nemotron 3 Ultra (550B MoE), impulsando modelos abiertos masivos optimizados para agentes complejos.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-06-09.html" data-q="2026-06-09 Broadcom consolida su dominio en silicio personalizado con ingresos de 10.800M$ en IA y previsiones al alza.">
+    <span class="dt">2026-06-09</span>
+    <span class="th">Broadcom consolida su dominio en silicio personalizado con ingresos de 10.800M$ en IA y previsiones al alza.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-06-08.html" data-q="2026-06-08 NVIDIA y Google DeepMind consolidan el liderazgo en modelos a gran escala optimizados para agentes complejos.">
+    <span class="dt">2026-06-08</span>
+    <span class="th">NVIDIA y Google DeepMind consolidan el liderazgo en modelos a gran escala optimizados para agentes complejos.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-06-07.html" data-q="2026-06-07 TSMC integra IA de NVIDIA en todo el proceso de fabricación para optimizar el rendimiento y diseño de semiconductores.">
+    <span class="dt">2026-06-07</span>
+    <span class="th">TSMC integra IA de NVIDIA en todo el proceso de fabricación para optimizar el rendimiento y diseño de semiconductores.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-06-06.html" data-q="2026-06-06 NVIDIA lanza Nemotron 3 Ultra (550B MoE), priorizando la eficiencia en costes para agentes de larga duración.">
+    <span class="dt">2026-06-06</span>
+    <span class="th">NVIDIA lanza Nemotron 3 Ultra (550B MoE), priorizando la eficiencia en costes para agentes de larga duración.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-06-05.html" data-q="2026-06-05 NVIDIA y Google aceleran la carrera por modelos abiertos de alta capacidad optimizados para agentes y ejecución local.">
+    <span class="dt">2026-06-05</span>
+    <span class="th">NVIDIA y Google aceleran la carrera por modelos abiertos de alta capacidad optimizados para agentes y ejecución local.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-06-04.html" data-q="2026-06-04 OpenAI y Google lanzan modelos especializados en biociencias y descubrimiento de fármacos (GPT-Rosalind y Co-Scientist).">
+    <span class="dt">2026-06-04</span>
+    <span class="th">OpenAI y Google lanzan modelos especializados en biociencias y descubrimiento de fármacos (GPT-Rosalind y Co-Scientist).</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-06-03.html" data-q="2026-06-03 Google DeepMind lanza Co-Scientist, posicionando a Gemini como socio activo en el descubrimiento científico mediante multi-agentes.">
+    <span class="dt">2026-06-03</span>
+    <span class="th">Google DeepMind lanza Co-Scientist, posicionando a Gemini como socio activo en el descubrimiento científico mediante multi-agentes.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-06-02.html" data-q="2026-06-02 OpenAI expande su disponibilidad a AWS Bedrock, rompiendo la hegemonía exclusiva de Azure en nubes de escala.">
+    <span class="dt">2026-06-02</span>
+    <span class="th">OpenAI expande su disponibilidad a AWS Bedrock, rompiendo la hegemonía exclusiva de Azure en nubes de escala.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-06-01.html" data-q="2026-06-01 NVIDIA y Google DeepMind lanzan modelos de IA física con razonamiento nativo y capacidad de ejecución de acciones.">
+    <span class="dt">2026-06-01</span>
+    <span class="th">NVIDIA y Google DeepMind lanzan modelos de IA física con razonamiento nativo y capacidad de ejecución de acciones.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  
+  <h2 class="month" id="m-2026-05">Mayo 2026</h2>
+  
+  <a class="day" href="d/2026-05-31.html" data-q="2026-05-31 Anthropic alcanza una valoración histórica de 965.000 millones de dólares tras una ronda de 65.000 millones.">
+    <span class="dt">2026-05-31</span>
+    <span class="th">Anthropic alcanza una valoración histórica de 965.000 millones de dólares tras una ronda de 65.000 millones.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-05-30.html" data-q="2026-05-30 Google DeepMind lanza Gemini for Science para acelerar descubrimientos en biología y genética mediante agentes de IA.">
+    <span class="dt">2026-05-30</span>
+    <span class="th">Google DeepMind lanza Gemini for Science para acelerar descubrimientos en biología y genética mediante agentes de IA.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-05-29.html" data-q="2026-05-29 Anthropic alcanza los 47.000 millones de dólares en ingresos anualizados impulsado por la adopción corporativa de Claude">
+    <span class="dt">2026-05-29</span>
+    <span class="th">Anthropic alcanza los 47.000 millones de dólares en ingresos anualizados impulsado por la adopción corporativa de Claude</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-05-28.html" data-q="2026-05-28 Auge de agentes de IA especializados en nichos verticales como odontología y codificación médica mediante RAG.">
+    <span class="dt">2026-05-28</span>
+    <span class="th">Auge de agentes de IA especializados en nichos verticales como odontología y codificación médica mediante RAG.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-05-27.html" data-q="2026-05-27 OpenAI resuelve un problema matemático de Erdős de hace 80 años, demostrando razonamiento simbólico avanzado.">
+    <span class="dt">2026-05-27</span>
+    <span class="th">OpenAI resuelve un problema matemático de Erdős de hace 80 años, demostrando razonamiento simbólico avanzado.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-05-26.html" data-q="2026-05-26 Gemini 3.5 y Omni marcan el inicio de modelos multimodales nativos capaces de razonamiento formal y acción.">
+    <span class="dt">2026-05-26</span>
+    <span class="th">Gemini 3.5 y Omni marcan el inicio de modelos multimodales nativos capaces de razonamiento formal y acción.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-05-25.html" data-q="2026-05-25 La comunicación entre agentes evoluciona de texto a intercambio directo de KV caches para reducir drásticamente la latencia.">
+    <span class="dt">2026-05-25</span>
+    <span class="th">La comunicación entre agentes evoluciona de texto a intercambio directo de KV caches para reducir drásticamente la latencia.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-05-24.html" data-q="2026-05-24 Señal principal: Today, we share a breakthrough on the planar unit distance problem, a famous open question first posed by Paul Erdős in 1946. For (score 42).">
+    <span class="dt">2026-05-24</span>
+    <span class="th">Señal principal: Today, we share a breakthrough on the planar unit distance problem, a famous open question first posed by Paul Erdős in 1946. For (score 42).</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-05-23.html" data-q="2026-05-23 Crecimiento histórico del 79% anual en semiconductores durante el primer trimestre de 2026 confirma expansión masiva.">
+    <span class="dt">2026-05-23</span>
+    <span class="th">Crecimiento histórico del 79% anual en semiconductores durante el primer trimestre de 2026 confirma expansión masiva.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-05-22.html" data-q="2026-05-22 Agentes de IA cierran el ciclo de diseño industrial mediante orquestación autónoma de herramientas CAD-CAE.">
+    <span class="dt">2026-05-22</span>
+    <span class="th">Agentes de IA cierran el ciclo de diseño industrial mediante orquestación autónoma de herramientas CAD-CAE.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-05-21.html" data-q="2026-05-21 Modelos de razonamiento generalista logran hitos en matemáticas puras, superando capacidades de sistemas específicos.">
+    <span class="dt">2026-05-21</span>
+    <span class="th">Modelos de razonamiento generalista logran hitos en matemáticas puras, superando capacidades de sistemas específicos.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-05-20.html" data-q="2026-05-20 Google lanza Gemini 3.5 y Gemini Omni, integrando capacidades de accionamiento y generacion de video multimodal.">
+    <span class="dt">2026-05-20</span>
+    <span class="th">Google lanza Gemini 3.5 y Gemini Omni, integrando capacidades de accionamiento y generacion de video multimodal.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-05-19.html" data-q="2026-05-19 Leyes de escala identificadas para bibliotecas de habilidades en agentes: la precisión decae logarítmicamente.">
+    <span class="dt">2026-05-19</span>
+    <span class="th">Leyes de escala identificadas para bibliotecas de habilidades en agentes: la precisión decae logarítmicamente.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-05-18.html" data-q="2026-05-18 TSMC proyecta un choque de inversión masivo para 2026 con pedidos récord de herramientas por 31.3 mil millones de dólares.">
+    <span class="dt">2026-05-18</span>
+    <span class="th">TSMC proyecta un choque de inversión masivo para 2026 con pedidos récord de herramientas por 31.3 mil millones de dólares.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-05-17.html" data-q="2026-05-17 TSMC proyecta un incremento masivo en CapEx para 2026 indicando demanda sostenida de semiconductores de IA.">
+    <span class="dt">2026-05-17</span>
+    <span class="th">TSMC proyecta un incremento masivo en CapEx para 2026 indicando demanda sostenida de semiconductores de IA.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-05-16.html" data-q="2026-05-16 TSMC proyecta un incremento masivo en CapEx para 2026 impulsado por demanda sostenida de herramientas de fabricación.">
+    <span class="dt">2026-05-16</span>
+    <span class="th">TSMC proyecta un incremento masivo en CapEx para 2026 impulsado por demanda sostenida de herramientas de fabricación.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-05-15.html" data-q="2026-05-15 La orquestación de agentes evoluciona de prompts ambiguos a motores deterministas basados en grafos como GraphBit.">
+    <span class="dt">2026-05-15</span>
+    <span class="th">La orquestación de agentes evoluciona de prompts ambiguos a motores deterministas basados en grafos como GraphBit.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-05-14.html" data-q="2026-05-14 Google lanza TPUs de 8a generación (8t y 8i) optimizadas específicamente para flujos de agentes autónomos.">
+    <span class="dt">2026-05-14</span>
+    <span class="th">Google lanza TPUs de 8a generación (8t y 8i) optimizadas específicamente para flujos de agentes autónomos.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-05-13.html" data-q="2026-05-13 Comunicación entre LLMs evoluciona de texto a acoplamiento directo de estados ocultos vía modelos bicamerales.">
+    <span class="dt">2026-05-13</span>
+    <span class="th">Comunicación entre LLMs evoluciona de texto a acoplamiento directo de estados ocultos vía modelos bicamerales.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-05-12.html" data-q="2026-05-12 OpenAI expande su influencia corporativa mediante una nueva empresa de despliegue con 19 firmas de inversión.">
+    <span class="dt">2026-05-12</span>
+    <span class="th">OpenAI expande su influencia corporativa mediante una nueva empresa de despliegue con 19 firmas de inversión.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-05-11.html" data-q="2026-05-11 Google lanza TPU v8 (8t/8i) optimizada para la era de agentes, atacando cuellos de botella en entrenamiento e inferencia.">
+    <span class="dt">2026-05-11</span>
+    <span class="th">Google lanza TPU v8 (8t/8i) optimizada para la era de agentes, atacando cuellos de botella en entrenamiento e inferencia.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-05-10.html" data-q="2026-05-10 DeepMind utiliza EVE Online como sandbox para probar memoria y planificación de largo plazo en agentes de IA.">
+    <span class="dt">2026-05-10</span>
+    <span class="th">DeepMind utiliza EVE Online como sandbox para probar memoria y planificación de largo plazo en agentes de IA.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-05-09.html" data-q="2026-05-09 OpenAI lanza GPT-5.5 Instant priorizando velocidad y tono natural en respuestas.">
+    <span class="dt">2026-05-09</span>
+    <span class="th">OpenAI lanza GPT-5.5 Instant priorizando velocidad y tono natural en respuestas.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-05-08.html" data-q="2026-05-08 Google lanza TPU v8 (8t/8i) diseñadas para la era de agentes, optimizando el stack de hardware vertical.">
+    <span class="dt">2026-05-08</span>
+    <span class="th">Google lanza TPU v8 (8t/8i) diseñadas para la era de agentes, optimizando el stack de hardware vertical.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-05-07.html" data-q="2026-05-07 RL y optimización adaptativa como FREIA y APMPO están reemplazando los esquemas estáticos de mejora de razonamiento.">
+    <span class="dt">2026-05-07</span>
+    <span class="th">RL y optimización adaptativa como FREIA y APMPO están reemplazando los esquemas estáticos de mejora de razonamiento.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-05-05.html" data-q="2026-05-05 Sistemas multi-agente especializados como TADI demuestran IA operativa real en industria pesada (sector petróleo).">
+    <span class="dt">2026-05-05</span>
+    <span class="th">Sistemas multi-agente especializados como TADI demuestran IA operativa real en industria pesada (sector petróleo).</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-05-04.html" data-q="2026-05-04 Google lanza la 8ª generación de TPUs especializada en agentes autónomos e inferencia de alto rendimiento.">
+    <span class="dt">2026-05-04</span>
+    <span class="th">Google lanza la 8ª generación de TPUs especializada en agentes autónomos e inferencia de alto rendimiento.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-05-03.html" data-q="2026-05-03 NVIDIA reduce tiempos de entrenamiento de 8 horas a 80 segundos con DGX SuperPOD en MLPerf.">
+    <span class="dt">2026-05-03</span>
+    <span class="th">NVIDIA reduce tiempos de entrenamiento de 8 horas a 80 segundos con DGX SuperPOD en MLPerf.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-05-02.html" data-q="2026-05-02 Google DeepMind avanza en razonamiento robótico espacial con Gemini ER 1.6 para tareas autónomas complejas.">
+    <span class="dt">2026-05-02</span>
+    <span class="th">Google DeepMind avanza en razonamiento robótico espacial con Gemini ER 1.6 para tareas autónomas complejas.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-05-01.html" data-q="2026-05-01 Gemma 4 establece un nuevo estándar de rendimiento en modelos abiertos optimizados para flujos agenticos.">
+    <span class="dt">2026-05-01</span>
+    <span class="th">Gemma 4 establece un nuevo estándar de rendimiento en modelos abiertos optimizados para flujos agenticos.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  
+  <h2 class="month" id="m-2026-04">Abril 2026</h2>
+  
+  <a class="day" href="d/2026-04-30.html" data-q="2026-04-30 Agentes autonomos operan exitosamente on-chain moviendo 20M USD con 99.9% de efectividad en liquidacion de activos.">
+    <span class="dt">2026-04-30</span>
+    <span class="th">Agentes autonomos operan exitosamente on-chain moviendo 20M USD con 99.9% de efectividad en liquidacion de activos.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-04-29.html" data-q="2026-04-29 OpenAI lanza GPT-5.5 y 5.5 Pro, acelerando el ciclo de actualizaciones de modelos de razonamiento avanzado.">
+    <span class="dt">2026-04-29</span>
+    <span class="th">OpenAI lanza GPT-5.5 y 5.5 Pro, acelerando el ciclo de actualizaciones de modelos de razonamiento avanzado.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-04-28.html" data-q="2026-04-28 Transición hacia hardware optimizado específicamente para flujos de trabajo de agentes (Google TPU v8t/8i).">
+    <span class="dt">2026-04-28</span>
+    <span class="th">Transición hacia hardware optimizado específicamente para flujos de trabajo de agentes (Google TPU v8t/8i).</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-04-27.html" data-q="2026-04-27 Lead: An Artifact-based Agent Framework for Adaptive and Reproducible Medical Processing (score 100, agents_automation).">
+    <span class="dt">2026-04-27</span>
+    <span class="th">Lead: An Artifact-based Agent Framework for Adaptive and Reproducible Medical Processing (score 100, agents_automation).</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-04-26.html" data-q="2026-04-26 OpenAI lanza GPT-5.5 con enfoque nativo en agentes autónomos y razonamiento de tareas complejas.">
+    <span class="dt">2026-04-26</span>
+    <span class="th">OpenAI lanza GPT-5.5 con enfoque nativo en agentes autónomos y razonamiento de tareas complejas.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-04-25.html" data-q="2026-04-25 OpenAI lanza GPT-5.5 y GPT-5.5 Pro elevando el techo de inteligencia y eficiencia en su API.">
+    <span class="dt">2026-04-25</span>
+    <span class="th">OpenAI lanza GPT-5.5 y GPT-5.5 Pro elevando el techo de inteligencia y eficiencia en su API.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-04-24.html" data-q="2026-04-24 GPT-5.5 redefine la capacidad agentica con razonamiento complejo y uso avanzado de herramientas para trabajo real.">
+    <span class="dt">2026-04-24</span>
+    <span class="th">GPT-5.5 redefine la capacidad agentica con razonamiento complejo y uso avanzado de herramientas para trabajo real.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-04-23.html" data-q="2026-04-23 OpenAI lanza GPT-5.2 y 5.3 Codex utilizando infraestructura masiva NVIDIA GB200 NVL72.">
+    <span class="dt">2026-04-23</span>
+    <span class="th">OpenAI lanza GPT-5.2 y 5.3 Codex utilizando infraestructura masiva NVIDIA GB200 NVL72.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-04-22.html" data-q="2026-04-22 NVIDIA desvela la plataforma Rubin marcando el salto arquitectónico post-Blackwell para una economía de $10T.">
+    <span class="dt">2026-04-22</span>
+    <span class="th">NVIDIA desvela la plataforma Rubin marcando el salto arquitectónico post-Blackwell para una economía de $10T.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-04-21.html" data-q="2026-04-21 Anthropic and Amazon secure 5GW of compute, a massive leap in infra scaling expectations through 2026.">
+    <span class="dt">2026-04-21</span>
+    <span class="th">Anthropic and Amazon secure 5GW of compute, a massive leap in infra scaling expectations through 2026.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-04-20.html" data-q="2026-04-20 OpenAI GPT-5.2 and 5.3 training on GB200 validates massive infrastructure scaling.">
+    <span class="dt">2026-04-20</span>
+    <span class="th">OpenAI GPT-5.2 and 5.3 training on GB200 validates massive infrastructure scaling.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-04-19.html" data-q="2026-04-19 NVIDIA presenta Rubin como su plataforma de próxima generación para escalar IA en todos los dominios y dispositivos.">
+    <span class="dt">2026-04-19</span>
+    <span class="th">NVIDIA presenta Rubin como su plataforma de próxima generación para escalar IA en todos los dominios y dispositivos.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-04-18.html" data-q="2026-04-18 TSMC domina manufactura avanzada con resultados récord y advierte sobre barreras de entrada extremas en fundición.">
+    <span class="dt">2026-04-18</span>
+    <span class="th">TSMC domina manufactura avanzada con resultados récord y advierte sobre barreras de entrada extremas en fundición.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-04-17.html" data-q="2026-04-17 OpenAI lanza GPT-5.2 y GPT-5.3 Codex, consolidando modelos que participan en su propio desarrollo de software.">
+    <span class="dt">2026-04-17</span>
+    <span class="th">OpenAI lanza GPT-5.2 y GPT-5.3 Codex, consolidando modelos que participan en su propio desarrollo de software.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-04-16.html" data-q="2026-04-16 NVIDIA Rubin define el nuevo roadmap de hardware 2026 con un mercado potencial de 10 billones de dólares.">
+    <span class="dt">2026-04-16</span>
+    <span class="th">NVIDIA Rubin define el nuevo roadmap de hardware 2026 con un mercado potencial de 10 billones de dólares.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-04-15.html" data-q="2026-04-15 Mix de hoy (top): Modelos (9/15), Infraestructura/HW (5/15), invest (1/15).">
+    <span class="dt">2026-04-15</span>
+    <span class="th">Mix de hoy (top): Modelos (9/15), Infraestructura/HW (5/15), invest (1/15).</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-04-14.html" data-q="2026-04-14 OpenAI lanza GPT-5.2 y GPT-5.3 Codex, consolidando la era de agentes que mejoran su propio código.">
+    <span class="dt">2026-04-14</span>
+    <span class="th">OpenAI lanza GPT-5.2 y GPT-5.3 Codex, consolidando la era de agentes que mejoran su propio código.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-04-13.html" data-q="2026-04-13 Hyperscalers are shifting to custom silicon, forcing Intel to rethink its foundry business model.">
+    <span class="dt">2026-04-13</span>
+    <span class="th">Hyperscalers are shifting to custom silicon, forcing Intel to rethink its foundry business model.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-04-12.html" data-q="2026-04-12 Mix de hoy (top): Modelos (11/15), Misc (3/15), Infraestructura/HW (1/15).">
+    <span class="dt">2026-04-12</span>
+    <span class="th">Mix de hoy (top): Modelos (11/15), Misc (3/15), Infraestructura/HW (1/15).</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-04-11.html" data-q="2026-04-11 OpenAI confirma entrenamiento de GPT-5.2 y 5.3 sobre Blackwell (GB200) y Hopper de NVIDIA.">
+    <span class="dt">2026-04-11</span>
+    <span class="th">OpenAI confirma entrenamiento de GPT-5.2 y 5.3 sobre Blackwell (GB200) y Hopper de NVIDIA.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-04-10.html" data-q="2026-04-10 SiFive consolida RISC-V como alternativa real a x86/ARM en centros de datos para agentes con 400M$ de inversion.">
+    <span class="dt">2026-04-10</span>
+    <span class="th">SiFive consolida RISC-V como alternativa real a x86/ARM en centros de datos para agentes con 400M$ de inversion.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-04-09.html" data-q="2026-04-09 Mix de hoy (top): Modelos (12/15), Misc (2/15), Infraestructura/HW (1/15).">
+    <span class="dt">2026-04-09</span>
+    <span class="th">Mix de hoy (top): Modelos (12/15), Misc (2/15), Infraestructura/HW (1/15).</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-04-08.html" data-q="2026-04-08 Mix de hoy (top): Modelos (11/15), Misc (4/15).">
+    <span class="dt">2026-04-08</span>
+    <span class="th">Mix de hoy (top): Modelos (11/15), Misc (4/15).</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-04-07.html" data-q="2026-04-07 OpenAI confirms GPT-5.2 and agentic 5.3 Codex models running on NVIDIA GB200 systems, accelerating development cycles.">
+    <span class="dt">2026-04-07</span>
+    <span class="th">OpenAI confirms GPT-5.2 and agentic 5.3 Codex models running on NVIDIA GB200 systems, accelerating development cycles.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-04-06.html" data-q="2026-04-06 Google lanza Gemma 4 bajo Apache 2.0, democratizando razonamiento avanzado en hardware local.">
+    <span class="dt">2026-04-06</span>
+    <span class="th">Google lanza Gemma 4 bajo Apache 2.0, democratizando razonamiento avanzado en hardware local.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-04-05.html" data-q="2026-04-05 NVIDIA acelera hoja de ruta hacia plataforma Rubin y ASICs de 2nm para liderar infraestructura de 10 billones.">
+    <span class="dt">2026-04-05</span>
+    <span class="th">NVIDIA acelera hoja de ruta hacia plataforma Rubin y ASICs de 2nm para liderar infraestructura de 10 billones.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-04-04.html" data-q="2026-04-04 OpenAI alcanza valoración de $852B tras ronda récord de $122B para acelerar el desarrollo de AGI.">
+    <span class="dt">2026-04-04</span>
+    <span class="th">OpenAI alcanza valoración de $852B tras ronda récord de $122B para acelerar el desarrollo de AGI.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-04-03.html" data-q="2026-04-03 Google DeepMind lanza Gemma 4, modelos abiertos con licencia Apache 2.0 optimizados para razonamiento y agentes.">
+    <span class="dt">2026-04-03</span>
+    <span class="th">Google DeepMind lanza Gemma 4, modelos abiertos con licencia Apache 2.0 optimizados para razonamiento y agentes.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-04-02.html" data-q="2026-04-02 Google renueva su ecosistema con Gemini 3.1 Pro, Deep Think, Lyria 3 y Veo 3.1 Lite en un despliegue masivo">
+    <span class="dt">2026-04-02</span>
+    <span class="th">Google renueva su ecosistema con Gemini 3.1 Pro, Deep Think, Lyria 3 y Veo 3.1 Lite en un despliegue masivo</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-04-01.html" data-q="2026-04-01 Mix de hoy (top): Infraestructura/HW (8/15), Modelos (7/15).">
+    <span class="dt">2026-04-01</span>
+    <span class="th">Mix de hoy (top): Infraestructura/HW (8/15), Modelos (7/15).</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  
+  <h2 class="month" id="m-2026-03">Marzo 2026</h2>
+  
+  <a class="day" href="d/2026-03-31.html" data-q="2026-03-31 Mix de hoy (top): Modelos (9/15), Infraestructura/HW (3/15), Misc (3/15).">
+    <span class="dt">2026-03-31</span>
+    <span class="th">Mix de hoy (top): Modelos (9/15), Infraestructura/HW (3/15), Misc (3/15).</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-03-30.html" data-q="2026-03-30 OpenAI lanza GPT-5.4 unificando razonamiento, codificación y flujos agenticos en un modelo de frontera.">
+    <span class="dt">2026-03-30</span>
+    <span class="th">OpenAI lanza GPT-5.4 unificando razonamiento, codificación y flujos agenticos en un modelo de frontera.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-03-29.html" data-q="2026-03-29 OpenAI confirma el uso de infraestructura NVIDIA Blackwell (GB200) para el entrenamiento de GPT-5.2 y GPT-5.3 Codex.">
+    <span class="dt">2026-03-29</span>
+    <span class="th">OpenAI confirma el uso de infraestructura NVIDIA Blackwell (GB200) para el entrenamiento de GPT-5.2 y GPT-5.3 Codex.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-03-28.html" data-q="2026-03-28 NVIDIA acelera el ciclo de hardware con Rubin y proyecta un mercado global de $10 billones impulsado por IA.">
+    <span class="dt">2026-03-28</span>
+    <span class="th">NVIDIA acelera el ciclo de hardware con Rubin y proyecta un mercado global de $10 billones impulsado por IA.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-03-27.html" data-q="2026-03-27 OpenAI lanza GPT-5.4 integrando razonamiento avanzado y flujos agenticos en ChatGPT y API.">
+    <span class="dt">2026-03-27</span>
+    <span class="th">OpenAI lanza GPT-5.4 integrando razonamiento avanzado y flujos agenticos en ChatGPT y API.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-03-26.html" data-q="2026-03-26 OpenAI confirma entrenamiento de GPT-5.2 y GPT-5.3 sobre infraestructura NVIDIA Blackwell (GB200).">
+    <span class="dt">2026-03-26</span>
+    <span class="th">OpenAI confirma entrenamiento de GPT-5.2 y GPT-5.3 sobre infraestructura NVIDIA Blackwell (GB200).</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-03-25.html" data-q="2026-03-25 NVIDIA presenta la arquitectura Rubin acelerando el ciclo de vida del hardware hacia 2026.">
+    <span class="dt">2026-03-25</span>
+    <span class="th">NVIDIA presenta la arquitectura Rubin acelerando el ciclo de vida del hardware hacia 2026.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-03-24.html" data-q="2026-03-24 OpenAI lanza GPT-5.4 Thinking/Pro, consolidando flujos agénticos y razonamiento avanzado en modelos de producción.">
+    <span class="dt">2026-03-24</span>
+    <span class="th">OpenAI lanza GPT-5.4 Thinking/Pro, consolidando flujos agénticos y razonamiento avanzado en modelos de producción.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-03-23.html" data-q="2026-03-23 NVIDIA consolida dominio absoluto proveyendo infraestructura GB200 para los nuevos modelos GPT-5.2 y GPT-5.3 de OpenAI.">
+    <span class="dt">2026-03-23</span>
+    <span class="th">NVIDIA consolida dominio absoluto proveyendo infraestructura GB200 para los nuevos modelos GPT-5.2 y GPT-5.3 de OpenAI.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-03-22.html" data-q="2026-03-22 NVIDIA acelera el ciclo de hardware con la arquitectura Rubin y enfoque en infraestructura soberana europea.">
+    <span class="dt">2026-03-22</span>
+    <span class="th">NVIDIA acelera el ciclo de hardware con la arquitectura Rubin y enfoque en infraestructura soberana europea.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-03-21.html" data-q="2026-03-21 OpenAI despliega GPT-5.4 integrando razonamiento avanzado y flujos agenticos en una arquitectura frontera.">
+    <span class="dt">2026-03-21</span>
+    <span class="th">OpenAI despliega GPT-5.4 integrando razonamiento avanzado y flujos agenticos en una arquitectura frontera.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-03-20.html" data-q="2026-03-20 OpenAI lanza GPT-5.2 y 5.3 entrenados en Blackwell/GB200, validando el escalado masivo de hardware.">
+    <span class="dt">2026-03-20</span>
+    <span class="th">OpenAI lanza GPT-5.2 y 5.3 entrenados en Blackwell/GB200, validando el escalado masivo de hardware.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-03-19.html" data-q="2026-03-19 OpenAI acelera el ciclo con GPT-5.4 mini, priorizando agentes autónomos y velocidad de ejecución.">
+    <span class="dt">2026-03-19</span>
+    <span class="th">OpenAI acelera el ciclo con GPT-5.4 mini, priorizando agentes autónomos y velocidad de ejecución.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-03-18.html" data-q="2026-03-18 OpenAI lanza GPT-5.4 elevando el estándar de razonamiento y capacidades de agentes autónomos en el mercado.">
+    <span class="dt">2026-03-18</span>
+    <span class="th">OpenAI lanza GPT-5.4 elevando el estándar de razonamiento y capacidades de agentes autónomos en el mercado.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-03-17.html" data-q="2026-03-17 OpenAI confirma el entrenamiento de GPT-5.2 y 5.3 Codex sobre infraestructura NVIDIA Blackwell y Hopper.">
+    <span class="dt">2026-03-17</span>
+    <span class="th">OpenAI confirma el entrenamiento de GPT-5.2 y 5.3 Codex sobre infraestructura NVIDIA Blackwell y Hopper.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-03-16.html" data-q="2026-03-16 NVIDIA presenta la plataforma Rubin y mejoras radicales en DGX SuperPOD, reduciendo tiempos de 8 horas a 80 segundos.">
+    <span class="dt">2026-03-16</span>
+    <span class="th">NVIDIA presenta la plataforma Rubin y mejoras radicales en DGX SuperPOD, reduciendo tiempos de 8 horas a 80 segundos.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-03-15.html" data-q="2026-03-15 Lanzamiento de GPT-5.4 con enfoque masivo en razonamiento, agentes y revision de codigo avanzada.">
+    <span class="dt">2026-03-15</span>
+    <span class="th">Lanzamiento de GPT-5.4 con enfoque masivo en razonamiento, agentes y revision de codigo avanzada.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-03-14.html" data-q="2026-03-14 OpenAI entrena GPT-5.2 y 5.3 sobre NVIDIA GB200, marcando el inicio de los modelos agénticos nativos.">
+    <span class="dt">2026-03-14</span>
+    <span class="th">OpenAI entrena GPT-5.2 y 5.3 sobre NVIDIA GB200, marcando el inicio de los modelos agénticos nativos.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-03-13.html" data-q="2026-03-13 Mix de hoy (top): Modelos (9/15), Misc (3/15), Infraestructura/HW (2/15).">
+    <span class="dt">2026-03-13</span>
+    <span class="th">Mix de hoy (top): Modelos (9/15), Misc (3/15), Infraestructura/HW (2/15).</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-03-12.html" data-q="2026-03-12 OpenAI acelera el ciclo de lanzamientos con GPT-5.4 y capacidades de razonamiento/agentes integradas.">
+    <span class="dt">2026-03-12</span>
+    <span class="th">OpenAI acelera el ciclo de lanzamientos con GPT-5.4 y capacidades de razonamiento/agentes integradas.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-03-11.html" data-q="2026-03-11 OpenAI escala a GPT-5.3 Codex y GPT-5.2 utilizando infraestructura NVIDIA GB200 para capacidades agentic avanzadas.">
+    <span class="dt">2026-03-11</span>
+    <span class="th">OpenAI escala a GPT-5.3 Codex y GPT-5.2 utilizando infraestructura NVIDIA GB200 para capacidades agentic avanzadas.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-03-10.html" data-q="2026-03-10 GPT-5.2 y 5.3 Codex confirman el despliegue de modelos agenticos sobre infraestructura NVIDIA GB200.">
+    <span class="dt">2026-03-10</span>
+    <span class="th">GPT-5.2 y 5.3 Codex confirman el despliegue de modelos agenticos sobre infraestructura NVIDIA GB200.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-03-09.html" data-q="2026-03-09 Lanzamiento de GPT-5.2 y GPT-5.3 (agéntico) utilizando infraestructura avanzada GB200 de NVIDIA.">
+    <span class="dt">2026-03-09</span>
+    <span class="th">Lanzamiento de GPT-5.2 y GPT-5.3 (agéntico) utilizando infraestructura avanzada GB200 de NVIDIA.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-03-08.html" data-q="2026-03-08 Mix de hoy (top): Infraestructura/HW (12/15), Modelos (3/15).">
+    <span class="dt">2026-03-08</span>
+    <span class="th">Mix de hoy (top): Infraestructura/HW (12/15), Modelos (3/15).</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-03-07.html" data-q="2026-03-07 Lanzamiento de GPT-5.2 y 5.3 Codex acelera la adopción de modelos agénticos sobre infraestructura NVIDIA GB200.">
+    <span class="dt">2026-03-07</span>
+    <span class="th">Lanzamiento de GPT-5.2 y 5.3 Codex acelera la adopción de modelos agénticos sobre infraestructura NVIDIA GB200.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-03-06.html" data-q="2026-03-06 OpenAI confirma entrenamiento de GPT-5.2 y GPT-5.3 Codex sobre infraestructura NVIDIA Hopper y GB200.">
+    <span class="dt">2026-03-06</span>
+    <span class="th">OpenAI confirma entrenamiento de GPT-5.2 y GPT-5.3 Codex sobre infraestructura NVIDIA Hopper y GB200.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-03-05.html" data-q="2026-03-05 GPT-5.2 y GPT-5.3 Codex consolidan el entrenamiento masivo en infraestructura NVIDIA GB200">
+    <span class="dt">2026-03-05</span>
+    <span class="th">GPT-5.2 y GPT-5.3 Codex consolidan el entrenamiento masivo en infraestructura NVIDIA GB200</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-03-04.html" data-q="2026-03-04 OpenAI lanza GPT-5.2 y GPT-5.3 Codex optimizados para trabajo profesional y autocodificación agéntica.">
+    <span class="dt">2026-03-04</span>
+    <span class="th">OpenAI lanza GPT-5.2 y GPT-5.3 Codex optimizados para trabajo profesional y autocodificación agéntica.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-03-03.html" data-q="2026-03-03 OpenAI confirma dependencia de NVIDIA GB200 para el entrenamiento y despliegue de la serie GPT-5.">
+    <span class="dt">2026-03-03</span>
+    <span class="th">OpenAI confirma dependencia de NVIDIA GB200 para el entrenamiento y despliegue de la serie GPT-5.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-03-02.html" data-q="2026-03-02 Mercado de semiconductores proyecta crecimiento del 25.6% para 2025 impulsado por la demanda de infraestructura IA.">
+    <span class="dt">2026-03-02</span>
+    <span class="th">Mercado de semiconductores proyecta crecimiento del 25.6% para 2025 impulsado por la demanda de infraestructura IA.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-03-01.html" data-q="2026-03-01 OpenAI lanza GPT-5.2 y 5.3 Codex entrenados sobre infraestructura NVIDIA Blackwell y sistemas GB200 NVL72.">
+    <span class="dt">2026-03-01</span>
+    <span class="th">OpenAI lanza GPT-5.2 y 5.3 Codex entrenados sobre infraestructura NVIDIA Blackwell y sistemas GB200 NVL72.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  
+  <h2 class="month" id="m-2026-02">Febrero 2026</h2>
+  
+  <a class="day" href="d/2026-02-28.html" data-q="2026-02-28 OpenAI despliega GPT-5.2 y GPT-5.3 Codex utilizando infraestructura NVIDIA Blackwell de ultima generacion.">
+    <span class="dt">2026-02-28</span>
+    <span class="th">OpenAI despliega GPT-5.2 y GPT-5.3 Codex utilizando infraestructura NVIDIA Blackwell de ultima generacion.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-02-27.html" data-q="2026-02-27 OpenAI lanza GPT-5.2 y GPT-5.3 Codex entrenados sobre infraestructura NVIDIA Blackwell y Hopper.">
+    <span class="dt">2026-02-27</span>
+    <span class="th">OpenAI lanza GPT-5.2 y GPT-5.3 Codex entrenados sobre infraestructura NVIDIA Blackwell y Hopper.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-02-26.html" data-q="2026-02-26 OpenAI confirms GPT-5.2 and agentic GPT-5.3 Codex training on NVIDIA GB200 infrastructure.">
+    <span class="dt">2026-02-26</span>
+    <span class="th">OpenAI confirms GPT-5.2 and agentic GPT-5.3 Codex training on NVIDIA GB200 infrastructure.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-02-25.html" data-q="2026-02-25 OpenAI escala a GPT-5.3 usando arquitectura NVIDIA GB200 para modelos agénticos que se auto-construyen.">
+    <span class="dt">2026-02-25</span>
+    <span class="th">OpenAI escala a GPT-5.3 usando arquitectura NVIDIA GB200 para modelos agénticos que se auto-construyen.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-02-24.html" data-q="2026-02-24 OpenAI lanza GPT-5.2 y 5.3 Codex entrenados en infraestructura NVIDIA GB200 para agentes auto-mejorables.">
+    <span class="dt">2026-02-24</span>
+    <span class="th">OpenAI lanza GPT-5.2 y 5.3 Codex entrenados en infraestructura NVIDIA GB200 para agentes auto-mejorables.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-02-23.html" data-q="2026-02-23 OpenAI reveals GPT-5.2 and GPT-5.3 Codex trained on NVIDIA&#39;s GB200 Blackwell infrastructure.">
+    <span class="dt">2026-02-23</span>
+    <span class="th">OpenAI reveals GPT-5.2 and GPT-5.3 Codex trained on NVIDIA&#39;s GB200 Blackwell infrastructure.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-02-22.html" data-q="2026-02-22 OpenAI despliega GPT-5.2 y 5.3 Codex utilizando infraestructura NVIDIA Blackwell GB200 de alto rendimiento.">
+    <span class="dt">2026-02-22</span>
+    <span class="th">OpenAI despliega GPT-5.2 y 5.3 Codex utilizando infraestructura NVIDIA Blackwell GB200 de alto rendimiento.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-02-21.html" data-q="2026-02-21 OpenAI entrena GPT-5.2 y GPT-5.3 Codex sobre infraestructura Blackwell GB200 de NVIDIA.">
+    <span class="dt">2026-02-21</span>
+    <span class="th">OpenAI entrena GPT-5.2 y GPT-5.3 Codex sobre infraestructura Blackwell GB200 de NVIDIA.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-02-20.html" data-q="2026-02-20 OpenAI entrena GPT-5.2 y GPT-5.3 Codex sobre infraestructura NVIDIA Blackwell GB200 para potenciar agentes complejos.">
+    <span class="dt">2026-02-20</span>
+    <span class="th">OpenAI entrena GPT-5.2 y GPT-5.3 Codex sobre infraestructura NVIDIA Blackwell GB200 para potenciar agentes complejos.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-02-19.html" data-q="2026-02-19 OpenAI confirma GPT-5.2 y 5.3 Codex, enfocándose en modelos agénticos que participan en su propio desarrollo.">
+    <span class="dt">2026-02-19</span>
+    <span class="th">OpenAI confirma GPT-5.2 y 5.3 Codex, enfocándose en modelos agénticos que participan en su propio desarrollo.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-02-18.html" data-q="2026-02-18 OpenAI consolida su era agentica con GPT-5.3 Codex y la contratacion de talento clave para agentes personales.">
+    <span class="dt">2026-02-18</span>
+    <span class="th">OpenAI consolida su era agentica con GPT-5.3 Codex y la contratacion de talento clave para agentes personales.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-02-17.html" data-q="2026-02-17 OpenAI lanza GPT-5.2 y Codex 5.3 entrenados sobre infraestructura NVIDIA Blackwell y sistemas GB200.">
+    <span class="dt">2026-02-17</span>
+    <span class="th">OpenAI lanza GPT-5.2 y Codex 5.3 entrenados sobre infraestructura NVIDIA Blackwell y sistemas GB200.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-02-16.html" data-q="2026-02-16 OpenAI acelera la era de agentes personales y modelos de codificación autónoma con la serie GPT-5.">
+    <span class="dt">2026-02-16</span>
+    <span class="th">OpenAI acelera la era de agentes personales y modelos de codificación autónoma con la serie GPT-5.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-02-15.html" data-q="2026-02-15 NVIDIA y OpenAI aceleran el ciclo de modelos frontera con el despliegue de GPT-5.2 sobre sistemas GB200.">
+    <span class="dt">2026-02-15</span>
+    <span class="th">NVIDIA y OpenAI aceleran el ciclo de modelos frontera con el despliegue de GPT-5.2 sobre sistemas GB200.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-02-14.html" data-q="2026-02-14 NVIDIA consolida su dominio hasta 2026 con la plataforma Rubin y el despliegue de la serie GPT-5 en GB200.">
+    <span class="dt">2026-02-14</span>
+    <span class="th">NVIDIA consolida su dominio hasta 2026 con la plataforma Rubin y el despliegue de la serie GPT-5 en GB200.</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  <a class="day" href="d/2026-02-13.html" data-q="2026-02-13 Dominancia de categoría: infra (17)">
+    <span class="dt">2026-02-13</span>
+    <span class="th">Dominancia de categoría: infra (17)</span>
+    <span class="n">15 señales</span>
+  </a>
+  
+  
+  <div class="empty" id="none" hidden>Nada coincide con ese filtro.</div>
+  <footer>191 snapshots en docs/data · falta 6 may 2026</footer>
+</div>
+<script>
+(function(){
+  var q = document.getElementById('q');
+  var rows = Array.prototype.slice.call(document.querySelectorAll('.day'));
+  var none = document.getElementById('none');
+  function apply(){
+    var s = (q.value || '').trim().toLowerCase();
+    var vis = 0;
+    rows.forEach(function(r){
+      var ok = !s || (r.getAttribute('data-q') || '').toLowerCase().indexOf(s) !== -1;
+      r.style.display = ok ? '' : 'none';
+      if (ok) vis++;
+    });
+    document.querySelectorAll('.month').forEach(function(h){
+      var next = h.nextElementSibling;
+      var any = false;
+      while (next && !next.classList.contains('month')) {
+        if (next.classList.contains('day') && next.style.display !== 'none') any = true;
+        next = next.nextElementSibling;
+      }
+      h.style.display = any ? '' : 'none';
+    });
+    none.hidden = vis !== 0;
+  }
+  q.addEventListener('input', apply);
+})();
+</script>
+</body>
+</html>

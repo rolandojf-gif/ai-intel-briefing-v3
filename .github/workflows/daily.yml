@@ -76,7 +76,8 @@ jobs:
           git config user.name "ai-intel-bot"
           git config user.email "ai-intel-bot@users.noreply.github.com"
           DATE=$(python -c "from datetime import datetime; print(datetime.now().strftime('%Y-%m-%d'))")
-          git add docs/index.html docs/weekly.html
+          git add docs/index.html docs/weekly.html docs/archivo.html
+          git add docs/d 2>/dev/null || true
           if [ -f "docs/data/${DATE}.json" ]; then
             git add "docs/data/${DATE}.json"
           fi
