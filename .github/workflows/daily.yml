@@ -45,6 +45,7 @@ jobs:
           python -m unittest discover -s tests -v
 
       - name: Generate site
+        if: github.event_name != 'pull_request'
         env:
           FORCE_GEMINI: ${{ (github.event_name != 'workflow_dispatch' || inputs.force_gemini != false) && '1' || '0' }}
           FORCE_GEMINI_REFRESH: ${{ github.event_name == 'workflow_dispatch' && inputs.force_refresh && '1' || '0' }}
@@ -52,6 +53,7 @@ jobs:
           python -m src.main
 
       - name: Commit and push docs
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         run: |
           git config user.name "ai-intel-bot"
           git config user.email "ai-intel-bot@users.noreply.github.com"
