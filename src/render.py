@@ -422,6 +422,9 @@ TEMPLATE = ENV.from_string("""
           <span class="disc-sources">
             <img src="{{ it.logo }}" alt="" loading="lazy"/>
             {{ it.source_label }}
+            {% if it.other_sources %}
+            <span style="font-family:var(--mono);font-size:9.5px;color:var(--cyan);background:rgba(56,189,248,.1);padding:1px 6px;border-radius:10px;border:1px solid rgba(56,189,248,.25);margin-left:4px">{{ it.other_sources|length + 1 }} fuentes</span>
+            {% endif %}
           </span>
           <span class="disc-tag">{{ it.theme_label }}</span>
         </div>
@@ -490,6 +493,9 @@ TEMPLATE = ENV.from_string("""
               <span class="disc-sources">
                 <img src="{{ it.logo }}" alt="" loading="lazy"/>
                 {{ it.source_label }}
+                {% if it.other_sources %}
+                <span style="font-family:var(--mono);font-size:9.5px;color:var(--cyan);background:rgba(56,189,248,.1);padding:1px 6px;border-radius:10px;border:1px solid rgba(56,189,248,.25);margin-left:4px">{{ it.other_sources|length + 1 }} fuentes</span>
+                {% endif %}
               </span>
             </div>
             <h3 class="stream-title">

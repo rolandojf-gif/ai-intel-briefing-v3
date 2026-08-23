@@ -340,16 +340,38 @@ def ingest_feeds(cfg: dict, per_source_cap: dict) -> list[dict]:
 
 
 def dedup_items(items: list[dict]) -> list[dict]:
-    seen = set()
+    seen_urls = set()
+    seen_titles: list[tuple[set[str], dict]] = []
     deduped = []
     for it in items:
-        key = canonical_url(it.get("link", ""))
-        if not key:
-            title_key = re.sub(r"\s+", " ", (it.get("title") or "").strip().lower())
-            key = f"title:{title_key}"
-        if key in seen:
+        link = it.get("link", "") or it.get("url", "")
+        key = canonical_url(link)
+        if key and key in seen_urls:
             continue
-        seen.add(key)
+
+        raw_title = it.get("title", "")
+        words = set(re.findall(r"\b[a-zA-Z0-9]{4,}\b", raw_title.lower()))
+        # Si mas del 55% de palabras clave coinciden con una noticia ya incluida, es la misma noticia cubierta por otro medio
+        is_duplicate = False
+        if len(words) >= 3:
+            for past_words, past_it in seen_titles:
+                if not past_words:
+                    continue
+                overlap = len(words & past_words) / min(len(words), len(past_words))
+                if overlap >= 0.60:
+                    is_duplicate = True
+                    # Anotar como fuente alternativa
+                    other_srcs = past_it.setdefault("other_sources", [])
+                    src = it.get("source")
+                    if src and src not in other_srcs and src != past_it.get("source"):
+                        other_srcs.append(src)
+                    break
+        if is_duplicate:
+            continue
+
+        if key:
+            seen_urls.add(key)
+        seen_titles.append((words, it))
         deduped.append(it)
     return deduped
 
