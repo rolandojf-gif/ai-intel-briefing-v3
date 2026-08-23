@@ -1,9 +1,10 @@
 {
   "date": "2026-08-23",
-  "score_avg": 67.5,
+  "score_avg": 66,
   "primary_dist": {
     "invest": 1,
-    "models": 8,
+    "geopol": 1,
+    "models": 6,
     "infra": 1
   },
   "top_entities": [
@@ -12,15 +13,15 @@
       "count": 2
     },
     {
+      "entity": "OpenAI",
+      "count": 2
+    },
+    {
       "entity": "Anthropic",
       "count": 2
     },
     {
-      "entity": "Ox Alpha",
-      "count": 1
-    },
-    {
-      "entity": "TSMC",
+      "entity": "Alibaba",
       "count": 1
     },
     {
@@ -30,37 +31,36 @@
   ],
   "briefing": {
     "signals": [
-      "Nvidia ha incrementado más del 15% los precios de hardware de IA.",
-      "Zhipu AI (GLM-5.3) supera a OpenAI (GPT-5.6 Sol) en eficiencia de coste para tareas de codificación.",
-      "Un modelo de IA, Ox Alpha, de origen desconocido (posiblemente chino), impresiona a desarrolladores.",
-      "TSMC avanza en la integración de fotónica en chips, crucial para el futuro del compute de IA.",
-      "Mistral ha lanzado Agentic Search para mejorar la precisión y eficiencia de los sistemas de IA."
+      "NVIDIA ha subido el precio de sus productos de IA más de un 15%, encareciendo el compute.",
+      "Mistral lanza \"Agentic Search\", mejorando la capacidad de sus agentes para procesar información.",
+      "Together AI revela que GLM-5.3 (Zhipu) supera a GPT-5.6 Sol en eficiencia de coste para tareas de código.",
+      "Alibaba planea una inyección de 10.000 millones de dólares para potenciar su inversión en IA.",
+      "TSMC avanza en fotónica de silicio para chips de IA, clave para el rendimiento futuro."
     ],
     "risks": [
-      "El aumento de costes del hardware de Nvidia podría ralentizar la inversión en nueva infraestructura de IA.",
-      "La opacidad sobre el origen de modelos potentes como Ox Alpha introduce incertidumbre en el mercado y la geopolítica.",
-      "La eficiencia de los agentes de código aún depende de la supervisión humana para superar sus limitaciones actuales."
+      "El aumento de precios de NVIDIA podría ralentizar la inversión en infraestructura de IA y presionar los márgenes de los proveedores de modelos.",
+      "La escalabilidad del entrenamiento de modelos complejos choca con los límites físicos y económicos del compute tradicional."
     ],
     "watch": [
-      "Que se revele la identidad del creador de Ox Alpha y su modelo de negocio.",
-      "Si la subida de precios de Nvidia se traslada a los precios de las APIs de modelos.",
-      "Anuncios de clientes importantes de TSMC sobre la integración de fotónica en sus productos."
+      "Anuncios de ajustes de precios de APIs de modelos o retrasos en proyectos de infraestructura por el aumento del coste de NVIDIA.",
+      "Pruebas de referencia (benchmarks) de \"Agentic Search\" de Mistral que demuestren un salto en la capacidad de los agentes.",
+      "Modelos de frontier labs entrenados predominantemente con datos sintéticos de simulación mostrando capacidades avanzadas."
     ],
     "entities_top": [
-      "Nvidia",
-      "TSMC",
-      "Zhipu AI",
-      "OpenAI",
-      "Mistral"
+      "NVIDIA",
+      "Mistral",
+      "Zhipu",
+      "Alibaba",
+      "TSMC"
     ],
-    "thesis": "La economía de los modelos y el coste del compute se tensan, con Nvidia subiendo precios y nuevas alternativas eficientes chinas emergiendo, mientras los agentes de IA demuestran su valor en tareas complejas como la depuración de código."
+    "thesis": "El coste y la eficiencia del hardware de IA y de los métodos de entrenamiento se consolidan como factores críticos, mientras los agentes de código y la capacidad de búsqueda autónoma marcan la próxima frontera de la automatización."
   },
   "memory": {
     "watch_resolved": [
       {
         "text": "Monitorizar la adopción real de GLM-5.3 en entornos productivos de desarrollo de agentes.",
         "status": "hit",
-        "evidence": "Together AI compara GLM-5.3 y GPT-5.6 Sol en DeepSWE: GLM-5.3 gana en coste/rendimiento."
+        "evidence": "GLM-5.3 de Zhipu supera a GPT-5.6 Sol en pass@4 y coste en DeepSWE."
       },
       {
         "text": "Ver anuncios de Intel o TSMC sobre la disponibilidad comercial de productos basados en sus nuevas estrategias de memoria y fotónica.",
@@ -75,10 +75,10 @@
     ],
     "entity_deltas": {
       "new_entrants": [
-        "Linus Torvalds",
-        "OpenAI (GPT-5.6 Sol",
-        "Ox Alpha",
-        "Zhipu AI (GLM-5.3"
+        "Alibaba",
+        "GLM-5",
+        "GPT-5.6 Sol",
+        "Linus Torvalds"
       ],
       "returning": [],
       "streaks": []
@@ -88,13 +88,13 @@
         "theme": "agents_automation",
         "label": "Agentes y automatización",
         "days": 7,
-        "lead": "Mistral lanza Agentic Search, una capa de recuperación para sistemas de IA más precisos."
+        "lead": "Mistral lanza \"Agentic Search\" para sistemas de IA más precisos."
       },
       {
         "theme": "compute_chips_dc",
         "label": "Compute y chips",
         "days": 3,
-        "lead": "Nvidia notifica subidas de precio superiores al 15% en hardware de IA."
+        "lead": "NVIDIA sube los precios de sus productos de IA más de un 15%."
       }
     ]
   },
@@ -104,9 +104,10 @@
   },
   "source_health": {
     "configured": 32,
-    "alive": 31,
+    "alive": 30,
     "dead": [
-      "OpenRouter Insights"
+      "OpenRouter Insights",
+      "Hacker News (alto voltaje)"
     ],
     "counts": {
       "Reuters AI": 1,
@@ -138,52 +139,48 @@
       "Interconnects": 1,
       "Latent Space": 1,
       "Simon Willison (AI & LLMs)": 1,
-      "Hugging Face Blog": 1,
-      "Hacker News (alto voltaje)": 1
+      "Hugging Face Blog": 1
     }
   },
   "degraded": false,
-  "dropped_noise": 15,
+  "dropped_noise": 16,
   "counts": {
-    "signal": 7,
+    "signal": 6,
     "context": 3
   },
   "items": [
     {
-      "title": "Nvidia customers notified about AI-related price hikes above 15%, Bloomberg News reports - Reuters",
-      "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPLWE3OUFQMndpYzJSVFBuYXBocWg0RUlmWGFtZDU0NEdtTUJzRmV2c3ZtWjJFOTUxNEFwaFNkSno5ZlhCdGpTSjJOMnNUc2U1Y01Fc1YtX2NrdnRFM0pEMDYyYXBrWGdHUVpTei1ramJ6YVE1aFFFTGVwX0drX1lBOFdyRGM4cEpZVG9uUEhka1J1RDZDQ0F3UWY3S0VjQVhLbzVjYmZPazhPcnV3c1ZVd0F4bExTeU9QN0VnOVRyVlA?oc=5",
-      "published": "2026-08-22T20:00:21+00:00",
-      "summary": "Nvidia customers notified about AI-related price hikes above 15%, Bloomberg News reports &nbsp;&nbsp; Reuters",
+      "title": "Nvidia Customers Notified About AI-Related Price Hikes Above 15% - Bloomberg.com",
+      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNeWxlMlJjV3JZVWZoeTJhRzlhTDJOenZaS195ZEl4a1NkWERBQUwyU2hQcXlTOEk2RkpqLW5OeWhybzlFbzFONVkyWHhjNWhnSEhZQUpJS2xlSU0wOUQ3b2NsZXd0RTdGMHZsQ25rYTI4aDNNOU05OEVHMHVuaXQ0N2NyUXQtN194VXhqQ0g1SlpwdFZrM3JEeTZvYjFfVWhJaC12NkRfWTE5bzZkMXNyTC1Xbk8?oc=5",
+      "published": "2026-08-22T18:42:34+00:00",
+      "summary": "Nvidia Customers Notified About AI-Related Price Hikes Above 15% &nbsp;&nbsp; Bloomberg.com",
       "image_url": "",
-      "source": "Reuters AI",
+      "source": "Bloomberg Tech",
       "feed_tags": [
         "business",
-        "geopol",
-        "industry",
-        "models"
+        "finance",
+        "chips",
+        "market"
       ],
-      "raw_title": "Nvidia customers notified about AI-related price hikes above 15%, Bloomberg News reports - Reuters",
-      "raw_summary": "Nvidia customers notified about AI-related price hikes above 15%, Bloomberg News reports &nbsp;&nbsp; Reuters",
+      "raw_title": "Nvidia Customers Notified About AI-Related Price Hikes Above 15% - Bloomberg.com",
+      "raw_summary": "Nvidia Customers Notified About AI-Related Price Hikes Above 15% &nbsp;&nbsp; Bloomberg.com",
       "score": 98,
       "primary": "invest",
       "tags": [],
-      "heuristic_score": 36,
-      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPLWE3OUFQMndpYzJSVFBuYXBocWg0RUlmWGFtZDU0NEdtTUJzRmV2c3ZtWjJFOTUxNEFwaFNkSno5ZlhCdGpTSjJOMnNUc2U1Y01Fc1YtX2NrdnRFM0pEMDYyYXBrWGdHUVpTei1ramJ6YVE1aFFFTGVwX0drX1lBOFdyRGM4cEpZVG9uUEhka1J1RDZDQ0F3UWY3S0VjQVhLbzVjYmZPazhPcnV3c1ZVd0F4bExTeU9QN0VnOVRyVlA?oc=5",
-      "other_sources": [
-        "Bloomberg Tech"
-      ],
+      "heuristic_score": 34,
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNeWxlMlJjV3JZVWZoeTJhRzlhTDJOenZaS195ZEl4a1NkWERBQUwyU2hQcXlTOEk2RkpqLW5OeWhybzlFbzFONVkyWHhjNWhnSEhZQUpJS2xlSU0wOUQ3b2NsZXd0RTdGMHZsQ25rYTI4aDNNOU05OEVHMHVuaXQ0N2NyUXQtN194VXhqQ0g1SlpwdFZrM3JEeTZvYjFfVWhJaC12NkRfWTE5bzZkMXNyTC1Xbk8?oc=5",
       "is_repeat": false,
       "novelty_score": 100,
-      "adjusted_score": 36,
-      "_rid": 4,
+      "adjusted_score": 34,
+      "_rid": 5,
       "llm_score": 95,
       "verdict": "signal",
-      "so_what": "El coste del hardware esencial para IA de Nvidia se encarece, lo que impactará directamente en los márgenes de los proveedores de modelos y el capex de los laboratorios.",
-      "power_shift": "Nvidia consolida su posición de precios. Los consumidores de GPUs Nvidia (todos los labs y datacenters) pierden margen.",
-      "watch_next": "Observar si la subida de precios de Nvidia se traslada a los precios de API de modelos o si afecta las inversiones en capacidad.",
-      "title_es": "Nvidia notifica subidas de precio superiores al 15% en hardware de IA.",
+      "so_what": "El coste de entrenamiento y operación de modelos de IA aumentará, afectando los márgenes de los desarrolladores y la inversión en infraestructura.",
+      "power_shift": "NVIDIA gana / Desarrolladores de IA y proveedores de cloud pierden.",
+      "watch_next": "Anuncios de ajustes de precios de APIs de modelos o retrasos en proyectos de infraestructura por el aumento del coste.",
+      "title_es": "NVIDIA sube los precios de sus productos de IA más de un 15%.",
       "llm_theme": "compute_chips_dc",
-      "why": "El coste del hardware esencial para IA de Nvidia se encarece, lo que impactará directamente en los márgenes de los proveedores de modelos y el capex de los laboratorios.",
+      "why": "El coste de entrenamiento y operación de modelos de IA aumentará, afectando los márgenes de los desarrolladores y la inversión en infraestructura.",
       "entities": [
         "NVIDIA"
       ],
@@ -194,82 +191,44 @@
       "layer": "signal"
     },
     {
-      "title": "A mysterious free AI model is impressing developers. And nobody knows who made it.",
-      "link": "https://www.businessinsider.com/ox-alpha-ai-model-mystery-2026-8",
-      "published": "2026-08-22T20:46:35+00:00",
-      "summary": "Ox Alpha, a mysterious AI model, debuted on OpenRouter on Thursday. Its origins are unknown, though some suspect a Chinese lab.",
-      "image_url": "https://i.insider.com/6a8a0a144569a4ec219f93c8?format=jpeg",
-      "source": "Business Insider Tech",
+      "title": "Alibaba plans $10 billion Hong Kong share placement to fund AI spending - Reuters",
+      "link": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOSHJGOUFEMWhrdjlTbk5JelZ2Zl9jNWZ3UjRUTFVZX3hyTmx2bnZ2Qi1Ob3FPZGdBNkoyOHpfRXk3YzFpYXMwNkZHb09uX01jWDRVZ3lJSi1rM2ZGbldMV1J1d0lLUWFTS1FLcHowTXNobENIUkxody01eDItOHZucHRUV0xjME80UkxscjVNX1dnRUlHY1BCN3o5TV9CMFNzcnlobjJBVWdyMHNiQjNtT090bEV6WXQyUU5SdQ?oc=5",
+      "published": "2026-08-23T04:47:00+00:00",
+      "summary": "Alibaba plans $10 billion Hong Kong share placement to fund AI spending &nbsp;&nbsp; Reuters",
+      "image_url": "",
+      "source": "Reuters AI",
       "feed_tags": [
         "business",
-        "tech",
+        "geopol",
+        "industry",
         "models"
       ],
-      "raw_title": "A mysterious free AI model is impressing developers. And nobody knows who made it.",
-      "raw_summary": "Ox Alpha, a mysterious AI model, debuted on OpenRouter on Thursday. Its origins are unknown, though some suspect a Chinese lab.",
+      "raw_title": "Alibaba plans $10 billion Hong Kong share placement to fund AI spending - Reuters",
+      "raw_summary": "Alibaba plans $10 billion Hong Kong share placement to fund AI spending &nbsp;&nbsp; Reuters",
       "score": 90,
-      "primary": "models",
+      "primary": "geopol",
       "tags": [],
       "heuristic_score": 11,
-      "url": "https://www.businessinsider.com/ox-alpha-ai-model-mystery-2026-8",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOSHJGOUFEMWhrdjlTbk5JelZ2Zl9jNWZ3UjRUTFVZX3hyTmx2bnZ2Qi1Ob3FPZGdBNkoyOHpfRXk3YzFpYXMwNkZHb09uX01jWDRVZ3lJSi1rM2ZGbldMV1J1d0lLUWFTS1FLcHowTXNobENIUkxody01eDItOHZucHRUV0xjME80UkxscjVNX1dnRUlHY1BCN3o5TV9CMFNzcnlobjJBVWdyMHNiQjNtT090bEV6WXQyUU5SdQ?oc=5",
       "is_repeat": false,
       "novelty_score": 100,
       "adjusted_score": 11,
       "_rid": 13,
       "llm_score": 90,
       "verdict": "signal",
-      "so_what": "La aparición de un modelo competitivo de origen no revelado, posiblemente de un laboratorio chino, introduce un nuevo actor potencial y podría alterar la dinámica de precios y acceso a modelos avanzados.",
-      "power_shift": "Los laboratorios establecidos podrían enfrentar nueva competencia de actores ocultos. El stack chino de IA gana influencia si se confirma el origen.",
-      "watch_next": "Que se revele la identidad del creador de Ox Alpha y se confirmen sus capacidades y modelo de negocio.",
-      "title_es": "Un misterioso modelo de IA, Ox Alpha, impresiona a desarrolladores y su origen es desconocido.",
-      "llm_theme": "frontier_capability",
-      "why": "La aparición de un modelo competitivo de origen no revelado, posiblemente de un laboratorio chino, introduce un nuevo actor potencial y podría alterar la dinámica de precios y acceso a modelos avanzados.",
+      "so_what": "Alibaba refuerza su posición en la carrera de la IA, especialmente en el ecosistema chino, lo que puede acelerar el desarrollo de modelos y hardware local.",
+      "power_shift": "Alibaba gana / Competidores chinos y globales ven mayor presión.",
+      "watch_next": "Anuncios de nuevos modelos o infraestructuras de Alibaba financiados con esta ronda.",
+      "title_es": "Alibaba planea captar 10.000 millones de dólares para financiar su inversión en IA.",
+      "llm_theme": "china_stack",
+      "why": "Alibaba refuerza su posición en la carrera de la IA, especialmente en el ecosistema chino, lo que puede acelerar el desarrollo de modelos y hardware local.",
       "entities": [
-        "Ox Alpha"
+        "Alibaba"
       ],
       "noise_penalty": 0,
       "final_score": 90,
       "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(12)-noise(0)",
-      "strategic_theme": "frontier_capability",
-      "layer": "signal"
-    },
-    {
-      "title": "How TSMC Is Wiring the AI Era With Light",
-      "link": "https://semiwiki.com/semiconductor-manufacturers/tsmc/372488-how-tsmc-is-wiring-the-ai-era-with-light/",
-      "published": "2026-08-21T17:00:18+00:00",
-      "summary": "TSMC’s photonics strategy is centered on integrating optical input-output with advanced logic, rather than selling conventional optical transceivers as standalone products. The company is developing a silicon-photonics foundry platform and a packaging architecture called TSMC-COUPE , or Compact Universal Photonic &8230; Read More The post How TSMC Is Wiring the AI Era With Light appeared first on SemiWiki .",
-      "image_url": "https://semiwiki.com/wp-content/uploads/2026/08/How-TSMC-Is-Wiring-the-AI-Era-With-Light-1200x675.jpg",
-      "source": "SemiWiki",
-      "feed_tags": [
-        "infra",
-        "chips"
-      ],
-      "raw_title": "How TSMC Is Wiring the AI Era With Light",
-      "raw_summary": "TSMC’s photonics strategy is centered on integrating optical input-output with advanced logic, rather than selling conventional optical transceivers as standalone products. The company is developing a silicon-photonics foundry platform and a packaging architecture called TSMC-COUPE , or Compact Universal Photonic &#8230; Read More The post How TSMC Is Wiring the AI Era With Light appeared first on SemiWiki .",
-      "score": 83,
-      "primary": "infra",
-      "tags": [],
-      "heuristic_score": 56,
-      "url": "https://semiwiki.com/semiconductor-manufacturers/tsmc/372488-how-tsmc-is-wiring-the-ai-era-with-light/",
-      "is_repeat": true,
-      "novelty_score": 45,
-      "adjusted_score": 1,
-      "_rid": 18,
-      "llm_score": 90,
-      "verdict": "signal",
-      "so_what": "La integración de fotónica en chips de TSMC es fundamental para superar las limitaciones de interconexión eléctrica, permitiendo mayor ancho de banda y menor consumo, crucial para GPUs de IA de próxima generación.",
-      "power_shift": "TSMC refuerza su posición como líder en fabricación de chips avanzados, esencial para la infraestructura de IA.",
-      "watch_next": "Anuncios de producción en volumen o integración de esta tecnología en chips de clientes importantes como Nvidia.",
-      "title_es": "TSMC avanza su estrategia de fotónica para integrar E/S óptica en chips de IA.",
-      "llm_theme": "compute_chips_dc",
-      "why": "La integración de fotónica en chips de TSMC es fundamental para superar las limitaciones de interconexión eléctrica, permitiendo mayor ancho de banda y menor consumo, crucial para GPUs de IA de próxima generación.",
-      "entities": [
-        "TSMC"
-      ],
-      "noise_penalty": 0,
-      "final_score": 83,
-      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(6)-noise(0)",
-      "strategic_theme": "compute_chips_dc",
+      "strategic_theme": "china_stack",
       "layer": "signal"
     },
     {
@@ -286,7 +245,7 @@
       ],
       "raw_title": "GLM-5.3 vs. GPT-5.6 Sol on DeepSWE: Cost, Coding, and Routing",
       "raw_summary": "We ran 904 DeepSWE rollouts on GLM-5.3 and GPT-5.6 Sol. Sol leads pass@1 by 3.7 points; GLM-5.3 wins pass@4 at half the cost, and a GLM-first cascade hits 85.9%.",
-      "score": 71,
+      "score": 75,
       "primary": "models",
       "tags": [],
       "heuristic_score": 100,
@@ -295,23 +254,64 @@
       "novelty_score": 45,
       "adjusted_score": 45,
       "_rid": 3,
-      "llm_score": 80,
+      "llm_score": 85,
       "verdict": "signal",
-      "so_what": "GLM-5.3 (Zhipu AI) ofrece mayor pass@4 a mitad de coste que GPT-5.6 Sol (OpenAI) en tareas de codificación, indicando una alternativa competitiva y eficiente para agentes de código.",
-      "power_shift": "Zhipu AI gana terreno en eficiencia y rendimiento en código; OpenAI mantiene liderazgo en pass@1.",
-      "watch_next": "Ver si GLM-5.3 gana cuota de mercado significativa en el uso de APIs para codificación o si OpenAI ajusta precios.",
-      "title_es": "Together AI compara GLM-5.3 y GPT-5.6 Sol en DeepSWE: GLM-5.3 gana en coste/rendimiento.",
+      "so_what": "Muestra que modelos no-OpenAI pueden ser más eficientes en tareas de código complejas como DeepSWE, ofreciendo alternativas de menor coste para desarrollo asistido por IA.",
+      "power_shift": "Zhipu gana / OpenAI pierde cuota potencial en desarrollo con agentes de código.",
+      "watch_next": "Adopción de GLM-5.3 en entornos de desarrollo reales con métricas de productividad.",
+      "title_es": "GLM-5.3 de Zhipu supera a GPT-5.6 Sol en pass@4 y coste en DeepSWE.",
       "llm_theme": "model_economics",
-      "why": "GLM-5.3 (Zhipu AI) ofrece mayor pass@4 a mitad de coste que GPT-5.6 Sol (OpenAI) en tareas de codificación, indicando una alternativa competitiva y eficiente para agentes de código.",
+      "why": "Muestra que modelos no-OpenAI pueden ser más eficientes en tareas de código complejas como DeepSWE, ofreciendo alternativas de menor coste para desarrollo asistido por IA.",
       "entities": [
         "Together AI",
-        "Zhipu AI (GLM-5.3",
-        "OpenAI (GPT-5.6 Sol"
+        "Zhipu AI",
+        "OpenAI",
+        "GLM-5",
+        "GPT-5.6 Sol"
       ],
       "noise_penalty": 4,
-      "final_score": 71,
+      "final_score": 75,
       "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(0)-noise(4)",
       "strategic_theme": "model_economics",
+      "layer": "signal"
+    },
+    {
+      "title": "How TSMC Is Wiring the AI Era With Light",
+      "link": "https://semiwiki.com/semiconductor-manufacturers/tsmc/372488-how-tsmc-is-wiring-the-ai-era-with-light/",
+      "published": "2026-08-21T17:00:18+00:00",
+      "summary": "TSMC’s photonics strategy is centered on integrating optical input-output with advanced logic, rather than selling conventional optical transceivers as standalone products. The company is developing a silicon-photonics foundry platform and a packaging architecture called TSMC-COUPE , or Compact Universal Photonic &8230; Read More The post How TSMC Is Wiring the AI Era With Light appeared first on SemiWiki .",
+      "image_url": "https://semiwiki.com/wp-content/uploads/2026/08/How-TSMC-Is-Wiring-the-AI-Era-With-Light-1200x675.jpg",
+      "source": "SemiWiki",
+      "feed_tags": [
+        "infra",
+        "chips"
+      ],
+      "raw_title": "How TSMC Is Wiring the AI Era With Light",
+      "raw_summary": "TSMC’s photonics strategy is centered on integrating optical input-output with advanced logic, rather than selling conventional optical transceivers as standalone products. The company is developing a silicon-photonics foundry platform and a packaging architecture called TSMC-COUPE , or Compact Universal Photonic &#8230; Read More The post How TSMC Is Wiring the AI Era With Light appeared first on SemiWiki .",
+      "score": 74,
+      "primary": "infra",
+      "tags": [],
+      "heuristic_score": 56,
+      "url": "https://semiwiki.com/semiconductor-manufacturers/tsmc/372488-how-tsmc-is-wiring-the-ai-era-with-light/",
+      "is_repeat": true,
+      "novelty_score": 45,
+      "adjusted_score": 1,
+      "_rid": 17,
+      "llm_score": 80,
+      "verdict": "signal",
+      "so_what": "La integración de fotónica de silicio por TSMC es un paso clave para superar los cuellos de botella de interconexión en los chips de IA, permitiendo mayor velocidad y eficiencia.",
+      "power_shift": "TSMC gana / Fabricantes de chips menos avanzados en fotónica pierden.",
+      "watch_next": "Anuncios de disponibilidad comercial de esta tecnología en nodos de proceso avanzados de TSMC.",
+      "title_es": "TSMC desarrolla una plataforma fotónica de silicio para chips de IA.",
+      "llm_theme": "compute_chips_dc",
+      "why": "La integración de fotónica de silicio por TSMC es un paso clave para superar los cuellos de botella de interconexión en los chips de IA, permitiendo mayor velocidad y eficiencia.",
+      "entities": [
+        "TSMC"
+      ],
+      "noise_penalty": 0,
+      "final_score": 74,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(6)-noise(0)",
+      "strategic_theme": "compute_chips_dc",
       "layer": "signal"
     },
     {
@@ -339,59 +339,18 @@
       "_rid": 22,
       "llm_score": 85,
       "verdict": "signal",
-      "so_what": "Mistral mejora la capacidad de sus modelos para interactuar con información compleja y verificarla, un paso crucial para el desarrollo de agentes autónomos y la sustitución de trabajo cognitivo.",
-      "power_shift": "Mistral refuerza su oferta en el ámbito de agentes, mejorando la competitividad de sus modelos en tareas de razonamiento y recuperación de información.",
-      "watch_next": "Demostraciones o adopción de Agentic Search en aplicaciones empresariales que dependan de la verificación de información.",
-      "title_es": "Mistral lanza Agentic Search, una capa de recuperación para sistemas de IA más precisos.",
+      "so_what": "La integración de búsqueda agentica en los sistemas de Mistral mejora la capacidad de sus modelos para navegar, verificar y procesar información compleja, potenciando la autonomía de los agentes.",
+      "power_shift": "Mistral gana / Modelos sin capacidades avanzadas de RAG/agentes pierden.",
+      "watch_next": "Ejemplos de uso y benchmarks que muestren mejoras sustanciales en tareas de recuperación de información compleja.",
+      "title_es": "Mistral lanza \"Agentic Search\" para sistemas de IA más precisos.",
       "llm_theme": "agents_automation",
-      "why": "Mistral mejora la capacidad de sus modelos para interactuar con información compleja y verificarla, un paso crucial para el desarrollo de agentes autónomos y la sustitución de trabajo cognitivo.",
+      "why": "La integración de búsqueda agentica en los sistemas de Mistral mejora la capacidad de sus modelos para navegar, verificar y procesar información compleja, potenciando la autonomía de los agentes.",
       "entities": [
         "Mistral"
       ],
       "noise_penalty": 4,
       "final_score": 68,
       "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(0)-noise(4)",
-      "strategic_theme": "agents_automation",
-      "layer": "signal"
-    },
-    {
-      "title": "Quoting Linus Torvalds",
-      "link": "https://simonwillison.net/2026/Aug/22/linus-torvalds/",
-      "published": "2026-08-22T21:04:26+00:00",
-      "summary": "And this was a debug session from hell, enormously helped by an AI doing much of the grunt-work. I'd like to call it my tireless helper, but the AI several times stated flat out that this was impossible and unsolvable and that we should just write a report about it. I suspect those things have been trained by people who may not be quite as stubborn as I am. But while the AI was ready to give up several times, it did keep adding debug code and analyzing it faithfully when I pushed. So credit where credit is due and I let the AI write the commit message above. &mdash; Linus Torvalds , drm/xe: Don't hand out the flat CCS storage as usable VRAM Tags: linus-torvalds , linux , generative-ai , ai-assisted-programming , ai , llms",
-      "image_url": "",
-      "source": "Simon Willison (AI & LLMs)",
-      "feed_tags": [
-        "agents",
-        "mcp",
-        "coding",
-        "tools"
-      ],
-      "raw_title": "Quoting Linus Torvalds",
-      "raw_summary": "And this was a debug session from hell, enormously helped by an AI doing much of the grunt-work. I'd like to call it my tireless helper, but the AI several times stated flat out that this was impossible and unsolvable and that we should just write a report about it. I suspect those things have been trained by people who may not be quite as stubborn as I am. But while the AI was ready to give up several times, it did keep adding debug code and analyzing it faithfully when I pushed. So credit where credit is due and I let the AI write the commit message above. &mdash; Linus Torvalds , drm/xe: Don't hand out the flat CCS storage as usable VRAM Tags: linus-torvalds , linux , generative-ai , ai-assisted-programming , ai , llms",
-      "score": 67,
-      "primary": "models",
-      "tags": [],
-      "heuristic_score": 28,
-      "url": "https://simonwillison.net/2026/Aug/22/linus-torvalds/",
-      "is_repeat": false,
-      "novelty_score": 100,
-      "adjusted_score": 28,
-      "_rid": 7,
-      "llm_score": 60,
-      "verdict": "signal",
-      "so_what": "Confirma la utilidad de los agentes de código para labores intensivas de depuración, pese a sus limitaciones actuales, acelerando el desarrollo de software crítico.",
-      "power_shift": "Los desarrolladores que adopten estas herramientas ganan eficiencia.",
-      "watch_next": "Observar informes más sistemáticos sobre la adopción de agentes de depuración en grandes proyectos de código abierto.",
-      "title_es": "Linus Torvalds usa y elogia la IA para tareas de depuración de código complejas.",
-      "llm_theme": "agents_automation",
-      "why": "Confirma la utilidad de los agentes de código para labores intensivas de depuración, pese a sus limitaciones actuales, acelerando el desarrollo de software crítico.",
-      "entities": [
-        "Linus Torvalds"
-      ],
-      "noise_penalty": 0,
-      "final_score": 67,
-      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(12)-noise(0)",
       "strategic_theme": "agents_automation",
       "layer": "signal"
     },
@@ -409,7 +368,7 @@
       ],
       "raw_title": "[AINews] 10% worse, 100x cheaper, 10000x faster: Why Simulation is taking over",
       "raw_summary": "Did you think RSI stopped at model training?",
-      "score": 67,
+      "score": 57,
       "primary": "models",
       "tags": [],
       "heuristic_score": 30,
@@ -418,56 +377,60 @@
       "novelty_score": 45,
       "adjusted_score": 0,
       "_rid": 25,
-      "llm_score": 65,
+      "llm_score": 60,
       "verdict": "signal",
-      "so_what": "La adopción masiva de la simulación en el entrenamiento de IA cambia la ecuación de coste y tiempo, haciendo que el acceso a datos y entornos simulados sea una ventaja competitiva clave.",
-      "power_shift": "Las empresas que inviertan en infraestructuras de simulación o dominen la generación de datos sintéticos ganan ventaja.",
-      "watch_next": "Aumentos de inversión o nuevos productos enfocados en plataformas de simulación o generación de datos sintéticos.",
-      "title_es": "La simulación domina el entrenamiento de IA por su eficiencia: 100x más barata, 10000x más rápida.",
-      "llm_theme": "model_economics",
-      "why": "La adopción masiva de la simulación en el entrenamiento de IA cambia la ecuación de coste y tiempo, haciendo que el acceso a datos y entornos simulados sea una ventaja competitiva clave.",
+      "so_what": "El auge de la simulación para el entrenamiento de IA podría abaratar drásticamente los costes y acelerar el ciclo de desarrollo, permitiendo iteraciones a una escala sin precedentes.",
+      "power_shift": "Quienes dominen la simulación de entornos complejos ganan ventaja en entrenamiento de IA.",
+      "watch_next": "Modelos de frontier labs entrenados predominantemente con datos sintéticos de simulación mostrando capacidades avanzadas.",
+      "title_es": "La simulación emerge como método para entrenar IA: 100x más barata y 10000x más rápida.",
+      "llm_theme": "frontier_capability",
+      "why": "El auge de la simulación para el entrenamiento de IA podría abaratar drásticamente los costes y acelerar el ciclo de desarrollo, permitiendo iteraciones a una escala sin precedentes.",
       "entities": [],
       "noise_penalty": 0,
-      "final_score": 67,
-      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(12)-noise(0)",
-      "strategic_theme": "model_economics",
+      "final_score": 57,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(6)-noise(0)",
+      "strategic_theme": "frontier_capability",
       "layer": "signal"
     },
     {
-      "title": "Why your local LLM feels dumber than it is",
-      "link": "https://forum.level1techs.com/t/why-your-local-llm-feels-dumber-than-it-is/253917",
-      "published": "2026-08-22T18:14:16+00:00",
-      "summary": "Article URL: Comments URL: Points: 290 # Comments: 102",
+      "title": "Quoting Linus Torvalds",
+      "link": "https://simonwillison.net/2026/Aug/22/linus-torvalds/",
+      "published": "2026-08-22T21:04:26+00:00",
+      "summary": "And this was a debug session from hell, enormously helped by an AI doing much of the grunt-work. I'd like to call it my tireless helper, but the AI several times stated flat out that this was impossible and unsolvable and that we should just write a report about it. I suspect those things have been trained by people who may not be quite as stubborn as I am. But while the AI was ready to give up several times, it did keep adding debug code and analyzing it faithfully when I pushed. So credit where credit is due and I let the AI write the commit message above. &mdash; Linus Torvalds , drm/xe: Don't hand out the flat CCS storage as usable VRAM Tags: linus-torvalds , linux , generative-ai , ai-assisted-programming , ai , llms",
       "image_url": "",
-      "source": "Hacker News (alto voltaje)",
+      "source": "Simon Willison (AI & LLMs)",
       "feed_tags": [
-        "community",
-        "signal"
+        "agents",
+        "mcp",
+        "coding",
+        "tools"
       ],
-      "raw_title": "Why your local LLM feels dumber than it is",
-      "raw_summary": "Article URL: https://forum.level1techs.com/t/why-your-local-llm-feels-dumber-than-it-is/253917 Comments URL: https://news.ycombinator.com/item?id=49402232 Points: 290 # Comments: 102",
-      "score": 49,
+      "raw_title": "Quoting Linus Torvalds",
+      "raw_summary": "And this was a debug session from hell, enormously helped by an AI doing much of the grunt-work. I'd like to call it my tireless helper, but the AI several times stated flat out that this was impossible and unsolvable and that we should just write a report about it. I suspect those things have been trained by people who may not be quite as stubborn as I am. But while the AI was ready to give up several times, it did keep adding debug code and analyzing it faithfully when I pushed. So credit where credit is due and I let the AI write the commit message above. &mdash; Linus Torvalds , drm/xe: Don't hand out the flat CCS storage as usable VRAM Tags: linus-torvalds , linux , generative-ai , ai-assisted-programming , ai , llms",
+      "score": 50,
       "primary": "models",
       "tags": [],
-      "heuristic_score": 22,
-      "url": "https://forum.level1techs.com/t/why-your-local-llm-feels-dumber-than-it-is/253917",
+      "heuristic_score": 28,
+      "url": "https://simonwillison.net/2026/Aug/22/linus-torvalds/",
       "is_repeat": false,
       "novelty_score": 100,
-      "adjusted_score": 22,
-      "_rid": 9,
+      "adjusted_score": 28,
+      "_rid": 7,
       "llm_score": 40,
       "verdict": "context",
-      "so_what": "La percepción de menor capacidad en LLMs locales puede deberse a factores de implementación y uso, lo que influye en las decisiones de despliegue y en la preferencia por APIs de modelos más grandes.",
-      "power_shift": "Los proveedores de APIs de modelos cloud pueden ganar por la complejidad de optimizar modelos locales para su máximo rendimiento.",
-      "watch_next": "Ver si surgen herramientas o plataformas que simplifiquen drásticamente la optimización de LLM locales para cerrar esta brecha de percepción.",
-      "title_es": "Artículo analiza por qué los LLM locales parecen menos capaces de lo que son.",
-      "llm_theme": "model_economics",
-      "why": "La percepción de menor capacidad en LLMs locales puede deberse a factores de implementación y uso, lo que influye en las decisiones de despliegue y en la preferencia por APIs de modelos más grandes.",
-      "entities": [],
+      "so_what": "Demuestra la creciente integración de la IA en tareas cognitivas complejas como la depuración de código, incluso por figuras reacias a la automatización total.",
+      "power_shift": "",
+      "watch_next": "Empresas de desarrollo reportando métricas de eficiencia en depuración gracias a herramientas de IA.",
+      "title_es": "Linus Torvalds usa IA para depuración, la describe como \"ayudante incansable\".",
+      "llm_theme": "agents_automation",
+      "why": "Demuestra la creciente integración de la IA en tareas cognitivas complejas como la depuración de código, incluso por figuras reacias a la automatización total.",
+      "entities": [
+        "Linus Torvalds"
+      ],
       "noise_penalty": 0,
-      "final_score": 49,
+      "final_score": 50,
       "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(12)-noise(0)",
-      "strategic_theme": "model_economics",
+      "strategic_theme": "agents_automation",
       "layer": "context"
     },
     {
@@ -492,15 +455,15 @@
       "is_repeat": true,
       "novelty_score": 45,
       "adjusted_score": 11,
-      "_rid": 16,
+      "_rid": 15,
       "llm_score": 70,
       "verdict": "context",
-      "so_what": "Nvidia busca aumentar la demanda de sus GPUs incentivando a las empresas a desarrollar y entrenar sus propios modelos, en lugar de depender de APIs de OpenAI o Anthropic. Esto podría alterar el balance de poder en la economía de modelos.",
-      "power_shift": "Nvidia gana al fomentar el gasto en hardware. OpenAI/Anthropic y otros proveedores de APIs podrían perder cuota si más empresas desarrollan internamente.",
-      "watch_next": "Observar si se incrementan los anuncios de grandes empresas desarrollando y desplegando modelos propios en hardware de Nvidia.",
-      "title_es": "Nvidia impulsa a los clientes a construir sus propios modelos en vez de usar APIs de terceros.",
-      "llm_theme": "compute_chips_dc",
-      "why": "Nvidia busca aumentar la demanda de sus GPUs incentivando a las empresas a desarrollar y entrenar sus propios modelos, en lugar de depender de APIs de OpenAI o Anthropic. Esto podría alterar el balance de poder en la economía de modelos.",
+      "so_what": "La estrategia de NVIDIA busca descentralizar el desarrollo de modelos, haciendo que más empresas entrenen y operen sus propios LLMs, aumentando la demanda de su hardware y reduciendo el poder de los proveedores de APIs.",
+      "power_shift": "NVIDIA gana / OpenAI, Anthropic y otros proveedores de API pierden potencial de crecimiento.",
+      "watch_next": "Aumento en la adopción de frameworks y plataformas de desarrollo de modelos de NVIDIA por parte de empresas medianas.",
+      "title_es": "NVIDIA fomenta el desarrollo de modelos propios para reducir dependencia de APIs externas.",
+      "llm_theme": "model_economics",
+      "why": "La estrategia de NVIDIA busca descentralizar el desarrollo de modelos, haciendo que más empresas entrenen y operen sus propios LLMs, aumentando la demanda de su hardware y reduciendo el poder de los proveedores de APIs.",
       "entities": [
         "NVIDIA",
         "OpenAI",
@@ -509,7 +472,7 @@
       "noise_penalty": 12,
       "final_score": 49,
       "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(0)-noise(12)",
-      "strategic_theme": "compute_chips_dc",
+      "strategic_theme": "model_economics",
       "layer": "context"
     },
     {
@@ -537,12 +500,12 @@
       "_rid": 2,
       "llm_score": 50,
       "verdict": "context",
-      "so_what": "La integración de agentes IA en el SDLC (planificación, diseño, construcción, test, despliegue) es inevitable, pero requiere adaptar procesos empresariales existentes para maximizar la productividad.",
-      "power_shift": "Los equipos de ingeniería que adapten sus procesos SDLC ganarán eficiencia frente a los que no.",
-      "watch_next": "Observar si se popularizan marcos de SDLC diseñados específicamente para integración con agentes de código.",
-      "title_es": "Anthropic detalla el impacto de la IA en el ciclo de vida del desarrollo de software.",
+      "so_what": "Subraya la necesidad de adaptar los procesos de desarrollo de software para explotar las ganancias de productividad de los agentes de código, anticipando un cambio en los roles y etapas tradicionales.",
+      "power_shift": "",
+      "watch_next": "Ver cambios concretos en metodologías SDLC adoptadas por grandes empresas de software que reporten mejoras significativas.",
+      "title_es": "Anthropic propone un playbook para el ciclo de vida del desarrollo de software nativo de IA.",
       "llm_theme": "agents_automation",
-      "why": "La integración de agentes IA en el SDLC (planificación, diseño, construcción, test, despliegue) es inevitable, pero requiere adaptar procesos empresariales existentes para maximizar la productividad.",
+      "why": "Subraya la necesidad de adaptar los procesos de desarrollo de software para explotar las ganancias de productividad de los agentes de código, anticipando un cambio en los roles y etapas tradicionales.",
       "entities": [
         "Anthropic",
         "Claude Code"
