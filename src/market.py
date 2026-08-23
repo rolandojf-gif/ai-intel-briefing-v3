@@ -94,44 +94,57 @@ def _fetch_crypto_bitcoin() -> dict | None:
 
 
 def get_market_overview() -> dict:
-    """Obtiene el resumen macro y empresas IA para el panel de Discover."""
+    """Resumen macro y empresas IA para el panel lateral.
+
+    Cuando una cotizacion no se puede obtener se marca `available: False` y NO se
+    inventa un precio. Antes habia constantes de respaldo (NVDA a 128,50 con
+    +2,45%) que se pintaban igual que un dato en vivo: el dia que Yahoo fallara,
+    la pagina habria mostrado cotizaciones ficticias sin distinguirlas de las
+    reales. Un hueco honesto informa; un precio inventado desinforma.
+    """
     macro_targets = [
-        {"key": "sp500", "label": "S&P Futures", "symbol": "ES=F", "default_price": 7691.25, "default_change": 0.38},
-        {"key": "nasdaq", "label": "NASDAQ F.", "symbol": "NQ=F", "default_price": 29387.75, "default_change": 0.30},
-        {"key": "bitcoin", "label": "Bitcoin", "symbol": "BTC-USD", "default_price": 75920.99, "default_change": -1.80},
-        {"key": "vix", "label": "VIX", "symbol": "^VIX", "default_price": 15.13, "default_change": -5.50},
+        {"key": "sp500", "label": "S&P Futures", "symbol": "ES=F"},
+        {"key": "nasdaq", "label": "NASDAQ F.", "symbol": "NQ=F"},
+        {"key": "bitcoin", "label": "Bitcoin", "symbol": "BTC-USD"},
+        {"key": "vix", "label": "VIX", "symbol": "^VIX"},
     ]
 
     ai_companies = [
-        {"name": "NVIDIA Corp.", "ticker": "NVDA", "exchange": "NASDAQ", "default_price": 128.50, "default_change": 2.45, "logo": "https://www.google.com/s2/favicons?domain=nvidia.com&sz=64"},
-        {"name": "Super Micro Comp.", "ticker": "SMCI", "exchange": "NASDAQ", "default_price": 54.80, "default_change": 4.10, "logo": "https://www.google.com/s2/favicons?domain=supermicro.com&sz=64"},
-        {"name": "TSMC Ltd.", "ticker": "TSM", "exchange": "NYSE", "default_price": 178.90, "default_change": 1.85, "logo": "https://www.google.com/s2/favicons?domain=tsmc.com&sz=64"},
-        {"name": "Microsoft Corp.", "ticker": "MSFT", "exchange": "NASDAQ", "default_price": 448.20, "default_change": 0.65, "logo": "https://www.google.com/s2/favicons?domain=microsoft.com&sz=64"},
-        {"name": "Alphabet Inc.", "ticker": "GOOGL", "exchange": "NASDAQ", "default_price": 182.40, "default_change": -0.35, "logo": "https://www.google.com/s2/favicons?domain=google.com&sz=64"},
-        {"name": "ASML Holding", "ticker": "ASML", "exchange": "NASDAQ", "default_price": 890.30, "default_change": 1.15, "logo": "https://www.google.com/s2/favicons?domain=asml.com&sz=64"},
-        {"name": "Palantir Tech.", "ticker": "PLTR", "exchange": "NYSE", "default_price": 32.10, "default_change": 3.20, "logo": "https://www.google.com/s2/favicons?domain=palantir.com&sz=64"},
-        {"name": "Amazon.com Inc.", "ticker": "AMZN", "exchange": "NASDAQ", "default_price": 258.63, "default_change": -0.57, "logo": "https://www.google.com/s2/favicons?domain=amazon.com&sz=64"},
+        {"name": "NVIDIA Corp.", "ticker": "NVDA", "exchange": "NASDAQ", "logo": "https://www.google.com/s2/favicons?domain=nvidia.com&sz=64"},
+        {"name": "Super Micro Comp.", "ticker": "SMCI", "exchange": "NASDAQ", "logo": "https://www.google.com/s2/favicons?domain=supermicro.com&sz=64"},
+        {"name": "TSMC Ltd.", "ticker": "TSM", "exchange": "NYSE", "logo": "https://www.google.com/s2/favicons?domain=tsmc.com&sz=64"},
+        {"name": "Microsoft Corp.", "ticker": "MSFT", "exchange": "NASDAQ", "logo": "https://www.google.com/s2/favicons?domain=microsoft.com&sz=64"},
+        {"name": "Alphabet Inc.", "ticker": "GOOGL", "exchange": "NASDAQ", "logo": "https://www.google.com/s2/favicons?domain=google.com&sz=64"},
+        {"name": "ASML Holding", "ticker": "ASML", "exchange": "NASDAQ", "logo": "https://www.google.com/s2/favicons?domain=asml.com&sz=64"},
+        {"name": "Palantir Tech.", "ticker": "PLTR", "exchange": "NYSE", "logo": "https://www.google.com/s2/favicons?domain=palantir.com&sz=64"},
+        {"name": "Amazon.com Inc.", "ticker": "AMZN", "exchange": "NASDAQ", "logo": "https://www.google.com/s2/favicons?domain=amazon.com&sz=64"},
     ]
+
+    NO_DATA = "s/d"
 
     macro_items = []
     for m in macro_targets:
-        q = None
         if m["key"] == "bitcoin":
             q = _fetch_crypto_bitcoin() or _fetch_yahoo_quote(m["symbol"])
         else:
             q = _fetch_yahoo_quote(m["symbol"])
 
-        if q:
-            price = q["price"]
-            change = q["change_pct"]
-            points = q.get("sparkline_points") or []
-        else:
-            price = m["default_price"]
-            change = m["default_change"]
-            points = []
+        if not q:
+            macro_items.append({
+                "label": m["label"],
+                "price_str": NO_DATA,
+                "change_str": "",
+                "positive": True,
+                "available": False,
+                "sparkline_svg": "",
+            })
+            continue
 
+        price = q["price"]
+        change = q["change_pct"]
+        points = q.get("sparkline_points") or []
         is_pos = change >= 0
-        formatted_price = f"{price:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+
         if price > 1000:
             formatted_price = f"{price:,.2f} US$"
         else:
@@ -142,31 +155,46 @@ def get_market_overview() -> dict:
             "price_str": formatted_price,
             "change_str": f"{change:+.2f}%",
             "positive": is_pos,
+            "available": True,
             "sparkline_svg": _generate_sparkline(points, positive=is_pos),
         })
 
     company_items = []
     for c in ai_companies:
         q = _fetch_yahoo_quote(c["ticker"])
-        if q:
-            price = q["price"]
-            change = q["change_pct"]
-        else:
-            price = c["default_price"]
-            change = c["default_change"]
+        if not q:
+            company_items.append({
+                "name": c["name"],
+                "ticker": c["ticker"],
+                "exchange": c["exchange"],
+                "price_str": NO_DATA,
+                "change_str": "",
+                "positive": True,
+                "available": False,
+                "logo": c["logo"],
+            })
+            continue
 
-        is_pos = change >= 0
+        change = q["change_pct"]
         company_items.append({
             "name": c["name"],
             "ticker": c["ticker"],
             "exchange": c["exchange"],
-            "price_str": f"{price:,.2f} US$",
+            "price_str": f"{q['price']:,.2f} US$",
             "change_str": f"{change:+.2f}%",
-            "positive": is_pos,
+            "positive": change >= 0,
+            "available": True,
             "logo": c["logo"],
         })
+
+    quotes_ok = sum(1 for x in macro_items + company_items if x.get("available"))
+    quotes_total = len(macro_items) + len(company_items)
+    if quotes_ok < quotes_total:
+        print(f"Mercado: {quotes_ok}/{quotes_total} cotizaciones disponibles; el resto se marca 's/d'.")
 
     return {
         "macro": macro_items,
         "companies": company_items,
+        "quotes_ok": quotes_ok,
+        "quotes_total": quotes_total,
     }
