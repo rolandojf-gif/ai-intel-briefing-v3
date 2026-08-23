@@ -145,8 +145,9 @@ def item_fallback_image(item: dict) -> str:
   <line x1="40" y1="310" x2="600" y2="310" stroke="#334155" stroke-width="1"/>
   <text x="40" y="332" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="12">AI Strategic Radar · Frontier Intelligence</text>
 </svg>'''
-    import urllib.parse
-    return f"data:image/svg+xml;utf8,{urllib.parse.quote(svg)}"
+    import base64
+    b64 = base64.b64encode(svg.encode("utf-8")).decode("ascii")
+    return f"data:image/svg+xml;base64,{b64}"
 
 
 # -- Temas y puntuacion ------------------------------------------------------
@@ -255,7 +256,7 @@ TEMPLATE = ENV.from_string("""
   .state.alert .dot{animation:pulse 1.8s ease-in-out infinite}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
 
-  /* Top 3 Discover Cards Grid (Perplexity Discover Style) */
+  /* Top 3 Discover Cards (Perplexity Discover Style) */
   .discover-grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:18px;margin-bottom:34px}
   @media(max-width:900px){.discover-grid{grid-template-columns:1fr}}
   .disc-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;
@@ -407,9 +408,9 @@ TEMPLATE = ENV.from_string("""
   {% endif %}
 
   <!-- Top 3 Featured Discover Cards (Perplexity Discover Style) -->
-  {% if signals|length >= 3 %}
+  {% if top_featured %}
   <div class="discover-grid">
-    {% for it in signals[:3] %}
+    {% for it in top_featured %}
     <article class="disc-card">
       <a href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer" class="disc-img-wrap">
         <img src="{{ it.image_url }}" alt="" class="disc-img" loading="lazy" referrerpolicy="no-referrer"/>
@@ -441,8 +442,7 @@ TEMPLATE = ENV.from_string("""
     <div class="main-feed">
       
       <!-- Hero Lead Article -->
-      {% if signals %}
-      {% set hero = signals[0] %}
+      {% if hero %}
       <article class="hero-card">
         <div class="hero-grid">
           <a href="{{ (hero.url or hero.link)|safe_url }}" target="_blank" rel="noopener noreferrer" class="hero-img-wrap">
@@ -451,7 +451,7 @@ TEMPLATE = ENV.from_string("""
           <div class="hero-content">
             <div class="hero-time">
               <span class="disc-tag">{{ hero.theme_label }}</span>
-              <span>• Publicado hoy</span>
+              <span>• Noticia Principal</span>
             </div>
             <h2 class="hero-title">
               <a href="{{ (hero.url or hero.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ hero.display_title }}</a>
@@ -462,6 +462,9 @@ TEMPLATE = ENV.from_string("""
             <div class="disc-sources" style="margin-bottom:12px">
               <img src="{{ hero.logo }}" alt="" loading="lazy"/>
               <b>{{ hero.source_label }}</b>
+              {% if hero.other_sources %}
+              <span style="font-family:var(--mono);font-size:9.5px;color:var(--cyan);background:rgba(56,189,248,.1);padding:1px 6px;border-radius:10px;border:1px solid rgba(56,189,248,.25);margin-left:4px">{{ hero.other_sources|length + 1 }} fuentes</span>
+              {% endif %}
             </div>
             {% if hero.power_shift or hero.watch_next %}
             <div class="hero-foot">
@@ -479,13 +482,14 @@ TEMPLATE = ENV.from_string("""
       {% endif %}
 
       <!-- Rest of Signals Stream -->
+      {% if stream %}
       <div class="section-title">
         <span>Señales del Radar</span>
-        <span class="count">{{ n_signals }} hoy</span>
+        <span class="count">{{ stream|length }} adicionales</span>
       </div>
 
       <div class="stream-list">
-        {% for it in signals[1:] %}
+        {% for it in stream %}
         <article class="stream-card">
           <div class="stream-content">
             <div class="stream-top">
@@ -522,6 +526,7 @@ TEMPLATE = ENV.from_string("""
         </article>
         {% endfor %}
       </div>
+      {% endif %}
 
       <!-- Context Section -->
       {% if context %}
@@ -713,6 +718,28 @@ def render_index(items, briefing=None, snapshot=None, market=None):
     if not signals and not context:
         signals = enriched  # modo degradado: sin veredictos, todo a la capa principal
 
+    # Partición estricta sin duplicados visuales
+    if len(signals) >= 4:
+        top_featured = signals[0:3]
+        hero = signals[3]
+        stream = signals[4:]
+    elif len(signals) == 3:
+        top_featured = signals[0:2]
+        hero = signals[2]
+        stream = []
+    elif len(signals) == 2:
+        top_featured = [signals[1]]
+        hero = signals[0]
+        stream = []
+    elif len(signals) == 1:
+        top_featured = []
+        hero = signals[0]
+        stream = []
+    else:
+        top_featured = []
+        hero = None
+        stream = []
+
     memory = snapshot.get("memory") or {}
     deltas = memory.get("entity_deltas") or {}
     watch_resolved = memory.get("watch_resolved") or []
@@ -740,6 +767,9 @@ def render_index(items, briefing=None, snapshot=None, market=None):
         activity=snapshot.get("activity") or {"label": "ACTIVO", "class": "active"},
         thesis=thesis,
         signals=signals,
+        top_featured=top_featured,
+        hero=hero,
+        stream=stream,
         context=context,
         n_signals=len(signals),
         n_context=len(context),
