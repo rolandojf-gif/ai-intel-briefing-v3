@@ -87,6 +87,11 @@
        padding:3px 9px;border-radius:999px;color:var(--accent);background:var(--accent-soft);
        border:1px solid var(--accent-line);font-weight:700}
   .score{font-family:var(--mono);font-size:10.5px;color:var(--dimmer);margin-left:auto}
+  .copy-btn{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.08em;
+            text-transform:uppercase;padding:4px 10px;border-radius:999px;cursor:pointer;
+            border:1px solid var(--line);background:transparent;color:var(--dim);flex-shrink:0}
+  .copy-btn:hover{color:var(--accent);border-color:var(--accent-line);background:var(--accent-soft)}
+  .copy-btn.ok{color:#0d2b1c;background:var(--green);border-color:var(--green)}
   .badge-new{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;
              font-weight:700;padding:3px 8px;border-radius:999px;color:#0d2b1c;
              background:var(--green);flex-shrink:0}
@@ -290,6 +295,7 @@
             <span class="src"><img src="https://www.google.com/s2/favicons?domain=bloomberg.com&amp;sz=64" alt="" loading="lazy"/>Bloomberg Tech</span>
             
             <span class="score">98</span>
+            <button type="button" class="copy-btn" data-copy>Copiar</button>
           </div>
           <h2 class="hero-title">
             <a href="https://www.bloomberg.com/news/articles/2026-08-22/nvidia-customers-notified-about-ai-related-price-hikes-above-15" target="_blank" rel="noopener noreferrer">Nvidia notifica a clientes subidas de precios de IA superiores al 15%</a>
@@ -325,6 +331,7 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=anthropic.com&amp;sz=64" alt="" loading="lazy"/>Anthropic</span>
               
               <span class="score">91</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
             </div>
             <h3 class="card-title">
               <a href="https://claude.com/blog/computer-use-skills-api-files-api" target="_blank" rel="noopener noreferrer">Anthropic habilita uso de ordenador, Skills API y Files API en Claude para agentes</a>
@@ -353,6 +360,7 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=reuters.com&amp;sz=64" alt="" loading="lazy"/>Reuters AI</span>
               
               <span class="score">90</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
             </div>
             <h3 class="card-title">
               <a href="https://www.reuters.com/business/retail-consumer/alibaba-proposes-hong-kong-share-placement-worth-10-billion-2026-08-23/" target="_blank" rel="noopener noreferrer">Alibaba planea captar 10.000 millones de dólares para inversión en IA</a>
@@ -381,6 +389,7 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=x.ai&amp;sz=64" alt="" loading="lazy"/>xAI</span>
               
               <span class="score">89</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
             </div>
             <h3 class="card-title">
               <a href="https://x.ai/news/grok-4-6-vertex-ai" target="_blank" rel="noopener noreferrer">Grok 4.6 de xAI disponible en la Plataforma de Agentes Empresariales de Google</a>
@@ -409,6 +418,7 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=semiwiki.com&amp;sz=64" alt="" loading="lazy"/>SemiWiki</span>
               
               <span class="score">83</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
             </div>
             <h3 class="card-title">
               <a href="https://semiwiki.com/semiconductor-manufacturers/tsmc/372488-how-tsmc-is-wiring-the-ai-era-with-light/" target="_blank" rel="noopener noreferrer">TSMC desarrolla plataforma foundry fotónica y packaging TSMC-COUPE para IA</a>
@@ -437,6 +447,7 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=together.ai&amp;sz=64" alt="" loading="lazy"/>Together AI</span>
               
               <span class="score">75</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
             </div>
             <h3 class="card-title">
               <a href="https://www.together.ai/blog/glm-5-3-vs-gpt-5-6-sol-on-deepswe-cost-coding-and-routing" target="_blank" rel="noopener noreferrer">GLM-5.3 supera a GPT-5.6 Sol en pass@4 y coste en DeepSWE, GPT-5.6 Sol gana pass@1</a>
@@ -465,6 +476,7 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=mistral.ai&amp;sz=64" alt="" loading="lazy"/>Mistral</span>
               
               <span class="score">72</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
             </div>
             <h3 class="card-title">
               <a href="https://mistral.ai/news/agentic-search/" target="_blank" rel="noopener noreferrer">Mistral lanza Agentic Search para mejorar precisión y eficiencia en sistemas de IA</a>
@@ -493,6 +505,7 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=anthropic.com&amp;sz=64" alt="" loading="lazy"/>Anthropic</span>
               
               <span class="score">71</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
             </div>
             <h3 class="card-title">
               <a href="https://claude.com/blog/bringing-claude-mythos-5-to-more-defenders" target="_blank" rel="noopener noreferrer">Anthropic expande acceso a Claude Mythos 5 para ciberdefensa y lanza fondo de 35M$</a>
@@ -521,6 +534,7 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=openai.com&amp;sz=64" alt="" loading="lazy"/>OpenAI</span>
               
               <span class="score">66</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
             </div>
             <h3 class="card-title">
               <a href="https://openai.com/index/offering-zero-data-retention-for-frontier-models" target="_blank" rel="noopener noreferrer">OpenAI ofrece Retención de Datos Cero para modelos frontera a clientes API</a>
@@ -549,6 +563,7 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=latent.space&amp;sz=64" alt="" loading="lazy"/>Latent Space</span>
               
               <span class="score">66</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
             </div>
             <h3 class="card-title">
               <a href="https://www.latent.space/p/ainews-10-worse-100x-cheaper-10000x" target="_blank" rel="noopener noreferrer">La simulación, más barata y rápida, se perfila como futuro del entrenamiento de IA</a>
@@ -652,22 +667,22 @@
             <div class="m-header">
               <span class="m-lbl">Bitcoin</span>
               
-              <span class="m-chg neg">-0.32%</span>
+              <span class="m-chg neg">-0.46%</span>
               
             </div>
-            <div class="m-price">76,834.57 US$</div>
-            <svg viewBox="0 0 100 24" class="spark"><polyline fill="none" stroke="#f43f5e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,20.9 9.4,21.2 16.8,21.4 24.2,21.4 31.5,21.8 38.9,21.8 46.3,22.0 53.7,20.3 61.1,20.1 68.5,15.4 75.8,11.5 83.2,6.0 90.6,7.3 98.0,7.5"/></svg>
+            <div class="m-price">76,729.58 US$</div>
+            <svg viewBox="0 0 100 24" class="spark"><polyline fill="none" stroke="#f43f5e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,20.9 9.4,21.2 16.8,21.4 24.2,21.4 31.5,21.8 38.9,21.8 46.3,22.0 53.7,20.3 61.1,20.1 68.5,15.4 75.8,11.5 83.2,6.0 90.6,7.3 98.0,7.7"/></svg>
           </div>
           
           <div class="m-box">
             <div class="m-header">
               <span class="m-lbl">Ethereum</span>
               
-              <span class="m-chg neg">-0.29%</span>
+              <span class="m-chg neg">-0.39%</span>
               
             </div>
-            <div class="m-price">2,417.22 US$</div>
-            <svg viewBox="0 0 100 24" class="spark"><polyline fill="none" stroke="#f43f5e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,22.0 9.4,21.7 16.8,21.8 24.2,21.7 31.5,21.8 38.9,21.8 46.3,21.9 53.7,21.0 61.1,20.9 68.5,12.6 75.8,10.7 83.2,6.0 90.6,8.3 98.0,8.4"/></svg>
+            <div class="m-price">2,414.90 US$</div>
+            <svg viewBox="0 0 100 24" class="spark"><polyline fill="none" stroke="#f43f5e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,22.0 9.4,21.7 16.8,21.8 24.2,21.7 31.5,21.8 38.9,21.8 46.3,21.9 53.7,21.0 61.1,20.9 68.5,12.6 75.8,10.7 83.2,6.0 90.6,8.3 98.0,8.5"/></svg>
           </div>
           
           <div class="m-box">
@@ -936,6 +951,46 @@
       location.replace('d/' + d + '.html');
       return;
     }
+
+    function ficha(article){
+      if (!article) return '';
+      var a = article.querySelector('.hero-title a, .card-title a');
+      var title = a ? (a.textContent || '').trim() : '';
+      var swEl = article.querySelector('.sw');
+      var sw = swEl ? (swEl.textContent || '').trim() : '';
+      var url = a ? (a.getAttribute('href') || '').trim() : '';
+      return [title, sw, url].filter(Boolean).join('\n\n');
+    }
+    function copied(btn){
+      btn.classList.add('ok');
+      btn.textContent = 'Copiado';
+      setTimeout(function(){ btn.classList.remove('ok'); btn.textContent = 'Copiar'; }, 1600);
+    }
+    function fallback(text, btn){
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      try { if (document.execCommand('copy')) copied(btn); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+    document.querySelectorAll('[data-copy]').forEach(function(btn){
+      btn.addEventListener('click', function(ev){
+        ev.preventDefault();
+        ev.stopPropagation();
+        var text = ficha(btn.closest('article'));
+        if (!text) return;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function(){ copied(btn); }).catch(function(){ fallback(text, btn); });
+        } else {
+          fallback(text, btn);
+        }
+      });
+    });
+
     var tabs = document.querySelectorAll('#tabs .tab');
     if (!tabs.length) return;
     tabs.forEach(function(t){
