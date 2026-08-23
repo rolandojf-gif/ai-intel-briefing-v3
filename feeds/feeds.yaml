@@ -1,11 +1,12 @@
 # AI Strategic Radar — source portfolio
 #
-# Filosofía: amplitud de cobertura y máxima diversidad. El gate de relevancia
-# (LLM Gemini) evalúa la señal real eliminando el ruido y seleccionando las
-# noticias más actuales y de mayor impacto sobre LLMs, frontera, agentes,
-# semiconductores y negocio de IA.
+# Caps asimétricos: los labs y SemiAnalysis pueden meter 2–3 items el mismo día
+# (un launch + un follow-up es señal, no monopolio). Generalistas y blogs de
+# análisis se quedan en 1 para que Reuters no desplace a Anthropic. El lote del
+# LLM cubre la suma de caps (ver LLM_BATCH_SIZE): si subes un cap, sube el lote.
 #
-# `cap: 1` garantiza que ninguna fuente cope el radar y la portada sea diversa.
+# El gate de Gemini decide qué sobrevive. El cap solo limita cuántos candidatos
+# aporta cada fuente, no qué se publica.
 
 sources:
   # ── Prensa Generalista & Negocios de IA ─────────────────────────
@@ -36,6 +37,7 @@ sources:
     limit: 10
     cap: 1
     tags: [finance, market, hardware, chips]
+
 
   # ── Prensa Tech Especializada ───────────────────────────────────
   - name: VentureBeat AI
@@ -73,41 +75,57 @@ sources:
     cap: 1
     tags: [tech, hardware, models]
 
+
   # ── Frontier Labs: Fuentes Primarias ──────────────────────────────
   - name: OpenAI
     type: rss
     url: https://openai.com/news/rss.xml
     limit: 8
-    cap: 1
+    cap: 3
     tags: [labs, models, frontier]
 
   - name: Anthropic
     type: rss
     url: https://tim-hilde.github.io/anthropic-rss/rss.xml
     limit: 8
-    cap: 1
+    cap: 3
     tags: [labs, models, frontier]
 
   - name: DeepMind Blog
     type: rss
     url: https://deepmind.google/blog/rss.xml
     limit: 8
-    cap: 1
+    cap: 2
     tags: [labs, models, frontier]
 
   - name: Google AI Blog
     type: rss
     url: https://blog.google/technology/ai/rss/
     limit: 8
-    cap: 1
+    cap: 2
     tags: [labs, models]
 
   - name: Mistral
     type: rss
     url: https://mistral.ai/rss.xml
     limit: 6
-    cap: 1
+    cap: 2
     tags: [labs, models, open_weights]
+
+  - name: Meta AI
+    type: rss
+    url: https://news.google.com/rss/search?q=site:ai.meta.com&hl=en-US&gl=US&ceid=US:en
+    limit: 8
+    cap: 2
+    tags: [labs, models, frontier, open_weights]
+
+  - name: xAI
+    type: rss
+    url: https://news.google.com/rss/search?q=site:x.ai/news&hl=en-US&gl=US&ceid=US:en
+    limit: 8
+    cap: 2
+    tags: [labs, models, frontier]
+
 
   # ── Benchmarks Independientes & Evaluación ──────────────────────────
   - name: Artificial Analysis
@@ -130,20 +148,42 @@ sources:
     cap: 1
     tags: [models, economics, router]
 
+  - name: Epoch AI
+    type: rss
+    url: https://epochai.substack.com/feed
+    limit: 6
+    cap: 2
+    tags: [compute, economics, analysis, frontier]
+
+  - name: Import AI
+    type: rss
+    url: https://jack-clark.net/feed/
+    limit: 4
+    cap: 1
+    tags: [frontier, analysis, geopol]
+
+
   # ── China Stack ───────────────────────────────────────────────────────
   - name: Qwen (Alibaba)
     type: rss
     url: https://qwenlm.github.io/blog/index.xml
     limit: 6
-    cap: 1
+    cap: 2
     tags: [china, models, open_weights]
 
   - name: DeepSeek Releases
     type: rss
     url: https://github.com/deepseek-ai/DeepSeek-V3/releases.atom
     limit: 5
-    cap: 1
+    cap: 2
     tags: [china, models, open_weights]
+
+  - name: Moonshot (Kimi)
+    type: rss
+    url: https://news.google.com/rss/search?q=site:kimi.com/blog+OR+site:moonshot.ai/blog&hl=en-US&gl=US&ceid=US:en
+    limit: 6
+    cap: 2
+    tags: [china, labs, models, open_weights]
 
   - name: ChinaTalk
     type: rss
@@ -151,6 +191,7 @@ sources:
     limit: 6
     cap: 1
     tags: [china, geopol, analysis]
+
 
   # ── Economía de Modelos & Infraestructura Hardware ──────────────────────
   - name: Together AI
@@ -164,7 +205,7 @@ sources:
     type: rss
     url: https://semianalysis.com/feed/
     limit: 6
-    cap: 1
+    cap: 2
     tags: [compute, chips, analysis, economics]
 
   - name: SemiWiki
