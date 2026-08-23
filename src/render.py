@@ -103,14 +103,60 @@ def source_logo_url(source: str, url: str = "") -> str:
     return f"https://www.google.com/s2/favicons?domain={host or 'github.com'}&sz=64"
 
 
+def _xml_escape(text: str) -> str:
+    """Escapa texto para insertarlo en un SVG.
+
+    El & va PRIMERO o se re-escaparian los & de las propias entidades.
+    """
+    return (
+        (text or "")
+        .replace("&", "&amp;")
+        .replace("<", "&lt;")
+        .replace(">", "&gt;")
+        .replace('"', "&quot;")
+    )
+
+
+def _wrap_svg_title(title: str, per_line: int = 32, max_lines: int = 3) -> list[str]:
+    """Parte el titular en lineas cortas por limite de palabra.
+
+    SVG no reajusta texto solo: `width` en <text> no hace nada, asi que un
+    titular largo se salia del lienzo. Hay que partirlo a mano en <tspan>.
+    """
+    words = (title or "").split()
+    lines: list[str] = []
+    current = ""
+    for w in words:
+        candidate = f"{current} {w}".strip()
+        if len(candidate) <= per_line:
+            current = candidate
+            continue
+        if current:
+            lines.append(current)
+        current = w
+        if len(lines) == max_lines:
+            break
+    if current and len(lines) < max_lines:
+        lines.append(current)
+
+    if not lines:
+        return ["AI Intelligence"]
+    # Si sobraron palabras, marcamos el corte en la ultima linea visible.
+    used = sum(len(x.split()) for x in lines)
+    if used < len(words):
+        lines[-1] = lines[-1].rstrip(",;:.") + "…"
+    return lines
+
+
 def item_fallback_image(item: dict) -> str:
     """Genera una imagen SVG tematica si el articulo no tiene imagen OpenGraph.
 
-    Paleta carbon + acentos de la identidad Discover, para que las cards sin
-    imagen OG no desentonen con el resto de la rejilla.
+    Todo el texto insertado se escapa: las etiquetas "COMPUTE & CHIPS" y
+    "AGENTS & REASONING" llevaban un & literal, que es XML invalido, y el
+    navegador descartaba el SVG entero mostrando el icono de imagen rota.
+    Afectaba a cualquier item sin imagen OG con esos dos temas.
     """
     theme = (item.get("strategic_theme") or item.get("primary") or "ai").lower()
-    title = (display_title(item) or "AI Intelligence").replace('"', '&quot;')[:60]
 
     if "chip" in theme or "compute" in theme or "infra" in theme:
         c1, c2 = "#1c1e1e", "#12343c"
@@ -129,6 +175,13 @@ def item_fallback_image(item: dict) -> str:
         accent = "#e8b750"
         label = "STRATEGIC INTEL"
 
+    lines = _wrap_svg_title(display_title(item) or "AI Intelligence")
+    tspans = "".join(
+        f'<tspan x="40" dy="{0 if idx == 0 else 34}">{_xml_escape(line)}</tspan>'
+        for idx, line in enumerate(lines)
+    )
+    source = _xml_escape(source_label(item.get("source", ""))[:38])
+
     svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="100%" height="100%">
   <defs>
     <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -142,11 +195,11 @@ def item_fallback_image(item: dict) -> str:
   </defs>
   <rect width="640" height="360" fill="url(#g)"/>
   <rect width="640" height="360" fill="url(#r)"/>
-  <circle cx="540" cy="80" r="140" fill="{accent}" opacity="0.08" filter="blur(40px)"/>
-  <text x="40" y="80" fill="{accent}" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="800" letter-spacing="2">{label}</text>
-  <text x="40" y="160" fill="#eceeed" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="700" width="560">{title}</text>
-  <line x1="40" y1="310" x2="600" y2="310" stroke="#3d4040" stroke-width="1"/>
-  <text x="40" y="332" fill="#9b9f9e" font-family="system-ui, sans-serif" font-size="12">AI Strategic Radar · Frontier Intelligence</text>
+  <circle cx="540" cy="70" r="130" fill="{accent}" opacity="0.10"/>
+  <text x="40" y="76" fill="{accent}" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="800" letter-spacing="2">{_xml_escape(label)}</text>
+  <text y="150" fill="#eceeed" font-family="system-ui, -apple-system, sans-serif" font-size="27" font-weight="700">{tspans}</text>
+  <line x1="40" y1="308" x2="600" y2="308" stroke="#3d4040" stroke-width="1"/>
+  <text x="40" y="332" fill="#9b9f9e" font-family="system-ui, sans-serif" font-size="12">{source}</text>
 </svg>'''
     import base64
     b64 = base64.b64encode(svg.encode("utf-8")).decode("ascii")
@@ -235,7 +288,7 @@ TEMPLATE = ENV.from_string("""
   img{max-width:100%}
   .wrap{max-width:1280px;margin:0 auto;padding:0 24px 80px}
 
-  /* ── Barra superior ─────────────────────────────────────────────── */
+  /* -- Barra superior -- */
   .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;
           padding:18px 0;border-bottom:1px solid var(--line);margin-bottom:20px;flex-wrap:wrap}
   .brand{display:flex;align-items:center;gap:10px;font-family:var(--disp);font-size:17px;font-weight:700;letter-spacing:-.01em}
@@ -255,7 +308,7 @@ TEMPLATE = ENV.from_string("""
   .nav a.on{color:var(--accent);background:var(--accent-soft)}
   .nav a:hover{color:var(--txt)}
 
-  /* ── Tesis ────────────────────────────────────────────────────────── */
+  /* -- Tesis -- */
   .thesis{padding:6px 0 18px}
   .thesis .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--accent);
                text-transform:uppercase;font-weight:700;display:block;margin-bottom:8px}
@@ -266,7 +319,7 @@ TEMPLATE = ENV.from_string("""
             border-left:3px solid var(--amber);background:rgba(232,183,80,.06);border-radius:10px;
             font-size:13px;color:#eccd8e;line-height:1.55}
 
-  /* ── Tabs de tema (Discover) ────────────────────────────────────── */
+  /* -- Tabs de tema (Discover) -- */
   .tabs{display:flex;gap:8px;flex-wrap:wrap;padding:4px 0 22px}
   .tab{font-size:13px;font-weight:600;padding:8px 16px;border-radius:999px;cursor:pointer;
        border:1px solid var(--line);background:var(--card);color:var(--dim);
@@ -275,10 +328,10 @@ TEMPLATE = ENV.from_string("""
   .tab.on{color:#0e2b30;background:var(--accent);border-color:var(--accent);font-weight:700}
   .tab .n{font-family:var(--mono);font-size:10.5px;opacity:.75;margin-left:5px}
 
-  /* ── Rejilla principal ───────────────────────────────────────────── */
+  /* -- Rejilla principal -- */
   .layout{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:26px;align-items:start}
 
-  /* ── Hero (card destacada Discover) ───────────────────────────────── */
+  /* -- Hero (card destacada Discover) -- */
   .hero{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
         overflow:hidden;margin-bottom:18px;transition:background .15s,border-color .15s}
   .hero:hover{background:var(--card-hover);border-color:var(--line-2)}
@@ -291,6 +344,10 @@ TEMPLATE = ENV.from_string("""
        padding:3px 9px;border-radius:999px;color:var(--accent);background:var(--accent-soft);
        border:1px solid var(--accent-line);font-weight:700}
   .score{font-family:var(--mono);font-size:10.5px;color:var(--dimmer);margin-left:auto}
+  .badge-new{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;
+             font-weight:700;padding:3px 8px;border-radius:999px;color:#0d2b1c;
+             background:var(--green);flex-shrink:0}
+  .tab-new.on{color:#0d2b1c;background:var(--green);border-color:var(--green)}
   .multi{font-family:var(--mono);font-size:9.5px;color:var(--violet);border:1px solid rgba(178,139,242,.35);
          background:rgba(178,139,242,.1);padding:3px 8px;border-radius:999px;font-weight:700}
   .hero-title{margin:0 0 10px;font-family:var(--disp);font-size:clamp(19px,2.3vw,26px);
@@ -308,7 +365,7 @@ TEMPLATE = ENV.from_string("""
   .ent{font-family:var(--mono);font-size:10px;padding:3px 9px;border-radius:999px;
        background:rgba(255,255,255,.04);color:var(--dim);border:1px solid var(--line)}
 
-  /* ── Rejilla de cards (Discover) ───────────────────────────────────── */
+  /* -- Rejilla de cards (Discover) -- */
   .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
   .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
         overflow:hidden;display:flex;flex-direction:column;
@@ -324,7 +381,7 @@ TEMPLATE = ENV.from_string("""
   .card-foot{margin-top:auto;padding-top:10px;border-top:1px solid var(--line);display:grid;gap:6px}
   .card-foot .fact{font-size:11.5px}
 
-  /* ── Contexto ─────────────────────────────────────────────────────── */
+  /* -- Contexto -- */
   .section-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;
              margin:26px 0 14px;padding-bottom:10px;border-bottom:1px solid var(--line)}
   .section-h h2{margin:0;font-family:var(--disp);font-size:15px;font-weight:700}
@@ -344,7 +401,7 @@ TEMPLATE = ENV.from_string("""
   .empty .big{font-family:var(--disp);font-size:17px;font-weight:650;margin-bottom:8px}
   .empty .sub{font-size:13.5px;color:var(--dim);max-width:52ch;margin:0 auto;line-height:1.6}
 
-  /* ── Sidebar ──────────────────────────────────────────────────────── */
+  /* -- Sidebar -- */
   .sidebar{display:grid;gap:16px;position:sticky;top:16px}
   .widget{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px}
   .widget-title{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:13px}
@@ -409,7 +466,7 @@ TEMPLATE = ENV.from_string("""
          display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
          font-family:var(--mono);font-size:10px;color:var(--dimmer);letter-spacing:.05em}
 
-  /* ── Responsive ───────────────────────────────────────────────────── */
+  /* -- Responsive -- */
   @media(max-width:1080px){
     .layout{grid-template-columns:1fr}
     .sidebar{position:static}
@@ -454,9 +511,12 @@ TEMPLATE = ENV.from_string("""
   {% endif %}
 
   <!-- Tabs de tema -->
-  {% if theme_tabs %}
+  {% if theme_tabs or show_new_tab %}
   <div class="tabs" id="tabs">
     <span class="tab on" data-filter="all">Todas<span class="n">{{ n_signals + n_context }}</span></span>
+    {% if show_new_tab %}
+    <span class="tab tab-new" data-filter="__new__">Nuevo<span class="n">{{ n_new }}</span></span>
+    {% endif %}
     {% for t in theme_tabs %}
     <span class="tab" data-filter="{{ t.key }}">{{ t.label }}<span class="n">{{ t.count }}</span></span>
     {% endfor %}
@@ -469,13 +529,14 @@ TEMPLATE = ENV.from_string("""
     <div class="main-col">
 
       {% if hero %}
-      <article class="hero" data-theme="{{ hero.theme_key }}">
+      <article class="hero" data-theme="{{ hero.theme_key }}" data-new="{{ 1 if hero.is_new else 0 }}">
         <a href="{{ (hero.url or hero.link)|safe_url }}" target="_blank" rel="noopener noreferrer">
           <img class="hero-img" src="{{ hero.image_url }}" alt="" loading="lazy" referrerpolicy="no-referrer"/>
         </a>
         <div class="hero-body">
           <div class="meta-row">
             <span class="tag">{{ hero.theme_label }}</span>
+            {% if hero.is_new %}<span class="badge-new">Nuevo</span>{% endif %}
             <span class="src"><img src="{{ hero.logo }}" alt="" loading="lazy"/>{{ hero.source_label }}</span>
             {% if hero.other_sources %}<span class="multi">+{{ hero.other_sources|length }} medios</span>{% endif %}
             <span class="score">{{ hero.score }}</span>
@@ -504,12 +565,13 @@ TEMPLATE = ENV.from_string("""
       {% if stream %}
       <div class="grid">
         {% for it in stream %}
-        <article class="card" data-theme="{{ it.theme_key }}">
+        <article class="card" data-theme="{{ it.theme_key }}" data-new="{{ 1 if it.is_new else 0 }}">
           <a href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer">
             <img class="card-img" src="{{ it.image_url }}" alt="" loading="lazy" referrerpolicy="no-referrer"/>
           </a>
           <div class="card-body">
             <div class="meta-row">
+              {% if it.is_new %}<span class="badge-new">Nuevo</span>{% endif %}
               <span class="src"><img src="{{ it.logo }}" alt="" loading="lazy"/>{{ it.source_label }}</span>
               {% if it.other_sources %}<span class="multi">+{{ it.other_sources|length }}</span>{% endif %}
               <span class="score">{{ it.score }}</span>
@@ -551,7 +613,7 @@ TEMPLATE = ENV.from_string("""
       </div>
       <div class="ctx">
         {% for it in context %}
-        <div class="cx" data-theme="{{ it.theme_key }}">
+        <div class="cx" data-theme="{{ it.theme_key }}" data-new="{{ 1 if it.is_new else 0 }}">
           <img src="{{ it.logo }}" alt="" loading="lazy"/>
           <div class="cx-b">
             <div class="cx-t">
@@ -707,7 +769,11 @@ TEMPLATE = ENV.from_string("""
         t.classList.add('on');
         var f = t.getAttribute('data-filter');
         document.querySelectorAll('[data-theme]').forEach(function(c){
-          c.style.display = (f === 'all' || c.getAttribute('data-theme') === f) ? '' : 'none';
+          var show;
+          if (f === 'all')            show = true;
+          else if (f === '__new__')   show = c.getAttribute('data-new') === '1';
+          else                        show = c.getAttribute('data-theme') === f;
+          c.style.display = show ? '' : 'none';
         });
       });
     });
@@ -742,6 +808,10 @@ def render_index(items, briefing=None, snapshot=None, market=None):
         it["ents"] = item_entities(it)
         it["source_label"] = source_label(it.get("source", ""))
         it["logo"] = source_logo_url(it.get("source", ""), it.get("url") or it.get("link") or "")
+        # "Nuevo" = no aparecio en los snapshots de los ultimos 5 dias.
+        # `is_repeat` ya lo calcula apply_novelty_penalty comparando URL
+        # canonica y huella del titular contra el historico.
+        it["is_new"] = not bool(it.get("is_repeat"))
 
         img = (it.get("image_url") or "").strip()
         if not img or not img.startswith(("http://", "https://")):
@@ -760,13 +830,19 @@ def render_index(items, briefing=None, snapshot=None, market=None):
     stream = signals[1:] if len(signals) > 1 else []
 
     # Tabs de tema estilo Discover: solo los temas presentes hoy, con contador.
-    tab_counter = Counter(it["theme_key"] for it in signals + context)
+    visible = signals + context
+    tab_counter = Counter(it["theme_key"] for it in visible)
     theme_tabs = [
         {"key": k, "label": human_theme(k), "count": c}
         for k, c in tab_counter.most_common()
     ]
     if len(theme_tabs) < 2:
         theme_tabs = []  # con un solo tema, las tabs no aportan nada
+
+    # Tab "Nuevo": primeras apariciones. Solo se ofrece si discrimina algo;
+    # si todo es nuevo (o nada lo es) el filtro no informaria.
+    n_new = sum(1 for it in visible if it.get("is_new"))
+    show_new_tab = 0 < n_new < len(visible)
 
     memory = snapshot.get("memory") or {}
     deltas = memory.get("entity_deltas") or {}
@@ -796,6 +872,8 @@ def render_index(items, briefing=None, snapshot=None, market=None):
         stream=stream,
         context=context,
         theme_tabs=theme_tabs,
+        show_new_tab=show_new_tab,
+        n_new=n_new,
         n_signals=len(signals),
         n_context=len(context),
         n_dropped=snapshot.get("dropped_noise", 0),
