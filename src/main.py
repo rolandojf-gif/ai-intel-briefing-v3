@@ -577,7 +577,7 @@ def is_fresh_enough(it: dict) -> bool:
 
 def generate_llm_data(candidates: list[dict], llm_cache: Path, llm_done: Path) -> tuple[dict, list]:
     llm_payload = []
-    for idx, it in enumerate(candidates[:20], start=1):
+    for idx, it in enumerate(candidates[:LLM_BATCH_SIZE], start=1):
         llm_payload.append({
             "id": idx,
             "source": it.get("source", ""),
@@ -658,6 +658,14 @@ def generate_llm_data(candidates: list[dict], llm_cache: Path, llm_done: Path) -
 
 MAX_SIGNALS = 12     # techo de senales primarias
 MAX_CONTEXT = 3      # capa secundaria de contexto reducida
+
+# Debe cubrir TODO el pool de candidatos. Si es menor, la cola queda sin juicio
+# del LLM y no se puede publicar (ver el gate en apply_llm_results).
+LLM_BATCH_SIZE = 30
+
+# Score minimo para que power_shift rescate un item que el LLM no marco signal.
+# Sin umbral no filtra: el campo viene relleno en ~75% de los items.
+POWER_SHIFT_FLOOR = 55
 
 
 def apply_llm_results(candidates: list[dict], results_map: dict) -> list[dict]:
@@ -745,20 +753,35 @@ def apply_llm_results(candidates: list[dict], results_map: dict) -> list[dict]:
     signals = []
     context = []
     dropped = sum(1 for it in reranked if it.get("verdict") == "noise")
+    unjudged = 0
 
     for it in reranked:
         if it.get("verdict") == "noise":
             continue
-        # Promover a Señal de Radar principal si el LLM asignó signal o si desplaza poder de mercado
+
+        # Solo se envian al LLM los primeros LLM_BATCH_SIZE candidatos, asi que
+        # la cola queda sin veredicto. Publicarla seria afirmar un filtrado que
+        # no ha ocurrido: un item del puesto 25 que el LLM habria marcado noise
+        # acababa en "Contexto" con score 0, como si hubiera sido evaluado.
+        if it.get("verdict") == "unrated" or it.get("llm_score") is None:
+            unjudged += 1
+            continue
+
+        # Se promueve a senal lo que el LLM juzgo asi. El power_shift solo
+        # rescata items de relevancia alta: viene relleno en ~75% de los casos,
+        # asi que sin umbral no filtraba nada.
         is_signal = (
-            it.get("verdict") == "signal" or
-            bool(it.get("power_shift"))
+            it.get("verdict") == "signal"
+            or (bool(it.get("power_shift")) and int(it.get("final_score") or 0) >= POWER_SHIFT_FLOOR)
         )
         if is_signal and len(signals) < MAX_SIGNALS:
             it["verdict"] = "signal"
             signals.append(it)
         elif len(context) < MAX_CONTEXT:
             context.append(it)
+
+    if unjudged:
+        print(f"Gate: {unjudged} items descartados por no llegar al lote del LLM (sin veredicto).")
 
     gate_ran = any(it.get("verdict") in ("signal", "context", "noise") for it in reranked)
 
@@ -903,7 +926,7 @@ def main():
 
     # 3) Preselect
     deduped.sort(key=lambda x: x.get("adjusted_score", x.get("score", 0)), reverse=True)
-    candidates = deduped[:30]
+    candidates = deduped[:LLM_BATCH_SIZE]
 
     # Enriquecer candidatos con imagenes OpenGraph en alta resolucion
     from src.fetch import enrich_items_with_images
@@ -970,8 +993,17 @@ def main():
     )
 
     # 8) Render HTML
-    from src.market import get_market_overview
-    market_data = get_market_overview()
+    # El panel de mercado es accesorio: una API de terceros caida no puede
+    # impedir que se publique el radar. Sin el try, un fallo aqui dejaba el
+    # snapshot escrito pero el index.html sin regenerar, con la web congelada.
+    try:
+        from src.market import get_market_overview
+        market_data = get_market_overview()
+    except Exception:
+        print("MARKET panel FAILED (traceback):")
+        traceback.print_exc()
+        market_data = None
+
     html = render_index(final_items, briefing=briefing, snapshot=daily_snapshot, market=market_data)
     Path("docs").mkdir(exist_ok=True)
     Path("docs/index.html").write_text(html, encoding="utf-8")
