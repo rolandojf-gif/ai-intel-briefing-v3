@@ -26,7 +26,7 @@
   img{max-width:100%}
   .wrap{max-width:1280px;margin:0 auto;padding:0 24px 80px}
 
-  /* ── Barra superior ─────────────────────────────────────────────── */
+  /* -- Barra superior -- */
   .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;
           padding:18px 0;border-bottom:1px solid var(--line);margin-bottom:20px;flex-wrap:wrap}
   .brand{display:flex;align-items:center;gap:10px;font-family:var(--disp);font-size:17px;font-weight:700;letter-spacing:-.01em}
@@ -46,7 +46,7 @@
   .nav a.on{color:var(--accent);background:var(--accent-soft)}
   .nav a:hover{color:var(--txt)}
 
-  /* ── Tesis ────────────────────────────────────────────────────────── */
+  /* -- Tesis -- */
   .thesis{padding:6px 0 18px}
   .thesis .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--accent);
                text-transform:uppercase;font-weight:700;display:block;margin-bottom:8px}
@@ -57,7 +57,7 @@
             border-left:3px solid var(--amber);background:rgba(232,183,80,.06);border-radius:10px;
             font-size:13px;color:#eccd8e;line-height:1.55}
 
-  /* ── Tabs de tema (Discover) ────────────────────────────────────── */
+  /* -- Tabs de tema (Discover) -- */
   .tabs{display:flex;gap:8px;flex-wrap:wrap;padding:4px 0 22px}
   .tab{font-size:13px;font-weight:600;padding:8px 16px;border-radius:999px;cursor:pointer;
        border:1px solid var(--line);background:var(--card);color:var(--dim);
@@ -66,10 +66,10 @@
   .tab.on{color:#0e2b30;background:var(--accent);border-color:var(--accent);font-weight:700}
   .tab .n{font-family:var(--mono);font-size:10.5px;opacity:.75;margin-left:5px}
 
-  /* ── Rejilla principal ───────────────────────────────────────────── */
+  /* -- Rejilla principal -- */
   .layout{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:26px;align-items:start}
 
-  /* ── Hero (card destacada Discover) ───────────────────────────────── */
+  /* -- Hero (card destacada Discover) -- */
   .hero{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
         overflow:hidden;margin-bottom:18px;transition:background .15s,border-color .15s}
   .hero:hover{background:var(--card-hover);border-color:var(--line-2)}
@@ -82,6 +82,10 @@
        padding:3px 9px;border-radius:999px;color:var(--accent);background:var(--accent-soft);
        border:1px solid var(--accent-line);font-weight:700}
   .score{font-family:var(--mono);font-size:10.5px;color:var(--dimmer);margin-left:auto}
+  .badge-new{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;
+             font-weight:700;padding:3px 8px;border-radius:999px;color:#0d2b1c;
+             background:var(--green);flex-shrink:0}
+  .tab-new.on{color:#0d2b1c;background:var(--green);border-color:var(--green)}
   .multi{font-family:var(--mono);font-size:9.5px;color:var(--violet);border:1px solid rgba(178,139,242,.35);
          background:rgba(178,139,242,.1);padding:3px 8px;border-radius:999px;font-weight:700}
   .hero-title{margin:0 0 10px;font-family:var(--disp);font-size:clamp(19px,2.3vw,26px);
@@ -99,7 +103,7 @@
   .ent{font-family:var(--mono);font-size:10px;padding:3px 9px;border-radius:999px;
        background:rgba(255,255,255,.04);color:var(--dim);border:1px solid var(--line)}
 
-  /* ── Rejilla de cards (Discover) ───────────────────────────────────── */
+  /* -- Rejilla de cards (Discover) -- */
   .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
   .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
         overflow:hidden;display:flex;flex-direction:column;
@@ -115,7 +119,7 @@
   .card-foot{margin-top:auto;padding-top:10px;border-top:1px solid var(--line);display:grid;gap:6px}
   .card-foot .fact{font-size:11.5px}
 
-  /* ── Contexto ─────────────────────────────────────────────────────── */
+  /* -- Contexto -- */
   .section-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;
              margin:26px 0 14px;padding-bottom:10px;border-bottom:1px solid var(--line)}
   .section-h h2{margin:0;font-family:var(--disp);font-size:15px;font-weight:700}
@@ -135,7 +139,7 @@
   .empty .big{font-family:var(--disp);font-size:17px;font-weight:650;margin-bottom:8px}
   .empty .sub{font-size:13.5px;color:var(--dim);max-width:52ch;margin:0 auto;line-height:1.6}
 
-  /* ── Sidebar ──────────────────────────────────────────────────────── */
+  /* -- Sidebar -- */
   .sidebar{display:grid;gap:16px;position:sticky;top:16px}
   .widget{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px}
   .widget-title{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:13px}
@@ -200,7 +204,7 @@
          display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
          font-family:var(--mono);font-size:10px;color:var(--dimmer);letter-spacing:.05em}
 
-  /* ── Responsive ───────────────────────────────────────────────────── */
+  /* -- Responsive -- */
   @media(max-width:1080px){
     .layout{grid-template-columns:1fr}
     .sidebar{position:static}
@@ -234,7 +238,7 @@
   <!-- Tesis del dia -->
   <div class="thesis">
     <span class="lbl">Tesis del día</span>
-    <h1>Los costes de infraestructura y la eficiencia en el desarrollo de agentes son los puntos de fricción clave hoy, con Nvidia subiendo precios y nuevos enfoques de desarrollo emergiendo.</h1>
+    <h1>El aumento del coste del hardware de Nvidia y las grandes inversiones de China en IA se compensan con avances en eficiencia de compute y herramientas agénticas, desplazando el cuello de botella del entrenamiento a la interconexión y la gestión de flujos de trabajo.</h1>
   </div>
 
   
@@ -244,13 +248,18 @@
   <div class="tabs" id="tabs">
     <span class="tab on" data-filter="all">Todas<span class="n">10</span></span>
     
-    <span class="tab" data-filter="agents_automation">Agentes<span class="n">4</span></span>
+    <span class="tab tab-new" data-filter="__new__">Nuevo<span class="n">4</span></span>
+    
     
     <span class="tab" data-filter="compute_chips_dc">Compute &amp; chips<span class="n">3</span></span>
+    
+    <span class="tab" data-filter="agents_automation">Agentes<span class="n">3</span></span>
     
     <span class="tab" data-filter="model_economics">Economía de modelos<span class="n">2</span></span>
     
     <span class="tab" data-filter="china_stack">Stack chino<span class="n">1</span></span>
+    
+    <span class="tab" data-filter="frontier_capability">Capacidad frontier<span class="n">1</span></span>
     
   </div>
   
@@ -261,28 +270,29 @@
     <div class="main-col">
 
       
-      <article class="hero" data-theme="compute_chips_dc">
+      <article class="hero" data-theme="compute_chips_dc" data-new="1">
         <a href="https://news.google.com/rss/articles/CBMitAFBVV95cUxNeWxlMlJjV3JZVWZoeTJhRzlhTDJOenZaS195ZEl4a1NkWERBQUwyU2hQcXlTOEk2RkpqLW5OeWhybzlFbzFONVkyWHhjNWhnSEhZQUpJS2xlSU0wOUQ3b2NsZXd0RTdGMHZsQ25rYTI4aDNNOU05OEVHMHVuaXQ0N2NyUXQtN194VXhqQ0g1SlpwdFZrM3JEeTZvYjFfVWhJaC12NkRfWTE5bzZkMXNyTC1Xbk8?oc=5" target="_blank" rel="noopener noreferrer">
-          <img class="hero-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxYzFlMWUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMTIzNDNjIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJyIiBjeD0iODAlIiBjeT0iMjAlIiByPSI2MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMjBiOGNkIiBzdG9wLW9wYWNpdHk9IjAuMjIiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWMxZTFlIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIzNjAiIGZpbGw9InVybCgjcikiLz4KICA8Y2lyY2xlIGN4PSI1NDAiIGN5PSI4MCIgcj0iMTQwIiBmaWxsPSIjMjBiOGNkIiBvcGFjaXR5PSIwLjA4IiBmaWx0ZXI9ImJsdXIoNDBweCkiLz4KICA8dGV4dCB4PSI0MCIgeT0iODAiIGZpbGw9IiMyMGI4Y2QiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIC1hcHBsZS1zeXN0ZW0sIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSI4MDAiIGxldHRlci1zcGFjaW5nPSIyIj5DT01QVVRFICYgQ0hJUFM8L3RleHQ+CiAgPHRleHQgeD0iNDAiIHk9IjE2MCIgZmlsbD0iI2VjZWVlZCIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgLWFwcGxlLXN5c3RlbSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9IjcwMCIgd2lkdGg9IjU2MCI+TnZpZGlhIHN1YmUgbcOhcyBkZWwgMTUlIGxvcyBwcmVjaW9zIGRlIHN1cyBwcm9kdWN0b3MgcmVsYWNpbzwvdGV4dD4KICA8bGluZSB4MT0iNDAiIHkxPSIzMTAiIHgyPSI2MDAiIHkyPSIzMTAiIHN0cm9rZT0iIzNkNDA0MCIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPHRleHQgeD0iNDAiIHk9IjMzMiIgZmlsbD0iIzliOWY5ZSIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiI+QUkgU3RyYXRlZ2ljIFJhZGFyIMK3IEZyb250aWVyIEludGVsbGlnZW5jZTwvdGV4dD4KPC9zdmc+" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          <img class="hero-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxYzFlMWUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMTIzNDNjIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJyIiBjeD0iODAlIiBjeT0iMjAlIiByPSI2MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMjBiOGNkIiBzdG9wLW9wYWNpdHk9IjAuMjIiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWMxZTFlIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIzNjAiIGZpbGw9InVybCgjcikiLz4KICA8Y2lyY2xlIGN4PSI1NDAiIGN5PSI3MCIgcj0iMTMwIiBmaWxsPSIjMjBiOGNkIiBvcGFjaXR5PSIwLjEwIi8+CiAgPHRleHQgeD0iNDAiIHk9Ijc2IiBmaWxsPSIjMjBiOGNkIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCAtYXBwbGUtc3lzdGVtLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iODAwIiBsZXR0ZXItc3BhY2luZz0iMiI+Q09NUFVURSAmYW1wOyBDSElQUzwvdGV4dD4KICA8dGV4dCB5PSIxNTAiIGZpbGw9IiNlY2VlZWQiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIC1hcHBsZS1zeXN0ZW0sIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSI3MDAiPjx0c3BhbiB4PSI0MCIgZHk9IjAiPk52aWRpYSBzdWJlIGxvcyBwcmVjaW9zIGRlIHN1czwvdHNwYW4+PHRzcGFuIHg9IjQwIiBkeT0iMzQiPnByb2R1Y3RvcyBkZSBJQSBtw6FzIGRlbCAxNSUgYTwvdHNwYW4+PHRzcGFuIHg9IjQwIiBkeT0iMzQiPnN1cyBjbGllbnRlczwvdHNwYW4+PC90ZXh0PgogIDxsaW5lIHgxPSI0MCIgeTE9IjMwOCIgeDI9IjYwMCIgeTI9IjMwOCIgc3Ryb2tlPSIjM2Q0MDQwIiBzdHJva2Utd2lkdGg9IjEiLz4KICA8dGV4dCB4PSI0MCIgeT0iMzMyIiBmaWxsPSIjOWI5ZjllIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIj5CbG9vbWJlcmcgVGVjaDwvdGV4dD4KPC9zdmc+" alt="" loading="lazy" referrerpolicy="no-referrer"/>
         </a>
         <div class="hero-body">
           <div class="meta-row">
             <span class="tag">Compute &amp; chips</span>
+            <span class="badge-new">Nuevo</span>
             <span class="src"><img src="https://www.google.com/s2/favicons?domain=bloomberg.com&amp;sz=64" alt="" loading="lazy"/>Bloomberg Tech</span>
             
-            <span class="score">98</span>
+            <span class="score">94</span>
           </div>
           <h2 class="hero-title">
-            <a href="https://news.google.com/rss/articles/CBMitAFBVV95cUxNeWxlMlJjV3JZVWZoeTJhRzlhTDJOenZaS195ZEl4a1NkWERBQUwyU2hQcXlTOEk2RkpqLW5OeWhybzlFbzFONVkyWHhjNWhnSEhZQUpJS2xlSU0wOUQ3b2NsZXd0RTdGMHZsQ25rYTI4aDNNOU05OEVHMHVuaXQ0N2NyUXQtN194VXhqQ0g1SlpwdFZrM3JEeTZvYjFfVWhJaC12NkRfWTE5bzZkMXNyTC1Xbk8?oc=5" target="_blank" rel="noopener noreferrer">Nvidia sube más del 15% los precios de sus productos relacionados con IA</a>
+            <a href="https://news.google.com/rss/articles/CBMitAFBVV95cUxNeWxlMlJjV3JZVWZoeTJhRzlhTDJOenZaS195ZEl4a1NkWERBQUwyU2hQcXlTOEk2RkpqLW5OeWhybzlFbzFONVkyWHhjNWhnSEhZQUpJS2xlSU0wOUQ3b2NsZXd0RTdGMHZsQ25rYTI4aDNNOU05OEVHMHVuaXQ0N2NyUXQtN194VXhqQ0g1SlpwdFZrM3JEeTZvYjFfVWhJaC12NkRfWTE5bzZkMXNyTC1Xbk8?oc=5" target="_blank" rel="noopener noreferrer">Nvidia sube los precios de sus productos de IA más del 15% a sus clientes</a>
           </h2>
-          <div class="sw">El aumento de precios de Nvidia incrementa los costes de entrenamiento y operación de modelos, afectando márgenes de los proveedores de IA y el acceso a compute.</div>
+          <div class="sw">El coste de la infraestructura de IA aumenta para los compradores de hardware Nvidia, impactando los márgenes de los proveedores de la nube y los desarrolladores de modelos.</div>
           
           <div class="facts two">
             
-            <div class="fact pw"><span class="k">Poder</span><span class="v">Nvidia consolida poder en chips / Desarrolladores de IA y hyperscalers pierden margen</span></div>
+            <div class="fact pw"><span class="k">Poder</span><span class="v">Nvidia gana poder de fijación de precios / Clientes de Nvidia pierden poder adquisitivo.</span></div>
             
             
-            <div class="fact wn"><span class="k">Vigilar</span><span class="v">Reacciones de hyperscalers y startups sobre el impacto en sus roadmaps de inversión en compute.</span></div>
+            <div class="fact wn"><span class="k">Vigilar</span><span class="v">Observar si los competidores (AMD, Intel) aprovechan esto para ganar cuota o si hay descontento público.</span></div>
             
           </div>
           
@@ -296,243 +306,168 @@
       
       <div class="grid">
         
-        <article class="card" data-theme="china_stack">
-          <a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxOSHJGOUFEMWhrdjlTbk5JelZ2Zl9jNWZ3UjRUTFVZX3hyTmx2bnZ2Qi1Ob3FPZGdBNkoyOHpfRXk3YzFpYXMwNkZHb09uX01jWDRVZ3lJSi1rM2ZGbldMV1J1d0lLUWFTS1FLcHowTXNobENIUkxody01eDItOHZucHRUV0xjME80UkxscjVNX1dnRUlHY1BCN3o5TV9CMFNzcnlobjJBVWdyMHNiQjNtT090bEV6WXQyUU5SdQ?oc=5" target="_blank" rel="noopener noreferrer">
-            <img class="card-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxYzFlMWUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMzMyOTFhIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJyIiBjeD0iODAlIiBjeT0iMjAlIiByPSI2MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjZThiNzUwIiBzdG9wLW9wYWNpdHk9IjAuMjIiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWMxZTFlIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIzNjAiIGZpbGw9InVybCgjcikiLz4KICA8Y2lyY2xlIGN4PSI1NDAiIGN5PSI4MCIgcj0iMTQwIiBmaWxsPSIjZThiNzUwIiBvcGFjaXR5PSIwLjA4IiBmaWx0ZXI9ImJsdXIoNDBweCkiLz4KICA8dGV4dCB4PSI0MCIgeT0iODAiIGZpbGw9IiNlOGI3NTAiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIC1hcHBsZS1zeXN0ZW0sIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSI4MDAiIGxldHRlci1zcGFjaW5nPSIyIj5TVFJBVEVHSUMgSU5URUw8L3RleHQ+CiAgPHRleHQgeD0iNDAiIHk9IjE2MCIgZmlsbD0iI2VjZWVlZCIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgLWFwcGxlLXN5c3RlbSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9IjcwMCIgd2lkdGg9IjU2MCI+QWxpYmFiYSBwbGFuZWEgdW5hIGNvbG9jYWNpw7NuIGRlIGFjY2lvbmVzIGRlIDEwLjAwMCBtaWxsb25lczwvdGV4dD4KICA8bGluZSB4MT0iNDAiIHkxPSIzMTAiIHgyPSI2MDAiIHkyPSIzMTAiIHN0cm9rZT0iIzNkNDA0MCIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPHRleHQgeD0iNDAiIHk9IjMzMiIgZmlsbD0iIzliOWY5ZSIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiI+QUkgU3RyYXRlZ2ljIFJhZGFyIMK3IEZyb250aWVyIEludGVsbGlnZW5jZTwvdGV4dD4KPC9zdmc+" alt="" loading="lazy" referrerpolicy="no-referrer"/>
-          </a>
-          <div class="card-body">
-            <div class="meta-row">
-              <span class="src"><img src="https://www.google.com/s2/favicons?domain=reuters.com&amp;sz=64" alt="" loading="lazy"/>Reuters AI</span>
-              
-              <span class="score">86</span>
-            </div>
-            <h3 class="card-title">
-              <a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxOSHJGOUFEMWhrdjlTbk5JelZ2Zl9jNWZ3UjRUTFVZX3hyTmx2bnZ2Qi1Ob3FPZGdBNkoyOHpfRXk3YzFpYXMwNkZHb09uX01jWDRVZ3lJSi1rM2ZGbldMV1J1d0lLUWFTS1FLcHowTXNobENIUkxody01eDItOHZucHRUV0xjME80UkxscjVNX1dnRUlHY1BCN3o5TV9CMFNzcnlobjJBVWdyMHNiQjNtT090bEV6WXQyUU5SdQ?oc=5" target="_blank" rel="noopener noreferrer">Alibaba planea una colocación de acciones de 10.000 millones de dólares para gasto en IA</a>
-            </h3>
-            <div class="sw">Alibaba inyecta capital considerable en su estrategia de IA, lo que puede acelerar el desarrollo de su stack y sus modelos, impulsando la competencia en China y globalmente.</div>
-            
-            <div class="card-foot">
-              
-              <div class="fact pw"><span class="k">Poder</span><span class="v">Alibaba gana capacidad de inversión / Competidores chinos y occidentales reciben presión</span></div>
-              
-              
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Anuncios concretos de Alibaba sobre dónde se destinará esta inversión (chips, talento, infraestructuras).</span></div>
-              
-            </div>
-            
-          </div>
-        </article>
-        
-        <article class="card" data-theme="compute_chips_dc">
+        <article class="card" data-theme="compute_chips_dc" data-new="0">
           <a href="https://semiwiki.com/semiconductor-manufacturers/tsmc/372488-how-tsmc-is-wiring-the-ai-era-with-light/" target="_blank" rel="noopener noreferrer">
             <img class="card-img" src="https://semiwiki.com/wp-content/uploads/2026/08/How-TSMC-Is-Wiring-the-AI-Era-With-Light-1200x675.jpg" alt="" loading="lazy" referrerpolicy="no-referrer"/>
           </a>
           <div class="card-body">
             <div class="meta-row">
+              
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=semiwiki.com&amp;sz=64" alt="" loading="lazy"/>SemiWiki</span>
               
-              <span class="score">83</span>
+              <span class="score">87</span>
             </div>
             <h3 class="card-title">
-              <a href="https://semiwiki.com/semiconductor-manufacturers/tsmc/372488-how-tsmc-is-wiring-the-ai-era-with-light/" target="_blank" rel="noopener noreferrer">TSMC desarrolla fotónica de silicio para integración con lógica avanzada en chips IA</a>
+              <a href="https://semiwiki.com/semiconductor-manufacturers/tsmc/372488-how-tsmc-is-wiring-the-ai-era-with-light/" target="_blank" rel="noopener noreferrer">TSMC avanza en fotónica de silicio para la era de la IA con integración óptica</a>
             </h3>
-            <div class="sw">La estrategia fotónica de TSMC es clave para superar los cuellos de botella de interconexión en chips de IA, permitiendo mayor rendimiento y eficiencia para el entrenamiento de modelos.</div>
+            <div class="sw">La estrategia de TSMC de integrar I/O óptico directamente en la lógica avanza la capacidad de cómputo para IA, superando los cuellos de botella de interconexión eléctrica en los chips.</div>
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">TSMC gana liderazgo en interconexión de chips / Rivales en fabricación de chips se enfrentan a un reto tecnológico.</span></div>
+              <div class="fact pw"><span class="k">Poder</span><span class="v">TSMC fortalece su posición como fabricante líder de chips de IA, permitiendo mayor densidad de cómputo.</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Próximos anuncios de productos o nodos de fabricación de TSMC que integren esta tecnología.</span></div>
+              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Primeras implementaciones de la plataforma TSMC-COUPE en chips de IA de alto rendimiento.</span></div>
               
             </div>
             
           </div>
         </article>
         
-        <article class="card" data-theme="model_economics">
+        <article class="card" data-theme="china_stack" data-new="1">
+          <a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxOSHJGOUFEMWhrdjlTbk5JelZ2Zl9jNWZ3UjRUTFVZX3hyTmx2bnZ2Qi1Ob3FPZGdBNkoyOHpfRXk3YzFpYXMwNkZHb09uX01jWDRVZ3lJSi1rM2ZGbldMV1J1d0lLUWFTS1FLcHowTXNobENIUkxody01eDItOHZucHRUV0xjME80UkxscjVNX1dnRUlHY1BCN3o5TV9CMFNzcnlobjJBVWdyMHNiQjNtT090bEV6WXQyUU5SdQ?oc=5" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxYzFlMWUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMzMyOTFhIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJyIiBjeD0iODAlIiBjeT0iMjAlIiByPSI2MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjZThiNzUwIiBzdG9wLW9wYWNpdHk9IjAuMjIiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWMxZTFlIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIzNjAiIGZpbGw9InVybCgjcikiLz4KICA8Y2lyY2xlIGN4PSI1NDAiIGN5PSI3MCIgcj0iMTMwIiBmaWxsPSIjZThiNzUwIiBvcGFjaXR5PSIwLjEwIi8+CiAgPHRleHQgeD0iNDAiIHk9Ijc2IiBmaWxsPSIjZThiNzUwIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCAtYXBwbGUtc3lzdGVtLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iODAwIiBsZXR0ZXItc3BhY2luZz0iMiI+U1RSQVRFR0lDIElOVEVMPC90ZXh0PgogIDx0ZXh0IHk9IjE1MCIgZmlsbD0iI2VjZWVlZCIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgLWFwcGxlLXN5c3RlbSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNyIgZm9udC13ZWlnaHQ9IjcwMCI+PHRzcGFuIHg9IjQwIiBkeT0iMCI+QWxpYmFiYSBwbGFuZWEgdW5hIGVtaXNpw7NuIGRlPC90c3Bhbj48dHNwYW4geD0iNDAiIGR5PSIzNCI+YWNjaW9uZXMgZGUgMTAuMDAwIG1pbGxvbmVzIGRlPC90c3Bhbj48dHNwYW4geD0iNDAiIGR5PSIzNCI+ZMOzbGFyZXMgcGFyYSBmaW5hbmNpYXIgSUE8L3RzcGFuPjwvdGV4dD4KICA8bGluZSB4MT0iNDAiIHkxPSIzMDgiIHgyPSI2MDAiIHkyPSIzMDgiIHN0cm9rZT0iIzNkNDA0MCIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPHRleHQgeD0iNDAiIHk9IjMzMiIgZmlsbD0iIzliOWY5ZSIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiI+UmV1dGVycyBBSTwvdGV4dD4KPC9zdmc+" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="badge-new">Nuevo</span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=reuters.com&amp;sz=64" alt="" loading="lazy"/>Reuters AI</span>
+              
+              <span class="score">86</span>
+            </div>
+            <h3 class="card-title">
+              <a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxOSHJGOUFEMWhrdjlTbk5JelZ2Zl9jNWZ3UjRUTFVZX3hyTmx2bnZ2Qi1Ob3FPZGdBNkoyOHpfRXk3YzFpYXMwNkZHb09uX01jWDRVZ3lJSi1rM2ZGbldMV1J1d0lLUWFTS1FLcHowTXNobENIUkxody01eDItOHZucHRUV0xjME80UkxscjVNX1dnRUlHY1BCN3o5TV9CMFNzcnlobjJBVWdyMHNiQjNtT090bEV6WXQyUU5SdQ?oc=5" target="_blank" rel="noopener noreferrer">Alibaba planea una emisión de acciones de 10.000 millones de dólares para financiar IA</a>
+            </h3>
+            <div class="sw">Indica una significativa inversión de capital de una gran tecnológica china en la carrera de la IA, lo que podría aumentar su capacidad de compute y desarrollo de modelos.</div>
+            
+            <div class="card-foot">
+              
+              <div class="fact pw"><span class="k">Poder</span><span class="v">Alibaba gana potencial de capacidad de compute / China Stack en general se fortalece.</span></div>
+              
+              
+              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Desglose de cómo Alibaba asigna estos fondos (ej., compra de GPUs, desarrollo de chips propios, talento).</span></div>
+              
+            </div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-theme="model_economics" data-new="0">
           <a href="https://www.together.ai/blog/glm-5-3-vs-gpt-5-6-sol-on-deepswe-cost-coding-and-routing" target="_blank" rel="noopener noreferrer">
             <img class="card-img" src="https://cdn.prod.website-files.com/69654e88dce9154b5f12070c/6a8934b9fcc541cde30c4b07_OG-image_202600821_GLM53vsGPT56Sol.png" alt="" loading="lazy" referrerpolicy="no-referrer"/>
           </a>
           <div class="card-body">
             <div class="meta-row">
+              
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=together.ai&amp;sz=64" alt="" loading="lazy"/>Together AI</span>
-              
-              <span class="score">79</span>
-            </div>
-            <h3 class="card-title">
-              <a href="https://www.together.ai/blog/glm-5-3-vs-gpt-5-6-sol-on-deepswe-cost-coding-and-routing" target="_blank" rel="noopener noreferrer">GLM-5.3 supera a GPT-5.6 Sol en pass@4 a mitad de coste en DeepSWE de codificación</a>
-            </h3>
-            <div class="sw">Modelos menos conocidos como GLM-5.3 ofrecen rendimiento competitivo en codificación con costes significativamente menores, presionando los precios de los modelos líderes.</div>
-            
-            <div class="card-foot">
-              
-              <div class="fact pw"><span class="k">Poder</span><span class="v">Together AI gana visibilidad, modelos open-source ganan / OpenAI pierde cuota potencial</span></div>
-              
-              
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Lanzamiento de versiones comerciales de GLM-5.3 con estas métricas.</span></div>
-              
-            </div>
-            
-          </div>
-        </article>
-        
-        <article class="card" data-theme="agents_automation">
-          <a href="https://simonwillison.net/2026/Aug/22/linus-torvalds/" target="_blank" rel="noopener noreferrer">
-            <img class="card-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxYzFlMWUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMmEyMTQ1Ii8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJyIiBjeD0iODAlIiBjeT0iMjAlIiByPSI2MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjYjI4YmYyIiBzdG9wLW9wYWNpdHk9IjAuMjIiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWMxZTFlIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIzNjAiIGZpbGw9InVybCgjcikiLz4KICA8Y2lyY2xlIGN4PSI1NDAiIGN5PSI4MCIgcj0iMTQwIiBmaWxsPSIjYjI4YmYyIiBvcGFjaXR5PSIwLjA4IiBmaWx0ZXI9ImJsdXIoNDBweCkiLz4KICA8dGV4dCB4PSI0MCIgeT0iODAiIGZpbGw9IiNiMjhiZjIiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIC1hcHBsZS1zeXN0ZW0sIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSI4MDAiIGxldHRlci1zcGFjaW5nPSIyIj5BR0VOVFMgJiBSRUFTT05JTkc8L3RleHQ+CiAgPHRleHQgeD0iNDAiIHk9IjE2MCIgZmlsbD0iI2VjZWVlZCIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgLWFwcGxlLXN5c3RlbSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9IjcwMCIgd2lkdGg9IjU2MCI+TGludXMgVG9ydmFsZHMgdXNhIElBIHBhcmEgZGVwdXJhY2nDs24sIGRlc3RhY2FuZG8gc3UgdXRpbGlkYTwvdGV4dD4KICA8bGluZSB4MT0iNDAiIHkxPSIzMTAiIHgyPSI2MDAiIHkyPSIzMTAiIHN0cm9rZT0iIzNkNDA0MCIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPHRleHQgeD0iNDAiIHk9IjMzMiIgZmlsbD0iIzliOWY5ZSIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiI+QUkgU3RyYXRlZ2ljIFJhZGFyIMK3IEZyb250aWVyIEludGVsbGlnZW5jZTwvdGV4dD4KPC9zdmc+" alt="" loading="lazy" referrerpolicy="no-referrer"/>
-          </a>
-          <div class="card-body">
-            <div class="meta-row">
-              <span class="src"><img src="https://www.google.com/s2/favicons?domain=simonwillison.net&amp;sz=64" alt="" loading="lazy"/>Simon Willison (AI &amp; LLMs)</span>
-              
-              <span class="score">76</span>
-            </div>
-            <h3 class="card-title">
-              <a href="https://simonwillison.net/2026/Aug/22/linus-torvalds/" target="_blank" rel="noopener noreferrer">Linus Torvalds usa IA para depuración, destacando su utilidad y obstinación humana</a>
-            </h3>
-            <div class="sw">La IA ya es una herramienta productiva para tareas cognitivas complejas como la depuración de código, aunque todavía requiere supervisión humana y perserverancia.</div>
-            
-            <div class="card-foot">
-              
-              <div class="fact pw"><span class="k">Poder</span><span class="v">Herramientas de IA para desarrollo ganan / Desarrolladores humanos aumentan productividad</span></div>
-              
-              
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Desarrollos de IA que superen la &#34;pasividad&#34; o tendencia a rendirse de los modelos actuales en tareas complejas.</span></div>
-              
-            </div>
-            
-          </div>
-        </article>
-        
-        <article class="card" data-theme="agents_automation">
-          <a href="https://artificialanalysis.ai/articles/search-api" target="_blank" rel="noopener noreferrer">
-            <img class="card-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxYzFlMWUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMmEyMTQ1Ii8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJyIiBjeD0iODAlIiBjeT0iMjAlIiByPSI2MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjYjI4YmYyIiBzdG9wLW9wYWNpdHk9IjAuMjIiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWMxZTFlIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIzNjAiIGZpbGw9InVybCgjcikiLz4KICA8Y2lyY2xlIGN4PSI1NDAiIGN5PSI4MCIgcj0iMTQwIiBmaWxsPSIjYjI4YmYyIiBvcGFjaXR5PSIwLjA4IiBmaWx0ZXI9ImJsdXIoNDBweCkiLz4KICA8dGV4dCB4PSI0MCIgeT0iODAiIGZpbGw9IiNiMjhiZjIiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIC1hcHBsZS1zeXN0ZW0sIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSI4MDAiIGxldHRlci1zcGFjaW5nPSIyIj5BR0VOVFMgJiBSRUFTT05JTkc8L3RleHQ+CiAgPHRleHQgeD0iNDAiIHk9IjE2MCIgZmlsbD0iI2VjZWVlZCIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgLWFwcGxlLXN5c3RlbSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9IjcwMCIgd2lkdGg9IjU2MCI+QXJ0aWZpY2lhbCBBbmFseXNpcyBsYW56YSBTZWFyY2ggSW5kZXggcGFyYSBhZ2VudGVzLCBvcHRpbWl6PC90ZXh0PgogIDxsaW5lIHgxPSI0MCIgeTE9IjMxMCIgeDI9IjYwMCIgeTI9IjMxMCIgc3Ryb2tlPSIjM2Q0MDQwIiBzdHJva2Utd2lkdGg9IjEiLz4KICA8dGV4dCB4PSI0MCIgeT0iMzMyIiBmaWxsPSIjOWI5ZjllIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIj5BSSBTdHJhdGVnaWMgUmFkYXIgwrcgRnJvbnRpZXIgSW50ZWxsaWdlbmNlPC90ZXh0Pgo8L3N2Zz4=" alt="" loading="lazy" referrerpolicy="no-referrer"/>
-          </a>
-          <div class="card-body">
-            <div class="meta-row">
-              <span class="src"><img src="https://www.google.com/s2/favicons?domain=artificialanalysis.ai&amp;sz=64" alt="" loading="lazy"/>Artificial Analysis</span>
               
               <span class="score">71</span>
             </div>
             <h3 class="card-title">
-              <a href="https://artificialanalysis.ai/articles/search-api" target="_blank" rel="noopener noreferrer">Artificial Analysis lanza Search Index para agentes, optimizando la búsqueda contextual</a>
+              <a href="https://www.together.ai/blog/glm-5-3-vs-gpt-5-6-sol-on-deepswe-cost-coding-and-routing" target="_blank" rel="noopener noreferrer">Together AI compara modelos GLM-5.3 y GPT-5.6 Sol en DeepSWE: rendimiento y coste</a>
             </h3>
-            <div class="sw">La mejora en la capacidad de búsqueda y recuperación de información es crítica para el rendimiento de los agentes, permitiéndoles operar con datos más precisos.</div>
+            <div class="sw">GLM-5.3 supera a GPT-5.6 Sol en pass@4 a mitad de coste, mientras que GPT-5.6 Sol es superior en pass@1. Esto indica una mayor competitividad en la economía de modelos de codificación.</div>
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">Artificial Analysis gana en infraestructura para agentes / Agentes con RAG optimizado ganan</span></div>
+              <div class="fact pw"><span class="k">Poder</span><span class="v">GLM-5.3 (Zhipu AI) gana en eficiencia/coste frente a GPT-5.6 Sol (OpenAI) en ciertas métricas.</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Métricas de mejora en la precisión o eficiencia de agentes que integren este índice.</span></div>
+              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Ver si los modelos de código abierto o sus wrappers cierran la brecha en pass@1 con un coste similar.</span></div>
               
             </div>
             
           </div>
         </article>
         
-        <article class="card" data-theme="compute_chips_dc">
+        <article class="card" data-theme="compute_chips_dc" data-new="0">
           <a href="https://www.latent.space/p/ainews-10-worse-100x-cheaper-10000x" target="_blank" rel="noopener noreferrer">
             <img class="card-img" src="https://substackcdn.com/image/fetch/$s_!Vw9p!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc661e612-544b-4eaa-9603-78e5f28276b7_1956x1228.png" alt="" loading="lazy" referrerpolicy="no-referrer"/>
           </a>
           <div class="card-body">
             <div class="meta-row">
+              
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=latent.space&amp;sz=64" alt="" loading="lazy"/>Latent Space</span>
               
               <span class="score">70</span>
             </div>
             <h3 class="card-title">
-              <a href="https://www.latent.space/p/ainews-10-worse-100x-cheaper-10000x" target="_blank" rel="noopener noreferrer">La simulación se impone por ser 100x más barata y 10000x más rápida pese a ser un 10% peor</a>
+              <a href="https://www.latent.space/p/ainews-10-worse-100x-cheaper-10000x" target="_blank" rel="noopener noreferrer">Latent Space analiza el auge de la simulación para el entrenamiento de IA y sus ventajas</a>
             </h3>
-            <div class="sw">El coste y la velocidad de la simulación la hacen una alternativa disruptiva para el desarrollo y entrenamiento de IA, incluso con menor precisión inicial, lo que reduce la barrera de entrada.</div>
+            <div class="sw">La simulación permite entrenamientos mucho más rápidos y económicos, a pesar de una ligera degradación del rendimiento inicial. Esto reduce las barreras de entrada para el desarrollo de modelos y agentes complejos.</div>
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">Desarrolladores con acceso limitado a compute ganan / Métodos tradicionales de entrenamiento pierden exclusividad</span></div>
+              <div class="fact pw"><span class="k">Poder</span><span class="v">Los equipos con alta capacidad de simulación ganan ventaja en ciclos de desarrollo y costes.</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Casos de éxito específicos donde la simulación acelera el desarrollo de modelos complejos.</span></div>
+              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Más ejemplos de modelos o agentes entrenados principalmente en entornos simulados que superan a los entrenados en datos…</span></div>
               
             </div>
             
           </div>
         </article>
         
-        <article class="card" data-theme="agents_automation">
+        <article class="card" data-theme="agents_automation" data-new="1">
+          <a href="https://simonwillison.net/2026/Aug/22/linus-torvalds/" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxYzFlMWUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMmEyMTQ1Ii8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJyIiBjeD0iODAlIiBjeT0iMjAlIiByPSI2MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjYjI4YmYyIiBzdG9wLW9wYWNpdHk9IjAuMjIiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWMxZTFlIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIzNjAiIGZpbGw9InVybCgjcikiLz4KICA8Y2lyY2xlIGN4PSI1NDAiIGN5PSI3MCIgcj0iMTMwIiBmaWxsPSIjYjI4YmYyIiBvcGFjaXR5PSIwLjEwIi8+CiAgPHRleHQgeD0iNDAiIHk9Ijc2IiBmaWxsPSIjYjI4YmYyIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCAtYXBwbGUtc3lzdGVtLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iODAwIiBsZXR0ZXItc3BhY2luZz0iMiI+QUdFTlRTICZhbXA7IFJFQVNPTklORzwvdGV4dD4KICA8dGV4dCB5PSIxNTAiIGZpbGw9IiNlY2VlZWQiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIC1hcHBsZS1zeXN0ZW0sIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSI3MDAiPjx0c3BhbiB4PSI0MCIgZHk9IjAiPkxpbnVzIFRvcnZhbGRzIHVzYSB1biBhZ2VudGUgSUE8L3RzcGFuPjx0c3BhbiB4PSI0MCIgZHk9IjM0Ij5wYXJhIGRlcHVyYXIgZWwga2VybmVsIGRlIExpbnV4LDwvdHNwYW4+PHRzcGFuIHg9IjQwIiBkeT0iMzQiPmRlc3RhY2FuZG8gc3UgcGVyc2lzdGVuY2lhPC90c3Bhbj48L3RleHQ+CiAgPGxpbmUgeDE9IjQwIiB5MT0iMzA4IiB4Mj0iNjAwIiB5Mj0iMzA4IiBzdHJva2U9IiMzZDQwNDAiIHN0cm9rZS13aWR0aD0iMSIvPgogIDx0ZXh0IHg9IjQwIiB5PSIzMzIiIGZpbGw9IiM5YjlmOWUiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTIiPlNpbW9uIFdpbGxpc29uIChBSSAmYW1wOyBMTE1zKTwvdGV4dD4KPC9zdmc+" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="badge-new">Nuevo</span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=simonwillison.net&amp;sz=64" alt="" loading="lazy"/>Simon Willison (AI &amp; LLMs)</span>
+              
+              <span class="score">67</span>
+            </div>
+            <h3 class="card-title">
+              <a href="https://simonwillison.net/2026/Aug/22/linus-torvalds/" target="_blank" rel="noopener noreferrer">Linus Torvalds usa un agente IA para depurar el kernel de Linux, destacando su persistencia</a>
+            </h3>
+            <div class="sw">Muestra la utilidad práctica de los agentes de codificación en tareas complejas de debugging, aunque la IA &#39;se rindiera&#39; varias veces. Confirma su valor como &#39;ayudante incansable&#39; en tareas repetitivas.</div>
+            
+            <div class="card-foot">
+              
+              <div class="fact pw"><span class="k">Poder</span><span class="v">Agentes de codificación ganan credibilidad en entornos críticos.</span></div>
+              
+              
+              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Ver ejemplos de uso de agentes para la creación de código nuevo en el kernel de Linux.</span></div>
+              
+            </div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-theme="agents_automation" data-new="0">
           <a href="https://mistral.ai/news/agentic-search/" target="_blank" rel="noopener noreferrer">
             <img class="card-img" src="https://mistral.ai/cms-media/api/media/file/Thumbnail-Blog-Agenticsearch.png" alt="" loading="lazy" referrerpolicy="no-referrer"/>
           </a>
           <div class="card-body">
             <div class="meta-row">
+              
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=mistral.ai&amp;sz=64" alt="" loading="lazy"/>Mistral</span>
               
-              <span class="score">68</span>
+              <span class="score">64</span>
             </div>
             <h3 class="card-title">
-              <a href="https://mistral.ai/news/agentic-search/" target="_blank" rel="noopener noreferrer">Mistral lanza &#34;Agentic Search&#34; para mejorar la precisión y eficiencia de sistemas IA</a>
+              <a href="https://mistral.ai/news/agentic-search/" target="_blank" rel="noopener noreferrer">Mistral lanza Agentic Search para mejorar la precisión y eficiencia de sistemas IA</a>
             </h3>
-            <div class="sw">La mejora en la capa de recuperación de información para agentes es crucial para su autonomía y eficacia, impactando directamente en la capacidad de los sistemas de Mistral.</div>
+            <div class="sw">Mistral habilita a los agentes de IA con una capacidad de búsqueda y verificación de información avanzada, aumentando su autonomía y fiabilidad en entornos complejos.</div>
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">Mistral gana capacidad en sistemas de agentes / Agentes de Mistral son más competitivos</span></div>
+              <div class="fact pw"><span class="k">Poder</span><span class="v">Mistral gana ventaja en la habilitación de agentes de IA / Los agentes de IA se vuelven más robustos.</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Pruebas de rendimiento público o benchmarks que demuestren la mejora de &#34;Agentic Search&#34; en escenarios complejos.</span></div>
-              
-            </div>
-            
-          </div>
-        </article>
-        
-        <article class="card" data-theme="model_economics">
-          <a href="https://www.interconnects.ai/p/teaching-everyone-to-fish-for-tokens" target="_blank" rel="noopener noreferrer">
-            <img class="card-img" src="https://substack-post-media.s3.amazonaws.com/public/images/b8608bb9-bf33-46e6-8ffe-dcf75a851f9b_3182x1790.png" alt="" loading="lazy" referrerpolicy="no-referrer"/>
-          </a>
-          <div class="card-body">
-            <div class="meta-row">
-              <span class="src"><img src="https://www.google.com/s2/favicons?domain=interconnects.ai&amp;sz=64" alt="" loading="lazy"/>Interconnects</span>
-              
-              <span class="score">62</span>
-            </div>
-            <h3 class="card-title">
-              <a href="https://www.interconnects.ai/p/teaching-everyone-to-fish-for-tokens" target="_blank" rel="noopener noreferrer">Nvidia impulsa que empresas desarrollen sus propios modelos en lugar de usar APIs externas</a>
-            </h3>
-            <div class="sw">Nvidia busca aumentar la venta de hardware al fomentar el desarrollo de modelos propios, impactando la economía de las APIs de modelos y la estrategia de los hyperscalers.</div>
-            
-            <div class="card-foot">
-              
-              <div class="fact pw"><span class="k">Poder</span><span class="v">Nvidia gana control sobre el stack / Proveedores de API como Anthropic y OpenAI podrían perder usuarios</span></div>
-              
-              
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Anuncios de programas o herramientas de Nvidia para facilitar el entrenamiento de modelos personalizados.</span></div>
-              
-            </div>
-            
-          </div>
-        </article>
-        
-        <article class="card" data-theme="agents_automation">
-          <a href="https://claude.com/blog/the-ai-native-sdlc-playbook" target="_blank" rel="noopener noreferrer">
-            <img class="card-img" src="https://cdn.prod.website-files.com/68a44d4040f98a4adf2207b6/6a8739a1b934ffe55bfc9715_44592f18.png" alt="" loading="lazy" referrerpolicy="no-referrer"/>
-          </a>
-          <div class="card-body">
-            <div class="meta-row">
-              <span class="src"><img src="https://www.google.com/s2/favicons?domain=anthropic.com&amp;sz=64" alt="" loading="lazy"/>Anthropic</span>
-              
-              <span class="score">59</span>
-            </div>
-            <h3 class="card-title">
-              <a href="https://claude.com/blog/the-ai-native-sdlc-playbook" target="_blank" rel="noopener noreferrer">Anthropic publica guía para un SDLC nativo de IA, optimizado con agentes</a>
-            </h3>
-            <div class="sw">La optimización del SDLC con agentes IA, como Claude Code, indica un cambio inminente en la productividad del desarrollo de software, reduciendo cuellos de botella humanos.</div>
-            
-            <div class="card-foot">
-              
-              <div class="fact pw"><span class="k">Poder</span><span class="v">Anthropic gana en evangelización de agentes / Roles manuales en SDLC pierden</span></div>
-              
-              
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Ver casos de adopción real y métricas de mejora de productividad en empresas.</span></div>
+              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Ejemplos de implementaciones de Agentic Search en agentes autónomos con tareas complejas y resultados medibles.</span></div>
               
             </div>
             
@@ -544,6 +479,47 @@
 
       
 
+      
+      <div class="section-h">
+        <h2>Contexto</h2>
+        <span class="n">de fondo, no cambia nada hoy</span>
+      </div>
+      <div class="ctx">
+        
+        <div class="cx" data-theme="model_economics" data-new="0">
+          <img src="https://www.google.com/s2/favicons?domain=interconnects.ai&amp;sz=64" alt="" loading="lazy"/>
+          <div class="cx-b">
+            <div class="cx-t">
+              <a href="https://www.interconnects.ai/p/teaching-everyone-to-fish-for-tokens" target="_blank" rel="noopener noreferrer">Interconnects analiza la estrategia de Nvidia de fomentar la creación de modelos propios</a>
+            </div>
+            <div class="cx-w">Nvidia busca dominar la infraestructura de IA alentando a los clientes a entrenar sus propios modelos, en lugar de depender exclusivamente de modelos de frontier labs. Esto puede ralentizar la consolidación de la oferta de modelo…</div>
+            <div class="cx-m">Economía de modelos · Interconnects · 49</div>
+          </div>
+        </div>
+        
+        <div class="cx" data-theme="frontier_capability" data-new="1">
+          <img src="https://www.google.com/s2/favicons?domain=forum.level1techs.com&amp;sz=64" alt="" loading="lazy"/>
+          <div class="cx-b">
+            <div class="cx-t">
+              <a href="https://forum.level1techs.com/t/why-your-local-llm-feels-dumber-than-it-is/253917" target="_blank" rel="noopener noreferrer">Artículo de Hacker News explica por qué los LLM locales parecen menos capaces</a>
+            </div>
+            <div class="cx-w">Entender las limitaciones y el rendimiento percibido de los LLM locales es clave para su adopción y desarrollo. Afecta a la percepción de la utilidad de los modelos más pequeños.</div>
+            <div class="cx-m">Capacidad frontier · Hacker News (alto voltaje) · 41</div>
+          </div>
+        </div>
+        
+        <div class="cx" data-theme="agents_automation" data-new="0">
+          <img src="https://www.google.com/s2/favicons?domain=anthropic.com&amp;sz=64" alt="" loading="lazy"/>
+          <div class="cx-b">
+            <div class="cx-t">
+              <a href="https://claude.com/blog/the-ai-native-sdlc-playbook" target="_blank" rel="noopener noreferrer">Anthropic analiza la transformación del SDLC con la integración de agentes IA</a>
+            </div>
+            <div class="cx-w">El SDLC tradicional frena las ganancias de productividad de los agentes de codificación, indicando que el cuello de botella se traslada de la generación de código a la gestión de procesos.</div>
+            <div class="cx-m">Agentes · Anthropic · 25</div>
+          </div>
+        </div>
+        
+      </div>
       
 
     </div>
@@ -585,10 +561,10 @@
             <div class="m-header">
               <span class="m-lbl">Bitcoin</span>
               
-              <span class="m-chg neg">-1.51%</span>
+              <span class="m-chg neg">-1.30%</span>
               
             </div>
-            <div class="m-price">76,211.00 US$</div>
+            <div class="m-price">76,229.00 US$</div>
             <svg viewBox="0 0 100 24" class="spark"><polyline fill="none" stroke="#f43f5e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,6.0 50.0,14.0 98.0,22.0"/></svg>
           </div>
           
@@ -758,7 +734,7 @@
           <span class="wr-ic">✓</span>
           <div>
             <div class="wr-t">Monitorizar la adopción real de GLM-5.3 en entornos productivos de desarrollo de agentes.</div>
-            <div class="wr-ev">→ GLM-5.3 supera a GPT-5.6 Sol en pass@4 a mitad de coste en DeepSWE de codificación</div>
+            <div class="wr-ev">→ Together AI compara modelos GLM-5.3 y GPT-5.6 Sol en DeepSWE: rendimiento y coste</div>
           </div>
         </div>
         
@@ -792,7 +768,7 @@
           <span class="thr-d">DÍA 7</span>
           <div>
             <div class="thr-t">Agentes y automatización</div>
-            <div class="thr-l">Linus Torvalds usa IA para depuración, destacando su utilidad y obstinación humana</div>
+            <div class="thr-l">Linus Torvalds usa un agente IA para depurar el kernel de Linux, destacando su persistencia</div>
           </div>
         </div>
         
@@ -800,16 +776,13 @@
           <span class="thr-d">DÍA 3</span>
           <div>
             <div class="thr-t">Compute y chips</div>
-            <div class="thr-l">Nvidia sube más del 15% los precios de sus productos relacionados con IA</div>
+            <div class="thr-l">Nvidia sube los precios de sus productos de IA más del 15% a sus clientes</div>
           </div>
         </div>
         
         
         
         <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Alibaba</span>
-          <span class="dt">primera aparición</span></div>
-        
-        <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Artificial Analysis</span>
           <span class="dt">primera aparición</span></div>
         
         <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">GLM-5</span>
@@ -819,6 +792,9 @@
           <span class="dt">primera aparición</span></div>
         
         <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Latent Space</span>
+          <span class="dt">primera aparición</span></div>
+        
+        <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Linus Torvalds</span>
           <span class="dt">primera aparición</span></div>
         
         
@@ -832,8 +808,8 @@
           <span>Riesgos y vigilancia</span>
           <span class="lbl">Próximos días</span>
         </div>
-        <div class="rk">La escalada de precios de Nvidia podría ralentizar la inversión en infraestructura de compute para ciertos actores.</div><div class="rk">La optimización de la SDLC con agentes puede generar una desconexión entre la velocidad de desarrollo y los procesos de despliegue.</div>
-        <div class="rk w">Monitorizar la adopción de fotónica de silicio de TSMC en chips de IA de próxima generación.</div><div class="rk w">Observar el impacto de la estrategia de Nvidia en el crecimiento de los proveedores de API de modelos.</div><div class="rk w">Seguir la inversión de Alibaba y sus anuncios sobre el desarrollo de nuevos modelos o infraestructuras.</div>
+        <div class="rk">El aumento del precio del hardware de Nvidia podría ralentizar la expansión de la capacidad de cómputo para actores pequeños y medianos.</div><div class="rk">La dependencia del compute de alto rendimiento sigue siendo un cuello de botella, aunque TSMC busca aliviarlo con nuevas tecnologías.</div>
+        <div class="rk w">Reacción de los competidores de Nvidia y posibles incrementos de cuota de mercado para AMD o Intel.</div><div class="rk w">Detalles sobre la asignación de la inversión de Alibaba en compute o desarrollo de chips propios.</div><div class="rk w">Primeras implementaciones de la plataforma TSMC-COUPE en chips de IA de alto rendimiento.</div>
       </div>
       
 
@@ -841,8 +817,8 @@
   </div>
 
   <footer>
-    <span>14 items descartados por el filtro de relevancia</span>
-    <span>29/31 fuentes activas · sin items: OpenRouter Insights, Hacker News (alto voltaje)</span>
+    <span>15 items descartados por el filtro de relevancia</span>
+    <span>30/31 fuentes activas · sin items: OpenRouter Insights</span>
   </footer>
 
 </div>
@@ -857,7 +833,11 @@
         t.classList.add('on');
         var f = t.getAttribute('data-filter');
         document.querySelectorAll('[data-theme]').forEach(function(c){
-          c.style.display = (f === 'all' || c.getAttribute('data-theme') === f) ? '' : 'none';
+          var show;
+          if (f === 'all')            show = true;
+          else if (f === '__new__')   show = c.getAttribute('data-new') === '1';
+          else                        show = c.getAttribute('data-theme') === f;
+          c.style.display = show ? '' : 'none';
         });
       });
     });
