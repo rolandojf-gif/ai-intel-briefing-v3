@@ -13,6 +13,19 @@ Outputs:
 - `docs/index.html`
 - `docs/weekly.html`
 
+## Telegram
+
+Cada mañana, tras el cron de las 08:15 CEST, el briefing (tesis + 7 señales) se envía a Telegram.
+
+1. En Telegram, habla con [@BotFather](https://t.me/BotFather): `/newbot` → copia el token.
+2. Abre el bot y mándale `/start`.
+3. `https://api.telegram.org/bot<TOKEN>/getUpdates` → copia `chat.id`.
+4. En el repo: Settings → Secrets and variables → Actions:
+   - `TELEGRAM_BOT_TOKEN`
+   - `TELEGRAM_CHAT_ID`
+
+Sin esos secrets el paso se salta. Un `workflow_dispatch` también dispara el envío.
+
 ## Test
 
 ```bash

@@ -1,5 +1,6 @@
 import unittest
 from pathlib import Path
+import json
 
 import yaml
 
@@ -605,6 +606,88 @@ class CoreQualityTests(unittest.TestCase):
         self.assertNotIn("push", cond)
         self.assertNotIn("pull_request", cond)
         self.assertEqual(generate.get("needs"), "test")
+        steps = [s.get("name") for s in generate.get("steps") or []]
+        self.assertIn("Telegram", steps)
+        telegram = next(s for s in generate["steps"] if s.get("name") == "Telegram")
+        self.assertTrue(telegram.get("continue-on-error"))
+        self.assertIn("TELEGRAM_BOT_TOKEN", telegram.get("env") or {})
+
+    def test_telegram_message_thesis_and_fresh_first(self):
+        from src.notify import format_message, notify_today, pick_signals
+
+        snap = {
+            "date": "2026-08-23",
+            "briefing": {"thesis": "Los agentes avanzan y Nvidia sube precios."},
+            "items": [
+                {"title_es": "Nvidia sube precios", "url": "https://www.bloomberg.com/x",
+                 "source": "Bloomberg", "so_what": "Compute más caro.", "layer": "signal"},
+                {"title_es": "Claude opera el PC", "url": "https://www.anthropic.com/news/x",
+                 "source": "Anthropic", "so_what": "Agentes con manos.", "layer": "signal"},
+                {"title_es": "Repeat viejo", "url": "https://example.com/r",
+                 "source": "X", "layer": "signal", "is_repeat": True},
+                {"title": "Solo contexto", "layer": "context", "url": "https://example.com/c"},
+            ],
+        }
+        picked = pick_signals(snap, n=7)
+        self.assertEqual([it["title_es"] for it in picked], [
+            "Nvidia sube precios", "Claude opera el PC", "Repeat viejo",
+        ])
+        msg = format_message(snap)
+        self.assertIn("Radar · 23 ago", msg)
+        self.assertIn("Los agentes avanzan", msg)
+        self.assertIn("Nvidia sube precios", msg)
+        self.assertIn("Compute más caro.", msg)
+        self.assertIn("bloomberg.com", msg)
+        self.assertIn("Abrir el radar", msg)
+        self.assertNotIn("<script>", msg)
+        self.assertLessEqual(len(msg), 4096)
+
+        sent = []
+        status = notify_today(
+            token="",
+            chat_id="1",
+            send=lambda *a, **k: sent.append(a),
+        )
+        self.assertEqual(status, "skipped")
+        self.assertEqual(sent, [])
+
+        import tempfile
+        with tempfile.TemporaryDirectory() as td:
+            data = Path(td)
+            (data / "2026-08-23.json").write_text(json.dumps(snap), encoding="utf-8")
+            status = notify_today(
+                data_dir=data,
+                date="2026-08-23",
+                token="tok",
+                chat_id="99",
+                send=lambda token, chat, text: sent.append((token, chat, text)),
+            )
+        self.assertEqual(status, "sent")
+        self.assertEqual(sent[0][0], "tok")
+        self.assertEqual(sent[0][1], "99")
+        self.assertIn("Nvidia sube precios", sent[0][2])
+
+    def test_telegram_escapes_html(self):
+        from src.notify import format_message
+        snap = {
+            "date": "2026-01-02",
+            "briefing": {"thesis": "A < B & C"},
+            "items": [{
+                "title_es": "Foo <bar> & co",
+                "url": "https://example.com/a?x=1&y=2",
+                "source": "Lab",
+                "so_what": "x < y",
+                "layer": "signal",
+            }],
+        }
+        msg = format_message(snap)
+        self.assertNotIn("A < B", msg)
+        self.assertIn("<", msg)
+        self.assertIn("&", msg)
+        self.assertIn(">", msg)
+        self.assertIn("href=", msg)
+        self.assertIn("example.com/a?x=1", msg)
+
 
     # -- Archivo ------------------------------------------------------------
 
