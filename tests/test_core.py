@@ -665,6 +665,20 @@ class CoreQualityTests(unittest.TestCase):
             self.assertIn("Schema antiguo sin layer", old)
             self.assertIn("2026-08-20", old)  # prev
 
+            search = json.loads((docs / "search.json").read_text(encoding="utf-8"))
+            self.assertEqual(len(search), 2)
+            titles = {e["t"] for e in search}
+            self.assertIn("Launch de prueba", titles)
+            self.assertIn("Schema antiguo sin layer", titles)
+            by_title = {e["t"]: e for e in search}
+            self.assertEqual(by_title["Launch de prueba"]["u"], "https://openai.com/x")
+            self.assertIn("Cambia el tablero", by_title["Launch de prueba"]["w"])
+            self.assertEqual(by_title["Schema antiguo sin layer"]["u"], "https://www.anthropic.com/news/x")
+
+            self.assertIn("search.json", index)
+            self.assertIn("NVIDIA, agentes", index)
+            self.assertIn("URLSearchParams", index)
+
     def test_index_redirects_date_query_to_day_page(self):
         from src.render import render_index
         html = render_index([], briefing={"thesis": "t"}, snapshot={"date": "2026-08-23"})

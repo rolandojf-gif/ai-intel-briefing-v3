@@ -136,6 +136,20 @@ ARCHIVO_TEMPLATE = ENV.from_string("""
   .toolbar input{flex:1;min-width:200px;background:var(--card);border:1px solid var(--line);
                  color:var(--txt);border-radius:10px;padding:10px 12px;font:13px var(--sans)}
   .toolbar input:focus{outline:none;border-color:var(--accent)}
+  .hits-h{font-family:var(--mono);font-size:11px;color:var(--dimmer);margin:4px 0 10px;letter-spacing:.04em}
+  .hit{display:grid;grid-template-columns:108px 1fr auto;gap:12px;align-items:start;
+       padding:12px 4px;border-bottom:1px solid var(--line)}
+  .hit:hover{background:var(--card-hover)}
+  .hit .t{font-size:14.5px;font-weight:600;line-height:1.35}
+  .hit .t:hover{color:var(--accent)}
+  .hit .w{font-size:13px;color:var(--dim);margin-top:4px;line-height:1.45;
+          display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .hit .meta{font-family:var(--mono);font-size:10px;color:var(--dimmer);margin-top:4px}
+  .copy-btn{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.08em;
+            text-transform:uppercase;padding:4px 10px;border-radius:999px;cursor:pointer;
+            border:1px solid var(--line);background:transparent;color:var(--dim)}
+  .copy-btn:hover{color:var(--accent);border-color:rgba(32,184,205,.35)}
+  .copy-btn.ok{color:#0d2b1c;background:var(--green);border-color:var(--green)}
   .months{display:flex;gap:6px;flex-wrap:wrap}
   .months a{font-family:var(--mono);font-size:10px;letter-spacing:.04em;color:var(--dim);
             padding:5px 9px;border:1px solid var(--line);border-radius:999px}
@@ -173,13 +187,18 @@ ARCHIVO_TEMPLATE = ENV.from_string("""
     <p>{{ n }} días · {{ first }} – {{ last }}. Cada entrada es el radar de ese día, no un recorte.</p>
   </div>
   <div class="toolbar">
-    <input id="q" type="search" placeholder="Filtrar por fecha o tesis…" autocomplete="off"/>
+    <input id="q" type="search" placeholder="NVIDIA, agentes, 2026-08-22…" autocomplete="off"/>
     <div class="months">
       {% for m in months %}
       <a href="#m-{{ m.key }}">{{ m.short }}</a>
       {% endfor %}
     </div>
   </div>
+  <div id="hits" hidden>
+    <div class="hits-h" id="hits-h"></div>
+    <div id="hits-list"></div>
+  </div>
+  <div id="cal">
   {% for m in months %}
   <h2 class="month" id="m-{{ m.key }}">{{ m.label }}</h2>
   {% for d in m.days %}
@@ -190,19 +209,98 @@ ARCHIVO_TEMPLATE = ENV.from_string("""
   </a>
   {% endfor %}
   {% endfor %}
-  <div class="empty" id="none" hidden>Nada coincide con ese filtro.</div>
-  <footer>{{ n }} snapshots en docs/data · falta {{ missing }}</footer>
+  </div>
+  <div class="empty" id="none" hidden>Nada coincide.</div>
+  <footer>{{ n }} snapshots · {{ n_entries }} señales indexadas · falta {{ missing }}</footer>
 </div>
 <script>
 (function(){
   var q = document.getElementById('q');
   var rows = Array.prototype.slice.call(document.querySelectorAll('.day'));
   var none = document.getElementById('none');
-  function apply(){
-    var s = (q.value || '').trim().toLowerCase();
+  var cal = document.getElementById('cal');
+  var hitsBox = document.getElementById('hits');
+  var hitsList = document.getElementById('hits-list');
+  var hitsH = document.getElementById('hits-h');
+  var months = document.querySelector('.months');
+  var index = null;
+  var loading = false;
+
+  function fold(s){
+    return (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  }
+  function tokens(s){
+    return fold(s).split(/[^a-z0-9]+/).filter(function(t){ return t.length >= 2; });
+  }
+  function hay(it){
+    return fold([it.d, it.t, it.s, it.w].join(' '));
+  }
+  function match(it, toks){
+    var h = hay(it);
+    for (var i = 0; i < toks.length; i++){
+      if (h.indexOf(toks[i]) === -1) return false;
+    }
+    return true;
+  }
+  function copied(btn){
+    btn.classList.add('ok');
+    btn.textContent = 'Copiado';
+    setTimeout(function(){ btn.classList.remove('ok'); btn.textContent = 'Copiar'; }, 1600);
+  }
+  function copyText(text, btn){
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function(){ copied(btn); }).catch(function(){});
+      return;
+    }
+    var ta = document.createElement('textarea');
+    ta.value = text; ta.setAttribute('readonly','');
+    ta.style.position = 'fixed'; ta.style.left = '-9999px';
+    document.body.appendChild(ta); ta.select();
+    try { if (document.execCommand('copy')) copied(btn); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+  function esc(s){
+    return (s || '').replace(/[&<>"']/g, function(c){
+      return ({'&':'&','<':'<','>':'>','"':'"',"'":'&#39;'}[c]);
+    });
+  }
+  function renderHits(items, query){
+    hitsList.innerHTML = '';
+    items.slice(0, 60).forEach(function(it){
+      var row = document.createElement('div');
+      row.className = 'hit';
+      var url = it.u || ('d/' + it.d + '.html');
+      var ficha = [it.t, it.w, it.u].filter(Boolean).join('\\n\\n');
+      row.innerHTML =
+        '<a class="dt" href="d/' + esc(it.d) + '.html">' + esc(it.d) + '</a>' +
+        '<div>' +
+          '<a class="t" href="' + esc(url) + '" target="_blank" rel="noopener noreferrer">' + esc(it.t) + '</a>' +
+          (it.w ? '<div class="w">' + esc(it.w) + '</div>' : '') +
+          '<div class="meta">' + esc(it.s || '') + '</div>' +
+        '</div>' +
+        '<button type="button" class="copy-btn">Copiar</button>';
+      row.querySelector('.copy-btn').addEventListener('click', function(ev){
+        ev.preventDefault();
+        copyText(ficha, ev.currentTarget);
+      });
+      hitsList.appendChild(row);
+    });
+    var n = items.length;
+    hitsH.textContent = n === 0 ? 'Nada para «' + query + '»' :
+      (n === 1 ? '1 señal' : (n > 60 ? '60 de ' + n + ' señales' : n + ' señales'));
+    hitsBox.hidden = false;
+    cal.hidden = true;
+    if (months) months.hidden = true;
+    none.hidden = n !== 0;
+  }
+  function filterDays(s){
+    hitsBox.hidden = true;
+    cal.hidden = false;
+    if (months) months.hidden = false;
     var vis = 0;
+    var needle = fold(s);
     rows.forEach(function(r){
-      var ok = !s || (r.getAttribute('data-q') || '').toLowerCase().indexOf(s) !== -1;
+      var ok = !needle || fold(r.getAttribute('data-q') || '').indexOf(needle) !== -1;
       r.style.display = ok ? '' : 'none';
       if (ok) vis++;
     });
@@ -217,7 +315,43 @@ ARCHIVO_TEMPLATE = ENV.from_string("""
     });
     none.hidden = vis !== 0;
   }
-  q.addEventListener('input', apply);
+  function apply(){
+    var s = (q.value || '').trim();
+    var toks = tokens(s);
+    if (toks.length && index) {
+      var found = [];
+      for (var i = index.length - 1; i >= 0; i--) {
+        if (match(index[i], toks)) found.push(index[i]);
+      }
+      renderHits(found, s);
+      return;
+    }
+    filterDays(s);
+  }
+  function loadIndex(cb){
+    if (index) { cb(); return; }
+    if (loading) return;
+    loading = true;
+    fetch('search.json').then(function(r){ return r.json(); }).then(function(data){
+      index = Array.isArray(data) ? data : [];
+      loading = false;
+      cb();
+    }).catch(function(){
+      loading = false;
+      index = [];
+      cb();
+    });
+  }
+  q.addEventListener('input', function(){
+    var s = (q.value || '').trim();
+    if (tokens(s).length) loadIndex(apply);
+    else apply();
+  });
+  var boot = new URLSearchParams(location.search).get('q');
+  if (boot) {
+    q.value = boot;
+    loadIndex(apply);
+  }
 })();
 </script>
 </body>
@@ -243,8 +377,31 @@ def _group_months(metas: list[dict]) -> list[dict]:
     return months
 
 
-def write_archive(docs_dir: Path) -> int:
-    """Escribe docs/archivo.html y docs/d/YYYY-MM-DD.html para cada snapshot."""
+def search_entries(snaps: list[dict]) -> list[dict]:
+    """Índice compacto para búsqueda en cliente: título, so_what, fuente, fecha, url."""
+    out = []
+    for snap in snaps:
+        date = snap.get("date") or ""
+        for it in snap.get("items") or []:
+            if not isinstance(it, dict):
+                continue
+            title = re.sub(r"\s+", " ", (it.get("title_es") or it.get("title") or "").strip())
+            if not title:
+                continue
+            so = re.sub(r"\s+", " ", (it.get("so_what") or it.get("why") or "").strip())
+            url = (it.get("url") or it.get("link") or "").strip()
+            out.append({
+                "d": date,
+                "t": title[:180],
+                "s": (it.get("source") or "").strip()[:48],
+                "u": url[:400],
+                "w": so[:160],
+            })
+    return out
+
+
+def write_archive(docs_dir: Path, *, write_days: bool = True) -> int:
+    """Escribe docs/archivo.html, docs/search.json y (opcional) docs/d/YYYY-MM-DD.html."""
     docs_dir = Path(docs_dir)
     data_dir = docs_dir / "data"
     day_dir = docs_dir / "d"
@@ -254,34 +411,41 @@ def write_archive(docs_dir: Path) -> int:
     snaps = [load_snapshot(p) for p in paths]
     metas = [meta_of(s) for s in snaps]
     dates = [m["date"] for m in metas]
+    entries = search_entries(snaps)
 
     months = _group_months(metas)
     first = dates[0] if dates else "—"
     last = dates[-1] if dates else "—"
     html = ARCHIVO_TEMPLATE.render(
         n=len(metas),
+        n_entries=len(entries),
         first=first,
         last=last,
         months=months,
         missing="6 may 2026" if "2026-05-06" not in dates else "ninguno",
     )
     (docs_dir / "archivo.html").write_text(html, encoding="utf-8")
+    (docs_dir / "search.json").write_text(
+        json.dumps(entries, ensure_ascii=False, separators=(",", ":")),
+        encoding="utf-8",
+    )
 
-    for i, snap in enumerate(snaps):
-        prev_date = dates[i - 1] if i > 0 else ""
-        next_date = dates[i + 1] if i + 1 < len(dates) else ""
-        page = render_index(
-            snap.get("items") or [],
-            briefing=snap.get("briefing") or {},
-            snapshot=snap,
-            market={},
-            nav="archivo",
-            root="../",
-            archive={
-                "prev": prev_date,
-                "next": next_date,
-            },
-        )
-        (day_dir / f"{snap['date']}.html").write_text(page, encoding="utf-8")
+    if write_days:
+        for i, snap in enumerate(snaps):
+            prev_date = dates[i - 1] if i > 0 else ""
+            next_date = dates[i + 1] if i + 1 < len(dates) else ""
+            page = render_index(
+                snap.get("items") or [],
+                briefing=snap.get("briefing") or {},
+                snapshot=snap,
+                market={},
+                nav="archivo",
+                root="../",
+                archive={
+                    "prev": prev_date,
+                    "next": next_date,
+                },
+            )
+            (day_dir / f"{snap['date']}.html").write_text(page, encoding="utf-8")
 
     return len(snaps)
