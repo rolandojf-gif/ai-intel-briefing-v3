@@ -357,5 +357,171 @@ class CoreQualityTests(unittest.TestCase):
         self.assertIn("noise", verdict_desc)
 
 
+    # -- P0: Google News URL resolution -------------------------------------
+
+    def test_google_news_url_detection_and_passthrough(self):
+        from src.fetch import is_google_news_url, resolve_google_news_url
+
+        self.assertTrue(is_google_news_url(
+            "https://news.google.com/rss/articles/CBMiABC?oc=5"
+        ))
+        self.assertFalse(is_google_news_url("https://www.bloomberg.com/news/foo"))
+        self.assertFalse(is_google_news_url(""))
+        plain = "https://semiwiki.com/tsmc/story"
+        self.assertEqual(resolve_google_news_url(plain), plain)
+
+    def test_google_news_local_protobuf_decode(self):
+        """Formato legado: el token lleva la URL del medio, sin red."""
+        import base64
+        from src.fetch import resolve_google_news_url, _GN_RESOLVE_CACHE
+
+        dest = "https://www.reuters.com/technology/example-ai-story"
+        payload = b"\x08\x13\x22" + bytes([len(dest)]) + dest.encode("latin1")
+        token = base64.urlsafe_b64encode(payload).decode().rstrip("=")
+        url = f"https://news.google.com/rss/articles/{token}?oc=5"
+        _GN_RESOLVE_CACHE.clear()
+        self.assertEqual(resolve_google_news_url(url), dest)
+
+    def test_google_news_batchexecute_parser(self):
+        from src.fetch import _parse_garturlres
+
+        body = (
+            ')]}\'\n\n[["wrb.fr","Fbv4je",'
+            '"[\\"garturlres\\",\\"https://www.bloomberg.com/news/articles/2026-08-22/nvidia-hike\\",1]"'
+            ',null,null,null,"generic"]]'
+        )
+        self.assertEqual(
+            _parse_garturlres(body),
+            "https://www.bloomberg.com/news/articles/2026-08-22/nvidia-hike",
+        )
+        self.assertEqual(_parse_garturlres("nope"), "")
+
+    # -- P0: summary clip ---------------------------------------------------
+
+    def test_summary_is_clipped_to_800_chars(self):
+        from src.fetch import SUMMARY_MAX_CHARS, clip_text
+
+        huge = "palabra " * 20000
+        clipped = clip_text(huge)
+        self.assertLessEqual(len(clipped), SUMMARY_MAX_CHARS)
+        self.assertTrue(clipped.endswith("…"))
+        self.assertEqual(clip_text("corto"), "corto")
+
+    def test_snapshot_drops_raw_fields_and_clips_summary(self):
+        from src.main import slim_item_for_snapshot
+
+        item = {
+            "title": "x",
+            "summary": "y" * 5000,
+            "raw_title": "raw",
+            "raw_summary": "z" * 60000,
+            "_rid": 7,
+            "score": 90,
+        }
+        slim = slim_item_for_snapshot(item)
+        self.assertNotIn("raw_title", slim)
+        self.assertNotIn("raw_summary", slim)
+        self.assertNotIn("_rid", slim)
+        self.assertLessEqual(len(slim["summary"]), 800)
+        self.assertEqual(slim["score"], 90)
+
+    # -- P0: novelty hard-gate ----------------------------------------------
+
+    def test_repeats_cannot_occupy_hero_or_top3_when_fresh_exists(self):
+        from src.main import demote_repeats_from_lead
+
+        items = [
+            {"title": "repeat-high", "is_repeat": True, "score": 94},
+            {"title": "repeat-mid", "is_repeat": True, "score": 87},
+            {"title": "fresh-a", "is_repeat": False, "score": 86},
+            {"title": "fresh-b", "is_repeat": False, "score": 71},
+            {"title": "fresh-c", "is_repeat": False, "score": 67},
+            {"title": "repeat-low", "is_repeat": True, "score": 64},
+        ]
+        out = demote_repeats_from_lead(items, lead_n=3)
+        lead = [it["title"] for it in out[:3]]
+        self.assertEqual(lead, ["fresh-a", "fresh-b", "fresh-c"])
+        self.assertTrue(all(not it["is_repeat"] for it in out[:3]))
+        self.assertEqual(out[3]["title"], "repeat-high")
+
+    def test_repeats_fill_lead_only_when_fresh_runs_out(self):
+        from src.main import demote_repeats_from_lead
+
+        items = [
+            {"title": "repeat-1", "is_repeat": True},
+            {"title": "fresh-1", "is_repeat": False},
+            {"title": "repeat-2", "is_repeat": True},
+        ]
+        out = demote_repeats_from_lead(items, lead_n=3)
+        self.assertEqual(out[0]["title"], "fresh-1")
+        self.assertFalse(out[0]["is_repeat"])
+        self.assertEqual({out[1]["title"], out[2]["title"]}, {"repeat-1", "repeat-2"})
+
+    def test_apply_llm_results_keeps_repeats_out_of_top3_signals(self):
+        candidates = [
+            {**self._candidate(1, score=94), "is_repeat": True, "title": "repeat lead"},
+            {**self._candidate(2, score=80), "is_repeat": False, "title": "fresh A"},
+            {**self._candidate(3, score=78), "is_repeat": False, "title": "fresh B"},
+            {**self._candidate(4, score=76), "is_repeat": False, "title": "fresh C"},
+        ]
+        results = {
+            str(i): {
+                "verdict": "signal",
+                "relevance": 90 - i,
+                "so_what": "x",
+                "power_shift": "",
+                "theme": "other",
+            }
+            for i in range(1, 5)
+        }
+        out = apply_llm_results(candidates, results)
+        signals = [it for it in out if it.get("layer") == "signal"]
+        self.assertGreaterEqual(len(signals), 3)
+        self.assertTrue(all(not it.get("is_repeat") for it in signals[:3]))
+        self.assertEqual(signals[0]["title"], "fresh A")
+
+    def test_render_hero_is_fresh_when_a_repeat_scores_higher(self):
+        from src.render import render_index
+
+        items = [
+            {
+                "title_es": "Repeat en portada",
+                "layer": "signal",
+                "score": 99,
+                "is_repeat": True,
+                "strategic_theme": "compute_chips_dc",
+                "url": "https://semiwiki.com/repeat",
+            },
+            {
+                "title_es": "Señal nueva de hoy",
+                "layer": "signal",
+                "score": 70,
+                "is_repeat": False,
+                "strategic_theme": "china_stack",
+                "url": "https://www.bloomberg.com/news/new-story",
+            },
+            {
+                "title_es": "Otra nueva",
+                "layer": "signal",
+                "score": 65,
+                "is_repeat": False,
+                "strategic_theme": "frontier_capability",
+                "url": "https://openai.com/new",
+            },
+        ]
+        html = render_index(items, briefing={"thesis": "t"},
+                            snapshot={"date": "2026-08-23"}, market={})
+        hero_pos = html.find('class="hero"')
+        self.assertGreater(hero_pos, 0)
+        # El titular fresco tiene que aparecer en el hero, no el repeat.
+        fresh_pos = html.find("Señal nueva de hoy")
+        repeat_pos = html.find("Repeat en portada")
+        self.assertGreater(fresh_pos, 0)
+        self.assertGreater(repeat_pos, 0)
+        self.assertLess(fresh_pos, repeat_pos)
+        self.assertLess(abs(fresh_pos - hero_pos), abs(repeat_pos - hero_pos))
+
+
 if __name__ == "__main__":
     unittest.main()
+

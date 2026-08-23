@@ -12,7 +12,7 @@ import traceback
 from email.utils import parsedate_to_datetime
 from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
-from src.fetch import fetch_rss
+from src.fetch import clip_text, fetch_rss
 from src.fetch_x import fetch_x_search, fetch_x_user
 from src.render import render_index
 from src.score import score_item
@@ -317,10 +317,8 @@ def ingest_feeds(cfg: dict, per_source_cap: dict) -> list[dict]:
 
             it["source"] = s["name"]
             it["feed_tags"] = s.get("tags", [])
-            it["raw_title"] = it.get("title", "")
-            it["raw_summary"] = it.get("summary", "")
             it["title"] = clean_signal_text(it.get("title", ""), it["source"])
-            it["summary"] = clean_signal_text(it.get("summary", ""), it["source"])
+            it["summary"] = clip_text(clean_signal_text(it.get("summary", ""), it["source"]))
 
             src = it["source"]
             cap = per_source_cap.get(src)
@@ -431,6 +429,43 @@ def apply_novelty_penalty(items: list[dict], history_urls: set[str], history_tit
         it["adjusted_score"] = adjusted_score
         scored.append(it)
     return scored
+
+
+LEAD_SLOT_COUNT = 3  # hero + las dos cards siguientes
+
+
+def demote_repeats_from_lead(items: list[dict], lead_n: int = LEAD_SLOT_COUNT) -> list[dict]:
+    """Hard-gate de novedad: un repeat no puede ser hero ni top-N si hay fresco.
+
+    El radar es "qué ha cambiado hoy". La penalización de score no basta:
+    TSMC (repeat) seguía saliendo #2 por encima de señales nuevas.
+    Si no hay suficientes items frescos, se rellenan los huecos con repeats
+    para no dejar la portada vacía.
+    """
+    if not items or lead_n <= 0:
+        return items
+
+    fresh = [it for it in items if not it.get("is_repeat")]
+    repeats = [it for it in items if it.get("is_repeat")]
+    if not fresh:
+        return items
+
+    lead: list[dict] = []
+    used: set[int] = set()
+    for it in fresh:
+        if len(lead) >= lead_n:
+            break
+        lead.append(it)
+        used.add(id(it))
+    if len(lead) < lead_n:
+        for it in repeats:
+            if len(lead) >= lead_n:
+                break
+            lead.append(it)
+            used.add(id(it))
+
+    rest = [it for it in items if id(it) not in used]
+    return lead + rest
 
 
 def clamp_score(value: float | int) -> int:
@@ -658,6 +693,7 @@ def generate_llm_data(candidates: list[dict], llm_cache: Path, llm_done: Path) -
 
 MAX_SIGNALS = 12     # techo de senales primarias
 MAX_CONTEXT = 3      # capa secundaria de contexto reducida
+# LEAD_SLOT_COUNT vive junto a apply_novelty_penalty: hero + 2 no pueden ser repeat.
 
 # Debe cubrir TODO el pool de candidatos. Si es menor, la cola queda sin juicio
 # del LLM y no se puede publicar (ver el gate en apply_llm_results).
@@ -790,6 +826,7 @@ def apply_llm_results(candidates: list[dict], results_map: dict) -> list[dict]:
             it["layer"] = "signal"
         for it in context:
             it["layer"] = "context"
+        signals = demote_repeats_from_lead(signals, LEAD_SLOT_COUNT)
         final_items = signals + context
         print(f"Relevance gate: {len(signals)} signal / {len(context)} context / {dropped} noise descartados")
         if not final_items:
@@ -797,7 +834,7 @@ def apply_llm_results(candidates: list[dict], results_map: dict) -> list[dict]:
     else:
         # Sin veredictos (Gemini caido): modo degradado. No afirmamos relevancia
         # que no hemos podido juzgar; la UI avisa de que el filtro no se aplico.
-        final_items = reranked[:10]
+        final_items = demote_repeats_from_lead(reranked[:10], LEAD_SLOT_COUNT)
         for it in final_items:
             it["layer"] = "unrated"
         print(f"Relevance gate INACTIVO (sin veredictos LLM): {len(final_items)} items sin filtrar")
@@ -858,6 +895,16 @@ def generate_fallback_briefing(final_items: list[dict], primary_dist: dict, top_
         "watch": ["Confirmar que el analisis vuelve a ejecutarse en el proximo run."],
         "entities_top": top_entities_list[:5],
     }
+
+
+SNAPSHOT_DROP_KEYS = {"raw_title", "raw_summary", "_rid"}
+
+
+def slim_item_for_snapshot(it: dict) -> dict:
+    """Quita campos internos y recorta summary antes de commitear el JSON diario."""
+    out = {k: v for k, v in it.items() if k not in SNAPSHOT_DROP_KEYS}
+    out["summary"] = clip_text(out.get("summary") or "")
+    return out
 
 
 def main():
@@ -984,7 +1031,7 @@ def main():
             "signal": sum(1 for it in final_items if it.get("layer") == "signal"),
             "context": sum(1 for it in final_items if it.get("layer") == "context"),
         },
-        "items": final_items,
+        "items": [slim_item_for_snapshot(it) for it in final_items],
     }
 
     Path(f"docs/data/{today}.json").write_text(
