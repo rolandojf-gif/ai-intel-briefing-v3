@@ -800,6 +800,21 @@ class CoreQualityTests(unittest.TestCase):
         self.assertIn("Capa X apagada", html)
         self.assertIn("kill switch", html)
 
+    def test_copy_ficha_button_on_hero_and_cards_not_context(self):
+        from src.render import render_index
+        items = [
+            {"title": "Lead", "title_es": "Titular lead", "so_what": "Cambia el tablero",
+             "url": "https://openai.com/x", "score": 90, "layer": "signal"},
+            {"title": "Card", "title_es": "Titular card", "so_what": "Contexto util",
+             "url": "https://anthropic.com/y", "score": 80, "layer": "signal"},
+            {"title": "Ctx", "title_es": "Solo contexto", "url": "https://example.com/z",
+             "score": 40, "layer": "context"},
+        ]
+        html = render_index(items, briefing={"thesis": "t"}, snapshot={"date": "2026-08-23"}, market={})
+        self.assertEqual(html.count('class="copy-btn" data-copy'), 2)
+        self.assertIn("navigator.clipboard", html)
+        self.assertIn("Copiar", html)
+
 
 if __name__ == "__main__":
     unittest.main()
