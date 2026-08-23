@@ -1,66 +1,67 @@
 {
   "date": "2026-08-23",
-  "score_avg": 69.78,
+  "score_avg": 73.46,
   "primary_dist": {
     "invest": 1,
+    "models": 10,
     "geopol": 1,
-    "infra": 1,
-    "models": 6
+    "infra": 1
   },
   "top_entities": [
+    {
+      "entity": "Anthropic",
+      "count": 3
+    },
+    {
+      "entity": "OpenAI",
+      "count": 3
+    },
     {
       "entity": "NVIDIA",
       "count": 2
     },
     {
-      "entity": "OpenAI",
-      "count": 2
-    },
-    {
-      "entity": "Anthropic",
-      "count": 2
-    },
-    {
-      "entity": "Alibaba",
+      "entity": "Claude",
       "count": 1
     },
     {
-      "entity": "TSMC",
+      "entity": "Alibaba",
       "count": 1
     }
   ],
   "briefing": {
     "signals": [
-      "Nvidia sube más de un 15% los precios de sus productos de IA.",
-      "TSMC avanza en fotónica de silicio para optimizar el cómputo de IA.",
-      "Mistral lanza \"Agentic Search\" para mejorar la precisión y eficiencia de los agentes de IA.",
-      "GLM-5.3 supera a GPT-5.6 Sol en codificación por coste/rendimiento.",
-      "Alibaba busca 10.000 millones de dólares para financiar su inversión en IA."
+      "Anthropic ha habilitado a Claude para operar software y manejar archivos, ampliando la capacidad de los agentes.",
+      "Nvidia sube sus precios de chips de IA más de un 15%, impactando directamente los costes de compute.",
+      "Alibaba planea una inversión de 10.000 millones de dólares en IA, potenciando el stack chino.",
+      "Mistral lanza Agentic Search para mejorar la fiabilidad y precisión de los sistemas de IA.",
+      "xAI despliega Grok 4.6 en la Plataforma de Agentes Empresariales de Google, aumentando su alcance."
     ],
     "risks": [
-      "El aumento de costes de hardware por parte de Nvidia puede frenar la democratización del acceso al cómputo avanzado de IA.",
-      "La inversión masiva en chips y centros de datos podría generar una burbuja si el retorno de la inversión de los modelos no escala al mismo ritmo."
+      "El aumento de costes de hardware por Nvidia puede ralentizar la innovación de labs con menor capital.",
+      "La escalada inversora y tecnológica en China podría intensificar las tensiones geopolíticas por el control del stack de IA.",
+      "La expansión de las capacidades de los agentes requiere más robustez en fiabilidad y seguridad."
     ],
     "watch": [
-      "Observar si otros fabricantes de chips o proveedores de nube replican la subida de precios de Nvidia.",
-      "Medir la adopción e impacto de \"Agentic Search\" en la autonomía de los sistemas de IA.",
-      "Ver la capacidad de Alibaba para traducir la nueva financiación en avances tangibles en su stack de IA."
+      "Anuncios de clientes empresariales de Anthropic o xAI utilizando sus nuevas capacidades de agentes.",
+      "Variaciones en los precios de los servicios cloud de AWS, Azure y GCP tras las subidas de Nvidia.",
+      "Nuevos benchmarks de agentes de Mistral con Agentic Search en tareas de recuperación complejas."
     ],
     "entities_top": [
+      "Anthropic",
       "Nvidia",
-      "TSMC",
-      "Mistral AI",
-      "Alibaba",
-      "Together AI"
+      "xAI",
+      "Google",
+      "Mistral"
     ],
-    "thesis": "El mercado de la IA se polariza: el cómputo de Nvidia/TSMC se encarece, mientras la competencia en rendimiento/coste de modelos y la mejora de agentes se intensifica."
+    "thesis": "El ecosistema de agentes avanza significativamente con nuevas herramientas y despliegues, mientras la economía del compute se tensa por las subidas de precios de Nvidia y las grandes inversiones en China, reconfigurando los costes de la carrera AGI."
   },
   "memory": {
     "watch_resolved": [
       {
         "text": "Monitorizar la adopción real de GLM-5.3 en entornos productivos de desarrollo de agentes.",
         "status": "hit",
-        "evidence": "GLM-5.3 supera a GPT-5.6 Sol en codificación DeepSWE por coste/rendimiento."
+        "evidence": "GLM-5.3 supera a GPT-5.6 Sol en pass@4 y coste en DeepSWE, GPT-5.6 Sol gana pass@1"
       },
       {
         "text": "Ver anuncios de Intel o TSMC sobre la disponibilidad comercial de productos basados en sus nuevas estrategias de memoria y fotónica.",
@@ -76,12 +77,17 @@
     "entity_deltas": {
       "new_entrants": [
         "Alibaba",
+        "Artificial Analysis",
+        "Claude Mythos 5",
         "GLM-5",
-        "GPT-5.6 Sol",
-        "Linus Torvalds",
-        "Mistral AI"
+        "GPT-5.6 Sol"
       ],
-      "returning": [],
+      "returning": [
+        {
+          "entity": "Claude",
+          "silent_days": 8
+        }
+      ],
       "streaks": []
     },
     "threads": [
@@ -89,25 +95,27 @@
         "theme": "agents_automation",
         "label": "Agentes y automatización",
         "days": 7,
-        "lead": "Mistral lanza \"Agentic Search\" para mejorar la precisión y eficiencia de sistemas de IA."
+        "lead": "Anthropic habilita uso de ordenador, Skills API y Files API en Claude para agentes"
       },
       {
         "theme": "compute_chips_dc",
         "label": "Compute y chips",
         "days": 3,
-        "lead": "Nvidia sube los precios de sus productos de IA más de un 15% a sus clientes."
+        "lead": "Nvidia notifica a clientes subidas de precios de IA superiores al 15%"
       }
     ]
   },
   "activity": {
-    "label": "ACTIVO",
-    "class": "active"
+    "label": "ALERTA",
+    "class": "alert"
   },
   "source_health": {
-    "configured": 31,
-    "alive": 30,
+    "configured": 36,
+    "alive": 33,
     "dead": [
-      "OpenRouter Insights"
+      "OpenRouter Insights",
+      "Epoch AI",
+      "Hacker News (alto voltaje)"
     ],
     "counts": {
       "Reuters AI": 1,
@@ -119,18 +127,22 @@
       "TechCrunch AI": 1,
       "Ars Technica AI": 1,
       "TechRadar AI": 1,
-      "OpenAI": 1,
-      "Anthropic": 1,
-      "DeepMind Blog": 1,
-      "Google AI Blog": 1,
-      "Mistral": 1,
+      "OpenAI": 3,
+      "Anthropic": 3,
+      "DeepMind Blog": 2,
+      "Google AI Blog": 2,
+      "Mistral": 2,
+      "Meta AI": 2,
+      "xAI": 2,
       "Artificial Analysis": 1,
       "ARC Prize": 1,
-      "Qwen (Alibaba)": 1,
+      "Import AI": 1,
+      "Qwen (Alibaba)": 2,
       "DeepSeek Releases": 1,
+      "Moonshot (Kimi)": 2,
       "ChinaTalk": 1,
       "Together AI": 1,
-      "SemiAnalysis": 1,
+      "SemiAnalysis": 2,
       "SemiWiki": 1,
       "NVIDIA Blog (AI)": 1,
       "Fabricated Knowledge": 1,
@@ -138,14 +150,13 @@
       "Interconnects": 1,
       "Latent Space": 1,
       "Simon Willison (AI & LLMs)": 1,
-      "Hugging Face Blog": 1,
-      "Hacker News (alto voltaje)": 1
+      "Hugging Face Blog": 1
     }
   },
   "degraded": false,
-  "dropped_noise": 15,
+  "dropped_noise": 17,
   "counts": {
-    "signal": 6,
+    "signal": 10,
     "context": 3
   },
   "items": [
@@ -172,12 +183,12 @@
       "adjusted_score": 34,
       "llm_score": 95,
       "verdict": "signal",
-      "so_what": "El aumento de precios de Nvidia incrementará el coste operativo de los centros de datos y el entrenamiento de modelos, impactando directamente la economía de los proveedores de IA.",
-      "power_shift": "Nvidia gana / Desarrolladores y proveedores de modelos pierden",
-      "watch_next": "Anuncios de otros fabricantes de hardware o proveedores de la nube que ajusten sus precios.",
-      "title_es": "Nvidia sube los precios de sus productos de IA más de un 15% a sus clientes.",
+      "so_what": "El aumento de precios de Nvidia incrementa los costes de hardware para todos los desarrolladores y labs de IA, afectando directamente la economía de los modelos y la capacidad de inversión en compute.",
+      "power_shift": "Nvidia consolida control sobre el mercado de chips de IA, aumentando márgenes. Los labs con menos capital pierden ventaja.",
+      "watch_next": "Anuncios de precios de servicios cloud (AWS, Azure, GCP) reflejando estas subidas.",
+      "title_es": "Nvidia notifica a clientes subidas de precios de IA superiores al 15%",
       "llm_theme": "compute_chips_dc",
-      "why": "El aumento de precios de Nvidia incrementará el coste operativo de los centros de datos y el entrenamiento de modelos, impactando directamente la economía de los proveedores de IA.",
+      "why": "El aumento de precios de Nvidia incrementa los costes de hardware para todos los desarrolladores y labs de IA, afectando directamente la economía de los modelos y la capacidad de inversión en compute.",
       "entities": [
         "NVIDIA"
       ],
@@ -185,6 +196,44 @@
       "final_score": 98,
       "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(12)-noise(0)",
       "strategic_theme": "compute_chips_dc",
+      "layer": "signal"
+    },
+    {
+      "title": "Build production agents with computer use, the Skills API, and the Files API",
+      "link": "https://claude.com/blog/computer-use-skills-api-files-api",
+      "published": "2026-08-20T00:00:00+00:00",
+      "summary": "Computer use, the Skills API, and the Files API are generally available on the Claude Platform today. Computer use also adds a new browser use tool for agents that work in web applications. Together they let you build agents that operate software, apply your team's expertise, and return finished files. Building agents on the Claude Platform Computer use lets you build agents that operate software they can see. Given a screenshot, the agent clicks, types, and scrolls the way someone at the keyboard would. That lets it work in applications that were never built for automation. The new browser use tool extends this to the web. Alongside the screenshot, the agent reads the structure of the page and acts on a specific field or button rather than a position on screen. The Skills API and the Fil…",
+      "image_url": "https://cdn.prod.website-files.com/68a44d4040f98a4adf2207b6/69051360369f8c1bb58fc2fe_og_build-artifacts.jpg",
+      "source": "Anthropic",
+      "feed_tags": [
+        "labs",
+        "models",
+        "frontier"
+      ],
+      "score": 91,
+      "primary": "models",
+      "tags": [],
+      "heuristic_score": 93,
+      "url": "https://claude.com/blog/computer-use-skills-api-files-api",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 93,
+      "llm_score": 95,
+      "verdict": "signal",
+      "so_what": "Los agentes de Claude ahora pueden operar software que ven en pantalla, incluyendo navegadores, y manejar archivos, expandiendo drásticamente su capacidad de automatización de tareas complejas.",
+      "power_shift": "Anthropic gana capacidad en agentes / Otros labs deben igualar funcionalidad.",
+      "watch_next": "Lanzamiento de casos de uso de agentes de Claude que operan software de terceros complejos.",
+      "title_es": "Anthropic habilita uso de ordenador, Skills API y Files API en Claude para agentes",
+      "llm_theme": "agents_automation",
+      "why": "Los agentes de Claude ahora pueden operar software que ven en pantalla, incluyendo navegadores, y manejar archivos, expandiendo drásticamente su capacidad de automatización de tareas complejas.",
+      "entities": [
+        "Anthropic",
+        "Claude"
+      ],
+      "noise_penalty": 4,
+      "final_score": 91,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(0)-noise(4)",
+      "strategic_theme": "agents_automation",
       "layer": "signal"
     },
     {
@@ -200,7 +249,7 @@
         "industry",
         "models"
       ],
-      "score": 86,
+      "score": 90,
       "primary": "geopol",
       "tags": [],
       "heuristic_score": 11,
@@ -208,21 +257,60 @@
       "is_repeat": false,
       "novelty_score": 100,
       "adjusted_score": 11,
-      "llm_score": 85,
+      "llm_score": 90,
       "verdict": "signal",
-      "so_what": "Alibaba busca asegurar financiación masiva para su estrategia de IA, lo que indica la magnitud de la inversión necesaria y la presión competitiva en el ecosistema chino de IA.",
-      "power_shift": "Alibaba gana / Competidores con menos capital pueden perder terreno",
-      "watch_next": "Anuncios concretos de inversión o adquisiciones de Alibaba en infraestructura o modelos de IA.",
-      "title_es": "Alibaba planea emisión de acciones por 10.000 millones de dólares para financiar inversión en IA.",
+      "so_what": "La inyección de capital de Alibaba subraya la carrera inversora en IA y chips en China, potenciando su infraestructura y desarrollo de modelos, y agudizando la competición.",
+      "power_shift": "Alibaba gana capacidad de inversión, fortaleciendo el stack de IA chino.",
+      "watch_next": "Anuncios específicos de Alibaba sobre nuevos data centers o chips desarrollados con esta inversión.",
+      "title_es": "Alibaba planea captar 10.000 millones de dólares para inversión en IA",
       "llm_theme": "china_stack",
-      "why": "Alibaba busca asegurar financiación masiva para su estrategia de IA, lo que indica la magnitud de la inversión necesaria y la presión competitiva en el ecosistema chino de IA.",
+      "why": "La inyección de capital de Alibaba subraya la carrera inversora en IA y chips en China, potenciando su infraestructura y desarrollo de modelos, y agudizando la competición.",
       "entities": [
         "Alibaba"
       ],
       "noise_penalty": 0,
-      "final_score": 86,
+      "final_score": 90,
       "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(12)-noise(0)",
       "strategic_theme": "china_stack",
+      "layer": "signal"
+    },
+    {
+      "title": "Grok 4.6 on Google Enterprise Agent Platform - X.ai",
+      "link": "https://x.ai/news/grok-4-6-vertex-ai",
+      "published": "2026-08-22T01:42:54+00:00",
+      "summary": "Grok 4.6 on Google Enterprise Agent Platform &nbsp;&nbsp; X.ai",
+      "image_url": "https://x.ai/images/news/og-google-enterprise-agent-platform.webp",
+      "source": "xAI",
+      "feed_tags": [
+        "labs",
+        "models",
+        "frontier"
+      ],
+      "score": 89,
+      "primary": "models",
+      "tags": [],
+      "heuristic_score": 42,
+      "url": "https://x.ai/news/grok-4-6-vertex-ai",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 42,
+      "llm_score": 90,
+      "verdict": "signal",
+      "so_what": "La integración de Grok 4.6 en la plataforma de agentes de Google amplía su disponibilidad y utilidad para soluciones de automatización empresarial, potenciando la capacidad de Google.",
+      "power_shift": "Google Enterprise Agent Platform gana oferta de modelos, xAI expande alcance.",
+      "watch_next": "Anuncios de grandes empresas adoptando Grok 4.6 en la plataforma de Google.",
+      "title_es": "Grok 4.6 de xAI disponible en la Plataforma de Agentes Empresariales de Google",
+      "llm_theme": "agents_automation",
+      "why": "La integración de Grok 4.6 en la plataforma de agentes de Google amplía su disponibilidad y utilidad para soluciones de automatización empresarial, potenciando la capacidad de Google.",
+      "entities": [
+        "xAI",
+        "Grok 4.6",
+        "Google"
+      ],
+      "noise_penalty": 0,
+      "final_score": 89,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(6)-noise(0)",
+      "strategic_theme": "agents_automation",
       "layer": "signal"
     },
     {
@@ -246,12 +334,12 @@
       "adjusted_score": 1,
       "llm_score": 90,
       "verdict": "signal",
-      "so_what": "La estrategia de TSMC de integrar fotónica en los chips de IA es crucial para superar los cuellos de botella de ancho de banda y energía, permitiendo escalar el cómputo para modelos más grandes.",
-      "power_shift": "TSMC gana / Fabricantes de transceptores ópticos tradicionales pierden terreno en el segmento de chips",
-      "watch_next": "Anuncios de productos o nodos de fabricación de TSMC que implementen esta tecnología a escala.",
-      "title_es": "TSMC desarrolla fotónica de silicio para integrar E/S ópticas en lógica avanzada para IA.",
+      "so_what": "La estrategia de fotónica de silicio de TSMC es crítica para superar las limitaciones de interconexión eléctrica, permitiendo chips de IA más potentes y eficientes a largo plazo.",
+      "power_shift": "TSMC consolida su liderazgo en tecnología de fabricación de chips avanzados, clave para la IA.",
+      "watch_next": "Anuncios de fabricantes de chips de IA integrando la tecnología fotónica de TSMC en productos.",
+      "title_es": "TSMC desarrolla plataforma foundry fotónica y packaging TSMC-COUPE para IA",
       "llm_theme": "compute_chips_dc",
-      "why": "La estrategia de TSMC de integrar fotónica en los chips de IA es crucial para superar los cuellos de botella de ancho de banda y energía, permitiendo escalar el cómputo para modelos más grandes.",
+      "why": "La estrategia de fotónica de silicio de TSMC es crítica para superar las limitaciones de interconexión eléctrica, permitiendo chips de IA más potentes y eficientes a largo plazo.",
       "entities": [
         "TSMC"
       ],
@@ -273,7 +361,7 @@
         "economics",
         "benchmarks"
       ],
-      "score": 79,
+      "score": 75,
       "primary": "models",
       "tags": [],
       "heuristic_score": 100,
@@ -281,22 +369,135 @@
       "is_repeat": true,
       "novelty_score": 45,
       "adjusted_score": 45,
-      "llm_score": 90,
+      "llm_score": 85,
       "verdict": "signal",
-      "so_what": "El coste/rendimiento de GLM-5.3 en tareas de codificación sugiere una mayor presión sobre los modelos más caros, incluso si no alcanzan el rendimiento absoluto en todas las métricas.",
-      "power_shift": "Together AI gana / OpenAI pierde",
-      "watch_next": "Lanzamientos de modelos de codificación con ratios coste/rendimiento superiores a GPT-5.6 Sol.",
-      "title_es": "GLM-5.3 supera a GPT-5.6 Sol en codificación DeepSWE por coste/rendimiento.",
+      "so_what": "GLM-5.3 ofrece una alternativa más económica y eficiente en ciertos escenarios de generación de código, impactando las decisiones de despliegue y costes para tareas de automatización.",
+      "power_shift": "GLM-5.3 (Zhipu) gana terreno en eficiencia y coste, presionando a OpenAI.",
+      "watch_next": "Más benchmarks independientes de coding que reafirmen el rendimiento/coste de GLM-5.3.",
+      "title_es": "GLM-5.3 supera a GPT-5.6 Sol en pass@4 y coste en DeepSWE, GPT-5.6 Sol gana pass@1",
       "llm_theme": "model_economics",
-      "why": "El coste/rendimiento de GLM-5.3 en tareas de codificación sugiere una mayor presión sobre los modelos más caros, incluso si no alcanzan el rendimiento absoluto en todas las métricas.",
+      "why": "GLM-5.3 ofrece una alternativa más económica y eficiente en ciertos escenarios de generación de código, impactando las decisiones de despliegue y costes para tareas de automatización.",
       "entities": [
         "Together AI",
-        "OpenAI",
         "GLM-5",
-        "GPT-5.6 Sol"
+        "GPT-5.6 Sol",
+        "Zhipu AI",
+        "OpenAI"
       ],
       "noise_penalty": 4,
-      "final_score": 79,
+      "final_score": 75,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(0)-noise(4)",
+      "strategic_theme": "model_economics",
+      "layer": "signal"
+    },
+    {
+      "title": "Agentic Search. More accurate and efficient results from your AI systems.",
+      "link": "https://mistral.ai/news/agentic-search/",
+      "published": "2026-08-20T12:00:17+00:00",
+      "summary": "The retrieval layer that helps AI systems navigate, read, and verify information inside even the most complex documents",
+      "image_url": "https://mistral.ai/cms-media/api/media/file/Thumbnail-Blog-Agenticsearch.png",
+      "source": "Mistral",
+      "feed_tags": [
+        "labs",
+        "models",
+        "open_weights"
+      ],
+      "score": 72,
+      "primary": "models",
+      "tags": [],
+      "heuristic_score": 28,
+      "url": "https://mistral.ai/news/agentic-search/",
+      "is_repeat": true,
+      "novelty_score": 45,
+      "adjusted_score": 0,
+      "llm_score": 90,
+      "verdict": "signal",
+      "so_what": "Agentic Search de Mistral mejora la capacidad de los sistemas de IA para navegar, leer y verificar información, aumentando la fiabilidad de los agentes y reduciendo alucinaciones.",
+      "power_shift": "Mistral potencia la capacidad de sus modelos y el ecosistema de agentes, mejorando la confianza.",
+      "watch_next": "Demostraciones o benchmarks de agentes de Mistral con Agentic Search en tareas complejas de RAG.",
+      "title_es": "Mistral lanza Agentic Search para mejorar precisión y eficiencia en sistemas de IA",
+      "llm_theme": "agents_automation",
+      "why": "Agentic Search de Mistral mejora la capacidad de los sistemas de IA para navegar, leer y verificar información, aumentando la fiabilidad de los agentes y reduciendo alucinaciones.",
+      "entities": [
+        "Mistral"
+      ],
+      "noise_penalty": 4,
+      "final_score": 72,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(0)-noise(4)",
+      "strategic_theme": "agents_automation",
+      "layer": "signal"
+    },
+    {
+      "title": "Bringing the cybersecurity capabilities of Claude Mythos 5 to more defenders",
+      "link": "https://claude.com/blog/bringing-claude-mythos-5-to-more-defenders",
+      "published": "2026-08-21T00:00:00+00:00",
+      "summary": "We're sharing an update on our efforts to help more teams use frontier capabilities for cyber defense. Claude Mythos 5 is now available in Claude Security , and coming soon to partners' cyber defense tools. We're also launching a $35M fund to help secure open-source software and sharing plans to expand our Cyber Verification Program . In April, we launched Project Glasswing to put our most capable frontier model, Claude Mythos Preview (and its successor, Claude Mythos 5), in the hands of a small group of organizations securing the world’s most critical software. This gave defenders a window of time to find and fix vulnerabilities ahead of models with similar capabilities becoming generally available or reaching malicious actors. Our goal has always been to expand Mythos-level defense to a…",
+      "image_url": "https://cdn.prod.website-files.com/68a44d4040f98a4adf2207b6/69f398245c0b3933c7940d49_og_claude-security-public-beta%20(1).jpg",
+      "source": "Anthropic",
+      "feed_tags": [
+        "labs",
+        "models",
+        "frontier"
+      ],
+      "score": 71,
+      "primary": "models",
+      "tags": [],
+      "heuristic_score": 100,
+      "url": "https://claude.com/blog/bringing-claude-mythos-5-to-more-defenders",
+      "is_repeat": true,
+      "novelty_score": 45,
+      "adjusted_score": 45,
+      "llm_score": 80,
+      "verdict": "signal",
+      "so_what": "La expansión del acceso a Claude Mythos 5 permite a más equipos usar capacidades avanzadas de IA para ciberseguridad, anticipando y mitigando vulnerabilidades. El fondo incentiva la seguridad OSS.",
+      "power_shift": "Anthropic solidifica posición en IA para ciberseguridad.",
+      "watch_next": "Demostraciones o informes públicos de Mythos 5 identificando vulnerabilidades críticas.",
+      "title_es": "Anthropic expande acceso a Claude Mythos 5 para ciberdefensa y lanza fondo de 35M$",
+      "llm_theme": "frontier_capability",
+      "why": "La expansión del acceso a Claude Mythos 5 permite a más equipos usar capacidades avanzadas de IA para ciberseguridad, anticipando y mitigando vulnerabilidades. El fondo incentiva la seguridad OSS.",
+      "entities": [
+        "Anthropic",
+        "Claude Mythos 5"
+      ],
+      "noise_penalty": 4,
+      "final_score": 71,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(0)-noise(4)",
+      "strategic_theme": "frontier_capability",
+      "layer": "signal"
+    },
+    {
+      "title": "Offering Zero Data Retention for frontier models",
+      "link": "https://openai.com/index/offering-zero-data-retention-for-frontier-models",
+      "published": "2026-08-19T19:00:00+00:00",
+      "summary": "OpenAI reaffirms Zero Data Retention for eligible API customers and previews Private Safety Processing for advanced AI safety without compromising data privacy.",
+      "image_url": "",
+      "source": "OpenAI",
+      "feed_tags": [
+        "labs",
+        "models",
+        "frontier"
+      ],
+      "score": 66,
+      "primary": "models",
+      "tags": [],
+      "heuristic_score": 71,
+      "url": "https://openai.com/index/offering-zero-data-retention-for-frontier-models",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 71,
+      "llm_score": 70,
+      "verdict": "signal",
+      "so_what": "La política de retención de datos cero aborda una preocupación clave de privacidad y seguridad para la adopción empresarial, reduciendo barreras para integrar modelos frontera.",
+      "power_shift": "OpenAI mejora atractivo para grandes empresas con datos sensibles.",
+      "watch_next": "Anuncios de grandes empresas adoptando APIs de OpenAI tras esta política.",
+      "title_es": "OpenAI ofrece Retención de Datos Cero para modelos frontera a clientes API",
+      "llm_theme": "model_economics",
+      "why": "La política de retención de datos cero aborda una preocupación clave de privacidad y seguridad para la adopción empresarial, reduciendo barreras para integrar modelos frontera.",
+      "entities": [
+        "OpenAI"
+      ],
+      "noise_penalty": 4,
+      "final_score": 66,
       "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(0)-noise(4)",
       "strategic_theme": "model_economics",
       "layer": "signal"
@@ -313,7 +514,7 @@
         "engineering",
         "agents"
       ],
-      "score": 70,
+      "score": 66,
       "primary": "models",
       "tags": [],
       "heuristic_score": 30,
@@ -321,56 +522,19 @@
       "is_repeat": true,
       "novelty_score": 45,
       "adjusted_score": 0,
-      "llm_score": 75,
+      "llm_score": 70,
       "verdict": "signal",
-      "so_what": "El uso creciente de simulaciones, aunque con menor precisión, altera la economía del entrenamiento de modelos al reducir drásticamente costes y tiempos, acelerando la iteración y experimentación.",
-      "power_shift": "Desarrolladores de simulaciones y entornos sintéticos ganan / Entrenamientos puramente basados en datos reales pierden exclusividad",
-      "watch_next": "Nuevas herramientas o plataformas de simulación que optimicen la relación calidad/coste/velocidad para el entrenamiento de modelos.",
-      "title_es": "La simulación se impone en IA por su bajo coste y alta velocidad, pese a menor rendimiento.",
+      "so_what": "La adopción de la simulación para entrenar modelos, aunque genere resultados ligeramente inferiores, reduce drásticamente los costes y tiempos de desarrollo, acelerando la iteración de modelos.",
+      "power_shift": "Quienes inviertan en infraestructuras de simulación ganan ventaja en velocidad y coste de desarrollo.",
+      "watch_next": "",
+      "title_es": "La simulación, más barata y rápida, se perfila como futuro del entrenamiento de IA",
       "llm_theme": "compute_chips_dc",
-      "why": "El uso creciente de simulaciones, aunque con menor precisión, altera la economía del entrenamiento de modelos al reducir drásticamente costes y tiempos, acelerando la iteración y experimentación.",
+      "why": "La adopción de la simulación para entrenar modelos, aunque genere resultados ligeramente inferiores, reduce drásticamente los costes y tiempos de desarrollo, acelerando la iteración de modelos.",
       "entities": [],
       "noise_penalty": 0,
-      "final_score": 70,
+      "final_score": 66,
       "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(6)-noise(0)",
       "strategic_theme": "compute_chips_dc",
-      "layer": "signal"
-    },
-    {
-      "title": "Agentic Search. More accurate and efficient results from your AI systems.",
-      "link": "https://mistral.ai/news/agentic-search/",
-      "published": "2026-08-20T12:00:17+00:00",
-      "summary": "The retrieval layer that helps AI systems navigate, read, and verify information inside even the most complex documents",
-      "image_url": "https://mistral.ai/cms-media/api/media/file/Thumbnail-Blog-Agenticsearch.png",
-      "source": "Mistral",
-      "feed_tags": [
-        "labs",
-        "models",
-        "open_weights"
-      ],
-      "score": 64,
-      "primary": "models",
-      "tags": [],
-      "heuristic_score": 28,
-      "url": "https://mistral.ai/news/agentic-search/",
-      "is_repeat": true,
-      "novelty_score": 45,
-      "adjusted_score": 0,
-      "llm_score": 80,
-      "verdict": "signal",
-      "so_what": "La capacidad de \"Agentic Search\" mejora la recuperación y verificación de información por parte de los agentes, lo que es crítico para sistemas autónomos y el desarrollo de AGI robusta.",
-      "power_shift": "Mistral gana / Agentes sin capacidades avanzadas de búsqueda pierden efectividad comparativa",
-      "watch_next": "Integración y métricas de rendimiento de \"Agentic Search\" en modelos o frameworks de agentes de Mistral.",
-      "title_es": "Mistral lanza \"Agentic Search\" para mejorar la precisión y eficiencia de sistemas de IA.",
-      "llm_theme": "agents_automation",
-      "why": "La capacidad de \"Agentic Search\" mejora la recuperación y verificación de información por parte de los agentes, lo que es crítico para sistemas autónomos y el desarrollo de AGI robusta.",
-      "entities": [
-        "Mistral AI"
-      ],
-      "noise_penalty": 4,
-      "final_score": 64,
-      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(0)-noise(4)",
-      "strategic_theme": "agents_automation",
       "layer": "signal"
     },
     {
@@ -386,7 +550,7 @@
         "coding",
         "tools"
       ],
-      "score": 50,
+      "score": 67,
       "primary": "models",
       "tags": [],
       "heuristic_score": 28,
@@ -394,58 +558,20 @@
       "is_repeat": false,
       "novelty_score": 100,
       "adjusted_score": 28,
-      "llm_score": 40,
+      "llm_score": 60,
       "verdict": "context",
-      "so_what": "Destaca la utilidad práctica de las IA en tareas complejas de depuración de código, incluso con sus limitaciones actuales, como un asistente incansable para tareas \"rutinarias\".",
-      "power_shift": "Los desarrolladores individuales ganan eficiencia",
-      "watch_next": "Anuncios de herramientas o agentes específicos para depuración de código basados en IA que se generalicen.",
-      "title_es": "Linus Torvalds usa IA para depuración, destacando su utilidad pese a \"querer rendirse\".",
+      "so_what": "La experiencia de Torvalds valida la utilidad de la IA como asistente de programación en tareas complejas de depuración, aunque subraya sus limitaciones en persistencia comparada con humanos.",
+      "power_shift": "",
+      "watch_next": "",
+      "title_es": "Linus Torvalds usa IA para depuración intensiva, pese a la \"falta de terquedad\" del modelo",
       "llm_theme": "agents_automation",
-      "why": "Destaca la utilidad práctica de las IA en tareas complejas de depuración de código, incluso con sus limitaciones actuales, como un asistente incansable para tareas \"rutinarias\".",
+      "why": "La experiencia de Torvalds valida la utilidad de la IA como asistente de programación en tareas complejas de depuración, aunque subraya sus limitaciones en persistencia comparada con humanos.",
       "entities": [
         "Linus Torvalds"
       ],
       "noise_penalty": 0,
-      "final_score": 50,
+      "final_score": 67,
       "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(12)-noise(0)",
-      "strategic_theme": "agents_automation",
-      "layer": "context"
-    },
-    {
-      "title": "The AI-Native SDLC playbook",
-      "link": "https://claude.com/blog/the-ai-native-sdlc-playbook",
-      "published": "2026-08-21T00:00:00+00:00",
-      "summary": "Code is no longer the bottleneck Organizations have started using AI to write code at a speed unthinkable one year ago, yet the processes around the code haven't changed at the same pace. Many engineering teams still have the same approval gates, reviews, handoffs, and policies, stalling productivity gains made by using agentic coding solutions like Claude Code . The software development lifecycle (SDLC) is the process that takes software from idea to production. Most organizations run some version of the same six stages, covering planning, design, building, testing, deploying, and maintaining software. Traditionally, each stage is a discrete phase owned by a different role. Product managers write requirements, technical architects turn them into designs, engineers build the designs, QA t…",
-      "image_url": "https://cdn.prod.website-files.com/68a44d4040f98a4adf2207b6/6a8739a1b934ffe55bfc9715_44592f18.png",
-      "source": "Anthropic",
-      "feed_tags": [
-        "labs",
-        "models",
-        "frontier"
-      ],
-      "score": 49,
-      "primary": "models",
-      "tags": [],
-      "heuristic_score": 69,
-      "url": "https://claude.com/blog/the-ai-native-sdlc-playbook",
-      "is_repeat": true,
-      "novelty_score": 45,
-      "adjusted_score": 14,
-      "llm_score": 60,
-      "verdict": "context",
-      "so_what": "Subraya la necesidad de adaptar los procesos de desarrollo de software para aprovechar los agentes de codificación, anticipando cambios fundamentales en la ingeniería de software y la gestión de proyectos.",
-      "power_shift": "Anthropic gana / Procesos SDLC tradicionales pierden relevancia",
-      "watch_next": "Adopción generalizada de frameworks o herramientas que automaticen pasos clave del SDLC con IA, como Claude Code.",
-      "title_es": "Anthropic presenta un playbook para la integración de IA en el SDLC.",
-      "llm_theme": "agents_automation",
-      "why": "Subraya la necesidad de adaptar los procesos de desarrollo de software para aprovechar los agentes de codificación, anticipando cambios fundamentales en la ingeniería de software y la gestión de proyectos.",
-      "entities": [
-        "Anthropic",
-        "Claude Code"
-      ],
-      "noise_penalty": 4,
-      "final_score": 49,
-      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(0)-noise(4)",
       "strategic_theme": "agents_automation",
       "layer": "context"
     },
@@ -461,7 +587,7 @@
         "analysis",
         "frontier"
       ],
-      "score": 49,
+      "score": 45,
       "primary": "models",
       "tags": [],
       "heuristic_score": 66,
@@ -469,23 +595,61 @@
       "is_repeat": true,
       "novelty_score": 45,
       "adjusted_score": 11,
-      "llm_score": 70,
+      "llm_score": 65,
       "verdict": "context",
-      "so_what": "La estrategia de Nvidia de empoderar a los clientes para construir sus propios modelos podría cambiar la dinámica del mercado, reduciendo la dependencia de APIs de frontera y aumentando la demanda de infraestructura local.",
-      "power_shift": "Nvidia gana / Proveedores de APIs de modelos pierden influencia",
-      "watch_next": "Aumento en la adopción de frameworks y herramientas que faciliten el entrenamiento de modelos privados.",
-      "title_es": "Nvidia busca que clientes desarrollen sus propios modelos en lugar de usar APIs de terceros.",
+      "so_what": "La estrategia de Nvidia de empujar a los clientes a entrenar sus propios modelos busca aumentar la venta de hardware y servicios de infraestructura, afectando la economía de los proveedores de API.",
+      "power_shift": "Nvidia fortalece su posición en hardware e infraestructura, potencialmente debilitando el crecimiento de ingresos de API de OpenAI/Anthropic.",
+      "watch_next": "",
+      "title_es": "Nvidia busca que clientes entrenen modelos propios en lugar de usar APIs de terceros",
       "llm_theme": "model_economics",
-      "why": "La estrategia de Nvidia de empoderar a los clientes para construir sus propios modelos podría cambiar la dinámica del mercado, reduciendo la dependencia de APIs de frontera y aumentando la demanda de infraestructura local.",
+      "why": "La estrategia de Nvidia de empujar a los clientes a entrenar sus propios modelos busca aumentar la venta de hardware y servicios de infraestructura, afectando la economía de los proveedores de API.",
       "entities": [
         "NVIDIA",
-        "Anthropic",
-        "OpenAI"
+        "OpenAI",
+        "Anthropic"
       ],
       "noise_penalty": 12,
-      "final_score": 49,
+      "final_score": 45,
       "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(0)-noise(12)",
       "strategic_theme": "model_economics",
+      "layer": "context"
+    },
+    {
+      "title": "Announcing the Artificial Analysis Search Index: Same Agent, Different Search August 18, 2026",
+      "link": "https://artificialanalysis.ai/articles/search-api",
+      "published": "2026-08-23T10:11:27.105773+00:00",
+      "summary": "Announcing the Artificial Analysis Search Index: Same Agent, Different Search August 18, 2026",
+      "image_url": "",
+      "source": "Artificial Analysis",
+      "feed_tags": [
+        "benchmarks",
+        "economics",
+        "models",
+        "frontier"
+      ],
+      "score": 42,
+      "primary": "models",
+      "tags": [],
+      "heuristic_score": 27,
+      "url": "https://artificialanalysis.ai/articles/search-api",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 27,
+      "llm_score": 30,
+      "verdict": "context",
+      "so_what": "La iniciativa propone un índice para comparar agentes con diferentes fuentes de información, ayudando a la estandarización y evaluación del rendimiento de agentes.",
+      "power_shift": "",
+      "watch_next": "",
+      "title_es": "Artificial Analysis lanza Search Index para agentes con distintas capacidades de búsqueda",
+      "llm_theme": "agents_automation",
+      "why": "La iniciativa propone un índice para comparar agentes con diferentes fuentes de información, ayudando a la estandarización y evaluación del rendimiento de agentes.",
+      "entities": [
+        "Artificial Analysis"
+      ],
+      "noise_penalty": 0,
+      "final_score": 42,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(12)-noise(0)",
+      "strategic_theme": "agents_automation",
       "layer": "context"
     }
   ]
