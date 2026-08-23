@@ -7,6 +7,11 @@ estructurado contra una tesis explícita (ver READER_THESIS). Todo lo que marca
 Esto es deliberado: el fallo del contrato v1 era pedir "puntúa impacto real"
 sin decir impacto para quién, con lo que el modelo premiaba novedad académica
 (un paper de estimación de peso de helicópteros sacaba 62/100).
+
+Los tres puntos que instruyen al modelo sobre severidad (SYSTEM, la descripcion
+del campo `verdict` y las REGLAS DE JUICIO del prompt) deben decir lo MISMO.
+Convivieron pidiendo severidad y generosidad a la vez, y el volumen del radar
+pasaba a depender de como resolviera el modelo la contradiccion.
 """
 
 from google import genai
@@ -68,10 +73,13 @@ class RankOut(BaseModel):
 
     verdict: Verdict = Field(
         description=(
-            "signal = noticia relevante, nuevo modelo, hardware/chips, agentes, economía de modelos o movimiento de mercado estratégico. Debe aparecer en las Señales del Radar principales. "
-            "context = artículo secundario de fondo o análisis complementario. "
-            "noise = marketing corporativo, webinars, eventos, papers incrementales sin impacto. "
-            "Prioriza categorizar como signal las noticias y avances reales para alimentar el radar principal."
+            "signal = noticia real con consecuencia: nuevo modelo, hardware/chips, agentes, "
+            "economía de modelos o movimiento de mercado estratégico. Va al radar principal. "
+            "context = análisis de fondo o pieza secundaria; aporta perspectiva pero no cambia nada hoy. "
+            "noise = marketing corporativo, fichajes, webinars, eventos, tutoriales, bumps de versión "
+            "y papers incrementales sin impacto. "
+            "Ante la duda entre signal y context, elige signal. Ante la duda entre context y noise, "
+            "elige noise: el relleno no entra al radar."
         )
     )
     relevance: int = Field(ge=0, le=100, description="Relevancia para la tesis del lector, no calidad del artículo")
@@ -130,8 +138,10 @@ class BatchOut(BaseModel):
 SYSTEM = (
     "Eres el analista jefe de inteligencia estratégica de un solo lector. "
     "Tu trabajo NO es resumir noticias: es decidir qué merece su atención hoy y por qué. "
-    "Eres severo filtrando. Un radar con 3 señales reales vale más que uno con 15 items de relleno. "
-    "Marcar algo irrelevante como 'signal' es un fallo grave; descartar relleno nunca lo es. "
+    "Cubre con generosidad lo que de verdad ocurre en la industria —lanzamientos, chips, "
+    "precios, agentes, movimientos de mercado— y corta sin piedad el relleno corporativo. "
+    "El error que debes evitar no es incluir de más, sino dejar pasar promoción disfrazada "
+    "de noticia o publicar algo sin poder decir qué consecuencia tiene. "
     "No inventes hechos ni cifras que no estén en el material. "
     "Escribe en castellano de España: directo, técnico, sin lenguaje corporativo ni superlativos."
 )
@@ -165,16 +175,18 @@ def rank_batch(items: list[dict], model: str = "gemini-2.5-flash") -> dict:
         "   con el MISMO id que recibes. No omitas ninguno, no reordenes, no inventes ids.\n\n"
         "2) Genera un briefing global basado SOLO en los items marcados signal/context.\n\n"
         "REGLAS DE JUICIO\n"
-        "- Sé severo: en un día normal la mayoría de items son noise. Es lo esperado.\n"
-        "- 'signal' se reserva a lo que de verdad mueve la carrera AGI o el reparto de poder.\n"
-        "- Un lanzamiento real de modelo de frontera, un salto de capacidad, un cambio de precios\n"
-        "  relevante, un movimiento de compute a gran escala o un control de exportación: signal.\n"
-        "- Un fichaje, una beca, un tutorial, un bump de versión, un paper incremental,\n"
-        "  una aplicación vertical de nicho: noise, sin excepciones.\n"
+        "- 'signal' es el caso normal para una noticia real: lanzamiento de modelo, salto de\n"
+        "  capacidad, chips y compute, precios y márgenes, agentes, o un movimiento de mercado\n"
+        "  con consecuencia. No lo reserves solo a lo histórico; el radar debe reflejar el día.\n"
+        "- 'context' es para el análisis de fondo y lo secundario: aporta perspectiva pero no\n"
+        "  cambia nada hoy.\n"
+        "- 'noise' es marketing corporativo, fichajes, becas, webinars, eventos, patrocinios,\n"
+        "  tutoriales, bumps de versión, papers incrementales y verticales de nicho.\n"
+        "  Aquí sí sé implacable: eso no llega nunca al radar.\n"
         "- relevance mide relevancia para ESTE lector, no calidad del artículo.\n"
         "  Un artículo excelente sobre algo que no le importa tiene relevance baja.\n"
-        "- so_what: la consecuencia, no el resumen. Si no sabes decir por qué le importa,\n"
-        "  probablemente sea noise.\n\n"
+        "- so_what: la consecuencia, no el resumen. Si no sabes decir qué consecuencia tiene,\n"
+        "  entonces es noise.\n\n"
         "REGLAS DEL BRIEFING\n"
         "- thesis: tu lectura del día en una frase. Si no ha pasado nada relevante, dilo.\n"
         "- signals: entre 2 y 5 bullets. Menos es mejor. Sin relleno.\n"
