@@ -142,6 +142,7 @@ class CoreQualityTests(unittest.TestCase):
         macro_labels = [m["label"] for m in data["macro"]]
         self.assertIn("S&P Futures", macro_labels)
         self.assertIn("Bitcoin", macro_labels)
+        self.assertIn("Ethereum", macro_labels)
         tickers = [c["ticker"] for c in data["companies"]]
         self.assertIn("NVDA", tickers)
         self.assertIn("SMCI", tickers)
@@ -235,14 +236,14 @@ class CoreQualityTests(unittest.TestCase):
         import src.market as market
 
         original_quote = market._fetch_yahoo_quote
-        original_crypto = market._fetch_crypto_bitcoin
+        original_crypto = market._fetch_coingecko
         try:
             market._fetch_yahoo_quote = lambda symbol: None
-            market._fetch_crypto_bitcoin = lambda: None
+            market._fetch_coingecko = lambda coin_id: None
             data = market.get_market_overview()
         finally:
             market._fetch_yahoo_quote = original_quote
-            market._fetch_crypto_bitcoin = original_crypto
+            market._fetch_coingecko = original_crypto
 
         quotes = data["macro"] + data["companies"]
         self.assertTrue(quotes)
@@ -250,6 +251,31 @@ class CoreQualityTests(unittest.TestCase):
         self.assertTrue(all(q["price_str"] == "s/d" for q in quotes))
         self.assertTrue(all(q["change_str"] == "" for q in quotes))
         self.assertEqual(data["quotes_ok"], 0)
+
+    def test_sparkline_uses_real_points_or_nothing(self):
+        from src.market import _generate_sparkline
+        self.assertEqual(_generate_sparkline([]), "")
+        self.assertEqual(_generate_sparkline([42.0]), "")
+        svg = _generate_sparkline([10.0, 11.0, 9.5], positive=False)
+        self.assertIn("<polyline", svg)
+        self.assertIn("#f43f5e", svg)
+        # La curva dummy (10.0, 10.2, 10.1…) ya no existe.
+        self.assertNotIn("10.2,10.1", svg.replace(" ", ""))
+
+    def test_coingecko_fallback_does_not_invent_price(self):
+        import src.market as market
+        original = market.requests.get
+
+        class Fake:
+            status_code = 429
+            def json(self):
+                return {}
+
+        try:
+            market.requests.get = lambda *a, **k: Fake()
+            self.assertIsNone(market._fetch_coingecko("ethereum"))
+        finally:
+            market.requests.get = original
 
     def test_render_shows_gap_not_fake_number_for_missing_quotes(self):
         """La pagina muestra el hueco, nunca una cifra inventada."""
