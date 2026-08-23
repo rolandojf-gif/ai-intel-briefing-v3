@@ -1,65 +1,64 @@
 {
   "date": "2026-08-23",
-  "score_avg": 53.33,
+  "score_avg": 66.5,
   "primary_dist": {
+    "invest": 3,
     "infra": 1,
-    "models": 8
+    "models": 6
   },
   "top_entities": [
     {
-      "entity": "GLM-5",
+      "entity": "NVIDIA",
+      "count": 3
+    },
+    {
+      "entity": "Bloomberg News",
       "count": 2
     },
     {
-      "entity": "GLM",
-      "count": 2
+      "entity": "Reuters",
+      "count": 1
     },
     {
-      "entity": "Cost",
-      "count": 2
+      "entity": "Yahoo Finance",
+      "count": 1
     },
     {
-      "entity": "Claude",
-      "count": 2
-    },
-    {
-      "entity": "TSMC",
+      "entity": "Nvidia Customers Notified",
       "count": 1
     }
   ],
   "briefing": {
     "signals": [
-      "Modelos como GLM-5.3 demuestran eficiencia superior en codificación frente a Claude Fable 5 y GPT-5.6 Sol, desafiando el liderazgo en rendimiento/coste.",
-      "Nvidia impulsa la creación de modelos personalizados para monetizar su cómputo, amenazando la hegemonía de los API de frontier labs.",
-      "TSMC avanza en fotónica de silicio (TSMC-COUPE), esencial para la escalabilidad y eficiencia de los clusters de IA de próxima generación.",
-      "Anthropic expande Claude Mythos 5 a ciberseguridad, desplegando capacidades de frontera en un dominio crítico y financiando la seguridad OSS.",
-      "Mistral lanza Agentic Search, una capa de recuperación que mejora la precisión y eficiencia de los sistemas IA, avanzando en agentes autónomos."
+      "Nvidia ha notificado subidas de precios de más del 15% en sus chips de IA.",
+      "TSMC está desarrollando una estrategia de fotónica de silicio e integración óptica para futuros chips de IA.",
+      "Un modelo de IA gratuito de origen desconocido está impresionando a desarrolladores.",
+      "Nvidia incentiva la creación de modelos propios en lugar de la dependencia de APIs de frontier labs."
     ],
     "risks": [
-      "La eficiencia en coste de entrenamiento y operación de los modelos se convierte en un cuello de botella crítico para la escalabilidad y adopción de la IA de frontera.",
-      "La centralización de la capacidad de cómputo en unos pocos proveedores de chips como Nvidia puede generar dependencia y limitar la innovación de los laboratorios de IA.",
-      "La seguridad de los modelos de frontera desplegados en aplicaciones críticas (como ciberseguridad) representa un riesgo si no se gestiona adecuadamente."
+      "El aumento del coste de los chips podría impactar la inversión en entrenamiento de modelos y el precio final de las APIs de IA.",
+      "La emergencia de capacidades significativas de IA sin atribución complica la evaluación competitiva y la vigilancia del espacio."
     ],
     "watch": [
-      "Incremento en la cuota de mercado de modelos como GLM-5.3 en tareas de codificación.",
-      "Movimientos de Nvidia para facilitar la construcción y despliegue de modelos personalizados en sus plataformas.",
-      "Anuncios de TSMC o sus clientes sobre chips con tecnología TSMC-COUPE y sus métricas de rendimiento."
+      "Anuncios de nuevos productos o clientes para la plataforma fotónica TSMC-COUPE.",
+      "Identificación del origen o publicación de benchmarks robustos para el modelo de IA anónimo.",
+      "Cambios en los precios de las APIs de los principales frontier labs a raíz de las subidas de Nvidia."
     ],
     "entities_top": [
       "Nvidia",
       "TSMC",
+      "OpenAI",
       "Anthropic",
-      "Zhipu.ai (GLM)",
-      "Mistral"
+      "Zhipu"
     ],
-    "thesis": "La presión sobre el modelo de negocio de los proveedores de LLMs de frontera se intensifica por la eficiencia de modelos alternativos y la estrategia de Nvidia, mientras avanza la integración de agentes y la infraestructura de cómputo."
+    "thesis": "El coste del compute se encarece con los chips de Nvidia, mientras TSMC avanza en tecnologías de empaquetado crítico. La aparición de un modelo anónimo capaz plantea dudas sobre nuevos actores."
   },
   "memory": {
     "watch_resolved": [
       {
         "text": "Monitorizar la adopción real de GLM-5.3 en entornos productivos de desarrollo de agentes.",
         "status": "hit",
-        "evidence": "Benchmark DeepSWE: GLM-5.3 supera a GPT-5.6 Sol en pass@4 con menor coste"
+        "evidence": "Comparativa de Together AI: GLM-5.3 de Zhipu y GPT-5.6 Sol de OpenAI en DeepSWE."
       },
       {
         "text": "Ver anuncios de Intel o TSMC sobre la disponibilidad comercial de productos basados en sus nuevas estrategias de memoria y fotónica.",
@@ -74,17 +73,13 @@
     ],
     "entity_deltas": {
       "new_entrants": [
-        "Agentic Search",
-        "Bringing",
-        "ChatGPT",
-        "Claude Fable",
-        "Claude Mythos"
+        "About",
+        "Above",
+        "Bloomberg",
+        "Bloomberg News",
+        "Business Insider"
       ],
       "returning": [
-        {
-          "entity": "Claude",
-          "silent_days": 8
-        },
         {
           "entity": "Tokens",
           "silent_days": 5
@@ -94,16 +89,10 @@
     },
     "threads": [
       {
-        "theme": "agents_automation",
-        "label": "Agentes y automatización",
-        "days": 7,
-        "lead": "Mistral lanza Agentic Search para resultados más precisos y eficientes en sus sistemas IA"
-      },
-      {
         "theme": "compute_chips_dc",
         "label": "Compute y chips",
         "days": 3,
-        "lead": "TSMC apuesta por la fotónica integrada para la era de la IA con plataforma TSMC-COUPE"
+        "lead": "Nvidia notifica a sus clientes aumentos de precios de más del 15% en chips de IA."
       }
     ]
   },
@@ -112,30 +101,39 @@
     "class": "alert"
   },
   "source_health": {
-    "configured": 23,
-    "alive": 22,
+    "configured": 32,
+    "alive": 31,
     "dead": [
       "OpenRouter Insights"
     ],
     "counts": {
-      "OpenAI": 2,
-      "Anthropic": 2,
-      "DeepMind Blog": 2,
-      "Mistral": 1,
+      "Reuters AI": 1,
+      "Bloomberg Tech": 1,
+      "Business Insider Tech": 1,
+      "Yahoo Finance AI": 1,
+      "VentureBeat AI": 1,
+      "The Verge AI": 1,
+      "TechCrunch AI": 1,
+      "Ars Technica AI": 1,
+      "TechRadar AI": 1,
+      "OpenAI": 1,
+      "Anthropic": 1,
+      "DeepMind Blog": 1,
       "Google AI Blog": 1,
-      "Qwen (Alibaba)": 2,
+      "Mistral": 1,
+      "Artificial Analysis": 1,
+      "ARC Prize": 1,
+      "Qwen (Alibaba)": 1,
       "DeepSeek Releases": 1,
       "ChinaTalk": 1,
-      "Together AI": 2,
-      "Artificial Analysis": 2,
-      "ARC Prize": 2,
-      "SemiAnalysis": 2,
+      "Together AI": 1,
+      "SemiAnalysis": 1,
       "SemiWiki": 1,
       "NVIDIA Blog (AI)": 1,
+      "PaymentsDive": 1,
       "Fabricated Knowledge": 1,
       "Stratechery": 1,
       "Interconnects": 1,
-      "Import AI": 1,
       "Latent Space": 1,
       "Simon Willison (AI & LLMs)": 1,
       "Hugging Face Blog": 1,
@@ -143,12 +141,144 @@
     }
   },
   "degraded": false,
-  "dropped_noise": 11,
+  "dropped_noise": 10,
   "counts": {
     "signal": 6,
-    "context": 3
+    "context": 4
   },
   "items": [
+    {
+      "title": "Nvidia customers notified about AI-related price hikes above 15%, Bloomberg News reports - Reuters",
+      "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPLWE3OUFQMndpYzJSVFBuYXBocWg0RUlmWGFtZDU0NEdtTUJzRmV2c3ZtWjJFOTUxNEFwaFNkSno5ZlhCdGpTSjJOMnNUc2U1Y01Fc1YtX2NrdnRFM0pEMDYyYXBrWGdHUVpTei1ramJ6YVE1aFFFTGVwX0drX1lBOFdyRGM4cEpZVG9uUEhka1J1RDZDQ0F3UWY3S0VjQVhLbzVjYmZPazhPcnV3c1ZVd0F4bExTeU9QN0VnOVRyVlA?oc=5",
+      "published": "2026-08-22T20:00:21+00:00",
+      "summary": "Nvidia customers notified about AI-related price hikes above 15%, Bloomberg News reports &nbsp;&nbsp; Reuters",
+      "image_url": "",
+      "source": "Reuters AI",
+      "feed_tags": [
+        "business",
+        "geopol",
+        "industry",
+        "models"
+      ],
+      "raw_title": "Nvidia customers notified about AI-related price hikes above 15%, Bloomberg News reports - Reuters",
+      "raw_summary": "Nvidia customers notified about AI-related price hikes above 15%, Bloomberg News reports &nbsp;&nbsp; Reuters",
+      "score": 94,
+      "primary": "invest",
+      "tags": [],
+      "heuristic_score": 36,
+      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPLWE3OUFQMndpYzJSVFBuYXBocWg0RUlmWGFtZDU0NEdtTUJzRmV2c3ZtWjJFOTUxNEFwaFNkSno5ZlhCdGpTSjJOMnNUc2U1Y01Fc1YtX2NrdnRFM0pEMDYyYXBrWGdHUVpTei1ramJ6YVE1aFFFTGVwX0drX1lBOFdyRGM4cEpZVG9uUEhka1J1RDZDQ0F3UWY3S0VjQVhLbzVjYmZPazhPcnV3c1ZVd0F4bExTeU9QN0VnOVRyVlA?oc=5",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 36,
+      "_rid": 4,
+      "llm_score": 90,
+      "verdict": "signal",
+      "so_what": "El coste de entrenar y operar modelos de IA frontier se encarece significativamente, afectando la rentabilidad de los labs y el precio final de las APIs de IA. Esto cambia la economía del compute.",
+      "power_shift": "",
+      "watch_next": "",
+      "title_es": "Nvidia notifica a sus clientes aumentos de precios de más del 15% en chips de IA.",
+      "llm_theme": "compute_chips_dc",
+      "why": "El coste de entrenar y operar modelos de IA frontier se encarece significativamente, afectando la rentabilidad de los labs y el precio final de las APIs de IA. Esto cambia la economía del compute.",
+      "entities": [
+        "NVIDIA",
+        "Bloomberg News",
+        "Reuters"
+      ],
+      "noise_penalty": 0,
+      "final_score": 94,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(12)-noise(0)",
+      "strategic_theme": "compute_chips_dc",
+      "layer": "signal"
+    },
+    {
+      "title": "Nvidia customers notified about AI-related price hikes above 15%, Bloomberg News reports - Yahoo Finance",
+      "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQUF9oRExlOUE1eWZncXFtUDktNDlVR2JkRlliWjVoVkNnMHptWDBETk1tRUcxaTZrVk1OX2V3YURQX1YyaFNmZGRzdGhkOFltRmtWU0dsaXE4NEFweG1zSE5MdkRmX2I0eUlHZWtRSnpfQ3U4RGlTdVJ2am9XTmo2c1FpT1A5T2ZKTVZnQzF4V1BxdWVaZ0xfdGF1TUc1RjNRVHc?oc=5",
+      "published": "2026-08-22T19:20:53+00:00",
+      "summary": "Nvidia customers notified about AI-related price hikes above 15%, Bloomberg News reports &nbsp;&nbsp; Yahoo Finance",
+      "image_url": "",
+      "source": "Yahoo Finance AI",
+      "feed_tags": [
+        "finance",
+        "market",
+        "hardware",
+        "chips"
+      ],
+      "raw_title": "Nvidia customers notified about AI-related price hikes above 15%, Bloomberg News reports - Yahoo Finance",
+      "raw_summary": "Nvidia customers notified about AI-related price hikes above 15%, Bloomberg News reports &nbsp;&nbsp; Yahoo Finance",
+      "score": 94,
+      "primary": "invest",
+      "tags": [],
+      "heuristic_score": 36,
+      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQUF9oRExlOUE1eWZncXFtUDktNDlVR2JkRlliWjVoVkNnMHptWDBETk1tRUcxaTZrVk1OX2V3YURQX1YyaFNmZGRzdGhkOFltRmtWU0dsaXE4NEFweG1zSE5MdkRmX2I0eUlHZWtRSnpfQ3U4RGlTdVJ2am9XTmo2c1FpT1A5T2ZKTVZnQzF4V1BxdWVaZ0xfdGF1TUc1RjNRVHc?oc=5",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 36,
+      "_rid": 5,
+      "llm_score": 90,
+      "verdict": "signal",
+      "so_what": "El coste de entrenar y operar modelos de IA frontier se encarece significativamente, afectando la rentabilidad de los labs y el precio final de las APIs de IA. Esto cambia la economía del compute.",
+      "power_shift": "",
+      "watch_next": "",
+      "title_es": "Nvidia notifica a sus clientes aumentos de precios de más del 15% en chips de IA.",
+      "llm_theme": "compute_chips_dc",
+      "why": "El coste de entrenar y operar modelos de IA frontier se encarece significativamente, afectando la rentabilidad de los labs y el precio final de las APIs de IA. Esto cambia la economía del compute.",
+      "entities": [
+        "NVIDIA",
+        "Bloomberg News",
+        "Yahoo Finance"
+      ],
+      "noise_penalty": 0,
+      "final_score": 94,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(12)-noise(0)",
+      "strategic_theme": "compute_chips_dc",
+      "layer": "signal"
+    },
+    {
+      "title": "Nvidia Customers Notified About AI-Related Price Hikes Above 15% - Bloomberg.com",
+      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNeWxlMlJjV3JZVWZoeTJhRzlhTDJOenZaS195ZEl4a1NkWERBQUwyU2hQcXlTOEk2RkpqLW5OeWhybzlFbzFONVkyWHhjNWhnSEhZQUpJS2xlSU0wOUQ3b2NsZXd0RTdGMHZsQ25rYTI4aDNNOU05OEVHMHVuaXQ0N2NyUXQtN194VXhqQ0g1SlpwdFZrM3JEeTZvYjFfVWhJaC12NkRfWTE5bzZkMXNyTC1Xbk8?oc=5",
+      "published": "2026-08-22T18:42:34+00:00",
+      "summary": "Nvidia Customers Notified About AI-Related Price Hikes Above 15% &nbsp;&nbsp; Bloomberg.com",
+      "image_url": "",
+      "source": "Bloomberg Tech",
+      "feed_tags": [
+        "business",
+        "finance",
+        "chips",
+        "market"
+      ],
+      "raw_title": "Nvidia Customers Notified About AI-Related Price Hikes Above 15% - Bloomberg.com",
+      "raw_summary": "Nvidia Customers Notified About AI-Related Price Hikes Above 15% &nbsp;&nbsp; Bloomberg.com",
+      "score": 94,
+      "primary": "invest",
+      "tags": [],
+      "heuristic_score": 34,
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNeWxlMlJjV3JZVWZoeTJhRzlhTDJOenZaS195ZEl4a1NkWERBQUwyU2hQcXlTOEk2RkpqLW5OeWhybzlFbzFONVkyWHhjNWhnSEhZQUpJS2xlSU0wOUQ3b2NsZXd0RTdGMHZsQ25rYTI4aDNNOU05OEVHMHVuaXQ0N2NyUXQtN194VXhqQ0g1SlpwdFZrM3JEeTZvYjFfVWhJaC12NkRfWTE5bzZkMXNyTC1Xbk8?oc=5",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 34,
+      "_rid": 7,
+      "llm_score": 90,
+      "verdict": "signal",
+      "so_what": "El coste de entrenar y operar modelos de IA frontier se encarece significativamente, afectando la rentabilidad de los labs y el precio final de las APIs de IA. Esto cambia la economía del compute.",
+      "power_shift": "",
+      "watch_next": "",
+      "title_es": "Nvidia notifica a sus clientes aumentos de precios de más del 15% en chips de IA.",
+      "llm_theme": "compute_chips_dc",
+      "why": "El coste de entrenar y operar modelos de IA frontier se encarece significativamente, afectando la rentabilidad de los labs y el precio final de las APIs de IA. Esto cambia la economía del compute.",
+      "entities": [
+        "NVIDIA",
+        "Nvidia Customers Notified",
+        "About",
+        "Related Price Hikes",
+        "Above",
+        "Bloomberg"
+      ],
+      "noise_penalty": 0,
+      "final_score": 94,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(12)-noise(0)",
+      "strategic_theme": "compute_chips_dc",
+      "layer": "signal"
+    },
     {
       "title": "How TSMC Is Wiring the AI Era With Light",
       "link": "https://semiwiki.com/semiconductor-manufacturers/tsmc/372488-how-tsmc-is-wiring-the-ai-era-with-light/",
@@ -170,15 +300,15 @@
       "is_repeat": true,
       "novelty_score": 45,
       "adjusted_score": 1,
-      "_rid": 15,
+      "_rid": 20,
       "llm_score": 85,
       "verdict": "signal",
-      "so_what": "TSMC invierte en fotónica de silicio para superar los límites de interconexión eléctrica, crucial para el rendimiento y la escalabilidad de los clusters de IA, lo que impacta directamente en la capacidad de entrenamiento de modelos futuros.",
+      "so_what": "La estrategia de TSMC es crítica para superar los límites del compute actual, mejorando la eficiencia y capacidad de los chips necesarios para entrenar modelos AGI. Esto impacta la viabilidad de la escalada futura.",
       "power_shift": "",
       "watch_next": "",
-      "title_es": "TSMC apuesta por la fotónica integrada para la era de la IA con plataforma TSMC-COUPE",
+      "title_es": "TSMC desarrolla fotónica de silicio e integración óptica para la era de la IA.",
       "llm_theme": "compute_chips_dc",
-      "why": "TSMC invierte en fotónica de silicio para superar los límites de interconexión eléctrica, crucial para el rendimiento y la escalabilidad de los clusters de IA, lo que impacta directamente en la capacidad de entrenamiento de modelos futuros.",
+      "why": "La estrategia de TSMC es crítica para superar los límites del compute actual, mejorando la eficiencia y capacidad de los chips necesarios para entrenar modelos AGI. Esto impacta la viabilidad de la escalada futura.",
       "entities": [
         "TSMC",
         "Is Wiring"
@@ -190,48 +320,43 @@
       "layer": "signal"
     },
     {
-      "title": "GLM-5.3 vs. GPT-5.6 Sol on DeepSWE: Cost, Coding, and Routing",
-      "link": "https://www.together.ai/blog/glm-5-3-vs-gpt-5-6-sol-on-deepswe-cost-coding-and-routing",
-      "published": "2026-08-21T00:00:00+00:00",
-      "summary": "We ran 904 DeepSWE rollouts on GLM-5.3 and GPT-5.6 Sol. Sol leads pass@1 by 3.7 points; GLM-5.3 wins pass@4 at half the cost, and a GLM-first cascade hits 85.9%.",
-      "image_url": "https://cdn.prod.website-files.com/69654e88dce9154b5f12070c/6a8934b9fcc541cde30c4b07_OG-image_202600821_GLM53vsGPT56Sol.png",
-      "source": "Together AI",
+      "title": "A mysterious free AI model is impressing developers. And nobody knows who made it. - Business Insider",
+      "link": "https://news.google.com/rss/articles/CBMickFVX3lxTE10TFhibW0zcnAzcjMtbWExUnJ0NWJQMXM5WHBYemhFNU9zUlFXT05uSzBfWXZlRVROY2JlUk42N0R4dHJVSk1qbFJfUmhMX3hKUnBFUGRJT3lrZHBmS1o1eFRLNW0xMlgxSnNSY19mUkZUQQ?oc=5",
+      "published": "2026-08-22T20:46:00+00:00",
+      "summary": "A mysterious free AI model is impressing developers. And nobody knows who made it. &nbsp;&nbsp; Business Insider",
+      "image_url": "",
+      "source": "Business Insider Tech",
       "feed_tags": [
-        "models",
-        "economics",
-        "benchmarks",
-        "china"
+        "business",
+        "tech",
+        "models"
       ],
-      "raw_title": "GLM-5.3 vs. GPT-5.6 Sol on DeepSWE: Cost, Coding, and Routing",
-      "raw_summary": "We ran 904 DeepSWE rollouts on GLM-5.3 and GPT-5.6 Sol. Sol leads pass@1 by 3.7 points; GLM-5.3 wins pass@4 at half the cost, and a GLM-first cascade hits 85.9%.",
-      "score": 66,
+      "raw_title": "A mysterious free AI model is impressing developers. And nobody knows who made it. - Business Insider",
+      "raw_summary": "A mysterious free AI model is impressing developers. And nobody knows who made it. &nbsp;&nbsp; Business Insider",
+      "score": 77,
       "primary": "models",
       "tags": [],
-      "heuristic_score": 100,
-      "url": "https://www.together.ai/blog/glm-5-3-vs-gpt-5-6-sol-on-deepswe-cost-coding-and-routing",
-      "is_repeat": true,
-      "novelty_score": 45,
-      "adjusted_score": 45,
-      "_rid": 4,
+      "heuristic_score": 11,
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE10TFhibW0zcnAzcjMtbWExUnJ0NWJQMXM5WHBYemhFNU9zUlFXT05uSzBfWXZlRVROY2JlUk42N0R4dHJVSk1qbFJfUmhMX3hKUnBFUGRJT3lrZHBmS1o1eFRLNW0xMlgxSnNSY19mUkZUQQ?oc=5",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 11,
+      "_rid": 15,
       "llm_score": 75,
       "verdict": "signal",
-      "so_what": "Demuestra que modelos menos conocidos pueden ofrecer rendimientos competitivos o superiores a un coste significativamente menor en tareas de codificación complejas, impactando la elección de modelos para la industria.",
+      "so_what": "La aparición de un modelo de IA de alto rendimiento sin atribución directa podría indicar un nuevo competidor en la sombra o una estrategia de lanzamiento no convencional, desafiando el status quo.",
       "power_shift": "",
       "watch_next": "",
-      "title_es": "Benchmark DeepSWE: GLM-5.3 supera a GPT-5.6 Sol en pass@4 con menor coste",
-      "llm_theme": "model_economics",
-      "why": "Demuestra que modelos menos conocidos pueden ofrecer rendimientos competitivos o superiores a un coste significativamente menor en tareas de codificación complejas, impactando la elección de modelos para la industria.",
+      "title_es": "Un modelo de IA gratuito y de origen desconocido impresiona a desarrolladores.",
+      "llm_theme": "frontier_capability",
+      "why": "La aparición de un modelo de IA de alto rendimiento sin atribución directa podría indicar un nuevo competidor en la sombra o una estrategia de lanzamiento no convencional, desafiando el status quo.",
       "entities": [
-        "GPT-5",
-        "GLM-5",
-        "GLM",
-        "Sol",
-        "Cost"
+        "Business Insider"
       ],
-      "noise_penalty": 4,
-      "final_score": 66,
-      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(0)-noise(4)",
-      "strategic_theme": "model_economics",
+      "noise_penalty": 0,
+      "final_score": 77,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(12)-noise(0)",
+      "strategic_theme": "frontier_capability",
       "layer": "signal"
     },
     {
@@ -248,7 +373,7 @@
       ],
       "raw_title": "Teaching Everyone to Fish for Tokens",
       "raw_summary": "Nvidia wants you building your own model, not buying from Anthropic/OpenAI.",
-      "score": 66,
+      "score": 45,
       "primary": "models",
       "tags": [],
       "heuristic_score": 66,
@@ -256,153 +381,24 @@
       "is_repeat": true,
       "novelty_score": 45,
       "adjusted_score": 11,
-      "_rid": 13,
-      "llm_score": 90,
+      "_rid": 18,
+      "llm_score": 65,
       "verdict": "signal",
-      "so_what": "Nvidia busca monetizar su infraestructura de cómputo incentivando la creación de modelos personalizados, atacando el modelo de negocio de API de los frontier labs y consolidando su posición como proveedor clave de hardware.",
+      "so_what": "Nvidia incentiva el desarrollo de modelos propios para aumentar la demanda de su hardware, erosionando potencialmente el poder de los proveedores de APIs y cambiando la estructura del mercado.",
       "power_shift": "",
       "watch_next": "",
-      "title_es": "Nvidia empuja a construir modelos propios en vez de comprar a Anthropic/OpenAI",
+      "title_es": "Nvidia busca que los desarrolladores creen sus propios modelos en lugar de usar APIs de OpenAI/Anthropic.",
       "llm_theme": "model_economics",
-      "why": "Nvidia busca monetizar su infraestructura de cómputo incentivando la creación de modelos personalizados, atacando el modelo de negocio de API de los frontier labs y consolidando su posición como proveedor clave de hardware.",
+      "why": "Nvidia incentiva el desarrollo de modelos propios para aumentar la demanda de su hardware, erosionando potencialmente el poder de los proveedores de APIs y cambiando la estructura del mercado.",
       "entities": [
         "Teaching Everyone",
         "Fish",
         "Tokens"
       ],
       "noise_penalty": 12,
-      "final_score": 66,
+      "final_score": 45,
       "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(0)-noise(12)",
       "strategic_theme": "model_economics",
-      "layer": "signal"
-    },
-    {
-      "title": "GLM-5.3 vs. Claude Fable 5 on DeepSWE: Cost, Coding, and Routing",
-      "link": "https://www.together.ai/blog/glm-5-3-vs-claude-fable-5-on-deepswe-cost-coding-and-routing",
-      "published": "2026-08-21T00:00:00+00:00",
-      "summary": "We ran 904 DeepSWE rollouts on GLM-5.3 and Claude Fable 5. A tie on pass@1, but GLM-5.3 wins pass@4 and costs 5.4x less: \\$3.99 per rollout vs. \\$21.63.",
-      "image_url": "https://cdn.prod.website-files.com/69654e88dce9154b5f12070c/6a892460b55e8f0a18cd974f_OG-image_202600821_GLM53vsfable5.png",
-      "source": "Together AI",
-      "feed_tags": [
-        "models",
-        "economics",
-        "benchmarks",
-        "china"
-      ],
-      "raw_title": "GLM-5.3 vs. Claude Fable 5 on DeepSWE: Cost, Coding, and Routing",
-      "raw_summary": "We ran 904 DeepSWE rollouts on GLM-5.3 and Claude Fable 5. A tie on pass@1, but GLM-5.3 wins pass@4 and costs 5.4x less: \\$3.99 per rollout vs. \\$21.63.",
-      "score": 62,
-      "primary": "models",
-      "tags": [],
-      "heuristic_score": 100,
-      "url": "https://www.together.ai/blog/glm-5-3-vs-claude-fable-5-on-deepswe-cost-coding-and-routing",
-      "is_repeat": true,
-      "novelty_score": 45,
-      "adjusted_score": 45,
-      "_rid": 5,
-      "llm_score": 70,
-      "verdict": "signal",
-      "so_what": "Reafirma que GLM-5.3 ofrece una eficiencia superior en tareas de codificación, presionando a los proveedores de modelos de frontera a optimizar sus ratios rendimiento/coste para mantener la competitividad.",
-      "power_shift": "",
-      "watch_next": "",
-      "title_es": "Benchmark DeepSWE: GLM-5.3 empata con Claude Fable 5 en pass@1 y cuesta 5.4x menos",
-      "llm_theme": "model_economics",
-      "why": "Reafirma que GLM-5.3 ofrece una eficiencia superior en tareas de codificación, presionando a los proveedores de modelos de frontera a optimizar sus ratios rendimiento/coste para mantener la competitividad.",
-      "entities": [
-        "Claude",
-        "GLM-5",
-        "GLM",
-        "Fable",
-        "Claude Fable",
-        "Cost"
-      ],
-      "noise_penalty": 4,
-      "final_score": 62,
-      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(0)-noise(4)",
-      "strategic_theme": "model_economics",
-      "layer": "signal"
-    },
-    {
-      "title": "Bringing the cybersecurity capabilities of Claude Mythos 5 to more defenders",
-      "link": "https://claude.com/blog/bringing-claude-mythos-5-to-more-defenders",
-      "published": "2026-08-21T00:00:00+00:00",
-      "summary": "We're sharing an update on our efforts to help more teams use frontier capabilities for cyber defense. Claude Mythos 5 is now available in Claude Security , and coming soon to partners' cyber defense tools. We're also launching a $35M fund to help secure open-source software and sharing plans to expand our Cyber Verification Program . In April, we launched Project Glasswing to put our most capable frontier model, Claude Mythos Preview (and its successor, Claude Mythos 5), in the hands of a small group of organizations securing the world’s most critical software. This gave defenders a window of time to find and fix vulnerabilities ahead of models with similar capabilities becoming generally available or reaching malicious actors. Our goal has always been to expand Mythos-level defense to as many defenders as we safely can. To do that, we've been working on safety classifiers and safeguards that let us expand access to Mythos-class models without putting their offensive cyber capabilities in the wrong hands. Claude Fable 5 was the first step: it made the model broadly available while blocking dual-use cyber work. Today, we’re taking the next steps. The riskiest behavior occurs when a user has direct access to a model, where a malicious actor can try to steer it toward harmful uses. But if users can only receive specific outputs, such as a patch for a vulnerability or a security alert, that risk is much lower. The changes we’re announcing give users greater access to the defensive results, while maintaining appropriate guardrails around direct access to the model: Claude Mythos 5 integration into the tools defenders rely on. We’re working with our cybersecurity technology and services partners to integrate Claude Mythos 5 into the products and services defenders already use to secure their software. Claude Security scans can now run on Claude Mythos 5. Customers on Claude Enterprise plans can now run our most capable model in Claude Security, using it to scan their codebases for security vulnerabilities and suggest patches. $35 million in credits for open-source security. Our new Defender Advantage Fund (0xDAF) will provide $35 million in credits to organizations working to patch vulnerabilities in open-source projects, automate parts of the process of scanning and patching open-source software, and experiment with new security approaches. Expanding our Cyber Verification Program. The program already gives vetted defenders reduced safeguards on Opus and Sonnet models. In the coming weeks, we will expand this program to include broader dual-use capabilities on Opus and Sonnet, with Mythos-class access to follow. Our aim remains to help organizations adapt to the pace and demands of cybersecurity as AI models become increasingly powerful. We will continue to develop safeguards, access programs, and community support to make our most capable models safely available to a wide range of people and organizations. Integrating Mythos into existing cyberdefensive tools The teams defending hospitals, utilities, financial systems, and the software supply chain already rely on a suite of products and services for security operations, incident response, threat intelligence, and detection engineering. The fastest way to make frontier capabilities available to those defenders is to integrate Mythos-class models into the tools they already run. Many of our partners have already built cyber products on Claude Opus that help security teams triage alerts, identify threats, and remediate vulnerabilities faster. We’re now working with these partners and more to build Claude Mythos 5 into their products and services, so they can deliver Mythos-level defensive outcomes to their customers. When an end user uses one of these products, they’re not interacting with Mythos directly. Instead, they work through a purpose-built interface that runs Mythos in the background for a defined task and only receive the specific artifact the product is intended to provide. For example, a tool to remediate vulnerabilities might provide a list of suggested patches as its output. This output would be generated by Mythos, but the user would not have a way to prompt the model to, say, develop an exploit for a vulnerability. We and our partners also have abuse prevention measures in place to verify the model stays within its intended scope. We're early in this work and expect it to expand over time. If you build security products or services and want to bring Claude Mythos 5 to your customers, you can register your interest here . Making Claude Security available with Claude Mythos 5 for Enterprise customers Starting today, Claude Security scans now run on Claude Mythos 5. Claude Security scans codebases for vulnerabilities and suggests patches for human review; it’s currently in public beta for Claude Enterprise customers, and scans with Mythos 5 are billed as standard token usage under your existing plan, with no separate add-on. Enterprise admins can enable Claude Security in the admin console . From claude.ai/security , users can select a repository to scan using Claude Mythos 5. Claude then scans the codebase for vulnerabilities, and returns each finding with a CWE (Common Weakness Enumeration) category, confidence and severity ratings, and a suggested fix. Users can then open Claude Code on the web to implement the fix. Interactive patching uses the models your organization has access to in Claude Code. The Mythos scan itself does not extend Mythos access to other surfaces. Every patch must be reviewed and approved by a human before it can be implemented. Claude Security uses Mythos 5 to scan code you own, and returns detailed findings rather than raw outputs without exposing the model itself. This means defenders can access the capabilities of Claude Mythos 5 without the model becoming accessible to those who might misuse it. For more about Claude Security, see our guide to getting started . Launching the Defender Advantage Fund to secure open-source software Some of the world’s most widely used programs run on open-source software. Yet these projects are often maintained by volunteers or nonprofit foundations, who may lack the resources or personnel to comprehensively defend their projects against attack. Through Project Glasswing, we made $4M in direct donations to open-source security organizations, provided credits to the open-source security foundations in the program, helped scan and patch widely used projects, and support coordinated vulnerability-fixing efforts like Akrites and Gold Eagle . Our new Defender Advantage Fund (0xDAF) builds on that work with $35 million in Claude credits for organizations helping open-source maintainers secure their software. Grants will focus on three areas: patching live vulnerabilities in widely used projects, automating scanning and patching in ways other projects can replicate, and helping projects pursue more ambitious security approaches that make them resistant to whole classes of attack. We're starting with a small number of larger, pilot grants to learn what works and scales best. We will share details on initial recipients in the coming weeks. Expanding our Cyber Verification Program To date, our Cyber Verification Program has provided organizations with access to dual-use capabilities when using Claude Opus and Sonnet models. Organizations in the program experience reduced safeguards, minimizing interruptions for accepted teams doing legitimate cybersecurity work on systems they’re authorized to protect. Over the coming weeks, we are evolving the program to expand safeguarded access to Claude Mythos. As part of this, access to defensive capabilities like vulnerability triaging and validation will expand to Mythos-class models, and cyber defenders will see reduced blocks on Claude Opus and Sonnet-class models. Additionally, we are continuing to expand access to Claude Mythos through Project Glasswing in collaboration with our partners in the U.S. Government, focused on protectors of critically important infrastructure that meet strict security control requirements. We'll share more details about the Cyber Verification Program expansion in the coming weeks. In the meantime, we encourage all security teams performing legitimate cybersecurity work to apply for the program for reduced safeguards on Claude Opus and Sonnet models. If you are already enrolled and accepted, no action is needed; we’ll reach out with updates. What’s next These initiatives are a continuation of our efforts to make the defensive capabilities of frontier models available to more people and organizations, and to support the open-source community in hardening their projects against attack. We will continue to work with government partners, organizations, open-source maintainers, and the broader industry to build the resilient cyber infrastructure today’s highly capable AI models demand. Apply for the Cyber Verification Program . Register your interest in building cyber products and offerings with Mythos. Claude Security is available in public beta for Enterprise customers. Admins can enable Claude Security in the admin console . For a full walkthrough, see our guide to getting started .",
-      "image_url": "https://cdn.prod.website-files.com/68a44d4040f98a4adf2207b6/69f398245c0b3933c7940d49_og_claude-security-public-beta%20(1).jpg",
-      "source": "Anthropic",
-      "feed_tags": [
-        "labs",
-        "models",
-        "frontier"
-      ],
-      "raw_title": "Bringing the cybersecurity capabilities of Claude Mythos 5 to more defenders",
-      "raw_summary": "We're sharing an update on our efforts to help more teams use frontier capabilities for cyber defense. Claude Mythos 5 is now available in Claude Security , and coming soon to partners' cyber defense tools. We're also launching a $35M fund to help secure open-source software and sharing plans to expand our Cyber Verification Program . In April, we launched Project Glasswing to put our most capable frontier model, Claude Mythos Preview (and its successor, Claude Mythos 5), in the hands of a small group of organizations securing the world’s most critical software. This gave defenders a window of time to find and fix vulnerabilities ahead of models with similar capabilities becoming generally available or reaching malicious actors. Our goal has always been to expand Mythos-level defense to as many defenders as we safely can. To do that, we've been working on safety classifiers and safeguards that let us expand access to Mythos-class models without putting their offensive cyber capabilities in the wrong hands. Claude Fable 5 was the first step: it made the model broadly available while blocking dual-use cyber work. Today, we’re taking the next steps. The riskiest behavior occurs when a user has direct access to a model, where a malicious actor can try to steer it toward harmful uses. But if users can only receive specific outputs, such as a patch for a vulnerability or a security alert, that risk is much lower. The changes we’re announcing give users greater access to the defensive results, while maintaining appropriate guardrails around direct access to the model: Claude Mythos 5 integration into the tools defenders rely on. We’re working with our cybersecurity technology and services partners to integrate Claude Mythos 5 into the products and services defenders already use to secure their software. Claude Security scans can now run on Claude Mythos 5. Customers on Claude Enterprise plans can now run our most capable model in Claude Security, using it to scan their codebases for security vulnerabilities and suggest patches. $35 million in credits for open-source security. Our new Defender Advantage Fund (0xDAF) will provide $35 million in credits to organizations working to patch vulnerabilities in open-source projects, automate parts of the process of scanning and patching open-source software, and experiment with new security approaches. Expanding our Cyber Verification Program. The program already gives vetted defenders reduced safeguards on Opus and Sonnet models. In the coming weeks, we will expand this program to include broader dual-use capabilities on Opus and Sonnet, with Mythos-class access to follow. Our aim remains to help organizations adapt to the pace and demands of cybersecurity as AI models become increasingly powerful. We will continue to develop safeguards, access programs, and community support to make our most capable models safely available to a wide range of people and organizations. Integrating Mythos into existing cyberdefensive tools The teams defending hospitals, utilities, financial systems, and the software supply chain already rely on a suite of products and services for security operations, incident response, threat intelligence, and detection engineering. The fastest way to make frontier capabilities available to those defenders is to integrate Mythos-class models into the tools they already run. Many of our partners have already built cyber products on Claude Opus that help security teams triage alerts, identify threats, and remediate vulnerabilities faster. We’re now working with these partners and more to build Claude Mythos 5 into their products and services, so they can deliver Mythos-level defensive outcomes to their customers. When an end user uses one of these products, they’re not interacting with Mythos directly. Instead, they work through a purpose-built interface that runs Mythos in the background for a defined task and only receive the specific artifact the product is intended to provide. For example, a tool to remediate vulnerabilities might provide a list of suggested patches as its output. This output would be generated by Mythos, but the user would not have a way to prompt the model to, say, develop an exploit for a vulnerability. We and our partners also have abuse prevention measures in place to verify the model stays within its intended scope. We're early in this work and expect it to expand over time. If you build security products or services and want to bring Claude Mythos 5 to your customers, you can register your interest here . Making Claude Security available with Claude Mythos 5 for Enterprise customers Starting today, Claude Security scans now run on Claude Mythos 5. Claude Security scans codebases for vulnerabilities and suggests patches for human review; it’s currently in public beta for Claude Enterprise customers, and scans with Mythos 5 are billed as standard token usage under your existing plan, with no separate add-on. Enterprise admins can enable Claude Security in the admin console . From claude.ai/security , users can select a repository to scan using Claude Mythos 5. Claude then scans the codebase for vulnerabilities, and returns each finding with a CWE (Common Weakness Enumeration) category, confidence and severity ratings, and a suggested fix. Users can then open Claude Code on the web to implement the fix. Interactive patching uses the models your organization has access to in Claude Code. The Mythos scan itself does not extend Mythos access to other surfaces. Every patch must be reviewed and approved by a human before it can be implemented. Claude Security uses Mythos 5 to scan code you own, and returns detailed findings rather than raw outputs without exposing the model itself. This means defenders can access the capabilities of Claude Mythos 5 without the model becoming accessible to those who might misuse it. For more about Claude Security, see our guide to getting started . Launching the Defender Advantage Fund to secure open-source software Some of the world’s most widely used programs run on open-source software. Yet these projects are often maintained by volunteers or nonprofit foundations, who may lack the resources or personnel to comprehensively defend their projects against attack. Through Project Glasswing, we made $4M in direct donations to open-source security organizations, provided credits to the open-source security foundations in the program, helped scan and patch widely used projects, and support coordinated vulnerability-fixing efforts like Akrites and Gold Eagle . Our new Defender Advantage Fund (0xDAF) builds on that work with $35 million in Claude credits for organizations helping open-source maintainers secure their software. Grants will focus on three areas: patching live vulnerabilities in widely used projects, automating scanning and patching in ways other projects can replicate, and helping projects pursue more ambitious security approaches that make them resistant to whole classes of attack. We're starting with a small number of larger, pilot grants to learn what works and scales best. We will share details on initial recipients in the coming weeks. Expanding our Cyber Verification Program To date, our Cyber Verification Program has provided organizations with access to dual-use capabilities when using Claude Opus and Sonnet models. Organizations in the program experience reduced safeguards, minimizing interruptions for accepted teams doing legitimate cybersecurity work on systems they’re authorized to protect. Over the coming weeks, we are evolving the program to expand safeguarded access to Claude Mythos. As part of this, access to defensive capabilities like vulnerability triaging and validation will expand to Mythos-class models, and cyber defenders will see reduced blocks on Claude Opus and Sonnet-class models. Additionally, we are continuing to expand access to Claude Mythos through Project Glasswing in collaboration with our partners in the U.S. Government, focused on protectors of critically important infrastructure that meet strict security control requirements. We'll share more details about the Cyber Verification Program expansion in the coming weeks. In the meantime, we encourage all security teams performing legitimate cybersecurity work to apply for the program for reduced safeguards on Claude Opus and Sonnet models. If you are already enrolled and accepted, no action is needed; we’ll reach out with updates. What’s next These initiatives are a continuation of our efforts to make the defensive capabilities of frontier models available to more people and organizations, and to support the open-source community in hardening their projects against attack. We will continue to work with government partners, organizations, open-source maintainers, and the broader industry to build the resilient cyber infrastructure today’s highly capable AI models demand. Apply for the Cyber Verification Program . Register your interest in building cyber products and offerings with Mythos. Claude Security is available in public beta for Enterprise customers. Admins can enable Claude Security in the admin console . For a full walkthrough, see our guide to getting started .",
-      "score": 59,
-      "primary": "models",
-      "tags": [],
-      "heuristic_score": 100,
-      "url": "https://claude.com/blog/bringing-claude-mythos-5-to-more-defenders",
-      "is_repeat": true,
-      "novelty_score": 45,
-      "adjusted_score": 45,
-      "_rid": 3,
-      "llm_score": 80,
-      "verdict": "signal",
-      "so_what": "Democratiza capacidades avanzadas de modelos de frontera en ciberdefensa, permitiendo a más actores identificar y mitigar vulnerabilidades críticas antes de su posible explotación maliciosa.",
-      "power_shift": "",
-      "watch_next": "",
-      "title_es": "Anthropic expande Claude Mythos 5 a la ciberseguridad y lanza fondo de 35M para OSS",
-      "llm_theme": "frontier_capability",
-      "why": "Democratiza capacidades avanzadas de modelos de frontera en ciberdefensa, permitiendo a más actores identificar y mitigar vulnerabilidades críticas antes de su posible explotación maliciosa.",
-      "entities": [
-        "Claude",
-        "Mythos",
-        "Bringing",
-        "Claude Mythos"
-      ],
-      "noise_penalty": 16,
-      "final_score": 59,
-      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(0)-noise(16)",
-      "strategic_theme": "frontier_capability",
-      "layer": "signal"
-    },
-    {
-      "title": "Agentic Search. More accurate and efficient results from your AI systems.",
-      "link": "https://mistral.ai/news/agentic-search/",
-      "published": "2026-08-20T12:00:17+00:00",
-      "summary": "The retrieval layer that helps AI systems navigate, read, and verify information inside even the most complex documents",
-      "image_url": "https://mistral.ai/cms-media/api/media/file/Thumbnail-Blog-Agenticsearch.png",
-      "source": "Mistral",
-      "feed_tags": [
-        "labs",
-        "models",
-        "open_weights"
-      ],
-      "raw_title": "Agentic Search. More accurate and efficient results from your AI systems.",
-      "raw_summary": "The retrieval layer that helps AI systems navigate, read, and verify information inside even the most complex documents",
-      "score": 56,
-      "primary": "models",
-      "tags": [],
-      "heuristic_score": 28,
-      "url": "https://mistral.ai/news/agentic-search/",
-      "is_repeat": true,
-      "novelty_score": 45,
-      "adjusted_score": 0,
-      "_rid": 18,
-      "llm_score": 70,
-      "verdict": "signal",
-      "so_what": "Mejora la capacidad de los sistemas de IA para navegar, leer y verificar información compleja, lo que se traduce en mayor precisión y eficiencia, un paso hacia agentes más autónomos y robustos.",
-      "power_shift": "",
-      "watch_next": "",
-      "title_es": "Mistral lanza Agentic Search para resultados más precisos y eficientes en sus sistemas IA",
-      "llm_theme": "agents_automation",
-      "why": "Mejora la capacidad de los sistemas de IA para navegar, leer y verificar información compleja, lo que se traduce en mayor precisión y eficiencia, un paso hacia agentes más autónomos y robustos.",
-      "entities": [
-        "Agentic Search"
-      ],
-      "noise_penalty": 4,
-      "final_score": 56,
-      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(0)-noise(4)",
-      "strategic_theme": "agents_automation",
       "layer": "signal"
     },
     {
@@ -420,7 +416,7 @@
       ],
       "raw_title": "Quoting Linus Torvalds",
       "raw_summary": "And this was a debug session from hell, enormously helped by an AI doing much of the grunt-work. I'd like to call it my tireless helper, but the AI several times stated flat out that this was impossible and unsolvable and that we should just write a report about it. I suspect those things have been trained by people who may not be quite as stubborn as I am. But while the AI was ready to give up several times, it did keep adding debug code and analyzing it faithfully when I pushed. So credit where credit is due and I let the AI write the commit message above. &mdash; Linus Torvalds , drm/xe: Don't hand out the flat CCS storage as usable VRAM Tags: linus-torvalds , linux , generative-ai , ai-assisted-programming , ai , llms",
-      "score": 46,
+      "score": 59,
       "primary": "models",
       "tags": [],
       "heuristic_score": 28,
@@ -429,21 +425,102 @@
       "novelty_score": 100,
       "adjusted_score": 28,
       "_rid": 9,
-      "llm_score": 35,
+      "llm_score": 50,
       "verdict": "context",
-      "so_what": "Muestra la creciente adopción de herramientas de IA en ingeniería de sistemas de bajo nivel, incluso por figuras históricas, destacando su utilidad en tareas repetitivas de depuración.",
+      "so_what": "Confirma la utilidad de los LLMs para tareas complejas de codificación, incluso para ingenieros de alto nivel, aunque aún con limitaciones. Valida el potencial de los agentes en desarrollo.",
       "power_shift": "",
       "watch_next": "",
-      "title_es": "Linus Torvalds usa IA para depurar kernel Linux, aunque reporta resistencia del modelo",
+      "title_es": "Linus Torvalds utiliza IA para depuración de código, describiéndola como un \"ayudante incansable\".",
       "llm_theme": "agents_automation",
-      "why": "Muestra la creciente adopción de herramientas de IA en ingeniería de sistemas de bajo nivel, incluso por figuras históricas, destacando su utilidad en tareas repetitivas de depuración.",
+      "why": "Confirma la utilidad de los LLMs para tareas complejas de codificación, incluso para ingenieros de alto nivel, aunque aún con limitaciones. Valida el potencial de los agentes en desarrollo.",
       "entities": [
         "Quoting Linus Torvalds"
       ],
       "noise_penalty": 0,
-      "final_score": 46,
+      "final_score": 59,
       "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(12)-noise(0)",
       "strategic_theme": "agents_automation",
+      "layer": "context"
+    },
+    {
+      "title": "GLM-5.3 vs. GPT-5.6 Sol on DeepSWE: Cost, Coding, and Routing",
+      "link": "https://www.together.ai/blog/glm-5-3-vs-gpt-5-6-sol-on-deepswe-cost-coding-and-routing",
+      "published": "2026-08-21T00:00:00+00:00",
+      "summary": "We ran 904 DeepSWE rollouts on GLM-5.3 and GPT-5.6 Sol. Sol leads pass@1 by 3.7 points; GLM-5.3 wins pass@4 at half the cost, and a GLM-first cascade hits 85.9%.",
+      "image_url": "https://cdn.prod.website-files.com/69654e88dce9154b5f12070c/6a8934b9fcc541cde30c4b07_OG-image_202600821_GLM53vsGPT56Sol.png",
+      "source": "Together AI",
+      "feed_tags": [
+        "models",
+        "economics",
+        "benchmarks"
+      ],
+      "raw_title": "GLM-5.3 vs. GPT-5.6 Sol on DeepSWE: Cost, Coding, and Routing",
+      "raw_summary": "We ran 904 DeepSWE rollouts on GLM-5.3 and GPT-5.6 Sol. Sol leads pass@1 by 3.7 points; GLM-5.3 wins pass@4 at half the cost, and a GLM-first cascade hits 85.9%.",
+      "score": 54,
+      "primary": "models",
+      "tags": [],
+      "heuristic_score": 100,
+      "url": "https://www.together.ai/blog/glm-5-3-vs-gpt-5-6-sol-on-deepswe-cost-coding-and-routing",
+      "is_repeat": true,
+      "novelty_score": 45,
+      "adjusted_score": 45,
+      "_rid": 3,
+      "llm_score": 60,
+      "verdict": "context",
+      "so_what": "Muestra que modelos no-OpenAI pueden ser competitivos en coding a menor coste, impactando la estrategia de adopción y el coste por token para desarrolladores. Zhipu gana frente a OpenAI en eficiencia coste/rendimiento.",
+      "power_shift": "",
+      "watch_next": "",
+      "title_es": "Comparativa de Together AI: GLM-5.3 de Zhipu y GPT-5.6 Sol de OpenAI en DeepSWE.",
+      "llm_theme": "model_economics",
+      "why": "Muestra que modelos no-OpenAI pueden ser competitivos en coding a menor coste, impactando la estrategia de adopción y el coste por token para desarrolladores. Zhipu gana frente a OpenAI en eficiencia coste/rendimiento.",
+      "entities": [
+        "GPT-5",
+        "GLM-5",
+        "GLM",
+        "Sol",
+        "Cost"
+      ],
+      "noise_penalty": 4,
+      "final_score": 54,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(0)-noise(4)",
+      "strategic_theme": "model_economics",
+      "layer": "context"
+    },
+    {
+      "title": "Why your local LLM feels dumber than it is",
+      "link": "https://forum.level1techs.com/t/why-your-local-llm-feels-dumber-than-it-is/253917",
+      "published": "2026-08-22T18:14:16+00:00",
+      "summary": "Article URL: Comments URL: Points: 280 # Comments: 91",
+      "image_url": "",
+      "source": "Hacker News (alto voltaje)",
+      "feed_tags": [
+        "community",
+        "signal"
+      ],
+      "raw_title": "Why your local LLM feels dumber than it is",
+      "raw_summary": "Article URL: https://forum.level1techs.com/t/why-your-local-llm-feels-dumber-than-it-is/253917 Comments URL: https://news.ycombinator.com/item?id=49402232 Points: 280 # Comments: 91",
+      "score": 45,
+      "primary": "models",
+      "tags": [],
+      "heuristic_score": 22,
+      "url": "https://forum.level1techs.com/t/why-your-local-llm-feels-dumber-than-it-is/253917",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 22,
+      "_rid": 11,
+      "llm_score": 35,
+      "verdict": "context",
+      "so_what": "Destaca los retos en la implementación y experiencia de usuario de LLMs en local, lo cual afecta la adopción y la percepción de su potencia real fuera de entornos cloud.",
+      "power_shift": "",
+      "watch_next": "",
+      "title_es": "Un artículo explora por qué los LLMs locales a menudo se perciben como menos capaces de lo que son.",
+      "llm_theme": "model_economics",
+      "why": "Destaca los retos en la implementación y experiencia de usuario de LLMs en local, lo cual afecta la adopción y la percepción de su potencia real fuera de entornos cloud.",
+      "entities": [],
+      "noise_penalty": 0,
+      "final_score": 45,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(12)-noise(0)",
+      "strategic_theme": "model_economics",
       "layer": "context"
     },
     {
@@ -471,12 +548,12 @@
       "_rid": 2,
       "llm_score": 40,
       "verdict": "context",
-      "so_what": "Explica cómo las empresas pueden optimizar el SDLC integrando agentes de codificación, reduciendo cuellos de botella no técnicos y maximizando ganancias de productividad en ingeniería.",
+      "so_what": "Sugiere que los agentes de codificación pueden redefinir los procesos de desarrollo, aumentando la productividad y forzando la adaptación de flujos de trabajo tradicionales. Apunta a la automatización de trabajo cognitivo.",
       "power_shift": "",
       "watch_next": "",
-      "title_es": "Anthropic: 'Playbook' para el ciclo de vida del desarrollo de software con IA",
+      "title_es": "Anthropic publica una guía para un ciclo de desarrollo de software (SDLC) nativo en IA.",
       "llm_theme": "agents_automation",
-      "why": "Explica cómo las empresas pueden optimizar el SDLC integrando agentes de codificación, reduciendo cuellos de botella no técnicos y maximizando ganancias de productividad en ingeniería.",
+      "why": "Sugiere que los agentes de codificación pueden redefinir los procesos de desarrollo, aumentando la productividad y forzando la adaptación de flujos de trabajo tradicionales. Apunta a la automatización de trabajo cognitivo.",
       "entities": [
         "SDLC",
         "Native"
@@ -484,48 +561,6 @@
       "noise_penalty": 16,
       "final_score": 25,
       "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(0)-noise(16)",
-      "strategic_theme": "agents_automation",
-      "layer": "context"
-    },
-    {
-      "title": "Stampli cuts launch hours by 68% using ChatGPT Work",
-      "link": "https://openai.com/index/stampli",
-      "published": "2026-08-20T00:00:00+00:00",
-      "summary": "With a fixed deadline and design resources committed elsewhere, Stampli used Codex and ChatGPT Work to compress weeks of launch production into days.",
-      "image_url": "",
-      "source": "OpenAI",
-      "feed_tags": [
-        "labs",
-        "models",
-        "frontier"
-      ],
-      "raw_title": "Stampli cuts launch hours by 68% using ChatGPT Work",
-      "raw_summary": "With a fixed deadline and design resources committed elsewhere, Stampli used Codex and ChatGPT Work to compress weeks of launch production into days.",
-      "score": 22,
-      "primary": "models",
-      "tags": [],
-      "heuristic_score": 18,
-      "url": "https://openai.com/index/stampli",
-      "is_repeat": true,
-      "novelty_score": 45,
-      "adjusted_score": 0,
-      "_rid": 16,
-      "llm_score": 30,
-      "verdict": "context",
-      "so_what": "Demuestra la eficacia de las herramientas de IA generativa de OpenAI para acelerar el desarrollo de software en entornos reales, evidenciando un impacto directo en la productividad empresarial.",
-      "power_shift": "",
-      "watch_next": "",
-      "title_es": "Stampli reduce horas de lanzamiento un 68% usando ChatGPT Work y Codex",
-      "llm_theme": "agents_automation",
-      "why": "Demuestra la eficacia de las herramientas de IA generativa de OpenAI para acelerar el desarrollo de software en entornos reales, evidenciando un impacto directo en la productividad empresarial.",
-      "entities": [
-        "ChatGPT",
-        "Stampli",
-        "Work"
-      ],
-      "noise_penalty": 4,
-      "final_score": 22,
-      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(0)-noise(4)",
       "strategic_theme": "agents_automation",
       "layer": "context"
     }
