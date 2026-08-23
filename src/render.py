@@ -407,34 +407,6 @@ TEMPLATE = ENV.from_string("""
   </div>
   {% endif %}
 
-  <!-- Top 3 Featured Discover Cards (Perplexity Discover Style) -->
-  {% if top_featured %}
-  <div class="discover-grid">
-    {% for it in top_featured %}
-    <article class="disc-card">
-      <a href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer" class="disc-img-wrap">
-        <img src="{{ it.image_url }}" alt="" class="disc-img" loading="lazy" referrerpolicy="no-referrer"/>
-      </a>
-      <div class="disc-body">
-        <h3 class="disc-title">
-          <a href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ it.display_title }}</a>
-        </h3>
-        <div class="disc-meta">
-          <span class="disc-sources">
-            <img src="{{ it.logo }}" alt="" loading="lazy"/>
-            {{ it.source_label }}
-            {% if it.other_sources %}
-            <span style="font-family:var(--mono);font-size:9.5px;color:var(--cyan);background:rgba(56,189,248,.1);padding:1px 6px;border-radius:10px;border:1px solid rgba(56,189,248,.25);margin-left:4px">{{ it.other_sources|length + 1 }} fuentes</span>
-            {% endif %}
-          </span>
-          <span class="disc-tag">{{ it.theme_label }}</span>
-        </div>
-      </div>
-    </article>
-    {% endfor %}
-  </div>
-  {% endif %}
-
   <!-- Main 2-Column Grid: 70% Analysis & Stream / 30% Market & Continuity -->
   <div class="main-discover-layout">
     
@@ -485,7 +457,7 @@ TEMPLATE = ENV.from_string("""
       {% if stream %}
       <div class="section-title">
         <span>Señales del Radar</span>
-        <span class="count">{{ stream|length }} adicionales</span>
+        <span class="count">{{ n_signals }} hoy</span>
       </div>
 
       <div class="stream-list">
@@ -718,27 +690,8 @@ def render_index(items, briefing=None, snapshot=None, market=None):
     if not signals and not context:
         signals = enriched  # modo degradado: sin veredictos, todo a la capa principal
 
-    # Partición estricta sin duplicados visuales
-    if len(signals) >= 4:
-        top_featured = signals[0:3]
-        hero = signals[3]
-        stream = signals[4:]
-    elif len(signals) == 3:
-        top_featured = signals[0:2]
-        hero = signals[2]
-        stream = []
-    elif len(signals) == 2:
-        top_featured = [signals[1]]
-        hero = signals[0]
-        stream = []
-    elif len(signals) == 1:
-        top_featured = []
-        hero = signals[0]
-        stream = []
-    else:
-        top_featured = []
-        hero = None
-        stream = []
+    hero = signals[0] if signals else None
+    stream = signals[1:] if len(signals) > 1 else []
 
     memory = snapshot.get("memory") or {}
     deltas = memory.get("entity_deltas") or {}
@@ -767,7 +720,6 @@ def render_index(items, briefing=None, snapshot=None, market=None):
         activity=snapshot.get("activity") or {"label": "ACTIVO", "class": "active"},
         thesis=thesis,
         signals=signals,
-        top_featured=top_featured,
         hero=hero,
         stream=stream,
         context=context,
