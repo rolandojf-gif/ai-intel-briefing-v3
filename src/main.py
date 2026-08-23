@@ -252,7 +252,7 @@ def should_use_gemini_today() -> bool:
         return True
 
     event = (os.getenv("GITHUB_EVENT_NAME") or "").strip()
-    if event in ("schedule", "workflow_dispatch", "push"):
+    if event in ("schedule", "workflow_dispatch"):
         return True
 
     return False
@@ -697,7 +697,9 @@ MAX_CONTEXT = 3      # capa secundaria de contexto reducida
 
 # Debe cubrir TODO el pool de candidatos. Si es menor, la cola queda sin juicio
 # del LLM y no se puede publicar (ver el gate en apply_llm_results).
-LLM_BATCH_SIZE = 30
+# El test test_llm_batch_covers_configured_caps ancla esto a la suma de caps
+# de feeds.yaml: si subes un cap, sube este número.
+LLM_BATCH_SIZE = 50
 
 # Score minimo para que power_shift rescate un item que el LLM no marco signal.
 # Sin umbral no filtra: el campo viene relleno en ~75% de los items.

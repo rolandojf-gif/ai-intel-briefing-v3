@@ -1,4 +1,7 @@
 import unittest
+from pathlib import Path
+
+import yaml
 
 from src.fetch import _extract_image_url
 from src.main import clean_entities, clean_signal_text, apply_llm_results
@@ -520,6 +523,55 @@ class CoreQualityTests(unittest.TestCase):
         self.assertGreater(repeat_pos, 0)
         self.assertLess(fresh_pos, repeat_pos)
         self.assertLess(abs(fresh_pos - hero_pos), abs(repeat_pos - hero_pos))
+
+    # -- Caps asimétricos, agujeros de tesis, CI ----------------------------
+
+    def _load_feeds(self):
+        path = Path("feeds/feeds.yaml")
+        self.assertTrue(path.exists(), "feeds/feeds.yaml missing")
+        cfg = yaml.safe_load(path.read_text(encoding="utf-8"))
+        sources = {s["name"]: s for s in cfg.get("sources", [])}
+        self.assertTrue(sources)
+        return sources
+
+    def test_lab_caps_are_asymmetric(self):
+        """Un lab que suelta dos cosas el mismo día no puede perder una por cap:1."""
+        sources = self._load_feeds()
+        self.assertGreaterEqual(int(sources["OpenAI"]["cap"]), 3)
+        self.assertGreaterEqual(int(sources["Anthropic"]["cap"]), 3)
+        self.assertGreaterEqual(int(sources["SemiAnalysis"]["cap"]), 2)
+        self.assertEqual(int(sources["Reuters AI"]["cap"]), 1)
+        self.assertEqual(int(sources["Bloomberg Tech"]["cap"]), 1)
+
+    def test_thesis_labs_have_primary_feeds(self):
+        """La tesis nombra Meta y xAI; sin feed primario el radar no los ve."""
+        sources = self._load_feeds()
+        for name in ("Meta AI", "xAI", "Epoch AI", "Import AI", "Moonshot (Kimi)"):
+            self.assertIn(name, sources, f"falta fuente {name}")
+            self.assertGreaterEqual(int(sources[name].get("cap") or 0), 1)
+            self.assertTrue(sources[name].get("url"), f"{name} sin url")
+
+    def test_llm_batch_covers_configured_caps(self):
+        """Si el lote es menor que la suma de caps, el gate recrea cola sin juzgar."""
+        from src.main import LLM_BATCH_SIZE
+        sources = self._load_feeds()
+        total_cap = sum(int(s.get("cap") or 1) for s in sources.values())
+        self.assertGreaterEqual(
+            LLM_BATCH_SIZE, total_cap,
+            f"LLM_BATCH_SIZE={LLM_BATCH_SIZE} < suma de caps={total_cap}",
+        )
+
+    def test_ci_generate_only_on_schedule_or_dispatch(self):
+        """Un push o un PR no deben publicar el radar."""
+        wf = yaml.safe_load(Path(".github/workflows/daily.yml").read_text(encoding="utf-8"))
+        self.assertIn("test", wf["jobs"])
+        generate = wf["jobs"]["generate"]
+        cond = generate.get("if") or ""
+        self.assertIn("schedule", cond)
+        self.assertIn("workflow_dispatch", cond)
+        self.assertNotIn("push", cond)
+        self.assertNotIn("pull_request", cond)
+        self.assertEqual(generate.get("needs"), "test")
 
 
 if __name__ == "__main__":
