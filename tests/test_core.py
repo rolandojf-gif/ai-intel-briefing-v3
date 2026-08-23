@@ -124,6 +124,32 @@ class CoreQualityTests(unittest.TestCase):
         img2 = _extract_image_url(DummyEntryHtml())
         self.assertEqual(img2, "https://example.com/featured.png")
 
+    def test_market_overview_includes_indices_and_smci(self):
+        from src.market import get_market_overview
+        data = get_market_overview()
+        self.assertIn("macro", data)
+        self.assertIn("companies", data)
+        macro_labels = [m["label"] for m in data["macro"]]
+        self.assertIn("S&P Futures", macro_labels)
+        self.assertIn("Bitcoin", macro_labels)
+        tickers = [c["ticker"] for c in data["companies"]]
+        self.assertIn("NVDA", tickers)
+        self.assertIn("SMCI", tickers)
+        self.assertIn("TSM", tickers)
+
+    def test_discover_render_generates_valid_html(self):
+        from src.render import render_index
+        items = [
+            {"title": "Gemini 3.7 Released", "title_es": "Lanzamiento de Gemini 3.7", "score": 95, "layer": "signal", "image_url": "https://example.com/g.png"},
+            {"title": "SMCI server cluster", "title_es": "SMCI despliega nuevo cluster", "score": 85, "layer": "signal", "image_url": ""},
+            {"title": "DeepSeek analysis", "title_es": "Análisis de DeepSeek", "score": 75, "layer": "context", "image_url": ""},
+        ]
+        html = render_index(items, briefing={"thesis": "Tesis de prueba"}, snapshot={"date": "2026-08-23"})
+        self.assertIn("AI Strategic Radar", html)
+        self.assertIn("Lanzamiento de Gemini 3.7", html)
+        self.assertIn("Perspectiva del mercado", html)
+        self.assertIn("SMCI", html)
+
 
 if __name__ == "__main__":
     unittest.main()

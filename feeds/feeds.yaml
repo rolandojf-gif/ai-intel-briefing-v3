@@ -84,16 +84,33 @@ sources:
     cap: 1
     tags: [china, geopol, analysis]
 
-  # ── Economía de modelos: comparativas reales de coste y capacidad ─────────
-  # Together publica benchmarks cruzados entre modelos frontera occidentales y
-  # chinos con coste y routing. Cubre a la vez capacidad frontier, economía de
-  # modelos y stack chino, que es donde el radar se quedaba corto.
+  # ── Economía de modelos y benchmarks independientes ───────────────────────
   - name: Together AI
     type: rss
     url: https://www.together.ai/blog/rss.xml
     limit: 8
     cap: 2
     tags: [models, economics, benchmarks, china]
+
+  - name: Artificial Analysis
+    type: artificial_analysis
+    limit: 8
+    cap: 2
+    tags: [benchmarks, economics, models, frontier]
+
+  - name: ARC Prize
+    type: rss
+    url: https://arcprize.org/feed.xml
+    limit: 6
+    cap: 2
+    tags: [frontier, reasoning, benchmarks, agi]
+
+  - name: OpenRouter Insights
+    type: rss
+    url: https://openrouter.ai/posts/rss
+    limit: 6
+    cap: 1
+    tags: [models, economics, router]
 
   # ── Análisis independiente: compute, chips, economía de modelos ───────────
   - name: SemiAnalysis
@@ -106,8 +123,8 @@ sources:
   - name: SemiWiki
     type: rss
     url: https://semiwiki.com/feed/
-    limit: 8
-    cap: 2
+    limit: 6
+    cap: 1
     tags: [infra, chips]
 
   - name: NVIDIA Blog (AI)

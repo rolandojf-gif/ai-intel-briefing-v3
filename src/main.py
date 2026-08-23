@@ -286,6 +286,13 @@ def ingest_feeds(cfg: dict, per_source_cap: dict) -> list[dict]:
                 # Una fuente rota no debe tumbar el run entero; el health-check la marca.
                 print(f"FETCH FAILED for {s.get('name', 'unnamed')}: {e!r}")
                 fetched = []
+        elif stype == "artificial_analysis":
+            try:
+                from src.fetch import fetch_artificial_analysis
+                fetched = fetch_artificial_analysis(limit=limit)
+            except Exception as e:
+                print(f"FETCH FAILED for {s.get('name', 'unnamed')}: {e!r}")
+                fetched = []
         elif stype == "x":
             if s.get("username"):
                 fetched = fetch_x_user(
@@ -867,6 +874,10 @@ def main():
     deduped.sort(key=lambda x: x.get("adjusted_score", x.get("score", 0)), reverse=True)
     candidates = deduped[:30]
 
+    # Enriquecer candidatos con imagenes OpenGraph en alta resolucion
+    from src.fetch import enrich_items_with_images
+    candidates = enrich_items_with_images(candidates)
+
     # 4) LLM Rank
     results_map, briefings = generate_llm_data(candidates, llm_cache, llm_done)
 
@@ -874,6 +885,7 @@ def main():
 
     # 5) Apply LLM Results (gate de relevancia)
     final_items = apply_llm_results(candidates, results_map)
+    final_items = enrich_items_with_images(final_items)
 
     # 6) Stats & Fallback Briefing
     score_avg, primary_dist, top_entities = calculate_stats(final_items)
@@ -927,7 +939,9 @@ def main():
     )
 
     # 8) Render HTML
-    html = render_index(final_items, briefing=briefing, snapshot=daily_snapshot)
+    from src.market import get_market_overview
+    market_data = get_market_overview()
+    html = render_index(final_items, briefing=briefing, snapshot=daily_snapshot, market=market_data)
     Path("docs").mkdir(exist_ok=True)
     Path("docs/index.html").write_text(html, encoding="utf-8")
 

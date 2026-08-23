@@ -1,11 +1,8 @@
-"""Render del radar diario.
+"""Render del radar diario estilo Perplexity Discover.
 
-Dirección visual: terminal de inteligencia. Oscuro, jerarquía brutal — una tesis,
-pocas señales grandes, y la capa de memoria (qué cambió respecto a ayer) como
-parte estructural, no como adorno.
-
-Principio de diseño: el número de items lo decide el día, no la plantilla.
-Un día con 2 señales muestra 2 señales y lo dice.
+Direccion visual: Descubrimiento e inteligencia estrategica estilo Perplexity Discover.
+Oscuro, jerarquia visual potente con imagenes 16:9 de alta resolucion, perspectiva
+de mercado financiero y de semiconductores/IA, y capa de memoria estrategica.
 """
 
 from collections import Counter
@@ -73,6 +70,10 @@ SOURCE_DOMAIN_HINTS = {
     "latent space": "latent.space",
     "simon willison": "simonwillison.net",
     "hugging face": "huggingface.co",
+    "arc prize": "arcprize.org",
+    "artificial analysis": "artificialanalysis.ai",
+    "openrouter": "openrouter.ai",
+    "supermicro": "supermicro.com",
 }
 
 
@@ -90,6 +91,52 @@ def source_logo_url(source: str, url: str = "") -> str:
             return f"https://www.google.com/s2/favicons?domain={domain}&sz=64"
     host = urlparse(url or "").netloc.replace("www.", "")
     return f"https://www.google.com/s2/favicons?domain={host or 'github.com'}&sz=64"
+
+
+def item_fallback_image(item: dict) -> str:
+    """Genera una imagen SVG temática si el artículo no tiene imagen OpenGraph."""
+    theme = (item.get("strategic_theme") or item.get("primary") or "ai").lower()
+    title = (display_title(item) or "AI Intelligence").replace('"', '&quot;')[:60]
+    
+    # Paletas de color elegantes según el tema
+    if "chip" in theme or "compute" in theme or "infra" in theme:
+        c1, c2 = "#0f172a", "#1e1b4b"
+        accent = "#38bdf8"
+        label = "COMPUTE & CHIPS"
+    elif "model" in theme or "frontier" in theme:
+        c1, c2 = "#091e1a", "#042f2e"
+        accent = "#2dd4bf"
+        label = "FRONTIER MODELS"
+    elif "agent" in theme:
+        c1, c2 = "#1e1035", "#2e1065"
+        accent = "#c084fc"
+        label = "AGENTS & REASONING"
+    else:
+        c1, c2 = "#111827", "#1f2937"
+        accent = "#fbbf24"
+        label = "STRATEGIC INTEL"
+
+    svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="100%" height="100%">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="{c1}"/>
+      <stop offset="100%" stop-color="{c2}"/>
+    </linearGradient>
+    <radialGradient id="r" cx="80%" cy="20%" r="60%">
+      <stop offset="0%" stop-color="{accent}" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="{c1}" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="640" height="360" fill="url(#g)"/>
+  <rect width="640" height="360" fill="url(#r)"/>
+  <circle cx="540" cy="80" r="140" fill="{accent}" opacity="0.08" filter="blur(40px)"/>
+  <text x="40" y="80" fill="{accent}" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="800" letter-spacing="2">{label}</text>
+  <text x="40" y="160" fill="#f8fafc" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="700" width="560">{title}</text>
+  <line x1="40" y1="310" x2="600" y2="310" stroke="#334155" stroke-width="1"/>
+  <text x="40" y="332" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="12">AI Strategic Radar · Frontier Intelligence</text>
+</svg>'''
+    import urllib.parse
+    return f"data:image/svg+xml;utf8,{urllib.parse.quote(svg)}"
 
 
 # -- Temas y puntuacion ------------------------------------------------------
@@ -152,171 +199,183 @@ TEMPLATE = ENV.from_string("""
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AI Strategic Radar</title>
+<title>AI Strategic Radar · Discover</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#05070c; --panel:#0a0f18; --panel-2:#0d1420; --line:#1a2435; --line-2:#243044;
-    --txt:#e6eefc; --dim:#7c8ba3; --dimmer:#4a5768;
-    --cyan:#5eead4; --blue:#60a5fa; --amber:#fbbf24; --rose:#fb7185; --violet:#a78bfa; --green:#4ade80;
+    --bg:#07090e; --panel:#0d121d; --panel-2:#131b2a; --panel-hover:#172235; --line:#1c2638; --line-2:#2a3850;
+    --txt:#f1f5f9; --txt-dim:#cbd5e1; --dim:#8191a6; --dimmer:#4e5d73;
+    --cyan:#38bdf8; --teal:#2dd4bf; --blue:#60a5fa; --amber:#fbbf24; --rose:#f43f5e; --violet:#c084fc; --green:#4ade80;
     --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
-    --sans:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+    --sans:'Outfit',Inter,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
   }
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
   body{margin:0;background:var(--bg);color:var(--txt);font-family:var(--sans);line-height:1.5;
-       background-image:radial-gradient(900px 500px at 15% -5%,rgba(94,234,212,.05),transparent 60%),
-                        radial-gradient(800px 400px at 85% 0%,rgba(167,139,250,.05),transparent 55%);
+       background-image:radial-gradient(1000px 600px at 15% -5%,rgba(56,189,248,.07),transparent 60%),
+                        radial-gradient(900px 500px at 85% 0%,rgba(192,132,252,.06),transparent 55%);
        background-attachment:fixed;}
   a{color:inherit;text-decoration:none}
-  .wrap{max-width:1180px;margin:0 auto;padding:0 20px 72px}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 24px 80px}
   .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
-       color:var(--dim);font-weight:500}
+       color:var(--dim);font-weight:700}
 
+  /* Top Bar */
   .bar{display:flex;justify-content:space-between;align-items:center;gap:16px;
-       padding:16px 0;border-bottom:1px solid var(--line);margin-bottom:34px;flex-wrap:wrap}
+       padding:18px 0;border-bottom:1px solid var(--line);margin-bottom:28px;flex-wrap:wrap}
   .bar-g{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-  .brand{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;
-         color:var(--cyan);font-weight:700}
-  .date{font-family:var(--mono);font-size:11px;color:var(--dimmer);letter-spacing:.08em}
-  .nav{display:flex;gap:4px}
-  .nav a{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
-         padding:6px 13px;border:1px solid var(--line);border-radius:2px;color:var(--dim)}
-  .nav a.on{color:var(--cyan);border-color:rgba(94,234,212,.4);background:rgba(94,234,212,.06)}
-  .nav a:hover{color:var(--txt);border-color:var(--line-2)}
+  .brand{font-family:var(--sans);font-size:17px;font-weight:900;letter-spacing:-.02em;
+         background:linear-gradient(to right, #ffffff, var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+  .date{font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.08em}
+  .nav{display:flex;gap:6px}
+  .nav a{font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.02em;
+         padding:6px 14px;border:1px solid var(--line);border-radius:20px;color:var(--dim);background:rgba(13,18,29,.6);
+         transition:all .2s ease}
+  .nav a.on{color:#fff;border-color:rgba(56,189,248,.5);background:rgba(56,189,248,.15)}
+  .nav a:hover{color:var(--txt);border-color:var(--line-2);transform:translateY(-1px)}
 
   .state{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;
-         font-weight:700;letter-spacing:.18em;padding:6px 12px;border-radius:2px;border:1px solid}
-  .state .dot{width:5px;height:5px;border-radius:50%;background:currentColor}
-  .state.alert{color:var(--rose);border-color:rgba(251,113,133,.42);background:rgba(251,113,133,.08)}
-  .state.active{color:var(--amber);border-color:rgba(251,191,36,.42);background:rgba(251,191,36,.08)}
-  .state.quiet{color:var(--blue);border-color:rgba(96,165,250,.38);background:rgba(96,165,250,.07)}
+         font-weight:700;letter-spacing:.16em;padding:5px 12px;border-radius:20px;border:1px solid}
+  .state .dot{width:6px;height:6px;border-radius:50%;background:currentColor}
+  .state.alert{color:var(--rose);border-color:rgba(244,63,94,.4);background:rgba(244,63,94,.1)}
+  .state.active{color:var(--amber);border-color:rgba(251,191,36,.4);background:rgba(251,191,36,.1)}
+  .state.quiet{color:var(--blue);border-color:rgba(96,165,250,.35);background:rgba(96,165,250,.08)}
   .state.alert .dot{animation:pulse 1.8s ease-in-out infinite}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
 
-  .thesis .lbl{display:block;margin-bottom:14px}
-  .thesis h1{margin:0;font-size:clamp(26px,4vw,46px);line-height:1.17;font-weight:700;
-             letter-spacing:-.02em;max-width:20ch}
-  .meta-row{display:flex;gap:22px;flex-wrap:wrap;margin-top:20px;padding-top:16px;border-top:1px solid var(--line)}
-  .meta-row .m{font-family:var(--mono);font-size:11px;color:var(--dimmer)}
-  .meta-row .m b{color:var(--txt);font-weight:700}
+  /* Top 3 Discover Cards Grid (Perplexity Discover Style) */
+  .discover-grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:18px;margin-bottom:34px}
+  @media(max-width:900px){.discover-grid{grid-template-columns:1fr}}
+  .disc-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;
+             display:flex;flex-direction:column;transition:all .25s cubic-bezier(.2,0,0,1);box-shadow:0 8px 24px rgba(0,0,0,.25)}
+  .disc-card:hover{border-color:var(--line-2);transform:translateY(-3px);box-shadow:0 14px 34px rgba(0,0,0,.4)}
+  .disc-img-wrap{width:100%;height:180px;overflow:hidden;position:relative;background:#05080e}
+  .disc-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease}
+  .disc-card:hover .disc-img{transform:scale(1.05)}
+  .disc-body{padding:16px 18px;display:flex;flex-direction:column;flex:1;justify-content:space-between}
+  .disc-title{font-size:16px;font-weight:700;line-height:1.35;margin:0 0 10px;color:var(--txt);letter-spacing:-.01em}
+  .disc-card:hover .disc-title{color:var(--cyan)}
+  .disc-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;padding-top:10px}
+  .disc-sources{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--dim);font-weight:600}
+  .disc-sources img{width:16px;height:16px;border-radius:4px}
+  .disc-tag{font-family:var(--mono);font-size:9px;text-transform:uppercase;padding:3px 8px;border-radius:4px;
+            background:rgba(56,189,248,.1);color:var(--cyan);border:1px solid rgba(56,189,248,.25);font-weight:700}
 
-  .degraded{margin:24px 0;padding:13px 16px;border:1px solid rgba(251,191,36,.35);
-            border-left:2px solid var(--amber);background:rgba(251,191,36,.05);border-radius:2px;
-            font-size:13px;color:#fcd34d;line-height:1.55}
+  /* Main 2-Column Grid (70% Content / 30% Market & Radar Sidebar) */
+  .main-discover-layout{display:grid;grid-template-columns:1fr 340px;gap:28px;align-items:start}
+  @media(max-width:1080px){.main-discover-layout{grid-template-columns:1fr}}
 
-  section{margin-top:52px}
-  .head{display:flex;align-items:baseline;justify-content:space-between;gap:14px;
-        padding-bottom:11px;border-bottom:1px solid var(--line);margin-bottom:24px}
-  .head h2{margin:0;font-size:14px;font-weight:700;letter-spacing:.02em}
-  .head .n{font-family:var(--mono);font-size:11px;color:var(--dimmer)}
+  /* Hero Lead Story */
+  .hero-card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px;
+             margin-bottom:28px;box-shadow:0 10px 30px rgba(0,0,0,.3);transition:border-color .2s}
+  .hero-card:hover{border-color:rgba(56,189,248,.35)}
+  .hero-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:24px;align-items:center}
+  @media(max-width:760px){.hero-grid{grid-template-columns:1fr}}
+  .hero-img-wrap{width:100%;height:260px;border-radius:12px;overflow:hidden;border:1px solid var(--line-2);
+                 background:#05080e;box-shadow:0 6px 20px rgba(0,0,0,.4)}
+  .hero-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease}
+  .hero-card:hover .hero-img{transform:scale(1.04)}
+  .hero-title{font-size:24px;font-weight:800;line-height:1.25;margin:0 0 12px;letter-spacing:-.02em;color:#fff}
+  .hero-title a:hover{color:var(--cyan)}
+  .hero-time{font-family:var(--mono);font-size:11px;color:var(--dim);margin-bottom:12px;display:flex;align-items:center;gap:6px}
+  .hero-summary{font-size:14.5px;color:var(--txt-dim);line-height:1.55;margin-bottom:16px}
+  .hero-foot{display:grid;gap:10px;padding-top:14px;border-top:1px solid var(--line)}
 
-  .wgrid{display:grid;gap:9px}
-  .wr{display:flex;gap:13px;align-items:flex-start;padding:13px 15px;border:1px solid var(--line);
-      border-radius:3px;background:var(--panel)}
-  .wr.hit{border-color:rgba(74,222,128,.32);background:rgba(74,222,128,.045)}
-  .wr-ic{font-family:var(--mono);font-size:13px;font-weight:700;flex-shrink:0;line-height:1.45}
-  .wr.hit .wr-ic{color:var(--green)}
-  .wr.open .wr-ic{color:var(--dimmer)}
-  .wr-b{flex:1;min-width:0}
-  .wr-t{font-size:13.5px;line-height:1.45}
-  .wr.open .wr-t{color:var(--dim)}
-  .wr-ev{margin-top:6px;font-family:var(--mono);font-size:11px;color:var(--green);line-height:1.4}
+  /* Feed Stream of Signals */
+  .section-title{font-size:18px;font-weight:800;letter-spacing:-.01em;margin:0 0 16px;color:#fff;
+                 display:flex;align-items:center;justify-content:space-between}
+  .section-title .count{font-family:var(--mono);font-size:11px;color:var(--dim);font-weight:500}
+  .stream-list{display:grid;gap:16px}
+  .stream-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px;
+               display:grid;grid-template-columns:1fr 180px;gap:20px;align-items:start;
+               transition:all .2s ease;box-shadow:0 6px 20px rgba(0,0,0,.2)}
+  @media(max-width:680px){.stream-card{grid-template-columns:1fr}}
+  .stream-card:hover{border-color:var(--line-2);background:var(--panel-2);transform:translateY(-2px)}
+  .stream-content{min-width:0}
+  .stream-top{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+  .stream-title{font-size:18px;font-weight:700;line-height:1.35;margin:0 0 10px;letter-spacing:-.01em}
+  .stream-title a:hover{color:var(--cyan)}
+  .stream-sw{font-size:14px;color:var(--txt-dim);line-height:1.55;margin-bottom:12px;border-left:2px solid rgba(56,189,248,.4);padding-left:12px}
+  .stream-img-wrap{width:180px;height:120px;border-radius:10px;overflow:hidden;border:1px solid var(--line-2);
+                   flex-shrink:0;background:#05080e;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+  @media(max-width:680px){.stream-img-wrap{width:100%;height:180px;order:-1}}
+  .stream-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .25s ease}
+  .stream-card:hover .stream-img{transform:scale(1.05)}
 
-  .sigs{display:grid;gap:2px}
-  .sig{display:grid;grid-template-columns:50px 1fr;border:1px solid var(--line);
-       background:var(--panel);border-radius:3px;overflow:hidden;transition:border-color .16s,background .16s}
-  .sig:hover{border-color:var(--line-2);background:var(--panel-2)}
-  .sig-n{display:flex;flex-direction:column;align-items:center;padding:20px 0;gap:9px;
-         border-right:1px solid var(--line);background:rgba(0,0,0,.22)}
-  .sig-n .num{font-family:var(--mono);font-size:15px;font-weight:700;color:var(--cyan)}
-  .sig-n .sc{font-family:var(--mono);font-size:9.5px;color:var(--dimmer)}
-  .sig-b{padding:19px 22px;min-width:0}
-  .sig-main-layout{display:flex;gap:20px;justify-content:space-between;align-items:flex-start}
-  .sig-content{flex:1;min-width:0}
-  .sig-thumb-link{flex-shrink:0;text-decoration:none;display:block}
-  .sig-thumb-wrap{width:160px;height:100px;border-radius:4px;overflow:hidden;border:1px solid var(--line-2);
-                  background:var(--panel-2);position:relative;box-shadow:0 4px 14px rgba(0,0,0,.3)}
-  .sig-thumb{width:100%;height:100%;object-fit:cover;display:block;transition:transform .24s cubic-bezier(.2,0,0,1),filter .24s ease;
-             filter:saturate(.95) contrast(1.05)}
-  .sig:hover .sig-thumb{transform:scale(1.06);filter:saturate(1.12) contrast(1.1)}
-  @media(max-width:680px){
-    .sig-main-layout{flex-direction:column-reverse;gap:14px}
-    .sig-thumb-wrap{width:100%;height:150px}
-  }
-  .sig-top{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:11px}
-  .tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;
-       padding:3px 8px;border-radius:2px;border:1px solid var(--line-2);color:var(--dim)}
-  .tag.th{color:var(--cyan);border-color:rgba(94,234,212,.3);background:rgba(94,234,212,.05)}
-  .src{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;color:var(--dimmer)}
-  .src img{width:13px;height:13px;border-radius:2px;opacity:.75;flex-shrink:0}
-  .sig-t{font-size:19px;font-weight:650;line-height:1.32;letter-spacing:-.008em;margin:0 0 12px}
-  .sig-t a:hover{color:var(--cyan)}
-  .sw{font-size:14.5px;line-height:1.58;color:#c3d3ec;border-left:2px solid rgba(94,234,212,.42);padding-left:14px}
-  .sig-foot{display:grid;gap:9px;margin-top:15px;padding-top:14px;border-top:1px solid var(--line)}
-  @media(min-width:760px){.sig-foot.two{grid-template-columns:1fr 1fr;gap:22px}}
-  .ff{display:flex;gap:9px;align-items:flex-start;font-size:12.5px;line-height:1.45}
-  .ff .k{font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;
+  .ff{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;line-height:1.45}
+  .ff .k{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
          flex-shrink:0;padding-top:2px;font-weight:700}
-  .ff.pw .k{color:var(--violet)} .ff.pw .v{color:#cdbdf8}
-  .ff.wn .k{color:var(--amber)}  .ff.wn .v{color:#f5d78e}
-  .ents{display:flex;gap:6px;flex-wrap:wrap;margin-top:13px}
-  .ent{font-family:var(--mono);font-size:10px;padding:3px 8px;border-radius:2px;
-       background:rgba(255,255,255,.035);color:var(--dim);border:1px solid var(--line)}
+  .ff.pw .k{color:var(--violet)} .ff.pw .v{color:#e2d9fc}
+  .ff.wn .k{color:var(--amber)}  .ff.wn .v{color:#fef08a}
+  .ents{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+  .ent{font-family:var(--mono);font-size:10px;padding:3px 8px;border-radius:4px;
+       background:rgba(255,255,255,.04);color:var(--dim);border:1px solid var(--line)}
 
-  .empty{padding:46px 26px;text-align:center;border:1px dashed var(--line-2);border-radius:3px;background:var(--panel)}
-  .empty .big{font-size:17px;font-weight:650;margin-bottom:9px}
-  .empty .sub{font-size:13.5px;color:var(--dim);max-width:52ch;margin:0 auto;line-height:1.6}
+  /* Context Items */
+  .ctx-card{background:rgba(13,18,29,.65);border:1px solid var(--line);border-radius:10px;padding:14px 16px;
+            display:flex;gap:14px;align-items:center;transition:border-color .15s}
+  .ctx-card:hover{border-color:var(--line-2)}
+  .ctx-thumb{width:68px;height:48px;border-radius:6px;object-fit:cover;flex-shrink:0;border:1px solid var(--line-2)}
+  .ctx-b{flex:1;min-width:0}
+  .ctx-t{font-size:14px;font-weight:600;line-height:1.4}
+  .ctx-t a:hover{color:var(--cyan)}
+  .ctx-m{font-family:var(--mono);font-size:10px;color:var(--dim);margin-top:4px}
 
-  .grid2{display:grid;gap:14px}
-  @media(min-width:820px){.grid2{grid-template-columns:1fr 1fr}}
-  .card{border:1px solid var(--line);border-radius:3px;background:var(--panel);padding:17px 19px}
-  .card .lbl{display:block;margin-bottom:14px}
-  .thr{display:flex;gap:13px;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--line)}
-  .thr:last-child{border-bottom:none;padding-bottom:0}
-  .thr-d{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--violet);flex-shrink:0;
-         padding:2px 7px;border:1px solid rgba(167,139,250,.32);border-radius:2px;background:rgba(167,139,250,.07)}
-  .thr-t{font-size:13.5px;font-weight:600}
-  .thr-l{font-size:12px;color:var(--dim);margin-top:3px;line-height:1.4}
-  .mv{display:flex;gap:9px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line);
-      font-size:13px;flex-wrap:wrap}
-  .mv:last-child{border-bottom:none;padding-bottom:0}
-  .mv-b{font-family:var(--mono);font-size:9px;letter-spacing:.09em;text-transform:uppercase;
-        padding:2px 7px;border-radius:2px;flex-shrink:0;font-weight:700}
-  .mv-b.new{color:var(--green);background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.3)}
-  .mv-b.ret{color:var(--amber);background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.3)}
-  .mv-b.str{color:var(--blue);background:rgba(96,165,250,.1);border:1px solid rgba(96,165,250,.3)}
-  .mv .nm{font-weight:600}
-  .mv .dt{color:var(--dimmer);font-family:var(--mono);font-size:11px}
-  .none{font-size:12.5px;color:var(--dimmer);font-style:italic}
-  .rk{padding:11px 0;border-bottom:1px solid var(--line);font-size:13.5px;line-height:1.5;color:#f3d99b}
-  .rk:last-child{border-bottom:none;padding-bottom:0}
-  .rk.w{color:#cdbdf8}
+  /* Right Sidebar Widgets */
+  .sidebar{display:grid;gap:20px}
+  .widget{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+  .widget-title{font-size:14.5px;font-weight:800;margin:0 0 14px;color:#fff;display:flex;align-items:center;justify-content:space-between}
 
-  .ctx{display:grid;gap:2px}
-  .cx{display:flex;gap:14px;align-items:center;padding:13px 15px;border:1px solid var(--line);
-      border-radius:3px;background:rgba(10,15,24,.55)}
-  .cx:hover{border-color:var(--line-2)}
-  .cx-s{font-family:var(--mono);font-size:10.5px;color:var(--dimmer);flex-shrink:0;width:26px}
-  .cx-thumb-wrap{width:64px;height:46px;border-radius:3px;overflow:hidden;border:1px solid var(--line-2);
-                 flex-shrink:0;background:var(--panel-2)}
-  .cx-thumb{width:100%;height:100%;object-fit:cover;display:block}
-  .cx-b{min-width:0;flex:1}
-  .cx-t{font-size:14px;line-height:1.4;font-weight:500}
-  .cx-t a:hover{color:var(--cyan)}
-  .cx-w{font-size:12.5px;color:var(--dim);margin-top:5px;line-height:1.45}
-  .cx-m{font-family:var(--mono);font-size:9.5px;color:var(--dimmer);margin-top:6px;letter-spacing:.06em}
+  /* Market Perspective Widget */
+  .market-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .m-box{background:var(--panel-2);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+  .m-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
+  .m-lbl{font-size:11.5px;font-weight:700;color:var(--dim)}
+  .m-chg{font-family:var(--mono);font-size:11px;font-weight:700}
+  .m-chg.pos{color:var(--green)}
+  .m-chg.neg{color:var(--rose)}
+  .m-price{font-size:13px;font-weight:800;color:#fff;margin-bottom:6px}
+  .spark{width:100%;height:22px;display:block}
+
+  /* Trending AI Companies Widget */
+  .company-list{display:grid;gap:8px}
+  .comp-item{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:7px 0;border-bottom:1px solid var(--line)}
+  .comp-item:last-child{border-bottom:none}
+  .comp-info{display:flex;align-items:center;gap:8px;min-width:0}
+  .comp-logo{width:20px;height:20px;border-radius:4px;flex-shrink:0}
+  .comp-name{font-size:12.5px;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .comp-ticker{font-family:var(--mono);font-size:10px;color:var(--dim)}
+  .comp-val{text-align:right}
+  .comp-price{font-size:12px;font-weight:700;color:#fff}
+  .comp-chg{font-family:var(--mono);font-size:10.5px;font-weight:700}
+  .comp-chg.pos{color:var(--green)}
+  .comp-chg.neg{color:var(--rose)}
+
+  /* Watchlist & Continuity */
+  .wr-item{padding:9px 0;border-bottom:1px solid var(--line);display:flex;gap:10px;font-size:12.5px;line-height:1.4}
+  .wr-item:last-child{border-bottom:none}
+  .wr-ic{font-family:var(--mono);font-weight:800;flex-shrink:0}
+  .wr-item.hit .wr-ic{color:var(--green)}
+  .wr-item.open .wr-ic{color:var(--dimmer)}
+  .wr-item.hit .wr-txt{color:#e2e8f0}
+  .wr-item.open .wr-txt{color:var(--dim)}
+
+  .thr-item{padding:8px 0;border-bottom:1px solid var(--line);font-size:12.5px}
+  .thr-item:last-child{border-bottom:none}
+  .thr-badge{font-family:var(--mono);font-size:9.5px;font-weight:700;color:var(--violet);
+             padding:2px 6px;border-radius:3px;background:rgba(192,132,252,.1);border:1px solid rgba(192,132,252,.3);margin-right:6px}
 
   footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);
          display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
-         font-family:var(--mono);font-size:10px;color:var(--dimmer);letter-spacing:.06em}
+         font-family:var(--mono);font-size:10.5px;color:var(--dimmer);letter-spacing:.05em}
 </style>
 </head>
 <body>
 <div class="wrap">
 
+  <!-- Top Navigation Bar -->
   <div class="bar">
     <div class="bar-g">
       <span class="brand">AI Strategic Radar</span>
@@ -331,195 +390,265 @@ TEMPLATE = ENV.from_string("""
     </div>
   </div>
 
-  <div class="thesis">
-    <span class="lbl">Tesis del día</span>
-    <h1>{{ thesis }}</h1>
-    <div class="meta-row">
-      <span class="m"><b>{{ n_signals }}</b> señales</span>
-      <span class="m"><b>{{ n_context }}</b> contexto</span>
-      {% if dominant %}<span class="m">Dominante: <b>{{ dominant }}</b></span>{% endif %}
-    </div>
-  </div>
-
   {% if degraded %}
-  <div class="degraded">
-    <b>Modo degradado.</b> El análisis del LLM no está disponible hoy, así que el filtro de
-    relevancia no se ha aplicado. Lo que ves está ordenado por heurística y puede contener ruido.
+  <div style="margin-bottom:24px;padding:12px 16px;border-radius:8px;border:1px solid rgba(251,191,36,.4);background:rgba(251,191,36,.08);color:#fde047;font-size:13px">
+    <b>Modo degradado.</b> El análisis del LLM no estuvo disponible para esta corrida. Lo que ves está ordenado por heurística.
   </div>
   {% endif %}
 
-  {% if watch_resolved %}
-  <section>
-    <div class="head">
-      <h2>Lo que ayer dijimos que vigilaras</h2>
-      <span class="n">{{ n_hits }}/{{ watch_resolved|length }} confirmadas</span>
-    </div>
-    <div class="wgrid">
-      {% for w in watch_resolved %}
-      <div class="wr {{ w.status }}">
-        <span class="wr-ic">{% if w.status == 'hit' %}✓{% else %}○{% endif %}</span>
-        <div class="wr-b">
-          <div class="wr-t">{{ w.text }}</div>
-          {% if w.evidence %}<div class="wr-ev">→ {{ w.evidence }}</div>{% endif %}
+  <!-- Top 3 Featured Discover Cards (Perplexity Discover Style) -->
+  {% if signals|length >= 3 %}
+  <div class="discover-grid">
+    {% for it in signals[:3] %}
+    <article class="disc-card">
+      <a href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer" class="disc-img-wrap">
+        <img src="{{ it.image_url }}" alt="" class="disc-img" loading="lazy" referrerpolicy="no-referrer"/>
+      </a>
+      <div class="disc-body">
+        <h3 class="disc-title">
+          <a href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ it.display_title }}</a>
+        </h3>
+        <div class="disc-meta">
+          <span class="disc-sources">
+            <img src="{{ it.logo }}" alt="" loading="lazy"/>
+            {{ it.source_label }}
+          </span>
+          <span class="disc-tag">{{ it.theme_label }}</span>
         </div>
       </div>
-      {% endfor %}
-    </div>
-  </section>
+    </article>
+    {% endfor %}
+  </div>
   {% endif %}
 
-  <section>
-    <div class="head">
-      <h2>Señales</h2>
-      <span class="n">{{ n_signals }} hoy</span>
-    </div>
-    {% if signals %}
-    <div class="sigs">
-      {% for it in signals %}
-      <article class="sig">
-        <div class="sig-n">
-          <span class="num">{{ '%02d'|format(loop.index) }}</span>
-          <span class="sc">{{ it.score }}</span>
-        </div>
-        <div class="sig-b">
-          <div class="sig-main-layout">
-            <div class="sig-content">
-              <div class="sig-top">
-                <span class="tag th">{{ it.theme_label }}</span>
-                <span class="src"><img src="{{ it.logo }}" alt="" loading="lazy"/>{{ it.source_label }}</span>
-              </div>
-              <h3 class="sig-t">
-                <a href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ it.display_title }}</a>
-              </h3>
-              {% if it.so_what %}<div class="sw">{{ it.so_what }}</div>{% endif %}
+  <!-- Main 2-Column Grid: 70% Analysis & Stream / 30% Market & Continuity -->
+  <div class="main-discover-layout">
+    
+    <!-- Left Column -->
+    <div class="main-feed">
+      
+      <!-- Hero Lead Article -->
+      {% if signals %}
+      {% set hero = signals[0] %}
+      <article class="hero-card">
+        <div class="hero-grid">
+          <a href="{{ (hero.url or hero.link)|safe_url }}" target="_blank" rel="noopener noreferrer" class="hero-img-wrap">
+            <img src="{{ hero.image_url }}" alt="" class="hero-img" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="hero-content">
+            <div class="hero-time">
+              <span class="disc-tag">{{ hero.theme_label }}</span>
+              <span>• Publicado hoy</span>
             </div>
-            {% if it.image_url %}
-            <a href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer" class="sig-thumb-link">
-              <div class="sig-thumb-wrap">
-                <img src="{{ it.image_url }}" alt="" class="sig-thumb" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('.sig-thumb-link').style.display='none'"/>
-              </div>
-            </a>
+            <h2 class="hero-title">
+              <a href="{{ (hero.url or hero.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ hero.display_title }}</a>
+            </h2>
+            {% if hero.so_what %}
+            <div class="hero-summary">{{ hero.so_what }}</div>
+            {% endif %}
+            <div class="disc-sources" style="margin-bottom:12px">
+              <img src="{{ hero.logo }}" alt="" loading="lazy"/>
+              <b>{{ hero.source_label }}</b>
+            </div>
+            {% if hero.power_shift or hero.watch_next %}
+            <div class="hero-foot">
+              {% if hero.power_shift %}
+              <div class="ff pw"><span class="k">Poder</span><span class="v">{{ hero.power_shift }}</span></div>
+              {% endif %}
+              {% if hero.watch_next %}
+              <div class="ff wn"><span class="k">Vigilar</span><span class="v">{{ hero.watch_next }}</span></div>
+              {% endif %}
+            </div>
             {% endif %}
           </div>
-          {% if it.power_shift or it.watch_next %}
-          <div class="sig-foot {% if it.power_shift and it.watch_next %}two{% endif %}">
-            {% if it.power_shift %}
-            <div class="ff pw"><span class="k">Poder</span><span class="v">{{ it.power_shift }}</span></div>
-            {% endif %}
-            {% if it.watch_next %}
-            <div class="ff wn"><span class="k">Vigilar</span><span class="v">{{ it.watch_next }}</span></div>
-            {% endif %}
-          </div>
-          {% endif %}
-          {% if it.ents %}
-          <div class="ents">{% for e in it.ents %}<span class="ent">{{ e }}</span>{% endfor %}</div>
-          {% endif %}
         </div>
       </article>
-      {% endfor %}
-    </div>
-    {% else %}
-    <div class="empty">
-      <div class="big">Hoy no ha pasado nada que mueva la aguja.</div>
-      <div class="sub">
-        El filtro de relevancia descartó todo lo ingerido por irrelevante. Un día sin señal
-        también es información: significa que la carrera frontier no se movió.
-      </div>
-    </div>
-    {% endif %}
-  </section>
+      {% endif %}
 
-  {% if threads or has_moves %}
-  <section>
-    <div class="head"><h2>Memoria del radar</h2><span class="n">continuidad</span></div>
-    <div class="grid2">
-      <div class="card">
-        <span class="lbl">Narrativas en curso</span>
-        {% if threads %}
-          {% for t in threads %}
-          <div class="thr">
-            <span class="thr-d">DÍA {{ t.days }}</span>
-            <div>
-              <div class="thr-t">{{ t.label }}</div>
-              {% if t.lead %}<div class="thr-l">{{ t.lead }}</div>{% endif %}
+      <!-- Rest of Signals Stream -->
+      <div class="section-title">
+        <span>Señales del Radar</span>
+        <span class="count">{{ n_signals }} hoy</span>
+      </div>
+
+      <div class="stream-list">
+        {% for it in signals[1:] %}
+        <article class="stream-card">
+          <div class="stream-content">
+            <div class="stream-top">
+              <span class="disc-tag">{{ it.theme_label }}</span>
+              <span class="disc-sources">
+                <img src="{{ it.logo }}" alt="" loading="lazy"/>
+                {{ it.source_label }}
+              </span>
+            </div>
+            <h3 class="stream-title">
+              <a href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ it.display_title }}</a>
+            </h3>
+            {% if it.so_what %}<div class="stream-sw">{{ it.so_what }}</div>{% endif %}
+            {% if it.power_shift or it.watch_next %}
+            <div style="display:grid;gap:6px;margin-top:10px">
+              {% if it.power_shift %}
+              <div class="ff pw"><span class="k">Poder</span><span class="v">{{ it.power_shift }}</span></div>
+              {% endif %}
+              {% if it.watch_next %}
+              <div class="ff wn"><span class="k">Vigilar</span><span class="v">{{ it.watch_next }}</span></div>
+              {% endif %}
+            </div>
+            {% endif %}
+            {% if it.ents %}
+            <div class="ents">{% for e in it.ents %}<span class="ent">{{ e }}</span>{% endfor %}</div>
+            {% endif %}
+          </div>
+          <a href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer" class="stream-img-wrap">
+            <img src="{{ it.image_url }}" alt="" class="stream-img" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+        </article>
+        {% endfor %}
+      </div>
+
+      <!-- Context Section -->
+      {% if context %}
+      <div class="section-title" style="margin-top:40px">
+        <span>Contexto y Desarrollos de Fondo</span>
+        <span class="count">{{ n_context }} items</span>
+      </div>
+      <div style="display:grid;gap:10px">
+        {% for it in context %}
+        <div class="ctx-card">
+          <img src="{{ it.image_url }}" alt="" class="ctx-thumb" loading="lazy" referrerpolicy="no-referrer"/>
+          <div class="ctx-b">
+            <div class="ctx-t">
+              <a href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ it.display_title }}</a>
+            </div>
+            {% if it.so_what %}<div style="font-size:12.5px;color:var(--dim);margin-top:3px">{{ it.so_what }}</div>{% endif %}
+            <div class="ctx-m">{{ it.theme_label }} · {{ it.source_label }}</div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+    </div>
+
+    <!-- Right Column Sidebar -->
+    <aside class="sidebar">
+      
+      <!-- Market Perspective Widget -->
+      {% if market and market.macro %}
+      <div class="widget">
+        <div class="widget-title">
+          <span>Perspectiva del mercado</span>
+          <span class="lbl">MACRO</span>
+        </div>
+        <div class="market-grid">
+          {% for m in market.macro %}
+          <div class="m-box">
+            <div class="m-header">
+              <span class="m-lbl">{{ m.label }}</span>
+              <span class="m-chg {% if m.positive %}pos{% else %}neg{% endif %}">{{ m.change_str }}</span>
+            </div>
+            <div class="m-price">{{ m.price_str }}</div>
+            {{ m.sparkline_svg|safe }}
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+
+      <!-- Trending AI Companies Widget -->
+      {% if market and market.companies %}
+      <div class="widget">
+        <div class="widget-title">
+          <span>Empresas en tendencia (AI & Semis)</span>
+          <span class="lbl">STOCKS</span>
+        </div>
+        <div class="company-list">
+          {% for c in market.companies %}
+          <div class="comp-item">
+            <div class="comp-info">
+              <img src="{{ c.logo }}" alt="" class="comp-logo" loading="lazy"/>
+              <div>
+                <div class="comp-name">{{ c.name }}</div>
+                <div class="comp-ticker">{{ c.ticker }} · {{ c.exchange }}</div>
+              </div>
+            </div>
+            <div class="comp-val">
+              <div class="comp-price">{{ c.price_str }}</div>
+              <div class="comp-chg {% if c.positive %}pos{% else %}neg{% endif %}">{{ c.change_str }}</div>
             </div>
           </div>
           {% endfor %}
-        {% else %}
-          <div class="none">Ninguna narrativa encadena 3 o más días.</div>
-        {% endif %}
-      </div>
-      <div class="card">
-        <span class="lbl">Movimiento de actores</span>
-        {% if has_moves %}
-          {% for e in deltas.new_entrants %}
-          <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">{{ e }}</span>
-            <span class="dt">primera aparición</span></div>
-          {% endfor %}
-          {% for r in deltas.returning %}
-          <div class="mv"><span class="mv-b ret">Vuelve</span><span class="nm">{{ r.entity }}</span>
-            <span class="dt">tras {{ r.silent_days }} días en silencio</span></div>
-          {% endfor %}
-          {% for s in deltas.streaks %}
-          <div class="mv"><span class="mv-b str">Racha</span><span class="nm">{{ s.entity }}</span>
-            <span class="dt">{{ s.days }} días seguidos</span></div>
-          {% endfor %}
-        {% else %}
-          <div class="none">Sin cambios de actores respecto a días previos.</div>
-        {% endif %}
-      </div>
-    </div>
-  </section>
-  {% endif %}
-
-  {% if risks or watch_list %}
-  <section>
-    <div class="head"><h2>Riesgos y vigilancia</h2><span class="n">próximos días</span></div>
-    <div class="grid2">
-      {% if risks %}
-      <div class="card">
-        <span class="lbl">Riesgos</span>
-        {% for r in risks %}<div class="rk">{{ r }}</div>{% endfor %}
-      </div>
-      {% endif %}
-      {% if watch_list %}
-      <div class="card">
-        <span class="lbl">A vigilar</span>
-        {% for w in watch_list %}<div class="rk w">{{ w }}</div>{% endfor %}
-      </div>
-      {% endif %}
-    </div>
-  </section>
-  {% endif %}
-
-  {% if context %}
-  <section>
-    <div class="head">
-      <h2>Contexto</h2>
-      <span class="n">de fondo, no cambia nada hoy</span>
-    </div>
-    <div class="ctx">
-      {% for it in context %}
-      <div class="cx">
-        <span class="cx-s">{{ it.score }}</span>
-        {% if it.image_url %}
-        <div class="cx-thumb-wrap">
-          <img src="{{ it.image_url }}" alt="" class="cx-thumb" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('.cx-thumb-wrap').style.display='none'"/>
         </div>
-        {% endif %}
-        <div class="cx-b">
-          <div class="cx-t">
-            <a href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ it.display_title }}</a>
+      </div>
+      {% endif %}
+
+      <!-- Watchlist Resolution Widget -->
+      {% if watch_resolved %}
+      <div class="widget">
+        <div class="widget-title">
+          <span>Lo que ayer dijimos que vigilaras</span>
+          <span class="lbl">{{ n_hits }}/{{ watch_resolved|length }} HIT</span>
+        </div>
+        <div>
+          {% for w in watch_resolved %}
+          <div class="wr-item {{ w.status }}">
+            <span class="wr-ic">{% if w.status == 'hit' %}✓{% else %}○{% endif %}</span>
+            <div>
+              <div class="wr-txt">{{ w.text }}</div>
+              {% if w.evidence %}<div style="font-size:11px;color:var(--green);margin-top:3px">→ {{ w.evidence }}</div>{% endif %}
+            </div>
           </div>
-          {% if it.so_what %}<div class="cx-w">{{ it.so_what }}</div>{% endif %}
-          <div class="cx-m">{{ it.theme_label }} · {{ it.source_label }}</div>
+          {% endfor %}
         </div>
       </div>
-      {% endfor %}
-    </div>
-  </section>
-  {% endif %}
+      {% endif %}
 
+      <!-- Memory Threads Widget -->
+      {% if threads or has_moves %}
+      <div class="widget">
+        <div class="widget-title">
+          <span>Memoria del radar</span>
+          <span class="lbl">CONTINUIDAD</span>
+        </div>
+        <div>
+          {% for t in threads %}
+          <div class="thr-item">
+            <span class="thr-badge">DÍA {{ t.days }}</span>
+            <b>{{ t.label }}</b>
+            {% if t.lead %}<div style="font-size:11.5px;color:var(--dim);margin-top:2px">{{ t.lead }}</div>{% endif %}
+          </div>
+          {% endfor %}
+          {% if not threads %}
+          <div style="font-size:12px;color:var(--dim);font-style:italic">Sin narrativas prolongadas (>3d).</div>
+          {% endif %}
+        </div>
+      </div>
+      {% endif %}
+
+      <!-- Risks & Watchlist -->
+      {% if risks or watch_list %}
+      <div class="widget">
+        <div class="widget-title">
+          <span>Próximos Días</span>
+          <span class="lbl">A VIGILAR</span>
+        </div>
+        <div>
+          {% for r in risks %}
+          <div style="font-size:12px;color:#fde047;padding:6px 0;border-bottom:1px solid var(--line)">⚠️ {{ r }}</div>
+          {% endfor %}
+          {% for w in watch_list %}
+          <div style="font-size:12px;color:#e2d9fc;padding:6px 0;border-bottom:1px solid var(--line)">👁️ {{ w }}</div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+
+    </aside>
+
+  </div>
+
+  <!-- Footer -->
   <footer>
     <span>{{ n_dropped }} items descartados por el filtro de relevancia</span>
     <span>{{ sources_alive }}/{{ sources_total }} fuentes activas{% if sources_dead %} · sin items: {{ sources_dead }}{% endif %}</span>
@@ -531,9 +660,16 @@ TEMPLATE = ENV.from_string("""
 """)
 
 
-def render_index(items, briefing=None, snapshot=None):
+def render_index(items, briefing=None, snapshot=None, market=None):
     briefing = briefing or {}
     snapshot = snapshot or {}
+
+    if market is None:
+        try:
+            from src.market import get_market_overview
+            market = get_market_overview()
+        except Exception:
+            market = {}
 
     enriched = []
     for raw in (items or []):
@@ -547,7 +683,11 @@ def render_index(items, briefing=None, snapshot=None):
         it["ents"] = item_entities(it)
         it["source_label"] = source_label(it.get("source", ""))
         it["logo"] = source_logo_url(it.get("source", ""), it.get("url") or it.get("link") or "")
-        it["image_url"] = (it.get("image_url") or "").strip()
+        
+        img = (it.get("image_url") or "").strip()
+        if not img or not img.startswith(("http://", "https://")):
+            img = item_fallback_image(it)
+        it["image_url"] = img
         enriched.append(it)
 
     enriched.sort(key=lambda x: x.get("score", 0), reverse=True)
@@ -600,4 +740,5 @@ def render_index(items, briefing=None, snapshot=None):
         sources_alive=health.get("alive", 0),
         sources_total=health.get("configured", 0),
         sources_dead=", ".join(dead[:4]) if dead else "",
+        market=market,
     )

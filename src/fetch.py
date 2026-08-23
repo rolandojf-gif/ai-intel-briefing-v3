@@ -20,6 +20,141 @@ def _clean_html(text: str) -> str:
 
 
 import html
+import json
+from pathlib import Path
+
+IMAGE_CACHE_FILE = Path("docs/data/image_cache.json")
+_MEM_IMAGE_CACHE: dict[str, str] = {}
+
+
+def _load_image_cache() -> dict[str, str]:
+    global _MEM_IMAGE_CACHE
+    if _MEM_IMAGE_CACHE:
+        return _MEM_IMAGE_CACHE
+    if IMAGE_CACHE_FILE.exists():
+        try:
+            _MEM_IMAGE_CACHE = json.loads(IMAGE_CACHE_FILE.read_text(encoding="utf-8"))
+        except Exception:
+            _MEM_IMAGE_CACHE = {}
+    return _MEM_IMAGE_CACHE
+
+
+def _save_image_cache():
+    if not _MEM_IMAGE_CACHE:
+        return
+    IMAGE_CACHE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        IMAGE_CACHE_FILE.write_text(json.dumps(_MEM_IMAGE_CACHE, indent=2), encoding="utf-8")
+    except Exception:
+        pass
+
+
+def fetch_og_image(url: str) -> str:
+    """Extrae la imagen OpenGraph (og:image / twitter:image) del HTML de una noticia con cache."""
+    if not url or not url.startswith(("http://", "https://")):
+        return ""
+    
+    cache = _load_image_cache()
+    if url in cache:
+        return cache[url]
+
+    # No intentar en ciertos dominios que no tienen HTML tradicional o bloquean
+    if any(d in url for d in ["github.com/deepseek-ai", "hnrss.org", "arxiv.org/abs"]):
+        cache[url] = ""
+        return ""
+
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+    }
+    try:
+        resp = requests.get(url, headers=headers, timeout=6)
+        if resp.status_code == 200:
+            text = resp.text[:120000] # Primeros 120KB contienen todo el <head>
+            og_match = re.search(r'<meta[^>]+(?:property|name)=["\'](?:og:image|twitter:image|twitter:image:src)["\'][^>]+content=["\']([^"\']+)["\']', text, flags=re.IGNORECASE)
+            if not og_match:
+                og_match = re.search(r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+(?:property|name)=["\'](?:og:image|twitter:image)["\']', text, flags=re.IGNORECASE)
+            
+            if og_match:
+                img_url = html.unescape(og_match.group(1).strip())
+                if img_url.startswith("//"):
+                    img_url = "https:" + img_url
+                elif img_url.startswith("/"):
+                    from urllib.parse import urljoin
+                    img_url = urljoin(url, img_url)
+
+                if img_url.startswith(("http://", "https://")):
+                    cache[url] = img_url
+                    _save_image_cache()
+                    return img_url
+    except Exception:
+        pass
+
+    cache[url] = ""
+    _save_image_cache()
+    return ""
+
+
+def enrich_items_with_images(items: list[dict]) -> list[dict]:
+    """Rellena image_url en cada item usando OpenGraph si el feed RSS no incluyo imagen."""
+    for it in items:
+        if not (it.get("image_url") or "").strip():
+            target_url = (it.get("url") or it.get("link") or "").strip()
+            if target_url:
+                it["image_url"] = fetch_og_image(target_url)
+    return items
+
+
+def fetch_artificial_analysis(limit: int = 10, quiet: bool = False) -> list[dict]:
+    """Scraper para articulos y benchmarks de Artificial Analysis."""
+    url = "https://artificialanalysis.ai/articles"
+    headers = {"User-Agent": USER_AGENT, "Accept": "text/html,application/xhtml+xml"}
+    try:
+        resp = requests.get(url, headers=headers, timeout=RSS_TIMEOUT_SECONDS)
+        resp.raise_for_status()
+        html_text = resp.text
+    except Exception as exc:
+        if not quiet:
+            print("Artificial Analysis fetch failed:", repr(exc))
+        return []
+
+    # Extraer enlaces a artículos
+    article_blocks = re.findall(r'<a[^>]+href=["\'](/articles/[^"\']+)["\'][^>]*>(.*?)</a>', html_text, re.DOTALL)
+    items = []
+    seen = set()
+    for rel_link, content in article_blocks:
+        full_link = f"https://artificialanalysis.ai{rel_link}"
+        if full_link in seen:
+            continue
+        seen.add(full_link)
+
+        # Extraer texto de titulo
+        raw_text = re.sub(r'<[^>]+>', ' ', content)
+        clean = re.sub(r'\s+', ' ', raw_text).strip()
+        if not clean or len(clean) < 10:
+            continue
+
+        title = clean
+        summary = ""
+        # Si tiene fecha u otros datos en el texto, dividir
+        if " - " in clean:
+            parts = clean.split(" - ", 1)
+            title = parts[0].strip()
+            summary = parts[1].strip()
+
+        img_url = fetch_og_image(full_link)
+
+        items.append({
+            "title": title,
+            "link": full_link,
+            "published": datetime.now(timezone.utc).isoformat(),
+            "summary": summary or title,
+            "image_url": img_url,
+        })
+        if len(items) >= limit:
+            break
+
+    return items
 
 
 def _extract_image_url(e) -> str:
@@ -127,6 +262,9 @@ def fetch_rss(url: str, limit: int = 30, quiet: bool = False):
         link = (getattr(e, "link", "") or "").strip()
         title = (getattr(e, "title", "") or "").strip()
         image_url = _extract_image_url(e)
+        if not image_url and link:
+            # Intentar resolver OpenGraph si es un link valido
+            image_url = fetch_og_image(link)
 
         items.append(
             {

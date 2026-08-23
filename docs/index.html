@@ -4,178 +4,190 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AI Strategic Radar</title>
+<title>AI Strategic Radar · Discover</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#05070c; --panel:#0a0f18; --panel-2:#0d1420; --line:#1a2435; --line-2:#243044;
-    --txt:#e6eefc; --dim:#7c8ba3; --dimmer:#4a5768;
-    --cyan:#5eead4; --blue:#60a5fa; --amber:#fbbf24; --rose:#fb7185; --violet:#a78bfa; --green:#4ade80;
+    --bg:#07090e; --panel:#0d121d; --panel-2:#131b2a; --panel-hover:#172235; --line:#1c2638; --line-2:#2a3850;
+    --txt:#f1f5f9; --txt-dim:#cbd5e1; --dim:#8191a6; --dimmer:#4e5d73;
+    --cyan:#38bdf8; --teal:#2dd4bf; --blue:#60a5fa; --amber:#fbbf24; --rose:#f43f5e; --violet:#c084fc; --green:#4ade80;
     --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
-    --sans:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+    --sans:'Outfit',Inter,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
   }
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
   body{margin:0;background:var(--bg);color:var(--txt);font-family:var(--sans);line-height:1.5;
-       background-image:radial-gradient(900px 500px at 15% -5%,rgba(94,234,212,.05),transparent 60%),
-                        radial-gradient(800px 400px at 85% 0%,rgba(167,139,250,.05),transparent 55%);
+       background-image:radial-gradient(1000px 600px at 15% -5%,rgba(56,189,248,.07),transparent 60%),
+                        radial-gradient(900px 500px at 85% 0%,rgba(192,132,252,.06),transparent 55%);
        background-attachment:fixed;}
   a{color:inherit;text-decoration:none}
-  .wrap{max-width:1180px;margin:0 auto;padding:0 20px 72px}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 24px 80px}
   .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
-       color:var(--dim);font-weight:500}
+       color:var(--dim);font-weight:700}
 
+  /* Top Bar */
   .bar{display:flex;justify-content:space-between;align-items:center;gap:16px;
-       padding:16px 0;border-bottom:1px solid var(--line);margin-bottom:34px;flex-wrap:wrap}
+       padding:18px 0;border-bottom:1px solid var(--line);margin-bottom:28px;flex-wrap:wrap}
   .bar-g{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-  .brand{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;
-         color:var(--cyan);font-weight:700}
-  .date{font-family:var(--mono);font-size:11px;color:var(--dimmer);letter-spacing:.08em}
-  .nav{display:flex;gap:4px}
-  .nav a{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
-         padding:6px 13px;border:1px solid var(--line);border-radius:2px;color:var(--dim)}
-  .nav a.on{color:var(--cyan);border-color:rgba(94,234,212,.4);background:rgba(94,234,212,.06)}
-  .nav a:hover{color:var(--txt);border-color:var(--line-2)}
+  .brand{font-family:var(--sans);font-size:17px;font-weight:900;letter-spacing:-.02em;
+         background:linear-gradient(to right, #ffffff, var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+  .date{font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.08em}
+  .nav{display:flex;gap:6px}
+  .nav a{font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.02em;
+         padding:6px 14px;border:1px solid var(--line);border-radius:20px;color:var(--dim);background:rgba(13,18,29,.6);
+         transition:all .2s ease}
+  .nav a.on{color:#fff;border-color:rgba(56,189,248,.5);background:rgba(56,189,248,.15)}
+  .nav a:hover{color:var(--txt);border-color:var(--line-2);transform:translateY(-1px)}
 
   .state{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;
-         font-weight:700;letter-spacing:.18em;padding:6px 12px;border-radius:2px;border:1px solid}
-  .state .dot{width:5px;height:5px;border-radius:50%;background:currentColor}
-  .state.alert{color:var(--rose);border-color:rgba(251,113,133,.42);background:rgba(251,113,133,.08)}
-  .state.active{color:var(--amber);border-color:rgba(251,191,36,.42);background:rgba(251,191,36,.08)}
-  .state.quiet{color:var(--blue);border-color:rgba(96,165,250,.38);background:rgba(96,165,250,.07)}
+         font-weight:700;letter-spacing:.16em;padding:5px 12px;border-radius:20px;border:1px solid}
+  .state .dot{width:6px;height:6px;border-radius:50%;background:currentColor}
+  .state.alert{color:var(--rose);border-color:rgba(244,63,94,.4);background:rgba(244,63,94,.1)}
+  .state.active{color:var(--amber);border-color:rgba(251,191,36,.4);background:rgba(251,191,36,.1)}
+  .state.quiet{color:var(--blue);border-color:rgba(96,165,250,.35);background:rgba(96,165,250,.08)}
   .state.alert .dot{animation:pulse 1.8s ease-in-out infinite}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
 
-  .thesis .lbl{display:block;margin-bottom:14px}
-  .thesis h1{margin:0;font-size:clamp(26px,4vw,46px);line-height:1.17;font-weight:700;
-             letter-spacing:-.02em;max-width:20ch}
-  .meta-row{display:flex;gap:22px;flex-wrap:wrap;margin-top:20px;padding-top:16px;border-top:1px solid var(--line)}
-  .meta-row .m{font-family:var(--mono);font-size:11px;color:var(--dimmer)}
-  .meta-row .m b{color:var(--txt);font-weight:700}
+  /* Top 3 Discover Cards Grid (Perplexity Discover Style) */
+  .discover-grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:18px;margin-bottom:34px}
+  @media(max-width:900px){.discover-grid{grid-template-columns:1fr}}
+  .disc-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;
+             display:flex;flex-direction:column;transition:all .25s cubic-bezier(.2,0,0,1);box-shadow:0 8px 24px rgba(0,0,0,.25)}
+  .disc-card:hover{border-color:var(--line-2);transform:translateY(-3px);box-shadow:0 14px 34px rgba(0,0,0,.4)}
+  .disc-img-wrap{width:100%;height:180px;overflow:hidden;position:relative;background:#05080e}
+  .disc-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease}
+  .disc-card:hover .disc-img{transform:scale(1.05)}
+  .disc-body{padding:16px 18px;display:flex;flex-direction:column;flex:1;justify-content:space-between}
+  .disc-title{font-size:16px;font-weight:700;line-height:1.35;margin:0 0 10px;color:var(--txt);letter-spacing:-.01em}
+  .disc-card:hover .disc-title{color:var(--cyan)}
+  .disc-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;padding-top:10px}
+  .disc-sources{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--dim);font-weight:600}
+  .disc-sources img{width:16px;height:16px;border-radius:4px}
+  .disc-tag{font-family:var(--mono);font-size:9px;text-transform:uppercase;padding:3px 8px;border-radius:4px;
+            background:rgba(56,189,248,.1);color:var(--cyan);border:1px solid rgba(56,189,248,.25);font-weight:700}
 
-  .degraded{margin:24px 0;padding:13px 16px;border:1px solid rgba(251,191,36,.35);
-            border-left:2px solid var(--amber);background:rgba(251,191,36,.05);border-radius:2px;
-            font-size:13px;color:#fcd34d;line-height:1.55}
+  /* Main 2-Column Grid (70% Content / 30% Market & Radar Sidebar) */
+  .main-discover-layout{display:grid;grid-template-columns:1fr 340px;gap:28px;align-items:start}
+  @media(max-width:1080px){.main-discover-layout{grid-template-columns:1fr}}
 
-  section{margin-top:52px}
-  .head{display:flex;align-items:baseline;justify-content:space-between;gap:14px;
-        padding-bottom:11px;border-bottom:1px solid var(--line);margin-bottom:24px}
-  .head h2{margin:0;font-size:14px;font-weight:700;letter-spacing:.02em}
-  .head .n{font-family:var(--mono);font-size:11px;color:var(--dimmer)}
+  /* Hero Lead Story */
+  .hero-card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px;
+             margin-bottom:28px;box-shadow:0 10px 30px rgba(0,0,0,.3);transition:border-color .2s}
+  .hero-card:hover{border-color:rgba(56,189,248,.35)}
+  .hero-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:24px;align-items:center}
+  @media(max-width:760px){.hero-grid{grid-template-columns:1fr}}
+  .hero-img-wrap{width:100%;height:260px;border-radius:12px;overflow:hidden;border:1px solid var(--line-2);
+                 background:#05080e;box-shadow:0 6px 20px rgba(0,0,0,.4)}
+  .hero-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease}
+  .hero-card:hover .hero-img{transform:scale(1.04)}
+  .hero-title{font-size:24px;font-weight:800;line-height:1.25;margin:0 0 12px;letter-spacing:-.02em;color:#fff}
+  .hero-title a:hover{color:var(--cyan)}
+  .hero-time{font-family:var(--mono);font-size:11px;color:var(--dim);margin-bottom:12px;display:flex;align-items:center;gap:6px}
+  .hero-summary{font-size:14.5px;color:var(--txt-dim);line-height:1.55;margin-bottom:16px}
+  .hero-foot{display:grid;gap:10px;padding-top:14px;border-top:1px solid var(--line)}
 
-  .wgrid{display:grid;gap:9px}
-  .wr{display:flex;gap:13px;align-items:flex-start;padding:13px 15px;border:1px solid var(--line);
-      border-radius:3px;background:var(--panel)}
-  .wr.hit{border-color:rgba(74,222,128,.32);background:rgba(74,222,128,.045)}
-  .wr-ic{font-family:var(--mono);font-size:13px;font-weight:700;flex-shrink:0;line-height:1.45}
-  .wr.hit .wr-ic{color:var(--green)}
-  .wr.open .wr-ic{color:var(--dimmer)}
-  .wr-b{flex:1;min-width:0}
-  .wr-t{font-size:13.5px;line-height:1.45}
-  .wr.open .wr-t{color:var(--dim)}
-  .wr-ev{margin-top:6px;font-family:var(--mono);font-size:11px;color:var(--green);line-height:1.4}
+  /* Feed Stream of Signals */
+  .section-title{font-size:18px;font-weight:800;letter-spacing:-.01em;margin:0 0 16px;color:#fff;
+                 display:flex;align-items:center;justify-content:space-between}
+  .section-title .count{font-family:var(--mono);font-size:11px;color:var(--dim);font-weight:500}
+  .stream-list{display:grid;gap:16px}
+  .stream-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px;
+               display:grid;grid-template-columns:1fr 180px;gap:20px;align-items:start;
+               transition:all .2s ease;box-shadow:0 6px 20px rgba(0,0,0,.2)}
+  @media(max-width:680px){.stream-card{grid-template-columns:1fr}}
+  .stream-card:hover{border-color:var(--line-2);background:var(--panel-2);transform:translateY(-2px)}
+  .stream-content{min-width:0}
+  .stream-top{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+  .stream-title{font-size:18px;font-weight:700;line-height:1.35;margin:0 0 10px;letter-spacing:-.01em}
+  .stream-title a:hover{color:var(--cyan)}
+  .stream-sw{font-size:14px;color:var(--txt-dim);line-height:1.55;margin-bottom:12px;border-left:2px solid rgba(56,189,248,.4);padding-left:12px}
+  .stream-img-wrap{width:180px;height:120px;border-radius:10px;overflow:hidden;border:1px solid var(--line-2);
+                   flex-shrink:0;background:#05080e;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+  @media(max-width:680px){.stream-img-wrap{width:100%;height:180px;order:-1}}
+  .stream-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .25s ease}
+  .stream-card:hover .stream-img{transform:scale(1.05)}
 
-  .sigs{display:grid;gap:2px}
-  .sig{display:grid;grid-template-columns:50px 1fr;border:1px solid var(--line);
-       background:var(--panel);border-radius:3px;overflow:hidden;transition:border-color .16s,background .16s}
-  .sig:hover{border-color:var(--line-2);background:var(--panel-2)}
-  .sig-n{display:flex;flex-direction:column;align-items:center;padding:20px 0;gap:9px;
-         border-right:1px solid var(--line);background:rgba(0,0,0,.22)}
-  .sig-n .num{font-family:var(--mono);font-size:15px;font-weight:700;color:var(--cyan)}
-  .sig-n .sc{font-family:var(--mono);font-size:9.5px;color:var(--dimmer)}
-  .sig-b{padding:19px 22px;min-width:0}
-  .sig-main-layout{display:flex;gap:20px;justify-content:space-between;align-items:flex-start}
-  .sig-content{flex:1;min-width:0}
-  .sig-thumb-link{flex-shrink:0;text-decoration:none;display:block}
-  .sig-thumb-wrap{width:160px;height:100px;border-radius:4px;overflow:hidden;border:1px solid var(--line-2);
-                  background:var(--panel-2);position:relative;box-shadow:0 4px 14px rgba(0,0,0,.3)}
-  .sig-thumb{width:100%;height:100%;object-fit:cover;display:block;transition:transform .24s cubic-bezier(.2,0,0,1),filter .24s ease;
-             filter:saturate(.95) contrast(1.05)}
-  .sig:hover .sig-thumb{transform:scale(1.06);filter:saturate(1.12) contrast(1.1)}
-  @media(max-width:680px){
-    .sig-main-layout{flex-direction:column-reverse;gap:14px}
-    .sig-thumb-wrap{width:100%;height:150px}
-  }
-  .sig-top{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:11px}
-  .tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;
-       padding:3px 8px;border-radius:2px;border:1px solid var(--line-2);color:var(--dim)}
-  .tag.th{color:var(--cyan);border-color:rgba(94,234,212,.3);background:rgba(94,234,212,.05)}
-  .src{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;color:var(--dimmer)}
-  .src img{width:13px;height:13px;border-radius:2px;opacity:.75;flex-shrink:0}
-  .sig-t{font-size:19px;font-weight:650;line-height:1.32;letter-spacing:-.008em;margin:0 0 12px}
-  .sig-t a:hover{color:var(--cyan)}
-  .sw{font-size:14.5px;line-height:1.58;color:#c3d3ec;border-left:2px solid rgba(94,234,212,.42);padding-left:14px}
-  .sig-foot{display:grid;gap:9px;margin-top:15px;padding-top:14px;border-top:1px solid var(--line)}
-  @media(min-width:760px){.sig-foot.two{grid-template-columns:1fr 1fr;gap:22px}}
-  .ff{display:flex;gap:9px;align-items:flex-start;font-size:12.5px;line-height:1.45}
-  .ff .k{font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;
+  .ff{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;line-height:1.45}
+  .ff .k{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
          flex-shrink:0;padding-top:2px;font-weight:700}
-  .ff.pw .k{color:var(--violet)} .ff.pw .v{color:#cdbdf8}
-  .ff.wn .k{color:var(--amber)}  .ff.wn .v{color:#f5d78e}
-  .ents{display:flex;gap:6px;flex-wrap:wrap;margin-top:13px}
-  .ent{font-family:var(--mono);font-size:10px;padding:3px 8px;border-radius:2px;
-       background:rgba(255,255,255,.035);color:var(--dim);border:1px solid var(--line)}
+  .ff.pw .k{color:var(--violet)} .ff.pw .v{color:#e2d9fc}
+  .ff.wn .k{color:var(--amber)}  .ff.wn .v{color:#fef08a}
+  .ents{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+  .ent{font-family:var(--mono);font-size:10px;padding:3px 8px;border-radius:4px;
+       background:rgba(255,255,255,.04);color:var(--dim);border:1px solid var(--line)}
 
-  .empty{padding:46px 26px;text-align:center;border:1px dashed var(--line-2);border-radius:3px;background:var(--panel)}
-  .empty .big{font-size:17px;font-weight:650;margin-bottom:9px}
-  .empty .sub{font-size:13.5px;color:var(--dim);max-width:52ch;margin:0 auto;line-height:1.6}
+  /* Context Items */
+  .ctx-card{background:rgba(13,18,29,.65);border:1px solid var(--line);border-radius:10px;padding:14px 16px;
+            display:flex;gap:14px;align-items:center;transition:border-color .15s}
+  .ctx-card:hover{border-color:var(--line-2)}
+  .ctx-thumb{width:68px;height:48px;border-radius:6px;object-fit:cover;flex-shrink:0;border:1px solid var(--line-2)}
+  .ctx-b{flex:1;min-width:0}
+  .ctx-t{font-size:14px;font-weight:600;line-height:1.4}
+  .ctx-t a:hover{color:var(--cyan)}
+  .ctx-m{font-family:var(--mono);font-size:10px;color:var(--dim);margin-top:4px}
 
-  .grid2{display:grid;gap:14px}
-  @media(min-width:820px){.grid2{grid-template-columns:1fr 1fr}}
-  .card{border:1px solid var(--line);border-radius:3px;background:var(--panel);padding:17px 19px}
-  .card .lbl{display:block;margin-bottom:14px}
-  .thr{display:flex;gap:13px;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--line)}
-  .thr:last-child{border-bottom:none;padding-bottom:0}
-  .thr-d{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--violet);flex-shrink:0;
-         padding:2px 7px;border:1px solid rgba(167,139,250,.32);border-radius:2px;background:rgba(167,139,250,.07)}
-  .thr-t{font-size:13.5px;font-weight:600}
-  .thr-l{font-size:12px;color:var(--dim);margin-top:3px;line-height:1.4}
-  .mv{display:flex;gap:9px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line);
-      font-size:13px;flex-wrap:wrap}
-  .mv:last-child{border-bottom:none;padding-bottom:0}
-  .mv-b{font-family:var(--mono);font-size:9px;letter-spacing:.09em;text-transform:uppercase;
-        padding:2px 7px;border-radius:2px;flex-shrink:0;font-weight:700}
-  .mv-b.new{color:var(--green);background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.3)}
-  .mv-b.ret{color:var(--amber);background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.3)}
-  .mv-b.str{color:var(--blue);background:rgba(96,165,250,.1);border:1px solid rgba(96,165,250,.3)}
-  .mv .nm{font-weight:600}
-  .mv .dt{color:var(--dimmer);font-family:var(--mono);font-size:11px}
-  .none{font-size:12.5px;color:var(--dimmer);font-style:italic}
-  .rk{padding:11px 0;border-bottom:1px solid var(--line);font-size:13.5px;line-height:1.5;color:#f3d99b}
-  .rk:last-child{border-bottom:none;padding-bottom:0}
-  .rk.w{color:#cdbdf8}
+  /* Right Sidebar Widgets */
+  .sidebar{display:grid;gap:20px}
+  .widget{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+  .widget-title{font-size:14.5px;font-weight:800;margin:0 0 14px;color:#fff;display:flex;align-items:center;justify-content:space-between}
 
-  .ctx{display:grid;gap:2px}
-  .cx{display:flex;gap:14px;align-items:center;padding:13px 15px;border:1px solid var(--line);
-      border-radius:3px;background:rgba(10,15,24,.55)}
-  .cx:hover{border-color:var(--line-2)}
-  .cx-s{font-family:var(--mono);font-size:10.5px;color:var(--dimmer);flex-shrink:0;width:26px}
-  .cx-thumb-wrap{width:64px;height:46px;border-radius:3px;overflow:hidden;border:1px solid var(--line-2);
-                 flex-shrink:0;background:var(--panel-2)}
-  .cx-thumb{width:100%;height:100%;object-fit:cover;display:block}
-  .cx-b{min-width:0;flex:1}
-  .cx-t{font-size:14px;line-height:1.4;font-weight:500}
-  .cx-t a:hover{color:var(--cyan)}
-  .cx-w{font-size:12.5px;color:var(--dim);margin-top:5px;line-height:1.45}
-  .cx-m{font-family:var(--mono);font-size:9.5px;color:var(--dimmer);margin-top:6px;letter-spacing:.06em}
+  /* Market Perspective Widget */
+  .market-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .m-box{background:var(--panel-2);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+  .m-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
+  .m-lbl{font-size:11.5px;font-weight:700;color:var(--dim)}
+  .m-chg{font-family:var(--mono);font-size:11px;font-weight:700}
+  .m-chg.pos{color:var(--green)}
+  .m-chg.neg{color:var(--rose)}
+  .m-price{font-size:13px;font-weight:800;color:#fff;margin-bottom:6px}
+  .spark{width:100%;height:22px;display:block}
+
+  /* Trending AI Companies Widget */
+  .company-list{display:grid;gap:8px}
+  .comp-item{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:7px 0;border-bottom:1px solid var(--line)}
+  .comp-item:last-child{border-bottom:none}
+  .comp-info{display:flex;align-items:center;gap:8px;min-width:0}
+  .comp-logo{width:20px;height:20px;border-radius:4px;flex-shrink:0}
+  .comp-name{font-size:12.5px;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .comp-ticker{font-family:var(--mono);font-size:10px;color:var(--dim)}
+  .comp-val{text-align:right}
+  .comp-price{font-size:12px;font-weight:700;color:#fff}
+  .comp-chg{font-family:var(--mono);font-size:10.5px;font-weight:700}
+  .comp-chg.pos{color:var(--green)}
+  .comp-chg.neg{color:var(--rose)}
+
+  /* Watchlist & Continuity */
+  .wr-item{padding:9px 0;border-bottom:1px solid var(--line);display:flex;gap:10px;font-size:12.5px;line-height:1.4}
+  .wr-item:last-child{border-bottom:none}
+  .wr-ic{font-family:var(--mono);font-weight:800;flex-shrink:0}
+  .wr-item.hit .wr-ic{color:var(--green)}
+  .wr-item.open .wr-ic{color:var(--dimmer)}
+  .wr-item.hit .wr-txt{color:#e2e8f0}
+  .wr-item.open .wr-txt{color:var(--dim)}
+
+  .thr-item{padding:8px 0;border-bottom:1px solid var(--line);font-size:12.5px}
+  .thr-item:last-child{border-bottom:none}
+  .thr-badge{font-family:var(--mono);font-size:9.5px;font-weight:700;color:var(--violet);
+             padding:2px 6px;border-radius:3px;background:rgba(192,132,252,.1);border:1px solid rgba(192,132,252,.3);margin-right:6px}
 
   footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);
          display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
-         font-family:var(--mono);font-size:10px;color:var(--dimmer);letter-spacing:.06em}
+         font-family:var(--mono);font-size:10.5px;color:var(--dimmer);letter-spacing:.05em}
 </style>
 </head>
 <body>
 <div class="wrap">
 
+  <!-- Top Navigation Bar -->
   <div class="bar">
     <div class="bar-g">
       <span class="brand">AI Strategic Radar</span>
       <span class="date">2026-08-23</span>
     </div>
     <div class="bar-g">
-      <span class="state alert"><span class="dot"></span>ALERTA</span>
+      <span class="state quiet"><span class="dot"></span>SIN FILTRAR</span>
       <nav class="nav">
         <a class="on" href="index.html">Diario</a>
         <a href="weekly.html">Semanal</a>
@@ -183,376 +195,588 @@
     </div>
   </div>
 
-  <div class="thesis">
-    <span class="lbl">Tesis del día</span>
-    <h1>Modelos chinos demuestran paridad de rendimiento y eficiencia de costes en codificación, intensificando la presión competitiva, mientras la infraestructura de cómputo se adapta con innovaciones en fotónica y memoria.</h1>
-    <div class="meta-row">
-      <span class="m"><b>6</b> señales</span>
-      <span class="m"><b>4</b> contexto</span>
-      <span class="m">Dominante: <b>Compute &amp; chips</b></span>
+  
+  <div style="margin-bottom:24px;padding:12px 16px;border-radius:8px;border:1px solid rgba(251,191,36,.4);background:rgba(251,191,36,.08);color:#fde047;font-size:13px">
+    <b>Modo degradado.</b> El análisis del LLM no estuvo disponible para esta corrida. Lo que ves está ordenado por heurística.
+  </div>
+  
+
+  <!-- Top 3 Featured Discover Cards (Perplexity Discover Style) -->
+  
+  <div class="discover-grid">
+    
+    <article class="disc-card">
+      <a href="https://artificialanalysis.ai/articles/optima" target="_blank" rel="noopener noreferrer" class="disc-img-wrap">
+        <img src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20640%20360%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23091e1a%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23042f2e%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%3CradialGradient%20id%3D%22r%22%20cx%3D%2280%25%22%20cy%3D%2220%25%22%20r%3D%2260%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%232dd4bf%22%20stop-opacity%3D%220.25%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23091e1a%22%20stop-opacity%3D%220%22/%3E%0A%20%20%20%20%3C/radialGradient%3E%0A%20%20%3C/defs%3E%0A%20%20%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url%28%23g%29%22/%3E%0A%20%20%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url%28%23r%29%22/%3E%0A%20%20%3Ccircle%20cx%3D%22540%22%20cy%3D%2280%22%20r%3D%22140%22%20fill%3D%22%232dd4bf%22%20opacity%3D%220.08%22%20filter%3D%22blur%2840px%29%22/%3E%0A%20%20%3Ctext%20x%3D%2240%22%20y%3D%2280%22%20fill%3D%22%232dd4bf%22%20font-family%3D%22system-ui%2C%20-apple-system%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22800%22%20letter-spacing%3D%222%22%3EFRONTIER%20MODELS%3C/text%3E%0A%20%20%3Ctext%20x%3D%2240%22%20y%3D%22160%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20-apple-system%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20width%3D%22560%22%3EAnnouncing%20Optima%3A%20create%20a%20custom%20benchmark%20for%20your%20use%20ca%3C/text%3E%0A%20%20%3Cline%20x1%3D%2240%22%20y1%3D%22310%22%20x2%3D%22600%22%20y2%3D%22310%22%20stroke%3D%22%23334155%22%20stroke-width%3D%221%22/%3E%0A%20%20%3Ctext%20x%3D%2240%22%20y%3D%22332%22%20fill%3D%22%2394a3b8%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2212%22%3EAI%20Strategic%20Radar%20%C2%B7%20Frontier%20Intelligence%3C/text%3E%0A%3C/svg%3E" alt="" class="disc-img" loading="lazy" referrerpolicy="no-referrer"/>
+      </a>
+      <div class="disc-body">
+        <h3 class="disc-title">
+          <a href="https://artificialanalysis.ai/articles/optima" target="_blank" rel="noopener noreferrer">Announcing Optima: create a custom benchmark for your use case August 13, 2026</a>
+        </h3>
+        <div class="disc-meta">
+          <span class="disc-sources">
+            <img src="https://www.google.com/s2/favicons?domain=artificialanalysis.ai&amp;sz=64" alt="" loading="lazy"/>
+            Artificial Analysis
+          </span>
+          <span class="disc-tag">Capacidad frontier</span>
+        </div>
+      </div>
+    </article>
+    
+    <article class="disc-card">
+      <a href="https://www.together.ai/blog/glm-5-3-vs-gpt-5-6-sol-on-deepswe-cost-coding-and-routing" target="_blank" rel="noopener noreferrer" class="disc-img-wrap">
+        <img src="https://cdn.prod.website-files.com/69654e88dce9154b5f12070c/6a8934b9fcc541cde30c4b07_OG-image_202600821_GLM53vsGPT56Sol.png" alt="" class="disc-img" loading="lazy" referrerpolicy="no-referrer"/>
+      </a>
+      <div class="disc-body">
+        <h3 class="disc-title">
+          <a href="https://www.together.ai/blog/glm-5-3-vs-gpt-5-6-sol-on-deepswe-cost-coding-and-routing" target="_blank" rel="noopener noreferrer">GLM-5.3 vs. GPT-5.6 Sol on DeepSWE: Cost, Coding, and Routing</a>
+        </h3>
+        <div class="disc-meta">
+          <span class="disc-sources">
+            <img src="https://www.google.com/s2/favicons?domain=together.ai&amp;sz=64" alt="" loading="lazy"/>
+            Together AI
+          </span>
+          <span class="disc-tag">Agentes</span>
+        </div>
+      </div>
+    </article>
+    
+    <article class="disc-card">
+      <a href="https://www.together.ai/blog/glm-5-3-vs-claude-fable-5-on-deepswe-cost-coding-and-routing" target="_blank" rel="noopener noreferrer" class="disc-img-wrap">
+        <img src="https://cdn.prod.website-files.com/69654e88dce9154b5f12070c/6a892460b55e8f0a18cd974f_OG-image_202600821_GLM53vsfable5.png" alt="" class="disc-img" loading="lazy" referrerpolicy="no-referrer"/>
+      </a>
+      <div class="disc-body">
+        <h3 class="disc-title">
+          <a href="https://www.together.ai/blog/glm-5-3-vs-claude-fable-5-on-deepswe-cost-coding-and-routing" target="_blank" rel="noopener noreferrer">GLM-5.3 vs. Claude Fable 5 on DeepSWE: Cost, Coding, and Routing</a>
+        </h3>
+        <div class="disc-meta">
+          <span class="disc-sources">
+            <img src="https://www.google.com/s2/favicons?domain=together.ai&amp;sz=64" alt="" loading="lazy"/>
+            Together AI
+          </span>
+          <span class="disc-tag">Agentes</span>
+        </div>
+      </div>
+    </article>
+    
+  </div>
+  
+
+  <!-- Main 2-Column Grid: 70% Analysis & Stream / 30% Market & Continuity -->
+  <div class="main-discover-layout">
+    
+    <!-- Left Column -->
+    <div class="main-feed">
+      
+      <!-- Hero Lead Article -->
+      
+      
+      <article class="hero-card">
+        <div class="hero-grid">
+          <a href="https://artificialanalysis.ai/articles/optima" target="_blank" rel="noopener noreferrer" class="hero-img-wrap">
+            <img src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20640%20360%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23091e1a%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23042f2e%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%3CradialGradient%20id%3D%22r%22%20cx%3D%2280%25%22%20cy%3D%2220%25%22%20r%3D%2260%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%232dd4bf%22%20stop-opacity%3D%220.25%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23091e1a%22%20stop-opacity%3D%220%22/%3E%0A%20%20%20%20%3C/radialGradient%3E%0A%20%20%3C/defs%3E%0A%20%20%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url%28%23g%29%22/%3E%0A%20%20%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url%28%23r%29%22/%3E%0A%20%20%3Ccircle%20cx%3D%22540%22%20cy%3D%2280%22%20r%3D%22140%22%20fill%3D%22%232dd4bf%22%20opacity%3D%220.08%22%20filter%3D%22blur%2840px%29%22/%3E%0A%20%20%3Ctext%20x%3D%2240%22%20y%3D%2280%22%20fill%3D%22%232dd4bf%22%20font-family%3D%22system-ui%2C%20-apple-system%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22800%22%20letter-spacing%3D%222%22%3EFRONTIER%20MODELS%3C/text%3E%0A%20%20%3Ctext%20x%3D%2240%22%20y%3D%22160%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20-apple-system%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20width%3D%22560%22%3EAnnouncing%20Optima%3A%20create%20a%20custom%20benchmark%20for%20your%20use%20ca%3C/text%3E%0A%20%20%3Cline%20x1%3D%2240%22%20y1%3D%22310%22%20x2%3D%22600%22%20y2%3D%22310%22%20stroke%3D%22%23334155%22%20stroke-width%3D%221%22/%3E%0A%20%20%3Ctext%20x%3D%2240%22%20y%3D%22332%22%20fill%3D%22%2394a3b8%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2212%22%3EAI%20Strategic%20Radar%20%C2%B7%20Frontier%20Intelligence%3C/text%3E%0A%3C/svg%3E" alt="" class="hero-img" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="hero-content">
+            <div class="hero-time">
+              <span class="disc-tag">Capacidad frontier</span>
+              <span>• Publicado hoy</span>
+            </div>
+            <h2 class="hero-title">
+              <a href="https://artificialanalysis.ai/articles/optima" target="_blank" rel="noopener noreferrer">Announcing Optima: create a custom benchmark for your use case August 13, 2026</a>
+            </h2>
+            
+            <div class="hero-summary">Announcing Optima: create a custom benchmark for your use case August 13, 2026</div>
+            
+            <div class="disc-sources" style="margin-bottom:12px">
+              <img src="https://www.google.com/s2/favicons?domain=artificialanalysis.ai&amp;sz=64" alt="" loading="lazy"/>
+              <b>Artificial Analysis</b>
+            </div>
+            
+          </div>
+        </div>
+      </article>
+      
+
+      <!-- Rest of Signals Stream -->
+      <div class="section-title">
+        <span>Señales del Radar</span>
+        <span class="count">10 hoy</span>
+      </div>
+
+      <div class="stream-list">
+        
+        <article class="stream-card">
+          <div class="stream-content">
+            <div class="stream-top">
+              <span class="disc-tag">Agentes</span>
+              <span class="disc-sources">
+                <img src="https://www.google.com/s2/favicons?domain=together.ai&amp;sz=64" alt="" loading="lazy"/>
+                Together AI
+              </span>
+            </div>
+            <h3 class="stream-title">
+              <a href="https://www.together.ai/blog/glm-5-3-vs-gpt-5-6-sol-on-deepswe-cost-coding-and-routing" target="_blank" rel="noopener noreferrer">GLM-5.3 vs. GPT-5.6 Sol on DeepSWE: Cost, Coding, and Routing</a>
+            </h3>
+            <div class="stream-sw">We ran 904 DeepSWE rollouts on GLM-5.3 and GPT-5.6 Sol. Sol leads pass@1 by 3.7 points; GLM-5.3 wins pass@4 at half the cost, and a GLM-first cascade hits 85.9%</div>
+            
+            
+            <div class="ents"><span class="ent">GPT-5</span><span class="ent">GLM-5</span><span class="ent">GLM</span><span class="ent">Sol</span><span class="ent">Cost</span></div>
+            
+          </div>
+          <a href="https://www.together.ai/blog/glm-5-3-vs-gpt-5-6-sol-on-deepswe-cost-coding-and-routing" target="_blank" rel="noopener noreferrer" class="stream-img-wrap">
+            <img src="https://cdn.prod.website-files.com/69654e88dce9154b5f12070c/6a8934b9fcc541cde30c4b07_OG-image_202600821_GLM53vsGPT56Sol.png" alt="" class="stream-img" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+        </article>
+        
+        <article class="stream-card">
+          <div class="stream-content">
+            <div class="stream-top">
+              <span class="disc-tag">Agentes</span>
+              <span class="disc-sources">
+                <img src="https://www.google.com/s2/favicons?domain=together.ai&amp;sz=64" alt="" loading="lazy"/>
+                Together AI
+              </span>
+            </div>
+            <h3 class="stream-title">
+              <a href="https://www.together.ai/blog/glm-5-3-vs-claude-fable-5-on-deepswe-cost-coding-and-routing" target="_blank" rel="noopener noreferrer">GLM-5.3 vs. Claude Fable 5 on DeepSWE: Cost, Coding, and Routing</a>
+            </h3>
+            <div class="stream-sw">We ran 904 DeepSWE rollouts on GLM-5.3 and Claude Fable 5. A tie on pass@1, but GLM-5.3 wins pass@4 and costs 5.4x less: \$3.99 per rollout vs. \$21.63.</div>
+            
+            
+            <div class="ents"><span class="ent">Claude</span><span class="ent">GLM-5</span><span class="ent">GLM</span><span class="ent">Fable</span><span class="ent">Claude Fable</span></div>
+            
+          </div>
+          <a href="https://www.together.ai/blog/glm-5-3-vs-claude-fable-5-on-deepswe-cost-coding-and-routing" target="_blank" rel="noopener noreferrer" class="stream-img-wrap">
+            <img src="https://cdn.prod.website-files.com/69654e88dce9154b5f12070c/6a892460b55e8f0a18cd974f_OG-image_202600821_GLM53vsfable5.png" alt="" class="stream-img" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+        </article>
+        
+        <article class="stream-card">
+          <div class="stream-content">
+            <div class="stream-top">
+              <span class="disc-tag">Capacidad frontier</span>
+              <span class="disc-sources">
+                <img src="https://www.google.com/s2/favicons?domain=importai.substack.com&amp;sz=64" alt="" loading="lazy"/>
+                Import AI
+              </span>
+            </div>
+            <h3 class="stream-title">
+              <a href="https://jack-clark.net/2026/08/17/import-ai-469-science-ai-rsi-simulator-and-zucks-technological-pessimism/" target="_blank" rel="noopener noreferrer">Import AI 469: Science AI; RSI simulator; and Zuck’s technological pessimism</a>
+            </h3>
+            <div class="stream-sw">Welcome to Import AI, a newsletter about AI research. Import AI runs on arXiv, cappuccinos, and feedback from readers. If you’d like to support this, please sub</div>
+            
+            
+            <div class="ents"><span class="ent">RSI</span><span class="ent">Import</span><span class="ent">Zuck</span></div>
+            
+          </div>
+          <a href="https://jack-clark.net/2026/08/17/import-ai-469-science-ai-rsi-simulator-and-zucks-technological-pessimism/" target="_blank" rel="noopener noreferrer" class="stream-img-wrap">
+            <img src="https://i0.wp.com/jack-clark.net/wp-content/uploads/2026/08/https3A2F2Fsubstack-post-media.s3.amazonaws.com2Fpublic2Fimages2Fd6d17996-2bef-40a4-abe3-be72a0e8a227_258x258-arfQ8K.png?resize=150%2C150&amp;ssl=1" alt="" class="stream-img" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+        </article>
+        
+        <article class="stream-card">
+          <div class="stream-content">
+            <div class="stream-top">
+              <span class="disc-tag">Agentes</span>
+              <span class="disc-sources">
+                <img src="https://www.google.com/s2/favicons?domain=simonwillison.net&amp;sz=64" alt="" loading="lazy"/>
+                Simon Willison (AI &amp; LLMs)
+              </span>
+            </div>
+            <h3 class="stream-title">
+              <a href="https://simonwillison.net/2026/Aug/22/linus-torvalds/" target="_blank" rel="noopener noreferrer">Quoting Linus Torvalds</a>
+            </h3>
+            <div class="stream-sw">And this was a debug session from hell, enormously helped by an AI doing much of the grunt-work. I&#39;d like to call it my tireless helper, but the AI several time</div>
+            
+            
+            <div class="ents"><span class="ent">Quoting Linus Torvalds</span></div>
+            
+          </div>
+          <a href="https://simonwillison.net/2026/Aug/22/linus-torvalds/" target="_blank" rel="noopener noreferrer" class="stream-img-wrap">
+            <img src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20640%20360%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%231e1035%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%232e1065%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%3CradialGradient%20id%3D%22r%22%20cx%3D%2280%25%22%20cy%3D%2220%25%22%20r%3D%2260%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23c084fc%22%20stop-opacity%3D%220.25%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%231e1035%22%20stop-opacity%3D%220%22/%3E%0A%20%20%20%20%3C/radialGradient%3E%0A%20%20%3C/defs%3E%0A%20%20%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url%28%23g%29%22/%3E%0A%20%20%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url%28%23r%29%22/%3E%0A%20%20%3Ccircle%20cx%3D%22540%22%20cy%3D%2280%22%20r%3D%22140%22%20fill%3D%22%23c084fc%22%20opacity%3D%220.08%22%20filter%3D%22blur%2840px%29%22/%3E%0A%20%20%3Ctext%20x%3D%2240%22%20y%3D%2280%22%20fill%3D%22%23c084fc%22%20font-family%3D%22system-ui%2C%20-apple-system%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22800%22%20letter-spacing%3D%222%22%3EAGENTS%20%26%20REASONING%3C/text%3E%0A%20%20%3Ctext%20x%3D%2240%22%20y%3D%22160%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20-apple-system%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20width%3D%22560%22%3EQuoting%20Linus%20Torvalds%3C/text%3E%0A%20%20%3Cline%20x1%3D%2240%22%20y1%3D%22310%22%20x2%3D%22600%22%20y2%3D%22310%22%20stroke%3D%22%23334155%22%20stroke-width%3D%221%22/%3E%0A%20%20%3Ctext%20x%3D%2240%22%20y%3D%22332%22%20fill%3D%22%2394a3b8%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2212%22%3EAI%20Strategic%20Radar%20%C2%B7%20Frontier%20Intelligence%3C/text%3E%0A%3C/svg%3E" alt="" class="stream-img" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+        </article>
+        
+        <article class="stream-card">
+          <div class="stream-content">
+            <div class="stream-top">
+              <span class="disc-tag">Agentes</span>
+              <span class="disc-sources">
+                <img src="https://www.google.com/s2/favicons?domain=artificialanalysis.ai&amp;sz=64" alt="" loading="lazy"/>
+                Artificial Analysis
+              </span>
+            </div>
+            <h3 class="stream-title">
+              <a href="https://artificialanalysis.ai/articles/search-api" target="_blank" rel="noopener noreferrer">Announcing the Artificial Analysis Search Index: Same Agent, Different Search August 18, 2026</a>
+            </h3>
+            <div class="stream-sw">Announcing the Artificial Analysis Search Index: Same Agent, Different Search August 18, 2026</div>
+            
+            
+            <div class="ents"><span class="ent">Announcing</span><span class="ent">Index</span><span class="ent">Same Agent</span><span class="ent">Different Search August</span></div>
+            
+          </div>
+          <a href="https://artificialanalysis.ai/articles/search-api" target="_blank" rel="noopener noreferrer" class="stream-img-wrap">
+            <img src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20640%20360%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%231e1035%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%232e1065%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%3CradialGradient%20id%3D%22r%22%20cx%3D%2280%25%22%20cy%3D%2220%25%22%20r%3D%2260%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23c084fc%22%20stop-opacity%3D%220.25%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%231e1035%22%20stop-opacity%3D%220%22/%3E%0A%20%20%20%20%3C/radialGradient%3E%0A%20%20%3C/defs%3E%0A%20%20%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url%28%23g%29%22/%3E%0A%20%20%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url%28%23r%29%22/%3E%0A%20%20%3Ccircle%20cx%3D%22540%22%20cy%3D%2280%22%20r%3D%22140%22%20fill%3D%22%23c084fc%22%20opacity%3D%220.08%22%20filter%3D%22blur%2840px%29%22/%3E%0A%20%20%3Ctext%20x%3D%2240%22%20y%3D%2280%22%20fill%3D%22%23c084fc%22%20font-family%3D%22system-ui%2C%20-apple-system%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22800%22%20letter-spacing%3D%222%22%3EAGENTS%20%26%20REASONING%3C/text%3E%0A%20%20%3Ctext%20x%3D%2240%22%20y%3D%22160%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20-apple-system%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20width%3D%22560%22%3EAnnouncing%20the%20Artificial%20Analysis%20Search%20Index%3A%20Same%20Agent%2C%3C/text%3E%0A%20%20%3Cline%20x1%3D%2240%22%20y1%3D%22310%22%20x2%3D%22600%22%20y2%3D%22310%22%20stroke%3D%22%23334155%22%20stroke-width%3D%221%22/%3E%0A%20%20%3Ctext%20x%3D%2240%22%20y%3D%22332%22%20fill%3D%22%2394a3b8%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2212%22%3EAI%20Strategic%20Radar%20%C2%B7%20Frontier%20Intelligence%3C/text%3E%0A%3C/svg%3E" alt="" class="stream-img" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+        </article>
+        
+        <article class="stream-card">
+          <div class="stream-content">
+            <div class="stream-top">
+              <span class="disc-tag">Capacidad frontier</span>
+              <span class="disc-sources">
+                <img src="https://www.google.com/s2/favicons?domain=forum.level1techs.com&amp;sz=64" alt="" loading="lazy"/>
+                Hacker News (alto voltaje)
+              </span>
+            </div>
+            <h3 class="stream-title">
+              <a href="https://forum.level1techs.com/t/why-your-local-llm-feels-dumber-than-it-is/253917" target="_blank" rel="noopener noreferrer">Why your local LLM feels dumber than it is</a>
+            </h3>
+            <div class="stream-sw">Article URL: Comments URL: Points: 271 # Comments: 89</div>
+            
+            
+          </div>
+          <a href="https://forum.level1techs.com/t/why-your-local-llm-feels-dumber-than-it-is/253917" target="_blank" rel="noopener noreferrer" class="stream-img-wrap">
+            <img src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20640%20360%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23091e1a%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23042f2e%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%20%20%3CradialGradient%20id%3D%22r%22%20cx%3D%2280%25%22%20cy%3D%2220%25%22%20r%3D%2260%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%232dd4bf%22%20stop-opacity%3D%220.25%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23091e1a%22%20stop-opacity%3D%220%22/%3E%0A%20%20%20%20%3C/radialGradient%3E%0A%20%20%3C/defs%3E%0A%20%20%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url%28%23g%29%22/%3E%0A%20%20%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url%28%23r%29%22/%3E%0A%20%20%3Ccircle%20cx%3D%22540%22%20cy%3D%2280%22%20r%3D%22140%22%20fill%3D%22%232dd4bf%22%20opacity%3D%220.08%22%20filter%3D%22blur%2840px%29%22/%3E%0A%20%20%3Ctext%20x%3D%2240%22%20y%3D%2280%22%20fill%3D%22%232dd4bf%22%20font-family%3D%22system-ui%2C%20-apple-system%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22800%22%20letter-spacing%3D%222%22%3EFRONTIER%20MODELS%3C/text%3E%0A%20%20%3Ctext%20x%3D%2240%22%20y%3D%22160%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20-apple-system%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20width%3D%22560%22%3EWhy%20your%20local%20LLM%20feels%20dumber%20than%20it%20is%3C/text%3E%0A%20%20%3Cline%20x1%3D%2240%22%20y1%3D%22310%22%20x2%3D%22600%22%20y2%3D%22310%22%20stroke%3D%22%23334155%22%20stroke-width%3D%221%22/%3E%0A%20%20%3Ctext%20x%3D%2240%22%20y%3D%22332%22%20fill%3D%22%2394a3b8%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2212%22%3EAI%20Strategic%20Radar%20%C2%B7%20Frontier%20Intelligence%3C/text%3E%0A%3C/svg%3E" alt="" class="stream-img" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+        </article>
+        
+        <article class="stream-card">
+          <div class="stream-content">
+            <div class="stream-top">
+              <span class="disc-tag">Capacidad frontier</span>
+              <span class="disc-sources">
+                <img src="https://www.google.com/s2/favicons?domain=huggingface.co&amp;sz=64" alt="" loading="lazy"/>
+                Hugging Face Blog
+              </span>
+            </div>
+            <h3 class="stream-title">
+              <a href="https://huggingface.co/blog/asr-benchmark-optimization" target="_blank" rel="noopener noreferrer">Measuring benchmark optimization in speech recognition</a>
+            </h3>
+            
+            
+            
+            <div class="ents"><span class="ent">Measuring</span></div>
+            
+          </div>
+          <a href="https://huggingface.co/blog/asr-benchmark-optimization" target="_blank" rel="noopener noreferrer" class="stream-img-wrap">
+            <img src="https://huggingface.co/blog/assets/asr-benchmark-optimization/thumbnail.png" alt="" class="stream-img" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+        </article>
+        
+        <article class="stream-card">
+          <div class="stream-content">
+            <div class="stream-top">
+              <span class="disc-tag">Agentes</span>
+              <span class="disc-sources">
+                <img src="https://www.google.com/s2/favicons?domain=anthropic.com&amp;sz=64" alt="" loading="lazy"/>
+                Anthropic
+              </span>
+            </div>
+            <h3 class="stream-title">
+              <a href="https://claude.com/blog/the-ai-native-sdlc-playbook" target="_blank" rel="noopener noreferrer">The AI-Native SDLC playbook</a>
+            </h3>
+            <div class="stream-sw">Code is no longer the bottleneck Organizations have started using AI to write code at a speed unthinkable one year ago, yet the processes around the code haven&#39;</div>
+            
+            
+            <div class="ents"><span class="ent">SDLC</span><span class="ent">Native</span></div>
+            
+          </div>
+          <a href="https://claude.com/blog/the-ai-native-sdlc-playbook" target="_blank" rel="noopener noreferrer" class="stream-img-wrap">
+            <img src="https://cdn.prod.website-files.com/68a44d4040f98a4adf2207b6/6a8739a1b934ffe55bfc9715_44592f18.png" alt="" class="stream-img" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+        </article>
+        
+        <article class="stream-card">
+          <div class="stream-content">
+            <div class="stream-top">
+              <span class="disc-tag">Compute &amp; chips</span>
+              <span class="disc-sources">
+                <img src="https://www.google.com/s2/favicons?domain=anthropic.com&amp;sz=64" alt="" loading="lazy"/>
+                Anthropic
+              </span>
+            </div>
+            <h3 class="stream-title">
+              <a href="https://claude.com/blog/bringing-claude-mythos-5-to-more-defenders" target="_blank" rel="noopener noreferrer">Bringing the cybersecurity capabilities of Claude Mythos 5 to more defenders</a>
+            </h3>
+            <div class="stream-sw">We&#39;re sharing an update on our efforts to help more teams use frontier capabilities for cyber defense. Claude Mythos 5 is now available in Claude Security , and</div>
+            
+            
+            <div class="ents"><span class="ent">Claude</span><span class="ent">Mythos</span><span class="ent">Bringing</span><span class="ent">Claude Mythos</span></div>
+            
+          </div>
+          <a href="https://claude.com/blog/bringing-claude-mythos-5-to-more-defenders" target="_blank" rel="noopener noreferrer" class="stream-img-wrap">
+            <img src="https://cdn.prod.website-files.com/68a44d4040f98a4adf2207b6/69f398245c0b3933c7940d49_og_claude-security-public-beta%20(1).jpg" alt="" class="stream-img" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+        </article>
+        
+      </div>
+
+      <!-- Context Section -->
+      
+
     </div>
+
+    <!-- Right Column Sidebar -->
+    <aside class="sidebar">
+      
+      <!-- Market Perspective Widget -->
+      
+      <div class="widget">
+        <div class="widget-title">
+          <span>Perspectiva del mercado</span>
+          <span class="lbl">MACRO</span>
+        </div>
+        <div class="market-grid">
+          
+          <div class="m-box">
+            <div class="m-header">
+              <span class="m-lbl">S&amp;P Futures</span>
+              <span class="m-chg neg">-0.29%</span>
+            </div>
+            <div class="m-price">7,691.25 US$</div>
+            <svg viewBox="0 0 100 24" class="spark"><polyline fill="none" stroke="#f43f5e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,9.6 34.0,6.0 66.0,22.0 98.0,15.1"/></svg>
+          </div>
+          
+          <div class="m-box">
+            <div class="m-header">
+              <span class="m-lbl">NASDAQ F.</span>
+              <span class="m-chg neg">-0.67%</span>
+            </div>
+            <div class="m-price">29,387.75 US$</div>
+            <svg viewBox="0 0 100 24" class="spark"><polyline fill="none" stroke="#f43f5e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,6.0 34.0,10.1 66.0,22.0 98.0,17.1"/></svg>
+          </div>
+          
+          <div class="m-box">
+            <div class="m-header">
+              <span class="m-lbl">Bitcoin</span>
+              <span class="m-chg neg">-1.41%</span>
+            </div>
+            <div class="m-price">76,205.00 US$</div>
+            <svg viewBox="0 0 100 24" class="spark"><polyline fill="none" stroke="#f43f5e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,6.0 50.0,14.0 98.0,22.0"/></svg>
+          </div>
+          
+          <div class="m-box">
+            <div class="m-header">
+              <span class="m-lbl">VIX</span>
+              <span class="m-chg neg">-0.39%</span>
+            </div>
+            <div class="m-price">15.13</div>
+            <svg viewBox="0 0 100 24" class="spark"><polyline fill="none" stroke="#f43f5e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,17.7 26.0,8.4 50.0,22.0 74.0,6.0 98.0,18.6"/></svg>
+          </div>
+          
+        </div>
+      </div>
+      
+
+      <!-- Trending AI Companies Widget -->
+      
+      <div class="widget">
+        <div class="widget-title">
+          <span>Empresas en tendencia (AI & Semis)</span>
+          <span class="lbl">STOCKS</span>
+        </div>
+        <div class="company-list">
+          
+          <div class="comp-item">
+            <div class="comp-info">
+              <img src="https://www.google.com/s2/favicons?domain=nvidia.com&amp;sz=64" alt="" class="comp-logo" loading="lazy"/>
+              <div>
+                <div class="comp-name">NVIDIA Corp.</div>
+                <div class="comp-ticker">NVDA · NASDAQ</div>
+              </div>
+            </div>
+            <div class="comp-val">
+              <div class="comp-price">214.72 US$</div>
+              <div class="comp-chg neg">-4.64%</div>
+            </div>
+          </div>
+          
+          <div class="comp-item">
+            <div class="comp-info">
+              <img src="https://www.google.com/s2/favicons?domain=supermicro.com&amp;sz=64" alt="" class="comp-logo" loading="lazy"/>
+              <div>
+                <div class="comp-name">Super Micro Comp.</div>
+                <div class="comp-ticker">SMCI · NASDAQ</div>
+              </div>
+            </div>
+            <div class="comp-val">
+              <div class="comp-price">37.24 US$</div>
+              <div class="comp-chg neg">-6.53%</div>
+            </div>
+          </div>
+          
+          <div class="comp-item">
+            <div class="comp-info">
+              <img src="https://www.google.com/s2/favicons?domain=tsmc.com&amp;sz=64" alt="" class="comp-logo" loading="lazy"/>
+              <div>
+                <div class="comp-name">TSMC Ltd.</div>
+                <div class="comp-ticker">TSM · NYSE</div>
+              </div>
+            </div>
+            <div class="comp-val">
+              <div class="comp-price">418.95 US$</div>
+              <div class="comp-chg neg">-1.74%</div>
+            </div>
+          </div>
+          
+          <div class="comp-item">
+            <div class="comp-info">
+              <img src="https://www.google.com/s2/favicons?domain=microsoft.com&amp;sz=64" alt="" class="comp-logo" loading="lazy"/>
+              <div>
+                <div class="comp-name">Microsoft Corp.</div>
+                <div class="comp-ticker">MSFT · NASDAQ</div>
+              </div>
+            </div>
+            <div class="comp-val">
+              <div class="comp-price">483.24 US$</div>
+              <div class="comp-chg neg">-2.45%</div>
+            </div>
+          </div>
+          
+          <div class="comp-item">
+            <div class="comp-info">
+              <img src="https://www.google.com/s2/favicons?domain=google.com&amp;sz=64" alt="" class="comp-logo" loading="lazy"/>
+              <div>
+                <div class="comp-name">Alphabet Inc.</div>
+                <div class="comp-ticker">GOOGL · NASDAQ</div>
+              </div>
+            </div>
+            <div class="comp-val">
+              <div class="comp-price">344.82 US$</div>
+              <div class="comp-chg neg">-0.31%</div>
+            </div>
+          </div>
+          
+          <div class="comp-item">
+            <div class="comp-info">
+              <img src="https://www.google.com/s2/favicons?domain=asml.com&amp;sz=64" alt="" class="comp-logo" loading="lazy"/>
+              <div>
+                <div class="comp-name">ASML Holding</div>
+                <div class="comp-ticker">ASML · NASDAQ</div>
+              </div>
+            </div>
+            <div class="comp-val">
+              <div class="comp-price">1,763.76 US$</div>
+              <div class="comp-chg neg">-4.36%</div>
+            </div>
+          </div>
+          
+          <div class="comp-item">
+            <div class="comp-info">
+              <img src="https://www.google.com/s2/favicons?domain=palantir.com&amp;sz=64" alt="" class="comp-logo" loading="lazy"/>
+              <div>
+                <div class="comp-name">Palantir Tech.</div>
+                <div class="comp-ticker">PLTR · NYSE</div>
+              </div>
+            </div>
+            <div class="comp-val">
+              <div class="comp-price">179.94 US$</div>
+              <div class="comp-chg pos">+3.39%</div>
+            </div>
+          </div>
+          
+          <div class="comp-item">
+            <div class="comp-info">
+              <img src="https://www.google.com/s2/favicons?domain=amazon.com&amp;sz=64" alt="" class="comp-logo" loading="lazy"/>
+              <div>
+                <div class="comp-name">Amazon.com Inc.</div>
+                <div class="comp-ticker">AMZN · NASDAQ</div>
+              </div>
+            </div>
+            <div class="comp-val">
+              <div class="comp-price">258.63 US$</div>
+              <div class="comp-chg neg">-1.53%</div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+
+      <!-- Watchlist Resolution Widget -->
+      
+      <div class="widget">
+        <div class="widget-title">
+          <span>Lo que ayer dijimos que vigilaras</span>
+          <span class="lbl">1/3 HIT</span>
+        </div>
+        <div>
+          
+          <div class="wr-item hit">
+            <span class="wr-ic">✓</span>
+            <div>
+              <div class="wr-txt">Monitorizar la adopción real de GLM-5.3 en entornos productivos de desarrollo de agentes.</div>
+              <div style="font-size:11px;color:var(--green);margin-top:3px">→ GLM-5.3 vs. GPT-5.6 Sol on DeepSWE: Cost, Coding, and Routing</div>
+            </div>
+          </div>
+          
+          <div class="wr-item open">
+            <span class="wr-ic">○</span>
+            <div>
+              <div class="wr-txt">Ver anuncios de Intel o TSMC sobre la disponibilidad comercial de productos basados en sus nuevas estrategias de memoria y fotónica.</div>
+              
+            </div>
+          </div>
+          
+          <div class="wr-item open">
+            <span class="wr-ic">○</span>
+            <div>
+              <div class="wr-txt">Observar si la estrategia de Nvidia acelera el desarrollo de modelos personalizados y la inversión en infraestructura de inferencia propia.</div>
+              
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+
+      <!-- Memory Threads Widget -->
+      
+      <div class="widget">
+        <div class="widget-title">
+          <span>Memoria del radar</span>
+          <span class="lbl">CONTINUIDAD</span>
+        </div>
+        <div>
+          
+          <div class="thr-item">
+            <span class="thr-badge">DÍA 7</span>
+            <b>Agentes y automatización</b>
+            <div style="font-size:11.5px;color:var(--dim);margin-top:2px">GLM-5.3 vs. GPT-5.6 Sol on DeepSWE: Cost, Coding, and Routing</div>
+          </div>
+          
+          
+        </div>
+      </div>
+      
+
+      <!-- Risks & Watchlist -->
+      
+      <div class="widget">
+        <div class="widget-title">
+          <span>Próximos Días</span>
+          <span class="lbl">A VIGILAR</span>
+        </div>
+        <div>
+          
+          <div style="font-size:12px;color:#fde047;padding:6px 0;border-bottom:1px solid var(--line)">⚠️ Sin juicio del LLM no se puede distinguir senal de ruido: tratar todo como no verificado.</div>
+          
+          
+          <div style="font-size:12px;color:#e2d9fc;padding:6px 0;border-bottom:1px solid var(--line)">👁️ Confirmar que el analisis vuelve a ejecutarse en el proximo run.</div>
+          
+        </div>
+      </div>
+      
+
+    </aside>
+
   </div>
 
-  
-
-  
-  <section>
-    <div class="head">
-      <h2>Lo que ayer dijimos que vigilaras</h2>
-      <span class="n">1/3 confirmadas</span>
-    </div>
-    <div class="wgrid">
-      
-      <div class="wr hit">
-        <span class="wr-ic">✓</span>
-        <div class="wr-b">
-          <div class="wr-t">Monitorizar la adopción real de GLM-5.3 en entornos productivos de desarrollo de agentes.</div>
-          <div class="wr-ev">→ GLM-5.3 supera a GPT-5.6 Sol en pass@4 de DeepSWE y es más económico.</div>
-        </div>
-      </div>
-      
-      <div class="wr open">
-        <span class="wr-ic">○</span>
-        <div class="wr-b">
-          <div class="wr-t">Ver anuncios de Intel o TSMC sobre la disponibilidad comercial de productos basados en sus nuevas estrategias de memoria y fotónica.</div>
-          
-        </div>
-      </div>
-      
-      <div class="wr open">
-        <span class="wr-ic">○</span>
-        <div class="wr-b">
-          <div class="wr-t">Observar si la estrategia de Nvidia acelera el desarrollo de modelos personalizados y la inversión en infraestructura de inferencia propia.</div>
-          
-        </div>
-      </div>
-      
-    </div>
-  </section>
-  
-
-  <section>
-    <div class="head">
-      <h2>Señales</h2>
-      <span class="n">6 hoy</span>
-    </div>
-    
-    <div class="sigs">
-      
-      <article class="sig">
-        <div class="sig-n">
-          <span class="num">01</span>
-          <span class="sc">87</span>
-        </div>
-        <div class="sig-b">
-          <div class="sig-main-layout">
-            <div class="sig-content">
-              <div class="sig-top">
-                <span class="tag th">Compute &amp; chips</span>
-                <span class="src"><img src="https://www.google.com/s2/favicons?domain=semiwiki.com&amp;sz=64" alt="" loading="lazy"/>SemiWiki</span>
-              </div>
-              <h3 class="sig-t">
-                <a href="https://semiwiki.com/semiconductor-manufacturers/tsmc/372488-how-tsmc-is-wiring-the-ai-era-with-light/" target="_blank" rel="noopener noreferrer">TSMC integra fotónica de silicio con lógica avanzada para la era de la IA.</a>
-              </h3>
-              <div class="sw">TSMC está redefiniendo la arquitectura de los chips de IA, permitiendo mayores anchos de banda y eficiencias energéticas, crítico para escalar el entrenamiento y la inferencia de modelos grandes.</div>
-            </div>
-            
-          </div>
-          
-          
-          <div class="ents"><span class="ent">TSMC</span><span class="ent">Is Wiring</span></div>
-          
-        </div>
-      </article>
-      
-      <article class="sig">
-        <div class="sig-n">
-          <span class="num">02</span>
-          <span class="sc">82</span>
-        </div>
-        <div class="sig-b">
-          <div class="sig-main-layout">
-            <div class="sig-content">
-              <div class="sig-top">
-                <span class="tag th">Compute &amp; chips</span>
-                <span class="src"><img src="https://www.google.com/s2/favicons?domain=semiwiki.com&amp;sz=64" alt="" loading="lazy"/>SemiWiki</span>
-              </div>
-              <h3 class="sig-t">
-                <a href="https://semiwiki.com/semiconductor-manufacturers/intel/372371-intel-eyes-a-memory-comeback-as-ai-rewrites-chip-economics/" target="_blank" rel="noopener noreferrer">Intel evalúa regresar al mercado de la memoria ante cambios en la economía de chips por la IA.</a>
-              </h3>
-              <div class="sw">Intel busca capitalizar la creciente demanda de soluciones de memoria de alto rendimiento y baja latencia para la IA, lo que podría aumentar la competencia y la innovación en el hardware de cómputo.</div>
-            </div>
-            
-          </div>
-          
-          
-          <div class="ents"><span class="ent">Intel</span><span class="ent">Intel Eyes</span><span class="ent">Memory Comeback</span><span class="ent">Rewrites Chip Economics</span></div>
-          
-        </div>
-      </article>
-      
-      <article class="sig">
-        <div class="sig-n">
-          <span class="num">03</span>
-          <span class="sc">79</span>
-        </div>
-        <div class="sig-b">
-          <div class="sig-main-layout">
-            <div class="sig-content">
-              <div class="sig-top">
-                <span class="tag th">Economía de modelos</span>
-                <span class="src"><img src="https://www.google.com/s2/favicons?domain=together.ai&amp;sz=64" alt="" loading="lazy"/>Together AI</span>
-              </div>
-              <h3 class="sig-t">
-                <a href="https://www.together.ai/blog/glm-5-3-vs-gpt-5-6-sol-on-deepswe-cost-coding-and-routing" target="_blank" rel="noopener noreferrer">GLM-5.3 supera a GPT-5.6 Sol en pass@4 de DeepSWE y es más económico.</a>
-              </h3>
-              <div class="sw">Modelos chinos como GLM-5.3 demuestran competitividad en coding a menor coste, erosionando el liderazgo percibido de OpenAI/Google y mostrando la viabilidad de alternativas.</div>
-            </div>
-            
-          </div>
-          
-          
-          <div class="ents"><span class="ent">GPT-5</span><span class="ent">GLM-5</span><span class="ent">GLM</span><span class="ent">Sol</span><span class="ent">Cost</span></div>
-          
-        </div>
-      </article>
-      
-      <article class="sig">
-        <div class="sig-n">
-          <span class="num">04</span>
-          <span class="sc">79</span>
-        </div>
-        <div class="sig-b">
-          <div class="sig-main-layout">
-            <div class="sig-content">
-              <div class="sig-top">
-                <span class="tag th">Economía de modelos</span>
-                <span class="src"><img src="https://www.google.com/s2/favicons?domain=together.ai&amp;sz=64" alt="" loading="lazy"/>Together AI</span>
-              </div>
-              <h3 class="sig-t">
-                <a href="https://www.together.ai/blog/glm-5-3-vs-claude-fable-5-on-deepswe-cost-coding-and-routing" target="_blank" rel="noopener noreferrer">GLM-5.3 iguala a Claude Fable 5 en pass@1 de DeepSWE, pero cuesta 5.4x menos.</a>
-              </h3>
-              <div class="sw">Zhipu con GLM-5.3 ofrece paridad en rendimiento de codificación a una fracción del coste de Anthropic, presionando los márgenes y la estrategia de precios de los modelos occidentales.</div>
-            </div>
-            
-          </div>
-          
-          
-          <div class="ents"><span class="ent">Claude</span><span class="ent">GLM-5</span><span class="ent">GLM</span><span class="ent">Fable</span><span class="ent">Claude Fable</span></div>
-          
-        </div>
-      </article>
-      
-      <article class="sig">
-        <div class="sig-n">
-          <span class="num">05</span>
-          <span class="sc">64</span>
-        </div>
-        <div class="sig-b">
-          <div class="sig-main-layout">
-            <div class="sig-content">
-              <div class="sig-top">
-                <span class="tag th">Agentes</span>
-                <span class="src"><img src="https://www.google.com/s2/favicons?domain=mistral.ai&amp;sz=64" alt="" loading="lazy"/>Mistral</span>
-              </div>
-              <h3 class="sig-t">
-                <a href="https://mistral.ai/news/agentic-search/" target="_blank" rel="noopener noreferrer">Mistral lanza &#39;Agentic Search&#39; para mejorar la precisión y eficiencia en sistemas de IA.</a>
-              </h3>
-              <div class="sw">Mistral avanza en la construcción de sistemas de IA más autónomos y fiables al dotarlos de capacidades mejoradas de recuperación y verificación de información en entornos complejos.</div>
-            </div>
-            
-          </div>
-          
-          
-          <div class="ents"><span class="ent">Agentic Search</span></div>
-          
-        </div>
-      </article>
-      
-      <article class="sig">
-        <div class="sig-n">
-          <span class="num">06</span>
-          <span class="sc">63</span>
-        </div>
-        <div class="sig-b">
-          <div class="sig-main-layout">
-            <div class="sig-content">
-              <div class="sig-top">
-                <span class="tag th">Capacidad frontier</span>
-                <span class="src"><img src="https://www.google.com/s2/favicons?domain=anthropic.com&amp;sz=64" alt="" loading="lazy"/>Anthropic</span>
-              </div>
-              <h3 class="sig-t">
-                <a href="https://claude.com/blog/bringing-claude-mythos-5-to-more-defenders" target="_blank" rel="noopener noreferrer">Anthropic extiende el acceso a Claude Mythos 5 para ciberdefensa y lanza fondo de $35M.</a>
-              </h3>
-              <div class="sw">Un modelo de frontera de Anthropic llega a más manos en ciberseguridad, validando su capacidad crítica y acelerando la detección de vulnerabilidades con IA avanzada.</div>
-            </div>
-            
-          </div>
-          
-          
-          <div class="ents"><span class="ent">Claude</span><span class="ent">Mythos</span><span class="ent">Bringing</span><span class="ent">Claude Mythos</span></div>
-          
-        </div>
-      </article>
-      
-    </div>
-    
-  </section>
-
-  
-  <section>
-    <div class="head"><h2>Memoria del radar</h2><span class="n">continuidad</span></div>
-    <div class="grid2">
-      <div class="card">
-        <span class="lbl">Narrativas en curso</span>
-        
-          
-          <div class="thr">
-            <span class="thr-d">DÍA 7</span>
-            <div>
-              <div class="thr-t">Agentes y automatización</div>
-              <div class="thr-l">Mistral lanza &#39;Agentic Search&#39; para mejorar la precisión y eficiencia en sistemas de IA.</div>
-            </div>
-          </div>
-          
-          <div class="thr">
-            <span class="thr-d">DÍA 3</span>
-            <div>
-              <div class="thr-t">Compute y chips</div>
-              <div class="thr-l">TSMC integra fotónica de silicio con lógica avanzada para la era de la IA.</div>
-            </div>
-          </div>
-          
-        
-      </div>
-      <div class="card">
-        <span class="lbl">Movimiento de actores</span>
-        
-          
-          <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Agentic Search</span>
-            <span class="dt">primera aparición</span></div>
-          
-          <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Bringing</span>
-            <span class="dt">primera aparición</span></div>
-          
-          <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Claude Fable</span>
-            <span class="dt">primera aparición</span></div>
-          
-          <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Claude Mythos</span>
-            <span class="dt">primera aparición</span></div>
-          
-          <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Cost</span>
-            <span class="dt">primera aparición</span></div>
-          
-          
-          <div class="mv"><span class="mv-b ret">Vuelve</span><span class="nm">Claude</span>
-            <span class="dt">tras 8 días en silencio</span></div>
-          
-          <div class="mv"><span class="mv-b ret">Vuelve</span><span class="nm">Tokens</span>
-            <span class="dt">tras 5 días en silencio</span></div>
-          
-          
-        
-      </div>
-    </div>
-  </section>
-  
-
-  
-  <section>
-    <div class="head"><h2>Riesgos y vigilancia</h2><span class="n">próximos días</span></div>
-    <div class="grid2">
-      
-      <div class="card">
-        <span class="lbl">Riesgos</span>
-        <div class="rk">La ventaja de costes de los modelos chinos puede presionar los márgenes de los frontier labs occidentales y acelerar la comoditización del rendimiento base.</div><div class="rk">La complejidad en la integración de nuevas tecnologías de hardware (fotónica, memoria) podría retrasar el despliegue a gran escala del cómputo para AGI.</div>
-      </div>
-      
-      
-      <div class="card">
-        <span class="lbl">A vigilar</span>
-        <div class="rk w">Ver si GLM-5.3 u otros modelos chinos aumentan su cuota de mercado en tareas de codificación y la respuesta de precios de los rivales.</div><div class="rk w">Anuncios formales de Intel sobre su regreso a la fabricación de memoria y las métricas de rendimiento de las soluciones fotónicas de TSMC.</div><div class="rk w">Adopción generalizada de frameworks de desarrollo de software &#39;AI-native&#39; y su impacto cuantificable en la productividad.</div>
-      </div>
-      
-    </div>
-  </section>
-  
-
-  
-  <section>
-    <div class="head">
-      <h2>Contexto</h2>
-      <span class="n">de fondo, no cambia nada hoy</span>
-    </div>
-    <div class="ctx">
-      
-      <div class="cx">
-        <span class="cx-s">67</span>
-        
-        <div class="cx-thumb-wrap">
-          <img src="https://substackcdn.com/image/fetch/$s_!Vw9p!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc661e612-544b-4eaa-9603-78e5f28276b7_1956x1228.png" alt="" class="cx-thumb" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('.cx-thumb-wrap').style.display='none'"/>
-        </div>
-        
-        <div class="cx-b">
-          <div class="cx-t">
-            <a href="https://www.latent.space/p/ainews-10-worse-100x-cheaper-10000x" target="_blank" rel="noopener noreferrer">La simulación se impone en entrenamiento de IA por eficiencia y coste, aunque con menor precisión.</a>
-          </div>
-          <div class="cx-w">Las simulaciones, aunque ligeramente menos precisas, ofrecen una ventaja de coste y velocidad masiva para el entrenamiento de IA, redefiniendo las estrategias de adquisición de datos y el uso del cómputo.</div>
-          <div class="cx-m">Capacidad frontier · Latent Space</div>
-        </div>
-      </div>
-      
-      <div class="cx">
-        <span class="cx-s">59</span>
-        
-        <div class="cx-b">
-          <div class="cx-t">
-            <a href="https://simonwillison.net/2026/Aug/22/linus-torvalds/" target="_blank" rel="noopener noreferrer">Linus Torvalds comenta su experiencia usando una IA para depuración de código.</a>
-          </div>
-          <div class="cx-w">Demuestra el valor de la IA como copiloto persistente en tareas complejas de depuración, pese a sus limitaciones de autonomía, acelerando el desarrollo.</div>
-          <div class="cx-m">Agentes · Simon Willison (AI &amp; LLMs)</div>
-        </div>
-      </div>
-      
-      <div class="cx">
-        <span class="cx-s">49</span>
-        
-        <div class="cx-thumb-wrap">
-          <img src="https://substack-post-media.s3.amazonaws.com/public/images/b8608bb9-bf33-46e6-8ffe-dcf75a851f9b_3182x1790.png" alt="" class="cx-thumb" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('.cx-thumb-wrap').style.display='none'"/>
-        </div>
-        
-        <div class="cx-b">
-          <div class="cx-t">
-            <a href="https://www.interconnects.ai/p/teaching-everyone-to-fish-for-tokens" target="_blank" rel="noopener noreferrer">Nvidia impulsa la creación de modelos propios frente al consumo de APIs de frontier labs.</a>
-          </div>
-          <div class="cx-w">La estrategia de Nvidia busca desplazar ingresos de APIs a venta de hardware y software, aumentando su influencia en el ecosistema al fomentar la autonomía de los clientes.</div>
-          <div class="cx-m">Economía de modelos · Interconnects</div>
-        </div>
-      </div>
-      
-      <div class="cx">
-        <span class="cx-s">42</span>
-        
-        <div class="cx-thumb-wrap">
-          <img src="https://cdn.prod.website-files.com/68a44d4040f98a4adf2207b6/6a8739a1b934ffe55bfc9715_44592f18.png" alt="" class="cx-thumb" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('.cx-thumb-wrap').style.display='none'"/>
-        </div>
-        
-        <div class="cx-b">
-          <div class="cx-t">
-            <a href="https://claude.com/blog/the-ai-native-sdlc-playbook" target="_blank" rel="noopener noreferrer">Anthropic publica una guía para optimizar el ciclo de vida del software con IA.</a>
-          </div>
-          <div class="cx-w">La adopción de agentes de codificación requiere rediseñar procesos de desarrollo para maximizar las ganancias de productividad y evitar cuellos de botella humanos.</div>
-          <div class="cx-m">Agentes · Anthropic</div>
-        </div>
-      </div>
-      
-    </div>
-  </section>
-  
-
+  <!-- Footer -->
   <footer>
-    <span>10 items descartados por el filtro de relevancia</span>
-    <span>20/20 fuentes activas</span>
+    <span>0 items descartados por el filtro de relevancia</span>
+    <span>22/23 fuentes activas · sin items: OpenRouter Insights</span>
   </footer>
 
 </div>
