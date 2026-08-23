@@ -742,9 +742,23 @@ def apply_llm_results(candidates: list[dict], results_map: dict) -> list[dict]:
     reranked.sort(key=lambda x: x.get("final_score", x.get("score", 0)), reverse=True)
 
     # -- Gate de relevancia --------------------------------------------------
-    signals = [it for it in reranked if it.get("verdict") == "signal"][:MAX_SIGNALS]
-    context = [it for it in reranked if it.get("verdict") == "context"][:MAX_CONTEXT]
+    signals = []
+    context = []
     dropped = sum(1 for it in reranked if it.get("verdict") == "noise")
+
+    for it in reranked:
+        if it.get("verdict") == "noise":
+            continue
+        # Promover a Señal de Radar principal si el LLM asignó signal o si desplaza poder de mercado
+        is_signal = (
+            it.get("verdict") == "signal" or
+            bool(it.get("power_shift"))
+        )
+        if is_signal and len(signals) < MAX_SIGNALS:
+            it["verdict"] = "signal"
+            signals.append(it)
+        elif len(context) < MAX_CONTEXT:
+            context.append(it)
 
     gate_ran = any(it.get("verdict") in ("signal", "context", "noise") for it in reranked)
 
