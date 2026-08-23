@@ -89,7 +89,7 @@ def _cache_get(key: str) -> list[dict] | None:
     if not _cache_enabled():
         return None
     hit = _CACHE_DATA.get(key)
-    if hit is None:
+    if not hit:
         return None
     return [dict(x) for x in hit]
 
@@ -98,6 +98,10 @@ def _cache_put(key: str, items: list[dict]) -> None:
     global _CACHE_DIRTY
     _load_cache_once()
     if not _cache_enabled():
+        return
+    # Un fetch vacío es un miss, no un resultado. Cachearlo recrea el fallo
+    # silencioso de 14 días: el resto del día "tiene cache" y nadie reintenta.
+    if not items:
         return
     _CACHE_DATA[key] = [dict(x) for x in items]
     _CACHE_DIRTY = True
@@ -383,6 +387,14 @@ def _parse_query_users_and_keywords(query: str) -> tuple[list[str], list[str]]:
 
 
 def fetch_x_user(username: str, limit: int = 8, include_replies: bool = False, include_retweets: bool = False) -> list[dict]:
+    try:
+        return _fetch_x_user_inner(username, limit, include_replies, include_retweets)
+    except Exception as exc:
+        print(f"X FETCH FAILED @{_safe_username(username)}: {exc!r}")
+        return []
+
+
+def _fetch_x_user_inner(username: str, limit: int, include_replies: bool, include_retweets: bool) -> list[dict]:
     user = _safe_username(username)
     if not user:
         return []
@@ -421,6 +433,14 @@ def fetch_x_user(username: str, limit: int = 8, include_replies: bool = False, i
 
 
 def fetch_x_search(query: str, limit: int = 10) -> list[dict]:
+    try:
+        return _fetch_x_search_inner(query, limit)
+    except Exception as exc:
+        print(f"X SEARCH FAILED {query!r}: {exc!r}")
+        return []
+
+
+def _fetch_x_search_inner(query: str, limit: int) -> list[dict]:
     q = (query or "").strip()
     if not q:
         return []

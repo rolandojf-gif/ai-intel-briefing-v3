@@ -4,7 +4,14 @@ from pathlib import Path
 import yaml
 
 from src.fetch import _extract_image_url
-from src.main import clean_entities, clean_signal_text, apply_llm_results
+from src.main import (
+    clean_entities,
+    clean_signal_text,
+    apply_llm_results,
+    evaluate_x_layer,
+    build_source_health,
+    ingest_feeds,
+)
 from src.memory import activity_level, detect_threads, entity_deltas, resolve_watchlist
 from src.render import _safe_url, display_title, human_theme, score_value
 from src.score import score_item
@@ -645,6 +652,127 @@ class CoreQualityTests(unittest.TestCase):
         src = inspect.getsource(main_mod.main)
         self.assertIn("write_archive", src)
         self.assertIn("docs/archivo.html", src)
+
+    # -- X kill switch ------------------------------------------------------
+
+    def test_x_kill_switch_zero_posts_is_layer_not_six_dead_sources(self):
+        accounts = ["X @OpenAI", "X @karpathy", "X @gdb"]
+        layer = evaluate_x_layer(accounts, {}, disabled=False)
+        self.assertEqual(layer["status"], "killed")
+        self.assertEqual(layer["reason"], "zero_posts")
+        health = build_source_health(
+            ["Reuters AI", *accounts, "Epoch AI"],
+            items=[{"source": "Reuters AI"}],
+            x_layer=layer,
+        )
+        self.assertNotIn("X @OpenAI", health["dead"])
+        self.assertNotIn("X @karpathy", health["dead"])
+        self.assertIn("Epoch AI", health["dead"])
+        self.assertEqual(health["x"]["status"], "killed")
+
+    def test_x_kill_switch_disabled_skips_fetch(self):
+        import os
+        from src import main as main_mod
+        called = []
+
+        def boom(**kwargs):
+            called.append(kwargs)
+            raise AssertionError("X no debe llamarse con X_DISABLED=1")
+
+        orig = main_mod.fetch_x_user
+        main_mod.fetch_x_user = boom
+        os.environ["X_DISABLED"] = "1"
+        try:
+            items, layer = ingest_feeds(
+                {"sources": [
+                    {"name": "X @OpenAI", "type": "x", "username": "OpenAI", "limit": 3, "cap": 1},
+                ]},
+                {"X @OpenAI": 1},
+            )
+        finally:
+            os.environ.pop("X_DISABLED", None)
+            main_mod.fetch_x_user = orig
+        self.assertEqual(items, [])
+        self.assertEqual(called, [])
+        self.assertEqual(layer["status"], "disabled")
+
+    def test_x_kill_switch_exception_does_not_crash_ingest(self):
+        from src import main as main_mod
+
+        def boom(**kwargs):
+            raise RuntimeError("espejo caído")
+
+        orig = main_mod.fetch_x_user
+        main_mod.fetch_x_user = boom
+        try:
+            items, layer = ingest_feeds(
+                {"sources": [
+                    {"name": "X @karpathy", "type": "x", "username": "karpathy", "limit": 3, "cap": 1},
+                ]},
+                {"X @karpathy": 1},
+            )
+        finally:
+            main_mod.fetch_x_user = orig
+        self.assertEqual(items, [])
+        self.assertEqual(layer["status"], "killed")
+
+    def test_x_kill_switch_keeps_posts_when_any_account_lives(self):
+        from src import main as main_mod
+
+        def fake(username="", **kwargs):
+            if username.lower() == "karpathy":
+                return [{
+                    "title": "something shipped",
+                    "link": "https://x.com/karpathy/status/1",
+                    "summary": "weights",
+                }]
+            return []
+
+        orig = main_mod.fetch_x_user
+        main_mod.fetch_x_user = fake
+        try:
+            items, layer = ingest_feeds(
+                {"sources": [
+                    {"name": "X @OpenAI", "type": "x", "username": "OpenAI", "limit": 3, "cap": 1},
+                    {"name": "X @karpathy", "type": "x", "username": "karpathy", "limit": 3, "cap": 1},
+                ]},
+                {"X @OpenAI": 1, "X @karpathy": 1},
+            )
+        finally:
+            main_mod.fetch_x_user = orig
+        self.assertEqual(layer["status"], "ok")
+        self.assertEqual(layer["posts"], 1)
+        self.assertEqual([it["source"] for it in items], ["X @karpathy"])
+
+    def test_x_empty_fetch_is_not_cached(self):
+        import src.fetch_x as fx
+        fx._CACHE_LOADED = True
+        fx._CACHE_DIRTY = False
+        fx._CACHE_DATA = {}
+        fx._cache_put("user|openai|6|r=0|rt=0", [])
+        self.assertEqual(fx._CACHE_DATA, {})
+        self.assertFalse(fx._CACHE_DIRTY)
+        self.assertIsNone(fx._cache_get("user|openai|6|r=0|rt=0"))
+
+    def test_feeds_include_x_accounts(self):
+        sources = {s["name"]: s for s in yaml.safe_load(Path("feeds/feeds.yaml").read_text())["sources"]}
+        for name in ("X @OpenAI", "X @AnthropicAI", "X @xai", "X @karpathy", "X @gdb", "X @DeepSeek_AI"):
+            self.assertEqual(sources[name]["type"], "x")
+            self.assertEqual(int(sources[name]["cap"]), 1)
+
+    def test_render_shows_x_kill_notice(self):
+        from src.render import render_index
+        html = render_index(
+            [],
+            briefing={"thesis": "t"},
+            snapshot={
+                "date": "2026-08-23",
+                "x_layer": {"status": "killed", "configured": 6, "reason": "zero_posts"},
+            },
+            market={},
+        )
+        self.assertIn("Capa X apagada", html)
+        self.assertIn("kill switch", html)
 
 
 if __name__ == "__main__":
