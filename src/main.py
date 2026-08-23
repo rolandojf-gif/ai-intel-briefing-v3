@@ -656,8 +656,8 @@ def generate_llm_data(candidates: list[dict], llm_cache: Path, llm_done: Path) -
     return results_map, briefings
 
 
-MAX_SIGNALS = 8      # techo de senales primarias; el suelo lo marca la realidad del dia
-MAX_CONTEXT = 5      # capa secundaria de contexto
+MAX_SIGNALS = 12     # techo de senales primarias
+MAX_CONTEXT = 3      # capa secundaria de contexto reducida
 
 
 def apply_llm_results(candidates: list[dict], results_map: dict) -> list[dict]:
@@ -669,7 +669,7 @@ def apply_llm_results(candidates: list[dict], results_map: dict) -> list[dict]:
         if llm:
             # Contrato v2: juicio de relevancia, no score de impacto generico.
             it["llm_score"] = llm.get("relevance", llm.get("score"))
-            it["verdict"] = (llm.get("verdict") or "context").strip().lower()
+            it["verdict"] = (llm.get("verdict") or "signal").strip().lower()
             it["so_what"] = (llm.get("so_what") or "").strip()
             it["power_shift"] = (llm.get("power_shift") or "").strip()
             it["watch_next"] = (llm.get("watch_next") or "").strip()
@@ -742,15 +742,10 @@ def apply_llm_results(candidates: list[dict], results_map: dict) -> list[dict]:
     reranked.sort(key=lambda x: x.get("final_score", x.get("score", 0)), reverse=True)
 
     # -- Gate de relevancia --------------------------------------------------
-    # Lo marcado `noise` se ELIMINA. No se rankea mas abajo: desaparece.
-    # Esto es lo que permite que un dia flojo muestre 3 items en vez de rellenar
-    # hasta 15 con ruido.
     signals = [it for it in reranked if it.get("verdict") == "signal"][:MAX_SIGNALS]
     context = [it for it in reranked if it.get("verdict") == "context"][:MAX_CONTEXT]
     dropped = sum(1 for it in reranked if it.get("verdict") == "noise")
 
-    # Distinguir "el LLM juzgo y descarto todo" de "el LLM no llego a correr":
-    # en el primer caso el resultado correcto es CERO items, no un fallback con ruido.
     gate_ran = any(it.get("verdict") in ("signal", "context", "noise") for it in reranked)
 
     if gate_ran:

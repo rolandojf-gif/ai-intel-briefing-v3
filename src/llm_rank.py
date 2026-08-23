@@ -68,10 +68,10 @@ class RankOut(BaseModel):
 
     verdict: Verdict = Field(
         description=(
-            "signal = mueve la carrera AGI o cambia el reparto de poder; el lector debe verlo hoy. "
-            "context = cierto valor de fondo pero no cambia nada hoy. "
-            "noise = irrelevante para la tesis, PR, tooling menor, paper incremental o vertical de nicho. "
-            "Ante la duda entre context y signal, elige context. Ante la duda entre context y noise, elige noise."
+            "signal = noticia relevante, nuevo modelo, hardware/chips, agentes, economía de modelos o movimiento de mercado estratégico. Debe aparecer en las Señales del Radar principales. "
+            "context = artículo secundario de fondo o análisis complementario. "
+            "noise = marketing corporativo, webinars, eventos, papers incrementales sin impacto. "
+            "Prioriza categorizar como signal las noticias y avances reales para alimentar el radar principal."
         )
     )
     relevance: int = Field(ge=0, le=100, description="Relevancia para la tesis del lector, no calidad del artículo")
