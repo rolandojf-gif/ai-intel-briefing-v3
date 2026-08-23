@@ -525,6 +525,16 @@ TEMPLATE = ENV.from_string("""
     relevancia no se ha aplicado. Lo que ves está ordenado por heurística y puede contener ruido.
   </div>
   {% endif %}
+  {% if x_layer and x_layer.status in ['killed', 'disabled'] %}
+  <div class="degraded">
+    <b>Capa X apagada.</b>
+    {% if x_layer.status == 'disabled' %}
+    X_DISABLED=1: no se ha consultado el espejo.
+    {% else %}
+    El espejo no devolvió posts ({{ x_layer.configured }} cuentas). El briefing sigue con RSS.
+    {% endif %}
+  </div>
+  {% endif %}
 
   <!-- Tabs de tema -->
   {% if theme_tabs or show_new_tab %}
@@ -770,7 +780,7 @@ TEMPLATE = ENV.from_string("""
 
   <footer>
     <span>{{ n_dropped }} items descartados por el filtro de relevancia</span>
-    <span>{{ sources_alive }}/{{ sources_total }} fuentes activas{% if sources_dead %} · sin items: {{ sources_dead }}{% endif %}</span>
+    <span>{{ sources_alive }}/{{ sources_total }} fuentes activas{% if sources_dead %} · sin items: {{ sources_dead }}{% endif %}{% if x_layer and x_layer.status == 'killed' %} · X: kill switch{% elif x_layer and x_layer.status == 'disabled' %} · X: disabled{% elif x_layer and x_layer.status == 'ok' and x_layer.posts %} · X: {{ x_layer.posts }} posts{% endif %}</span>
   </footer>
 
 </div>
@@ -918,4 +928,5 @@ def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", 
         nav=nav or "daily",
         root=root or "",
         archive=archive,
+        x_layer=snapshot.get("x_layer") or (snapshot.get("source_health") or {}).get("x") or {},
     )

@@ -258,9 +258,11 @@ def should_use_gemini_today() -> bool:
     return False
 
 
-def ingest_feeds(cfg: dict, per_source_cap: dict) -> list[dict]:
+def ingest_feeds(cfg: dict, per_source_cap: dict) -> tuple[list[dict], dict]:
     items = []
     per_source_count = {}
+    x_names: list[str] = []
+    x_disabled = env_flag("X_DISABLED", "0")
 
     for s in cfg["sources"]:
         stype = (s.get("type") or "").strip().lower()
@@ -274,6 +276,11 @@ def ingest_feeds(cfg: dict, per_source_cap: dict) -> list[dict]:
             continue
         if limit <= 0:
             continue
+
+        if stype == "x":
+            x_names.append(s.get("name") or s.get("username") or "X")
+            if x_disabled:
+                continue
 
         fetched = []
         if stype == "rss":
@@ -294,20 +301,25 @@ def ingest_feeds(cfg: dict, per_source_cap: dict) -> list[dict]:
                 print(f"FETCH FAILED for {s.get('name', 'unnamed')}: {e!r}")
                 fetched = []
         elif stype == "x":
-            if s.get("username"):
-                fetched = fetch_x_user(
-                    username=s["username"],
-                    limit=limit,
-                    include_replies=bool(s.get("include_replies", False)),
-                    include_retweets=bool(s.get("include_retweets", False)),
-                )
-            elif s.get("query"):
-                fetched = fetch_x_search(
-                    query=s["query"],
-                    limit=limit,
-                )
-            else:
-                print(f"Invalid X source config (missing username/query): {s.get('name', 'unnamed')}")
+            try:
+                if s.get("username"):
+                    fetched = fetch_x_user(
+                        username=s["username"],
+                        limit=limit,
+                        include_replies=bool(s.get("include_replies", False)),
+                        include_retweets=bool(s.get("include_retweets", False)),
+                    )
+                elif s.get("query"):
+                    fetched = fetch_x_search(
+                        query=s["query"],
+                        limit=limit,
+                    )
+                else:
+                    print(f"Invalid X source config (missing username/query): {s.get('name', 'unnamed')}")
+                    fetched = []
+            except Exception as e:
+                print(f"FETCH FAILED for {s.get('name', 'unnamed')}: {e!r}")
+                fetched = []
         else:
             print(f"Unknown source type '{stype}' for source: {s.get('name', 'unnamed')}")
 
@@ -334,7 +346,86 @@ def ingest_feeds(cfg: dict, per_source_cap: dict) -> list[dict]:
             it["url"] = it.get("link", "")
 
             items.append(it)
-    return items
+
+    counts = {}
+    for it in items:
+        src = it.get("source", "?")
+        counts[src] = counts.get(src, 0) + 1
+    x_layer = evaluate_x_layer(x_names, counts, disabled=x_disabled)
+    if x_layer["status"] == "killed":
+        print(
+            f"X KILL SWITCH: 0 posts de {x_layer['configured']} cuentas. "
+            "El briefing sigue sin capa X."
+        )
+    elif x_layer["status"] == "disabled":
+        print("X DISABLED: capa X omitida (X_DISABLED=1).")
+    elif x_layer["configured"]:
+        print(
+            f"X layer: {x_layer['posts']} posts "
+            f"({len(x_layer['alive'])}/{x_layer['configured']} cuentas)"
+        )
+    return items, x_layer
+
+
+def evaluate_x_layer(accounts: list[str], counts: dict[str, int], disabled: bool = False) -> dict:
+    """Decide si la capa X se publica o se apaga entera.
+
+    Cero posts en todas las cuentas no es '6 fuentes muertas': es el espejo
+    caído. El kill switch evita que eso ensucie el health y el radar.
+    """
+    names = [n for n in accounts if n]
+    if disabled:
+        return {
+            "status": "disabled",
+            "reason": "X_DISABLED",
+            "configured": len(names),
+            "posts": 0,
+            "alive": [],
+            "silent": names,
+            "accounts": names,
+        }
+    posts = sum(int(counts.get(n, 0) or 0) for n in names)
+    alive = [n for n in names if (counts.get(n, 0) or 0) > 0]
+    silent = [n for n in names if n not in alive]
+    if names and posts == 0:
+        return {
+            "status": "killed",
+            "reason": "zero_posts",
+            "configured": len(names),
+            "posts": 0,
+            "alive": [],
+            "silent": silent,
+            "accounts": names,
+        }
+    return {
+        "status": "ok",
+        "reason": "",
+        "configured": len(names),
+        "posts": posts,
+        "alive": alive,
+        "silent": silent,
+        "accounts": names,
+    }
+
+
+def build_source_health(configured: list[str], items: list[dict], x_layer: dict | None = None) -> dict:
+    got: dict[str, int] = {}
+    for it in items:
+        src = it.get("source", "?")
+        got[src] = got.get(src, 0) + 1
+    skip = set()
+    x_layer = x_layer or {}
+    if x_layer.get("status") in {"killed", "disabled"}:
+        skip = set(x_layer.get("accounts") or [])
+    visible = [n for n in configured if n not in skip]
+    dead = [n for n in visible if got.get(n, 0) == 0]
+    return {
+        "configured": len(visible),
+        "alive": len(visible) - len(dead),
+        "dead": dead,
+        "counts": got,
+        "x": x_layer,
+    }
 
 
 def dedup_items(items: list[dict]) -> list[dict]:
@@ -699,7 +790,7 @@ MAX_CONTEXT = 3      # capa secundaria de contexto reducida
 # del LLM y no se puede publicar (ver el gate en apply_llm_results).
 # El test test_llm_batch_covers_configured_caps ancla esto a la suma de caps
 # de feeds.yaml: si subes un cap, sube este número.
-LLM_BATCH_SIZE = 50
+LLM_BATCH_SIZE = 56
 
 # Score minimo para que power_shift rescate un item que el LLM no marco signal.
 # Sin umbral no filtra: el campo viene relleno en ~75% de los items.
@@ -941,24 +1032,15 @@ def main():
     llm_cache = data_dir / f"{today}.llm_cache.json"
 
     # 1) Ingest
-    items = ingest_feeds(cfg, per_source_cap)
+    items, x_layer = ingest_feeds(cfg, per_source_cap)
 
     # 1.5) Source health - una fuente muerta debe ser visible, no fallar en silencio.
-    #      (X estuvo devolviendo 0 items durante 14+ dias sin que nadie lo notara.)
+    #      La capa X se reporta aparte: 0 posts no es "6 cuentas muertas".
     configured = [s.get("name", "?") for s in cfg.get("sources", [])]
-    got: dict[str, int] = {}
-    for it in items:
-        got[it.get("source", "?")] = got.get(it.get("source", "?"), 0) + 1
-    dead_sources = [n for n in configured if got.get(n, 0) == 0]
-    source_health = {
-        "configured": len(configured),
-        "alive": len(configured) - len(dead_sources),
-        "dead": dead_sources,
-        "counts": got,
-    }
+    source_health = build_source_health(configured, items, x_layer)
     print(f"Source health: {source_health['alive']}/{source_health['configured']} vivas")
-    if dead_sources:
-        print(f"  SIN ITEMS: {', '.join(dead_sources)}")
+    if source_health["dead"]:
+        print(f"  SIN ITEMS: {', '.join(source_health['dead'])}")
 
     # 2) Dedup
     deduped = dedup_items(items)
@@ -1026,6 +1108,7 @@ def main():
         "memory": memory,
         "activity": {"label": level_label, "class": level_class},
         "source_health": source_health,
+        "x_layer": x_layer,
         "degraded": degraded,
         # candidates fue mutado in-place por apply_llm_results, asi que lleva los veredictos
         "dropped_noise": sum(1 for it in candidates if it.get("verdict") == "noise"),
