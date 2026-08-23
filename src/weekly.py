@@ -147,7 +147,7 @@ def pick_items_for_category(snapshots: List[Dict[str, Any]], category: str, limi
         for it in (snap.get("items", []) or []):
             if not isinstance(it, dict):
                 continue
-            cat = (it.get("primary") or "misc").strip()
+            cat = item_theme(it)
             if cat == category:
                 hits.append(it)
                 if len(hits) >= limit:
@@ -169,9 +169,17 @@ def safe_href(url: str) -> str:
     return "#"
 
 
+def item_theme(it: Dict[str, Any]) -> str:
+    raw = (it.get("strategic_theme") or it.get("primary") or "other")
+    return (raw or "other").strip() or "other"
+
+
 def human_category(category: str) -> str:
-    key = (category or "misc").strip()
-    return CATEGORY_LABELS.get(key, key.replace("_", " ").title())
+    from src.render import THEME_LABELS, human_theme
+    key = (category or "other").strip()
+    if key in THEME_LABELS or key.lower() in THEME_LABELS:
+        return human_theme(key)
+    return CATEGORY_LABELS.get(key, human_theme(key))
 
 
 def main():
@@ -204,7 +212,7 @@ def main():
             if not isinstance(it, dict):
                 continue
 
-            cat = (it.get("primary") or "misc").strip()
+            cat = item_theme(it)
             local_cat[cat] = local_cat.get(cat, 0) + 1
 
             src = (it.get("source") or "unknown").strip() or "unknown"
@@ -340,260 +348,232 @@ def main():
     breakouts.sort(key=lambda r: (r["last"], r["w_total"], r["delta"]), reverse=True)
     breakouts = breakouts[:8]
 
-    # Implicaciones (directas, sin poesía)
+    # Lectura de la semana, en castellano. Las métricas se quedan en el cálculo.
     implications = []
     dominant = cat_rows[0] if cat_rows else None
     hot_ent = ent_rows[0] if ent_rows else None
 
     if dominant:
-        implications.append(
-            f"Dominante: {dominant['name']} (share_slope {dominant['share_slope']:.3f}, w_total {dominant['w_total']:.2f})."
-        )
+        implications.append(f"Esta semana manda {human_category(dominant['name'])}.")
     if hot_ent:
-        implications.append(
-            f"Tractor: {hot_ent['name']} (w_total {hot_ent['w_total']:.2f}, delta {hot_ent['delta']:.2f}, streak {hot_ent['streak']}d)."
-        )
+        racha = hot_ent["streak"]
+        racha_txt = f"{racha} día seguido" if racha == 1 else f"{racha} días seguidos"
+        implications.append(f"{hot_ent['name']} es el tractor ({racha_txt}).")
 
     if ent_hhi >= 0.18:
-        implications.append(f"Concentración alta en entidades (HHI {ent_hhi:.3f}). Señal: narrativa dominada por pocos actores.")
+        implications.append("Pocos nombres concentran la conversación.")
     else:
-        implications.append(f"Concentración moderada en entidades (HHI {ent_hhi:.3f}).")
+        implications.append("La conversación está repartida entre varios actores.")
 
     if cat_hhi >= 0.25:
-        implications.append(f"Concentración alta en categorías (HHI {cat_hhi:.3f}). Señal: el radar se está yendo a un tema único.")
+        implications.append("El radar se está yendo a un solo tema.")
     else:
-        implications.append(f"Concentración moderada en categorías (HHI {cat_hhi:.3f}).")
+        implications.append("Los temas están repartidos.")
 
     active_sources_count = len([s for s in source_rows if s["total"] > 0])
-    implications.append(f"Fuentes activas: {active_sources_count} fuentes con cobertura en la ventana.")
+    implications.append(f"{active_sources_count} fuentes con cobertura esta semana.")
 
-    # HTML blocks
+    def meta_line(r, extra: str = "") -> str:
+        bits = [spark(r["series"])]
+        if r.get("streak"):
+            bits.append(f"racha {r['streak']}d")
+        if r.get("total"):
+            bits.append(f"{r['total']} menciones")
+        if extra:
+            bits.append(extra)
+        return " · ".join(bits)
+
     def li_entity(r):
         return (
-            f"<li><span class='k'>{html_escape(r['name'])}</span> "
-            f"<span class='s'>{spark(r['series'])}</span>"
-            f"<span class='m'>peso {r['w_total']:.2f} · cambio {r['delta']:+.2f} · días {r['streak']} · menciones {r['total']}</span></li>"
+            f"<li><span class='k'>{html_escape(r['name'])}</span>"
+            f"<span class='m'>{html_escape(meta_line(r))}</span></li>"
         )
 
     def li_cat(r):
+        extra = ""
+        shares = r.get("share") or []
+        if len(shares) >= 2:
+            extra = f"{shares[0]:.0%} → {shares[-1]:.0%}"
         return (
-            f"<li><span class='k'>{html_escape(human_category(r['name']))}</span> "
-            f"<span class='s'>{spark(r['series'])}</span>"
-            f"<span class='m'>tendencia_share {r['share_slope']:+.3f} · peso {r['w_total']:.2f} · menciones {r['total']} · días {r['streak']}</span></li>"
+            f"<li><span class='k'>{html_escape(human_category(r['name']))}</span>"
+            f"<span class='m'>{html_escape(meta_line(r, extra))}</span></li>"
         )
 
     def li_source(r):
         return (
-            f"<li><span class='k'>{html_escape(r['name'])}</span> "
-            f"<span class='s'>{spark(r['series'])}</span>"
-            f"<span class='m'>peso {r['w_total']:.2f} · cambio {r['delta']:+.2f} · días {r['streak']} · menciones {r['total']}</span></li>"
+            f"<li><span class='k'>{html_escape(r['name'])}</span>"
+            f"<span class='m'>{html_escape(meta_line(r))}</span></li>"
         )
 
     ent_li = "\n".join(li_entity(r) for r in ent_rows[:12]) or "<li>Sin datos</li>"
     cat_li = "\n".join(li_cat(r) for r in cat_rows[:10]) or "<li>Sin datos</li>"
     source_li = "\n".join(li_source(r) for r in source_rows[:10]) or "<li>Sin datos</li>"
-
     imp_li = "\n".join(f"<li>{html_escape(x)}</li>" for x in implications)
 
-    risers_li = "\n".join(
-        f"<li><span class='k'>{html_escape(human_category(r['name']))}</span> "
-        f"<span class='m'>participación {r['early']:.2%} → {r['recent']:.2%} (cambio {r['delta']:+.2%})</span></li>"
-        for r in risers
-    ) or "<li>Sin datos</li>"
+    def rot_line(r):
+        return (
+            f"<li><span class='k'>{html_escape(human_category(r['name']))}</span>"
+            f"<span class='m'>{r['early']:.0%} → {r['recent']:.0%}</span></li>"
+        )
 
-    fallers_li = "\n".join(
-        f"<li><span class='k'>{html_escape(human_category(r['name']))}</span> "
-        f"<span class='m'>participación {r['early']:.2%} → {r['recent']:.2%} (cambio {r['delta']:+.2%})</span></li>"
-        for r in fallers
-    ) or "<li>Sin datos</li>"
-
+    risers_li = "\n".join(rot_line(r) for r in risers) or "<li>Sin datos</li>"
+    fallers_li = "\n".join(rot_line(r) for r in fallers) or "<li>Sin datos</li>"
     new_li = "\n".join(li_entity(r) for r in new_ents) or "<li>Sin datos</li>"
     bo_li = "\n".join(li_entity(r) for r in breakouts) or "<li>Sin datos</li>"
 
-    # Clusters navegables: top 5 entidades + top 3 categorías con miniaturas
-    clusters = []
-    for r in ent_rows[:5]:
-        entity = r["name"]
-        items = pick_items_for_entity(snapshots, entity, limit=6)
-        li = []
-        for it in items:
-            title = html_escape((it.get("title_es") or it.get("title") or "").strip())
-            url = (it.get("url") or it.get("link") or "").strip()
-            src = html_escape((it.get("source") or "").strip())
-            cat = html_escape(((it.get("primary") or "misc").strip()))
-            img = (it.get("image_url") or "").strip()
-            img_html = f"<img src='{safe_href(img)}' class='w-thumb' alt='' loading='lazy' onerror=\"this.style.display='none'\"/>" if img else ""
-            if url:
-                li.append(f"<li class='w-item'>{img_html}<div class='w-item-b'><a href='{safe_href(url)}' target='_blank' rel='noopener noreferrer'>{title}</a> <span class='m'>[{src}] [{cat}]</span></div></li>")
-            else:
-                li.append(f"<li class='w-item'>{img_html}<div class='w-item-b'>{title} <span class='m'>[{src}] [{cat}]</span></div></li>")
-        clusters.append(f"<section class='card'><h2>{html_escape(entity)}</h2><ul class='w-list'>{''.join(li)}</ul></section>")
+    def item_row(it: Dict[str, Any]) -> str:
+        title = html_escape((it.get("title_es") or it.get("title") or "").strip() or "(sin título)")
+        url = (it.get("url") or it.get("link") or "").strip()
+        src = html_escape((it.get("source") or "").strip())
+        href = safe_href(url)
+        if url:
+            return (
+                f"<a class='hit' href='{href}' target='_blank' rel='noopener noreferrer'>"
+                f"<span class='ht'>{title}</span><span class='hs'>{src}</span></a>"
+            )
+        return f"<div class='hit'><span class='ht'>{title}</span><span class='hs'>{src}</span></div>"
 
-    cat_clusters = []
-    for r in cat_rows[:3]:
-        category = r["name"]
-        items = pick_items_for_category(snapshots, category, limit=6)
-        li = []
-        for it in items:
-            title = html_escape((it.get("title_es") or it.get("title") or "").strip())
-            url = (it.get("url") or it.get("link") or "").strip()
-            src = html_escape((it.get("source") or "").strip())
-            cat = html_escape(((it.get("primary") or "misc").strip()))
-            img = (it.get("image_url") or "").strip()
-            img_html = f"<img src='{safe_href(img)}' class='w-thumb' alt='' loading='lazy' onerror=\"this.style.display='none'\"/>" if img else ""
-            if url:
-                li.append(f"<li class='w-item'>{img_html}<div class='w-item-b'><a href='{safe_href(url)}' target='_blank' rel='noopener noreferrer'>{title}</a> <span class='m'>[{src}] [{cat}]</span></div></li>")
-            else:
-                li.append(f"<li class='w-item'>{img_html}<div class='w-item-b'>{title} <span class='m'>[{src}] [{cat}]</span></div></li>")
-        cat_clusters.append(f"<section class='card'><h2>Categoría: {html_escape(human_category(category))}</h2><ul class='w-list'>{''.join(li)}</ul></section>")
+    def cluster_card(title: str, items: List[Dict[str, Any]]) -> str:
+        rows = "".join(item_row(it) for it in items) or "<div class='none'>Sin piezas esta semana.</div>"
+        return f"<section class='widget'><div class='widget-title'><span>{html_escape(title)}</span></div>{rows}</section>"
 
-    clusters_html = "<div class='grid'>" + "".join(clusters) + "</div>" if clusters else ""
-    cat_clusters_html = "<div class='grid'>" + "".join(cat_clusters) + "</div>" if cat_clusters else ""
+    clusters = [cluster_card(r["name"], pick_items_for_entity(snapshots, r["name"], limit=6)) for r in ent_rows[:5]]
+    cat_clusters = [
+        cluster_card(human_category(r["name"]), pick_items_for_category(snapshots, r["name"], limit=6))
+        for r in cat_rows[:3]
+    ]
+    clusters_html = "".join(clusters)
+    cat_clusters_html = "".join(cat_clusters)
 
     period = f"{days[0]} → {days[-1]}"
-    total_analyzed = sum(s['total'] for s in source_rows)
+    total_analyzed = sum(s["total"] for s in source_rows)
 
     html = f"""<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Weekly Radar · {period}</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <style>
-    :root {{
-      --bg:#07080a; --surface:rgba(17, 21, 27, 0.75); --line:#212730;
-      --text:#edf2f7; --muted:#8a99a8; --cyan:#67e8f9; --green:#4ade80;
-      --amber:#fbbf24; --red:#f43f5e;
-    }}
-    * {{ box-sizing:border-box; }}
-    body {{ font-family: 'Outfit', Inter, system-ui, -apple-system, sans-serif; margin:0; background:#07080a; color:var(--text); }}
-    body:before {{ content:""; position:fixed; inset:0; pointer-events:none; background:linear-gradient(135deg,rgba(103,232,249,0.08),transparent 35%),linear-gradient(45deg,rgba(74,222,128,0.06),transparent 45%); z-index:-1; }}
-    
-    ::-webkit-scrollbar {{ width: 8px; height: 8px; }}
-    ::-webkit-scrollbar-track {{ background: #07080a; }}
-    ::-webkit-scrollbar-thumb {{ background: #1c232e; border-radius: 4px; }}
-    ::-webkit-scrollbar-thumb:hover {{ background: #2b3545; }}
-
-    header {{ padding:20px 0; border-bottom:1px solid var(--line); background:rgba(7,8,10,0.85); position:sticky; top:0; z-index:5; backdrop-filter:blur(12px); box-shadow:0 8px 32px rgba(0,0,0,0.3); }}
-    .wrap {{ max-width:1160px; margin:0 auto; padding:20px; }}
-    .top {{ display:flex; align-items:center; justify-content:space-between; gap:12px; }}
-    .nav {{ display:flex; gap:10px; flex-wrap:wrap; }}
-    .nav a {{ border:1px solid var(--line); border-radius:10px; padding:8px 14px; color:var(--muted); background:rgba(17,21,27,0.5); font-size:13px; font-weight:600; transition:all 0.2s ease; }}
-    .nav a:hover {{ color:var(--text); border-color:rgba(103,232,249,0.35); background:rgba(17,21,27,0.85); transform:translateY(-1px); }}
-    .nav a.active {{ color:var(--text); border-color:rgba(103,232,249,0.55); background:rgba(103,232,249,0.12); }}
-    .grid {{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }}
-    .card {{ background:var(--surface); backdrop-filter:blur(10px); border:1px solid var(--line); border-radius:12px; padding:18px; box-shadow:0 8px 30px rgba(0,0,0,0.2); transition:all 0.3s ease; }}
-    .card:hover {{ border-color:rgba(103,232,249,0.25); }}
-    h1 {{ margin:0 0 8px 0; font-size:28px; line-height:1.1; font-weight:900; letter-spacing:-0.5px; background:linear-gradient(to right, #ffffff, var(--cyan)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }}
-    h2 {{ margin:0 0 12px 0; font-size:16px; color:#dbe7f3; font-weight:800; letter-spacing:-0.2px; }}
-    ul {{ margin:0; padding-left:18px; }}
-    li {{ margin:8px 0; line-height:1.45rem; font-weight:500; }}
-    a {{ color:#cfe6ff; text-decoration:none; transition:color 0.2s ease; }}
-    a:hover {{ text-decoration:underline; color:var(--cyan); }}
-    .k {{ font-weight:700; }}
-    .s {{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; margin-left:8px; letter-spacing:1px; color:var(--cyan); }}
-    .m {{ color:var(--muted); margin-left:8px; font-size:12px; font-weight:600; }}
-    .pill {{ display:inline-block; padding:4px 10px; border:1px solid var(--line); border-radius:999px; color:var(--muted); font-size:12px; margin:4px 8px 4px 0; background:rgba(13,17,23,0.5); font-weight:700; }}
-    .metrics {{ margin-top:8px; display:flex; flex-wrap:wrap; gap:4px; }}
-    .w-list {{ list-style:none; padding:0; margin:0; }}
-    .w-item {{ display:flex; gap:12px; align-items:center; margin:10px 0; padding:6px 0; border-bottom:1px solid rgba(33,39,48,0.6); }}
-    .w-item:last-child {{ border-bottom:none; }}
-    .w-thumb {{ width:52px; height:38px; border-radius:4px; object-fit:cover; flex-shrink:0; border:1px solid #212730; background:#0d1420; }}
-    .w-item-b {{ flex:1; min-width:0; line-height:1.4rem; }}
-    @media (max-width:900px) {{ .grid {{ grid-template-columns:1fr; }} }}
-  </style>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Semanal · AI Strategic Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{{
+    --bg:#191a1a; --card:#202222; --card-hover:#262828; --line:#2f3131; --line-2:#3d4040;
+    --txt:#e8e8e6; --txt-dim:#c8cbca; --dim:#9b9f9e; --dimmer:#6b6f6e;
+    --accent:#20b8cd; --accent-soft:rgba(32,184,205,.12);
+    --green:#4bd48b; --rose:#f2665f; --amber:#e8b750; --violet:#b28bf2;
+    --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+    --sans:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+    --disp:'Space Grotesk','Inter',system-ui,sans-serif;
+    --r:16px;
+  }}
+  *{{box-sizing:border-box}}
+  body{{margin:0;background:var(--bg);color:var(--txt);font-family:var(--sans);line-height:1.5}}
+  a{{color:inherit;text-decoration:none}}
+  .wrap{{max-width:1100px;margin:0 auto;padding:0 24px 80px}}
+  .topbar{{display:flex;align-items:center;justify-content:space-between;gap:16px;
+          padding:18px 0;border-bottom:1px solid var(--line);margin-bottom:22px;flex-wrap:wrap}}
+  .brand{{display:flex;align-items:center;gap:10px;font-family:var(--disp);font-size:17px;font-weight:700}}
+  .brand .dot{{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}}
+  .brand .date{{font-family:var(--mono);font-size:11px;color:var(--dimmer);font-weight:400;margin-left:6px}}
+  .nav{{display:flex;gap:6px}}
+  .nav a{{font-size:13px;font-weight:600;padding:7px 15px;border-radius:999px;color:var(--dim)}}
+  .nav a.on{{color:var(--accent);background:var(--accent-soft)}}
+  .nav a:hover{{color:var(--txt)}}
+  .lead h1{{margin:0 0 8px;font-family:var(--disp);font-size:clamp(22px,3vw,30px);letter-spacing:-.02em}}
+  .lead p{{margin:0 0 22px;color:var(--dim);font-size:14.5px}}
+  .grid{{display:grid;grid-template-columns:1fr 1fr;gap:16px}}
+  .widget{{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px}}
+  .widget-title{{font-family:var(--disp);font-size:15px;font-weight:700;margin-bottom:12px}}
+  .wide{{grid-column:1/-1}}
+  ul.rows{{list-style:none;padding:0;margin:0}}
+  ul.rows li{{display:flex;justify-content:space-between;gap:12px;align-items:baseline;
+             padding:8px 0;border-bottom:1px solid var(--line);font-size:13.5px}}
+  ul.rows li:last-child{{border-bottom:none;padding-bottom:0}}
+  .k{{font-weight:600}}
+  .m{{font-family:var(--mono);font-size:11px;color:var(--dimmer);white-space:nowrap}}
+  .thesis{{padding:4px 0 6px}}
+  .thesis li{{padding:7px 0;border-bottom:1px solid var(--line);font-size:14.5px;color:var(--txt-dim)}}
+  .thesis li:last-child{{border-bottom:none}}
+  .hit{{display:flex;justify-content:space-between;gap:12px;align-items:baseline;
+        padding:8px 0;border-bottom:1px solid var(--line)}}
+  .hit:last-child{{border-bottom:none;padding-bottom:0}}
+  .hit:hover .ht{{color:var(--accent)}}
+  .ht{{font-size:13.5px;font-weight:600;line-height:1.4}}
+  .hs{{font-family:var(--mono);font-size:10px;color:var(--dimmer);flex-shrink:0}}
+  .none{{font-size:13px;color:var(--dimmer);font-style:italic}}
+  .section-h{{font-family:var(--disp);font-size:15px;font-weight:700;margin:28px 0 12px}}
+  .clusters{{display:grid;grid-template-columns:1fr 1fr;gap:16px}}
+  footer{{margin-top:48px;padding-top:16px;border-top:1px solid var(--line);
+         font-family:var(--mono);font-size:10px;color:var(--dimmer)}}
+  @media(max-width:800px){{
+    .wrap{{padding:0 14px 60px}}
+    .grid,.clusters{{grid-template-columns:1fr}}
+    ul.rows li,.hit{{flex-direction:column;gap:4px}}
+    .m{{white-space:normal}}
+  }}
+</style>
 </head>
 <body>
-<header>
-  <div class="wrap top">
-    <div>
-      <h1>Weekly Radar · {period}</h1>
-      <div class="metrics">
-        <span class="pill">ventana: {n} días</span>
-        <span class="pill">recency half-life: 3d</span>
-        <span class="pill">concentración entidades: {ent_hhi:.3f} (top3 {ent_top3:.1%})</span>
-        <span class="pill">concentración categorías: {cat_hhi:.3f} (top3 {cat_top3:.1%})</span>
-      </div>
-    </div>
-    <nav class="nav"><a href="./index.html">Daily</a><a class="active" href="./weekly.html">Weekly</a><a href="./archivo.html">Archivo</a></nav>
+<div class="wrap">
+  <div class="topbar">
+    <div class="brand"><span class="dot"></span> AI Strategic Radar <span class="date">{html_escape(period)}</span></div>
+    <nav class="nav">
+      <a href="index.html">Diario</a>
+      <a class="on" href="weekly.html">Semanal</a>
+      <a href="archivo.html">Archivo</a>
+    </nav>
   </div>
-</header>
 
-<main class="wrap">
-  <section class="card" style="margin-bottom:14px">
-    <h2>Cómo leer estas métricas</h2>
-    <ul>
-      <li><span class="k">peso</span>: importancia reciente (más peso a los últimos días).</li>
-      <li><span class="k">cambio</span>: diferencia entre periodo reciente y periodo inicial.</li>
-      <li><span class="k">días</span>: días consecutivos con presencia.</li>
-      <li><span class="k">menciones</span>: total de apariciones en la ventana.</li>
-    </ul>
+  <div class="lead">
+    <h1>Semanal</h1>
+    <p>{n} días · {html_escape(period)} · {total_analyzed} señales.</p>
+  </div>
+
+  <section class="widget thesis" style="margin-bottom:16px">
+    <div class="widget-title">Lectura</div>
+    <ul class="rows thesis">{imp_li}</ul>
   </section>
 
   <div class="grid">
-    <section class="card">
-      <h2>Entidades · impulso (ponderado)</h2>
-      <ul>{ent_li}</ul>
+    <section class="widget">
+      <div class="widget-title">Quién tira</div>
+      <ul class="rows">{ent_li}</ul>
     </section>
-
-    <section class="card">
-      <h2>Categorías · impulso de participación</h2>
-      <ul>{cat_li}</ul>
+    <section class="widget">
+      <div class="widget-title">Temas</div>
+      <ul class="rows">{cat_li}</ul>
     </section>
-  </div>
-
-  <section class="card" style="margin-top:14px">
-    <h2>Fuentes · presencia en la ventana</h2>
-    <div class="metrics">
-      <span class="pill">fuentes activas: {active_sources_count}</span>
-      <span class="pill">items analizados: {total_analyzed}</span>
-    </div>
-    <ul>{source_li}</ul>
-  </section>
-
-  <div class="grid" style="margin-top:14px">
-    <section class="card">
-      <h2>Rotación narrativa · suben</h2>
-      <ul>{risers_li}</ul>
+    <section class="widget">
+      <div class="widget-title">Temas que suben</div>
+      <ul class="rows">{risers_li}</ul>
     </section>
-
-    <section class="card">
-      <h2>Rotación narrativa · bajan</h2>
-      <ul>{fallers_li}</ul>
+    <section class="widget">
+      <div class="widget-title">Temas que bajan</div>
+      <ul class="rows">{fallers_li}</ul>
+    </section>
+    <section class="widget">
+      <div class="widget-title">Nuevos nombres</div>
+      <ul class="rows">{new_li}</ul>
+    </section>
+    <section class="widget">
+      <div class="widget-title">Saltos</div>
+      <ul class="rows">{bo_li}</ul>
+    </section>
+    <section class="widget wide">
+      <div class="widget-title">Quién cubre</div>
+      <ul class="rows">{source_li}</ul>
     </section>
   </div>
 
-  <section class="card" style="margin-top:14px">
-    <h2>Implicaciones</h2>
-    <ul>{imp_li}</ul>
-  </section>
+  <div class="section-h">Hilos por entidad</div>
+  <div class="clusters">{clusters_html}</div>
+  <div class="section-h">Hilos por tema</div>
+  <div class="clusters">{cat_clusters_html}</div>
 
-  <div class="grid" style="margin-top:14px">
-    <section class="card">
-      <h2>New entrants (últimos días)</h2>
-      <ul>{new_li}</ul>
-    </section>
-
-    <section class="card">
-      <h2>Breakouts (salto reciente)</h2>
-      <ul>{bo_li}</ul>
-    </section>
-  </div>
-
-  <section style="margin-top:14px">
-    <h2 style="color:#cbd5e1; font-size:15px; margin:0 0 10px 0;">Clusters · top entidades</h2>
-    {clusters_html}
-  </section>
-
-  <section style="margin-top:14px">
-    <h2 style="color:#cbd5e1; font-size:15px; margin:0 0 10px 0;">Clusters · top categorías</h2>
-    {cat_clusters_html}
-  </section>
-</main>
-
+  <footer>{n} días · {html_escape(period)}</footer>
+</div>
 </body>
 </html>
 """
