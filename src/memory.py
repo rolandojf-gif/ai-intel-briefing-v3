@@ -280,12 +280,15 @@ def activity_level(signals: list[dict], degraded: bool = False) -> tuple[str, st
 
     real = [it for it in signals if it.get("layer") == "signal"]
     n = len(real)
-    strong = sum(1 for it in real if int(it.get("final_score") or 0) >= 70)
+    # Umbral de "senal fuerte" en 85: con el gate v2 entregando 7-8 senales al
+    # dia, el corte anterior (70, o 6+ senales) hacia que ALERTA saliera todos
+    # los dias y el indicador dejara de informar. Un dia normal debe ser ACTIVO.
+    strong = sum(1 for it in real if int(it.get("final_score") or 0) >= 85)
 
     if n == 0:
         return "SIN SEÑAL", "quiet"
-    if strong >= 3 or n >= 6:
+    if strong >= 3 or n >= 10:
         return "ALERTA", "alert"
-    if strong >= 1 or n >= 3:
+    if strong >= 1 or n >= 4:
         return "ACTIVO", "active"
     return "TRANQUILO", "quiet"
