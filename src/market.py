@@ -34,7 +34,7 @@ def _generate_sparkline(points: list[float], positive: bool = True, width: int =
 
 
 def _fetch_yahoo_quote(symbol: str) -> dict | None:
-    """Obtiene cotización y serie de precios vía API ligera de Yahoo Finance."""
+    """Obtiene el valor del ultimo cierre y la variacion diaria real respecto al cierre anterior."""
     try:
         url = f"https://query1.finance.yahoo.com/v8/finance/chart/{symbol}?interval=1d&range=5d"
         resp = requests.get(url, headers={"User-Agent": USER_AGENT}, timeout=TIMEOUT)
@@ -43,20 +43,32 @@ def _fetch_yahoo_quote(symbol: str) -> dict | None:
         data = resp.json()
         result = data.get("chart", {}).get("result", [{}])[0]
         meta = result.get("meta", {})
-        price = meta.get("regularMarketPrice") or meta.get("chartPreviousClose")
-        prev_close = meta.get("chartPreviousClose") or meta.get("previousClose")
         
         quotes = result.get("indicators", {}).get("quote", [{}])[0]
         closes = [c for c in quotes.get("close", []) if isinstance(c, (int, float))]
 
-        if price is None:
-            return None
+        if not closes:
+            price = meta.get("regularMarketPrice") or meta.get("chartPreviousClose")
+            if price is None:
+                return None
+            return {
+                "price": price,
+                "change_pct": 0.0,
+                "sparkline_points": [],
+            }
 
-        change_pct = ((price - prev_close) / prev_close * 100) if prev_close else 0.0
+        last_close = closes[-1]
+        if len(closes) >= 2:
+            prev_close = closes[-2]
+            change_pct = ((last_close - prev_close) / prev_close) * 100 if prev_close else 0.0
+        else:
+            prev_close = meta.get("previousClose") or meta.get("chartPreviousClose") or last_close
+            change_pct = ((last_close - prev_close) / prev_close * 100) if prev_close else 0.0
+
         return {
-            "price": price,
+            "price": last_close,
             "change_pct": change_pct,
-            "sparkline_points": closes[-7:] if len(closes) >= 2 else [],
+            "sparkline_points": closes[-7:] if len(closes) >= 2 else [last_close],
         }
     except Exception:
         return None

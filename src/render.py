@@ -539,7 +539,7 @@ TEMPLATE = ENV.from_string("""
       <div class="widget">
         <div class="widget-title">
           <span>Perspectiva del mercado</span>
-          <span class="lbl">MACRO</span>
+          <span class="lbl">ÚLTIMO CIERRE</span>
         </div>
         <div class="market-grid">
           {% for m in market.macro %}
@@ -561,7 +561,7 @@ TEMPLATE = ENV.from_string("""
       <div class="widget">
         <div class="widget-title">
           <span>Empresas en tendencia (AI & Semis)</span>
-          <span class="lbl">STOCKS</span>
+          <span class="lbl">ÚLTIMO CIERRE</span>
         </div>
         <div class="company-list">
           {% for c in market.companies %}
