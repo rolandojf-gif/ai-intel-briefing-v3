@@ -307,6 +307,11 @@ TEMPLATE = ENV.from_string("""
   .nav a{font-size:13px;font-weight:600;padding:7px 15px;border-radius:999px;color:var(--dim)}
   .nav a.on{color:var(--accent);background:var(--accent-soft)}
   .nav a:hover{color:var(--txt)}
+  .arch-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 18px;
+            padding:10px 14px;background:var(--card);border:1px solid var(--line);border-radius:12px;
+            font-size:13px;color:var(--dim)}
+  .arch-bar a{color:var(--accent);font-weight:600}
+  .arch-bar .here{font-family:var(--mono);font-size:12px;color:var(--txt);font-weight:600}
 
   /* -- Tesis -- */
   .thesis{padding:6px 0 18px}
@@ -491,11 +496,22 @@ TEMPLATE = ENV.from_string("""
     <div class="top-r">
       <span class="state {{ activity.class }}"><span class="sdot"></span>{{ activity.label }}</span>
       <nav class="nav">
-        <a class="on" href="index.html">Diario</a>
-        <a href="weekly.html">Semanal</a>
+        <a class="{{ 'on' if nav == 'daily' else '' }}" href="{{ root }}index.html">Diario</a>
+        <a class="{{ 'on' if nav == 'weekly' else '' }}" href="{{ root }}weekly.html">Semanal</a>
+        <a class="{{ 'on' if nav == 'archivo' else '' }}" href="{{ root }}archivo.html">Archivo</a>
       </nav>
     </div>
   </div>
+
+  {% if archive %}
+  <div class="arch-bar">
+    <a href="{{ root }}archivo.html">← Archivo</a>
+    {% if archive.prev %}<a href="{{ root }}d/{{ archive.prev }}.html">{{ archive.prev }}</a>{% endif %}
+    <span class="here">{{ generated_at }}</span>
+    {% if archive.next %}<a href="{{ root }}d/{{ archive.next }}.html">{{ archive.next }}</a>{% endif %}
+    <a href="{{ root }}index.html" style="margin-left:auto">Hoy</a>
+  </div>
+  {% endif %}
 
   <!-- Tesis del dia -->
   <div class="thesis">
@@ -761,6 +777,12 @@ TEMPLATE = ENV.from_string("""
 
 <script>
   (function(){
+    var params = new URLSearchParams(location.search);
+    var d = params.get('date');
+    if (d && /^\d{4}-\d{2}-\d{2}$/.test(d)) {
+      location.replace('d/' + d + '.html');
+      return;
+    }
     var tabs = document.querySelectorAll('#tabs .tab');
     if (!tabs.length) return;
     tabs.forEach(function(t){
@@ -784,7 +806,7 @@ TEMPLATE = ENV.from_string("""
 """)
 
 
-def render_index(items, briefing=None, snapshot=None, market=None):
+def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", root="", archive=None):
     briefing = briefing or {}
     snapshot = snapshot or {}
 
@@ -893,4 +915,7 @@ def render_index(items, briefing=None, snapshot=None, market=None):
         sources_total=health.get("configured", 0),
         sources_dead=", ".join(dead[:4]) if dead else "",
         market=market,
+        nav=nav or "daily",
+        root=root or "",
+        archive=archive,
     )

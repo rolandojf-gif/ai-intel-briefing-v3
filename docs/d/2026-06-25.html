@@ -1,0 +1,648 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>AI Strategic Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#191a1a; --card:#202222; --card-hover:#262828; --line:#2f3131; --line-2:#3d4040;
+    --txt:#e8e8e6; --txt-dim:#c8cbca; --dim:#9b9f9e; --dimmer:#6b6f6e;
+    --accent:#20b8cd; --accent-soft:rgba(32,184,205,.12); --accent-line:rgba(32,184,205,.35);
+    --green:#4bd48b; --rose:#f2665f; --amber:#e8b750; --violet:#b28bf2;
+    --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+    --sans:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+    --disp:'Space Grotesk','Inter',system-ui,sans-serif;
+    --r:16px;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--txt);font-family:var(--sans);line-height:1.5}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 24px 80px}
+
+  /* -- Barra superior -- */
+  .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;
+          padding:18px 0;border-bottom:1px solid var(--line);margin-bottom:20px;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:10px;font-family:var(--disp);font-size:17px;font-weight:700;letter-spacing:-.01em}
+  .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}
+  .brand .date{font-family:var(--mono);font-size:11px;color:var(--dimmer);font-weight:400;margin-left:6px}
+  .top-r{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .state{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:10px;
+         font-weight:700;letter-spacing:.16em;padding:6px 12px;border-radius:999px;border:1px solid}
+  .state .sdot{width:5px;height:5px;border-radius:50%;background:currentColor}
+  .state.alert{color:var(--rose);border-color:rgba(242,102,95,.4);background:rgba(242,102,95,.08)}
+  .state.alert .sdot{animation:pulse 1.8s ease-in-out infinite}
+  .state.active{color:var(--amber);border-color:rgba(232,183,80,.4);background:rgba(232,183,80,.08)}
+  .state.quiet{color:var(--dim);border-color:var(--line-2);background:var(--card)}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+  .nav{display:flex;gap:6px}
+  .nav a{font-size:13px;font-weight:600;padding:7px 15px;border-radius:999px;color:var(--dim)}
+  .nav a.on{color:var(--accent);background:var(--accent-soft)}
+  .nav a:hover{color:var(--txt)}
+  .arch-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 18px;
+            padding:10px 14px;background:var(--card);border:1px solid var(--line);border-radius:12px;
+            font-size:13px;color:var(--dim)}
+  .arch-bar a{color:var(--accent);font-weight:600}
+  .arch-bar .here{font-family:var(--mono);font-size:12px;color:var(--txt);font-weight:600}
+
+  /* -- Tesis -- */
+  .thesis{padding:6px 0 18px}
+  .thesis .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--accent);
+               text-transform:uppercase;font-weight:700;display:block;margin-bottom:8px}
+  .thesis h1{margin:0;font-family:var(--disp);font-size:clamp(20px,2.6vw,28px);line-height:1.3;
+             font-weight:600;letter-spacing:-.015em;max-width:62ch;color:var(--txt)}
+
+  .degraded{margin:0 0 18px;padding:12px 16px;border:1px solid rgba(232,183,80,.35);
+            border-left:3px solid var(--amber);background:rgba(232,183,80,.06);border-radius:10px;
+            font-size:13px;color:#eccd8e;line-height:1.55}
+
+  /* -- Tabs de tema (Discover) -- */
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;padding:4px 0 22px}
+  .tab{font-size:13px;font-weight:600;padding:8px 16px;border-radius:999px;cursor:pointer;
+       border:1px solid var(--line);background:var(--card);color:var(--dim);
+       transition:all .15s ease;user-select:none}
+  .tab:hover{color:var(--txt);border-color:var(--line-2)}
+  .tab.on{color:#0e2b30;background:var(--accent);border-color:var(--accent);font-weight:700}
+  .tab .n{font-family:var(--mono);font-size:10.5px;opacity:.75;margin-left:5px}
+
+  /* -- Rejilla principal -- */
+  .layout{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:26px;align-items:start}
+
+  /* -- Hero (card destacada Discover) -- */
+  .hero{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+        overflow:hidden;margin-bottom:18px;transition:background .15s,border-color .15s}
+  .hero:hover{background:var(--card-hover);border-color:var(--line-2)}
+  .hero-img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#141616}
+  .hero-body{padding:20px 22px 22px}
+  .meta-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+  .src{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:var(--dim)}
+  .src img{width:16px;height:16px;border-radius:4px;flex-shrink:0}
+  .tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
+       padding:3px 9px;border-radius:999px;color:var(--accent);background:var(--accent-soft);
+       border:1px solid var(--accent-line);font-weight:700}
+  .score{font-family:var(--mono);font-size:10.5px;color:var(--dimmer);margin-left:auto}
+  .badge-new{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;
+             font-weight:700;padding:3px 8px;border-radius:999px;color:#0d2b1c;
+             background:var(--green);flex-shrink:0}
+  .tab-new.on{color:#0d2b1c;background:var(--green);border-color:var(--green)}
+  .multi{font-family:var(--mono);font-size:9.5px;color:var(--violet);border:1px solid rgba(178,139,242,.35);
+         background:rgba(178,139,242,.1);padding:3px 8px;border-radius:999px;font-weight:700}
+  .hero-title{margin:0 0 10px;font-family:var(--disp);font-size:clamp(19px,2.3vw,26px);
+              line-height:1.28;font-weight:700;letter-spacing:-.015em}
+  .hero-title a:hover{color:var(--accent)}
+  .sw{font-size:14.5px;line-height:1.6;color:var(--txt-dim)}
+  .facts{display:grid;gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+  @media(min-width:860px){.facts.two{grid-template-columns:1fr 1fr;gap:18px}}
+  .fact{display:flex;gap:9px;align-items:flex-start;font-size:12.5px;line-height:1.5}
+  .fact .k{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;
+           flex-shrink:0;padding-top:2px;font-weight:700}
+  .fact.pw .k{color:var(--violet)} .fact.pw .v{color:#cfc0ee}
+  .fact.wn .k{color:var(--amber)}  .fact.wn .v{color:#e3cf9b}
+  .ents{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+  .ent{font-family:var(--mono);font-size:10px;padding:3px 9px;border-radius:999px;
+       background:rgba(255,255,255,.04);color:var(--dim);border:1px solid var(--line)}
+
+  /* -- Rejilla de cards (Discover) -- */
+  .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+        overflow:hidden;display:flex;flex-direction:column;
+        transition:background .15s,border-color .15s,transform .15s}
+  .card:hover{background:var(--card-hover);border-color:var(--line-2);transform:translateY(-2px)}
+  .card-img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#141616}
+  .card-body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
+  .card .meta-row{margin-bottom:0}
+  .card-title{margin:0;font-family:var(--disp);font-size:16.5px;line-height:1.34;font-weight:600;letter-spacing:-.01em}
+  .card-title a:hover{color:var(--accent)}
+  .card .sw{font-size:13px;line-height:1.55;color:var(--dim);
+            display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .card-foot{margin-top:auto;padding-top:10px;border-top:1px solid var(--line);display:grid;gap:6px}
+  .card-foot .fact{font-size:11.5px}
+
+  /* -- Contexto -- */
+  .section-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+             margin:26px 0 14px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+  .section-h h2{margin:0;font-family:var(--disp);font-size:15px;font-weight:700}
+  .section-h .n{font-family:var(--mono);font-size:10.5px;color:var(--dimmer)}
+  .ctx{display:grid;gap:8px}
+  .cx{display:flex;gap:12px;align-items:flex-start;padding:13px 16px;background:var(--card);
+      border:1px solid var(--line);border-radius:12px}
+  .cx:hover{border-color:var(--line-2);background:var(--card-hover)}
+  .cx img{width:16px;height:16px;border-radius:4px;flex-shrink:0;margin-top:3px}
+  .cx-b{min-width:0;flex:1}
+  .cx-t{font-size:14px;font-weight:600;line-height:1.4}
+  .cx-t a:hover{color:var(--accent)}
+  .cx-w{font-size:12.5px;color:var(--dim);margin-top:3px;line-height:1.5}
+  .cx-m{font-family:var(--mono);font-size:9.5px;color:var(--dimmer);margin-top:5px;letter-spacing:.06em}
+
+  .empty{padding:44px 26px;text-align:center;border:1px dashed var(--line-2);border-radius:var(--r);background:var(--card)}
+  .empty .big{font-family:var(--disp);font-size:17px;font-weight:650;margin-bottom:8px}
+  .empty .sub{font-size:13.5px;color:var(--dim);max-width:52ch;margin:0 auto;line-height:1.6}
+
+  /* -- Sidebar -- */
+  .sidebar{display:grid;gap:16px;position:sticky;top:16px}
+  .widget{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px}
+  .widget-title{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:13px}
+  .widget-title span:first-child{font-family:var(--disp);font-size:14px;font-weight:700}
+  .widget-title .lbl{font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--dimmer);text-transform:uppercase}
+
+  .market-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+  .m-box{background:rgba(255,255,255,.025);border:1px solid var(--line);border-radius:10px;padding:10px 11px}
+  .m-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+  .m-lbl{font-size:11px;font-weight:600;color:var(--dim)}
+  .m-chg{font-family:var(--mono);font-size:10.5px;font-weight:700}
+  .m-chg.pos{color:var(--green)} .m-chg.neg{color:var(--rose)}
+  .m-chg.na{color:var(--dimmer);font-weight:500}
+  .m-price{font-family:var(--mono);font-size:12.5px;font-weight:700;color:var(--txt);margin-bottom:4px}
+  .m-nodata{opacity:.55}
+  .m-nodata .m-price{color:var(--dimmer);font-weight:500}
+  .spark{width:100%;height:22px;display:block}
+
+  .comp-item{display:flex;justify-content:space-between;align-items:center;gap:10px;
+             padding:8px 0;border-bottom:1px solid var(--line)}
+  .comp-item:last-child{border-bottom:none;padding-bottom:0}
+  .comp-info{display:flex;align-items:center;gap:9px;min-width:0}
+  .comp-logo{width:22px;height:22px;border-radius:6px;flex-shrink:0;background:#fff}
+  .comp-name{font-size:12.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .comp-ticker{font-family:var(--mono);font-size:9.5px;color:var(--dimmer)}
+  .comp-val{text-align:right;flex-shrink:0}
+  .comp-price{font-family:var(--mono);font-size:11.5px;font-weight:700}
+  .comp-price.na{color:var(--dimmer);font-weight:500}
+  .comp-chg{font-family:var(--mono);font-size:10px;font-weight:700}
+  .comp-chg.pos{color:var(--green)} .comp-chg.neg{color:var(--rose)}
+  .comp-chg.na{color:var(--dimmer);font-weight:500}
+
+  .wr{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--line)}
+  .wr:last-child{border-bottom:none;padding-bottom:0}
+  .wr-ic{font-family:var(--mono);font-size:12px;font-weight:700;flex-shrink:0;line-height:1.5}
+  .wr.hit .wr-ic{color:var(--green)} .wr.open .wr-ic{color:var(--dimmer)}
+  .wr-t{font-size:12.5px;line-height:1.5}
+  .wr.open .wr-t{color:var(--dim)}
+  .wr-ev{font-size:11px;color:var(--green);margin-top:3px;line-height:1.4}
+
+  .thr{display:flex;gap:11px;align-items:baseline;padding:8px 0;border-bottom:1px solid var(--line)}
+  .thr:last-child{border-bottom:none;padding-bottom:0}
+  .thr-d{font-family:var(--mono);font-size:9.5px;font-weight:700;color:var(--violet);flex-shrink:0;
+         padding:2px 8px;border:1px solid rgba(178,139,242,.32);border-radius:999px;background:rgba(178,139,242,.08)}
+  .thr-t{font-size:12.5px;font-weight:600}
+  .thr-l{font-size:11.5px;color:var(--dim);margin-top:2px;line-height:1.4}
+  .mv{display:flex;gap:8px;align-items:center;padding:7px 0;border-bottom:1px solid var(--line);font-size:12px;flex-wrap:wrap}
+  .mv:last-child{border-bottom:none;padding-bottom:0}
+  .mv-b{font-family:var(--mono);font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;
+        padding:2px 7px;border-radius:999px;flex-shrink:0;font-weight:700}
+  .mv-b.new{color:var(--green);background:rgba(75,212,139,.1);border:1px solid rgba(75,212,139,.3)}
+  .mv-b.ret{color:var(--amber);background:rgba(232,183,80,.1);border:1px solid rgba(232,183,80,.3)}
+  .mv-b.str{color:var(--accent);background:var(--accent-soft);border:1px solid var(--accent-line)}
+  .mv .nm{font-weight:600}
+  .mv .dt{color:var(--dimmer);font-family:var(--mono);font-size:10px}
+  .none{font-size:12px;color:var(--dimmer);font-style:italic}
+  .rk{padding:8px 0;border-bottom:1px solid var(--line);font-size:12.5px;line-height:1.5;color:#e3cf9b}
+  .rk:last-child{border-bottom:none;padding-bottom:0}
+  .rk.w{color:#cfc0ee}
+
+  footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);
+         display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+         font-family:var(--mono);font-size:10px;color:var(--dimmer);letter-spacing:.05em}
+
+  /* -- Responsive -- */
+  @media(max-width:1080px){
+    .layout{grid-template-columns:1fr}
+    .sidebar{position:static}
+  }
+  @media(max-width:720px){
+    .grid{grid-template-columns:1fr}
+    .wrap{padding:0 14px 60px}
+    .market-grid{grid-template-columns:1fr 1fr}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Barra superior -->
+  <div class="topbar">
+    <div class="brand">
+      <span class="dot"></span>
+      AI Strategic Radar
+      <span class="date">2026-06-25</span>
+    </div>
+    <div class="top-r">
+      <span class="state quiet"><span class="sdot"></span>ARCHIVO</span>
+      <nav class="nav">
+        <a class="" href="../index.html">Diario</a>
+        <a class="" href="../weekly.html">Semanal</a>
+        <a class="on" href="../archivo.html">Archivo</a>
+      </nav>
+    </div>
+  </div>
+
+  
+  <div class="arch-bar">
+    <a href="../archivo.html">← Archivo</a>
+    <a href="../d/2026-06-24.html">2026-06-24</a>
+    <span class="here">2026-06-25</span>
+    <a href="../d/2026-06-26.html">2026-06-26</a>
+    <a href="../index.html" style="margin-left:auto">Hoy</a>
+  </div>
+  
+
+  <!-- Tesis del dia -->
+  <div class="thesis">
+    <span class="lbl">Tesis del día</span>
+    <h1>Gemini 3.5 Flash incorpora uso de ordenador, intensificando la carrera por agentes capaces de ejecutar flujos de trabajo.</h1>
+  </div>
+
+  
+
+  <!-- Tabs de tema -->
+  
+  <div class="tabs" id="tabs">
+    <span class="tab on" data-filter="all">Todas<span class="n">15</span></span>
+    
+    <span class="tab tab-new" data-filter="__new__">Nuevo<span class="n">13</span></span>
+    
+    
+    <span class="tab" data-filter="frontier_capability">Capacidad frontier<span class="n">4</span></span>
+    
+    <span class="tab" data-filter="agents_automation">Agentes<span class="n">4</span></span>
+    
+    <span class="tab" data-filter="compute_chips_dc">Compute &amp; chips<span class="n">4</span></span>
+    
+    <span class="tab" data-filter="model_economics_pricing">Economía de modelos<span class="n">3</span></span>
+    
+  </div>
+  
+
+  <div class="layout">
+
+    <!-- Columna principal -->
+    <div class="main-col">
+
+      
+      <article class="hero" data-theme="frontier_capability" data-new="1">
+        <a href="https://arxiv.org/abs/2606.24890" target="_blank" rel="noopener noreferrer">
+          <img class="hero-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxYzFlMWUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGYzYjMzIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJyIiBjeD0iODAlIiBjeT0iMjAlIiByPSI2MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMzRkMWIyIiBzdG9wLW9wYWNpdHk9IjAuMjIiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWMxZTFlIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIzNjAiIGZpbGw9InVybCgjcikiLz4KICA8Y2lyY2xlIGN4PSI1NDAiIGN5PSI3MCIgcj0iMTMwIiBmaWxsPSIjMzRkMWIyIiBvcGFjaXR5PSIwLjEwIi8+CiAgPHRleHQgeD0iNDAiIHk9Ijc2IiBmaWxsPSIjMzRkMWIyIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCAtYXBwbGUtc3lzdGVtLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iODAwIiBsZXR0ZXItc3BhY2luZz0iMiI+RlJPTlRJRVIgTU9ERUxTPC90ZXh0PgogIDx0ZXh0IHk9IjE1MCIgZmlsbD0iI2VjZWVlZCIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgLWFwcGxlLXN5c3RlbSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNyIgZm9udC13ZWlnaHQ9IjcwMCI+PHRzcGFuIHg9IjQwIiBkeT0iMCI+UGVxdWXDsWFzIGVkaWNpb25lcywgZ3JhbmRlczwvdHNwYW4+PHRzcGFuIHg9IjQwIiBkeT0iMzQiPm1vZGVsb3M6IEPDs21vIGVsIGFjdGl2aXNtbyBlbjwvdHNwYW4+PHRzcGFuIHg9IjQwIiBkeT0iMzQiPldpa2lwZWRpYSBtb2xkZWEgbG9zIHZhbG9yZXMgZGXigKY8L3RzcGFuPjwvdGV4dD4KICA8bGluZSB4MT0iNDAiIHkxPSIzMDgiIHgyPSI2MDAiIHkyPSIzMDgiIHN0cm9rZT0iIzNkNDA0MCIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPHRleHQgeD0iNDAiIHk9IjMzMiIgZmlsbD0iIzliOWY5ZSIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiI+YXJYaXYgY3MuQ0w8L3RleHQ+Cjwvc3ZnPg==" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+        </a>
+        <div class="hero-body">
+          <div class="meta-row">
+            <span class="tag">Capacidad frontier</span>
+            <span class="badge-new">Nuevo</span>
+            <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
+            
+            <span class="score">80</span>
+          </div>
+          <h2 class="hero-title">
+            <a href="https://arxiv.org/abs/2606.24890" target="_blank" rel="noopener noreferrer">Pequeñas ediciones, grandes modelos: Cómo el activismo en Wikipedia moldea los valores de los LLM</a>
+          </h2>
+          <div class="sw">Estudio crítico que revela cómo ediciones mínimas en Wikipedia dominan los valores y respuestas de modelos como Llama 3.1.</div>
+          
+          
+          <div class="ents"><span class="ent">Wikipedia</span><span class="ent">Llama 3.1</span><span class="ent">PAW</span><span class="ent">Small</span><span class="ent">How Wikipedia</span></div>
+          
+        </div>
+      </article>
+      
+
+      
+      <div class="grid">
+        
+        <article class="card" data-theme="model_economics_pricing" data-new="1">
+          <a href="https://semiwiki.com/artificial-intelligence/370320-the-wedding-of-the-year-why-ai-infrastructure-financing-is-becoming-a-semiconductor-story/" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxYzFlMWUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGYzYjMzIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJyIiBjeD0iODAlIiBjeT0iMjAlIiByPSI2MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMzRkMWIyIiBzdG9wLW9wYWNpdHk9IjAuMjIiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWMxZTFlIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIzNjAiIGZpbGw9InVybCgjcikiLz4KICA8Y2lyY2xlIGN4PSI1NDAiIGN5PSI3MCIgcj0iMTMwIiBmaWxsPSIjMzRkMWIyIiBvcGFjaXR5PSIwLjEwIi8+CiAgPHRleHQgeD0iNDAiIHk9Ijc2IiBmaWxsPSIjMzRkMWIyIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCAtYXBwbGUtc3lzdGVtLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iODAwIiBsZXR0ZXItc3BhY2luZz0iMiI+RlJPTlRJRVIgTU9ERUxTPC90ZXh0PgogIDx0ZXh0IHk9IjE1MCIgZmlsbD0iI2VjZWVlZCIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgLWFwcGxlLXN5c3RlbSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNyIgZm9udC13ZWlnaHQ9IjcwMCI+PHRzcGFuIHg9IjQwIiBkeT0iMCI+TGEgYm9kYSBkZWwgYcOxbzogUG9yIHF1w6kgbGE8L3RzcGFuPjx0c3BhbiB4PSI0MCIgZHk9IjM0Ij5maW5hbmNpYWNpw7NuIGRlIGluZnJhZXN0cnVjdHVyYTwvdHNwYW4+PHRzcGFuIHg9IjQwIiBkeT0iMzQiPmRlIElBIHNlIGVzdMOhIGNvbnZpcnRpZW5kbyBlbuKApjwvdHNwYW4+PC90ZXh0PgogIDxsaW5lIHgxPSI0MCIgeTE9IjMwOCIgeDI9IjYwMCIgeTI9IjMwOCIgc3Ryb2tlPSIjM2Q0MDQwIiBzdHJva2Utd2lkdGg9IjEiLz4KICA8dGV4dCB4PSI0MCIgeT0iMzMyIiBmaWxsPSIjOWI5ZjllIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIj5TZW1pV2lraTwvdGV4dD4KPC9zdmc+" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="badge-new">Nuevo</span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=semiwiki.com&amp;sz=64" alt="" loading="lazy"/>SemiWiki</span>
+              
+              <span class="score">80</span>
+            </div>
+            <h3 class="card-title">
+              <a href="https://semiwiki.com/artificial-intelligence/370320-the-wedding-of-the-year-why-ai-infrastructure-financing-is-becoming-a-semiconductor-story/" target="_blank" rel="noopener noreferrer">La boda del año: Por qué la financiación de infraestructura de IA se está convirtiendo en una historia de semiconductores</a>
+            </h3>
+            <div class="sw">Operación financiera masiva que posiciona el desarrollo de chips personalizados como el centro de la estrategia de inversión en IA.</div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-theme="agents_automation" data-new="1">
+          <a href="https://arxiv.org/abs/2606.24893" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxYzFlMWUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMmEyMTQ1Ii8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJyIiBjeD0iODAlIiBjeT0iMjAlIiByPSI2MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjYjI4YmYyIiBzdG9wLW9wYWNpdHk9IjAuMjIiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWMxZTFlIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIzNjAiIGZpbGw9InVybCgjcikiLz4KICA8Y2lyY2xlIGN4PSI1NDAiIGN5PSI3MCIgcj0iMTMwIiBmaWxsPSIjYjI4YmYyIiBvcGFjaXR5PSIwLjEwIi8+CiAgPHRleHQgeD0iNDAiIHk9Ijc2IiBmaWxsPSIjYjI4YmYyIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCAtYXBwbGUtc3lzdGVtLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iODAwIiBsZXR0ZXItc3BhY2luZz0iMiI+QUdFTlRTICZhbXA7IFJFQVNPTklORzwvdGV4dD4KICA8dGV4dCB5PSIxNTAiIGZpbGw9IiNlY2VlZWQiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIC1hcHBsZS1zeXN0ZW0sIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSI3MDAiPjx0c3BhbiB4PSI0MCIgZHk9IjAiPkFnZW50T2R5c3NleTogR2VuZXJhY2nDs24gZGU8L3RzcGFuPjx0c3BhbiB4PSI0MCIgZHk9IjM0Ij5qdWVnb3MgZGUgdGV4dG8gcGFyYSBhZ2VudGVzIGNvbjwvdHNwYW4+PHRzcGFuIHg9IjQwIiBkeT0iMzQiPmFwcmVuZGl6YWplIGNvbnRpbnVvIGVuIHRpZW1wb+KApjwvdHNwYW4+PC90ZXh0PgogIDxsaW5lIHgxPSI0MCIgeTE9IjMwOCIgeDI9IjYwMCIgeTI9IjMwOCIgc3Ryb2tlPSIjM2Q0MDQwIiBzdHJva2Utd2lkdGg9IjEiLz4KICA8dGV4dCB4PSI0MCIgeT0iMzMyIiBmaWxsPSIjOWI5ZjllIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIj5hclhpdiBjcy5DTDwvdGV4dD4KPC9zdmc+" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="badge-new">Nuevo</span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
+              
+              <span class="score">79</span>
+            </div>
+            <h3 class="card-title">
+              <a href="https://arxiv.org/abs/2606.24893" target="_blank" rel="noopener noreferrer">AgentOdyssey: Generación de juegos de texto para agentes con aprendizaje continuo en tiempo de ejecución</a>
+            </h3>
+            <div class="sw">Marco innovador para que los agentes aprendan y se adapten en tiempo real durante la ejecución, no solo en entrenamiento.</div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-theme="compute_chips_dc" data-new="1">
+          <a href="https://arxiv.org/abs/2606.24952" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxYzFlMWUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMTIzNDNjIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJyIiBjeD0iODAlIiBjeT0iMjAlIiByPSI2MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMjBiOGNkIiBzdG9wLW9wYWNpdHk9IjAuMjIiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWMxZTFlIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIzNjAiIGZpbGw9InVybCgjcikiLz4KICA8Y2lyY2xlIGN4PSI1NDAiIGN5PSI3MCIgcj0iMTMwIiBmaWxsPSIjMjBiOGNkIiBvcGFjaXR5PSIwLjEwIi8+CiAgPHRleHQgeD0iNDAiIHk9Ijc2IiBmaWxsPSIjMjBiOGNkIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCAtYXBwbGUtc3lzdGVtLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iODAwIiBsZXR0ZXItc3BhY2luZz0iMiI+Q09NUFVURSAmYW1wOyBDSElQUzwvdGV4dD4KICA8dGV4dCB5PSIxNTAiIGZpbGw9IiNlY2VlZWQiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIC1hcHBsZS1zeXN0ZW0sIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSI3MDAiPjx0c3BhbiB4PSI0MCIgZHk9IjAiPkRldGVjY2nDs24gcGVyZmVjdGEsIGNvbnRyb2w8L3RzcGFuPjx0c3BhbiB4PSI0MCIgZHk9IjM0Ij5mYWxsaWRvOiBMYSBnZW9tZXRyw61hIGRlbDwvdHNwYW4+PHRzcGFuIHg9IjQwIiBkeT0iMzQiPmNvbm9jaW1pZW50byBmcmVudGUgYWzigKY8L3RzcGFuPjwvdGV4dD4KICA8bGluZSB4MT0iNDAiIHkxPSIzMDgiIHgyPSI2MDAiIHkyPSIzMDgiIHN0cm9rZT0iIzNkNDA0MCIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPHRleHQgeD0iNDAiIHk9IjMzMiIgZmlsbD0iIzliOWY5ZSIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiI+YXJYaXYgY3MuQ0w8L3RleHQ+Cjwvc3ZnPg==" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="badge-new">Nuevo</span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
+              
+              <span class="score">79</span>
+            </div>
+            <h3 class="card-title">
+              <a href="https://arxiv.org/abs/2606.24952" target="_blank" rel="noopener noreferrer">Detección perfecta, control fallido: La geometría del conocimiento frente al direccionamiento en modelos de lenguaje</a>
+            </h3>
+            <div class="sw">Demuestra que detectar un comportamiento no implica poder controlarlo, identificando un desfase geométrico clave en Gemma 2.</div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-theme="compute_chips_dc" data-new="1">
+          <a href="https://semiwiki.com/photonics/370505-the-modulator-is-not-the-product-why-ai-photonics-needs-an-electro-optical-realization-corridor/" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxYzFlMWUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMTIzNDNjIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJyIiBjeD0iODAlIiBjeT0iMjAlIiByPSI2MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMjBiOGNkIiBzdG9wLW9wYWNpdHk9IjAuMjIiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWMxZTFlIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIzNjAiIGZpbGw9InVybCgjcikiLz4KICA8Y2lyY2xlIGN4PSI1NDAiIGN5PSI3MCIgcj0iMTMwIiBmaWxsPSIjMjBiOGNkIiBvcGFjaXR5PSIwLjEwIi8+CiAgPHRleHQgeD0iNDAiIHk9Ijc2IiBmaWxsPSIjMjBiOGNkIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCAtYXBwbGUtc3lzdGVtLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iODAwIiBsZXR0ZXItc3BhY2luZz0iMiI+Q09NUFVURSAmYW1wOyBDSElQUzwvdGV4dD4KICA8dGV4dCB5PSIxNTAiIGZpbGw9IiNlY2VlZWQiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIC1hcHBsZS1zeXN0ZW0sIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSI3MDAiPjx0c3BhbiB4PSI0MCIgZHk9IjAiPkVsIG1vZHVsYWRvciBubyBlcyBlbCBwcm9kdWN0bzo8L3RzcGFuPjx0c3BhbiB4PSI0MCIgZHk9IjM0Ij5Qb3IgcXXDqSBsYSBmb3TDs25pY2EgZGUgSUE8L3RzcGFuPjx0c3BhbiB4PSI0MCIgZHk9IjM0Ij5uZWNlc2l0YSB1biBjb3JyZWRvciBkZeKApjwvdHNwYW4+PC90ZXh0PgogIDxsaW5lIHgxPSI0MCIgeTE9IjMwOCIgeDI9IjYwMCIgeTI9IjMwOCIgc3Ryb2tlPSIjM2Q0MDQwIiBzdHJva2Utd2lkdGg9IjEiLz4KICA8dGV4dCB4PSI0MCIgeT0iMzMyIiBmaWxsPSIjOWI5ZjllIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIj5TZW1pV2lraTwvdGV4dD4KPC9zdmc+" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="badge-new">Nuevo</span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=semiwiki.com&amp;sz=64" alt="" loading="lazy"/>SemiWiki</span>
+              
+              <span class="score">76</span>
+            </div>
+            <h3 class="card-title">
+              <a href="https://semiwiki.com/photonics/370505-the-modulator-is-not-the-product-why-ai-photonics-needs-an-electro-optical-realization-corridor/" target="_blank" rel="noopener noreferrer">El modulador no es el producto: Por qué la fotónica de IA necesita un corredor de realización electro-óptico</a>
+            </h3>
+            <div class="sw">Análisis sobre la necesidad crítica de pasar de conexiones de cobre a ópticas para sostener el crecimiento de la IA.</div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-theme="agents_automation" data-new="1">
+          <a href="https://arxiv.org/abs/2606.24957" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxYzFlMWUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMmEyMTQ1Ii8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJyIiBjeD0iODAlIiBjeT0iMjAlIiByPSI2MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjYjI4YmYyIiBzdG9wLW9wYWNpdHk9IjAuMjIiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWMxZTFlIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIzNjAiIGZpbGw9InVybCgjcikiLz4KICA8Y2lyY2xlIGN4PSI1NDAiIGN5PSI3MCIgcj0iMTMwIiBmaWxsPSIjYjI4YmYyIiBvcGFjaXR5PSIwLjEwIi8+CiAgPHRleHQgeD0iNDAiIHk9Ijc2IiBmaWxsPSIjYjI4YmYyIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCAtYXBwbGUtc3lzdGVtLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iODAwIiBsZXR0ZXItc3BhY2luZz0iMiI+QUdFTlRTICZhbXA7IFJFQVNPTklORzwvdGV4dD4KICA8dGV4dCB5PSIxNTAiIGZpbGw9IiNlY2VlZWQiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIC1hcHBsZS1zeXN0ZW0sIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSI3MDAiPjx0c3BhbiB4PSI0MCIgZHk9IjAiPkR1c3RpbjogVmVyaWZpY2FjacOzbiBkaXNwZXJzYTwvdHNwYW4+PHRzcGFuIHg9IjQwIiBkeT0iMzQiPmF1bWVudGFkYSBwYXJhIGdlbmVyYWNpw7NuPC90c3Bhbj48dHNwYW4geD0iNDAiIGR5PSIzNCI+ZWZpY2llbnRlIGRlIGNvbnRleHRvIGxhcmdvIGNvbuKApjwvdHNwYW4+PC90ZXh0PgogIDxsaW5lIHgxPSI0MCIgeTE9IjMwOCIgeDI9IjYwMCIgeTI9IjMwOCIgc3Ryb2tlPSIjM2Q0MDQwIiBzdHJva2Utd2lkdGg9IjEiLz4KICA8dGV4dCB4PSI0MCIgeT0iMzMyIiBmaWxsPSIjOWI5ZjllIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIj5hclhpdiBjcy5DTDwvdGV4dD4KPC9zdmc+" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="badge-new">Nuevo</span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
+              
+              <span class="score">75</span>
+            </div>
+            <h3 class="card-title">
+              <a href="https://arxiv.org/abs/2606.24957" target="_blank" rel="noopener noreferrer">Dustin: Verificación dispersa aumentada para generación eficiente de contexto largo con decodificación especulativa</a>
+            </h3>
+            <div class="sw">Dustin optimiza la inferencia en contextos largos combinando señales del modelo borrador y atención histórica del modelo objetivo.</div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-theme="compute_chips_dc" data-new="1">
+          <a href="https://deepmind.google/blog/introducing-computer-use-in-gemini-3-5-flash/" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxYzFlMWUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMTIzNDNjIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJyIiBjeD0iODAlIiBjeT0iMjAlIiByPSI2MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMjBiOGNkIiBzdG9wLW9wYWNpdHk9IjAuMjIiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWMxZTFlIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIzNjAiIGZpbGw9InVybCgjcikiLz4KICA8Y2lyY2xlIGN4PSI1NDAiIGN5PSI3MCIgcj0iMTMwIiBmaWxsPSIjMjBiOGNkIiBvcGFjaXR5PSIwLjEwIi8+CiAgPHRleHQgeD0iNDAiIHk9Ijc2IiBmaWxsPSIjMjBiOGNkIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCAtYXBwbGUtc3lzdGVtLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iODAwIiBsZXR0ZXItc3BhY2luZz0iMiI+Q09NUFVURSAmYW1wOyBDSElQUzwvdGV4dD4KICA8dGV4dCB5PSIxNTAiIGZpbGw9IiNlY2VlZWQiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIC1hcHBsZS1zeXN0ZW0sIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSI3MDAiPjx0c3BhbiB4PSI0MCIgZHk9IjAiPlByZXNlbnRhbW9zIGVsIHVzbyBkZSBvcmRlbmFkb3I8L3RzcGFuPjx0c3BhbiB4PSI0MCIgZHk9IjM0Ij5lbiBHZW1pbmkgMy41IEZsYXNoPC90c3Bhbj48L3RleHQ+CiAgPGxpbmUgeDE9IjQwIiB5MT0iMzA4IiB4Mj0iNjAwIiB5Mj0iMzA4IiBzdHJva2U9IiMzZDQwNDAiIHN0cm9rZS13aWR0aD0iMSIvPgogIDx0ZXh0IHg9IjQwIiB5PSIzMzIiIGZpbGw9IiM5YjlmOWUiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTIiPkRlZXBNaW5kIEJsb2c8L3RleHQ+Cjwvc3ZnPg==" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="badge-new">Nuevo</span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=deepmind.google&amp;sz=64" alt="" loading="lazy"/>DeepMind Blog</span>
+              
+              <span class="score">74</span>
+            </div>
+            <h3 class="card-title">
+              <a href="https://deepmind.google/blog/introducing-computer-use-in-gemini-3-5-flash/" target="_blank" rel="noopener noreferrer">Presentamos el uso de ordenador en Gemini 3.5 Flash</a>
+            </h3>
+            <div class="sw">Google responde a la competencia permitiendo que Gemini 3.5 Flash interactúe directamente con la interfaz del ordenador.</div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-theme="frontier_capability" data-new="0">
+          <a href="https://arxiv.org/abs/2606.23938" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxYzFlMWUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGYzYjMzIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJyIiBjeD0iODAlIiBjeT0iMjAlIiByPSI2MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMzRkMWIyIiBzdG9wLW9wYWNpdHk9IjAuMjIiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWMxZTFlIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIzNjAiIGZpbGw9InVybCgjcikiLz4KICA8Y2lyY2xlIGN4PSI1NDAiIGN5PSI3MCIgcj0iMTMwIiBmaWxsPSIjMzRkMWIyIiBvcGFjaXR5PSIwLjEwIi8+CiAgPHRleHQgeD0iNDAiIHk9Ijc2IiBmaWxsPSIjMzRkMWIyIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCAtYXBwbGUtc3lzdGVtLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iODAwIiBsZXR0ZXItc3BhY2luZz0iMiI+RlJPTlRJRVIgTU9ERUxTPC90ZXh0PgogIDx0ZXh0IHk9IjE1MCIgZmlsbD0iI2VjZWVlZCIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgLWFwcGxlLXN5c3RlbSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNyIgZm9udC13ZWlnaHQ9IjcwMCI+PHRzcGFuIHg9IjQwIiBkeT0iMCI+Q29uZHVjY2nDs24gbmV1cm8tc2ltYsOzbGljYTo8L3RzcGFuPjx0c3BhbiB4PSI0MCIgZHk9IjM0Ij5SYXpvbmFtaWVudG8gZmllbCBiYXNhZG8gZW48L3RzcGFuPjx0c3BhbiB4PSI0MCIgZHk9IjM0Ij5yZWdsYXMgcGFyYSBkaXJpZ2lyIG1vZGVsb3MgVkxBPC90c3Bhbj48L3RleHQ+CiAgPGxpbmUgeDE9IjQwIiB5MT0iMzA4IiB4Mj0iNjAwIiB5Mj0iMzA4IiBzdHJva2U9IiMzZDQwNDAiIHN0cm9rZS13aWR0aD0iMSIvPgogIDx0ZXh0IHg9IjQwIiB5PSIzMzIiIGZpbGw9IiM5YjlmOWUiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTIiPmFyWGl2IGNzLkFJPC90ZXh0Pgo8L3N2Zz4=" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.AI</span>
+              
+              <span class="score">71</span>
+            </div>
+            <h3 class="card-title">
+              <a href="https://arxiv.org/abs/2606.23938" target="_blank" rel="noopener noreferrer">Conducción neuro-simbólica: Razonamiento fiel basado en reglas para dirigir modelos VLA</a>
+            </h3>
+            <div class="sw">Integra planificación simbólica tradicional con modelos VLA para dotar de trazabilidad causal a las decisiones de conducción.</div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-theme="compute_chips_dc" data-new="1">
+          <a href="https://semiwiki.com/5g/370474-all-embracing-multiphysics-analysis-for-chiplet-based-systems/" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxYzFlMWUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMTIzNDNjIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJyIiBjeD0iODAlIiBjeT0iMjAlIiByPSI2MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMjBiOGNkIiBzdG9wLW9wYWNpdHk9IjAuMjIiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWMxZTFlIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIzNjAiIGZpbGw9InVybCgjcikiLz4KICA8Y2lyY2xlIGN4PSI1NDAiIGN5PSI3MCIgcj0iMTMwIiBmaWxsPSIjMjBiOGNkIiBvcGFjaXR5PSIwLjEwIi8+CiAgPHRleHQgeD0iNDAiIHk9Ijc2IiBmaWxsPSIjMjBiOGNkIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCAtYXBwbGUtc3lzdGVtLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iODAwIiBsZXR0ZXItc3BhY2luZz0iMiI+Q09NUFVURSAmYW1wOyBDSElQUzwvdGV4dD4KICA8dGV4dCB5PSIxNTAiIGZpbGw9IiNlY2VlZWQiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIC1hcHBsZS1zeXN0ZW0sIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSI3MDAiPjx0c3BhbiB4PSI0MCIgZHk9IjAiPkFuw6FsaXNpcyBtdWx0aWbDrXNpY28gaW50ZWdyYWw8L3RzcGFuPjx0c3BhbiB4PSI0MCIgZHk9IjM0Ij5wYXJhIHNpc3RlbWFzIGJhc2Fkb3MgZW48L3RzcGFuPjx0c3BhbiB4PSI0MCIgZHk9IjM0Ij5jaGlwbGV0czwvdHNwYW4+PC90ZXh0PgogIDxsaW5lIHgxPSI0MCIgeTE9IjMwOCIgeDI9IjYwMCIgeTI9IjMwOCIgc3Ryb2tlPSIjM2Q0MDQwIiBzdHJva2Utd2lkdGg9IjEiLz4KICA8dGV4dCB4PSI0MCIgeT0iMzMyIiBmaWxsPSIjOWI5ZjllIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIj5TZW1pV2lraTwvdGV4dD4KPC9zdmc+" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="badge-new">Nuevo</span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=semiwiki.com&amp;sz=64" alt="" loading="lazy"/>SemiWiki</span>
+              
+              <span class="score">70</span>
+            </div>
+            <h3 class="card-title">
+              <a href="https://semiwiki.com/5g/370474-all-embracing-multiphysics-analysis-for-chiplet-based-systems/" target="_blank" rel="noopener noreferrer">Análisis multifísico integral para sistemas basados en chiplets</a>
+            </h3>
+            <div class="sw">Aborda la complejidad del diseño de chiplets mediante análisis que integra señales, calor y potencia en un solo paquete.</div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-theme="agents_automation" data-new="0">
+          <a href="https://arxiv.org/abs/2606.23927" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxYzFlMWUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMmEyMTQ1Ii8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJyIiBjeD0iODAlIiBjeT0iMjAlIiByPSI2MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjYjI4YmYyIiBzdG9wLW9wYWNpdHk9IjAuMjIiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWMxZTFlIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIzNjAiIGZpbGw9InVybCgjcikiLz4KICA8Y2lyY2xlIGN4PSI1NDAiIGN5PSI3MCIgcj0iMTMwIiBmaWxsPSIjYjI4YmYyIiBvcGFjaXR5PSIwLjEwIi8+CiAgPHRleHQgeD0iNDAiIHk9Ijc2IiBmaWxsPSIjYjI4YmYyIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCAtYXBwbGUtc3lzdGVtLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iODAwIiBsZXR0ZXItc3BhY2luZz0iMiI+QUdFTlRTICZhbXA7IFJFQVNPTklORzwvdGV4dD4KICA8dGV4dCB5PSIxNTAiIGZpbGw9IiNlY2VlZWQiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIC1hcHBsZS1zeXN0ZW0sIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSI3MDAiPjx0c3BhbiB4PSI0MCIgZHk9IjAiPlJJRlQtQmVuY2g6IFJlZC10ZWFtaW5nIGRpbsOhbWljbzwvdHNwYW4+PHRzcGFuIHg9IjQwIiBkeT0iMzQiPnBhcmEgc2lzdGVtYXMgZGUgSUEgZGUgYWdlbnRlczwvdHNwYW4+PC90ZXh0PgogIDxsaW5lIHgxPSI0MCIgeTE9IjMwOCIgeDI9IjYwMCIgeTI9IjMwOCIgc3Ryb2tlPSIjM2Q0MDQwIiBzdHJva2Utd2lkdGg9IjEiLz4KICA8dGV4dCB4PSI0MCIgeT0iMzMyIiBmaWxsPSIjOWI5ZjllIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIj5hclhpdiBjcy5BSTwvdGV4dD4KPC9zdmc+" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.AI</span>
+              
+              <span class="score">69</span>
+            </div>
+            <h3 class="card-title">
+              <a href="https://arxiv.org/abs/2606.23927" target="_blank" rel="noopener noreferrer">RIFT-Bench: Red-teaming dinámico para sistemas de IA de agentes</a>
+            </h3>
+            <div class="sw">Metodología de evaluación dinámica mediante grafos para detectar vulnerabilidades en arquitecturas de agentes autónomos.</div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-theme="model_economics_pricing" data-new="1">
+          <a href="https://arxiv.org/abs/2606.24889" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxYzFlMWUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGYzYjMzIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJyIiBjeD0iODAlIiBjeT0iMjAlIiByPSI2MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMzRkMWIyIiBzdG9wLW9wYWNpdHk9IjAuMjIiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWMxZTFlIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIzNjAiIGZpbGw9InVybCgjcikiLz4KICA8Y2lyY2xlIGN4PSI1NDAiIGN5PSI3MCIgcj0iMTMwIiBmaWxsPSIjMzRkMWIyIiBvcGFjaXR5PSIwLjEwIi8+CiAgPHRleHQgeD0iNDAiIHk9Ijc2IiBmaWxsPSIjMzRkMWIyIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCAtYXBwbGUtc3lzdGVtLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iODAwIiBsZXR0ZXItc3BhY2luZz0iMiI+RlJPTlRJRVIgTU9ERUxTPC90ZXh0PgogIDx0ZXh0IHk9IjE1MCIgZmlsbD0iI2VjZWVlZCIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgLWFwcGxlLXN5c3RlbSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNyIgZm9udC13ZWlnaHQ9IjcwMCI+PHRzcGFuIHg9IjQwIiBkeT0iMCI+Q29ycmVjY2nDs24gZGUgZXJyb3JlcyBmb27DqXRpY29zPC90c3Bhbj48dHNwYW4geD0iNDAiIGR5PSIzNCI+YmFzYWRhIGVuIGdyYWZvcyBwYXJhIHNpc3RlbWFzPC90c3Bhbj48dHNwYW4geD0iNDAiIGR5PSIzNCI+ZGUgcmVjb25vY2ltaWVudG8gZGUgdm96IGNvbuKApjwvdHNwYW4+PC90ZXh0PgogIDxsaW5lIHgxPSI0MCIgeTE9IjMwOCIgeDI9IjYwMCIgeTI9IjMwOCIgc3Ryb2tlPSIjM2Q0MDQwIiBzdHJva2Utd2lkdGg9IjEiLz4KICA8dGV4dCB4PSI0MCIgeT0iMzMyIiBmaWxsPSIjOWI5ZjllIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIj5hclhpdiBjcy5DTDwvdGV4dD4KPC9zdmc+" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="badge-new">Nuevo</span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
+              
+              <span class="score">68</span>
+            </div>
+            <h3 class="card-title">
+              <a href="https://arxiv.org/abs/2606.24889" target="_blank" rel="noopener noreferrer">Corrección de errores fonéticos basada en grafos para sistemas de reconocimiento de voz con ruido</a>
+            </h3>
+            <div class="sw">Propuesta de corrección fonética mediante grafos que mejora la precisión en términos críticos como entidades y negaciones.</div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-theme="frontier_capability" data-new="1">
+          <a href="https://arxiv.org/abs/2606.24898" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxYzFlMWUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGYzYjMzIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJyIiBjeD0iODAlIiBjeT0iMjAlIiByPSI2MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMzRkMWIyIiBzdG9wLW9wYWNpdHk9IjAuMjIiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWMxZTFlIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIzNjAiIGZpbGw9InVybCgjcikiLz4KICA8Y2lyY2xlIGN4PSI1NDAiIGN5PSI3MCIgcj0iMTMwIiBmaWxsPSIjMzRkMWIyIiBvcGFjaXR5PSIwLjEwIi8+CiAgPHRleHQgeD0iNDAiIHk9Ijc2IiBmaWxsPSIjMzRkMWIyIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCAtYXBwbGUtc3lzdGVtLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iODAwIiBsZXR0ZXItc3BhY2luZz0iMiI+RlJPTlRJRVIgTU9ERUxTPC90ZXh0PgogIDx0ZXh0IHk9IjE1MCIgZmlsbD0iI2VjZWVlZCIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgLWFwcGxlLXN5c3RlbSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNyIgZm9udC13ZWlnaHQ9IjcwMCI+PHRzcGFuIHg9IjQwIiBkeT0iMCI+TGEgc3VwZXJ2aXNpw7NuIGRlbnNhIG5vIGJhc3RhOjwvdHNwYW4+PHRzcGFuIHg9IjQwIiBkeT0iMzQiPkVsIHB1bnRvIGNpZWdvIGRlIGxlY3R1cmEgZW48L3RzcGFuPjx0c3BhbiB4PSI0MCIgZHk9IjM0Ij5tb2RlbG9zIGRlIGxlbmd1YWplIGNvbiBidWNsZXM8L3RzcGFuPjwvdGV4dD4KICA8bGluZSB4MT0iNDAiIHkxPSIzMDgiIHgyPSI2MDAiIHkyPSIzMDgiIHN0cm9rZT0iIzNkNDA0MCIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPHRleHQgeD0iNDAiIHk9IjMzMiIgZmlsbD0iIzliOWY5ZSIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiI+YXJYaXYgY3MuTEc8L3RleHQ+Cjwvc3ZnPg==" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="badge-new">Nuevo</span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.LG</span>
+              
+              <span class="score">67</span>
+            </div>
+            <h3 class="card-title">
+              <a href="https://arxiv.org/abs/2606.24898" target="_blank" rel="noopener noreferrer">La supervisión densa no basta: El punto ciego de lectura en modelos de lenguaje con bucles</a>
+            </h3>
+            <div class="sw">Identifica un &#39;punto ciego&#39; en modelos con bucles donde la pérdida de entropía cruzada no controla todas las variables internas.</div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-theme="agents_automation" data-new="1">
+          <a href="https://arxiv.org/abs/2606.24899" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxYzFlMWUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMmEyMTQ1Ii8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJyIiBjeD0iODAlIiBjeT0iMjAlIiByPSI2MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjYjI4YmYyIiBzdG9wLW9wYWNpdHk9IjAuMjIiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWMxZTFlIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIzNjAiIGZpbGw9InVybCgjcikiLz4KICA8Y2lyY2xlIGN4PSI1NDAiIGN5PSI3MCIgcj0iMTMwIiBmaWxsPSIjYjI4YmYyIiBvcGFjaXR5PSIwLjEwIi8+CiAgPHRleHQgeD0iNDAiIHk9Ijc2IiBmaWxsPSIjYjI4YmYyIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCAtYXBwbGUtc3lzdGVtLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iODAwIiBsZXR0ZXItc3BhY2luZz0iMiI+QUdFTlRTICZhbXA7IFJFQVNPTklORzwvdGV4dD4KICA8dGV4dCB5PSIxNTAiIGZpbGw9IiNlY2VlZWQiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIC1hcHBsZS1zeXN0ZW0sIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSI3MDAiPjx0c3BhbiB4PSI0MCIgZHk9IjAiPkRlIGxhIGlkZWEgbWV0YSBhbDwvdHNwYW4+PHRzcGFuIHg9IjQwIiBkeT0iMzQiPmRlc2N1YnJpbWllbnRvIG1hdGVtw6F0aWNvPC90c3Bhbj48dHNwYW4geD0iNDAiIGR5PSIzNCI+YXZhbnphZG86IENvLWRlc2N1YnJpbWllbnRv4oCmPC90c3Bhbj48L3RleHQ+CiAgPGxpbmUgeDE9IjQwIiB5MT0iMzA4IiB4Mj0iNjAwIiB5Mj0iMzA4IiBzdHJva2U9IiMzZDQwNDAiIHN0cm9rZS13aWR0aD0iMSIvPgogIDx0ZXh0IHg9IjQwIiB5PSIzMzIiIGZpbGw9IiM5YjlmOWUiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTIiPmFyWGl2IGNzLkxHPC90ZXh0Pgo8L3N2Zz4=" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="badge-new">Nuevo</span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.LG</span>
+              
+              <span class="score">62</span>
+            </div>
+            <h3 class="card-title">
+              <a href="https://arxiv.org/abs/2606.24899" target="_blank" rel="noopener noreferrer">De la idea meta al descubrimiento matemático avanzado: Co-descubrimiento humano-IA de algoritmos cuánticos</a>
+            </h3>
+            <div class="sw">Caso de éxito en el uso de IA para transformar intuiciones humanas en algoritmos cuánticos concretos para ecuaciones matriciales.</div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-theme="frontier_capability" data-new="1">
+          <a href="https://arxiv.org/abs/2606.24915" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxYzFlMWUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGYzYjMzIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJyIiBjeD0iODAlIiBjeT0iMjAlIiByPSI2MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMzRkMWIyIiBzdG9wLW9wYWNpdHk9IjAuMjIiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWMxZTFlIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIzNjAiIGZpbGw9InVybCgjcikiLz4KICA8Y2lyY2xlIGN4PSI1NDAiIGN5PSI3MCIgcj0iMTMwIiBmaWxsPSIjMzRkMWIyIiBvcGFjaXR5PSIwLjEwIi8+CiAgPHRleHQgeD0iNDAiIHk9Ijc2IiBmaWxsPSIjMzRkMWIyIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCAtYXBwbGUtc3lzdGVtLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iODAwIiBsZXR0ZXItc3BhY2luZz0iMiI+RlJPTlRJRVIgTU9ERUxTPC90ZXh0PgogIDx0ZXh0IHk9IjE1MCIgZmlsbD0iI2VjZWVlZCIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgLWFwcGxlLXN5c3RlbSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNyIgZm9udC13ZWlnaHQ9IjcwMCI+PHRzcGFuIHg9IjQwIiBkeT0iMCI+R2VuZXJhY2nDs24gYXVtZW50YWRhIHBvcjwvdHNwYW4+PHRzcGFuIHg9IjQwIiBkeT0iMzQiPnJlY3VwZXJhY2nDs24gVEYtSURGIGNvbnNjaWVudGU8L3RzcGFuPjx0c3BhbiB4PSI0MCIgZHk9IjM0Ij5kZSBlcnJvcmVzIHBhcmEgY29ycmVjY2nDs24gZW7igKY8L3RzcGFuPjwvdGV4dD4KICA8bGluZSB4MT0iNDAiIHkxPSIzMDgiIHgyPSI2MDAiIHkyPSIzMDgiIHN0cm9rZT0iIzNkNDA0MCIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPHRleHQgeD0iNDAiIHk9IjMzMiIgZmlsbD0iIzliOWY5ZSIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiI+YXJYaXYgY3MuQ0w8L3RleHQ+Cjwvc3ZnPg==" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="badge-new">Nuevo</span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
+              
+              <span class="score">61</span>
+            </div>
+            <h3 class="card-title">
+              <a href="https://arxiv.org/abs/2606.24915" target="_blank" rel="noopener noreferrer">Generación aumentada por recuperación TF-IDF consciente de errores para corrección en ASR</a>
+            </h3>
+            <div class="sw">Framework de recuperación léxica eficiente para mitigar alucinaciones fonéticas en sistemas de reconocimiento de voz.</div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-theme="model_economics_pricing" data-new="1">
+          <a href="https://blog.google/products-and-platforms/products/search/thrifting-tips/" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxYzFlMWUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGYzYjMzIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJyIiBjeD0iODAlIiBjeT0iMjAlIiByPSI2MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMzRkMWIyIiBzdG9wLW9wYWNpdHk9IjAuMjIiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWMxZTFlIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIzNjAiIGZpbGw9InVybCgjcikiLz4KICA8Y2lyY2xlIGN4PSI1NDAiIGN5PSI3MCIgcj0iMTMwIiBmaWxsPSIjMzRkMWIyIiBvcGFjaXR5PSIwLjEwIi8+CiAgPHRleHQgeD0iNDAiIHk9Ijc2IiBmaWxsPSIjMzRkMWIyIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCAtYXBwbGUtc3lzdGVtLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iODAwIiBsZXR0ZXItc3BhY2luZz0iMiI+RlJPTlRJRVIgTU9ERUxTPC90ZXh0PgogIDx0ZXh0IHk9IjE1MCIgZmlsbD0iI2VjZWVlZCIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgLWFwcGxlLXN5c3RlbSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNyIgZm9udC13ZWlnaHQ9IjcwMCI+PHRzcGFuIHg9IjQwIiBkeT0iMCI+NSBmb3JtYXMgZW4gbGFzIHF1ZSBHb29nbGU8L3RzcGFuPjx0c3BhbiB4PSI0MCIgZHk9IjM0Ij5TZWFyY2ggcHVlZGUgbWVqb3JhciB0dXMgY29tcHJhczwvdHNwYW4+PHRzcGFuIHg9IjQwIiBkeT0iMzQiPmRlIHJvcGEgZGUgc2VndW5kYSBtYW5vIHnigKY8L3RzcGFuPjwvdGV4dD4KICA8bGluZSB4MT0iNDAiIHkxPSIzMDgiIHgyPSI2MDAiIHkyPSIzMDgiIHN0cm9rZT0iIzNkNDA0MCIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPHRleHQgeD0iNDAiIHk9IjMzMiIgZmlsbD0iIzliOWY5ZSIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiI+R29vZ2xlIEFJIEJsb2c8L3RleHQ+Cjwvc3ZnPg==" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="badge-new">Nuevo</span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=blog.google&amp;sz=64" alt="" loading="lazy"/>Google AI Blog</span>
+              
+              <span class="score">22</span>
+            </div>
+            <h3 class="card-title">
+              <a href="https://blog.google/products-and-platforms/products/search/thrifting-tips/" target="_blank" rel="noopener noreferrer">5 formas en las que Google Search puede mejorar tus compras de ropa de segunda mano y vintage</a>
+            </h3>
+            <div class="sw">Mejoras menores en la experiencia de usuario para búsquedas de ropa de segunda mano sin impacto tecnológico disruptivo.</div>
+            
+          </div>
+        </article>
+        
+      </div>
+      
+
+      
+
+      
+
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+      
+
+      
+
+      
+
+      
+
+      
+      <div class="widget">
+        <div class="widget-title">
+          <span>Riesgos y vigilancia</span>
+          <span class="lbl">Próximos días</span>
+        </div>
+        <div class="rk">Brecha de control: detectar un comportamiento en un LLM no garantiza la capacidad técnica de corregirlo o dirigirlo.</div><div class="rk">Sesgo por fuentes dominantes: la alta ponderación de Wikipedia permite que grupos pequeños moldeen la ética de modelos.</div><div class="rk">Cuellos de botella en interconexión: los límites físicos del cobre amenazan el rendimiento de los clústeres de nueva generación.</div>
+        <div class="rk w">Adopción empresarial de Gemini 3.5 Flash para tareas de escritorio frente a las soluciones de Anthropic y OpenAI.</div><div class="rk w">Evolución de los sistemas neuro-simbólicos para dotar de razonamiento lógico y causal a la conducción autónoma.</div><div class="rk w">Implementación de análisis multifísico en el diseño de chiplets para gestionar el calor y el consumo energético.</div>
+      </div>
+      
+
+    </aside>
+  </div>
+
+  <footer>
+    <span>0 items descartados por el filtro de relevancia</span>
+    <span>0/0 fuentes activas</span>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var params = new URLSearchParams(location.search);
+    var d = params.get('date');
+    if (d && /^\d{4}-\d{2}-\d{2}$/.test(d)) {
+      location.replace('d/' + d + '.html');
+      return;
+    }
+    var tabs = document.querySelectorAll('#tabs .tab');
+    if (!tabs.length) return;
+    tabs.forEach(function(t){
+      t.addEventListener('click', function(){
+        tabs.forEach(function(x){ x.classList.remove('on'); });
+        t.classList.add('on');
+        var f = t.getAttribute('data-filter');
+        document.querySelectorAll('[data-theme]').forEach(function(c){
+          var show;
+          if (f === 'all')            show = true;
+          else if (f === '__new__')   show = c.getAttribute('data-new') === '1';
+          else                        show = c.getAttribute('data-theme') === f;
+          c.style.display = show ? '' : 'none';
+        });
+      });
+    });
+  })();
+</script>
+</body>
+</html>

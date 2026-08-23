@@ -1066,6 +1066,15 @@ def main():
         print("WEEKLY FAILED (traceback):")
         traceback.print_exc()
 
+    # 10) Archivo: índice + una página por snapshot. No llama a Gemini.
+    try:
+        from src.archive import write_archive
+        n_days = write_archive(Path("docs"))
+        print(f"ARCHIVO OK -> docs/archivo.html ({n_days} días)")
+    except Exception:
+        print("ARCHIVO FAILED (traceback):")
+        traceback.print_exc()
+
 
 if __name__ == "__main__":
     main()

@@ -45,6 +45,11 @@
   .nav a{font-size:13px;font-weight:600;padding:7px 15px;border-radius:999px;color:var(--dim)}
   .nav a.on{color:var(--accent);background:var(--accent-soft)}
   .nav a:hover{color:var(--txt)}
+  .arch-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 18px;
+            padding:10px 14px;background:var(--card);border:1px solid var(--line);border-radius:12px;
+            font-size:13px;color:var(--dim)}
+  .arch-bar a{color:var(--accent);font-weight:600}
+  .arch-bar .here{font-family:var(--mono);font-size:12px;color:var(--txt);font-weight:600}
 
   /* -- Tesis -- */
   .thesis{padding:6px 0 18px}
@@ -230,10 +235,13 @@
       <span class="state alert"><span class="sdot"></span>ALERTA</span>
       <nav class="nav">
         <a class="on" href="index.html">Diario</a>
-        <a href="weekly.html">Semanal</a>
+        <a class="" href="weekly.html">Semanal</a>
+        <a class="" href="archivo.html">Archivo</a>
       </nav>
     </div>
   </div>
+
+  
 
   <!-- Tesis del dia -->
   <div class="thesis">
@@ -643,11 +651,11 @@
             <div class="m-header">
               <span class="m-lbl">Bitcoin</span>
               
-              <span class="m-chg neg">-0.18%</span>
+              <span class="m-chg neg">-0.38%</span>
               
             </div>
-            <div class="m-price">76,677.00 US$</div>
-            <svg viewBox="0 0 100 24" class="spark"><polyline fill="none" stroke="#f43f5e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,6.0 50.0,14.0 98.0,22.0"/></svg>
+            <div class="m-price">76,789.39 US$</div>
+            <svg viewBox="0 0 100 24" class="spark"><polyline fill="none" stroke="#f43f5e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,22.0 26.0,15.4 50.0,6.0 74.0,8.2 98.0,8.7"/></svg>
           </div>
           
           <div class="m-box">
@@ -910,6 +918,12 @@
 
 <script>
   (function(){
+    var params = new URLSearchParams(location.search);
+    var d = params.get('date');
+    if (d && /^\d{4}-\d{2}-\d{2}$/.test(d)) {
+      location.replace('d/' + d + '.html');
+      return;
+    }
     var tabs = document.querySelectorAll('#tabs .tab');
     if (!tabs.length) return;
     tabs.forEach(function(t){

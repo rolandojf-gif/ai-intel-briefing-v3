@@ -518,7 +518,7 @@ def main():
         <span class="pill">concentración categorías: {cat_hhi:.3f} (top3 {cat_top3:.1%})</span>
       </div>
     </div>
-    <nav class="nav"><a href="./index.html">Daily</a><a class="active" href="./weekly.html">Weekly</a></nav>
+    <nav class="nav"><a href="./index.html">Daily</a><a class="active" href="./weekly.html">Weekly</a><a href="./archivo.html">Archivo</a></nav>
   </div>
 </header>
 
