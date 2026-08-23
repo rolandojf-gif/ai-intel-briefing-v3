@@ -74,6 +74,16 @@ SOURCE_DOMAIN_HINTS = {
     "artificial analysis": "artificialanalysis.ai",
     "openrouter": "openrouter.ai",
     "supermicro": "supermicro.com",
+    "reuters": "reuters.com",
+    "bloomberg": "bloomberg.com",
+    "business insider": "businessinsider.com",
+    "yahoo finance": "finance.yahoo.com",
+    "venturebeat": "venturebeat.com",
+    "the verge": "theverge.com",
+    "techcrunch": "techcrunch.com",
+    "ars technica": "arstechnica.com",
+    "techradar": "techradar.com",
+    "paymentsdive": "paymentsdive.com",
 }
 
 
