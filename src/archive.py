@@ -14,7 +14,7 @@ from pathlib import Path
 
 from jinja2 import Environment, select_autoescape
 
-from src.render import render_index
+from src.render import _safe_url, render_index
 
 DATA_NAME_RE = re.compile(r"^\d{4}-\d{2}-\d{2}\.json$")
 MONTHS_ES = (
@@ -227,7 +227,7 @@ ARCHIVO_TEMPLATE = ENV.from_string("""
   var loading = false;
 
   function fold(s){
-    return (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    return (s || '').toLowerCase().normalize('NFD').replace(/[\\u0300-\\u036f]/g, '');
   }
   function tokens(s){
     return fold(s).split(/[^a-z0-9]+/).filter(function(t){ return t.length >= 2; });
@@ -259,9 +259,14 @@ ARCHIVO_TEMPLATE = ENV.from_string("""
     try { if (document.execCommand('copy')) copied(btn); } catch (e) {}
     document.body.removeChild(ta);
   }
+  /* Escapado real. La tabla anterior mapeaba cada caracter a si mismo
+     ('&':'&', '<':'<', ...), asi que solo escapaba la comilla simple: un
+     titular de feed con <img onerror=...> entraba intacto por innerHTML.
+     Se usan codigos numericos para que las entidades no puedan volver a
+     decodificarse al generar la plantilla. */
   function esc(s){
-    return (s || '').replace(/[&<>"']/g, function(c){
-      return ({'&':'&','<':'<','>':'>','"':'"',"'":'&#39;'}[c]);
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){
+      return { '&':'&#38;', '<':'&#60;', '>':'&#62;', '"':'&#34;', "'":'&#39;' }[c];
     });
   }
   function renderHits(items, query){
@@ -389,7 +394,13 @@ def search_entries(snaps: list[dict]) -> list[dict]:
             if not title:
                 continue
             so = re.sub(r"\s+", " ", (it.get("so_what") or it.get("why") or "").strip())
-            url = (it.get("url") or it.get("link") or "").strip()
+            # El indice se pintaba con la URL cruda del feed, saltandose el
+            # _safe_url() que ya usa el render: un <link>javascript:...</link>
+            # acababa en un href pulsable. Aqui solo pasan http/https.
+            raw_url = (it.get("url") or it.get("link") or "").strip()
+            url = _safe_url(raw_url)
+            if url == "#":
+                url = ""
             out.append({
                 "d": date,
                 "t": title[:180],
