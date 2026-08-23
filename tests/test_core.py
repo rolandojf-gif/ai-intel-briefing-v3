@@ -263,6 +263,80 @@ class CoreQualityTests(unittest.TestCase):
         self.assertNotIn("128.50", html)
         self.assertNotIn("7691.25", html)
 
+    # -- Imagen de respaldo: debe ser SVG valido ----------------------------
+
+    def _fallback_svg(self, item):
+        import base64
+        from src.render import item_fallback_image
+        uri = item_fallback_image(item)
+        self.assertTrue(uri.startswith("data:image/svg+xml;base64,"))
+        return base64.b64decode(uri.split(",", 1)[1]).decode("utf-8")
+
+    def test_fallback_image_is_well_formed_for_every_theme(self):
+        """Un & sin escapar invalidaba el SVG entero.
+
+        Las etiquetas "COMPUTE & CHIPS" y "AGENTS & REASONING" llevaban un &
+        literal: XML invalido, el navegador descartaba la imagen y mostraba el
+        icono de rota en toda card sin imagen OpenGraph de esos dos temas.
+        """
+        import xml.etree.ElementTree as ET
+
+        themes = ["compute_chips_dc", "agents_automation", "frontier_capability",
+                  "china_stack", "model_economics", "other"]
+        for theme in themes:
+            svg = self._fallback_svg({"title_es": "Titular de prueba", "strategic_theme": theme})
+            ET.fromstring(svg)  # lanza ParseError si el SVG no es valido
+
+    def test_fallback_image_escapes_hostile_titles(self):
+        import xml.etree.ElementTree as ET
+
+        for title in ['Nvidia & AMD <suben> "precios"', "A" * 300, "", "Ñandú — 5 & 6"]:
+            svg = self._fallback_svg({"title_es": title, "strategic_theme": "compute_chips_dc"})
+            ET.fromstring(svg)
+            self.assertNotIn("<suben>", svg)
+
+    def test_fallback_title_wraps_instead_of_overflowing(self):
+        """`width` en <text> no existe en SVG: hay que partir a mano."""
+        from src.render import _wrap_svg_title
+
+        lines = _wrap_svg_title("Nvidia sube más del 15% los precios de sus productos relacionados con IA")
+        self.assertGreater(len(lines), 1)
+        self.assertLessEqual(len(lines), 3)
+        for line in lines:
+            self.assertLessEqual(len(line), 34)
+
+    # -- Filtro "Nuevo": primeras apariciones -------------------------------
+
+    def test_new_filter_marks_first_time_items(self):
+        from src.render import render_index
+
+        items = [
+            {"title_es": "Primera vez", "layer": "signal", "score": 90,
+             "strategic_theme": "china_stack", "is_repeat": False},
+            {"title_es": "Ya la vimos", "layer": "signal", "score": 80,
+             "strategic_theme": "agents_automation", "is_repeat": True},
+        ]
+        html = render_index(items, briefing={"thesis": "t"},
+                            snapshot={"date": "2026-08-23"}, market={})
+
+        self.assertIn('data-filter="__new__"', html)
+        self.assertEqual(html.count('data-new="1"'), 1)
+        self.assertEqual(html.count('data-new="0"'), 1)
+        self.assertIn("__new__", html)  # el JS debe saber filtrar por novedad
+
+    def test_new_tab_hidden_when_it_would_not_discriminate(self):
+        """Si todo es nuevo (o nada lo es), el filtro no informaria."""
+        from src.render import render_index
+
+        todos_nuevos = [
+            {"title_es": f"Item {i}", "layer": "signal", "score": 90 - i,
+             "strategic_theme": "china_stack", "is_repeat": False}
+            for i in range(3)
+        ]
+        html = render_index(todos_nuevos, briefing={"thesis": "t"},
+                            snapshot={"date": "2026-08-23"}, market={})
+        self.assertNotIn('data-filter="__new__"', html)
+
     # -- Coherencia del prompt ----------------------------------------------
 
     def test_prompt_does_not_contradict_itself_on_severity(self):
