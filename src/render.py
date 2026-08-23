@@ -826,6 +826,10 @@ def render_index(items, briefing=None, snapshot=None, market=None):
     if not signals and not context:
         signals = enriched  # modo degradado: sin veredictos, todo a la capa principal
 
+    # El sort por score devolvería un repeat al hero. El radar es "qué cambió hoy".
+    from src.main import LEAD_SLOT_COUNT, demote_repeats_from_lead
+    signals = demote_repeats_from_lead(signals, LEAD_SLOT_COUNT)
+
     hero = signals[0] if signals else None
     stream = signals[1:] if len(signals) > 1 else []
 
