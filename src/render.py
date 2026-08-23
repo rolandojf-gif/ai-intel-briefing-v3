@@ -796,7 +796,7 @@ TEMPLATE = ENV.from_string("""
   (function(){
     var params = new URLSearchParams(location.search);
     var d = params.get('date');
-    if (d && /^\d{4}-\d{2}-\d{2}$/.test(d)) {
+    if (d && /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(d)) {
       location.replace('d/' + d + '.html');
       return;
     }
