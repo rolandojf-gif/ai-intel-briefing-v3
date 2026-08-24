@@ -84,7 +84,7 @@
   </div>
   <div class="lead">
     <h1>Archivo</h1>
-    <p>191 días · 2026-02-13 – 2026-08-23. Cada entrada es el radar de ese día, no un recorte.</p>
+    <p>192 días · 2026-02-13 – 2026-08-24. Cada entrada es el radar de ese día, no un recorte.</p>
   </div>
   <div class="toolbar">
     <input id="q" type="search" placeholder="NVIDIA, agentes, 2026-08-22…" autocomplete="off"/>
@@ -113,6 +113,12 @@
   <div id="cal">
   
   <h2 class="month" id="m-2026-08">Agosto 2026</h2>
+  
+  <a class="day" href="d/2026-08-24.html" data-q="2026-08-24 La carrera AGI avanza con nuevos lanzamientos de capacidades de agentes y una intensificación de la competencia por la adopción y el rendimiento coste-eficacia entre modelos frontera.">
+    <span class="dt">2026-08-24</span>
+    <span class="th">La carrera AGI avanza con nuevos lanzamientos de capacidades de agentes y una intensificación de la competencia por la adopción y el rendimiento coste-eficacia entre modelos frontera.</span>
+    <span class="n">9 señales</span>
+  </a>
   
   <a class="day" href="d/2026-08-23.html" data-q="2026-08-23 El ecosistema de agentes avanza significativamente con nuevas herramientas y despliegues, mientras la economía del compute se tensa por las subidas de precios de Nvidia y las grandes inversiones en China, reconfigurando ">
     <span class="dt">2026-08-23</span>
@@ -1281,7 +1287,7 @@
   
   </div>
   <div class="empty" id="none" hidden>Nada coincide.</div>
-  <footer>191 snapshots · 2859 señales indexadas · falta 6 may 2026</footer>
+  <footer>192 snapshots · 2871 señales indexadas · falta 6 may 2026</footer>
 </div>
 <script>
 (function(){
@@ -1297,7 +1303,7 @@
   var loading = false;
 
   function fold(s){
-    return (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+    return (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   }
   function tokens(s){
     return fold(s).split(/[^a-z0-9]+/).filter(function(t){ return t.length >= 2; });
@@ -1329,9 +1335,14 @@
     try { if (document.execCommand('copy')) copied(btn); } catch (e) {}
     document.body.removeChild(ta);
   }
+  /* Escapado real. La tabla anterior mapeaba cada caracter a si mismo
+     ('&':'&', '<':'<', ...), asi que solo escapaba la comilla simple: un
+     titular de feed con <img onerror=...> entraba intacto por innerHTML.
+     Se usan codigos numericos para que las entidades no puedan volver a
+     decodificarse al generar la plantilla. */
   function esc(s){
-    return (s || '').replace(/[&<>"']/g, function(c){
-      return ({'&':'&','<':'<','>':'>','"':'"',"'":'&#39;'}[c]);
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){
+      return { '&':'&#38;', '<':'&#60;', '>':'&#62;', '"':'&#34;', "'":'&#39;' }[c];
     });
   }
   function renderHits(items, query){

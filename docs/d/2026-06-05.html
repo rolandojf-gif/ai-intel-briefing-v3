@@ -87,6 +87,11 @@
        padding:3px 9px;border-radius:999px;color:var(--accent);background:var(--accent-soft);
        border:1px solid var(--accent-line);font-weight:700}
   .score{font-family:var(--mono);font-size:10.5px;color:var(--dimmer);margin-left:auto}
+  .copy-btn{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.08em;
+            text-transform:uppercase;padding:4px 10px;border-radius:999px;cursor:pointer;
+            border:1px solid var(--line);background:transparent;color:var(--dim);flex-shrink:0}
+  .copy-btn:hover{color:var(--accent);border-color:var(--accent-line);background:var(--accent-soft)}
+  .copy-btn.ok{color:#0d2b1c;background:var(--green);border-color:var(--green)}
   .badge-new{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;
              font-weight:700;padding:3px 8px;border-radius:999px;color:#0d2b1c;
              background:var(--green);flex-shrink:0}
@@ -258,6 +263,7 @@
   </div>
 
   
+  
 
   <!-- Tabs de tema -->
   
@@ -299,6 +305,7 @@
             <span class="src"><img src="https://www.google.com/s2/favicons?domain=nvidia.com&amp;sz=64" alt="" loading="lazy"/>@NVIDIAAI</span>
             
             <span class="score">89</span>
+            <button type="button" class="copy-btn" data-copy>Copiar</button>
           </div>
           <h2 class="hero-title">
             <a href="https://x.com/NVIDIAAI?post=f181d7dd88fe" target="_blank" rel="noopener noreferrer">NVIDIA lanza Nemotron 3 Ultra: un modelo abierto MoE de 550B para agentes de larga duración</a>
@@ -325,6 +332,7 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=semiwiki.com&amp;sz=64" alt="" loading="lazy"/>SemiWiki</span>
               
               <span class="score">79</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
             </div>
             <h3 class="card-title">
               <a href="https://semiwiki.com/eda/synopsys/369879-intel-pushing-emib-forward-design-methodology-insights-with-synopsys-tools/" target="_blank" rel="noopener noreferrer">Intel: Impulsando EMIB con metodologías de diseño y herramientas de Synopsys</a>
@@ -344,6 +352,7 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=semiwiki.com&amp;sz=64" alt="" loading="lazy"/>SemiWiki</span>
               
               <span class="score">77</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
             </div>
             <h3 class="card-title">
               <a href="https://semiwiki.com/semiconductor-services/369640-alchip-accelerates-on-ai-asic-demand/" target="_blank" rel="noopener noreferrer">Alchip se acelera ante la demanda de ASICs para IA</a>
@@ -363,6 +372,7 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=deepmind.google&amp;sz=64" alt="" loading="lazy"/>@GoogleDeepMind</span>
               
               <span class="score">80</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
             </div>
             <h3 class="card-title">
               <a href="https://x.com/GoogleDeepMind?post=0a19e32afc8a" target="_blank" rel="noopener noreferrer">Presentamos Co-Scientist y Gemma 4 12B: IA multimodal para investigación y uso en portátiles</a>
@@ -382,6 +392,7 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
               
               <span class="score">76</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
             </div>
             <h3 class="card-title">
               <a href="https://arxiv.org/abs/2606.05168" target="_blank" rel="noopener noreferrer">Epidemiología del colapso del modelo: modelado de la contaminación de datos sintéticos mediante dinámica SIR de dos capas</a>
@@ -401,6 +412,7 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=anthropic.com&amp;sz=64" alt="" loading="lazy"/>@AnthropicAI</span>
               
               <span class="score">75</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
             </div>
             <h3 class="card-title">
               <a href="https://x.com/AnthropicAI?post=48a809011f6d" target="_blank" rel="noopener noreferrer">El nuevo modelo Mythos Preview de Anthropic logra optimizaciones de código 52 veces más rápidas</a>
@@ -420,6 +432,7 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
               
               <span class="score">74</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
             </div>
             <h3 class="card-title">
               <a href="https://arxiv.org/abs/2606.05177" target="_blank" rel="noopener noreferrer">MCBench: Un benchmark de evaluación de seguridad multicontexto para modelos de lenguaje Omni</a>
@@ -439,6 +452,7 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.AI</span>
               
               <span class="score">73</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
             </div>
             <h3 class="card-title">
               <a href="https://arxiv.org/abs/2606.04037" target="_blank" rel="noopener noreferrer">Hacia la garantía de despliegue de agentes de IA empresariales: simulación basada en ontologías y certificación de confianza</a>
@@ -458,6 +472,7 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.LG</span>
               
               <span class="score">71</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
             </div>
             <h3 class="card-title">
               <a href="https://arxiv.org/abs/2606.05169" target="_blank" rel="noopener noreferrer">El punto ciego de la evaluación: una teoría estereológica de la cobertura de benchmarks para modelos de lenguaje</a>
@@ -477,6 +492,7 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
               
               <span class="score">70</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
             </div>
             <h3 class="card-title">
               <a href="https://arxiv.org/abs/2606.05174" target="_blank" rel="noopener noreferrer">Mejora de las respuestas médicas cardíacas en LLM mediante recompensas de rúbrica conscientes de la varianza con GRPO</a>
@@ -496,6 +512,7 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.LG</span>
               
               <span class="score">69</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
             </div>
             <h3 class="card-title">
               <a href="https://arxiv.org/abs/2606.05170" target="_blank" rel="noopener noreferrer">ERRORQUAKE: Distribuciones de gravedad de errores de cola pesada en modelos de lenguaje abiertos</a>
@@ -515,6 +532,7 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
               
               <span class="score">62</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
             </div>
             <h3 class="card-title">
               <a href="https://arxiv.org/abs/2606.05176" target="_blank" rel="noopener noreferrer">PEFT de SLM para atención al cliente en telecomunicaciones: un estudio comparativo de configuraciones LoRA con análisis de consumo energético</a>
@@ -534,6 +552,7 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
               
               <span class="score">60</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
             </div>
             <h3 class="card-title">
               <a href="https://arxiv.org/abs/2606.05173" target="_blank" rel="noopener noreferrer">Predecir y reconstruir: objetivos conjuntos para el aprendizaje de representación de lenguaje autosupervisado</a>
@@ -553,6 +572,7 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
               
               <span class="score">48</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
             </div>
             <h3 class="card-title">
               <a href="https://arxiv.org/abs/2606.05175" target="_blank" rel="noopener noreferrer">Compresión triple-latente genérica con recuperación asociativa controlada</a>
@@ -572,6 +592,7 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=deepmind.google&amp;sz=64" alt="" loading="lazy"/>@GoogleDeepMind</span>
               
               <span class="score">21</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
             </div>
             <h3 class="card-title">
               <a href="https://x.com/GoogleDeepMind?post=70a74451dd93" target="_blank" rel="noopener noreferrer">We believe AI can be a dedicated research partner to help discover the next breakthrough. Enter Co-Scientist: our latest Gemini-based multi-agent system that...</a>
@@ -626,10 +647,50 @@
   (function(){
     var params = new URLSearchParams(location.search);
     var d = params.get('date');
-    if (d && /^\d{4}-\d{2}-\d{2}$/.test(d)) {
+    if (d && /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(d)) {
       location.replace('d/' + d + '.html');
       return;
     }
+
+    function ficha(article){
+      if (!article) return '';
+      var a = article.querySelector('.hero-title a, .card-title a');
+      var title = a ? (a.textContent || '').trim() : '';
+      var swEl = article.querySelector('.sw');
+      var sw = swEl ? (swEl.textContent || '').trim() : '';
+      var url = a ? (a.getAttribute('href') || '').trim() : '';
+      return [title, sw, url].filter(Boolean).join('\n\n');
+    }
+    function copied(btn){
+      btn.classList.add('ok');
+      btn.textContent = 'Copiado';
+      setTimeout(function(){ btn.classList.remove('ok'); btn.textContent = 'Copiar'; }, 1600);
+    }
+    function fallback(text, btn){
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      try { if (document.execCommand('copy')) copied(btn); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+    document.querySelectorAll('[data-copy]').forEach(function(btn){
+      btn.addEventListener('click', function(ev){
+        ev.preventDefault();
+        ev.stopPropagation();
+        var text = ficha(btn.closest('article'));
+        if (!text) return;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function(){ copied(btn); }).catch(function(){ fallback(text, btn); });
+        } else {
+          fallback(text, btn);
+        }
+      });
+    });
+
     var tabs = document.querySelectorAll('#tabs .tab');
     if (!tabs.length) return;
     tabs.forEach(function(t){

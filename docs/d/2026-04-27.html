@@ -87,6 +87,11 @@
        padding:3px 9px;border-radius:999px;color:var(--accent);background:var(--accent-soft);
        border:1px solid var(--accent-line);font-weight:700}
   .score{font-family:var(--mono);font-size:10.5px;color:var(--dimmer);margin-left:auto}
+  .copy-btn{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.08em;
+            text-transform:uppercase;padding:4px 10px;border-radius:999px;cursor:pointer;
+            border:1px solid var(--line);background:transparent;color:var(--dim);flex-shrink:0}
+  .copy-btn:hover{color:var(--accent);border-color:var(--accent-line);background:var(--accent-soft)}
+  .copy-btn.ok{color:#0d2b1c;background:var(--green);border-color:var(--green)}
   .badge-new{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;
              font-weight:700;padding:3px 8px;border-radius:999px;color:#0d2b1c;
              background:var(--green);flex-shrink:0}
@@ -258,6 +263,7 @@
   </div>
 
   
+  
 
   <!-- Tabs de tema -->
   
@@ -299,6 +305,7 @@
             <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.AI</span>
             
             <span class="score">100</span>
+            <button type="button" class="copy-btn" data-copy>Copiar</button>
           </div>
           <h2 class="hero-title">
             <a href="https://arxiv.org/abs/2604.21936" target="_blank" rel="noopener noreferrer">An Artifact-based Agent Framework for Adaptive and Reproducible Medical Processing</a>
@@ -325,6 +332,7 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
               
               <span class="score">100</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
             </div>
             <h3 class="card-title">
               <a href="https://arxiv.org/abs/2604.22061" target="_blank" rel="noopener noreferrer">Lightweight Retrieval-Augmented Generation and Large Language Model-Based Modeling for Scalable Patient-Trial Matching</a>
@@ -344,6 +352,7 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
               
               <span class="score">100</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
             </div>
             <h3 class="card-title">
               <a href="https://arxiv.org/abs/2604.22062" target="_blank" rel="noopener noreferrer">Incentivizing Neuro-symbolic Language-based Reasoning in VLMs via Reinforcement Learning</a>
@@ -363,6 +372,7 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.AI</span>
               
               <span class="score">79</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
             </div>
             <h3 class="card-title">
               <a href="https://arxiv.org/abs/2604.21935" target="_blank" rel="noopener noreferrer">Math Takes Two: A test for emergent mathematical reasoning in communication</a>
@@ -382,6 +392,7 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.LG</span>
               
               <span class="score">68</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
             </div>
             <h3 class="card-title">
               <a href="https://arxiv.org/abs/2604.21952" target="_blank" rel="noopener noreferrer">Focus Session: Hardware and Software Techniques for Accelerating Multimodal Foundation Models</a>
@@ -401,6 +412,7 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
               
               <span class="score">68</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
             </div>
             <h3 class="card-title">
               <a href="https://arxiv.org/abs/2604.22038" target="_blank" rel="noopener noreferrer">Source-Modality Monitoring in Vision-Language Models</a>
@@ -420,6 +432,7 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
               
               <span class="score">61</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
             </div>
             <h3 class="card-title">
               <a href="https://arxiv.org/abs/2604.22067" target="_blank" rel="noopener noreferrer">Optimal Question Selection from a Large Question Bank for Clinical Field Recovery in Conversational Psychiatric Intake</a>
@@ -439,6 +452,7 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
               
               <span class="score">59</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
             </div>
             <h3 class="card-title">
               <a href="https://arxiv.org/abs/2604.22002" target="_blank" rel="noopener noreferrer">When Cow Urine Cures Constipation on YouTube: Limits of LLMs in Detecting Culture-specific Health Misinformation</a>
@@ -458,6 +472,7 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.LG</span>
               
               <span class="score">49</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
             </div>
             <h3 class="card-title">
               <a href="https://arxiv.org/abs/2604.21953" target="_blank" rel="noopener noreferrer">Performance Anomaly Detection in Athletics: A Benchmarking System with Visual Analytics</a>
@@ -477,6 +492,7 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
               
               <span class="score">41</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
             </div>
             <h3 class="card-title">
               <a href="https://arxiv.org/abs/2604.22027" target="_blank" rel="noopener noreferrer">Shared Lexical Task Representations Explain Behavioral Variability In LLMs</a>
@@ -496,6 +512,7 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=openai.com&amp;sz=64" alt="" loading="lazy"/>@OpenAI</span>
               
               <span class="score">35</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
             </div>
             <h3 class="card-title">
               <a href="https://x.com/OpenAI?post=bc9c8077f797" target="_blank" rel="noopener noreferrer">Update: GPT-5.5 and GPT-5.5 Pro are now available in the API.</a>
@@ -515,6 +532,7 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=deepmind.google&amp;sz=64" alt="" loading="lazy"/>DeepMind Blog</span>
               
               <span class="score">33</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
             </div>
             <h3 class="card-title">
               <a href="https://deepmind.google/blog/partnering-with-industry-leaders-to-accelerate-ai-transformation/" target="_blank" rel="noopener noreferrer">Partnering with industry leaders to accelerate AI transformation</a>
@@ -534,6 +552,7 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=x.com&amp;sz=64" alt="" loading="lazy"/>@xai</span>
               
               <span class="score">28</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
             </div>
             <h3 class="card-title">
               <a href="https://x.com/xai?post=a00fae5fae0c" target="_blank" rel="noopener noreferrer">Introducing Grok Voice Think Fast 1.0 A state-of-the-art voice model built for complex, multi-step workflows with snappy responses and high accuracy. It take...</a>
@@ -553,6 +572,7 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=deepmind.google&amp;sz=64" alt="" loading="lazy"/>DeepMind Blog</span>
               
               <span class="score">26</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
             </div>
             <h3 class="card-title">
               <a href="https://deepmind.google/blog/announcing-our-partnership-with-the-republic-of-korea/" target="_blank" rel="noopener noreferrer">Announcing our partnership with the Republic of Korea</a>
@@ -572,6 +592,7 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=blog.google&amp;sz=64" alt="" loading="lazy"/>Google AI Blog</span>
               
               <span class="score">26</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
             </div>
             <h3 class="card-title">
               <a href="https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/what-is-a-tpu/" target="_blank" rel="noopener noreferrer">Here’s how our TPUs power increasingly demanding AI workloads.</a>
@@ -626,10 +647,50 @@
   (function(){
     var params = new URLSearchParams(location.search);
     var d = params.get('date');
-    if (d && /^\d{4}-\d{2}-\d{2}$/.test(d)) {
+    if (d && /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(d)) {
       location.replace('d/' + d + '.html');
       return;
     }
+
+    function ficha(article){
+      if (!article) return '';
+      var a = article.querySelector('.hero-title a, .card-title a');
+      var title = a ? (a.textContent || '').trim() : '';
+      var swEl = article.querySelector('.sw');
+      var sw = swEl ? (swEl.textContent || '').trim() : '';
+      var url = a ? (a.getAttribute('href') || '').trim() : '';
+      return [title, sw, url].filter(Boolean).join('\n\n');
+    }
+    function copied(btn){
+      btn.classList.add('ok');
+      btn.textContent = 'Copiado';
+      setTimeout(function(){ btn.classList.remove('ok'); btn.textContent = 'Copiar'; }, 1600);
+    }
+    function fallback(text, btn){
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      try { if (document.execCommand('copy')) copied(btn); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+    document.querySelectorAll('[data-copy]').forEach(function(btn){
+      btn.addEventListener('click', function(ev){
+        ev.preventDefault();
+        ev.stopPropagation();
+        var text = ficha(btn.closest('article'));
+        if (!text) return;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function(){ copied(btn); }).catch(function(){ fallback(text, btn); });
+        } else {
+          fallback(text, btn);
+        }
+      });
+    });
+
     var tabs = document.querySelectorAll('#tabs .tab');
     if (!tabs.length) return;
     tabs.forEach(function(t){
