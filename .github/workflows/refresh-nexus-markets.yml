@@ -1,0 +1,56 @@
+name: Refresh NEXUS markets (no Gemini)
+
+on:
+  # Bootstrap on first installation of this workflow. Later pushes elsewhere
+  # do not trigger it; manual refresh remains available without Gemini.
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/refresh-nexus-markets.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nexus-market-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh-market:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Fetch and validate market quotes
+        run: |
+          python - <<'PY'
+          from src.newtab_market import refresh_market
+          if not refresh_market():
+              raise SystemExit('No live quotes available; previous market snapshot was not replaced.')
+          PY
+
+      - name: Commit market snapshot
+        run: |
+          git config user.name "nexus-market-bot"
+          git config user.email "nexus-market-bot@users.noreply.github.com"
+          git add docs/newtab/market.json
+          if git diff --cached --quiet; then
+            echo "No changes to market snapshot"
+            exit 0
+          fi
+          git commit -m "NEXUS markets: refresh snapshot"
+          git pull --rebase --autostash origin main
+          git push origin main
