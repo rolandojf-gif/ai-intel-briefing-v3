@@ -173,6 +173,7 @@ def get_market_overview() -> dict:
             "positive": is_pos,
             "available": True,
             "sparkline_svg": _generate_sparkline(points, positive=is_pos),
+            "sparkline_points": points,
         })
 
     company_items = []
@@ -201,6 +202,7 @@ def get_market_overview() -> dict:
             "positive": change >= 0,
             "available": True,
             "logo": c["logo"],
+            "sparkline_points": q.get("sparkline_points") or [],
         })
 
     quotes_ok = sum(1 for x in macro_items + company_items if x.get("available"))
