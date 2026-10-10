@@ -219,7 +219,13 @@ def run(day: date, mode: str = 'auto') -> None:
         publish_analysis(day)
     else:
         print(f'NEXUS: {day.isoformat()} edición RSS sin Gemini')
-        publish_rss(day)
+        try:
+            publish_rss(day)
+        finally:
+            # Mercado se refresca incluso cuando no hay novedades RSS.
+            # Una caída de mercado nunca sustituye la edición anterior.
+            from src.newtab_market import refresh_market
+            refresh_market()
 
 
 def main() -> None:
