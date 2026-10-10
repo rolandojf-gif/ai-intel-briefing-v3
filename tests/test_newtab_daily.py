@@ -50,6 +50,16 @@ class NewtabDailyTests(unittest.TestCase):
             self.assertEqual(output['briefing']['thesis'],'Análisis anterior')
             self.assertEqual(output['counts']['signal'],0)
 
+    def test_publish_records_utc_generation_timestamp(self):
+        with tempfile.TemporaryDirectory() as temp:
+            path = Path(temp)
+            with patch.object(daily, 'NEWTAB', path):
+                daily.publish({'date': '2026-10-11', 'edition_type': 'rss', 'items': []})
+            stored = json.loads((path / 'latest.json').read_text(encoding='utf-8'))
+            stamp = datetime.fromisoformat(stored['generated_at'])
+            self.assertEqual(stamp.utcoffset().total_seconds(), 0)
+            self.assertEqual(stored['date'], '2026-10-11')
+
     def test_zero_new_does_not_replace_latest(self):
         with tempfile.TemporaryDirectory() as temp:
             path=Path(temp); old=path/'latest.json';old.write_text('{"date":"2026-10-10"}')
