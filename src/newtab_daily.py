@@ -36,6 +36,8 @@ def atomic_json(path: Path, data: dict) -> None:
 
 
 def publish(data: dict) -> None:
+    # Registro preciso de publicación; cron usa Europe/Madrid, los datos ISO son UTC.
+    data = {**data, 'generated_at': datetime.now(timezone.utc).isoformat()}
     day = data['date']
     atomic_json(NEWTAB / f'{day}.json', data)
     atomic_json(NEWTAB / 'latest.json', data)

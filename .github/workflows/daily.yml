@@ -6,7 +6,8 @@ on:
   pull_request:
     branches: [ main ]
   schedule:
-    - cron: "15 6 * * *"
+    - cron: "0 5 * * *"
+      timezone: "Europe/Madrid"
   workflow_dispatch:
     inputs:
       force_gemini:
