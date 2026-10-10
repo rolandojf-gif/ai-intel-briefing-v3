@@ -1136,6 +1136,15 @@ def main():
         traceback.print_exc()
         market_data = None
 
+    # Publicar las mismas cotizaciones ya consultadas para NEXUS NEWTAB.
+    # No repetir la consulta a Yahoo/CoinGecko ni llamar a Gemini.
+    try:
+        from src.newtab_market import publish_market
+        publish_market(market_data)
+    except Exception:
+        print("NEXUS MARKET publication failed (non-blocking):")
+        traceback.print_exc()
+
     html = render_index(final_items, briefing=briefing, snapshot=daily_snapshot, market=market_data)
     Path("docs").mkdir(exist_ok=True)
     Path("docs/index.html").write_text(html, encoding="utf-8")
