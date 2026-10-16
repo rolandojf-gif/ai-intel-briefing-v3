@@ -1,0 +1,819 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>AI Strategic Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#191a1a; --card:#202222; --card-hover:#262828; --line:#2f3131; --line-2:#3d4040;
+    --txt:#e8e8e6; --txt-dim:#c8cbca; --dim:#9b9f9e; --dimmer:#6b6f6e;
+    --accent:#20b8cd; --accent-soft:rgba(32,184,205,.12); --accent-line:rgba(32,184,205,.35);
+    --green:#4bd48b; --rose:#f2665f; --amber:#e8b750; --violet:#b28bf2;
+    --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+    --sans:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+    --disp:'Space Grotesk','Inter',system-ui,sans-serif;
+    --r:16px;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--txt);font-family:var(--sans);line-height:1.5}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 24px 80px}
+
+  /* -- Barra superior -- */
+  .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;
+          padding:18px 0;border-bottom:1px solid var(--line);margin-bottom:20px;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:10px;font-family:var(--disp);font-size:17px;font-weight:700;letter-spacing:-.01em}
+  .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}
+  .brand .date{font-family:var(--mono);font-size:11px;color:var(--dimmer);font-weight:400;margin-left:6px}
+  .top-r{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .state{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:10px;
+         font-weight:700;letter-spacing:.16em;padding:6px 12px;border-radius:999px;border:1px solid}
+  .state .sdot{width:5px;height:5px;border-radius:50%;background:currentColor}
+  .state.alert{color:var(--rose);border-color:rgba(242,102,95,.4);background:rgba(242,102,95,.08)}
+  .state.alert .sdot{animation:pulse 1.8s ease-in-out infinite}
+  .state.active{color:var(--amber);border-color:rgba(232,183,80,.4);background:rgba(232,183,80,.08)}
+  .state.quiet{color:var(--dim);border-color:var(--line-2);background:var(--card)}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+  .nav{display:flex;gap:6px}
+  .nav a{font-size:13px;font-weight:600;padding:7px 15px;border-radius:999px;color:var(--dim)}
+  .nav a.on{color:var(--accent);background:var(--accent-soft)}
+  .nav a:hover{color:var(--txt)}
+  .arch-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 18px;
+            padding:10px 14px;background:var(--card);border:1px solid var(--line);border-radius:12px;
+            font-size:13px;color:var(--dim)}
+  .arch-bar a{color:var(--accent);font-weight:600}
+  .arch-bar .here{font-family:var(--mono);font-size:12px;color:var(--txt);font-weight:600}
+
+  /* -- Tesis -- */
+  .thesis{padding:6px 0 18px}
+  .thesis .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--accent);
+               text-transform:uppercase;font-weight:700;display:block;margin-bottom:8px}
+  .thesis h1{margin:0;font-family:var(--disp);font-size:clamp(20px,2.6vw,28px);line-height:1.3;
+             font-weight:600;letter-spacing:-.015em;max-width:62ch;color:var(--txt)}
+
+  .degraded{margin:0 0 18px;padding:12px 16px;border:1px solid rgba(232,183,80,.35);
+            border-left:3px solid var(--amber);background:rgba(232,183,80,.06);border-radius:10px;
+            font-size:13px;color:#eccd8e;line-height:1.55}
+
+  /* -- Tabs de tema (Discover) -- */
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;padding:4px 0 22px}
+  .tab{font-size:13px;font-weight:600;padding:8px 16px;border-radius:999px;cursor:pointer;
+       border:1px solid var(--line);background:var(--card);color:var(--dim);
+       transition:all .15s ease;user-select:none}
+  .tab:hover{color:var(--txt);border-color:var(--line-2)}
+  .tab.on{color:#0e2b30;background:var(--accent);border-color:var(--accent);font-weight:700}
+  .tab .n{font-family:var(--mono);font-size:10.5px;opacity:.75;margin-left:5px}
+
+  /* -- Rejilla principal -- */
+  .layout{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:26px;align-items:start}
+
+  /* -- Hero (card destacada Discover) -- */
+  .hero{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+        overflow:hidden;margin-bottom:18px;transition:background .15s,border-color .15s}
+  .hero:hover{background:var(--card-hover);border-color:var(--line-2)}
+  .hero-img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#141616}
+  .hero-body{padding:20px 22px 22px}
+  .meta-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+  .src{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:var(--dim)}
+  .src img{width:16px;height:16px;border-radius:4px;flex-shrink:0}
+  .tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
+       padding:3px 9px;border-radius:999px;color:var(--accent);background:var(--accent-soft);
+       border:1px solid var(--accent-line);font-weight:700}
+  .score{font-family:var(--mono);font-size:10.5px;color:var(--dimmer);margin-left:auto}
+  .copy-btn{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.08em;
+            text-transform:uppercase;padding:4px 10px;border-radius:999px;cursor:pointer;
+            border:1px solid var(--line);background:transparent;color:var(--dim);flex-shrink:0}
+  .copy-btn:hover{color:var(--accent);border-color:var(--accent-line);background:var(--accent-soft)}
+  .copy-btn.ok{color:#0d2b1c;background:var(--green);border-color:var(--green)}
+  .badge-new{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;
+             font-weight:700;padding:3px 8px;border-radius:999px;color:#0d2b1c;
+             background:var(--green);flex-shrink:0}
+  .tab-new.on{color:#0d2b1c;background:var(--green);border-color:var(--green)}
+  .multi{font-family:var(--mono);font-size:9.5px;color:var(--violet);border:1px solid rgba(178,139,242,.35);
+         background:rgba(178,139,242,.1);padding:3px 8px;border-radius:999px;font-weight:700}
+  .hero-title{margin:0 0 10px;font-family:var(--disp);font-size:clamp(19px,2.3vw,26px);
+              line-height:1.28;font-weight:700;letter-spacing:-.015em}
+  .hero-title a:hover{color:var(--accent)}
+  .sw{font-size:14.5px;line-height:1.6;color:var(--txt-dim)}
+  .facts{display:grid;gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+  @media(min-width:860px){.facts.two{grid-template-columns:1fr 1fr;gap:18px}}
+  .fact{display:flex;gap:9px;align-items:flex-start;font-size:12.5px;line-height:1.5}
+  .fact .k{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;
+           flex-shrink:0;padding-top:2px;font-weight:700}
+  .fact.pw .k{color:var(--violet)} .fact.pw .v{color:#cfc0ee}
+  .fact.wn .k{color:var(--amber)}  .fact.wn .v{color:#e3cf9b}
+  .ents{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+  .ent{font-family:var(--mono);font-size:10px;padding:3px 9px;border-radius:999px;
+       background:rgba(255,255,255,.04);color:var(--dim);border:1px solid var(--line)}
+
+  /* -- Rejilla de cards (Discover) -- */
+  .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+        overflow:hidden;display:flex;flex-direction:column;
+        transition:background .15s,border-color .15s,transform .15s}
+  .card:hover{background:var(--card-hover);border-color:var(--line-2);transform:translateY(-2px)}
+  .card-img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#141616}
+  .card-body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
+  .card .meta-row{margin-bottom:0}
+  .card-title{margin:0;font-family:var(--disp);font-size:16.5px;line-height:1.34;font-weight:600;letter-spacing:-.01em}
+  .card-title a:hover{color:var(--accent)}
+  .card .sw{font-size:13px;line-height:1.55;color:var(--dim);
+            display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .card-foot{margin-top:auto;padding-top:10px;border-top:1px solid var(--line);display:grid;gap:6px}
+  .card-foot .fact{font-size:11.5px}
+
+  /* -- Contexto -- */
+  .section-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+             margin:26px 0 14px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+  .section-h h2{margin:0;font-family:var(--disp);font-size:15px;font-weight:700}
+  .section-h .n{font-family:var(--mono);font-size:10.5px;color:var(--dimmer)}
+  .ctx{display:grid;gap:8px}
+  .cx{display:flex;gap:12px;align-items:flex-start;padding:13px 16px;background:var(--card);
+      border:1px solid var(--line);border-radius:12px}
+  .cx:hover{border-color:var(--line-2);background:var(--card-hover)}
+  .cx img{width:16px;height:16px;border-radius:4px;flex-shrink:0;margin-top:3px}
+  .cx-b{min-width:0;flex:1}
+  .cx-t{font-size:14px;font-weight:600;line-height:1.4}
+  .cx-t a:hover{color:var(--accent)}
+  .cx-w{font-size:12.5px;color:var(--dim);margin-top:3px;line-height:1.5}
+  .cx-m{font-family:var(--mono);font-size:9.5px;color:var(--dimmer);margin-top:5px;letter-spacing:.06em}
+
+  .empty{padding:44px 26px;text-align:center;border:1px dashed var(--line-2);border-radius:var(--r);background:var(--card)}
+  .empty .big{font-family:var(--disp);font-size:17px;font-weight:650;margin-bottom:8px}
+  .empty .sub{font-size:13.5px;color:var(--dim);max-width:52ch;margin:0 auto;line-height:1.6}
+
+  /* -- Sidebar -- */
+  .sidebar{display:grid;gap:16px;position:sticky;top:16px}
+  .widget{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px}
+  .widget-title{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:13px}
+  .widget-title span:first-child{font-family:var(--disp);font-size:14px;font-weight:700}
+  .widget-title .lbl{font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--dimmer);text-transform:uppercase}
+
+  .market-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+  .m-box{background:rgba(255,255,255,.025);border:1px solid var(--line);border-radius:10px;padding:10px 11px}
+  .m-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+  .m-lbl{font-size:11px;font-weight:600;color:var(--dim)}
+  .m-chg{font-family:var(--mono);font-size:10.5px;font-weight:700}
+  .m-chg.pos{color:var(--green)} .m-chg.neg{color:var(--rose)}
+  .m-chg.na{color:var(--dimmer);font-weight:500}
+  .m-price{font-family:var(--mono);font-size:12.5px;font-weight:700;color:var(--txt);margin-bottom:4px}
+  .m-nodata{opacity:.55}
+  .m-nodata .m-price{color:var(--dimmer);font-weight:500}
+  .spark{width:100%;height:22px;display:block}
+
+  .comp-item{display:flex;justify-content:space-between;align-items:center;gap:10px;
+             padding:8px 0;border-bottom:1px solid var(--line)}
+  .comp-item:last-child{border-bottom:none;padding-bottom:0}
+  .comp-info{display:flex;align-items:center;gap:9px;min-width:0}
+  .comp-logo{width:22px;height:22px;border-radius:6px;flex-shrink:0;background:#fff}
+  .comp-name{font-size:12.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .comp-ticker{font-family:var(--mono);font-size:9.5px;color:var(--dimmer)}
+  .comp-val{text-align:right;flex-shrink:0}
+  .comp-price{font-family:var(--mono);font-size:11.5px;font-weight:700}
+  .comp-price.na{color:var(--dimmer);font-weight:500}
+  .comp-chg{font-family:var(--mono);font-size:10px;font-weight:700}
+  .comp-chg.pos{color:var(--green)} .comp-chg.neg{color:var(--rose)}
+  .comp-chg.na{color:var(--dimmer);font-weight:500}
+
+  .wr{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--line)}
+  .wr:last-child{border-bottom:none;padding-bottom:0}
+  .wr-ic{font-family:var(--mono);font-size:12px;font-weight:700;flex-shrink:0;line-height:1.5}
+  .wr.hit .wr-ic{color:var(--green)} .wr.open .wr-ic{color:var(--dimmer)}
+  .wr-t{font-size:12.5px;line-height:1.5}
+  .wr.open .wr-t{color:var(--dim)}
+  .wr-ev{font-size:11px;color:var(--green);margin-top:3px;line-height:1.4}
+
+  .thr{display:flex;gap:11px;align-items:baseline;padding:8px 0;border-bottom:1px solid var(--line)}
+  .thr:last-child{border-bottom:none;padding-bottom:0}
+  .thr-d{font-family:var(--mono);font-size:9.5px;font-weight:700;color:var(--violet);flex-shrink:0;
+         padding:2px 8px;border:1px solid rgba(178,139,242,.32);border-radius:999px;background:rgba(178,139,242,.08)}
+  .thr-t{font-size:12.5px;font-weight:600}
+  .thr-l{font-size:11.5px;color:var(--dim);margin-top:2px;line-height:1.4}
+  .mv{display:flex;gap:8px;align-items:center;padding:7px 0;border-bottom:1px solid var(--line);font-size:12px;flex-wrap:wrap}
+  .mv:last-child{border-bottom:none;padding-bottom:0}
+  .mv-b{font-family:var(--mono);font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;
+        padding:2px 7px;border-radius:999px;flex-shrink:0;font-weight:700}
+  .mv-b.new{color:var(--green);background:rgba(75,212,139,.1);border:1px solid rgba(75,212,139,.3)}
+  .mv-b.ret{color:var(--amber);background:rgba(232,183,80,.1);border:1px solid rgba(232,183,80,.3)}
+  .mv-b.str{color:var(--accent);background:var(--accent-soft);border:1px solid var(--accent-line)}
+  .mv .nm{font-weight:600}
+  .mv .dt{color:var(--dimmer);font-family:var(--mono);font-size:10px}
+  .none{font-size:12px;color:var(--dimmer);font-style:italic}
+  .rk{padding:8px 0;border-bottom:1px solid var(--line);font-size:12.5px;line-height:1.5;color:#e3cf9b}
+  .rk:last-child{border-bottom:none;padding-bottom:0}
+  .rk.w{color:#cfc0ee}
+
+  footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);
+         display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+         font-family:var(--mono);font-size:10px;color:var(--dimmer);letter-spacing:.05em}
+
+  /* -- Responsive -- */
+  @media(max-width:1080px){
+    .layout{grid-template-columns:1fr}
+    .sidebar{position:static}
+  }
+  @media(max-width:720px){
+    .grid{grid-template-columns:1fr}
+    .wrap{padding:0 14px 60px}
+    .market-grid{grid-template-columns:1fr 1fr}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Barra superior -->
+  <div class="topbar">
+    <div class="brand">
+      <span class="dot"></span>
+      AI Strategic Radar
+      <span class="date">2026-10-16</span>
+    </div>
+    <div class="top-r">
+      <span class="state alert"><span class="sdot"></span>ALERTA</span>
+      <nav class="nav">
+        <a class="" href="../index.html">Diario</a>
+        <a class="" href="../weekly.html">Semanal</a>
+        <a class="on" href="../archivo.html">Archivo</a>
+      </nav>
+    </div>
+  </div>
+
+  
+  <div class="arch-bar">
+    <a href="../archivo.html">← Archivo</a>
+    <a href="../d/2026-10-14.html">2026-10-14</a>
+    <span class="here">2026-10-16</span>
+    
+    <a href="../index.html" style="margin-left:auto">Hoy</a>
+  </div>
+  
+
+  <!-- Tesis del dia -->
+  <div class="thesis">
+    <span class="lbl">Tesis del día</span>
+    <h1>El lanzamiento de nuevos modelos de agentes y de alto rendimiento, junto con la intensificación de las restricciones geopolíticas sobre los chips, marcan una aceleración en la carrera por la capacidad de los modelos y en la fricción por el control del compute.</h1>
+  </div>
+
+  
+  
+  <div class="degraded">
+    <b>Capa X apagada.</b>
+    
+    El espejo no devolvió posts (6 cuentas). El briefing sigue con RSS.
+    
+  </div>
+  
+
+  <!-- Tabs de tema -->
+  
+  <div class="tabs" id="tabs">
+    <span class="tab on" data-filter="all">Todas<span class="n">12</span></span>
+    
+    <span class="tab tab-new" data-filter="__new__">Nuevo<span class="n">11</span></span>
+    
+    
+    <span class="tab" data-filter="frontier_capability">Capacidad frontier<span class="n">6</span></span>
+    
+    <span class="tab" data-filter="geopolitics_power">Geopolítica<span class="n">3</span></span>
+    
+    <span class="tab" data-filter="agents_automation">Agentes<span class="n">2</span></span>
+    
+    <span class="tab" data-filter="compute_chips_dc">Compute &amp; chips<span class="n">1</span></span>
+    
+  </div>
+  
+
+  <div class="layout">
+
+    <!-- Columna principal -->
+    <div class="main-col">
+
+      
+      <article class="hero" data-theme="geopolitics_power" data-new="1">
+        <a href="https://www.bloomberg.com/news/articles/2026-10-16/taiwan-to-curb-ai-chip-exports-to-china-as-part-of-us-trade-deal" target="_blank" rel="noopener noreferrer">
+          <img class="hero-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxYzFlMWUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMzMyOTFhIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJyIiBjeD0iODAlIiBjeT0iMjAlIiByPSI2MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjZThiNzUwIiBzdG9wLW9wYWNpdHk9IjAuMjIiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWMxZTFlIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIzNjAiIGZpbGw9InVybCgjcikiLz4KICA8Y2lyY2xlIGN4PSI1NDAiIGN5PSI3MCIgcj0iMTMwIiBmaWxsPSIjZThiNzUwIiBvcGFjaXR5PSIwLjEwIi8+CiAgPHRleHQgeD0iNDAiIHk9Ijc2IiBmaWxsPSIjZThiNzUwIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCAtYXBwbGUtc3lzdGVtLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iODAwIiBsZXR0ZXItc3BhY2luZz0iMiI+U1RSQVRFR0lDIElOVEVMPC90ZXh0PgogIDx0ZXh0IHk9IjE1MCIgZmlsbD0iI2VjZWVlZCIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgLWFwcGxlLXN5c3RlbSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNyIgZm9udC13ZWlnaHQ9IjcwMCI+PHRzcGFuIHg9IjQwIiBkeT0iMCI+VGFpd8OhbiByZXN0cmluZ2UgbGEgZXhwb3J0YWNpw7NuPC90c3Bhbj48dHNwYW4geD0iNDAiIGR5PSIzNCI+ZGUgY2hpcHMgZGUgSUEgYSBDaGluYSBwb3I8L3RzcGFuPjx0c3BhbiB4PSI0MCIgZHk9IjM0Ij5hY3VlcmRvIGNvbWVyY2lhbCBjb24gRUVVVS48L3RzcGFuPjwvdGV4dD4KICA8bGluZSB4MT0iNDAiIHkxPSIzMDgiIHgyPSI2MDAiIHkyPSIzMDgiIHN0cm9rZT0iIzNkNDA0MCIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPHRleHQgeD0iNDAiIHk9IjMzMiIgZmlsbD0iIzliOWY5ZSIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiI+Qmxvb21iZXJnIFRlY2g8L3RleHQ+Cjwvc3ZnPg==" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+        </a>
+        <div class="hero-body">
+          <div class="meta-row">
+            <span class="tag">Geopolítica</span>
+            <span class="badge-new">Nuevo</span>
+            <span class="src"><img src="https://www.google.com/s2/favicons?domain=bloomberg.com&amp;sz=64" alt="" loading="lazy"/>Bloomberg Tech</span>
+            
+            <span class="score">100</span>
+            <button type="button" class="copy-btn" data-copy>Copiar</button>
+          </div>
+          <h2 class="hero-title">
+            <a href="https://www.bloomberg.com/news/articles/2026-10-16/taiwan-to-curb-ai-chip-exports-to-china-as-part-of-us-trade-deal" target="_blank" rel="noopener noreferrer">Taiwán restringe la exportación de chips de IA a China por acuerdo comercial con EEUU.</a>
+          </h2>
+          <div class="sw">La medida taiwanesa, en línea con EEUU, limita aún más el acceso de China a chips avanzados, afectando su capacidad de entrenamiento y desarrollo de IA.</div>
+          
+          <div class="facts two">
+            
+            <div class="fact pw"><span class="k">Poder</span><span class="v">China pierde acceso crítico a hardware. Taiwán y EEUU ganan influencia geopolítica en tech.</span></div>
+            
+            
+            <div class="fact wn"><span class="k">Vigilar</span><span class="v">Observar la respuesta de China en su desarrollo de chips domésticos o medidas de represalia.</span></div>
+            
+          </div>
+          
+          
+          <div class="ents"><span class="ent">Taiwán</span><span class="ent">China</span><span class="ent">EEUU</span></div>
+          
+        </div>
+      </article>
+      
+
+      
+      <div class="grid">
+        
+        <article class="card" data-theme="agents_automation" data-new="1">
+          <a href="https://www.together.ai/blog/meta-muse-spark-open" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="https://cdn.prod.website-files.com/69654e88dce9154b5f12070c/6ad05aa9a57ccc564b6563a1_TAI_Meta.png" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="badge-new">Nuevo</span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=together.ai&amp;sz=64" alt="" loading="lazy"/>Together AI</span>
+              
+              <span class="score">97</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
+            </div>
+            <h3 class="card-title">
+              <a href="https://www.together.ai/blog/meta-muse-spark-open" target="_blank" rel="noopener noreferrer">Meta Muse Spark Open, modelo de código agéntico, disponible en Together AI.</a>
+            </h3>
+            <div class="sw">Meta lanza un nuevo modelo de código agéntico con gran contexto, reforzando la tendencia a la automatización y la competencia en modelos abiertos.</div>
+            
+            <div class="card-foot">
+              
+              <div class="fact pw"><span class="k">Poder</span><span class="v">Meta gana al impulsar modelos abiertos de agentes. Together AI gana por alojarlo.</span></div>
+              
+              
+              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Ver adopción del modelo por desarrolladores de agentes y su impacto en la eficiencia de desarrollo.</span></div>
+              
+            </div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-theme="compute_chips_dc" data-new="1">
+          <a href="https://artificialanalysis.ai/articles/vera-rubin-nvl72-agentperf" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="https://artificialanalysiscdn.com/article-assets/2026/vera-rubin-nvl72-agentperf-cover.png" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="badge-new">Nuevo</span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=artificialanalysis.ai&amp;sz=64" alt="" loading="lazy"/>Artificial Analysis</span>
+              
+              <span class="score">96</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
+            </div>
+            <h3 class="card-title">
+              <a href="https://artificialanalysis.ai/articles/vera-rubin-nvl72-agentperf" target="_blank" rel="noopener noreferrer">Publicados los primeros resultados de AgentPerf para la NVIDIA Vera Rubin NVL72.</a>
+            </h3>
+            <div class="sw">Los benchmarks de NVIDIA Vera Rubin NVL72 muestran el rendimiento del nuevo hardware en cargas de trabajo de agentes, marcando un hito en la optimización del compute para IA autónoma.</div>
+            
+            <div class="card-foot">
+              
+              <div class="fact pw"><span class="k">Poder</span><span class="v">NVIDIA refuerza su posición como proveedor clave de hardware para la computación de agentes.</span></div>
+              
+              
+              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Ver si otros fabricantes de chips publican benchmarks comparables con Vera Rubin NVL72 para cargas de trabajo de agente…</span></div>
+              
+            </div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-theme="agents_automation" data-new="1">
+          <a href="https://www.theverge.com/ai-artificial-intelligence/1012510/openai-chatgpt-google-chrome-tabs" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/Screenshot-2026-10-15-at-6.35.44-PM.png?quality=90&amp;strip=all&amp;crop=0,0,100,100" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="badge-new">Nuevo</span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=theverge.com&amp;sz=64" alt="" loading="lazy"/>The Verge AI</span>
+              
+              <span class="score">86</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
+            </div>
+            <h3 class="card-title">
+              <a href="https://www.theverge.com/ai-artificial-intelligence/1012510/openai-chatgpt-google-chrome-tabs" target="_blank" rel="noopener noreferrer">ChatGPT puede acceder a las pestañas del navegador Chrome, expandiendo su contexto de operación.</a>
+            </h3>
+            <div class="sw">El acceso de ChatGPT a las pestañas del navegador amplía su capacidad para actuar como agente contextual, acercándolo a la automatización de tareas complejas en el flujo de trabajo del usuario.</div>
+            
+            <div class="card-foot">
+              
+              <div class="fact pw"><span class="k">Poder</span><span class="v">OpenAI gana al mejorar la integración y el poder contextual de ChatGPT.</span></div>
+              
+              
+              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Ver el desarrollo de nuevas funciones y automatizaciones que aprovechen esta capacidad de acceso a pestañas.</span></div>
+              
+            </div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-theme="frontier_capability" data-new="1">
+          <a href="https://huggingface.co/blog/nvidia/scaling-indic-pretraining" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="https://cdn-uploads.huggingface.co/production/uploads/68d2fec8856b85d927e44d32/x0aObe_0mduBjWFuKBGoV.png" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="badge-new">Nuevo</span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=huggingface.co&amp;sz=64" alt="" loading="lazy"/>Hugging Face Blog</span>
+              
+              <span class="score">81</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
+            </div>
+            <h3 class="card-title">
+              <a href="https://huggingface.co/blog/nvidia/scaling-indic-pretraining" target="_blank" rel="noopener noreferrer">Nuevo esfuerzo de preentrenamiento con 2.8 billones de tokens para lenguas indias.</a>
+            </h3>
+            <div class="sw">La inversión masiva en preentrenamiento de modelos para lenguas indias eleva el umbral de capacidad multilingüe y el coste de entrada en este nicho.</div>
+            
+            <div class="card-foot">
+              
+              <div class="fact pw"><span class="k">Poder</span><span class="v">NVIDIA y Hugging Face ganan al expandir su alcance y capacidad en modelos multilingües.</span></div>
+              
+              
+              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Ver si emergen modelos específicos de lenguas indias que superen a los multilingües generales en esas lenguas.</span></div>
+              
+            </div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-theme="frontier_capability" data-new="1">
+          <a href="https://mistral.ai/news/timestral/" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="https://mistral.ai/cms-media/api/media/file/og-timestral.webp" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="badge-new">Nuevo</span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=mistral.ai&amp;sz=64" alt="" loading="lazy"/>Mistral</span>
+              
+              <span class="score">81</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
+            </div>
+            <h3 class="card-title">
+              <a href="https://mistral.ai/news/timestral/" target="_blank" rel="noopener noreferrer">Mistral lanza Timestral, un modelo eficiente para pronóstico probabilístico en cuatro tamaños.</a>
+            </h3>
+            <div class="sw">Mistral expande su oferta con un modelo de pronóstico CPU-eficiente, apuntando a aplicaciones industriales y reforzando la competencia en modelos especializados.</div>
+            
+            <div class="card-foot">
+              
+              <div class="fact pw"><span class="k">Poder</span><span class="v">Mistral gana al diversificar su portfolio y atacar nichos de mercado con modelos eficientes.</span></div>
+              
+              
+              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Comparaciones de rendimiento y coste de Timestral con soluciones existentes en pronóstico probabilístico.</span></div>
+              
+            </div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-theme="frontier_capability" data-new="1">
+          <a href="https://x.ai/news/grok-voice-3" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="https://media.x.ai/v1/website/og-grok-voice-3-0-b281361b.webp" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="badge-new">Nuevo</span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=x.ai&amp;sz=64" alt="" loading="lazy"/>xAI</span>
+              
+              <span class="score">77</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
+            </div>
+            <h3 class="card-title">
+              <a href="https://x.ai/news/grok-voice-3" target="_blank" rel="noopener noreferrer">xAI lanza Grok Voice 3.0, añadiendo nuevas capacidades de voz a su modelo.</a>
+            </h3>
+            <div class="sw">xAI mejora las capacidades multimodales de Grok con la versión 3.0 de su modelo de voz, impulsando la interacción conversacional.</div>
+            
+            <div class="card-foot">
+              
+              <div class="fact pw"><span class="k">Poder</span><span class="v">xAI refuerza su oferta multimodal.</span></div>
+              
+              
+              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Comparaciones de rendimiento de Grok Voice 3.0 con capacidades de voz de otros modelos frontier.</span></div>
+              
+            </div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-theme="geopolitics_power" data-new="1">
+          <a href="https://www.reuters.com/world/asia-pacific/g7-launch-exercises-guard-against-ai-cyber-attacks-2026-10-16/" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxYzFlMWUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMzMyOTFhIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJyIiBjeD0iODAlIiBjeT0iMjAlIiByPSI2MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjZThiNzUwIiBzdG9wLW9wYWNpdHk9IjAuMjIiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWMxZTFlIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIzNjAiIGZpbGw9InVybCgjcikiLz4KICA8Y2lyY2xlIGN4PSI1NDAiIGN5PSI3MCIgcj0iMTMwIiBmaWxsPSIjZThiNzUwIiBvcGFjaXR5PSIwLjEwIi8+CiAgPHRleHQgeD0iNDAiIHk9Ijc2IiBmaWxsPSIjZThiNzUwIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCAtYXBwbGUtc3lzdGVtLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iODAwIiBsZXR0ZXItc3BhY2luZz0iMiI+U1RSQVRFR0lDIElOVEVMPC90ZXh0PgogIDx0ZXh0IHk9IjE1MCIgZmlsbD0iI2VjZWVlZCIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgLWFwcGxlLXN5c3RlbSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNyIgZm9udC13ZWlnaHQ9IjcwMCI+PHRzcGFuIHg9IjQwIiBkeT0iMCI+RWwgRzcgcmVhbGl6YXLDoSBlamVyY2ljaW9zIHBhcmE8L3RzcGFuPjx0c3BhbiB4PSI0MCIgZHk9IjM0Ij5kZWZlbmRlcnNlIGRlIGNpYmVyYXRhcXVlczwvdHNwYW4+PHRzcGFuIHg9IjQwIiBkeT0iMzQiPmltcHVsc2Fkb3MgcG9yIElBLjwvdHNwYW4+PC90ZXh0PgogIDxsaW5lIHgxPSI0MCIgeTE9IjMwOCIgeDI9IjYwMCIgeTI9IjMwOCIgc3Ryb2tlPSIjM2Q0MDQwIiBzdHJva2Utd2lkdGg9IjEiLz4KICA8dGV4dCB4PSI0MCIgeT0iMzMyIiBmaWxsPSIjOWI5ZjllIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIj5SZXV0ZXJzIEFJPC90ZXh0Pgo8L3N2Zz4=" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="badge-new">Nuevo</span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=reuters.com&amp;sz=64" alt="" loading="lazy"/>Reuters AI</span>
+              
+              <span class="score">72</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
+            </div>
+            <h3 class="card-title">
+              <a href="https://www.reuters.com/world/asia-pacific/g7-launch-exercises-guard-against-ai-cyber-attacks-2026-10-16/" target="_blank" rel="noopener noreferrer">El G7 realizará ejercicios para defenderse de ciberataques impulsados por IA.</a>
+            </h3>
+            <div class="sw">El G7 intensifica su preparación contra ciberataques con IA, anticipando riesgos en un futuro cercano y señalando la necesidad de marcos de seguridad más robustos a nivel internacional.</div>
+            
+            <div class="card-foot">
+              
+              <div class="fact pw"><span class="k">Poder</span><span class="v">Los estados-nación buscan fortalecer su posición frente a las amenazas de la IA.</span></div>
+              
+              
+              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Ver la publicación de informes o directrices resultantes de estos ejercicios, o nuevas regulaciones en ciberseguridad I…</span></div>
+              
+            </div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-theme="frontier_capability" data-new="0">
+          <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini-4-argon__blog-header__27.max-600x600.format-webp.webp" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=blog.google&amp;sz=64" alt="" loading="lazy"/>Google AI Blog</span>
+              
+              <span class="score">69</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
+            </div>
+            <h3 class="card-title">
+              <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/" target="_blank" rel="noopener noreferrer">Google anuncia Gemini 4 Argon, un nuevo modelo diseñado para problemas complejos.</a>
+            </h3>
+            <div class="sw">Google lanza Gemini 4 Argon, su nuevo modelo frontier, intensificando la competencia en capacidades avanzadas y la carrera por la inteligencia general.</div>
+            
+            <div class="card-foot">
+              
+              <div class="fact pw"><span class="k">Poder</span><span class="v">Google DeepMind refuerza su posición en la vanguardia de los modelos de IA.</span></div>
+              
+              
+              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Esperar detalles técnicos y benchmarks de Gemini 4 Argon para evaluar sus capacidades reales.</span></div>
+              
+            </div>
+            
+          </div>
+        </article>
+        
+      </div>
+      
+
+      
+
+      
+      <div class="section-h">
+        <h2>Contexto</h2>
+        <span class="n">de fondo, no cambia nada hoy</span>
+      </div>
+      <div class="ctx">
+        
+        <div class="cx" data-theme="frontier_capability" data-new="1">
+          <img src="https://www.google.com/s2/favicons?domain=latent.space&amp;sz=64" alt="" loading="lazy"/>
+          <div class="cx-b">
+            <div class="cx-t">
+              <a href="https://www.latent.space/p/ainews-agents-disprove-polysemanticity" target="_blank" rel="noopener noreferrer">Afirman que los agentes refutan la polisemanticidad, mejorando interpretatibilidad de IA.</a>
+            </div>
+            <div class="cx-w">La capacidad de los agentes para influir en la interpretatibilidad de los modelos podría acelerar el desarrollo de IA más seguras y controlables.</div>
+            <div class="cx-m">Capacidad frontier · Latent Space · 83</div>
+          </div>
+        </div>
+        
+        <div class="cx" data-theme="geopolitics_power" data-new="1">
+          <img src="https://www.google.com/s2/favicons?domain=currentaffairs.org&amp;sz=64" alt="" loading="lazy"/>
+          <div class="cx-b">
+            <div class="cx-t">
+              <a href="https://www.currentaffairs.org/news/why-were-banning-ai" target="_blank" rel="noopener noreferrer">Argumentan motivos para la prohibición de la IA, señalando riesgos y desafíos.</a>
+            </div>
+            <div class="cx-w">La discusión sobre la prohibición de la IA subraya las crecientes preocupaciones éticas y de seguridad, que podrían influir en futuras políticas regulatorias y la dirección de la investigación.</div>
+            <div class="cx-m">Geopolítica · Hacker News (alto voltaje) · 65</div>
+          </div>
+        </div>
+        
+        <div class="cx" data-theme="frontier_capability" data-new="1">
+          <img src="https://www.google.com/s2/favicons?domain=importai.substack.com&amp;sz=64" alt="" loading="lazy"/>
+          <div class="cx-b">
+            <div class="cx-t">
+              <a href="https://jack-clark.net/2026/10/12/import-ai-476-creativity-and-rsi-worse-than-china-open-weight-models-ai-goes-to-space/" target="_blank" rel="noopener noreferrer">Modelos de IA carecen de razonamiento visual intuitivo según nuevo benchmark.</a>
+            </div>
+            <div class="cx-w">Se identifican limitaciones en la capacidad de razonamiento visual de los modelos actuales, indicando barreras en el avance de la inteligencia general.</div>
+            <div class="cx-m">Capacidad frontier · Import AI · 51</div>
+          </div>
+        </div>
+        
+      </div>
+      
+
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+      
+
+      
+
+      
+      <div class="widget">
+        <div class="widget-title">
+          <span>Vigilancia de ayer</span>
+          <span class="lbl">0/3 confirmadas</span>
+        </div>
+        
+        <div class="wr open">
+          <span class="wr-ic">○</span>
+          <div>
+            <div class="wr-t">Otros fabricantes de chips anuncian inversiones masivas o retrasos debidos a la escasez de equipos ASML.</div>
+            
+          </div>
+        </div>
+        
+        <div class="wr open">
+          <span class="wr-ic">○</span>
+          <div>
+            <div class="wr-t">Aparición de benchmarks detallados comparando Gemini 4 Argon con los últimos modelos de OpenAI y Anthropic.</div>
+            
+          </div>
+        </div>
+        
+        <div class="wr open">
+          <span class="wr-ic">○</span>
+          <div>
+            <div class="wr-t">Más integraciones de agentes que demuestren eficiencias de costes similares a las logradas por Asana con modelos de OpenAI.</div>
+            
+          </div>
+        </div>
+        
+      </div>
+      
+
+      
+      <div class="widget">
+        <div class="widget-title">
+          <span>Memoria del radar</span>
+          <span class="lbl">Continuidad</span>
+        </div>
+        
+        <div class="thr">
+          <span class="thr-d">DÍA 11</span>
+          <div>
+            <div class="thr-t">Capacidad frontier</div>
+            <div class="thr-l">Nuevo esfuerzo de preentrenamiento con 2.8 billones de tokens para lenguas indias.</div>
+          </div>
+        </div>
+        
+        <div class="thr">
+          <span class="thr-d">DÍA 11</span>
+          <div>
+            <div class="thr-t">Agentes y automatización</div>
+            <div class="thr-l">Meta Muse Spark Open, modelo de código agéntico, disponible en Together AI.</div>
+          </div>
+        </div>
+        
+        <div class="thr">
+          <span class="thr-d">DÍA 8</span>
+          <div>
+            <div class="thr-t">Compute y chips</div>
+            <div class="thr-l">Publicados los primeros resultados de AgentPerf para la NVIDIA Vera Rubin NVL72.</div>
+          </div>
+        </div>
+        
+        
+        
+        <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Banning</span>
+          <span class="dt">primera aparición</span></div>
+        
+        <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Creativity</span>
+          <span class="dt">primera aparición</span></div>
+        
+        <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Google AI</span>
+          <span class="dt">primera aparición</span></div>
+        
+        <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Google Chrome</span>
+          <span class="dt">primera aparición</span></div>
+        
+        <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Import</span>
+          <span class="dt">primera aparición</span></div>
+        
+        
+        <div class="mv"><span class="mv-b ret">Vuelve</span><span class="nm">Grok</span>
+          <span class="dt">tras 9 días en silencio</span></div>
+        
+        <div class="mv"><span class="mv-b ret">Vuelve</span><span class="nm">EEUU</span>
+          <span class="dt">tras 9 días en silencio</span></div>
+        
+        <div class="mv"><span class="mv-b ret">Vuelve</span><span class="nm">Gemini</span>
+          <span class="dt">tras 8 días en silencio</span></div>
+        
+        <div class="mv"><span class="mv-b ret">Vuelve</span><span class="nm">Reuters</span>
+          <span class="dt">tras 8 días en silencio</span></div>
+        
+        
+        <div class="mv"><span class="mv-b str">Racha</span><span class="nm">OpenAI</span>
+          <span class="dt">11 días seguidos</span></div>
+        
+        <div class="mv"><span class="mv-b str">Racha</span><span class="nm">Hugging Face</span>
+          <span class="dt">3 días seguidos</span></div>
+        
+      </div>
+      
+
+      
+      <div class="widget">
+        <div class="widget-title">
+          <span>Riesgos y vigilancia</span>
+          <span class="lbl">Próximos días</span>
+        </div>
+        <div class="rk">La limitación de chips a China podría ralentizar su progreso en IA y exacerbar tensiones geopolíticas.</div><div class="rk">La creciente capacidad de los agentes (ej. acceso a pestañas de Chrome) aumenta el riesgo de uso indebido o errores en entornos complejos.</div><div class="rk">La falta de razonamiento visual intuitivo en modelos de IA actuales podría limitar su autonomía en tareas del mundo real.</div>
+        <div class="rk w">Monitorear el rendimiento y adopción de Meta Muse Spark Open y Timestral en sus respectivos nichos.</div><div class="rk w">Observar el impacto real de las restricciones de chips taiwanesas en el desarrollo de IA china y posibles represalias.</div><div class="rk w">Evaluar los detalles técnicos y los benchmarks públicos de Gemini 4 Argon una vez disponibles.</div>
+      </div>
+      
+
+    </aside>
+  </div>
+
+  <footer>
+    <span>15 items descartados por el filtro de relevancia</span>
+    <span>32/36 fuentes activas · sin items: Yahoo Finance News, VentureBeat AI, OpenRouter Insights, Moonshot (Kimi) · X: kill switch</span>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var params = new URLSearchParams(location.search);
+    var d = params.get('date');
+    if (d && /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(d)) {
+      location.replace('d/' + d + '.html');
+      return;
+    }
+
+    function ficha(article){
+      if (!article) return '';
+      var a = article.querySelector('.hero-title a, .card-title a');
+      var title = a ? (a.textContent || '').trim() : '';
+      var swEl = article.querySelector('.sw');
+      var sw = swEl ? (swEl.textContent || '').trim() : '';
+      var url = a ? (a.getAttribute('href') || '').trim() : '';
+      return [title, sw, url].filter(Boolean).join('\n\n');
+    }
+    function copied(btn){
+      btn.classList.add('ok');
+      btn.textContent = 'Copiado';
+      setTimeout(function(){ btn.classList.remove('ok'); btn.textContent = 'Copiar'; }, 1600);
+    }
+    function fallback(text, btn){
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      try { if (document.execCommand('copy')) copied(btn); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+    document.querySelectorAll('[data-copy]').forEach(function(btn){
+      btn.addEventListener('click', function(ev){
+        ev.preventDefault();
+        ev.stopPropagation();
+        var text = ficha(btn.closest('article'));
+        if (!text) return;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function(){ copied(btn); }).catch(function(){ fallback(text, btn); });
+        } else {
+          fallback(text, btn);
+        }
+      });
+    });
+
+    var tabs = document.querySelectorAll('#tabs .tab');
+    if (!tabs.length) return;
+    tabs.forEach(function(t){
+      t.addEventListener('click', function(){
+        tabs.forEach(function(x){ x.classList.remove('on'); });
+        t.classList.add('on');
+        var f = t.getAttribute('data-filter');
+        document.querySelectorAll('[data-theme]').forEach(function(c){
+          var show;
+          if (f === 'all')            show = true;
+          else if (f === '__new__')   show = c.getAttribute('data-new') === '1';
+          else                        show = c.getAttribute('data-theme') === f;
+          c.style.display = show ? '' : 'none';
+        });
+      });
+    });
+  })();
+</script>
+</body>
+</html>
