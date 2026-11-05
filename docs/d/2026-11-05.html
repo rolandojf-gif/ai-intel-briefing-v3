@@ -1,0 +1,851 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>AI Strategic Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#191a1a; --card:#202222; --card-hover:#262828; --line:#2f3131; --line-2:#3d4040;
+    --txt:#e8e8e6; --txt-dim:#c8cbca; --dim:#9b9f9e; --dimmer:#6b6f6e;
+    --accent:#20b8cd; --accent-soft:rgba(32,184,205,.12); --accent-line:rgba(32,184,205,.35);
+    --green:#4bd48b; --rose:#f2665f; --amber:#e8b750; --violet:#b28bf2;
+    --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+    --sans:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+    --disp:'Space Grotesk','Inter',system-ui,sans-serif;
+    --r:16px;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--txt);font-family:var(--sans);line-height:1.5}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 24px 80px}
+
+  /* -- Barra superior -- */
+  .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;
+          padding:18px 0;border-bottom:1px solid var(--line);margin-bottom:20px;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:10px;font-family:var(--disp);font-size:17px;font-weight:700;letter-spacing:-.01em}
+  .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}
+  .brand .date{font-family:var(--mono);font-size:11px;color:var(--dimmer);font-weight:400;margin-left:6px}
+  .top-r{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .state{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:10px;
+         font-weight:700;letter-spacing:.16em;padding:6px 12px;border-radius:999px;border:1px solid}
+  .state .sdot{width:5px;height:5px;border-radius:50%;background:currentColor}
+  .state.alert{color:var(--rose);border-color:rgba(242,102,95,.4);background:rgba(242,102,95,.08)}
+  .state.alert .sdot{animation:pulse 1.8s ease-in-out infinite}
+  .state.active{color:var(--amber);border-color:rgba(232,183,80,.4);background:rgba(232,183,80,.08)}
+  .state.quiet{color:var(--dim);border-color:var(--line-2);background:var(--card)}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+  .nav{display:flex;gap:6px}
+  .nav a{font-size:13px;font-weight:600;padding:7px 15px;border-radius:999px;color:var(--dim)}
+  .nav a.on{color:var(--accent);background:var(--accent-soft)}
+  .nav a:hover{color:var(--txt)}
+  .arch-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 18px;
+            padding:10px 14px;background:var(--card);border:1px solid var(--line);border-radius:12px;
+            font-size:13px;color:var(--dim)}
+  .arch-bar a{color:var(--accent);font-weight:600}
+  .arch-bar .here{font-family:var(--mono);font-size:12px;color:var(--txt);font-weight:600}
+
+  /* -- Tesis -- */
+  .thesis{padding:6px 0 18px}
+  .thesis .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--accent);
+               text-transform:uppercase;font-weight:700;display:block;margin-bottom:8px}
+  .thesis h1{margin:0;font-family:var(--disp);font-size:clamp(20px,2.6vw,28px);line-height:1.3;
+             font-weight:600;letter-spacing:-.015em;max-width:62ch;color:var(--txt)}
+
+  .degraded{margin:0 0 18px;padding:12px 16px;border:1px solid rgba(232,183,80,.35);
+            border-left:3px solid var(--amber);background:rgba(232,183,80,.06);border-radius:10px;
+            font-size:13px;color:#eccd8e;line-height:1.55}
+
+  /* -- Tabs de tema (Discover) -- */
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;padding:4px 0 22px}
+  .tab{font-size:13px;font-weight:600;padding:8px 16px;border-radius:999px;cursor:pointer;
+       border:1px solid var(--line);background:var(--card);color:var(--dim);
+       transition:all .15s ease;user-select:none}
+  .tab:hover{color:var(--txt);border-color:var(--line-2)}
+  .tab.on{color:#0e2b30;background:var(--accent);border-color:var(--accent);font-weight:700}
+  .tab .n{font-family:var(--mono);font-size:10.5px;opacity:.75;margin-left:5px}
+
+  /* -- Rejilla principal -- */
+  .layout{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:26px;align-items:start}
+
+  /* -- Hero (card destacada Discover) -- */
+  .hero{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+        overflow:hidden;margin-bottom:18px;transition:background .15s,border-color .15s}
+  .hero:hover{background:var(--card-hover);border-color:var(--line-2)}
+  .hero-img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#141616}
+  .hero-body{padding:20px 22px 22px}
+  .meta-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+  .src{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:var(--dim)}
+  .src img{width:16px;height:16px;border-radius:4px;flex-shrink:0}
+  .tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
+       padding:3px 9px;border-radius:999px;color:var(--accent);background:var(--accent-soft);
+       border:1px solid var(--accent-line);font-weight:700}
+  .score{font-family:var(--mono);font-size:10.5px;color:var(--dimmer);margin-left:auto}
+  .copy-btn{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.08em;
+            text-transform:uppercase;padding:4px 10px;border-radius:999px;cursor:pointer;
+            border:1px solid var(--line);background:transparent;color:var(--dim);flex-shrink:0}
+  .copy-btn:hover{color:var(--accent);border-color:var(--accent-line);background:var(--accent-soft)}
+  .copy-btn.ok{color:#0d2b1c;background:var(--green);border-color:var(--green)}
+  .badge-new{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;
+             font-weight:700;padding:3px 8px;border-radius:999px;color:#0d2b1c;
+             background:var(--green);flex-shrink:0}
+  .tab-new.on{color:#0d2b1c;background:var(--green);border-color:var(--green)}
+  .multi{font-family:var(--mono);font-size:9.5px;color:var(--violet);border:1px solid rgba(178,139,242,.35);
+         background:rgba(178,139,242,.1);padding:3px 8px;border-radius:999px;font-weight:700}
+  .hero-title{margin:0 0 10px;font-family:var(--disp);font-size:clamp(19px,2.3vw,26px);
+              line-height:1.28;font-weight:700;letter-spacing:-.015em}
+  .hero-title a:hover{color:var(--accent)}
+  .sw{font-size:14.5px;line-height:1.6;color:var(--txt-dim)}
+  .facts{display:grid;gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+  @media(min-width:860px){.facts.two{grid-template-columns:1fr 1fr;gap:18px}}
+  .fact{display:flex;gap:9px;align-items:flex-start;font-size:12.5px;line-height:1.5}
+  .fact .k{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;
+           flex-shrink:0;padding-top:2px;font-weight:700}
+  .fact.pw .k{color:var(--violet)} .fact.pw .v{color:#cfc0ee}
+  .fact.wn .k{color:var(--amber)}  .fact.wn .v{color:#e3cf9b}
+  .ents{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+  .ent{font-family:var(--mono);font-size:10px;padding:3px 9px;border-radius:999px;
+       background:rgba(255,255,255,.04);color:var(--dim);border:1px solid var(--line)}
+
+  /* -- Rejilla de cards (Discover) -- */
+  .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+        overflow:hidden;display:flex;flex-direction:column;
+        transition:background .15s,border-color .15s,transform .15s}
+  .card:hover{background:var(--card-hover);border-color:var(--line-2);transform:translateY(-2px)}
+  .card-img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#141616}
+  .card-body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
+  .card .meta-row{margin-bottom:0}
+  .card-title{margin:0;font-family:var(--disp);font-size:16.5px;line-height:1.34;font-weight:600;letter-spacing:-.01em}
+  .card-title a:hover{color:var(--accent)}
+  .card .sw{font-size:13px;line-height:1.55;color:var(--dim);
+            display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .card-foot{margin-top:auto;padding-top:10px;border-top:1px solid var(--line);display:grid;gap:6px}
+  .card-foot .fact{font-size:11.5px}
+
+  /* -- Contexto -- */
+  .section-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+             margin:26px 0 14px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+  .section-h h2{margin:0;font-family:var(--disp);font-size:15px;font-weight:700}
+  .section-h .n{font-family:var(--mono);font-size:10.5px;color:var(--dimmer)}
+  .ctx{display:grid;gap:8px}
+  .cx{display:flex;gap:12px;align-items:flex-start;padding:13px 16px;background:var(--card);
+      border:1px solid var(--line);border-radius:12px}
+  .cx:hover{border-color:var(--line-2);background:var(--card-hover)}
+  .cx img{width:16px;height:16px;border-radius:4px;flex-shrink:0;margin-top:3px}
+  .cx-b{min-width:0;flex:1}
+  .cx-t{font-size:14px;font-weight:600;line-height:1.4}
+  .cx-t a:hover{color:var(--accent)}
+  .cx-w{font-size:12.5px;color:var(--dim);margin-top:3px;line-height:1.5}
+  .cx-m{font-family:var(--mono);font-size:9.5px;color:var(--dimmer);margin-top:5px;letter-spacing:.06em}
+
+  .empty{padding:44px 26px;text-align:center;border:1px dashed var(--line-2);border-radius:var(--r);background:var(--card)}
+  .empty .big{font-family:var(--disp);font-size:17px;font-weight:650;margin-bottom:8px}
+  .empty .sub{font-size:13.5px;color:var(--dim);max-width:52ch;margin:0 auto;line-height:1.6}
+
+  /* -- Sidebar -- */
+  .sidebar{display:grid;gap:16px;position:sticky;top:16px}
+  .widget{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px}
+  .widget-title{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:13px}
+  .widget-title span:first-child{font-family:var(--disp);font-size:14px;font-weight:700}
+  .widget-title .lbl{font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--dimmer);text-transform:uppercase}
+
+  .market-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+  .m-box{background:rgba(255,255,255,.025);border:1px solid var(--line);border-radius:10px;padding:10px 11px}
+  .m-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+  .m-lbl{font-size:11px;font-weight:600;color:var(--dim)}
+  .m-chg{font-family:var(--mono);font-size:10.5px;font-weight:700}
+  .m-chg.pos{color:var(--green)} .m-chg.neg{color:var(--rose)}
+  .m-chg.na{color:var(--dimmer);font-weight:500}
+  .m-price{font-family:var(--mono);font-size:12.5px;font-weight:700;color:var(--txt);margin-bottom:4px}
+  .m-nodata{opacity:.55}
+  .m-nodata .m-price{color:var(--dimmer);font-weight:500}
+  .spark{width:100%;height:22px;display:block}
+
+  .comp-item{display:flex;justify-content:space-between;align-items:center;gap:10px;
+             padding:8px 0;border-bottom:1px solid var(--line)}
+  .comp-item:last-child{border-bottom:none;padding-bottom:0}
+  .comp-info{display:flex;align-items:center;gap:9px;min-width:0}
+  .comp-logo{width:22px;height:22px;border-radius:6px;flex-shrink:0;background:#fff}
+  .comp-name{font-size:12.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .comp-ticker{font-family:var(--mono);font-size:9.5px;color:var(--dimmer)}
+  .comp-val{text-align:right;flex-shrink:0}
+  .comp-price{font-family:var(--mono);font-size:11.5px;font-weight:700}
+  .comp-price.na{color:var(--dimmer);font-weight:500}
+  .comp-chg{font-family:var(--mono);font-size:10px;font-weight:700}
+  .comp-chg.pos{color:var(--green)} .comp-chg.neg{color:var(--rose)}
+  .comp-chg.na{color:var(--dimmer);font-weight:500}
+
+  .wr{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--line)}
+  .wr:last-child{border-bottom:none;padding-bottom:0}
+  .wr-ic{font-family:var(--mono);font-size:12px;font-weight:700;flex-shrink:0;line-height:1.5}
+  .wr.hit .wr-ic{color:var(--green)} .wr.open .wr-ic{color:var(--dimmer)}
+  .wr-t{font-size:12.5px;line-height:1.5}
+  .wr.open .wr-t{color:var(--dim)}
+  .wr-ev{font-size:11px;color:var(--green);margin-top:3px;line-height:1.4}
+
+  .thr{display:flex;gap:11px;align-items:baseline;padding:8px 0;border-bottom:1px solid var(--line)}
+  .thr:last-child{border-bottom:none;padding-bottom:0}
+  .thr-d{font-family:var(--mono);font-size:9.5px;font-weight:700;color:var(--violet);flex-shrink:0;
+         padding:2px 8px;border:1px solid rgba(178,139,242,.32);border-radius:999px;background:rgba(178,139,242,.08)}
+  .thr-t{font-size:12.5px;font-weight:600}
+  .thr-l{font-size:11.5px;color:var(--dim);margin-top:2px;line-height:1.4}
+  .mv{display:flex;gap:8px;align-items:center;padding:7px 0;border-bottom:1px solid var(--line);font-size:12px;flex-wrap:wrap}
+  .mv:last-child{border-bottom:none;padding-bottom:0}
+  .mv-b{font-family:var(--mono);font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;
+        padding:2px 7px;border-radius:999px;flex-shrink:0;font-weight:700}
+  .mv-b.new{color:var(--green);background:rgba(75,212,139,.1);border:1px solid rgba(75,212,139,.3)}
+  .mv-b.ret{color:var(--amber);background:rgba(232,183,80,.1);border:1px solid rgba(232,183,80,.3)}
+  .mv-b.str{color:var(--accent);background:var(--accent-soft);border:1px solid var(--accent-line)}
+  .mv .nm{font-weight:600}
+  .mv .dt{color:var(--dimmer);font-family:var(--mono);font-size:10px}
+  .none{font-size:12px;color:var(--dimmer);font-style:italic}
+  .rk{padding:8px 0;border-bottom:1px solid var(--line);font-size:12.5px;line-height:1.5;color:#e3cf9b}
+  .rk:last-child{border-bottom:none;padding-bottom:0}
+  .rk.w{color:#cfc0ee}
+
+  footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);
+         display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+         font-family:var(--mono);font-size:10px;color:var(--dimmer);letter-spacing:.05em}
+
+  /* -- Responsive -- */
+  @media(max-width:1080px){
+    .layout{grid-template-columns:1fr}
+    .sidebar{position:static}
+  }
+  @media(max-width:720px){
+    .grid{grid-template-columns:1fr}
+    .wrap{padding:0 14px 60px}
+    .market-grid{grid-template-columns:1fr 1fr}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Barra superior -->
+  <div class="topbar">
+    <div class="brand">
+      <span class="dot"></span>
+      AI Strategic Radar
+      <span class="date">2026-11-05</span>
+    </div>
+    <div class="top-r">
+      <span class="state alert"><span class="sdot"></span>ALERTA</span>
+      <nav class="nav">
+        <a class="" href="../index.html">Diario</a>
+        <a class="" href="../weekly.html">Semanal</a>
+        <a class="on" href="../archivo.html">Archivo</a>
+      </nav>
+    </div>
+  </div>
+
+  
+  <div class="arch-bar">
+    <a href="../archivo.html">← Archivo</a>
+    <a href="../d/2026-11-03.html">2026-11-03</a>
+    <span class="here">2026-11-05</span>
+    
+    <a href="../index.html" style="margin-left:auto">Hoy</a>
+  </div>
+  
+
+  <!-- Tesis del dia -->
+  <div class="thesis">
+    <span class="lbl">Tesis del día</span>
+    <h1>La carrera AGI se intensifica con nuevos modelos frontier que compiten por el liderazgo en benchmarks y un avance notorio en el desarrollo de agentes autónomos para dominios complejos, todo ello sustentado por un gasto incesante en infraestructura de compute.</h1>
+  </div>
+
+  
+  
+  <div class="degraded">
+    <b>Capa X apagada.</b>
+    
+    El espejo no devolvió posts (6 cuentas). El briefing sigue con RSS.
+    
+  </div>
+  
+
+  <!-- Tabs de tema -->
+  
+  <div class="tabs" id="tabs">
+    <span class="tab on" data-filter="all">Todas<span class="n">12</span></span>
+    
+    <span class="tab tab-new" data-filter="__new__">Nuevo<span class="n">9</span></span>
+    
+    
+    <span class="tab" data-filter="model_economics">Economía de modelos<span class="n">4</span></span>
+    
+    <span class="tab" data-filter="frontier_capability">Capacidad frontier<span class="n">3</span></span>
+    
+    <span class="tab" data-filter="agents_automation">Agentes<span class="n">3</span></span>
+    
+    <span class="tab" data-filter="compute_chips_dc">Compute &amp; chips<span class="n">2</span></span>
+    
+  </div>
+  
+
+  <div class="layout">
+
+    <!-- Columna principal -->
+    <div class="main-col">
+
+      
+      <article class="hero" data-theme="frontier_capability" data-new="1">
+        <a href="https://latent.space/p/ainews-it-s-swapping-season/" target="_blank" rel="noopener noreferrer">
+          <img class="hero-img" src="https://latent.space/og/card/post/ainews-it-s-swapping-season/efe7d0a1e2a39ea0481b4a1bba789d599c143dede92092e1dacb89175201e4c4.png" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+        </a>
+        <div class="hero-body">
+          <div class="meta-row">
+            <span class="tag">Capacidad frontier</span>
+            <span class="badge-new">Nuevo</span>
+            <span class="src"><img src="https://www.google.com/s2/favicons?domain=latent.space&amp;sz=64" alt="" loading="lazy"/>Latent Space</span>
+            
+            <span class="score">100</span>
+            <button type="button" class="copy-btn" data-copy>Copiar</button>
+          </div>
+          <h2 class="hero-title">
+            <a href="https://latent.space/p/ainews-it-s-swapping-season/" target="_blank" rel="noopener noreferrer">Nuevos modelos y avances: Kimi K3.1 Pro open-source, Ricursive Ripple-65B y seguridad kernel de OpenAI.</a>
+          </h2>
+          <div class="sw">La llegada de modelos de peso abierto como Kimi K3.1 Pro y Ricursive Ripple-65B aumenta la presión competitiva en el ecosistema. El trabajo de OpenAI en seguridad del kernel Linux sugiere un avance hacia agentes autónomos.</div>
+          
+          <div class="facts two">
+            
+            <div class="fact pw"><span class="k">Poder</span><span class="v">Kimi / Ricursive ganan al expandir modelos abiertos. OpenAI gana potencial en seguridad autónoma.</span></div>
+            
+            
+            <div class="fact wn"><span class="k">Vigilar</span><span class="v">Lanzamientos oficiales y adopción de Kimi K3.1 Pro y Ripple-65B; pruebas de concepto de OpenAI en seguridad del kernel.</span></div>
+            
+          </div>
+          
+          
+          <div class="ents"><span class="ent">OpenAI</span><span class="ent">Kimi</span><span class="ent">Ricursive</span></div>
+          
+        </div>
+      </article>
+      
+
+      
+      <div class="grid">
+        
+        <article class="card" data-theme="compute_chips_dc" data-new="1">
+          <a href="https://www.theverge.com/ai-artificial-intelligence/1027344/amazon-microsoft-alphabet-google-meta-data-centers-earnings-q3" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/STKS528_DATA_CENTERS2_B.jpg?quality=90&amp;strip=all&amp;crop=0,0,100,100" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="badge-new">Nuevo</span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=theverge.com&amp;sz=64" alt="" loading="lazy"/>The Verge AI</span>
+              
+              <span class="score">100</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
+            </div>
+            <h3 class="card-title">
+              <a href="https://www.theverge.com/ai-artificial-intelligence/1027344/amazon-microsoft-alphabet-google-meta-data-centers-earnings-q3" target="_blank" rel="noopener noreferrer">Gigantes tecnológicos mantienen gasto récord en centros de datos para IA sin retorno inmediato.</a>
+            </h3>
+            <div class="sw">La inversión masiva en infraestructura de IA por parte de Big Tech es incesante, lo que subraya la barrera de entrada y la carrera por el compute, a pesar de la falta de retornos financieros claros a corto plazo.</div>
+            
+            <div class="card-foot">
+              
+              <div class="fact pw"><span class="k">Poder</span><span class="v">AWS, Microsoft, Alphabet, Meta afianzan su dominio por capacidad de capex.</span></div>
+              
+              
+              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Próximos informes de resultados de Q4 para evaluar si la tendencia de gasto se mantiene o acelera.</span></div>
+              
+            </div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-theme="agents_automation" data-new="1">
+          <a href="https://openai.com/index/openai-to-acquire-pierre" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="https://images.ctfassets.net/kftzwdyauwt9/5lDkYRSw86lFyHulgkyVVr/5b20bd6b90c3d87c33b780884b48123a/openai-to-acquire-pierre-computer-company-inc-social.png?w=1600&amp;h=900&amp;fit=fill" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="badge-new">Nuevo</span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=openai.com&amp;sz=64" alt="" loading="lazy"/>OpenAI</span>
+              
+              <span class="score">93</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
+            </div>
+            <h3 class="card-title">
+              <a href="https://openai.com/index/openai-to-acquire-pierre" target="_blank" rel="noopener noreferrer">OpenAI adquiere Pierre Computer Company para potenciar las herramientas de código de Codex.</a>
+            </h3>
+            <div class="sw">La adquisición refuerza la capacidad de OpenAI en desarrollo de agentes y herramientas para código, fundamental para la evolución de Codex y la automatización del desarrollo de software.</div>
+            
+            <div class="card-foot">
+              
+              <div class="fact pw"><span class="k">Poder</span><span class="v">OpenAI gana en capacidades de coding agent.</span></div>
+              
+              
+              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Anuncios de nuevas características o capacidades mejoradas en Codex o agentes de codificación de OpenAI.</span></div>
+              
+            </div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-theme="frontier_capability" data-new="0">
+          <a href="https://artificialanalysis.ai/articles/gemini-4-carbon-new-number-1" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="https://cdn.sanity.io/images/6vfeftx9/articles/ce3b883faa25c57a8672817086d2da1d248fbbfa-1254x1254.png?w=1200&amp;auto=format" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=artificialanalysis.ai&amp;sz=64" alt="" loading="lazy"/>Artificial Analysis</span>
+              
+              <span class="score">93</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
+            </div>
+            <h3 class="card-title">
+              <a href="https://artificialanalysis.ai/articles/gemini-4-carbon-new-number-1" target="_blank" rel="noopener noreferrer">Gemini 4 Carbon de Google lidera el Índice de Inteligencia de Artificial Analysis v5.</a>
+            </h3>
+            <div class="sw">Gemini 4 Carbon se posiciona como el modelo líder en el Artificial Analysis Intelligence Index, indicando un avance significativo en las capacidades de Google y manteniendo la presión competitiva en el sector frontier.</div>
+            
+            <div class="card-foot">
+              
+              <div class="fact pw"><span class="k">Poder</span><span class="v">Google DeepMind gana al tener el modelo de referencia. OpenAI y otros modelos pierden terreno en este ranking.</span></div>
+              
+              
+              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Detalles sobre la arquitectura y las capacidades específicas de Gemini 4 Carbon, y su disponibilidad general.</span></div>
+              
+            </div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-theme="model_economics" data-new="1">
+          <a href="https://www.together.ai/blog/together-compiler-continual-compilation-for-ai-inference" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="https://cdn.prod.website-files.com/69654e88dce9154b5f12070c/6aead6f8d7e2304104f29687_TKCC_OG_1200x630-dark.jpg" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="badge-new">Nuevo</span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=together.ai&amp;sz=64" alt="" loading="lazy"/>Together AI</span>
+              
+              <span class="score">86</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
+            </div>
+            <h3 class="card-title">
+              <a href="https://www.together.ai/blog/together-compiler-continual-compilation-for-ai-inference" target="_blank" rel="noopener noreferrer">Together AI lanza Together Compiler para optimizar la inferencia de modelos abiertos hasta 3.7x.</a>
+            </h3>
+            <div class="sw">La optimización de inferencia con agentes, que mejora el rendimiento de modelos abiertos hasta 3.7x, reduce significativamente los costes operativos y acelera la adopción de modelos no propietarios.</div>
+            
+            <div class="card-foot">
+              
+              <div class="fact pw"><span class="k">Poder</span><span class="v">Together AI gana capacidad de optimización para el ecosistema de modelos abiertos.</span></div>
+              
+              
+              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Adopción de Together Compiler por parte de usuarios de modelos abiertos y datos de reducción de costes en producción.</span></div>
+              
+            </div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-theme="compute_chips_dc" data-new="1">
+          <a href="https://www.qualcomm.com/data-center/products/cloud-ai-100-ultra" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="https://s7d1.scene7.com/is/image/dmqualcommprod/cloudai100_announcement" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="badge-new">Nuevo</span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=qualcomm.com&amp;sz=64" alt="" loading="lazy"/>Hacker News (alto voltaje)</span>
+              
+              <span class="score">83</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
+            </div>
+            <h3 class="card-title">
+              <a href="https://www.qualcomm.com/data-center/products/cloud-ai-100-ultra" target="_blank" rel="noopener noreferrer">Qualcomm presenta la tarjeta aceleradora Cloud AI 100 Ultra: 150W, 128GB y 548GB/s.</a>
+            </h3>
+            <div class="sw">La introducción de un nuevo acelerador de IA por Qualcomm amplía las opciones de hardware para centros de datos, aumentando la competencia en el mercado de chips y ofreciendo alternativas de rendimiento y eficiencia.</div>
+            
+            <div class="card-foot">
+              
+              <div class="fact pw"><span class="k">Poder</span><span class="v">Qualcomm gana posición en el mercado de chips de inferencia.</span></div>
+              
+              
+              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Primeras pruebas de rendimiento independientes y adopción por grandes proveedores de cloud.</span></div>
+              
+            </div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-theme="agents_automation" data-new="1">
+          <a href="https://deepmind.google/blog/agentic-cheminformatics-with-google-antigravity/" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="https://lh3.googleusercontent.com/UFTBrp1IrRBrc6_f4ibNgtV35iY8F2iTYaqOb1lzR-qZNy-Mb5726xrLKTozohfdZ_3quHe50uyn8z-Wh_Eril_8CVh7py7gH0188sl_EXkoJknlqg=w528-h297-n-nu-rw-lo" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="badge-new">Nuevo</span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=deepmind.google&amp;sz=64" alt="" loading="lazy"/>DeepMind Blog</span>
+              
+              <span class="score">77</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
+            </div>
+            <h3 class="card-title">
+              <a href="https://deepmind.google/blog/agentic-cheminformatics-with-google-antigravity/" target="_blank" rel="noopener noreferrer">DeepMind aplica agentes en quimioinformática con Google Antigravity para acelerar el descubrimiento de fármacos.</a>
+            </h3>
+            <div class="sw">La aplicación de agentes en quimioinformática por DeepMind valida la capacidad de la IA para automatizar y acelerar procesos complejos en I+D, un paso clave hacia agentes autónomos en ciencia.</div>
+            
+            <div class="card-foot">
+              
+              <div class="fact pw"><span class="k">Poder</span><span class="v">Google DeepMind gana al expandir el dominio de agentes a ciencia de alto valor.</span></div>
+              
+              
+              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Publicaciones de resultados o patentes derivadas del uso de Antigravity en descubrimiento de fármacos.</span></div>
+              
+            </div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-theme="model_economics" data-new="1">
+          <a href="https://techcrunch.com/2026/11/04/apple-is-reportedly-cutting-budgets-for-its-internal-ai-usage/" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="https://techcrunch.com/wp-content/uploads/2026/06/iphone-usb-cable.jpg?resize=1200,800" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="badge-new">Nuevo</span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=techcrunch.com&amp;sz=64" alt="" loading="lazy"/>TechCrunch AI</span>
+              
+              <span class="score">77</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
+            </div>
+            <h3 class="card-title">
+              <a href="https://techcrunch.com/2026/11/04/apple-is-reportedly-cutting-budgets-for-its-internal-ai-usage/" target="_blank" rel="noopener noreferrer">Apple recorta los presupuestos para el uso interno de IA en sus equipos de ingeniería.</a>
+            </h3>
+            <div class="sw">El recorte de presupuesto de Apple en IA interna sugiere una reevaluación del ROI o una priorización diferente, lo que podría indicar tensiones en la economía de modelos o en la estrategia de despliegue.</div>
+            
+            <div class="card-foot">
+              
+              <div class="fact pw"><span class="k">Poder</span><span class="v">Apple podría perder impulso en ciertos desarrollos internos si los recortes son significativos y prolongados.</span></div>
+              
+              
+              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Comunicados oficiales de Apple sobre estrategia de IA o si otros actores replican recortes de gasto similares.</span></div>
+              
+            </div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-theme="agents_automation" data-new="0">
+          <a href="https://x.ai/news/data-bot" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="https://media.x.ai/v1/website/heres-your-og-image-i-used-the-grok-bot-og-template-in-pink-b3fd12e9.png" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=x.ai&amp;sz=64" alt="" loading="lazy"/>xAI</span>
+              
+              <span class="score">64</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
+            </div>
+            <h3 class="card-title">
+              <a href="https://x.ai/news/data-bot" target="_blank" rel="noopener noreferrer">xAI lanza Grok Bot para dotar a cada equipo de un asistente tipo científico de datos.</a>
+            </h3>
+            <div class="sw">El lanzamiento de Grok Bot por xAI enfatiza la estrategia de desarrollar agentes especializados capaces de automatizar tareas cognitivas complejas, como el análisis de datos.</div>
+            
+            <div class="card-foot">
+              
+              <div class="fact pw"><span class="k">Poder</span><span class="v">xAI gana al expandir la utilidad práctica de sus modelos con agentes especializados.</span></div>
+              
+              
+              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Casos de uso y métricas de rendimiento de Grok Bot en entornos reales.</span></div>
+              
+            </div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-theme="model_economics" data-new="1">
+          <a href="https://www.bloomberg.com/news/articles/2026-11-05/alphabet-s-search-dominance-is-at-risk-from-its-own-ai-success" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxYzFlMWUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMGYzYjMzIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJyIiBjeD0iODAlIiBjeT0iMjAlIiByPSI2MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMzRkMWIyIiBzdG9wLW9wYWNpdHk9IjAuMjIiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWMxZTFlIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIzNjAiIGZpbGw9InVybCgjcikiLz4KICA8Y2lyY2xlIGN4PSI1NDAiIGN5PSI3MCIgcj0iMTMwIiBmaWxsPSIjMzRkMWIyIiBvcGFjaXR5PSIwLjEwIi8+CiAgPHRleHQgeD0iNDAiIHk9Ijc2IiBmaWxsPSIjMzRkMWIyIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCAtYXBwbGUtc3lzdGVtLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iODAwIiBsZXR0ZXItc3BhY2luZz0iMiI+RlJPTlRJRVIgTU9ERUxTPC90ZXh0PgogIDx0ZXh0IHk9IjE1MCIgZmlsbD0iI2VjZWVlZCIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgLWFwcGxlLXN5c3RlbSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNyIgZm9udC13ZWlnaHQ9IjcwMCI+PHRzcGFuIHg9IjQwIiBkeT0iMCI+RWwgw6l4aXRvIGRlIGxhIElBIGRlIEFscGhhYmV0PC90c3Bhbj48dHNwYW4geD0iNDAiIGR5PSIzNCI+cG9uZSBlbiByaWVzZ28gc3UgZG9taW5pbyBlbiBsYTwvdHNwYW4+PHRzcGFuIHg9IjQwIiBkeT0iMzQiPmLDunNxdWVkYS48L3RzcGFuPjwvdGV4dD4KICA8bGluZSB4MT0iNDAiIHkxPSIzMDgiIHgyPSI2MDAiIHkyPSIzMDgiIHN0cm9rZT0iIzNkNDA0MCIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPHRleHQgeD0iNDAiIHk9IjMzMiIgZmlsbD0iIzliOWY5ZSIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiI+Qmxvb21iZXJnIFRlY2g8L3RleHQ+Cjwvc3ZnPg==" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="badge-new">Nuevo</span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=bloomberg.com&amp;sz=64" alt="" loading="lazy"/>Bloomberg Tech</span>
+              
+              <span class="score">63</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
+            </div>
+            <h3 class="card-title">
+              <a href="https://www.bloomberg.com/news/articles/2026-11-05/alphabet-s-search-dominance-is-at-risk-from-its-own-ai-success" target="_blank" rel="noopener noreferrer">El éxito de la IA de Alphabet pone en riesgo su dominio en la búsqueda.</a>
+            </h3>
+            <div class="sw">El éxito de la IA de Google plantea una disrupción potencial a su modelo de negocio principal de búsqueda, lo que ilustra cómo los avances en AGI pueden canibalizar mercados existentes.</div>
+            
+            <div class="card-foot">
+              
+              <div class="fact pw"><span class="k">Poder</span><span class="v">Google podría perder el monopolio de la búsqueda si no adapta rápidamente su estrategia de monetización de IA.</span></div>
+              
+              
+              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Cambios en la interfaz de búsqueda de Google y en sus resultados financieros relacionados con la IA.</span></div>
+              
+            </div>
+            
+          </div>
+        </article>
+        
+      </div>
+      
+
+      
+
+      
+      <div class="section-h">
+        <h2>Contexto</h2>
+        <span class="n">de fondo, no cambia nada hoy</span>
+      </div>
+      <div class="ctx">
+        
+        <div class="cx" data-theme="model_economics" data-new="1">
+          <img src="https://www.google.com/s2/favicons?domain=interconnects.ai&amp;sz=64" alt="" loading="lazy"/>
+          <div class="cx-b">
+            <div class="cx-t">
+              <a href="https://www.interconnects.ai/p/how-well-can-we-measure-open-model" target="_blank" rel="noopener noreferrer">Interconnects publica un análisis sobre el tamaño actual de la economía de modelos abiertos.</a>
+            </div>
+            <div class="cx-w">Ofrece una visión del estado y escala del mercado de modelos abiertos, crucial para evaluar la competencia y las oportunidades frente a los modelos propietarios. No es un evento, sino un análisis.</div>
+            <div class="cx-m">Economía de modelos · Interconnects · 73</div>
+          </div>
+        </div>
+        
+        <div class="cx" data-theme="frontier_capability" data-new="0">
+          <img src="https://www.google.com/s2/favicons?domain=importai.substack.com&amp;sz=64" alt="" loading="lazy"/>
+          <div class="cx-b">
+            <div class="cx-t">
+              <a href="https://jack-clark.net/2026/11/02/import-ai-479-spacewar-low-latency-tasks-versus-llms-genie-4/" target="_blank" rel="noopener noreferrer">Informe Import AI: LLMs ineficaces en tareas de baja latencia; mención a Genie 4.</a>
+            </div>
+            <div class="cx-w">Se confirma una limitación clave de los LLMs actuales para tareas en tiempo real que requieren baja latencia, lo que es un cuello de botella para agentes autónomos en ciertos dominios. Genie 4 es un nuevo modelo.</div>
+            <div class="cx-m">Capacidad frontier · Import AI · 38</div>
+          </div>
+        </div>
+        
+      </div>
+      
+
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+      
+
+      
+
+      
+      <div class="widget">
+        <div class="widget-title">
+          <span>Vigilancia de ayer</span>
+          <span class="lbl">0/3 confirmadas</span>
+        </div>
+        
+        <div class="wr open">
+          <span class="wr-ic">○</span>
+          <div>
+            <div class="wr-t">Próximos benchmarks y detalles sobre las capacidades de Gemini 4 Carbon y &#34;Le Chonk&#34; en los próximos días.</div>
+            
+          </div>
+        </div>
+        
+        <div class="wr open">
+          <span class="wr-ic">○</span>
+          <div>
+            <div class="wr-t">La decisión final del tribunal de la UE sobre el copyright y sus implicaciones para la adquisición de datos.</div>
+            
+          </div>
+        </div>
+        
+        <div class="wr open">
+          <span class="wr-ic">○</span>
+          <div>
+            <div class="wr-t">La reacción de otros hyperscalers ante el programa de infraestructura energética de OpenAI.</div>
+            
+          </div>
+        </div>
+        
+      </div>
+      
+
+      
+      <div class="widget">
+        <div class="widget-title">
+          <span>Memoria del radar</span>
+          <span class="lbl">Continuidad</span>
+        </div>
+        
+        <div class="thr">
+          <span class="thr-d">DÍA 11</span>
+          <div>
+            <div class="thr-t">Agentes y automatización</div>
+            <div class="thr-l">OpenAI adquiere Pierre Computer Company para potenciar las herramientas de código de Codex.</div>
+          </div>
+        </div>
+        
+        <div class="thr">
+          <span class="thr-d">DÍA 11</span>
+          <div>
+            <div class="thr-t">Compute y chips</div>
+            <div class="thr-l">Gigantes tecnológicos mantienen gasto récord en centros de datos para IA sin retorno inmediato.</div>
+          </div>
+        </div>
+        
+        <div class="thr">
+          <span class="thr-d">DÍA 10</span>
+          <div>
+            <div class="thr-t">Economía de modelos</div>
+            <div class="thr-l">Together AI lanza Together Compiler para optimizar la inferencia de modelos abiertos hasta 3.7x.</div>
+          </div>
+        </div>
+        
+        <div class="thr">
+          <span class="thr-d">DÍA 7</span>
+          <div>
+            <div class="thr-t">Capacidad frontier</div>
+            <div class="thr-l">Nuevos modelos y avances: Kimi K3.1 Pro open-source, Ricursive Ripple-65B y seguridad kernel de OpenAI.</div>
+          </div>
+        </div>
+        
+        
+        
+        <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Alphabet</span>
+          <span class="dt">primera aparición</span></div>
+        
+        <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Gemini 4 Carbon</span>
+          <span class="dt">primera aparición</span></div>
+        
+        <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Genie 4</span>
+          <span class="dt">primera aparición</span></div>
+        
+        <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Google Antigravity</span>
+          <span class="dt">primera aparición</span></div>
+        
+        <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Microsoft</span>
+          <span class="dt">primera aparición</span></div>
+        
+        
+        <div class="mv"><span class="mv-b ret">Vuelve</span><span class="nm">Kimi</span>
+          <span class="dt">tras 4 días en silencio</span></div>
+        
+        <div class="mv"><span class="mv-b ret">Vuelve</span><span class="nm">Import AI</span>
+          <span class="dt">tras 3 días en silencio</span></div>
+        
+        <div class="mv"><span class="mv-b ret">Vuelve</span><span class="nm">Meta</span>
+          <span class="dt">tras 3 días en silencio</span></div>
+        
+        <div class="mv"><span class="mv-b ret">Vuelve</span><span class="nm">Together AI</span>
+          <span class="dt">tras 3 días en silencio</span></div>
+        
+        
+        <div class="mv"><span class="mv-b str">Racha</span><span class="nm">OpenAI</span>
+          <span class="dt">11 días seguidos</span></div>
+        
+        <div class="mv"><span class="mv-b str">Racha</span><span class="nm">DeepMind</span>
+          <span class="dt">5 días seguidos</span></div>
+        
+        <div class="mv"><span class="mv-b str">Racha</span><span class="nm">Artificial Analysis</span>
+          <span class="dt">4 días seguidos</span></div>
+        
+        <div class="mv"><span class="mv-b str">Racha</span><span class="nm">Apple</span>
+          <span class="dt">3 días seguidos</span></div>
+        
+      </div>
+      
+
+      
+      <div class="widget">
+        <div class="widget-title">
+          <span>Riesgos y vigilancia</span>
+          <span class="lbl">Próximos días</span>
+        </div>
+        <div class="rk">La inversión masiva en compute no muestra aún un retorno claro, lo que plantea riesgos sobre la sostenibilidad económica a largo plazo de esta carrera.</div><div class="rk">La limitación de los LLMs en tareas de baja latencia sigue siendo un cuello de botella para el despliegue de agentes autónomos en entornos críticos o en tiempo real.</div><div class="rk">La dependencia de los modelos de negocio existentes, como la búsqueda de Google, se ve amenazada por el éxito de la propia IA, forzando una redefinición.</div>
+        <div class="rk w">Observar el rendimiento y la adopción de Kimi K3.1 Pro y Ricursive Ripple-65B en el ecosistema de modelos abiertos.</div><div class="rk w">Monitorizar los próximos informes financieros de Big Tech para detectar cualquier moderación en el gasto en infraestructura de IA.</div><div class="rk w">Evaluar los resultados y el impacto real de los agentes en quimioinformática de DeepMind y los bots de xAI en productividad.</div>
+      </div>
+      
+
+    </aside>
+  </div>
+
+  <footer>
+    <span>14 items descartados por el filtro de relevancia</span>
+    <span>33/36 fuentes activas · sin items: Yahoo Finance News, VentureBeat AI, OpenRouter Insights · X: kill switch</span>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var params = new URLSearchParams(location.search);
+    var d = params.get('date');
+    if (d && /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(d)) {
+      location.replace('d/' + d + '.html');
+      return;
+    }
+
+    function ficha(article){
+      if (!article) return '';
+      var a = article.querySelector('.hero-title a, .card-title a');
+      var title = a ? (a.textContent || '').trim() : '';
+      var swEl = article.querySelector('.sw');
+      var sw = swEl ? (swEl.textContent || '').trim() : '';
+      var url = a ? (a.getAttribute('href') || '').trim() : '';
+      return [title, sw, url].filter(Boolean).join('\n\n');
+    }
+    function copied(btn){
+      btn.classList.add('ok');
+      btn.textContent = 'Copiado';
+      setTimeout(function(){ btn.classList.remove('ok'); btn.textContent = 'Copiar'; }, 1600);
+    }
+    function fallback(text, btn){
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      try { if (document.execCommand('copy')) copied(btn); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+    document.querySelectorAll('[data-copy]').forEach(function(btn){
+      btn.addEventListener('click', function(ev){
+        ev.preventDefault();
+        ev.stopPropagation();
+        var text = ficha(btn.closest('article'));
+        if (!text) return;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function(){ copied(btn); }).catch(function(){ fallback(text, btn); });
+        } else {
+          fallback(text, btn);
+        }
+      });
+    });
+
+    var tabs = document.querySelectorAll('#tabs .tab');
+    if (!tabs.length) return;
+    tabs.forEach(function(t){
+      t.addEventListener('click', function(){
+        tabs.forEach(function(x){ x.classList.remove('on'); });
+        t.classList.add('on');
+        var f = t.getAttribute('data-filter');
+        document.querySelectorAll('[data-theme]').forEach(function(c){
+          var show;
+          if (f === 'all')            show = true;
+          else if (f === '__new__')   show = c.getAttribute('data-new') === '1';
+          else                        show = c.getAttribute('data-theme') === f;
+          c.style.display = show ? '' : 'none';
+        });
+      });
+    });
+  })();
+</script>
+</body>
+</html>
