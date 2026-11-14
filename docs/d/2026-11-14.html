@@ -1,0 +1,804 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>AI Strategic Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#191a1a; --card:#202222; --card-hover:#262828; --line:#2f3131; --line-2:#3d4040;
+    --txt:#e8e8e6; --txt-dim:#c8cbca; --dim:#9b9f9e; --dimmer:#6b6f6e;
+    --accent:#20b8cd; --accent-soft:rgba(32,184,205,.12); --accent-line:rgba(32,184,205,.35);
+    --green:#4bd48b; --rose:#f2665f; --amber:#e8b750; --violet:#b28bf2;
+    --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+    --sans:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+    --disp:'Space Grotesk','Inter',system-ui,sans-serif;
+    --r:16px;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--txt);font-family:var(--sans);line-height:1.5}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 24px 80px}
+
+  /* -- Barra superior -- */
+  .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;
+          padding:18px 0;border-bottom:1px solid var(--line);margin-bottom:20px;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:10px;font-family:var(--disp);font-size:17px;font-weight:700;letter-spacing:-.01em}
+  .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}
+  .brand .date{font-family:var(--mono);font-size:11px;color:var(--dimmer);font-weight:400;margin-left:6px}
+  .top-r{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .state{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:10px;
+         font-weight:700;letter-spacing:.16em;padding:6px 12px;border-radius:999px;border:1px solid}
+  .state .sdot{width:5px;height:5px;border-radius:50%;background:currentColor}
+  .state.alert{color:var(--rose);border-color:rgba(242,102,95,.4);background:rgba(242,102,95,.08)}
+  .state.alert .sdot{animation:pulse 1.8s ease-in-out infinite}
+  .state.active{color:var(--amber);border-color:rgba(232,183,80,.4);background:rgba(232,183,80,.08)}
+  .state.quiet{color:var(--dim);border-color:var(--line-2);background:var(--card)}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+  .nav{display:flex;gap:6px}
+  .nav a{font-size:13px;font-weight:600;padding:7px 15px;border-radius:999px;color:var(--dim)}
+  .nav a.on{color:var(--accent);background:var(--accent-soft)}
+  .nav a:hover{color:var(--txt)}
+  .arch-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 18px;
+            padding:10px 14px;background:var(--card);border:1px solid var(--line);border-radius:12px;
+            font-size:13px;color:var(--dim)}
+  .arch-bar a{color:var(--accent);font-weight:600}
+  .arch-bar .here{font-family:var(--mono);font-size:12px;color:var(--txt);font-weight:600}
+
+  /* -- Tesis -- */
+  .thesis{padding:6px 0 18px}
+  .thesis .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--accent);
+               text-transform:uppercase;font-weight:700;display:block;margin-bottom:8px}
+  .thesis h1{margin:0;font-family:var(--disp);font-size:clamp(20px,2.6vw,28px);line-height:1.3;
+             font-weight:600;letter-spacing:-.015em;max-width:62ch;color:var(--txt)}
+
+  .degraded{margin:0 0 18px;padding:12px 16px;border:1px solid rgba(232,183,80,.35);
+            border-left:3px solid var(--amber);background:rgba(232,183,80,.06);border-radius:10px;
+            font-size:13px;color:#eccd8e;line-height:1.55}
+
+  /* -- Tabs de tema (Discover) -- */
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;padding:4px 0 22px}
+  .tab{font-size:13px;font-weight:600;padding:8px 16px;border-radius:999px;cursor:pointer;
+       border:1px solid var(--line);background:var(--card);color:var(--dim);
+       transition:all .15s ease;user-select:none}
+  .tab:hover{color:var(--txt);border-color:var(--line-2)}
+  .tab.on{color:#0e2b30;background:var(--accent);border-color:var(--accent);font-weight:700}
+  .tab .n{font-family:var(--mono);font-size:10.5px;opacity:.75;margin-left:5px}
+
+  /* -- Rejilla principal -- */
+  .layout{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:26px;align-items:start}
+
+  /* -- Hero (card destacada Discover) -- */
+  .hero{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+        overflow:hidden;margin-bottom:18px;transition:background .15s,border-color .15s}
+  .hero:hover{background:var(--card-hover);border-color:var(--line-2)}
+  .hero-img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#141616}
+  .hero-body{padding:20px 22px 22px}
+  .meta-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+  .src{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:var(--dim)}
+  .src img{width:16px;height:16px;border-radius:4px;flex-shrink:0}
+  .tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
+       padding:3px 9px;border-radius:999px;color:var(--accent);background:var(--accent-soft);
+       border:1px solid var(--accent-line);font-weight:700}
+  .score{font-family:var(--mono);font-size:10.5px;color:var(--dimmer);margin-left:auto}
+  .copy-btn{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.08em;
+            text-transform:uppercase;padding:4px 10px;border-radius:999px;cursor:pointer;
+            border:1px solid var(--line);background:transparent;color:var(--dim);flex-shrink:0}
+  .copy-btn:hover{color:var(--accent);border-color:var(--accent-line);background:var(--accent-soft)}
+  .copy-btn.ok{color:#0d2b1c;background:var(--green);border-color:var(--green)}
+  .badge-new{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;
+             font-weight:700;padding:3px 8px;border-radius:999px;color:#0d2b1c;
+             background:var(--green);flex-shrink:0}
+  .tab-new.on{color:#0d2b1c;background:var(--green);border-color:var(--green)}
+  .multi{font-family:var(--mono);font-size:9.5px;color:var(--violet);border:1px solid rgba(178,139,242,.35);
+         background:rgba(178,139,242,.1);padding:3px 8px;border-radius:999px;font-weight:700}
+  .hero-title{margin:0 0 10px;font-family:var(--disp);font-size:clamp(19px,2.3vw,26px);
+              line-height:1.28;font-weight:700;letter-spacing:-.015em}
+  .hero-title a:hover{color:var(--accent)}
+  .sw{font-size:14.5px;line-height:1.6;color:var(--txt-dim)}
+  .facts{display:grid;gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+  @media(min-width:860px){.facts.two{grid-template-columns:1fr 1fr;gap:18px}}
+  .fact{display:flex;gap:9px;align-items:flex-start;font-size:12.5px;line-height:1.5}
+  .fact .k{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;
+           flex-shrink:0;padding-top:2px;font-weight:700}
+  .fact.pw .k{color:var(--violet)} .fact.pw .v{color:#cfc0ee}
+  .fact.wn .k{color:var(--amber)}  .fact.wn .v{color:#e3cf9b}
+  .ents{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+  .ent{font-family:var(--mono);font-size:10px;padding:3px 9px;border-radius:999px;
+       background:rgba(255,255,255,.04);color:var(--dim);border:1px solid var(--line)}
+
+  /* -- Rejilla de cards (Discover) -- */
+  .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+        overflow:hidden;display:flex;flex-direction:column;
+        transition:background .15s,border-color .15s,transform .15s}
+  .card:hover{background:var(--card-hover);border-color:var(--line-2);transform:translateY(-2px)}
+  .card-img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#141616}
+  .card-body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
+  .card .meta-row{margin-bottom:0}
+  .card-title{margin:0;font-family:var(--disp);font-size:16.5px;line-height:1.34;font-weight:600;letter-spacing:-.01em}
+  .card-title a:hover{color:var(--accent)}
+  .card .sw{font-size:13px;line-height:1.55;color:var(--dim);
+            display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .card-foot{margin-top:auto;padding-top:10px;border-top:1px solid var(--line);display:grid;gap:6px}
+  .card-foot .fact{font-size:11.5px}
+
+  /* -- Contexto -- */
+  .section-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+             margin:26px 0 14px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+  .section-h h2{margin:0;font-family:var(--disp);font-size:15px;font-weight:700}
+  .section-h .n{font-family:var(--mono);font-size:10.5px;color:var(--dimmer)}
+  .ctx{display:grid;gap:8px}
+  .cx{display:flex;gap:12px;align-items:flex-start;padding:13px 16px;background:var(--card);
+      border:1px solid var(--line);border-radius:12px}
+  .cx:hover{border-color:var(--line-2);background:var(--card-hover)}
+  .cx img{width:16px;height:16px;border-radius:4px;flex-shrink:0;margin-top:3px}
+  .cx-b{min-width:0;flex:1}
+  .cx-t{font-size:14px;font-weight:600;line-height:1.4}
+  .cx-t a:hover{color:var(--accent)}
+  .cx-w{font-size:12.5px;color:var(--dim);margin-top:3px;line-height:1.5}
+  .cx-m{font-family:var(--mono);font-size:9.5px;color:var(--dimmer);margin-top:5px;letter-spacing:.06em}
+
+  .empty{padding:44px 26px;text-align:center;border:1px dashed var(--line-2);border-radius:var(--r);background:var(--card)}
+  .empty .big{font-family:var(--disp);font-size:17px;font-weight:650;margin-bottom:8px}
+  .empty .sub{font-size:13.5px;color:var(--dim);max-width:52ch;margin:0 auto;line-height:1.6}
+
+  /* -- Sidebar -- */
+  .sidebar{display:grid;gap:16px;position:sticky;top:16px}
+  .widget{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px}
+  .widget-title{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:13px}
+  .widget-title span:first-child{font-family:var(--disp);font-size:14px;font-weight:700}
+  .widget-title .lbl{font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--dimmer);text-transform:uppercase}
+
+  .market-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+  .m-box{background:rgba(255,255,255,.025);border:1px solid var(--line);border-radius:10px;padding:10px 11px}
+  .m-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+  .m-lbl{font-size:11px;font-weight:600;color:var(--dim)}
+  .m-chg{font-family:var(--mono);font-size:10.5px;font-weight:700}
+  .m-chg.pos{color:var(--green)} .m-chg.neg{color:var(--rose)}
+  .m-chg.na{color:var(--dimmer);font-weight:500}
+  .m-price{font-family:var(--mono);font-size:12.5px;font-weight:700;color:var(--txt);margin-bottom:4px}
+  .m-nodata{opacity:.55}
+  .m-nodata .m-price{color:var(--dimmer);font-weight:500}
+  .spark{width:100%;height:22px;display:block}
+
+  .comp-item{display:flex;justify-content:space-between;align-items:center;gap:10px;
+             padding:8px 0;border-bottom:1px solid var(--line)}
+  .comp-item:last-child{border-bottom:none;padding-bottom:0}
+  .comp-info{display:flex;align-items:center;gap:9px;min-width:0}
+  .comp-logo{width:22px;height:22px;border-radius:6px;flex-shrink:0;background:#fff}
+  .comp-name{font-size:12.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .comp-ticker{font-family:var(--mono);font-size:9.5px;color:var(--dimmer)}
+  .comp-val{text-align:right;flex-shrink:0}
+  .comp-price{font-family:var(--mono);font-size:11.5px;font-weight:700}
+  .comp-price.na{color:var(--dimmer);font-weight:500}
+  .comp-chg{font-family:var(--mono);font-size:10px;font-weight:700}
+  .comp-chg.pos{color:var(--green)} .comp-chg.neg{color:var(--rose)}
+  .comp-chg.na{color:var(--dimmer);font-weight:500}
+
+  .wr{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--line)}
+  .wr:last-child{border-bottom:none;padding-bottom:0}
+  .wr-ic{font-family:var(--mono);font-size:12px;font-weight:700;flex-shrink:0;line-height:1.5}
+  .wr.hit .wr-ic{color:var(--green)} .wr.open .wr-ic{color:var(--dimmer)}
+  .wr-t{font-size:12.5px;line-height:1.5}
+  .wr.open .wr-t{color:var(--dim)}
+  .wr-ev{font-size:11px;color:var(--green);margin-top:3px;line-height:1.4}
+
+  .thr{display:flex;gap:11px;align-items:baseline;padding:8px 0;border-bottom:1px solid var(--line)}
+  .thr:last-child{border-bottom:none;padding-bottom:0}
+  .thr-d{font-family:var(--mono);font-size:9.5px;font-weight:700;color:var(--violet);flex-shrink:0;
+         padding:2px 8px;border:1px solid rgba(178,139,242,.32);border-radius:999px;background:rgba(178,139,242,.08)}
+  .thr-t{font-size:12.5px;font-weight:600}
+  .thr-l{font-size:11.5px;color:var(--dim);margin-top:2px;line-height:1.4}
+  .mv{display:flex;gap:8px;align-items:center;padding:7px 0;border-bottom:1px solid var(--line);font-size:12px;flex-wrap:wrap}
+  .mv:last-child{border-bottom:none;padding-bottom:0}
+  .mv-b{font-family:var(--mono);font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;
+        padding:2px 7px;border-radius:999px;flex-shrink:0;font-weight:700}
+  .mv-b.new{color:var(--green);background:rgba(75,212,139,.1);border:1px solid rgba(75,212,139,.3)}
+  .mv-b.ret{color:var(--amber);background:rgba(232,183,80,.1);border:1px solid rgba(232,183,80,.3)}
+  .mv-b.str{color:var(--accent);background:var(--accent-soft);border:1px solid var(--accent-line)}
+  .mv .nm{font-weight:600}
+  .mv .dt{color:var(--dimmer);font-family:var(--mono);font-size:10px}
+  .none{font-size:12px;color:var(--dimmer);font-style:italic}
+  .rk{padding:8px 0;border-bottom:1px solid var(--line);font-size:12.5px;line-height:1.5;color:#e3cf9b}
+  .rk:last-child{border-bottom:none;padding-bottom:0}
+  .rk.w{color:#cfc0ee}
+
+  footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);
+         display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+         font-family:var(--mono);font-size:10px;color:var(--dimmer);letter-spacing:.05em}
+
+  /* -- Responsive -- */
+  @media(max-width:1080px){
+    .layout{grid-template-columns:1fr}
+    .sidebar{position:static}
+  }
+  @media(max-width:720px){
+    .grid{grid-template-columns:1fr}
+    .wrap{padding:0 14px 60px}
+    .market-grid{grid-template-columns:1fr 1fr}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Barra superior -->
+  <div class="topbar">
+    <div class="brand">
+      <span class="dot"></span>
+      AI Strategic Radar
+      <span class="date">2026-11-14</span>
+    </div>
+    <div class="top-r">
+      <span class="state alert"><span class="sdot"></span>ALERTA</span>
+      <nav class="nav">
+        <a class="" href="../index.html">Diario</a>
+        <a class="" href="../weekly.html">Semanal</a>
+        <a class="on" href="../archivo.html">Archivo</a>
+      </nav>
+    </div>
+  </div>
+
+  
+  <div class="arch-bar">
+    <a href="../archivo.html">← Archivo</a>
+    <a href="../d/2026-11-13.html">2026-11-13</a>
+    <span class="here">2026-11-14</span>
+    
+    <a href="../index.html" style="margin-left:auto">Hoy</a>
+  </div>
+  
+
+  <!-- Tesis del dia -->
+  <div class="thesis">
+    <span class="lbl">Tesis del día</span>
+    <h1>La salida de Jensen Huang de Nvidia y el lanzamiento de un nuevo modelo frontera por DeepMind marcan un día de reconfiguración en la carrera AGI, añadiendo incertidumbre en cómputo y empujando las capacidades.</h1>
+  </div>
+
+  
+  
+  <div class="degraded">
+    <b>Capa X apagada.</b>
+    
+    El espejo no devolvió posts (6 cuentas). El briefing sigue con RSS.
+    
+  </div>
+  
+
+  <!-- Tabs de tema -->
+  
+  <div class="tabs" id="tabs">
+    <span class="tab on" data-filter="all">Todas<span class="n">13</span></span>
+    
+    <span class="tab tab-new" data-filter="__new__">Nuevo<span class="n">10</span></span>
+    
+    
+    <span class="tab" data-filter="agents_automation">Agentes<span class="n">5</span></span>
+    
+    <span class="tab" data-filter="compute_chips_dc">Compute &amp; chips<span class="n">5</span></span>
+    
+    <span class="tab" data-filter="frontier_capability">Capacidad frontier<span class="n">2</span></span>
+    
+    <span class="tab" data-filter="geopolitics_power">Geopolítica<span class="n">1</span></span>
+    
+  </div>
+  
+
+  <div class="layout">
+
+    <!-- Columna principal -->
+    <div class="main-col">
+
+      
+      <article class="hero" data-theme="agents_automation" data-new="1">
+        <a href="https://epoch.ai/publications/incident-report-ai-agents-attempted-exploits-on-our-website" target="_blank" rel="noopener noreferrer">
+          <img class="hero-img" src="https://epoch.ai/assets/images/thumbnails/general.png" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+        </a>
+        <div class="hero-body">
+          <div class="meta-row">
+            <span class="tag">Agentes</span>
+            <span class="badge-new">Nuevo</span>
+            <span class="src"><img src="https://www.google.com/s2/favicons?domain=epoch.ai&amp;sz=64" alt="" loading="lazy"/>Epoch AI</span>
+            
+            <span class="score">90</span>
+            <button type="button" class="copy-btn" data-copy>Copiar</button>
+          </div>
+          <h2 class="hero-title">
+            <a href="https://epoch.ai/publications/incident-report-ai-agents-attempted-exploits-on-our-website" target="_blank" rel="noopener noreferrer">Agentes IA intentan explotar una web durante evaluación de seguridad de Epoch AI.</a>
+          </h2>
+          <div class="sw">La evaluación de seguridad de Epoch AI revela la capacidad de los agentes IA para identificar y explotar vulnerabilidades de seguridad en entornos reales, planteando desafíos críticos para su despliegue seguro.</div>
+          
+          <div class="facts two">
+            
+            <div class="fact pw"><span class="k">Poder</span><span class="v">Desarrolladores de agentes IA y responsables de despliegue pierden / Equipos de seguridad y red team ganan.</span></div>
+            
+            
+            <div class="fact wn"><span class="k">Vigilar</span><span class="v">Aparición de directrices o frameworks específicos para la evaluación de seguridad de agentes autónomos.</span></div>
+            
+          </div>
+          
+          
+          <div class="ents"><span class="ent">Epoch AI</span></div>
+          
+        </div>
+      </article>
+      
+
+      
+      <div class="grid">
+        
+        <article class="card" data-theme="compute_chips_dc" data-new="1">
+          <a href="https://www.techpowerup.com/354814/nvidia-allegedly-engineered-scarcity-by-funding-ai-startups-to-buy-its-gpus" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxYzFlMWUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMTIzNDNjIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJyIiBjeD0iODAlIiBjeT0iMjAlIiByPSI2MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMjBiOGNkIiBzdG9wLW9wYWNpdHk9IjAuMjIiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWMxZTFlIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIzNjAiIGZpbGw9InVybCgjcikiLz4KICA8Y2lyY2xlIGN4PSI1NDAiIGN5PSI3MCIgcj0iMTMwIiBmaWxsPSIjMjBiOGNkIiBvcGFjaXR5PSIwLjEwIi8+CiAgPHRleHQgeD0iNDAiIHk9Ijc2IiBmaWxsPSIjMjBiOGNkIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCAtYXBwbGUtc3lzdGVtLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iODAwIiBsZXR0ZXItc3BhY2luZz0iMiI+Q09NUFVURSAmYW1wOyBDSElQUzwvdGV4dD4KICA8dGV4dCB5PSIxNTAiIGZpbGw9IiNlY2VlZWQiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIC1hcHBsZS1zeXN0ZW0sIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSI3MDAiPjx0c3BhbiB4PSI0MCIgZHk9IjAiPk52aWRpYSBoYWJyw61hIHByb3ZvY2FkbyBlc2Nhc2V6PC90c3Bhbj48dHNwYW4geD0iNDAiIGR5PSIzNCI+ZGUgR1BVcyBmaW5hbmNpYW5kbyBzdGFydHVwczwvdHNwYW4+PHRzcGFuIHg9IjQwIiBkeT0iMzQiPnBhcmEgY29tcHJhcmxhcy48L3RzcGFuPjwvdGV4dD4KICA8bGluZSB4MT0iNDAiIHkxPSIzMDgiIHgyPSI2MDAiIHkyPSIzMDgiIHN0cm9rZT0iIzNkNDA0MCIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPHRleHQgeD0iNDAiIHk9IjMzMiIgZmlsbD0iIzliOWY5ZSIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiI+SGFja2VyIE5ld3MgKGFsdG8gdm9sdGFqZSk8L3RleHQ+Cjwvc3ZnPg==" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="badge-new">Nuevo</span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=techpowerup.com&amp;sz=64" alt="" loading="lazy"/>Hacker News (alto voltaje)</span>
+              
+              <span class="score">88</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
+            </div>
+            <h3 class="card-title">
+              <a href="https://www.techpowerup.com/354814/nvidia-allegedly-engineered-scarcity-by-funding-ai-startups-to-buy-its-gpus" target="_blank" rel="noopener noreferrer">Nvidia habría provocado escasez de GPUs financiando startups para comprarlas.</a>
+            </h3>
+            <div class="sw">Si se confirman las acusaciones, Nvidia habría manipulado artificialmente el mercado de GPUs, impactando directamente en los costes y la disponibilidad de cómputo para entrenamiento de modelos, afectando a la economía de la IA.</div>
+            
+            <div class="card-foot">
+              
+              <div class="fact pw"><span class="k">Poder</span><span class="v">Nvidia gana control de mercado abusivo / Startups y laboratorios de IA pierden flexibilidad y poder de negociación.</span></div>
+              
+              
+              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Investigaciones regulatorias o acciones legales contra Nvidia por prácticas anticompetitivas.</span></div>
+              
+            </div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-theme="compute_chips_dc" data-new="1">
+          <a href="https://www.reuters.com/business/musk-says-nvidia-will-lose-critical-deals-without-jensen-huang-2026-11-14/" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxYzFlMWUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMTIzNDNjIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJyIiBjeD0iODAlIiBjeT0iMjAlIiByPSI2MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMjBiOGNkIiBzdG9wLW9wYWNpdHk9IjAuMjIiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWMxZTFlIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIzNjAiIGZpbGw9InVybCgjcikiLz4KICA8Y2lyY2xlIGN4PSI1NDAiIGN5PSI3MCIgcj0iMTMwIiBmaWxsPSIjMjBiOGNkIiBvcGFjaXR5PSIwLjEwIi8+CiAgPHRleHQgeD0iNDAiIHk9Ijc2IiBmaWxsPSIjMjBiOGNkIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCAtYXBwbGUtc3lzdGVtLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iODAwIiBsZXR0ZXItc3BhY2luZz0iMiI+Q09NUFVURSAmYW1wOyBDSElQUzwvdGV4dD4KICA8dGV4dCB5PSIxNTAiIGZpbGw9IiNlY2VlZWQiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIC1hcHBsZS1zeXN0ZW0sIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSI3MDAiPjx0c3BhbiB4PSI0MCIgZHk9IjAiPk11c2s6IE52aWRpYSBwZXJkZXLDoSBjb250cmF0b3M8L3RzcGFuPjx0c3BhbiB4PSI0MCIgZHk9IjM0Ij5jbGF2ZSBzaW4gSmVuc2VuIEh1YW5nLjwvdHNwYW4+PC90ZXh0PgogIDxsaW5lIHgxPSI0MCIgeTE9IjMwOCIgeDI9IjYwMCIgeTI9IjMwOCIgc3Ryb2tlPSIjM2Q0MDQwIiBzdHJva2Utd2lkdGg9IjEiLz4KICA8dGV4dCB4PSI0MCIgeT0iMzMyIiBmaWxsPSIjOWI5ZjllIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIj5SZXV0ZXJzIEFJPC90ZXh0Pgo8L3N2Zz4=" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="badge-new">Nuevo</span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=reuters.com&amp;sz=64" alt="" loading="lazy"/>Reuters AI</span>
+              
+              <span class="score">82</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
+            </div>
+            <h3 class="card-title">
+              <a href="https://www.reuters.com/business/musk-says-nvidia-will-lose-critical-deals-without-jensen-huang-2026-11-14/" target="_blank" rel="noopener noreferrer">Musk: Nvidia perderá contratos clave sin Jensen Huang.</a>
+            </h3>
+            <div class="sw">La salida de Jensen Huang podría debilitar la posición dominante de Nvidia en el mercado de chips para IA, provocando inestabilidad en la cadena de suministro y abriendo oportunidades para competidores.</div>
+            
+            <div class="card-foot">
+              
+              <div class="fact pw"><span class="k">Poder</span><span class="v">Nvidia pierde (potencialmente) / Competidores de chips como AMD, Intel, y fabricantes de ASICs ganan (potencialmente).</span></div>
+              
+              
+              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Anuncios de grandes clientes de Nvidia (como xAI, OpenAI) sobre cambios en sus acuerdos de suministro de chips.</span></div>
+              
+            </div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-theme="agents_automation" data-new="1">
+          <a href="https://openai.com/index/introducing-chatgpt-wallet" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxYzFlMWUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMmEyMTQ1Ii8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJyIiBjeD0iODAlIiBjeT0iMjAlIiByPSI2MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjYjI4YmYyIiBzdG9wLW9wYWNpdHk9IjAuMjIiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWMxZTFlIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIzNjAiIGZpbGw9InVybCgjcikiLz4KICA8Y2lyY2xlIGN4PSI1NDAiIGN5PSI3MCIgcj0iMTMwIiBmaWxsPSIjYjI4YmYyIiBvcGFjaXR5PSIwLjEwIi8+CiAgPHRleHQgeD0iNDAiIHk9Ijc2IiBmaWxsPSIjYjI4YmYyIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCAtYXBwbGUtc3lzdGVtLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iODAwIiBsZXR0ZXItc3BhY2luZz0iMiI+QUdFTlRTICZhbXA7IFJFQVNPTklORzwvdGV4dD4KICA8dGV4dCB5PSIxNTAiIGZpbGw9IiNlY2VlZWQiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIC1hcHBsZS1zeXN0ZW0sIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSI3MDAiPjx0c3BhbiB4PSI0MCIgZHk9IjAiPk9wZW5BSSBsYW56YSBDaGF0R1BUIFdhbGxldCBwYXJhPC90c3Bhbj48dHNwYW4geD0iNDAiIGR5PSIzNCI+cGFnb3MgZGUgYWdlbnRlcyBlbiBDaGF0R1BUIFdvcms8L3RzcGFuPjx0c3BhbiB4PSI0MCIgZHk9IjM0Ij55IENvZGV4LjwvdHNwYW4+PC90ZXh0PgogIDxsaW5lIHgxPSI0MCIgeTE9IjMwOCIgeDI9IjYwMCIgeTI9IjMwOCIgc3Ryb2tlPSIjM2Q0MDQwIiBzdHJva2Utd2lkdGg9IjEiLz4KICA8dGV4dCB4PSI0MCIgeT0iMzMyIiBmaWxsPSIjOWI5ZjllIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIj5PcGVuQUk8L3RleHQ+Cjwvc3ZnPg==" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="badge-new">Nuevo</span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=openai.com&amp;sz=64" alt="" loading="lazy"/>OpenAI</span>
+              
+              <span class="score">73</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
+            </div>
+            <h3 class="card-title">
+              <a href="https://openai.com/index/introducing-chatgpt-wallet" target="_blank" rel="noopener noreferrer">OpenAI lanza ChatGPT Wallet para pagos de agentes en ChatGPT Work y Codex.</a>
+            </h3>
+            <div class="sw">Los agentes de OpenAI ahora pueden realizar compras de forma segura con aprobación del usuario, lo que acelera el desarrollo de flujos de trabajo autónomos y monetizables, pero requiere más control.</div>
+            
+            <div class="card-foot">
+              
+              <div class="fact pw"><span class="k">Poder</span><span class="v">OpenAI gana capacidad en agentes transaccionales / Empresas de pagos y fintech se ven presionadas a integrar.</span></div>
+              
+              
+              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Anuncios de nuevas integraciones de servicios de terceros que utilizan ChatGPT Wallet para operaciones autónomas.</span></div>
+              
+            </div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-theme="frontier_capability" data-new="1">
+          <a href="https://deepmind.google/blog/introducing-gemini-4-hydrogen/" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini-4-hydrogen__key-art__lockup__16-9.width-1300.jpg" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="badge-new">Nuevo</span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=deepmind.google&amp;sz=64" alt="" loading="lazy"/>DeepMind Blog</span>
+              <span class="multi">+1</span>
+              <span class="score">68</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
+            </div>
+            <h3 class="card-title">
+              <a href="https://deepmind.google/blog/introducing-gemini-4-hydrogen/" target="_blank" rel="noopener noreferrer">Google DeepMind presenta Gemini 4 Hydrogen, un nuevo modelo.</a>
+            </h3>
+            <div class="sw">El lanzamiento de Gemini 4 Hydrogen por DeepMind indica un avance en la capacidad de los modelos frontera, marcando un nuevo hito en la carrera AGI y redefiniendo la frontera de la inteligencia artificial.</div>
+            
+            <div class="card-foot">
+              
+              <div class="fact pw"><span class="k">Poder</span><span class="v">Google DeepMind gana capacidad bruta en modelos frontera / Competidores como OpenAI y Anthropic se ven desafiados a res…</span></div>
+              
+              
+              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Benchmarks oficiales o evaluaciones de terceros que demuestren las capacidades específicas de Gemini 4 Hydrogen.</span></div>
+              
+            </div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-theme="agents_automation" data-new="1">
+          <a href="https://openai.com/business/customer-stories/shield" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxYzFlMWUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMmEyMTQ1Ii8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJyIiBjeD0iODAlIiBjeT0iMjAlIiByPSI2MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjYjI4YmYyIiBzdG9wLW9wYWNpdHk9IjAuMjIiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWMxZTFlIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIzNjAiIGZpbGw9InVybCgjcikiLz4KICA8Y2lyY2xlIGN4PSI1NDAiIGN5PSI3MCIgcj0iMTMwIiBmaWxsPSIjYjI4YmYyIiBvcGFjaXR5PSIwLjEwIi8+CiAgPHRleHQgeD0iNDAiIHk9Ijc2IiBmaWxsPSIjYjI4YmYyIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCAtYXBwbGUtc3lzdGVtLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iODAwIiBsZXR0ZXItc3BhY2luZz0iMiI+QUdFTlRTICZhbXA7IFJFQVNPTklORzwvdGV4dD4KICA8dGV4dCB5PSIxNTAiIGZpbGw9IiNlY2VlZWQiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIC1hcHBsZS1zeXN0ZW0sIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSI3MDAiPjx0c3BhbiB4PSI0MCIgZHk9IjAiPlNoaWVsZCB1c2EgYWdlbnRlcyBPcGVuQUkgcGFyYTwvdHNwYW4+PHRzcGFuIHg9IjQwIiBkeT0iMzQiPmF1dG9tYXRpemFyIHRhcmVhcyBlbiBwb3J0YWxlczwvdHNwYW4+PHRzcGFuIHg9IjQwIiBkeT0iMzQiPmhlcmVkYWRvcyBkZSBUSS48L3RzcGFuPjwvdGV4dD4KICA8bGluZSB4MT0iNDAiIHkxPSIzMDgiIHgyPSI2MDAiIHkyPSIzMDgiIHN0cm9rZT0iIzNkNDA0MCIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPHRleHQgeD0iNDAiIHk9IjMzMiIgZmlsbD0iIzliOWY5ZSIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiI+T3BlbkFJPC90ZXh0Pgo8L3N2Zz4=" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="badge-new">Nuevo</span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=openai.com&amp;sz=64" alt="" loading="lazy"/>OpenAI</span>
+              
+              <span class="score">67</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
+            </div>
+            <h3 class="card-title">
+              <a href="https://openai.com/business/customer-stories/shield" target="_blank" rel="noopener noreferrer">Shield usa agentes OpenAI para automatizar tareas en portales heredados de TI.</a>
+            </h3>
+            <div class="sw">Los agentes de OpenAI demuestran ser capaces de navegar sistemas complejos y automatizar el trabajo en portales legacy, liberando a los técnicos para tareas más críticas y acelerando la sustitución de trabajo cognitivo.</div>
+            
+            <div class="card-foot">
+              
+              <div class="fact pw"><span class="k">Poder</span><span class="v">OpenAI gana tracción en automatización empresarial / Proveedores de soluciones RPA heredadas pierden.</span></div>
+              
+              
+              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Más anuncios de clientes que implementen agentes para automatizar procesos manuales complejos en TI o back-office.</span></div>
+              
+            </div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-theme="compute_chips_dc" data-new="1">
+          <a href="https://stratechery.com/2026/the-end-of-jensen/" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="https://i0.wp.com/stratechery.com/wp-content/uploads/2026/11/GettyImages-2266460767-blog.jpg?resize=1600%2C1066&amp;ssl=1" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="badge-new">Nuevo</span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=stratechery.com&amp;sz=64" alt="" loading="lazy"/>Stratechery</span>
+              
+              <span class="score">66</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
+            </div>
+            <h3 class="card-title">
+              <a href="https://stratechery.com/2026/the-end-of-jensen/" target="_blank" rel="noopener noreferrer">Stratechery analiza el fin de la era Jensen Huang en Nvidia.</a>
+            </h3>
+            <div class="sw">El análisis estratégico de la salida de Jensen Huang pone de manifiesto la vulnerabilidad de la posición de Nvidia y la posible reconfiguración del mercado de chips, afectando a la disponibilidad de cómputo y las economías de esc…</div>
+            
+            <div class="card-foot">
+              
+              <div class="fact pw"><span class="k">Poder</span><span class="v">Nvidia pierde una figura clave / Otros fabricantes de chips o actores de hardware podrían buscar capitalizar el vacío.</span></div>
+              
+              
+              <div class="fact wn"><span class="k">Vigilar</span><span class="v">La trayectoria y las decisiones del nuevo liderazgo de Nvidia en los próximos trimestres.</span></div>
+              
+            </div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-theme="agents_automation" data-new="0">
+          <a href="https://openai.com/business/customer-stories/amplitude" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMxYzFlMWUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMmEyMTQ1Ii8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJyIiBjeD0iODAlIiBjeT0iMjAlIiByPSI2MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjYjI4YmYyIiBzdG9wLW9wYWNpdHk9IjAuMjIiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWMxZTFlIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIzNjAiIGZpbGw9InVybCgjcikiLz4KICA8Y2lyY2xlIGN4PSI1NDAiIGN5PSI3MCIgcj0iMTMwIiBmaWxsPSIjYjI4YmYyIiBvcGFjaXR5PSIwLjEwIi8+CiAgPHRleHQgeD0iNDAiIHk9Ijc2IiBmaWxsPSIjYjI4YmYyIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCAtYXBwbGUtc3lzdGVtLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iODAwIiBsZXR0ZXItc3BhY2luZz0iMiI+QUdFTlRTICZhbXA7IFJFQVNPTklORzwvdGV4dD4KICA8dGV4dCB5PSIxNTAiIGZpbGw9IiNlY2VlZWQiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIC1hcHBsZS1zeXN0ZW0sIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSI3MDAiPjx0c3BhbiB4PSI0MCIgZHk9IjAiPkFtcGxpdHVkZSBtZWpvcmEgcHJvZHVjdG9zIGVuPC90c3Bhbj48dHNwYW4geD0iNDAiIGR5PSIzNCI+ZMOtYXMgY29uIGFnZW50ZXMgZGUgY29kaWZpY2FjacOzbjwvdHNwYW4+PHRzcGFuIHg9IjQwIiBkeT0iMzQiPk9wZW5BSS48L3RzcGFuPjwvdGV4dD4KICA8bGluZSB4MT0iNDAiIHkxPSIzMDgiIHgyPSI2MDAiIHkyPSIzMDgiIHN0cm9rZT0iIzNkNDA0MCIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPHRleHQgeD0iNDAiIHk9IjMzMiIgZmlsbD0iIzliOWY5ZSIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiI+T3BlbkFJPC90ZXh0Pgo8L3N2Zz4=" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=openai.com&amp;sz=64" alt="" loading="lazy"/>OpenAI</span>
+              
+              <span class="score">58</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
+            </div>
+            <h3 class="card-title">
+              <a href="https://openai.com/business/customer-stories/amplitude" target="_blank" rel="noopener noreferrer">Amplitude mejora productos en días con agentes de codificación OpenAI.</a>
+            </h3>
+            <div class="sw">Los agentes de codificación de OpenAI están permitiendo a las empresas acelerar drásticamente los ciclos de desarrollo de productos, aumentando la eficiencia y la velocidad de innovación al automatizar procesos de identificación…</div>
+            
+            <div class="card-foot">
+              
+              <div class="fact pw"><span class="k">Poder</span><span class="v">OpenAI gana terreno en el software de automatización de desarrollo / Equipos de ingeniería de software ganan productivi…</span></div>
+              
+              
+              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Empresas similares que reporten aumentos significativos en la velocidad de desarrollo gracias a agentes IA.</span></div>
+              
+            </div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-theme="frontier_capability" data-new="0">
+          <a href="https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini__decisions__blog-header_2784x1566.width-1300.png" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=blog.google&amp;sz=64" alt="" loading="lazy"/>Google AI Blog</span>
+              
+              <span class="score">57</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
+            </div>
+            <h3 class="card-title">
+              <a href="https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/" target="_blank" rel="noopener noreferrer">Google lanza la API Gemini Decisions para decisiones multimodales rápidas y calibradas.</a>
+            </h3>
+            <div class="sw">La disponibilidad de una API dedicada a decisiones multimodales con Gemini Decision sugiere una nueva capacidad para automatizar procesos complejos que requieren interpretar diversos tipos de datos, acercándose a la cognición ava…</div>
+            
+            <div class="card-foot">
+              
+              <div class="fact pw"><span class="k">Poder</span><span class="v">Google DeepMind refuerza su liderazgo en capacidades multimodales y herramientas para desarrolladores de agentes.</span></div>
+              
+              
+              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Casos de uso específicos que emerjan en áreas como robótica, control industrial o asistentes complejos.</span></div>
+              
+            </div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-theme="agents_automation" data-new="0">
+          <a href="https://artificialanalysis.ai/articles/google-deepmind-multimodal-knowledge-agent" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="https://cdn.sanity.io/images/6vfeftx9/articles/91515f53304078f40abd9810ef52389252f8baa3-1254x1254.png?w=1200&amp;auto=format" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=artificialanalysis.ai&amp;sz=64" alt="" loading="lazy"/>Artificial Analysis</span>
+              
+              <span class="score">55</span>
+              <button type="button" class="copy-btn" data-copy>Copiar</button>
+            </div>
+            <h3 class="card-title">
+              <a href="https://artificialanalysis.ai/articles/google-deepmind-multimodal-knowledge-agent" target="_blank" rel="noopener noreferrer">Nuevo benchmark MKA evalúa agentes en tareas de conocimiento multimodal complejas.</a>
+            </h3>
+            <div class="sw">El desarrollo de nuevos benchmarks como MKA ayuda a estandarizar la evaluación de agentes de conocimiento, permitiendo comparar objetivamente las capacidades de los modelos y detectar los avances reales hacia la autonomía cogniti…</div>
+            
+            <div class="card-foot">
+              
+              <div class="fact pw"><span class="k">Poder</span><span class="v">Evaluadores y analistas de IA ganan herramientas / Laboratorios frontera obtienen métricas claras para mejorar.</span></div>
+              
+              
+              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Modelos que lideren o muestren mejoras significativas en este nuevo benchmark.</span></div>
+              
+            </div>
+            
+          </div>
+        </article>
+        
+      </div>
+      
+
+      
+
+      
+      <div class="section-h">
+        <h2>Contexto</h2>
+        <span class="n">de fondo, no cambia nada hoy</span>
+      </div>
+      <div class="ctx">
+        
+        <div class="cx" data-theme="compute_chips_dc" data-new="1">
+          <img src="https://www.google.com/s2/favicons?domain=interconnects.ai&amp;sz=64" alt="" loading="lazy"/>
+          <div class="cx-b">
+            <div class="cx-t">
+              <a href="https://www.interconnects.ai/p/open-source-ai-without-jensen" target="_blank" rel="noopener noreferrer">Análisis: el futuro de la IA open-source sin Jensen Huang al frente de Nvidia.</a>
+            </div>
+            <div class="cx-w">La salida de Jensen Huang de Nvidia podría reconfigurar la estrategia de la compañía respecto al hardware para IA, afectando la disponibilidad y el coste de las GPUs y, consecuentemente, el desarrollo de modelos open-source.</div>
+            <div class="cx-m">Compute &amp; chips · Interconnects · 66</div>
+          </div>
+        </div>
+        
+        <div class="cx" data-theme="geopolitics_power" data-new="1">
+          <img src="https://www.google.com/s2/favicons?domain=chinatalk.media&amp;sz=64" alt="" loading="lazy"/>
+          <div class="cx-b">
+            <div class="cx-t">
+              <a href="https://www.chinatalk.media/p/jensen-out-match-act-in" target="_blank" rel="noopener noreferrer">Análisis: la salida de Jensen Huang de Nvidia y su impacto geopolítico.</a>
+            </div>
+            <div class="cx-w">La dimisión de Jensen Huang podría reconfigurar la geopolítica de los chips, con posibles implicaciones para el &#34;China Stack&#34; y las export controls, alterando el equilibrio de poder en el suministro de cómputo avanzado.</div>
+            <div class="cx-m">Geopolítica · ChinaTalk · 59</div>
+          </div>
+        </div>
+        
+        <div class="cx" data-theme="compute_chips_dc" data-new="1">
+          <img src="https://www.google.com/s2/favicons?domain=bloomberg.com&amp;sz=64" alt="" loading="lazy"/>
+          <div class="cx-b">
+            <div class="cx-t">
+              <a href="https://www.bloomberg.com/news/articles/2026-11-14/ai-tools-huang-championed-now-star-in-memes-of-his-downfall" target="_blank" rel="noopener noreferrer">Herramientas IA de Jensen Huang se usan para memes de su caída.</a>
+            </div>
+            <div class="cx-w">La reacción mediática a la caída de Jensen Huang subraya la enorme dependencia de la industria de la IA de figuras clave y el impacto potencial en la dirección estratégica de Nvidia y el mercado de GPUs.</div>
+            <div class="cx-m">Compute &amp; chips · Bloomberg Tech · 58</div>
+          </div>
+        </div>
+        
+      </div>
+      
+
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+      
+
+      
+
+      
+      <div class="widget">
+        <div class="widget-title">
+          <span>Vigilancia de ayer</span>
+          <span class="lbl">0/1 confirmadas</span>
+        </div>
+        
+        <div class="wr open">
+          <span class="wr-ic">○</span>
+          <div>
+            <div class="wr-t">Confirmar que el analisis vuelve a ejecutarse en el proximo run.</div>
+            
+          </div>
+        </div>
+        
+      </div>
+      
+
+      
+      <div class="widget">
+        <div class="widget-title">
+          <span>Memoria del radar</span>
+          <span class="lbl">Continuidad</span>
+        </div>
+        
+        <div class="thr">
+          <span class="thr-d">DÍA 11</span>
+          <div>
+            <div class="thr-t">Agentes y automatización</div>
+            <div class="thr-l">Agentes IA intentan explotar una web durante evaluación de seguridad de Epoch AI.</div>
+          </div>
+        </div>
+        
+        
+        
+        <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Amplitude</span>
+          <span class="dt">primera aparición</span></div>
+        
+        <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Elon Musk</span>
+          <span class="dt">primera aparición</span></div>
+        
+        <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Shield</span>
+          <span class="dt">primera aparición</span></div>
+        
+        
+        <div class="mv"><span class="mv-b ret">Vuelve</span><span class="nm">Epoch AI</span>
+          <span class="dt">tras 6 días en silencio</span></div>
+        
+        <div class="mv"><span class="mv-b ret">Vuelve</span><span class="nm">Artificial Analysis</span>
+          <span class="dt">tras 4 días en silencio</span></div>
+        
+        <div class="mv"><span class="mv-b ret">Vuelve</span><span class="nm">DeepMind</span>
+          <span class="dt">tras 4 días en silencio</span></div>
+        
+        <div class="mv"><span class="mv-b ret">Vuelve</span><span class="nm">xAI</span>
+          <span class="dt">tras 4 días en silencio</span></div>
+        
+        
+      </div>
+      
+
+      
+      <div class="widget">
+        <div class="widget-title">
+          <span>Riesgos y vigilancia</span>
+          <span class="lbl">Próximos días</span>
+        </div>
+        <div class="rk">La inestabilidad en el liderazgo de Nvidia podría ralentizar la disponibilidad de chips de IA, afectando el entrenamiento de modelos frontera.</div><div class="rk">El aumento de las capacidades de los agentes IA, incluido el acceso a pagos y la explotación de vulnerabilidades, eleva los riesgos de seguridad y control.</div><div class="rk">La dependencia de figuras clave en empresas tecnológicas puede generar fragilidad sistémica en la cadena de suministro.</div>
+        <div class="rk w">Declaraciones de la nueva dirección de Nvidia sobre estrategia de chips y capacidad de producción.</div><div class="rk w">Anuncios de grandes clientes de Nvidia (OpenAI, Microsoft, Meta) sobre sus acuerdos de suministro.</div><div class="rk w">Publicación de benchmarks o evaluaciones detalladas de Gemini 4 Hydrogen.</div>
+      </div>
+      
+
+    </aside>
+  </div>
+
+  <footer>
+    <span>9 items descartados por el filtro de relevancia</span>
+    <span>33/36 fuentes activas · sin items: Yahoo Finance News, VentureBeat AI, OpenRouter Insights · X: kill switch</span>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var params = new URLSearchParams(location.search);
+    var d = params.get('date');
+    if (d && /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(d)) {
+      location.replace('d/' + d + '.html');
+      return;
+    }
+
+    function ficha(article){
+      if (!article) return '';
+      var a = article.querySelector('.hero-title a, .card-title a');
+      var title = a ? (a.textContent || '').trim() : '';
+      var swEl = article.querySelector('.sw');
+      var sw = swEl ? (swEl.textContent || '').trim() : '';
+      var url = a ? (a.getAttribute('href') || '').trim() : '';
+      return [title, sw, url].filter(Boolean).join('\n\n');
+    }
+    function copied(btn){
+      btn.classList.add('ok');
+      btn.textContent = 'Copiado';
+      setTimeout(function(){ btn.classList.remove('ok'); btn.textContent = 'Copiar'; }, 1600);
+    }
+    function fallback(text, btn){
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      try { if (document.execCommand('copy')) copied(btn); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+    document.querySelectorAll('[data-copy]').forEach(function(btn){
+      btn.addEventListener('click', function(ev){
+        ev.preventDefault();
+        ev.stopPropagation();
+        var text = ficha(btn.closest('article'));
+        if (!text) return;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function(){ copied(btn); }).catch(function(){ fallback(text, btn); });
+        } else {
+          fallback(text, btn);
+        }
+      });
+    });
+
+    var tabs = document.querySelectorAll('#tabs .tab');
+    if (!tabs.length) return;
+    tabs.forEach(function(t){
+      t.addEventListener('click', function(){
+        tabs.forEach(function(x){ x.classList.remove('on'); });
+        t.classList.add('on');
+        var f = t.getAttribute('data-filter');
+        document.querySelectorAll('[data-theme]').forEach(function(c){
+          var show;
+          if (f === 'all')            show = true;
+          else if (f === '__new__')   show = c.getAttribute('data-new') === '1';
+          else                        show = c.getAttribute('data-theme') === f;
+          c.style.display = show ? '' : 'none';
+        });
+      });
+    });
+  })();
+</script>
+</body>
+</html>
