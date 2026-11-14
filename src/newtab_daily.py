@@ -183,11 +183,18 @@ def collect_rss() -> list[dict]:
     return items
 
 
+def add_images(items: list[dict]) -> list[dict]:
+    """og:image solo para los items elegidos; el ingest ya no lo pide por entrada."""
+    from src.fetch import enrich_items_with_images
+    return enrich_items_with_images(items)
+
+
 def publish_rss(day: date) -> bool:
     chosen = select_new(collect_rss(), day)
     if not chosen:
         print('NEXUS: sin novedades RSS verificables; se mantiene la última edición (no se finge una nueva).')
         return False
+    chosen = add_images(chosen)
     last = last_analysis()
     analysis_date = last.get('date') if last else None
     previous_thesis = (last or {}).get('briefing', {}).get('thesis') or ''

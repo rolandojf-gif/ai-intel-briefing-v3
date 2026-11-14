@@ -267,6 +267,21 @@ TEMPLATE = ENV.from_string("""
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>AI Strategic Radar</title>
+<meta name="description" content="Radar diario de la carrera AGI: modelos frontier, compute, China y agentes. Solo lo que mueve la aguja."/>
+<meta name="theme-color" content="#191a1a"/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23191a1a'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%2320b8cd'/%3E%3C/svg%3E"/>
+<script>
+  // Va en <head> para estar escuchando antes de que se pinte la primera imagen.
+  // Una imagen remota caida (hotlink bloqueado, 404, caducada) se cambia por la
+  // portada generada del item; un logo caido se oculta en vez de dejar el icono roto.
+  document.addEventListener('error', function(ev){
+    var t = ev.target;
+    if (!t || t.tagName !== 'IMG') return;
+    var fb = t.getAttribute('data-fb');
+    if (fb) { t.removeAttribute('data-fb'); t.src = fb; }
+    else { t.style.visibility = 'hidden'; }
+  }, true);
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -294,6 +309,9 @@ TEMPLATE = ENV.from_string("""
   .brand{display:flex;align-items:center;gap:10px;font-family:var(--disp);font-size:17px;font-weight:700;letter-spacing:-.01em}
   .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}
   .brand .date{font-family:var(--mono);font-size:11px;color:var(--dimmer);font-weight:400;margin-left:6px}
+  .stale{font-family:var(--mono);font-size:10px;font-weight:500;color:var(--amber);
+         border:1px solid rgba(232,183,80,.35);background:rgba(232,183,80,.06);
+         padding:2px 9px;border-radius:999px;white-space:nowrap}
   .top-r{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
   .state{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:10px;
          font-weight:700;letter-spacing:.16em;padding:6px 12px;border-radius:999px;border:1px solid}
@@ -485,6 +503,11 @@ TEMPLATE = ENV.from_string("""
     .grid{grid-template-columns:1fr}
     .wrap{padding:0 14px 60px}
     .market-grid{grid-template-columns:1fr 1fr}
+    /* Tabs en una fila deslizable: envueltas ocupaban tres filas antes de la primera noticia. */
+    .tabs{flex-wrap:nowrap;overflow-x:auto;margin:0 -14px;padding:4px 14px 18px;
+          scrollbar-width:none;-webkit-overflow-scrolling:touch}
+    .tabs::-webkit-scrollbar{display:none}
+    .tab{flex:0 0 auto;white-space:nowrap}
   }
 </style>
 </head>
@@ -497,6 +520,7 @@ TEMPLATE = ENV.from_string("""
       <span class="dot"></span>
       AI Strategic Radar
       <span class="date">{{ generated_at }}</span>
+      {% if nav == 'daily' and not archive %}<span class="stale" id="stale" data-date="{{ generated_at }}" hidden></span>{% endif %}
     </div>
     <div class="top-r">
       <span class="state {{ activity.class }}"><span class="sdot"></span>{{ activity.label }}</span>
@@ -562,7 +586,7 @@ TEMPLATE = ENV.from_string("""
       {% if hero %}
       <article class="hero" data-theme="{{ hero.theme_key }}" data-new="{{ 1 if hero.is_new else 0 }}">
         <a href="{{ (hero.url or hero.link)|safe_url }}" target="_blank" rel="noopener noreferrer">
-          <img class="hero-img" src="{{ hero.image_url }}" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          <img class="hero-img" src="{{ hero.image_url }}"{% if hero.fallback_image %} data-fb="{{ hero.fallback_image }}"{% endif %} alt="" referrerpolicy="no-referrer"/>
         </a>
         <div class="hero-body">
           <div class="meta-row">
@@ -599,7 +623,7 @@ TEMPLATE = ENV.from_string("""
         {% for it in stream %}
         <article class="card" data-theme="{{ it.theme_key }}" data-new="{{ 1 if it.is_new else 0 }}">
           <a href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer">
-            <img class="card-img" src="{{ it.image_url }}" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+            <img class="card-img" src="{{ it.image_url }}"{% if it.fallback_image %} data-fb="{{ it.fallback_image }}"{% endif %} alt="" loading="lazy" referrerpolicy="no-referrer"/>
           </a>
           <div class="card-body">
             <div class="meta-row">
@@ -793,6 +817,23 @@ TEMPLATE = ENV.from_string("""
 </div>
 
 <script>
+  // El radar se regenera en dias alternos. Si la edicion no es de hoy, se dice:
+  // sin esto la portada de ayer se lee como si fuera la de hoy.
+  (function(){
+    var el = document.getElementById('stale');
+    if (!el) return;
+    var p = (el.getAttribute('data-date') || '').split('-');
+    if (p.length !== 3) return;
+    var edition = new Date(+p[0], +p[1] - 1, +p[2]);
+    var now = new Date();
+    var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    var days = Math.round((today - edition) / 86400000);
+    if (!(days >= 1)) return;
+    el.textContent = days === 1 ? 'edición de ayer' : 'edición de hace ' + days + ' días';
+    el.hidden = false;
+  })();
+</script>
+<script>
   (function(){
     var params = new URLSearchParams(location.search);
     var d = params.get('date');
@@ -892,10 +933,14 @@ def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", 
         # canonica y huella del titular contra el historico.
         it["is_new"] = not bool(it.get("is_repeat"))
 
+        # La portada generada sirve dos veces: como imagen si el item no trae
+        # ninguna, y como respaldo en cliente (data-fb) si la remota no carga.
+        fallback = item_fallback_image(it)
         img = (it.get("image_url") or "").strip()
         if not img or not img.startswith(("http://", "https://")):
-            img = item_fallback_image(it)
+            img, fallback = fallback, ""
         it["image_url"] = img
+        it["fallback_image"] = fallback
         enriched.append(it)
 
     enriched.sort(key=lambda x: x.get("score", 0), reverse=True)

@@ -42,7 +42,7 @@ class NewtabDailyTests(unittest.TestCase):
             data = Path(temp)/'data'; newtab=Path(temp)/'newtab';data.mkdir()
             (data/'2026-10-10.json').write_text(json.dumps({'date':'2026-10-10','items':[{'title':'A'}],'briefing':{'thesis':'Análisis anterior'}}))
             item = {'title': 'New AI agent platform arrives with model API', 'link':'https://news.example/agent', 'published':'2026-10-11T06:00:00Z','source':'RSS'}
-            with patch.object(daily,'DATA',data),patch.object(daily,'NEWTAB',newtab), patch.object(daily,'collect_rss',return_value=[item]),patch.object(daily,'select_new',return_value=[{**item,'layer':'rss'}]):
+            with patch.object(daily,'DATA',data),patch.object(daily,'NEWTAB',newtab), patch.object(daily,'collect_rss',return_value=[item]),patch.object(daily,'select_new',return_value=[{**item,'layer':'rss'}]),patch.object(daily,'add_images',side_effect=lambda items: items):
                 daily.run(date(2026,10,11),mode='rss')
             output = json.loads((newtab/'latest.json').read_text())
             self.assertEqual(output['edition_type'],'rss')

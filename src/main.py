@@ -18,6 +18,7 @@ from src.render import render_index
 from src.score import score_item
 from src.llm_rank import rank_batch
 from src.memory import (
+    _is_snapshot,
     activity_level,
     detect_threads,
     entity_deltas,
@@ -474,7 +475,10 @@ def title_fingerprint(title: str) -> str:
 def load_recent_history(data_dir: Path, today: str, days: int = 5) -> tuple[set[str], set[str]]:
     history_urls: set[str] = set()
     history_titles: set[str] = set()
-    snapshots = sorted(data_dir.glob("*.json"), key=lambda p: p.name)
+    # Solo snapshots YYYY-MM-DD.json. Con el glob a pelo, image_cache.json (que
+    # ordena despues de cualquier fecha) y los *.llm_cache.json ocupaban huecos
+    # de la ventana y el historial real se quedaba en 4 ediciones o menos.
+    snapshots = sorted((p for p in data_dir.glob("*.json") if _is_snapshot(p)), key=lambda p: p.name)
     recent = [p for p in snapshots if p.stem != today][-days:]
 
     for path in recent:
@@ -977,7 +981,7 @@ def generate_fallback_briefing(final_items: list[dict], primary_dist: dict, top_
     """
     if not final_items:
         return {
-            "thesis": "Sin datos suficientes para emitir una lectura del dia.",
+            "thesis": "Sin datos suficientes para emitir una lectura del día.",
             "signals": [],
             "risks": [],
             "watch": [],
@@ -988,12 +992,12 @@ def generate_fallback_briefing(final_items: list[dict], primary_dist: dict, top_
     lead_title = (top_items[0].get("title") or "").strip() if top_items else ""
 
     return {
-        "thesis": "Analisis no disponible hoy: el filtro de relevancia no se ha aplicado.",
+        "thesis": "Análisis no disponible hoy: el filtro de relevancia no se ha aplicado.",
         "signals": [(it.get("title") or "").strip()[:130] for it in top_items if it.get("title")],
         "risks": [
-            "Sin juicio del LLM no se puede distinguir senal de ruido: tratar todo como no verificado."
+            "Sin juicio del LLM no se puede distinguir señal de ruido: tratar todo como no verificado."
         ],
-        "watch": ["Confirmar que el analisis vuelve a ejecutarse en el proximo run."],
+        "watch": ["Confirmar que el análisis vuelve a ejecutarse en el próximo run."],
         "entities_top": top_entities_list[:5],
     }
 
@@ -1067,9 +1071,7 @@ def main():
     deduped.sort(key=lambda x: x.get("adjusted_score", x.get("score", 0)), reverse=True)
     candidates = deduped[:LLM_BATCH_SIZE]
 
-    # Enriquecer candidatos con imagenes OpenGraph en alta resolucion
     from src.fetch import enrich_items_with_images
-    candidates = enrich_items_with_images(candidates)
 
     # 4) LLM Rank
     results_map, briefings = generate_llm_data(candidates, llm_cache, llm_done)
@@ -1078,6 +1080,7 @@ def main():
 
     # 5) Apply LLM Results (gate de relevancia)
     final_items = apply_llm_results(candidates, results_map)
+    # og:image solo para lo que se publica (~13 items), no para los 56 candidatos.
     final_items = enrich_items_with_images(final_items)
 
     # 6) Stats & Fallback Briefing

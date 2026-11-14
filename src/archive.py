@@ -84,11 +84,19 @@ def meta_of(snap: dict) -> dict:
     items = snap.get("items") or []
     n_signal = sum(1 for it in items if it.get("layer") == "signal")
     activity = snap.get("activity") or {}
+    degraded = bool(snap.get("degraded"))
+    n_shown = n_signal or len(items)
+    if degraded:
+        # Un dia degradado no tiene señales: son items que nadie filtro.
+        n_label = "sin filtrar"
+    else:
+        n_label = "1 señal" if n_shown == 1 else f"{n_shown} señales"
     return {
         "date": date,
         "thesis": thesis_of(snap),
         "n_items": len(items),
-        "n_signal": n_signal or len(items),
+        "n_signal": n_shown,
+        "n_label": n_label,
         "activity_label": activity.get("label") or "",
         "activity_class": activity.get("class") or "quiet",
         "month_key": month_key,
@@ -105,6 +113,8 @@ ARCHIVO_TEMPLATE = ENV.from_string("""
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Archivo · AI Strategic Radar</title>
+<meta name="theme-color" content="#191a1a"/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23191a1a'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%2320b8cd'/%3E%3C/svg%3E"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -162,6 +172,7 @@ ARCHIVO_TEMPLATE = ENV.from_string("""
   .day .th{font-size:14px;line-height:1.4;color:var(--txt-dim);
            display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
   .day .n{font-family:var(--mono);font-size:10px;color:var(--dimmer);white-space:nowrap}
+  .day .n.deg{color:var(--amber)}
   .empty{padding:40px 10px;color:var(--dim);text-align:center}
   footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--line);
          font-family:var(--mono);font-size:10px;color:var(--dimmer)}
@@ -205,7 +216,7 @@ ARCHIVO_TEMPLATE = ENV.from_string("""
   <a class="day" href="d/{{ d.date }}.html" data-q="{{ d.date }} {{ d.thesis }}">
     <span class="dt">{{ d.date }}</span>
     <span class="th">{{ d.thesis or "Sin tesis — heurística" }}</span>
-    <span class="n">{{ d.n_signal }} señales</span>
+    <span class="n{% if d.degraded %} deg{% endif %}">{{ d.n_label }}</span>
   </a>
   {% endfor %}
   {% endfor %}

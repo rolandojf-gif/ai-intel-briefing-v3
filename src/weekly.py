@@ -182,15 +182,34 @@ def human_category(category: str) -> str:
     return CATEGORY_LABELS.get(key, human_theme(key))
 
 
+def select_analyzed(loaded: List[tuple], n: int = 7) -> tuple:
+    """Las `n` ultimas ediciones ANALIZADAS: (dias, snapshots, n_excluidas).
+
+    Un dia degradado no paso por el filtro de relevancia: sus items son ruido
+    sin juzgar con temas puestos por keywords. Contarlos como señales hacia que
+    el semanal sacara conclusiones ("esta semana manda X") de material sin
+    filtrar. Se saltan y se completa la ventana con ediciones anteriores.
+    Si no hay ninguna analizada se usan las ultimas tal cual: mejor un semanal
+    avisado que una pagina vacia.
+    """
+    good = [(d, s) for d, s in loaded if not s.get("degraded")][-n:]
+    if not good:
+        good = loaded[-n:]
+        return [d for d, _ in good], [s for _, s in good], 0
+    first = good[0][0]
+    excluded = sum(1 for d, s in loaded if s.get("degraded") and d > first)
+    return [d for d, _ in good], [s for _, s in good], excluded
+
+
 def main():
-    files = list_latest(7)
+    # El doble de la ventana: margen para saltar ediciones degradadas.
+    files = list_latest(14)
     if not files:
         OUT_HTML.parent.mkdir(parents=True, exist_ok=True)
         OUT_HTML.write_text("<html><body><p>No data.</p></body></html>", encoding="utf-8")
         return
 
-    days = [p.stem for p in files]
-    snapshots = [load_day(p) for p in files]
+    days, snapshots, n_degraded = select_analyzed([(p.stem, load_day(p)) for p in files])
     n = len(snapshots)
     weights = recency_weights(n, halflife_days=3.0)
 
@@ -446,6 +465,11 @@ def main():
     cat_clusters_html = "".join(cat_clusters)
 
     period = f"{days[0]} → {days[-1]}"
+    n_txt = "1 edición" if n == 1 else f"{n} ediciones"
+    if n_degraded:
+        n_txt += f" · {n_degraded} sin filtrar excluida{'s' if n_degraded != 1 else ''}"
+    elif any(s.get("degraded") for s in snapshots):
+        n_txt += " (sin filtrar)"
     total_analyzed = sum(s["total"] for s in source_rows)
 
     html = f"""<!doctype html>
@@ -454,6 +478,8 @@ def main():
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Semanal · AI Strategic Radar</title>
+<meta name="theme-color" content="#191a1a"/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23191a1a'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%2320b8cd'/%3E%3C/svg%3E"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -528,10 +554,10 @@ def main():
 
   <div class="lead">
     <h1>Semanal</h1>
-    <p>{n} días · {html_escape(period)} · {total_analyzed} señales.</p>
+    <p>{n_txt} · {html_escape(period)} · {total_analyzed} señales.</p>
   </div>
 
-  <section class="widget thesis" style="margin-bottom:16px">
+  <section class="widget" style="margin-bottom:16px">
     <div class="widget-title">Lectura</div>
     <ul class="rows thesis">{imp_li}</ul>
   </section>
@@ -572,7 +598,7 @@ def main():
   <div class="section-h">Hilos por tema</div>
   <div class="clusters">{cat_clusters_html}</div>
 
-  <footer>{n} días · {html_escape(period)}</footer>
+  <footer>{n_txt} · {html_escape(period)}</footer>
 </div>
 </body>
 </html>

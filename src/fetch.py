@@ -4,6 +4,7 @@ import base64
 import html
 import json
 import re
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urljoin, urlparse
@@ -14,6 +15,7 @@ import requests
 USER_AGENT = "ai-intel-briefing/1.0 (+https://x.com)"
 RSS_TIMEOUT_SECONDS = 15
 RSS_RETRIES = 2
+RSS_BACKOFF_SECONDS = 1.5
 SUMMARY_MAX_CHARS = 800
 BROWSER_UA = (
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
@@ -302,14 +304,13 @@ def fetch_artificial_analysis(limit: int = 10, quiet: bool = False) -> list[dict
             title = parts[0].strip()
             summary = parts[1].strip()
 
-        img_url = fetch_og_image(full_link)
-
         items.append({
             "title": title,
             "link": full_link,
             "published": datetime.now(timezone.utc).isoformat(),
             "summary": clip_text(summary or title),
-            "image_url": img_url,
+            # La imagen se resuelve despues, solo para lo que se publica.
+            "image_url": "",
         })
         if len(items) >= limit:
             break
@@ -388,12 +389,20 @@ def _fetch_feed_with_retries(url: str):
         except requests.RequestException as exc:
             last_error = exc
             if attempt < RSS_RETRIES:
+                # Reintentar al instante contra un 429 solo empeora el bloqueo.
+                time.sleep(RSS_BACKOFF_SECONDS * (attempt + 1))
                 continue
 
     raise RuntimeError(f"RSS fetch failed for {url}: {last_error!r}")
 
 
 def fetch_rss(url: str, limit: int = 30, quiet: bool = False):
+    """Lee un feed. La imagen solo sale del propio feed (media, enclosure, <img>).
+
+    El og:image de cada articulo NO se pide aqui: se pedia para las ~250 entradas
+    de cada run y solo se publican unas 13. Lo resuelve enrich_items_with_images()
+    sobre los items que sobreviven al filtro.
+    """
     try:
         feed = _fetch_feed_with_retries(url)
     except Exception as exc:
@@ -407,17 +416,19 @@ def fetch_rss(url: str, limit: int = 30, quiet: bool = False):
 
     items = []
     for e in entries[:limit]:
+        # Atom puede traer solo <updated> (los releases de GitHub, por ejemplo).
+        # Sin este fallback el item quedaba sin fecha: nunca caducaba en el radar
+        # y NEXUS lo descartaba siempre por no poder afirmar que fuera nuevo.
         published = None
-        if getattr(e, "published_parsed", None):
-            published = datetime(*e.published_parsed[:6], tzinfo=timezone.utc).isoformat()
+        parsed = getattr(e, "published_parsed", None) or getattr(e, "updated_parsed", None)
+        if parsed:
+            published = datetime(*parsed[:6], tzinfo=timezone.utc).isoformat()
 
         raw_summary = getattr(e, "summary", "") or getattr(e, "description", "")
         summary = clip_text(_clean_html(raw_summary))
         link = resolve_google_news_url((getattr(e, "link", "") or "").strip())
         title = (getattr(e, "title", "") or "").strip()
         image_url = _extract_image_url(e)
-        if not image_url and link:
-            image_url = fetch_og_image(link)
 
         items.append(
             {
