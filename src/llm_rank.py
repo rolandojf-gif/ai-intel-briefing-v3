@@ -147,6 +147,17 @@ SYSTEM = (
 )
 
 
+# google-genai 3.x cambio la API por defecto de v1beta a v1, y v1 rechaza
+# system_instruction con un 400. Como requirements.txt no fijaba version, el CI
+# instalo la 3.x y el radar paso a modo degradado (2026-11-07) sin tocar codigo.
+# Se fija aqui para no depender del valor por defecto del SDK.
+GEMINI_API_VERSION = "v1beta"
+
+
+def make_client():
+    return genai.Client(http_options={"api_version": GEMINI_API_VERSION})
+
+
 def rank_batch(items: list[dict], model: str = "gemini-2.5-flash") -> dict:
     """items: dicts con keys id, source, title, summary, url.
 
@@ -154,7 +165,7 @@ def rank_batch(items: list[dict], model: str = "gemini-2.5-flash") -> dict:
     """
     global client
     if client is None:
-        client = genai.Client()
+        client = make_client()
     model = (os.getenv("GEMINI_MODEL") or model).strip()
 
     payload = []
