@@ -31,18 +31,23 @@ sources:
     cap: 1
     tags: [business, tech, models]
 
-  - name: Yahoo Finance News
+  # finance.yahoo.com/news/rssindex devuelve 404 desde 2026-11 (y /news/rss y
+  # /rss/topstories tambien). El feed por tickers sigue vivo y es mas afin a la
+  # tesis: noticias de las empresas de chips e hyperscalers que sigue el radar.
+  - name: Yahoo Finance (AI & semis)
     type: rss
-    url: https://finance.yahoo.com/news/rssindex
+    url: https://feeds.finance.yahoo.com/rss/2.0/headline?s=NVDA,TSM,AMD,AVGO,ASML,MSFT&region=US&lang=en-US
     limit: 10
     cap: 1
     tags: [finance, market, hardware, chips]
 
 
   # ── Prensa Tech Especializada ───────────────────────────────────
+  # El feed directo responde 429 a las IPs de GitHub Actions (tambien /feed/).
+  # Mismo patron que Reuters y Bloomberg: Google News + decodificacion de URL.
   - name: VentureBeat AI
     type: rss
-    url: https://venturebeat.com/category/ai/feed/
+    url: https://news.google.com/rss/search?q=site:venturebeat.com+AI&hl=en-US&gl=US&ceid=US:en
     limit: 8
     cap: 1
     tags: [tech, models, enterprise, agents]
@@ -141,12 +146,16 @@ sources:
     cap: 1
     tags: [frontier, reasoning, benchmarks, agi]
 
-  - name: OpenRouter Insights
+  # Sustituye a OpenRouter Insights: openrouter.ai ya no publica RSS (404 en
+  # /posts/rss, /announcements/rss y /blog/rss) y via Google News solo salen
+  # fichas de precio de modelos. The Decoder cubre el mismo nicho: precio,
+  # benchmarks y economia de modelos frontier, con fecha fiable.
+  - name: The Decoder
     type: rss
-    url: https://openrouter.ai/posts/rss
+    url: https://the-decoder.com/feed/
     limit: 6
     cap: 1
-    tags: [models, economics, router]
+    tags: [models, economics, benchmarks]
 
   - name: Epoch AI
     type: rss

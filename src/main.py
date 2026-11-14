@@ -701,7 +701,14 @@ def is_fresh_enough(it: dict) -> bool:
     return age <= 5
 
 
+# Ultimo error del LLM en este run. Va al snapshot para que el aviso de dia
+# degradado diga POR QUE ha fallado: el 2026-11-07 el motivo solo estaba en el
+# log del run y el radar paso una semana degradado sin que nadie lo viera.
+LLM_LAST_ERROR = ""
+
+
 def generate_llm_data(candidates: list[dict], llm_cache: Path, llm_done: Path) -> tuple[dict, list]:
+    global LLM_LAST_ERROR
     llm_payload = []
     for idx, it in enumerate(candidates[:LLM_BATCH_SIZE], start=1):
         llm_payload.append({
@@ -777,6 +784,7 @@ def generate_llm_data(candidates: list[dict], llm_cache: Path, llm_done: Path) -
                 # marca intento exitoso de hoy para no repetir llamadas LLM
                 llm_done.write_text(datetime.now().isoformat(), encoding="utf-8")
             else:
+                LLM_LAST_ERROR = repr(last_err)[:500]
                 print(f"GEMINI agotó los reintentos; el dia sera degradado. Ultimo error: {last_err!r}")
 
     return results_map, briefings
@@ -1110,6 +1118,7 @@ def main():
         "source_health": source_health,
         "x_layer": x_layer,
         "degraded": degraded,
+        "llm_error": LLM_LAST_ERROR if degraded else "",
         # candidates fue mutado in-place por apply_llm_results, asi que lleva los veredictos
         "dropped_noise": sum(1 for it in candidates if it.get("verdict") == "noise"),
         "counts": {

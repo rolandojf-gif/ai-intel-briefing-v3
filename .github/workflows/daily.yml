@@ -99,3 +99,9 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           SITE_URL: https://earnest-pie-01548d.netlify.app
         run: python -m src.notify
+
+      # Va el ULTIMO: la edicion ya esta publicada. Si el dia sale degradado,
+      # el job acaba en rojo y GitHub avisa por email, en vez de seguir en verde
+      # como del 7 al 13 de noviembre.
+      - name: Health check
+        run: python -m src.health_check
