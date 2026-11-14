@@ -103,107 +103,17 @@ def source_logo_url(source: str, url: str = "") -> str:
     return f"https://www.google.com/s2/favicons?domain={host or 'github.com'}&sz=64"
 
 
-def _xml_escape(text: str) -> str:
-    """Escapa texto para insertarlo en un SVG.
-
-    El & va PRIMERO o se re-escaparian los & de las propias entidades.
-    """
-    return (
-        (text or "")
-        .replace("&", "&amp;")
-        .replace("<", "&lt;")
-        .replace(">", "&gt;")
-        .replace('"', "&quot;")
-    )
-
-
-def _wrap_svg_title(title: str, per_line: int = 32, max_lines: int = 3) -> list[str]:
-    """Parte el titular en lineas cortas por limite de palabra.
-
-    SVG no reajusta texto solo: `width` en <text> no hace nada, asi que un
-    titular largo se salia del lienzo. Hay que partirlo a mano en <tspan>.
-    """
-    words = (title or "").split()
-    lines: list[str] = []
-    current = ""
-    for w in words:
-        candidate = f"{current} {w}".strip()
-        if len(candidate) <= per_line:
-            current = candidate
-            continue
-        if current:
-            lines.append(current)
-        current = w
-        if len(lines) == max_lines:
-            break
-    if current and len(lines) < max_lines:
-        lines.append(current)
-
-    if not lines:
-        return ["AI Intelligence"]
-    # Si sobraron palabras, marcamos el corte en la ultima linea visible.
-    used = sum(len(x.split()) for x in lines)
-    if used < len(words):
-        lines[-1] = lines[-1].rstrip(",;:.") + "…"
-    return lines
-
-
 def item_fallback_image(item: dict) -> str:
-    """Genera una imagen SVG tematica si el articulo no tiene imagen OpenGraph.
+    """Portada generada (data URI) para un item sin imagen o con la imagen caida.
 
-    Todo el texto insertado se escapa: las etiquetas "COMPUTE & CHIPS" y
-    "AGENTS & REASONING" llevaban un & literal, que es XML invalido, y el
-    navegador descartaba el SVG entero mostrando el icono de imagen rota.
-    Afectaba a cualquier item sin imagen OG con esos dos temas.
+    Solo tema y fuente: el titular ya va justo debajo, en la card. El dibujo lo
+    hace src/cover.py, con un motivo por tema sembrado con el propio item.
     """
-    theme = (item.get("strategic_theme") or item.get("primary") or "ai").lower()
+    from src.cover import cover_data_uri
 
-    if "chip" in theme or "compute" in theme or "infra" in theme:
-        c1, c2 = "#1c1e1e", "#12343c"
-        accent = "#20b8cd"
-        label = "COMPUTE & CHIPS"
-    elif "model" in theme or "frontier" in theme:
-        c1, c2 = "#1c1e1e", "#0f3b33"
-        accent = "#34d1b2"
-        label = "FRONTIER MODELS"
-    elif "agent" in theme:
-        c1, c2 = "#1c1e1e", "#2a2145"
-        accent = "#b28bf2"
-        label = "AGENTS & REASONING"
-    else:
-        c1, c2 = "#1c1e1e", "#33291a"
-        accent = "#e8b750"
-        label = "STRATEGIC INTEL"
-
-    lines = _wrap_svg_title(display_title(item) or "AI Intelligence")
-    tspans = "".join(
-        f'<tspan x="40" dy="{0 if idx == 0 else 34}">{_xml_escape(line)}</tspan>'
-        for idx, line in enumerate(lines)
-    )
-    source = _xml_escape(source_label(item.get("source", ""))[:38])
-
-    svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="100%" height="100%">
-  <defs>
-    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="{c1}"/>
-      <stop offset="100%" stop-color="{c2}"/>
-    </linearGradient>
-    <radialGradient id="r" cx="80%" cy="20%" r="60%">
-      <stop offset="0%" stop-color="{accent}" stop-opacity="0.22"/>
-      <stop offset="100%" stop-color="{c1}" stop-opacity="0"/>
-    </radialGradient>
-  </defs>
-  <rect width="640" height="360" fill="url(#g)"/>
-  <rect width="640" height="360" fill="url(#r)"/>
-  <circle cx="540" cy="70" r="130" fill="{accent}" opacity="0.10"/>
-  <text x="40" y="76" fill="{accent}" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="800" letter-spacing="2">{_xml_escape(label)}</text>
-  <text y="150" fill="#eceeed" font-family="system-ui, -apple-system, sans-serif" font-size="27" font-weight="700">{tspans}</text>
-  <line x1="40" y1="308" x2="600" y2="308" stroke="#3d4040" stroke-width="1"/>
-  <text x="40" y="332" fill="#9b9f9e" font-family="system-ui, sans-serif" font-size="12">{source}</text>
-</svg>'''
-    import base64
-    b64 = base64.b64encode(svg.encode("utf-8")).decode("ascii")
-    return f"data:image/svg+xml;base64,{b64}"
+    theme_key = (item.get("strategic_theme") or item.get("primary") or "other").strip() or "other"
+    seed = f"{item.get('title') or item.get('title_es') or ''}|{item.get('url') or item.get('link') or ''}"
+    return cover_data_uri(theme_key, human_theme(theme_key), source_label(item.get("source", "")), seed)
 
 
 # -- Temas y puntuacion ------------------------------------------------------

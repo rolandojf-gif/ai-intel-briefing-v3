@@ -332,16 +332,6 @@ class CoreQualityTests(unittest.TestCase):
             ET.fromstring(svg)
             self.assertNotIn("<suben>", svg)
 
-    def test_fallback_title_wraps_instead_of_overflowing(self):
-        """`width` en <text> no existe en SVG: hay que partir a mano."""
-        from src.render import _wrap_svg_title
-
-        lines = _wrap_svg_title("Nvidia sube más del 15% los precios de sus productos relacionados con IA")
-        self.assertGreater(len(lines), 1)
-        self.assertLessEqual(len(lines), 3)
-        for line in lines:
-            self.assertLessEqual(len(line), 34)
-
     # -- Filtro "Nuevo": primeras apariciones -------------------------------
 
     def test_new_filter_marks_first_time_items(self):
@@ -879,7 +869,7 @@ class CoreQualityTests(unittest.TestCase):
 
     def test_feeds_include_x_accounts(self):
         sources = {s["name"]: s for s in yaml.safe_load(Path("feeds/feeds.yaml").read_text())["sources"]}
-        for name in ("X @OpenAI", "X @AnthropicAI", "X @xai", "X @karpathy", "X @gdb", "X @DeepSeek_AI"):
+        for name in ("X @OpenAI", "X @AnthropicAI", "X @grok", "X @karpathy", "X @gdb", "X @DeepSeek_AI"):
             self.assertEqual(sources[name]["type"], "x")
             self.assertEqual(int(sources[name]["cap"]), 1)
 

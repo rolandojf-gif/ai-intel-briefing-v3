@@ -43,7 +43,10 @@ The site is designed as a strategic radar, not a raw feed:
 
 X ingestion is API-free:
 - first tries public RSS mirror (`https://xcancel.com`)
-- falls back to public profile scraping via `r.jina.ai` when RSS is unavailable
+- mirror order: `X_RSS_MIRRORS`, then the verified defaults in `src/fetch_x.py`, then healthy instances
+  discovered at run time from `status.d420.de` (hardcoded lists rot: the layer was dead for months)
+- falls back to the FxTwitter public API, then to `r.jina.ai`, when no mirror answers
+- reposts and replies are dropped; links point to `x.com` and images to `pbs.twimg.com`, never to the mirror
 
 Supported source styles:
 - user timeline (`type: x` + `username`)
@@ -51,6 +54,7 @@ Supported source styles:
 
 Optional environment variables:
 - `X_RSS_MIRRORS` (comma-separated mirror list, first healthy one is used)
+- `X_MIRROR_DISCOVERY_DISABLE=1` (use only `X_RSS_MIRRORS` and the built-in defaults)
 - `X_RSS_TIMEOUT_SECONDS` (default `12`)
 - `X_CACHE_FILE` (path for persistent X cache; default `docs/data/YYYY-MM-DD.x_cache.json`)
 - `X_CACHE_FORCE_REFRESH=1` (ignores cache for current run)
@@ -59,5 +63,5 @@ Optional environment variables:
 Example:
 
 ```bash
-X_RSS_MIRRORS=https://xcancel.com,https://nitter.net
+X_RSS_MIRRORS=https://nitter.kareem.one,https://nitter.netbub.com
 ```

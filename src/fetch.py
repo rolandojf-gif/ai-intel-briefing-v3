@@ -212,6 +212,10 @@ def fetch_og_image(url: str) -> str:
         if not url or is_google_news_url(url):
             return ""
 
+    # Un post de X no da og:image sin sesion: seria una peticion perdida.
+    if urlparse(url).netloc.lower().removeprefix("www.") in {"x.com", "twitter.com"}:
+        return ""
+
     cache = _load_image_cache()
     if url in cache:
         return cache[url]
