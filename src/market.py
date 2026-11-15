@@ -126,6 +126,7 @@ def get_market_overview() -> dict:
         {"key": "bitcoin", "label": "Bitcoin", "symbol": "BTC-USD", "coingecko": "bitcoin"},
         {"key": "ethereum", "label": "Ethereum", "symbol": "ETH-USD", "coingecko": "ethereum"},
         {"key": "vix", "label": "VIX", "symbol": "^VIX"},
+        {"key": "brent", "label": "Brent", "symbol": "BZ=F"},
     ]
 
     ai_companies = [
@@ -137,6 +138,7 @@ def get_market_overview() -> dict:
         {"name": "ASML Holding", "ticker": "ASML", "exchange": "NASDAQ", "logo": "https://www.google.com/s2/favicons?domain=asml.com&sz=64"},
         {"name": "Palantir Tech.", "ticker": "PLTR", "exchange": "NYSE", "logo": "https://www.google.com/s2/favicons?domain=palantir.com&sz=64"},
         {"name": "Amazon.com Inc.", "ticker": "AMZN", "exchange": "NASDAQ", "logo": "https://www.google.com/s2/favicons?domain=amazon.com&sz=64"},
+        {"name": "Apple Inc.", "ticker": "AAPL", "exchange": "NASDAQ", "logo": "https://www.google.com/s2/favicons?domain=apple.com&sz=64"},
     ]
 
     NO_DATA = "s/d"

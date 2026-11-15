@@ -1204,6 +1204,19 @@ def main():
         memory = {"watch_resolved": [], "entity_deltas": {}, "threads": []}
         level_label, level_class = ("SIN FILTRAR", "quiet")
 
+    # Indicadores propios: pulso de la carrera y quien la mueve. Accesorios:
+    # si fallan, la edicion sale igual sin ellos.
+    pulse, who_moves = {}, []
+    if not degraded:
+        try:
+            from src.pulse import HISTORY_EDITIONS, movers, pulse_block
+            long_history = load_history(data_dir, today=today, days=HISTORY_EDITIONS + 10)
+            pulse = pulse_block(long_history, final_items, today)
+            who_moves = movers(long_history, final_items)
+        except Exception:
+            print("PULSE FAILED (traceback):")
+            traceback.print_exc()
+
     if degraded:
         print("AVISO: dia degradado - sin veredictos del LLM, el gate de relevancia no se aplico.")
 
@@ -1215,6 +1228,8 @@ def main():
         "top_entities": [{"entity": e, "count": c} for e, c in top_entities],
         "briefing": briefing,
         "memory": memory,
+        "pulse": pulse,
+        "movers": who_moves,
         "activity": {"label": level_label, "class": level_class},
         "source_health": source_health,
         "x_layer": x_layer,

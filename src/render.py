@@ -242,11 +242,41 @@ TEMPLATE = ENV.from_string("""
   .ticker-h{display:flex;justify-content:space-between;gap:12px;align-items:center;font:400 10.5px var(--f-mono);color:var(--muted);text-transform:uppercase}
   .ticker-h strong{display:flex;align-items:center;gap:8px;color:var(--text);font-weight:700;letter-spacing:.08em}
   .ticker-h strong::before{content:"";width:10px;height:10px;background:var(--orange);border:2px solid var(--ink)}
-  .ticker-q{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:10px}
-  .tq{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 6px;align-items:center;padding:8px 10px;border:1px solid var(--ink);background:var(--card-2);min-width:0}
+  .ticker-q{display:flex;gap:8px;padding-right:8px}
+  .tq{flex:0 0 210px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 6px;align-items:center;padding:8px 10px;border:1px solid var(--ink);background:var(--card-2);min-width:0}
   .tq-n{grid-column:1/-1;font:600 10.5px var(--f-mono);color:var(--muted);text-transform:uppercase}
   .tq-p{font:700 clamp(14px,1.25vw,18px) var(--f-mono);white-space:nowrap;font-variant-numeric:tabular-nums}
   .tq .spark{grid-column:1/-1;height:20px}
+
+  .ticker-view{overflow:hidden;margin-top:10px}
+  .ticker-track{display:flex;width:max-content;animation:tick calc(var(--n) * 5s) linear infinite}
+  .ticker-view:hover .ticker-track{animation-play-state:paused}
+  @keyframes tick{to{transform:translateX(-50%)}}
+  @media (prefers-reduced-motion: reduce){.ticker-track{animation:none}.ticker-view{overflow-x:auto}}
+
+  .pulse{display:grid;grid-template-columns:minmax(230px,300px) 1fr;gap:22px;align-items:end;margin:0 0 22px;padding:14px 16px;
+         background:var(--asphalt);color:#E8E7E1;border:2px solid var(--ink);box-shadow:var(--shadow)}
+  .pulse .kicker{color:var(--lime)}
+  .pulse-num{display:flex;align-items:baseline;gap:6px;margin:4px 0 8px}
+  .pulse-num strong{font:700 58px/.9 var(--f-head);letter-spacing:-.04em;color:#fff}
+  .pulse-num>span{font:700 14px var(--f-mono);color:#9C9B95}
+  .pulse-num .pulse-state{margin-left:8px;padding:3px 6px;font-size:10.5px;text-transform:uppercase;color:#121211;background:#9C9B95}
+  .pulse-state.s-alert{background:var(--orange)} .pulse-state.s-active{background:var(--lime)}
+  .pulse-bar{height:12px;border:2px solid #E8E7E1;background:#1E1E1C}
+  .pulse-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--lime),var(--orange))}
+  .pulse-cols{display:flex;align-items:flex-end;gap:3px;height:74px}
+  .pulse-cols i{flex:1;min-width:3px;background:#5B5A55}
+  .pulse-cols i.now{background:var(--lime)}
+  .pulse-cols i:hover{background:var(--orange)}
+  .pulse-note{font:400 11px/1.4 var(--f-mono);color:#9C9B95;margin-top:8px}
+
+  .movers{list-style:none;margin:0 0 20px;padding:0}
+  .movers li{display:grid;grid-template-columns:1fr auto;gap:4px 8px;align-items:baseline;padding:0 0 9px;margin-bottom:9px;border-bottom:1px dashed var(--line)}
+  .mv-n{font:700 14.5px var(--f-head)}
+  .mv-t{font:700 10.5px var(--f-mono);color:var(--muted);text-transform:uppercase}
+  .mv-t.t-up,.mv-t.t-new{color:var(--open)} .mv-t.t-down{color:var(--bad)}
+  .mv-bar{grid-column:1/-1;height:8px;border:1px solid var(--ink);background:var(--card-2)}
+  .mv-bar i{display:block;height:100%;background:var(--orange)}
 
   .opening{display:grid;grid-template-columns:minmax(210px,.8fr) minmax(0,2.1fr) minmax(230px,.95fr);gap:clamp(18px,2vw,30px);align-items:start}
   .deck.filtered .opening{display:none}
@@ -424,8 +454,8 @@ TEMPLATE = ENV.from_string("""
     .grid,.below .grid{grid-template-columns:1fr}
     .opening{grid-template-columns:1fr}
     .opening>.lead{order:-1}
-    .ticker-q{display:flex;overflow-x:auto;scrollbar-width:none}
-    .tq{flex:0 0 160px}
+    .tq{flex:0 0 170px}
+    .pulse{grid-template-columns:1fr}
     .memory,.companies .company-list{grid-template-columns:1fr}
     .lead .hero-title{font-size:32px}
     .wrap{padding:20px 16px 60px}
@@ -486,19 +516,45 @@ TEMPLATE = ENV.from_string("""
   </div>
   {% endif %}
 
-  <!-- Mercados: banda a todo el ancho, como en la extension -->
-  {% if market and market.macro %}
+  <!-- Mercados: banda rotativa a todo el ancho. El contenido va dos veces para
+       que el bucle no tenga corte; la segunda copia es invisible para lectores. -->
+  {% if ticker_quotes %}
   <section class="ticker" aria-label="Markets">
     <div class="ticker-h"><strong>{{ bi("Mercados","Markets") }}</strong><span>{{ bi("Último cierre · no es tiempo real","Last close · not real time") }}</span></div>
-    <div class="ticker-q">
-      {% for m in market.macro %}
-      <div class="tq{% if not m.available %} m-nodata{% endif %}">
-        <span class="tq-n">{{ m.label }}</span>
-        <span class="tq-p">{{ m.price_str }}</span>
-        {% if m.available %}<span class="m-chg {% if m.positive %}pos{% else %}neg{% endif %}">{{ m.change_str }}</span>{% else %}<span class="m-chg na">n/d</span>{% endif %}
-        {{ m.sparkline_svg|safe }}
+    <div class="ticker-view">
+      <div class="ticker-track" style="--n:{{ ticker_quotes|length }}">
+        {% for copy in (0, 1) %}
+        <div class="ticker-q"{% if copy %} aria-hidden="true"{% endif %}>
+          {% for m in ticker_quotes %}
+          <div class="tq{% if not m.available %} m-nodata{% endif %}">
+            <span class="tq-n">{{ m.label }}</span>
+            <span class="tq-p">{{ m.price_str }}</span>
+            {% if m.available %}<span class="m-chg {% if m.positive %}pos{% else %}neg{% endif %}">{{ m.change_str }}</span>{% else %}<span class="m-chg na">n/d</span>{% endif %}
+            {{ m.sparkline_svg|safe }}
+          </div>
+          {% endfor %}
+        </div>
+        {% endfor %}
       </div>
-      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  <!-- Pulso de la carrera: indicador propio del radar -->
+  {% if pulse and pulse.series %}
+  <section class="pulse" aria-label="Race pulse">
+    <div class="pulse-now">
+      <span class="kicker">{{ bi("Pulso de la carrera","Race pulse") }}</span>
+      <div class="pulse-num"><strong>{{ pulse.value }}</strong><span>/100</span></div>
+      <div class="pulse-bar" role="img" aria-label="{{ pulse.value }} / 100"><i style="width:{{ pulse.value }}%"></i></div>
+    </div>
+    <div class="pulse-hist">
+      <div class="pulse-cols">
+        {% for p in pulse.series %}<i class="{% if loop.last %}now{% endif %}" style="height:{{ [p.value, 4]|max }}%" title="{{ p.date }} · {{ p.value }}"></i>{% endfor %}
+      </div>
+      <div class="pulse-note">
+        {% if pulse.hotter_than is not none %}{{ bi("Más intenso que el " ~ pulse.hotter_than ~ " % de las últimas " ~ pulse.editions ~ " ediciones", "Hotter than " ~ pulse.hotter_than ~ "% of the last " ~ pulse.editions ~ " editions") }} · {% endif %}{{ bi("mide cuánta señal trae el día, no el progreso hacia la AGI", "measures how much signal the day carries, not progress towards AGI") }}
+      </div>
     </div>
   </section>
   {% endif %}
@@ -518,6 +574,16 @@ TEMPLATE = ENV.from_string("""
       <ol class="keys">
         {% for k in key_signals %}<li>{{ bi(k, key_signals_en[loop.index0] if loop.index0 < key_signals_en|length else "") }}</li>{% endfor %}
       </ol>
+      {% endif %}
+      {% if movers %}
+      <div class="rail-h"><span>{{ bi("Quién mueve la carrera","Who moves the race") }}</span><span class="lbl">{{ bi("Últimas ediciones","Recent editions") }}</span></div>
+      <ul class="movers">
+        {% for m in movers %}
+        <li><span class="mv-n">{{ m.entity }}</span>
+          <span class="mv-t t-{{ m.trend }}" title="{{ m.trend }}">{% if m.trend == 'up' %}▲{% elif m.trend == 'down' %}▼{% elif m.trend == 'new' %}{{ bi("nuevo","new") }}{% else %}＝{% endif %}</span>
+          <span class="mv-bar"><i style="width:{{ m.share }}%"></i></span></li>
+        {% endfor %}
+      </ul>
       {% endif %}
       <div class="figures">
         <span class="kicker">{{ bi("El radar en cifras","The radar in figures") }}</span>
@@ -874,6 +940,29 @@ TEMPLATE = ENV.from_string("""
 """)
 
 
+TICKER_COMPANIES = ("NVDA", "AMZN", "MSFT", "AAPL")
+
+
+def _ticker_quotes(market) -> list[dict]:
+    """Banda de mercados: macro + las cuatro grandes, con el mismo formato."""
+    from src.market import _generate_sparkline
+    if not isinstance(market, dict):
+        return []
+    out = [dict(m) for m in (market.get("macro") or []) if isinstance(m, dict)]
+    by_ticker = {c.get("ticker"): c for c in (market.get("companies") or []) if isinstance(c, dict)}
+    for t in TICKER_COMPANIES:
+        c = by_ticker.get(t)
+        if not c:
+            continue
+        out.append({
+            "label": (c.get("name") or t).replace(" Corp.", "").replace(".com Inc.", "").replace(" Inc.", ""),
+            "price_str": c.get("price_str"), "change_str": c.get("change_str"),
+            "positive": c.get("positive"), "available": c.get("available"),
+            "sparkline_svg": _generate_sparkline(c.get("sparkline_points") or [], positive=bool(c.get("positive"))),
+        })
+    return out
+
+
 LEAD_BLOCK = 6  # portada + 5 de "En breve"; el resto va a la rejilla
 ALSO_MAX = 6  # medios listados en "Tambien en" antes de resumir con +N
 
@@ -994,6 +1083,9 @@ def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", 
         activity=snapshot.get("activity") or {"label": "ACTIVO", "class": "active"},
         thesis=thesis,
         signals=signals,
+        ticker_quotes=_ticker_quotes(market),
+        pulse=snapshot.get("pulse") or {},
+        movers=snapshot.get("movers") or [],
         brief=signals[1:LEAD_BLOCK],
         rest=signals[LEAD_BLOCK:],
         lead_n=LEAD_BLOCK,
