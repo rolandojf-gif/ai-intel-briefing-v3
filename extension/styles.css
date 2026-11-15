@@ -1,0 +1,199 @@
+/* NEXUS DAILY · marca compartida con Radar.IA, moloch.sh y brain.gym.
+   Tokens identicos a src/brand.py del radar: papel con cuadricula, tinta,
+   naranja y lima, bordes de 2px y sombras duras. Tema claro/oscuro/auto. */
+:root{
+  --paper:#F4F3EF;--grid:rgba(18,18,17,.06);--ink:#121211;--text:#121211;--muted:#5B5A55;
+  --card:#FFFFFF;--card-2:#FAF9F5;--line:#D9D7CF;--orange-ink:#C2410C;--logo-bg:#EDECE6;
+  --open:#0E9F6E;--bad:#C81E3A;--warn:#B45309;
+  --orange:#FF5722;--lime:#CCFF00;--asphalt:#0F0F0E;
+  --shadow-sm:2px 2px 0 var(--ink);--shadow:4px 4px 0 var(--ink);
+  --f-body:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --f-head:'Space Grotesk','Arial Narrow',Arial,sans-serif;
+  --f-mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0F0F0E;--grid:rgba(232,231,225,.045);--ink:#E8E7E1;--text:#E8E7E1;--muted:#9C9B95;
+  --card:#181816;--card-2:#1E1E1C;--line:#34342F;--orange-ink:#FF8A5C;--open:#34D399;--bad:#FF5C7A;--warn:#FBBF24;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0F0F0E;--grid:rgba(232,231,225,.045);--ink:#E8E7E1;--text:#E8E7E1;--muted:#9C9B95;
+  --card:#181816;--card-2:#1E1E1C;--line:#34342F;--orange-ink:#FF8A5C;--open:#34D399;--bad:#FF5C7A;--warn:#FBBF24;color-scheme:dark}
+
+*{box-sizing:border-box}
+html{background:var(--paper);scroll-behavior:smooth}
+body{margin:0;min-height:100vh;color:var(--text);background-color:var(--paper);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;font:16px/1.5 var(--f-body);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+a:hover{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
+button{font:inherit;cursor:pointer;color:inherit}
+[hidden]{display:none!important}
+::selection{background:var(--lime);color:#121211}
+.paper{max-width:1540px;padding:0 clamp(16px,3vw,48px) 0;margin:auto}
+
+/* -- Cabecera de marca -- */
+.masthead{margin:0 calc(-1 * clamp(16px,3vw,48px))}
+.topnav{display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:space-between;
+  padding:12px clamp(16px,3vw,48px);background:var(--paper);border-bottom:3px solid var(--ink)}
+.brand{display:flex;align-items:center;gap:12px}
+.brand:hover{text-decoration:none}
+.brand-icon{width:46px;height:46px;display:grid;place-content:center;background:var(--orange);color:#121211;border:2px solid var(--ink);box-shadow:var(--shadow-sm)}
+.brand-text{display:flex;flex-direction:column}
+.wordmark{font:700 26px/1 var(--f-head);letter-spacing:-.02em;text-transform:uppercase}
+.wordmark em,.footer-logo em{color:var(--orange);font-style:normal}
+.brand-text small{font:400 11px/1.3 var(--f-mono);color:var(--muted);margin-top:5px}
+.seg{display:inline-flex;border:2px solid var(--ink);box-shadow:var(--shadow-sm);background:var(--card)}
+.seg-btn{font:700 11.5px/1.2 var(--f-mono);padding:8px 11px;border:0;border-right:2px solid var(--ink);background:transparent;text-transform:uppercase}
+.seg-btn:last-child{border-right:0}
+.seg-btn:hover{background:rgba(204,255,0,.3)}
+.seg-btn[aria-pressed="true"]{background:var(--lime);color:#121211}
+
+/* Franja de estado en asfalto */
+.edition-bar{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  padding:9px clamp(16px,3vw,48px);background:var(--asphalt);color:#E8E7E1;font:600 12px/1.4 var(--f-mono);
+  text-transform:uppercase;border-bottom:2px solid var(--ink)}
+#edition-label{color:var(--lime)}
+.edition-bar-actions{display:flex;align-items:center;gap:16px}
+.connection-label{color:#9C9B95;display:inline-flex;align-items:center;gap:7px}
+.connection-label::before{content:"";width:7px;height:7px;border-radius:50%;background:#34D399}
+.connection-label.offline{color:#FBBF24}.connection-label.offline::before{background:#FBBF24}
+.icon-button{border:1px solid var(--lime);background:none;color:var(--lime);font:700 11.5px var(--f-mono);padding:4px 9px;text-transform:uppercase}
+.icon-button:hover{background:var(--lime);color:#121211}.icon-button.busy{opacity:.55}
+
+/* Secciones: pestañas en bloque, como las de la marca */
+.desk-nav{display:flex;align-items:center;gap:10px;padding:18px clamp(16px,3vw,48px) 4px;overflow-x:auto;scrollbar-width:none;white-space:nowrap}
+.desk-nav::-webkit-scrollbar{display:none}
+.nav-item,.nav-link{flex:0 0 auto;font:600 12px/1.2 var(--f-mono);text-transform:uppercase;padding:8px 12px;
+  border:2px solid var(--ink);background:var(--card);box-shadow:var(--shadow-sm)}
+.nav-item:hover,.nav-link:hover{background:rgba(204,255,0,.3)}
+.nav-item.active{background:var(--lime);color:#121211}
+.nav-filler{flex:1}
+.nav-link{background:var(--orange);color:#121211}
+
+.message{margin:60px auto 80px;max-width:640px;padding:28px 32px;text-align:center;line-height:1.6;font:700 20px var(--f-head);
+  background:var(--card);border:2px dashed var(--ink)}
+.message.error{border-style:solid;box-shadow:inset 6px 0 0 var(--bad)}
+.loading-mark{font-size:26px;margin-right:8px;color:var(--orange)}
+
+/* Etiqueta de seccion: cuadrado naranja + mono en mayusculas */
+.section-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 16px;padding:0 0 8px;
+  border-bottom:2px solid var(--ink);font:700 12.5px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.08em}
+.section-heading>span:first-child{display:flex;align-items:center;gap:9px}
+.section-heading>span:first-child::before{content:"";width:11px;height:11px;background:var(--orange);border:2px solid var(--ink);flex:0 0 auto}
+.section-subtitle{font:400 10.5px var(--f-mono);color:var(--muted);white-space:nowrap;letter-spacing:.04em}
+.eyebrow{font:700 10.5px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--orange-ink)}
+
+/* -- Portada: tres columnas -- */
+.opening-grid{display:grid;grid-template-columns:minmax(200px,.8fr) minmax(0,2.1fr) minmax(220px,.95fr);gap:clamp(18px,2.2vw,32px);padding-top:26px;align-items:start}
+.editorial-rail,.latest-rail{background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow);padding:16px}
+.rail-headline{font:700 30px/1 var(--f-head);text-transform:uppercase;letter-spacing:-.03em;margin:4px 0 12px}
+.rail-thesis{font:500 16px/1.5 var(--f-head);margin:0 0 24px}
+.signals-list{margin:0 0 24px;padding-left:0;list-style:none;counter-reset:s}
+.signals-list li{counter-increment:s;display:grid;grid-template-columns:26px 1fr;gap:8px;padding:0 0 11px;margin-bottom:11px;border-bottom:1px dashed var(--line);line-height:1.45;font-size:13.5px}
+.signals-list li::before{content:counter(s,decimal-leading-zero);font:700 11px/1.7 var(--f-mono);color:var(--orange-ink)}
+.rail-facts{border-top:2px solid var(--ink);padding-top:12px;display:flex;flex-direction:column;align-items:start;gap:6px}
+.big-number{font:700 56px/1 var(--f-head);letter-spacing:-.04em}
+.small-note,.health-note{font:400 11.5px/1.45 var(--f-mono);color:var(--muted)}
+.health-note{color:var(--warn)}
+.entities{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.entity-name{font:600 10.5px var(--f-mono);border:1px solid var(--ink);background:var(--card-2);padding:3px 6px}
+
+.lead-story{min-width:0}
+.lead-kicker{display:inline-block;font:700 11px/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;
+  background:var(--orange);color:#121211;border:2px solid var(--ink);padding:5px 7px;margin:2px 0 14px}
+.lead-title{font:700 clamp(34px,3.6vw,60px)/1.02 var(--f-head);letter-spacing:-.035em;margin:0 0 14px}
+.lead-deck{font-size:clamp(16px,1.25vw,19px);line-height:1.5;color:var(--muted);margin:0 0 18px}
+.lead-image-wrap{margin:0 0 4px;background:var(--asphalt);border:2px solid var(--ink);box-shadow:var(--shadow)}
+.lead-image{display:block;width:100%;height:auto;aspect-ratio:1.75;object-fit:cover}
+.lead-image-wrap figcaption{background:var(--card);border-top:2px solid var(--ink);padding:6px 10px;text-align:right;font:400 10.5px var(--f-mono);color:var(--muted);text-transform:uppercase}
+.story-meta{display:flex;justify-content:space-between;gap:16px;margin:16px 0;padding:8px 0;border-top:1px dashed var(--line);border-bottom:1px dashed var(--line);font:600 11px var(--f-mono);color:var(--muted);text-transform:uppercase}
+.analysis-note{padding:14px 16px;background:var(--card);border:2px solid var(--ink);box-shadow:inset 6px 0 0 var(--lime);margin-bottom:16px}
+.analysis-note .eyebrow{color:var(--text)}
+.analysis-note p{font:500 18px/1.45 var(--f-head);margin:6px 0 0}
+.also{font:400 12px/1.7 var(--f-mono);color:var(--muted);margin:0 0 14px}
+.also a{color:var(--text);text-decoration:underline;text-underline-offset:2px}
+.read-link{display:inline-block;font:700 11.5px var(--f-mono);text-transform:uppercase;padding:7px 10px;margin:0 0 12px;
+  border:2px solid var(--ink);background:var(--lime);color:#121211;box-shadow:var(--shadow-sm)}
+.read-link:hover{text-decoration:none;transform:translate(1px,1px);box-shadow:1px 1px 0 var(--ink)}
+
+.brief-item{display:grid;grid-template-columns:28px 1fr;gap:10px;padding-bottom:14px;margin-bottom:14px;border-bottom:1px dashed var(--line)}
+.brief-item:last-of-type{border-bottom:0;margin-bottom:0}
+.brief-index{font:700 13px/1.6 var(--f-mono);color:var(--orange-ink)}
+.brief-category{margin:2px 0 6px}
+.brief-title{display:block;font:700 18px/1.2 var(--f-head);letter-spacing:-.01em}
+.brief-source{font:400 10.5px var(--f-mono);color:var(--muted);margin-top:7px;text-transform:uppercase}
+.sidebar-watch{margin-top:18px;padding:12px 14px;background:var(--card-2);border:2px solid var(--ink);box-shadow:inset 6px 0 0 var(--orange)}
+.sidebar-watch .section-heading{margin-bottom:10px}
+.sidebar-watch p{font-size:14px;line-height:1.5;margin:0}
+
+/* -- Bajo la portada -- */
+.belowfold{padding-top:30px;margin-top:34px;border-top:3px solid var(--ink)}
+.news-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.news-card{background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow);display:flex;flex-direction:column;min-height:200px;
+  transition:transform .1s,box-shadow .1s}
+.news-card:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+.news-card-image{display:block;overflow:hidden;aspect-ratio:16/9;background:var(--asphalt);border-bottom:2px solid var(--ink)}
+.news-card-image img{width:100%;height:100%;object-fit:cover;display:block}
+.news-card-text{padding:14px 16px 16px;display:flex;flex-direction:column;flex:1}
+.news-card-title{font:700 clamp(18px,1.5vw,22px)/1.2 var(--f-head);letter-spacing:-.015em;margin:8px 0}
+.news-card-deck{font-size:14px;line-height:1.5;color:var(--muted);margin:0 0 12px}
+.card-source{margin-top:auto;padding-top:8px;border-top:1px dashed var(--line);font:600 10.5px var(--f-mono);color:var(--muted);text-transform:uppercase}
+
+.watch-strip{padding:34px 0 40px}
+.watch-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.watch-column{background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow);padding:16px}
+.watch-item{border-bottom:1px dashed var(--line);padding:0 0 10px;margin:0 0 10px;font-size:14.5px;line-height:1.5}
+.watch-item:last-child{border-bottom:0;margin-bottom:0}
+
+.paper-footer{border-top:3px solid var(--ink);padding:16px 0 30px;display:flex;gap:20px;justify-content:space-between;flex-wrap:wrap;font:400 11.5px var(--f-mono);color:var(--muted);text-transform:uppercase}
+.footer-logo{font:700 15px var(--f-head);color:var(--text)}
+.paper-footer a{color:var(--orange-ink);text-decoration:underline}
+
+/* -- Mercados -- */
+.market-ticker{margin:18px 0 0;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow);padding:10px 14px 12px}
+.market-ticker-heading{display:flex;justify-content:space-between;gap:12px;align-items:center;font:400 10.5px var(--f-mono);color:var(--muted);text-transform:uppercase}
+.market-ticker-heading strong{display:flex;align-items:center;gap:8px;color:var(--text);font-weight:700;letter-spacing:.08em}
+.market-ticker-heading strong::before{content:"";width:10px;height:10px;background:var(--orange);border:2px solid var(--ink)}
+.market-ticker-quotes{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:10px}
+.ticker-quote{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:5px;row-gap:3px;padding:8px 10px;border:1px solid var(--ink);background:var(--card-2);min-width:0}
+.ticker-name{font:600 10.5px var(--f-mono);color:var(--muted);grid-column:1/-1;text-transform:uppercase}
+.ticker-price{font:700 clamp(14px,1.3vw,18px) var(--f-mono);white-space:nowrap;font-variant-numeric:tabular-nums}
+.ticker-change{font:700 11px var(--f-mono);align-self:center;white-space:nowrap;text-align:right}
+.ticker-change.up,.company-change.up,.market-spark.up{color:var(--open)}
+.ticker-change.down,.company-change.down,.market-spark.down{color:var(--bad)}
+.ticker-change.unavailable,.company-change.unavailable{color:var(--muted);font-weight:400}
+.market-companies{padding-top:30px;margin-top:34px;border-top:3px solid var(--ink)}
+.market-company-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 22px;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow);padding:4px 16px}
+.market-company{border-bottom:1px dashed var(--line);display:grid;grid-template-columns:minmax(0,1fr) 92px minmax(115px,.6fr);align-items:center;gap:16px;padding:11px 0;min-width:0}
+.company-identity{display:flex;flex-direction:column;gap:3px;min-width:0}
+.company-name{font:700 17px/1.1 var(--f-head)}
+.company-ticker{font:400 10.5px var(--f-mono);color:var(--muted)}
+.company-trend{width:92px;min-height:27px}
+.market-spark{width:90px;height:28px;display:block}
+.company-values{text-align:right;display:flex;flex-direction:column;gap:3px;white-space:nowrap}
+.company-price{font:700 15px var(--f-mono);font-variant-numeric:tabular-nums}
+.company-change{font:700 11px var(--f-mono)}
+.market-disclaimer{font:400 11px/1.5 var(--f-mono);color:var(--muted);margin:12px 0 0}
+
+@media(max-width:1160px){
+  .opening-grid{grid-template-columns:minmax(190px,.85fr) minmax(0,2.2fr)}
+  .latest-rail{grid-column:1/-1}
+  .market-company{grid-template-columns:minmax(0,1fr) 65px 106px;gap:9px}.company-trend,.market-spark{width:65px}
+}
+@media(max-width:760px){
+  .opening-grid{grid-template-columns:1fr}
+  .editorial-rail{order:2}.lead-story{order:1}.latest-rail{order:3}
+  .news-grid{grid-template-columns:1fr 1fr}
+  .watch-grid{grid-template-columns:1fr}
+  .market-ticker-quotes{display:flex;overflow-x:auto;scrollbar-width:none}
+  .ticker-quote{flex:0 0 165px;grid-template-columns:1fr}
+  .ticker-change{text-align:left}
+  .market-company-grid{grid-template-columns:1fr}
+  .edition-bar{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:500px){
+  .news-grid{grid-template-columns:1fr}
+  .wordmark{font-size:21px}
+  .lead-title{font-size:34px}
+  .market-ticker-heading{display:block}.market-ticker-heading span{display:block;padding-top:4px}
+}

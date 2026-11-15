@@ -124,3 +124,15 @@ test('sigue funcionando con el archivo original antes del merge', async () => {
     url.endsWith('/data/2026-10-10.json') ? old : null);
   assert.equal(result.edition.date,'2026-10-10');
 });
+
+test('also lists the other outlets of a merged story, safely', async () => {
+  const { normalizeItem } = await import('../src/model.mjs');
+  const it = normalizeItem({title_es: 'X', link: 'https://a.com/1', source: 'Reuters AI',
+    related: [{source: 'Bloomberg Tech', url: 'https://b.com/2'}, {source: 'Malo', url: 'javascript:alert(1)'}],
+    other_sources: ['Bloomberg Tech', 'Stratechery', 'Reuters AI']}, 0);
+  assert.deepEqual(it.also, [
+    {label: 'Bloomberg Tech', href: 'https://b.com/2'},
+    {label: 'Malo', href: ''},
+    {label: 'Stratechery', href: ''},
+  ]);
+});

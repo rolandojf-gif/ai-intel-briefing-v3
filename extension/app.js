@@ -3,6 +3,21 @@ import { SOURCE_HOME, FRESH_MS, store, fetchLatest } from './src/feed.mjs';
 import { normalizeMarket, marketStore, fetchLatestMarket, marketCacheFresh } from './src/market.mjs';
 
 const byId = id => document.getElementById(id);
+const RECHECK_MS = 10 * 60 * 1000;  // con la edicion de hoy en cache, recomprobar cada 10 min como mucho
+
+function setupTheme() {
+  const buttons = document.querySelectorAll('[data-theme-set]');
+  const current = () => { try { return localStorage.getItem('theme') || 'auto'; } catch { return 'auto'; } };
+  const paint = () => buttons.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.themeSet === current())));
+  buttons.forEach(b => b.addEventListener('click', () => {
+    const t = b.dataset.themeSet;
+    try { if (t === 'auto') localStorage.removeItem('theme'); else localStorage.setItem('theme', t); } catch { /* sin almacenamiento */ }
+    if (t === 'auto') document.documentElement.removeAttribute('data-theme');
+    else document.documentElement.setAttribute('data-theme', t);
+    paint();
+  }));
+  paint();
+}
 const state = {edition:null, filter:'all', busy:false, source:'', cacheAge:0, market:null, marketBusy:false};
 
 function el(tag, className = '', content = '') {
@@ -20,6 +35,16 @@ function link(article, className = '', label = article.title) {
   anchor.href = article.href;
   anchor.rel = 'noopener noreferrer';
   return anchor;
+}
+function alsoLine(article) {
+  if (!article.also?.length) return null;
+  const line = el('p', 'also', 'También en: ');
+  article.also.forEach((a, i) => {
+    if (i) line.append(' · ');
+    if (a.href) { const x = el('a', '', a.label); x.href = a.href; x.rel = 'noopener noreferrer'; line.append(x); }
+    else line.append(el('span', '', a.label));
+  });
+  return line;
 }
 function sectionHead(text, subtitle = '') {
   const bar = el('div', 'section-heading');
@@ -176,6 +201,7 @@ function renderLead(article, edition) {
     append(analysis, el('span','eyebrow','POR QUÉ IMPORTA'), el('p','',article.why));
     append(lead, analysis);
   }
+  append(lead, alsoLine(article));
   append(lead, link(article, 'read-link', 'LEER LA FUENTE ORIGINAL ↗'));
 }
 
@@ -205,6 +231,7 @@ function card(article, index) {
   const heading = el('h3','news-card-title'); append(heading,link(article));
   append(text, heading);
   if (article.why || article.summary) append(text, el('p','news-card-deck',article.why || article.summary));
+  append(text, alsoLine(article));
   append(text, el('div','card-source',article.source.toUpperCase()));
   if (article.image) {
     const photo = el('a', 'news-card-image'); photo.href = article.href; photo.rel='noopener noreferrer';
@@ -291,8 +318,9 @@ async function refresh() {
 }
 
 async function boot() {
+  setupTheme();
   const today=new Intl.DateTimeFormat('es-ES',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).format(new Date());
-  byId('today-date').textContent=today.toUpperCase();
+  byId('today-date').textContent=today.charAt(0).toUpperCase()+today.slice(1);
   document.querySelectorAll('.nav-item').forEach(button => button.addEventListener('click',()=>setFilter(button.dataset.filter)));
   byId('refresh-btn').addEventListener('click',()=>{void refresh();void refreshMarket();});
   byId('open-source-btn').addEventListener('click',()=>{window.location.href=SOURCE_HOME+'/';});
@@ -316,7 +344,12 @@ async function boot() {
       state.source=cached.source||'caché';
       setStatus(`FUENTE: ${state.source.toUpperCase()} · EDICIÓN EN CACHÉ`);
       render();
-      if (Date.now()-Number(cached.fetchedAt||0) < FRESH_MS) return;
+      // Antes no se comprobaba nada durante 3 horas (FRESH_MS) y una edicion
+      // nueva no aparecia hasta pasado ese tiempo. Ahora la copia guardada se
+      // pinta al instante y se busca la nueva en segundo plano: son ficheros
+      // estaticos, sin coste. Solo se omite si es la de hoy y es muy reciente.
+      const age = Date.now() - Number(cached.fetchedAt || 0);
+      if (daysOld(state.edition.date) === 0 && age < RECHECK_MS) return;
     } catch { /* discard stale/incompatible cache */ }
   }
   await refresh();

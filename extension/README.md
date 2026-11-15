@@ -1,25 +1,24 @@
-# NEXUS DAILY · New Tab (P0.3)
+# NEXUS DAILY · New Tab (0.4)
 
-**Periódico personal, dentro de cada pestaña nueva de Chrome.**
+**Periódico personal en cada pestaña nueva de Chrome, con la marca de Radar.IA** (la misma de moloch.sh y brain.gym: papel con cuadrícula, tinta, naranja y lima, tema claro/oscuro/auto).
 
-Portada editorial estilo periódico inspirada en [AI Homepage de Thariq Shihipar](https://github.com/ThariqS/ai-newtab), alimentada exclusivamente por los JSON ya publicados por [AI Intel Briefing v3](https://github.com/rolandojf-gif/ai-intel-briefing-v3).
+Vive en este repositorio, junto al pipeline que la alimenta: `extension/`.
 
-## Instalar en macOS / Chrome — sin npm ni build
+## Instalar o actualizar en Chrome (sin npm ni build)
 
-1. Descomprime `nexus-newtab-p0.3.zip`.
-2. Abre **Google Chrome** y pega `chrome://extensions` en la barra de direcciones.
-3. Activa **Modo desarrollador** (esquina superior derecha).
-4. Pulsa **Cargar descomprimida** (Load unpacked).
-5. Selecciona la carpeta **`nexus-newtab-p0.3`**, la que contiene `manifest.json`.
-6. Abre una pestaña nueva. Si Chrome pregunta si deseas conservar esta página, acepta.
+1. Descarga el repositorio: en GitHub, **Code → Download ZIP**, o `git clone` / `git pull` si ya lo tienes.
+2. Mueve la carpeta a un sitio fijo (por ejemplo `~/Extensiones/ai-intel-briefing-v3`). Chrome lee la extensión de esa carpeta: si la borras o la mueves, desaparece.
+3. Abre `chrome://extensions`, activa **Modo desarrollador** y pulsa **Cargar descomprimida**.
+4. Elige la carpeta **`extension`** del repositorio (la que contiene `manifest.json`).
+5. Abre una pestaña nueva y, si Chrome pregunta, pulsa **Mantener**.
 
-**No hace falta Anthropic API, OpenRouter, Node ni instalar dependencias.**
+Para actualizarla después: `git pull` (o vuelve a descargar el ZIP en la misma carpeta) y pulsa ↻ en su tarjeta de `chrome://extensions`.
 
 ## Cómo funciona
 
 - Prioriza `https://earnest-pie-01548d.netlify.app/newtab/latest.json` con respaldo en GitHub. Si ese feed aún no está publicado, busca la edición más reciente entre los últimos 21 días de `https://earnest-pie-01548d.netlify.app/data/YYYY-MM-DD.json`.
 - Si Netlify está caído, intenta obtener la misma edición desde los archivos públicos del repositorio GitHub.
-- Guarda localmente la última edición válida y comprueba actualizaciones como máximo cada 3 horas (también hay botón de actualización manual).
+- Guarda localmente la última edición válida, la pinta al instante y busca la nueva en segundo plano en cada pestaña (solo se lo salta si ya tiene la de hoy desde hace menos de 10 minutos). Hasta la 0.3 no comprobaba nada durante 3 horas y enseñaba ediciones viejas.
 - Usa `title_es`, `summary`, `so_what`, `briefing.thesis`, `briefing.signals`, `briefing.watch`, `briefing.risks`, `image_url`, `source` y `link` tal cual los entrega el briefing.
 - Los artículos siempre enlazan a sus fuentes; la extensión no inventa noticias.
 - **Muestra todos los artículos válidos** de `items` (titular principal + 5 breves + el resto en la sección inferior), sin topes de 26/48 noticias. Se descartan únicamente elementos sin enlace HTTP(S), sin título o URLs repetidas.

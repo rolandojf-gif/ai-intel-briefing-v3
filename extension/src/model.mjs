@@ -24,8 +24,24 @@ export function normalizeItem(raw, index = 0) {
     timestamp: raw.published || '',
     theme: asText(raw.llm_theme || raw.strategic_theme || raw.primary || 'other', 60),
     verdict: asText(raw.verdict || raw.layer || 'signal', 30),
-    repeat: Boolean(raw.is_repeat)
+    repeat: Boolean(raw.is_repeat),
+    also: alsoSources(raw)
   };
+}
+
+/** Otros medios que cuentan la misma noticia (el radar los fusiona en una card). */
+export function alsoSources(raw) {
+  const out = [];
+  const seen = new Set([asText(raw?.source || '', 90)]);
+  for (const r of Array.isArray(raw?.related) ? raw.related : []) {
+    const label = asText(r?.source, 60);
+    if (label && !seen.has(label)) { seen.add(label); out.push({label, href: safeHttpUrl(r?.url)}); }
+  }
+  for (const name of Array.isArray(raw?.other_sources) ? raw.other_sources : []) {
+    const label = asText(name, 60);
+    if (label && !seen.has(label)) { seen.add(label); out.push({label, href: ''}); }
+  }
+  return out.slice(0, 6);
 }
 
 export function asText(raw, limit = 240) {
