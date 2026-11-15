@@ -299,6 +299,10 @@ TEMPLATE = ENV.from_string("""
            flex-shrink:0;padding-top:2px;font-weight:700}
   .fact.pw .k{color:var(--violet)} .fact.pw .v{color:#cfc0ee}
   .fact.wn .k{color:var(--amber)}  .fact.wn .v{color:#e3cf9b}
+  .also{font-size:12px;line-height:1.7;color:var(--dimmer);margin-top:10px}
+  .also a{color:var(--dim);border-bottom:1px dotted var(--line-2)}
+  .also a:hover{color:var(--accent);border-bottom-color:var(--accent-line)}
+  .also span{color:var(--dim)}
   .ents{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
   .ent{font-family:var(--mono);font-size:10px;padding:3px 9px;border-radius:999px;
        background:rgba(255,255,255,.04);color:var(--dim);border:1px solid var(--line)}
@@ -511,6 +515,11 @@ TEMPLATE = ENV.from_string("""
             <a href="{{ (hero.url or hero.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ hero.display_title }}</a>
           </h2>
           {% if hero.so_what %}<div class="sw">{{ hero.so_what }}</div>{% endif %}
+          {% if hero.also %}
+          <div class="also">También en:
+            {% for a in hero.also %}{% if a.url %}<a href="{{ a.url }}" target="_blank" rel="noopener noreferrer">{{ a.label }}</a>{% else %}<span>{{ a.label }}</span>{% endif %}{% if not loop.last %} · {% endif %}{% endfor %}{% if hero.also_more %} · +{{ hero.also_more }}{% endif %}
+          </div>
+          {% endif %}
           {% if hero.power_shift or hero.watch_next %}
           <div class="facts {% if hero.power_shift and hero.watch_next %}two{% endif %}">
             {% if hero.power_shift %}
@@ -547,6 +556,11 @@ TEMPLATE = ENV.from_string("""
               <a href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ it.display_title }}</a>
             </h3>
             {% if it.so_what %}<div class="sw">{{ it.so_what }}</div>{% endif %}
+            {% if it.also %}
+            <div class="also">También en:
+              {% for a in it.also %}{% if a.url %}<a href="{{ a.url }}" target="_blank" rel="noopener noreferrer">{{ a.label }}</a>{% else %}<span>{{ a.label }}</span>{% endif %}{% if not loop.last %} · {% endif %}{% endfor %}{% if it.also_more %} · +{{ it.also_more }}{% endif %}
+            </div>
+            {% endif %}
             {% if it.power_shift or it.watch_next %}
             <div class="card-foot">
               {% if it.power_shift %}
@@ -814,6 +828,9 @@ TEMPLATE = ENV.from_string("""
 """)
 
 
+ALSO_MAX = 6  # medios listados en "Tambien en" antes de resumir con +N
+
+
 def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", root="", archive=None):
     briefing = briefing or {}
     snapshot = snapshot or {}
@@ -842,6 +859,23 @@ def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", 
         # `is_repeat` ya lo calcula apply_novelty_penalty comparando URL
         # canonica y huella del titular contra el historico.
         it["is_new"] = not bool(it.get("is_repeat"))
+
+        # "Tambien en": el resto de medios que cuentan el mismo suceso. Los
+        # fusionados tras el LLM traen enlace; los del dedup de ingest, solo nombre.
+        also, seen_also = [], set()
+        for rel in (it.get("related") or []):
+            label = source_label(rel.get("source", "")) if isinstance(rel, dict) else ""
+            url = _safe_url(rel.get("url", "")) if isinstance(rel, dict) else "#"
+            if label and label not in seen_also:
+                seen_also.add(label)
+                also.append({"label": label, "url": "" if url == "#" else url})
+        for src in (it.get("other_sources") or []):
+            label = source_label(src) if isinstance(src, str) else ""
+            if label and label not in seen_also:
+                seen_also.add(label)
+                also.append({"label": label, "url": ""})
+        it["also"] = also[:ALSO_MAX]
+        it["also_more"] = max(0, len(also) - ALSO_MAX)
 
         # La portada generada sirve dos veces: como imagen si el item no trae
         # ninguna, y como respaldo en cliente (data-fb) si la remota no carga.

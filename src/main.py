@@ -809,6 +809,79 @@ LLM_BATCH_SIZE = 56
 POWER_SHIFT_FLOOR = 55
 
 
+def _story_words(text: str) -> set[str]:
+    return set(re.findall(r"[a-z0-9áéíóúüñ]{4,}", (text or "").lower()))
+
+
+def _norm_text(text: str) -> str:
+    return re.sub(r"[^a-z0-9áéíóúüñ]+", " ", (text or "").lower()).strip()
+
+
+def same_story(a: dict, b: dict) -> bool:
+    """¿Cuentan `a` y `b` el mismo suceso segun el juicio del LLM?
+
+    El dedup de ingest compara titulares ORIGINALES, y un gran suceso llega con
+    titulares que no se parecen ("The End of Jensen", "Jensen Out, MATCH Act
+    In?"). Tras el LLM si hay señal fiable: o lo dice el propio modelo
+    (same_story_as) o les ha escrito el mismo titular o el mismo so_what.
+    """
+    ra, rb = a.get("_rid"), b.get("_rid")
+    sa, sb = a.get("_same_as") or 0, b.get("_same_as") or 0
+    if ra is not None and rb is not None and (sa == rb or sb == ra or (sa and sa == sb)):
+        return True
+
+    ta, tb = _norm_text(a.get("title_es")), _norm_text(b.get("title_es"))
+    if ta and ta == tb:
+        return True
+    wa, wb = _norm_text(a.get("so_what")), _norm_text(b.get("so_what"))
+    if len(wa) >= 40 and wa == wb:
+        return True
+
+    # Red de seguridad para titulares casi calcados. Es estricta a proposito:
+    # con 0.75 el historico juntaba "noticias de mayo" con "noticias de junio"
+    # y dos lanzamientos distintos de Gemini. Lo semantico lo decide el LLM.
+    ka, kb = _story_words(a.get("title_es")), _story_words(b.get("title_es"))
+    if len(ka) >= 5 and len(kb) >= 5 and len(ka & kb) / min(len(ka), len(kb)) >= 0.85:
+        return True
+    return False
+
+
+def merge_same_story(ranked: list[dict]) -> int:
+    """Fusiona los items que cuentan el mismo suceso. Devuelve cuantos se fusionan.
+
+    `ranked` viene ordenado por score: el primero de cada suceso es la card que
+    se publica; los demas quedan como verdict='duplicate' y pasan a su lista de
+    "tambien en" (fuente + enlace), para no perder la cobertura.
+    """
+    leads: list[dict] = []
+    merged = 0
+    for it in ranked:
+        if it.get("llm_score") is None or it.get("verdict") in ("noise", "unrated"):
+            continue
+        lead = next((x for x in leads if same_story(x, it)), None)
+        if lead is None:
+            leads.append(it)
+            continue
+
+        merged += 1
+        it["verdict"] = "duplicate"
+        related = lead.setdefault("related", [])
+        others = lead.setdefault("other_sources", [])
+        for src, url in [(it.get("source"), it.get("url") or it.get("link") or "")] + [
+            (r.get("source"), r.get("url") or "") for r in (it.get("related") or [])
+        ]:
+            if not src or src == lead.get("source"):
+                continue
+            if src not in others:
+                others.append(src)
+            if url and all(r.get("url") != url for r in related):
+                related.append({"source": src, "url": url})
+        for src in it.get("other_sources") or []:
+            if src and src != lead.get("source") and src not in others:
+                others.append(src)
+    return merged
+
+
 def apply_llm_results(candidates: list[dict], results_map: dict) -> list[dict]:
     reranked = []
     for it in candidates:
@@ -828,6 +901,7 @@ def apply_llm_results(candidates: list[dict], results_map: dict) -> list[dict]:
             it["primary"] = llm.get("primary", it.get("primary", "misc"))
             it["tags"] = llm.get("tags", [])
             it["entities"] = llm.get("entities", [])
+            it["_same_as"] = llm.get("same_story_as") or 0
         else:
             # Sin LLM no hay gate posible: se marca degradado y no se afirma relevancia.
             it["llm_score"] = None
@@ -890,6 +964,12 @@ def apply_llm_results(candidates: list[dict], results_map: dict) -> list[dict]:
 
     reranked.sort(key=lambda x: x.get("final_score", x.get("score", 0)), reverse=True)
 
+    # Antes del gate: si no, nueve cards del mismo suceso se comen los huecos
+    # de MAX_SIGNALS y dejan fuera señales distintas.
+    merged = merge_same_story(reranked)
+    if merged:
+        print(f"Mismo suceso: {merged} items fusionados en la card de su noticia principal.")
+
     # -- Gate de relevancia --------------------------------------------------
     signals = []
     context = []
@@ -897,7 +977,7 @@ def apply_llm_results(candidates: list[dict], results_map: dict) -> list[dict]:
     unjudged = 0
 
     for it in reranked:
-        if it.get("verdict") == "noise":
+        if it.get("verdict") in ("noise", "duplicate"):
             continue
 
         # Solo se envian al LLM los primeros LLM_BATCH_SIZE candidatos, asi que
@@ -1002,7 +1082,7 @@ def generate_fallback_briefing(final_items: list[dict], primary_dist: dict, top_
     }
 
 
-SNAPSHOT_DROP_KEYS = {"raw_title", "raw_summary", "_rid"}
+SNAPSHOT_DROP_KEYS = {"raw_title", "raw_summary", "_rid", "_same_as"}
 
 
 def slim_item_for_snapshot(it: dict) -> dict:
@@ -1124,6 +1204,7 @@ def main():
         "llm_error": LLM_LAST_ERROR if degraded else "",
         # candidates fue mutado in-place por apply_llm_results, asi que lleva los veredictos
         "dropped_noise": sum(1 for it in candidates if it.get("verdict") == "noise"),
+        "merged_duplicates": sum(1 for it in candidates if it.get("verdict") == "duplicate"),
         "counts": {
             "signal": sum(1 for it in final_items if it.get("layer") == "signal"),
             "context": sum(1 for it in final_items if it.get("layer") == "context"),

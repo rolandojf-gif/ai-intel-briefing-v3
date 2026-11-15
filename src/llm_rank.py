@@ -89,7 +89,9 @@ class RankOut(BaseModel):
         description=(
             "Titular reescrito en castellano de España, afilado y concreto, máx 90 chars. "
             "Debe decir QUÉ ha pasado, no vender. Nada de clickbait ni lenguaje de marketing. "
-            "Si el original viene truncado o sucio, reconstruye el sentido sin inventar hechos."
+            "Si el original viene truncado o sucio, reconstruye el sentido sin inventar hechos. "
+            "Es el titular de ESTE item: di lo que este item concreto cuenta o añade. "
+            "Nunca repitas el titular de otro item del lote."
         )
     )
     so_what: str = Field(
@@ -113,6 +115,15 @@ class RankOut(BaseModel):
         )
     )
     entities: List[str] = Field(default_factory=list, description="0-5 organizaciones/personas clave")
+    same_story_as: int = Field(
+        default=0,
+        description=(
+            "Si este item cuenta EL MISMO HECHO que otro item del lote sin añadir nada nuevo "
+            "(la misma noticia en otro medio), pon aquí el id del item que mejor lo cuenta. "
+            "0 si es el mejor, el único, o si aporta un desarrollo propio (una reacción, una "
+            "consecuencia, un dato nuevo): eso es otro item, con su propio titular."
+        ),
+    )
 
 
 class Briefing(BaseModel):
@@ -198,6 +209,12 @@ def rank_batch(items: list[dict], model: str = "gemini-2.5-flash") -> dict:
         "  Un artículo excelente sobre algo que no le importa tiene relevance baja.\n"
         "- so_what: la consecuencia, no el resumen. Si no sabes decir qué consecuencia tiene,\n"
         "  entonces es noise.\n\n"
+        "VARIOS ITEMS SOBRE LO MISMO\n"
+        "- Un gran suceso llega contado por muchos medios. NO les pongas a todos el mismo\n"
+        "  titular ni el mismo so_what: el lector vería la misma card repetida.\n"
+        "- La misma noticia en otro medio, sin nada nuevo: same_story_as = id del mejor item.\n"
+        "- Un desarrollo distinto del mismo suceso (reacción, petición, consecuencia, análisis\n"
+        "  con tesis propia): same_story_as = 0 y un titular y un so_what que digan qué añade.\n\n"
         "REGLAS DEL BRIEFING\n"
         "- thesis: tu lectura del día en una frase. Si no ha pasado nada relevante, dilo.\n"
         "- signals: entre 2 y 5 bullets. Menos es mejor. Sin relleno.\n"
