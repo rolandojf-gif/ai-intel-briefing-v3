@@ -1,6 +1,7 @@
 # src/weekly.py
 from __future__ import annotations
 
+from src.brand import BASE_CSS as BRAND_CSS, HEAD as BRAND_HEAD, THEME_JS, header as brand_header
 import json
 import html
 from pathlib import Path
@@ -478,35 +479,8 @@ def main():
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Semanal · AI Strategic Radar</title>
-<meta name="theme-color" content="#191a1a"/>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23191a1a'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%2320b8cd'/%3E%3C/svg%3E"/>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<style>
-  :root{{
-    --bg:#191a1a; --card:#202222; --card-hover:#262828; --line:#2f3131; --line-2:#3d4040;
-    --txt:#e8e8e6; --txt-dim:#c8cbca; --dim:#9b9f9e; --dimmer:#6b6f6e;
-    --accent:#20b8cd; --accent-soft:rgba(32,184,205,.12);
-    --green:#4bd48b; --rose:#f2665f; --amber:#e8b750; --violet:#b28bf2;
-    --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
-    --sans:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
-    --disp:'Space Grotesk','Inter',system-ui,sans-serif;
-    --r:16px;
-  }}
-  *{{box-sizing:border-box}}
-  body{{margin:0;background:var(--bg);color:var(--txt);font-family:var(--sans);line-height:1.5}}
-  a{{color:inherit;text-decoration:none}}
+{BRAND_HEAD}<style>{BRAND_CSS}
   .wrap{{max-width:1100px;margin:0 auto;padding:0 24px 80px}}
-  .topbar{{display:flex;align-items:center;justify-content:space-between;gap:16px;
-          padding:18px 0;border-bottom:1px solid var(--line);margin-bottom:22px;flex-wrap:wrap}}
-  .brand{{display:flex;align-items:center;gap:10px;font-family:var(--disp);font-size:17px;font-weight:700}}
-  .brand .dot{{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}}
-  .brand .date{{font-family:var(--mono);font-size:11px;color:var(--dimmer);font-weight:400;margin-left:6px}}
-  .nav{{display:flex;gap:6px}}
-  .nav a{{font-size:13px;font-weight:600;padding:7px 15px;border-radius:999px;color:var(--dim)}}
-  .nav a.on{{color:var(--accent);background:var(--accent-soft)}}
-  .nav a:hover{{color:var(--txt)}}
   .lead h1{{margin:0 0 8px;font-family:var(--disp);font-size:clamp(22px,3vw,30px);letter-spacing:-.02em}}
   .lead p{{margin:0 0 22px;color:var(--dim);font-size:14.5px}}
   .grid{{display:grid;grid-template-columns:1fr 1fr;gap:16px}}
@@ -539,21 +513,31 @@ def main():
     ul.rows li,.hit{{flex-direction:column;gap:4px}}
     .m{{white-space:normal}}
   }}
+
+  .wrap{{max-width:1100px;margin:0 auto;padding:28px 24px 80px}}
+  .lead p{{color:var(--muted);font-size:17px;margin:0 0 24px}}
+  .widget{{background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow);padding:14px 16px;border-radius:0}}
+  .widget-title{{display:flex;align-items:center;gap:9px;margin:-14px -16px 10px;padding:10px 16px;border-bottom:2px solid var(--ink);
+                background:var(--card-2);font:700 12px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.06em}}
+  .widget-title::before{{content:"";width:10px;height:10px;background:var(--orange);border:2px solid var(--ink)}}
+  .grid,.clusters{{gap:22px}}
+  ul.rows li,.hit,.thesis li{{border-bottom:1px dashed var(--line)}}
+  .thesis li{{font-size:15px;color:var(--text)}}
+  .k{{font-family:var(--f-head);font-weight:700}}
+  .m,.hs{{font-family:var(--f-mono);color:var(--muted)}}
+  .hit:hover .ht{{color:inherit;text-decoration:underline}}
+  .section-h{{display:flex;align-items:center;gap:10px;font:700 13px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.08em;margin:36px 0 14px}}
+  .section-h::before{{content:"";width:12px;height:12px;background:var(--orange);border:2px solid var(--ink)}}
+  footer{{border-top:3px solid var(--ink);font:400 12px var(--f-mono);color:var(--muted)}}
 </style>
 </head>
 <body>
+{brand_header("weekly")}
 <div class="wrap">
-  <div class="topbar">
-    <div class="brand"><span class="dot"></span> AI Strategic Radar <span class="date">{html_escape(period)}</span></div>
-    <nav class="nav">
-      <a href="index.html">Diario</a>
-      <a class="on" href="weekly.html">Semanal</a>
-      <a href="archivo.html">Archivo</a>
-    </nav>
-  </div>
 
   <div class="lead">
-    <h1>Semanal</h1>
+    <span class="kicker">{html_escape(period)}</span>
+    <h1 class="page-h1">Semanal</h1>
     <p>{n_txt} · {html_escape(period)} · {total_analyzed} señales.</p>
   </div>
 
@@ -600,6 +584,7 @@ def main():
 
   <footer>{n_txt} · {html_escape(period)}</footer>
 </div>
+{THEME_JS}
 </body>
 </html>
 """

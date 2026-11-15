@@ -26,9 +26,12 @@ def _generate_sparkline(points: list[float], positive: bool = True, width: int =
         y = round(height - 4 - ((p - min_val) / val_range) * (height - 8) + 2, 1)
         coords.append(f"{x},{y}")
 
-    color = "#4ade80" if positive else "#f43f5e"
+    # Color por defecto para quien pinte el SVG sin CSS (NEXUS); la web lo
+    # ajusta al tema con .spark.pos / .spark.neg.
+    color = "#0E9F6E" if positive else "#C81E3A"
+    cls = "pos" if positive else "neg"
     polyline = " ".join(coords)
-    return f'<svg viewBox="0 0 {width} {height}" class="spark"><polyline fill="none" stroke="{color}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="{polyline}"/></svg>'
+    return f'<svg viewBox="0 0 {width} {height}" class="spark {cls}"><polyline fill="none" stroke="{color}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="{polyline}"/></svg>'
 
 
 def _fetch_yahoo_quote(symbol: str) -> dict | None:

@@ -259,7 +259,7 @@ class CoreQualityTests(unittest.TestCase):
         self.assertEqual(_generate_sparkline([42.0]), "")
         svg = _generate_sparkline([10.0, 11.0, 9.5], positive=False)
         self.assertIn("<polyline", svg)
-        self.assertIn("#f43f5e", svg)
+        self.assertIn('class="spark neg"', svg)
         # La curva dummy (10.0, 10.2, 10.1…) ya no existe.
         self.assertNotIn("10.2,10.1", svg.replace(" ", ""))
 
@@ -906,7 +906,8 @@ class CoreQualityTests(unittest.TestCase):
         from src.weekly import main as weekly_main
         weekly_main()
         html = Path("docs/weekly.html").read_text(encoding="utf-8")
-        self.assertIn("--bg:#191a1a", html)
+        self.assertIn("--paper:#F4F3EF", html)
+        self.assertIn("Radar<em>.IA</em>", html)
         self.assertIn("Space Grotesk", html)
         self.assertIn("Semanal", html)
         self.assertIn('href="weekly.html"', html)

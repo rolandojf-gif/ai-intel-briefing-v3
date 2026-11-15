@@ -17,17 +17,18 @@ import random
 
 W, H = 640, 360
 
-# tema -> (color de acento, tinte del fondo, motivo)
+# tema -> (color de acento, sin uso, motivo)
+# Paleta de la marca (moloch.sh / brain.gym) sobre asfalto, como su panel oscuro.
 THEME_STYLE = {
-    "compute_chips_dc": ("#20b8cd", "#0d3540", "chips"),
-    "frontier_capability": ("#34d1b2", "#0c3a31", "waves"),
-    "agents_automation": ("#b28bf2", "#2b2050", "graph"),
-    "model_economics": ("#e8b750", "#3d2f12", "bars"),
-    "model_economics_pricing": ("#e8b750", "#3d2f12", "bars"),
-    "china_stack": ("#f2665f", "#421c1f", "stack"),
-    "geopolitics_power": ("#7aa7ff", "#18294d", "globe"),
+    "compute_chips_dc": ("#CCFF00", "", "chips"),
+    "frontier_capability": ("#FF5722", "", "waves"),
+    "agents_automation": ("#34D399", "", "graph"),
+    "model_economics": ("#FBBF24", "", "bars"),
+    "model_economics_pricing": ("#FBBF24", "", "bars"),
+    "china_stack": ("#FF5C7A", "", "stack"),
+    "geopolitics_power": ("#E8E7E1", "", "globe"),
 }
-DEFAULT_STYLE = ("#8fd3dc", "#1d3336", "radar")
+DEFAULT_STYLE = ("#FF8A5C", "", "radar")
 
 
 def xml_escape(text: str) -> str:
@@ -177,26 +178,29 @@ def cover_svg(theme_key: str, theme_label: str, source: str, seed: str = "") -> 
     accent, tint, motif = THEME_STYLE.get((theme_key or "").strip(), DEFAULT_STYLE)
     rng = random.Random(int(hashlib.md5((seed or theme_key or "").encode("utf-8")).hexdigest()[:12], 16))
     art = MOTIFS[motif](rng, accent)
-    label = xml_escape((theme_label or "Señal")[:26])
-    src = xml_escape((source or "")[:40])
-    font = "system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+    label = xml_escape((theme_label or "Señal")[:26].upper())  # mayusculas ANTES de escapar: &AMP; no es XML
+    src = xml_escape((source or "")[:40].upper())
+    head = "'Space Grotesk', 'Arial Narrow', Arial, sans-serif"
+    mono = "'JetBrains Mono', ui-monospace, Menlo, monospace"
+    tw = max(60, int(len(label) * 23.5))  # ancho aproximado de la etiqueta en mayusculas
     source_row = (
-        f'<circle cx="46" cy="315" r="5" fill="{accent}"/>'
-        f'<text x="62" y="321" fill="#c8cbca" font-family="{font}" font-size="17" font-weight="500">{src}</text>'
+        f'<rect x="40" y="298" width="12" height="12" fill="{accent}" stroke="#E8E7E1" stroke-width="2"/>'
+        f'<text x="62" y="309" fill="#E8E7E1" font-family="{mono}" font-size="15" font-weight="600" letter-spacing=".5">{src}</text>'
     ) if src else ""
     return (
         f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}">'
         f'<defs>'
-        f'<linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#17191a"/><stop offset="1" stop-color="{tint}"/></linearGradient>'
-        f'<radialGradient id="g" cx=".78" cy=".3" r=".7"><stop offset="0" stop-color="{accent}" stop-opacity=".3"/><stop offset="1" stop-color="{accent}" stop-opacity="0"/></radialGradient>'
-        # Velo oscuro abajo a la izquierda: el texto se lee sobre cualquier motivo.
-        f'<linearGradient id="v" x1="0" y1="1" x2=".75" y2=".1"><stop offset="0" stop-color="#141617" stop-opacity=".94"/><stop offset=".55" stop-color="#141617" stop-opacity=".35"/><stop offset="1" stop-color="#141617" stop-opacity="0"/></linearGradient>'
+        f'<pattern id="p" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#E8E7E1" stroke-opacity=".06"/></pattern>'
+        # Velo de asfalto abajo a la izquierda: la etiqueta se lee sobre cualquier motivo.
+        f'<linearGradient id="v" x1="0" y1="1" x2=".75" y2=".1"><stop offset="0" stop-color="#0F0F0E" stop-opacity=".96"/><stop offset=".55" stop-color="#0F0F0E" stop-opacity=".4"/><stop offset="1" stop-color="#0F0F0E" stop-opacity="0"/></linearGradient>'
         f'</defs>'
-        f'<rect width="{W}" height="{H}" fill="url(#b)"/><rect width="{W}" height="{H}" fill="url(#g)"/>'
+        f'<rect width="{W}" height="{H}" fill="#0F0F0E"/><rect width="{W}" height="{H}" fill="url(#p)"/>'
         f'{art}'
         f'<rect width="{W}" height="{H}" fill="url(#v)"/>'
-        f'<rect x="40" y="226" width="44" height="4" rx="2" fill="{accent}"/>'
-        f'<text x="40" y="278" fill="#f1f3f2" font-family="{font}" font-size="40" font-weight="700" letter-spacing="-.5">{label}</text>'
+        # Etiqueta de tema en bloque de color con sombra dura, como las tags de la marca.
+        f'<rect x="46" y="236" width="{tw + 28}" height="50" fill="#E8E7E1"/>'
+        f'<rect x="40" y="230" width="{tw + 28}" height="50" fill="{accent}" stroke="#E8E7E1" stroke-width="2"/>'
+        f'<text x="54" y="268" fill="#121211" font-family="{head}" font-size="34" font-weight="700" letter-spacing="-.5">{label}</text>'
         f'{source_row}'
         f'</svg>'
     )

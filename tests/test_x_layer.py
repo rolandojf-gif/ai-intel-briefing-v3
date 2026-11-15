@@ -159,8 +159,8 @@ class CoverTests(unittest.TestCase):
     def test_cover_shows_theme_and_source_but_not_the_headline(self):
         svg = self._svg(title_es="Nvidia sube precios", title="Nvidia raises prices",
                         strategic_theme="compute_chips_dc", source="Reuters AI")
-        self.assertIn("Compute &amp; chips", svg)
-        self.assertIn("Reuters AI", svg)
+        self.assertIn("COMPUTE &amp; CHIPS", svg)
+        self.assertIn("REUTERS AI", svg)
         self.assertNotIn("Nvidia", svg)
 
     def test_every_theme_has_its_own_valid_cover(self):

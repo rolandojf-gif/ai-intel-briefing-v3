@@ -13,6 +13,9 @@ from datetime import datetime
 from pathlib import Path
 
 from jinja2 import Environment, select_autoescape
+from markupsafe import Markup
+
+from src.brand import BASE_CSS as BRAND_CSS, HEAD as BRAND_HEAD, THEME_JS, header as brand_header
 
 from src.render import _safe_url, render_index
 
@@ -106,6 +109,15 @@ def meta_of(snap: dict) -> dict:
     }
 
 
+# La marca va como globales del entorno: cualquier render de la plantilla
+# (tambien los tests) sale con cabecera y estilos.
+ENV.globals.update(
+    brand_head=Markup(BRAND_HEAD),
+    brand_css=Markup(BRAND_CSS),
+    brand_header=brand_header("archivo"),
+    theme_js=Markup(THEME_JS),
+)
+
 ARCHIVO_TEMPLATE = ENV.from_string("""
 <!doctype html>
 <html lang="es">
@@ -113,33 +125,8 @@ ARCHIVO_TEMPLATE = ENV.from_string("""
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Archivo · AI Strategic Radar</title>
-<meta name="theme-color" content="#191a1a"/>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23191a1a'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%2320b8cd'/%3E%3C/svg%3E"/>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#191a1a; --card:#202222; --card-hover:#262828; --line:#2f3131; --line-2:#3d4040;
-    --txt:#e8e8e6; --txt-dim:#c8cbca; --dim:#9b9f9e; --dimmer:#6b6f6e;
-    --accent:#20b8cd; --accent-soft:rgba(32,184,205,.12);
-    --green:#4bd48b; --rose:#f2665f; --amber:#e8b750;
-    --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
-    --sans:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
-    --disp:'Space Grotesk','Inter',system-ui,sans-serif;
-  }
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--txt);font-family:var(--sans);line-height:1.5}
-  a{color:inherit;text-decoration:none}
+{{ brand_head }}<style>{{ brand_css }}
   .wrap{max-width:860px;margin:0 auto;padding:0 24px 80px}
-  .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;
-          padding:18px 0;border-bottom:1px solid var(--line);margin-bottom:22px;flex-wrap:wrap}
-  .brand{display:flex;align-items:center;gap:10px;font-family:var(--disp);font-size:17px;font-weight:700}
-  .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}
-  .nav{display:flex;gap:6px}
-  .nav a{font-size:13px;font-weight:600;padding:7px 15px;border-radius:999px;color:var(--dim)}
-  .nav a.on{color:var(--accent);background:var(--accent-soft)}
-  .nav a:hover{color:var(--txt)}
   .lead h1{margin:0 0 8px;font-family:var(--disp);font-size:clamp(22px,3vw,30px);letter-spacing:-.02em}
   .lead p{margin:0 0 18px;color:var(--dim);font-size:14.5px;max-width:60ch}
   .toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:22px}
@@ -181,20 +168,41 @@ ARCHIVO_TEMPLATE = ENV.from_string("""
     .day{grid-template-columns:84px 1fr;gap:8px}
     .day .n{grid-column:2;margin-top:-6px}
   }
+
+  .wrap{max-width:900px;margin:0 auto;padding:28px 24px 80px}
+  .lead p{color:var(--muted);font-size:17px;margin:0 0 20px}
+  .toolbar input{background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow-sm);border-radius:0;
+                 color:var(--text);padding:11px 12px;font:14px var(--f-mono)}
+  .toolbar input:focus{outline:none;box-shadow:var(--shadow);background:var(--card)}
+  .months a{font:600 11px var(--f-mono);text-transform:uppercase;color:var(--text);padding:5px 8px;border:2px solid var(--ink);
+            border-radius:0;background:var(--card);box-shadow:var(--shadow-sm)}
+  .months a:hover{background:rgba(204,255,0,.3)}
+  .month{display:flex;align-items:center;gap:10px;font:700 13px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.08em;margin:34px 0 10px}
+  .month::before{content:"";width:12px;height:12px;background:var(--orange);border:2px solid var(--ink)}
+  #cal,#hits{background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow);padding:0 14px}
+  #hits{margin-bottom:24px;padding:10px 14px}
+  #cal{background:transparent;border:0;box-shadow:none;padding:0}
+  .day,.hit{border-bottom:1px dashed var(--line)}
+  .day{background:var(--card);border:2px solid var(--ink);border-top-width:0;padding:11px 12px}
+  .month + .day{border-top-width:2px}
+  .day:hover,.hit:hover{background:rgba(204,255,0,.18)}
+  .day .dt{color:var(--orange-ink);font-weight:700}
+  .day .th{color:var(--text)}
+  .day .n{color:var(--muted)}
+  .day .n.deg{color:#121211;background:#FBBF24;border:1px solid var(--ink);padding:2px 5px;font-weight:700;text-transform:uppercase}
+  .hit .t:hover{color:inherit;text-decoration:underline}
+  .copy-btn{border:2px solid var(--ink);border-radius:0;color:var(--text);background:var(--card);font:700 10.5px var(--f-mono)}
+  .copy-btn:hover{background:rgba(204,255,0,.3);color:var(--text)}
+  .copy-btn.ok{background:#34D399;color:#121211}
+  footer{border-top:3px solid var(--ink);font:400 12px var(--f-mono);color:var(--muted)}
 </style>
 </head>
 <body>
+{{ brand_header }}
 <div class="wrap">
-  <div class="topbar">
-    <div class="brand"><span class="dot"></span> AI Strategic Radar</div>
-    <nav class="nav">
-      <a href="index.html">Diario</a>
-      <a href="weekly.html">Semanal</a>
-      <a class="on" href="archivo.html">Archivo</a>
-    </nav>
-  </div>
   <div class="lead">
-    <h1>Archivo</h1>
+    <span class="kicker">{{ first }} – {{ last }}</span>
+    <h1 class="page-h1">Archivo</h1>
     <p>{{ n }} días · {{ first }} – {{ last }}. Cada entrada es el radar de ese día, no un recorte.</p>
   </div>
   <div class="toolbar">
@@ -370,6 +378,7 @@ ARCHIVO_TEMPLATE = ENV.from_string("""
   }
 })();
 </script>
+{{ theme_js }}
 </body>
 </html>
 """)
