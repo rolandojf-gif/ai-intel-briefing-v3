@@ -94,7 +94,8 @@ class SameStoryTests(unittest.TestCase):
         self.assertIn('<a href="https://example.com/2" target="_blank" rel="noopener noreferrer">Bloomberg Tech</a>', html)
         self.assertIn("<span>Stratechery</span>", html)
         self.assertNotIn("javascript:alert", html)
-        self.assertEqual(html.count(">Bloomberg Tech<"), 1)
+        # Una vez en la portada y otra en su card de la rejilla (visible con filtro).
+        self.assertEqual(html.count(">Bloomberg Tech<"), 2)
 
     def test_schema_and_prompt_ask_for_item_specific_headlines(self):
         import inspect

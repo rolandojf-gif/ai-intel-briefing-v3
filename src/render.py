@@ -236,7 +236,65 @@ TEMPLATE = ENV.from_string("""
   .tab .n{font-weight:700;color:var(--orange-ink);margin-left:6px}
   .tab.on .n{color:#121211}
 
-  .layout{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:28px;align-items:start}
+  /* -- Disposicion de periodico (la de la extension NEXUS) -- */
+  .wrap{max-width:1500px}
+  .ticker{margin:0 0 22px;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow);padding:10px 14px 12px}
+  .ticker-h{display:flex;justify-content:space-between;gap:12px;align-items:center;font:400 10.5px var(--f-mono);color:var(--muted);text-transform:uppercase}
+  .ticker-h strong{display:flex;align-items:center;gap:8px;color:var(--text);font-weight:700;letter-spacing:.08em}
+  .ticker-h strong::before{content:"";width:10px;height:10px;background:var(--orange);border:2px solid var(--ink)}
+  .ticker-q{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:10px}
+  .tq{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 6px;align-items:center;padding:8px 10px;border:1px solid var(--ink);background:var(--card-2);min-width:0}
+  .tq-n{grid-column:1/-1;font:600 10.5px var(--f-mono);color:var(--muted);text-transform:uppercase}
+  .tq-p{font:700 clamp(14px,1.25vw,18px) var(--f-mono);white-space:nowrap;font-variant-numeric:tabular-nums}
+  .tq .spark{grid-column:1/-1;height:20px}
+
+  .opening{display:grid;grid-template-columns:minmax(210px,.8fr) minmax(0,2.1fr) minmax(230px,.95fr);gap:clamp(18px,2vw,30px);align-items:start}
+  .deck.filtered .opening{display:none}
+  .rail{background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow);padding:16px}
+  .rail-h{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 14px;padding:0 0 8px;border-bottom:2px solid var(--ink);
+          font:700 12px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.08em}
+  .rail-h>span:first-child{display:flex;align-items:center;gap:9px}
+  .rail-h>span:first-child::before{content:"";width:11px;height:11px;background:var(--orange);border:2px solid var(--ink);flex:0 0 auto}
+  .rail-h .lbl{font:400 10.5px var(--f-mono);color:var(--muted);letter-spacing:.04em;white-space:nowrap}
+  .rail-title{font:700 30px/1 var(--f-head);text-transform:uppercase;letter-spacing:-.03em;margin:2px 0 12px}
+  .rail-thesis{font:500 16px/1.5 var(--f-head);margin:0 0 22px}
+  .keys{margin:0 0 20px;padding:0;list-style:none;counter-reset:k}
+  .keys li{counter-increment:k;display:grid;grid-template-columns:26px 1fr;gap:8px;padding:0 0 10px;margin-bottom:10px;border-bottom:1px dashed var(--line);font-size:13.5px;line-height:1.45}
+  .keys li::before{content:counter(k,decimal-leading-zero);font:700 11px/1.7 var(--f-mono);color:var(--orange-ink)}
+  .figures{border-top:2px solid var(--ink);padding-top:12px;display:flex;flex-direction:column;align-items:flex-start;gap:5px}
+  .big-n{font:700 56px/1 var(--f-head);letter-spacing:-.04em}
+  .fig-note{font:400 11.5px/1.45 var(--f-mono);color:var(--muted)}
+  .figures .ents{margin-top:6px}
+
+  .lead{min-width:0}
+  .lead .hero-title{font-size:clamp(32px,3.5vw,58px);line-height:1.02;letter-spacing:-.035em;margin:4px 0 14px}
+  .lead .sw{font-size:clamp(16px,1.25vw,19px);line-height:1.5;color:var(--muted);margin:0 0 18px}
+  .lead-fig{display:block;border:2px solid var(--ink);box-shadow:var(--shadow);background:var(--asphalt)}
+  .lead-fig .hero-img{border-bottom:0}
+  .lead-meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:16px 0 0;padding:8px 0;border-top:1px dashed var(--line);border-bottom:1px dashed var(--line)}
+  .lead-meta .score{margin-left:auto;text-transform:uppercase}
+  .lead .facts{border-top:0;margin-top:12px;padding-top:0}
+  .lead .fact{font-size:14px}
+
+  .brief{display:grid;grid-template-columns:28px 1fr;gap:10px;padding-bottom:13px;margin-bottom:13px;border-bottom:1px dashed var(--line)}
+  .brief-i{font:700 13px/1.6 var(--f-mono);color:var(--orange-ink)}
+  .brief-t{display:block;font:700 17.5px/1.2 var(--f-head);letter-spacing:-.01em;margin-top:5px}
+  .brief-t:hover{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
+  .brief-s{font:400 10.5px var(--f-mono);color:var(--muted);margin-top:6px;text-transform:uppercase}
+  .onradar{margin-top:6px;padding:12px 14px;background:var(--card-2);border:2px solid var(--ink);box-shadow:inset 6px 0 0 var(--orange)}
+  .onradar .rail-h{margin-bottom:8px}
+  .onradar p{font-size:14px;line-height:1.5;margin:0}
+
+  .below{margin-top:34px;padding-top:26px;border-top:3px solid var(--ink)}
+  .below .section-h{margin:0 0 16px}
+  .below .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .deck:not(.filtered) .dup,.deck:not(.filtered) .h-filtered,.deck.filtered .h-all{display:none}
+  .deck:not(.filtered) .below.no-rest{display:none}
+  .deck.filtered .below{margin-top:0;padding-top:0;border-top:0}
+
+  .companies{margin-top:34px}
+  .companies .company-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 28px}
+  .memory{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:34px;align-items:start}
 
   /* -- Hero y cards: bordes de tinta y sombra dura -- */
   .hero,.card{background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow);transition:transform .1s,box-shadow .1s}
@@ -356,9 +414,20 @@ TEMPLATE = ENV.from_string("""
   footer{margin-top:56px;padding-top:14px;border-top:3px solid var(--ink);display:flex;justify-content:space-between;
          gap:16px;flex-wrap:wrap;font:400 12px var(--f-mono);color:var(--muted)}
 
-  @media(max-width:1080px){.layout{grid-template-columns:1fr}.sidebar{position:static}}
+  @media(max-width:1160px){
+    .opening{grid-template-columns:minmax(200px,.85fr) minmax(0,2.2fr)}
+    .opening>.rail:last-child{grid-column:1/-1}
+    .below .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .memory{grid-template-columns:1fr 1fr}
+  }
   @media(max-width:720px){
-    .grid{grid-template-columns:1fr}
+    .grid,.below .grid{grid-template-columns:1fr}
+    .opening{grid-template-columns:1fr}
+    .opening>.lead{order:-1}
+    .ticker-q{display:flex;overflow-x:auto;scrollbar-width:none}
+    .tq{flex:0 0 160px}
+    .memory,.companies .company-list{grid-template-columns:1fr}
+    .lead .hero-title{font-size:32px}
     .wrap{padding:20px 16px 60px}
     .tabs{flex-wrap:nowrap;overflow-x:auto;margin:0 -16px;padding:2px 16px 20px;scrollbar-width:none}
     .tabs::-webkit-scrollbar{display:none}
@@ -386,13 +455,6 @@ TEMPLATE = ENV.from_string("""
     <a href="{{ root }}index.html" style="margin-left:auto">{{ bi("Hoy","Today") }}</a>
   </div>
   {% endif %}
-
-  <!-- Tesis del dia -->
-  <div class="thesis">
-    <span class="kicker">{{ generated_at }} · {{ bi("lectura del día","today's reading") }}</span>
-    <h1 class="page-h1">{{ bi("Tesis del día","Thesis of the day") }}</h1>
-    <p class="tz">{{ bi(thesis, thesis_en) }}</p>
-  </div>
 
   {% if degraded %}
   <div class="notice warn">
@@ -424,35 +486,66 @@ TEMPLATE = ENV.from_string("""
   </div>
   {% endif %}
 
-  <div class="layout">
+  <!-- Mercados: banda a todo el ancho, como en la extension -->
+  {% if market and market.macro %}
+  <section class="ticker" aria-label="Markets">
+    <div class="ticker-h"><strong>{{ bi("Mercados","Markets") }}</strong><span>{{ bi("Último cierre · no es tiempo real","Last close · not real time") }}</span></div>
+    <div class="ticker-q">
+      {% for m in market.macro %}
+      <div class="tq{% if not m.available %} m-nodata{% endif %}">
+        <span class="tq-n">{{ m.label }}</span>
+        <span class="tq-p">{{ m.price_str }}</span>
+        {% if m.available %}<span class="m-chg {% if m.positive %}pos{% else %}neg{% endif %}">{{ m.change_str }}</span>{% else %}<span class="m-chg na">n/d</span>{% endif %}
+        {{ m.sparkline_svg|safe }}
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
 
-    <!-- Columna principal -->
-    <div class="main-col">
+  <div class="deck" id="deck">
 
-      {% if hero %}
-      <article class="hero" data-topic="{{ hero.theme_key }}" data-new="{{ 1 if hero.is_new else 0 }}">
-        <a href="{{ (hero.url or hero.link)|safe_url }}" target="_blank" rel="noopener noreferrer">
+  {% if hero %}
+  <section class="opening">
+
+    <!-- Editorial -->
+    <aside class="rail">
+      <div class="rail-h"><span>{{ bi("El editorial","Editorial") }}</span><span class="lbl">01 / {{ bi("Análisis","Analysis") }}</span></div>
+      <h1 class="rail-title">{{ bi("La tesis del día","Thesis of the day") }}</h1>
+      <p class="rail-thesis">{{ bi(thesis, thesis_en) }}</p>
+      {% if key_signals %}
+      <div class="rail-h"><span>{{ bi("Claves del día","Key points") }}</span><span class="lbl">{{ bi("Selección","Selection") }}</span></div>
+      <ol class="keys">
+        {% for k in key_signals %}<li>{{ bi(k, key_signals_en[loop.index0] if loop.index0 < key_signals_en|length else "") }}</li>{% endfor %}
+      </ol>
+      {% endif %}
+      <div class="figures">
+        <span class="kicker">{{ bi("El radar en cifras","The radar in figures") }}</span>
+        <strong class="big-n">{{ n_signals + n_context }}</strong>
+        <span class="fig-note">{{ n_signals }} {{ bi("señales","signals") }}{% if n_context %} · {{ n_context }} {{ bi("de contexto","context") }}{% endif %} · {{ n_dropped }} {{ bi("descartadas","dropped") }}</span>
+        {% if top_entities %}<div class="ents">{% for e in top_entities %}<span class="ent">{{ e }}</span>{% endfor %}</div>{% endif %}
+      </div>
+    </aside>
+
+    <!-- Portada -->
+    <article class="lead">
+      <div class="meta-row">
+        <span class="tag">{{ bi("Portada","Front page") }} / {{ bi(hero.theme_label, hero.theme_label_en) }}</span>
+        {% if hero.is_new %}<span class="badge-new">{{ bi("Nuevo","New") }}</span>{% endif %}
+      </div>
+      <h2 class="hero-title">
+        <a href="{{ (hero.url or hero.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ bi(hero.display_title, hero.title_en) }}</a>
+      </h2>
+      {% if hero.so_what %}<div class="sw">{{ bi(hero.so_what, hero.so_what_en) }}</div>{% endif %}
+      <a class="lead-fig" href="{{ (hero.url or hero.link)|safe_url }}" target="_blank" rel="noopener noreferrer">
           {% if hero.cover_only %}<img class="hero-img l-es" src="{{ hero.image_url }}" alt=""/><img class="hero-img l-en" src="{{ hero.cover_en }}" alt=""/>
           {% else %}<img class="hero-img" src="{{ hero.image_url }}" data-fb="{{ hero.fallback_image }}" data-fb-en="{{ hero.cover_en }}" alt="" referrerpolicy="no-referrer"/>{% endif %}
-        </a>
-        <div class="hero-body">
-          <div class="meta-row">
-            <span class="tag">{{ bi(hero.theme_label, hero.theme_label_en) }}</span>
-            {% if hero.is_new %}<span class="badge-new">{{ bi("Nuevo","New") }}</span>{% endif %}
-            <span class="src"><img src="{{ hero.logo }}" alt="" loading="lazy"/>{{ hero.source_label }}</span>
-            {% if hero.other_sources %}<span class="multi">+{{ hero.other_sources|length }} medios</span>{% endif %}
-            <span class="score">{{ hero.score }}</span>
-            <button type="button" class="copy-btn" data-copy>{{ bi("Copiar","Copy") }}</button>
-          </div>
-          <h2 class="hero-title">
-            <a href="{{ (hero.url or hero.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ bi(hero.display_title, hero.title_en) }}</a>
-          </h2>
-          {% if hero.so_what %}<div class="sw">{{ bi(hero.so_what, hero.so_what_en) }}</div>{% endif %}
-          {% if hero.also %}
-          <div class="also">{{ bi("También en:","Also in:") }}
-            {% for a in hero.also %}{% if a.url %}<a href="{{ a.url }}" target="_blank" rel="noopener noreferrer">{{ a.label }}</a>{% else %}<span>{{ a.label }}</span>{% endif %}{% if not loop.last %} · {% endif %}{% endfor %}{% if hero.also_more %} · +{{ hero.also_more }}{% endif %}
-          </div>
-          {% endif %}
+      </a>
+      <div class="lead-meta">
+        <span class="src"><img src="{{ hero.logo }}" alt="" loading="lazy"/>{{ hero.source_label }}</span>
+        <span class="score">{{ bi("Relevancia","Relevance") }} {{ hero.score }}/100</span>
+        <button type="button" class="copy-btn" data-copy>{{ bi("Copiar","Copy") }}</button>
+      </div>
           {% if hero.power_shift or hero.watch_next %}
           <div class="facts {% if hero.power_shift and hero.watch_next %}two{% endif %}">
             {% if hero.power_shift %}
@@ -463,17 +556,58 @@ TEMPLATE = ENV.from_string("""
             {% endif %}
           </div>
           {% endif %}
-          {% if hero.ents %}
-          <div class="ents">{% for e in hero.ents %}<span class="ent">{{ e }}</span>{% endfor %}</div>
+          {% if hero.also %}
+          <div class="also">{{ bi("También en:","Also in:") }}
+            {% for a in hero.also %}{% if a.url %}<a href="{{ a.url }}" target="_blank" rel="noopener noreferrer">{{ a.label }}</a>{% else %}<span>{{ a.label }}</span>{% endif %}{% if not loop.last %} · {% endif %}{% endfor %}{% if hero.also_more %} · +{{ hero.also_more }}{% endif %}
+          </div>
           {% endif %}
+      {% if hero.ents %}
+      <div class="ents">{% for e in hero.ents %}<span class="ent">{{ e }}</span>{% endfor %}</div>
+      {% endif %}
+    </article>
+
+    <!-- En breve -->
+    <aside class="rail">
+      <div class="rail-h"><span>{{ bi("En breve","In brief") }}</span><span class="lbl">{{ bi("Lectura rápida","Quick read") }}</span></div>
+      {% for it in brief %}
+      <div class="brief">
+        <span class="brief-i">{{ "%02d"|format(loop.index) }}</span>
+        <div>
+          <div class="kicker">{{ bi(it.theme_label, it.theme_label_en) }}</div>
+          <a class="brief-t" href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ bi(it.display_title, it.title_en) }}</a>
+          <div class="brief-s">{{ it.source_label }}{% if it.other_sources %} · +{{ it.other_sources|length }}{% endif %}</div>
         </div>
-      </article>
+      </div>
+      {% endfor %}
+      {% if not brief %}<p class="none">{{ bi("Sin más señales hoy.","No more signals today.") }}</p>{% endif %}
+      {% if watch_list %}
+      <div class="onradar">
+        <div class="rail-h"><span>{{ bi("En el radar","On the radar") }}</span></div>
+        <p>{{ bi(watch_list[0], watch_en[0] if watch_en else "") }}</p>
+      </div>
+      {% endif %}
+    </aside>
+  </section>
+  {% endif %}
+
+  {% if not hero and not stream %}
+      <div class="empty">
+        <div class="big">{{ bi("Hoy no ha pasado nada que mueva la aguja.","Nothing moved the needle today.") }}</div>
+        <div class="sub">
+          El filtro de relevancia descartó todo lo ingerido por irrelevante. Un día sin señal
+          también es información: significa que la carrera frontier no se movió.
+        </div>
+      </div>
       {% endif %}
 
-      {% if stream %}
-      <div class="grid">
-        {% for it in stream %}
-        <article class="card" data-topic="{{ it.theme_key }}" data-new="{{ 1 if it.is_new else 0 }}">
+  <!-- Resto de señales. Con un filtro activo se muestran todas (tambien la portada y En breve). -->
+  {% if signals %}
+  <section class="below{% if not rest %} no-rest{% endif %}">
+    <div class="section-h h-all"><h2 class="sec">{{ bi("Más allá del titular","Beyond the headline") }}</h2></div>
+    <div class="section-h h-filtered"><h2 class="sec">{{ bi("Señales de esta sección","Signals in this section") }}</h2></div>
+    <div class="grid">
+      {% for it in signals %}{% set dup = loop.index0 < lead_n %}
+        <article class="card{% if dup %} dup{% endif %}" data-topic="{{ it.theme_key }}" data-new="{{ 1 if it.is_new else 0 }}">
           <a href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer">
             {% if it.cover_only %}<img class="card-img l-es" src="{{ it.image_url }}" alt="" loading="lazy"/><img class="card-img l-en" src="{{ it.cover_en }}" alt="" loading="lazy"/>
             {% else %}<img class="card-img" src="{{ it.image_url }}" data-fb="{{ it.fallback_image }}" data-fb-en="{{ it.cover_en }}" alt="" loading="lazy" referrerpolicy="no-referrer"/>{% endif %}
@@ -507,19 +641,10 @@ TEMPLATE = ENV.from_string("""
             {% endif %}
           </div>
         </article>
-        {% endfor %}
-      </div>
-      {% endif %}
-
-      {% if not hero and not stream %}
-      <div class="empty">
-        <div class="big">{{ bi("Hoy no ha pasado nada que mueva la aguja.","Nothing moved the needle today.") }}</div>
-        <div class="sub">
-          El filtro de relevancia descartó todo lo ingerido por irrelevante. Un día sin señal
-          también es información: significa que la carrera frontier no se movió.
-        </div>
-      </div>
-      {% endif %}
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
 
       {% if context %}
       <div class="section-h">
@@ -542,38 +667,10 @@ TEMPLATE = ENV.from_string("""
       </div>
       {% endif %}
 
-    </div>
-
-    <!-- Sidebar -->
-    <aside class="sidebar">
-
-      {% if market and market.macro %}
-      <div class="widget">
-        <div class="widget-title">
-          <span>{{ bi("Perspectiva del mercado","Market view") }}</span>
-          <span class="lbl">{{ bi("Último cierre","Last close") }}</span>
-        </div>
-        <div class="market-grid">
-          {% for m in market.macro %}
-          <div class="m-box{% if not m.available %} m-nodata{% endif %}">
-            <div class="m-header">
-              <span class="m-lbl">{{ m.label }}</span>
-              {% if m.available %}
-              <span class="m-chg {% if m.positive %}pos{% else %}neg{% endif %}">{{ m.change_str }}</span>
-              {% else %}
-              <span class="m-chg na" title="Cotización no disponible en este run">n/d</span>
-              {% endif %}
-            </div>
-            <div class="m-price">{{ m.price_str }}</div>
-            {{ m.sparkline_svg|safe }}
-          </div>
-          {% endfor %}
-        </div>
-      </div>
-      {% endif %}
+  </div>
 
       {% if market and market.companies %}
-      <div class="widget">
+      <div class="widget companies">
         <div class="widget-title">
           <span>{{ bi("Empresas en tendencia","Trending companies") }}</span>
           <span class="lbl">AI & Semis</span>
@@ -602,6 +699,8 @@ TEMPLATE = ENV.from_string("""
       </div>
       {% endif %}
 
+  <!-- Memoria del radar: lo que dijimos, lo que persiste, lo que viene -->
+  <section class="memory">
       {% if watch_resolved %}
       <div class="widget">
         <div class="widget-title">
@@ -619,7 +718,6 @@ TEMPLATE = ENV.from_string("""
         {% endfor %}
       </div>
       {% endif %}
-
       {% if threads or has_moves %}
       <div class="widget">
         <div class="widget-title">
@@ -652,7 +750,6 @@ TEMPLATE = ENV.from_string("""
         {% endfor %}
       </div>
       {% endif %}
-
       {% if risks or watch_list %}
       <div class="widget">
         <div class="widget-title">
@@ -663,9 +760,7 @@ TEMPLATE = ENV.from_string("""
         {% for w in watch_list %}<div class="rk w">{{ bi(w, watch_en[loop.index0] if loop.index0 < watch_en|length else "") }}</div>{% endfor %}
       </div>
       {% endif %}
-
-    </aside>
-  </div>
+  </section>
 
   {{ credits }}
   <footer>
@@ -758,6 +853,10 @@ TEMPLATE = ENV.from_string("""
         var f = t.getAttribute('data-filter');
         // data-topic, no data-theme: <html data-theme> es el tema claro/oscuro
         // y con el selector anterior el filtro ocultaba la pagina entera.
+        // Con filtro: se oculta la portada a tres columnas y la rejilla enseña
+        // TODAS las señales que casan (tambien las de portada y En breve).
+        var deck = document.getElementById('deck');
+        if (deck) deck.classList.toggle('filtered', f !== 'all');
         document.querySelectorAll('[data-topic]').forEach(function(c){
           var show;
           if (f === 'all')            show = true;
@@ -775,6 +874,7 @@ TEMPLATE = ENV.from_string("""
 """)
 
 
+LEAD_BLOCK = 6  # portada + 5 de "En breve"; el resto va a la rejilla
 ALSO_MAX = 6  # medios listados en "Tambien en" antes de resumir con +N
 
 
@@ -894,6 +994,12 @@ def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", 
         activity=snapshot.get("activity") or {"label": "ACTIVO", "class": "active"},
         thesis=thesis,
         signals=signals,
+        brief=signals[1:LEAD_BLOCK],
+        rest=signals[LEAD_BLOCK:],
+        lead_n=LEAD_BLOCK,
+        key_signals=[clean_text(x) for x in (briefing.get("signals") or []) if isinstance(x, str)][:4],
+        key_signals_en=[clean_text(x) for x in (briefing.get("signals_en") or []) if isinstance(x, str)][:4],
+        top_entities=[e.get("entity") for e in (snapshot.get("top_entities") or []) if isinstance(e, dict) and e.get("entity")][:6],
         hero=hero,
         stream=stream,
         context=context,

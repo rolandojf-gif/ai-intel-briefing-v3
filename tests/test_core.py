@@ -159,7 +159,7 @@ class CoreQualityTests(unittest.TestCase):
         html = render_index(items, briefing={"thesis": "Tesis de prueba"}, snapshot={"date": "2026-08-23"})
         self.assertIn("RADAR.IA", html)
         self.assertIn("Lanzamiento de Gemini 3.7", html)
-        self.assertIn("Perspectiva del mercado", html)
+        self.assertIn("Mercados", html)
         self.assertIn("SMCI", html)
 
     # -- Integridad del gate: nada se publica sin haber sido juzgado ---------
@@ -538,7 +538,7 @@ class CoreQualityTests(unittest.TestCase):
         ]
         html = render_index(items, briefing={"thesis": "t"},
                             snapshot={"date": "2026-08-23"}, market={})
-        hero_pos = html.find('class="hero"')
+        hero_pos = html.find('class="lead"')
         self.assertGreater(hero_pos, 0)
         # El titular fresco tiene que aparecer en el hero, no el repeat.
         fresh_pos = html.find("Señal nueva de hoy")
@@ -898,7 +898,8 @@ class CoreQualityTests(unittest.TestCase):
              "score": 40, "layer": "context"},
         ]
         html = render_index(items, briefing={"thesis": "t"}, snapshot={"date": "2026-08-23"}, market={})
-        self.assertEqual(html.count('class="copy-btn" data-copy'), 2)
+        # Portada + las 2 señales en la rejilla (la de portada, oculta sin filtro); el contexto no.
+        self.assertEqual(html.count('class="copy-btn" data-copy'), 3)
         self.assertIn("navigator.clipboard", html)
         self.assertIn("Copiar", html)
 

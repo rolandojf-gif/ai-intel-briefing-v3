@@ -228,3 +228,34 @@ class ArchiveHidesDegradedTests(unittest.TestCase):
             self.assertNotIn("2026-11-07", html)
             self.assertFalse((out / "d" / "2026-11-07.html").exists())
             self.assertNotIn("2026-11-07", (out / "sitemap.xml").read_text())
+
+
+class NewspaperLayoutTests(unittest.TestCase):
+    def _html(self, n=9):
+        from src.render import render_index
+        items = [{"title_es": f"Noticia {i}", "layer": "signal", "score": 99 - i, "url": f"https://e.com/{i}",
+                  "strategic_theme": "agents_automation" if i % 2 else "china_stack"} for i in range(n)]
+        return render_index(items, briefing={"thesis": "Tesis", "signals": ["clave uno", "clave dos"]},
+                            snapshot={"date": "2026-11-15", "top_entities": [{"entity": "NVIDIA", "count": 3}]},
+                            market={"macro": [{"label": "VIX", "available": True, "price_str": "19.30", "change_str": "+3%", "positive": True, "sparkline_svg": ""}]})
+
+    def test_front_page_has_editorial_lead_and_brief(self):
+        import re
+        html = self._html()
+        self.assertLess(html.index('class="ticker"'), html.index('class="opening"'))
+        self.assertIn("clave uno", html)
+        self.assertIn(">NVIDIA<", html)
+        self.assertEqual(len(re.findall(r'<div class="brief">', html)), 5)
+        self.assertEqual(html.count('class="lead"'), 1)
+
+    def test_every_signal_has_a_filterable_card_and_front_ones_are_hidden_by_default(self):
+        import re
+        html = self._html()
+        cards = re.findall(r'<article class="card( dup)?" data-topic="(\w+)"', html)
+        self.assertEqual(len(cards), 9)
+        self.assertEqual(sum(1 for d, _ in cards if d), 6)
+        self.assertIn("deck.classList.toggle('filtered'", html)
+
+    def test_no_rest_section_when_everything_fits_on_the_front(self):
+        self.assertIn('class="below no-rest"', self._html(n=4))
+        self.assertIn('class="below"', self._html(n=9))
