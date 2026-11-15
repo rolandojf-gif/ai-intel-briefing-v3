@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <title>NEXUS DAILY · Edición personal</title>
+  <link rel="icon" type="image/png" href="assets/icon-48.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <div id="paper" class="paper">
+    <header class="masthead">
+      <div class="masthead-kicker">
+        <span class="edition-code">EDICIÓN PERSONAL · NEXUS // R</span>
+        <span id="today-date" class="today-date"></span>
+        <span class="edition-code kicker-right">INTELIGENCIA, TECNOLOGÍA Y PODER</span>
+      </div>
+      <div class="masthead-titleline">
+        <a href="https://earnest-pie-01548d.netlify.app/" class="wordmark" title="Abrir AI Intel Briefing v3" aria-label="Nexus Daily, abrir briefing de origen">NEXUS<span class="wordmark-accent">DAILY</span></a>
+        <div class="wordmark-aside">THE PERSONAL<br/>INTELLIGENCE PAPER</div>
+      </div>
+      <div class="edition-bar">
+        <span id="edition-label">Buscando última edición…</span>
+        <span class="edition-bar-actions">
+          <span id="connection-label" class="connection-label">FUENTE: AI INTEL BRIEFING V3</span>
+          <button id="refresh-btn" class="icon-button" type="button" title="Comprobar nueva edición" aria-label="Actualizar noticias">↻ <span>ACTUALIZAR</span></button>
+        </span>
+      </div>
+      <nav class="desk-nav" aria-label="Secciones">
+        <button class="nav-item active" data-filter="all" type="button">PORTADA</button>
+        <button class="nav-item" data-filter="frontier_capability" type="button">FRONTERA IA</button>
+        <button class="nav-item" data-filter="agents_automation" type="button">AGENTES</button>
+        <button class="nav-item" data-filter="compute_chips_dc" type="button">CHIPS & COMPUTE</button>
+        <button class="nav-item" data-filter="china_stack" type="button">CHINA</button>
+        <button class="nav-item" data-filter="geopolitics_power" type="button">GEOPOLÍTICA</button>
+        <button class="nav-item" data-filter="model_economics" type="button">ECONOMÍA IA</button>
+        <span class="nav-filler"></span>
+        <button id="open-source-btn" class="nav-link" type="button">BRIEFING ORIGINAL ↗</button>
+      </nav>
+    </header>
+
+    <section id="market-ticker" class="market-ticker" aria-label="Resumen de mercados" hidden></section>
+
+    <main id="main">
+      <div id="message" class="message" role="status" aria-live="polite"><span class="loading-mark">◈</span> Recuperando la última portada…</div>
+      <div id="content" hidden>
+        <section class="opening-grid" aria-label="Portada de hoy">
+          <aside id="editorial" class="editorial-rail"></aside>
+          <section id="lead" class="lead-story"></section>
+          <aside id="latest" class="latest-rail"></aside>
+        </section>
+        <section id="belowfold" class="belowfold"></section>
+        <section id="market-companies" class="market-companies" aria-label="Mercados y compañías" hidden></section>
+        <section id="watch-strip" class="watch-strip"></section>
+      </div>
+    </main>
+
+    <footer class="paper-footer">
+      <div><span class="footer-logo">NEXUS DAILY</span> <span>· Datos de AI Intel Briefing v3</span></div>
+      <div id="footer-status">SIN PETICIONES ADICIONALES A MODELOS IA · CACHÉ LOCAL</div>
+      <div><a href="https://github.com/rolandojf-gif/ai-intel-briefing-v3" target="_blank" rel="noopener noreferrer">FUENTE ↗</a></div>
+    </footer>
+  </div>
+</body>
+</html>
