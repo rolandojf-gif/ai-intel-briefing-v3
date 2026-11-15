@@ -275,15 +275,16 @@ TEMPLATE = ENV.from_string("""
   .pulse-cols i:hover{background:var(--orange)}
   .pulse-note{font:400 11px/1.4 var(--f-mono);color:#9C9B95;margin-top:8px}
 
-  .movers{list-style:none;margin:0 0 20px;padding:0}
+  .movers{list-style:none;margin:0;padding:0}
   .movers li{display:grid;grid-template-columns:1fr auto;gap:4px 8px;align-items:baseline;padding:0 0 9px;margin-bottom:9px;border-bottom:1px dashed var(--line)}
+  .movers li:last-child{padding-bottom:0;margin-bottom:0;border-bottom:none}
   .mv-n{font:700 14.5px var(--f-head)}
   .mv-t{font:700 10.5px var(--f-mono);color:var(--muted);text-transform:uppercase}
   .mv-t.t-up,.mv-t.t-new{color:var(--open)} .mv-t.t-down{color:var(--bad)}
   .mv-bar{grid-column:1/-1;height:8px;border:1px solid var(--ink);background:var(--card-2)}
   .mv-bar i{display:block;height:100%;background:var(--orange)}
 
-  .opening{display:grid;grid-template-columns:minmax(210px,.8fr) minmax(0,2.1fr) minmax(230px,.95fr);gap:clamp(18px,2vw,30px);align-items:start}
+  .opening{display:grid;grid-template-columns:minmax(0,1.85fr) minmax(300px,1fr);gap:clamp(20px,2.4vw,34px);align-items:start}
   .deck.filtered .opening{display:none}
   .rail{background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow);padding:16px}
   .rail-h{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 14px;padding:0 0 8px;border-bottom:2px solid var(--ink);
@@ -291,19 +292,20 @@ TEMPLATE = ENV.from_string("""
   .rail-h>span:first-child{display:flex;align-items:center;gap:9px}
   .rail-h>span:first-child::before{content:"";width:11px;height:11px;background:var(--orange);border:2px solid var(--ink);flex:0 0 auto}
   .rail-h .lbl{font:400 10.5px var(--f-mono);color:var(--muted);letter-spacing:.04em;white-space:nowrap}
-  .rail-title{font:700 30px/1 var(--f-head);text-transform:uppercase;letter-spacing:-.03em;margin:2px 0 12px}
-  .rail-thesis{font:500 16px/1.5 var(--f-head);margin:0 0 22px}
-  .keys{margin:0 0 20px;padding:0;list-style:none;counter-reset:k}
-  .keys li{counter-increment:k;display:grid;grid-template-columns:26px 1fr;gap:8px;padding:0 0 10px;margin-bottom:10px;border-bottom:1px dashed var(--line);font-size:13.5px;line-height:1.45}
+  .rail-title{font:700 28px/1.05 var(--f-head);text-transform:uppercase;letter-spacing:-.03em;margin:2px 0 12px}
+  .rail-thesis{font:500 15.5px/1.5 var(--f-head);margin:0 0 20px}
+  .keys{margin:0 0 18px;padding:0;list-style:none;counter-reset:k}
+  .keys li{counter-increment:k;display:grid;grid-template-columns:26px 1fr;gap:8px;padding:0 0 9px;margin-bottom:9px;border-bottom:1px dashed var(--line);font-size:13.5px;line-height:1.45}
+  .keys li:last-child{margin-bottom:0}
   .keys li::before{content:counter(k,decimal-leading-zero);font:700 11px/1.7 var(--f-mono);color:var(--orange-ink)}
   .figures{border-top:2px solid var(--ink);padding-top:12px;display:flex;flex-direction:column;align-items:flex-start;gap:5px}
-  .big-n{font:700 56px/1 var(--f-head);letter-spacing:-.04em}
+  .big-n{font:700 48px/1 var(--f-head);letter-spacing:-.04em}
   .fig-note{font:400 11.5px/1.45 var(--f-mono);color:var(--muted)}
   .figures .ents{margin-top:6px}
 
   .lead{min-width:0}
-  .lead .hero-title{font-size:clamp(32px,3.5vw,58px);line-height:1.02;letter-spacing:-.035em;margin:4px 0 14px}
-  .lead .sw{font-size:clamp(16px,1.25vw,19px);line-height:1.5;color:var(--muted);margin:0 0 18px}
+  .lead .hero-title{font-size:clamp(30px,3.2vw,52px);line-height:1.04;letter-spacing:-.035em;margin:4px 0 14px}
+  .lead .sw{font-size:clamp(15.5px,1.2vw,18.5px);line-height:1.5;color:var(--muted);margin:0 0 18px}
   .lead-fig{display:block;border:2px solid var(--ink);box-shadow:var(--shadow);background:var(--asphalt)}
   .lead-fig .hero-img{border-bottom:0}
   .lead-meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:16px 0 0;padding:8px 0;border-top:1px dashed var(--line);border-bottom:1px dashed var(--line)}
@@ -311,14 +313,9 @@ TEMPLATE = ENV.from_string("""
   .lead .facts{border-top:0;margin-top:12px;padding-top:0}
   .lead .fact{font-size:14px}
 
-  .brief{display:grid;grid-template-columns:28px 1fr;gap:10px;padding-bottom:13px;margin-bottom:13px;border-bottom:1px dashed var(--line)}
-  .brief-i{font:700 13px/1.6 var(--f-mono);color:var(--orange-ink)}
-  .brief-t{display:block;font:700 17.5px/1.2 var(--f-head);letter-spacing:-.01em;margin-top:5px}
-  .brief-t:hover{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
-  .brief-s{font:400 10.5px var(--f-mono);color:var(--muted);margin-top:6px;text-transform:uppercase}
-  .onradar{margin-top:6px;padding:12px 14px;background:var(--card-2);border:2px solid var(--ink);box-shadow:inset 6px 0 0 var(--orange)}
+  .onradar{margin:0 0 18px;padding:12px 14px;background:var(--card-2);border:2px solid var(--ink);box-shadow:inset 6px 0 0 var(--orange)}
   .onradar .rail-h{margin-bottom:8px}
-  .onradar p{font-size:14px;line-height:1.5;margin:0}
+  .onradar p{font-size:13.5px;line-height:1.5;margin:0}
 
   .below{margin-top:34px;padding-top:26px;border-top:3px solid var(--ink)}
   .below .section-h{margin:0 0 16px}
@@ -327,7 +324,9 @@ TEMPLATE = ENV.from_string("""
   .deck:not(.filtered) .below.no-rest{display:none}
   .deck.filtered .below{margin-top:0;padding-top:0;border-top:0}
 
-  .companies{margin-top:34px}
+  .insights{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(280px,1fr);gap:22px;margin-top:34px;align-items:start}
+  .insights.single{grid-template-columns:minmax(0,1fr)}
+  .companies{margin-top:0}
   .companies .company-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 28px}
   .memory{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:34px;align-items:start}
 
@@ -378,13 +377,15 @@ TEMPLATE = ENV.from_string("""
   /* -- Contexto -- */
   .section-h{margin:34px 0 14px}
   .section-h h2{margin:0}
-  .ctx{display:grid;gap:10px}
-  .cx{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow-sm)}
+  .ctx-block .section-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .sec-sub{margin:0;font:400 11.5px var(--f-mono);color:var(--muted);text-transform:uppercase}
+  .ctx{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+  .cx{display:flex;gap:12px;align-items:flex-start;padding:14px;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow-sm)}
   .cx img{width:20px;height:20px;padding:2px;background:var(--logo-bg);border:1px solid var(--line);flex-shrink:0;margin-top:2px}
   .cx-b{min-width:0;flex:1}
   .cx-t{font:700 15.5px/1.3 var(--f-head)}
-  .cx-w{font-size:13.5px;color:var(--muted);margin-top:3px;line-height:1.5}
-  .cx-m{font:400 11px var(--f-mono);color:var(--muted);margin-top:6px;text-transform:uppercase}
+  .cx-w{font-size:13.5px;color:var(--muted);margin-top:5px;line-height:1.5}
+  .cx-m{font:400 11px var(--f-mono);color:var(--muted);margin-top:8px;text-transform:uppercase}
 
   .empty{padding:40px 26px;text-align:center;border:2px dashed var(--ink);background:var(--card)}
   .empty .big{font:700 20px var(--f-head);margin-bottom:8px;text-transform:uppercase}
@@ -450,15 +451,16 @@ TEMPLATE = ENV.from_string("""
          gap:16px;flex-wrap:wrap;font:400 12px var(--f-mono);color:var(--muted)}
 
   @media(max-width:1160px){
-    .opening{grid-template-columns:minmax(200px,.85fr) minmax(0,2.2fr)}
-    .opening>.rail:last-child{grid-column:1/-1}
-    .below .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .opening{grid-template-columns:minmax(0,1.55fr) minmax(260px,1fr)}
+    .below .grid,.ctx{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .insights{grid-template-columns:1fr}
     .memory{grid-template-columns:1fr 1fr}
   }
-  @media(max-width:720px){
-    .grid,.below .grid{grid-template-columns:1fr}
+  @media(max-width:920px){
     .opening{grid-template-columns:1fr}
-    .opening>.lead{order:-1}
+  }
+  @media(max-width:720px){
+    .grid,.below .grid,.ctx{grid-template-columns:1fr}
     .tq{flex:0 0 170px}
     .pulse{grid-template-columns:1fr}
     .memory,.companies .company-list{grid-template-columns:1fr}
@@ -569,35 +571,6 @@ TEMPLATE = ENV.from_string("""
   {% if hero %}
   <section class="opening">
 
-    <!-- Editorial -->
-    <aside class="rail">
-      <div class="rail-h"><span>{{ bi("El editorial","Editorial") }}</span><span class="lbl">01 / {{ bi("Análisis","Analysis") }}</span></div>
-      <h1 class="rail-title">{{ bi("La tesis del día","Thesis of the day") }}</h1>
-      <p class="rail-thesis">{{ bi(thesis, thesis_en) }}</p>
-      {% if key_signals %}
-      <div class="rail-h"><span>{{ bi("Claves del día","Key points") }}</span><span class="lbl">{{ bi("Selección","Selection") }}</span></div>
-      <ol class="keys">
-        {% for k in key_signals %}<li>{{ bi(k, key_signals_en[loop.index0] if loop.index0 < key_signals_en|length else "") }}</li>{% endfor %}
-      </ol>
-      {% endif %}
-      {% if movers %}
-      <div class="rail-h"><span>{{ bi("Quién mueve la carrera","Who moves the race") }}</span><span class="lbl">{{ bi("Últimas ediciones","Recent editions") }}</span></div>
-      <ul class="movers">
-        {% for m in movers %}
-        <li><span class="mv-n">{{ m.entity }}</span>
-          <span class="mv-t t-{{ m.trend }}" title="{{ m.trend }}">{% if m.trend == 'up' %}▲{% elif m.trend == 'down' %}▼{% elif m.trend == 'new' %}{{ bi("nuevo","new") }}{% else %}＝{% endif %}</span>
-          <span class="mv-bar"><i style="width:{{ m.share }}%"></i></span></li>
-        {% endfor %}
-      </ul>
-      {% endif %}
-      <div class="figures">
-        <span class="kicker">{{ bi("El radar en cifras","The radar in figures") }}</span>
-        <strong class="big-n">{{ n_signals + n_context }}</strong>
-        <span class="fig-note">{{ n_signals }} {{ bi("señales","signals") }}{% if n_context %} · {{ n_context }} {{ bi("de contexto","context") }}{% endif %} · {{ n_dropped }} {{ bi("descartadas","dropped") }}</span>
-        {% if top_entities %}<div class="ents">{% for e in top_entities %}<span class="ent">{{ e }}</span>{% endfor %}</div>{% endif %}
-      </div>
-    </aside>
-
     <!-- Portada -->
     <article class="lead">
       <div class="meta-row">
@@ -637,26 +610,29 @@ TEMPLATE = ENV.from_string("""
       {% endif %}
     </article>
 
-    <!-- En breve -->
+    <!-- Editorial -->
     <aside class="rail">
-      <div class="rail-h"><span>{{ bi("En breve","In brief") }}</span><span class="lbl">{{ bi("Lectura rápida","Quick read") }}</span></div>
-      {% for it in brief %}
-      <div class="brief">
-        <span class="brief-i">{{ "%02d"|format(loop.index) }}</span>
-        <div>
-          <div class="kicker">{{ bi(it.theme_label, it.theme_label_en) }}</div>
-          <a class="brief-t" href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ bi(it.display_title, it.title_en) }}</a>
-          <div class="brief-s">{{ it.source_label }}{% if it.other_sources %} · +{{ it.other_sources|length }}{% endif %}</div>
-        </div>
-      </div>
-      {% endfor %}
-      {% if not brief %}<p class="none">{{ bi("Sin más señales hoy.","No more signals today.") }}</p>{% endif %}
+      <div class="rail-h"><span>{{ bi("El editorial","Editorial") }}</span><span class="lbl">01 / {{ bi("Análisis","Analysis") }}</span></div>
+      <h1 class="rail-title">{{ bi("La tesis del día","Thesis of the day") }}</h1>
+      <p class="rail-thesis">{{ bi(thesis, thesis_en) }}</p>
+      {% if key_signals %}
+      <div class="rail-h"><span>{{ bi("Claves del día","Key points") }}</span><span class="lbl">{{ bi("Selección","Selection") }}</span></div>
+      <ol class="keys">
+        {% for k in key_signals %}<li>{{ bi(k, key_signals_en[loop.index0] if loop.index0 < key_signals_en|length else "") }}</li>{% endfor %}
+      </ol>
+      {% endif %}
       {% if watch_list %}
       <div class="onradar">
         <div class="rail-h"><span>{{ bi("En el radar","On the radar") }}</span></div>
         <p>{{ bi(watch_list[0], watch_en[0] if watch_en else "") }}</p>
       </div>
       {% endif %}
+      <div class="figures">
+        <span class="kicker">{{ bi("El radar en cifras","The radar in figures") }}</span>
+        <strong class="big-n">{{ n_signals + n_context }}</strong>
+        <span class="fig-note">{{ n_signals }} {{ bi("señales","signals") }}{% if n_context %} · {{ n_context }} {{ bi("de contexto","context") }}{% endif %} · {{ n_dropped }} {{ bi("descartadas","dropped") }}</span>
+        {% if top_entities %}<div class="ents">{% for e in top_entities %}<span class="ent">{{ e }}</span>{% endfor %}</div>{% endif %}
+      </div>
     </aside>
   </section>
   {% endif %}
@@ -671,7 +647,7 @@ TEMPLATE = ENV.from_string("""
       </div>
       {% endif %}
 
-  <!-- Resto de señales. Con un filtro activo se muestran todas (tambien la portada y En breve). -->
+  <!-- Resto de señales (#2..#12). Con un filtro activo se incluye tambien la portada. -->
   {% if signals %}
   <section class="below{% if not rest %} no-rest{% endif %}">
     <div class="section-h h-all"><h2 class="sec">{{ bi("Más allá del titular","Beyond the headline") }}</h2></div>
@@ -742,34 +718,53 @@ TEMPLATE = ENV.from_string("""
 
   </div>
 
-      {% if market and market.companies %}
-      <div class="widget companies">
-        <div class="widget-title">
-          <span>{{ bi("Empresas en tendencia","Trending companies") }}</span>
-          <span class="lbl">AI & Semis</span>
-        </div>
-        <div class="company-list">
-          {% for c in market.companies %}
-          <div class="comp-item">
-            <div class="comp-info">
-              <img src="{{ c.logo }}" alt="" class="comp-logo" loading="lazy"/>
-              <div>
-                <div class="comp-name">{{ c.name }}</div>
-                <div class="comp-ticker">{{ c.ticker }} · {{ c.exchange }}</div>
+      {% if (market and market.companies) or movers %}
+      <section class="insights{% if not (market and market.companies and movers) %} single{% endif %}">
+        {% if market and market.companies %}
+        <div class="widget companies">
+          <div class="widget-title">
+            <span>{{ bi("Empresas en tendencia","Trending companies") }}</span>
+            <span class="lbl">AI & Semis</span>
+          </div>
+          <div class="company-list">
+            {% for c in market.companies %}
+            <div class="comp-item">
+              <div class="comp-info">
+                <img src="{{ c.logo }}" alt="" class="comp-logo" loading="lazy"/>
+                <div>
+                  <div class="comp-name">{{ c.name }}</div>
+                  <div class="comp-ticker">{{ c.ticker }} · {{ c.exchange }}</div>
+                </div>
+              </div>
+              <div class="comp-val">
+                <div class="comp-price{% if not c.available %} na{% endif %}">{{ c.price_str }}</div>
+                {% if c.available %}
+                <div class="comp-chg {% if c.positive %}pos{% else %}neg{% endif %}">{{ c.change_str }}</div>
+                {% else %}
+                <div class="comp-chg na" title="Cotización no disponible en este run">n/d</div>
+                {% endif %}
               </div>
             </div>
-            <div class="comp-val">
-              <div class="comp-price{% if not c.available %} na{% endif %}">{{ c.price_str }}</div>
-              {% if c.available %}
-              <div class="comp-chg {% if c.positive %}pos{% else %}neg{% endif %}">{{ c.change_str }}</div>
-              {% else %}
-              <div class="comp-chg na" title="Cotización no disponible en este run">n/d</div>
-              {% endif %}
-            </div>
+            {% endfor %}
           </div>
-          {% endfor %}
         </div>
-      </div>
+        {% endif %}
+        {% if movers %}
+        <div class="widget">
+          <div class="widget-title">
+            <span>{{ bi("Quién mueve la carrera","Who moves the race") }}</span>
+            <span class="lbl">{{ bi("Últimas ediciones","Recent editions") }}</span>
+          </div>
+          <ul class="movers">
+            {% for m in movers %}
+            <li><span class="mv-n">{{ m.entity }}</span>
+              <span class="mv-t t-{{ m.trend }}" title="{{ m.trend }}">{% if m.trend == 'up' %}▲{% elif m.trend == 'down' %}▼{% elif m.trend == 'new' %}{{ bi("nuevo","new") }}{% else %}＝{% endif %}</span>
+              <span class="mv-bar"><i style="width:{{ m.share }}%"></i></span></li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+      </section>
       {% endif %}
 
   <!-- Memoria del radar: lo que dijimos, lo que persiste, lo que viene -->
@@ -987,7 +982,7 @@ def _ticker_quotes(market) -> list[dict]:
     return out
 
 
-LEAD_BLOCK = 6  # portada + 5 de "En breve"; el resto va a la rejilla
+LEAD_BLOCK = 1  # portada en opening; el resto (#2..#12) va directo a la rejilla
 ALSO_MAX = 6  # medios listados en "Tambien en" antes de resumir con +N
 
 
@@ -1109,7 +1104,6 @@ def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", 
         ticker_quotes=_ticker_quotes(market),
         pulse=snapshot.get("pulse") or {},
         movers=snapshot.get("movers") or [],
-        brief=signals[1:LEAD_BLOCK],
         rest=signals[LEAD_BLOCK:],
         lead_n=LEAD_BLOCK,
         key_signals=[clean_text(x) for x in (briefing.get("signals") or []) if isinstance(x, str)][:4],

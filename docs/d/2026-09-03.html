@@ -167,7 +167,7 @@
 
   /* -- Tabs de tema -- */
   .tabs{display:flex;gap:10px;flex-wrap:wrap;padding:0 0 24px}
-  .tab{font:600 12px/1.2 var(--f-mono);text-transform:uppercase;padding:8px 12px;cursor:pointer;user-select:none;
+  .tab{appearance:none;margin:0;color:var(--text);font:600 12px/1.2 var(--f-mono);text-transform:uppercase;padding:8px 12px;cursor:pointer;user-select:none;
        border:2px solid var(--ink);background:var(--card);box-shadow:var(--shadow-sm);transition:transform .08s,box-shadow .08s}
   .tab:hover{background:rgba(204,255,0,.3)}
   .tab:active{transform:translate(2px,2px);box-shadow:none}
@@ -175,6 +175,7 @@
   .tab-new.on{background:#34D399;color:#121211}
   .tab .n{font-weight:700;color:var(--orange-ink);margin-left:6px}
   .tab.on .n{color:#121211}
+  .below.filter-empty,.ctx-block.filter-empty{display:none}
 
   /* -- Disposicion de periodico (la de la extension NEXUS) -- */
   .wrap{max-width:1500px}
@@ -210,15 +211,16 @@
   .pulse-cols i:hover{background:var(--orange)}
   .pulse-note{font:400 11px/1.4 var(--f-mono);color:#9C9B95;margin-top:8px}
 
-  .movers{list-style:none;margin:0 0 20px;padding:0}
+  .movers{list-style:none;margin:0;padding:0}
   .movers li{display:grid;grid-template-columns:1fr auto;gap:4px 8px;align-items:baseline;padding:0 0 9px;margin-bottom:9px;border-bottom:1px dashed var(--line)}
+  .movers li:last-child{padding-bottom:0;margin-bottom:0;border-bottom:none}
   .mv-n{font:700 14.5px var(--f-head)}
   .mv-t{font:700 10.5px var(--f-mono);color:var(--muted);text-transform:uppercase}
   .mv-t.t-up,.mv-t.t-new{color:var(--open)} .mv-t.t-down{color:var(--bad)}
   .mv-bar{grid-column:1/-1;height:8px;border:1px solid var(--ink);background:var(--card-2)}
   .mv-bar i{display:block;height:100%;background:var(--orange)}
 
-  .opening{display:grid;grid-template-columns:minmax(210px,.8fr) minmax(0,2.1fr) minmax(230px,.95fr);gap:clamp(18px,2vw,30px);align-items:start}
+  .opening{display:grid;grid-template-columns:minmax(0,1.85fr) minmax(300px,1fr);gap:clamp(20px,2.4vw,34px);align-items:start}
   .deck.filtered .opening{display:none}
   .rail{background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow);padding:16px}
   .rail-h{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 14px;padding:0 0 8px;border-bottom:2px solid var(--ink);
@@ -226,19 +228,20 @@
   .rail-h>span:first-child{display:flex;align-items:center;gap:9px}
   .rail-h>span:first-child::before{content:"";width:11px;height:11px;background:var(--orange);border:2px solid var(--ink);flex:0 0 auto}
   .rail-h .lbl{font:400 10.5px var(--f-mono);color:var(--muted);letter-spacing:.04em;white-space:nowrap}
-  .rail-title{font:700 30px/1 var(--f-head);text-transform:uppercase;letter-spacing:-.03em;margin:2px 0 12px}
-  .rail-thesis{font:500 16px/1.5 var(--f-head);margin:0 0 22px}
-  .keys{margin:0 0 20px;padding:0;list-style:none;counter-reset:k}
-  .keys li{counter-increment:k;display:grid;grid-template-columns:26px 1fr;gap:8px;padding:0 0 10px;margin-bottom:10px;border-bottom:1px dashed var(--line);font-size:13.5px;line-height:1.45}
+  .rail-title{font:700 28px/1.05 var(--f-head);text-transform:uppercase;letter-spacing:-.03em;margin:2px 0 12px}
+  .rail-thesis{font:500 15.5px/1.5 var(--f-head);margin:0 0 20px}
+  .keys{margin:0 0 18px;padding:0;list-style:none;counter-reset:k}
+  .keys li{counter-increment:k;display:grid;grid-template-columns:26px 1fr;gap:8px;padding:0 0 9px;margin-bottom:9px;border-bottom:1px dashed var(--line);font-size:13.5px;line-height:1.45}
+  .keys li:last-child{margin-bottom:0}
   .keys li::before{content:counter(k,decimal-leading-zero);font:700 11px/1.7 var(--f-mono);color:var(--orange-ink)}
   .figures{border-top:2px solid var(--ink);padding-top:12px;display:flex;flex-direction:column;align-items:flex-start;gap:5px}
-  .big-n{font:700 56px/1 var(--f-head);letter-spacing:-.04em}
+  .big-n{font:700 48px/1 var(--f-head);letter-spacing:-.04em}
   .fig-note{font:400 11.5px/1.45 var(--f-mono);color:var(--muted)}
   .figures .ents{margin-top:6px}
 
   .lead{min-width:0}
-  .lead .hero-title{font-size:clamp(32px,3.5vw,58px);line-height:1.02;letter-spacing:-.035em;margin:4px 0 14px}
-  .lead .sw{font-size:clamp(16px,1.25vw,19px);line-height:1.5;color:var(--muted);margin:0 0 18px}
+  .lead .hero-title{font-size:clamp(30px,3.2vw,52px);line-height:1.04;letter-spacing:-.035em;margin:4px 0 14px}
+  .lead .sw{font-size:clamp(15.5px,1.2vw,18.5px);line-height:1.5;color:var(--muted);margin:0 0 18px}
   .lead-fig{display:block;border:2px solid var(--ink);box-shadow:var(--shadow);background:var(--asphalt)}
   .lead-fig .hero-img{border-bottom:0}
   .lead-meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:16px 0 0;padding:8px 0;border-top:1px dashed var(--line);border-bottom:1px dashed var(--line)}
@@ -246,14 +249,9 @@
   .lead .facts{border-top:0;margin-top:12px;padding-top:0}
   .lead .fact{font-size:14px}
 
-  .brief{display:grid;grid-template-columns:28px 1fr;gap:10px;padding-bottom:13px;margin-bottom:13px;border-bottom:1px dashed var(--line)}
-  .brief-i{font:700 13px/1.6 var(--f-mono);color:var(--orange-ink)}
-  .brief-t{display:block;font:700 17.5px/1.2 var(--f-head);letter-spacing:-.01em;margin-top:5px}
-  .brief-t:hover{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
-  .brief-s{font:400 10.5px var(--f-mono);color:var(--muted);margin-top:6px;text-transform:uppercase}
-  .onradar{margin-top:6px;padding:12px 14px;background:var(--card-2);border:2px solid var(--ink);box-shadow:inset 6px 0 0 var(--orange)}
+  .onradar{margin:0 0 18px;padding:12px 14px;background:var(--card-2);border:2px solid var(--ink);box-shadow:inset 6px 0 0 var(--orange)}
   .onradar .rail-h{margin-bottom:8px}
-  .onradar p{font-size:14px;line-height:1.5;margin:0}
+  .onradar p{font-size:13.5px;line-height:1.5;margin:0}
 
   .below{margin-top:34px;padding-top:26px;border-top:3px solid var(--ink)}
   .below .section-h{margin:0 0 16px}
@@ -262,7 +260,9 @@
   .deck:not(.filtered) .below.no-rest{display:none}
   .deck.filtered .below{margin-top:0;padding-top:0;border-top:0}
 
-  .companies{margin-top:34px}
+  .insights{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(280px,1fr);gap:22px;margin-top:34px;align-items:start}
+  .insights.single{grid-template-columns:minmax(0,1fr)}
+  .companies{margin-top:0}
   .companies .company-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 28px}
   .memory{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:34px;align-items:start}
 
@@ -313,13 +313,15 @@
   /* -- Contexto -- */
   .section-h{margin:34px 0 14px}
   .section-h h2{margin:0}
-  .ctx{display:grid;gap:10px}
-  .cx{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow-sm)}
+  .ctx-block .section-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .sec-sub{margin:0;font:400 11.5px var(--f-mono);color:var(--muted);text-transform:uppercase}
+  .ctx{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+  .cx{display:flex;gap:12px;align-items:flex-start;padding:14px;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow-sm)}
   .cx img{width:20px;height:20px;padding:2px;background:var(--logo-bg);border:1px solid var(--line);flex-shrink:0;margin-top:2px}
   .cx-b{min-width:0;flex:1}
   .cx-t{font:700 15.5px/1.3 var(--f-head)}
-  .cx-w{font-size:13.5px;color:var(--muted);margin-top:3px;line-height:1.5}
-  .cx-m{font:400 11px var(--f-mono);color:var(--muted);margin-top:6px;text-transform:uppercase}
+  .cx-w{font-size:13.5px;color:var(--muted);margin-top:5px;line-height:1.5}
+  .cx-m{font:400 11px var(--f-mono);color:var(--muted);margin-top:8px;text-transform:uppercase}
 
   .empty{padding:40px 26px;text-align:center;border:2px dashed var(--ink);background:var(--card)}
   .empty .big{font:700 20px var(--f-head);margin-bottom:8px;text-transform:uppercase}
@@ -385,15 +387,16 @@
          gap:16px;flex-wrap:wrap;font:400 12px var(--f-mono);color:var(--muted)}
 
   @media(max-width:1160px){
-    .opening{grid-template-columns:minmax(200px,.85fr) minmax(0,2.2fr)}
-    .opening>.rail:last-child{grid-column:1/-1}
-    .below .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .opening{grid-template-columns:minmax(0,1.55fr) minmax(260px,1fr)}
+    .below .grid,.ctx{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .insights{grid-template-columns:1fr}
     .memory{grid-template-columns:1fr 1fr}
   }
-  @media(max-width:720px){
-    .grid,.below .grid{grid-template-columns:1fr}
+  @media(max-width:920px){
     .opening{grid-template-columns:1fr}
-    .opening>.lead{order:-1}
+  }
+  @media(max-width:720px){
+    .grid,.below .grid,.ctx{grid-template-columns:1fr}
     .tq{flex:0 0 170px}
     .pulse{grid-template-columns:1fr}
     .memory,.companies .company-list{grid-template-columns:1fr}
@@ -412,7 +415,7 @@
   <span class="it bad"><span class="l-es">ALERTA</span><span class="l-en" lang="en">ALERT</span></span>
   <span class="it">12 <span class="l-es">señales</span><span class="l-en" lang="en">signals</span> · 3 <span class="l-es">de contexto</span><span class="l-en" lang="en">context</span></span>
   <span class="it warn">35/36 <span class="l-es">fuentes</span><span class="l-en" lang="en">sources</span></span>
-  <span class="it bad">X apagada</span>
+  <span class="it bad"><span class="l-es">X apagada</span><span class="l-en" lang="en">X off</span></span>
 </div>
 <div class="wrap">
 
@@ -438,23 +441,23 @@
 
   <!-- Tabs de tema -->
   
-  <div class="tabs" id="tabs">
-    <span class="tab on" data-filter="all"><span class="l-es">Todas</span><span class="l-en" lang="en">All</span><span class="n">15</span></span>
+  <div class="tabs" id="tabs" role="tablist">
+    <button type="button" role="tab" aria-selected="true" class="tab on" data-filter="all"><span class="l-es">Todas</span><span class="l-en" lang="en">All</span><span class="n">15</span></button>
     
-    <span class="tab tab-new" data-filter="__new__"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span><span class="n">11</span></span>
+    <button type="button" role="tab" aria-selected="false" class="tab tab-new" data-filter="__new__"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span><span class="n">11</span></button>
     
     
-    <span class="tab" data-filter="agents_automation"><span class="l-es">Agentes</span><span class="l-en" lang="en">Agents</span><span class="n">6</span></span>
+    <button type="button" role="tab" aria-selected="false" class="tab" data-filter="agents_automation"><span class="l-es">Agentes</span><span class="l-en" lang="en">Agents</span><span class="n">6</span></button>
     
-    <span class="tab" data-filter="frontier_capability"><span class="l-es">Capacidad frontier</span><span class="l-en" lang="en">Frontier capability</span><span class="n">5</span></span>
+    <button type="button" role="tab" aria-selected="false" class="tab" data-filter="frontier_capability"><span class="l-es">Capacidad frontier</span><span class="l-en" lang="en">Frontier capability</span><span class="n">5</span></button>
     
-    <span class="tab" data-filter="china_stack"><span class="l-es">Stack chino</span><span class="l-en" lang="en">China stack</span><span class="n">1</span></span>
+    <button type="button" role="tab" aria-selected="false" class="tab" data-filter="china_stack"><span class="l-es">Stack chino</span><span class="l-en" lang="en">China stack</span><span class="n">1</span></button>
     
-    <span class="tab" data-filter="compute_chips_dc">Compute &amp; chips<span class="n">1</span></span>
+    <button type="button" role="tab" aria-selected="false" class="tab" data-filter="compute_chips_dc">Compute &amp; chips<span class="n">1</span></button>
     
-    <span class="tab" data-filter="model_economics"><span class="l-es">Economía de modelos</span><span class="l-en" lang="en">Model economics</span><span class="n">1</span></span>
+    <button type="button" role="tab" aria-selected="false" class="tab" data-filter="model_economics"><span class="l-es">Economía de modelos</span><span class="l-en" lang="en">Model economics</span><span class="n">1</span></button>
     
-    <span class="tab" data-filter="geopolitics_power"><span class="l-es">Geopolítica</span><span class="l-en" lang="en">Geopolitics</span><span class="n">1</span></span>
+    <button type="button" role="tab" aria-selected="false" class="tab" data-filter="geopolitics_power"><span class="l-es">Geopolítica</span><span class="l-en" lang="en">Geopolitics</span><span class="n">1</span></button>
     
   </div>
   
@@ -470,26 +473,6 @@
 
   
   <section class="opening">
-
-    <!-- Editorial -->
-    <aside class="rail">
-      <div class="rail-h"><span><span class="l-es">El editorial</span><span class="l-en" lang="en">Editorial</span></span><span class="lbl">01 / <span class="l-es">Análisis</span><span class="l-en" lang="en">Analysis</span></span></div>
-      <h1 class="rail-title"><span class="l-es">La tesis del día</span><span class="l-en" lang="en">Thesis of the day</span></h1>
-      <p class="rail-thesis">Meta y OpenAI intensifican la carrera AGI con lanzamientos de modelos frontier, mientras Google mejora sus variantes Flash y el despliegue de agentes se acelera en todos los frentes.</p>
-      
-      <div class="rail-h"><span><span class="l-es">Claves del día</span><span class="l-en" lang="en">Key points</span></span><span class="lbl"><span class="l-es">Selección</span><span class="l-en" lang="en">Selection</span></span></div>
-      <ol class="keys">
-        <li>Meta lanza Muse Spark 1.3, igualando un modelo GPT de OpenAI y posicionándose como un lab frontier.</li><li>OpenAI presenta Astra, el primer modelo que cumple umbrales de ciberseguridad crítica para despliegue sensible.</li><li>Google DeepMind introduce Gemini 3.8 Flash, con mejor razonamiento, y Gemini 3.8 Flash Cyber para defensa.</li><li>Anthropic y Hugging Face avanzan en la infraestructura y despliegue de agentes, ofreciendo blueprints y memoria persistente.</li>
-      </ol>
-      
-      
-      <div class="figures">
-        <span class="kicker"><span class="l-es">El radar en cifras</span><span class="l-en" lang="en">The radar in figures</span></span>
-        <strong class="big-n">15</strong>
-        <span class="fig-note">12 <span class="l-es">señales</span><span class="l-en" lang="en">signals</span> · 3 <span class="l-es">de contexto</span><span class="l-en" lang="en">context</span> · 11 <span class="l-es">descartadas</span><span class="l-en" lang="en">dropped</span></span>
-        <div class="ents"><span class="ent">Meta</span><span class="ent">OpenAI</span><span class="ent">Gemini</span><span class="ent">Anthropic</span><span class="ent">Claude</span></div>
-      </div>
-    </aside>
 
     <!-- Portada -->
     <article class="lead">
@@ -525,55 +508,16 @@
       
     </article>
 
-    <!-- En breve -->
+    <!-- Editorial -->
     <aside class="rail">
-      <div class="rail-h"><span><span class="l-es">En breve</span><span class="l-en" lang="en">In brief</span></span><span class="lbl"><span class="l-es">Lectura rápida</span><span class="l-en" lang="en">Quick read</span></span></div>
+      <div class="rail-h"><span><span class="l-es">El editorial</span><span class="l-en" lang="en">Editorial</span></span><span class="lbl">01 / <span class="l-es">Análisis</span><span class="l-en" lang="en">Analysis</span></span></div>
+      <h1 class="rail-title"><span class="l-es">La tesis del día</span><span class="l-en" lang="en">Thesis of the day</span></h1>
+      <p class="rail-thesis">Meta y OpenAI intensifican la carrera AGI con lanzamientos de modelos frontier, mientras Google mejora sus variantes Flash y el despliegue de agentes se acelera en todos los frentes.</p>
       
-      <div class="brief">
-        <span class="brief-i">01</span>
-        <div>
-          <div class="kicker"><span class="l-es">Agentes</span><span class="l-en" lang="en">Agents</span></div>
-          <a class="brief-t" href="https://claude.com/blog/claude-for-commerce-agents" target="_blank" rel="noopener noreferrer"><span class="l-es">Anthropic publica una guía para crear agentes comerciales con Claude</span><span class="l-en" lang="en">Building commerce agents with Claude</span></a>
-          <div class="brief-s">Anthropic</div>
-        </div>
-      </div>
-      
-      <div class="brief">
-        <span class="brief-i">02</span>
-        <div>
-          <div class="kicker"><span class="l-es">Capacidad frontier</span><span class="l-en" lang="en">Frontier capability</span></div>
-          <a class="brief-t" href="https://www.latent.space/p/ainews-muse-spark-13-matches-gpt" target="_blank" rel="noopener noreferrer"><span class="l-es">Muse Spark 1.3 de Meta iguala a GPT-5.6-Sol; Meta es nuevo lab frontier</span><span class="l-en" lang="en">[AINews] Muse Spark 1.3 matches GPT-5.6-Sol, confirming Meta Superintelligence as the newest Frontier Lab, &gt;90% discount for training</span></a>
-          <div class="brief-s">Latent Space</div>
-        </div>
-      </div>
-      
-      <div class="brief">
-        <span class="brief-i">03</span>
-        <div>
-          <div class="kicker"><span class="l-es">Capacidad frontier</span><span class="l-en" lang="en">Frontier capability</span></div>
-          <a class="brief-t" href="https://artificialanalysis.ai/articles/muse-spark-1-3" target="_blank" rel="noopener noreferrer"><span class="l-es">Artificial Analysis confirma: Muse Spark 1.3 de Meta alcanza nivel frontier</span><span class="l-en" lang="en">Muse Spark 1.3: Meta reaches the frontier September 2, 2026</span></a>
-          <div class="brief-s">Artificial Analysis</div>
-        </div>
-      </div>
-      
-      <div class="brief">
-        <span class="brief-i">04</span>
-        <div>
-          <div class="kicker"><span class="l-es">Stack chino</span><span class="l-en" lang="en">China stack</span></div>
-          <a class="brief-t" href="https://www.reuters.com/world/asia-pacific/chinese-ai-firm-moonshot-files-confidentially-hong-kong-ipo-sources-say-2026-09-03/" target="_blank" rel="noopener noreferrer"><span class="l-es">Moonshot, empresa china de IA, presenta confidencialmente su salida a bolsa en Hong Kong</span><span class="l-en" lang="en">Chinese AI firm Moonshot files confidentially for Hong Kong IPO, sources say - Reuters</span></a>
-          <div class="brief-s">Reuters AI</div>
-        </div>
-      </div>
-      
-      <div class="brief">
-        <span class="brief-i">05</span>
-        <div>
-          <div class="kicker"><span class="l-es">Agentes</span><span class="l-en" lang="en">Agents</span></div>
-          <a class="brief-t" href="https://huggingface.co/blog/funes" target="_blank" rel="noopener noreferrer"><span class="l-es">Hugging Face introduce Funes para dar memoria persistente a agentes de código</span><span class="l-en" lang="en">Give Your Coding Agents a Memory You Own</span></a>
-          <div class="brief-s">Hugging Face Blog</div>
-        </div>
-      </div>
-      
+      <div class="rail-h"><span><span class="l-es">Claves del día</span><span class="l-en" lang="en">Key points</span></span><span class="lbl"><span class="l-es">Selección</span><span class="l-en" lang="en">Selection</span></span></div>
+      <ol class="keys">
+        <li>Meta lanza Muse Spark 1.3, igualando un modelo GPT de OpenAI y posicionándose como un lab frontier.</li><li>OpenAI presenta Astra, el primer modelo que cumple umbrales de ciberseguridad crítica para despliegue sensible.</li><li>Google DeepMind introduce Gemini 3.8 Flash, con mejor razonamiento, y Gemini 3.8 Flash Cyber para defensa.</li><li>Anthropic y Hugging Face avanzan en la infraestructura y despliegue de agentes, ofreciendo blueprints y memoria persistente.</li>
+      </ol>
       
       
       <div class="onradar">
@@ -581,13 +525,19 @@
         <p>Pruebas independientes que confirmen las capacidades de Muse Spark 1.3 y los umbrales de seguridad de Astra.</p>
       </div>
       
+      <div class="figures">
+        <span class="kicker"><span class="l-es">El radar en cifras</span><span class="l-en" lang="en">The radar in figures</span></span>
+        <strong class="big-n">15</strong>
+        <span class="fig-note">12 <span class="l-es">señales</span><span class="l-en" lang="en">signals</span> · 3 <span class="l-es">de contexto</span><span class="l-en" lang="en">context</span> · 11 <span class="l-es">descartadas</span><span class="l-en" lang="en">dropped</span></span>
+        <div class="ents"><span class="ent">Meta</span><span class="ent">OpenAI</span><span class="ent">Gemini</span><span class="ent">Anthropic</span><span class="ent">Claude</span></div>
+      </div>
     </aside>
   </section>
   
 
   
 
-  <!-- Resto de señales. Con un filtro activo se muestran todas (tambien la portada y En breve). -->
+  <!-- Resto de señales (#2..#12). Con un filtro activo se incluye tambien la portada. -->
   
   <section class="below">
     <div class="section-h h-all"><h2 class="sec"><span class="l-es">Más allá del titular</span><span class="l-en" lang="en">Beyond the headline</span></h2></div>
@@ -624,7 +574,7 @@
           </div>
         </article>
       
-        <article class="card dup" data-topic="agents_automation" data-new="1">
+        <article class="card" data-topic="agents_automation" data-new="1">
           <a href="https://claude.com/blog/claude-for-commerce-agents" target="_blank" rel="noopener noreferrer">
             <img class="card-img" src="https://cdn.prod.website-files.com/68a44d4040f98a4adf2207b6/6a95f44f1757be75a0616bd0_demo-retail.webp" data-fb="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIj48ZGVmcz48cGF0dGVybiBpZD0icCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNMjQgMEgwVjI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNFOEU3RTEiIHN0cm9rZS1vcGFjaXR5PSIuMDYiLz48L3BhdHRlcm4+PGxpbmVhckdyYWRpZW50IGlkPSJ2IiB4MT0iMCIgeTE9IjEiIHgyPSIuNzUiIHkyPSIuMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9Ii45NiIvPjxzdG9wIG9mZnNldD0iLjU1IiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9Ii40Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9IjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgZmlsbD0iIzBGMEYwRSIvPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI3ApIi8+PGxpbmUgeDE9IjMzMiIgeTE9Ijc2IiB4Mj0iNDI3IiB5Mj0iNzMiIHN0cm9rZT0iIzM0RDM5OSIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9Ii4zOCIvPjxsaW5lIHgxPSIzMzIiIHkxPSI3NiIgeDI9IjM0MyIgeTI9IjE0MCIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjQyNyIgeTE9IjczIiB4Mj0iNDgxIiB5Mj0iNzQiIHN0cm9rZT0iIzM0RDM5OSIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9Ii4zOCIvPjxsaW5lIHgxPSI0MjciIHkxPSI3MyIgeDI9IjQyOSIgeTI9IjExNiIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjQ4MSIgeTE9Ijc0IiB4Mj0iNDI5IiB5Mj0iMTE2IiBzdHJva2U9IiMzNEQzOTkiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIuMzgiLz48bGluZSB4MT0iNDgxIiB5MT0iNzQiIHgyPSI1MDQiIHkyPSIxMDgiIHN0cm9rZT0iIzM0RDM5OSIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9Ii4zOCIvPjxsaW5lIHgxPSI2MDEiIHkxPSI2MyIgeDI9IjUwNCIgeTI9IjEwOCIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjYwMSIgeTE9IjYzIiB4Mj0iNTU4IiB5Mj0iMTE1IiBzdHJva2U9IiMzNEQzOTkiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIuMzgiLz48bGluZSB4MT0iMzQzIiB5MT0iMTQwIiB4Mj0iMzI1IiB5Mj0iMjA4IiBzdHJva2U9IiMzNEQzOTkiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIuMzgiLz48bGluZSB4MT0iMzQzIiB5MT0iMTQwIiB4Mj0iMzk4IiB5Mj0iMTk0IiBzdHJva2U9IiMzNEQzOTkiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIuMzgiLz48bGluZSB4MT0iNTA0IiB5MT0iMTA4IiB4Mj0iNTU4IiB5Mj0iMTE1IiBzdHJva2U9IiMzNEQzOTkiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIuMzgiLz48bGluZSB4MT0iNTU4IiB5MT0iMTE1IiB4Mj0iNjAxIiB5Mj0iMjE0IiBzdHJva2U9IiMzNEQzOTkiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIuMzgiLz48bGluZSB4MT0iMzI1IiB5MT0iMjA4IiB4Mj0iMzk4IiB5Mj0iMTk0IiBzdHJva2U9IiMzNEQzOTkiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIuMzgiLz48bGluZSB4MT0iMzk4IiB5MT0iMTk0IiB4Mj0iNDgwIiB5Mj0iMjI4IiBzdHJva2U9IiMzNEQzOTkiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIuMzgiLz48bGluZSB4MT0iNDgwIiB5MT0iMjI4IiB4Mj0iNjAxIiB5Mj0iMjE0IiBzdHJva2U9IiMzNEQzOTkiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIuMzgiLz48Y2lyY2xlIGN4PSIzMzIiIGN5PSI3NiIgcj0iMTEiIGZpbGw9IiMzNEQzOTkiIG9wYWNpdHk9Ii45NSIvPjxjaXJjbGUgY3g9IjMzMiIgY3k9Ijc2IiByPSIyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNCIgb3BhY2l0eT0iLjQiLz48Y2lyY2xlIGN4PSI0MjciIGN5PSI3MyIgcj0iNiIgZmlsbD0iIzM0RDM5OSIgb3BhY2l0eT0iLjYiLz48Y2lyY2xlIGN4PSI0ODEiIGN5PSI3NCIgcj0iNiIgZmlsbD0iIzM0RDM5OSIgb3BhY2l0eT0iLjYiLz48Y2lyY2xlIGN4PSI2MDEiIGN5PSI2MyIgcj0iNiIgZmlsbD0iIzM0RDM5OSIgb3BhY2l0eT0iLjYiLz48Y2lyY2xlIGN4PSIzNDMiIGN5PSIxNDAiIHI9IjExIiBmaWxsPSIjMzREMzk5IiBvcGFjaXR5PSIuOTUiLz48Y2lyY2xlIGN4PSIzNDMiIGN5PSIxNDAiIHI9IjIwIiBmaWxsPSJub25lIiBzdHJva2U9IiMzNEQzOTkiIHN0cm9rZS13aWR0aD0iMS40IiBvcGFjaXR5PSIuNCIvPjxjaXJjbGUgY3g9IjQyOSIgY3k9IjExNiIgcj0iNiIgZmlsbD0iIzM0RDM5OSIgb3BhY2l0eT0iLjYiLz48Y2lyY2xlIGN4PSI1MDQiIGN5PSIxMDgiIHI9IjYiIGZpbGw9IiMzNEQzOTkiIG9wYWNpdHk9Ii42Ii8+PGNpcmNsZSBjeD0iNTU4IiBjeT0iMTE1IiByPSI2IiBmaWxsPSIjMzREMzk5IiBvcGFjaXR5PSIuNiIvPjxjaXJjbGUgY3g9IjMyNSIgY3k9IjIwOCIgcj0iMTEiIGZpbGw9IiMzNEQzOTkiIG9wYWNpdHk9Ii45NSIvPjxjaXJjbGUgY3g9IjMyNSIgY3k9IjIwOCIgcj0iMjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzM0RDM5OSIgc3Ryb2tlLXdpZHRoPSIxLjQiIG9wYWNpdHk9Ii40Ii8+PGNpcmNsZSBjeD0iMzk4IiBjeT0iMTk0IiByPSI2IiBmaWxsPSIjMzREMzk5IiBvcGFjaXR5PSIuNiIvPjxjaXJjbGUgY3g9IjQ4MCIgY3k9IjIyOCIgcj0iNiIgZmlsbD0iIzM0RDM5OSIgb3BhY2l0eT0iLjYiLz48Y2lyY2xlIGN4PSI2MDEiIGN5PSIyMTQiIHI9IjYiIGZpbGw9IiMzNEQzOTkiIG9wYWNpdHk9Ii42Ii8+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIzNjAiIGZpbGw9InVybCgjdikiLz48cmVjdCB4PSI0NiIgeT0iMjM2IiB3aWR0aD0iMTkyIiBoZWlnaHQ9IjUwIiBmaWxsPSIjRThFN0UxIi8+PHJlY3QgeD0iNDAiIHk9IjIzMCIgd2lkdGg9IjE5MiIgaGVpZ2h0PSI1MCIgZmlsbD0iIzM0RDM5OSIgc3Ryb2tlPSIjRThFN0UxIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSI1NCIgeT0iMjY4IiBmaWxsPSIjMTIxMjExIiBmb250LWZhbWlseT0iJ1NwYWNlIEdyb3Rlc2snLCAnQXJpYWwgTmFycm93JywgQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMzQiIGZvbnQtd2VpZ2h0PSI3MDAiIGxldHRlci1zcGFjaW5nPSItLjUiPkFHRU5URVM8L3RleHQ+PHJlY3QgeD0iNDAiIHk9IjI5OCIgd2lkdGg9IjEyIiBoZWlnaHQ9IjEyIiBmaWxsPSIjMzREMzk5IiBzdHJva2U9IiNFOEU3RTEiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjYyIiB5PSIzMDkiIGZpbGw9IiNFOEU3RTEiIGZvbnQtZmFtaWx5PSInSmV0QnJhaW5zIE1vbm8nLCB1aS1tb25vc3BhY2UsIE1lbmxvLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTUiIGZvbnQtd2VpZ2h0PSI2MDAiIGxldHRlci1zcGFjaW5nPSIuNSI+QU5USFJPUElDPC90ZXh0Pjwvc3ZnPg==" data-fb-en="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIj48ZGVmcz48cGF0dGVybiBpZD0icCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNMjQgMEgwVjI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNFOEU3RTEiIHN0cm9rZS1vcGFjaXR5PSIuMDYiLz48L3BhdHRlcm4+PGxpbmVhckdyYWRpZW50IGlkPSJ2IiB4MT0iMCIgeTE9IjEiIHgyPSIuNzUiIHkyPSIuMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9Ii45NiIvPjxzdG9wIG9mZnNldD0iLjU1IiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9Ii40Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9IjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgZmlsbD0iIzBGMEYwRSIvPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI3ApIi8+PGxpbmUgeDE9IjMzMiIgeTE9Ijc2IiB4Mj0iNDI3IiB5Mj0iNzMiIHN0cm9rZT0iIzM0RDM5OSIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9Ii4zOCIvPjxsaW5lIHgxPSIzMzIiIHkxPSI3NiIgeDI9IjM0MyIgeTI9IjE0MCIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjQyNyIgeTE9IjczIiB4Mj0iNDgxIiB5Mj0iNzQiIHN0cm9rZT0iIzM0RDM5OSIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9Ii4zOCIvPjxsaW5lIHgxPSI0MjciIHkxPSI3MyIgeDI9IjQyOSIgeTI9IjExNiIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjQ4MSIgeTE9Ijc0IiB4Mj0iNDI5IiB5Mj0iMTE2IiBzdHJva2U9IiMzNEQzOTkiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIuMzgiLz48bGluZSB4MT0iNDgxIiB5MT0iNzQiIHgyPSI1MDQiIHkyPSIxMDgiIHN0cm9rZT0iIzM0RDM5OSIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9Ii4zOCIvPjxsaW5lIHgxPSI2MDEiIHkxPSI2MyIgeDI9IjUwNCIgeTI9IjEwOCIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjYwMSIgeTE9IjYzIiB4Mj0iNTU4IiB5Mj0iMTE1IiBzdHJva2U9IiMzNEQzOTkiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIuMzgiLz48bGluZSB4MT0iMzQzIiB5MT0iMTQwIiB4Mj0iMzI1IiB5Mj0iMjA4IiBzdHJva2U9IiMzNEQzOTkiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIuMzgiLz48bGluZSB4MT0iMzQzIiB5MT0iMTQwIiB4Mj0iMzk4IiB5Mj0iMTk0IiBzdHJva2U9IiMzNEQzOTkiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIuMzgiLz48bGluZSB4MT0iNTA0IiB5MT0iMTA4IiB4Mj0iNTU4IiB5Mj0iMTE1IiBzdHJva2U9IiMzNEQzOTkiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIuMzgiLz48bGluZSB4MT0iNTU4IiB5MT0iMTE1IiB4Mj0iNjAxIiB5Mj0iMjE0IiBzdHJva2U9IiMzNEQzOTkiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIuMzgiLz48bGluZSB4MT0iMzI1IiB5MT0iMjA4IiB4Mj0iMzk4IiB5Mj0iMTk0IiBzdHJva2U9IiMzNEQzOTkiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIuMzgiLz48bGluZSB4MT0iMzk4IiB5MT0iMTk0IiB4Mj0iNDgwIiB5Mj0iMjI4IiBzdHJva2U9IiMzNEQzOTkiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIuMzgiLz48bGluZSB4MT0iNDgwIiB5MT0iMjI4IiB4Mj0iNjAxIiB5Mj0iMjE0IiBzdHJva2U9IiMzNEQzOTkiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIuMzgiLz48Y2lyY2xlIGN4PSIzMzIiIGN5PSI3NiIgcj0iMTEiIGZpbGw9IiMzNEQzOTkiIG9wYWNpdHk9Ii45NSIvPjxjaXJjbGUgY3g9IjMzMiIgY3k9Ijc2IiByPSIyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNCIgb3BhY2l0eT0iLjQiLz48Y2lyY2xlIGN4PSI0MjciIGN5PSI3MyIgcj0iNiIgZmlsbD0iIzM0RDM5OSIgb3BhY2l0eT0iLjYiLz48Y2lyY2xlIGN4PSI0ODEiIGN5PSI3NCIgcj0iNiIgZmlsbD0iIzM0RDM5OSIgb3BhY2l0eT0iLjYiLz48Y2lyY2xlIGN4PSI2MDEiIGN5PSI2MyIgcj0iNiIgZmlsbD0iIzM0RDM5OSIgb3BhY2l0eT0iLjYiLz48Y2lyY2xlIGN4PSIzNDMiIGN5PSIxNDAiIHI9IjExIiBmaWxsPSIjMzREMzk5IiBvcGFjaXR5PSIuOTUiLz48Y2lyY2xlIGN4PSIzNDMiIGN5PSIxNDAiIHI9IjIwIiBmaWxsPSJub25lIiBzdHJva2U9IiMzNEQzOTkiIHN0cm9rZS13aWR0aD0iMS40IiBvcGFjaXR5PSIuNCIvPjxjaXJjbGUgY3g9IjQyOSIgY3k9IjExNiIgcj0iNiIgZmlsbD0iIzM0RDM5OSIgb3BhY2l0eT0iLjYiLz48Y2lyY2xlIGN4PSI1MDQiIGN5PSIxMDgiIHI9IjYiIGZpbGw9IiMzNEQzOTkiIG9wYWNpdHk9Ii42Ii8+PGNpcmNsZSBjeD0iNTU4IiBjeT0iMTE1IiByPSI2IiBmaWxsPSIjMzREMzk5IiBvcGFjaXR5PSIuNiIvPjxjaXJjbGUgY3g9IjMyNSIgY3k9IjIwOCIgcj0iMTEiIGZpbGw9IiMzNEQzOTkiIG9wYWNpdHk9Ii45NSIvPjxjaXJjbGUgY3g9IjMyNSIgY3k9IjIwOCIgcj0iMjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzM0RDM5OSIgc3Ryb2tlLXdpZHRoPSIxLjQiIG9wYWNpdHk9Ii40Ii8+PGNpcmNsZSBjeD0iMzk4IiBjeT0iMTk0IiByPSI2IiBmaWxsPSIjMzREMzk5IiBvcGFjaXR5PSIuNiIvPjxjaXJjbGUgY3g9IjQ4MCIgY3k9IjIyOCIgcj0iNiIgZmlsbD0iIzM0RDM5OSIgb3BhY2l0eT0iLjYiLz48Y2lyY2xlIGN4PSI2MDEiIGN5PSIyMTQiIHI9IjYiIGZpbGw9IiMzNEQzOTkiIG9wYWNpdHk9Ii42Ii8+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIzNjAiIGZpbGw9InVybCgjdikiLz48cmVjdCB4PSI0NiIgeT0iMjM2IiB3aWR0aD0iMTY5IiBoZWlnaHQ9IjUwIiBmaWxsPSIjRThFN0UxIi8+PHJlY3QgeD0iNDAiIHk9IjIzMCIgd2lkdGg9IjE2OSIgaGVpZ2h0PSI1MCIgZmlsbD0iIzM0RDM5OSIgc3Ryb2tlPSIjRThFN0UxIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSI1NCIgeT0iMjY4IiBmaWxsPSIjMTIxMjExIiBmb250LWZhbWlseT0iJ1NwYWNlIEdyb3Rlc2snLCAnQXJpYWwgTmFycm93JywgQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMzQiIGZvbnQtd2VpZ2h0PSI3MDAiIGxldHRlci1zcGFjaW5nPSItLjUiPkFHRU5UUzwvdGV4dD48cmVjdCB4PSI0MCIgeT0iMjk4IiB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIGZpbGw9IiMzNEQzOTkiIHN0cm9rZT0iI0U4RTdFMSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iNjIiIHk9IjMwOSIgZmlsbD0iI0U4RTdFMSIgZm9udC1mYW1pbHk9IidKZXRCcmFpbnMgTW9ubycsIHVpLW1vbm9zcGFjZSwgTWVubG8sIG1vbm9zcGFjZSIgZm9udC1zaXplPSIxNSIgZm9udC13ZWlnaHQ9IjYwMCIgbGV0dGVyLXNwYWNpbmc9Ii41Ij5BTlRIUk9QSUM8L3RleHQ+PC9zdmc+" alt="" loading="lazy" referrerpolicy="no-referrer"/>
           </a>
@@ -654,7 +604,7 @@
           </div>
         </article>
       
-        <article class="card dup" data-topic="frontier_capability" data-new="1">
+        <article class="card" data-topic="frontier_capability" data-new="1">
           <a href="https://www.latent.space/p/ainews-muse-spark-13-matches-gpt" target="_blank" rel="noopener noreferrer">
             <img class="card-img" src="https://substackcdn.com/image/fetch/$s_!vyuW!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff20254a9-6670-4842-b0c9-89101011f15c_2342x984.jpeg" data-fb="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIj48ZGVmcz48cGF0dGVybiBpZD0icCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNMjQgMEgwVjI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNFOEU3RTEiIHN0cm9rZS1vcGFjaXR5PSIuMDYiLz48L3BhdHRlcm4+PGxpbmVhckdyYWRpZW50IGlkPSJ2IiB4MT0iMCIgeTE9IjEiIHgyPSIuNzUiIHkyPSIuMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9Ii45NiIvPjxzdG9wIG9mZnNldD0iLjU1IiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9Ii40Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9IjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgZmlsbD0iIzBGMEYwRSIvPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI3ApIi8+PGNpcmNsZSBjeD0iNDY2IiBjeT0iOTAiIHI9IjM0IiBmaWxsPSJub25lIiBzdHJva2U9IiNGRjU3MjIiIHN0cm9rZS13aWR0aD0iMi40IiBvcGFjaXR5PSIwLjYiLz48Y2lyY2xlIGN4PSI0NjYiIGN5PSI5MCIgcj0iNzIiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZGNTcyMiIgc3Ryb2tlLXdpZHRoPSIyLjIiIG9wYWNpdHk9IjAuNiIvPjxjaXJjbGUgY3g9IjQ2NiIgY3k9IjkwIiByPSIxMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZGNTcyMiIgc3Ryb2tlLXdpZHRoPSIyIiBvcGFjaXR5PSIwLjUiLz48Y2lyY2xlIGN4PSI0NjYiIGN5PSI5MCIgcj0iMTQ4IiBmaWxsPSJub25lIiBzdHJva2U9IiNGRjU3MjIiIHN0cm9rZS13aWR0aD0iMS44IiBvcGFjaXR5PSIwLjQiLz48Y2lyY2xlIGN4PSI0NjYiIGN5PSI5MCIgcj0iMTg2IiBmaWxsPSJub25lIiBzdHJva2U9IiNGRjU3MjIiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIwLjQiLz48Y2lyY2xlIGN4PSI0NjYiIGN5PSI5MCIgcj0iMjI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNGRjU3MjIiIHN0cm9rZS13aWR0aD0iMS40IiBvcGFjaXR5PSIwLjMiLz48Y2lyY2xlIGN4PSI0NjYiIGN5PSI5MCIgcj0iMjYyIiBmaWxsPSJub25lIiBzdHJva2U9IiNGRjU3MjIiIHN0cm9rZS13aWR0aD0iMS4yIiBvcGFjaXR5PSIwLjMiLz48Y2lyY2xlIGN4PSI0NjYiIGN5PSI5MCIgcj0iMzAwIiBmaWxsPSJub25lIiBzdHJva2U9IiNGRjU3MjIiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC4yIi8+PGNpcmNsZSBjeD0iNDY2IiBjeT0iOTAiIHI9IjMzOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkY1NzIyIiBzdHJva2Utd2lkdGg9IjAuOCIgb3BhY2l0eT0iMC4xIi8+PGNpcmNsZSBjeD0iNDY2IiBjeT0iOTAiIHI9IjkiIGZpbGw9IiNGRjU3MjIiLz48Y2lyY2xlIGN4PSIzOTQiIGN5PSI4OC42IiByPSI0LjUiIGZpbGw9IiNGRjU3MjIiIG9wYWNpdHk9Ii45Ii8+PGNpcmNsZSBjeD0iMzIzLjkiIGN5PSIyNjMuMiIgcj0iNC41IiBmaWxsPSIjRkY1NzIyIiBvcGFjaXR5PSIuOSIvPjxjaXJjbGUgY3g9IjI3Ny4xIiBjeT0iMjEwLjQiIHI9IjQuNSIgZmlsbD0iI0ZGNTcyMiIgb3BhY2l0eT0iLjkiLz48Y2lyY2xlIGN4PSIyODIuMSIgY3k9IjYxLjgiIHI9IjQuNSIgZmlsbD0iI0ZGNTcyMiIgb3BhY2l0eT0iLjkiLz48Y2lyY2xlIGN4PSI0NTIuOSIgY3k9IjE2MC44IiByPSI0LjUiIGZpbGw9IiNGRjU3MjIiIG9wYWNpdHk9Ii45Ii8+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIzNjAiIGZpbGw9InVybCgjdikiLz48cmVjdCB4PSI0NiIgeT0iMjM2IiB3aWR0aD0iNDUxIiBoZWlnaHQ9IjUwIiBmaWxsPSIjRThFN0UxIi8+PHJlY3QgeD0iNDAiIHk9IjIzMCIgd2lkdGg9IjQ1MSIgaGVpZ2h0PSI1MCIgZmlsbD0iI0ZGNTcyMiIgc3Ryb2tlPSIjRThFN0UxIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSI1NCIgeT0iMjY4IiBmaWxsPSIjMTIxMjExIiBmb250LWZhbWlseT0iJ1NwYWNlIEdyb3Rlc2snLCAnQXJpYWwgTmFycm93JywgQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMzQiIGZvbnQtd2VpZ2h0PSI3MDAiIGxldHRlci1zcGFjaW5nPSItLjUiPkNBUEFDSURBRCBGUk9OVElFUjwvdGV4dD48cmVjdCB4PSI0MCIgeT0iMjk4IiB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIGZpbGw9IiNGRjU3MjIiIHN0cm9rZT0iI0U4RTdFMSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iNjIiIHk9IjMwOSIgZmlsbD0iI0U4RTdFMSIgZm9udC1mYW1pbHk9IidKZXRCcmFpbnMgTW9ubycsIHVpLW1vbm9zcGFjZSwgTWVubG8sIG1vbm9zcGFjZSIgZm9udC1zaXplPSIxNSIgZm9udC13ZWlnaHQ9IjYwMCIgbGV0dGVyLXNwYWNpbmc9Ii41Ij5MQVRFTlQgU1BBQ0U8L3RleHQ+PC9zdmc+" data-fb-en="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIj48ZGVmcz48cGF0dGVybiBpZD0icCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNMjQgMEgwVjI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNFOEU3RTEiIHN0cm9rZS1vcGFjaXR5PSIuMDYiLz48L3BhdHRlcm4+PGxpbmVhckdyYWRpZW50IGlkPSJ2IiB4MT0iMCIgeTE9IjEiIHgyPSIuNzUiIHkyPSIuMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9Ii45NiIvPjxzdG9wIG9mZnNldD0iLjU1IiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9Ii40Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9IjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgZmlsbD0iIzBGMEYwRSIvPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI3ApIi8+PGNpcmNsZSBjeD0iNDY2IiBjeT0iOTAiIHI9IjM0IiBmaWxsPSJub25lIiBzdHJva2U9IiNGRjU3MjIiIHN0cm9rZS13aWR0aD0iMi40IiBvcGFjaXR5PSIwLjYiLz48Y2lyY2xlIGN4PSI0NjYiIGN5PSI5MCIgcj0iNzIiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZGNTcyMiIgc3Ryb2tlLXdpZHRoPSIyLjIiIG9wYWNpdHk9IjAuNiIvPjxjaXJjbGUgY3g9IjQ2NiIgY3k9IjkwIiByPSIxMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZGNTcyMiIgc3Ryb2tlLXdpZHRoPSIyIiBvcGFjaXR5PSIwLjUiLz48Y2lyY2xlIGN4PSI0NjYiIGN5PSI5MCIgcj0iMTQ4IiBmaWxsPSJub25lIiBzdHJva2U9IiNGRjU3MjIiIHN0cm9rZS13aWR0aD0iMS44IiBvcGFjaXR5PSIwLjQiLz48Y2lyY2xlIGN4PSI0NjYiIGN5PSI5MCIgcj0iMTg2IiBmaWxsPSJub25lIiBzdHJva2U9IiNGRjU3MjIiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIwLjQiLz48Y2lyY2xlIGN4PSI0NjYiIGN5PSI5MCIgcj0iMjI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNGRjU3MjIiIHN0cm9rZS13aWR0aD0iMS40IiBvcGFjaXR5PSIwLjMiLz48Y2lyY2xlIGN4PSI0NjYiIGN5PSI5MCIgcj0iMjYyIiBmaWxsPSJub25lIiBzdHJva2U9IiNGRjU3MjIiIHN0cm9rZS13aWR0aD0iMS4yIiBvcGFjaXR5PSIwLjMiLz48Y2lyY2xlIGN4PSI0NjYiIGN5PSI5MCIgcj0iMzAwIiBmaWxsPSJub25lIiBzdHJva2U9IiNGRjU3MjIiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC4yIi8+PGNpcmNsZSBjeD0iNDY2IiBjeT0iOTAiIHI9IjMzOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkY1NzIyIiBzdHJva2Utd2lkdGg9IjAuOCIgb3BhY2l0eT0iMC4xIi8+PGNpcmNsZSBjeD0iNDY2IiBjeT0iOTAiIHI9IjkiIGZpbGw9IiNGRjU3MjIiLz48Y2lyY2xlIGN4PSIzOTQiIGN5PSI4OC42IiByPSI0LjUiIGZpbGw9IiNGRjU3MjIiIG9wYWNpdHk9Ii45Ii8+PGNpcmNsZSBjeD0iMzIzLjkiIGN5PSIyNjMuMiIgcj0iNC41IiBmaWxsPSIjRkY1NzIyIiBvcGFjaXR5PSIuOSIvPjxjaXJjbGUgY3g9IjI3Ny4xIiBjeT0iMjEwLjQiIHI9IjQuNSIgZmlsbD0iI0ZGNTcyMiIgb3BhY2l0eT0iLjkiLz48Y2lyY2xlIGN4PSIyODIuMSIgY3k9IjYxLjgiIHI9IjQuNSIgZmlsbD0iI0ZGNTcyMiIgb3BhY2l0eT0iLjkiLz48Y2lyY2xlIGN4PSI0NTIuOSIgY3k9IjE2MC44IiByPSI0LjUiIGZpbGw9IiNGRjU3MjIiIG9wYWNpdHk9Ii45Ii8+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIzNjAiIGZpbGw9InVybCgjdikiLz48cmVjdCB4PSI0NiIgeT0iMjM2IiB3aWR0aD0iNDc0IiBoZWlnaHQ9IjUwIiBmaWxsPSIjRThFN0UxIi8+PHJlY3QgeD0iNDAiIHk9IjIzMCIgd2lkdGg9IjQ3NCIgaGVpZ2h0PSI1MCIgZmlsbD0iI0ZGNTcyMiIgc3Ryb2tlPSIjRThFN0UxIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSI1NCIgeT0iMjY4IiBmaWxsPSIjMTIxMjExIiBmb250LWZhbWlseT0iJ1NwYWNlIEdyb3Rlc2snLCAnQXJpYWwgTmFycm93JywgQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMzQiIGZvbnQtd2VpZ2h0PSI3MDAiIGxldHRlci1zcGFjaW5nPSItLjUiPkZST05USUVSIENBUEFCSUxJVFk8L3RleHQ+PHJlY3QgeD0iNDAiIHk9IjI5OCIgd2lkdGg9IjEyIiBoZWlnaHQ9IjEyIiBmaWxsPSIjRkY1NzIyIiBzdHJva2U9IiNFOEU3RTEiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjYyIiB5PSIzMDkiIGZpbGw9IiNFOEU3RTEiIGZvbnQtZmFtaWx5PSInSmV0QnJhaW5zIE1vbm8nLCB1aS1tb25vc3BhY2UsIE1lbmxvLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTUiIGZvbnQtd2VpZ2h0PSI2MDAiIGxldHRlci1zcGFjaW5nPSIuNSI+TEFURU5UIFNQQUNFPC90ZXh0Pjwvc3ZnPg==" alt="" loading="lazy" referrerpolicy="no-referrer"/>
           </a>
@@ -684,7 +634,7 @@
           </div>
         </article>
       
-        <article class="card dup" data-topic="frontier_capability" data-new="1">
+        <article class="card" data-topic="frontier_capability" data-new="1">
           <a href="https://artificialanalysis.ai/articles/muse-spark-1-3" target="_blank" rel="noopener noreferrer">
             <img class="card-img" src="https://cdn.sanity.io/images/6vfeftx9/articles/4138814cfc5a134d79ea64afde953ce6209b62d6-1938x1938.jpg?w=1200&amp;auto=format" data-fb="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIj48ZGVmcz48cGF0dGVybiBpZD0icCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNMjQgMEgwVjI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNFOEU3RTEiIHN0cm9rZS1vcGFjaXR5PSIuMDYiLz48L3BhdHRlcm4+PGxpbmVhckdyYWRpZW50IGlkPSJ2IiB4MT0iMCIgeTE9IjEiIHgyPSIuNzUiIHkyPSIuMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9Ii45NiIvPjxzdG9wIG9mZnNldD0iLjU1IiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9Ii40Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9IjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgZmlsbD0iIzBGMEYwRSIvPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI3ApIi8+PGNpcmNsZSBjeD0iNDU4IiBjeT0iOTAiIHI9IjM0IiBmaWxsPSJub25lIiBzdHJva2U9IiNGRjU3MjIiIHN0cm9rZS13aWR0aD0iMi40IiBvcGFjaXR5PSIwLjYiLz48Y2lyY2xlIGN4PSI0NTgiIGN5PSI5MCIgcj0iNzIiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZGNTcyMiIgc3Ryb2tlLXdpZHRoPSIyLjIiIG9wYWNpdHk9IjAuNiIvPjxjaXJjbGUgY3g9IjQ1OCIgY3k9IjkwIiByPSIxMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZGNTcyMiIgc3Ryb2tlLXdpZHRoPSIyIiBvcGFjaXR5PSIwLjUiLz48Y2lyY2xlIGN4PSI0NTgiIGN5PSI5MCIgcj0iMTQ4IiBmaWxsPSJub25lIiBzdHJva2U9IiNGRjU3MjIiIHN0cm9rZS13aWR0aD0iMS44IiBvcGFjaXR5PSIwLjQiLz48Y2lyY2xlIGN4PSI0NTgiIGN5PSI5MCIgcj0iMTg2IiBmaWxsPSJub25lIiBzdHJva2U9IiNGRjU3MjIiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIwLjQiLz48Y2lyY2xlIGN4PSI0NTgiIGN5PSI5MCIgcj0iMjI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNGRjU3MjIiIHN0cm9rZS13aWR0aD0iMS40IiBvcGFjaXR5PSIwLjMiLz48Y2lyY2xlIGN4PSI0NTgiIGN5PSI5MCIgcj0iMjYyIiBmaWxsPSJub25lIiBzdHJva2U9IiNGRjU3MjIiIHN0cm9rZS13aWR0aD0iMS4yIiBvcGFjaXR5PSIwLjMiLz48Y2lyY2xlIGN4PSI0NTgiIGN5PSI5MCIgcj0iMzAwIiBmaWxsPSJub25lIiBzdHJva2U9IiNGRjU3MjIiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC4yIi8+PGNpcmNsZSBjeD0iNDU4IiBjeT0iOTAiIHI9IjMzOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkY1NzIyIiBzdHJva2Utd2lkdGg9IjAuOCIgb3BhY2l0eT0iMC4xIi8+PGNpcmNsZSBjeD0iNDU4IiBjeT0iOTAiIHI9IjkiIGZpbGw9IiNGRjU3MjIiLz48Y2lyY2xlIGN4PSI0ODkuMiIgY3k9IjIzNC43IiByPSI0LjUiIGZpbGw9IiNGRjU3MjIiIG9wYWNpdHk9Ii45Ii8+PGNpcmNsZSBjeD0iNDE1LjMiIGN5PSIzMDkuOSIgcj0iNC41IiBmaWxsPSIjRkY1NzIyIiBvcGFjaXR5PSIuOSIvPjxjaXJjbGUgY3g9IjYyOC43IiBjeT0iMjM1LjEiIHI9IjQuNSIgZmlsbD0iI0ZGNTcyMiIgb3BhY2l0eT0iLjkiLz48Y2lyY2xlIGN4PSI0ODIuOSIgY3k9IjE5Ny4xIiByPSI0LjUiIGZpbGw9IiNGRjU3MjIiIG9wYWNpdHk9Ii45Ii8+PGNpcmNsZSBjeD0iMzkyLjgiIGN5PSIyMjIuOSIgcj0iNC41IiBmaWxsPSIjRkY1NzIyIiBvcGFjaXR5PSIuOSIvPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI3YpIi8+PHJlY3QgeD0iNDYiIHk9IjIzNiIgd2lkdGg9IjQ1MSIgaGVpZ2h0PSI1MCIgZmlsbD0iI0U4RTdFMSIvPjxyZWN0IHg9IjQwIiB5PSIyMzAiIHdpZHRoPSI0NTEiIGhlaWdodD0iNTAiIGZpbGw9IiNGRjU3MjIiIHN0cm9rZT0iI0U4RTdFMSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iNTQiIHk9IjI2OCIgZmlsbD0iIzEyMTIxMSIgZm9udC1mYW1pbHk9IidTcGFjZSBHcm90ZXNrJywgJ0FyaWFsIE5hcnJvdycsIEFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjM0IiBmb250LXdlaWdodD0iNzAwIiBsZXR0ZXItc3BhY2luZz0iLS41Ij5DQVBBQ0lEQUQgRlJPTlRJRVI8L3RleHQ+PHJlY3QgeD0iNDAiIHk9IjI5OCIgd2lkdGg9IjEyIiBoZWlnaHQ9IjEyIiBmaWxsPSIjRkY1NzIyIiBzdHJva2U9IiNFOEU3RTEiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjYyIiB5PSIzMDkiIGZpbGw9IiNFOEU3RTEiIGZvbnQtZmFtaWx5PSInSmV0QnJhaW5zIE1vbm8nLCB1aS1tb25vc3BhY2UsIE1lbmxvLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTUiIGZvbnQtd2VpZ2h0PSI2MDAiIGxldHRlci1zcGFjaW5nPSIuNSI+QVJUSUZJQ0lBTCBBTkFMWVNJUzwvdGV4dD48L3N2Zz4=" data-fb-en="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIj48ZGVmcz48cGF0dGVybiBpZD0icCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNMjQgMEgwVjI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNFOEU3RTEiIHN0cm9rZS1vcGFjaXR5PSIuMDYiLz48L3BhdHRlcm4+PGxpbmVhckdyYWRpZW50IGlkPSJ2IiB4MT0iMCIgeTE9IjEiIHgyPSIuNzUiIHkyPSIuMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9Ii45NiIvPjxzdG9wIG9mZnNldD0iLjU1IiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9Ii40Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9IjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgZmlsbD0iIzBGMEYwRSIvPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI3ApIi8+PGNpcmNsZSBjeD0iNDU4IiBjeT0iOTAiIHI9IjM0IiBmaWxsPSJub25lIiBzdHJva2U9IiNGRjU3MjIiIHN0cm9rZS13aWR0aD0iMi40IiBvcGFjaXR5PSIwLjYiLz48Y2lyY2xlIGN4PSI0NTgiIGN5PSI5MCIgcj0iNzIiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZGNTcyMiIgc3Ryb2tlLXdpZHRoPSIyLjIiIG9wYWNpdHk9IjAuNiIvPjxjaXJjbGUgY3g9IjQ1OCIgY3k9IjkwIiByPSIxMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZGNTcyMiIgc3Ryb2tlLXdpZHRoPSIyIiBvcGFjaXR5PSIwLjUiLz48Y2lyY2xlIGN4PSI0NTgiIGN5PSI5MCIgcj0iMTQ4IiBmaWxsPSJub25lIiBzdHJva2U9IiNGRjU3MjIiIHN0cm9rZS13aWR0aD0iMS44IiBvcGFjaXR5PSIwLjQiLz48Y2lyY2xlIGN4PSI0NTgiIGN5PSI5MCIgcj0iMTg2IiBmaWxsPSJub25lIiBzdHJva2U9IiNGRjU3MjIiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIwLjQiLz48Y2lyY2xlIGN4PSI0NTgiIGN5PSI5MCIgcj0iMjI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNGRjU3MjIiIHN0cm9rZS13aWR0aD0iMS40IiBvcGFjaXR5PSIwLjMiLz48Y2lyY2xlIGN4PSI0NTgiIGN5PSI5MCIgcj0iMjYyIiBmaWxsPSJub25lIiBzdHJva2U9IiNGRjU3MjIiIHN0cm9rZS13aWR0aD0iMS4yIiBvcGFjaXR5PSIwLjMiLz48Y2lyY2xlIGN4PSI0NTgiIGN5PSI5MCIgcj0iMzAwIiBmaWxsPSJub25lIiBzdHJva2U9IiNGRjU3MjIiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC4yIi8+PGNpcmNsZSBjeD0iNDU4IiBjeT0iOTAiIHI9IjMzOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkY1NzIyIiBzdHJva2Utd2lkdGg9IjAuOCIgb3BhY2l0eT0iMC4xIi8+PGNpcmNsZSBjeD0iNDU4IiBjeT0iOTAiIHI9IjkiIGZpbGw9IiNGRjU3MjIiLz48Y2lyY2xlIGN4PSI0ODkuMiIgY3k9IjIzNC43IiByPSI0LjUiIGZpbGw9IiNGRjU3MjIiIG9wYWNpdHk9Ii45Ii8+PGNpcmNsZSBjeD0iNDE1LjMiIGN5PSIzMDkuOSIgcj0iNC41IiBmaWxsPSIjRkY1NzIyIiBvcGFjaXR5PSIuOSIvPjxjaXJjbGUgY3g9IjYyOC43IiBjeT0iMjM1LjEiIHI9IjQuNSIgZmlsbD0iI0ZGNTcyMiIgb3BhY2l0eT0iLjkiLz48Y2lyY2xlIGN4PSI0ODIuOSIgY3k9IjE5Ny4xIiByPSI0LjUiIGZpbGw9IiNGRjU3MjIiIG9wYWNpdHk9Ii45Ii8+PGNpcmNsZSBjeD0iMzkyLjgiIGN5PSIyMjIuOSIgcj0iNC41IiBmaWxsPSIjRkY1NzIyIiBvcGFjaXR5PSIuOSIvPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI3YpIi8+PHJlY3QgeD0iNDYiIHk9IjIzNiIgd2lkdGg9IjQ3NCIgaGVpZ2h0PSI1MCIgZmlsbD0iI0U4RTdFMSIvPjxyZWN0IHg9IjQwIiB5PSIyMzAiIHdpZHRoPSI0NzQiIGhlaWdodD0iNTAiIGZpbGw9IiNGRjU3MjIiIHN0cm9rZT0iI0U4RTdFMSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iNTQiIHk9IjI2OCIgZmlsbD0iIzEyMTIxMSIgZm9udC1mYW1pbHk9IidTcGFjZSBHcm90ZXNrJywgJ0FyaWFsIE5hcnJvdycsIEFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjM0IiBmb250LXdlaWdodD0iNzAwIiBsZXR0ZXItc3BhY2luZz0iLS41Ij5GUk9OVElFUiBDQVBBQklMSVRZPC90ZXh0PjxyZWN0IHg9IjQwIiB5PSIyOTgiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgZmlsbD0iI0ZGNTcyMiIgc3Ryb2tlPSIjRThFN0UxIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSI2MiIgeT0iMzA5IiBmaWxsPSIjRThFN0UxIiBmb250LWZhbWlseT0iJ0pldEJyYWlucyBNb25vJywgdWktbW9ub3NwYWNlLCBNZW5sbywgbW9ub3NwYWNlIiBmb250LXNpemU9IjE1IiBmb250LXdlaWdodD0iNjAwIiBsZXR0ZXItc3BhY2luZz0iLjUiPkFSVElGSUNJQUwgQU5BTFlTSVM8L3RleHQ+PC9zdmc+" alt="" loading="lazy" referrerpolicy="no-referrer"/>
           </a>
@@ -714,7 +664,7 @@
           </div>
         </article>
       
-        <article class="card dup" data-topic="china_stack" data-new="1">
+        <article class="card" data-topic="china_stack" data-new="1">
           <a href="https://www.reuters.com/world/asia-pacific/chinese-ai-firm-moonshot-files-confidentially-hong-kong-ipo-sources-say-2026-09-03/" target="_blank" rel="noopener noreferrer">
             <img class="card-img l-es" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIj48ZGVmcz48cGF0dGVybiBpZD0icCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNMjQgMEgwVjI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNFOEU3RTEiIHN0cm9rZS1vcGFjaXR5PSIuMDYiLz48L3BhdHRlcm4+PGxpbmVhckdyYWRpZW50IGlkPSJ2IiB4MT0iMCIgeTE9IjEiIHgyPSIuNzUiIHkyPSIuMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9Ii45NiIvPjxzdG9wIG9mZnNldD0iLjU1IiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9Ii40Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9IjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgZmlsbD0iIzBGMEYwRSIvPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI3ApIi8+PHBvbHlnb24gcG9pbnRzPSI0NTAsMTkyIDYwMCwyMzYgNDUwLDI4MCAzMDAsMjM2IiBmaWxsPSIjRkY1QzdBIiBmaWxsLW9wYWNpdHk9Ii41NSIgc3Ryb2tlPSIjRkY1QzdBIiBzdHJva2Utd2lkdGg9IjEuOCIgc3Ryb2tlLW9wYWNpdHk9Ii45NSIvPjxwb2x5Z29uIHBvaW50cz0iNDUwLDE1MiA2MDAsMTk2IDQ1MCwyNDAgMzAwLDE5NiIgZmlsbD0iI0ZGNUM3QSIgZmlsbC1vcGFjaXR5PSIuMSIgc3Ryb2tlPSIjRkY1QzdBIiBzdHJva2Utd2lkdGg9IjEuOCIgc3Ryb2tlLW9wYWNpdHk9Ii41Ii8+PHBvbHlnb24gcG9pbnRzPSI0NTAsMTEyIDYwMCwxNTYgNDUwLDIwMCAzMDAsMTU2IiBmaWxsPSIjRkY1QzdBIiBmaWxsLW9wYWNpdHk9Ii4xIiBzdHJva2U9IiNGRjVDN0EiIHN0cm9rZS13aWR0aD0iMS44IiBzdHJva2Utb3BhY2l0eT0iLjUiLz48cG9seWdvbiBwb2ludHM9IjQ1MCw3MiA2MDAsMTE2IDQ1MCwxNjAgMzAwLDExNiIgZmlsbD0iI0ZGNUM3QSIgZmlsbC1vcGFjaXR5PSIuMSIgc3Ryb2tlPSIjRkY1QzdBIiBzdHJva2Utd2lkdGg9IjEuOCIgc3Ryb2tlLW9wYWNpdHk9Ii41Ii8+PHBvbHlnb24gcG9pbnRzPSI0NTAsMzIgNjAwLDc2IDQ1MCwxMjAgMzAwLDc2IiBmaWxsPSIjRkY1QzdBIiBmaWxsLW9wYWNpdHk9Ii4xIiBzdHJva2U9IiNGRjVDN0EiIHN0cm9rZS13aWR0aD0iMS44IiBzdHJva2Utb3BhY2l0eT0iLjUiLz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgZmlsbD0idXJsKCN2KSIvPjxyZWN0IHg9IjQ2IiB5PSIyMzYiIHdpZHRoPSIyODYiIGhlaWdodD0iNTAiIGZpbGw9IiNFOEU3RTEiLz48cmVjdCB4PSI0MCIgeT0iMjMwIiB3aWR0aD0iMjg2IiBoZWlnaHQ9IjUwIiBmaWxsPSIjRkY1QzdBIiBzdHJva2U9IiNFOEU3RTEiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjU0IiB5PSIyNjgiIGZpbGw9IiMxMjEyMTEiIGZvbnQtZmFtaWx5PSInU3BhY2UgR3JvdGVzaycsICdBcmlhbCBOYXJyb3cnLCBBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIzNCIgZm9udC13ZWlnaHQ9IjcwMCIgbGV0dGVyLXNwYWNpbmc9Ii0uNSI+U1RBQ0sgQ0hJTk88L3RleHQ+PHJlY3QgeD0iNDAiIHk9IjI5OCIgd2lkdGg9IjEyIiBoZWlnaHQ9IjEyIiBmaWxsPSIjRkY1QzdBIiBzdHJva2U9IiNFOEU3RTEiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjYyIiB5PSIzMDkiIGZpbGw9IiNFOEU3RTEiIGZvbnQtZmFtaWx5PSInSmV0QnJhaW5zIE1vbm8nLCB1aS1tb25vc3BhY2UsIE1lbmxvLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTUiIGZvbnQtd2VpZ2h0PSI2MDAiIGxldHRlci1zcGFjaW5nPSIuNSI+UkVVVEVSUyBBSTwvdGV4dD48L3N2Zz4=" alt="" loading="lazy"/><img class="card-img l-en" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIj48ZGVmcz48cGF0dGVybiBpZD0icCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNMjQgMEgwVjI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNFOEU3RTEiIHN0cm9rZS1vcGFjaXR5PSIuMDYiLz48L3BhdHRlcm4+PGxpbmVhckdyYWRpZW50IGlkPSJ2IiB4MT0iMCIgeTE9IjEiIHgyPSIuNzUiIHkyPSIuMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9Ii45NiIvPjxzdG9wIG9mZnNldD0iLjU1IiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9Ii40Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9IjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgZmlsbD0iIzBGMEYwRSIvPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI3ApIi8+PHBvbHlnb24gcG9pbnRzPSI0NTAsMTkyIDYwMCwyMzYgNDUwLDI4MCAzMDAsMjM2IiBmaWxsPSIjRkY1QzdBIiBmaWxsLW9wYWNpdHk9Ii41NSIgc3Ryb2tlPSIjRkY1QzdBIiBzdHJva2Utd2lkdGg9IjEuOCIgc3Ryb2tlLW9wYWNpdHk9Ii45NSIvPjxwb2x5Z29uIHBvaW50cz0iNDUwLDE1MiA2MDAsMTk2IDQ1MCwyNDAgMzAwLDE5NiIgZmlsbD0iI0ZGNUM3QSIgZmlsbC1vcGFjaXR5PSIuMSIgc3Ryb2tlPSIjRkY1QzdBIiBzdHJva2Utd2lkdGg9IjEuOCIgc3Ryb2tlLW9wYWNpdHk9Ii41Ii8+PHBvbHlnb24gcG9pbnRzPSI0NTAsMTEyIDYwMCwxNTYgNDUwLDIwMCAzMDAsMTU2IiBmaWxsPSIjRkY1QzdBIiBmaWxsLW9wYWNpdHk9Ii4xIiBzdHJva2U9IiNGRjVDN0EiIHN0cm9rZS13aWR0aD0iMS44IiBzdHJva2Utb3BhY2l0eT0iLjUiLz48cG9seWdvbiBwb2ludHM9IjQ1MCw3MiA2MDAsMTE2IDQ1MCwxNjAgMzAwLDExNiIgZmlsbD0iI0ZGNUM3QSIgZmlsbC1vcGFjaXR5PSIuMSIgc3Ryb2tlPSIjRkY1QzdBIiBzdHJva2Utd2lkdGg9IjEuOCIgc3Ryb2tlLW9wYWNpdHk9Ii41Ii8+PHBvbHlnb24gcG9pbnRzPSI0NTAsMzIgNjAwLDc2IDQ1MCwxMjAgMzAwLDc2IiBmaWxsPSIjRkY1QzdBIiBmaWxsLW9wYWNpdHk9Ii4xIiBzdHJva2U9IiNGRjVDN0EiIHN0cm9rZS13aWR0aD0iMS44IiBzdHJva2Utb3BhY2l0eT0iLjUiLz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgZmlsbD0idXJsKCN2KSIvPjxyZWN0IHg9IjQ2IiB5PSIyMzYiIHdpZHRoPSIyODYiIGhlaWdodD0iNTAiIGZpbGw9IiNFOEU3RTEiLz48cmVjdCB4PSI0MCIgeT0iMjMwIiB3aWR0aD0iMjg2IiBoZWlnaHQ9IjUwIiBmaWxsPSIjRkY1QzdBIiBzdHJva2U9IiNFOEU3RTEiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjU0IiB5PSIyNjgiIGZpbGw9IiMxMjEyMTEiIGZvbnQtZmFtaWx5PSInU3BhY2UgR3JvdGVzaycsICdBcmlhbCBOYXJyb3cnLCBBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIzNCIgZm9udC13ZWlnaHQ9IjcwMCIgbGV0dGVyLXNwYWNpbmc9Ii0uNSI+Q0hJTkEgU1RBQ0s8L3RleHQ+PHJlY3QgeD0iNDAiIHk9IjI5OCIgd2lkdGg9IjEyIiBoZWlnaHQ9IjEyIiBmaWxsPSIjRkY1QzdBIiBzdHJva2U9IiNFOEU3RTEiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjYyIiB5PSIzMDkiIGZpbGw9IiNFOEU3RTEiIGZvbnQtZmFtaWx5PSInSmV0QnJhaW5zIE1vbm8nLCB1aS1tb25vc3BhY2UsIE1lbmxvLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTUiIGZvbnQtd2VpZ2h0PSI2MDAiIGxldHRlci1zcGFjaW5nPSIuNSI+UkVVVEVSUyBBSTwvdGV4dD48L3N2Zz4=" alt="" loading="lazy"/>
             
@@ -745,7 +695,7 @@
           </div>
         </article>
       
-        <article class="card dup" data-topic="agents_automation" data-new="1">
+        <article class="card" data-topic="agents_automation" data-new="1">
           <a href="https://huggingface.co/blog/funes" target="_blank" rel="noopener noreferrer">
             <img class="card-img" src="https://huggingface.co/blog/assets/funes/thumbnail.jpg" data-fb="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIj48ZGVmcz48cGF0dGVybiBpZD0icCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNMjQgMEgwVjI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNFOEU3RTEiIHN0cm9rZS1vcGFjaXR5PSIuMDYiLz48L3BhdHRlcm4+PGxpbmVhckdyYWRpZW50IGlkPSJ2IiB4MT0iMCIgeTE9IjEiIHgyPSIuNzUiIHkyPSIuMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9Ii45NiIvPjxzdG9wIG9mZnNldD0iLjU1IiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9Ii40Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9IjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgZmlsbD0iIzBGMEYwRSIvPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI3ApIi8+PGxpbmUgeDE9IjMwOCIgeTE9IjgxIiB4Mj0iMzUxIiB5Mj0iMTExIiBzdHJva2U9IiMzNEQzOTkiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIuMzgiLz48bGluZSB4MT0iMzA4IiB5MT0iODEiIHgyPSI0MTAiIHkyPSIxNDAiIHN0cm9rZT0iIzM0RDM5OSIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9Ii4zOCIvPjxsaW5lIHgxPSI0MzMiIHkxPSI0MSIgeDI9IjQ4NSIgeTI9Ijc4IiBzdHJva2U9IiMzNEQzOTkiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIuMzgiLz48bGluZSB4MT0iNDMzIiB5MT0iNDEiIHgyPSI0MTAiIHkyPSIxNDAiIHN0cm9rZT0iIzM0RDM5OSIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9Ii4zOCIvPjxsaW5lIHgxPSI0ODUiIHkxPSI3OCIgeDI9IjU1OCIgeTI9IjUwIiBzdHJva2U9IiMzNEQzOTkiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIuMzgiLz48bGluZSB4MT0iNDg1IiB5MT0iNzgiIHgyPSI0OTkiIHkyPSIxMjUiIHN0cm9rZT0iIzM0RDM5OSIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9Ii4zOCIvPjxsaW5lIHgxPSI1NTgiIHkxPSI1MCIgeDI9IjU2NSIgeTI9IjEzMSIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjM1MSIgeTE9IjExMSIgeDI9IjQxMCIgeTI9IjE0MCIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjQxMCIgeTE9IjE0MCIgeDI9IjM1NyIgeTI9IjIwOSIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjQxMCIgeTE9IjE0MCIgeDI9IjQzOCIgeTI9IjIwMiIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjQ5OSIgeTE9IjEyNSIgeDI9IjU2NSIgeTI9IjEzMSIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjU2NSIgeTE9IjEzMSIgeDI9IjU3NCIgeTI9IjIzMCIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjM1NyIgeTE9IjIwOSIgeDI9IjQzOCIgeTI9IjIwMiIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjQzOCIgeTE9IjIwMiIgeDI9IjQ4OSIgeTI9IjIzMyIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjQ4OSIgeTE9IjIzMyIgeDI9IjU3NCIgeTI9IjIzMCIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGNpcmNsZSBjeD0iMzA4IiBjeT0iODEiIHI9IjExIiBmaWxsPSIjMzREMzk5IiBvcGFjaXR5PSIuOTUiLz48Y2lyY2xlIGN4PSIzMDgiIGN5PSI4MSIgcj0iMjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzM0RDM5OSIgc3Ryb2tlLXdpZHRoPSIxLjQiIG9wYWNpdHk9Ii40Ii8+PGNpcmNsZSBjeD0iNDMzIiBjeT0iNDEiIHI9IjYiIGZpbGw9IiMzNEQzOTkiIG9wYWNpdHk9Ii42Ii8+PGNpcmNsZSBjeD0iNDg1IiBjeT0iNzgiIHI9IjYiIGZpbGw9IiMzNEQzOTkiIG9wYWNpdHk9Ii42Ii8+PGNpcmNsZSBjeD0iNTU4IiBjeT0iNTAiIHI9IjYiIGZpbGw9IiMzNEQzOTkiIG9wYWNpdHk9Ii42Ii8+PGNpcmNsZSBjeD0iMzUxIiBjeT0iMTExIiByPSIxMSIgZmlsbD0iIzM0RDM5OSIgb3BhY2l0eT0iLjk1Ii8+PGNpcmNsZSBjeD0iMzUxIiBjeT0iMTExIiByPSIyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNCIgb3BhY2l0eT0iLjQiLz48Y2lyY2xlIGN4PSI0MTAiIGN5PSIxNDAiIHI9IjYiIGZpbGw9IiMzNEQzOTkiIG9wYWNpdHk9Ii42Ii8+PGNpcmNsZSBjeD0iNDk5IiBjeT0iMTI1IiByPSI2IiBmaWxsPSIjMzREMzk5IiBvcGFjaXR5PSIuNiIvPjxjaXJjbGUgY3g9IjU2NSIgY3k9IjEzMSIgcj0iNiIgZmlsbD0iIzM0RDM5OSIgb3BhY2l0eT0iLjYiLz48Y2lyY2xlIGN4PSIzNTciIGN5PSIyMDkiIHI9IjExIiBmaWxsPSIjMzREMzk5IiBvcGFjaXR5PSIuOTUiLz48Y2lyY2xlIGN4PSIzNTciIGN5PSIyMDkiIHI9IjIwIiBmaWxsPSJub25lIiBzdHJva2U9IiMzNEQzOTkiIHN0cm9rZS13aWR0aD0iMS40IiBvcGFjaXR5PSIuNCIvPjxjaXJjbGUgY3g9IjQzOCIgY3k9IjIwMiIgcj0iNiIgZmlsbD0iIzM0RDM5OSIgb3BhY2l0eT0iLjYiLz48Y2lyY2xlIGN4PSI0ODkiIGN5PSIyMzMiIHI9IjYiIGZpbGw9IiMzNEQzOTkiIG9wYWNpdHk9Ii42Ii8+PGNpcmNsZSBjeD0iNTc0IiBjeT0iMjMwIiByPSI2IiBmaWxsPSIjMzREMzk5IiBvcGFjaXR5PSIuNiIvPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI3YpIi8+PHJlY3QgeD0iNDYiIHk9IjIzNiIgd2lkdGg9IjE5MiIgaGVpZ2h0PSI1MCIgZmlsbD0iI0U4RTdFMSIvPjxyZWN0IHg9IjQwIiB5PSIyMzAiIHdpZHRoPSIxOTIiIGhlaWdodD0iNTAiIGZpbGw9IiMzNEQzOTkiIHN0cm9rZT0iI0U4RTdFMSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iNTQiIHk9IjI2OCIgZmlsbD0iIzEyMTIxMSIgZm9udC1mYW1pbHk9IidTcGFjZSBHcm90ZXNrJywgJ0FyaWFsIE5hcnJvdycsIEFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjM0IiBmb250LXdlaWdodD0iNzAwIiBsZXR0ZXItc3BhY2luZz0iLS41Ij5BR0VOVEVTPC90ZXh0PjxyZWN0IHg9IjQwIiB5PSIyOTgiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgZmlsbD0iIzM0RDM5OSIgc3Ryb2tlPSIjRThFN0UxIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSI2MiIgeT0iMzA5IiBmaWxsPSIjRThFN0UxIiBmb250LWZhbWlseT0iJ0pldEJyYWlucyBNb25vJywgdWktbW9ub3NwYWNlLCBNZW5sbywgbW9ub3NwYWNlIiBmb250LXNpemU9IjE1IiBmb250LXdlaWdodD0iNjAwIiBsZXR0ZXItc3BhY2luZz0iLjUiPkhVR0dJTkcgRkFDRSBCTE9HPC90ZXh0Pjwvc3ZnPg==" data-fb-en="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIj48ZGVmcz48cGF0dGVybiBpZD0icCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNMjQgMEgwVjI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNFOEU3RTEiIHN0cm9rZS1vcGFjaXR5PSIuMDYiLz48L3BhdHRlcm4+PGxpbmVhckdyYWRpZW50IGlkPSJ2IiB4MT0iMCIgeTE9IjEiIHgyPSIuNzUiIHkyPSIuMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9Ii45NiIvPjxzdG9wIG9mZnNldD0iLjU1IiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9Ii40Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9IjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgZmlsbD0iIzBGMEYwRSIvPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI3ApIi8+PGxpbmUgeDE9IjMwOCIgeTE9IjgxIiB4Mj0iMzUxIiB5Mj0iMTExIiBzdHJva2U9IiMzNEQzOTkiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIuMzgiLz48bGluZSB4MT0iMzA4IiB5MT0iODEiIHgyPSI0MTAiIHkyPSIxNDAiIHN0cm9rZT0iIzM0RDM5OSIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9Ii4zOCIvPjxsaW5lIHgxPSI0MzMiIHkxPSI0MSIgeDI9IjQ4NSIgeTI9Ijc4IiBzdHJva2U9IiMzNEQzOTkiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIuMzgiLz48bGluZSB4MT0iNDMzIiB5MT0iNDEiIHgyPSI0MTAiIHkyPSIxNDAiIHN0cm9rZT0iIzM0RDM5OSIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9Ii4zOCIvPjxsaW5lIHgxPSI0ODUiIHkxPSI3OCIgeDI9IjU1OCIgeTI9IjUwIiBzdHJva2U9IiMzNEQzOTkiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIuMzgiLz48bGluZSB4MT0iNDg1IiB5MT0iNzgiIHgyPSI0OTkiIHkyPSIxMjUiIHN0cm9rZT0iIzM0RDM5OSIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9Ii4zOCIvPjxsaW5lIHgxPSI1NTgiIHkxPSI1MCIgeDI9IjU2NSIgeTI9IjEzMSIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjM1MSIgeTE9IjExMSIgeDI9IjQxMCIgeTI9IjE0MCIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjQxMCIgeTE9IjE0MCIgeDI9IjM1NyIgeTI9IjIwOSIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjQxMCIgeTE9IjE0MCIgeDI9IjQzOCIgeTI9IjIwMiIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjQ5OSIgeTE9IjEyNSIgeDI9IjU2NSIgeTI9IjEzMSIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjU2NSIgeTE9IjEzMSIgeDI9IjU3NCIgeTI9IjIzMCIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjM1NyIgeTE9IjIwOSIgeDI9IjQzOCIgeTI9IjIwMiIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjQzOCIgeTE9IjIwMiIgeDI9IjQ4OSIgeTI9IjIzMyIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjQ4OSIgeTE9IjIzMyIgeDI9IjU3NCIgeTI9IjIzMCIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGNpcmNsZSBjeD0iMzA4IiBjeT0iODEiIHI9IjExIiBmaWxsPSIjMzREMzk5IiBvcGFjaXR5PSIuOTUiLz48Y2lyY2xlIGN4PSIzMDgiIGN5PSI4MSIgcj0iMjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzM0RDM5OSIgc3Ryb2tlLXdpZHRoPSIxLjQiIG9wYWNpdHk9Ii40Ii8+PGNpcmNsZSBjeD0iNDMzIiBjeT0iNDEiIHI9IjYiIGZpbGw9IiMzNEQzOTkiIG9wYWNpdHk9Ii42Ii8+PGNpcmNsZSBjeD0iNDg1IiBjeT0iNzgiIHI9IjYiIGZpbGw9IiMzNEQzOTkiIG9wYWNpdHk9Ii42Ii8+PGNpcmNsZSBjeD0iNTU4IiBjeT0iNTAiIHI9IjYiIGZpbGw9IiMzNEQzOTkiIG9wYWNpdHk9Ii42Ii8+PGNpcmNsZSBjeD0iMzUxIiBjeT0iMTExIiByPSIxMSIgZmlsbD0iIzM0RDM5OSIgb3BhY2l0eT0iLjk1Ii8+PGNpcmNsZSBjeD0iMzUxIiBjeT0iMTExIiByPSIyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNCIgb3BhY2l0eT0iLjQiLz48Y2lyY2xlIGN4PSI0MTAiIGN5PSIxNDAiIHI9IjYiIGZpbGw9IiMzNEQzOTkiIG9wYWNpdHk9Ii42Ii8+PGNpcmNsZSBjeD0iNDk5IiBjeT0iMTI1IiByPSI2IiBmaWxsPSIjMzREMzk5IiBvcGFjaXR5PSIuNiIvPjxjaXJjbGUgY3g9IjU2NSIgY3k9IjEzMSIgcj0iNiIgZmlsbD0iIzM0RDM5OSIgb3BhY2l0eT0iLjYiLz48Y2lyY2xlIGN4PSIzNTciIGN5PSIyMDkiIHI9IjExIiBmaWxsPSIjMzREMzk5IiBvcGFjaXR5PSIuOTUiLz48Y2lyY2xlIGN4PSIzNTciIGN5PSIyMDkiIHI9IjIwIiBmaWxsPSJub25lIiBzdHJva2U9IiMzNEQzOTkiIHN0cm9rZS13aWR0aD0iMS40IiBvcGFjaXR5PSIuNCIvPjxjaXJjbGUgY3g9IjQzOCIgY3k9IjIwMiIgcj0iNiIgZmlsbD0iIzM0RDM5OSIgb3BhY2l0eT0iLjYiLz48Y2lyY2xlIGN4PSI0ODkiIGN5PSIyMzMiIHI9IjYiIGZpbGw9IiMzNEQzOTkiIG9wYWNpdHk9Ii42Ii8+PGNpcmNsZSBjeD0iNTc0IiBjeT0iMjMwIiByPSI2IiBmaWxsPSIjMzREMzk5IiBvcGFjaXR5PSIuNiIvPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI3YpIi8+PHJlY3QgeD0iNDYiIHk9IjIzNiIgd2lkdGg9IjE2OSIgaGVpZ2h0PSI1MCIgZmlsbD0iI0U4RTdFMSIvPjxyZWN0IHg9IjQwIiB5PSIyMzAiIHdpZHRoPSIxNjkiIGhlaWdodD0iNTAiIGZpbGw9IiMzNEQzOTkiIHN0cm9rZT0iI0U4RTdFMSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iNTQiIHk9IjI2OCIgZmlsbD0iIzEyMTIxMSIgZm9udC1mYW1pbHk9IidTcGFjZSBHcm90ZXNrJywgJ0FyaWFsIE5hcnJvdycsIEFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjM0IiBmb250LXdlaWdodD0iNzAwIiBsZXR0ZXItc3BhY2luZz0iLS41Ij5BR0VOVFM8L3RleHQ+PHJlY3QgeD0iNDAiIHk9IjI5OCIgd2lkdGg9IjEyIiBoZWlnaHQ9IjEyIiBmaWxsPSIjMzREMzk5IiBzdHJva2U9IiNFOEU3RTEiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjYyIiB5PSIzMDkiIGZpbGw9IiNFOEU3RTEiIGZvbnQtZmFtaWx5PSInSmV0QnJhaW5zIE1vbm8nLCB1aS1tb25vc3BhY2UsIE1lbmxvLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTUiIGZvbnQtd2VpZ2h0PSI2MDAiIGxldHRlci1zcGFjaW5nPSIuNSI+SFVHR0lORyBGQUNFIEJMT0c8L3RleHQ+PC9zdmc+" alt="" loading="lazy" referrerpolicy="no-referrer"/>
           </a>
@@ -962,46 +912,48 @@
   
 
       
-      <div class="section-h">
-        <h2 class="sec"><span class="l-es">Contexto</span><span class="l-en" lang="en">Context</span></h2>
-        <p class="sec-sub"><span class="l-es">De fondo: no cambia nada hoy</span><span class="l-en" lang="en">Background: changes nothing today</span></p>
-      </div>
-      <div class="ctx">
-        
-        <div class="cx" data-topic="geopolitics_power" data-new="1">
-          <img src="https://www.google.com/s2/favicons?domain=chinatalk.media&amp;sz=64" alt="" loading="lazy"/>
-          <div class="cx-b">
-            <div class="cx-t">
-              <a href="https://www.chinatalk.media/p/china-on-the-hugging-face-incident" target="_blank" rel="noopener noreferrer"><span class="l-es">China busca redefinir la narrativa de la seguridad en IA tras el incidente de Hugging Face</span><span class="l-en" lang="en">China on the Hugging Face Incident</span></a>
-            </div>
-            <div class="cx-w">Este artículo muestra cómo China está influyendo en la conversación global sobre la seguridad de la IA, lo que podría impactar las regulaciones y estándares futuros, especialmente para modelos open-source.</div>
-            <div class="cx-m"><span class="l-es">Geopolítica</span><span class="l-en" lang="en">Geopolitics</span> · ChinaTalk · 58</div>
-          </div>
+      <section class="ctx-block" id="ctx-block">
+        <div class="section-h">
+          <h2 class="sec"><span class="l-es">Contexto</span><span class="l-en" lang="en">Context</span></h2>
+          <p class="sec-sub"><span class="l-es">De fondo: no cambia nada hoy</span><span class="l-en" lang="en">Background: changes nothing today</span></p>
         </div>
-        
-        <div class="cx" data-topic="agents_automation" data-new="0">
-          <img src="https://www.google.com/s2/favicons?domain=openai.com&amp;sz=64" alt="" loading="lazy"/>
-          <div class="cx-b">
-            <div class="cx-t">
-              <a href="https://openai.com/index/ai-native-company-workflows" target="_blank" rel="noopener noreferrer"><span class="l-es">OpenAI muestra cómo empresas nativas de IA transforman flujos de trabajo en capacidades operativas</span><span class="l-en" lang="en">How AI-native companies turn workflows into operating capability</span></a>
+        <div class="ctx">
+          
+          <div class="cx" data-topic="geopolitics_power" data-new="1">
+            <img src="https://www.google.com/s2/favicons?domain=chinatalk.media&amp;sz=64" alt="" loading="lazy"/>
+            <div class="cx-b">
+              <div class="cx-t">
+                <a href="https://www.chinatalk.media/p/china-on-the-hugging-face-incident" target="_blank" rel="noopener noreferrer"><span class="l-es">China busca redefinir la narrativa de la seguridad en IA tras el incidente de Hugging Face</span><span class="l-en" lang="en">China on the Hugging Face Incident</span></a>
+              </div>
+              <div class="cx-w">Este artículo muestra cómo China está influyendo en la conversación global sobre la seguridad de la IA, lo que podría impactar las regulaciones y estándares futuros, especialmente para modelos open-source.</div>
+              <div class="cx-m"><span class="l-es">Geopolítica</span><span class="l-en" lang="en">Geopolitics</span> · ChinaTalk · 58</div>
             </div>
-            <div class="cx-w">Presenta ejemplos de empresas que usan agentes de IA para optimizar procesos, demostrando el potencial de los agentes para mejorar la eficiencia operativa y la ventaja competitiva en la empresa.</div>
-            <div class="cx-m"><span class="l-es">Agentes</span><span class="l-en" lang="en">Agents</span> · OpenAI · 57</div>
           </div>
-        </div>
-        
-        <div class="cx" data-topic="agents_automation" data-new="0">
-          <img src="https://www.google.com/s2/favicons?domain=x.ai&amp;sz=64" alt="" loading="lazy"/>
-          <div class="cx-b">
-            <div class="cx-t">
-              <a href="https://x.ai/news/grok-bot-and-x" target="_blank" rel="noopener noreferrer"><span class="l-es">Grok Bot se integra con la plataforma X</span><span class="l-en" lang="en">Grok Bot now works with X - X.ai</span></a>
+          
+          <div class="cx" data-topic="agents_automation" data-new="0">
+            <img src="https://www.google.com/s2/favicons?domain=openai.com&amp;sz=64" alt="" loading="lazy"/>
+            <div class="cx-b">
+              <div class="cx-t">
+                <a href="https://openai.com/index/ai-native-company-workflows" target="_blank" rel="noopener noreferrer"><span class="l-es">OpenAI muestra cómo empresas nativas de IA transforman flujos de trabajo en capacidades operativas</span><span class="l-en" lang="en">How AI-native companies turn workflows into operating capability</span></a>
+              </div>
+              <div class="cx-w">Presenta ejemplos de empresas que usan agentes de IA para optimizar procesos, demostrando el potencial de los agentes para mejorar la eficiencia operativa y la ventaja competitiva en la empresa.</div>
+              <div class="cx-m"><span class="l-es">Agentes</span><span class="l-en" lang="en">Agents</span> · OpenAI · 57</div>
             </div>
-            <div class="cx-w">La integración de Grok Bot en X amplía el alcance y la funcionalidad de los agentes de xAI en una plataforma social masiva, con implicaciones para la automatización de interacciones y difusión de información.</div>
-            <div class="cx-m"><span class="l-es">Agentes</span><span class="l-en" lang="en">Agents</span> · xAI · 56</div>
           </div>
+          
+          <div class="cx" data-topic="agents_automation" data-new="0">
+            <img src="https://www.google.com/s2/favicons?domain=x.ai&amp;sz=64" alt="" loading="lazy"/>
+            <div class="cx-b">
+              <div class="cx-t">
+                <a href="https://x.ai/news/grok-bot-and-x" target="_blank" rel="noopener noreferrer"><span class="l-es">Grok Bot se integra con la plataforma X</span><span class="l-en" lang="en">Grok Bot now works with X - X.ai</span></a>
+              </div>
+              <div class="cx-w">La integración de Grok Bot en X amplía el alcance y la funcionalidad de los agentes de xAI en una plataforma social masiva, con implicaciones para la automatización de interacciones y difusión de información.</div>
+              <div class="cx-m"><span class="l-es">Agentes</span><span class="l-en" lang="en">Agents</span> · xAI · 56</div>
+            </div>
+          </div>
+          
         </div>
-        
-      </div>
+      </section>
       
 
   </div>
@@ -1154,7 +1106,9 @@
     var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     var days = Math.round((today - edition) / 86400000);
     if (!(days >= 1)) return;
-    el.textContent = days === 1 ? 'edición de ayer' : 'edición de hace ' + days + ' días';
+    var es = days === 1 ? 'edición de ayer' : 'edición de hace ' + days + ' días';
+    var en = days === 1 ? "yesterday's edition" : days + ' days old';
+    el.innerHTML = '<span class="l-es">' + es + '</span><span class="l-en" lang="en">' + en + '</span>';
     el.hidden = false;
   })();
 </script>
@@ -1219,22 +1173,37 @@
     if (!tabs.length) return;
     tabs.forEach(function(t){
       t.addEventListener('click', function(){
-        tabs.forEach(function(x){ x.classList.remove('on'); });
+        tabs.forEach(function(x){
+          x.classList.remove('on');
+          x.setAttribute('aria-selected', 'false');
+        });
         t.classList.add('on');
+        t.setAttribute('aria-selected', 'true');
         var f = t.getAttribute('data-filter');
+        var on = f !== 'all';
         // data-topic, no data-theme: <html data-theme> es el tema claro/oscuro
         // y con el selector anterior el filtro ocultaba la pagina entera.
         // Con filtro: se oculta la portada a tres columnas y la rejilla enseña
         // TODAS las señales que casan (tambien las de portada y En breve).
         var deck = document.getElementById('deck');
-        if (deck) deck.classList.toggle('filtered', f !== 'all');
+        if (deck) deck.classList.toggle('filtered', on);
+        var visBelow = 0;
+        var visCtx = 0;
         document.querySelectorAll('[data-topic]').forEach(function(c){
           var show;
           if (f === 'all')            show = true;
           else if (f === '__new__')   show = c.getAttribute('data-new') === '1';
           else                        show = c.getAttribute('data-topic') === f;
           c.style.display = show ? '' : 'none';
+          if (show) {
+            if (c.classList.contains('card')) visBelow++;
+            else if (c.classList.contains('cx')) visCtx++;
+          }
         });
+        var below = document.querySelector('.below');
+        if (below) below.classList.toggle('filter-empty', on && visBelow === 0);
+        var ctxBlock = document.getElementById('ctx-block');
+        if (ctxBlock) ctxBlock.classList.toggle('filter-empty', on && visCtx === 0);
       });
     });
   })();

@@ -239,23 +239,24 @@ class NewspaperLayoutTests(unittest.TestCase):
                             snapshot={"date": "2026-11-15", "top_entities": [{"entity": "NVIDIA", "count": 3}]},
                             market={"macro": [{"label": "VIX", "available": True, "price_str": "19.30", "change_str": "+3%", "positive": True, "sparkline_svg": ""}]})
 
-    def test_front_page_has_editorial_lead_and_brief(self):
-        import re
+    def test_front_page_has_editorial_lead_and_beyond_grid(self):
         html = self._html()
         self.assertLess(html.index('class="ticker"'), html.index('class="opening"'))
         self.assertIn("clave uno", html)
         self.assertIn(">NVIDIA<", html)
-        self.assertEqual(len(re.findall(r'<div class="brief">', html)), 5)
         self.assertEqual(html.count('class="lead"'), 1)
+        self.assertEqual(html.count('class="rail"'), 1)
+        self.assertIn('class="below"', html)
+        self.assertNotIn('class="brief"', html)
 
-    def test_every_signal_has_a_filterable_card_and_front_ones_are_hidden_by_default(self):
+    def test_every_signal_has_a_filterable_card_and_front_is_hidden_by_default(self):
         import re
         html = self._html()
         cards = re.findall(r'<article class="card( dup)?" data-topic="(\w+)"', html)
         self.assertEqual(len(cards), 9)
-        self.assertEqual(sum(1 for d, _ in cards if d), 6)
+        self.assertEqual(sum(1 for d, _ in cards if d), 1)
         self.assertIn("deck.classList.toggle('filtered'", html)
 
     def test_no_rest_section_when_everything_fits_on_the_front(self):
-        self.assertIn('class="below no-rest"', self._html(n=4))
+        self.assertIn('class="below no-rest"', self._html(n=1))
         self.assertIn('class="below"', self._html(n=9))

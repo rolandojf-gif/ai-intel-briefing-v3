@@ -212,7 +212,7 @@
     <p>239 <span class="l-es">días</span><span class="l-en" lang="en">days</span> · 2026-02-13 – 2026-11-15. <span class="l-es">Cada entrada es el radar de ese día, no un recorte.</span><span class="l-en" lang="en">Each entry is that day&#39;s full radar, not an excerpt.</span></p>
   </div>
   <div class="toolbar">
-    <input id="q" type="search" placeholder="NVIDIA, agentes, 2026-08-22…" autocomplete="off"/>
+    <input id="q" type="search" aria-label="Search archive / Buscar en el archivo" placeholder="NVIDIA, agentes, 2026-08-22…" autocomplete="off"/>
     <div class="months">
       
       <a href="#m-2026-11">Nov 2026</a>
@@ -1710,7 +1710,7 @@
   </div>
   <div class="empty" id="none" hidden><span class="l-es">Nada coincide.</span><span class="l-en" lang="en">No matches.</span></div>
   <div class="credits"><p class="credits-by"><span class="l-es">Hecho por</span><span class="l-en" lang="en">Made by</span> <strong>Rolando Fernández</strong></p><a class="bmc" href="https://buymeacoffee.com/rolandofernandez" target="_blank" rel="noopener"><span aria-hidden="true">☕</span> <span class="l-es">Invítame a un café</span><span class="l-en" lang="en">Buy me a coffee</span></a></div>
-  <footer>239 snapshots · 3509 señales indexadas · falta 6 may 2026</footer>
+  <footer>239 snapshots · 3509 <span class="l-es">señales indexadas</span><span class="l-en" lang="en">indexed signals</span> · <span class="l-es">falta</span><span class="l-en" lang="en">missing</span> 6 may 2026</footer>
 </div>
 <script>
 (function(){
@@ -1725,6 +1725,9 @@
   var index = null;
   var loading = false;
 
+  function isEn(){
+    return document.documentElement.getAttribute('data-lang') === 'en';
+  }
   function fold(s){
     return (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   }
@@ -1743,8 +1746,11 @@
   }
   function copied(btn){
     btn.classList.add('ok');
-    btn.textContent = 'Copiado';
-    setTimeout(function(){ btn.classList.remove('ok'); btn.textContent = 'Copiar'; }, 1600);
+    btn.textContent = isEn() ? 'Copied' : 'Copiado';
+    setTimeout(function(){
+      btn.classList.remove('ok');
+      btn.textContent = isEn() ? 'Copy' : 'Copiar';
+    }, 1600);
   }
   function copyText(text, btn){
     if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -1770,6 +1776,8 @@
   }
   function renderHits(items, query){
     hitsList.innerHTML = '';
+    var en = isEn();
+    var copyLbl = en ? 'Copy' : 'Copiar';
     items.slice(0, 60).forEach(function(it){
       var row = document.createElement('div');
       row.className = 'hit';
@@ -1782,7 +1790,7 @@
           (it.w ? '<div class="w">' + esc(it.w) + '</div>' : '') +
           '<div class="meta">' + esc(it.s || '') + '</div>' +
         '</div>' +
-        '<button type="button" class="copy-btn">Copiar</button>';
+        '<button type="button" class="copy-btn">' + copyLbl + '</button>';
       row.querySelector('.copy-btn').addEventListener('click', function(ev){
         ev.preventDefault();
         copyText(ficha, ev.currentTarget);
@@ -1790,8 +1798,13 @@
       hitsList.appendChild(row);
     });
     var n = items.length;
-    hitsH.textContent = n === 0 ? 'Nada para «' + query + '»' :
-      (n === 1 ? '1 señal' : (n > 60 ? '60 de ' + n + ' señales' : n + ' señales'));
+    if (en) {
+      hitsH.textContent = n === 0 ? 'Nothing for "' + query + '"' :
+        (n === 1 ? '1 signal' : (n > 60 ? '60 of ' + n + ' signals' : n + ' signals'));
+    } else {
+      hitsH.textContent = n === 0 ? 'Nada para «' + query + '»' :
+        (n === 1 ? '1 señal' : (n > 60 ? '60 de ' + n + ' señales' : n + ' señales'));
+    }
     hitsBox.hidden = false;
     cal.hidden = true;
     if (months) months.hidden = true;
