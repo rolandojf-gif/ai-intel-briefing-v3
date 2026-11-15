@@ -81,3 +81,20 @@ class TickerTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class ActivityFromPulseTests(unittest.TestCase):
+    def test_status_follows_the_pulse_percentile(self):
+        from src.pulse import activity_from_pulse
+        fb = ("ALERTA", "alert")
+        mk = lambda pct, v=60, n=20: {"value": v, "hotter_than": pct, "editions": n}
+        self.assertEqual(activity_from_pulse(mk(90), fb), ("ALERTA", "alert"))
+        self.assertEqual(activity_from_pulse(mk(41), fb), ("ACTIVO", "active"))
+        self.assertEqual(activity_from_pulse(mk(10), fb), ("TRANQUILO", "quiet"))
+        self.assertEqual(activity_from_pulse(mk(50, v=0), fb), ("SIN SEÑAL", "quiet"))
+
+    def test_without_enough_history_keeps_the_old_rule(self):
+        from src.pulse import activity_from_pulse
+        fb = ("ACTIVO", "active")
+        self.assertEqual(activity_from_pulse({"value": 80, "hotter_than": 99, "editions": 3}, fb), fb)
+        self.assertEqual(activity_from_pulse({}, fb), fb)

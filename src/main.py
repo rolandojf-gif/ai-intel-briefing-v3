@@ -1213,6 +1213,8 @@ def main():
             long_history = load_history(data_dir, today=today, days=HISTORY_EDITIONS + 10)
             pulse = pulse_block(long_history, final_items, today)
             who_moves = movers(long_history, final_items)
+            from src.pulse import activity_from_pulse
+            level_label, level_class = activity_from_pulse(pulse, (level_label, level_class))
         except Exception:
             print("PULSE FAILED (traceback):")
             traceback.print_exc()

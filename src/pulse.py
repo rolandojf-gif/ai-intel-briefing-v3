@@ -15,6 +15,10 @@ from src.config import ENTITY_ALIASES
 # Tope de señales por edición (MAX_SIGNALS en main): 12 señales de 100 = pulso 100.
 PULSE_FULL_SIGNALS = 12
 HISTORY_EDITIONS = 30
+# Estado del dia segun donde cae el pulso en su propio historico.
+ALERT_FROM = 75       # mas intenso que el 75 % de las ediciones recientes
+ACTIVE_FROM = 35
+MIN_HISTORY = 10      # con menos ediciones el percentil no significa nada
 MOVER_WINDOW = 5      # ediciones recientes (incluida la de hoy)
 MAX_MOVERS = 6
 
@@ -105,3 +109,23 @@ def movers(history: list[dict], today_items: list[dict]) -> list[dict]:
             trend = "flat"
         out.append({"entity": name, "weight": round(w, 2), "share": int(round(100 * w / peak)), "trend": trend})
     return out
+
+
+def activity_from_pulse(block: dict, fallback: tuple[str, str]) -> tuple[str, str]:
+    """Estado del dia alineado con el pulso: ALERTA / ACTIVO / TRANQUILO.
+
+    Antes el estado salia de reglas propias (numero de señales >= 85) y podia
+    decir ALERTA el mismo dia que el pulso quedaba por debajo de la media. Ahora
+    es la posicion del pulso en su historico: ALERTA = cuartil alto, TRANQUILO =
+    por debajo del 35 %. Sin historico suficiente se usa el estado anterior.
+    """
+    if not block or block.get("hotter_than") is None or block.get("editions", 0) < MIN_HISTORY:
+        return fallback
+    if block.get("value", 0) == 0:
+        return "SIN SEÑAL", "quiet"
+    pct = block["hotter_than"]
+    if pct >= ALERT_FROM:
+        return "ALERTA", "alert"
+    if pct >= ACTIVE_FROM:
+        return "ACTIVO", "active"
+    return "TRANQUILO", "quiet"
