@@ -182,11 +182,41 @@
   .ticker-h{display:flex;justify-content:space-between;gap:12px;align-items:center;font:400 10.5px var(--f-mono);color:var(--muted);text-transform:uppercase}
   .ticker-h strong{display:flex;align-items:center;gap:8px;color:var(--text);font-weight:700;letter-spacing:.08em}
   .ticker-h strong::before{content:"";width:10px;height:10px;background:var(--orange);border:2px solid var(--ink)}
-  .ticker-q{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:10px}
-  .tq{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 6px;align-items:center;padding:8px 10px;border:1px solid var(--ink);background:var(--card-2);min-width:0}
+  .ticker-q{display:flex;gap:8px;padding-right:8px}
+  .tq{flex:0 0 210px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 6px;align-items:center;padding:8px 10px;border:1px solid var(--ink);background:var(--card-2);min-width:0}
   .tq-n{grid-column:1/-1;font:600 10.5px var(--f-mono);color:var(--muted);text-transform:uppercase}
   .tq-p{font:700 clamp(14px,1.25vw,18px) var(--f-mono);white-space:nowrap;font-variant-numeric:tabular-nums}
   .tq .spark{grid-column:1/-1;height:20px}
+
+  .ticker-view{overflow:hidden;margin-top:10px}
+  .ticker-track{display:flex;width:max-content;animation:tick calc(var(--n) * 5s) linear infinite}
+  .ticker-view:hover .ticker-track{animation-play-state:paused}
+  @keyframes tick{to{transform:translateX(-50%)}}
+  @media (prefers-reduced-motion: reduce){.ticker-track{animation:none}.ticker-view{overflow-x:auto}}
+
+  .pulse{display:grid;grid-template-columns:minmax(230px,300px) 1fr;gap:22px;align-items:end;margin:0 0 22px;padding:14px 16px;
+         background:var(--asphalt);color:#E8E7E1;border:2px solid var(--ink);box-shadow:var(--shadow)}
+  .pulse .kicker{color:var(--lime)}
+  .pulse-num{display:flex;align-items:baseline;gap:6px;margin:4px 0 8px}
+  .pulse-num strong{font:700 58px/.9 var(--f-head);letter-spacing:-.04em;color:#fff}
+  .pulse-num>span{font:700 14px var(--f-mono);color:#9C9B95}
+  .pulse-num .pulse-state{margin-left:8px;padding:3px 6px;font-size:10.5px;text-transform:uppercase;color:#121211;background:#9C9B95}
+  .pulse-state.s-alert{background:var(--orange)} .pulse-state.s-active{background:var(--lime)}
+  .pulse-bar{height:12px;border:2px solid #E8E7E1;background:#1E1E1C}
+  .pulse-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--lime),var(--orange))}
+  .pulse-cols{display:flex;align-items:flex-end;gap:3px;height:74px}
+  .pulse-cols i{flex:1;min-width:3px;background:#5B5A55}
+  .pulse-cols i.now{background:var(--lime)}
+  .pulse-cols i:hover{background:var(--orange)}
+  .pulse-note{font:400 11px/1.4 var(--f-mono);color:#9C9B95;margin-top:8px}
+
+  .movers{list-style:none;margin:0 0 20px;padding:0}
+  .movers li{display:grid;grid-template-columns:1fr auto;gap:4px 8px;align-items:baseline;padding:0 0 9px;margin-bottom:9px;border-bottom:1px dashed var(--line)}
+  .mv-n{font:700 14.5px var(--f-head)}
+  .mv-t{font:700 10.5px var(--f-mono);color:var(--muted);text-transform:uppercase}
+  .mv-t.t-up,.mv-t.t-new{color:var(--open)} .mv-t.t-down{color:var(--bad)}
+  .mv-bar{grid-column:1/-1;height:8px;border:1px solid var(--ink);background:var(--card-2)}
+  .mv-bar i{display:block;height:100%;background:var(--orange)}
 
   .opening{display:grid;grid-template-columns:minmax(210px,.8fr) minmax(0,2.1fr) minmax(230px,.95fr);gap:clamp(18px,2vw,30px);align-items:start}
   .deck.filtered .opening{display:none}
@@ -364,8 +394,8 @@
     .grid,.below .grid{grid-template-columns:1fr}
     .opening{grid-template-columns:1fr}
     .opening>.lead{order:-1}
-    .ticker-q{display:flex;overflow-x:auto;scrollbar-width:none}
-    .tq{flex:0 0 160px}
+    .tq{flex:0 0 170px}
+    .pulse{grid-template-columns:1fr}
     .memory,.companies .company-list{grid-template-columns:1fr}
     .lead .hero-title{font-size:32px}
     .wrap{padding:20px 16px 60px}
@@ -425,7 +455,11 @@
   </div>
   
 
-  <!-- Mercados: banda a todo el ancho, como en la extension -->
+  <!-- Mercados: banda rotativa a todo el ancho. El contenido va dos veces para
+       que el bucle no tenga corte; la segunda copia es invisible para lectores. -->
+  
+
+  <!-- Pulso de la carrera: indicador propio del radar -->
   
 
   <div class="deck" id="deck">
@@ -443,6 +477,7 @@
       <ol class="keys">
         <li>Retrasos masivos en infraestructura de cómputo por problemas de suministro eléctrico en el Reino Unido.</li><li>Google DeepMind anuncia Gemini 4 Argon, su próxima generación de modelos de frontera.</li><li>Anthropic mejora las capacidades de sus agentes de código con &#39;mods&#39;, aunque con advertencias de seguridad.</li><li>Apple refuerza los controles de datos en Mac para protegerse de posibles abusos de agentes de IA.</li>
       </ol>
+      
       
       <div class="figures">
         <span class="kicker"><span class="l-es">El radar en cifras</span><span class="l-en" lang="en">The radar in figures</span></span>
