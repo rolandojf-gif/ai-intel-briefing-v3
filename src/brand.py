@@ -30,10 +30,13 @@ FAVICON = (
 )
 
 # Antes de pintar: aplica el tema guardado para que no parpadee.
+# Por defecto: ingles y tema claro (van como atributos fijos en <html>, ver
+# HTML_ATTRS). Este script solo aplica lo que el visitante haya elegido.
+HTML_ATTRS = 'lang="en" data-lang="en" data-theme="light"'
 THEME_INIT = (
     "<script>(function(){try{var d=document.documentElement,t=localStorage.getItem('theme'),l=localStorage.getItem('lang');"
-    "if(t==='light'||t==='dark')d.setAttribute('data-theme',t);"
-    "if(l==='en'){d.setAttribute('data-lang','en');d.lang='en';}}catch(e){}})();</script>\n"
+    "if(t==='dark')d.setAttribute('data-theme','dark');else if(t==='auto')d.removeAttribute('data-theme');"
+    "if(l==='es'){d.removeAttribute('data-lang');d.lang='es';}}catch(e){}})();</script>\n"
 )
 
 HEAD = FONTS + FAVICON + THEME_INIT
@@ -162,12 +165,12 @@ BASE_CSS = """
 THEME_JS = """<script>
   (function(){
     var btns = document.querySelectorAll('[data-theme-set]');
-    function cur(){ try { return localStorage.getItem('theme') || 'auto'; } catch(e){ return 'auto'; } }
+    function cur(){ try { return localStorage.getItem('theme') || 'light'; } catch(e){ return 'light'; } }
     function paint(){ var c = cur(); btns.forEach(function(b){ b.setAttribute('aria-pressed', String(b.getAttribute('data-theme-set') === c)); }); }
     btns.forEach(function(b){
       b.addEventListener('click', function(){
         var t = b.getAttribute('data-theme-set');
-        try { if (t === 'auto') localStorage.removeItem('theme'); else localStorage.setItem('theme', t); } catch(e){}
+        try { localStorage.setItem('theme', t); } catch(e){}
         if (t === 'auto') document.documentElement.removeAttribute('data-theme');
         else document.documentElement.setAttribute('data-theme', t);
         paint();
@@ -176,12 +179,12 @@ THEME_JS = """<script>
     paint();
 
     var langBtns = document.querySelectorAll('[data-lang-set]');
-    function curLang(){ try { return localStorage.getItem('lang') === 'en' ? 'en' : 'es'; } catch(e){ return 'es'; } }
+    function curLang(){ try { return localStorage.getItem('lang') === 'es' ? 'es' : 'en'; } catch(e){ return 'en'; } }
     function paintLang(){ var c = curLang(); langBtns.forEach(function(b){ b.setAttribute('aria-pressed', String(b.getAttribute('data-lang-set') === c)); }); }
     langBtns.forEach(function(b){
       b.addEventListener('click', function(){
         var l = b.getAttribute('data-lang-set');
-        try { if (l === 'en') localStorage.setItem('lang', 'en'); else localStorage.removeItem('lang'); } catch(e){}
+        try { localStorage.setItem('lang', l); } catch(e){}
         var d = document.documentElement;
         if (l === 'en') { d.setAttribute('data-lang', 'en'); d.lang = 'en'; } else { d.removeAttribute('data-lang'); d.lang = 'es'; }
         paintLang();

@@ -14,7 +14,7 @@ import re
 from jinja2 import Environment, select_autoescape
 from markupsafe import Markup
 
-from src.brand import BASE_CSS as BRAND_CSS, HEAD as BRAND_HEAD, THEME_JS, bi, credits as brand_credits, header as brand_header, seo_head
+from src.brand import BASE_CSS as BRAND_CSS, HEAD as BRAND_HEAD, HTML_ATTRS, THEME_JS, bi, credits as brand_credits, header as brand_header, seo_head
 
 
 # -- Utilidades de texto -----------------------------------------------------
@@ -106,7 +106,7 @@ def source_logo_url(source: str, url: str = "") -> str:
     return f"https://www.google.com/s2/favicons?domain={host or 'github.com'}&sz=64"
 
 
-def item_fallback_image(item: dict) -> str:
+def item_fallback_image(item: dict, lang: str = "es") -> str:
     """Portada generada (data URI) para un item sin imagen o con la imagen caida.
 
     Solo tema y fuente: el titular ya va justo debajo, en la card. El dibujo lo
@@ -116,7 +116,8 @@ def item_fallback_image(item: dict) -> str:
 
     theme_key = (item.get("strategic_theme") or item.get("primary") or "other").strip() or "other"
     seed = f"{item.get('title') or item.get('title_es') or ''}|{item.get('url') or item.get('link') or ''}"
-    return cover_data_uri(theme_key, human_theme(theme_key), source_label(item.get("source", "")), seed)
+    label = THEME_LABELS_EN.get(theme_key, "Other signals") if lang == "en" else human_theme(theme_key)
+    return cover_data_uri(theme_key, label, source_label(item.get("source", "")), seed)
 
 
 # -- Temas y puntuacion ------------------------------------------------------
@@ -186,7 +187,7 @@ ENV.globals["bi"] = bi
 
 TEMPLATE = ENV.from_string("""
 <!doctype html>
-<html lang="es">
+<html {{ html_attrs }}>
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -198,7 +199,13 @@ TEMPLATE = ENV.from_string("""
     var t = ev.target;
     if (!t || t.tagName !== 'IMG') return;
     var fb = t.getAttribute('data-fb');
-    if (fb) { t.removeAttribute('data-fb'); t.src = fb; }
+    if (fb) {
+      // La portada generada lleva texto: se pone una por idioma.
+      var en = t.getAttribute('data-fb-en');
+      t.removeAttribute('data-fb'); t.removeAttribute('data-fb-en'); t.removeAttribute('loading');
+      if (en) { var c = t.cloneNode(false); c.src = en; c.classList.add('l-en'); t.classList.add('l-es'); t.parentNode.insertBefore(c, t.nextSibling); }
+      t.src = fb;
+    }
     else { t.style.visibility = 'hidden'; }
   }, true);
 </script>
@@ -367,7 +374,6 @@ TEMPLATE = ENV.from_string("""
   <span class="it">{{ n_signals }} {{ bi("señales","signals") }}{% if n_context %} · {{ n_context }} {{ bi("de contexto","context") }}{% endif %}</span>
   <span class="it{% if sources_dead %} warn{% endif %}">{{ sources_alive }}/{{ sources_total }} {{ bi("fuentes","sources") }}</span>
   {% if x_layer and x_layer.status == 'ok' and x_layer.posts %}<span class="it">X: {{ x_layer.posts }} posts</span>{% elif x_layer and x_layer.status in ['killed','disabled'] %}<span class="it bad">X apagada</span>{% endif %}
-  <a class="r" href="{{ root }}archivo.html">{{ bi("Archivo","Archive") }} ↗</a>
 </div>
 <div class="wrap">
 
@@ -426,7 +432,8 @@ TEMPLATE = ENV.from_string("""
       {% if hero %}
       <article class="hero" data-topic="{{ hero.theme_key }}" data-new="{{ 1 if hero.is_new else 0 }}">
         <a href="{{ (hero.url or hero.link)|safe_url }}" target="_blank" rel="noopener noreferrer">
-          <img class="hero-img" src="{{ hero.image_url }}"{% if hero.fallback_image %} data-fb="{{ hero.fallback_image }}"{% endif %} alt="" referrerpolicy="no-referrer"/>
+          {% if hero.cover_only %}<img class="hero-img l-es" src="{{ hero.image_url }}" alt=""/><img class="hero-img l-en" src="{{ hero.cover_en }}" alt=""/>
+          {% else %}<img class="hero-img" src="{{ hero.image_url }}" data-fb="{{ hero.fallback_image }}" data-fb-en="{{ hero.cover_en }}" alt="" referrerpolicy="no-referrer"/>{% endif %}
         </a>
         <div class="hero-body">
           <div class="meta-row">
@@ -468,7 +475,8 @@ TEMPLATE = ENV.from_string("""
         {% for it in stream %}
         <article class="card" data-topic="{{ it.theme_key }}" data-new="{{ 1 if it.is_new else 0 }}">
           <a href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer">
-            <img class="card-img" src="{{ it.image_url }}"{% if it.fallback_image %} data-fb="{{ it.fallback_image }}"{% endif %} alt="" loading="lazy" referrerpolicy="no-referrer"/>
+            {% if it.cover_only %}<img class="card-img l-es" src="{{ it.image_url }}" alt="" loading="lazy"/><img class="card-img l-en" src="{{ it.cover_en }}" alt="" loading="lazy"/>
+            {% else %}<img class="card-img" src="{{ it.image_url }}" data-fb="{{ it.fallback_image }}" data-fb-en="{{ it.cover_en }}" alt="" loading="lazy" referrerpolicy="no-referrer"/>{% endif %}
           </a>
           <div class="card-body">
             <div class="meta-row">
@@ -604,8 +612,8 @@ TEMPLATE = ENV.from_string("""
         <div class="wr {{ w.status }}">
           <span class="wr-ic">{% if w.status == 'hit' %}✓{% else %}○{% endif %}</span>
           <div>
-            <div class="wr-t">{{ w.text }}</div>
-            {% if w.evidence %}<div class="wr-ev">→ {{ w.evidence }}</div>{% endif %}
+            <div class="wr-t">{{ bi(w.text, w.text_en) }}</div>
+            {% if w.evidence %}<div class="wr-ev">→ {{ bi(w.evidence, w.evidence_en) }}</div>{% endif %}
           </div>
         </div>
         {% endfor %}
@@ -622,8 +630,8 @@ TEMPLATE = ENV.from_string("""
         <div class="thr">
           <span class="thr-d">{{ bi("DÍA","DAY") }} {{ t.days }}</span>
           <div>
-            <div class="thr-t">{{ t.label }}</div>
-            {% if t.lead %}<div class="thr-l">{{ t.lead }}</div>{% endif %}
+            <div class="thr-t">{{ bi(t.label, t.label_en) }}</div>
+            {% if t.lead %}<div class="thr-l">{{ bi(t.lead, t.lead_en) }}</div>{% endif %}
           </div>
         </div>
         {% endfor %}
@@ -824,12 +832,13 @@ def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", 
 
         # La portada generada sirve dos veces: como imagen si el item no trae
         # ninguna, y como respaldo en cliente (data-fb) si la remota no carga.
-        fallback = item_fallback_image(it)
+        # La portada lleva el tema escrito, asi que hay una por idioma.
+        fallback, fallback_en = item_fallback_image(it), item_fallback_image(it, "en")
         img = (it.get("image_url") or "").strip()
-        if not img or not img.startswith(("http://", "https://")):
-            img, fallback = fallback, ""
-        it["image_url"] = img
-        it["fallback_image"] = fallback
+        it["cover_only"] = not img or not img.startswith(("http://", "https://"))
+        it["image_url"] = fallback if it["cover_only"] else img
+        it["fallback_image"] = "" if it["cover_only"] else fallback
+        it["cover_en"] = fallback_en
         enriched.append(it)
 
     enriched.sort(key=lambda x: x.get("score", 0), reverse=True)
@@ -909,6 +918,7 @@ def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", 
         nav=nav or "daily",
         root=root or "",
         archive=archive,
+        html_attrs=Markup(HTML_ATTRS),
         brand_head=Markup(BRAND_HEAD),
         seo=seo_head("RADAR.IA · Radar diario de la carrera hacia la AGI" if not archive else f"RADAR.IA · Edición del {snapshot.get('date') or ''}",
                      path="" if not archive else f"d/{snapshot.get('date') or ''}.html"),

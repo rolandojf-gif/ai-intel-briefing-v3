@@ -15,7 +15,7 @@ from pathlib import Path
 from jinja2 import Environment, select_autoescape
 from markupsafe import Markup
 
-from src.brand import BASE_CSS as BRAND_CSS, HEAD as BRAND_HEAD, THEME_JS, bi, credits as brand_credits, header as brand_header, seo_head
+from src.brand import BASE_CSS as BRAND_CSS, HEAD as BRAND_HEAD, HTML_ATTRS, THEME_JS, bi, credits as brand_credits, header as brand_header, seo_head
 
 from src.render import _safe_url, render_index
 
@@ -118,6 +118,7 @@ ENV.globals.update(
     brand_css=Markup(BRAND_CSS),
     brand_header=brand_header("archivo"),
     theme_js=Markup(THEME_JS),
+    html_attrs=Markup(HTML_ATTRS),
     bi=bi,
     credits=brand_credits(),
     seo=seo_head("RADAR.IA · Archivo: todas las ediciones del radar", path="archivo.html"),
@@ -125,7 +126,7 @@ ENV.globals.update(
 
 ARCHIVO_TEMPLATE = ENV.from_string("""
 <!doctype html>
-<html lang="es">
+<html {{ html_attrs }}>
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -445,6 +446,12 @@ def write_archive(docs_dir: Path, *, write_days: bool = True) -> int:
 
     paths = snapshot_paths(data_dir)
     snaps = [load_snapshot(p) for p in paths]
+    # Los dias en que fallo el analisis no se publican en el archivo: no pasaron
+    # el filtro de relevancia. El snapshot se conserva en data/ para la memoria.
+    for s in snaps:
+        if s.get("degraded") and s.get("date"):
+            (docs_dir / "d" / f"{s['date']}.html").unlink(missing_ok=True)
+    snaps = [s for s in snaps if not s.get("degraded")]
     metas = [meta_of(s) for s in snaps]
     dates = [m["date"] for m in metas]
     entries = search_entries(snaps)

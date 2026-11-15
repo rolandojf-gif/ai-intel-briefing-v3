@@ -109,11 +109,13 @@ def resolve_watchlist(history: list[dict], today_items: list[dict]) -> list[dict
         ])
         today_index.append((_keyterms(blob), it))
 
+    prev_en = [w if isinstance(w, str) else "" for w in ((prev.get("briefing") or {}).get("watch_en") or [])]
     resolved = []
-    for w in prev_watch[:4]:
+    for idx, w in enumerate(prev_watch[:4]):
+        w_en = prev_en[idx] if idx < len(prev_en) else ""
         wterms = _keyterms(w)
         if not wterms:
-            resolved.append({"text": w, "status": "open", "evidence": ""})
+            resolved.append({"text": w, "text_en": w_en, "status": "open", "evidence": "", "evidence_en": ""})
             continue
 
         best, best_overlap = None, 0
@@ -126,11 +128,13 @@ def resolve_watchlist(history: list[dict], today_items: list[dict]) -> list[dict
         if best is not None and best_overlap >= 2:
             resolved.append({
                 "text": w,
+                "text_en": w_en,
                 "status": "hit",
                 "evidence": (best.get("title_es") or best.get("title") or "")[:110],
+                "evidence_en": (best.get("title_en") or best.get("title") or "")[:110],
             })
         else:
-            resolved.append({"text": w, "status": "open", "evidence": ""})
+            resolved.append({"text": w, "text_en": w_en, "status": "open", "evidence": "", "evidence_en": ""})
 
     return resolved
 
@@ -199,6 +203,14 @@ _THEME_LABELS = {
 }
 
 
+_THEME_LABELS_EN = {
+    "frontier_capability": "Frontier capability", "agents_automation": "Agents and automation",
+    "compute_chips_dc": "Compute and chips", "model_economics": "Model economics",
+    "model_economics_pricing": "Model economics", "china_stack": "China stack",
+    "geopolitics_power": "Geopolitics and power", "other": "Other signals",
+}
+
+
 def theme_label(theme: str) -> str:
     key = (theme or "other").strip()
     return _THEME_LABELS.get(key, key.replace("_", " ").capitalize())
@@ -260,6 +272,8 @@ def detect_threads(history: list[dict], today_items: list[dict], min_days: int =
                 "label": theme_label(t),
                 "days": run,
                 "lead": (lead.get("title_es") or lead.get("title") or "")[:110] if lead else "",
+                "label_en": _THEME_LABELS_EN.get(t, t.replace("_", " ").capitalize()),
+                "lead_en": (lead.get("title_en") or lead.get("title") or "")[:110] if lead else "",
             })
 
     threads.sort(key=lambda x: -x["days"])

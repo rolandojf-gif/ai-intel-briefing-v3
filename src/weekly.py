@@ -1,7 +1,7 @@
 # src/weekly.py
 from __future__ import annotations
 
-from src.brand import BASE_CSS as BRAND_CSS, HEAD as BRAND_HEAD, THEME_JS, bi, credits as brand_credits, header as brand_header, seo_head
+from src.brand import BASE_CSS as BRAND_CSS, HEAD as BRAND_HEAD, HTML_ATTRS, THEME_JS, bi, credits as brand_credits, header as brand_header, seo_head
 import json
 import html
 from pathlib import Path
@@ -475,7 +475,7 @@ def main():
     total_analyzed = sum(s["total"] for s in source_rows)
 
     html = f"""<!doctype html>
-<html lang="es">
+<html {HTML_ATTRS}>
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>

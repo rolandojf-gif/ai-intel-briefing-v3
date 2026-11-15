@@ -140,12 +140,28 @@ class FrontTests(unittest.TestCase):
         import re
         html = self._html()
         hero = re.search(r'<img class="hero-img"[^>]*>', html).group(0)
-        card = re.search(r'<img class="card-img"[^>]*>', html).group(0)
         self.assertIn('src="https://cdn.example.com/a.jpg"', hero)
         self.assertIn('data-fb="data:image/svg+xml;base64,', hero)
-        # El que ya usa la portada generada no necesita respaldo.
-        self.assertIn('src="data:image/svg+xml;base64,', card)
-        self.assertNotIn("data-fb", card)
+        self.assertIn('data-fb-en="data:image/svg+xml;base64,', hero)
+        # El que ya usa la portada generada no necesita respaldo: va una por idioma.
+        cards = re.findall(r'<img class="card-img l-e[sn]"[^>]*>', html)
+        self.assertEqual(len(cards), 2)
+        for c in cards:
+            self.assertIn('src="data:image/svg+xml;base64,', c)
+            self.assertNotIn("data-fb", c)
+
+    def test_generated_cover_is_translated(self):
+        import base64
+        from src.render import item_fallback_image
+        item = {"title": "t", "strategic_theme": "frontier_capability", "source": "X @grok"}
+        dec = lambda uri: base64.b64decode(uri.split(",", 1)[1]).decode()
+        self.assertIn("CAPACIDAD FRONTIER", dec(item_fallback_image(item)))
+        self.assertIn("FRONTIER CAPABILITY", dec(item_fallback_image(item, "en")))
+
+    def test_site_defaults_to_english_and_light(self):
+        html = self._html()
+        self.assertIn('<html lang="en" data-lang="en" data-theme="light">', html)
+        self.assertNotIn('archivo.html">', html.split('class="strip"')[1].split("</div>")[0])
 
     def test_error_listener_is_registered_before_the_first_image(self):
         html = self._html()
@@ -178,3 +194,37 @@ class TopicFilterTests(unittest.TestCase):
         self.assertIn('data-topic="china_stack"', html)
         self.assertNotIn("querySelectorAll('[data-theme]')", html)
         self.assertIn("querySelectorAll('[data-topic]')", html)
+
+
+class MemoryEnglishTests(unittest.TestCase):
+    def test_watchlist_and_threads_carry_english(self):
+        from src.memory import detect_threads, resolve_watchlist
+        hist = [{"date": "2026-11-13", "items": [{"layer": "signal", "strategic_theme": "china_stack"}]},
+                {"date": "2026-11-14", "briefing": {"watch": ["Vigilar precios de DeepSeek R1"], "watch_en": ["Watch DeepSeek R1 pricing"]},
+                 "items": [{"layer": "signal", "strategic_theme": "china_stack"}]}]
+        today = [{"title_es": "DeepSeek R1 baja precios", "title_en": "DeepSeek R1 cuts prices", "layer": "signal",
+                  "strategic_theme": "china_stack", "entities": ["DeepSeek"]}]
+        w = resolve_watchlist(hist, today)[0]
+        self.assertEqual((w["status"], w["text_en"], w["evidence_en"]), ("hit", "Watch DeepSeek R1 pricing", "DeepSeek R1 cuts prices"))
+        t = detect_threads(hist, today)[0]
+        self.assertEqual((t["label_en"], t["lead_en"]), ("China stack", "DeepSeek R1 cuts prices"))
+
+
+class ArchiveHidesDegradedTests(unittest.TestCase):
+    def test_degraded_days_are_not_listed_nor_kept_as_pages(self):
+        import re
+        from src.archive import write_archive
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp); (out / "data").mkdir(); (out / "d").mkdir()
+            ok = {"date": "2026-11-05", "briefing": {"thesis": "buena"}, "items": [{"title": "a", "layer": "signal", "url": "https://e.com/a"}]}
+            bad = {"date": "2026-11-07", "degraded": True, "briefing": {"thesis": "mala"}, "items": [{"title": "b", "url": "https://e.com/b"}]}
+            for s in (ok, bad):
+                (out / "data" / f"{s['date']}.json").write_text(json.dumps(s))
+            (out / "d" / "2026-11-07.html").write_text("vieja")
+            n = write_archive(out)
+            html = (out / "archivo.html").read_text()
+            self.assertEqual(n, 1)
+            self.assertIn("d/2026-11-05.html", html)
+            self.assertNotIn("2026-11-07", html)
+            self.assertFalse((out / "d" / "2026-11-07.html").exists())
+            self.assertNotIn("2026-11-07", (out / "sitemap.xml").read_text())
