@@ -2,6 +2,7 @@
 from __future__ import annotations
 import os
 import hashlib
+import html
 import yaml
 from pathlib import Path
 from datetime import datetime, timezone
@@ -87,6 +88,9 @@ def clean_signal_text(text: str, source: str = "") -> str:
     raw = (text or "").strip()
     if not raw:
         return ""
+    # Antes de quitar hashtags: si no, "&#039;" pierde la almohadilla y se
+    # queda como "&039;", que ya no se puede decodificar.
+    raw = html.unescape(raw)
     raw = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", raw)
     raw = re.sub(r"!\s*Image\s*\d*:?", " ", raw, flags=re.IGNORECASE)
     raw = re.sub(r"\bImage\s*\d*:?", " ", raw, flags=re.IGNORECASE)
@@ -1238,9 +1242,9 @@ def main():
         print("NEXUS MARKET publication failed (non-blocking):")
         traceback.print_exc()
 
-    html = render_index(final_items, briefing=briefing, snapshot=daily_snapshot, market=market_data)
+    page = render_index(final_items, briefing=briefing, snapshot=daily_snapshot, market=market_data)
     Path("docs").mkdir(exist_ok=True)
-    Path("docs/index.html").write_text(html, encoding="utf-8")
+    Path("docs/index.html").write_text(page, encoding="utf-8")
 
     # 9) Weekly
     try:

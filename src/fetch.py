@@ -42,7 +42,11 @@ def _clean_html(text: str) -> str:
     if not raw:
         return ""
     no_tags = re.sub(r"<[^>]+>", " ", raw)
-    return re.sub(r"\s+", " ", no_tags).strip()
+    # Hay feeds que codifican las entidades dos veces: tras el parser queda
+    # "&quot;there&#039;s" como texto. Se decodifica, y se vuelven a quitar las
+    # etiquetas por si lo que venia doblemente codificado era HTML.
+    text = re.sub(r"<[^>]+>", " ", html.unescape(no_tags))
+    return re.sub(r"\s+", " ", text).strip()
 
 
 def is_google_news_url(url: str) -> bool:
@@ -431,7 +435,7 @@ def fetch_rss(url: str, limit: int = 30, quiet: bool = False):
         raw_summary = getattr(e, "summary", "") or getattr(e, "description", "")
         summary = clip_text(_clean_html(raw_summary))
         link = resolve_google_news_url((getattr(e, "link", "") or "").strip())
-        title = (getattr(e, "title", "") or "").strip()
+        title = html.unescape((getattr(e, "title", "") or "").strip())
         image_url = _extract_image_url(e)
 
         items.append(

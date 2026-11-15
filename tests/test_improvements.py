@@ -55,6 +55,26 @@ class IngestTests(unittest.TestCase):
         self.assertGreater(waits[0], 0)
 
 
+class EntityTests(unittest.TestCase):
+    RAW = 'Amodei admits &quot;there&#039;s a huge uncertainty&quot; in <b>R&amp;D</b> &lt;i&gt;spend&lt;/i&gt;'
+
+    def test_double_encoded_entities_are_decoded_not_mangled(self):
+        """El filtro de hashtags convertia "&#039;" en "&039;" y NEXUS lo mostraba tal cual."""
+        from src.main import clean_signal_text
+        text = clean_signal_text(fetch._clean_html(self.RAW), "The Decoder")
+        self.assertEqual(text, 'Amodei admits "there\'s a huge uncertainty" in R&D spend')
+
+    def test_feed_titles_are_decoded(self):
+        rss = RSS.replace(b"<title>Uno</title>", b"<title>A &amp;quot;big&amp;quot; deal &amp;amp; more</title>")
+        with mock.patch.object(fetch, "_fetch_feed_with_retries", return_value=feedparser.parse(rss)):
+            items = fetch.fetch_rss("https://example.com/feed")
+        self.assertEqual(items[0]["title"], 'A "big" deal & more')
+
+    def test_hashtags_still_lose_the_hash(self):
+        from src.main import clean_signal_text
+        self.assertEqual(clean_signal_text("NVIDIA #AI demo", "X @NVIDIAAI"), "NVIDIA AI demo")
+
+
 class NoveltyHistoryTests(unittest.TestCase):
     def test_history_window_counts_only_real_snapshots(self):
         """image_cache.json y los *.llm_cache.json robaban huecos de la ventana."""
