@@ -7,7 +7,6 @@ tema filtrables en cliente. La capa de memoria y el mercado viven en la sidebar.
 """
 
 from collections import Counter
-from datetime import datetime
 from urllib.parse import urlparse
 import re
 
@@ -15,6 +14,7 @@ from jinja2 import Environment, select_autoescape
 from markupsafe import Markup
 
 from src.brand import BASE_CSS as BRAND_CSS, HEAD as BRAND_HEAD, HTML_ATTRS, THEME_JS, bi, credits as brand_credits, header as brand_header, seo_head
+from src.config import LEAD_SLOT_COUNT, demote_repeats_from_lead, radar_today_str
 
 
 # -- Utilidades de texto -----------------------------------------------------
@@ -63,8 +63,12 @@ SOURCE_DOMAIN_HINTS = {
     "mistral": "mistral.ai",
     "qwen": "qwenlm.github.io",
     "deepseek": "deepseek.com",
+    "zhipu": "z.ai",
+    "minimax": "minimax.io",
     "moonshot": "moonshot.cn",
     "chinatalk": "chinatalk.media",
+    "stratechery": "stratechery.com",
+    "fabricated knowledge": "fabricatedknowledge.com",
     "semianalysis": "semianalysis.com",
     "semiwiki": "semiwiki.com",
     "nvidia": "nvidia.com",
@@ -227,7 +231,7 @@ TEMPLATE = ENV.from_string("""
 
   /* -- Tabs de tema -- */
   .tabs{display:flex;gap:10px;flex-wrap:wrap;padding:0 0 24px}
-  .tab{font:600 12px/1.2 var(--f-mono);text-transform:uppercase;padding:8px 12px;cursor:pointer;user-select:none;
+  .tab{appearance:none;margin:0;color:var(--text);font:600 12px/1.2 var(--f-mono);text-transform:uppercase;padding:8px 12px;cursor:pointer;user-select:none;
        border:2px solid var(--ink);background:var(--card);box-shadow:var(--shadow-sm);transition:transform .08s,box-shadow .08s}
   .tab:hover{background:rgba(204,255,0,.3)}
   .tab:active{transform:translate(2px,2px);box-shadow:none}
@@ -235,6 +239,7 @@ TEMPLATE = ENV.from_string("""
   .tab-new.on{background:#34D399;color:#121211}
   .tab .n{font-weight:700;color:var(--orange-ink);margin-left:6px}
   .tab.on .n{color:#121211}
+  .below.filter-empty,.ctx-block.filter-empty{display:none}
 
   /* -- Disposicion de periodico (la de la extension NEXUS) -- */
   .wrap{max-width:1500px}
@@ -472,7 +477,7 @@ TEMPLATE = ENV.from_string("""
   <span class="it {{ 'bad' if activity.class == 'alert' else ('warn' if activity.class == 'active' else '') }}">{{ bi(activity.label, activity_en) }}</span>
   <span class="it">{{ n_signals }} {{ bi("señales","signals") }}{% if n_context %} · {{ n_context }} {{ bi("de contexto","context") }}{% endif %}</span>
   <span class="it{% if sources_dead %} warn{% endif %}">{{ sources_alive }}/{{ sources_total }} {{ bi("fuentes","sources") }}</span>
-  {% if x_layer and x_layer.status == 'ok' and x_layer.posts %}<span class="it">X: {{ x_layer.posts }} posts</span>{% elif x_layer and x_layer.status in ['killed','disabled'] %}<span class="it bad">X apagada</span>{% endif %}
+  {% if x_layer and x_layer.status == 'ok' and x_layer.posts %}<span class="it">X: {{ x_layer.posts }} posts</span>{% elif x_layer and x_layer.status in ['killed','disabled'] %}<span class="it bad">{{ bi("X apagada","X off") }}</span>{% endif %}
 </div>
 <div class="wrap">
 
@@ -496,7 +501,7 @@ TEMPLATE = ENV.from_string("""
   <div class="notice">
     <b>{{ bi("Capa X apagada.","X layer off.") }}</b>
     {% if x_layer.status == 'disabled' %}
-    X_DISABLED=1: no se ha consultado el espejo.
+    {{ bi("X_DISABLED=1: no se ha consultado el espejo.","X_DISABLED=1: the X mirror was skipped.") }}
     {% else %}
     {{ bi("El espejo no devolvió posts (" ~ x_layer.configured ~ " cuentas). El briefing sigue con RSS.", "The mirror returned no posts (" ~ x_layer.configured ~ " accounts). The briefing continues with RSS.") }}
     {% endif %}
@@ -505,13 +510,13 @@ TEMPLATE = ENV.from_string("""
 
   <!-- Tabs de tema -->
   {% if theme_tabs or show_new_tab %}
-  <div class="tabs" id="tabs">
-    <span class="tab on" data-filter="all">{{ bi("Todas","All") }}<span class="n">{{ n_signals + n_context }}</span></span>
+  <div class="tabs" id="tabs" role="tablist">
+    <button type="button" role="tab" aria-selected="true" class="tab on" data-filter="all">{{ bi("Todas","All") }}<span class="n">{{ n_signals + n_context }}</span></button>
     {% if show_new_tab %}
-    <span class="tab tab-new" data-filter="__new__">{{ bi("Nuevo","New") }}<span class="n">{{ n_new }}</span></span>
+    <button type="button" role="tab" aria-selected="false" class="tab tab-new" data-filter="__new__">{{ bi("Nuevo","New") }}<span class="n">{{ n_new }}</span></button>
     {% endif %}
     {% for t in theme_tabs %}
-    <span class="tab" data-filter="{{ t.key }}">{{ bi(t.label, t.label_en) }}<span class="n">{{ t.count }}</span></span>
+    <button type="button" role="tab" aria-selected="false" class="tab" data-filter="{{ t.key }}">{{ bi(t.label, t.label_en) }}<span class="n">{{ t.count }}</span></button>
     {% endfor %}
   </div>
   {% endif %}
@@ -660,8 +665,8 @@ TEMPLATE = ENV.from_string("""
       <div class="empty">
         <div class="big">{{ bi("Hoy no ha pasado nada que mueva la aguja.","Nothing moved the needle today.") }}</div>
         <div class="sub">
-          El filtro de relevancia descartó todo lo ingerido por irrelevante. Un día sin señal
-          también es información: significa que la carrera frontier no se movió.
+          {{ bi("El filtro de relevancia descartó todo lo ingerido por irrelevante. Un día sin señal también es información: significa que la carrera frontier no se movió.",
+                "The relevance filter dropped all ingested items as noise. A day without signals is also information: the frontier race did not move.") }}
         </div>
       </div>
       {% endif %}
@@ -713,24 +718,26 @@ TEMPLATE = ENV.from_string("""
   {% endif %}
 
       {% if context %}
-      <div class="section-h">
-        <h2 class="sec">{{ bi("Contexto","Context") }}</h2>
-        <p class="sec-sub">{{ bi("De fondo: no cambia nada hoy","Background: changes nothing today") }}</p>
-      </div>
-      <div class="ctx">
-        {% for it in context %}
-        <div class="cx" data-topic="{{ it.theme_key }}" data-new="{{ 1 if it.is_new else 0 }}">
-          <img src="{{ it.logo }}" alt="" loading="lazy"/>
-          <div class="cx-b">
-            <div class="cx-t">
-              <a href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ bi(it.display_title, it.title_en) }}</a>
-            </div>
-            {% if it.so_what %}<div class="cx-w">{{ bi(it.so_what, it.so_what_en) }}</div>{% endif %}
-            <div class="cx-m">{{ bi(it.theme_label, it.theme_label_en) }} · {{ it.source_label }} · {{ it.score }}</div>
-          </div>
+      <section class="ctx-block" id="ctx-block">
+        <div class="section-h">
+          <h2 class="sec">{{ bi("Contexto","Context") }}</h2>
+          <p class="sec-sub">{{ bi("De fondo: no cambia nada hoy","Background: changes nothing today") }}</p>
         </div>
-        {% endfor %}
-      </div>
+        <div class="ctx">
+          {% for it in context %}
+          <div class="cx" data-topic="{{ it.theme_key }}" data-new="{{ 1 if it.is_new else 0 }}">
+            <img src="{{ it.logo }}" alt="" loading="lazy"/>
+            <div class="cx-b">
+              <div class="cx-t">
+                <a href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ bi(it.display_title, it.title_en) }}</a>
+              </div>
+              {% if it.so_what %}<div class="cx-w">{{ bi(it.so_what, it.so_what_en) }}</div>{% endif %}
+              <div class="cx-m">{{ bi(it.theme_label, it.theme_label_en) }} · {{ it.source_label }} · {{ it.score }}</div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </section>
       {% endif %}
 
   </div>
@@ -849,7 +856,9 @@ TEMPLATE = ENV.from_string("""
     var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     var days = Math.round((today - edition) / 86400000);
     if (!(days >= 1)) return;
-    el.textContent = days === 1 ? 'edición de ayer' : 'edición de hace ' + days + ' días';
+    var es = days === 1 ? 'edición de ayer' : 'edición de hace ' + days + ' días';
+    var en = days === 1 ? "yesterday's edition" : days + ' days old';
+    el.innerHTML = '<span class="l-es">' + es + '</span><span class="l-en" lang="en">' + en + '</span>';
     el.hidden = false;
   })();
 </script>
@@ -914,22 +923,37 @@ TEMPLATE = ENV.from_string("""
     if (!tabs.length) return;
     tabs.forEach(function(t){
       t.addEventListener('click', function(){
-        tabs.forEach(function(x){ x.classList.remove('on'); });
+        tabs.forEach(function(x){
+          x.classList.remove('on');
+          x.setAttribute('aria-selected', 'false');
+        });
         t.classList.add('on');
+        t.setAttribute('aria-selected', 'true');
         var f = t.getAttribute('data-filter');
+        var on = f !== 'all';
         // data-topic, no data-theme: <html data-theme> es el tema claro/oscuro
         // y con el selector anterior el filtro ocultaba la pagina entera.
         // Con filtro: se oculta la portada a tres columnas y la rejilla enseña
         // TODAS las señales que casan (tambien las de portada y En breve).
         var deck = document.getElementById('deck');
-        if (deck) deck.classList.toggle('filtered', f !== 'all');
+        if (deck) deck.classList.toggle('filtered', on);
+        var visBelow = 0;
+        var visCtx = 0;
         document.querySelectorAll('[data-topic]').forEach(function(c){
           var show;
           if (f === 'all')            show = true;
           else if (f === '__new__')   show = c.getAttribute('data-new') === '1';
           else                        show = c.getAttribute('data-topic') === f;
           c.style.display = show ? '' : 'none';
+          if (show) {
+            if (c.classList.contains('card')) visBelow++;
+            else if (c.classList.contains('cx')) visCtx++;
+          }
         });
+        var below = document.querySelector('.below');
+        if (below) below.classList.toggle('filter-empty', on && visBelow === 0);
+        var ctxBlock = document.getElementById('ctx-block');
+        if (ctxBlock) ctxBlock.classList.toggle('filter-empty', on && visCtx === 0);
       });
     });
   })();
@@ -1038,7 +1062,6 @@ def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", 
         signals = enriched  # modo degradado: sin veredictos, todo a la capa principal
 
     # El sort por score devolvería un repeat al hero. El radar es "qué cambió hoy".
-    from src.main import LEAD_SLOT_COUNT, demote_repeats_from_lead
     signals = demote_repeats_from_lead(signals, LEAD_SLOT_COUNT)
 
     hero = signals[0] if signals else None
@@ -1079,7 +1102,7 @@ def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", 
     dead = health.get("dead") or []
 
     return TEMPLATE.render(
-        generated_at=snapshot.get("date") or datetime.now().strftime("%Y-%m-%d"),
+        generated_at=snapshot.get("date") or radar_today_str(),
         activity=snapshot.get("activity") or {"label": "ACTIVO", "class": "active"},
         thesis=thesis,
         signals=signals,

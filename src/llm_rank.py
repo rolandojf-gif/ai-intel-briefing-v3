@@ -179,7 +179,11 @@ def make_client():
     return genai.Client(http_options={"api_version": GEMINI_API_VERSION})
 
 
-def rank_batch(items: list[dict], model: str = "gemini-2.5-flash") -> dict:
+def rank_batch(
+    items: list[dict],
+    model: str = "gemini-2.5-flash",
+    recent_headlines: list[str] | None = None,
+) -> dict:
     """items: dicts con keys id, source, title, summary, url.
 
     Devuelve {"briefing": {...}, "map": {id: {...}}}.
@@ -198,6 +202,18 @@ def rank_batch(items: list[dict], model: str = "gemini-2.5-flash") -> dict:
             "summary": (it.get("summary") or "")[:700],
             "url": (it.get("url") or "")[:300],
         })
+
+    recent_block = ""
+    if recent_headlines:
+        cleaned_recent = [str(h).strip()[:140] for h in recent_headlines if str(h).strip()][:20]
+        if cleaned_recent:
+            recent_lines = "\n".join(f"- {h}" for h in cleaned_recent)
+            recent_block = (
+                "HISTÓRICO RECIENTE (ya publicado en las últimas 48h; si un item solo repite "
+                "lo mismo sin dato, precio, lanzamiento ni consecuencia nueva, rebaja relevance "
+                "y márcalo 'context' o 'noise'):\n"
+                f"{recent_lines}\n\n"
+            )
 
     prompt = (
         f"{READER_THESIS}\n"
@@ -233,6 +249,7 @@ def rank_batch(items: list[dict], model: str = "gemini-2.5-flash") -> dict:
         "INGLÉS\n"
         "- Los campos *_en son la versión inglesa de su campo en español: mismo contenido,\n"
         "  inglés natural y directo, sin añadir ni quitar hechos.\n\n"
+        f"{recent_block}"
         "Devuelve SOLO JSON: {\"briefing\":{...},\"results\":[...]}\n\n"
         f"ITEMS:\n{json.dumps(payload, ensure_ascii=False)}"
     )

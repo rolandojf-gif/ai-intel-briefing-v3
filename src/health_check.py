@@ -16,8 +16,9 @@ from __future__ import annotations
 import json
 import os
 import sys
-from datetime import datetime
 from pathlib import Path
+
+from src.config import radar_today_str
 
 DATA = Path("docs/data")
 
@@ -42,6 +43,15 @@ def check(snapshot: dict) -> tuple[int, list[str], list[str]]:
         )
         summary.append(f"- Fuentes sin items ({alive}/{total} vivas): {', '.join(dead)}")
 
+    x_layer = snapshot.get("x_layer") or {}
+    if isinstance(x_layer, dict) and x_layer.get("status") == "killed":
+        x_reason = x_layer.get("reason") or "X_DISABLED=1 o mirrors caidos"
+        annotations.append(
+            "::warning title=Capa X apagada::"
+            + _escape(f"{day}: 0 posts de X ({x_reason})")
+        )
+        summary.append(f"- Capa X apagada: 0 posts ({x_reason})")
+
     if snapshot.get("degraded"):
         reason = snapshot.get("llm_error") or "sin error registrado (Gemini no se llamo o no devolvio veredictos)"
         annotations.append(
@@ -59,7 +69,7 @@ def check(snapshot: dict) -> tuple[int, list[str], list[str]]:
 
 
 def main(day: str | None = None, data_dir: Path = DATA) -> int:
-    day = day or datetime.now().strftime("%Y-%m-%d")
+    day = day or radar_today_str()
     path = data_dir / f"{day}.json"
     if not path.exists():
         print(f"HEALTH: {day} sin edicion de analisis (dia RSS); nada que comprobar.")

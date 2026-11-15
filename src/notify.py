@@ -15,6 +15,8 @@ from datetime import datetime
 from pathlib import Path
 from urllib.parse import urlparse
 
+from src.config import radar_today_str
+
 SITE_URL = "https://aievolve.netlify.app"
 MONTHS = (
     "", "ene", "feb", "mar", "abr", "may", "jun",
@@ -134,7 +136,7 @@ def load_snapshot(data_dir: Path, date: str | None = None) -> dict | None:
     if date:
         path = data_dir / f"{date}.json"
     else:
-        today = datetime.now().strftime("%Y-%m-%d")
+        today = radar_today_str()
         path = data_dir / f"{today}.json"
         if not path.exists():
             dated = sorted(

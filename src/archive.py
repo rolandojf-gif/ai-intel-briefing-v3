@@ -211,7 +211,7 @@ ARCHIVO_TEMPLATE = ENV.from_string("""
     <p>{{ n }} {{ bi("días","days") }} · {{ first }} – {{ last }}. {{ bi("Cada entrada es el radar de ese día, no un recorte.","Each entry is that day's full radar, not an excerpt.") }}</p>
   </div>
   <div class="toolbar">
-    <input id="q" type="search" placeholder="NVIDIA, agentes, 2026-08-22…" autocomplete="off"/>
+    <input id="q" type="search" aria-label="Search archive / Buscar en el archivo" placeholder="NVIDIA, agentes, 2026-08-22…" autocomplete="off"/>
     <div class="months">
       {% for m in months %}
       <a href="#m-{{ m.key }}">{{ m.short }}</a>
@@ -236,7 +236,7 @@ ARCHIVO_TEMPLATE = ENV.from_string("""
   </div>
   <div class="empty" id="none" hidden>{{ bi("Nada coincide.","No matches.") }}</div>
   {{ credits }}
-  <footer>{{ n }} snapshots · {{ n_entries }} señales indexadas · falta {{ missing }}</footer>
+  <footer>{{ n }} snapshots · {{ n_entries }} {{ bi("señales indexadas","indexed signals") }} · {{ bi("falta","missing") }} {{ missing }}</footer>
 </div>
 <script>
 (function(){
@@ -251,6 +251,9 @@ ARCHIVO_TEMPLATE = ENV.from_string("""
   var index = null;
   var loading = false;
 
+  function isEn(){
+    return document.documentElement.getAttribute('data-lang') === 'en';
+  }
   function fold(s){
     return (s || '').toLowerCase().normalize('NFD').replace(/[\\u0300-\\u036f]/g, '');
   }
@@ -269,8 +272,11 @@ ARCHIVO_TEMPLATE = ENV.from_string("""
   }
   function copied(btn){
     btn.classList.add('ok');
-    btn.textContent = 'Copiado';
-    setTimeout(function(){ btn.classList.remove('ok'); btn.textContent = 'Copiar'; }, 1600);
+    btn.textContent = isEn() ? 'Copied' : 'Copiado';
+    setTimeout(function(){
+      btn.classList.remove('ok');
+      btn.textContent = isEn() ? 'Copy' : 'Copiar';
+    }, 1600);
   }
   function copyText(text, btn){
     if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -296,6 +302,8 @@ ARCHIVO_TEMPLATE = ENV.from_string("""
   }
   function renderHits(items, query){
     hitsList.innerHTML = '';
+    var en = isEn();
+    var copyLbl = en ? 'Copy' : 'Copiar';
     items.slice(0, 60).forEach(function(it){
       var row = document.createElement('div');
       row.className = 'hit';
@@ -308,7 +316,7 @@ ARCHIVO_TEMPLATE = ENV.from_string("""
           (it.w ? '<div class="w">' + esc(it.w) + '</div>' : '') +
           '<div class="meta">' + esc(it.s || '') + '</div>' +
         '</div>' +
-        '<button type="button" class="copy-btn">Copiar</button>';
+        '<button type="button" class="copy-btn">' + copyLbl + '</button>';
       row.querySelector('.copy-btn').addEventListener('click', function(ev){
         ev.preventDefault();
         copyText(ficha, ev.currentTarget);
@@ -316,8 +324,13 @@ ARCHIVO_TEMPLATE = ENV.from_string("""
       hitsList.appendChild(row);
     });
     var n = items.length;
-    hitsH.textContent = n === 0 ? 'Nada para «' + query + '»' :
-      (n === 1 ? '1 señal' : (n > 60 ? '60 de ' + n + ' señales' : n + ' señales'));
+    if (en) {
+      hitsH.textContent = n === 0 ? 'Nothing for "' + query + '"' :
+        (n === 1 ? '1 signal' : (n > 60 ? '60 of ' + n + ' signals' : n + ' signals'));
+    } else {
+      hitsH.textContent = n === 0 ? 'Nada para «' + query + '»' :
+        (n === 1 ? '1 señal' : (n > 60 ? '60 de ' + n + ' señales' : n + ' señales'));
+    }
     hitsBox.hidden = false;
     cal.hidden = true;
     if (months) months.hidden = true;

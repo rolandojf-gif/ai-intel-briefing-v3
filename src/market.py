@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from concurrent.futures import ThreadPoolExecutor
 import json
 import math
 import re
@@ -143,23 +144,21 @@ def get_market_overview() -> dict:
 
     NO_DATA = "s/d"
 
-    macro_items = []
-    for m in macro_targets:
+    def _build_macro(m: dict) -> dict:
         if m.get("coingecko"):
             q = _fetch_crypto(m["coingecko"], m["symbol"])
         else:
             q = _fetch_yahoo_quote(m["symbol"])
 
         if not q:
-            macro_items.append({
+            return {
                 "label": m["label"],
                 "price_str": NO_DATA,
                 "change_str": "",
                 "positive": True,
                 "available": False,
                 "sparkline_svg": "",
-            })
-            continue
+            }
 
         price = q["price"]
         change = q["change_pct"]
@@ -171,7 +170,7 @@ def get_market_overview() -> dict:
         else:
             formatted_price = f"{price:.2f}"
 
-        macro_items.append({
+        return {
             "label": m["label"],
             "price_str": formatted_price,
             "change_str": f"{change:+.2f}%",
@@ -179,13 +178,12 @@ def get_market_overview() -> dict:
             "available": True,
             "sparkline_svg": _generate_sparkline(points, positive=is_pos),
             "sparkline_points": points,
-        })
+        }
 
-    company_items = []
-    for c in ai_companies:
+    def _build_company(c: dict) -> dict:
         q = _fetch_yahoo_quote(c["ticker"])
         if not q:
-            company_items.append({
+            return {
                 "name": c["name"],
                 "ticker": c["ticker"],
                 "exchange": c["exchange"],
@@ -194,11 +192,10 @@ def get_market_overview() -> dict:
                 "positive": True,
                 "available": False,
                 "logo": c["logo"],
-            })
-            continue
+            }
 
         change = q["change_pct"]
-        company_items.append({
+        return {
             "name": c["name"],
             "ticker": c["ticker"],
             "exchange": c["exchange"],
@@ -208,7 +205,13 @@ def get_market_overview() -> dict:
             "available": True,
             "logo": c["logo"],
             "sparkline_points": q.get("sparkline_points") or [],
-        })
+        }
+
+    with ThreadPoolExecutor(max_workers=8) as pool:
+        macro_fut = [pool.submit(_build_macro, m) for m in macro_targets]
+        comp_fut = [pool.submit(_build_company, c) for c in ai_companies]
+        macro_items = [f.result() for f in macro_fut]
+        company_items = [f.result() for f in comp_fut]
 
     quotes_ok = sum(1 for x in macro_items + company_items if x.get("available"))
     quotes_total = len(macro_items) + len(company_items)

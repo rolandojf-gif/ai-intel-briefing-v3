@@ -2,8 +2,10 @@
 from __future__ import annotations
 
 from src.brand import BASE_CSS as BRAND_CSS, HEAD as BRAND_HEAD, HTML_ATTRS, THEME_JS, bi, credits as brand_credits, header as brand_header, seo_head
+from src.config import ENTITY_ALIASES
 import json
 import html
+import re
 from pathlib import Path
 from datetime import datetime
 from typing import Any, Dict, List, Tuple
@@ -19,6 +21,19 @@ CATEGORY_LABELS = {
     "geopol": "Geopolitics",
     "misc": "Other",
 }
+
+
+def normalize_entity(e: str) -> str:
+    val = re.sub(r"\s+", " ", (e or "").strip())
+    if not val:
+        return ""
+    if val in ENTITY_ALIASES:
+        return ENTITY_ALIASES[val]
+    low = val.lower()
+    for src, dst in ENTITY_ALIASES.items():
+        if low == src.lower():
+            return dst
+    return val
 
 
 def parse_date(stem: str) -> datetime:
@@ -130,12 +145,13 @@ def top_share(counts: Dict[str, float], topn: int = 3) -> float:
 
 def pick_items_for_entity(snapshots: List[Dict[str, Any]], entity: str, limit: int = 6) -> List[Dict[str, Any]]:
     hits = []
+    target = normalize_entity(entity)
     for snap in reversed(snapshots):
         for it in (snap.get("items", []) or []):
             if not isinstance(it, dict):
                 continue
-            ents = it.get("entities") or []
-            if entity in ents:
+            ents = [normalize_entity(e) for e in (it.get("entities") or []) if isinstance(e, str)]
+            if target in ents:
                 hits.append(it)
                 if len(hits) >= limit:
                     return hits
@@ -240,8 +256,9 @@ def main():
 
             for e in (it.get("entities") or []):
                 if isinstance(e, str) and e.strip():
-                    e2 = e.strip()
-                    local_ent[e2] = local_ent.get(e2, 0) + 1
+                    e2 = normalize_entity(e)
+                    if e2:
+                        local_ent[e2] = local_ent.get(e2, 0) + 1
 
         for c, v in local_cat.items():
             cat_series.setdefault(c, [0] * n)[di] = v
@@ -368,13 +385,18 @@ def main():
     breakouts.sort(key=lambda r: (r["last"], r["w_total"], r["delta"]), reverse=True)
     breakouts = breakouts[:8]
 
-    # Lectura de la semana, en castellano. Las métricas se quedan en el cálculo.
+    def human_category_en(category: str) -> str:
+        from src.render import THEME_LABELS_EN
+        key = (category or "other").strip()
+        return THEME_LABELS_EN.get(key, CATEGORY_LABELS.get(key, human_category(key)))
+
+    # Lectura de la semana, bilingüe. Las métricas se quedan en el cálculo.
     implications = []
     dominant = cat_rows[0] if cat_rows else None
     hot_ent = ent_rows[0] if ent_rows else None
 
     if dominant:
-        implications.append((f"Esta semana manda {human_category(dominant['name'])}.", f"This week is led by {human_category(dominant['name'])}."))
+        implications.append((f"Esta semana manda {human_category(dominant['name'])}.", f"This week is led by {human_category_en(dominant['name'])}."))
     if hot_ent:
         racha = hot_ent["streak"]
         racha_txt = f"{racha} día seguido" if racha == 1 else f"{racha} días seguidos"
@@ -395,19 +417,21 @@ def main():
     implications.append((f"{active_sources_count} fuentes con cobertura esta semana.", f"{active_sources_count} sources with coverage this week."))
 
     def meta_line(r, extra: str = "") -> str:
-        bits = [spark(r["series"])]
+        bits = [html_escape(spark(r["series"]))]
         if r.get("streak"):
-            bits.append(f"racha {r['streak']}d")
+            s = r["streak"]
+            bits.append(bi(f"racha {s}d", f"{s}d streak"))
         if r.get("total"):
-            bits.append(f"{r['total']} menciones")
+            t = r["total"]
+            bits.append(bi(f"{t} menciones", f"{t} mentions"))
         if extra:
-            bits.append(extra)
+            bits.append(html_escape(extra))
         return " · ".join(bits)
 
     def li_entity(r):
         return (
             f"<li><span class='k'>{html_escape(r['name'])}</span>"
-            f"<span class='m'>{html_escape(meta_line(r))}</span></li>"
+            f"<span class='m'>{meta_line(r)}</span></li>"
         )
 
     def li_cat(r):
@@ -416,62 +440,69 @@ def main():
         if len(shares) >= 2:
             extra = f"{shares[0]:.0%} → {shares[-1]:.0%}"
         return (
-            f"<li><span class='k'>{html_escape(human_category(r['name']))}</span>"
-            f"<span class='m'>{html_escape(meta_line(r, extra))}</span></li>"
+            f"<li><span class='k'>{bi(human_category(r['name']), human_category_en(r['name']))}</span>"
+            f"<span class='m'>{meta_line(r, extra)}</span></li>"
         )
 
     def li_source(r):
         return (
             f"<li><span class='k'>{html_escape(r['name'])}</span>"
-            f"<span class='m'>{html_escape(meta_line(r))}</span></li>"
+            f"<span class='m'>{meta_line(r)}</span></li>"
         )
 
-    ent_li = "\n".join(li_entity(r) for r in ent_rows[:12]) or "<li>Sin datos</li>"
-    cat_li = "\n".join(li_cat(r) for r in cat_rows[:10]) or "<li>Sin datos</li>"
-    source_li = "\n".join(li_source(r) for r in source_rows[:10]) or "<li>Sin datos</li>"
+    empty_li = f"<li>{bi('Sin datos', 'No data')}</li>"
+    ent_li = "\n".join(li_entity(r) for r in ent_rows[:12]) or empty_li
+    cat_li = "\n".join(li_cat(r) for r in cat_rows[:10]) or empty_li
+    source_li = "\n".join(li_source(r) for r in source_rows[:10]) or empty_li
     imp_li = "\n".join(f"<li>{bi(es, en)}</li>" for es, en in implications)
 
     def rot_line(r):
         return (
-            f"<li><span class='k'>{html_escape(human_category(r['name']))}</span>"
+            f"<li><span class='k'>{bi(human_category(r['name']), human_category_en(r['name']))}</span>"
             f"<span class='m'>{r['early']:.0%} → {r['recent']:.0%}</span></li>"
         )
 
-    risers_li = "\n".join(rot_line(r) for r in risers) or "<li>Sin datos</li>"
-    fallers_li = "\n".join(rot_line(r) for r in fallers) or "<li>Sin datos</li>"
-    new_li = "\n".join(li_entity(r) for r in new_ents) or "<li>Sin datos</li>"
-    bo_li = "\n".join(li_entity(r) for r in breakouts) or "<li>Sin datos</li>"
+    risers_li = "\n".join(rot_line(r) for r in risers) or empty_li
+    fallers_li = "\n".join(rot_line(r) for r in fallers) or empty_li
+    new_li = "\n".join(li_entity(r) for r in new_ents) or empty_li
+    bo_li = "\n".join(li_entity(r) for r in breakouts) or empty_li
 
     def item_row(it: Dict[str, Any]) -> str:
-        title = html_escape((it.get("title_es") or it.get("title") or "").strip() or "(sin título)")
+        title_es = html_escape((it.get("title_es") or it.get("title") or "").strip() or "(sin título)")
+        title_en = html_escape((it.get("title_en") or it.get("title") or "").strip() or "(untitled)")
+        title_html = bi(title_es, title_en)
         url = (it.get("url") or it.get("link") or "").strip()
         src = html_escape((it.get("source") or "").strip())
         href = safe_href(url)
         if url:
             return (
                 f"<a class='hit' href='{href}' target='_blank' rel='noopener noreferrer'>"
-                f"<span class='ht'>{title}</span><span class='hs'>{src}</span></a>"
+                f"<span class='ht'>{title_html}</span><span class='hs'>{src}</span></a>"
             )
-        return f"<div class='hit'><span class='ht'>{title}</span><span class='hs'>{src}</span></div>"
+        return f"<div class='hit'><span class='ht'>{title_html}</span><span class='hs'>{src}</span></div>"
 
-    def cluster_card(title: str, items: List[Dict[str, Any]]) -> str:
-        rows = "".join(item_row(it) for it in items) or "<div class='none'>Sin piezas esta semana.</div>"
-        return f"<section class='widget'><div class='widget-title'><span>{html_escape(title)}</span></div>{rows}</section>"
+    def cluster_card(title_html: str, items: List[Dict[str, Any]]) -> str:
+        rows = "".join(item_row(it) for it in items) or f"<div class='none'>{bi('Sin piezas esta semana.', 'No items this week.')}</div>"
+        return f"<section class='widget'><div class='widget-title'><span>{title_html}</span></div>{rows}</section>"
 
-    clusters = [cluster_card(r["name"], pick_items_for_entity(snapshots, r["name"], limit=6)) for r in ent_rows[:5]]
+    clusters = [cluster_card(html_escape(r["name"]), pick_items_for_entity(snapshots, r["name"], limit=6)) for r in ent_rows[:5]]
     cat_clusters = [
-        cluster_card(human_category(r["name"]), pick_items_for_category(snapshots, r["name"], limit=6))
+        cluster_card(bi(human_category(r["name"]), human_category_en(r["name"])), pick_items_for_category(snapshots, r["name"], limit=6))
         for r in cat_rows[:3]
     ]
     clusters_html = "".join(clusters)
     cat_clusters_html = "".join(cat_clusters)
 
     period = f"{days[0]} → {days[-1]}"
-    n_txt = "1 edición" if n == 1 else f"{n} ediciones"
+    n_es = "1 edición" if n == 1 else f"{n} ediciones"
+    n_en = "1 edition" if n == 1 else f"{n} editions"
     if n_degraded:
-        n_txt += f" · {n_degraded} sin filtrar excluida{'s' if n_degraded != 1 else ''}"
+        n_es += f" · {n_degraded} sin filtrar excluida{'s' if n_degraded != 1 else ''}"
+        n_en += f" · {n_degraded} unfiltered excluded"
     elif any(s.get("degraded") for s in snapshots):
-        n_txt += " (sin filtrar)"
+        n_es += " (sin filtrar)"
+        n_en += " (unfiltered)"
+    n_txt = bi(n_es, n_en)
     total_analyzed = sum(s["total"] for s in source_rows)
 
     html = f"""<!doctype html>

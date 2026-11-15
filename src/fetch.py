@@ -1,9 +1,12 @@
 from __future__ import annotations
 
 import base64
+from concurrent.futures import ThreadPoolExecutor
+from email.utils import parsedate_to_datetime
 import html
 import json
 import re
+import threading
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -25,6 +28,8 @@ BROWSER_UA = (
 IMAGE_CACHE_FILE = Path("docs/data/image_cache.json")
 _MEM_IMAGE_CACHE: dict[str, str] = {}
 _GN_RESOLVE_CACHE: dict[str, str] = {}
+_GN_LOCK = threading.Lock()
+_IMG_CACHE_LOCK = threading.Lock()
 
 
 def clip_text(text: str, limit: int = SUMMARY_MAX_CHARS) -> str:
@@ -172,7 +177,8 @@ def resolve_google_news_url(url: str) -> str:
     raw = (url or "").strip()
     if not is_google_news_url(raw):
         return raw
-    cached = _GN_RESOLVE_CACHE.get(raw)
+    with _GN_LOCK:
+        cached = _GN_RESOLVE_CACHE.get(raw)
     if cached:
         return cached
     article_id = google_news_article_id(raw)
@@ -180,30 +186,58 @@ def resolve_google_news_url(url: str) -> str:
     if article_id:
         dest = _decode_google_news_locally(article_id) or _decode_google_news_via_google(article_id)
     resolved = dest or raw
-    _GN_RESOLVE_CACHE[raw] = resolved
+    with _GN_LOCK:
+        _GN_RESOLVE_CACHE[raw] = resolved
     return resolved
+
+
+def resolve_items_google_news(items: list[dict], max_workers: int = 6) -> list[dict]:
+    """Resuelve en paralelo las URLs de Google News solo para los items elegidos."""
+    targets = [
+        it for it in items
+        if is_google_news_url((it.get("link") or it.get("url") or "").strip())
+    ]
+    if not targets:
+        return items
+
+    def _resolve_one(it: dict) -> None:
+        raw = (it.get("link") or it.get("url") or "").strip()
+        resolved = resolve_google_news_url(raw)
+        if resolved and resolved != raw:
+            it["link"] = resolved
+            if "url" in it:
+                it["url"] = resolved
+
+    if len(targets) == 1:
+        _resolve_one(targets[0])
+    else:
+        with ThreadPoolExecutor(max_workers=min(max_workers, len(targets))) as pool:
+            list(pool.map(_resolve_one, targets))
+    return items
 
 
 def _load_image_cache() -> dict[str, str]:
     global _MEM_IMAGE_CACHE
-    if _MEM_IMAGE_CACHE:
+    with _IMG_CACHE_LOCK:
+        if _MEM_IMAGE_CACHE:
+            return _MEM_IMAGE_CACHE
+        if IMAGE_CACHE_FILE.exists():
+            try:
+                _MEM_IMAGE_CACHE = json.loads(IMAGE_CACHE_FILE.read_text(encoding="utf-8"))
+            except Exception:
+                _MEM_IMAGE_CACHE = {}
         return _MEM_IMAGE_CACHE
-    if IMAGE_CACHE_FILE.exists():
-        try:
-            _MEM_IMAGE_CACHE = json.loads(IMAGE_CACHE_FILE.read_text(encoding="utf-8"))
-        except Exception:
-            _MEM_IMAGE_CACHE = {}
-    return _MEM_IMAGE_CACHE
 
 
 def _save_image_cache():
-    if not _MEM_IMAGE_CACHE:
-        return
-    IMAGE_CACHE_FILE.parent.mkdir(parents=True, exist_ok=True)
-    try:
-        IMAGE_CACHE_FILE.write_text(json.dumps(_MEM_IMAGE_CACHE, indent=2), encoding="utf-8")
-    except Exception:
-        pass
+    with _IMG_CACHE_LOCK:
+        if not _MEM_IMAGE_CACHE:
+            return
+        IMAGE_CACHE_FILE.parent.mkdir(parents=True, exist_ok=True)
+        try:
+            IMAGE_CACHE_FILE.write_text(json.dumps(_MEM_IMAGE_CACHE, indent=2), encoding="utf-8")
+        except Exception:
+            pass
 
 
 def fetch_og_image(url: str) -> str:
@@ -221,12 +255,14 @@ def fetch_og_image(url: str) -> str:
         return ""
 
     cache = _load_image_cache()
-    if url in cache:
-        return cache[url]
+    with _IMG_CACHE_LOCK:
+        if url in cache:
+            return cache[url]
 
     # No intentar en ciertos dominios que no tienen HTML tradicional o bloquean
     if any(d in url for d in ["github.com/deepseek-ai", "hnrss.org", "arxiv.org/abs"]):
-        cache[url] = ""
+        with _IMG_CACHE_LOCK:
+            cache[url] = ""
         return ""
 
     headers = {
@@ -257,25 +293,64 @@ def fetch_og_image(url: str) -> str:
                     img_url = urljoin(url, img_url)
 
                 if img_url.startswith(("http://", "https://")):
-                    cache[url] = img_url
+                    with _IMG_CACHE_LOCK:
+                        cache[url] = img_url
                     _save_image_cache()
                     return img_url
     except Exception:
         pass
 
-    cache[url] = ""
+    with _IMG_CACHE_LOCK:
+        cache[url] = ""
     _save_image_cache()
     return ""
 
 
 def enrich_items_with_images(items: list[dict]) -> list[dict]:
     """Rellena image_url en cada item usando OpenGraph si el feed RSS no incluyo imagen."""
+    pending: list[tuple[dict, str]] = []
     for it in items:
         if not (it.get("image_url") or "").strip():
             target_url = (it.get("url") or it.get("link") or "").strip()
             if target_url:
-                it["image_url"] = fetch_og_image(target_url)
+                pending.append((it, target_url))
+    if not pending:
+        return items
+    if len(pending) == 1:
+        it, target_url = pending[0]
+        it["image_url"] = fetch_og_image(target_url)
+        return items
+    with ThreadPoolExecutor(max_workers=min(6, len(pending))) as pool:
+        results = list(pool.map(lambda pair: fetch_og_image(pair[1]), pending))
+    for (it, _), img_url in zip(pending, results):
+        it["image_url"] = img_url
     return items
+
+
+def _extract_aa_date(fragment: str) -> str | None:
+    """Extrae una fecha real del fragmento HTML de Artificial Analysis, o None."""
+    if not fragment:
+        return None
+    iso_m = re.search(r"\b(202[4-9]-\d{2}-\d{2})(?:T\d{2}:\d{2}(?::\d{2})?(?:Z|[+-]\d{2}:?\d{2})?)?\b", fragment)
+    if iso_m:
+        raw_iso = iso_m.group(0)
+        if len(raw_iso) == 10:
+            return f"{raw_iso}T00:00:00+00:00"
+        return raw_iso.replace("Z", "+00:00")
+    text_m = re.search(
+        r"\b((?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+\d{1,2},?\s+202[4-9])\b",
+        fragment,
+        flags=re.IGNORECASE,
+    )
+    if text_m:
+        cleaned = text_m.group(1).replace(",", "")
+        for fmt in ("%b %d %Y", "%B %d %Y"):
+            try:
+                dt = datetime.strptime(cleaned, fmt).replace(tzinfo=timezone.utc)
+                return dt.isoformat()
+            except ValueError:
+                continue
+    return None
 
 
 def fetch_artificial_analysis(limit: int = 10, quiet: bool = False) -> list[dict]:
@@ -291,10 +366,11 @@ def fetch_artificial_analysis(limit: int = 10, quiet: bool = False) -> list[dict
             print("Artificial Analysis fetch failed:", repr(exc))
         return []
 
-    article_blocks = re.findall(r'<a[^>]+href=["\'](/articles/[^"\']+)["\'][^>]*>(.*?)</a>', html_text, re.DOTALL)
+    article_matches = re.finditer(r'<a[^>]+href=["\'](/articles/[^"\']+)["\'][^>]*>(.*?)</a>', html_text, re.DOTALL)
     items = []
     seen = set()
-    for rel_link, content in article_blocks:
+    for match in article_matches:
+        rel_link, content = match.group(1), match.group(2)
         full_link = f"https://artificialanalysis.ai{rel_link}"
         if full_link in seen:
             continue
@@ -312,10 +388,14 @@ def fetch_artificial_analysis(limit: int = 10, quiet: bool = False) -> list[dict
             title = parts[0].strip()
             summary = parts[1].strip()
 
+        # Nunca falsificar la fecha con datetime.now(): solo usar fecha real si viene en el HTML.
+        window = html_text[max(0, match.start() - 160) : min(len(html_text), match.end() + 260)]
+        published = _extract_aa_date(content) or _extract_aa_date(window)
+
         items.append({
             "title": title,
             "link": full_link,
-            "published": datetime.now(timezone.utc).isoformat(),
+            "published": published,
             "summary": clip_text(summary or title),
             # La imagen se resuelve despues, solo para lo que se publica.
             "image_url": "",
@@ -404,12 +484,14 @@ def _fetch_feed_with_retries(url: str):
     raise RuntimeError(f"RSS fetch failed for {url}: {last_error!r}")
 
 
-def fetch_rss(url: str, limit: int = 30, quiet: bool = False):
+def fetch_rss(url: str, limit: int = 30, quiet: bool = False, resolve_gn: bool = True):
     """Lee un feed. La imagen solo sale del propio feed (media, enclosure, <img>).
 
     El og:image de cada articulo NO se pide aqui: se pedia para las ~250 entradas
     de cada run y solo se publican unas 13. Lo resuelve enrich_items_with_images()
     sobre los items que sobreviven al filtro.
+    Cuando resolve_gn=False, las URLs de Google News se dejan sin decodificar
+    para resolverlas en bloque solo tras aplicar freshness/cap por fuente.
     """
     try:
         feed = _fetch_feed_with_retries(url)
@@ -434,7 +516,8 @@ def fetch_rss(url: str, limit: int = 30, quiet: bool = False):
 
         raw_summary = getattr(e, "summary", "") or getattr(e, "description", "")
         summary = clip_text(_clean_html(raw_summary))
-        link = resolve_google_news_url((getattr(e, "link", "") or "").strip())
+        raw_link = (getattr(e, "link", "") or "").strip()
+        link = resolve_google_news_url(raw_link) if resolve_gn else raw_link
         title = html.unescape((getattr(e, "title", "") or "").strip())
         image_url = _extract_image_url(e)
 

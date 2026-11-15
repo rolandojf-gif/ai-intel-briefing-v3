@@ -170,16 +170,30 @@ def select_new(items: list[dict], day: date, *, now: datetime | None = None, see
 
 
 def collect_rss() -> list[dict]:
+    from concurrent.futures import ThreadPoolExecutor
     from src.fetch import fetch_rss
+
     config = yaml.safe_load(FEEDS.read_text(encoding='utf-8'))
-    items = []
-    for feed in config.get('sources', []):
-        if feed.get('type') != 'rss' or not feed.get('url'):
-            continue
+    rss_feeds = [
+        feed for feed in config.get('sources', [])
+        if feed.get('type') == 'rss' and feed.get('url')
+    ]
+    if not rss_feeds:
+        return []
+
+    def _one(feed: dict) -> list[dict]:
         limit = min(int(feed.get('limit') or 8), 12)
-        for item in fetch_rss(feed['url'], limit=limit, quiet=True):
-            item['source'] = feed.get('name') or 'RSS'
-            items.append(item)
+        name = feed.get('name') or 'RSS'
+        fetched = fetch_rss(feed['url'], limit=limit, quiet=True)
+        for item in fetched:
+            item['source'] = name
+        return fetched
+
+    items = []
+    workers = min(8, len(rss_feeds))
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        for batch in pool.map(_one, rss_feeds):
+            items.extend(batch)
     return items
 
 
@@ -238,10 +252,11 @@ def run(day: date, mode: str = 'auto') -> None:
 
 
 def main() -> None:
+    from src.config import radar_today
     parser = argparse.ArgumentParser()
     parser.add_argument('--mode', choices=['auto', 'gemini', 'rss'], default='auto')
     args = parser.parse_args()
-    run(datetime.now().date(), args.mode)
+    run(radar_today(), args.mode)
 
 
 if __name__ == '__main__':

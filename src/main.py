@@ -1,5 +1,6 @@
 # src/main.py
 from __future__ import annotations
+from concurrent.futures import ThreadPoolExecutor
 import os
 import hashlib
 import html
@@ -13,7 +14,7 @@ import traceback
 from email.utils import parsedate_to_datetime
 from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
-from src.fetch import clip_text, fetch_rss
+from src.fetch import clip_text, fetch_rss, resolve_items_google_news
 from src.fetch_x import fetch_x_search, fetch_x_user
 from src.render import render_index
 from src.score import score_item
@@ -26,7 +27,16 @@ from src.memory import (
     load_history,
     resolve_watchlist,
 )
-from src.config import CATEGORY_LABELS, KNOWN_ENTITIES, ENTITY_ALIASES, STOP_ENTITIES, ALLOW_ACRONYMS
+from src.config import (
+    CATEGORY_LABELS,
+    KNOWN_ENTITIES,
+    ENTITY_ALIASES,
+    STOP_ENTITIES,
+    ALLOW_ACRONYMS,
+    LEAD_SLOT_COUNT,
+    demote_repeats_from_lead,
+    radar_today_str,
+)
 
 
 def env_flag(name: str, default: str = "") -> bool:
@@ -271,12 +281,43 @@ def should_use_gemini_today() -> bool:
     return False
 
 
+def _source_selection_key(it: dict) -> tuple[int, int, int, int]:
+    fresh_flag = 1 if is_fresh_enough(it) else 0
+    dt = parse_published_dt(it.get("published"))
+    has_dt = 1 if dt is not None else 0
+    day_bucket = int(dt.timestamp() // 86400) if dt is not None else 0
+    hscore = int(it.get("heuristic_score", 0) or 0)
+    return (fresh_flag, has_dt, day_bucket, hscore)
+
+
+def _fetch_non_x_source(s: dict, stype: str, limit: int) -> list[dict]:
+    if stype == "rss":
+        if not s.get("url"):
+            print(f"Invalid RSS source config (missing url): {s.get('name', 'unnamed')}")
+            return []
+        try:
+            return fetch_rss(s["url"], limit=limit, resolve_gn=False)
+        except Exception as e:
+            # Una fuente rota no debe tumbar el run entero; el health-check la marca.
+            print(f"FETCH FAILED for {s.get('name', 'unnamed')}: {e!r}")
+            return []
+    if stype == "artificial_analysis":
+        try:
+            from src.fetch import fetch_artificial_analysis
+            return fetch_artificial_analysis(limit=limit)
+        except Exception as e:
+            print(f"FETCH FAILED for {s.get('name', 'unnamed')}: {e!r}")
+            return []
+    print(f"Unknown source type '{stype}' for source: {s.get('name', 'unnamed')}")
+    return []
+
+
 def ingest_feeds(cfg: dict, per_source_cap: dict) -> tuple[list[dict], dict]:
     items = []
-    per_source_count = {}
     x_names: list[str] = []
     x_disabled = env_flag("X_DISABLED", "0")
 
+    prepared: list[tuple[dict, str, int]] = []
     for s in cfg["sources"]:
         stype = (s.get("type") or "").strip().lower()
         if not stype:
@@ -295,25 +336,32 @@ def ingest_feeds(cfg: dict, per_source_cap: dict) -> tuple[list[dict], dict]:
             if x_disabled:
                 continue
 
-        fetched = []
-        if stype == "rss":
-            if not s.get("url"):
-                print(f"Invalid RSS source config (missing url): {s.get('name', 'unnamed')}")
-                continue
-            try:
-                fetched = fetch_rss(s["url"], limit=limit)
-            except Exception as e:
-                # Una fuente rota no debe tumbar el run entero; el health-check la marca.
-                print(f"FETCH FAILED for {s.get('name', 'unnamed')}: {e!r}")
-                fetched = []
-        elif stype == "artificial_analysis":
-            try:
-                from src.fetch import fetch_artificial_analysis
-                fetched = fetch_artificial_analysis(limit=limit)
-            except Exception as e:
-                print(f"FETCH FAILED for {s.get('name', 'unnamed')}: {e!r}")
-                fetched = []
-        elif stype == "x":
+        prepared.append((s, stype, limit))
+
+    fetched_by_idx: dict[int, list[dict]] = {}
+    parallel_jobs: list[tuple[int, dict, str, int]] = []
+    for idx, (s, stype, limit) in enumerate(prepared):
+        if stype != "x":
+            parallel_jobs.append((idx, s, stype, limit))
+
+    if parallel_jobs:
+        workers = min(8, len(parallel_jobs))
+        with ThreadPoolExecutor(max_workers=workers) as pool:
+            futs = {
+                idx: pool.submit(_fetch_non_x_source, s, stype, limit)
+                for idx, s, stype, limit in parallel_jobs
+            }
+            for idx, fut in futs.items():
+                try:
+                    fetched_by_idx[idx] = fut.result() or []
+                except Exception as e:
+                    src_name = prepared[idx][0].get("name", "unnamed")
+                    print(f"FETCH FAILED for {src_name}: {e!r}")
+                    fetched_by_idx[idx] = []
+
+    for idx, (s, stype, limit) in enumerate(prepared):
+        if stype == "x":
+            fetched = []
             try:
                 if s.get("username"):
                     fetched = fetch_x_user(
@@ -334,31 +382,41 @@ def ingest_feeds(cfg: dict, per_source_cap: dict) -> tuple[list[dict], dict]:
                 print(f"FETCH FAILED for {s.get('name', 'unnamed')}: {e!r}")
                 fetched = []
         else:
-            print(f"Unknown source type '{stype}' for source: {s.get('name', 'unnamed')}")
+            fetched = fetched_by_idx.get(idx, [])
 
+        src_items: list[dict] = []
+        src_name = s["name"]
         for it in fetched:
             if not it.get("title") or not it.get("link"):
                 continue
 
-            it["source"] = s["name"]
+            it["source"] = src_name
             it["feed_tags"] = s.get("tags", [])
             it["title"] = clean_signal_text(it.get("title", ""), it["source"])
             it["summary"] = clip_text(clean_signal_text(it.get("summary", ""), it["source"]))
-
-            src = it["source"]
-            cap = per_source_cap.get(src)
-            if cap is not None:
-                per_source_count[src] = per_source_count.get(src, 0)
-                if per_source_count[src] >= cap:
-                    continue
-                per_source_count[src] += 1
 
             sc = score_item(it["title"], it.get("summary", ""), it["source"])
             it.update(sc)
             it["heuristic_score"] = int(it.get("score", 0) or 0)
             it["url"] = it.get("link", "")
+            src_items.append(it)
 
-            items.append(it)
+        # Seleccionar los mejores/mas frescos por fuente antes de aplicar el cap
+        # para no desperdiciar un cap:1 con una noticia vieja o irrelevante de Google News.
+        cap = per_source_cap.get(src_name)
+        if cap is not None:
+            if cap <= 0:
+                continue
+            if len(src_items) > cap:
+                src_items.sort(key=_source_selection_key, reverse=True)
+                src_items = src_items[:cap]
+
+        items.extend(src_items)
+
+    # Decodificar URLs de Google News solo en los items que sobrevivieron al cap.
+    resolve_items_google_news(items)
+    for it in items:
+        it["url"] = it.get("link", "") or it.get("url", "")
 
     counts = {}
     for it in items:
@@ -453,14 +511,19 @@ def dedup_items(items: list[dict]) -> list[dict]:
 
         raw_title = it.get("title", "")
         words = set(re.findall(r"\b[a-zA-Z0-9]{4,}\b", raw_title.lower()))
-        # Si mas del 55% de palabras clave coinciden con una noticia ya incluida, es la misma noticia cubierta por otro medio
+        # Si coinciden al menos 3 palabras y >=60% (o >=75% en titulares cortos), es la misma noticia
         is_duplicate = False
         if len(words) >= 3:
             for past_words, past_it in seen_titles:
                 if not past_words:
                     continue
-                overlap = len(words & past_words) / min(len(words), len(past_words))
-                if overlap >= 0.60:
+                min_len = min(len(words), len(past_words))
+                shared = len(words & past_words)
+                if shared < 3:
+                    continue
+                overlap = shared / min_len
+                threshold = 0.75 if min_len < 4 else 0.60
+                if overlap >= threshold:
                     is_duplicate = True
                     # Anotar como fuente alternativa
                     other_srcs = past_it.setdefault("other_sources", [])
@@ -504,14 +567,48 @@ def load_recent_history(data_dir: Path, today: str, days: int = 5) -> tuple[set[
             curl = canonical_url(it.get("link") or it.get("url") or "")
             if curl:
                 history_urls.add(curl)
-            tfp = title_fingerprint(it.get("title", ""))
-            if tfp:
-                history_titles.add(tfp)
+            for field in ("title", "title_es", "title_en"):
+                tfp = title_fingerprint(it.get(field, ""))
+                if tfp:
+                    history_titles.add(tfp)
 
     return history_urls, history_titles
 
 
-def apply_novelty_penalty(items: list[dict], history_urls: set[str], history_titles: set[str]) -> list[dict]:
+def load_recent_context(data_dir: Path, today: str, days: int = 2) -> tuple[list[set[str]], list[str]]:
+    """Extrae tokens y titulares recientes (ultimos 2 dias) para dedup cruzado y prompt del LLM."""
+    token_sets: list[set[str]] = []
+    headlines: list[str] = []
+    seen_hl: set[str] = set()
+    snapshots = sorted((p for p in data_dir.glob("*.json") if _is_snapshot(p)), key=lambda p: p.name)
+    recent = [p for p in snapshots if p.stem < today][-days:]
+
+    for path in reversed(recent):
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        for it in data.get("items", []):
+            if not isinstance(it, dict):
+                continue
+            for field in ("title", "title_es", "title_en"):
+                toks = _story_words(it.get(field, ""))
+                if len(toks) >= 4:
+                    token_sets.append(toks)
+            hl = (it.get("title_es") or it.get("title") or "").strip()
+            if hl and hl not in seen_hl:
+                seen_hl.add(hl)
+                headlines.append(hl)
+
+    return token_sets, headlines[:20]
+
+
+def apply_novelty_penalty(
+    items: list[dict],
+    history_urls: set[str],
+    history_titles: set[str],
+    recent_token_sets: list[set[str]] | None = None,
+) -> list[dict]:
     scored = []
     for it in items:
         base_score = int(it.get("heuristic_score", it.get("score", 0)) or 0)
@@ -520,13 +617,27 @@ def apply_novelty_penalty(items: list[dict], history_urls: set[str], history_tit
 
         repeated_url = bool(curl and curl in history_urls)
         repeated_title = bool(tfp and tfp in history_titles)
-        is_repeat = repeated_url or repeated_title
+        repeated_story = False
+        if not repeated_url and not repeated_title and recent_token_sets:
+            toks = _story_words(it.get("title", ""))
+            if len(toks) >= 4:
+                for past_toks in recent_token_sets:
+                    if len(past_toks) < 4:
+                        continue
+                    shared = len(toks & past_toks)
+                    if shared >= 4 and (shared / min(len(toks), len(past_toks))) >= 0.72:
+                        repeated_story = True
+                        break
+
+        is_repeat = repeated_url or repeated_title or repeated_story
 
         penalty = 0
         if repeated_url:
             penalty += 35
         if repeated_title:
             penalty += 20
+        if repeated_story:
+            penalty += 25
 
         novelty_score = max(0, min(100, 100 - penalty))
         adjusted_score = max(0, base_score - penalty)
@@ -536,43 +647,6 @@ def apply_novelty_penalty(items: list[dict], history_urls: set[str], history_tit
         it["adjusted_score"] = adjusted_score
         scored.append(it)
     return scored
-
-
-LEAD_SLOT_COUNT = 3  # hero + las dos cards siguientes
-
-
-def demote_repeats_from_lead(items: list[dict], lead_n: int = LEAD_SLOT_COUNT) -> list[dict]:
-    """Hard-gate de novedad: un repeat no puede ser hero ni top-N si hay fresco.
-
-    El radar es "qué ha cambiado hoy". La penalización de score no basta:
-    TSMC (repeat) seguía saliendo #2 por encima de señales nuevas.
-    Si no hay suficientes items frescos, se rellenan los huecos con repeats
-    para no dejar la portada vacía.
-    """
-    if not items or lead_n <= 0:
-        return items
-
-    fresh = [it for it in items if not it.get("is_repeat")]
-    repeats = [it for it in items if it.get("is_repeat")]
-    if not fresh:
-        return items
-
-    lead: list[dict] = []
-    used: set[int] = set()
-    for it in fresh:
-        if len(lead) >= lead_n:
-            break
-        lead.append(it)
-        used.add(id(it))
-    if len(lead) < lead_n:
-        for it in repeats:
-            if len(lead) >= lead_n:
-                break
-            lead.append(it)
-            used.add(id(it))
-
-    rest = [it for it in items if id(it) not in used]
-    return lead + rest
 
 
 def clamp_score(value: float | int) -> int:
@@ -669,7 +743,37 @@ def compute_noise_penalty(it: dict) -> int:
         penalty += 8
 
     promotional_sources = ["google ai blog", "nvidia blog", "deepmind blog"]
-    has_hard_signal = any(k in text for k in ["price", "pricing", "capex", "opex", "datacenter", "hbm", "gpu", "training", "inference", "weights", "benchmark", "reasoning"])
+    has_hard_signal = any(
+        k in text
+        for k in [
+            "price",
+            "pricing",
+            "capex",
+            "opex",
+            "datacenter",
+            "hbm",
+            "gpu",
+            "training",
+            "inference",
+            "weights",
+            "benchmark",
+            "reasoning",
+            "model",
+            "gemini",
+            "claude",
+            "gpt",
+            "llama",
+            "grok",
+            "release",
+            "launch",
+            "api",
+            "agent",
+            "agents",
+            "multimodal",
+            "checkpoint",
+            "rubin",
+        ]
+    )
     if any(s in source for s in promotional_sources) and not has_hard_signal:
         penalty += 8
 
@@ -723,7 +827,12 @@ def is_fresh_enough(it: dict) -> bool:
 LLM_LAST_ERROR = ""
 
 
-def generate_llm_data(candidates: list[dict], llm_cache: Path, llm_done: Path) -> tuple[dict, list]:
+def generate_llm_data(
+    candidates: list[dict],
+    llm_cache: Path,
+    llm_done: Path,
+    recent_headlines: list[str] | None = None,
+) -> tuple[dict, list]:
     global LLM_LAST_ERROR
     llm_payload = []
     for idx, it in enumerate(candidates[:LLM_BATCH_SIZE], start=1):
@@ -770,7 +879,11 @@ def generate_llm_data(candidates: list[dict], llm_cache: Path, llm_done: Path) -
             # relevancia (ver 2026-08-22). Reintentamos antes de degradar.
             for attempt in (1, 2, 3):
                 try:
-                    out = rank_batch(llm_payload)
+                    out = (
+                        rank_batch(llm_payload, recent_headlines=recent_headlines)
+                        if recent_headlines
+                        else rank_batch(llm_payload)
+                    )
                     results_map.update(out.get("map", {}))
                     b = out.get("briefing", {}) or {}
                     briefings.append(b)
@@ -798,7 +911,7 @@ def generate_llm_data(candidates: list[dict], llm_cache: Path, llm_done: Path) -
                 except Exception as cache_err:
                     print("Gemini cache write FAILED:", repr(cache_err))
                 # marca intento exitoso de hoy para no repetir llamadas LLM
-                llm_done.write_text(datetime.now().isoformat(), encoding="utf-8")
+                llm_done.write_text(datetime.now(timezone.utc).isoformat(), encoding="utf-8")
             else:
                 LLM_LAST_ERROR = repr(last_err)[:500]
                 print(f"GEMINI agotó los reintentos; el dia sera degradado. Ultimo error: {last_err!r}")
@@ -808,13 +921,14 @@ def generate_llm_data(candidates: list[dict], llm_cache: Path, llm_done: Path) -
 
 MAX_SIGNALS = 12     # techo de senales primarias
 MAX_CONTEXT = 3      # capa secundaria de contexto reducida
-# LEAD_SLOT_COUNT vive junto a apply_novelty_penalty: hero + 2 no pueden ser repeat.
+MAX_REPEAT_SIGNALS = 3  # techo blando de repeats dentro de signals si hay senal fresca
+# LEAD_SLOT_COUNT vive en src/config.py junto a demote_repeats_from_lead.
 
 # Debe cubrir TODO el pool de candidatos. Si es menor, la cola queda sin juicio
 # del LLM y no se puede publicar (ver el gate en apply_llm_results).
 # El test test_llm_batch_covers_configured_caps ancla esto a la suma de caps
 # de feeds.yaml: si subes un cap, sube este número.
-LLM_BATCH_SIZE = 56
+LLM_BATCH_SIZE = 64
 
 # Score minimo para que power_shift rescate un item que el LLM no marco signal.
 # Sin umbral no filtra: el campo viene relleno en ~75% de los items.
@@ -992,6 +1106,19 @@ def apply_llm_results(candidates: list[dict], results_map: dict) -> list[dict]:
     dropped = sum(1 for it in reranked if it.get("verdict") == "noise")
     unjudged = 0
 
+    fresh_signals_available = sum(
+        1
+        for x in reranked
+        if x.get("verdict") not in ("noise", "duplicate", "unrated")
+        and x.get("llm_score") is not None
+        and not x.get("is_repeat")
+        and (
+            x.get("verdict") == "signal"
+            or (bool(x.get("power_shift")) and int(x.get("final_score") or 0) >= POWER_SHIFT_FLOOR)
+        )
+    )
+    repeat_signals_count = 0
+
     for it in reranked:
         if it.get("verdict") in ("noise", "duplicate"):
             continue
@@ -1011,9 +1138,16 @@ def apply_llm_results(candidates: list[dict], results_map: dict) -> list[dict]:
             it.get("verdict") == "signal"
             or (bool(it.get("power_shift")) and int(it.get("final_score") or 0) >= POWER_SHIFT_FLOOR)
         )
-        if is_signal and len(signals) < MAX_SIGNALS:
+        repeat_capped = (
+            bool(it.get("is_repeat"))
+            and fresh_signals_available >= 3
+            and repeat_signals_count >= MAX_REPEAT_SIGNALS
+        )
+        if is_signal and not repeat_capped and len(signals) < MAX_SIGNALS:
             it["verdict"] = "signal"
             signals.append(it)
+            if it.get("is_repeat"):
+                repeat_signals_count += 1
         elif len(context) < MAX_CONTEXT:
             context.append(it)
 
@@ -1134,7 +1268,7 @@ def main():
         except (TypeError, ValueError):
             print(f"Invalid cap for source {source.get('name', 'unnamed')}: {cap!r}")
 
-    today = datetime.now().strftime("%Y-%m-%d")
+    today = radar_today_str()
     data_dir = Path("docs/data")
     data_dir.mkdir(parents=True, exist_ok=True)
 
@@ -1157,7 +1291,8 @@ def main():
 
     # 2.5) Novelty (anti-repeticion respecto ultimos dias)
     history_urls, history_titles = load_recent_history(data_dir, today=today, days=5)
-    deduped = apply_novelty_penalty(deduped, history_urls, history_titles)
+    recent_token_sets, recent_headlines = load_recent_context(data_dir, today=today, days=2)
+    deduped = apply_novelty_penalty(deduped, history_urls, history_titles, recent_token_sets=recent_token_sets)
 
     before_age = len(deduped)
     deduped = [it for it in deduped if is_fresh_enough(it)]
@@ -1172,7 +1307,7 @@ def main():
     from src.fetch import enrich_items_with_images
 
     # 4) LLM Rank
-    results_map, briefings = generate_llm_data(candidates, llm_cache, llm_done)
+    results_map, briefings = generate_llm_data(candidates, llm_cache, llm_done, recent_headlines=recent_headlines)
 
     briefing = merge_briefings(briefings) if briefings else {}
 

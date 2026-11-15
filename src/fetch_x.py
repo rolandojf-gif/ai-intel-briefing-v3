@@ -10,6 +10,7 @@ from urllib.parse import quote, unquote, urlsplit, urlunsplit
 
 import requests
 
+from src.config import radar_today_str
 from src.fetch import fetch_rss
 
 # Verificados desde un runner de GitHub el 2026-11-14 con /<user>/rss.
@@ -109,7 +110,7 @@ def _cache_file() -> Path:
     custom = (os.getenv("X_CACHE_FILE") or "").strip()
     if custom:
         return Path(custom)
-    day = datetime.now().strftime("%Y-%m-%d")
+    day = radar_today_str()
     return Path("docs/data") / f"{day}.x_cache.json"
 
 
