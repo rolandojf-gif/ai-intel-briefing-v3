@@ -47,7 +47,7 @@ test('una edición GitHub más reciente prevalece sobre Netlify desactualizado',
   const older=normalizeEdition({...fixture,date:'2026-10-09'});
   const result=await fetchLatest(new Date('2026-10-10T13:00:00'),async url => {
     if (url.startsWith('https://raw.githubusercontent.com/') && url.endsWith('/2026-10-10.json')) return newer;
-    if (url.startsWith('https://earnest-pie-01548d.netlify.app/') && url.endsWith('/2026-10-09.json')) return older;
+    if (url.startsWith('https://aievolve.netlify.app/') && url.endsWith('/2026-10-09.json')) return older;
     return null;
   });
   assert.equal(result.edition.date,'2026-10-10');

@@ -1,7 +1,7 @@
 # src/weekly.py
 from __future__ import annotations
 
-from src.brand import BASE_CSS as BRAND_CSS, HEAD as BRAND_HEAD, THEME_JS, header as brand_header
+from src.brand import BASE_CSS as BRAND_CSS, HEAD as BRAND_HEAD, THEME_JS, bi, credits as brand_credits, header as brand_header, seo_head
 import json
 import html
 from pathlib import Path
@@ -374,24 +374,25 @@ def main():
     hot_ent = ent_rows[0] if ent_rows else None
 
     if dominant:
-        implications.append(f"Esta semana manda {human_category(dominant['name'])}.")
+        implications.append((f"Esta semana manda {human_category(dominant['name'])}.", f"This week is led by {human_category(dominant['name'])}."))
     if hot_ent:
         racha = hot_ent["streak"]
         racha_txt = f"{racha} día seguido" if racha == 1 else f"{racha} días seguidos"
-        implications.append(f"{hot_ent['name']} es el tractor ({racha_txt}).")
+        racha_en = f"{racha} day running" if racha == 1 else f"{racha} days running"
+        implications.append((f"{hot_ent['name']} es el tractor ({racha_txt}).", f"{hot_ent['name']} is the driver ({racha_en})."))
 
     if ent_hhi >= 0.18:
-        implications.append("Pocos nombres concentran la conversación.")
+        implications.append(("Pocos nombres concentran la conversación.", "A few names dominate the conversation."))
     else:
-        implications.append("La conversación está repartida entre varios actores.")
+        implications.append(("La conversación está repartida entre varios actores.", "The conversation is spread across several players."))
 
     if cat_hhi >= 0.25:
-        implications.append("El radar se está yendo a un solo tema.")
+        implications.append(("El radar se está yendo a un solo tema.", "The radar is narrowing to a single theme."))
     else:
-        implications.append("Los temas están repartidos.")
+        implications.append(("Los temas están repartidos.", "Themes are evenly spread."))
 
     active_sources_count = len([s for s in source_rows if s["total"] > 0])
-    implications.append(f"{active_sources_count} fuentes con cobertura esta semana.")
+    implications.append((f"{active_sources_count} fuentes con cobertura esta semana.", f"{active_sources_count} sources with coverage this week."))
 
     def meta_line(r, extra: str = "") -> str:
         bits = [spark(r["series"])]
@@ -428,7 +429,7 @@ def main():
     ent_li = "\n".join(li_entity(r) for r in ent_rows[:12]) or "<li>Sin datos</li>"
     cat_li = "\n".join(li_cat(r) for r in cat_rows[:10]) or "<li>Sin datos</li>"
     source_li = "\n".join(li_source(r) for r in source_rows[:10]) or "<li>Sin datos</li>"
-    imp_li = "\n".join(f"<li>{html_escape(x)}</li>" for x in implications)
+    imp_li = "\n".join(f"<li>{bi(es, en)}</li>" for es, en in implications)
 
     def rot_line(r):
         return (
@@ -478,8 +479,7 @@ def main():
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Semanal · AI Strategic Radar</title>
-{BRAND_HEAD}<style>{BRAND_CSS}
+{seo_head("RADAR.IA · Semanal: quién tira y qué temas mandan", path="weekly.html")}{BRAND_HEAD}<style>{BRAND_CSS}
   .wrap{{max-width:1100px;margin:0 auto;padding:0 24px 80px}}
   .lead h1{{margin:0 0 8px;font-family:var(--disp);font-size:clamp(22px,3vw,30px);letter-spacing:-.02em}}
   .lead p{{margin:0 0 22px;color:var(--dim);font-size:14.5px}}
@@ -537,51 +537,52 @@ def main():
 
   <div class="lead">
     <span class="kicker">{html_escape(period)}</span>
-    <h1 class="page-h1">Semanal</h1>
-    <p>{n_txt} · {html_escape(period)} · {total_analyzed} señales.</p>
+    <h1 class="page-h1">{bi("Semanal","Weekly")}</h1>
+    <p>{n_txt} · {html_escape(period)} · {total_analyzed} {bi("señales","signals")}.</p>
   </div>
 
   <section class="widget" style="margin-bottom:16px">
-    <div class="widget-title">Lectura</div>
+    <div class="widget-title">{bi("Lectura","Reading")}</div>
     <ul class="rows thesis">{imp_li}</ul>
   </section>
 
   <div class="grid">
     <section class="widget">
-      <div class="widget-title">Quién tira</div>
+      <div class="widget-title">{bi("Quién tira","Who drives")}</div>
       <ul class="rows">{ent_li}</ul>
     </section>
     <section class="widget">
-      <div class="widget-title">Temas</div>
+      <div class="widget-title">{bi("Temas","Themes")}</div>
       <ul class="rows">{cat_li}</ul>
     </section>
     <section class="widget">
-      <div class="widget-title">Temas que suben</div>
+      <div class="widget-title">{bi("Temas que suben","Rising themes")}</div>
       <ul class="rows">{risers_li}</ul>
     </section>
     <section class="widget">
-      <div class="widget-title">Temas que bajan</div>
+      <div class="widget-title">{bi("Temas que bajan","Falling themes")}</div>
       <ul class="rows">{fallers_li}</ul>
     </section>
     <section class="widget">
-      <div class="widget-title">Nuevos nombres</div>
+      <div class="widget-title">{bi("Nuevos nombres","New names")}</div>
       <ul class="rows">{new_li}</ul>
     </section>
     <section class="widget">
-      <div class="widget-title">Saltos</div>
+      <div class="widget-title">{bi("Saltos","Breakouts")}</div>
       <ul class="rows">{bo_li}</ul>
     </section>
     <section class="widget wide">
-      <div class="widget-title">Quién cubre</div>
+      <div class="widget-title">{bi("Quién cubre","Who covers")}</div>
       <ul class="rows">{source_li}</ul>
     </section>
   </div>
 
-  <div class="section-h">Hilos por entidad</div>
+  <div class="section-h">{bi("Hilos por entidad","Threads by entity")}</div>
   <div class="clusters">{clusters_html}</div>
-  <div class="section-h">Hilos por tema</div>
+  <div class="section-h">{bi("Hilos por tema","Threads by theme")}</div>
   <div class="clusters">{cat_clusters_html}</div>
 
+  {brand_credits()}
   <footer>{n_txt} · {html_escape(period)}</footer>
 </div>
 {THEME_JS}

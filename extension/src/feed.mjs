@@ -1,6 +1,6 @@
 import { normalizeEdition } from './model.mjs';
 
-export const SOURCE_HOME = 'https://earnest-pie-01548d.netlify.app';
+export const SOURCE_HOME = 'https://aievolve.netlify.app';
 export const RAW_HOME = 'https://raw.githubusercontent.com/rolandojf-gif/ai-intel-briefing-v3/main/docs';
 export const CACHE_KEY = 'nexus-newtab-v1:edition';
 export const FRESH_MS = 3 * 60 * 60 * 1000;

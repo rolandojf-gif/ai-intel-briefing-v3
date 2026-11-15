@@ -115,6 +115,12 @@ class RankOut(BaseModel):
         )
     )
     entities: List[str] = Field(default_factory=list, description="0-5 organizaciones/personas clave")
+    # Version inglesa para el boton EN de la web. Misma llamada: sin coste extra
+    # de peticiones, solo algo mas de texto de salida.
+    headline_en: str = Field(default="", description="headline_es translated into natural English, max 90 chars. Same facts.")
+    so_what_en: str = Field(default="", description="so_what in natural English, max 200 chars.")
+    power_shift_en: str = Field(default="", description="power_shift in English ('X gains / Y loses'). Empty if power_shift is empty.")
+    watch_next_en: str = Field(default="", description="watch_next in English. Empty if watch_next is empty.")
     same_story_as: int = Field(
         default=0,
         description=(
@@ -139,6 +145,10 @@ class Briefing(BaseModel):
     risks: List[str] = Field(default_factory=list, description="1-3 riesgos o cuellos de botella reales")
     watch: List[str] = Field(default_factory=list, description="2-3 señales concretas y falsables a vigilar")
     entities_top: List[str] = Field(default_factory=list, description="hasta 5 actores dominantes hoy")
+    thesis_en: str = Field(default="", description="thesis in natural English, max 150 chars.")
+    signals_en: List[str] = Field(default_factory=list, description="signals in English, same order.")
+    risks_en: List[str] = Field(default_factory=list, description="risks in English, same order.")
+    watch_en: List[str] = Field(default_factory=list, description="watch in English, same order.")
 
 
 class BatchOut(BaseModel):
@@ -220,6 +230,9 @@ def rank_batch(items: list[dict], model: str = "gemini-2.5-flash") -> dict:
         "- signals: entre 2 y 5 bullets. Menos es mejor. Sin relleno.\n"
         "- watch: señales falsables, comprobables en días o semanas.\n"
         "- Todo en castellano de España.\n\n"
+        "INGLÉS\n"
+        "- Los campos *_en son la versión inglesa de su campo en español: mismo contenido,\n"
+        "  inglés natural y directo, sin añadir ni quitar hechos.\n\n"
         "Devuelve SOLO JSON: {\"briefing\":{...},\"results\":[...]}\n\n"
         f"ITEMS:\n{json.dumps(payload, ensure_ascii=False)}"
     )

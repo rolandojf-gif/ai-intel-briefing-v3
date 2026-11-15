@@ -31,8 +31,9 @@ FAVICON = (
 
 # Antes de pintar: aplica el tema guardado para que no parpadee.
 THEME_INIT = (
-    "<script>(function(){try{var t=localStorage.getItem('theme');"
-    "if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>\n"
+    "<script>(function(){try{var d=document.documentElement,t=localStorage.getItem('theme'),l=localStorage.getItem('lang');"
+    "if(t==='light'||t==='dark')d.setAttribute('data-theme',t);"
+    "if(l==='en'){d.setAttribute('data-lang','en');d.lang='en';}}catch(e){}})();</script>\n"
 )
 
 HEAD = FONTS + FAVICON + THEME_INIT
@@ -131,6 +132,21 @@ BASE_CSS = """
   .lede{color:var(--muted);font-size:17px;max-width:72ch;margin:0}
   .lead h1.page-h1{font:700 clamp(30px,4.2vw,56px)/1 var(--f-head);letter-spacing:-.03em;margin:6px 0 12px}
 
+  /* Bilingue: cada texto traducible va dos veces; se ve el del idioma activo. */
+  /* !important: reglas de componente con display propio no deben reactivar el idioma oculto. */
+  html:not([data-lang="en"]) .l-en{display:none!important}
+  html[data-lang="en"] .l-es{display:none!important}
+  .top-ctl{display:flex;gap:10px;flex-wrap:wrap}
+
+  /* Firma, como en moloch.sh: discreta, al pie */
+  .credits{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+           margin-top:40px;padding:12px 16px;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow-sm)}
+  .credits-by{margin:0;font:400 12px var(--f-mono);color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+  .credits-by strong{font:700 14px var(--f-head);color:var(--text);text-transform:none;letter-spacing:0;margin-left:6px}
+  .bmc{display:inline-flex;align-items:center;gap:7px;font:700 11.5px/1 var(--f-mono);text-transform:uppercase;
+       padding:8px 11px;background:var(--lime);color:#121211;border:2px solid var(--ink);box-shadow:var(--shadow-sm)}
+  .bmc:hover{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--ink)}
+
   @media(max-width:900px){
     .navtabs{order:3;margin:0;width:100%}
     .navtab{flex:1;justify-content:center}
@@ -158,19 +174,33 @@ THEME_JS = """<script>
       });
     });
     paint();
+
+    var langBtns = document.querySelectorAll('[data-lang-set]');
+    function curLang(){ try { return localStorage.getItem('lang') === 'en' ? 'en' : 'es'; } catch(e){ return 'es'; } }
+    function paintLang(){ var c = curLang(); langBtns.forEach(function(b){ b.setAttribute('aria-pressed', String(b.getAttribute('data-lang-set') === c)); }); }
+    langBtns.forEach(function(b){
+      b.addEventListener('click', function(){
+        var l = b.getAttribute('data-lang-set');
+        try { if (l === 'en') localStorage.setItem('lang', 'en'); else localStorage.removeItem('lang'); } catch(e){}
+        var d = document.documentElement;
+        if (l === 'en') { d.setAttribute('data-lang', 'en'); d.lang = 'en'; } else { d.removeAttribute('data-lang'); d.lang = 'es'; }
+        paintLang();
+      });
+    });
+    paintLang();
   })();
 </script>"""
 
-NAV = (("daily", "01", "Diario", "index.html"),
-       ("weekly", "02", "Semanal", "weekly.html"),
-       ("archivo", "03", "Archivo", "archivo.html"))
+NAV = (("daily", "01", ("Diario", "Daily"), "index.html"),
+       ("weekly", "02", ("Semanal", "Weekly"), "weekly.html"),
+       ("archivo", "03", ("Archivo", "Archive"), "archivo.html"))
 
 
 def header(nav: str = "daily", root: str = "") -> Markup:
     """Cabecera comun: marca, navegacion numerada y selector de tema."""
     current = ' aria-current="page"'
     tabs = "".join(
-        f'<a class="navtab" href="{root}{href}"{current if key == nav else ""}><i>{num}</i> {label}</a>'
+        f'<a class="navtab" href="{root}{href}"{current if key == nav else ""}><i>{num}</i> {str(bi(*label))}</a>'
         for key, num, label, href in NAV
     )
     return Markup(
@@ -178,11 +208,78 @@ def header(nav: str = "daily", root: str = "") -> Markup:
         f'<a class="brand" href="{root}index.html" aria-label="Radar.IA, portada">'
         f'<span class="brand-icon">{ICON_SVG}</span>'
         '<span class="brand-text"><strong>Radar<em>.IA</em></strong>'
-        '<small>Radar estratégico de la carrera AGI</small></span></a>'
+        '<small>' + str(bi('Radar estratégico de la carrera AGI', 'Strategic radar of the AGI race')) + '</small></span></a>'
         f'<nav class="navtabs" aria-label="Secciones">{tabs}</nav>'
+        '<div class="top-ctl"><div class="seg" role="group" aria-label="Idioma">'
+        '<button type="button" class="seg-btn" data-lang-set="es">ES</button>'
+        '<button type="button" class="seg-btn" data-lang-set="en">EN</button></div>'
         '<div class="seg" role="group" aria-label="Tema">'
         '<button type="button" class="seg-btn" data-theme-set="auto">Auto</button>'
-        '<button type="button" class="seg-btn" data-theme-set="light">Claro</button>'
-        '<button type="button" class="seg-btn" data-theme-set="dark">Oscuro</button>'
-        '</div></header>'
+        '<button type="button" class="seg-btn" data-theme-set="light">' + str(bi('Claro', 'Light')) + '</button>'
+        '<button type="button" class="seg-btn" data-theme-set="dark">' + str(bi('Oscuro', 'Dark')) + '</button>'
+        '</div></div></header>'
     )
+
+
+def bi(es, en="") -> Markup:
+    """Texto en los dos idiomas; sin traduccion, solo el español."""
+    es_t, en_t = str(es or ""), str(en or "")
+    if not en_t or en_t == es_t:
+        return Markup.escape(es_t)
+    return Markup('<span class="l-es">{}</span><span class="l-en" lang="en">{}</span>').format(es_t, en_t)
+
+
+BMC_URL = "https://buymeacoffee.com/rolandofernandez"
+
+
+def credits() -> Markup:
+    """Firma y café, igual que en moloch.sh."""
+    return Markup(
+        '<div class="credits"><p class="credits-by">{} <strong>Rolando Fernández</strong></p>'
+        '<a class="bmc" href="{}" target="_blank" rel="noopener"><span aria-hidden="true">☕</span> {}</a></div>'
+    ).format(bi("Hecho por", "Made by"), BMC_URL, bi("Invítame a un café", "Buy me a coffee"))
+
+
+# -- SEO ------------------------------------------------------------------
+SITE_URL = "https://aievolve.netlify.app/"
+SITE_NAME = "RADAR.IA"
+GOOGLE_VERIFICATION = "yh8wm8HsAeqP892U5UGczQs-RLnGuNHx7WGfNntGduk"
+# Token de Cloudflare Web Analytics. Vacio = sin beacon. Al crear el sitio en
+# Cloudflare se pega aqui y las tres paginas empiezan a medir.
+CLOUDFLARE_TOKEN = ""
+OG_IMAGE = SITE_URL + "og.png"
+DEFAULT_DESCRIPTION = ("Radar diario de la carrera hacia la AGI: modelos frontier, agentes, chips y compute, "
+                       "China y economía de la IA. Solo lo que cambia algo, con fuente y análisis.")
+
+
+def seo_head(title: str, path: str = "", description: str = DEFAULT_DESCRIPTION, robots: str = "index, follow, max-image-preview:large") -> Markup:
+    url = SITE_URL + path
+    esc = Markup.escape
+    parts = [
+        f'<title>{esc(title)}</title>',
+        f'<meta name="description" content="{esc(description)}"/>',
+        f'<meta name="robots" content="{robots}"/>',
+        f'<link rel="canonical" href="{url}"/>',
+        f'<meta name="google-site-verification" content="{GOOGLE_VERIFICATION}"/>',
+        '<meta property="og:type" content="website"/>',
+        f'<meta property="og:site_name" content="{SITE_NAME}"/>',
+        '<meta property="og:locale" content="es_ES"/><meta property="og:locale:alternate" content="en_US"/>',
+        f'<meta property="og:title" content="{esc(title)}"/>',
+        f'<meta property="og:description" content="{esc(description)}"/>',
+        f'<meta property="og:url" content="{url}"/>',
+        f'<meta property="og:image" content="{OG_IMAGE}"/>',
+        '<meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/>',
+        '<meta name="twitter:card" content="summary_large_image"/>',
+        f'<meta name="twitter:title" content="{esc(title)}"/>',
+        f'<meta name="twitter:description" content="{esc(description)}"/>',
+        f'<meta name="twitter:image" content="{OG_IMAGE}"/>',
+        '<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite",'
+        f'"@id":"{SITE_URL}#website","url":"{SITE_URL}","name":"{SITE_NAME}",'
+        '"description":"Radar diario de la carrera hacia la AGI, con fuentes y análisis.",'
+        '"inLanguage":["es","en"],"isAccessibleForFree":true,'
+        '"author":{"@type":"Person","name":"Rolando Fernández"}}</script>',
+    ]
+    if CLOUDFLARE_TOKEN:
+        parts.append('<script defer src="https://static.cloudflareinsights.com/beacon.min.js" '
+                     f'data-cf-beacon=\'{{"token": "{CLOUDFLARE_TOKEN}"}}\'></script>')
+    return Markup("\n".join(parts) + "\n")

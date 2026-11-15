@@ -16,7 +16,7 @@ Para actualizarla después: `git pull` (o vuelve a descargar el ZIP en la misma 
 
 ## Cómo funciona
 
-- Prioriza `https://earnest-pie-01548d.netlify.app/newtab/latest.json` con respaldo en GitHub. Si ese feed aún no está publicado, busca la edición más reciente entre los últimos 21 días de `https://earnest-pie-01548d.netlify.app/data/YYYY-MM-DD.json`.
+- Prioriza `https://aievolve.netlify.app/newtab/latest.json` con respaldo en GitHub. Si ese feed aún no está publicado, busca la edición más reciente entre los últimos 21 días de `https://aievolve.netlify.app/data/YYYY-MM-DD.json`.
 - Si Netlify está caído, intenta obtener la misma edición desde los archivos públicos del repositorio GitHub.
 - Guarda localmente la última edición válida, la pinta al instante y busca la nueva en segundo plano en cada pestaña (solo se lo salta si ya tiene la de hoy desde hace menos de 10 minutos). Hasta la 0.3 no comprobaba nada durante 3 horas y enseñaba ediciones viejas.
 - Usa `title_es`, `summary`, `so_what`, `briefing.thesis`, `briefing.signals`, `briefing.watch`, `briefing.risks`, `image_url`, `source` y `link` tal cual los entrega el briefing.

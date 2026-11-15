@@ -80,7 +80,7 @@ jobs:
           git config user.name "ai-intel-bot"
           git config user.email "ai-intel-bot@users.noreply.github.com"
           DATE=$(python -c "from datetime import datetime; print(datetime.now().strftime('%Y-%m-%d'))")
-          git add docs/index.html docs/weekly.html docs/archivo.html docs/search.json
+          git add docs/index.html docs/weekly.html docs/archivo.html docs/search.json docs/sitemap.xml docs/robots.txt
           git add docs/newtab/*.json 2>/dev/null || true
           git add docs/d 2>/dev/null || true
           if [ -f "docs/data/${DATE}.json" ]; then
@@ -100,7 +100,7 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          SITE_URL: https://earnest-pie-01548d.netlify.app
+          SITE_URL: https://aievolve.netlify.app
         run: python -m src.notify
 
       # Va el ULTIMO: la edicion ya esta publicada. Si el dia sale degradado,

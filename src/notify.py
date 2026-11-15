@@ -15,7 +15,7 @@ from datetime import datetime
 from pathlib import Path
 from urllib.parse import urlparse
 
-SITE_URL = "https://earnest-pie-01548d.netlify.app"
+SITE_URL = "https://aievolve.netlify.app"
 MONTHS = (
     "", "ene", "feb", "mar", "abr", "may", "jun",
     "jul", "ago", "sep", "oct", "nov", "dic",

@@ -14,7 +14,7 @@ import re
 from jinja2 import Environment, select_autoescape
 from markupsafe import Markup
 
-from src.brand import BASE_CSS as BRAND_CSS, HEAD as BRAND_HEAD, THEME_JS, header as brand_header
+from src.brand import BASE_CSS as BRAND_CSS, HEAD as BRAND_HEAD, THEME_JS, bi, credits as brand_credits, header as brand_header, seo_head
 
 
 # -- Utilidades de texto -----------------------------------------------------
@@ -134,6 +134,16 @@ THEME_LABELS = {
 }
 
 
+THEME_LABELS_EN = {
+    "frontier_capability": "Frontier capability", "agents_automation": "Agents",
+    "compute_chips_dc": "Compute & chips", "model_economics": "Model economics",
+    "model_economics_pricing": "Model economics", "china_stack": "China stack",
+    "geopolitics_power": "Geopolitics", "other": "Other signals", "misc": "Other signals",
+}
+ACTIVITY_EN = {"ALERTA": "ALERT", "ACTIVO": "ACTIVE", "TRANQUILO": "QUIET",
+               "SIN SEÑAL": "NO SIGNAL", "SIN FILTRAR": "UNFILTERED"}
+
+
 def human_theme(theme: str) -> str:
     key = (theme or "other").strip()
     return THEME_LABELS.get(key, THEME_LABELS.get(key.lower(), key.replace("_", " ").capitalize()))
@@ -172,6 +182,7 @@ def item_entities(item: dict, limit: int = 5) -> list[str]:
 
 ENV = Environment(autoescape=select_autoescape(["html", "xml"]))
 ENV.filters["safe_url"] = _safe_url
+ENV.globals["bi"] = bi
 
 TEMPLATE = ENV.from_string("""
 <!doctype html>
@@ -179,9 +190,7 @@ TEMPLATE = ENV.from_string("""
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AI Strategic Radar</title>
-<meta name="description" content="Radar diario de la carrera AGI: modelos frontier, compute, China y agentes. Solo lo que mueve la aguja."/>
-{{ brand_head }}<script>
+{{ seo }}{{ brand_head }}<script>
   // Va en <head> para estar escuchando antes de que se pinte la primera imagen.
   // Una imagen remota caida (hotlink bloqueado, 404, caducada) se cambia por la
   // portada generada del item; un logo caido se oculta en vez de dejar el icono roto.
@@ -286,8 +295,8 @@ TEMPLATE = ENV.from_string("""
   .widget{background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow);padding:14px 16px}
   .widget-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:-14px -16px 12px;
                 padding:10px 16px;border-bottom:2px solid var(--ink);background:var(--card-2)}
-  .widget-title span:first-child{display:flex;align-items:center;gap:9px;font:700 12px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.06em}
-  .widget-title span:first-child::before{content:"";width:10px;height:10px;background:var(--orange);border:2px solid var(--ink)}
+  .widget-title>span:first-child{display:flex;align-items:center;gap:9px;font:700 12px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.06em}
+  .widget-title>span:first-child::before{content:"";width:10px;height:10px;background:var(--orange);border:2px solid var(--ink)}
   .widget-title .lbl{font:400 10px var(--f-mono);color:var(--muted);text-transform:uppercase}
 
   .market-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
@@ -353,45 +362,45 @@ TEMPLATE = ENV.from_string("""
 <body>
 {{ brand_header }}
 <div class="strip">
-  <span>Edición <b class="hl">{{ generated_at }}</b>{% if nav == 'daily' and not archive %} <span class="stale" id="stale" data-date="{{ generated_at }}" hidden></span>{% endif %}</span>
-  <span class="it {{ 'bad' if activity.class == 'alert' else ('warn' if activity.class == 'active' else '') }}">{{ activity.label }}</span>
-  <span class="it">{{ n_signals }} señales{% if n_context %} · {{ n_context }} de contexto{% endif %}</span>
-  <span class="it{% if sources_dead %} warn{% endif %}">{{ sources_alive }}/{{ sources_total }} fuentes</span>
+  <span>{{ bi("Edición","Edition") }} <b class="hl">{{ generated_at }}</b>{% if nav == 'daily' and not archive %} <span class="stale" id="stale" data-date="{{ generated_at }}" hidden></span>{% endif %}</span>
+  <span class="it {{ 'bad' if activity.class == 'alert' else ('warn' if activity.class == 'active' else '') }}">{{ bi(activity.label, activity_en) }}</span>
+  <span class="it">{{ n_signals }} {{ bi("señales","signals") }}{% if n_context %} · {{ n_context }} {{ bi("de contexto","context") }}{% endif %}</span>
+  <span class="it{% if sources_dead %} warn{% endif %}">{{ sources_alive }}/{{ sources_total }} {{ bi("fuentes","sources") }}</span>
   {% if x_layer and x_layer.status == 'ok' and x_layer.posts %}<span class="it">X: {{ x_layer.posts }} posts</span>{% elif x_layer and x_layer.status in ['killed','disabled'] %}<span class="it bad">X apagada</span>{% endif %}
-  <a class="r" href="{{ root }}archivo.html">Archivo ↗</a>
+  <a class="r" href="{{ root }}archivo.html">{{ bi("Archivo","Archive") }} ↗</a>
 </div>
 <div class="wrap">
 
   {% if archive %}
   <div class="arch-bar">
-    <a href="{{ root }}archivo.html">← Archivo</a>
+    <a href="{{ root }}archivo.html">← {{ bi("Archivo","Archive") }}</a>
     {% if archive.prev %}<a href="{{ root }}d/{{ archive.prev }}.html">{{ archive.prev }}</a>{% endif %}
     <span class="here">{{ generated_at }}</span>
     {% if archive.next %}<a href="{{ root }}d/{{ archive.next }}.html">{{ archive.next }}</a>{% endif %}
-    <a href="{{ root }}index.html" style="margin-left:auto">Hoy</a>
+    <a href="{{ root }}index.html" style="margin-left:auto">{{ bi("Hoy","Today") }}</a>
   </div>
   {% endif %}
 
   <!-- Tesis del dia -->
   <div class="thesis">
-    <span class="kicker">{{ generated_at }} · lectura del día</span>
-    <h1 class="page-h1">Tesis del día</h1>
-    <p class="tz">{{ thesis }}</p>
+    <span class="kicker">{{ generated_at }} · {{ bi("lectura del día","today's reading") }}</span>
+    <h1 class="page-h1">{{ bi("Tesis del día","Thesis of the day") }}</h1>
+    <p class="tz">{{ bi(thesis, thesis_en) }}</p>
   </div>
 
   {% if degraded %}
   <div class="notice warn">
-    <b>Modo degradado.</b> El análisis del LLM no está disponible hoy, así que el filtro de
-    relevancia no se ha aplicado. Lo que ves está ordenado por heurística y puede contener ruido.
+    {{ bi("<b>Modo degradado.</b> El análisis del LLM no está disponible hoy, así que el filtro de relevancia no se ha aplicado. Lo que ves está ordenado por heurística y puede contener ruido."|safe,
+          "<b>Degraded mode.</b> The LLM analysis is unavailable today, so the relevance filter was not applied. Items are ranked heuristically and may include noise."|safe) }}
   </div>
   {% endif %}
   {% if x_layer and x_layer.status in ['killed', 'disabled'] %}
   <div class="notice">
-    <b>Capa X apagada.</b>
+    <b>{{ bi("Capa X apagada.","X layer off.") }}</b>
     {% if x_layer.status == 'disabled' %}
     X_DISABLED=1: no se ha consultado el espejo.
     {% else %}
-    El espejo no devolvió posts ({{ x_layer.configured }} cuentas). El briefing sigue con RSS.
+    {{ bi("El espejo no devolvió posts (" ~ x_layer.configured ~ " cuentas). El briefing sigue con RSS.", "The mirror returned no posts (" ~ x_layer.configured ~ " accounts). The briefing continues with RSS.") }}
     {% endif %}
   </div>
   {% endif %}
@@ -399,12 +408,12 @@ TEMPLATE = ENV.from_string("""
   <!-- Tabs de tema -->
   {% if theme_tabs or show_new_tab %}
   <div class="tabs" id="tabs">
-    <span class="tab on" data-filter="all">Todas<span class="n">{{ n_signals + n_context }}</span></span>
+    <span class="tab on" data-filter="all">{{ bi("Todas","All") }}<span class="n">{{ n_signals + n_context }}</span></span>
     {% if show_new_tab %}
-    <span class="tab tab-new" data-filter="__new__">Nuevo<span class="n">{{ n_new }}</span></span>
+    <span class="tab tab-new" data-filter="__new__">{{ bi("Nuevo","New") }}<span class="n">{{ n_new }}</span></span>
     {% endif %}
     {% for t in theme_tabs %}
-    <span class="tab" data-filter="{{ t.key }}">{{ t.label }}<span class="n">{{ t.count }}</span></span>
+    <span class="tab" data-filter="{{ t.key }}">{{ bi(t.label, t.label_en) }}<span class="n">{{ t.count }}</span></span>
     {% endfor %}
   </div>
   {% endif %}
@@ -421,29 +430,29 @@ TEMPLATE = ENV.from_string("""
         </a>
         <div class="hero-body">
           <div class="meta-row">
-            <span class="tag">{{ hero.theme_label }}</span>
-            {% if hero.is_new %}<span class="badge-new">Nuevo</span>{% endif %}
+            <span class="tag">{{ bi(hero.theme_label, hero.theme_label_en) }}</span>
+            {% if hero.is_new %}<span class="badge-new">{{ bi("Nuevo","New") }}</span>{% endif %}
             <span class="src"><img src="{{ hero.logo }}" alt="" loading="lazy"/>{{ hero.source_label }}</span>
             {% if hero.other_sources %}<span class="multi">+{{ hero.other_sources|length }} medios</span>{% endif %}
             <span class="score">{{ hero.score }}</span>
-            <button type="button" class="copy-btn" data-copy>Copiar</button>
+            <button type="button" class="copy-btn" data-copy>{{ bi("Copiar","Copy") }}</button>
           </div>
           <h2 class="hero-title">
-            <a href="{{ (hero.url or hero.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ hero.display_title }}</a>
+            <a href="{{ (hero.url or hero.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ bi(hero.display_title, hero.title_en) }}</a>
           </h2>
-          {% if hero.so_what %}<div class="sw">{{ hero.so_what }}</div>{% endif %}
+          {% if hero.so_what %}<div class="sw">{{ bi(hero.so_what, hero.so_what_en) }}</div>{% endif %}
           {% if hero.also %}
-          <div class="also">También en:
+          <div class="also">{{ bi("También en:","Also in:") }}
             {% for a in hero.also %}{% if a.url %}<a href="{{ a.url }}" target="_blank" rel="noopener noreferrer">{{ a.label }}</a>{% else %}<span>{{ a.label }}</span>{% endif %}{% if not loop.last %} · {% endif %}{% endfor %}{% if hero.also_more %} · +{{ hero.also_more }}{% endif %}
           </div>
           {% endif %}
           {% if hero.power_shift or hero.watch_next %}
           <div class="facts {% if hero.power_shift and hero.watch_next %}two{% endif %}">
             {% if hero.power_shift %}
-            <div class="fact pw"><span class="k">Poder</span><span class="v">{{ hero.power_shift }}</span></div>
+            <div class="fact pw"><span class="k">{{ bi("Poder","Power") }}</span><span class="v">{{ bi(hero.power_shift, hero.power_shift_en) }}</span></div>
             {% endif %}
             {% if hero.watch_next %}
-            <div class="fact wn"><span class="k">Vigilar</span><span class="v">{{ hero.watch_next }}</span></div>
+            <div class="fact wn"><span class="k">{{ bi("Vigilar","Watch") }}</span><span class="v">{{ bi(hero.watch_next, hero.watch_next_en) }}</span></div>
             {% endif %}
           </div>
           {% endif %}
@@ -463,28 +472,28 @@ TEMPLATE = ENV.from_string("""
           </a>
           <div class="card-body">
             <div class="meta-row">
-              {% if it.is_new %}<span class="badge-new">Nuevo</span>{% endif %}
+              {% if it.is_new %}<span class="badge-new">{{ bi("Nuevo","New") }}</span>{% endif %}
               <span class="src"><img src="{{ it.logo }}" alt="" loading="lazy"/>{{ it.source_label }}</span>
               {% if it.other_sources %}<span class="multi">+{{ it.other_sources|length }}</span>{% endif %}
               <span class="score">{{ it.score }}</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy>{{ bi("Copiar","Copy") }}</button>
             </div>
             <h3 class="card-title">
-              <a href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ it.display_title }}</a>
+              <a href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ bi(it.display_title, it.title_en) }}</a>
             </h3>
-            {% if it.so_what %}<div class="sw">{{ it.so_what }}</div>{% endif %}
+            {% if it.so_what %}<div class="sw">{{ bi(it.so_what, it.so_what_en) }}</div>{% endif %}
             {% if it.also %}
-            <div class="also">También en:
+            <div class="also">{{ bi("También en:","Also in:") }}
               {% for a in it.also %}{% if a.url %}<a href="{{ a.url }}" target="_blank" rel="noopener noreferrer">{{ a.label }}</a>{% else %}<span>{{ a.label }}</span>{% endif %}{% if not loop.last %} · {% endif %}{% endfor %}{% if it.also_more %} · +{{ it.also_more }}{% endif %}
             </div>
             {% endif %}
             {% if it.power_shift or it.watch_next %}
             <div class="card-foot">
               {% if it.power_shift %}
-              <div class="fact pw"><span class="k">Poder</span><span class="v">{{ it.power_shift }}</span></div>
+              <div class="fact pw"><span class="k">{{ bi("Poder","Power") }}</span><span class="v">{{ bi(it.power_shift, it.power_shift_en) }}</span></div>
               {% endif %}
               {% if it.watch_next %}
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">{{ it.watch_next }}</span></div>
+              <div class="fact wn"><span class="k">{{ bi("Vigilar","Watch") }}</span><span class="v">{{ bi(it.watch_next, it.watch_next_en) }}</span></div>
               {% endif %}
             </div>
             {% endif %}
@@ -496,7 +505,7 @@ TEMPLATE = ENV.from_string("""
 
       {% if not hero and not stream %}
       <div class="empty">
-        <div class="big">Hoy no ha pasado nada que mueva la aguja.</div>
+        <div class="big">{{ bi("Hoy no ha pasado nada que mueva la aguja.","Nothing moved the needle today.") }}</div>
         <div class="sub">
           El filtro de relevancia descartó todo lo ingerido por irrelevante. Un día sin señal
           también es información: significa que la carrera frontier no se movió.
@@ -506,8 +515,8 @@ TEMPLATE = ENV.from_string("""
 
       {% if context %}
       <div class="section-h">
-        <h2 class="sec">Contexto</h2>
-        <p class="sec-sub">De fondo: no cambia nada hoy</p>
+        <h2 class="sec">{{ bi("Contexto","Context") }}</h2>
+        <p class="sec-sub">{{ bi("De fondo: no cambia nada hoy","Background: changes nothing today") }}</p>
       </div>
       <div class="ctx">
         {% for it in context %}
@@ -515,10 +524,10 @@ TEMPLATE = ENV.from_string("""
           <img src="{{ it.logo }}" alt="" loading="lazy"/>
           <div class="cx-b">
             <div class="cx-t">
-              <a href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ it.display_title }}</a>
+              <a href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ bi(it.display_title, it.title_en) }}</a>
             </div>
-            {% if it.so_what %}<div class="cx-w">{{ it.so_what }}</div>{% endif %}
-            <div class="cx-m">{{ it.theme_label }} · {{ it.source_label }} · {{ it.score }}</div>
+            {% if it.so_what %}<div class="cx-w">{{ bi(it.so_what, it.so_what_en) }}</div>{% endif %}
+            <div class="cx-m">{{ bi(it.theme_label, it.theme_label_en) }} · {{ it.source_label }} · {{ it.score }}</div>
           </div>
         </div>
         {% endfor %}
@@ -533,8 +542,8 @@ TEMPLATE = ENV.from_string("""
       {% if market and market.macro %}
       <div class="widget">
         <div class="widget-title">
-          <span>Perspectiva del mercado</span>
-          <span class="lbl">Último cierre</span>
+          <span>{{ bi("Perspectiva del mercado","Market view") }}</span>
+          <span class="lbl">{{ bi("Último cierre","Last close") }}</span>
         </div>
         <div class="market-grid">
           {% for m in market.macro %}
@@ -558,7 +567,7 @@ TEMPLATE = ENV.from_string("""
       {% if market and market.companies %}
       <div class="widget">
         <div class="widget-title">
-          <span>Empresas en tendencia</span>
+          <span>{{ bi("Empresas en tendencia","Trending companies") }}</span>
           <span class="lbl">AI & Semis</span>
         </div>
         <div class="company-list">
@@ -588,8 +597,8 @@ TEMPLATE = ENV.from_string("""
       {% if watch_resolved %}
       <div class="widget">
         <div class="widget-title">
-          <span>Vigilancia de ayer</span>
-          <span class="lbl">{{ n_hits }}/{{ watch_resolved|length }} confirmadas</span>
+          <span>{{ bi("Vigilancia de ayer","Yesterday's watchlist") }}</span>
+          <span class="lbl">{{ n_hits }}/{{ watch_resolved|length }} {{ bi("confirmadas","confirmed") }}</span>
         </div>
         {% for w in watch_resolved %}
         <div class="wr {{ w.status }}">
@@ -606,12 +615,12 @@ TEMPLATE = ENV.from_string("""
       {% if threads or has_moves %}
       <div class="widget">
         <div class="widget-title">
-          <span>Memoria del radar</span>
-          <span class="lbl">Continuidad</span>
+          <span>{{ bi("Memoria del radar","Radar memory") }}</span>
+          <span class="lbl">{{ bi("Continuidad","Continuity") }}</span>
         </div>
         {% for t in threads %}
         <div class="thr">
-          <span class="thr-d">DÍA {{ t.days }}</span>
+          <span class="thr-d">{{ bi("DÍA","DAY") }} {{ t.days }}</span>
           <div>
             <div class="thr-t">{{ t.label }}</div>
             {% if t.lead %}<div class="thr-l">{{ t.lead }}</div>{% endif %}
@@ -619,19 +628,19 @@ TEMPLATE = ENV.from_string("""
         </div>
         {% endfor %}
         {% if not threads %}
-        <div class="none">Ninguna narrativa encadena 3 o más días.</div>
+        <div class="none">{{ bi("Ninguna narrativa encadena 3 o más días.","No story has run for 3+ days.") }}</div>
         {% endif %}
         {% for e in deltas.new_entrants %}
-        <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">{{ e }}</span>
-          <span class="dt">primera aparición</span></div>
+        <div class="mv"><span class="mv-b new">{{ bi("Nuevo","New") }}</span><span class="nm">{{ e }}</span>
+          <span class="dt">{{ bi("primera aparición","first appearance") }}</span></div>
         {% endfor %}
         {% for r in deltas.returning %}
-        <div class="mv"><span class="mv-b ret">Vuelve</span><span class="nm">{{ r.entity }}</span>
-          <span class="dt">tras {{ r.silent_days }} días en silencio</span></div>
+        <div class="mv"><span class="mv-b ret">{{ bi("Vuelve","Back") }}</span><span class="nm">{{ r.entity }}</span>
+          <span class="dt">{{ bi("tras " ~ r.silent_days ~ " días en silencio", "after " ~ r.silent_days ~ " silent days") }}</span></div>
         {% endfor %}
         {% for s in deltas.streaks %}
-        <div class="mv"><span class="mv-b str">Racha</span><span class="nm">{{ s.entity }}</span>
-          <span class="dt">{{ s.days }} días seguidos</span></div>
+        <div class="mv"><span class="mv-b str">{{ bi("Racha","Streak") }}</span><span class="nm">{{ s.entity }}</span>
+          <span class="dt">{{ bi(s.days ~ " días seguidos", s.days ~ " days in a row") }}</span></div>
         {% endfor %}
       </div>
       {% endif %}
@@ -639,20 +648,21 @@ TEMPLATE = ENV.from_string("""
       {% if risks or watch_list %}
       <div class="widget">
         <div class="widget-title">
-          <span>Riesgos y vigilancia</span>
-          <span class="lbl">Próximos días</span>
+          <span>{{ bi("Riesgos y vigilancia","Risks and watch") }}</span>
+          <span class="lbl">{{ bi("Próximos días","Coming days") }}</span>
         </div>
-        {% for r in risks %}<div class="rk">{{ r }}</div>{% endfor %}
-        {% for w in watch_list %}<div class="rk w">{{ w }}</div>{% endfor %}
+        {% for r in risks %}<div class="rk">{{ bi(r, risks_en[loop.index0] if loop.index0 < risks_en|length else "") }}</div>{% endfor %}
+        {% for w in watch_list %}<div class="rk w">{{ bi(w, watch_en[loop.index0] if loop.index0 < watch_en|length else "") }}</div>{% endfor %}
       </div>
       {% endif %}
 
     </aside>
   </div>
 
+  {{ credits }}
   <footer>
-    <span>{{ n_dropped }} items descartados por el filtro de relevancia</span>
-    <span>{{ sources_alive }}/{{ sources_total }} fuentes activas{% if sources_dead %} · sin items: {{ sources_dead }}{% endif %}{% if x_layer and x_layer.status == 'killed' %} · X: kill switch{% elif x_layer and x_layer.status == 'disabled' %} · X: disabled{% elif x_layer and x_layer.status == 'ok' and x_layer.posts %} · X: {{ x_layer.posts }} posts{% endif %}</span>
+    <span>{{ n_dropped }} {{ bi("items descartados por el filtro de relevancia","items dropped by the relevance filter") }}</span>
+    <span>{{ sources_alive }}/{{ sources_total }} {{ bi("fuentes activas","active sources") }}{% if sources_dead %} · {{ bi("sin items","no items") }}: {{ sources_dead }}{% endif %}{% if x_layer and x_layer.status == 'killed' %} · X: kill switch{% elif x_layer and x_layer.status == 'disabled' %} · X: disabled{% elif x_layer and x_layer.status == 'ok' and x_layer.posts %} · X: {{ x_layer.posts }} posts{% endif %}</span>
   </footer>
 
 </div>
@@ -683,19 +693,28 @@ TEMPLATE = ENV.from_string("""
       return;
     }
 
+    // Texto visible en el idioma activo (los traducibles van duplicados).
+    function vis(node){
+      if (!node) return '';
+      var lang = document.documentElement.getAttribute('data-lang') === 'en' ? 'en' : 'es';
+      var pick = node.querySelector('.l-' + lang);
+      return ((pick || node).textContent || '').trim();
+    }
     function ficha(article){
       if (!article) return '';
       var a = article.querySelector('.hero-title a, .card-title a');
-      var title = a ? (a.textContent || '').trim() : '';
+      var title = vis(a);
       var swEl = article.querySelector('.sw');
-      var sw = swEl ? (swEl.textContent || '').trim() : '';
+      var sw = vis(swEl);
       var url = a ? (a.getAttribute('href') || '').trim() : '';
       return [title, sw, url].filter(Boolean).join('\\n\\n');
     }
     function copied(btn){
       btn.classList.add('ok');
-      btn.textContent = 'Copiado';
-      setTimeout(function(){ btn.classList.remove('ok'); btn.textContent = 'Copiar'; }, 1600);
+      var en = document.documentElement.getAttribute('data-lang') === 'en';
+      var label = btn.innerHTML;
+      btn.textContent = en ? 'Copied' : 'Copiado';
+      setTimeout(function(){ btn.classList.remove('ok'); btn.innerHTML = label; }, 1600);
     }
     function fallback(text, btn){
       var ta = document.createElement('textarea');
@@ -772,6 +791,12 @@ def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", 
         it["so_what"] = truncate_text(clean_text(it.get("so_what") or it.get("why") or ""), 230)
         it["power_shift"] = truncate_text(it.get("power_shift") or "", 120)
         it["watch_next"] = truncate_text(it.get("watch_next") or "", 120)
+        it["theme_label_en"] = THEME_LABELS_EN.get(it["theme_key"], "Other signals")
+        # Sin titular traducido, el original del feed (casi siempre en inglés).
+        it["title_en"] = clean_text(it.get("title_en") or "") or clean_text(it.get("title") or "")
+        it["so_what_en"] = truncate_text(clean_text(it.get("so_what_en") or ""), 230)
+        it["power_shift_en"] = truncate_text(it.get("power_shift_en") or "", 120)
+        it["watch_next_en"] = truncate_text(it.get("watch_next_en") or "", 120)
         it["ents"] = item_entities(it)
         it["source_label"] = source_label(it.get("source", ""))
         it["logo"] = source_logo_url(it.get("source", ""), it.get("url") or it.get("link") or "")
@@ -825,7 +850,7 @@ def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", 
     visible = signals + context
     tab_counter = Counter(it["theme_key"] for it in visible)
     theme_tabs = [
-        {"key": k, "label": human_theme(k), "count": c}
+        {"key": k, "label": human_theme(k), "label_en": THEME_LABELS_EN.get(k, "Other signals"), "count": c}
         for k, c in tab_counter.most_common()
     ]
     if len(theme_tabs) < 2:
@@ -885,6 +910,13 @@ def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", 
         root=root or "",
         archive=archive,
         brand_head=Markup(BRAND_HEAD),
+        seo=seo_head("RADAR.IA · Radar diario de la carrera hacia la AGI" if not archive else f"RADAR.IA · Edición del {snapshot.get('date') or ''}",
+                     path="" if not archive else f"d/{snapshot.get('date') or ''}.html"),
+        credits=brand_credits(),
+        thesis_en=clean_text(briefing.get("thesis_en") or ""),
+        risks_en=(briefing.get("risks_en") or [])[:3],
+        watch_en=(briefing.get("watch_en") or [])[:3],
+        activity_en=ACTIVITY_EN.get(str((snapshot.get("activity") or {}).get("label") or ""), ""),
         brand_css=Markup(BRAND_CSS),
         brand_header=brand_header(nav or "daily", root or ""),
         theme_js=Markup(THEME_JS),

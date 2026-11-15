@@ -157,7 +157,7 @@ class CoreQualityTests(unittest.TestCase):
             {"title": "DeepSeek analysis", "title_es": "Análisis de DeepSeek", "score": 75, "layer": "context", "image_url": ""},
         ]
         html = render_index(items, briefing={"thesis": "Tesis de prueba"}, snapshot={"date": "2026-08-23"})
-        self.assertIn("AI Strategic Radar", html)
+        self.assertIn("RADAR.IA", html)
         self.assertIn("Lanzamiento de Gemini 3.7", html)
         self.assertIn("Perspectiva del mercado", html)
         self.assertIn("SMCI", html)

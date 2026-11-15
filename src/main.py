@@ -45,7 +45,8 @@ def env_int(name: str, default: int) -> int:
 
 
 def merge_briefings(briefs: list[dict]) -> dict:
-    out = {"signals": [], "risks": [], "watch": [], "entities_top": []}
+    out = {"signals": [], "risks": [], "watch": [], "entities_top": [],
+           "signals_en": [], "risks_en": [], "watch_en": []}
 
     for b in briefs:
         for k in out.keys():
@@ -65,10 +66,17 @@ def merge_briefings(briefs: list[dict]) -> dict:
     out["risks"] = dedup(out["risks"])[:3]
     out["watch"] = dedup(out["watch"])[:3]
     out["entities_top"] = dedup(out["entities_top"])[:5]
+    out["signals_en"] = dedup(out["signals_en"])[:5]
+    out["risks_en"] = dedup(out["risks_en"])[:3]
+    out["watch_en"] = dedup(out["watch_en"])[:3]
     # La tesis no se acumula entre briefings: se toma la del primero que la traiga.
     for b in briefs:
         if (b.get("thesis") or "").strip():
             out["thesis"] = b["thesis"].strip()
+            break
+    for b in briefs:
+        if (b.get("thesis_en") or "").strip():
+            out["thesis_en"] = b["thesis_en"].strip()
             break
     return out
 
@@ -906,6 +914,10 @@ def apply_llm_results(candidates: list[dict], results_map: dict) -> list[dict]:
             it["tags"] = llm.get("tags", [])
             it["entities"] = llm.get("entities", [])
             it["_same_as"] = llm.get("same_story_as") or 0
+            it["title_en"] = (llm.get("headline_en") or "").strip()
+            it["so_what_en"] = (llm.get("so_what_en") or "").strip()
+            it["power_shift_en"] = (llm.get("power_shift_en") or "").strip()
+            it["watch_next_en"] = (llm.get("watch_next_en") or "").strip()
         else:
             # Sin LLM no hay gate posible: se marca degradado y no se afirma relevancia.
             it["llm_score"] = None
@@ -1066,6 +1078,7 @@ def generate_fallback_briefing(final_items: list[dict], primary_dist: dict, top_
     if not final_items:
         return {
             "thesis": "Sin datos suficientes para emitir una lectura del día.",
+            "thesis_en": "Not enough data to give a reading of the day.",
             "signals": [],
             "risks": [],
             "watch": [],
@@ -1077,6 +1090,7 @@ def generate_fallback_briefing(final_items: list[dict], primary_dist: dict, top_
 
     return {
         "thesis": "Análisis no disponible hoy: el filtro de relevancia no se ha aplicado.",
+        "thesis_en": "Analysis unavailable today: the relevance filter was not applied.",
         "signals": [(it.get("title") or "").strip()[:130] for it in top_items if it.get("title")],
         "risks": [
             "Sin juicio del LLM no se puede distinguir señal de ruido: tratar todo como no verificado."

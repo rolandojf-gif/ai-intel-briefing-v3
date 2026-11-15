@@ -15,7 +15,7 @@ from pathlib import Path
 from jinja2 import Environment, select_autoescape
 from markupsafe import Markup
 
-from src.brand import BASE_CSS as BRAND_CSS, HEAD as BRAND_HEAD, THEME_JS, header as brand_header
+from src.brand import BASE_CSS as BRAND_CSS, HEAD as BRAND_HEAD, THEME_JS, bi, credits as brand_credits, header as brand_header, seo_head
 
 from src.render import _safe_url, render_index
 
@@ -100,6 +100,8 @@ def meta_of(snap: dict) -> dict:
         "n_items": len(items),
         "n_signal": n_shown,
         "n_label": n_label,
+        "n_label_en": "unfiltered" if degraded else ("1 signal" if n_shown == 1 else f"{n_shown} signals"),
+        "thesis_en": re.sub(r"\s+", " ", str((snap.get("briefing") or {}).get("thesis_en") or "").strip())[:220],
         "activity_label": activity.get("label") or "",
         "activity_class": activity.get("class") or "quiet",
         "month_key": month_key,
@@ -116,6 +118,9 @@ ENV.globals.update(
     brand_css=Markup(BRAND_CSS),
     brand_header=brand_header("archivo"),
     theme_js=Markup(THEME_JS),
+    bi=bi,
+    credits=brand_credits(),
+    seo=seo_head("RADAR.IA · Archivo: todas las ediciones del radar", path="archivo.html"),
 )
 
 ARCHIVO_TEMPLATE = ENV.from_string("""
@@ -124,8 +129,7 @@ ARCHIVO_TEMPLATE = ENV.from_string("""
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Archivo · AI Strategic Radar</title>
-{{ brand_head }}<style>{{ brand_css }}
+{{ seo }}{{ brand_head }}<style>{{ brand_css }}
   .wrap{max-width:860px;margin:0 auto;padding:0 24px 80px}
   .lead h1{margin:0 0 8px;font-family:var(--disp);font-size:clamp(22px,3vw,30px);letter-spacing:-.02em}
   .lead p{margin:0 0 18px;color:var(--dim);font-size:14.5px;max-width:60ch}
@@ -202,8 +206,8 @@ ARCHIVO_TEMPLATE = ENV.from_string("""
 <div class="wrap">
   <div class="lead">
     <span class="kicker">{{ first }} – {{ last }}</span>
-    <h1 class="page-h1">Archivo</h1>
-    <p>{{ n }} días · {{ first }} – {{ last }}. Cada entrada es el radar de ese día, no un recorte.</p>
+    <h1 class="page-h1">{{ bi("Archivo","Archive") }}</h1>
+    <p>{{ n }} {{ bi("días","days") }} · {{ first }} – {{ last }}. {{ bi("Cada entrada es el radar de ese día, no un recorte.","Each entry is that day's full radar, not an excerpt.") }}</p>
   </div>
   <div class="toolbar">
     <input id="q" type="search" placeholder="NVIDIA, agentes, 2026-08-22…" autocomplete="off"/>
@@ -223,13 +227,14 @@ ARCHIVO_TEMPLATE = ENV.from_string("""
   {% for d in m.days %}
   <a class="day" href="d/{{ d.date }}.html" data-q="{{ d.date }} {{ d.thesis }}">
     <span class="dt">{{ d.date }}</span>
-    <span class="th">{{ d.thesis or "Sin tesis — heurística" }}</span>
-    <span class="n{% if d.degraded %} deg{% endif %}">{{ d.n_label }}</span>
+    <span class="th">{{ bi(d.thesis or "Sin tesis — heurística", d.thesis_en) }}</span>
+    <span class="n{% if d.degraded %} deg{% endif %}">{{ bi(d.n_label, d.n_label_en) }}</span>
   </a>
   {% endfor %}
   {% endfor %}
   </div>
-  <div class="empty" id="none" hidden>Nada coincide.</div>
+  <div class="empty" id="none" hidden>{{ bi("Nada coincide.","No matches.") }}</div>
+  {{ credits }}
   <footer>{{ n }} snapshots · {{ n_entries }} señales indexadas · falta {{ missing }}</footer>
 </div>
 <script>
@@ -456,6 +461,15 @@ def write_archive(docs_dir: Path, *, write_days: bool = True) -> int:
         missing="6 may 2026" if "2026-05-06" not in dates else "ninguno",
     )
     (docs_dir / "archivo.html").write_text(html, encoding="utf-8")
+    # Para buscadores: mapa del sitio con las tres paginas y cada edicion.
+    from src.brand import SITE_URL
+    urls = [("", last), ("weekly.html", last), ("archivo.html", last)] + [(f"d/{d}.html", d) for d in sorted(dates, reverse=True)]
+    sitemap = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+    sitemap += [f"<url><loc>{SITE_URL}{path}</loc><lastmod>{mod}</lastmod></url>" for path, mod in urls]
+    sitemap.append("</urlset>")
+    (docs_dir / "sitemap.xml").write_text("\n".join(sitemap) + "\n", encoding="utf-8")
+    (docs_dir / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}sitemap.xml\n", encoding="utf-8")
+
     (docs_dir / "search.json").write_text(
         json.dumps(entries, ensure_ascii=False, separators=(",", ":")),
         encoding="utf-8",
