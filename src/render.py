@@ -415,7 +415,7 @@ TEMPLATE = ENV.from_string("""
     <div class="main-col">
 
       {% if hero %}
-      <article class="hero" data-theme="{{ hero.theme_key }}" data-new="{{ 1 if hero.is_new else 0 }}">
+      <article class="hero" data-topic="{{ hero.theme_key }}" data-new="{{ 1 if hero.is_new else 0 }}">
         <a href="{{ (hero.url or hero.link)|safe_url }}" target="_blank" rel="noopener noreferrer">
           <img class="hero-img" src="{{ hero.image_url }}"{% if hero.fallback_image %} data-fb="{{ hero.fallback_image }}"{% endif %} alt="" referrerpolicy="no-referrer"/>
         </a>
@@ -457,7 +457,7 @@ TEMPLATE = ENV.from_string("""
       {% if stream %}
       <div class="grid">
         {% for it in stream %}
-        <article class="card" data-theme="{{ it.theme_key }}" data-new="{{ 1 if it.is_new else 0 }}">
+        <article class="card" data-topic="{{ it.theme_key }}" data-new="{{ 1 if it.is_new else 0 }}">
           <a href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer">
             <img class="card-img" src="{{ it.image_url }}"{% if it.fallback_image %} data-fb="{{ it.fallback_image }}"{% endif %} alt="" loading="lazy" referrerpolicy="no-referrer"/>
           </a>
@@ -511,7 +511,7 @@ TEMPLATE = ENV.from_string("""
       </div>
       <div class="ctx">
         {% for it in context %}
-        <div class="cx" data-theme="{{ it.theme_key }}" data-new="{{ 1 if it.is_new else 0 }}">
+        <div class="cx" data-topic="{{ it.theme_key }}" data-new="{{ 1 if it.is_new else 0 }}">
           <img src="{{ it.logo }}" alt="" loading="lazy"/>
           <div class="cx-b">
             <div class="cx-t">
@@ -729,11 +729,13 @@ TEMPLATE = ENV.from_string("""
         tabs.forEach(function(x){ x.classList.remove('on'); });
         t.classList.add('on');
         var f = t.getAttribute('data-filter');
-        document.querySelectorAll('[data-theme]').forEach(function(c){
+        // data-topic, no data-theme: <html data-theme> es el tema claro/oscuro
+        // y con el selector anterior el filtro ocultaba la pagina entera.
+        document.querySelectorAll('[data-topic]').forEach(function(c){
           var show;
           if (f === 'all')            show = true;
           else if (f === '__new__')   show = c.getAttribute('data-new') === '1';
-          else                        show = c.getAttribute('data-theme') === f;
+          else                        show = c.getAttribute('data-topic') === f;
           c.style.display = show ? '' : 'none';
         });
       });

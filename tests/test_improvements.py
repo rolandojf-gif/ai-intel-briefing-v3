@@ -166,3 +166,15 @@ class FrontTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TopicFilterTests(unittest.TestCase):
+    def test_filter_never_targets_the_theme_attribute_on_html(self):
+        """Con Claro/Oscuro elegido, <html data-theme> casaba con el filtro y la pagina quedaba en blanco."""
+        from src.render import render_index
+        items = [{"title_es": "A", "layer": "signal", "score": 90, "strategic_theme": "china_stack", "url": "https://e.com/a"},
+                 {"title_es": "B", "layer": "signal", "score": 80, "strategic_theme": "agents_automation", "url": "https://e.com/b"}]
+        html = render_index(items, briefing={"thesis": "t"}, snapshot={"date": "2026-11-15"}, market={})
+        self.assertIn('data-topic="china_stack"', html)
+        self.assertNotIn("querySelectorAll('[data-theme]')", html)
+        self.assertIn("querySelectorAll('[data-topic]')", html)
