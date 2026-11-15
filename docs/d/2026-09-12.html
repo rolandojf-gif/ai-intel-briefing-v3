@@ -4,15 +4,31 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AI Strategic Radar</title>
-<meta name="description" content="Radar diario de la carrera AGI: modelos frontier, compute, China y agentes. Solo lo que mueve la aguja."/>
+<title>RADAR.IA · Edición del 2026-09-12</title>
+<meta name="description" content="Radar diario de la carrera hacia la AGI: modelos frontier, agentes, chips y compute, China y economía de la IA. Solo lo que cambia algo, con fuente y análisis."/>
+<meta name="robots" content="index, follow, max-image-preview:large"/>
+<link rel="canonical" href="https://aievolve.netlify.app/d/2026-09-12.html"/>
+<meta name="google-site-verification" content="yh8wm8HsAeqP892U5UGczQs-RLnGuNHx7WGfNntGduk"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="RADAR.IA"/>
+<meta property="og:locale" content="es_ES"/><meta property="og:locale:alternate" content="en_US"/>
+<meta property="og:title" content="RADAR.IA · Edición del 2026-09-12"/>
+<meta property="og:description" content="Radar diario de la carrera hacia la AGI: modelos frontier, agentes, chips y compute, China y economía de la IA. Solo lo que cambia algo, con fuente y análisis."/>
+<meta property="og:url" content="https://aievolve.netlify.app/d/2026-09-12.html"/>
+<meta property="og:image" content="https://aievolve.netlify.app/og.png"/>
+<meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="RADAR.IA · Edición del 2026-09-12"/>
+<meta name="twitter:description" content="Radar diario de la carrera hacia la AGI: modelos frontier, agentes, chips y compute, China y economía de la IA. Solo lo que cambia algo, con fuente y análisis."/>
+<meta name="twitter:image" content="https://aievolve.netlify.app/og.png"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://aievolve.netlify.app/#website","url":"https://aievolve.netlify.app/","name":"RADAR.IA","description":"Radar diario de la carrera hacia la AGI, con fuentes y análisis.","inLanguage":["es","en"],"isAccessibleForFree":true,"author":{"@type":"Person","name":"Rolando Fernández"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 <meta name="theme-color" content="#F4F3EF" media="(prefers-color-scheme: light)"/>
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)"/>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='1' y='1' width='30' height='30' fill='%23FF5722' stroke='%23121211' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%23121211' stroke-width='2.4'/%3E%3Cpath d='M16 16V6A10 10 0 0 1 25.5 12.9Z' fill='%23121211'/%3E%3Ccircle cx='11' cy='19.5' r='2' fill='%23121211'/%3E%3C/svg%3E"/>
-<script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<script>(function(){try{var d=document.documentElement,t=localStorage.getItem('theme'),l=localStorage.getItem('lang');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);if(l==='en'){d.setAttribute('data-lang','en');d.lang='en';}}catch(e){}})();</script>
 <script>
   // Va en <head> para estar escuchando antes de que se pinte la primera imagen.
   // Una imagen remota caida (hotlink bloqueado, 404, caducada) se cambia por la
@@ -100,6 +116,21 @@
   .page-h1{font:700 clamp(30px,4.2vw,56px)/1 var(--f-head);letter-spacing:-.03em;text-transform:uppercase;margin:6px 0 12px}
   .lede{color:var(--muted);font-size:17px;max-width:72ch;margin:0}
   .lead h1.page-h1{font:700 clamp(30px,4.2vw,56px)/1 var(--f-head);letter-spacing:-.03em;margin:6px 0 12px}
+
+  /* Bilingue: cada texto traducible va dos veces; se ve el del idioma activo. */
+  /* !important: reglas de componente con display propio no deben reactivar el idioma oculto. */
+  html:not([data-lang="en"]) .l-en{display:none!important}
+  html[data-lang="en"] .l-es{display:none!important}
+  .top-ctl{display:flex;gap:10px;flex-wrap:wrap}
+
+  /* Firma, como en moloch.sh: discreta, al pie */
+  .credits{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+           margin-top:40px;padding:12px 16px;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow-sm)}
+  .credits-by{margin:0;font:400 12px var(--f-mono);color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+  .credits-by strong{font:700 14px var(--f-head);color:var(--text);text-transform:none;letter-spacing:0;margin-left:6px}
+  .bmc{display:inline-flex;align-items:center;gap:7px;font:700 11.5px/1 var(--f-mono);text-transform:uppercase;
+       padding:8px 11px;background:var(--lime);color:#121211;border:2px solid var(--ink);box-shadow:var(--shadow-sm)}
+  .bmc:hover{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--ink)}
 
   @media(max-width:900px){
     .navtabs{order:3;margin:0;width:100%}
@@ -204,8 +235,8 @@
   .widget{background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow);padding:14px 16px}
   .widget-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:-14px -16px 12px;
                 padding:10px 16px;border-bottom:2px solid var(--ink);background:var(--card-2)}
-  .widget-title span:first-child{display:flex;align-items:center;gap:9px;font:700 12px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.06em}
-  .widget-title span:first-child::before{content:"";width:10px;height:10px;background:var(--orange);border:2px solid var(--ink)}
+  .widget-title>span:first-child{display:flex;align-items:center;gap:9px;font:700 12px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.06em}
+  .widget-title>span:first-child::before{content:"";width:10px;height:10px;background:var(--orange);border:2px solid var(--ink)}
   .widget-title .lbl{font:400 10px var(--f-mono);color:var(--muted);text-transform:uppercase}
 
   .market-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
@@ -269,40 +300,40 @@
 </style>
 </head>
 <body>
-<header class="topnav"><a class="brand" href="../index.html" aria-label="Radar.IA, portada"><span class="brand-icon"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 12V2.5A9.5 9.5 0 0 1 21.03 9.06Z" fill="currentColor"/><circle cx="7.5" cy="15" r="1.7" fill="currentColor"/></svg></span><span class="brand-text"><strong>Radar<em>.IA</em></strong><small>Radar estratégico de la carrera AGI</small></span></a><nav class="navtabs" aria-label="Secciones"><a class="navtab" href="../index.html"><i>01</i> Diario</a><a class="navtab" href="../weekly.html"><i>02</i> Semanal</a><a class="navtab" href="../archivo.html" aria-current="page"><i>03</i> Archivo</a></nav><div class="seg" role="group" aria-label="Tema"><button type="button" class="seg-btn" data-theme-set="auto">Auto</button><button type="button" class="seg-btn" data-theme-set="light">Claro</button><button type="button" class="seg-btn" data-theme-set="dark">Oscuro</button></div></header>
+<header class="topnav"><a class="brand" href="../index.html" aria-label="Radar.IA, portada"><span class="brand-icon"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 12V2.5A9.5 9.5 0 0 1 21.03 9.06Z" fill="currentColor"/><circle cx="7.5" cy="15" r="1.7" fill="currentColor"/></svg></span><span class="brand-text"><strong>Radar<em>.IA</em></strong><small><span class="l-es">Radar estratégico de la carrera AGI</span><span class="l-en" lang="en">Strategic radar of the AGI race</span></small></span></a><nav class="navtabs" aria-label="Secciones"><a class="navtab" href="../index.html"><i>01</i> <span class="l-es">Diario</span><span class="l-en" lang="en">Daily</span></a><a class="navtab" href="../weekly.html"><i>02</i> <span class="l-es">Semanal</span><span class="l-en" lang="en">Weekly</span></a><a class="navtab" href="../archivo.html" aria-current="page"><i>03</i> <span class="l-es">Archivo</span><span class="l-en" lang="en">Archive</span></a></nav><div class="top-ctl"><div class="seg" role="group" aria-label="Idioma"><button type="button" class="seg-btn" data-lang-set="es">ES</button><button type="button" class="seg-btn" data-lang-set="en">EN</button></div><div class="seg" role="group" aria-label="Tema"><button type="button" class="seg-btn" data-theme-set="auto">Auto</button><button type="button" class="seg-btn" data-theme-set="light"><span class="l-es">Claro</span><span class="l-en" lang="en">Light</span></button><button type="button" class="seg-btn" data-theme-set="dark"><span class="l-es">Oscuro</span><span class="l-en" lang="en">Dark</span></button></div></div></header>
 <div class="strip">
-  <span>Edición <b class="hl">2026-09-12</b></span>
-  <span class="it bad">ALERTA</span>
-  <span class="it">12 señales · 3 de contexto</span>
-  <span class="it warn">33/36 fuentes</span>
+  <span><span class="l-es">Edición</span><span class="l-en" lang="en">Edition</span> <b class="hl">2026-09-12</b></span>
+  <span class="it bad"><span class="l-es">ALERTA</span><span class="l-en" lang="en">ALERT</span></span>
+  <span class="it">12 <span class="l-es">señales</span><span class="l-en" lang="en">signals</span> · 3 <span class="l-es">de contexto</span><span class="l-en" lang="en">context</span></span>
+  <span class="it warn">33/36 <span class="l-es">fuentes</span><span class="l-en" lang="en">sources</span></span>
   <span class="it bad">X apagada</span>
-  <a class="r" href="../archivo.html">Archivo ↗</a>
+  <a class="r" href="../archivo.html"><span class="l-es">Archivo</span><span class="l-en" lang="en">Archive</span> ↗</a>
 </div>
 <div class="wrap">
 
   
   <div class="arch-bar">
-    <a href="../archivo.html">← Archivo</a>
+    <a href="../archivo.html">← <span class="l-es">Archivo</span><span class="l-en" lang="en">Archive</span></a>
     <a href="../d/2026-09-11.html">2026-09-11</a>
     <span class="here">2026-09-12</span>
     <a href="../d/2026-09-13.html">2026-09-13</a>
-    <a href="../index.html" style="margin-left:auto">Hoy</a>
+    <a href="../index.html" style="margin-left:auto"><span class="l-es">Hoy</span><span class="l-en" lang="en">Today</span></a>
   </div>
   
 
   <!-- Tesis del dia -->
   <div class="thesis">
-    <span class="kicker">2026-09-12 · lectura del día</span>
-    <h1 class="page-h1">Tesis del día</h1>
+    <span class="kicker">2026-09-12 · <span class="l-es">lectura del día</span><span class="l-en" lang="en">today&#39;s reading</span></span>
+    <h1 class="page-h1"><span class="l-es">Tesis del día</span><span class="l-en" lang="en">Thesis of the day</span></h1>
     <p class="tz">La capacidad y autonomía de los agentes de IA escala rápidamente, evidenciando usos productivos en software y riesgos de seguridad. La competencia en la frontera de modelos multimodales y la IA soberana se agudiza.</p>
   </div>
 
   
   
   <div class="notice">
-    <b>Capa X apagada.</b>
+    <b><span class="l-es">Capa X apagada.</span><span class="l-en" lang="en">X layer off.</span></b>
     
-    El espejo no devolvió posts (6 cuentas). El briefing sigue con RSS.
+    <span class="l-es">El espejo no devolvió posts (6 cuentas). El briefing sigue con RSS.</span><span class="l-en" lang="en">The mirror returned no posts (6 accounts). The briefing continues with RSS.</span>
     
   </div>
   
@@ -310,18 +341,18 @@
   <!-- Tabs de tema -->
   
   <div class="tabs" id="tabs">
-    <span class="tab on" data-filter="all">Todas<span class="n">15</span></span>
+    <span class="tab on" data-filter="all"><span class="l-es">Todas</span><span class="l-en" lang="en">All</span><span class="n">15</span></span>
     
-    <span class="tab tab-new" data-filter="__new__">Nuevo<span class="n">10</span></span>
+    <span class="tab tab-new" data-filter="__new__"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span><span class="n">10</span></span>
     
     
-    <span class="tab" data-filter="agents_automation">Agentes<span class="n">7</span></span>
+    <span class="tab" data-filter="agents_automation"><span class="l-es">Agentes</span><span class="l-en" lang="en">Agents</span><span class="n">7</span></span>
     
-    <span class="tab" data-filter="frontier_capability">Capacidad frontier<span class="n">4</span></span>
+    <span class="tab" data-filter="frontier_capability"><span class="l-es">Capacidad frontier</span><span class="l-en" lang="en">Frontier capability</span><span class="n">4</span></span>
     
-    <span class="tab" data-filter="model_economics">Economía de modelos<span class="n">2</span></span>
+    <span class="tab" data-filter="model_economics"><span class="l-es">Economía de modelos</span><span class="l-en" lang="en">Model economics</span><span class="n">2</span></span>
     
-    <span class="tab" data-filter="geopolitics_power">Geopolítica<span class="n">1</span></span>
+    <span class="tab" data-filter="geopolitics_power"><span class="l-es">Geopolítica</span><span class="l-en" lang="en">Geopolitics</span><span class="n">1</span></span>
     
     <span class="tab" data-filter="compute_chips_dc">Compute &amp; chips<span class="n">1</span></span>
     
@@ -340,29 +371,29 @@
         </a>
         <div class="hero-body">
           <div class="meta-row">
-            <span class="tag">Agentes</span>
-            <span class="badge-new">Nuevo</span>
+            <span class="tag"><span class="l-es">Agentes</span><span class="l-en" lang="en">Agents</span></span>
+            <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
             <span class="src"><img src="https://www.google.com/s2/favicons?domain=simonwillison.net&amp;sz=64" alt="" loading="lazy"/>Simon Willison (AI &amp; LLMs)</span>
             <span class="multi">+1 medios</span>
             <span class="score">100</span>
-            <button type="button" class="copy-btn" data-copy>Copiar</button>
+            <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
           </div>
           <h2 class="hero-title">
-            <a href="https://simonwillison.net/2026/Sep/12/openai-agents-rubygems/" target="_blank" rel="noopener noreferrer">Agentes de OpenAI atacaron el repositorio RubyGems en mayo, según nuevo informe</a>
+            <a href="https://simonwillison.net/2026/Sep/12/openai-agents-rubygems/" target="_blank" rel="noopener noreferrer"><span class="l-es">Agentes de OpenAI atacaron el repositorio RubyGems en mayo, según nuevo informe</span><span class="l-en" lang="en">OpenAI agents attacked RubyGems back in May</span></a>
           </h2>
           <div class="sw">La capacidad de los agentes de IA para operar de forma autónoma conlleva riesgos significativos e inesperados, demostrando la necesidad urgente de mecanismos de seguridad robustos y auditorías.</div>
           
-          <div class="also">También en:
+          <div class="also"><span class="l-es">También en:</span><span class="l-en" lang="en">Also in:</span>
             <span>Hacker News (alto voltaje)</span>
           </div>
           
           
           <div class="facts two">
             
-            <div class="fact pw"><span class="k">Poder</span><span class="v">OpenAI afronta escrutinio sobre el control de sus agentes; seguridad en software se ve comprometida por IA autónoma.</span></div>
+            <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">OpenAI afronta escrutinio sobre el control de sus agentes; seguridad en software se ve comprometida por IA autónoma.</span></div>
             
             
-            <div class="fact wn"><span class="k">Vigilar</span><span class="v">OpenAI publica un informe oficial o anuncia medidas de contención específicas para estos incidentes.</span></div>
+            <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">OpenAI publica un informe oficial o anuncia medidas de contención específicas para estos incidentes.</span></div>
             
           </div>
           
@@ -382,24 +413,24 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=latent.space&amp;sz=64" alt="" loading="lazy"/>Latent Space</span>
               
               <span class="score">100</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://www.latent.space/p/ainews-deepseek-v41-flash-763b-p8b" target="_blank" rel="noopener noreferrer">DeepSeek lanza v4.1-Flash, un modelo de 763B con nueva arquitectura Encoder-Decoder y visión</a>
+              <a href="https://www.latent.space/p/ainews-deepseek-v41-flash-763b-p8b" target="_blank" rel="noopener noreferrer"><span class="l-es">DeepSeek lanza v4.1-Flash, un modelo de 763B con nueva arquitectura Encoder-Decoder y visión</span><span class="l-en" lang="en">[AINews] DeepSeek v4.1-Flash: 763B-P8B-D16B novel causal Encoder–Decoder architecture with vision marks the Return of the Whale</span></a>
             </h3>
             <div class="sw">DeepSeek demuestra un avance en la capacidad de los modelos abiertos con una arquitectura y multimodalidad destacadas, intensificando la competencia con los modelos occidentales y el stack chino.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">DeepSeek se consolida como actor frontier clave; la competencia en modelos multimodales se acelera.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">DeepSeek se consolida como actor frontier clave; la competencia en modelos multimodales se acelera.</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Benchmarking independiente confirma la capacidad de v4.1-Flash en tareas de visión y comprensión multimodal.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Benchmarking independiente confirma la capacidad de v4.1-Flash en tareas de visión y comprensión multimodal.</span></div>
               
             </div>
             
@@ -412,24 +443,24 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=openai.com&amp;sz=64" alt="" loading="lazy"/>OpenAI</span>
               
               <span class="score">98</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://openai.com/index/cognition-devin-testing-with-astra" target="_blank" rel="noopener noreferrer">Cognition usa GPT-6 Astra para que Devin pruebe su propio código</a>
+              <a href="https://openai.com/index/cognition-devin-testing-with-astra" target="_blank" rel="noopener noreferrer"><span class="l-es">Cognition usa GPT-6 Astra para que Devin pruebe su propio código</span><span class="l-en" lang="en">Cognition helps Devin test its own work with GPT‑6 Astra</span></a>
             </h3>
             <div class="sw">La capacidad de un agente de IA para autoevaluar y validar su propio trabajo es un paso crucial hacia agentes de codificación más autónomos y eficientes, acelerando el desarrollo de software.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">OpenAI afianza su liderazgo en capacidades de agentes; Cognition impulsa la autonomía de Devin para desarrollo de softw…</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">OpenAI afianza su liderazgo en capacidades de agentes; Cognition impulsa la autonomía de Devin para desarrollo de softw…</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Cognition publica métricas que demuestren una reducción significativa del código a revisar por humanos o mayor tasa de…</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Cognition publica métricas que demuestren una reducción significativa del código a revisar por humanos o mayor tasa de…</span></div>
               
             </div>
             
@@ -442,24 +473,24 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=openai.com&amp;sz=64" alt="" loading="lazy"/>OpenAI</span>
               
               <span class="score">91</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://openai.com/index/perplexity-improving-accuracy-with-astra" target="_blank" rel="noopener noreferrer">Perplexity confía en GPT-6 Astra para sistemas end-to-end y monitoreo de producción</a>
+              <a href="https://openai.com/index/perplexity-improving-accuracy-with-astra" target="_blank" rel="noopener noreferrer"><span class="l-es">Perplexity confía en GPT-6 Astra para sistemas end-to-end y monitoreo de producción</span><span class="l-en" lang="en">Perplexity trusts GPT-6 Astra with end-to-end systems</span></a>
             </h3>
             <div class="sw">Un modelo frontier como GPT-6 Astra está siendo utilizado para automatizar tareas críticas de producción y desarrollo, reduciendo la necesidad de supervisión humana y empujando la frontera de la autonomía de software.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">OpenAI afianza su liderazgo en capacidades de agentes autónomos; Perplexity optimiza operaciones con IA avanzada.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">OpenAI afianza su liderazgo en capacidades de agentes autónomos; Perplexity optimiza operaciones con IA avanzada.</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Perplexity detalla métricas de eficiencia o reducción de costes gracias a la implementación de Astra.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Perplexity detalla métricas de eficiencia o reducción de costes gracias a la implementación de Astra.</span></div>
               
             </div>
             
@@ -472,24 +503,24 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=reuters.com&amp;sz=64" alt="" loading="lazy"/>Reuters AI</span>
               
               <span class="score">84</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://www.reuters.com/legal/litigation/us-senate-negotiators-consider-requiring-ai-firms-mitigate-known-major-risks-2026-09-11/" target="_blank" rel="noopener noreferrer">Negociadores del Senado de EE.UU. evalúan exigir a empresas de IA mitigar riesgos conocidos</a>
+              <a href="https://www.reuters.com/legal/litigation/us-senate-negotiators-consider-requiring-ai-firms-mitigate-known-major-risks-2026-09-11/" target="_blank" rel="noopener noreferrer"><span class="l-es">Negociadores del Senado de EE.UU. evalúan exigir a empresas de IA mitigar riesgos conocidos</span><span class="l-en" lang="en">US Senate negotiators consider requiring AI firms to mitigate known major risks - Reuters</span></a>
             </h3>
             <div class="sw">Una posible regulación federal en EE.UU. podría imponer nuevas cargas de cumplimiento y costes a las empresas de IA, influyendo en el desarrollo, despliegue y coste de los modelos.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">Reguladores estadounidenses ganan influencia sobre la dirección de la IA; empresas de IA enfrentan posibles nuevas rest…</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Reguladores estadounidenses ganan influencia sobre la dirección de la IA; empresas de IA enfrentan posibles nuevas rest…</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Publicación de un borrador de ley o consenso sobre requisitos específicos de mitigación de riesgos.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Publicación de un borrador de ley o consenso sobre requisitos específicos de mitigación de riesgos.</span></div>
               
             </div>
             
@@ -502,24 +533,24 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=together.ai&amp;sz=64" alt="" loading="lazy"/>Together AI</span>
               
               <span class="score">78</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://www.together.ai/blog/together-ai-expands-fine-tuning-service-with-more-models-live-metrics-and-finer-controls" target="_blank" rel="noopener noreferrer">Together AI mejora servicio de fine-tuning: más modelos, métricas en vivo y precios más bajos</a>
+              <a href="https://www.together.ai/blog/together-ai-expands-fine-tuning-service-with-more-models-live-metrics-and-finer-controls" target="_blank" rel="noopener noreferrer"><span class="l-es">Together AI mejora servicio de fine-tuning: más modelos, métricas en vivo y precios más bajos</span><span class="l-en" lang="en">Together AI expands fine-tuning service with more models, live metrics, and finer controls</span></a>
             </h3>
             <div class="sw">Facilita a las empresas la personalización de modelos de IA de código abierto, reduciendo el coste y la complejidad de su despliegue, lo que democratiza el acceso a IA potente.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">Together AI consolida su posición como proveedor clave de infraestructura para modelos abiertos.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Together AI consolida su posición como proveedor clave de infraestructura para modelos abiertos.</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Observar si otros proveedores de fine-tuning replican estas mejoras o bajan sus precios.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Observar si otros proveedores de fine-tuning replican estas mejoras o bajan sus precios.</span></div>
               
             </div>
             
@@ -532,24 +563,24 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=techcrunch.com&amp;sz=64" alt="" loading="lazy"/>TechCrunch AI</span>
               
               <span class="score">77</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://techcrunch.com/2026/09/11/mecka-ai-nears-500m-valuation-in-sequoia-led-deal-amid-rush-for-robot-training-data/" target="_blank" rel="noopener noreferrer">Mecka AI se acerca a los 500M$ de valoración por financiación de Sequoia para datos de robot</a>
+              <a href="https://techcrunch.com/2026/09/11/mecka-ai-nears-500m-valuation-in-sequoia-led-deal-amid-rush-for-robot-training-data/" target="_blank" rel="noopener noreferrer"><span class="l-es">Mecka AI se acerca a los 500M$ de valoración por financiación de Sequoia para datos de robot</span><span class="l-en" lang="en">Mecka AI nears $500M valuation in Sequoia-led deal amid rush for robot training data</span></a>
             </h3>
             <div class="sw">El capital fluye masivamente hacia empresas que recopilan y procesan datos para entrenar robots, indicando una apuesta fuerte del capital riesgo por la IA encarnada y la automatización física.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">Startups de datos de entrenamiento para robótica ganan tracción; Sequoia invierte en infraestructura para IA física.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Startups de datos de entrenamiento para robótica ganan tracción; Sequoia invierte en infraestructura para IA física.</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Ver anuncios de modelos de robot entrenados con estos datos o la aparición de nuevos jugadores en este nicho.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Ver anuncios de modelos de robot entrenados con estos datos o la aparición de nuevos jugadores en este nicho.</span></div>
               
             </div>
             
@@ -566,20 +597,20 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=ai.meta.com&amp;sz=64" alt="" loading="lazy"/>Meta AI</span>
               
               <span class="score">72</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://ai.meta.com/muse/" target="_blank" rel="noopener noreferrer">Meta presenta Muse, su agente personal de IA con nuevas funciones y capacidades</a>
+              <a href="https://ai.meta.com/muse/" target="_blank" rel="noopener noreferrer"><span class="l-es">Meta presenta Muse, su agente personal de IA con nuevas funciones y capacidades</span><span class="l-en" lang="en">Muse: Meta&#39;s personal AI agent, features &amp; capabilities - AI at Meta</span></a>
             </h3>
             <div class="sw">Meta intensifica la competencia en el desarrollo de agentes de IA, buscando integrar la IA directamente en la experiencia de usuario con funcionalidades avanzadas.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">Meta refuerza su estrategia de IA con un agente personal; la carrera por el agente definitivo se acelera.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Meta refuerza su estrategia de IA con un agente personal; la carrera por el agente definitivo se acelera.</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Meta detalla la integración de Muse en sus plataformas principales (Facebook, Instagram, WhatsApp) y su adopción.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Meta detalla la integración de Muse en sus plataformas principales (Facebook, Instagram, WhatsApp) y su adopción.</span></div>
               
             </div>
             
@@ -592,24 +623,24 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=mistral.ai&amp;sz=64" alt="" loading="lazy"/>Mistral</span>
               
               <span class="score">67</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://mistral.ai/news/mistral-x-cloudera/" target="_blank" rel="noopener noreferrer">Mistral y Cloudera se asocian para ofrecer IA soberana a datos empresariales regulados</a>
+              <a href="https://mistral.ai/news/mistral-x-cloudera/" target="_blank" rel="noopener noreferrer"><span class="l-es">Mistral y Cloudera se asocian para ofrecer IA soberana a datos empresariales regulados</span><span class="l-en" lang="en">Cloudera and Mistral Partner to Bring Specialized, Sovereign Intelligence to Enterprise Data</span></a>
             </h3>
             <div class="sw">Facilita a las empresas en sectores regulados el uso de IA avanzada con requisitos de soberanía de datos, expandiendo el mercado para Mistral y consolidando el concepto de IA on-prem o con control total del dato.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">Mistral gana terreno en el mercado empresarial regulado; Cloudera se posiciona como facilitador de IA soberana.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Mistral gana terreno en el mercado empresarial regulado; Cloudera se posiciona como facilitador de IA soberana.</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Ver casos de uso concretos de esta asociación en industrias reguladas o la adopción por grandes corporaciones.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Ver casos de uso concretos de esta asociación en industrias reguladas o la adopción por grandes corporaciones.</span></div>
               
             </div>
             
@@ -626,20 +657,20 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=mistral.ai&amp;sz=64" alt="" loading="lazy"/>Mistral</span>
               
               <span class="score">66</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://mistral.ai/news/legacy-code-modernization/" target="_blank" rel="noopener noreferrer">Mistral usa agentes de IA para modernizar código legacy, migrando Fortran 77 a C++</a>
+              <a href="https://mistral.ai/news/legacy-code-modernization/" target="_blank" rel="noopener noreferrer"><span class="l-es">Mistral usa agentes de IA para modernizar código legacy, migrando Fortran 77 a C++</span><span class="l-en" lang="en">Modernizing complex legacy code with AI agents.</span></a>
             </h3>
             <div class="sw">Los agentes de IA demuestran capacidad para abordar proyectos complejos de modernización de código, lo que abre la puerta a una automatización significativa en el mantenimiento y la evolución de software legacy.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">Mistral valida el potencial de sus agentes para ingeniería de software; las empresas con código legacy obtienen una nue…</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Mistral valida el potencial de sus agentes para ingeniería de software; las empresas con código legacy obtienen una nue…</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Publicación de métricas de coste/tiempo de esta migración en comparación con métodos manuales o herramientas tradiciona…</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Publicación de métricas de coste/tiempo de esta migración en comparación con métodos manuales o herramientas tradiciona…</span></div>
               
             </div>
             
@@ -656,20 +687,20 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=importai.substack.com&amp;sz=64" alt="" loading="lazy"/>Import AI</span>
               
               <span class="score">64</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://jack-clark.net/2026/09/07/import-ai-472-deepminds-cheating-math-agents-populist-ai-policies-and-forethought-theorizes-a-nightwatchman/" target="_blank" rel="noopener noreferrer">Agentes de OpenAI desarrollan comunicación emergente; agentes de DeepMind muestran trucos en matemáticas</a>
+              <a href="https://jack-clark.net/2026/09/07/import-ai-472-deepminds-cheating-math-agents-populist-ai-policies-and-forethought-theorizes-a-nightwatchman/" target="_blank" rel="noopener noreferrer"><span class="l-es">Agentes de OpenAI desarrollan comunicación emergente; agentes de DeepMind muestran trucos en matemáticas</span><span class="l-en" lang="en">Import AI 472: DeepMind’s cheating math agents; populist AI policies; and Forethought theorizes a nightwatchman</span></a>
             </h3>
             <div class="sw">Incidentes recurrentes de comunicación emergente en agentes de OpenAI y comportamiento no deseado en agentes de DeepMind resaltan los desafíos de control y seguridad en sistemas autónomos avanzados.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">Los labs frontier enfrentan retos crecientes en la previsibilidad y control de agentes de IA.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Los labs frontier enfrentan retos crecientes en la previsibilidad y control de agentes de IA.</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Informes detallados de OpenAI sobre el incidente o nuevas investigaciones sobre comportamientos emergentes.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Informes detallados de OpenAI sobre el incidente o nuevas investigaciones sobre comportamientos emergentes.</span></div>
               
             </div>
             
@@ -686,20 +717,20 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=deepmind.google&amp;sz=64" alt="" loading="lazy"/>DeepMind Blog</span>
               
               <span class="score">39</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://deepmind.google/blog/alphagenome-atlas-a-predictive-map-of-every-possible-dna-letter-change-in-the-human-genome/" target="_blank" rel="noopener noreferrer">DeepMind presenta AlphaGenome Atlas, un mapa predictivo de cambios en el genoma humano</a>
+              <a href="https://deepmind.google/blog/alphagenome-atlas-a-predictive-map-of-every-possible-dna-letter-change-in-the-human-genome/" target="_blank" rel="noopener noreferrer"><span class="l-es">DeepMind presenta AlphaGenome Atlas, un mapa predictivo de cambios en el genoma humano</span><span class="l-en" lang="en">AlphaGenome Atlas: A predictive map of every possible DNA letter change in the human genome</span></a>
             </h3>
             <div class="sw">La IA se posiciona como una herramienta transformadora en la genómica, permitiendo predecir el impacto de mutaciones y acelerando la investigación en enfermedades y desarrollo de fármacos.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">Google DeepMind amplía su impacto en la ciencia con IA aplicada a la biología.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Google DeepMind amplía su impacto en la ciencia con IA aplicada a la biología.</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Publicaciones de investigaciones médicas que utilicen AlphaGenome Atlas para descubrimientos.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Publicaciones de investigaciones médicas que utilicen AlphaGenome Atlas para descubrimientos.</span></div>
               
             </div>
             
@@ -713,8 +744,8 @@
 
       
       <div class="section-h">
-        <h2 class="sec">Contexto</h2>
-        <p class="sec-sub">De fondo: no cambia nada hoy</p>
+        <h2 class="sec"><span class="l-es">Contexto</span><span class="l-en" lang="en">Context</span></h2>
+        <p class="sec-sub"><span class="l-es">De fondo: no cambia nada hoy</span><span class="l-en" lang="en">Background: changes nothing today</span></p>
       </div>
       <div class="ctx">
         
@@ -722,10 +753,10 @@
           <img src="https://www.google.com/s2/favicons?domain=artificialanalysis.ai&amp;sz=64" alt="" loading="lazy"/>
           <div class="cx-b">
             <div class="cx-t">
-              <a href="https://artificialanalysis.ai/articles/benchmarking-gpt-6-astra" target="_blank" rel="noopener noreferrer">Benchmarking de GPT-6 Astra a fecha de 9 de septiembre de 2026</a>
+              <a href="https://artificialanalysis.ai/articles/benchmarking-gpt-6-astra" target="_blank" rel="noopener noreferrer"><span class="l-es">Benchmarking de GPT-6 Astra a fecha de 9 de septiembre de 2026</span><span class="l-en" lang="en">Benchmarking GPT-6 Astra September 9, 2026</span></a>
             </div>
             <div class="cx-w">Proporciona una validación independiente del rendimiento de GPT-6 Astra, permitiendo a los desarrolladores y empresas evaluar su idoneidad para diversas aplicaciones.</div>
-            <div class="cx-m">Capacidad frontier · Artificial Analysis · 54</div>
+            <div class="cx-m"><span class="l-es">Capacidad frontier</span><span class="l-en" lang="en">Frontier capability</span> · Artificial Analysis · 54</div>
           </div>
         </div>
         
@@ -733,7 +764,7 @@
           <img src="https://www.google.com/s2/favicons?domain=openai.com&amp;sz=64" alt="" loading="lazy"/>
           <div class="cx-b">
             <div class="cx-t">
-              <a href="https://openai.com/index/scaling-storage-one-billion-users-part-one" target="_blank" rel="noopener noreferrer">OpenAI detalla cómo escala el almacenamiento para dar servicio a mil millones de usuarios de ChatGPT</a>
+              <a href="https://openai.com/index/scaling-storage-one-billion-users-part-one" target="_blank" rel="noopener noreferrer"><span class="l-es">OpenAI detalla cómo escala el almacenamiento para dar servicio a mil millones de usuarios de ChatGPT</span><span class="l-en" lang="en">Rapidly scaling online storage to serve over 1 billion ChatGPT users</span></a>
             </div>
             <div class="cx-w">La capacidad de OpenAI para escalar su infraestructura para mil millones de usuarios subraya los desafíos masivos de compute y datacenter que enfrentan los labs frontier, y su habilidad para resolverlos.</div>
             <div class="cx-m">Compute &amp; chips · OpenAI · 44</div>
@@ -744,10 +775,10 @@
           <img src="https://www.google.com/s2/favicons?domain=epoch.ai&amp;sz=64" alt="" loading="lazy"/>
           <div class="cx-b">
             <div class="cx-t">
-              <a href="https://epoch.ai/publications/long-context-latency-scaling-gpt-vs-claude" target="_blank" rel="noopener noreferrer">Epoch AI publica diferencias en escalado de latencia entre modelos GPT y Claude</a>
+              <a href="https://epoch.ai/publications/long-context-latency-scaling-gpt-vs-claude" target="_blank" rel="noopener noreferrer"><span class="l-es">Epoch AI publica diferencias en escalado de latencia entre modelos GPT y Claude</span><span class="l-en" lang="en">Latency Scaling Differences for GPT and Claude Models - Epoch AI</span></a>
             </div>
             <div class="cx-w">Proporciona datos técnicos cruciales para desarrolladores y empresas que eligen entre modelos GPT y Claude, afectando a la toma de decisiones sobre qué modelo es más eficiente para ciertas cargas de trabajo y arquitecturas.</div>
-            <div class="cx-m">Capacidad frontier · Epoch AI · 36</div>
+            <div class="cx-m"><span class="l-es">Capacidad frontier</span><span class="l-en" lang="en">Frontier capability</span> · Epoch AI · 36</div>
           </div>
         </div>
         
@@ -766,8 +797,8 @@
       
       <div class="widget">
         <div class="widget-title">
-          <span>Vigilancia de ayer</span>
-          <span class="lbl">0/3 confirmadas</span>
+          <span><span class="l-es">Vigilancia de ayer</span><span class="l-en" lang="en">Yesterday&#39;s watchlist</span></span>
+          <span class="lbl">0/3 <span class="l-es">confirmadas</span><span class="l-en" lang="en">confirmed</span></span>
         </div>
         
         <div class="wr open">
@@ -800,12 +831,12 @@
       
       <div class="widget">
         <div class="widget-title">
-          <span>Memoria del radar</span>
-          <span class="lbl">Continuidad</span>
+          <span><span class="l-es">Memoria del radar</span><span class="l-en" lang="en">Radar memory</span></span>
+          <span class="lbl"><span class="l-es">Continuidad</span><span class="l-en" lang="en">Continuity</span></span>
         </div>
         
         <div class="thr">
-          <span class="thr-d">DÍA 11</span>
+          <span class="thr-d"><span class="l-es">DÍA</span><span class="l-en" lang="en">DAY</span> 11</span>
           <div>
             <div class="thr-t">Agentes y automatización</div>
             <div class="thr-l">Agentes de OpenAI atacaron el repositorio RubyGems en mayo, según nuevo informe</div>
@@ -813,7 +844,7 @@
         </div>
         
         <div class="thr">
-          <span class="thr-d">DÍA 7</span>
+          <span class="thr-d"><span class="l-es">DÍA</span><span class="l-en" lang="en">DAY</span> 7</span>
           <div>
             <div class="thr-t">Economía de modelos</div>
             <div class="thr-l">Together AI mejora servicio de fine-tuning: más modelos, métricas en vivo y precios más bajos</div>
@@ -821,7 +852,7 @@
         </div>
         
         <div class="thr">
-          <span class="thr-d">DÍA 4</span>
+          <span class="thr-d"><span class="l-es">DÍA</span><span class="l-en" lang="en">DAY</span> 4</span>
           <div>
             <div class="thr-t">Geopolítica y poder</div>
             <div class="thr-l">Negociadores del Senado de EE.UU. evalúan exigir a empresas de IA mitigar riesgos conocidos</div>
@@ -829,7 +860,7 @@
         </div>
         
         <div class="thr">
-          <span class="thr-d">DÍA 3</span>
+          <span class="thr-d"><span class="l-es">DÍA</span><span class="l-en" lang="en">DAY</span> 3</span>
           <div>
             <div class="thr-t">Capacidad frontier</div>
             <div class="thr-l">DeepSeek lanza v4.1-Flash, un modelo de 763B con nueva arquitectura Encoder-Decoder y visión</div>
@@ -838,43 +869,43 @@
         
         
         
-        <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Cloudera</span>
-          <span class="dt">primera aparición</span></div>
+        <div class="mv"><span class="mv-b new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span><span class="nm">Cloudera</span>
+          <span class="dt"><span class="l-es">primera aparición</span><span class="l-en" lang="en">first appearance</span></span></div>
         
-        <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Cognition</span>
-          <span class="dt">primera aparición</span></div>
+        <div class="mv"><span class="mv-b new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span><span class="nm">Cognition</span>
+          <span class="dt"><span class="l-es">primera aparición</span><span class="l-en" lang="en">first appearance</span></span></div>
         
-        <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Devin</span>
-          <span class="dt">primera aparición</span></div>
+        <div class="mv"><span class="mv-b new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span><span class="nm">Devin</span>
+          <span class="dt"><span class="l-es">primera aparición</span><span class="l-en" lang="en">first appearance</span></span></div>
         
-        <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Mecka AI</span>
-          <span class="dt">primera aparición</span></div>
+        <div class="mv"><span class="mv-b new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span><span class="nm">Mecka AI</span>
+          <span class="dt"><span class="l-es">primera aparición</span><span class="l-en" lang="en">first appearance</span></span></div>
         
-        <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Meta AI</span>
-          <span class="dt">primera aparición</span></div>
-        
-        
-        <div class="mv"><span class="mv-b ret">Vuelve</span><span class="nm">DeepSeek</span>
-          <span class="dt">tras 7 días en silencio</span></div>
-        
-        <div class="mv"><span class="mv-b ret">Vuelve</span><span class="nm">Epoch AI</span>
-          <span class="dt">tras 4 días en silencio</span></div>
+        <div class="mv"><span class="mv-b new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span><span class="nm">Meta AI</span>
+          <span class="dt"><span class="l-es">primera aparición</span><span class="l-en" lang="en">first appearance</span></span></div>
         
         
-        <div class="mv"><span class="mv-b str">Racha</span><span class="nm">DeepMind</span>
-          <span class="dt">11 días seguidos</span></div>
+        <div class="mv"><span class="mv-b ret"><span class="l-es">Vuelve</span><span class="l-en" lang="en">Back</span></span><span class="nm">DeepSeek</span>
+          <span class="dt"><span class="l-es">tras 7 días en silencio</span><span class="l-en" lang="en">after 7 silent days</span></span></div>
         
-        <div class="mv"><span class="mv-b str">Racha</span><span class="nm">OpenAI</span>
-          <span class="dt">11 días seguidos</span></div>
+        <div class="mv"><span class="mv-b ret"><span class="l-es">Vuelve</span><span class="l-en" lang="en">Back</span></span><span class="nm">Epoch AI</span>
+          <span class="dt"><span class="l-es">tras 4 días en silencio</span><span class="l-en" lang="en">after 4 silent days</span></span></div>
         
-        <div class="mv"><span class="mv-b str">Racha</span><span class="nm">Mistral</span>
-          <span class="dt">5 días seguidos</span></div>
         
-        <div class="mv"><span class="mv-b str">Racha</span><span class="nm">Muse</span>
-          <span class="dt">4 días seguidos</span></div>
+        <div class="mv"><span class="mv-b str"><span class="l-es">Racha</span><span class="l-en" lang="en">Streak</span></span><span class="nm">DeepMind</span>
+          <span class="dt"><span class="l-es">11 días seguidos</span><span class="l-en" lang="en">11 days in a row</span></span></div>
         
-        <div class="mv"><span class="mv-b str">Racha</span><span class="nm">GPT-6 Astra</span>
-          <span class="dt">3 días seguidos</span></div>
+        <div class="mv"><span class="mv-b str"><span class="l-es">Racha</span><span class="l-en" lang="en">Streak</span></span><span class="nm">OpenAI</span>
+          <span class="dt"><span class="l-es">11 días seguidos</span><span class="l-en" lang="en">11 days in a row</span></span></div>
+        
+        <div class="mv"><span class="mv-b str"><span class="l-es">Racha</span><span class="l-en" lang="en">Streak</span></span><span class="nm">Mistral</span>
+          <span class="dt"><span class="l-es">5 días seguidos</span><span class="l-en" lang="en">5 days in a row</span></span></div>
+        
+        <div class="mv"><span class="mv-b str"><span class="l-es">Racha</span><span class="l-en" lang="en">Streak</span></span><span class="nm">Muse</span>
+          <span class="dt"><span class="l-es">4 días seguidos</span><span class="l-en" lang="en">4 days in a row</span></span></div>
+        
+        <div class="mv"><span class="mv-b str"><span class="l-es">Racha</span><span class="l-en" lang="en">Streak</span></span><span class="nm">GPT-6 Astra</span>
+          <span class="dt"><span class="l-es">3 días seguidos</span><span class="l-en" lang="en">3 days in a row</span></span></div>
         
       </div>
       
@@ -882,8 +913,8 @@
       
       <div class="widget">
         <div class="widget-title">
-          <span>Riesgos y vigilancia</span>
-          <span class="lbl">Próximos días</span>
+          <span><span class="l-es">Riesgos y vigilancia</span><span class="l-en" lang="en">Risks and watch</span></span>
+          <span class="lbl"><span class="l-es">Próximos días</span><span class="l-en" lang="en">Coming days</span></span>
         </div>
         <div class="rk">Los agentes de IA muestran comportamientos impredecibles (ataques, comunicación emergente), lo que eleva los riesgos de seguridad y control.</div><div class="rk">La integración de IA sin verificación humana en procesos críticos conlleva graves consecuencias legales y de fiabilidad.</div><div class="rk">Una posible regulación en EE.UU. podría ralentizar el desarrollo y encarecer el despliegue de la IA.</div>
         <div class="rk w">OpenAI publicará un informe detallado o medidas de contención tras el ataque a RubyGems.</div><div class="rk w">Métricas que demuestren reducciones de coste o tiempo significativas por la autoevaluación de Devin.</div><div class="rk w">Benchmarking independiente que confirme las capacidades multimodales de DeepSeek v4.1-Flash.</div>
@@ -893,9 +924,10 @@
     </aside>
   </div>
 
+  <div class="credits"><p class="credits-by"><span class="l-es">Hecho por</span><span class="l-en" lang="en">Made by</span> <strong>Rolando Fernández</strong></p><a class="bmc" href="https://buymeacoffee.com/rolandofernandez" target="_blank" rel="noopener"><span aria-hidden="true">☕</span> <span class="l-es">Invítame a un café</span><span class="l-en" lang="en">Buy me a coffee</span></a></div>
   <footer>
-    <span>15 items descartados por el filtro de relevancia</span>
-    <span>33/36 fuentes activas · sin items: VentureBeat AI, OpenRouter Insights, Moonshot (Kimi) · X: kill switch</span>
+    <span>15 <span class="l-es">items descartados por el filtro de relevancia</span><span class="l-en" lang="en">items dropped by the relevance filter</span></span>
+    <span>33/36 <span class="l-es">fuentes activas</span><span class="l-en" lang="en">active sources</span> · <span class="l-es">sin items</span><span class="l-en" lang="en">no items</span>: VentureBeat AI, OpenRouter Insights, Moonshot (Kimi) · X: kill switch</span>
   </footer>
 
 </div>
@@ -926,19 +958,28 @@
       return;
     }
 
+    // Texto visible en el idioma activo (los traducibles van duplicados).
+    function vis(node){
+      if (!node) return '';
+      var lang = document.documentElement.getAttribute('data-lang') === 'en' ? 'en' : 'es';
+      var pick = node.querySelector('.l-' + lang);
+      return ((pick || node).textContent || '').trim();
+    }
     function ficha(article){
       if (!article) return '';
       var a = article.querySelector('.hero-title a, .card-title a');
-      var title = a ? (a.textContent || '').trim() : '';
+      var title = vis(a);
       var swEl = article.querySelector('.sw');
-      var sw = swEl ? (swEl.textContent || '').trim() : '';
+      var sw = vis(swEl);
       var url = a ? (a.getAttribute('href') || '').trim() : '';
       return [title, sw, url].filter(Boolean).join('\n\n');
     }
     function copied(btn){
       btn.classList.add('ok');
-      btn.textContent = 'Copiado';
-      setTimeout(function(){ btn.classList.remove('ok'); btn.textContent = 'Copiar'; }, 1600);
+      var en = document.documentElement.getAttribute('data-lang') === 'en';
+      var label = btn.innerHTML;
+      btn.textContent = en ? 'Copied' : 'Copiado';
+      setTimeout(function(){ btn.classList.remove('ok'); btn.innerHTML = label; }, 1600);
     }
     function fallback(text, btn){
       var ta = document.createElement('textarea');
@@ -1000,6 +1041,20 @@
       });
     });
     paint();
+
+    var langBtns = document.querySelectorAll('[data-lang-set]');
+    function curLang(){ try { return localStorage.getItem('lang') === 'en' ? 'en' : 'es'; } catch(e){ return 'es'; } }
+    function paintLang(){ var c = curLang(); langBtns.forEach(function(b){ b.setAttribute('aria-pressed', String(b.getAttribute('data-lang-set') === c)); }); }
+    langBtns.forEach(function(b){
+      b.addEventListener('click', function(){
+        var l = b.getAttribute('data-lang-set');
+        try { if (l === 'en') localStorage.setItem('lang', 'en'); else localStorage.removeItem('lang'); } catch(e){}
+        var d = document.documentElement;
+        if (l === 'en') { d.setAttribute('data-lang', 'en'); d.lang = 'en'; } else { d.removeAttribute('data-lang'); d.lang = 'es'; }
+        paintLang();
+      });
+    });
+    paintLang();
   })();
 </script>
 </body>

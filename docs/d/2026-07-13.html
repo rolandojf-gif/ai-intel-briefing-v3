@@ -4,15 +4,31 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AI Strategic Radar</title>
-<meta name="description" content="Radar diario de la carrera AGI: modelos frontier, compute, China y agentes. Solo lo que mueve la aguja."/>
+<title>RADAR.IA · Edición del 2026-07-13</title>
+<meta name="description" content="Radar diario de la carrera hacia la AGI: modelos frontier, agentes, chips y compute, China y economía de la IA. Solo lo que cambia algo, con fuente y análisis."/>
+<meta name="robots" content="index, follow, max-image-preview:large"/>
+<link rel="canonical" href="https://aievolve.netlify.app/d/2026-07-13.html"/>
+<meta name="google-site-verification" content="yh8wm8HsAeqP892U5UGczQs-RLnGuNHx7WGfNntGduk"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="RADAR.IA"/>
+<meta property="og:locale" content="es_ES"/><meta property="og:locale:alternate" content="en_US"/>
+<meta property="og:title" content="RADAR.IA · Edición del 2026-07-13"/>
+<meta property="og:description" content="Radar diario de la carrera hacia la AGI: modelos frontier, agentes, chips y compute, China y economía de la IA. Solo lo que cambia algo, con fuente y análisis."/>
+<meta property="og:url" content="https://aievolve.netlify.app/d/2026-07-13.html"/>
+<meta property="og:image" content="https://aievolve.netlify.app/og.png"/>
+<meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="RADAR.IA · Edición del 2026-07-13"/>
+<meta name="twitter:description" content="Radar diario de la carrera hacia la AGI: modelos frontier, agentes, chips y compute, China y economía de la IA. Solo lo que cambia algo, con fuente y análisis."/>
+<meta name="twitter:image" content="https://aievolve.netlify.app/og.png"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://aievolve.netlify.app/#website","url":"https://aievolve.netlify.app/","name":"RADAR.IA","description":"Radar diario de la carrera hacia la AGI, con fuentes y análisis.","inLanguage":["es","en"],"isAccessibleForFree":true,"author":{"@type":"Person","name":"Rolando Fernández"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 <meta name="theme-color" content="#F4F3EF" media="(prefers-color-scheme: light)"/>
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)"/>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='1' y='1' width='30' height='30' fill='%23FF5722' stroke='%23121211' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%23121211' stroke-width='2.4'/%3E%3Cpath d='M16 16V6A10 10 0 0 1 25.5 12.9Z' fill='%23121211'/%3E%3Ccircle cx='11' cy='19.5' r='2' fill='%23121211'/%3E%3C/svg%3E"/>
-<script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<script>(function(){try{var d=document.documentElement,t=localStorage.getItem('theme'),l=localStorage.getItem('lang');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);if(l==='en'){d.setAttribute('data-lang','en');d.lang='en';}}catch(e){}})();</script>
 <script>
   // Va en <head> para estar escuchando antes de que se pinte la primera imagen.
   // Una imagen remota caida (hotlink bloqueado, 404, caducada) se cambia por la
@@ -100,6 +116,21 @@
   .page-h1{font:700 clamp(30px,4.2vw,56px)/1 var(--f-head);letter-spacing:-.03em;text-transform:uppercase;margin:6px 0 12px}
   .lede{color:var(--muted);font-size:17px;max-width:72ch;margin:0}
   .lead h1.page-h1{font:700 clamp(30px,4.2vw,56px)/1 var(--f-head);letter-spacing:-.03em;margin:6px 0 12px}
+
+  /* Bilingue: cada texto traducible va dos veces; se ve el del idioma activo. */
+  /* !important: reglas de componente con display propio no deben reactivar el idioma oculto. */
+  html:not([data-lang="en"]) .l-en{display:none!important}
+  html[data-lang="en"] .l-es{display:none!important}
+  .top-ctl{display:flex;gap:10px;flex-wrap:wrap}
+
+  /* Firma, como en moloch.sh: discreta, al pie */
+  .credits{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+           margin-top:40px;padding:12px 16px;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow-sm)}
+  .credits-by{margin:0;font:400 12px var(--f-mono);color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+  .credits-by strong{font:700 14px var(--f-head);color:var(--text);text-transform:none;letter-spacing:0;margin-left:6px}
+  .bmc{display:inline-flex;align-items:center;gap:7px;font:700 11.5px/1 var(--f-mono);text-transform:uppercase;
+       padding:8px 11px;background:var(--lime);color:#121211;border:2px solid var(--ink);box-shadow:var(--shadow-sm)}
+  .bmc:hover{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--ink)}
 
   @media(max-width:900px){
     .navtabs{order:3;margin:0;width:100%}
@@ -204,8 +235,8 @@
   .widget{background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow);padding:14px 16px}
   .widget-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:-14px -16px 12px;
                 padding:10px 16px;border-bottom:2px solid var(--ink);background:var(--card-2)}
-  .widget-title span:first-child{display:flex;align-items:center;gap:9px;font:700 12px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.06em}
-  .widget-title span:first-child::before{content:"";width:10px;height:10px;background:var(--orange);border:2px solid var(--ink)}
+  .widget-title>span:first-child{display:flex;align-items:center;gap:9px;font:700 12px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.06em}
+  .widget-title>span:first-child::before{content:"";width:10px;height:10px;background:var(--orange);border:2px solid var(--ink)}
   .widget-title .lbl{font:400 10px var(--f-mono);color:var(--muted);text-transform:uppercase}
 
   .market-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
@@ -269,31 +300,31 @@
 </style>
 </head>
 <body>
-<header class="topnav"><a class="brand" href="../index.html" aria-label="Radar.IA, portada"><span class="brand-icon"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 12V2.5A9.5 9.5 0 0 1 21.03 9.06Z" fill="currentColor"/><circle cx="7.5" cy="15" r="1.7" fill="currentColor"/></svg></span><span class="brand-text"><strong>Radar<em>.IA</em></strong><small>Radar estratégico de la carrera AGI</small></span></a><nav class="navtabs" aria-label="Secciones"><a class="navtab" href="../index.html"><i>01</i> Diario</a><a class="navtab" href="../weekly.html"><i>02</i> Semanal</a><a class="navtab" href="../archivo.html" aria-current="page"><i>03</i> Archivo</a></nav><div class="seg" role="group" aria-label="Tema"><button type="button" class="seg-btn" data-theme-set="auto">Auto</button><button type="button" class="seg-btn" data-theme-set="light">Claro</button><button type="button" class="seg-btn" data-theme-set="dark">Oscuro</button></div></header>
+<header class="topnav"><a class="brand" href="../index.html" aria-label="Radar.IA, portada"><span class="brand-icon"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 12V2.5A9.5 9.5 0 0 1 21.03 9.06Z" fill="currentColor"/><circle cx="7.5" cy="15" r="1.7" fill="currentColor"/></svg></span><span class="brand-text"><strong>Radar<em>.IA</em></strong><small><span class="l-es">Radar estratégico de la carrera AGI</span><span class="l-en" lang="en">Strategic radar of the AGI race</span></small></span></a><nav class="navtabs" aria-label="Secciones"><a class="navtab" href="../index.html"><i>01</i> <span class="l-es">Diario</span><span class="l-en" lang="en">Daily</span></a><a class="navtab" href="../weekly.html"><i>02</i> <span class="l-es">Semanal</span><span class="l-en" lang="en">Weekly</span></a><a class="navtab" href="../archivo.html" aria-current="page"><i>03</i> <span class="l-es">Archivo</span><span class="l-en" lang="en">Archive</span></a></nav><div class="top-ctl"><div class="seg" role="group" aria-label="Idioma"><button type="button" class="seg-btn" data-lang-set="es">ES</button><button type="button" class="seg-btn" data-lang-set="en">EN</button></div><div class="seg" role="group" aria-label="Tema"><button type="button" class="seg-btn" data-theme-set="auto">Auto</button><button type="button" class="seg-btn" data-theme-set="light"><span class="l-es">Claro</span><span class="l-en" lang="en">Light</span></button><button type="button" class="seg-btn" data-theme-set="dark"><span class="l-es">Oscuro</span><span class="l-en" lang="en">Dark</span></button></div></div></header>
 <div class="strip">
-  <span>Edición <b class="hl">2026-07-13</b></span>
+  <span><span class="l-es">Edición</span><span class="l-en" lang="en">Edition</span> <b class="hl">2026-07-13</b></span>
   <span class="it ">ARCHIVO</span>
-  <span class="it">15 señales</span>
-  <span class="it">0/0 fuentes</span>
+  <span class="it">15 <span class="l-es">señales</span><span class="l-en" lang="en">signals</span></span>
+  <span class="it">0/0 <span class="l-es">fuentes</span><span class="l-en" lang="en">sources</span></span>
   
-  <a class="r" href="../archivo.html">Archivo ↗</a>
+  <a class="r" href="../archivo.html"><span class="l-es">Archivo</span><span class="l-en" lang="en">Archive</span> ↗</a>
 </div>
 <div class="wrap">
 
   
   <div class="arch-bar">
-    <a href="../archivo.html">← Archivo</a>
+    <a href="../archivo.html">← <span class="l-es">Archivo</span><span class="l-en" lang="en">Archive</span></a>
     <a href="../d/2026-07-12.html">2026-07-12</a>
     <span class="here">2026-07-13</span>
     <a href="../d/2026-07-14.html">2026-07-14</a>
-    <a href="../index.html" style="margin-left:auto">Hoy</a>
+    <a href="../index.html" style="margin-left:auto"><span class="l-es">Hoy</span><span class="l-en" lang="en">Today</span></a>
   </div>
   
 
   <!-- Tesis del dia -->
   <div class="thesis">
-    <span class="kicker">2026-07-13 · lectura del día</span>
-    <h1 class="page-h1">Tesis del día</h1>
+    <span class="kicker">2026-07-13 · <span class="l-es">lectura del día</span><span class="l-en" lang="en">today&#39;s reading</span></span>
+    <h1 class="page-h1"><span class="l-es">Tesis del día</span><span class="l-en" lang="en">Thesis of the day</span></h1>
     <p class="tz">Los agentes de IA pasan de la fase experimental a la orquestación industrial con NVIDIA y Google liderando el despliegue.</p>
   </div>
 
@@ -303,18 +334,18 @@
   <!-- Tabs de tema -->
   
   <div class="tabs" id="tabs">
-    <span class="tab on" data-filter="all">Todas<span class="n">15</span></span>
+    <span class="tab on" data-filter="all"><span class="l-es">Todas</span><span class="l-en" lang="en">All</span><span class="n">15</span></span>
     
-    <span class="tab tab-new" data-filter="__new__">Nuevo<span class="n">13</span></span>
+    <span class="tab tab-new" data-filter="__new__"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span><span class="n">13</span></span>
     
     
     <span class="tab" data-filter="compute_chips_dc">Compute &amp; chips<span class="n">5</span></span>
     
-    <span class="tab" data-filter="agents_automation">Agentes<span class="n">5</span></span>
+    <span class="tab" data-filter="agents_automation"><span class="l-es">Agentes</span><span class="l-en" lang="en">Agents</span><span class="n">5</span></span>
     
-    <span class="tab" data-filter="model_economics_pricing">Economía de modelos<span class="n">3</span></span>
+    <span class="tab" data-filter="model_economics_pricing"><span class="l-es">Economía de modelos</span><span class="l-en" lang="en">Model economics</span><span class="n">3</span></span>
     
-    <span class="tab" data-filter="frontier_capability">Capacidad frontier<span class="n">2</span></span>
+    <span class="tab" data-filter="frontier_capability"><span class="l-es">Capacidad frontier</span><span class="l-en" lang="en">Frontier capability</span><span class="n">2</span></span>
     
   </div>
   
@@ -332,14 +363,14 @@
         <div class="hero-body">
           <div class="meta-row">
             <span class="tag">Compute &amp; chips</span>
-            <span class="badge-new">Nuevo</span>
+            <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
             <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
             
             <span class="score">78</span>
-            <button type="button" class="copy-btn" data-copy>Copiar</button>
+            <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
           </div>
           <h2 class="hero-title">
-            <a href="https://arxiv.org/abs/2607.08775" target="_blank" rel="noopener noreferrer">HALO: Razonamiento latente adaptativo híbrido para modelos de lenguaje</a>
+            <a href="https://arxiv.org/abs/2607.08775" target="_blank" rel="noopener noreferrer"><span class="l-es">HALO: Razonamiento latente adaptativo híbrido para modelos de lenguaje</span><span class="l-en" lang="en">HALO: Hybrid Adaptive Latent Reasoning for Language Models</span></a>
           </h2>
           <div class="sw">Introduce HALO, un método de refinamiento latente que ahorra computación aplicando pasos extra solo en tokens difíciles.</div>
           
@@ -360,14 +391,14 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
               
               <span class="score">74</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://arxiv.org/abs/2607.09092" target="_blank" rel="noopener noreferrer">AgentKGV: Marco de agentes LLM-RAG con entrenamiento en dos etapas para verificación de grafos de conocimiento</a>
+              <a href="https://arxiv.org/abs/2607.09092" target="_blank" rel="noopener noreferrer"><span class="l-es">AgentKGV: Marco de agentes LLM-RAG con entrenamiento en dos etapas para verificación de grafos de conocimiento</span><span class="l-en" lang="en">AgentKGV: Agentic LLM-RAG Framework with Two-Stage Training for the Fact Verification of Knowledge Graphs</span></a>
             </h3>
             <div class="sw">Propone un marco de agentes para validar hechos en grafos de conocimiento industriales mediante RAG.</div>
             
@@ -381,14 +412,14 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.AI</span>
               
               <span class="score">73</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://arxiv.org/abs/2607.08774" target="_blank" rel="noopener noreferrer">CogniConsole: Externalización del control en tiempo de inferencia para interacciones fiables con LLM</a>
+              <a href="https://arxiv.org/abs/2607.08774" target="_blank" rel="noopener noreferrer"><span class="l-es">CogniConsole: Externalización del control en tiempo de inferencia para interacciones fiables con LLM</span><span class="l-en" lang="en">CogniConsole: Externalizing Inference-Time Control as a Formal Abstraction for Reliable LLM Interactions</span></a>
             </h3>
             <div class="sw">Propone CogniConsole para externalizar el control en inferencia, mejorando la fiabilidad mediante andamiaje estructural.</div>
             
@@ -402,14 +433,14 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=semiwiki.com&amp;sz=64" alt="" loading="lazy"/>SemiWiki</span>
               
               <span class="score">73</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://semiwiki.com/ceo-interviews/370480-executive-interview-with-ebrahim-hussain-and-aaditya-subediand-of-architect-labs/" target="_blank" rel="noopener noreferrer">Entrevista ejecutiva con Ebrahim Hussain y Aaditya Subedi de Architect Labs</a>
+              <a href="https://semiwiki.com/ceo-interviews/370480-executive-interview-with-ebrahim-hussain-and-aaditya-subediand-of-architect-labs/" target="_blank" rel="noopener noreferrer"><span class="l-es">Entrevista ejecutiva con Ebrahim Hussain y Aaditya Subedi de Architect Labs</span><span class="l-en" lang="en">Executive Interview with Ebrahim Hussain and Aaditya Subediand of Architect Labs</span></a>
             </h3>
             <div class="sw">Architect Labs utiliza IA para acelerar drásticamente los ciclos de diseño y salida al mercado de chips avanzados.</div>
             
@@ -423,14 +454,14 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.LG</span>
               
               <span class="score">71</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://arxiv.org/abs/2607.08778" target="_blank" rel="noopener noreferrer">iLENS: Mezcla de expertos interpretable guiada por LLM para análisis de supervivencia en neuroimagen</a>
+              <a href="https://arxiv.org/abs/2607.08778" target="_blank" rel="noopener noreferrer"><span class="l-es">iLENS: Mezcla de expertos interpretable guiada por LLM para análisis de supervivencia en neuroimagen</span><span class="l-en" lang="en">iLENS: Interpretable LLM-Guided Mixture-of-Experts for Neuroimaging Survival Analysis</span></a>
             </h3>
             <div class="sw">Usa modelos de mezcla de expertos guiados por LLM para predecir la conversión al Alzheimer con mayor interpretabilidad.</div>
             
@@ -448,10 +479,10 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=nvidia.com&amp;sz=64" alt="" loading="lazy"/>NVIDIA Blog</span>
               
               <span class="score">70</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://blogs.nvidia.com/blog/nemotron-langchain-agents-open-stack/" target="_blank" rel="noopener noreferrer">NVIDIA Nemotron logra un rendimiento líder en benchmarks con el ecosistema de agentes LangChain</a>
+              <a href="https://blogs.nvidia.com/blog/nemotron-langchain-agents-open-stack/" target="_blank" rel="noopener noreferrer"><span class="l-es">NVIDIA Nemotron logra un rendimiento líder en benchmarks con el ecosistema de agentes LangChain</span><span class="l-en" lang="en">NVIDIA Nemotron Achieves Benchmark-Leading Performance With LangChain Deep Agents Harness</span></a>
             </h3>
             <div class="sw">Nemotron 3 Ultra supera a modelos cerrados en tareas de agentes con un coste diez veces menor en LangChain.</div>
             
@@ -465,14 +496,14 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=semiwiki.com&amp;sz=64" alt="" loading="lazy"/>SemiWiki</span>
               
               <span class="score">70</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://semiwiki.com/semiconductor-services/netapp/370833-ai-driven-semiconductor-systems/" target="_blank" rel="noopener noreferrer">Sistemas de semiconductores impulsados por IA</a>
+              <a href="https://semiwiki.com/semiconductor-services/netapp/370833-ai-driven-semiconductor-systems/" target="_blank" rel="noopener noreferrer"><span class="l-es">Sistemas de semiconductores impulsados por IA</span><span class="l-en" lang="en">AI Driven Semiconductor Systems</span></a>
             </h3>
             <div class="sw">La IA se postula como la solución necesaria ante la complejidad y volumen de datos en el diseño moderno de chips.</div>
             
@@ -486,14 +517,14 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=semiwiki.com&amp;sz=64" alt="" loading="lazy"/>SemiWiki</span>
               
               <span class="score">69</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://semiwiki.com/ceo-interviews/369987-ceo-interview-with-dr-albert-liu-of-kneron/" target="_blank" rel="noopener noreferrer">Entrevista al CEO con el Dr. Albert Liu de Kneron</a>
+              <a href="https://semiwiki.com/ceo-interviews/369987-ceo-interview-with-dr-albert-liu-of-kneron/" target="_blank" rel="noopener noreferrer"><span class="l-es">Entrevista al CEO con el Dr. Albert Liu de Kneron</span><span class="l-en" lang="en">CEO Interview with Dr. Albert Liu of Kneron</span></a>
             </h3>
             <div class="sw">Kneron avanza en arquitecturas NPU y hardware especializado para llevar la IA al borde de forma localizada.</div>
             
@@ -507,14 +538,14 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
               
               <span class="score">68</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://arxiv.org/abs/2607.09053" target="_blank" rel="noopener noreferrer">Un espejismo emergente: ¿Es la desalineación y realineación emergente realmente un fenómeno robusto?</a>
+              <a href="https://arxiv.org/abs/2607.09053" target="_blank" rel="noopener noreferrer"><span class="l-es">Un espejismo emergente: ¿Es la desalineación y realineación emergente realmente un fenómeno robusto?</span><span class="l-en" lang="en">An Emergent Mirage: Is Emergent Misalignment and Realignment Indeed a Robust Phenomenon?</span></a>
             </h3>
             <div class="sw">Demuestra que la desalineación emergente es altamente sensible a rasgos superficiales del dataset, cuestionando su robustez.</div>
             
@@ -528,14 +559,14 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
               
               <span class="score">68</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://arxiv.org/abs/2607.09121" target="_blank" rel="noopener noreferrer">Aumentando el análisis fundamental con LLM: Un sistema basado en RAG para generar informes de inversión</a>
+              <a href="https://arxiv.org/abs/2607.09121" target="_blank" rel="noopener noreferrer"><span class="l-es">Aumentando el análisis fundamental con LLM: Un sistema basado en RAG para generar informes de inversión</span><span class="l-en" lang="en">Augmenting Fundamental Analysis with Large Language Models: A RAG-Based System for Generating Investor Briefs</span></a>
             </h3>
             <div class="sw">Aplica RAG y GPT-4o para realizar análisis fundamental de empresas basándose en informes de la SEC y macroeconomía.</div>
             
@@ -553,10 +584,10 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=blog.google&amp;sz=64" alt="" loading="lazy"/>Google AI Blog</span>
               
               <span class="score">65</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api/" target="_blank" rel="noopener noreferrer">Ampliación de agentes gestionados en la API de Gemini: tareas en segundo plano, MCP remoto y más</a>
+              <a href="https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api/" target="_blank" rel="noopener noreferrer"><span class="l-es">Ampliación de agentes gestionados en la API de Gemini: tareas en segundo plano, MCP remoto y más</span><span class="l-en" lang="en">Expanding Managed Agents in Gemini API: background tasks, remote MCP and more</span></a>
             </h3>
             <div class="sw">Google amplía las capacidades de su API de Gemini permitiendo tareas en segundo plano y protocolos remotos para agentes.</div>
             
@@ -570,14 +601,14 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
               
               <span class="score">63</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://arxiv.org/abs/2607.09204" target="_blank" rel="noopener noreferrer">Inicialización por componentes guiada por complejidad para el pre-entrenamiento de modelos de lenguaje</a>
+              <a href="https://arxiv.org/abs/2607.09204" target="_blank" rel="noopener noreferrer"><span class="l-es">Inicialización por componentes guiada por complejidad para el pre-entrenamiento de modelos de lenguaje</span><span class="l-en" lang="en">Complexity-Guided Component-wise Initialization for Language Model Pretraining</span></a>
             </h3>
             <div class="sw">Optimiza el pre-entrenamiento de modelos GPT-2 utilizando patrones espectrales de capas preexistentes como señal de inicio.</div>
             
@@ -591,14 +622,14 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
               
               <span class="score">62</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://arxiv.org/abs/2607.09094" target="_blank" rel="noopener noreferrer">PRecG: Recuperación de precedentes legales con redes neuronales de grafos y segmentación de roles retóricos</a>
+              <a href="https://arxiv.org/abs/2607.09094" target="_blank" rel="noopener noreferrer"><span class="l-es">PRecG: Recuperación de precedentes legales con redes neuronales de grafos y segmentación de roles retóricos</span><span class="l-en" lang="en">PRecG: Legal Precedent Retrieval with Graph Neural Networks and Rhetorical Role Segmentation</span></a>
             </h3>
             <div class="sw">Mejora la recuperación de precedentes legales utilizando redes neuronales de grafos y análisis de roles retóricos.</div>
             
@@ -612,14 +643,14 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.LG</span>
               
               <span class="score">60</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://arxiv.org/abs/2607.08776" target="_blank" rel="noopener noreferrer">Un enfoque unificado para interpretar la destilación de conocimiento en LLM mediante interacciones</a>
+              <a href="https://arxiv.org/abs/2607.08776" target="_blank" rel="noopener noreferrer"><span class="l-es">Un enfoque unificado para interpretar la destilación de conocimiento en LLM mediante interacciones</span><span class="l-en" lang="en">A Unified Approach to Interpreting Knowledge Distillation for Large Language Models via Interactions</span></a>
             </h3>
             <div class="sw">Identifica la esparsificación de interacciones como el mecanismo común que hace efectiva la destilación de conocimiento.</div>
             
@@ -633,14 +664,14 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.AI</span>
               
               <span class="score">52</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://arxiv.org/abs/2607.08773" target="_blank" rel="noopener noreferrer">Certificaciones de intervalos para perceptrones multicapa mediante recorrido de red</a>
+              <a href="https://arxiv.org/abs/2607.08773" target="_blank" rel="noopener noreferrer"><span class="l-es">Certificaciones de intervalos para perceptrones multicapa mediante recorrido de red</span><span class="l-en" lang="en">Interval Certifications for Multilayered Perceptrons via Lattice Traversal</span></a>
             </h3>
             <div class="sw">Establece un marco teórico riguroso para la robustez adversarial mediante problemas de recorrido en redes.</div>
             
@@ -671,8 +702,8 @@
       
       <div class="widget">
         <div class="widget-title">
-          <span>Riesgos y vigilancia</span>
-          <span class="lbl">Próximos días</span>
+          <span><span class="l-es">Riesgos y vigilancia</span><span class="l-en" lang="en">Risks and watch</span></span>
+          <span class="lbl"><span class="l-es">Próximos días</span><span class="l-en" lang="en">Coming days</span></span>
         </div>
         <div class="rk">Fragilidad en la alineación de modelos que dependen de características superficiales de los conjuntos de datos.</div><div class="rk">Complejidad extrema en la gestión de datos para sistemas de semiconductores impulsados por inteligencia artificial.</div><div class="rk">Dificultad en la interpretabilidad de modelos MoE aplicados a diagnósticos críticos de neuroimagen.</div>
         <div class="rk w">Adopción masiva del protocolo Remote MCP en la API de Gemini para agentes externos.</div><div class="rk w">Rendimiento real de NVIDIA Nemotron 3 Ultra en flujos de trabajo de producción frente a modelos cerrados.</div><div class="rk w">Integración de arquitecturas NPU de Kneron en dispositivos de borde para inferencia local masiva.</div>
@@ -682,9 +713,10 @@
     </aside>
   </div>
 
+  <div class="credits"><p class="credits-by"><span class="l-es">Hecho por</span><span class="l-en" lang="en">Made by</span> <strong>Rolando Fernández</strong></p><a class="bmc" href="https://buymeacoffee.com/rolandofernandez" target="_blank" rel="noopener"><span aria-hidden="true">☕</span> <span class="l-es">Invítame a un café</span><span class="l-en" lang="en">Buy me a coffee</span></a></div>
   <footer>
-    <span>0 items descartados por el filtro de relevancia</span>
-    <span>0/0 fuentes activas</span>
+    <span>0 <span class="l-es">items descartados por el filtro de relevancia</span><span class="l-en" lang="en">items dropped by the relevance filter</span></span>
+    <span>0/0 <span class="l-es">fuentes activas</span><span class="l-en" lang="en">active sources</span></span>
   </footer>
 
 </div>
@@ -715,19 +747,28 @@
       return;
     }
 
+    // Texto visible en el idioma activo (los traducibles van duplicados).
+    function vis(node){
+      if (!node) return '';
+      var lang = document.documentElement.getAttribute('data-lang') === 'en' ? 'en' : 'es';
+      var pick = node.querySelector('.l-' + lang);
+      return ((pick || node).textContent || '').trim();
+    }
     function ficha(article){
       if (!article) return '';
       var a = article.querySelector('.hero-title a, .card-title a');
-      var title = a ? (a.textContent || '').trim() : '';
+      var title = vis(a);
       var swEl = article.querySelector('.sw');
-      var sw = swEl ? (swEl.textContent || '').trim() : '';
+      var sw = vis(swEl);
       var url = a ? (a.getAttribute('href') || '').trim() : '';
       return [title, sw, url].filter(Boolean).join('\n\n');
     }
     function copied(btn){
       btn.classList.add('ok');
-      btn.textContent = 'Copiado';
-      setTimeout(function(){ btn.classList.remove('ok'); btn.textContent = 'Copiar'; }, 1600);
+      var en = document.documentElement.getAttribute('data-lang') === 'en';
+      var label = btn.innerHTML;
+      btn.textContent = en ? 'Copied' : 'Copiado';
+      setTimeout(function(){ btn.classList.remove('ok'); btn.innerHTML = label; }, 1600);
     }
     function fallback(text, btn){
       var ta = document.createElement('textarea');
@@ -789,6 +830,20 @@
       });
     });
     paint();
+
+    var langBtns = document.querySelectorAll('[data-lang-set]');
+    function curLang(){ try { return localStorage.getItem('lang') === 'en' ? 'en' : 'es'; } catch(e){ return 'es'; } }
+    function paintLang(){ var c = curLang(); langBtns.forEach(function(b){ b.setAttribute('aria-pressed', String(b.getAttribute('data-lang-set') === c)); }); }
+    langBtns.forEach(function(b){
+      b.addEventListener('click', function(){
+        var l = b.getAttribute('data-lang-set');
+        try { if (l === 'en') localStorage.setItem('lang', 'en'); else localStorage.removeItem('lang'); } catch(e){}
+        var d = document.documentElement;
+        if (l === 'en') { d.setAttribute('data-lang', 'en'); d.lang = 'en'; } else { d.removeAttribute('data-lang'); d.lang = 'es'; }
+        paintLang();
+      });
+    });
+    paintLang();
   })();
 </script>
 </body>

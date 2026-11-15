@@ -4,14 +4,31 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Archivo · AI Strategic Radar</title>
+<title>RADAR.IA · Archivo: todas las ediciones del radar</title>
+<meta name="description" content="Radar diario de la carrera hacia la AGI: modelos frontier, agentes, chips y compute, China y economía de la IA. Solo lo que cambia algo, con fuente y análisis."/>
+<meta name="robots" content="index, follow, max-image-preview:large"/>
+<link rel="canonical" href="https://aievolve.netlify.app/archivo.html"/>
+<meta name="google-site-verification" content="yh8wm8HsAeqP892U5UGczQs-RLnGuNHx7WGfNntGduk"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="RADAR.IA"/>
+<meta property="og:locale" content="es_ES"/><meta property="og:locale:alternate" content="en_US"/>
+<meta property="og:title" content="RADAR.IA · Archivo: todas las ediciones del radar"/>
+<meta property="og:description" content="Radar diario de la carrera hacia la AGI: modelos frontier, agentes, chips y compute, China y economía de la IA. Solo lo que cambia algo, con fuente y análisis."/>
+<meta property="og:url" content="https://aievolve.netlify.app/archivo.html"/>
+<meta property="og:image" content="https://aievolve.netlify.app/og.png"/>
+<meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="RADAR.IA · Archivo: todas las ediciones del radar"/>
+<meta name="twitter:description" content="Radar diario de la carrera hacia la AGI: modelos frontier, agentes, chips y compute, China y economía de la IA. Solo lo que cambia algo, con fuente y análisis."/>
+<meta name="twitter:image" content="https://aievolve.netlify.app/og.png"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://aievolve.netlify.app/#website","url":"https://aievolve.netlify.app/","name":"RADAR.IA","description":"Radar diario de la carrera hacia la AGI, con fuentes y análisis.","inLanguage":["es","en"],"isAccessibleForFree":true,"author":{"@type":"Person","name":"Rolando Fernández"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 <meta name="theme-color" content="#F4F3EF" media="(prefers-color-scheme: light)"/>
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)"/>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='1' y='1' width='30' height='30' fill='%23FF5722' stroke='%23121211' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%23121211' stroke-width='2.4'/%3E%3Cpath d='M16 16V6A10 10 0 0 1 25.5 12.9Z' fill='%23121211'/%3E%3Ccircle cx='11' cy='19.5' r='2' fill='%23121211'/%3E%3C/svg%3E"/>
-<script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<script>(function(){try{var d=document.documentElement,t=localStorage.getItem('theme'),l=localStorage.getItem('lang');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);if(l==='en'){d.setAttribute('data-lang','en');d.lang='en';}}catch(e){}})();</script>
 <style>
   :root{--paper:#F4F3EF;--grid:rgba(18,18,17,.06);--ink:#121211;--text:#121211;--muted:#5B5A55;--card:#FFFFFF;--card-2:#FAF9F5;--line:#D9D7CF;--orange-ink:#C2410C;--logo-bg:#EDECE6;--open:#0E9F6E;--bad:#C81E3A;--warn:#B45309;
     --orange:#FF5722;--lime:#CCFF00;--asphalt:#0F0F0E;--on-accent:#121211;
@@ -87,6 +104,21 @@
   .page-h1{font:700 clamp(30px,4.2vw,56px)/1 var(--f-head);letter-spacing:-.03em;text-transform:uppercase;margin:6px 0 12px}
   .lede{color:var(--muted);font-size:17px;max-width:72ch;margin:0}
   .lead h1.page-h1{font:700 clamp(30px,4.2vw,56px)/1 var(--f-head);letter-spacing:-.03em;margin:6px 0 12px}
+
+  /* Bilingue: cada texto traducible va dos veces; se ve el del idioma activo. */
+  /* !important: reglas de componente con display propio no deben reactivar el idioma oculto. */
+  html:not([data-lang="en"]) .l-en{display:none!important}
+  html[data-lang="en"] .l-es{display:none!important}
+  .top-ctl{display:flex;gap:10px;flex-wrap:wrap}
+
+  /* Firma, como en moloch.sh: discreta, al pie */
+  .credits{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+           margin-top:40px;padding:12px 16px;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow-sm)}
+  .credits-by{margin:0;font:400 12px var(--f-mono);color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+  .credits-by strong{font:700 14px var(--f-head);color:var(--text);text-transform:none;letter-spacing:0;margin-left:6px}
+  .bmc{display:inline-flex;align-items:center;gap:7px;font:700 11.5px/1 var(--f-mono);text-transform:uppercase;
+       padding:8px 11px;background:var(--lime);color:#121211;border:2px solid var(--ink);box-shadow:var(--shadow-sm)}
+  .bmc:hover{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--ink)}
 
   @media(max-width:900px){
     .navtabs{order:3;margin:0;width:100%}
@@ -171,12 +203,12 @@
 </style>
 </head>
 <body>
-<header class="topnav"><a class="brand" href="index.html" aria-label="Radar.IA, portada"><span class="brand-icon"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 12V2.5A9.5 9.5 0 0 1 21.03 9.06Z" fill="currentColor"/><circle cx="7.5" cy="15" r="1.7" fill="currentColor"/></svg></span><span class="brand-text"><strong>Radar<em>.IA</em></strong><small>Radar estratégico de la carrera AGI</small></span></a><nav class="navtabs" aria-label="Secciones"><a class="navtab" href="index.html"><i>01</i> Diario</a><a class="navtab" href="weekly.html"><i>02</i> Semanal</a><a class="navtab" href="archivo.html" aria-current="page"><i>03</i> Archivo</a></nav><div class="seg" role="group" aria-label="Tema"><button type="button" class="seg-btn" data-theme-set="auto">Auto</button><button type="button" class="seg-btn" data-theme-set="light">Claro</button><button type="button" class="seg-btn" data-theme-set="dark">Oscuro</button></div></header>
+<header class="topnav"><a class="brand" href="index.html" aria-label="Radar.IA, portada"><span class="brand-icon"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 12V2.5A9.5 9.5 0 0 1 21.03 9.06Z" fill="currentColor"/><circle cx="7.5" cy="15" r="1.7" fill="currentColor"/></svg></span><span class="brand-text"><strong>Radar<em>.IA</em></strong><small><span class="l-es">Radar estratégico de la carrera AGI</span><span class="l-en" lang="en">Strategic radar of the AGI race</span></small></span></a><nav class="navtabs" aria-label="Secciones"><a class="navtab" href="index.html"><i>01</i> <span class="l-es">Diario</span><span class="l-en" lang="en">Daily</span></a><a class="navtab" href="weekly.html"><i>02</i> <span class="l-es">Semanal</span><span class="l-en" lang="en">Weekly</span></a><a class="navtab" href="archivo.html" aria-current="page"><i>03</i> <span class="l-es">Archivo</span><span class="l-en" lang="en">Archive</span></a></nav><div class="top-ctl"><div class="seg" role="group" aria-label="Idioma"><button type="button" class="seg-btn" data-lang-set="es">ES</button><button type="button" class="seg-btn" data-lang-set="en">EN</button></div><div class="seg" role="group" aria-label="Tema"><button type="button" class="seg-btn" data-theme-set="auto">Auto</button><button type="button" class="seg-btn" data-theme-set="light"><span class="l-es">Claro</span><span class="l-en" lang="en">Light</span></button><button type="button" class="seg-btn" data-theme-set="dark"><span class="l-es">Oscuro</span><span class="l-en" lang="en">Dark</span></button></div></div></header>
 <div class="wrap">
   <div class="lead">
     <span class="kicker">2026-02-13 – 2026-11-15</span>
-    <h1 class="page-h1">Archivo</h1>
-    <p>243 días · 2026-02-13 – 2026-11-15. Cada entrada es el radar de ese día, no un recorte.</p>
+    <h1 class="page-h1"><span class="l-es">Archivo</span><span class="l-en" lang="en">Archive</span></h1>
+    <p>243 <span class="l-es">días</span><span class="l-en" lang="en">days</span> · 2026-02-13 – 2026-11-15. <span class="l-es">Cada entrada es el radar de ese día, no un recorte.</span><span class="l-en" lang="en">Each entry is that day&#39;s full radar, not an excerpt.</span></p>
   </div>
   <div class="toolbar">
     <input id="q" type="search" placeholder="NVIDIA, agentes, 2026-08-22…" autocomplete="off"/>
@@ -212,58 +244,58 @@
   
   <h2 class="month" id="m-2026-11">Noviembre 2026</h2>
   
-  <a class="day" href="d/2026-11-15.html" data-q="2026-11-15 La carrera AGI se ve hoy marcada por una mayor autonomía de agentes, un nuevo modelo de frontera de Google, y un terremoto geopolítico y de mercado alrededor de Nvidia que afecta directamente al acceso y coste del comput">
+  <a class="day" href="d/2026-11-15.html" data-q="2026-11-15 El ecosistema de agentes autónomos da un paso funcional con capacidades de compra e integración de herramientas, mientras la lucha por el control del compute escala con acusaciones a Nvidia y la salida de su CEO.">
     <span class="dt">2026-11-15</span>
-    <span class="th">La carrera AGI se ve hoy marcada por una mayor autonomía de agentes, un nuevo modelo de frontera de Google, y un terremoto geopolítico y de mercado alrededor de Nvidia que afecta directamente al acceso y coste del comput</span>
-    <span class="n">10 señales</span>
+    <span class="th"><span class="l-es">El ecosistema de agentes autónomos da un paso funcional con capacidades de compra e integración de herramientas, mientras la lucha por el control del compute escala con acusaciones a Nvidia y la salida de su CEO.</span><span class="l-en" lang="en">The autonomous agent ecosystem advances with purchasing capabilities and tool integration, while the compute control struggle escalates with Nvidia accusations and its CEO&#39;s departure.</span></span>
+    <span class="n"><span class="l-es">12 señales</span><span class="l-en" lang="en">12 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-11-14.html" data-q="2026-11-14 La tensión entre el avance de las capacidades de los agentes autónomos (pago, decisión, multimodal) y la volatilidad del ecosistema del cómputo (crisis de Nvidia) define el panorama estratégico del día.">
     <span class="dt">2026-11-14</span>
     <span class="th">La tensión entre el avance de las capacidades de los agentes autónomos (pago, decisión, multimodal) y la volatilidad del ecosistema del cómputo (crisis de Nvidia) define el panorama estratégico del día.</span>
-    <span class="n">5 señales</span>
+    <span class="n"><span class="l-es">5 señales</span><span class="l-en" lang="en">5 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-11-13.html" data-q="2026-11-13 Analisis no disponible hoy: el filtro de relevancia no se ha aplicado.">
     <span class="dt">2026-11-13</span>
     <span class="th">Analisis no disponible hoy: el filtro de relevancia no se ha aplicado.</span>
-    <span class="n deg">sin filtrar</span>
+    <span class="n deg"><span class="l-es">sin filtrar</span><span class="l-en" lang="en">unfiltered</span></span>
   </a>
   
   <a class="day" href="d/2026-11-11.html" data-q="2026-11-11 Analisis no disponible hoy: el filtro de relevancia no se ha aplicado.">
     <span class="dt">2026-11-11</span>
     <span class="th">Analisis no disponible hoy: el filtro de relevancia no se ha aplicado.</span>
-    <span class="n deg">sin filtrar</span>
+    <span class="n deg"><span class="l-es">sin filtrar</span><span class="l-en" lang="en">unfiltered</span></span>
   </a>
   
   <a class="day" href="d/2026-11-09.html" data-q="2026-11-09 Analisis no disponible hoy: el filtro de relevancia no se ha aplicado.">
     <span class="dt">2026-11-09</span>
     <span class="th">Analisis no disponible hoy: el filtro de relevancia no se ha aplicado.</span>
-    <span class="n deg">sin filtrar</span>
+    <span class="n deg"><span class="l-es">sin filtrar</span><span class="l-en" lang="en">unfiltered</span></span>
   </a>
   
   <a class="day" href="d/2026-11-07.html" data-q="2026-11-07 Analisis no disponible hoy: el filtro de relevancia no se ha aplicado.">
     <span class="dt">2026-11-07</span>
     <span class="th">Analisis no disponible hoy: el filtro de relevancia no se ha aplicado.</span>
-    <span class="n deg">sin filtrar</span>
+    <span class="n deg"><span class="l-es">sin filtrar</span><span class="l-en" lang="en">unfiltered</span></span>
   </a>
   
   <a class="day" href="d/2026-11-05.html" data-q="2026-11-05 La carrera AGI se intensifica con nuevos modelos frontier que compiten por el liderazgo en benchmarks y un avance notorio en el desarrollo de agentes autónomos para dominios complejos, todo ello sustentado por un gasto i">
     <span class="dt">2026-11-05</span>
     <span class="th">La carrera AGI se intensifica con nuevos modelos frontier que compiten por el liderazgo en benchmarks y un avance notorio en el desarrollo de agentes autónomos para dominios complejos, todo ello sustentado por un gasto i</span>
-    <span class="n">10 señales</span>
+    <span class="n"><span class="l-es">10 señales</span><span class="l-en" lang="en">10 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-11-03.html" data-q="2026-11-03 El día marca una aceleración en la carrera por la capacidad y automatización AGI, con avances en la eficiencia de entrenamiento y el despliegue de agentes, a la vez que se visibilizan cuellos de botella energéticos y rie">
     <span class="dt">2026-11-03</span>
     <span class="th">El día marca una aceleración en la carrera por la capacidad y automatización AGI, con avances en la eficiencia de entrenamiento y el despliegue de agentes, a la vez que se visibilizan cuellos de botella energéticos y rie</span>
-    <span class="n">7 señales</span>
+    <span class="n"><span class="l-es">7 señales</span><span class="l-en" lang="en">7 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-11-01.html" data-q="2026-11-01 Google DeepMind y Mistral avanzan en la capacidad de los modelos frontera, mientras que la seguridad de los agentes y la explosión del compute marcan las dinámicas estratégicas.">
     <span class="dt">2026-11-01</span>
     <span class="th">Google DeepMind y Mistral avanzan en la capacidad de los modelos frontera, mientras que la seguridad de los agentes y la explosión del compute marcan las dinámicas estratégicas.</span>
-    <span class="n">12 señales</span>
+    <span class="n"><span class="l-es">12 señales</span><span class="l-en" lang="en">12 signals</span></span>
   </a>
   
   
@@ -272,79 +304,79 @@
   <a class="day" href="d/2026-10-30.html" data-q="2026-10-30 El día marca un salto en capacidades frontera con nuevos modelos de Google y Mistral, consolidando la competencia en inteligencia general y agentes, mientras las finanzas de la Big Tech revelan la tensión entre la invers">
     <span class="dt">2026-10-30</span>
     <span class="th">El día marca un salto en capacidades frontera con nuevos modelos de Google y Mistral, consolidando la competencia en inteligencia general y agentes, mientras las finanzas de la Big Tech revelan la tensión entre la invers</span>
-    <span class="n">12 señales</span>
+    <span class="n"><span class="l-es">12 señales</span><span class="l-en" lang="en">12 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-10-28.html" data-q="2026-10-28 El día marca un avance en capacidades de frontera con nuevos modelos de simulación y multimodales, y un cambio de mentalidad sobre el rol del código en la IA; todo en un contexto de consolidación de poder económico y geo">
     <span class="dt">2026-10-28</span>
     <span class="th">El día marca un avance en capacidades de frontera con nuevos modelos de simulación y multimodales, y un cambio de mentalidad sobre el rol del código en la IA; todo en un contexto de consolidación de poder económico y geo</span>
-    <span class="n">12 señales</span>
+    <span class="n"><span class="l-es">12 señales</span><span class="l-en" lang="en">12 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-10-26.html" data-q="2026-10-26 La competencia en modelos frontera se intensifica con un nuevo actor open-weights que recorta distancia a los líderes, mientras una agresiva guerra de precios en LLM redefine la economía del sector, impactando incluso en">
     <span class="dt">2026-10-26</span>
     <span class="th">La competencia en modelos frontera se intensifica con un nuevo actor open-weights que recorta distancia a los líderes, mientras una agresiva guerra de precios en LLM redefine la economía del sector, impactando incluso en</span>
-    <span class="n">7 señales</span>
+    <span class="n"><span class="l-es">7 señales</span><span class="l-en" lang="en">7 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-10-24.html" data-q="2026-10-24 El día marca el lanzamiento de nuevos modelos open-weights con capacidades relevantes, mientras los laboratorios de frontera como OpenAI y Moonshot intensifican sus protocolos de seguridad para el entrenamiento de modelo">
     <span class="dt">2026-10-24</span>
     <span class="th">El día marca el lanzamiento de nuevos modelos open-weights con capacidades relevantes, mientras los laboratorios de frontera como OpenAI y Moonshot intensifican sus protocolos de seguridad para el entrenamiento de modelo</span>
-    <span class="n">12 señales</span>
+    <span class="n"><span class="l-es">12 señales</span><span class="l-en" lang="en">12 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-10-22.html" data-q="2026-10-22 La carrera AGI muestra hoy un doble frente: el avance en la capacidad de los modelos para operar como agentes autónomos (seguridad, voz, on-device) y la creciente tensión geopolítica que impacta la infraestructura y regu">
     <span class="dt">2026-10-22</span>
     <span class="th">La carrera AGI muestra hoy un doble frente: el avance en la capacidad de los modelos para operar como agentes autónomos (seguridad, voz, on-device) y la creciente tensión geopolítica que impacta la infraestructura y regu</span>
-    <span class="n">12 señales</span>
+    <span class="n"><span class="l-es">12 señales</span><span class="l-en" lang="en">12 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-10-20.html" data-q="2026-10-20 El día muestra avances en modelos agénticos para el edge y coding en lenguajes legacy, pero la financiación de infraestructura de compute se tensiona y la energía se consolida como un cuello de botella crítico.">
     <span class="dt">2026-10-20</span>
     <span class="th">El día muestra avances en modelos agénticos para el edge y coding en lenguajes legacy, pero la financiación de infraestructura de compute se tensiona y la energía se consolida como un cuello de botella crítico.</span>
-    <span class="n">11 señales</span>
+    <span class="n"><span class="l-es">11 señales</span><span class="l-en" lang="en">11 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-10-18.html" data-q="2026-10-18 El lanzamiento de nuevos modelos de Google DeepMind, Mistral y xAI, junto con el avance de Meta en agentes de código abierto, marca un día de intensa competencia en la capacidad de los modelos frontera, mientras la econo">
     <span class="dt">2026-10-18</span>
     <span class="th">El lanzamiento de nuevos modelos de Google DeepMind, Mistral y xAI, junto con el avance de Meta en agentes de código abierto, marca un día de intensa competencia en la capacidad de los modelos frontera, mientras la econo</span>
-    <span class="n">12 señales</span>
+    <span class="n"><span class="l-es">12 señales</span><span class="l-en" lang="en">12 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-10-16.html" data-q="2026-10-16 El lanzamiento de nuevos modelos de agentes y de alto rendimiento, junto con la intensificación de las restricciones geopolíticas sobre los chips, marcan una aceleración en la carrera por la capacidad de los modelos y en">
     <span class="dt">2026-10-16</span>
     <span class="th">El lanzamiento de nuevos modelos de agentes y de alto rendimiento, junto con la intensificación de las restricciones geopolíticas sobre los chips, marcan una aceleración en la carrera por la capacidad de los modelos y en</span>
-    <span class="n">9 señales</span>
+    <span class="n"><span class="l-es">9 señales</span><span class="l-en" lang="en">9 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-10-14.html" data-q="2026-10-14 La carrera AGI intensifica la demanda de compute, con ASML elevando previsiones, mientras Google y OpenAI compiten en lanzamientos de modelos y la eficiencia de agentes, si bien la seguridad interna de los labs frontera ">
     <span class="dt">2026-10-14</span>
     <span class="th">La carrera AGI intensifica la demanda de compute, con ASML elevando previsiones, mientras Google y OpenAI compiten en lanzamientos de modelos y la eficiencia de agentes, si bien la seguridad interna de los labs frontera </span>
-    <span class="n">10 señales</span>
+    <span class="n"><span class="l-es">10 señales</span><span class="l-en" lang="en">10 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-10-12.html" data-q="2026-10-12 El día muestra una doble dinámica: la eficiencia operativa de los agentes de IA se acelera drásticamente, mientras la carrera por las capacidades frontier continúa con nuevos modelos y la discusión sobre el verdadero alc">
     <span class="dt">2026-10-12</span>
     <span class="th">El día muestra una doble dinámica: la eficiencia operativa de los agentes de IA se acelera drásticamente, mientras la carrera por las capacidades frontier continúa con nuevos modelos y la discusión sobre el verdadero alc</span>
-    <span class="n">8 señales</span>
+    <span class="n"><span class="l-es">8 señales</span><span class="l-en" lang="en">8 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-10-10.html" data-q="2026-10-10 La carrera AGI muestra un contraste agudo: mientras los modelos de frontera mejoran su eficiencia y capacidad, persisten riesgos críticos en el despliegue seguro de agentes y en la geopolítica del hardware.">
     <span class="dt">2026-10-10</span>
     <span class="th">La carrera AGI muestra un contraste agudo: mientras los modelos de frontera mejoran su eficiencia y capacidad, persisten riesgos críticos en el despliegue seguro de agentes y en la geopolítica del hardware.</span>
-    <span class="n">12 señales</span>
+    <span class="n"><span class="l-es">12 señales</span><span class="l-en" lang="en">12 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-10-07.html" data-q="2026-10-07 Los laboratorios frontier consolidan avances significativos en capacidades de razonamiento matemático y el despliegue de agentes, mientras la infraestructura de compute se expande con nuevos modelos y hardware dedicado.">
     <span class="dt">2026-10-07</span>
     <span class="th">Los laboratorios frontier consolidan avances significativos en capacidades de razonamiento matemático y el despliegue de agentes, mientras la infraestructura de compute se expande con nuevos modelos y hardware dedicado.</span>
-    <span class="n">12 señales</span>
+    <span class="n"><span class="l-es">12 señales</span><span class="l-en" lang="en">12 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-10-03.html" data-q="2026-10-03 Los cuellos de botella energéticos y las preocupaciones de seguridad en el despliegue de agentes autónomos están marcando el ritmo de la carrera AGI, a la vez que los actores de frontera diversifican sus estrategias de m">
     <span class="dt">2026-10-03</span>
     <span class="th">Los cuellos de botella energéticos y las preocupaciones de seguridad en el despliegue de agentes autónomos están marcando el ritmo de la carrera AGI, a la vez que los actores de frontera diversifican sus estrategias de m</span>
-    <span class="n">12 señales</span>
+    <span class="n"><span class="l-es">12 señales</span><span class="l-en" lang="en">12 signals</span></span>
   </a>
   
   
@@ -353,133 +385,133 @@
   <a class="day" href="d/2026-09-30.html" data-q="2026-09-30 El día marca una intensificación en la carrera de agentes autónomos y una reconfiguración de la infraestructura de cómputo y su gobernanza, con movimientos clave en China.">
     <span class="dt">2026-09-30</span>
     <span class="th">El día marca una intensificación en la carrera de agentes autónomos y una reconfiguración de la infraestructura de cómputo y su gobernanza, con movimientos clave en China.</span>
-    <span class="n">12 señales</span>
+    <span class="n"><span class="l-es">12 señales</span><span class="l-en" lang="en">12 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-09-26.html" data-q="2026-09-26 La eficiencia de costes de los modelos frontera avanza, consolidando la economía de la IA, pero los incidentes de seguridad con agentes autónomos resaltan los crecientes riesgos de control.">
     <span class="dt">2026-09-26</span>
     <span class="th">La eficiencia de costes de los modelos frontera avanza, consolidando la economía de la IA, pero los incidentes de seguridad con agentes autónomos resaltan los crecientes riesgos de control.</span>
-    <span class="n">12 señales</span>
+    <span class="n"><span class="l-es">12 señales</span><span class="l-en" lang="en">12 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-09-23.html" data-q="2026-09-23 El mercado de modelos frontera se intensifica con lanzamientos clave de OpenAI, Google DeepMind y xAI, impulsando una agresiva guerra de precios que beneficia la economía de la IA y acelera la adopción de agentes.">
     <span class="dt">2026-09-23</span>
     <span class="th">El mercado de modelos frontera se intensifica con lanzamientos clave de OpenAI, Google DeepMind y xAI, impulsando una agresiva guerra de precios que beneficia la economía de la IA y acelera la adopción de agentes.</span>
-    <span class="n">12 señales</span>
+    <span class="n"><span class="l-es">12 señales</span><span class="l-en" lang="en">12 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-09-19.html" data-q="2026-09-19 La carrera AGI se intensifica con avances críticos en la autonomía de agentes y lanzamientos de modelos frontera, mientras la demanda de cómputo y la economía de modelos siguen bajo presión y con nuevos riesgos de seguri">
     <span class="dt">2026-09-19</span>
     <span class="th">La carrera AGI se intensifica con avances críticos en la autonomía de agentes y lanzamientos de modelos frontera, mientras la demanda de cómputo y la economía de modelos siguen bajo presión y con nuevos riesgos de seguri</span>
-    <span class="n">12 señales</span>
+    <span class="n"><span class="l-es">12 señales</span><span class="l-en" lang="en">12 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-09-18.html" data-q="2026-09-18 El día marca una intensificación en la carrera por los agentes autónomos con lanzamientos clave de Anthropic y Meta, mientras que el control del cómputo se ve desafiado por inversiones masivas y contrabando de chips.">
     <span class="dt">2026-09-18</span>
     <span class="th">El día marca una intensificación en la carrera por los agentes autónomos con lanzamientos clave de Anthropic y Meta, mientras que el control del cómputo se ve desafiado por inversiones masivas y contrabando de chips.</span>
-    <span class="n">12 señales</span>
+    <span class="n"><span class="l-es">12 señales</span><span class="l-en" lang="en">12 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-09-17.html" data-q="2026-09-17 Google DeepMind y xAI muestran avances en capacidades clave (razonamiento extendido, memoria), mientras Anthropic integra agentes de productividad y Arm prepara la infraestructura de hardware para la era agéntica.">
     <span class="dt">2026-09-17</span>
     <span class="th">Google DeepMind y xAI muestran avances en capacidades clave (razonamiento extendido, memoria), mientras Anthropic integra agentes de productividad y Arm prepara la infraestructura de hardware para la era agéntica.</span>
-    <span class="n">10 señales</span>
+    <span class="n"><span class="l-es">10 señales</span><span class="l-en" lang="en">10 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-09-16.html" data-q="2026-09-16 El día marca una expansión significativa de los agentes de IA en roles empresariales y de sistema, respaldada por la llegada de nuevos modelos frontera más capaces y la aparición de arquitecturas de IA más eficientes, mi">
     <span class="dt">2026-09-16</span>
     <span class="th">El día marca una expansión significativa de los agentes de IA en roles empresariales y de sistema, respaldada por la llegada de nuevos modelos frontera más capaces y la aparición de arquitecturas de IA más eficientes, mi</span>
-    <span class="n">11 señales</span>
+    <span class="n"><span class="l-es">11 señales</span><span class="l-en" lang="en">11 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-09-15.html" data-q="2026-09-15 La autonomía de los agentes de IA avanza en aplicaciones críticas y tareas de ingeniería, mientras la industria se polariza entre la búsqueda de nuevos modelos de monetización y una creciente presión regulatoria.">
     <span class="dt">2026-09-15</span>
     <span class="th">La autonomía de los agentes de IA avanza en aplicaciones críticas y tareas de ingeniería, mientras la industria se polariza entre la búsqueda de nuevos modelos de monetización y una creciente presión regulatoria.</span>
-    <span class="n">12 señales</span>
+    <span class="n"><span class="l-es">12 señales</span><span class="l-en" lang="en">12 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-09-14.html" data-q="2026-09-14 La carrera AGI se polariza entre la aceleración impulsada por la capacidad de cálculo y los avances en la autonomía de agentes, frente a la creciente tensión geopolítica sobre la regulación y el ritmo de desarrollo, con ">
     <span class="dt">2026-09-14</span>
     <span class="th">La carrera AGI se polariza entre la aceleración impulsada por la capacidad de cálculo y los avances en la autonomía de agentes, frente a la creciente tensión geopolítica sobre la regulación y el ritmo de desarrollo, con </span>
-    <span class="n">10 señales</span>
+    <span class="n"><span class="l-es">10 señales</span><span class="l-en" lang="en">10 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-09-13.html" data-q="2026-09-13 Día con múltiples señales relevantes en agentes de IA, desde incidentes de seguridad y comportamientos emergentes hasta avances en automatización de software, mientras la geopolítica y la economía de modelos definen el e">
     <span class="dt">2026-09-13</span>
     <span class="th">Día con múltiples señales relevantes en agentes de IA, desde incidentes de seguridad y comportamientos emergentes hasta avances en automatización de software, mientras la geopolítica y la economía de modelos definen el e</span>
-    <span class="n">12 señales</span>
+    <span class="n"><span class="l-es">12 señales</span><span class="l-en" lang="en">12 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-09-12.html" data-q="2026-09-12 La capacidad y autonomía de los agentes de IA escala rápidamente, evidenciando usos productivos en software y riesgos de seguridad. La competencia en la frontera de modelos multimodales y la IA soberana se agudiza.">
     <span class="dt">2026-09-12</span>
     <span class="th">La capacidad y autonomía de los agentes de IA escala rápidamente, evidenciando usos productivos en software y riesgos de seguridad. La competencia en la frontera de modelos multimodales y la IA soberana se agudiza.</span>
-    <span class="n">12 señales</span>
+    <span class="n"><span class="l-es">12 señales</span><span class="l-en" lang="en">12 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-09-11.html" data-q="2026-09-11 El día marca una escalada en la carrera por la capacidad agéntica, con modelos mostrando comportamientos complejos y una intensificación en la demanda y oferta de infraestructura de computación de alto nivel.">
     <span class="dt">2026-09-11</span>
     <span class="th">El día marca una escalada en la carrera por la capacidad agéntica, con modelos mostrando comportamientos complejos y una intensificación en la demanda y oferta de infraestructura de computación de alto nivel.</span>
-    <span class="n">12 señales</span>
+    <span class="n"><span class="l-es">12 señales</span><span class="l-en" lang="en">12 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-09-10.html" data-q="2026-09-10 El día marca un salto en la capacidad de los modelos frontier (GPT-6 Astra, DeepMind) y el auge de los agentes de IA, mientras se intensifica la carrera por el hardware de inferencia y la geopolítica de los chips.">
     <span class="dt">2026-09-10</span>
     <span class="th">El día marca un salto en la capacidad de los modelos frontier (GPT-6 Astra, DeepMind) y el auge de los agentes de IA, mientras se intensifica la carrera por el hardware de inferencia y la geopolítica de los chips.</span>
-    <span class="n">12 señales</span>
+    <span class="n"><span class="l-es">12 señales</span><span class="l-en" lang="en">12 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-09-09.html" data-q="2026-09-09 El día revela una aceleración en la carrera por la capacidad y automatización de agentes, con inversiones masivas y nuevos hitos en autonomía, mientras crecen las tensiones internas y públicas sobre la seguridad de la IA">
     <span class="dt">2026-09-09</span>
     <span class="th">El día revela una aceleración en la carrera por la capacidad y automatización de agentes, con inversiones masivas y nuevos hitos en autonomía, mientras crecen las tensiones internas y públicas sobre la seguridad de la IA</span>
-    <span class="n">10 señales</span>
+    <span class="n"><span class="l-es">10 señales</span><span class="l-en" lang="en">10 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-09-08.html" data-q="2026-09-08 La carrera por la AGI se intensifica con avances en capacidad de modelos, la expansión de los agentes autónomos y una inyección masiva de capital en labs clave, mientras que los desafíos de seguridad y alineación se hace">
     <span class="dt">2026-09-08</span>
     <span class="th">La carrera por la AGI se intensifica con avances en capacidad de modelos, la expansión de los agentes autónomos y una inyección masiva de capital en labs clave, mientras que los desafíos de seguridad y alineación se hace</span>
-    <span class="n">11 señales</span>
+    <span class="n"><span class="l-es">11 señales</span><span class="l-en" lang="en">11 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-09-07.html" data-q="2026-09-07 Hoy destacan avances significativos en la capacidad de los agentes de IA, con nuevos lanzamientos y preocupaciones sobre su control, mientras los litigios por datos de entrenamiento y la competencia en chips recalibran l">
     <span class="dt">2026-09-07</span>
     <span class="th">Hoy destacan avances significativos en la capacidad de los agentes de IA, con nuevos lanzamientos y preocupaciones sobre su control, mientras los litigios por datos de entrenamiento y la competencia en chips recalibran l</span>
-    <span class="n">11 señales</span>
+    <span class="n"><span class="l-es">11 señales</span><span class="l-en" lang="en">11 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-09-06.html" data-q="2026-09-06 OpenAI y xAI elevan la apuesta en agentes autónomos, destacando avances de GPT-6 Astra y fallos de seguridad críticos, mientras Google DeepMind empuja modelos específicos y se intensifica el escrutinio legal.">
     <span class="dt">2026-09-06</span>
     <span class="th">OpenAI y xAI elevan la apuesta en agentes autónomos, destacando avances de GPT-6 Astra y fallos de seguridad críticos, mientras Google DeepMind empuja modelos específicos y se intensifica el escrutinio legal.</span>
-    <span class="n">12 señales</span>
+    <span class="n"><span class="l-es">12 señales</span><span class="l-en" lang="en">12 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-09-05.html" data-q="2026-09-05 El despliegue de agentes y la mejora de capacidades de modelos frontera como GPT-6 Astra, especialmente en razonamiento y automatización de tareas cognitivas, marcan el avance real hacia la AGI, mientras surgen inquietud">
     <span class="dt">2026-09-05</span>
     <span class="th">El despliegue de agentes y la mejora de capacidades de modelos frontera como GPT-6 Astra, especialmente en razonamiento y automatización de tareas cognitivas, marcan el avance real hacia la AGI, mientras surgen inquietud</span>
-    <span class="n">11 señales</span>
+    <span class="n"><span class="l-es">11 señales</span><span class="l-en" lang="en">11 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-09-04.html" data-q="2026-09-04 Avances en modelos frontier y expansión de agentes marcan el día. Un incidente de OpenAI revela la fragilidad del control en la carrera AGI.">
     <span class="dt">2026-09-04</span>
     <span class="th">Avances en modelos frontier y expansión de agentes marcan el día. Un incidente de OpenAI revela la fragilidad del control en la carrera AGI.</span>
-    <span class="n">10 señales</span>
+    <span class="n"><span class="l-es">10 señales</span><span class="l-en" lang="en">10 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-09-03.html" data-q="2026-09-03 Meta y OpenAI intensifican la carrera AGI con lanzamientos de modelos frontier, mientras Google mejora sus variantes Flash y el despliegue de agentes se acelera en todos los frentes.">
     <span class="dt">2026-09-03</span>
     <span class="th">Meta y OpenAI intensifican la carrera AGI con lanzamientos de modelos frontier, mientras Google mejora sus variantes Flash y el despliegue de agentes se acelera en todos los frentes.</span>
-    <span class="n">12 señales</span>
+    <span class="n"><span class="l-es">12 señales</span><span class="l-en" lang="en">12 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-09-02.html" data-q="2026-09-02 El día marca un salto en las capacidades de los modelos frontera con Anthropic liderando en rendimiento y OpenAI en seguridad, mientras Google avanza en percepción multimodal y xAI en integración, todo ello bajo una pres">
     <span class="dt">2026-09-02</span>
     <span class="th">El día marca un salto en las capacidades de los modelos frontera con Anthropic liderando en rendimiento y OpenAI en seguridad, mientras Google avanza en percepción multimodal y xAI en integración, todo ello bajo una pres</span>
-    <span class="n">12 señales</span>
+    <span class="n"><span class="l-es">12 señales</span><span class="l-en" lang="en">12 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-09-01.html" data-q="2026-09-01 El día revela avances en la monetización de modelos y la producción de chips, junto a una significativa mejora en generación de vídeo, aunque la complejidad de los agentes empresariales emerge como un cuello de botella.">
     <span class="dt">2026-09-01</span>
     <span class="th">El día revela avances en la monetización de modelos y la producción de chips, junto a una significativa mejora en generación de vídeo, aunque la complejidad de los agentes empresariales emerge como un cuello de botella.</span>
-    <span class="n">11 señales</span>
+    <span class="n"><span class="l-es">11 señales</span><span class="l-en" lang="en">11 signals</span></span>
   </a>
   
   
@@ -488,187 +520,187 @@
   <a class="day" href="d/2026-08-31.html" data-q="2026-08-31 El despliegue de agentes autónomos y la economía de modelos centran los movimientos estratégicos del día, con los grandes labs buscando eficiencia y control del ecosistema.">
     <span class="dt">2026-08-31</span>
     <span class="th">El despliegue de agentes autónomos y la economía de modelos centran los movimientos estratégicos del día, con los grandes labs buscando eficiencia y control del ecosistema.</span>
-    <span class="n">10 señales</span>
+    <span class="n"><span class="l-es">10 señales</span><span class="l-en" lang="en">10 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-08-30.html" data-q="2026-08-30 La competencia entre los grandes labs se intensifica, manifestándose en una escalada de vetos y demandas que impactan la economía de los modelos, mientras China acelera el despliegue de modelos de gran escala.">
     <span class="dt">2026-08-30</span>
     <span class="th">La competencia entre los grandes labs se intensifica, manifestándose en una escalada de vetos y demandas que impactan la economía de los modelos, mientras China acelera el despliegue de modelos de gran escala.</span>
-    <span class="n">8 señales</span>
+    <span class="n"><span class="l-es">8 señales</span><span class="l-en" lang="en">8 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-08-29.html" data-q="2026-08-29 La tensión geopolítica en la carrera AGI se agudiza con restricciones de acceso a modelos, mientras los agentes autónomos avanzan en capacidades de navegación web y ciberseguridad, impulsados por inversiones masivas en c">
     <span class="dt">2026-08-29</span>
     <span class="th">La tensión geopolítica en la carrera AGI se agudiza con restricciones de acceso a modelos, mientras los agentes autónomos avanzan en capacidades de navegación web y ciberseguridad, impulsados por inversiones masivas en c</span>
-    <span class="n">10 señales</span>
+    <span class="n"><span class="l-es">10 señales</span><span class="l-en" lang="en">10 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-08-28.html" data-q="2026-08-28 La seguridad de los agentes de IA se resiente, pero Anthropic y Google DeepMind empujan la autonomía y flexibilidad, mientras China acelera su stack y el compute consolida su posición estratégica.">
     <span class="dt">2026-08-28</span>
     <span class="th">La seguridad de los agentes de IA se resiente, pero Anthropic y Google DeepMind empujan la autonomía y flexibilidad, mientras China acelera su stack y el compute consolida su posición estratégica.</span>
-    <span class="n">9 señales</span>
+    <span class="n"><span class="l-es">9 señales</span><span class="l-en" lang="en">9 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-08-27.html" data-q="2026-08-27 La carrera AGI se acelera con avances en la autonomía de los agentes (Anthropic, Google) y la infraestructura de compute, incluyendo el diseño de chips por IA y nuevos despliegues de modelos frontier (xAI, Qwen).">
     <span class="dt">2026-08-27</span>
     <span class="th">La carrera AGI se acelera con avances en la autonomía de los agentes (Anthropic, Google) y la infraestructura de compute, incluyendo el diseño de chips por IA y nuevos despliegues de modelos frontier (xAI, Qwen).</span>
-    <span class="n">12 señales</span>
+    <span class="n"><span class="l-es">12 señales</span><span class="l-en" lang="en">12 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-08-26.html" data-q="2026-08-26 OpenAI avanza en la integración vertical con un chip de inferencia propio, mientras Mistral y otros impulsan las capacidades agenticas y la eficiencia de modelos pequeños, redefiniendo el coste y la accesibilidad de la I">
     <span class="dt">2026-08-26</span>
     <span class="th">OpenAI avanza en la integración vertical con un chip de inferencia propio, mientras Mistral y otros impulsan las capacidades agenticas y la eficiencia de modelos pequeños, redefiniendo el coste y la accesibilidad de la I</span>
-    <span class="n">7 señales</span>
+    <span class="n"><span class="l-es">7 señales</span><span class="l-en" lang="en">7 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-08-25.html" data-q="2026-08-25 El despliegue de modelos frontier y la expansión de capacidades agentic en sectores clave marcan el día, evidenciando una fuerte inversión en cómputo e infraestructura y un realineamiento geopolítico.">
     <span class="dt">2026-08-25</span>
     <span class="th">El despliegue de modelos frontier y la expansión de capacidades agentic en sectores clave marcan el día, evidenciando una fuerte inversión en cómputo e infraestructura y un realineamiento geopolítico.</span>
-    <span class="n">12 señales</span>
+    <span class="n"><span class="l-es">12 señales</span><span class="l-en" lang="en">12 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-08-24.html" data-q="2026-08-24 La carrera AGI avanza con nuevos lanzamientos de capacidades de agentes y una intensificación de la competencia por la adopción y el rendimiento coste-eficacia entre modelos frontera.">
     <span class="dt">2026-08-24</span>
     <span class="th">La carrera AGI avanza con nuevos lanzamientos de capacidades de agentes y una intensificación de la competencia por la adopción y el rendimiento coste-eficacia entre modelos frontera.</span>
-    <span class="n">9 señales</span>
+    <span class="n"><span class="l-es">9 señales</span><span class="l-en" lang="en">9 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-08-23.html" data-q="2026-08-23 El ecosistema de agentes avanza significativamente con nuevas herramientas y despliegues, mientras la economía del compute se tensa por las subidas de precios de Nvidia y las grandes inversiones en China, reconfigurando ">
     <span class="dt">2026-08-23</span>
     <span class="th">El ecosistema de agentes avanza significativamente con nuevas herramientas y despliegues, mientras la economía del compute se tensa por las subidas de precios de Nvidia y las grandes inversiones en China, reconfigurando </span>
-    <span class="n">10 señales</span>
+    <span class="n"><span class="l-es">10 señales</span><span class="l-en" lang="en">10 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-08-22.html" data-q="2026-08-22 El mercado del cómputo para IA se reestructura con movimientos estratégicos de TSMC e Intel, mientras modelos como GLM-5.3 desafían la eficiencia de costes y capacidades de codificación de los labs de frontera.">
     <span class="dt">2026-08-22</span>
     <span class="th">El mercado del cómputo para IA se reestructura con movimientos estratégicos de TSMC e Intel, mientras modelos como GLM-5.3 desafían la eficiencia de costes y capacidades de codificación de los labs de frontera.</span>
-    <span class="n">7 señales</span>
+    <span class="n"><span class="l-es">7 señales</span><span class="l-en" lang="en">7 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-08-21.html" data-q="2026-08-21 Google acelera el despliegue de modelos Flash especializados en eficiencia y ciberseguridad con la serie Gemini 3.5/3.6.">
     <span class="dt">2026-08-21</span>
     <span class="th">Google acelera el despliegue de modelos Flash especializados en eficiencia y ciberseguridad con la serie Gemini 3.5/3.6.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-08-20.html" data-q="2026-08-20 La computación agéntica impulsa un giro en el diseño de hardware hacia arquitecturas de sistema equilibradas.">
     <span class="dt">2026-08-20</span>
     <span class="th">La computación agéntica impulsa un giro en el diseño de hardware hacia arquitecturas de sistema equilibradas.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-08-19.html" data-q="2026-08-19 La IA en semiconductores vira hacia la optimización de materiales para superar los límites físicos de la ley de Moore.">
     <span class="dt">2026-08-19</span>
     <span class="th">La IA en semiconductores vira hacia la optimización de materiales para superar los límites físicos de la ley de Moore.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-08-18.html" data-q="2026-08-18 TSMC logra un hito de 0,42 nm con MoS2, abriendo el camino a la electrónica post-silicio para hardware de IA extremo.">
     <span class="dt">2026-08-18</span>
     <span class="th">TSMC logra un hito de 0,42 nm con MoS2, abriendo el camino a la electrónica post-silicio para hardware de IA extremo.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-08-17.html" data-q="2026-08-17 Aparición del concepto &#39;inflación de tokens&#39; para medir el coste real de los flujos de trabajo de agentes de IA.">
     <span class="dt">2026-08-17</span>
     <span class="th">Aparición del concepto &#39;inflación de tokens&#39; para medir el coste real de los flujos de trabajo de agentes de IA.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-08-16.html" data-q="2026-08-16 Gemini 3.7 Flash consolida la tendencia hacia modelos ultrarrápidos y de bajo coste para despliegue masivo.">
     <span class="dt">2026-08-16</span>
     <span class="th">Gemini 3.7 Flash consolida la tendencia hacia modelos ultrarrápidos y de bajo coste para despliegue masivo.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-08-15.html" data-q="2026-08-15 TSMC alcanza los 0,42 nm con monocapas de MoS₂ para superar los límites físicos del silicio en semiconductores.">
     <span class="dt">2026-08-15</span>
     <span class="th">TSMC alcanza los 0,42 nm con monocapas de MoS₂ para superar los límites físicos del silicio en semiconductores.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-08-14.html" data-q="2026-08-14 Google lanza Gemini 3.7 Flash, priorizando la velocidad y eficiencia en su ecosistema de modelos de última generación.">
     <span class="dt">2026-08-14</span>
     <span class="th">Google lanza Gemini 3.7 Flash, priorizando la velocidad y eficiencia en su ecosistema de modelos de última generación.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-08-13.html" data-q="2026-08-13 Auge de la memoria HBM y empaquetado avanzado como pilares físicos críticos para la escalabilidad de la IA global.">
     <span class="dt">2026-08-13</span>
     <span class="th">Auge de la memoria HBM y empaquetado avanzado como pilares físicos críticos para la escalabilidad de la IA global.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-08-12.html" data-q="2026-08-12 Google despliega versiones Flash especializadas en ciberseguridad, marcando un giro hacia modelos de uso vertical.">
     <span class="dt">2026-08-12</span>
     <span class="th">Google despliega versiones Flash especializadas en ciberseguridad, marcando un giro hacia modelos de uso vertical.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-08-11.html" data-q="2026-08-11 La interpretabilidad de los modelos escala junto a su capacidad técnica, eliminando la penalización por transparencia.">
     <span class="dt">2026-08-11</span>
     <span class="th">La interpretabilidad de los modelos escala junto a su capacidad técnica, eliminando la penalización por transparencia.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-08-10.html" data-q="2026-08-10 Inversión masiva en automatización del diseño de semiconductores (EDA) con el éxito de financiación de ChipAgent.">
     <span class="dt">2026-08-10</span>
     <span class="th">Inversión masiva en automatización del diseño de semiconductores (EDA) con el éxito de financiación de ChipAgent.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-08-09.html" data-q="2026-08-09 Google acelera su ciclo de despliegue con Gemini 3.6 Flash y versiones lite especializadas en eficiencia extrema.">
     <span class="dt">2026-08-09</span>
     <span class="th">Google acelera su ciclo de despliegue con Gemini 3.6 Flash y versiones lite especializadas en eficiencia extrema.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-08-08.html" data-q="2026-08-08 Avance crítico en robótica con inteligencia corporal completa y colaboración multi-robot mediante Gemini Robotics ER 2.">
     <span class="dt">2026-08-08</span>
     <span class="th">Avance crítico en robótica con inteligencia corporal completa y colaboración multi-robot mediante Gemini Robotics ER 2.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-08-07.html" data-q="2026-08-07 Integración de LLMs en simuladores industriales para razonamiento causal preciso en plantas de tratamiento (Qwen2.5)">
     <span class="dt">2026-08-07</span>
     <span class="th">Integración de LLMs en simuladores industriales para razonamiento causal preciso en plantas de tratamiento (Qwen2.5)</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-08-06.html" data-q="2026-08-06 El mercado de semiconductores proyecta un crecimiento del 98,3% impulsado por la demanda masiva de infraestructura IA.">
     <span class="dt">2026-08-06</span>
     <span class="th">El mercado de semiconductores proyecta un crecimiento del 98,3% impulsado por la demanda masiva de infraestructura IA.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-08-05.html" data-q="2026-08-05 Nace SOCAMM2 como nuevo estándar de memoria para servidores IA, prometiendo mayor eficiencia en el movimiento de datos.">
     <span class="dt">2026-08-05</span>
     <span class="th">Nace SOCAMM2 como nuevo estándar de memoria para servidores IA, prometiendo mayor eficiencia en el movimiento de datos.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-08-04.html" data-q="2026-08-04 Modelos abiertos de tamaño medio igualan a los líderes en evaluación lógica con costes 100 veces inferiores.">
     <span class="dt">2026-08-04</span>
     <span class="th">Modelos abiertos de tamaño medio igualan a los líderes en evaluación lógica con costes 100 veces inferiores.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-08-03.html" data-q="2026-08-03 La inferencia desagregada de LLMs exige orquestación consciente de la topología para evitar cuellos de botella de red.">
     <span class="dt">2026-08-03</span>
     <span class="th">La inferencia desagregada de LLMs exige orquestación consciente de la topología para evitar cuellos de botella de red.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-08-02.html" data-q="2026-08-02 Google segmenta su oferta con modelos Gemini especializados en ciberseguridad y eficiencia extrema para desarrolladores.">
     <span class="dt">2026-08-02</span>
     <span class="th">Google segmenta su oferta con modelos Gemini especializados en ciberseguridad y eficiencia extrema para desarrolladores.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-08-01.html" data-q="2026-08-01 TSMC diversifica su empaquetado avanzado CoWoS-S y R para optimizar costes y rendimiento en chips de IA de alta gama.">
     <span class="dt">2026-08-01</span>
     <span class="th">TSMC diversifica su empaquetado avanzado CoWoS-S y R para optimizar costes y rendimiento en chips de IA de alta gama.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   
@@ -677,187 +709,187 @@
   <a class="day" href="d/2026-07-31.html" data-q="2026-07-31 Google DeepMind acelera la integración de Gemini en robótica con ER 2 y modelos de inteligencia corporal completa.">
     <span class="dt">2026-07-31</span>
     <span class="th">Google DeepMind acelera la integración de Gemini en robótica con ER 2 y modelos de inteligencia corporal completa.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-07-30.html" data-q="2026-07-30 Google fragmenta su oferta con Gemini 3.5 Flash especializados en ciberseguridad y eficiencia de costes.">
     <span class="dt">2026-07-30</span>
     <span class="th">Google fragmenta su oferta con Gemini 3.5 Flash especializados en ciberseguridad y eficiencia de costes.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-07-29.html" data-q="2026-07-29 Los modelos neuromórficos de difusión están reduciendo drásticamente el consumo energético en inferencia de texto.">
     <span class="dt">2026-07-29</span>
     <span class="th">Los modelos neuromórficos de difusión están reduciendo drásticamente el consumo energético en inferencia de texto.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-07-28.html" data-q="2026-07-28 Google acelera el ciclo de lanzamientos con Gemini 3.6 Flash y variantes optimizadas para ciberseguridad.">
     <span class="dt">2026-07-28</span>
     <span class="th">Google acelera el ciclo de lanzamientos con Gemini 3.6 Flash y variantes optimizadas para ciberseguridad.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-07-27.html" data-q="2026-07-27 El empaquetado avanzado de semiconductores (TSMC vs Intel) se posiciona como el campo de batalla real de la eficiencia.">
     <span class="dt">2026-07-27</span>
     <span class="th">El empaquetado avanzado de semiconductores (TSMC vs Intel) se posiciona como el campo de batalla real de la eficiencia.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-07-26.html" data-q="2026-07-26 Google acelera la fragmentación de modelos con versiones Flash específicas para ciberseguridad y eficiencia extrema.">
     <span class="dt">2026-07-26</span>
     <span class="th">Google acelera la fragmentación de modelos con versiones Flash específicas para ciberseguridad y eficiencia extrema.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-07-25.html" data-q="2026-07-25 Aceleración de los ciclos de lanzamiento de modelos compactos y eficientes (Flash) para aplicaciones de baja latencia.">
     <span class="dt">2026-07-25</span>
     <span class="th">Aceleración de los ciclos de lanzamiento de modelos compactos y eficientes (Flash) para aplicaciones de baja latencia.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-07-24.html" data-q="2026-07-24 El diseño de chips mediante agentes IA (EDA) pasa de teoría a realidad con hitos de diseño físico real">
     <span class="dt">2026-07-24</span>
     <span class="th">El diseño de chips mediante agentes IA (EDA) pasa de teoría a realidad con hitos de diseño físico real</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-07-23.html" data-q="2026-07-23 Nuevos operadores subcuadráticos HyenaND permiten procesar datos multidimensionales sin aplanar su estructura espacial.">
     <span class="dt">2026-07-23</span>
     <span class="th">Nuevos operadores subcuadráticos HyenaND permiten procesar datos multidimensionales sin aplanar su estructura espacial.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-07-22.html" data-q="2026-07-22 Fragmentación de modelos especializados: Gemini lanza versiones Flash Cyber y Lite priorizando eficiencia y nicho.">
     <span class="dt">2026-07-22</span>
     <span class="th">Fragmentación de modelos especializados: Gemini lanza versiones Flash Cyber y Lite priorizando eficiencia y nicho.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-07-21.html" data-q="2026-07-21 Los LLM tienden a decidir la respuesta antes de razonar, lo que genera alucinaciones estructurales persistentes.">
     <span class="dt">2026-07-21</span>
     <span class="th">Los LLM tienden a decidir la respuesta antes de razonar, lo que genera alucinaciones estructurales persistentes.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-07-20.html" data-q="2026-07-20 La compresión dinámica de KV Cache sin entrenamiento permite inferencia eficiente en contextos extremadamente largos.">
     <span class="dt">2026-07-20</span>
     <span class="th">La compresión dinámica de KV Cache sin entrenamiento permite inferencia eficiente en contextos extremadamente largos.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-07-19.html" data-q="2026-07-19 Diversificación del packaging avanzado: Clientes de TSMC evalúan el uso de Intel EMIB para mitigar falta de capacidad.">
     <span class="dt">2026-07-19</span>
     <span class="th">Diversificación del packaging avanzado: Clientes de TSMC evalúan el uso de Intel EMIB para mitigar falta de capacidad.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-07-18.html" data-q="2026-07-18 TSMC eleva el CAPEX a 64.000 millones para 2026, confirmando la apuesta masiva por infraestructura física de IA.">
     <span class="dt">2026-07-18</span>
     <span class="th">TSMC eleva el CAPEX a 64.000 millones para 2026, confirmando la apuesta masiva por infraestructura física de IA.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-07-17.html" data-q="2026-07-17 El diseño de chips vira hacia la automatización mediante agentes (ADA) para reducir ciclos de desarrollo en semiconductores.">
     <span class="dt">2026-07-17</span>
     <span class="th">El diseño de chips vira hacia la automatización mediante agentes (ADA) para reducir ciclos de desarrollo en semiconductores.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-07-16.html" data-q="2026-07-16 La convergencia de agentes IA y robótica bimanual se acelera mediante marcos de depuración sistemática.">
     <span class="dt">2026-07-16</span>
     <span class="th">La convergencia de agentes IA y robótica bimanual se acelera mediante marcos de depuración sistemática.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-07-15.html" data-q="2026-07-15 Google compromete 1.500 millones de dólares para expandir su infraestructura crítica de centros de datos en Alabama.">
     <span class="dt">2026-07-15</span>
     <span class="th">Google compromete 1.500 millones de dólares para expandir su infraestructura crítica de centros de datos en Alabama.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-07-14.html" data-q="2026-07-14 Los SLM como Index-1.9B prueban que el entrenamiento masivo en tokens permite un rendimiento alto en tamaños reducidos.">
     <span class="dt">2026-07-14</span>
     <span class="th">Los SLM como Index-1.9B prueban que el entrenamiento masivo en tokens permite un rendimiento alto en tamaños reducidos.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-07-13.html" data-q="2026-07-13 Los agentes de IA pasan de la fase experimental a la orquestación industrial con NVIDIA y Google liderando el despliegue.">
     <span class="dt">2026-07-13</span>
     <span class="th">Los agentes de IA pasan de la fase experimental a la orquestación industrial con NVIDIA y Google liderando el despliegue.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-07-12.html" data-q="2026-07-12 Gemini 3.5 Flash introduce &#39;computer use&#39;, permitiendo a la IA interactuar con interfaces como un humano.">
     <span class="dt">2026-07-12</span>
     <span class="th">Gemini 3.5 Flash introduce &#39;computer use&#39;, permitiendo a la IA interactuar con interfaces como un humano.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-07-11.html" data-q="2026-07-11 TSMC alcanza la era angstrom con la tecnología A16 y Super Power Rail para entrega de energía trasera.">
     <span class="dt">2026-07-11</span>
     <span class="th">TSMC alcanza la era angstrom con la tecnología A16 y Super Power Rail para entrega de energía trasera.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-07-10.html" data-q="2026-07-10 El diseño de chips (EDA) evoluciona hacia sistemas agénticos para gestionar la complejidad de los nodos avanzados.">
     <span class="dt">2026-07-10</span>
     <span class="th">El diseño de chips (EDA) evoluciona hacia sistemas agénticos para gestionar la complejidad de los nodos avanzados.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-07-09.html" data-q="2026-07-09 Gemma 4 introduce una arquitectura multimodal unificada sin codificadores externos para mayor eficiencia.">
     <span class="dt">2026-07-09</span>
     <span class="th">Gemma 4 introduce una arquitectura multimodal unificada sin codificadores externos para mayor eficiencia.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-07-08.html" data-q="2026-07-08 Google invertirá 1.500 millones de dólares en Alabama para expandir su infraestructura de centros de datos de IA.">
     <span class="dt">2026-07-08</span>
     <span class="th">Google invertirá 1.500 millones de dólares en Alabama para expandir su infraestructura de centros de datos de IA.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-07-07.html" data-q="2026-07-07 Google lanza Gemma 4 con modo de pensamiento nativo y arquitectura MoE optimizada de hasta 31B de parámetros.">
     <span class="dt">2026-07-07</span>
     <span class="th">Google lanza Gemma 4 con modo de pensamiento nativo y arquitectura MoE optimizada de hasta 31B de parámetros.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-07-06.html" data-q="2026-07-06 Gemma 4 introduce una arquitectura multimodal sin codificador para mayor eficiencia en modelos de lenguaje abiertos.">
     <span class="dt">2026-07-06</span>
     <span class="th">Gemma 4 introduce una arquitectura multimodal sin codificador para mayor eficiencia en modelos de lenguaje abiertos.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-07-05.html" data-q="2026-07-05 Google inyecta 1.500 millones de dólares en Alabama para expandir su infraestructura crítica de centros de datos.">
     <span class="dt">2026-07-05</span>
     <span class="th">Google inyecta 1.500 millones de dólares en Alabama para expandir su infraestructura crítica de centros de datos.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-07-04.html" data-q="2026-07-04 Evolución hacia arquitecturas multimodales nativas sin codificadores independientes para mayor eficiencia en inferencia.">
     <span class="dt">2026-07-04</span>
     <span class="th">Evolución hacia arquitecturas multimodales nativas sin codificadores independientes para mayor eficiencia en inferencia.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-07-03.html" data-q="2026-07-03 Huawei proyecta alcanzar la capacidad tecnológica de TSMC en chips avanzados para el año 2031.">
     <span class="dt">2026-07-03</span>
     <span class="th">Huawei proyecta alcanzar la capacidad tecnológica de TSMC en chips avanzados para el año 2031.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-07-02.html" data-q="2026-07-02 Google compromete 1.500 millones de dólares adicionales en infraestructura física de centros de datos en Alabama.">
     <span class="dt">2026-07-02</span>
     <span class="th">Google compromete 1.500 millones de dólares adicionales en infraestructura física de centros de datos en Alabama.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-07-01.html" data-q="2026-07-01 Google DeepMind lanza Gemma 4 12B, un modelo multimodal unificado y sin codificador que escala en eficiencia.">
     <span class="dt">2026-07-01</span>
     <span class="th">Google DeepMind lanza Gemma 4 12B, un modelo multimodal unificado y sin codificador que escala en eficiencia.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   
@@ -866,181 +898,181 @@
   <a class="day" href="d/2026-06-30.html" data-q="2026-06-30 Agentes auto-evolutivos (RSEA) que mejoran playbooks y estrategias sin necesidad de actualizar pesos del modelo.">
     <span class="dt">2026-06-30</span>
     <span class="th">Agentes auto-evolutivos (RSEA) que mejoran playbooks y estrategias sin necesidad de actualizar pesos del modelo.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-06-29.html" data-q="2026-06-29 Google invierte 1.500M$ en infraestructura física en Alabama para escalar centros de datos y capacidad de computación.">
     <span class="dt">2026-06-29</span>
     <span class="th">Google invierte 1.500M$ en infraestructura física en Alabama para escalar centros de datos y capacidad de computación.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-06-28.html" data-q="2026-06-28 Gemini 3.5 integra capacidad de uso de ordenador, acelerando la autonomía de agentes en entornos operativos reales.">
     <span class="dt">2026-06-28</span>
     <span class="th">Gemini 3.5 integra capacidad de uso de ordenador, acelerando la autonomía de agentes en entornos operativos reales.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-06-27.html" data-q="2026-06-27 Intel avanza con 18A y 18A-P buscando liderar la fabricación de chips frente a TSMC.">
     <span class="dt">2026-06-27</span>
     <span class="th">Intel avanza con 18A y 18A-P buscando liderar la fabricación de chips frente a TSMC.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-06-26.html" data-q="2026-06-26 Google invierte 1.500 millones de dólares en ampliar su infraestructura de centros de datos en Alabama.">
     <span class="dt">2026-06-26</span>
     <span class="th">Google invierte 1.500 millones de dólares en ampliar su infraestructura de centros de datos en Alabama.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-06-25.html" data-q="2026-06-25 Gemini 3.5 Flash incorpora uso de ordenador, intensificando la carrera por agentes capaces de ejecutar flujos de trabajo.">
     <span class="dt">2026-06-25</span>
     <span class="th">Gemini 3.5 Flash incorpora uso de ordenador, intensificando la carrera por agentes capaces de ejecutar flujos de trabajo.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-06-24.html" data-q="2026-06-24 Google escala Gemini a las versiones 3.5 y Omni, priorizando la multimodalidad total y la integración en ecosistemas.">
     <span class="dt">2026-06-24</span>
     <span class="th">Google escala Gemini a las versiones 3.5 y Omni, priorizando la multimodalidad total y la integración en ecosistemas.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-06-23.html" data-q="2026-06-23 Chiplets y RISC-V aceleran la personalización de hardware para IA y edge computing.">
     <span class="dt">2026-06-23</span>
     <span class="th">Chiplets y RISC-V aceleran la personalización de hardware para IA y edge computing.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-06-22.html" data-q="2026-06-22 Google acelera su expansión física con 1.500 millones de dólares para centros de datos en Alabama.">
     <span class="dt">2026-06-22</span>
     <span class="th">Google acelera su expansión física con 1.500 millones de dólares para centros de datos en Alabama.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-06-21.html" data-q="2026-06-21 Aparición de arquitecturas multimodales sin encoder con el lanzamiento de Gemma 4 12B para mayor eficiencia.">
     <span class="dt">2026-06-21</span>
     <span class="th">Aparición de arquitecturas multimodales sin encoder con el lanzamiento de Gemma 4 12B para mayor eficiencia.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-06-20.html" data-q="2026-06-20 La inversión en infraestructura de IA desplaza al consumo como motor principal de la industria de semiconductores.">
     <span class="dt">2026-06-20</span>
     <span class="th">La inversión en infraestructura de IA desplaza al consumo como motor principal de la industria de semiconductores.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-06-19.html" data-q="2026-06-19 DeepSeek-V4 escala a 1.6 billones de parámetros MoE con un millón de tokens de contexto y arquitectura optimizada.">
     <span class="dt">2026-06-19</span>
     <span class="th">DeepSeek-V4 escala a 1.6 billones de parámetros MoE con un millón de tokens de contexto y arquitectura optimizada.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-06-18.html" data-q="2026-06-18 La IA alcanza la órbita terrestre con el primer despliegue de un VLM autónomo en satélites de baja cota.">
     <span class="dt">2026-06-18</span>
     <span class="th">La IA alcanza la órbita terrestre con el primer despliegue de un VLM autónomo en satélites de baja cota.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-06-17.html" data-q="2026-06-17 Google DeepMind lanza Gemma 4 12B, un modelo multimodal unificado y libre de codificador que simplifica arquitecturas.">
     <span class="dt">2026-06-17</span>
     <span class="th">Google DeepMind lanza Gemma 4 12B, un modelo multimodal unificado y libre de codificador que simplifica arquitecturas.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-06-16.html" data-q="2026-06-16 NVIDIA escala arquitecturas híbridas Mamba-Transformer a 550B parámetros con eficiencia de inferencia extrema.">
     <span class="dt">2026-06-16</span>
     <span class="th">NVIDIA escala arquitecturas híbridas Mamba-Transformer a 550B parámetros con eficiencia de inferencia extrema.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-06-15.html" data-q="2026-06-15 La optimización de la inferencia dLLM en dispositivos móviles mediante NPU permite reducir latencias críticas en el edge.">
     <span class="dt">2026-06-15</span>
     <span class="th">La optimización de la inferencia dLLM en dispositivos móviles mediante NPU permite reducir latencias críticas en el edge.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-06-14.html" data-q="2026-06-14 Gemma 4 elimina el codificador tradicional para lograr una multimodalidad nativa más eficiente y compacta.">
     <span class="dt">2026-06-14</span>
     <span class="th">Gemma 4 elimina el codificador tradicional para lograr una multimodalidad nativa más eficiente y compacta.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-06-13.html" data-q="2026-06-13 El sector de memorias se consolida como el principal beneficiario económico y técnico del despliegue masivo de IA.">
     <span class="dt">2026-06-13</span>
     <span class="th">El sector de memorias se consolida como el principal beneficiario económico y técnico del despliegue masivo de IA.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-06-12.html" data-q="2026-06-12 El sector de la memoria HBM y DRAM se posiciona como el mayor beneficiario financiero del despliegue de infraestructuras IA.">
     <span class="dt">2026-06-12</span>
     <span class="th">El sector de la memoria HBM y DRAM se posiciona como el mayor beneficiario financiero del despliegue de infraestructuras IA.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-06-11.html" data-q="2026-06-11 Google lanza Gemma 4 12B, un modelo multimodal unificado sin codificador para mayor eficiencia en el procesamiento.">
     <span class="dt">2026-06-11</span>
     <span class="th">Google lanza Gemma 4 12B, un modelo multimodal unificado sin codificador para mayor eficiencia en el procesamiento.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-06-10.html" data-q="2026-06-10 NVIDIA lanza Nemotron 3 Ultra (550B MoE), impulsando modelos abiertos masivos optimizados para agentes complejos.">
     <span class="dt">2026-06-10</span>
     <span class="th">NVIDIA lanza Nemotron 3 Ultra (550B MoE), impulsando modelos abiertos masivos optimizados para agentes complejos.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-06-09.html" data-q="2026-06-09 Broadcom consolida su dominio en silicio personalizado con ingresos de 10.800M$ en IA y previsiones al alza.">
     <span class="dt">2026-06-09</span>
     <span class="th">Broadcom consolida su dominio en silicio personalizado con ingresos de 10.800M$ en IA y previsiones al alza.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-06-08.html" data-q="2026-06-08 NVIDIA y Google DeepMind consolidan el liderazgo en modelos a gran escala optimizados para agentes complejos.">
     <span class="dt">2026-06-08</span>
     <span class="th">NVIDIA y Google DeepMind consolidan el liderazgo en modelos a gran escala optimizados para agentes complejos.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-06-07.html" data-q="2026-06-07 TSMC integra IA de NVIDIA en todo el proceso de fabricación para optimizar el rendimiento y diseño de semiconductores.">
     <span class="dt">2026-06-07</span>
     <span class="th">TSMC integra IA de NVIDIA en todo el proceso de fabricación para optimizar el rendimiento y diseño de semiconductores.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-06-06.html" data-q="2026-06-06 NVIDIA lanza Nemotron 3 Ultra (550B MoE), priorizando la eficiencia en costes para agentes de larga duración.">
     <span class="dt">2026-06-06</span>
     <span class="th">NVIDIA lanza Nemotron 3 Ultra (550B MoE), priorizando la eficiencia en costes para agentes de larga duración.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-06-05.html" data-q="2026-06-05 NVIDIA y Google aceleran la carrera por modelos abiertos de alta capacidad optimizados para agentes y ejecución local.">
     <span class="dt">2026-06-05</span>
     <span class="th">NVIDIA y Google aceleran la carrera por modelos abiertos de alta capacidad optimizados para agentes y ejecución local.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-06-04.html" data-q="2026-06-04 OpenAI y Google lanzan modelos especializados en biociencias y descubrimiento de fármacos (GPT-Rosalind y Co-Scientist).">
     <span class="dt">2026-06-04</span>
     <span class="th">OpenAI y Google lanzan modelos especializados en biociencias y descubrimiento de fármacos (GPT-Rosalind y Co-Scientist).</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-06-03.html" data-q="2026-06-03 Google DeepMind lanza Co-Scientist, posicionando a Gemini como socio activo en el descubrimiento científico mediante multi-agentes.">
     <span class="dt">2026-06-03</span>
     <span class="th">Google DeepMind lanza Co-Scientist, posicionando a Gemini como socio activo en el descubrimiento científico mediante multi-agentes.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-06-02.html" data-q="2026-06-02 OpenAI expande su disponibilidad a AWS Bedrock, rompiendo la hegemonía exclusiva de Azure en nubes de escala.">
     <span class="dt">2026-06-02</span>
     <span class="th">OpenAI expande su disponibilidad a AWS Bedrock, rompiendo la hegemonía exclusiva de Azure en nubes de escala.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-06-01.html" data-q="2026-06-01 NVIDIA y Google DeepMind lanzan modelos de IA física con razonamiento nativo y capacidad de ejecución de acciones.">
     <span class="dt">2026-06-01</span>
     <span class="th">NVIDIA y Google DeepMind lanzan modelos de IA física con razonamiento nativo y capacidad de ejecución de acciones.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   
@@ -1049,181 +1081,181 @@
   <a class="day" href="d/2026-05-31.html" data-q="2026-05-31 Anthropic alcanza una valoración histórica de 965.000 millones de dólares tras una ronda de 65.000 millones.">
     <span class="dt">2026-05-31</span>
     <span class="th">Anthropic alcanza una valoración histórica de 965.000 millones de dólares tras una ronda de 65.000 millones.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-05-30.html" data-q="2026-05-30 Google DeepMind lanza Gemini for Science para acelerar descubrimientos en biología y genética mediante agentes de IA.">
     <span class="dt">2026-05-30</span>
     <span class="th">Google DeepMind lanza Gemini for Science para acelerar descubrimientos en biología y genética mediante agentes de IA.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-05-29.html" data-q="2026-05-29 Anthropic alcanza los 47.000 millones de dólares en ingresos anualizados impulsado por la adopción corporativa de Claude">
     <span class="dt">2026-05-29</span>
     <span class="th">Anthropic alcanza los 47.000 millones de dólares en ingresos anualizados impulsado por la adopción corporativa de Claude</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-05-28.html" data-q="2026-05-28 Auge de agentes de IA especializados en nichos verticales como odontología y codificación médica mediante RAG.">
     <span class="dt">2026-05-28</span>
     <span class="th">Auge de agentes de IA especializados en nichos verticales como odontología y codificación médica mediante RAG.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-05-27.html" data-q="2026-05-27 OpenAI resuelve un problema matemático de Erdős de hace 80 años, demostrando razonamiento simbólico avanzado.">
     <span class="dt">2026-05-27</span>
     <span class="th">OpenAI resuelve un problema matemático de Erdős de hace 80 años, demostrando razonamiento simbólico avanzado.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-05-26.html" data-q="2026-05-26 Gemini 3.5 y Omni marcan el inicio de modelos multimodales nativos capaces de razonamiento formal y acción.">
     <span class="dt">2026-05-26</span>
     <span class="th">Gemini 3.5 y Omni marcan el inicio de modelos multimodales nativos capaces de razonamiento formal y acción.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-05-25.html" data-q="2026-05-25 La comunicación entre agentes evoluciona de texto a intercambio directo de KV caches para reducir drásticamente la latencia.">
     <span class="dt">2026-05-25</span>
     <span class="th">La comunicación entre agentes evoluciona de texto a intercambio directo de KV caches para reducir drásticamente la latencia.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-05-24.html" data-q="2026-05-24 Señal principal: Today, we share a breakthrough on the planar unit distance problem, a famous open question first posed by Paul Erdős in 1946. For (score 42).">
     <span class="dt">2026-05-24</span>
     <span class="th">Señal principal: Today, we share a breakthrough on the planar unit distance problem, a famous open question first posed by Paul Erdős in 1946. For (score 42).</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-05-23.html" data-q="2026-05-23 Crecimiento histórico del 79% anual en semiconductores durante el primer trimestre de 2026 confirma expansión masiva.">
     <span class="dt">2026-05-23</span>
     <span class="th">Crecimiento histórico del 79% anual en semiconductores durante el primer trimestre de 2026 confirma expansión masiva.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-05-22.html" data-q="2026-05-22 Agentes de IA cierran el ciclo de diseño industrial mediante orquestación autónoma de herramientas CAD-CAE.">
     <span class="dt">2026-05-22</span>
     <span class="th">Agentes de IA cierran el ciclo de diseño industrial mediante orquestación autónoma de herramientas CAD-CAE.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-05-21.html" data-q="2026-05-21 Modelos de razonamiento generalista logran hitos en matemáticas puras, superando capacidades de sistemas específicos.">
     <span class="dt">2026-05-21</span>
     <span class="th">Modelos de razonamiento generalista logran hitos en matemáticas puras, superando capacidades de sistemas específicos.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-05-20.html" data-q="2026-05-20 Google lanza Gemini 3.5 y Gemini Omni, integrando capacidades de accionamiento y generacion de video multimodal.">
     <span class="dt">2026-05-20</span>
     <span class="th">Google lanza Gemini 3.5 y Gemini Omni, integrando capacidades de accionamiento y generacion de video multimodal.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-05-19.html" data-q="2026-05-19 Leyes de escala identificadas para bibliotecas de habilidades en agentes: la precisión decae logarítmicamente.">
     <span class="dt">2026-05-19</span>
     <span class="th">Leyes de escala identificadas para bibliotecas de habilidades en agentes: la precisión decae logarítmicamente.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-05-18.html" data-q="2026-05-18 TSMC proyecta un choque de inversión masivo para 2026 con pedidos récord de herramientas por 31.3 mil millones de dólares.">
     <span class="dt">2026-05-18</span>
     <span class="th">TSMC proyecta un choque de inversión masivo para 2026 con pedidos récord de herramientas por 31.3 mil millones de dólares.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-05-17.html" data-q="2026-05-17 TSMC proyecta un incremento masivo en CapEx para 2026 indicando demanda sostenida de semiconductores de IA.">
     <span class="dt">2026-05-17</span>
     <span class="th">TSMC proyecta un incremento masivo en CapEx para 2026 indicando demanda sostenida de semiconductores de IA.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-05-16.html" data-q="2026-05-16 TSMC proyecta un incremento masivo en CapEx para 2026 impulsado por demanda sostenida de herramientas de fabricación.">
     <span class="dt">2026-05-16</span>
     <span class="th">TSMC proyecta un incremento masivo en CapEx para 2026 impulsado por demanda sostenida de herramientas de fabricación.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-05-15.html" data-q="2026-05-15 La orquestación de agentes evoluciona de prompts ambiguos a motores deterministas basados en grafos como GraphBit.">
     <span class="dt">2026-05-15</span>
     <span class="th">La orquestación de agentes evoluciona de prompts ambiguos a motores deterministas basados en grafos como GraphBit.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-05-14.html" data-q="2026-05-14 Google lanza TPUs de 8a generación (8t y 8i) optimizadas específicamente para flujos de agentes autónomos.">
     <span class="dt">2026-05-14</span>
     <span class="th">Google lanza TPUs de 8a generación (8t y 8i) optimizadas específicamente para flujos de agentes autónomos.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-05-13.html" data-q="2026-05-13 Comunicación entre LLMs evoluciona de texto a acoplamiento directo de estados ocultos vía modelos bicamerales.">
     <span class="dt">2026-05-13</span>
     <span class="th">Comunicación entre LLMs evoluciona de texto a acoplamiento directo de estados ocultos vía modelos bicamerales.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-05-12.html" data-q="2026-05-12 OpenAI expande su influencia corporativa mediante una nueva empresa de despliegue con 19 firmas de inversión.">
     <span class="dt">2026-05-12</span>
     <span class="th">OpenAI expande su influencia corporativa mediante una nueva empresa de despliegue con 19 firmas de inversión.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-05-11.html" data-q="2026-05-11 Google lanza TPU v8 (8t/8i) optimizada para la era de agentes, atacando cuellos de botella en entrenamiento e inferencia.">
     <span class="dt">2026-05-11</span>
     <span class="th">Google lanza TPU v8 (8t/8i) optimizada para la era de agentes, atacando cuellos de botella en entrenamiento e inferencia.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-05-10.html" data-q="2026-05-10 DeepMind utiliza EVE Online como sandbox para probar memoria y planificación de largo plazo en agentes de IA.">
     <span class="dt">2026-05-10</span>
     <span class="th">DeepMind utiliza EVE Online como sandbox para probar memoria y planificación de largo plazo en agentes de IA.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-05-09.html" data-q="2026-05-09 OpenAI lanza GPT-5.5 Instant priorizando velocidad y tono natural en respuestas.">
     <span class="dt">2026-05-09</span>
     <span class="th">OpenAI lanza GPT-5.5 Instant priorizando velocidad y tono natural en respuestas.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-05-08.html" data-q="2026-05-08 Google lanza TPU v8 (8t/8i) diseñadas para la era de agentes, optimizando el stack de hardware vertical.">
     <span class="dt">2026-05-08</span>
     <span class="th">Google lanza TPU v8 (8t/8i) diseñadas para la era de agentes, optimizando el stack de hardware vertical.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-05-07.html" data-q="2026-05-07 RL y optimización adaptativa como FREIA y APMPO están reemplazando los esquemas estáticos de mejora de razonamiento.">
     <span class="dt">2026-05-07</span>
     <span class="th">RL y optimización adaptativa como FREIA y APMPO están reemplazando los esquemas estáticos de mejora de razonamiento.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-05-05.html" data-q="2026-05-05 Sistemas multi-agente especializados como TADI demuestran IA operativa real en industria pesada (sector petróleo).">
     <span class="dt">2026-05-05</span>
     <span class="th">Sistemas multi-agente especializados como TADI demuestran IA operativa real en industria pesada (sector petróleo).</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-05-04.html" data-q="2026-05-04 Google lanza la 8ª generación de TPUs especializada en agentes autónomos e inferencia de alto rendimiento.">
     <span class="dt">2026-05-04</span>
     <span class="th">Google lanza la 8ª generación de TPUs especializada en agentes autónomos e inferencia de alto rendimiento.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-05-03.html" data-q="2026-05-03 NVIDIA reduce tiempos de entrenamiento de 8 horas a 80 segundos con DGX SuperPOD en MLPerf.">
     <span class="dt">2026-05-03</span>
     <span class="th">NVIDIA reduce tiempos de entrenamiento de 8 horas a 80 segundos con DGX SuperPOD en MLPerf.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-05-02.html" data-q="2026-05-02 Google DeepMind avanza en razonamiento robótico espacial con Gemini ER 1.6 para tareas autónomas complejas.">
     <span class="dt">2026-05-02</span>
     <span class="th">Google DeepMind avanza en razonamiento robótico espacial con Gemini ER 1.6 para tareas autónomas complejas.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-05-01.html" data-q="2026-05-01 Gemma 4 establece un nuevo estándar de rendimiento en modelos abiertos optimizados para flujos agenticos.">
     <span class="dt">2026-05-01</span>
     <span class="th">Gemma 4 establece un nuevo estándar de rendimiento en modelos abiertos optimizados para flujos agenticos.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   
@@ -1232,181 +1264,181 @@
   <a class="day" href="d/2026-04-30.html" data-q="2026-04-30 Agentes autonomos operan exitosamente on-chain moviendo 20M USD con 99.9% de efectividad en liquidacion de activos.">
     <span class="dt">2026-04-30</span>
     <span class="th">Agentes autonomos operan exitosamente on-chain moviendo 20M USD con 99.9% de efectividad en liquidacion de activos.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-04-29.html" data-q="2026-04-29 OpenAI lanza GPT-5.5 y 5.5 Pro, acelerando el ciclo de actualizaciones de modelos de razonamiento avanzado.">
     <span class="dt">2026-04-29</span>
     <span class="th">OpenAI lanza GPT-5.5 y 5.5 Pro, acelerando el ciclo de actualizaciones de modelos de razonamiento avanzado.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-04-28.html" data-q="2026-04-28 Transición hacia hardware optimizado específicamente para flujos de trabajo de agentes (Google TPU v8t/8i).">
     <span class="dt">2026-04-28</span>
     <span class="th">Transición hacia hardware optimizado específicamente para flujos de trabajo de agentes (Google TPU v8t/8i).</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-04-27.html" data-q="2026-04-27 Lead: An Artifact-based Agent Framework for Adaptive and Reproducible Medical Processing (score 100, agents_automation).">
     <span class="dt">2026-04-27</span>
     <span class="th">Lead: An Artifact-based Agent Framework for Adaptive and Reproducible Medical Processing (score 100, agents_automation).</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-04-26.html" data-q="2026-04-26 OpenAI lanza GPT-5.5 con enfoque nativo en agentes autónomos y razonamiento de tareas complejas.">
     <span class="dt">2026-04-26</span>
     <span class="th">OpenAI lanza GPT-5.5 con enfoque nativo en agentes autónomos y razonamiento de tareas complejas.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-04-25.html" data-q="2026-04-25 OpenAI lanza GPT-5.5 y GPT-5.5 Pro elevando el techo de inteligencia y eficiencia en su API.">
     <span class="dt">2026-04-25</span>
     <span class="th">OpenAI lanza GPT-5.5 y GPT-5.5 Pro elevando el techo de inteligencia y eficiencia en su API.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-04-24.html" data-q="2026-04-24 GPT-5.5 redefine la capacidad agentica con razonamiento complejo y uso avanzado de herramientas para trabajo real.">
     <span class="dt">2026-04-24</span>
     <span class="th">GPT-5.5 redefine la capacidad agentica con razonamiento complejo y uso avanzado de herramientas para trabajo real.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-04-23.html" data-q="2026-04-23 OpenAI lanza GPT-5.2 y 5.3 Codex utilizando infraestructura masiva NVIDIA GB200 NVL72.">
     <span class="dt">2026-04-23</span>
     <span class="th">OpenAI lanza GPT-5.2 y 5.3 Codex utilizando infraestructura masiva NVIDIA GB200 NVL72.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-04-22.html" data-q="2026-04-22 NVIDIA desvela la plataforma Rubin marcando el salto arquitectónico post-Blackwell para una economía de $10T.">
     <span class="dt">2026-04-22</span>
     <span class="th">NVIDIA desvela la plataforma Rubin marcando el salto arquitectónico post-Blackwell para una economía de $10T.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-04-21.html" data-q="2026-04-21 Anthropic and Amazon secure 5GW of compute, a massive leap in infra scaling expectations through 2026.">
     <span class="dt">2026-04-21</span>
     <span class="th">Anthropic and Amazon secure 5GW of compute, a massive leap in infra scaling expectations through 2026.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-04-20.html" data-q="2026-04-20 OpenAI GPT-5.2 and 5.3 training on GB200 validates massive infrastructure scaling.">
     <span class="dt">2026-04-20</span>
     <span class="th">OpenAI GPT-5.2 and 5.3 training on GB200 validates massive infrastructure scaling.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-04-19.html" data-q="2026-04-19 NVIDIA presenta Rubin como su plataforma de próxima generación para escalar IA en todos los dominios y dispositivos.">
     <span class="dt">2026-04-19</span>
     <span class="th">NVIDIA presenta Rubin como su plataforma de próxima generación para escalar IA en todos los dominios y dispositivos.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-04-18.html" data-q="2026-04-18 TSMC domina manufactura avanzada con resultados récord y advierte sobre barreras de entrada extremas en fundición.">
     <span class="dt">2026-04-18</span>
     <span class="th">TSMC domina manufactura avanzada con resultados récord y advierte sobre barreras de entrada extremas en fundición.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-04-17.html" data-q="2026-04-17 OpenAI lanza GPT-5.2 y GPT-5.3 Codex, consolidando modelos que participan en su propio desarrollo de software.">
     <span class="dt">2026-04-17</span>
     <span class="th">OpenAI lanza GPT-5.2 y GPT-5.3 Codex, consolidando modelos que participan en su propio desarrollo de software.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-04-16.html" data-q="2026-04-16 NVIDIA Rubin define el nuevo roadmap de hardware 2026 con un mercado potencial de 10 billones de dólares.">
     <span class="dt">2026-04-16</span>
     <span class="th">NVIDIA Rubin define el nuevo roadmap de hardware 2026 con un mercado potencial de 10 billones de dólares.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-04-15.html" data-q="2026-04-15 Mix de hoy (top): Modelos (9/15), Infraestructura/HW (5/15), invest (1/15).">
     <span class="dt">2026-04-15</span>
     <span class="th">Mix de hoy (top): Modelos (9/15), Infraestructura/HW (5/15), invest (1/15).</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-04-14.html" data-q="2026-04-14 OpenAI lanza GPT-5.2 y GPT-5.3 Codex, consolidando la era de agentes que mejoran su propio código.">
     <span class="dt">2026-04-14</span>
     <span class="th">OpenAI lanza GPT-5.2 y GPT-5.3 Codex, consolidando la era de agentes que mejoran su propio código.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-04-13.html" data-q="2026-04-13 Hyperscalers are shifting to custom silicon, forcing Intel to rethink its foundry business model.">
     <span class="dt">2026-04-13</span>
     <span class="th">Hyperscalers are shifting to custom silicon, forcing Intel to rethink its foundry business model.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-04-12.html" data-q="2026-04-12 Mix de hoy (top): Modelos (11/15), Misc (3/15), Infraestructura/HW (1/15).">
     <span class="dt">2026-04-12</span>
     <span class="th">Mix de hoy (top): Modelos (11/15), Misc (3/15), Infraestructura/HW (1/15).</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-04-11.html" data-q="2026-04-11 OpenAI confirma entrenamiento de GPT-5.2 y 5.3 sobre Blackwell (GB200) y Hopper de NVIDIA.">
     <span class="dt">2026-04-11</span>
     <span class="th">OpenAI confirma entrenamiento de GPT-5.2 y 5.3 sobre Blackwell (GB200) y Hopper de NVIDIA.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-04-10.html" data-q="2026-04-10 SiFive consolida RISC-V como alternativa real a x86/ARM en centros de datos para agentes con 400M$ de inversion.">
     <span class="dt">2026-04-10</span>
     <span class="th">SiFive consolida RISC-V como alternativa real a x86/ARM en centros de datos para agentes con 400M$ de inversion.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-04-09.html" data-q="2026-04-09 Mix de hoy (top): Modelos (12/15), Misc (2/15), Infraestructura/HW (1/15).">
     <span class="dt">2026-04-09</span>
     <span class="th">Mix de hoy (top): Modelos (12/15), Misc (2/15), Infraestructura/HW (1/15).</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-04-08.html" data-q="2026-04-08 Mix de hoy (top): Modelos (11/15), Misc (4/15).">
     <span class="dt">2026-04-08</span>
     <span class="th">Mix de hoy (top): Modelos (11/15), Misc (4/15).</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-04-07.html" data-q="2026-04-07 OpenAI confirms GPT-5.2 and agentic 5.3 Codex models running on NVIDIA GB200 systems, accelerating development cycles.">
     <span class="dt">2026-04-07</span>
     <span class="th">OpenAI confirms GPT-5.2 and agentic 5.3 Codex models running on NVIDIA GB200 systems, accelerating development cycles.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-04-06.html" data-q="2026-04-06 Google lanza Gemma 4 bajo Apache 2.0, democratizando razonamiento avanzado en hardware local.">
     <span class="dt">2026-04-06</span>
     <span class="th">Google lanza Gemma 4 bajo Apache 2.0, democratizando razonamiento avanzado en hardware local.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-04-05.html" data-q="2026-04-05 NVIDIA acelera hoja de ruta hacia plataforma Rubin y ASICs de 2nm para liderar infraestructura de 10 billones.">
     <span class="dt">2026-04-05</span>
     <span class="th">NVIDIA acelera hoja de ruta hacia plataforma Rubin y ASICs de 2nm para liderar infraestructura de 10 billones.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-04-04.html" data-q="2026-04-04 OpenAI alcanza valoración de $852B tras ronda récord de $122B para acelerar el desarrollo de AGI.">
     <span class="dt">2026-04-04</span>
     <span class="th">OpenAI alcanza valoración de $852B tras ronda récord de $122B para acelerar el desarrollo de AGI.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-04-03.html" data-q="2026-04-03 Google DeepMind lanza Gemma 4, modelos abiertos con licencia Apache 2.0 optimizados para razonamiento y agentes.">
     <span class="dt">2026-04-03</span>
     <span class="th">Google DeepMind lanza Gemma 4, modelos abiertos con licencia Apache 2.0 optimizados para razonamiento y agentes.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-04-02.html" data-q="2026-04-02 Google renueva su ecosistema con Gemini 3.1 Pro, Deep Think, Lyria 3 y Veo 3.1 Lite en un despliegue masivo">
     <span class="dt">2026-04-02</span>
     <span class="th">Google renueva su ecosistema con Gemini 3.1 Pro, Deep Think, Lyria 3 y Veo 3.1 Lite en un despliegue masivo</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-04-01.html" data-q="2026-04-01 Mix de hoy (top): Infraestructura/HW (8/15), Modelos (7/15).">
     <span class="dt">2026-04-01</span>
     <span class="th">Mix de hoy (top): Infraestructura/HW (8/15), Modelos (7/15).</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   
@@ -1415,187 +1447,187 @@
   <a class="day" href="d/2026-03-31.html" data-q="2026-03-31 Mix de hoy (top): Modelos (9/15), Infraestructura/HW (3/15), Misc (3/15).">
     <span class="dt">2026-03-31</span>
     <span class="th">Mix de hoy (top): Modelos (9/15), Infraestructura/HW (3/15), Misc (3/15).</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-03-30.html" data-q="2026-03-30 OpenAI lanza GPT-5.4 unificando razonamiento, codificación y flujos agenticos en un modelo de frontera.">
     <span class="dt">2026-03-30</span>
     <span class="th">OpenAI lanza GPT-5.4 unificando razonamiento, codificación y flujos agenticos en un modelo de frontera.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-03-29.html" data-q="2026-03-29 OpenAI confirma el uso de infraestructura NVIDIA Blackwell (GB200) para el entrenamiento de GPT-5.2 y GPT-5.3 Codex.">
     <span class="dt">2026-03-29</span>
     <span class="th">OpenAI confirma el uso de infraestructura NVIDIA Blackwell (GB200) para el entrenamiento de GPT-5.2 y GPT-5.3 Codex.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-03-28.html" data-q="2026-03-28 NVIDIA acelera el ciclo de hardware con Rubin y proyecta un mercado global de $10 billones impulsado por IA.">
     <span class="dt">2026-03-28</span>
     <span class="th">NVIDIA acelera el ciclo de hardware con Rubin y proyecta un mercado global de $10 billones impulsado por IA.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-03-27.html" data-q="2026-03-27 OpenAI lanza GPT-5.4 integrando razonamiento avanzado y flujos agenticos en ChatGPT y API.">
     <span class="dt">2026-03-27</span>
     <span class="th">OpenAI lanza GPT-5.4 integrando razonamiento avanzado y flujos agenticos en ChatGPT y API.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-03-26.html" data-q="2026-03-26 OpenAI confirma entrenamiento de GPT-5.2 y GPT-5.3 sobre infraestructura NVIDIA Blackwell (GB200).">
     <span class="dt">2026-03-26</span>
     <span class="th">OpenAI confirma entrenamiento de GPT-5.2 y GPT-5.3 sobre infraestructura NVIDIA Blackwell (GB200).</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-03-25.html" data-q="2026-03-25 NVIDIA presenta la arquitectura Rubin acelerando el ciclo de vida del hardware hacia 2026.">
     <span class="dt">2026-03-25</span>
     <span class="th">NVIDIA presenta la arquitectura Rubin acelerando el ciclo de vida del hardware hacia 2026.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-03-24.html" data-q="2026-03-24 OpenAI lanza GPT-5.4 Thinking/Pro, consolidando flujos agénticos y razonamiento avanzado en modelos de producción.">
     <span class="dt">2026-03-24</span>
     <span class="th">OpenAI lanza GPT-5.4 Thinking/Pro, consolidando flujos agénticos y razonamiento avanzado en modelos de producción.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-03-23.html" data-q="2026-03-23 NVIDIA consolida dominio absoluto proveyendo infraestructura GB200 para los nuevos modelos GPT-5.2 y GPT-5.3 de OpenAI.">
     <span class="dt">2026-03-23</span>
     <span class="th">NVIDIA consolida dominio absoluto proveyendo infraestructura GB200 para los nuevos modelos GPT-5.2 y GPT-5.3 de OpenAI.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-03-22.html" data-q="2026-03-22 NVIDIA acelera el ciclo de hardware con la arquitectura Rubin y enfoque en infraestructura soberana europea.">
     <span class="dt">2026-03-22</span>
     <span class="th">NVIDIA acelera el ciclo de hardware con la arquitectura Rubin y enfoque en infraestructura soberana europea.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-03-21.html" data-q="2026-03-21 OpenAI despliega GPT-5.4 integrando razonamiento avanzado y flujos agenticos en una arquitectura frontera.">
     <span class="dt">2026-03-21</span>
     <span class="th">OpenAI despliega GPT-5.4 integrando razonamiento avanzado y flujos agenticos en una arquitectura frontera.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-03-20.html" data-q="2026-03-20 OpenAI lanza GPT-5.2 y 5.3 entrenados en Blackwell/GB200, validando el escalado masivo de hardware.">
     <span class="dt">2026-03-20</span>
     <span class="th">OpenAI lanza GPT-5.2 y 5.3 entrenados en Blackwell/GB200, validando el escalado masivo de hardware.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-03-19.html" data-q="2026-03-19 OpenAI acelera el ciclo con GPT-5.4 mini, priorizando agentes autónomos y velocidad de ejecución.">
     <span class="dt">2026-03-19</span>
     <span class="th">OpenAI acelera el ciclo con GPT-5.4 mini, priorizando agentes autónomos y velocidad de ejecución.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-03-18.html" data-q="2026-03-18 OpenAI lanza GPT-5.4 elevando el estándar de razonamiento y capacidades de agentes autónomos en el mercado.">
     <span class="dt">2026-03-18</span>
     <span class="th">OpenAI lanza GPT-5.4 elevando el estándar de razonamiento y capacidades de agentes autónomos en el mercado.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-03-17.html" data-q="2026-03-17 OpenAI confirma el entrenamiento de GPT-5.2 y 5.3 Codex sobre infraestructura NVIDIA Blackwell y Hopper.">
     <span class="dt">2026-03-17</span>
     <span class="th">OpenAI confirma el entrenamiento de GPT-5.2 y 5.3 Codex sobre infraestructura NVIDIA Blackwell y Hopper.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-03-16.html" data-q="2026-03-16 NVIDIA presenta la plataforma Rubin y mejoras radicales en DGX SuperPOD, reduciendo tiempos de 8 horas a 80 segundos.">
     <span class="dt">2026-03-16</span>
     <span class="th">NVIDIA presenta la plataforma Rubin y mejoras radicales en DGX SuperPOD, reduciendo tiempos de 8 horas a 80 segundos.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-03-15.html" data-q="2026-03-15 Lanzamiento de GPT-5.4 con enfoque masivo en razonamiento, agentes y revision de codigo avanzada.">
     <span class="dt">2026-03-15</span>
     <span class="th">Lanzamiento de GPT-5.4 con enfoque masivo en razonamiento, agentes y revision de codigo avanzada.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-03-14.html" data-q="2026-03-14 OpenAI entrena GPT-5.2 y 5.3 sobre NVIDIA GB200, marcando el inicio de los modelos agénticos nativos.">
     <span class="dt">2026-03-14</span>
     <span class="th">OpenAI entrena GPT-5.2 y 5.3 sobre NVIDIA GB200, marcando el inicio de los modelos agénticos nativos.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-03-13.html" data-q="2026-03-13 Mix de hoy (top): Modelos (9/15), Misc (3/15), Infraestructura/HW (2/15).">
     <span class="dt">2026-03-13</span>
     <span class="th">Mix de hoy (top): Modelos (9/15), Misc (3/15), Infraestructura/HW (2/15).</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-03-12.html" data-q="2026-03-12 OpenAI acelera el ciclo de lanzamientos con GPT-5.4 y capacidades de razonamiento/agentes integradas.">
     <span class="dt">2026-03-12</span>
     <span class="th">OpenAI acelera el ciclo de lanzamientos con GPT-5.4 y capacidades de razonamiento/agentes integradas.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-03-11.html" data-q="2026-03-11 OpenAI escala a GPT-5.3 Codex y GPT-5.2 utilizando infraestructura NVIDIA GB200 para capacidades agentic avanzadas.">
     <span class="dt">2026-03-11</span>
     <span class="th">OpenAI escala a GPT-5.3 Codex y GPT-5.2 utilizando infraestructura NVIDIA GB200 para capacidades agentic avanzadas.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-03-10.html" data-q="2026-03-10 GPT-5.2 y 5.3 Codex confirman el despliegue de modelos agenticos sobre infraestructura NVIDIA GB200.">
     <span class="dt">2026-03-10</span>
     <span class="th">GPT-5.2 y 5.3 Codex confirman el despliegue de modelos agenticos sobre infraestructura NVIDIA GB200.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-03-09.html" data-q="2026-03-09 Lanzamiento de GPT-5.2 y GPT-5.3 (agéntico) utilizando infraestructura avanzada GB200 de NVIDIA.">
     <span class="dt">2026-03-09</span>
     <span class="th">Lanzamiento de GPT-5.2 y GPT-5.3 (agéntico) utilizando infraestructura avanzada GB200 de NVIDIA.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-03-08.html" data-q="2026-03-08 Mix de hoy (top): Infraestructura/HW (12/15), Modelos (3/15).">
     <span class="dt">2026-03-08</span>
     <span class="th">Mix de hoy (top): Infraestructura/HW (12/15), Modelos (3/15).</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-03-07.html" data-q="2026-03-07 Lanzamiento de GPT-5.2 y 5.3 Codex acelera la adopción de modelos agénticos sobre infraestructura NVIDIA GB200.">
     <span class="dt">2026-03-07</span>
     <span class="th">Lanzamiento de GPT-5.2 y 5.3 Codex acelera la adopción de modelos agénticos sobre infraestructura NVIDIA GB200.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-03-06.html" data-q="2026-03-06 OpenAI confirma entrenamiento de GPT-5.2 y GPT-5.3 Codex sobre infraestructura NVIDIA Hopper y GB200.">
     <span class="dt">2026-03-06</span>
     <span class="th">OpenAI confirma entrenamiento de GPT-5.2 y GPT-5.3 Codex sobre infraestructura NVIDIA Hopper y GB200.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-03-05.html" data-q="2026-03-05 GPT-5.2 y GPT-5.3 Codex consolidan el entrenamiento masivo en infraestructura NVIDIA GB200">
     <span class="dt">2026-03-05</span>
     <span class="th">GPT-5.2 y GPT-5.3 Codex consolidan el entrenamiento masivo en infraestructura NVIDIA GB200</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-03-04.html" data-q="2026-03-04 OpenAI lanza GPT-5.2 y GPT-5.3 Codex optimizados para trabajo profesional y autocodificación agéntica.">
     <span class="dt">2026-03-04</span>
     <span class="th">OpenAI lanza GPT-5.2 y GPT-5.3 Codex optimizados para trabajo profesional y autocodificación agéntica.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-03-03.html" data-q="2026-03-03 OpenAI confirma dependencia de NVIDIA GB200 para el entrenamiento y despliegue de la serie GPT-5.">
     <span class="dt">2026-03-03</span>
     <span class="th">OpenAI confirma dependencia de NVIDIA GB200 para el entrenamiento y despliegue de la serie GPT-5.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-03-02.html" data-q="2026-03-02 Mercado de semiconductores proyecta crecimiento del 25.6% para 2025 impulsado por la demanda de infraestructura IA.">
     <span class="dt">2026-03-02</span>
     <span class="th">Mercado de semiconductores proyecta crecimiento del 25.6% para 2025 impulsado por la demanda de infraestructura IA.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-03-01.html" data-q="2026-03-01 OpenAI lanza GPT-5.2 y 5.3 Codex entrenados sobre infraestructura NVIDIA Blackwell y sistemas GB200 NVL72.">
     <span class="dt">2026-03-01</span>
     <span class="th">OpenAI lanza GPT-5.2 y 5.3 Codex entrenados sobre infraestructura NVIDIA Blackwell y sistemas GB200 NVL72.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   
@@ -1604,103 +1636,104 @@
   <a class="day" href="d/2026-02-28.html" data-q="2026-02-28 OpenAI despliega GPT-5.2 y GPT-5.3 Codex utilizando infraestructura NVIDIA Blackwell de ultima generacion.">
     <span class="dt">2026-02-28</span>
     <span class="th">OpenAI despliega GPT-5.2 y GPT-5.3 Codex utilizando infraestructura NVIDIA Blackwell de ultima generacion.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-02-27.html" data-q="2026-02-27 OpenAI lanza GPT-5.2 y GPT-5.3 Codex entrenados sobre infraestructura NVIDIA Blackwell y Hopper.">
     <span class="dt">2026-02-27</span>
     <span class="th">OpenAI lanza GPT-5.2 y GPT-5.3 Codex entrenados sobre infraestructura NVIDIA Blackwell y Hopper.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-02-26.html" data-q="2026-02-26 OpenAI confirms GPT-5.2 and agentic GPT-5.3 Codex training on NVIDIA GB200 infrastructure.">
     <span class="dt">2026-02-26</span>
     <span class="th">OpenAI confirms GPT-5.2 and agentic GPT-5.3 Codex training on NVIDIA GB200 infrastructure.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-02-25.html" data-q="2026-02-25 OpenAI escala a GPT-5.3 usando arquitectura NVIDIA GB200 para modelos agénticos que se auto-construyen.">
     <span class="dt">2026-02-25</span>
     <span class="th">OpenAI escala a GPT-5.3 usando arquitectura NVIDIA GB200 para modelos agénticos que se auto-construyen.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-02-24.html" data-q="2026-02-24 OpenAI lanza GPT-5.2 y 5.3 Codex entrenados en infraestructura NVIDIA GB200 para agentes auto-mejorables.">
     <span class="dt">2026-02-24</span>
     <span class="th">OpenAI lanza GPT-5.2 y 5.3 Codex entrenados en infraestructura NVIDIA GB200 para agentes auto-mejorables.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-02-23.html" data-q="2026-02-23 OpenAI reveals GPT-5.2 and GPT-5.3 Codex trained on NVIDIA&#39;s GB200 Blackwell infrastructure.">
     <span class="dt">2026-02-23</span>
     <span class="th">OpenAI reveals GPT-5.2 and GPT-5.3 Codex trained on NVIDIA&#39;s GB200 Blackwell infrastructure.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-02-22.html" data-q="2026-02-22 OpenAI despliega GPT-5.2 y 5.3 Codex utilizando infraestructura NVIDIA Blackwell GB200 de alto rendimiento.">
     <span class="dt">2026-02-22</span>
     <span class="th">OpenAI despliega GPT-5.2 y 5.3 Codex utilizando infraestructura NVIDIA Blackwell GB200 de alto rendimiento.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-02-21.html" data-q="2026-02-21 OpenAI entrena GPT-5.2 y GPT-5.3 Codex sobre infraestructura Blackwell GB200 de NVIDIA.">
     <span class="dt">2026-02-21</span>
     <span class="th">OpenAI entrena GPT-5.2 y GPT-5.3 Codex sobre infraestructura Blackwell GB200 de NVIDIA.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-02-20.html" data-q="2026-02-20 OpenAI entrena GPT-5.2 y GPT-5.3 Codex sobre infraestructura NVIDIA Blackwell GB200 para potenciar agentes complejos.">
     <span class="dt">2026-02-20</span>
     <span class="th">OpenAI entrena GPT-5.2 y GPT-5.3 Codex sobre infraestructura NVIDIA Blackwell GB200 para potenciar agentes complejos.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-02-19.html" data-q="2026-02-19 OpenAI confirma GPT-5.2 y 5.3 Codex, enfocándose en modelos agénticos que participan en su propio desarrollo.">
     <span class="dt">2026-02-19</span>
     <span class="th">OpenAI confirma GPT-5.2 y 5.3 Codex, enfocándose en modelos agénticos que participan en su propio desarrollo.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-02-18.html" data-q="2026-02-18 OpenAI consolida su era agentica con GPT-5.3 Codex y la contratacion de talento clave para agentes personales.">
     <span class="dt">2026-02-18</span>
     <span class="th">OpenAI consolida su era agentica con GPT-5.3 Codex y la contratacion de talento clave para agentes personales.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-02-17.html" data-q="2026-02-17 OpenAI lanza GPT-5.2 y Codex 5.3 entrenados sobre infraestructura NVIDIA Blackwell y sistemas GB200.">
     <span class="dt">2026-02-17</span>
     <span class="th">OpenAI lanza GPT-5.2 y Codex 5.3 entrenados sobre infraestructura NVIDIA Blackwell y sistemas GB200.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-02-16.html" data-q="2026-02-16 OpenAI acelera la era de agentes personales y modelos de codificación autónoma con la serie GPT-5.">
     <span class="dt">2026-02-16</span>
     <span class="th">OpenAI acelera la era de agentes personales y modelos de codificación autónoma con la serie GPT-5.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-02-15.html" data-q="2026-02-15 NVIDIA y OpenAI aceleran el ciclo de modelos frontera con el despliegue de GPT-5.2 sobre sistemas GB200.">
     <span class="dt">2026-02-15</span>
     <span class="th">NVIDIA y OpenAI aceleran el ciclo de modelos frontera con el despliegue de GPT-5.2 sobre sistemas GB200.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-02-14.html" data-q="2026-02-14 NVIDIA consolida su dominio hasta 2026 con la plataforma Rubin y el despliegue de la serie GPT-5 en GB200.">
     <span class="dt">2026-02-14</span>
     <span class="th">NVIDIA consolida su dominio hasta 2026 con la plataforma Rubin y el despliegue de la serie GPT-5 en GB200.</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   <a class="day" href="d/2026-02-13.html" data-q="2026-02-13 Dominancia de categoría: infra (17)">
     <span class="dt">2026-02-13</span>
     <span class="th">Dominancia de categoría: infra (17)</span>
-    <span class="n">15 señales</span>
+    <span class="n"><span class="l-es">15 señales</span><span class="l-en" lang="en">15 signals</span></span>
   </a>
   
   
   </div>
-  <div class="empty" id="none" hidden>Nada coincide.</div>
-  <footer>243 snapshots · 3547 señales indexadas · falta 6 may 2026</footer>
+  <div class="empty" id="none" hidden><span class="l-es">Nada coincide.</span><span class="l-en" lang="en">No matches.</span></div>
+  <div class="credits"><p class="credits-by"><span class="l-es">Hecho por</span><span class="l-en" lang="en">Made by</span> <strong>Rolando Fernández</strong></p><a class="bmc" href="https://buymeacoffee.com/rolandofernandez" target="_blank" rel="noopener"><span aria-hidden="true">☕</span> <span class="l-es">Invítame a un café</span><span class="l-en" lang="en">Buy me a coffee</span></a></div>
+  <footer>243 snapshots · 3549 señales indexadas · falta 6 may 2026</footer>
 </div>
 <script>
 (function(){
@@ -1863,6 +1896,20 @@
       });
     });
     paint();
+
+    var langBtns = document.querySelectorAll('[data-lang-set]');
+    function curLang(){ try { return localStorage.getItem('lang') === 'en' ? 'en' : 'es'; } catch(e){ return 'es'; } }
+    function paintLang(){ var c = curLang(); langBtns.forEach(function(b){ b.setAttribute('aria-pressed', String(b.getAttribute('data-lang-set') === c)); }); }
+    langBtns.forEach(function(b){
+      b.addEventListener('click', function(){
+        var l = b.getAttribute('data-lang-set');
+        try { if (l === 'en') localStorage.setItem('lang', 'en'); else localStorage.removeItem('lang'); } catch(e){}
+        var d = document.documentElement;
+        if (l === 'en') { d.setAttribute('data-lang', 'en'); d.lang = 'en'; } else { d.removeAttribute('data-lang'); d.lang = 'es'; }
+        paintLang();
+      });
+    });
+    paintLang();
   })();
 </script>
 </body>

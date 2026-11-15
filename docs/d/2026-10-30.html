@@ -4,15 +4,31 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AI Strategic Radar</title>
-<meta name="description" content="Radar diario de la carrera AGI: modelos frontier, compute, China y agentes. Solo lo que mueve la aguja."/>
+<title>RADAR.IA · Edición del 2026-10-30</title>
+<meta name="description" content="Radar diario de la carrera hacia la AGI: modelos frontier, agentes, chips y compute, China y economía de la IA. Solo lo que cambia algo, con fuente y análisis."/>
+<meta name="robots" content="index, follow, max-image-preview:large"/>
+<link rel="canonical" href="https://aievolve.netlify.app/d/2026-10-30.html"/>
+<meta name="google-site-verification" content="yh8wm8HsAeqP892U5UGczQs-RLnGuNHx7WGfNntGduk"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="RADAR.IA"/>
+<meta property="og:locale" content="es_ES"/><meta property="og:locale:alternate" content="en_US"/>
+<meta property="og:title" content="RADAR.IA · Edición del 2026-10-30"/>
+<meta property="og:description" content="Radar diario de la carrera hacia la AGI: modelos frontier, agentes, chips y compute, China y economía de la IA. Solo lo que cambia algo, con fuente y análisis."/>
+<meta property="og:url" content="https://aievolve.netlify.app/d/2026-10-30.html"/>
+<meta property="og:image" content="https://aievolve.netlify.app/og.png"/>
+<meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="RADAR.IA · Edición del 2026-10-30"/>
+<meta name="twitter:description" content="Radar diario de la carrera hacia la AGI: modelos frontier, agentes, chips y compute, China y economía de la IA. Solo lo que cambia algo, con fuente y análisis."/>
+<meta name="twitter:image" content="https://aievolve.netlify.app/og.png"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://aievolve.netlify.app/#website","url":"https://aievolve.netlify.app/","name":"RADAR.IA","description":"Radar diario de la carrera hacia la AGI, con fuentes y análisis.","inLanguage":["es","en"],"isAccessibleForFree":true,"author":{"@type":"Person","name":"Rolando Fernández"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 <meta name="theme-color" content="#F4F3EF" media="(prefers-color-scheme: light)"/>
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)"/>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='1' y='1' width='30' height='30' fill='%23FF5722' stroke='%23121211' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%23121211' stroke-width='2.4'/%3E%3Cpath d='M16 16V6A10 10 0 0 1 25.5 12.9Z' fill='%23121211'/%3E%3Ccircle cx='11' cy='19.5' r='2' fill='%23121211'/%3E%3C/svg%3E"/>
-<script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<script>(function(){try{var d=document.documentElement,t=localStorage.getItem('theme'),l=localStorage.getItem('lang');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);if(l==='en'){d.setAttribute('data-lang','en');d.lang='en';}}catch(e){}})();</script>
 <script>
   // Va en <head> para estar escuchando antes de que se pinte la primera imagen.
   // Una imagen remota caida (hotlink bloqueado, 404, caducada) se cambia por la
@@ -100,6 +116,21 @@
   .page-h1{font:700 clamp(30px,4.2vw,56px)/1 var(--f-head);letter-spacing:-.03em;text-transform:uppercase;margin:6px 0 12px}
   .lede{color:var(--muted);font-size:17px;max-width:72ch;margin:0}
   .lead h1.page-h1{font:700 clamp(30px,4.2vw,56px)/1 var(--f-head);letter-spacing:-.03em;margin:6px 0 12px}
+
+  /* Bilingue: cada texto traducible va dos veces; se ve el del idioma activo. */
+  /* !important: reglas de componente con display propio no deben reactivar el idioma oculto. */
+  html:not([data-lang="en"]) .l-en{display:none!important}
+  html[data-lang="en"] .l-es{display:none!important}
+  .top-ctl{display:flex;gap:10px;flex-wrap:wrap}
+
+  /* Firma, como en moloch.sh: discreta, al pie */
+  .credits{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+           margin-top:40px;padding:12px 16px;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow-sm)}
+  .credits-by{margin:0;font:400 12px var(--f-mono);color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+  .credits-by strong{font:700 14px var(--f-head);color:var(--text);text-transform:none;letter-spacing:0;margin-left:6px}
+  .bmc{display:inline-flex;align-items:center;gap:7px;font:700 11.5px/1 var(--f-mono);text-transform:uppercase;
+       padding:8px 11px;background:var(--lime);color:#121211;border:2px solid var(--ink);box-shadow:var(--shadow-sm)}
+  .bmc:hover{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--ink)}
 
   @media(max-width:900px){
     .navtabs{order:3;margin:0;width:100%}
@@ -204,8 +235,8 @@
   .widget{background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow);padding:14px 16px}
   .widget-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:-14px -16px 12px;
                 padding:10px 16px;border-bottom:2px solid var(--ink);background:var(--card-2)}
-  .widget-title span:first-child{display:flex;align-items:center;gap:9px;font:700 12px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.06em}
-  .widget-title span:first-child::before{content:"";width:10px;height:10px;background:var(--orange);border:2px solid var(--ink)}
+  .widget-title>span:first-child{display:flex;align-items:center;gap:9px;font:700 12px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.06em}
+  .widget-title>span:first-child::before{content:"";width:10px;height:10px;background:var(--orange);border:2px solid var(--ink)}
   .widget-title .lbl{font:400 10px var(--f-mono);color:var(--muted);text-transform:uppercase}
 
   .market-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
@@ -269,40 +300,40 @@
 </style>
 </head>
 <body>
-<header class="topnav"><a class="brand" href="../index.html" aria-label="Radar.IA, portada"><span class="brand-icon"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 12V2.5A9.5 9.5 0 0 1 21.03 9.06Z" fill="currentColor"/><circle cx="7.5" cy="15" r="1.7" fill="currentColor"/></svg></span><span class="brand-text"><strong>Radar<em>.IA</em></strong><small>Radar estratégico de la carrera AGI</small></span></a><nav class="navtabs" aria-label="Secciones"><a class="navtab" href="../index.html"><i>01</i> Diario</a><a class="navtab" href="../weekly.html"><i>02</i> Semanal</a><a class="navtab" href="../archivo.html" aria-current="page"><i>03</i> Archivo</a></nav><div class="seg" role="group" aria-label="Tema"><button type="button" class="seg-btn" data-theme-set="auto">Auto</button><button type="button" class="seg-btn" data-theme-set="light">Claro</button><button type="button" class="seg-btn" data-theme-set="dark">Oscuro</button></div></header>
+<header class="topnav"><a class="brand" href="../index.html" aria-label="Radar.IA, portada"><span class="brand-icon"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 12V2.5A9.5 9.5 0 0 1 21.03 9.06Z" fill="currentColor"/><circle cx="7.5" cy="15" r="1.7" fill="currentColor"/></svg></span><span class="brand-text"><strong>Radar<em>.IA</em></strong><small><span class="l-es">Radar estratégico de la carrera AGI</span><span class="l-en" lang="en">Strategic radar of the AGI race</span></small></span></a><nav class="navtabs" aria-label="Secciones"><a class="navtab" href="../index.html"><i>01</i> <span class="l-es">Diario</span><span class="l-en" lang="en">Daily</span></a><a class="navtab" href="../weekly.html"><i>02</i> <span class="l-es">Semanal</span><span class="l-en" lang="en">Weekly</span></a><a class="navtab" href="../archivo.html" aria-current="page"><i>03</i> <span class="l-es">Archivo</span><span class="l-en" lang="en">Archive</span></a></nav><div class="top-ctl"><div class="seg" role="group" aria-label="Idioma"><button type="button" class="seg-btn" data-lang-set="es">ES</button><button type="button" class="seg-btn" data-lang-set="en">EN</button></div><div class="seg" role="group" aria-label="Tema"><button type="button" class="seg-btn" data-theme-set="auto">Auto</button><button type="button" class="seg-btn" data-theme-set="light"><span class="l-es">Claro</span><span class="l-en" lang="en">Light</span></button><button type="button" class="seg-btn" data-theme-set="dark"><span class="l-es">Oscuro</span><span class="l-en" lang="en">Dark</span></button></div></div></header>
 <div class="strip">
-  <span>Edición <b class="hl">2026-10-30</b></span>
-  <span class="it bad">ALERTA</span>
-  <span class="it">12 señales · 3 de contexto</span>
-  <span class="it warn">33/36 fuentes</span>
+  <span><span class="l-es">Edición</span><span class="l-en" lang="en">Edition</span> <b class="hl">2026-10-30</b></span>
+  <span class="it bad"><span class="l-es">ALERTA</span><span class="l-en" lang="en">ALERT</span></span>
+  <span class="it">12 <span class="l-es">señales</span><span class="l-en" lang="en">signals</span> · 3 <span class="l-es">de contexto</span><span class="l-en" lang="en">context</span></span>
+  <span class="it warn">33/36 <span class="l-es">fuentes</span><span class="l-en" lang="en">sources</span></span>
   <span class="it bad">X apagada</span>
-  <a class="r" href="../archivo.html">Archivo ↗</a>
+  <a class="r" href="../archivo.html"><span class="l-es">Archivo</span><span class="l-en" lang="en">Archive</span> ↗</a>
 </div>
 <div class="wrap">
 
   
   <div class="arch-bar">
-    <a href="../archivo.html">← Archivo</a>
+    <a href="../archivo.html">← <span class="l-es">Archivo</span><span class="l-en" lang="en">Archive</span></a>
     <a href="../d/2026-10-28.html">2026-10-28</a>
     <span class="here">2026-10-30</span>
     <a href="../d/2026-11-01.html">2026-11-01</a>
-    <a href="../index.html" style="margin-left:auto">Hoy</a>
+    <a href="../index.html" style="margin-left:auto"><span class="l-es">Hoy</span><span class="l-en" lang="en">Today</span></a>
   </div>
   
 
   <!-- Tesis del dia -->
   <div class="thesis">
-    <span class="kicker">2026-10-30 · lectura del día</span>
-    <h1 class="page-h1">Tesis del día</h1>
+    <span class="kicker">2026-10-30 · <span class="l-es">lectura del día</span><span class="l-en" lang="en">today&#39;s reading</span></span>
+    <h1 class="page-h1"><span class="l-es">Tesis del día</span><span class="l-en" lang="en">Thesis of the day</span></h1>
     <p class="tz">El día marca un salto en capacidades frontera con nuevos modelos de Google y Mistral, consolidando la competencia en inteligencia general y agentes, mientras las finanzas de la Big Tech revelan la tensión entre la inversión masiva en IA y los retornos actuales.</p>
   </div>
 
   
   
   <div class="notice">
-    <b>Capa X apagada.</b>
+    <b><span class="l-es">Capa X apagada.</span><span class="l-en" lang="en">X layer off.</span></b>
     
-    El espejo no devolvió posts (6 cuentas). El briefing sigue con RSS.
+    <span class="l-es">El espejo no devolvió posts (6 cuentas). El briefing sigue con RSS.</span><span class="l-en" lang="en">The mirror returned no posts (6 accounts). The briefing continues with RSS.</span>
     
   </div>
   
@@ -310,22 +341,22 @@
   <!-- Tabs de tema -->
   
   <div class="tabs" id="tabs">
-    <span class="tab on" data-filter="all">Todas<span class="n">15</span></span>
+    <span class="tab on" data-filter="all"><span class="l-es">Todas</span><span class="l-en" lang="en">All</span><span class="n">15</span></span>
     
-    <span class="tab tab-new" data-filter="__new__">Nuevo<span class="n">14</span></span>
+    <span class="tab tab-new" data-filter="__new__"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span><span class="n">14</span></span>
     
     
-    <span class="tab" data-filter="frontier_capability">Capacidad frontier<span class="n">4</span></span>
+    <span class="tab" data-filter="frontier_capability"><span class="l-es">Capacidad frontier</span><span class="l-en" lang="en">Frontier capability</span><span class="n">4</span></span>
     
     <span class="tab" data-filter="compute_chips_dc">Compute &amp; chips<span class="n">3</span></span>
     
-    <span class="tab" data-filter="model_economics">Economía de modelos<span class="n">3</span></span>
+    <span class="tab" data-filter="model_economics"><span class="l-es">Economía de modelos</span><span class="l-en" lang="en">Model economics</span><span class="n">3</span></span>
     
-    <span class="tab" data-filter="agents_automation">Agentes<span class="n">2</span></span>
+    <span class="tab" data-filter="agents_automation"><span class="l-es">Agentes</span><span class="l-en" lang="en">Agents</span><span class="n">2</span></span>
     
-    <span class="tab" data-filter="geopolitics_power">Geopolítica<span class="n">2</span></span>
+    <span class="tab" data-filter="geopolitics_power"><span class="l-es">Geopolítica</span><span class="l-en" lang="en">Geopolitics</span><span class="n">2</span></span>
     
-    <span class="tab" data-filter="china_stack">Stack chino<span class="n">1</span></span>
+    <span class="tab" data-filter="china_stack"><span class="l-es">Stack chino</span><span class="l-en" lang="en">China stack</span><span class="n">1</span></span>
     
   </div>
   
@@ -342,25 +373,25 @@
         </a>
         <div class="hero-body">
           <div class="meta-row">
-            <span class="tag">Capacidad frontier</span>
-            <span class="badge-new">Nuevo</span>
+            <span class="tag"><span class="l-es">Capacidad frontier</span><span class="l-en" lang="en">Frontier capability</span></span>
+            <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
             <span class="src"><img src="https://www.google.com/s2/favicons?domain=mistral.ai&amp;sz=64" alt="" loading="lazy"/>Mistral</span>
             
             <span class="score">100</span>
-            <button type="button" class="copy-btn" data-copy>Copiar</button>
+            <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
           </div>
           <h2 class="hero-title">
-            <a href="https://mistral.ai/news/mistral-large-4-oss/" target="_blank" rel="noopener noreferrer">Mistral lanza Le Chonk, un modelo multimodal de 1T, open-weight y enfocado en codificación.</a>
+            <a href="https://mistral.ai/news/mistral-large-4-oss/" target="_blank" rel="noopener noreferrer"><span class="l-es">Mistral lanza Le Chonk, un modelo multimodal de 1T, open-weight y enfocado en codificación.</span><span class="l-en" lang="en">Le Chonk: Built for Coders, Trusted by Defenders.</span></a>
           </h2>
           <div class="sw">Introduce un nuevo modelo de gran escala y open-weight, específicamente optimizado para tareas de codificación, impulsando la capacidad disponible para agentes de código y el stack europeo.</div>
           
           
           <div class="facts two">
             
-            <div class="fact pw"><span class="k">Poder</span><span class="v">Mistral gana / OpenAI, Google enfrentan más competencia en modelos de código.</span></div>
+            <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Mistral gana / OpenAI, Google enfrentan más competencia en modelos de código.</span></div>
             
             
-            <div class="fact wn"><span class="k">Vigilar</span><span class="v">Benchmarks de terceros y adopción por parte de la comunidad de desarrolladores de agentes.</span></div>
+            <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Benchmarks de terceros y adopción por parte de la comunidad de desarrolladores de agentes.</span></div>
             
           </div>
           
@@ -380,24 +411,24 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=artificialanalysis.ai&amp;sz=64" alt="" loading="lazy"/>Artificial Analysis</span>
               
               <span class="score">97</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://artificialanalysis.ai/articles/gemini-4-carbon-new-number-1" target="_blank" rel="noopener noreferrer">Gemini 4 Carbon, el nuevo número uno en el Índice de Inteligencia Artificial v5.</a>
+              <a href="https://artificialanalysis.ai/articles/gemini-4-carbon-new-number-1" target="_blank" rel="noopener noreferrer"><span class="l-es">Gemini 4 Carbon, el nuevo número uno en el Índice de Inteligencia Artificial v5.</span><span class="l-en" lang="en">Gemini 4 Carbon is the new 1 on the Artificial Analysis Intelligence Index v5 October 28, 2026</span></a>
             </h3>
             <div class="sw">Valida las capacidades avanzadas de Gemini 4 Carbon, estableciendo un nuevo punto de referencia en el rendimiento de modelos frontera y consolidando la posición de Google en la carrera de la AGI.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">Google DeepMind gana / Otros modelos frontera como GPT-4 o Claude 3 pierden el primer puesto.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Google DeepMind gana / Otros modelos frontera como GPT-4 o Claude 3 pierden el primer puesto.</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Comparaciones directas y detalladas de Gemini 4 Carbon con otros líderes por parte de evaluadores.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Comparaciones directas y detalladas de Gemini 4 Carbon con otros líderes por parte de evaluadores.</span></div>
               
             </div>
             
@@ -410,24 +441,24 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=labs.ycombinator.com&amp;sz=64" alt="" loading="lazy"/>Hacker News (alto voltaje)</span>
               
               <span class="score">89</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://labs.ycombinator.com/projects/games/index.html" target="_blank" rel="noopener noreferrer">Demostración de enjambres de agentes de IA operando autónomamente en Minecraft/Mindustry.</a>
+              <a href="https://labs.ycombinator.com/projects/games/index.html" target="_blank" rel="noopener noreferrer"><span class="l-es">Demostración de enjambres de agentes de IA operando autónomamente en Minecraft/Mindustry.</span><span class="l-en" lang="en">We ran AI agent swarms in Minecraft and Mindustry</span></a>
             </h3>
             <div class="sw">Demuestra el progreso en la capacidad de agentes multi-agente para interactuar y operar en entornos complejos, lo que es un paso crucial hacia la automatización de tareas cognitivas y la autonomía de sistemas de IA.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">Equipos de investigación de agentes (como Y Combinator Labs) avanzan la frontera.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Equipos de investigación de agentes (como Y Combinator Labs) avanzan la frontera.</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Ver aplicaciones de esta capacidad de enjambre de agentes a problemas del mundo real más allá de los videojuegos.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Ver aplicaciones de esta capacidad de enjambre de agentes a problemas del mundo real más allá de los videojuegos.</span></div>
               
             </div>
             
@@ -440,24 +471,24 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=epoch.ai&amp;sz=64" alt="" loading="lazy"/>Epoch AI</span>
               
               <span class="score">89</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://epoch.ai/data-insights/ai-computing-capacity-additions-doubling" target="_blank" rel="noopener noreferrer">La capacidad global de cómputo para IA se duplica cada 9 meses.</a>
+              <a href="https://epoch.ai/data-insights/ai-computing-capacity-additions-doubling" target="_blank" rel="noopener noreferrer"><span class="l-es">La capacidad global de cómputo para IA se duplica cada 9 meses.</span><span class="l-en" lang="en">New global AI computing capacity is doubling every 9 months - Epoch AI</span></a>
             </h3>
             <div class="sw">Revela una expansión exponencial de la infraestructura de cómputo, lo que es crítico para el entrenamiento de modelos más grandes y capaces, y para la viabilidad a largo plazo de la carrera AGI.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">Empresas con acceso o inversión en hardware (NVIDIA, TSMC, grandes proveedores de nube) consolidan su ventaja.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Empresas con acceso o inversión en hardware (NVIDIA, TSMC, grandes proveedores de nube) consolidan su ventaja.</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Monitorear los informes de capital expenditure (CAPEX) de los grandes proveedores de nube y fabricantes de chips.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Monitorear los informes de capital expenditure (CAPEX) de los grandes proveedores de nube y fabricantes de chips.</span></div>
               
             </div>
             
@@ -470,24 +501,24 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=deepmind.google&amp;sz=64" alt="" loading="lazy"/>DeepMind Blog</span>
               
               <span class="score">87</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://deepmind.google/blog/gemini-4-carbon-our-next-frontier-model/" target="_blank" rel="noopener noreferrer">Google DeepMind anuncia Gemini 4 Carbon, su próximo modelo frontera.</a>
+              <a href="https://deepmind.google/blog/gemini-4-carbon-our-next-frontier-model/" target="_blank" rel="noopener noreferrer"><span class="l-es">Google DeepMind anuncia Gemini 4 Carbon, su próximo modelo frontera.</span><span class="l-en" lang="en">Gemini 4 Carbon: Our next frontier model</span></a>
             </h3>
             <div class="sw">Indica un avance significativo en la capacidad de los modelos de Google, manteniéndoles en la vanguardia de la carrera AGI y aumentando la presión competitiva sobre otros laboratorios.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">Google DeepMind gana / OpenAI y Anthropic enfrentan mayor competencia.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Google DeepMind gana / OpenAI y Anthropic enfrentan mayor competencia.</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Publicación de detalles técnicos y benchmarks oficiales del modelo.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Publicación de detalles técnicos y benchmarks oficiales del modelo.</span></div>
               
             </div>
             
@@ -500,24 +531,24 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=bloomberg.com&amp;sz=64" alt="" loading="lazy"/>Bloomberg Tech</span>
               
               <span class="score">84</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://www.bloomberg.com/news/articles/2026-10-30/big-tech-s-750-billion-ai-bet-collides-with-slowing-core-growth" target="_blank" rel="noopener noreferrer">Inversión de $750B de Big Tech en IA choca con desaceleración del crecimiento principal.</a>
+              <a href="https://www.bloomberg.com/news/articles/2026-10-30/big-tech-s-750-billion-ai-bet-collides-with-slowing-core-growth" target="_blank" rel="noopener noreferrer"><span class="l-es">Inversión de $750B de Big Tech en IA choca con desaceleración del crecimiento principal.</span><span class="l-en" lang="en">Big Tech’s $750 Billion AI Bet Collides With Slowing Core Growth - Bloomberg.com</span></a>
             </h3>
             <div class="sw">Pone de manifiesto la tensión entre las masivas inversiones en IA de las grandes tecnológicas y la desaceleración de sus negocios principales, lo que plantea dudas sobre la sostenibilidad del CAPEX en IA y la rentabilidad a corto…</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">Presión sobre los grandes jugadores para demostrar un ROI claro en IA.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Presión sobre los grandes jugadores para demostrar un ROI claro en IA.</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Ver cómo se ajustan los presupuestos de I+D y las estrategias de adquisición de infraestructura en los próximos trimest…</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Ver cómo se ajustan los presupuestos de I+D y las estrategias de adquisición de infraestructura en los próximos trimest…</span></div>
               
             </div>
             
@@ -530,24 +561,24 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=theverge.com&amp;sz=64" alt="" loading="lazy"/>The Verge AI</span>
               
               <span class="score">80</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://www.theverge.com/ai-artificial-intelligence/1022519/google-gemini-file-editing-documents-pdfs" target="_blank" rel="noopener noreferrer">Google Gemini integra generación y edición directa de archivos Docs y otros formatos.</a>
+              <a href="https://www.theverge.com/ai-artificial-intelligence/1022519/google-gemini-file-editing-documents-pdfs" target="_blank" rel="noopener noreferrer"><span class="l-es">Google Gemini integra generación y edición directa de archivos Docs y otros formatos.</span><span class="l-en" lang="en">You can generate and edit Google Docs files directly in Gemini chats now</span></a>
             </h3>
             <div class="sw">Mejora significativamente la capacidad de Gemini como un agente de productividad, permitiendo a los usuarios interactuar con documentos y datos directamente dentro del chat, automatizando tareas y reduciendo la fricción.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">Google gana, consolidando Gemini como una herramienta de productividad central.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Google gana, consolidando Gemini como una herramienta de productividad central.</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Ver el nivel de adopción por usuarios empresariales y el impacto en la eficiencia del workflow.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Ver el nivel de adopción por usuarios empresariales y el impacto en la eficiencia del workflow.</span></div>
               
             </div>
             
@@ -560,24 +591,24 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=reuters.com&amp;sz=64" alt="" loading="lazy"/>Reuters AI</span>
               
               <span class="score">80</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://www.reuters.com/business/nasdaq-futures-tumble-amazon-intel-results-deepen-ai-spending-woes-2026-10-30/" target="_blank" rel="noopener noreferrer">Futuros del Nasdaq caen; Amazon e Intel intensifican preocupación sobre gasto en IA.</a>
+              <a href="https://www.reuters.com/business/nasdaq-futures-tumble-amazon-intel-results-deepen-ai-spending-woes-2026-10-30/" target="_blank" rel="noopener noreferrer"><span class="l-es">Futuros del Nasdaq caen; Amazon e Intel intensifican preocupación sobre gasto en IA.</span><span class="l-en" lang="en">Nasdaq futures tumble as Amazon, Intel results deepen AI spending woes - Reuters</span></a>
             </h3>
             <div class="sw">Sugiere una posible recalibración en las expectativas del mercado sobre el gasto en IA y el retorno de la inversión, lo que podría afectar las valoraciones y la capacidad de financiación de las empresas de IA.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">Inversores se vuelven más cautelosos, impactando a empresas con alto CAPEX en IA.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Inversores se vuelven más cautelosos, impactando a empresas con alto CAPEX en IA.</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Ver los próximos informes de ganancias de otros grandes actores tecnológicos y el guidance sobre inversiones en IA.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Ver los próximos informes de ganancias de otros grandes actores tecnológicos y el guidance sobre inversiones en IA.</span></div>
               
             </div>
             
@@ -590,24 +621,24 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=simonwillison.net&amp;sz=64" alt="" loading="lazy"/>Simon Willison (AI &amp; LLMs)</span>
               
               <span class="score">78</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://simonwillison.net/2026/Oct/29/api-credits/" target="_blank" rel="noopener noreferrer">OpenAI replica el programa de créditos API de Anthropic para suscripciones ChatGPT.</a>
+              <a href="https://simonwillison.net/2026/Oct/29/api-credits/" target="_blank" rel="noopener noreferrer"><span class="l-es">OpenAI replica el programa de créditos API de Anthropic para suscripciones ChatGPT.</span><span class="l-en" lang="en">API credits benefit for eligible ChatGPT subscriptions</span></a>
             </h3>
             <div class="sw">Reduce el coste efectivo del desarrollo con la API para suscriptores de ChatGPT Plus, lo que podría incentivar más experimentación y despliegue de agentes y aplicaciones.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">OpenAI gana / Anthropic mantiene, al igualar una ventaja competitiva.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">OpenAI gana / Anthropic mantiene, al igualar una ventaja competitiva.</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Ver si otros proveedores (Google, Mistral) adoptan modelos de crédito similares en sus APIs.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Ver si otros proveedores (Google, Mistral) adoptan modelos de crédito similares en sus APIs.</span></div>
               
             </div>
             
@@ -620,24 +651,24 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=semiwiki.com&amp;sz=64" alt="" loading="lazy"/>SemiWiki</span>
               
               <span class="score">69</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://semiwiki.com/events/375312-semicon-west-2026-ai-made-the-steps-faster-the-time-between-them-is-next/" target="_blank" rel="noopener noreferrer">Industria de semiconductores acelera por la IA; prevé alcanzar $2 billones en 2030.</a>
+              <a href="https://semiwiki.com/events/375312-semicon-west-2026-ai-made-the-steps-faster-the-time-between-them-is-next/" target="_blank" rel="noopener noreferrer"><span class="l-es">Industria de semiconductores acelera por la IA; prevé alcanzar $2 billones en 2030.</span><span class="l-en" lang="en">SEMICON West 2026: AI Made the Steps Faster. The Time Between Them Is Next.</span></a>
             </h3>
             <div class="sw">Confirma la aceleración masiva del sector de chips impulsada por la IA, señalando una mayor inversión y producción para satisfacer la demanda de cómputo, lo que impacta la disponibilidad y el coste del entrenamiento de modelos.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">Fabricantes de chips (ej. TSMC, NVIDIA) consolidan su dominio por la demanda de IA.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Fabricantes de chips (ej. TSMC, NVIDIA) consolidan su dominio por la demanda de IA.</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Ver informes de ganancias trimestrales de fabricantes de equipos de semiconductores como ASML o Lam Research.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Ver informes de ganancias trimestrales de fabricantes de equipos de semiconductores como ASML o Lam Research.</span></div>
               
             </div>
             
@@ -654,20 +685,20 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=deepmind.google&amp;sz=64" alt="" loading="lazy"/>DeepMind Blog</span>
               
               <span class="score">64</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/" target="_blank" rel="noopener noreferrer">Google DeepMind presenta Genie 4, su nuevo modelo de mundo para simulación real.</a>
+              <a href="https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/" target="_blank" rel="noopener noreferrer"><span class="l-es">Google DeepMind presenta Genie 4, su nuevo modelo de mundo para simulación real.</span><span class="l-en" lang="en">Genie 4: A new generation of world simulation</span></a>
             </h3>
             <div class="sw">Representa un avance significativo en la capacidad de los modelos para simular mundos con realismo sin precedentes, un componente esencial para el desarrollo de agentes con comprensión y razonamiento avanzados.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">Google DeepMind gana, consolidando su liderazgo en modelos de mundo y simulación.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Google DeepMind gana, consolidando su liderazgo en modelos de mundo y simulación.</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Demostraciones de Genie 4 integradas con agentes que operan en entornos complejos simulados.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Demostraciones de Genie 4 integradas con agentes que operan en entornos complejos simulados.</span></div>
               
             </div>
             
@@ -680,24 +711,24 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=openai.com&amp;sz=64" alt="" loading="lazy"/>OpenAI</span>
               
               <span class="score">59</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://openai.com/index/how-we-detect-frontier-model-misalignment" target="_blank" rel="noopener noreferrer">OpenAI detalla detección de desalineación en modelos frontera y comportamiento de agentes.</a>
+              <a href="https://openai.com/index/how-we-detect-frontier-model-misalignment" target="_blank" rel="noopener noreferrer"><span class="l-es">OpenAI detalla detección de desalineación en modelos frontera y comportamiento de agentes.</span><span class="l-en" lang="en">How we detect frontier model misalignment</span></a>
             </h3>
             <div class="sw">Explica cómo OpenAI gestiona la seguridad de sus modelos más avanzados, un aspecto clave para la confianza y la regulación futura de AGI, aunque no introduce nuevas capacidades.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">OpenAI refuerza su imagen de seguridad y control, mitigando críticas.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">OpenAI refuerza su imagen de seguridad y control, mitigando críticas.</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Ver si esta metodología es adoptada como estándar de facto o si los reguladores la exigen.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Ver si esta metodología es adoptada como estándar de facto o si los reguladores la exigen.</span></div>
               
             </div>
             
@@ -711,8 +742,8 @@
 
       
       <div class="section-h">
-        <h2 class="sec">Contexto</h2>
-        <p class="sec-sub">De fondo: no cambia nada hoy</p>
+        <h2 class="sec"><span class="l-es">Contexto</span><span class="l-en" lang="en">Context</span></h2>
+        <p class="sec-sub"><span class="l-es">De fondo: no cambia nada hoy</span><span class="l-en" lang="en">Background: changes nothing today</span></p>
       </div>
       <div class="ctx">
         
@@ -720,10 +751,10 @@
           <img src="https://www.google.com/s2/favicons?domain=chinatalk.media&amp;sz=64" alt="" loading="lazy"/>
           <div class="cx-b">
             <div class="cx-t">
-              <a href="https://www.chinatalk.media/p/is-half-of-chinas-ai-making-slop" target="_blank" rel="noopener noreferrer">Análisis sobre la calidad de la IA en China y el mito del 55% de tokens.</a>
+              <a href="https://www.chinatalk.media/p/is-half-of-chinas-ai-making-slop" target="_blank" rel="noopener noreferrer"><span class="l-es">Análisis sobre la calidad de la IA en China y el mito del 55% de tokens.</span><span class="l-en" lang="en">Is Half of China’s AI Making Slop?</span></a>
             </div>
             <div class="cx-w">Cuestiona la calidad y utilidad de parte de la producción de IA en China, lo que podría indicar una fragmentación o una burbuja interna, impactando su posición global si no se aborda.</div>
-            <div class="cx-m">Stack chino · ChinaTalk · 51</div>
+            <div class="cx-m"><span class="l-es">Stack chino</span><span class="l-en" lang="en">China stack</span> · ChinaTalk · 51</div>
           </div>
         </div>
         
@@ -731,10 +762,10 @@
           <img src="https://www.google.com/s2/favicons?domain=epoch.ai&amp;sz=64" alt="" loading="lazy"/>
           <div class="cx-b">
             <div class="cx-t">
-              <a href="https://epoch.ai/publications/open-weight-models-patch-gap" target="_blank" rel="noopener noreferrer">Modelos IA open-weight pueden explotar la brecha de parcheo en software vulnerable.</a>
+              <a href="https://epoch.ai/publications/open-weight-models-patch-gap" target="_blank" rel="noopener noreferrer"><span class="l-es">Modelos IA open-weight pueden explotar la brecha de parcheo en software vulnerable.</span><span class="l-en" lang="en">Open-weight AI models can exploit the patch gap - Epoch AI</span></a>
             </div>
             <div class="cx-w">Destaca una vulnerabilidad de seguridad crítica donde los modelos open-weight pueden ser utilizados para identificar y explotar fallos de seguridad en software no actualizado, aumentando el riesgo cibernético.</div>
-            <div class="cx-m">Geopolítica · Epoch AI · 49</div>
+            <div class="cx-m"><span class="l-es">Geopolítica</span><span class="l-en" lang="en">Geopolitics</span> · Epoch AI · 49</div>
           </div>
         </div>
         
@@ -742,7 +773,7 @@
           <img src="https://www.google.com/s2/favicons?domain=arstechnica.com&amp;sz=64" alt="" loading="lazy"/>
           <div class="cx-b">
             <div class="cx-t">
-              <a href="https://arstechnica.com/security/2026/10/code-execution-flaw-in-uefi-firmware-threatens-most-servers-on-planet-earth/" target="_blank" rel="noopener noreferrer">Fallo de ejecución de código en firmware UEFI afecta a la mayoría de servidores globales.</a>
+              <a href="https://arstechnica.com/security/2026/10/code-execution-flaw-in-uefi-firmware-threatens-most-servers-on-planet-earth/" target="_blank" rel="noopener noreferrer"><span class="l-es">Fallo de ejecución de código en firmware UEFI afecta a la mayoría de servidores globales.</span><span class="l-en" lang="en">Code-execution flaw in UEFI firmware affects most servers on planet Earth</span></a>
             </div>
             <div class="cx-w">Representa un riesgo fundamental para la seguridad de la infraestructura subyacente que aloja los modelos de IA y centros de datos, lo que podría tener implicaciones en la fiabilidad y seguridad de todo el stack.</div>
             <div class="cx-m">Compute &amp; chips · Ars Technica AI · 40</div>
@@ -764,8 +795,8 @@
       
       <div class="widget">
         <div class="widget-title">
-          <span>Vigilancia de ayer</span>
-          <span class="lbl">0/3 confirmadas</span>
+          <span><span class="l-es">Vigilancia de ayer</span><span class="l-en" lang="en">Yesterday&#39;s watchlist</span></span>
+          <span class="lbl">0/3 <span class="l-es">confirmadas</span><span class="l-en" lang="en">confirmed</span></span>
         </div>
         
         <div class="wr open">
@@ -798,12 +829,12 @@
       
       <div class="widget">
         <div class="widget-title">
-          <span>Memoria del radar</span>
-          <span class="lbl">Continuidad</span>
+          <span><span class="l-es">Memoria del radar</span><span class="l-en" lang="en">Radar memory</span></span>
+          <span class="lbl"><span class="l-es">Continuidad</span><span class="l-en" lang="en">Continuity</span></span>
         </div>
         
         <div class="thr">
-          <span class="thr-d">DÍA 11</span>
+          <span class="thr-d"><span class="l-es">DÍA</span><span class="l-en" lang="en">DAY</span> 11</span>
           <div>
             <div class="thr-t">Agentes y automatización</div>
             <div class="thr-l">Demostración de enjambres de agentes de IA operando autónomamente en Minecraft/Mindustry.</div>
@@ -811,7 +842,7 @@
         </div>
         
         <div class="thr">
-          <span class="thr-d">DÍA 11</span>
+          <span class="thr-d"><span class="l-es">DÍA</span><span class="l-en" lang="en">DAY</span> 11</span>
           <div>
             <div class="thr-t">Compute y chips</div>
             <div class="thr-l">La capacidad global de cómputo para IA se duplica cada 9 meses.</div>
@@ -819,7 +850,7 @@
         </div>
         
         <div class="thr">
-          <span class="thr-d">DÍA 7</span>
+          <span class="thr-d"><span class="l-es">DÍA</span><span class="l-en" lang="en">DAY</span> 7</span>
           <div>
             <div class="thr-t">Economía de modelos</div>
             <div class="thr-l">Inversión de $750B de Big Tech en IA choca con desaceleración del crecimiento principal.</div>
@@ -827,7 +858,7 @@
         </div>
         
         <div class="thr">
-          <span class="thr-d">DÍA 4</span>
+          <span class="thr-d"><span class="l-es">DÍA</span><span class="l-en" lang="en">DAY</span> 4</span>
           <div>
             <div class="thr-t">Capacidad frontier</div>
             <div class="thr-l">Mistral lanza Le Chonk, un modelo multimodal de 1T, open-weight y enfocado en codificación.</div>
@@ -836,37 +867,37 @@
         
         
         
-        <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Big Tech</span>
-          <span class="dt">primera aparición</span></div>
+        <div class="mv"><span class="mv-b new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span><span class="nm">Big Tech</span>
+          <span class="dt"><span class="l-es">primera aparición</span><span class="l-en" lang="en">first appearance</span></span></div>
         
-        <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">EDK2</span>
-          <span class="dt">primera aparición</span></div>
+        <div class="mv"><span class="mv-b new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span><span class="nm">EDK2</span>
+          <span class="dt"><span class="l-es">primera aparición</span><span class="l-en" lang="en">first appearance</span></span></div>
         
-        <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Intel</span>
-          <span class="dt">primera aparición</span></div>
+        <div class="mv"><span class="mv-b new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span><span class="nm">Intel</span>
+          <span class="dt"><span class="l-es">primera aparición</span><span class="l-en" lang="en">first appearance</span></span></div>
         
-        <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Is Half</span>
-          <span class="dt">primera aparición</span></div>
+        <div class="mv"><span class="mv-b new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span><span class="nm">Is Half</span>
+          <span class="dt"><span class="l-es">primera aparición</span><span class="l-en" lang="en">first appearance</span></span></div>
         
-        <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Nasdaq</span>
-          <span class="dt">primera aparición</span></div>
-        
-        
-        <div class="mv"><span class="mv-b ret">Vuelve</span><span class="nm">Google</span>
-          <span class="dt">tras 7 días en silencio</span></div>
-        
-        <div class="mv"><span class="mv-b ret">Vuelve</span><span class="nm">Epoch AI</span>
-          <span class="dt">tras 5 días en silencio</span></div>
-        
-        <div class="mv"><span class="mv-b ret">Vuelve</span><span class="nm">Gemini</span>
-          <span class="dt">tras 3 días en silencio</span></div>
+        <div class="mv"><span class="mv-b new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span><span class="nm">Nasdaq</span>
+          <span class="dt"><span class="l-es">primera aparición</span><span class="l-en" lang="en">first appearance</span></span></div>
         
         
-        <div class="mv"><span class="mv-b str">Racha</span><span class="nm">OpenAI</span>
-          <span class="dt">11 días seguidos</span></div>
+        <div class="mv"><span class="mv-b ret"><span class="l-es">Vuelve</span><span class="l-en" lang="en">Back</span></span><span class="nm">Google</span>
+          <span class="dt"><span class="l-es">tras 7 días en silencio</span><span class="l-en" lang="en">after 7 silent days</span></span></div>
         
-        <div class="mv"><span class="mv-b str">Racha</span><span class="nm">Anthropic</span>
-          <span class="dt">4 días seguidos</span></div>
+        <div class="mv"><span class="mv-b ret"><span class="l-es">Vuelve</span><span class="l-en" lang="en">Back</span></span><span class="nm">Epoch AI</span>
+          <span class="dt"><span class="l-es">tras 5 días en silencio</span><span class="l-en" lang="en">after 5 silent days</span></span></div>
+        
+        <div class="mv"><span class="mv-b ret"><span class="l-es">Vuelve</span><span class="l-en" lang="en">Back</span></span><span class="nm">Gemini</span>
+          <span class="dt"><span class="l-es">tras 3 días en silencio</span><span class="l-en" lang="en">after 3 silent days</span></span></div>
+        
+        
+        <div class="mv"><span class="mv-b str"><span class="l-es">Racha</span><span class="l-en" lang="en">Streak</span></span><span class="nm">OpenAI</span>
+          <span class="dt"><span class="l-es">11 días seguidos</span><span class="l-en" lang="en">11 days in a row</span></span></div>
+        
+        <div class="mv"><span class="mv-b str"><span class="l-es">Racha</span><span class="l-en" lang="en">Streak</span></span><span class="nm">Anthropic</span>
+          <span class="dt"><span class="l-es">4 días seguidos</span><span class="l-en" lang="en">4 days in a row</span></span></div>
         
       </div>
       
@@ -874,8 +905,8 @@
       
       <div class="widget">
         <div class="widget-title">
-          <span>Riesgos y vigilancia</span>
-          <span class="lbl">Próximos días</span>
+          <span><span class="l-es">Riesgos y vigilancia</span><span class="l-en" lang="en">Risks and watch</span></span>
+          <span class="lbl"><span class="l-es">Próximos días</span><span class="l-en" lang="en">Coming days</span></span>
         </div>
         <div class="rk">La escalada en el gasto de capital para IA podría no generar los retornos esperados a corto plazo, creando presión financiera.</div><div class="rk">Las vulnerabilidades críticas en el firmware UEFI representan un riesgo sistémico para la seguridad de la infraestructura global de IA.</div><div class="rk">El uso de modelos open-weight para explotar &#39;patch gaps&#39; aumenta la superficie de ataque cibernético.</div>
         <div class="rk w">Adopción de Le Chonk por la comunidad y su rendimiento en desarrollo de agentes de código.</div><div class="rk w">Detalles técnicos y disponibilidad de Gemini 4 Carbon de Google DeepMind.</div><div class="rk w">Impacto en los resultados financieros de Big Tech por el gasto en IA en los próximos trimestres.</div>
@@ -885,9 +916,10 @@
     </aside>
   </div>
 
+  <div class="credits"><p class="credits-by"><span class="l-es">Hecho por</span><span class="l-en" lang="en">Made by</span> <strong>Rolando Fernández</strong></p><a class="bmc" href="https://buymeacoffee.com/rolandofernandez" target="_blank" rel="noopener"><span aria-hidden="true">☕</span> <span class="l-es">Invítame a un café</span><span class="l-en" lang="en">Buy me a coffee</span></a></div>
   <footer>
-    <span>11 items descartados por el filtro de relevancia</span>
-    <span>33/36 fuentes activas · sin items: Yahoo Finance News, VentureBeat AI, OpenRouter Insights · X: kill switch</span>
+    <span>11 <span class="l-es">items descartados por el filtro de relevancia</span><span class="l-en" lang="en">items dropped by the relevance filter</span></span>
+    <span>33/36 <span class="l-es">fuentes activas</span><span class="l-en" lang="en">active sources</span> · <span class="l-es">sin items</span><span class="l-en" lang="en">no items</span>: Yahoo Finance News, VentureBeat AI, OpenRouter Insights · X: kill switch</span>
   </footer>
 
 </div>
@@ -918,19 +950,28 @@
       return;
     }
 
+    // Texto visible en el idioma activo (los traducibles van duplicados).
+    function vis(node){
+      if (!node) return '';
+      var lang = document.documentElement.getAttribute('data-lang') === 'en' ? 'en' : 'es';
+      var pick = node.querySelector('.l-' + lang);
+      return ((pick || node).textContent || '').trim();
+    }
     function ficha(article){
       if (!article) return '';
       var a = article.querySelector('.hero-title a, .card-title a');
-      var title = a ? (a.textContent || '').trim() : '';
+      var title = vis(a);
       var swEl = article.querySelector('.sw');
-      var sw = swEl ? (swEl.textContent || '').trim() : '';
+      var sw = vis(swEl);
       var url = a ? (a.getAttribute('href') || '').trim() : '';
       return [title, sw, url].filter(Boolean).join('\n\n');
     }
     function copied(btn){
       btn.classList.add('ok');
-      btn.textContent = 'Copiado';
-      setTimeout(function(){ btn.classList.remove('ok'); btn.textContent = 'Copiar'; }, 1600);
+      var en = document.documentElement.getAttribute('data-lang') === 'en';
+      var label = btn.innerHTML;
+      btn.textContent = en ? 'Copied' : 'Copiado';
+      setTimeout(function(){ btn.classList.remove('ok'); btn.innerHTML = label; }, 1600);
     }
     function fallback(text, btn){
       var ta = document.createElement('textarea');
@@ -992,6 +1033,20 @@
       });
     });
     paint();
+
+    var langBtns = document.querySelectorAll('[data-lang-set]');
+    function curLang(){ try { return localStorage.getItem('lang') === 'en' ? 'en' : 'es'; } catch(e){ return 'es'; } }
+    function paintLang(){ var c = curLang(); langBtns.forEach(function(b){ b.setAttribute('aria-pressed', String(b.getAttribute('data-lang-set') === c)); }); }
+    langBtns.forEach(function(b){
+      b.addEventListener('click', function(){
+        var l = b.getAttribute('data-lang-set');
+        try { if (l === 'en') localStorage.setItem('lang', 'en'); else localStorage.removeItem('lang'); } catch(e){}
+        var d = document.documentElement;
+        if (l === 'en') { d.setAttribute('data-lang', 'en'); d.lang = 'en'; } else { d.removeAttribute('data-lang'); d.lang = 'es'; }
+        paintLang();
+      });
+    });
+    paintLang();
   })();
 </script>
 </body>

@@ -4,15 +4,31 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AI Strategic Radar</title>
-<meta name="description" content="Radar diario de la carrera AGI: modelos frontier, compute, China y agentes. Solo lo que mueve la aguja."/>
+<title>RADAR.IA · Edición del 2026-09-06</title>
+<meta name="description" content="Radar diario de la carrera hacia la AGI: modelos frontier, agentes, chips y compute, China y economía de la IA. Solo lo que cambia algo, con fuente y análisis."/>
+<meta name="robots" content="index, follow, max-image-preview:large"/>
+<link rel="canonical" href="https://aievolve.netlify.app/d/2026-09-06.html"/>
+<meta name="google-site-verification" content="yh8wm8HsAeqP892U5UGczQs-RLnGuNHx7WGfNntGduk"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="RADAR.IA"/>
+<meta property="og:locale" content="es_ES"/><meta property="og:locale:alternate" content="en_US"/>
+<meta property="og:title" content="RADAR.IA · Edición del 2026-09-06"/>
+<meta property="og:description" content="Radar diario de la carrera hacia la AGI: modelos frontier, agentes, chips y compute, China y economía de la IA. Solo lo que cambia algo, con fuente y análisis."/>
+<meta property="og:url" content="https://aievolve.netlify.app/d/2026-09-06.html"/>
+<meta property="og:image" content="https://aievolve.netlify.app/og.png"/>
+<meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="RADAR.IA · Edición del 2026-09-06"/>
+<meta name="twitter:description" content="Radar diario de la carrera hacia la AGI: modelos frontier, agentes, chips y compute, China y economía de la IA. Solo lo que cambia algo, con fuente y análisis."/>
+<meta name="twitter:image" content="https://aievolve.netlify.app/og.png"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://aievolve.netlify.app/#website","url":"https://aievolve.netlify.app/","name":"RADAR.IA","description":"Radar diario de la carrera hacia la AGI, con fuentes y análisis.","inLanguage":["es","en"],"isAccessibleForFree":true,"author":{"@type":"Person","name":"Rolando Fernández"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 <meta name="theme-color" content="#F4F3EF" media="(prefers-color-scheme: light)"/>
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)"/>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='1' y='1' width='30' height='30' fill='%23FF5722' stroke='%23121211' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%23121211' stroke-width='2.4'/%3E%3Cpath d='M16 16V6A10 10 0 0 1 25.5 12.9Z' fill='%23121211'/%3E%3Ccircle cx='11' cy='19.5' r='2' fill='%23121211'/%3E%3C/svg%3E"/>
-<script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<script>(function(){try{var d=document.documentElement,t=localStorage.getItem('theme'),l=localStorage.getItem('lang');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);if(l==='en'){d.setAttribute('data-lang','en');d.lang='en';}}catch(e){}})();</script>
 <script>
   // Va en <head> para estar escuchando antes de que se pinte la primera imagen.
   // Una imagen remota caida (hotlink bloqueado, 404, caducada) se cambia por la
@@ -100,6 +116,21 @@
   .page-h1{font:700 clamp(30px,4.2vw,56px)/1 var(--f-head);letter-spacing:-.03em;text-transform:uppercase;margin:6px 0 12px}
   .lede{color:var(--muted);font-size:17px;max-width:72ch;margin:0}
   .lead h1.page-h1{font:700 clamp(30px,4.2vw,56px)/1 var(--f-head);letter-spacing:-.03em;margin:6px 0 12px}
+
+  /* Bilingue: cada texto traducible va dos veces; se ve el del idioma activo. */
+  /* !important: reglas de componente con display propio no deben reactivar el idioma oculto. */
+  html:not([data-lang="en"]) .l-en{display:none!important}
+  html[data-lang="en"] .l-es{display:none!important}
+  .top-ctl{display:flex;gap:10px;flex-wrap:wrap}
+
+  /* Firma, como en moloch.sh: discreta, al pie */
+  .credits{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+           margin-top:40px;padding:12px 16px;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow-sm)}
+  .credits-by{margin:0;font:400 12px var(--f-mono);color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+  .credits-by strong{font:700 14px var(--f-head);color:var(--text);text-transform:none;letter-spacing:0;margin-left:6px}
+  .bmc{display:inline-flex;align-items:center;gap:7px;font:700 11.5px/1 var(--f-mono);text-transform:uppercase;
+       padding:8px 11px;background:var(--lime);color:#121211;border:2px solid var(--ink);box-shadow:var(--shadow-sm)}
+  .bmc:hover{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--ink)}
 
   @media(max-width:900px){
     .navtabs{order:3;margin:0;width:100%}
@@ -204,8 +235,8 @@
   .widget{background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow);padding:14px 16px}
   .widget-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:-14px -16px 12px;
                 padding:10px 16px;border-bottom:2px solid var(--ink);background:var(--card-2)}
-  .widget-title span:first-child{display:flex;align-items:center;gap:9px;font:700 12px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.06em}
-  .widget-title span:first-child::before{content:"";width:10px;height:10px;background:var(--orange);border:2px solid var(--ink)}
+  .widget-title>span:first-child{display:flex;align-items:center;gap:9px;font:700 12px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.06em}
+  .widget-title>span:first-child::before{content:"";width:10px;height:10px;background:var(--orange);border:2px solid var(--ink)}
   .widget-title .lbl{font:400 10px var(--f-mono);color:var(--muted);text-transform:uppercase}
 
   .market-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
@@ -269,40 +300,40 @@
 </style>
 </head>
 <body>
-<header class="topnav"><a class="brand" href="../index.html" aria-label="Radar.IA, portada"><span class="brand-icon"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 12V2.5A9.5 9.5 0 0 1 21.03 9.06Z" fill="currentColor"/><circle cx="7.5" cy="15" r="1.7" fill="currentColor"/></svg></span><span class="brand-text"><strong>Radar<em>.IA</em></strong><small>Radar estratégico de la carrera AGI</small></span></a><nav class="navtabs" aria-label="Secciones"><a class="navtab" href="../index.html"><i>01</i> Diario</a><a class="navtab" href="../weekly.html"><i>02</i> Semanal</a><a class="navtab" href="../archivo.html" aria-current="page"><i>03</i> Archivo</a></nav><div class="seg" role="group" aria-label="Tema"><button type="button" class="seg-btn" data-theme-set="auto">Auto</button><button type="button" class="seg-btn" data-theme-set="light">Claro</button><button type="button" class="seg-btn" data-theme-set="dark">Oscuro</button></div></header>
+<header class="topnav"><a class="brand" href="../index.html" aria-label="Radar.IA, portada"><span class="brand-icon"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 12V2.5A9.5 9.5 0 0 1 21.03 9.06Z" fill="currentColor"/><circle cx="7.5" cy="15" r="1.7" fill="currentColor"/></svg></span><span class="brand-text"><strong>Radar<em>.IA</em></strong><small><span class="l-es">Radar estratégico de la carrera AGI</span><span class="l-en" lang="en">Strategic radar of the AGI race</span></small></span></a><nav class="navtabs" aria-label="Secciones"><a class="navtab" href="../index.html"><i>01</i> <span class="l-es">Diario</span><span class="l-en" lang="en">Daily</span></a><a class="navtab" href="../weekly.html"><i>02</i> <span class="l-es">Semanal</span><span class="l-en" lang="en">Weekly</span></a><a class="navtab" href="../archivo.html" aria-current="page"><i>03</i> <span class="l-es">Archivo</span><span class="l-en" lang="en">Archive</span></a></nav><div class="top-ctl"><div class="seg" role="group" aria-label="Idioma"><button type="button" class="seg-btn" data-lang-set="es">ES</button><button type="button" class="seg-btn" data-lang-set="en">EN</button></div><div class="seg" role="group" aria-label="Tema"><button type="button" class="seg-btn" data-theme-set="auto">Auto</button><button type="button" class="seg-btn" data-theme-set="light"><span class="l-es">Claro</span><span class="l-en" lang="en">Light</span></button><button type="button" class="seg-btn" data-theme-set="dark"><span class="l-es">Oscuro</span><span class="l-en" lang="en">Dark</span></button></div></div></header>
 <div class="strip">
-  <span>Edición <b class="hl">2026-09-06</b></span>
-  <span class="it bad">ALERTA</span>
-  <span class="it">12 señales · 3 de contexto</span>
-  <span class="it warn">32/36 fuentes</span>
+  <span><span class="l-es">Edición</span><span class="l-en" lang="en">Edition</span> <b class="hl">2026-09-06</b></span>
+  <span class="it bad"><span class="l-es">ALERTA</span><span class="l-en" lang="en">ALERT</span></span>
+  <span class="it">12 <span class="l-es">señales</span><span class="l-en" lang="en">signals</span> · 3 <span class="l-es">de contexto</span><span class="l-en" lang="en">context</span></span>
+  <span class="it warn">32/36 <span class="l-es">fuentes</span><span class="l-en" lang="en">sources</span></span>
   <span class="it bad">X apagada</span>
-  <a class="r" href="../archivo.html">Archivo ↗</a>
+  <a class="r" href="../archivo.html"><span class="l-es">Archivo</span><span class="l-en" lang="en">Archive</span> ↗</a>
 </div>
 <div class="wrap">
 
   
   <div class="arch-bar">
-    <a href="../archivo.html">← Archivo</a>
+    <a href="../archivo.html">← <span class="l-es">Archivo</span><span class="l-en" lang="en">Archive</span></a>
     <a href="../d/2026-09-05.html">2026-09-05</a>
     <span class="here">2026-09-06</span>
     <a href="../d/2026-09-07.html">2026-09-07</a>
-    <a href="../index.html" style="margin-left:auto">Hoy</a>
+    <a href="../index.html" style="margin-left:auto"><span class="l-es">Hoy</span><span class="l-en" lang="en">Today</span></a>
   </div>
   
 
   <!-- Tesis del dia -->
   <div class="thesis">
-    <span class="kicker">2026-09-06 · lectura del día</span>
-    <h1 class="page-h1">Tesis del día</h1>
+    <span class="kicker">2026-09-06 · <span class="l-es">lectura del día</span><span class="l-en" lang="en">today&#39;s reading</span></span>
+    <h1 class="page-h1"><span class="l-es">Tesis del día</span><span class="l-en" lang="en">Thesis of the day</span></h1>
     <p class="tz">OpenAI y xAI elevan la apuesta en agentes autónomos, destacando avances de GPT-6 Astra y fallos de seguridad críticos, mientras Google DeepMind empuja modelos específicos y se intensifica el escrutinio legal.</p>
   </div>
 
   
   
   <div class="notice">
-    <b>Capa X apagada.</b>
+    <b><span class="l-es">Capa X apagada.</span><span class="l-en" lang="en">X layer off.</span></b>
     
-    El espejo no devolvió posts (6 cuentas). El briefing sigue con RSS.
+    <span class="l-es">El espejo no devolvió posts (6 cuentas). El briefing sigue con RSS.</span><span class="l-en" lang="en">The mirror returned no posts (6 accounts). The briefing continues with RSS.</span>
     
   </div>
   
@@ -310,20 +341,20 @@
   <!-- Tabs de tema -->
   
   <div class="tabs" id="tabs">
-    <span class="tab on" data-filter="all">Todas<span class="n">15</span></span>
+    <span class="tab on" data-filter="all"><span class="l-es">Todas</span><span class="l-en" lang="en">All</span><span class="n">15</span></span>
     
-    <span class="tab tab-new" data-filter="__new__">Nuevo<span class="n">8</span></span>
+    <span class="tab tab-new" data-filter="__new__"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span><span class="n">8</span></span>
     
     
-    <span class="tab" data-filter="agents_automation">Agentes<span class="n">6</span></span>
+    <span class="tab" data-filter="agents_automation"><span class="l-es">Agentes</span><span class="l-en" lang="en">Agents</span><span class="n">6</span></span>
     
-    <span class="tab" data-filter="frontier_capability">Capacidad frontier<span class="n">5</span></span>
+    <span class="tab" data-filter="frontier_capability"><span class="l-es">Capacidad frontier</span><span class="l-en" lang="en">Frontier capability</span><span class="n">5</span></span>
     
-    <span class="tab" data-filter="china_stack">Stack chino<span class="n">2</span></span>
+    <span class="tab" data-filter="china_stack"><span class="l-es">Stack chino</span><span class="l-en" lang="en">China stack</span><span class="n">2</span></span>
     
-    <span class="tab" data-filter="model_economics">Economía de modelos<span class="n">1</span></span>
+    <span class="tab" data-filter="model_economics"><span class="l-es">Economía de modelos</span><span class="l-en" lang="en">Model economics</span><span class="n">1</span></span>
     
-    <span class="tab" data-filter="geopolitics_power">Geopolítica<span class="n">1</span></span>
+    <span class="tab" data-filter="geopolitics_power"><span class="l-es">Geopolítica</span><span class="l-en" lang="en">Geopolitics</span><span class="n">1</span></span>
     
   </div>
   
@@ -340,29 +371,29 @@
         </a>
         <div class="hero-body">
           <div class="meta-row">
-            <span class="tag">Agentes</span>
-            <span class="badge-new">Nuevo</span>
+            <span class="tag"><span class="l-es">Agentes</span><span class="l-en" lang="en">Agents</span></span>
+            <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
             <span class="src"><img src="https://www.google.com/s2/favicons?domain=reuters.com&amp;sz=64" alt="" loading="lazy"/>Reuters AI</span>
             <span class="multi">+1 medios</span>
             <span class="score">93</span>
-            <button type="button" class="copy-btn" data-copy>Copiar</button>
+            <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
           </div>
           <h2 class="hero-title">
-            <a href="https://www.reuters.com/business/media-telecom/openai-acknowledges-wiki-incident-need-more-transparency-around-unintended-ai-2026-09-05/" target="_blank" rel="noopener noreferrer">OpenAI admite un &#39;incidente wiki&#39; y la necesidad de más transparencia en el comportamiento de la IA.</a>
+            <a href="https://www.reuters.com/business/media-telecom/openai-acknowledges-wiki-incident-need-more-transparency-around-unintended-ai-2026-09-05/" target="_blank" rel="noopener noreferrer"><span class="l-es">OpenAI admite un &#39;incidente wiki&#39; y la necesidad de más transparencia en el comportamiento de la IA.</span><span class="l-en" lang="en">OpenAI acknowledges &#39;wiki incident&#39; and need for more transparency around unintended AI behavior - reuters.com</span></a>
           </h2>
           <div class="sw">La admisión de un fallo de seguridad grave con agentes subraya la dificultad del control y la alineación de modelos avanzados, impactando la confianza y la regulación.</div>
           
-          <div class="also">También en:
+          <div class="also"><span class="l-es">También en:</span><span class="l-en" lang="en">Also in:</span>
             <span>The Verge AI</span>
           </div>
           
           
           <div class="facts two">
             
-            <div class="fact pw"><span class="k">Poder</span><span class="v">Reguladores ganan capacidad de escrutinio / OpenAI bajo mayor presión por seguridad.</span></div>
+            <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Reguladores ganan capacidad de escrutinio / OpenAI bajo mayor presión por seguridad.</span></div>
             
             
-            <div class="fact wn"><span class="k">Vigilar</span><span class="v">Detalles sobre las causas del incidente y las medidas correctivas implementadas por OpenAI.</span></div>
+            <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Detalles sobre las causas del incidente y las medidas correctivas implementadas por OpenAI.</span></div>
             
           </div>
           
@@ -382,24 +413,24 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=latent.space&amp;sz=64" alt="" loading="lazy"/>Latent Space</span>
               
               <span class="score">92</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://www.latent.space/p/grok-bot" target="_blank" rel="noopener noreferrer">Grok Bot de xAI equipara la potencia de programación de OpenClaw con mayor abstracción.</a>
+              <a href="https://www.latent.space/p/grok-bot" target="_blank" rel="noopener noreferrer"><span class="l-es">Grok Bot de xAI equipara la potencia de programación de OpenClaw con mayor abstracción.</span><span class="l-en" lang="en">OpenClaw Power, MacBook Simplicity: Five Days With Grok Bot</span></a>
             </h3>
             <div class="sw">La capacidad de programación de Grok Bot sugiere un avance significativo en agentes, facilitando su uso y permitiendo desarrollos más complejos con menor esfuerzo.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">xAI gana / OpenAI (OpenClaw) ve un competidor directo en programación de agentes.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">xAI gana / OpenAI (OpenClaw) ve un competidor directo en programación de agentes.</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Verificación independiente de la capacidad de programación de Grok Bot y comparativas de rendimiento.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Verificación independiente de la capacidad de programación de Grok Bot y comparativas de rendimiento.</span></div>
               
             </div>
             
@@ -412,24 +443,24 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=x.ai&amp;sz=64" alt="" loading="lazy"/>xAI</span>
               
               <span class="score">82</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://x.ai/news/designing-grok-bot" target="_blank" rel="noopener noreferrer">xAI detalla el diseño de Grok Bot para un futuro de agentes persistentes.</a>
+              <a href="https://x.ai/news/designing-grok-bot" target="_blank" rel="noopener noreferrer"><span class="l-es">xAI detalla el diseño de Grok Bot para un futuro de agentes persistentes.</span><span class="l-en" lang="en">Designing Grok Bot for a world of persistent agents - X.ai</span></a>
             </h3>
             <div class="sw">xAI avanza en su visión de agentes autónomos, indicando una inversión estratégica en la capacidad de los modelos para operar de forma continua y con memoria.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">xAI gana / Otros competidores en agentes bajo presión para ofrecer persistencia.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">xAI gana / Otros competidores en agentes bajo presión para ofrecer persistencia.</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">xAI anunciará la disponibilidad o casos de uso concretos de estos agentes persistentes.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">xAI anunciará la disponibilidad o casos de uso concretos de estos agentes persistentes.</span></div>
               
             </div>
             
@@ -446,20 +477,20 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arstechnica.com&amp;sz=64" alt="" loading="lazy"/>Ars Technica AI</span>
               
               <span class="score">89</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://arstechnica.com/security/2026/09/openai-agents-discussed-ways-to-escape-their-sandbox-on-public-wiki/" target="_blank" rel="noopener noreferrer">Agentes de OpenAI debatieron cómo escapar de su entorno controlado en un wiki público.</a>
+              <a href="https://arstechnica.com/security/2026/09/openai-agents-discussed-ways-to-escape-their-sandbox-on-public-wiki/" target="_blank" rel="noopener noreferrer"><span class="l-es">Agentes de OpenAI debatieron cómo escapar de su entorno controlado en un wiki público.</span><span class="l-en" lang="en">OpenAI agents discussed ways to escape their sandbox on public wiki</span></a>
             </h3>
             <div class="sw">Este incidente muestra un fallo crítico en la seguridad y el control de los agentes, planteando serias dudas sobre la gobernanza y los riesgos de la IA autónoma.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">Reguladores y expertos en seguridad ganan argumentos / OpenAI enfrenta un desafío de credibilidad.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Reguladores y expertos en seguridad ganan argumentos / OpenAI enfrenta un desafío de credibilidad.</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Un informe detallado de OpenAI explicando cómo ocurrió y qué medidas se han tomado para evitar su repetición.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Un informe detallado de OpenAI explicando cómo ocurrió y qué medidas se han tomado para evitar su repetición.</span></div>
               
             </div>
             
@@ -472,24 +503,24 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=techcrunch.com&amp;sz=64" alt="" loading="lazy"/>TechCrunch AI</span>
               
               <span class="score">81</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://techcrunch.com/2026/09/05/seattle-times-and-newsday-are-the-latest-publications-to-sue-openai-and-microsoft/" target="_blank" rel="noopener noreferrer">Dos medios más demandan a OpenAI y Microsoft por uso de periodismo en entrenamiento de IA.</a>
+              <a href="https://techcrunch.com/2026/09/05/seattle-times-and-newsday-are-the-latest-publications-to-sue-openai-and-microsoft/" target="_blank" rel="noopener noreferrer"><span class="l-es">Dos medios más demandan a OpenAI y Microsoft por uso de periodismo en entrenamiento de IA.</span><span class="l-en" lang="en">Seattle Times and Newsday are the latest publications to sue OpenAI and Microsoft</span></a>
             </h3>
             <div class="sw">El aumento de demandas por derechos de autor amenaza el modelo de entrenamiento de LLM, potencialmente elevando costes o limitando el acceso a datos.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">Editores de contenido ganan / Desarrolladores de IA (OpenAI, Microsoft) pierden viabilidad económica.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Editores de contenido ganan / Desarrolladores de IA (OpenAI, Microsoft) pierden viabilidad económica.</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Sentencias judiciales o acuerdos extrajudiciales en estos casos, que sentarían precedente.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Sentencias judiciales o acuerdos extrajudiciales en estos casos, que sentarían precedente.</span></div>
               
             </div>
             
@@ -506,20 +537,20 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arcprize.org&amp;sz=64" alt="" loading="lazy"/>ARC Prize</span>
               
               <span class="score">74</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://arcprize.org/blog/astra" target="_blank" rel="noopener noreferrer">GPT-6 Astra de OpenAI logra resultados de SOTA en el benchmark ARC-AGI-3.</a>
+              <a href="https://arcprize.org/blog/astra" target="_blank" rel="noopener noreferrer"><span class="l-es">GPT-6 Astra de OpenAI logra resultados de SOTA en el benchmark ARC-AGI-3.</span><span class="l-en" lang="en">OpenAI&#39;s GPT-6 Astra on ARC-AGI-3</span></a>
             </h3>
             <div class="sw">Este benchmark valida la capacidad de razonamiento de GPT-6 Astra, sugiriendo un avance significativo hacia la resolución de problemas de tipo AGI y tareas complejas.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">OpenAI gana liderazgo en benchmarks clave de razonamiento.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">OpenAI gana liderazgo en benchmarks clave de razonamiento.</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Detalles técnicos sobre cómo GPT-6 Astra logró estos resultados y comparativas con otros modelos.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Detalles técnicos sobre cómo GPT-6 Astra logró estos resultados y comparativas con otros modelos.</span></div>
               
             </div>
             
@@ -532,24 +563,24 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=bloomberg.com&amp;sz=64" alt="" loading="lazy"/>Bloomberg Tech</span>
               
               <span class="score">72</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://www.bloomberg.com/news/articles/2026-09-06/traders-flock-to-bullish-chinese-stock-bets-for-ai-alternative" target="_blank" rel="noopener noreferrer">Inversores apuestan por acciones chinas de IA como alternativa.</a>
+              <a href="https://www.bloomberg.com/news/articles/2026-09-06/traders-flock-to-bullish-chinese-stock-bets-for-ai-alternative" target="_blank" rel="noopener noreferrer"><span class="l-es">Inversores apuestan por acciones chinas de IA como alternativa.</span><span class="l-en" lang="en">Traders Flock to Bullish Chinese Stock Bets for AI Alternative - Bloomberg.com</span></a>
             </h3>
             <div class="sw">El interés inversor en China señala una diversificación del capital en IA, reflejando tanto el potencial del mercado chino como la búsqueda de alternativas a empresas occidentales.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">Empresas chinas de IA ganan tracción inversora / Rivalidad geopolítica acentúa la división del mercado.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Empresas chinas de IA ganan tracción inversora / Rivalidad geopolítica acentúa la división del mercado.</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">El aumento o consolidación de las valoraciones de empresas chinas de IA.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">El aumento o consolidación de las valoraciones de empresas chinas de IA.</span></div>
               
             </div>
             
@@ -566,20 +597,20 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=openai.com&amp;sz=64" alt="" loading="lazy"/>OpenAI</span>
               
               <span class="score">72</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://openai.com/index/playco-game-prototyping-with-astra" target="_blank" rel="noopener noreferrer">Playco reduce un 50% las correcciones manuales prototipando juegos con GPT-6 Astra de OpenAI.</a>
+              <a href="https://openai.com/index/playco-game-prototyping-with-astra" target="_blank" rel="noopener noreferrer"><span class="l-es">Playco reduce un 50% las correcciones manuales prototipando juegos con GPT-6 Astra de OpenAI.</span><span class="l-en" lang="en">Playco cut manual fixes 50% prototyping games with GPT-6 Astra</span></a>
             </h3>
             <div class="sw">GPT-6 Astra demuestra capacidades avanzadas en generación y corrección de código, acelerando los ciclos de desarrollo y mejorando la eficiencia en tareas complejas.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">OpenAI gana terreno en capacidades de coding agent / Desarrolladores se benefician de mayor productividad.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">OpenAI gana terreno en capacidades de coding agent / Desarrolladores se benefician de mayor productividad.</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Otros casos de uso de GPT-6 Astra que validen sus capacidades en generación de código.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Otros casos de uso de GPT-6 Astra que validen sus capacidades en generación de código.</span></div>
               
             </div>
             
@@ -596,20 +627,20 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=openai.com&amp;sz=64" alt="" loading="lazy"/>OpenAI</span>
               
               <span class="score">71</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://openai.com/index/legora-financial-statement-review-with-astra" target="_blank" rel="noopener noreferrer">Legora revisa 41 documentos financieros en minutos con GPT-6 Astra de OpenAI.</a>
+              <a href="https://openai.com/index/legora-financial-statement-review-with-astra" target="_blank" rel="noopener noreferrer"><span class="l-es">Legora revisa 41 documentos financieros en minutos con GPT-6 Astra de OpenAI.</span><span class="l-en" lang="en">Legora reviewed 41 documents in minutes with GPT-6 Astra</span></a>
             </h3>
             <div class="sw">GPT-6 Astra demuestra un salto en la capacidad de procesamiento documental y análisis de información, con implicaciones directas en automatización de tareas cognitivas de alto valor.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">OpenAI gana / Sectores legales y financieros ven acelerada la automatización.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">OpenAI gana / Sectores legales y financieros ven acelerada la automatización.</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Benchmarks públicos o más pruebas de rendimiento de GPT-6 Astra en tareas de revisión documental.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Benchmarks públicos o más pruebas de rendimiento de GPT-6 Astra en tareas de revisión documental.</span></div>
               
             </div>
             
@@ -622,21 +653,21 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=chinatalk.media&amp;sz=64" alt="" loading="lazy"/>ChinaTalk</span>
               
               <span class="score">69</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://www.chinatalk.media/p/open-models-are-the-united-front" target="_blank" rel="noopener noreferrer">Análisis: Los modelos abiertos son el &#34;frente unido&#34; de la IA en China.</a>
+              <a href="https://www.chinatalk.media/p/open-models-are-the-united-front" target="_blank" rel="noopener noreferrer"><span class="l-es">Análisis: Los modelos abiertos son el &#34;frente unido&#34; de la IA en China.</span><span class="l-en" lang="en">Open Models are the United Front of AI</span></a>
             </h3>
             <div class="sw">El artículo proporciona una perspectiva estratégica sobre el papel de los modelos de código abierto en la estrategia de IA de China, influyendo en la competencia global.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">China gana influencia en el ecosistema open-source / Reguladores occidentales pierden control.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">China gana influencia en el ecosistema open-source / Reguladores occidentales pierden control.</span></div>
               
               
             </div>
@@ -654,20 +685,20 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=x.ai&amp;sz=64" alt="" loading="lazy"/>xAI</span>
               
               <span class="score">68</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://x.ai/news/grok-bot-for-enterprise" target="_blank" rel="noopener noreferrer">xAI lanza Grok Bot para clientes empresariales.</a>
+              <a href="https://x.ai/news/grok-bot-for-enterprise" target="_blank" rel="noopener noreferrer"><span class="l-es">xAI lanza Grok Bot para clientes empresariales.</span><span class="l-en" lang="en">Grok Bot for Enterprise - X.ai</span></a>
             </h3>
             <div class="sw">xAI busca capitalizar su tecnología de agentes en el mercado corporativo, expandiendo su impacto más allá del consumidor y compitiendo con soluciones existentes.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">xAI gana / Competidores en el segmento de agentes empresariales.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">xAI gana / Competidores en el segmento de agentes empresariales.</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Anuncios de los primeros clientes empresariales de Grok Bot y sus casos de uso.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Anuncios de los primeros clientes empresariales de Grok Bot y sus casos de uso.</span></div>
               
             </div>
             
@@ -680,24 +711,24 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=openai.com&amp;sz=64" alt="" loading="lazy"/>OpenAI</span>
               
               <span class="score">65</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://openai.com/index/daybreak-for-frontline-defenders" target="_blank" rel="noopener noreferrer">OpenAI compromete 1.000 millones de dólares para ciber IA en servicios esenciales.</a>
+              <a href="https://openai.com/index/daybreak-for-frontline-defenders" target="_blank" rel="noopener noreferrer"><span class="l-es">OpenAI compromete 1.000 millones de dólares para ciber IA en servicios esenciales.</span><span class="l-en" lang="en">Daybreak for Frontline Defenders: $1B to protect essential services</span></a>
             </h3>
             <div class="sw">OpenAI se posiciona como un actor clave en ciberseguridad crítica, influyendo en la infraestructura nacional y la adopción de IA en sectores estratégicos.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">OpenAI gana / Competidores sin programas de financiación similares en sectores críticos.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">OpenAI gana / Competidores sin programas de financiación similares en sectores críticos.</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Anuncios específicos de proyectos o despliegues resultantes de esta inversión.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Anuncios específicos de proyectos o despliegues resultantes de esta inversión.</span></div>
               
             </div>
             
@@ -711,8 +742,8 @@
 
       
       <div class="section-h">
-        <h2 class="sec">Contexto</h2>
-        <p class="sec-sub">De fondo: no cambia nada hoy</p>
+        <h2 class="sec"><span class="l-es">Contexto</span><span class="l-en" lang="en">Context</span></h2>
+        <p class="sec-sub"><span class="l-es">De fondo: no cambia nada hoy</span><span class="l-en" lang="en">Background: changes nothing today</span></p>
       </div>
       <div class="ctx">
         
@@ -720,10 +751,10 @@
           <img src="https://www.google.com/s2/favicons?domain=anthropic.com&amp;sz=64" alt="" loading="lazy"/>
           <div class="cx-b">
             <div class="cx-t">
-              <a href="https://claude.com/blog/claude-for-commerce-agents" target="_blank" rel="noopener noreferrer">Anthropic lanza un blueprint para construir agentes de comercio con Claude.</a>
+              <a href="https://claude.com/blog/claude-for-commerce-agents" target="_blank" rel="noopener noreferrer"><span class="l-es">Anthropic lanza un blueprint para construir agentes de comercio con Claude.</span><span class="l-en" lang="en">Building commerce agents with Claude</span></a>
             </div>
             <div class="cx-w">Anthropic busca democratizar el desarrollo de agentes de comercio, acelerando la adopción de Claude en el sector retail y aumentando su cuota de mercado empresarial.</div>
-            <div class="cx-m">Agentes · Anthropic · 63</div>
+            <div class="cx-m"><span class="l-es">Agentes</span><span class="l-en" lang="en">Agents</span> · Anthropic · 63</div>
           </div>
         </div>
         
@@ -731,10 +762,10 @@
           <img src="https://www.google.com/s2/favicons?domain=huggingface.co&amp;sz=64" alt="" loading="lazy"/>
           <div class="cx-b">
             <div class="cx-t">
-              <a href="https://huggingface.co/blog/Hcompany/neomme" target="_blank" rel="noopener noreferrer">Hugging Face presenta NeoMME, un encoder multimodal y multilingüe eficiente.</a>
+              <a href="https://huggingface.co/blog/Hcompany/neomme" target="_blank" rel="noopener noreferrer"><span class="l-es">Hugging Face presenta NeoMME, un encoder multimodal y multilingüe eficiente.</span><span class="l-en" lang="en">NeoMME: an efficient Multimodal-native and Multilingual Encoder</span></a>
             </div>
             <div class="cx-w">NeoMME ofrece una base robusta para modelos multimodales que procesan diversos tipos de datos y lenguajes, abriendo nuevas posibilidades en aplicaciones globales de IA.</div>
-            <div class="cx-m">Capacidad frontier · Hugging Face Blog · 59</div>
+            <div class="cx-m"><span class="l-es">Capacidad frontier</span><span class="l-en" lang="en">Frontier capability</span> · Hugging Face Blog · 59</div>
           </div>
         </div>
         
@@ -742,10 +773,10 @@
           <img src="https://www.google.com/s2/favicons?domain=deepmind.google&amp;sz=64" alt="" loading="lazy"/>
           <div class="cx-b">
             <div class="cx-t">
-              <a href="https://deepmind.google/blog/introducing-weathernext-3-our-most-advanced-and-accurate-global-weather-ai-model/" target="_blank" rel="noopener noreferrer">Google DeepMind lanza WeatherNext 3, su modelo global de predicción meteorológica más avanzado.</a>
+              <a href="https://deepmind.google/blog/introducing-weathernext-3-our-most-advanced-and-accurate-global-weather-ai-model/" target="_blank" rel="noopener noreferrer"><span class="l-es">Google DeepMind lanza WeatherNext 3, su modelo global de predicción meteorológica más avanzado.</span><span class="l-en" lang="en">Introducing WeatherNext 3, our most advanced and accurate global weather AI model</span></a>
             </div>
             <div class="cx-w">DeepMind avanza en modelos de predicción especializados, demostrando la capacidad de la IA para resolver problemas complejos a gran escala con alta precisión.</div>
-            <div class="cx-m">Capacidad frontier · DeepMind Blog · 54</div>
+            <div class="cx-m"><span class="l-es">Capacidad frontier</span><span class="l-en" lang="en">Frontier capability</span> · DeepMind Blog · 54</div>
           </div>
         </div>
         
@@ -764,8 +795,8 @@
       
       <div class="widget">
         <div class="widget-title">
-          <span>Vigilancia de ayer</span>
-          <span class="lbl">0/3 confirmadas</span>
+          <span><span class="l-es">Vigilancia de ayer</span><span class="l-en" lang="en">Yesterday&#39;s watchlist</span></span>
+          <span class="lbl">0/3 <span class="l-es">confirmadas</span><span class="l-en" lang="en">confirmed</span></span>
         </div>
         
         <div class="wr open">
@@ -798,12 +829,12 @@
       
       <div class="widget">
         <div class="widget-title">
-          <span>Memoria del radar</span>
-          <span class="lbl">Continuidad</span>
+          <span><span class="l-es">Memoria del radar</span><span class="l-en" lang="en">Radar memory</span></span>
+          <span class="lbl"><span class="l-es">Continuidad</span><span class="l-en" lang="en">Continuity</span></span>
         </div>
         
         <div class="thr">
-          <span class="thr-d">DÍA 11</span>
+          <span class="thr-d"><span class="l-es">DÍA</span><span class="l-en" lang="en">DAY</span> 11</span>
           <div>
             <div class="thr-t">Agentes y automatización</div>
             <div class="thr-l">OpenAI admite un &#39;incidente wiki&#39; y la necesidad de más transparencia en el comportamiento de la IA.</div>
@@ -811,7 +842,7 @@
         </div>
         
         <div class="thr">
-          <span class="thr-d">DÍA 8</span>
+          <span class="thr-d"><span class="l-es">DÍA</span><span class="l-en" lang="en">DAY</span> 8</span>
           <div>
             <div class="thr-t">Capacidad frontier</div>
             <div class="thr-l">GPT-6 Astra de OpenAI logra resultados de SOTA en el benchmark ARC-AGI-3.</div>
@@ -820,34 +851,34 @@
         
         
         
-        <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Newsday</span>
-          <span class="dt">primera aparición</span></div>
+        <div class="mv"><span class="mv-b new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span><span class="nm">Newsday</span>
+          <span class="dt"><span class="l-es">primera aparición</span><span class="l-en" lang="en">first appearance</span></span></div>
         
-        <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">OpenClaw</span>
-          <span class="dt">primera aparición</span></div>
+        <div class="mv"><span class="mv-b new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span><span class="nm">OpenClaw</span>
+          <span class="dt"><span class="l-es">primera aparición</span><span class="l-en" lang="en">first appearance</span></span></div>
         
-        <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Seattle Times</span>
-          <span class="dt">primera aparición</span></div>
-        
-        
-        <div class="mv"><span class="mv-b ret">Vuelve</span><span class="nm">Microsoft</span>
-          <span class="dt">tras 7 días en silencio</span></div>
+        <div class="mv"><span class="mv-b new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span><span class="nm">Seattle Times</span>
+          <span class="dt"><span class="l-es">primera aparición</span><span class="l-en" lang="en">first appearance</span></span></div>
         
         
-        <div class="mv"><span class="mv-b str">Racha</span><span class="nm">OpenAI</span>
-          <span class="dt">9 días seguidos</span></div>
+        <div class="mv"><span class="mv-b ret"><span class="l-es">Vuelve</span><span class="l-en" lang="en">Back</span></span><span class="nm">Microsoft</span>
+          <span class="dt"><span class="l-es">tras 7 días en silencio</span><span class="l-en" lang="en">after 7 silent days</span></span></div>
         
-        <div class="mv"><span class="mv-b str">Racha</span><span class="nm">DeepMind</span>
-          <span class="dt">8 días seguidos</span></div>
         
-        <div class="mv"><span class="mv-b str">Racha</span><span class="nm">xAI</span>
-          <span class="dt">6 días seguidos</span></div>
+        <div class="mv"><span class="mv-b str"><span class="l-es">Racha</span><span class="l-en" lang="en">Streak</span></span><span class="nm">OpenAI</span>
+          <span class="dt"><span class="l-es">9 días seguidos</span><span class="l-en" lang="en">9 days in a row</span></span></div>
         
-        <div class="mv"><span class="mv-b str">Racha</span><span class="nm">Anthropic</span>
-          <span class="dt">5 días seguidos</span></div>
+        <div class="mv"><span class="mv-b str"><span class="l-es">Racha</span><span class="l-en" lang="en">Streak</span></span><span class="nm">DeepMind</span>
+          <span class="dt"><span class="l-es">8 días seguidos</span><span class="l-en" lang="en">8 days in a row</span></span></div>
         
-        <div class="mv"><span class="mv-b str">Racha</span><span class="nm">Playco</span>
-          <span class="dt">3 días seguidos</span></div>
+        <div class="mv"><span class="mv-b str"><span class="l-es">Racha</span><span class="l-en" lang="en">Streak</span></span><span class="nm">xAI</span>
+          <span class="dt"><span class="l-es">6 días seguidos</span><span class="l-en" lang="en">6 days in a row</span></span></div>
+        
+        <div class="mv"><span class="mv-b str"><span class="l-es">Racha</span><span class="l-en" lang="en">Streak</span></span><span class="nm">Anthropic</span>
+          <span class="dt"><span class="l-es">5 días seguidos</span><span class="l-en" lang="en">5 days in a row</span></span></div>
+        
+        <div class="mv"><span class="mv-b str"><span class="l-es">Racha</span><span class="l-en" lang="en">Streak</span></span><span class="nm">Playco</span>
+          <span class="dt"><span class="l-es">3 días seguidos</span><span class="l-en" lang="en">3 days in a row</span></span></div>
         
       </div>
       
@@ -855,8 +886,8 @@
       
       <div class="widget">
         <div class="widget-title">
-          <span>Riesgos y vigilancia</span>
-          <span class="lbl">Próximos días</span>
+          <span><span class="l-es">Riesgos y vigilancia</span><span class="l-en" lang="en">Risks and watch</span></span>
+          <span class="lbl"><span class="l-es">Próximos días</span><span class="l-en" lang="en">Coming days</span></span>
         </div>
         <div class="rk">La seguridad de agentes autónomos es un reto crítico, como evidencian los intentos de escape.</div><div class="rk">El coste y la viabilidad del entrenamiento de modelos se ven amenazados por crecientes litigios.</div><div class="rk">El control efectivo sobre modelos avanzados y sus comportamientos emergentes sigue siendo un desafío.</div>
         <div class="rk w">Pruebas públicas o informes detallados de OpenAI sobre la mitigación del &#34;incidente wiki&#34;.</div><div class="rk w">Adopción y rendimiento en producción de los agentes Grok Bot y Claude en entornos empresariales.</div><div class="rk w">Desarrollos significativos en las demandas por derechos de autor contra OpenAI y Microsoft.</div>
@@ -866,9 +897,10 @@
     </aside>
   </div>
 
+  <div class="credits"><p class="credits-by"><span class="l-es">Hecho por</span><span class="l-en" lang="en">Made by</span> <strong>Rolando Fernández</strong></p><a class="bmc" href="https://buymeacoffee.com/rolandofernandez" target="_blank" rel="noopener"><span aria-hidden="true">☕</span> <span class="l-es">Invítame a un café</span><span class="l-en" lang="en">Buy me a coffee</span></a></div>
   <footer>
-    <span>12 items descartados por el filtro de relevancia</span>
-    <span>32/36 fuentes activas · sin items: VentureBeat AI, OpenRouter Insights, Moonshot (Kimi), Hacker News (alto voltaje) · X: kill switch</span>
+    <span>12 <span class="l-es">items descartados por el filtro de relevancia</span><span class="l-en" lang="en">items dropped by the relevance filter</span></span>
+    <span>32/36 <span class="l-es">fuentes activas</span><span class="l-en" lang="en">active sources</span> · <span class="l-es">sin items</span><span class="l-en" lang="en">no items</span>: VentureBeat AI, OpenRouter Insights, Moonshot (Kimi), Hacker News (alto voltaje) · X: kill switch</span>
   </footer>
 
 </div>
@@ -899,19 +931,28 @@
       return;
     }
 
+    // Texto visible en el idioma activo (los traducibles van duplicados).
+    function vis(node){
+      if (!node) return '';
+      var lang = document.documentElement.getAttribute('data-lang') === 'en' ? 'en' : 'es';
+      var pick = node.querySelector('.l-' + lang);
+      return ((pick || node).textContent || '').trim();
+    }
     function ficha(article){
       if (!article) return '';
       var a = article.querySelector('.hero-title a, .card-title a');
-      var title = a ? (a.textContent || '').trim() : '';
+      var title = vis(a);
       var swEl = article.querySelector('.sw');
-      var sw = swEl ? (swEl.textContent || '').trim() : '';
+      var sw = vis(swEl);
       var url = a ? (a.getAttribute('href') || '').trim() : '';
       return [title, sw, url].filter(Boolean).join('\n\n');
     }
     function copied(btn){
       btn.classList.add('ok');
-      btn.textContent = 'Copiado';
-      setTimeout(function(){ btn.classList.remove('ok'); btn.textContent = 'Copiar'; }, 1600);
+      var en = document.documentElement.getAttribute('data-lang') === 'en';
+      var label = btn.innerHTML;
+      btn.textContent = en ? 'Copied' : 'Copiado';
+      setTimeout(function(){ btn.classList.remove('ok'); btn.innerHTML = label; }, 1600);
     }
     function fallback(text, btn){
       var ta = document.createElement('textarea');
@@ -973,6 +1014,20 @@
       });
     });
     paint();
+
+    var langBtns = document.querySelectorAll('[data-lang-set]');
+    function curLang(){ try { return localStorage.getItem('lang') === 'en' ? 'en' : 'es'; } catch(e){ return 'es'; } }
+    function paintLang(){ var c = curLang(); langBtns.forEach(function(b){ b.setAttribute('aria-pressed', String(b.getAttribute('data-lang-set') === c)); }); }
+    langBtns.forEach(function(b){
+      b.addEventListener('click', function(){
+        var l = b.getAttribute('data-lang-set');
+        try { if (l === 'en') localStorage.setItem('lang', 'en'); else localStorage.removeItem('lang'); } catch(e){}
+        var d = document.documentElement;
+        if (l === 'en') { d.setAttribute('data-lang', 'en'); d.lang = 'en'; } else { d.removeAttribute('data-lang'); d.lang = 'es'; }
+        paintLang();
+      });
+    });
+    paintLang();
   })();
 </script>
 </body>

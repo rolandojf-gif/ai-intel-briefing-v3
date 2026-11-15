@@ -4,15 +4,31 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AI Strategic Radar</title>
-<meta name="description" content="Radar diario de la carrera AGI: modelos frontier, compute, China y agentes. Solo lo que mueve la aguja."/>
+<title>RADAR.IA · Edición del 2026-07-24</title>
+<meta name="description" content="Radar diario de la carrera hacia la AGI: modelos frontier, agentes, chips y compute, China y economía de la IA. Solo lo que cambia algo, con fuente y análisis."/>
+<meta name="robots" content="index, follow, max-image-preview:large"/>
+<link rel="canonical" href="https://aievolve.netlify.app/d/2026-07-24.html"/>
+<meta name="google-site-verification" content="yh8wm8HsAeqP892U5UGczQs-RLnGuNHx7WGfNntGduk"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="RADAR.IA"/>
+<meta property="og:locale" content="es_ES"/><meta property="og:locale:alternate" content="en_US"/>
+<meta property="og:title" content="RADAR.IA · Edición del 2026-07-24"/>
+<meta property="og:description" content="Radar diario de la carrera hacia la AGI: modelos frontier, agentes, chips y compute, China y economía de la IA. Solo lo que cambia algo, con fuente y análisis."/>
+<meta property="og:url" content="https://aievolve.netlify.app/d/2026-07-24.html"/>
+<meta property="og:image" content="https://aievolve.netlify.app/og.png"/>
+<meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="RADAR.IA · Edición del 2026-07-24"/>
+<meta name="twitter:description" content="Radar diario de la carrera hacia la AGI: modelos frontier, agentes, chips y compute, China y economía de la IA. Solo lo que cambia algo, con fuente y análisis."/>
+<meta name="twitter:image" content="https://aievolve.netlify.app/og.png"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://aievolve.netlify.app/#website","url":"https://aievolve.netlify.app/","name":"RADAR.IA","description":"Radar diario de la carrera hacia la AGI, con fuentes y análisis.","inLanguage":["es","en"],"isAccessibleForFree":true,"author":{"@type":"Person","name":"Rolando Fernández"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 <meta name="theme-color" content="#F4F3EF" media="(prefers-color-scheme: light)"/>
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)"/>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='1' y='1' width='30' height='30' fill='%23FF5722' stroke='%23121211' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%23121211' stroke-width='2.4'/%3E%3Cpath d='M16 16V6A10 10 0 0 1 25.5 12.9Z' fill='%23121211'/%3E%3Ccircle cx='11' cy='19.5' r='2' fill='%23121211'/%3E%3C/svg%3E"/>
-<script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<script>(function(){try{var d=document.documentElement,t=localStorage.getItem('theme'),l=localStorage.getItem('lang');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);if(l==='en'){d.setAttribute('data-lang','en');d.lang='en';}}catch(e){}})();</script>
 <script>
   // Va en <head> para estar escuchando antes de que se pinte la primera imagen.
   // Una imagen remota caida (hotlink bloqueado, 404, caducada) se cambia por la
@@ -100,6 +116,21 @@
   .page-h1{font:700 clamp(30px,4.2vw,56px)/1 var(--f-head);letter-spacing:-.03em;text-transform:uppercase;margin:6px 0 12px}
   .lede{color:var(--muted);font-size:17px;max-width:72ch;margin:0}
   .lead h1.page-h1{font:700 clamp(30px,4.2vw,56px)/1 var(--f-head);letter-spacing:-.03em;margin:6px 0 12px}
+
+  /* Bilingue: cada texto traducible va dos veces; se ve el del idioma activo. */
+  /* !important: reglas de componente con display propio no deben reactivar el idioma oculto. */
+  html:not([data-lang="en"]) .l-en{display:none!important}
+  html[data-lang="en"] .l-es{display:none!important}
+  .top-ctl{display:flex;gap:10px;flex-wrap:wrap}
+
+  /* Firma, como en moloch.sh: discreta, al pie */
+  .credits{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+           margin-top:40px;padding:12px 16px;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow-sm)}
+  .credits-by{margin:0;font:400 12px var(--f-mono);color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+  .credits-by strong{font:700 14px var(--f-head);color:var(--text);text-transform:none;letter-spacing:0;margin-left:6px}
+  .bmc{display:inline-flex;align-items:center;gap:7px;font:700 11.5px/1 var(--f-mono);text-transform:uppercase;
+       padding:8px 11px;background:var(--lime);color:#121211;border:2px solid var(--ink);box-shadow:var(--shadow-sm)}
+  .bmc:hover{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--ink)}
 
   @media(max-width:900px){
     .navtabs{order:3;margin:0;width:100%}
@@ -204,8 +235,8 @@
   .widget{background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow);padding:14px 16px}
   .widget-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:-14px -16px 12px;
                 padding:10px 16px;border-bottom:2px solid var(--ink);background:var(--card-2)}
-  .widget-title span:first-child{display:flex;align-items:center;gap:9px;font:700 12px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.06em}
-  .widget-title span:first-child::before{content:"";width:10px;height:10px;background:var(--orange);border:2px solid var(--ink)}
+  .widget-title>span:first-child{display:flex;align-items:center;gap:9px;font:700 12px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.06em}
+  .widget-title>span:first-child::before{content:"";width:10px;height:10px;background:var(--orange);border:2px solid var(--ink)}
   .widget-title .lbl{font:400 10px var(--f-mono);color:var(--muted);text-transform:uppercase}
 
   .market-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
@@ -269,31 +300,31 @@
 </style>
 </head>
 <body>
-<header class="topnav"><a class="brand" href="../index.html" aria-label="Radar.IA, portada"><span class="brand-icon"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 12V2.5A9.5 9.5 0 0 1 21.03 9.06Z" fill="currentColor"/><circle cx="7.5" cy="15" r="1.7" fill="currentColor"/></svg></span><span class="brand-text"><strong>Radar<em>.IA</em></strong><small>Radar estratégico de la carrera AGI</small></span></a><nav class="navtabs" aria-label="Secciones"><a class="navtab" href="../index.html"><i>01</i> Diario</a><a class="navtab" href="../weekly.html"><i>02</i> Semanal</a><a class="navtab" href="../archivo.html" aria-current="page"><i>03</i> Archivo</a></nav><div class="seg" role="group" aria-label="Tema"><button type="button" class="seg-btn" data-theme-set="auto">Auto</button><button type="button" class="seg-btn" data-theme-set="light">Claro</button><button type="button" class="seg-btn" data-theme-set="dark">Oscuro</button></div></header>
+<header class="topnav"><a class="brand" href="../index.html" aria-label="Radar.IA, portada"><span class="brand-icon"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 12V2.5A9.5 9.5 0 0 1 21.03 9.06Z" fill="currentColor"/><circle cx="7.5" cy="15" r="1.7" fill="currentColor"/></svg></span><span class="brand-text"><strong>Radar<em>.IA</em></strong><small><span class="l-es">Radar estratégico de la carrera AGI</span><span class="l-en" lang="en">Strategic radar of the AGI race</span></small></span></a><nav class="navtabs" aria-label="Secciones"><a class="navtab" href="../index.html"><i>01</i> <span class="l-es">Diario</span><span class="l-en" lang="en">Daily</span></a><a class="navtab" href="../weekly.html"><i>02</i> <span class="l-es">Semanal</span><span class="l-en" lang="en">Weekly</span></a><a class="navtab" href="../archivo.html" aria-current="page"><i>03</i> <span class="l-es">Archivo</span><span class="l-en" lang="en">Archive</span></a></nav><div class="top-ctl"><div class="seg" role="group" aria-label="Idioma"><button type="button" class="seg-btn" data-lang-set="es">ES</button><button type="button" class="seg-btn" data-lang-set="en">EN</button></div><div class="seg" role="group" aria-label="Tema"><button type="button" class="seg-btn" data-theme-set="auto">Auto</button><button type="button" class="seg-btn" data-theme-set="light"><span class="l-es">Claro</span><span class="l-en" lang="en">Light</span></button><button type="button" class="seg-btn" data-theme-set="dark"><span class="l-es">Oscuro</span><span class="l-en" lang="en">Dark</span></button></div></div></header>
 <div class="strip">
-  <span>Edición <b class="hl">2026-07-24</b></span>
+  <span><span class="l-es">Edición</span><span class="l-en" lang="en">Edition</span> <b class="hl">2026-07-24</b></span>
   <span class="it ">ARCHIVO</span>
-  <span class="it">15 señales</span>
-  <span class="it">0/0 fuentes</span>
+  <span class="it">15 <span class="l-es">señales</span><span class="l-en" lang="en">signals</span></span>
+  <span class="it">0/0 <span class="l-es">fuentes</span><span class="l-en" lang="en">sources</span></span>
   
-  <a class="r" href="../archivo.html">Archivo ↗</a>
+  <a class="r" href="../archivo.html"><span class="l-es">Archivo</span><span class="l-en" lang="en">Archive</span> ↗</a>
 </div>
 <div class="wrap">
 
   
   <div class="arch-bar">
-    <a href="../archivo.html">← Archivo</a>
+    <a href="../archivo.html">← <span class="l-es">Archivo</span><span class="l-en" lang="en">Archive</span></a>
     <a href="../d/2026-07-23.html">2026-07-23</a>
     <span class="here">2026-07-24</span>
     <a href="../d/2026-07-25.html">2026-07-25</a>
-    <a href="../index.html" style="margin-left:auto">Hoy</a>
+    <a href="../index.html" style="margin-left:auto"><span class="l-es">Hoy</span><span class="l-en" lang="en">Today</span></a>
   </div>
   
 
   <!-- Tesis del dia -->
   <div class="thesis">
-    <span class="kicker">2026-07-24 · lectura del día</span>
-    <h1 class="page-h1">Tesis del día</h1>
+    <span class="kicker">2026-07-24 · <span class="l-es">lectura del día</span><span class="l-en" lang="en">today&#39;s reading</span></span>
+    <h1 class="page-h1"><span class="l-es">Tesis del día</span><span class="l-en" lang="en">Thesis of the day</span></h1>
     <p class="tz">El diseño de chips mediante agentes IA (EDA) pasa de teoría a realidad con hitos de diseño físico real</p>
   </div>
 
@@ -303,18 +334,18 @@
   <!-- Tabs de tema -->
   
   <div class="tabs" id="tabs">
-    <span class="tab on" data-filter="all">Todas<span class="n">15</span></span>
+    <span class="tab on" data-filter="all"><span class="l-es">Todas</span><span class="l-en" lang="en">All</span><span class="n">15</span></span>
     
     
-    <span class="tab" data-filter="agents_automation">Agentes<span class="n">11</span></span>
+    <span class="tab" data-filter="agents_automation"><span class="l-es">Agentes</span><span class="l-en" lang="en">Agents</span><span class="n">11</span></span>
     
-    <span class="tab" data-filter="frontier_capability">Capacidad frontier<span class="n">1</span></span>
+    <span class="tab" data-filter="frontier_capability"><span class="l-es">Capacidad frontier</span><span class="l-en" lang="en">Frontier capability</span><span class="n">1</span></span>
     
-    <span class="tab" data-filter="model_economics_pricing">Economía de modelos<span class="n">1</span></span>
+    <span class="tab" data-filter="model_economics_pricing"><span class="l-es">Economía de modelos</span><span class="l-en" lang="en">Model economics</span><span class="n">1</span></span>
     
     <span class="tab" data-filter="compute_chips_dc">Compute &amp; chips<span class="n">1</span></span>
     
-    <span class="tab" data-filter="china_stack">Stack chino<span class="n">1</span></span>
+    <span class="tab" data-filter="china_stack"><span class="l-es">Stack chino</span><span class="l-en" lang="en">China stack</span><span class="n">1</span></span>
     
   </div>
   
@@ -331,15 +362,15 @@
         </a>
         <div class="hero-body">
           <div class="meta-row">
-            <span class="tag">Capacidad frontier</span>
-            <span class="badge-new">Nuevo</span>
+            <span class="tag"><span class="l-es">Capacidad frontier</span><span class="l-en" lang="en">Frontier capability</span></span>
+            <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
             <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.LG</span>
             
             <span class="score">87</span>
-            <button type="button" class="copy-btn" data-copy>Copiar</button>
+            <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
           </div>
           <h2 class="hero-title">
-            <a href="https://arxiv.org/abs/2607.20492" target="_blank" rel="noopener noreferrer">PhantomFill: Cuando el formulario exige una respuesta, los modelos de lenguaje inventan una</a>
+            <a href="https://arxiv.org/abs/2607.20492" target="_blank" rel="noopener noreferrer"><span class="l-es">PhantomFill: Cuando el formulario exige una respuesta, los modelos de lenguaje inventan una</span><span class="l-en" lang="en">PhantomFill: When the Form Demands an Answer, Language Models Invent One</span></a>
           </h2>
           <div class="sw">Estudio crítico que demuestra que exigir formatos estructurados como JSON induce alucinaciones incluso en modelos punteros.</div>
           
@@ -360,14 +391,14 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
               
               <span class="score">77</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://arxiv.org/abs/2607.20427" target="_blank" rel="noopener noreferrer">¿Es el enrutamiento MoE un código Huffman? Descubriendo la ley de frecuencia-diversidad en Chain-of-Thought</a>
+              <a href="https://arxiv.org/abs/2607.20427" target="_blank" rel="noopener noreferrer"><span class="l-es">¿Es el enrutamiento MoE un código Huffman? Descubriendo la ley de frecuencia-diversidad en Chain-of-Thought</span><span class="l-en" lang="en">Is MoE Routing a Huffman Code? Discovering the Frequency-Diversity Law in Chain-of-Thought</span></a>
             </h3>
             <div class="sw">Descubrimiento de que las arquitecturas MoE operan bajo principios de teoría de la información (Huffman), optimizando el uso de expertos.</div>
             
@@ -381,14 +412,14 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=semiwiki.com&amp;sz=64" alt="" loading="lazy"/>SemiWiki</span>
               
               <span class="score">76</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://semiwiki.com/eda/agentrys/371377-agentrys-designs-a-real-chip-with-its-multi-agent-workforce/" target="_blank" rel="noopener noreferrer">Agentrys diseña un chip real con su fuerza de trabajo multi-agente</a>
+              <a href="https://semiwiki.com/eda/agentrys/371377-agentrys-designs-a-real-chip-with-its-multi-agent-workforce/" target="_blank" rel="noopener noreferrer"><span class="l-es">Agentrys diseña un chip real con su fuerza de trabajo multi-agente</span><span class="l-en" lang="en">Agentrys Designs a Real Chip with its Multi-Agent Workforce</span></a>
             </h3>
             <div class="sw">Hito en la industria de semiconductores: uso de agentes autónomos para el diseño físico de un chip real, optimizando procesos EDA.</div>
             
@@ -402,14 +433,14 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.LG</span>
               
               <span class="score">74</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://arxiv.org/abs/2607.20465" target="_blank" rel="noopener noreferrer">DataPrep-Bench: Evaluando LLMs como preparadores de datos de entrenamiento</a>
+              <a href="https://arxiv.org/abs/2607.20465" target="_blank" rel="noopener noreferrer"><span class="l-es">DataPrep-Bench: Evaluando LLMs como preparadores de datos de entrenamiento</span><span class="l-en" lang="en">DataPrep-Bench: Benchmarking LLMs as Training Data Preparators</span></a>
             </h3>
             <div class="sw">Nuevo benchmark necesario para evaluar cómo los LLMs preparan datos de entrenamiento, midiendo utilidad real en lugar de estética.</div>
             
@@ -423,14 +454,14 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.AI</span>
               
               <span class="score">70</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://arxiv.org/abs/2607.20452" target="_blank" rel="noopener noreferrer">AINTMA: Arquitectura de IA de agentes para la gestión autónoma de pruebas con inteligencia generativa</a>
+              <a href="https://arxiv.org/abs/2607.20452" target="_blank" rel="noopener noreferrer"><span class="l-es">AINTMA: Arquitectura de IA de agentes para la gestión autónoma de pruebas con inteligencia generativa</span><span class="l-en" lang="en">AINTMA: Agentic AI Architecture for Autonomous Test Management with Generative Intelligence, Secure Cloud Communication and Adaptive Quality Analytics</span></a>
             </h3>
             <div class="sw">Arquitectura multi-agente que automatiza el ciclo de pruebas de software, mejorando la eficiencia en entornos cloud nativos.</div>
             
@@ -444,14 +475,14 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=semiwiki.com&amp;sz=64" alt="" loading="lazy"/>SemiWiki</span>
               
               <span class="score">70</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://semiwiki.com/eda/bronco-ai/371650-bronco-ai-win-the-race-to-tape-out-booth-935/" target="_blank" rel="noopener noreferrer">BRONCO AI: Gana la carrera hacia el tape-out</a>
+              <a href="https://semiwiki.com/eda/bronco-ai/371650-bronco-ai-win-the-race-to-tape-out-booth-935/" target="_blank" rel="noopener noreferrer"><span class="l-es">BRONCO AI: Gana la carrera hacia el tape-out</span><span class="l-en" lang="en">BRONCO AI: WIN THE RACE TO TAPE-OUT | BOOTH 935</span></a>
             </h3>
             <div class="sw">Agentes especializados en acelerar el tiempo de llegada al mercado de chips mediante la detección temprana de errores complejos.</div>
             
@@ -465,14 +496,14 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=blog.google&amp;sz=64" alt="" loading="lazy"/>Google AI Blog</span>
               
               <span class="score">66</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api/" target="_blank" rel="noopener noreferrer">Ampliación de agentes gestionados en la API de Gemini: tareas en segundo plano, MCP remoto y más</a>
+              <a href="https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api/" target="_blank" rel="noopener noreferrer"><span class="l-es">Ampliación de agentes gestionados en la API de Gemini: tareas en segundo plano, MCP remoto y más</span><span class="l-en" lang="en">Expanding Managed Agents in Gemini API: background tasks, remote MCP and more</span></a>
             </h3>
             <div class="sw">Google expande su ecosistema de agentes con soporte para tareas en segundo plano y el protocolo MCP, clave para la interoperabilidad.</div>
             
@@ -486,14 +517,14 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=semiwiki.com&amp;sz=64" alt="" loading="lazy"/>SemiWiki</span>
               
               <span class="score">66</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://semiwiki.com/semiconductor-services/semiconductor-intelligence/371662-pcs-smartphones-supply-constrained/" target="_blank" rel="noopener noreferrer">Suministro de PCs y smartphones restringido</a>
+              <a href="https://semiwiki.com/semiconductor-services/semiconductor-intelligence/371662-pcs-smartphones-supply-constrained/" target="_blank" rel="noopener noreferrer"><span class="l-es">Suministro de PCs y smartphones restringido</span><span class="l-en" lang="en">PCs &amp; Smartphones Supply Constrained</span></a>
             </h3>
             <div class="sw">Previsión de caída significativa en el mercado de hardware para 2026, lo que podría afectar a la renovación del parque tecnológico de IA.</div>
             
@@ -507,14 +538,14 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
               
               <span class="score">65</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://arxiv.org/abs/2607.20426" target="_blank" rel="noopener noreferrer">¿Existe la inyección de conocimiento en MoE? Explorando la decodificación por contraste consciente de expertos</a>
+              <a href="https://arxiv.org/abs/2607.20426" target="_blank" rel="noopener noreferrer"><span class="l-es">¿Existe la inyección de conocimiento en MoE? Explorando la decodificación por contraste consciente de expertos</span><span class="l-en" lang="en">Knowledge Injection Exists in MoE? Exploring Expert-Aware Contrast Decoding in MoE for Mitigating LLMs&#39;Hallucinations</span></a>
             </h3>
             <div class="sw">Investigación técnica que revela que las técnicas de mitigación de alucinaciones por capas fallan en modelos MoE con expertos compartidos.</div>
             
@@ -528,14 +559,14 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
               
               <span class="score">62</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://arxiv.org/abs/2607.20430" target="_blank" rel="noopener noreferrer">LLM-INSTRUCT en la tarea compartida de UZH 2026: Recuperación consciente de restricciones y debate selectivo</a>
+              <a href="https://arxiv.org/abs/2607.20430" target="_blank" rel="noopener noreferrer"><span class="l-es">LLM-INSTRUCT en la tarea compartida de UZH 2026: Recuperación consciente de restricciones y debate selectivo</span><span class="l-en" lang="en">LLM-INSTRUCT at UZH Shared Task 2026: Constraint-Aware Retrieval and Selective Debate for Paragraph-Level Argument Mining</span></a>
             </h3>
             <div class="sw">Sistema ganador en minería de argumentos que utiliza debate entre agentes y restricciones de esquema JSON bajo limitaciones de hardware.</div>
             
@@ -549,14 +580,14 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=nvidia.com&amp;sz=64" alt="" loading="lazy"/>NVIDIA Blog</span>
               
               <span class="score">61</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://blogs.nvidia.com/blog/nemotron-langchain-agents-open-stack/" target="_blank" rel="noopener noreferrer">NVIDIA Nemotron logra un rendimiento líder en benchmarks con el arnés LangChain Deep Agents</a>
+              <a href="https://blogs.nvidia.com/blog/nemotron-langchain-agents-open-stack/" target="_blank" rel="noopener noreferrer"><span class="l-es">NVIDIA Nemotron logra un rendimiento líder en benchmarks con el arnés LangChain Deep Agents</span><span class="l-en" lang="en">NVIDIA Nemotron Achieves Benchmark-Leading Performance With LangChain Deep Agents Harness</span></a>
             </h3>
             <div class="sw">NVIDIA posiciona a Nemotron como líder en coste-rendimiento para agentes abiertos mediante la integración con LangChain.</div>
             
@@ -570,14 +601,14 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.AI</span>
               
               <span class="score">60</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://arxiv.org/abs/2607.20462" target="_blank" rel="noopener noreferrer">Marcando los síntomas equivocados: Evaluación de marcas de agua de LLM en textos médicos</a>
+              <a href="https://arxiv.org/abs/2607.20462" target="_blank" rel="noopener noreferrer"><span class="l-es">Marcando los síntomas equivocados: Evaluación de marcas de agua de LLM en textos médicos</span><span class="l-en" lang="en">Marking the Wrong Symptoms: Evaluating LLM Watermarks in Medical Texts</span></a>
             </h3>
             <div class="sw">Investigación sobre el impacto negativo de las marcas de agua en la precisión de modelos médicos, un área crítica para la seguridad.</div>
             
@@ -591,14 +622,14 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
               
               <span class="score">51</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://arxiv.org/abs/2607.20428" target="_blank" rel="noopener noreferrer">Marco de modelo de lenguaje de gran tamaño con intervención humana para la identificación de eventos adversos inmunológicos cutáneos</a>
+              <a href="https://arxiv.org/abs/2607.20428" target="_blank" rel="noopener noreferrer"><span class="l-es">Marco de modelo de lenguaje de gran tamaño con intervención humana para la identificación de eventos adversos inmunológicos cutáneos</span><span class="l-en" lang="en">Human-in-the-Loop Large Language Model Framework for Identification of Cutaneous Immune-Related Adverse Events</span></a>
             </h3>
             <div class="sw">Framework que combina IA y humanos para detectar efectos adversos en dermatología, duplicando la velocidad y mejorando la precisión.</div>
             
@@ -612,14 +643,14 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
               
               <span class="score">50</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://arxiv.org/abs/2607.20429" target="_blank" rel="noopener noreferrer">Más no es más: ¿Qué importa para la diversidad de opiniones en los LLM?</a>
+              <a href="https://arxiv.org/abs/2607.20429" target="_blank" rel="noopener noreferrer"><span class="l-es">Más no es más: ¿Qué importa para la diversidad de opiniones en los LLM?</span><span class="l-en" lang="en">More Is Not More: What Matters for Diversity in LLM Opinions?</span></a>
             </h3>
             <div class="sw">Análisis de cómo los LLMs tienden a homogeneizar opiniones, un riesgo para el uso de modelos en estudios de mercado y encuestas.</div>
             
@@ -633,14 +664,14 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
               
               <span class="score">40</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://arxiv.org/abs/2607.20425" target="_blank" rel="noopener noreferrer">¿Qué es lo bueno? Extracción y prueba de teorías implícitas de calidad literaria a partir de trazas de razonamiento de LLM</a>
+              <a href="https://arxiv.org/abs/2607.20425" target="_blank" rel="noopener noreferrer"><span class="l-es">¿Qué es lo bueno? Extracción y prueba de teorías implícitas de calidad literaria a partir de trazas de razonamiento de LLM</span><span class="l-en" lang="en">What is Good? Extracting and Testing Implicit Theories of Literary Quality from LLM Reasoning Traces</span></a>
             </h3>
             <div class="sw">Uso de trazas de razonamiento para extraer teorías implícitas de calidad literaria, con alta precisión en clasificación de textos.</div>
             
@@ -671,8 +702,8 @@
       
       <div class="widget">
         <div class="widget-title">
-          <span>Riesgos y vigilancia</span>
-          <span class="lbl">Próximos días</span>
+          <span><span class="l-es">Riesgos y vigilancia</span><span class="l-en" lang="en">Risks and watch</span></span>
+          <span class="lbl"><span class="l-es">Próximos días</span><span class="l-en" lang="en">Coming days</span></span>
         </div>
         <div class="rk">Las alucinaciones estructurales en salidas JSON comprometen la fiabilidad de automatizaciones empresariales críticas</div><div class="rk">La caída de demanda en hardware tradicional podría desincentivar la inversión en nuevas arquitecturas de computación</div><div class="rk">La ineficacia de las marcas de agua actuales en dominios médicos arriesga la trazabilidad de datos clínicos sensibles</div>
         <div class="rk w">Rendimiento real de los primeros chips comerciales diseñados íntegramente por agentes de IA como los de Agentrys</div><div class="rk w">Adopción del protocolo MCP remoto por parte de Google para la interoperabilidad de agentes en la nube</div><div class="rk w">Nuevas métricas de diversidad para evitar la homogeneización de opiniones en modelos entrenados con datos sintéticos</div>
@@ -682,9 +713,10 @@
     </aside>
   </div>
 
+  <div class="credits"><p class="credits-by"><span class="l-es">Hecho por</span><span class="l-en" lang="en">Made by</span> <strong>Rolando Fernández</strong></p><a class="bmc" href="https://buymeacoffee.com/rolandofernandez" target="_blank" rel="noopener"><span aria-hidden="true">☕</span> <span class="l-es">Invítame a un café</span><span class="l-en" lang="en">Buy me a coffee</span></a></div>
   <footer>
-    <span>0 items descartados por el filtro de relevancia</span>
-    <span>0/0 fuentes activas</span>
+    <span>0 <span class="l-es">items descartados por el filtro de relevancia</span><span class="l-en" lang="en">items dropped by the relevance filter</span></span>
+    <span>0/0 <span class="l-es">fuentes activas</span><span class="l-en" lang="en">active sources</span></span>
   </footer>
 
 </div>
@@ -715,19 +747,28 @@
       return;
     }
 
+    // Texto visible en el idioma activo (los traducibles van duplicados).
+    function vis(node){
+      if (!node) return '';
+      var lang = document.documentElement.getAttribute('data-lang') === 'en' ? 'en' : 'es';
+      var pick = node.querySelector('.l-' + lang);
+      return ((pick || node).textContent || '').trim();
+    }
     function ficha(article){
       if (!article) return '';
       var a = article.querySelector('.hero-title a, .card-title a');
-      var title = a ? (a.textContent || '').trim() : '';
+      var title = vis(a);
       var swEl = article.querySelector('.sw');
-      var sw = swEl ? (swEl.textContent || '').trim() : '';
+      var sw = vis(swEl);
       var url = a ? (a.getAttribute('href') || '').trim() : '';
       return [title, sw, url].filter(Boolean).join('\n\n');
     }
     function copied(btn){
       btn.classList.add('ok');
-      btn.textContent = 'Copiado';
-      setTimeout(function(){ btn.classList.remove('ok'); btn.textContent = 'Copiar'; }, 1600);
+      var en = document.documentElement.getAttribute('data-lang') === 'en';
+      var label = btn.innerHTML;
+      btn.textContent = en ? 'Copied' : 'Copiado';
+      setTimeout(function(){ btn.classList.remove('ok'); btn.innerHTML = label; }, 1600);
     }
     function fallback(text, btn){
       var ta = document.createElement('textarea');
@@ -789,6 +830,20 @@
       });
     });
     paint();
+
+    var langBtns = document.querySelectorAll('[data-lang-set]');
+    function curLang(){ try { return localStorage.getItem('lang') === 'en' ? 'en' : 'es'; } catch(e){ return 'es'; } }
+    function paintLang(){ var c = curLang(); langBtns.forEach(function(b){ b.setAttribute('aria-pressed', String(b.getAttribute('data-lang-set') === c)); }); }
+    langBtns.forEach(function(b){
+      b.addEventListener('click', function(){
+        var l = b.getAttribute('data-lang-set');
+        try { if (l === 'en') localStorage.setItem('lang', 'en'); else localStorage.removeItem('lang'); } catch(e){}
+        var d = document.documentElement;
+        if (l === 'en') { d.setAttribute('data-lang', 'en'); d.lang = 'en'; } else { d.removeAttribute('data-lang'); d.lang = 'es'; }
+        paintLang();
+      });
+    });
+    paintLang();
   })();
 </script>
 </body>

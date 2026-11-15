@@ -4,15 +4,31 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AI Strategic Radar</title>
-<meta name="description" content="Radar diario de la carrera AGI: modelos frontier, compute, China y agentes. Solo lo que mueve la aguja."/>
+<title>RADAR.IA · Edición del 2026-11-15</title>
+<meta name="description" content="Radar diario de la carrera hacia la AGI: modelos frontier, agentes, chips y compute, China y economía de la IA. Solo lo que cambia algo, con fuente y análisis."/>
+<meta name="robots" content="index, follow, max-image-preview:large"/>
+<link rel="canonical" href="https://aievolve.netlify.app/d/2026-11-15.html"/>
+<meta name="google-site-verification" content="yh8wm8HsAeqP892U5UGczQs-RLnGuNHx7WGfNntGduk"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="RADAR.IA"/>
+<meta property="og:locale" content="es_ES"/><meta property="og:locale:alternate" content="en_US"/>
+<meta property="og:title" content="RADAR.IA · Edición del 2026-11-15"/>
+<meta property="og:description" content="Radar diario de la carrera hacia la AGI: modelos frontier, agentes, chips y compute, China y economía de la IA. Solo lo que cambia algo, con fuente y análisis."/>
+<meta property="og:url" content="https://aievolve.netlify.app/d/2026-11-15.html"/>
+<meta property="og:image" content="https://aievolve.netlify.app/og.png"/>
+<meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="RADAR.IA · Edición del 2026-11-15"/>
+<meta name="twitter:description" content="Radar diario de la carrera hacia la AGI: modelos frontier, agentes, chips y compute, China y economía de la IA. Solo lo que cambia algo, con fuente y análisis."/>
+<meta name="twitter:image" content="https://aievolve.netlify.app/og.png"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://aievolve.netlify.app/#website","url":"https://aievolve.netlify.app/","name":"RADAR.IA","description":"Radar diario de la carrera hacia la AGI, con fuentes y análisis.","inLanguage":["es","en"],"isAccessibleForFree":true,"author":{"@type":"Person","name":"Rolando Fernández"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 <meta name="theme-color" content="#F4F3EF" media="(prefers-color-scheme: light)"/>
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)"/>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='1' y='1' width='30' height='30' fill='%23FF5722' stroke='%23121211' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%23121211' stroke-width='2.4'/%3E%3Cpath d='M16 16V6A10 10 0 0 1 25.5 12.9Z' fill='%23121211'/%3E%3Ccircle cx='11' cy='19.5' r='2' fill='%23121211'/%3E%3C/svg%3E"/>
-<script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<script>(function(){try{var d=document.documentElement,t=localStorage.getItem('theme'),l=localStorage.getItem('lang');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);if(l==='en'){d.setAttribute('data-lang','en');d.lang='en';}}catch(e){}})();</script>
 <script>
   // Va en <head> para estar escuchando antes de que se pinte la primera imagen.
   // Una imagen remota caida (hotlink bloqueado, 404, caducada) se cambia por la
@@ -100,6 +116,21 @@
   .page-h1{font:700 clamp(30px,4.2vw,56px)/1 var(--f-head);letter-spacing:-.03em;text-transform:uppercase;margin:6px 0 12px}
   .lede{color:var(--muted);font-size:17px;max-width:72ch;margin:0}
   .lead h1.page-h1{font:700 clamp(30px,4.2vw,56px)/1 var(--f-head);letter-spacing:-.03em;margin:6px 0 12px}
+
+  /* Bilingue: cada texto traducible va dos veces; se ve el del idioma activo. */
+  /* !important: reglas de componente con display propio no deben reactivar el idioma oculto. */
+  html:not([data-lang="en"]) .l-en{display:none!important}
+  html[data-lang="en"] .l-es{display:none!important}
+  .top-ctl{display:flex;gap:10px;flex-wrap:wrap}
+
+  /* Firma, como en moloch.sh: discreta, al pie */
+  .credits{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+           margin-top:40px;padding:12px 16px;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow-sm)}
+  .credits-by{margin:0;font:400 12px var(--f-mono);color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+  .credits-by strong{font:700 14px var(--f-head);color:var(--text);text-transform:none;letter-spacing:0;margin-left:6px}
+  .bmc{display:inline-flex;align-items:center;gap:7px;font:700 11.5px/1 var(--f-mono);text-transform:uppercase;
+       padding:8px 11px;background:var(--lime);color:#121211;border:2px solid var(--ink);box-shadow:var(--shadow-sm)}
+  .bmc:hover{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--ink)}
 
   @media(max-width:900px){
     .navtabs{order:3;margin:0;width:100%}
@@ -204,8 +235,8 @@
   .widget{background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow);padding:14px 16px}
   .widget-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:-14px -16px 12px;
                 padding:10px 16px;border-bottom:2px solid var(--ink);background:var(--card-2)}
-  .widget-title span:first-child{display:flex;align-items:center;gap:9px;font:700 12px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.06em}
-  .widget-title span:first-child::before{content:"";width:10px;height:10px;background:var(--orange);border:2px solid var(--ink)}
+  .widget-title>span:first-child{display:flex;align-items:center;gap:9px;font:700 12px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.06em}
+  .widget-title>span:first-child::before{content:"";width:10px;height:10px;background:var(--orange);border:2px solid var(--ink)}
   .widget-title .lbl{font:400 10px var(--f-mono);color:var(--muted);text-transform:uppercase}
 
   .market-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
@@ -269,32 +300,32 @@
 </style>
 </head>
 <body>
-<header class="topnav"><a class="brand" href="../index.html" aria-label="Radar.IA, portada"><span class="brand-icon"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 12V2.5A9.5 9.5 0 0 1 21.03 9.06Z" fill="currentColor"/><circle cx="7.5" cy="15" r="1.7" fill="currentColor"/></svg></span><span class="brand-text"><strong>Radar<em>.IA</em></strong><small>Radar estratégico de la carrera AGI</small></span></a><nav class="navtabs" aria-label="Secciones"><a class="navtab" href="../index.html"><i>01</i> Diario</a><a class="navtab" href="../weekly.html"><i>02</i> Semanal</a><a class="navtab" href="../archivo.html" aria-current="page"><i>03</i> Archivo</a></nav><div class="seg" role="group" aria-label="Tema"><button type="button" class="seg-btn" data-theme-set="auto">Auto</button><button type="button" class="seg-btn" data-theme-set="light">Claro</button><button type="button" class="seg-btn" data-theme-set="dark">Oscuro</button></div></header>
+<header class="topnav"><a class="brand" href="../index.html" aria-label="Radar.IA, portada"><span class="brand-icon"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 12V2.5A9.5 9.5 0 0 1 21.03 9.06Z" fill="currentColor"/><circle cx="7.5" cy="15" r="1.7" fill="currentColor"/></svg></span><span class="brand-text"><strong>Radar<em>.IA</em></strong><small><span class="l-es">Radar estratégico de la carrera AGI</span><span class="l-en" lang="en">Strategic radar of the AGI race</span></small></span></a><nav class="navtabs" aria-label="Secciones"><a class="navtab" href="../index.html"><i>01</i> <span class="l-es">Diario</span><span class="l-en" lang="en">Daily</span></a><a class="navtab" href="../weekly.html"><i>02</i> <span class="l-es">Semanal</span><span class="l-en" lang="en">Weekly</span></a><a class="navtab" href="../archivo.html" aria-current="page"><i>03</i> <span class="l-es">Archivo</span><span class="l-en" lang="en">Archive</span></a></nav><div class="top-ctl"><div class="seg" role="group" aria-label="Idioma"><button type="button" class="seg-btn" data-lang-set="es">ES</button><button type="button" class="seg-btn" data-lang-set="en">EN</button></div><div class="seg" role="group" aria-label="Tema"><button type="button" class="seg-btn" data-theme-set="auto">Auto</button><button type="button" class="seg-btn" data-theme-set="light"><span class="l-es">Claro</span><span class="l-en" lang="en">Light</span></button><button type="button" class="seg-btn" data-theme-set="dark"><span class="l-es">Oscuro</span><span class="l-en" lang="en">Dark</span></button></div></div></header>
 <div class="strip">
-  <span>Edición <b class="hl">2026-11-15</b></span>
-  <span class="it bad">ALERTA</span>
-  <span class="it">10 señales · 3 de contexto</span>
-  <span class="it">42/42 fuentes</span>
+  <span><span class="l-es">Edición</span><span class="l-en" lang="en">Edition</span> <b class="hl">2026-11-15</b></span>
+  <span class="it bad"><span class="l-es">ALERTA</span><span class="l-en" lang="en">ALERT</span></span>
+  <span class="it">12 <span class="l-es">señales</span><span class="l-en" lang="en">signals</span> · 3 <span class="l-es">de contexto</span><span class="l-en" lang="en">context</span></span>
+  <span class="it">42/42 <span class="l-es">fuentes</span><span class="l-en" lang="en">sources</span></span>
   <span class="it">X: 6 posts</span>
-  <a class="r" href="../archivo.html">Archivo ↗</a>
+  <a class="r" href="../archivo.html"><span class="l-es">Archivo</span><span class="l-en" lang="en">Archive</span> ↗</a>
 </div>
 <div class="wrap">
 
   
   <div class="arch-bar">
-    <a href="../archivo.html">← Archivo</a>
+    <a href="../archivo.html">← <span class="l-es">Archivo</span><span class="l-en" lang="en">Archive</span></a>
     <a href="../d/2026-11-14.html">2026-11-14</a>
     <span class="here">2026-11-15</span>
     
-    <a href="../index.html" style="margin-left:auto">Hoy</a>
+    <a href="../index.html" style="margin-left:auto"><span class="l-es">Hoy</span><span class="l-en" lang="en">Today</span></a>
   </div>
   
 
   <!-- Tesis del dia -->
   <div class="thesis">
-    <span class="kicker">2026-11-15 · lectura del día</span>
-    <h1 class="page-h1">Tesis del día</h1>
-    <p class="tz">La carrera AGI se ve hoy marcada por una mayor autonomía de agentes, un nuevo modelo de frontera de Google, y un terremoto geopolítico y de mercado alrededor de Nvidia que afecta directamente al acceso y coste del compute.</p>
+    <span class="kicker">2026-11-15 · <span class="l-es">lectura del día</span><span class="l-en" lang="en">today&#39;s reading</span></span>
+    <h1 class="page-h1"><span class="l-es">Tesis del día</span><span class="l-en" lang="en">Thesis of the day</span></h1>
+    <p class="tz"><span class="l-es">El ecosistema de agentes autónomos da un paso funcional con capacidades de compra e integración de herramientas, mientras la lucha por el control del compute escala con acusaciones a Nvidia y la salida de su CEO.</span><span class="l-en" lang="en">The autonomous agent ecosystem advances with purchasing capabilities and tool integration, while the compute control struggle escalates with Nvidia accusations and its CEO&#39;s departure.</span></p>
   </div>
 
   
@@ -303,20 +334,20 @@
   <!-- Tabs de tema -->
   
   <div class="tabs" id="tabs">
-    <span class="tab on" data-filter="all">Todas<span class="n">13</span></span>
+    <span class="tab on" data-filter="all"><span class="l-es">Todas</span><span class="l-en" lang="en">All</span><span class="n">15</span></span>
     
-    <span class="tab tab-new" data-filter="__new__">Nuevo<span class="n">6</span></span>
+    <span class="tab tab-new" data-filter="__new__"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span><span class="n">8</span></span>
     
     
-    <span class="tab" data-filter="agents_automation">Agentes<span class="n">3</span></span>
+    <span class="tab" data-filter="agents_automation"><span class="l-es">Agentes</span><span class="l-en" lang="en">Agents</span><span class="n">8</span></span>
     
-    <span class="tab" data-filter="compute_chips_dc">Compute &amp; chips<span class="n">3</span></span>
+    <span class="tab" data-filter="compute_chips_dc">Compute &amp; chips<span class="n">2</span></span>
     
-    <span class="tab" data-filter="frontier_capability">Capacidad frontier<span class="n">3</span></span>
+    <span class="tab" data-filter="frontier_capability"><span class="l-es">Capacidad frontier</span><span class="l-en" lang="en">Frontier capability</span><span class="n">2</span></span>
     
-    <span class="tab" data-filter="geopolitics_power">Geopolítica<span class="n">2</span></span>
+    <span class="tab" data-filter="model_economics"><span class="l-es">Economía de modelos</span><span class="l-en" lang="en">Model economics</span><span class="n">2</span></span>
     
-    <span class="tab" data-filter="model_economics">Economía de modelos<span class="n">2</span></span>
+    <span class="tab" data-filter="geopolitics_power"><span class="l-es">Geopolítica</span><span class="l-en" lang="en">Geopolitics</span><span class="n">1</span></span>
     
   </div>
   
@@ -333,25 +364,29 @@
         </a>
         <div class="hero-body">
           <div class="meta-row">
-            <span class="tag">Geopolítica</span>
-            <span class="badge-new">Nuevo</span>
+            <span class="tag"><span class="l-es">Geopolítica</span><span class="l-en" lang="en">Geopolitics</span></span>
+            <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
             <span class="src"><img src="https://www.google.com/s2/favicons?domain=techcrunch.com&amp;sz=64" alt="" loading="lazy"/>TechCrunch AI</span>
-            
+            <span class="multi">+2 medios</span>
             <span class="score">97</span>
-            <button type="button" class="copy-btn" data-copy>Copiar</button>
+            <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
           </div>
           <h2 class="hero-title">
-            <a href="https://techcrunch.com/2026/11/14/where-was-nvidias-security-team/" target="_blank" rel="noopener noreferrer">El jefe de seguridad de Nvidia y el CEO Jensen Huang dimiten por la venta de chips a China</a>
+            <a href="https://techcrunch.com/2026/11/14/where-was-nvidias-security-team/" target="_blank" rel="noopener noreferrer"><span class="l-es">Jensen Huang dimite como CEO de Nvidia tras investigación por chips a China y seguridad</span><span class="l-en" lang="en">Jensen Huang resigns as Nvidia CEO after China chip investigation and security concerns</span></a>
           </h2>
-          <div class="sw">La dimisión de Jensen Huang y el riesgo de fuga de chips a China generan incertidumbre estratégica en la cadena de suministro de compute y la geopolítica de semiconductores.</div>
+          <div class="sw"><span class="l-es">La salida del CEO de Nvidia, implicada en controversias sobre exportación de chips a China y seguridad interna, señala una reconfiguración de poder crítica en la cadena de suministro de compute y la geopolítica tecnológica.</span><span class="l-en" lang="en">Nvidia CEO&#39;s departure, implicated in controversies over chip exports to China and internal security, signals a critical power reconfiguration in the compute supply chain and tech geopolitics.</span></div>
+          
+          <div class="also"><span class="l-es">También en:</span><span class="l-en" lang="en">Also in:</span>
+            <a href="https://stratechery.com/2026/the-end-of-jensen/" target="_blank" rel="noopener noreferrer">Stratechery</a> · <a href="https://www.chinatalk.media/p/jensen-out-match-act-in" target="_blank" rel="noopener noreferrer">ChinaTalk</a>
+          </div>
           
           
           <div class="facts two">
             
-            <div class="fact pw"><span class="k">Poder</span><span class="v">Nvidia pierde liderazgo clave y credibilidad, mientras China podría ver afectada su capacidad de adquirir chips. Compet…</span></div>
+            <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v"><span class="l-es">Nvidia pierde estabilidad de liderazgo y potencial control de mercado / Competidores de chips podrían ganar terreno. Ch…</span><span class="l-en" lang="en">Nvidia loses leadership stability and potential market control / Chip competitors could gain ground. China reaffirms pr…</span></span></div>
             
             
-            <div class="fact wn"><span class="k">Vigilar</span><span class="v">Claridad sobre la investigación de la fuga de chips y el impacto en la disponibilidad y exportación de GPUs.</span></div>
+            <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v"><span class="l-es">Ver el impacto en la estrategia de Nvidia, los precios de GPUs y la respuesta de los reguladores estadounidenses y chin…</span><span class="l-en" lang="en">Observe the impact on Nvidia&#39;s strategy, GPU prices, and the response of US and Chinese regulators.</span></span></div>
             
           </div>
           
@@ -371,88 +406,58 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=x.com&amp;sz=64" alt="" loading="lazy"/>@gdb</span>
               <span class="multi">+1</span>
-              <span class="score">90</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <span class="score">85</span>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://x.com/gdb/status/2121295213025194172" target="_blank" rel="noopener noreferrer">ChatGPT Wallet permite a los agentes realizar compras seguras con aprobación del usuario</a>
+              <a href="https://x.com/gdb/status/2121295213025194172" target="_blank" rel="noopener noreferrer"><span class="l-es">ChatGPT Wallet permite a los agentes realizar compras seguras con aprobación del usuario</span><span class="l-en" lang="en">ChatGPT Wallet allows agents to make secure purchases with user approval</span></a>
             </h3>
-            <div class="sw">Los agentes de OpenAI pueden ahora ejecutar transacciones económicas, un avance clave para su autonomía funcional y la integración en flujos de trabajo con impacto real.</div>
+            <div class="sw"><span class="l-es">Integra a los agentes autónomos en la economía real, permitiéndoles ejecutar transacciones. Es un paso clave hacia la operatividad de los agentes en el mundo físico y digital.</span><span class="l-en" lang="en">Integrates autonomous agents into the real economy, enabling them to execute transactions. This is a key step towards agents&#39; operational capability in the physical and digital world.</span></div>
             
-            <div class="also">También en:
+            <div class="also"><span class="l-es">También en:</span><span class="l-en" lang="en">Also in:</span>
               <a href="https://openai.com/index/introducing-chatgpt-wallet" target="_blank" rel="noopener noreferrer">OpenAI</a>
             </div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">OpenAI lidera en la implementación de agentes con capacidades transaccionales, expandiendo su impacto en automatización…</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v"><span class="l-es">OpenAI gana capacidades operativas para agentes / Sistemas de pago existentes se integran en ecosistemas IA.</span><span class="l-en" lang="en">OpenAI gains operational capabilities for agents / Existing payment systems integrate into AI ecosystems.</span></span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Cuántas y qué tipo de transacciones realizan los agentes, y la escalabilidad del sistema de seguridad.</span></div>
-              
-            </div>
-            
-          </div>
-        </article>
-        
-        <article class="card" data-topic="agents_automation" data-new="1">
-          <a href="https://x.com/OpenAI/status/2120216592395174382" target="_blank" rel="noopener noreferrer">
-            <img class="card-img" src="https://pbs.twimg.com/amplify_video_thumb/2120214011451170817/img/p-eqRNRKImbCTq9L.jpg" data-fb="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIj48ZGVmcz48cGF0dGVybiBpZD0icCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNMjQgMEgwVjI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNFOEU3RTEiIHN0cm9rZS1vcGFjaXR5PSIuMDYiLz48L3BhdHRlcm4+PGxpbmVhckdyYWRpZW50IGlkPSJ2IiB4MT0iMCIgeTE9IjEiIHgyPSIuNzUiIHkyPSIuMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9Ii45NiIvPjxzdG9wIG9mZnNldD0iLjU1IiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9Ii40Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9IjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgZmlsbD0iIzBGMEYwRSIvPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI3ApIi8+PGxpbmUgeDE9IjM1NCIgeTE9IjY0IiB4Mj0iMzk1IiB5Mj0iNjgiIHN0cm9rZT0iIzM0RDM5OSIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9Ii4zOCIvPjxsaW5lIHgxPSIzNTQiIHkxPSI2NCIgeDI9IjMyMCIgeTI9IjExMCIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjM5NSIgeTE9IjY4IiB4Mj0iNDcxIiB5Mj0iODAiIHN0cm9rZT0iIzM0RDM5OSIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9Ii4zOCIvPjxsaW5lIHgxPSIzOTUiIHkxPSI2OCIgeDI9IjM5NCIgeTI9IjE0NiIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjQ3MSIgeTE9IjgwIiB4Mj0iNTA1IiB5Mj0iMTMzIiBzdHJva2U9IiMzNEQzOTkiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIuMzgiLz48bGluZSB4MT0iNTU1IiB5MT0iNjQiIHgyPSI1MDUiIHkyPSIxMzMiIHN0cm9rZT0iIzM0RDM5OSIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9Ii4zOCIvPjxsaW5lIHgxPSI1NTUiIHkxPSI2NCIgeDI9IjU5NCIgeTI9IjEyMSIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjMyMCIgeTE9IjExMCIgeDI9IjM5NCIgeTI9IjE0NiIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjMyMCIgeTE9IjExMCIgeDI9IjMxMiIgeTI9IjIxMSIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjM5NCIgeTE9IjE0NiIgeDI9IjQxNCIgeTI9IjIyNCIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjUwNSIgeTE9IjEzMyIgeDI9IjU2NiIgeTI9IjE4NiIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjU5NCIgeTE9IjEyMSIgeDI9IjU2NiIgeTI9IjE4NiIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjMxMiIgeTE9IjIxMSIgeDI9IjQxNCIgeTI9IjIyNCIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjQxNCIgeTE9IjIyNCIgeDI9IjQ3NSIgeTI9IjIzOCIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjQ3NSIgeTE9IjIzOCIgeDI9IjU2NiIgeTI9IjE4NiIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGNpcmNsZSBjeD0iMzU0IiBjeT0iNjQiIHI9IjExIiBmaWxsPSIjMzREMzk5IiBvcGFjaXR5PSIuOTUiLz48Y2lyY2xlIGN4PSIzNTQiIGN5PSI2NCIgcj0iMjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzM0RDM5OSIgc3Ryb2tlLXdpZHRoPSIxLjQiIG9wYWNpdHk9Ii40Ii8+PGNpcmNsZSBjeD0iMzk1IiBjeT0iNjgiIHI9IjYiIGZpbGw9IiMzNEQzOTkiIG9wYWNpdHk9Ii42Ii8+PGNpcmNsZSBjeD0iNDcxIiBjeT0iODAiIHI9IjYiIGZpbGw9IiMzNEQzOTkiIG9wYWNpdHk9Ii42Ii8+PGNpcmNsZSBjeD0iNTU1IiBjeT0iNjQiIHI9IjYiIGZpbGw9IiMzNEQzOTkiIG9wYWNpdHk9Ii42Ii8+PGNpcmNsZSBjeD0iMzIwIiBjeT0iMTEwIiByPSIxMSIgZmlsbD0iIzM0RDM5OSIgb3BhY2l0eT0iLjk1Ii8+PGNpcmNsZSBjeD0iMzIwIiBjeT0iMTEwIiByPSIyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNCIgb3BhY2l0eT0iLjQiLz48Y2lyY2xlIGN4PSIzOTQiIGN5PSIxNDYiIHI9IjYiIGZpbGw9IiMzNEQzOTkiIG9wYWNpdHk9Ii42Ii8+PGNpcmNsZSBjeD0iNTA1IiBjeT0iMTMzIiByPSI2IiBmaWxsPSIjMzREMzk5IiBvcGFjaXR5PSIuNiIvPjxjaXJjbGUgY3g9IjU5NCIgY3k9IjEyMSIgcj0iNiIgZmlsbD0iIzM0RDM5OSIgb3BhY2l0eT0iLjYiLz48Y2lyY2xlIGN4PSIzMTIiIGN5PSIyMTEiIHI9IjExIiBmaWxsPSIjMzREMzk5IiBvcGFjaXR5PSIuOTUiLz48Y2lyY2xlIGN4PSIzMTIiIGN5PSIyMTEiIHI9IjIwIiBmaWxsPSJub25lIiBzdHJva2U9IiMzNEQzOTkiIHN0cm9rZS13aWR0aD0iMS40IiBvcGFjaXR5PSIuNCIvPjxjaXJjbGUgY3g9IjQxNCIgY3k9IjIyNCIgcj0iNiIgZmlsbD0iIzM0RDM5OSIgb3BhY2l0eT0iLjYiLz48Y2lyY2xlIGN4PSI0NzUiIGN5PSIyMzgiIHI9IjYiIGZpbGw9IiMzNEQzOTkiIG9wYWNpdHk9Ii42Ii8+PGNpcmNsZSBjeD0iNTY2IiBjeT0iMTg2IiByPSI2IiBmaWxsPSIjMzREMzk5IiBvcGFjaXR5PSIuNiIvPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI3YpIi8+PHJlY3QgeD0iNDYiIHk9IjIzNiIgd2lkdGg9IjE5MiIgaGVpZ2h0PSI1MCIgZmlsbD0iI0U4RTdFMSIvPjxyZWN0IHg9IjQwIiB5PSIyMzAiIHdpZHRoPSIxOTIiIGhlaWdodD0iNTAiIGZpbGw9IiMzNEQzOTkiIHN0cm9rZT0iI0U4RTdFMSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iNTQiIHk9IjI2OCIgZmlsbD0iIzEyMTIxMSIgZm9udC1mYW1pbHk9IidTcGFjZSBHcm90ZXNrJywgJ0FyaWFsIE5hcnJvdycsIEFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjM0IiBmb250LXdlaWdodD0iNzAwIiBsZXR0ZXItc3BhY2luZz0iLS41Ij5BR0VOVEVTPC90ZXh0PjxyZWN0IHg9IjQwIiB5PSIyOTgiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgZmlsbD0iIzM0RDM5OSIgc3Ryb2tlPSIjRThFN0UxIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSI2MiIgeT0iMzA5IiBmaWxsPSIjRThFN0UxIiBmb250LWZhbWlseT0iJ0pldEJyYWlucyBNb25vJywgdWktbW9ub3NwYWNlLCBNZW5sbywgbW9ub3NwYWNlIiBmb250LXNpemU9IjE1IiBmb250LXdlaWdodD0iNjAwIiBsZXR0ZXItc3BhY2luZz0iLjUiPkBPUEVOQUk8L3RleHQ+PC9zdmc+" alt="" loading="lazy" referrerpolicy="no-referrer"/>
-          </a>
-          <div class="card-body">
-            <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
-              <span class="src"><img src="https://www.google.com/s2/favicons?domain=openai.com&amp;sz=64" alt="" loading="lazy"/>@OpenAI</span>
-              
-              <span class="score">61</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
-            </div>
-            <h3 class="card-title">
-              <a href="https://x.com/OpenAI/status/2120216592395174382" target="_blank" rel="noopener noreferrer">OpenAI lanza beta de &#39;Businesses in ChatGPT&#39; con agentes de negocio personalizables</a>
-            </h3>
-            <div class="sw">OpenAI habilita a las empresas para desplegar agentes de cara al cliente en ChatGPT, escalando la automatización de interacciones de servicio.</div>
-            
-            
-            <div class="card-foot">
-              
-              <div class="fact pw"><span class="k">Poder</span><span class="v">OpenAI gana cuota en el segmento empresarial con soluciones de agentes pre-empaquetadas.</span></div>
-              
-              
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Observar la adopción por parte de empresas y el rendimiento de estos agentes en entornos reales.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v"><span class="l-es">Observar el volumen y el tipo de transacciones realizadas por agentes con ChatGPT Wallet.</span><span class="l-en" lang="en">Monitor the volume and type of transactions made by agents using ChatGPT Wallet.</span></span></div>
               
             </div>
             
           </div>
         </article>
         
-        <article class="card" data-topic="model_economics" data-new="0">
-          <a href="https://the-decoder.com/anthropic-ceo-amodei-admits-theres-a-huge-uncertainty-in-whats-going-to-happen-next-year-days-before-a-record-ipo/" target="_blank" rel="noopener noreferrer">
-            <img class="card-img" src="https://the-decoder.com/wp-content/uploads/2026/11/anthropic_logos-5.png" data-fb="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIj48ZGVmcz48cGF0dGVybiBpZD0icCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNMjQgMEgwVjI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNFOEU3RTEiIHN0cm9rZS1vcGFjaXR5PSIuMDYiLz48L3BhdHRlcm4+PGxpbmVhckdyYWRpZW50IGlkPSJ2IiB4MT0iMCIgeTE9IjEiIHgyPSIuNzUiIHkyPSIuMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9Ii45NiIvPjxzdG9wIG9mZnNldD0iLjU1IiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9Ii40Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9IjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgZmlsbD0iIzBGMEYwRSIvPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI3ApIi8+PHJlY3QgeD0iMjgwIiB5PSIyMTkiIHdpZHRoPSIyNiIgaGVpZ2h0PSI0MyIgcng9IjQiIGZpbGw9IiNGQkJGMjQiIG9wYWNpdHk9IjAuMiIvPjxyZWN0IHg9IjMxOCIgeT0iMjE3IiB3aWR0aD0iMjYiIGhlaWdodD0iNDUiIHJ4PSI0IiBmaWxsPSIjRkJCRjI0IiBvcGFjaXR5PSIwLjIiLz48cmVjdCB4PSIzNTYiIHk9IjIxMyIgd2lkdGg9IjI2IiBoZWlnaHQ9IjQ5IiByeD0iNCIgZmlsbD0iI0ZCQkYyNCIgb3BhY2l0eT0iMC4zIi8+PHJlY3QgeD0iMzk0IiB5PSIxODIiIHdpZHRoPSIyNiIgaGVpZ2h0PSI4MCIgcng9IjQiIGZpbGw9IiNGQkJGMjQiIG9wYWNpdHk9IjAuNCIvPjxyZWN0IHg9IjQzMiIgeT0iMTUwIiB3aWR0aD0iMjYiIGhlaWdodD0iMTEyIiByeD0iNCIgZmlsbD0iI0ZCQkYyNCIgb3BhY2l0eT0iMC40Ii8+PHJlY3QgeD0iNDcwIiB5PSIxNTYiIHdpZHRoPSIyNiIgaGVpZ2h0PSIxMDYiIHJ4PSI0IiBmaWxsPSIjRkJCRjI0IiBvcGFjaXR5PSIwLjUiLz48cmVjdCB4PSI1MDgiIHk9IjExMCIgd2lkdGg9IjI2IiBoZWlnaHQ9IjE1MiIgcng9IjQiIGZpbGw9IiNGQkJGMjQiIG9wYWNpdHk9IjAuNiIvPjxyZWN0IHg9IjU0NiIgeT0iMTI3IiB3aWR0aD0iMjYiIGhlaWdodD0iMTM1IiByeD0iNCIgZmlsbD0iI0ZCQkYyNCIgb3BhY2l0eT0iMC43Ii8+PHJlY3QgeD0iNTg0IiB5PSIxMjgiIHdpZHRoPSIyNiIgaGVpZ2h0PSIxMzQiIHJ4PSI0IiBmaWxsPSIjRkJCRjI0IiBvcGFjaXR5PSIwLjciLz48cGF0aCBkPSJNMjkzIDIwNyBMMzMxIDIwNSBMMzY5IDIwMSBMNDA3IDE3MCBMNDQ1IDEzOCBMNDgzIDE0NCBMNTIxIDk4IEw1NTkgMTE1IEw1OTcgMTE2IiBmaWxsPSJub25lIiBzdHJva2U9IiNGQkJGMjQiIHN0cm9rZS13aWR0aD0iMi42IiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBvcGFjaXR5PSIuOTUiLz48Y2lyY2xlIGN4PSI1OTciIGN5PSIxMTYiIHI9IjYiIGZpbGw9IiNGQkJGMjQiLz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgZmlsbD0idXJsKCN2KSIvPjxyZWN0IHg9IjQ2IiB5PSIyMzYiIHdpZHRoPSI0NzQiIGhlaWdodD0iNTAiIGZpbGw9IiNFOEU3RTEiLz48cmVjdCB4PSI0MCIgeT0iMjMwIiB3aWR0aD0iNDc0IiBoZWlnaHQ9IjUwIiBmaWxsPSIjRkJCRjI0IiBzdHJva2U9IiNFOEU3RTEiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjU0IiB5PSIyNjgiIGZpbGw9IiMxMjEyMTEiIGZvbnQtZmFtaWx5PSInU3BhY2UgR3JvdGVzaycsICdBcmlhbCBOYXJyb3cnLCBBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIzNCIgZm9udC13ZWlnaHQ9IjcwMCIgbGV0dGVyLXNwYWNpbmc9Ii0uNSI+RUNPTk9Nw41BIERFIE1PREVMT1M8L3RleHQ+PHJlY3QgeD0iNDAiIHk9IjI5OCIgd2lkdGg9IjEyIiBoZWlnaHQ9IjEyIiBmaWxsPSIjRkJCRjI0IiBzdHJva2U9IiNFOEU3RTEiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjYyIiB5PSIzMDkiIGZpbGw9IiNFOEU3RTEiIGZvbnQtZmFtaWx5PSInSmV0QnJhaW5zIE1vbm8nLCB1aS1tb25vc3BhY2UsIE1lbmxvLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTUiIGZvbnQtd2VpZ2h0PSI2MDAiIGxldHRlci1zcGFjaW5nPSIuNSI+VEhFIERFQ09ERVI8L3RleHQ+PC9zdmc+" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+        <article class="card" data-topic="compute_chips_dc" data-new="1">
+          <a href="https://www.fool.com/investing/2026/11/15/anthropic-just-delivered-great-news-for-amd-investors-and-bad-news-for-nvidia/?.tsrc=rss" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="https://g.foolcdn.com/image/?url=https%3A%2F%2Fcdn.content.foolcdn.com%2Fimages%2F1umn9qeh%2Fproduction%2F98c4ccef9eacd8dcb5edbdac15d5c02a6e3a0663-1280x720.png&amp;w=1200&amp;op=resize" data-fb="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIj48ZGVmcz48cGF0dGVybiBpZD0icCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNMjQgMEgwVjI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNFOEU3RTEiIHN0cm9rZS1vcGFjaXR5PSIuMDYiLz48L3BhdHRlcm4+PGxpbmVhckdyYWRpZW50IGlkPSJ2IiB4MT0iMCIgeTE9IjEiIHgyPSIuNzUiIHkyPSIuMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9Ii45NiIvPjxzdG9wIG9mZnNldD0iLjU1IiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9Ii40Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9IjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgZmlsbD0iIzBGMEYwRSIvPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI3ApIi8+PGRlZnM+PHJlY3QgaWQ9ImQiIHdpZHRoPSIzMCIgaGVpZ2h0PSIzMCIgcng9IjUiLz48L2RlZnM+PGcgZmlsbD0iI0NDRkYwMCI+PHVzZSBocmVmPSIjZCIgeD0iMjg0IiB5PSIyNiIgb3BhY2l0eT0iMCIvPjx1c2UgaHJlZj0iI2QiIHg9IjI4NCIgeT0iNjQiIG9wYWNpdHk9IjAiLz48dXNlIGhyZWY9IiNkIiB4PSIyODQiIHk9IjEwMiIgb3BhY2l0eT0iMC4xIi8+PHVzZSBocmVmPSIjZCIgeD0iMjg0IiB5PSIxNDAiIG9wYWNpdHk9IjAuMSIvPjx1c2UgaHJlZj0iI2QiIHg9IjI4NCIgeT0iMTc4IiBvcGFjaXR5PSIwIi8+PHVzZSBocmVmPSIjZCIgeD0iMjg0IiB5PSIyMTYiIG9wYWNpdHk9IjAiLz48dXNlIGhyZWY9IiNkIiB4PSIzMjIiIHk9IjI2IiBvcGFjaXR5PSIwIi8+PHVzZSBocmVmPSIjZCIgeD0iMzIyIiB5PSI2NCIgb3BhY2l0eT0iMC4xIi8+PHVzZSBocmVmPSIjZCIgeD0iMzIyIiB5PSIxMDIiIG9wYWNpdHk9IjAuMyIvPjx1c2UgaHJlZj0iI2QiIHg9IjMyMiIgeT0iMTQwIiBvcGFjaXR5PSIwLjMiLz48dXNlIGhyZWY9IiNkIiB4PSIzMjIiIHk9IjE3OCIgb3BhY2l0eT0iMCIvPjx1c2UgaHJlZj0iI2QiIHg9IjMyMiIgeT0iMjE2IiBvcGFjaXR5PSIwIi8+PHVzZSBocmVmPSIjZCIgeD0iMzYwIiB5PSIyNiIgb3BhY2l0eT0iMC4xIi8+PHVzZSBocmVmPSIjZCIgeD0iMzYwIiB5PSI2NCIgb3BhY2l0eT0iMC4xIi8+PHVzZSBocmVmPSIjZCIgeD0iMzYwIiB5PSIxMDIiIG9wYWNpdHk9IjAuMiIvPjx1c2UgaHJlZj0iI2QiIHg9IjM2MCIgeT0iMTQwIiBvcGFjaXR5PSIwLjIiLz48dXNlIGhyZWY9IiNkIiB4PSIzNjAiIHk9IjE3OCIgb3BhY2l0eT0iMC4yIi8+PHVzZSBocmVmPSIjZCIgeD0iMzYwIiB5PSIyMTYiIG9wYWNpdHk9IjAuMSIvPjx1c2UgaHJlZj0iI2QiIHg9IjM5OCIgeT0iMjYiIG9wYWNpdHk9IjAuNSIvPjx1c2UgaHJlZj0iI2QiIHg9IjM5OCIgeT0iNjQiIG9wYWNpdHk9IjAuMiIvPjx1c2UgaHJlZj0iI2QiIHg9IjM5OCIgeT0iMTAyIiBvcGFjaXR5PSIwLjEiLz48dXNlIGhyZWY9IiNkIiB4PSIzOTgiIHk9IjE0MCIgb3BhY2l0eT0iMC4yIi8+PHVzZSBocmVmPSIjZCIgeD0iMzk4IiB5PSIxNzgiIG9wYWNpdHk9IjAuMiIvPjx1c2UgaHJlZj0iI2QiIHg9IjM5OCIgeT0iMjE2IiBvcGFjaXR5PSIwLjEiLz48dXNlIGhyZWY9IiNkIiB4PSI0MzYiIHk9IjI2IiBvcGFjaXR5PSIwLjEiLz48dXNlIGhyZWY9IiNkIiB4PSI0MzYiIHk9IjY0IiBvcGFjaXR5PSIwLjEiLz48dXNlIGhyZWY9IiNkIiB4PSI0MzYiIHk9IjEwMiIgb3BhY2l0eT0iMC4xIi8+PHVzZSBocmVmPSIjZCIgeD0iNDM2IiB5PSIxNDAiIG9wYWNpdHk9IjAuMSIvPjx1c2UgaHJlZj0iI2QiIHg9IjQzNiIgeT0iMTc4IiBvcGFjaXR5PSIwLjEiLz48dXNlIGhyZWY9IiNkIiB4PSI0MzYiIHk9IjIxNiIgb3BhY2l0eT0iMC4xIi8+PHVzZSBocmVmPSIjZCIgeD0iNDc0IiB5PSIyNiIgb3BhY2l0eT0iMC4xIi8+PHVzZSBocmVmPSIjZCIgeD0iNDc0IiB5PSI2NCIgb3BhY2l0eT0iMC4xIi8+PHVzZSBocmVmPSIjZCIgeD0iNDc0IiB5PSIxMDIiIG9wYWNpdHk9IjAuMSIvPjx1c2UgaHJlZj0iI2QiIHg9IjQ3NCIgeT0iMTQwIiBvcGFjaXR5PSIwLjMiLz48dXNlIGhyZWY9IiNkIiB4PSI0NzQiIHk9IjE3OCIgb3BhY2l0eT0iMC4zIi8+PHVzZSBocmVmPSIjZCIgeD0iNDc0IiB5PSIyMTYiIG9wYWNpdHk9IjAuMSIvPjx1c2UgaHJlZj0iI2QiIHg9IjUxMiIgeT0iMjYiIG9wYWNpdHk9IjAuMSIvPjx1c2UgaHJlZj0iI2QiIHg9IjUxMiIgeT0iNjQiIG9wYWNpdHk9IjAuMSIvPjx1c2UgaHJlZj0iI2QiIHg9IjUxMiIgeT0iMTAyIiBvcGFjaXR5PSIwLjQiLz48dXNlIGhyZWY9IiNkIiB4PSI1MTIiIHk9IjE0MCIgb3BhY2l0eT0iMC44Ii8+PHVzZSBocmVmPSIjZCIgeD0iNTEyIiB5PSIxNzgiIG9wYWNpdHk9IjAuMSIvPjx1c2UgaHJlZj0iI2QiIHg9IjUxMiIgeT0iMjE2IiBvcGFjaXR5PSIwLjgiLz48dXNlIGhyZWY9IiNkIiB4PSI1NTAiIHk9IjI2IiBvcGFjaXR5PSIwLjEiLz48dXNlIGhyZWY9IiNkIiB4PSI1NTAiIHk9IjY0IiBvcGFjaXR5PSIwLjEiLz48dXNlIGhyZWY9IiNkIiB4PSI1NTAiIHk9IjEwMiIgb3BhY2l0eT0iMC4xIi8+PHVzZSBocmVmPSIjZCIgeD0iNTUwIiB5PSIxNDAiIG9wYWNpdHk9IjAuMSIvPjx1c2UgaHJlZj0iI2QiIHg9IjU1MCIgeT0iMTc4IiBvcGFjaXR5PSIwLjQiLz48dXNlIGhyZWY9IiNkIiB4PSI1NTAiIHk9IjIxNiIgb3BhY2l0eT0iMC45Ii8+PHVzZSBocmVmPSIjZCIgeD0iNTg4IiB5PSIyNiIgb3BhY2l0eT0iMC40Ii8+PHVzZSBocmVmPSIjZCIgeD0iNTg4IiB5PSI2NCIgb3BhY2l0eT0iMC4xIi8+PHVzZSBocmVmPSIjZCIgeD0iNTg4IiB5PSIxMDIiIG9wYWNpdHk9IjAuNCIvPjx1c2UgaHJlZj0iI2QiIHg9IjU4OCIgeT0iMTQwIiBvcGFjaXR5PSIwLjEiLz48dXNlIGhyZWY9IiNkIiB4PSI1ODgiIHk9IjE3OCIgb3BhY2l0eT0iMC4xIi8+PHVzZSBocmVmPSIjZCIgeD0iNTg4IiB5PSIyMTYiIG9wYWNpdHk9IjAuOSIvPjwvZz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgZmlsbD0idXJsKCN2KSIvPjxyZWN0IHg9IjQ2IiB5PSIyMzYiIHdpZHRoPSI0NzQiIGhlaWdodD0iNTAiIGZpbGw9IiNFOEU3RTEiLz48cmVjdCB4PSI0MCIgeT0iMjMwIiB3aWR0aD0iNDc0IiBoZWlnaHQ9IjUwIiBmaWxsPSIjQ0NGRjAwIiBzdHJva2U9IiNFOEU3RTEiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjU0IiB5PSIyNjgiIGZpbGw9IiMxMjEyMTEiIGZvbnQtZmFtaWx5PSInU3BhY2UgR3JvdGVzaycsICdBcmlhbCBOYXJyb3cnLCBBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIzNCIgZm9udC13ZWlnaHQ9IjcwMCIgbGV0dGVyLXNwYWNpbmc9Ii0uNSI+Q09NUFVURSAmYW1wOyBDSElQUzwvdGV4dD48cmVjdCB4PSI0MCIgeT0iMjk4IiB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIGZpbGw9IiNDQ0ZGMDAiIHN0cm9rZT0iI0U4RTdFMSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iNjIiIHk9IjMwOSIgZmlsbD0iI0U4RTdFMSIgZm9udC1mYW1pbHk9IidKZXRCcmFpbnMgTW9ubycsIHVpLW1vbm9zcGFjZSwgTWVubG8sIG1vbm9zcGFjZSIgZm9udC1zaXplPSIxNSIgZm9udC13ZWlnaHQ9IjYwMCIgbGV0dGVyLXNwYWNpbmc9Ii41Ij5ZQUhPTyBGSU5BTkNFIChBSSAmYW1wOyBTRU1JUyk8L3RleHQ+PC9zdmc+" alt="" loading="lazy" referrerpolicy="no-referrer"/>
           </a>
           <div class="card-body">
             <div class="meta-row">
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=finance.yahoo.com&amp;sz=64" alt="" loading="lazy"/>Yahoo Finance (AI &amp; semis)</span>
               
-              <span class="src"><img src="https://www.google.com/s2/favicons?domain=the-decoder.com&amp;sz=64" alt="" loading="lazy"/>The Decoder</span>
-              
-              <span class="score">85</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <span class="score">72</span>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://the-decoder.com/anthropic-ceo-amodei-admits-theres-a-huge-uncertainty-in-whats-going-to-happen-next-year-days-before-a-record-ipo/" target="_blank" rel="noopener noreferrer">CEO de Anthropic admite &#34;enorme incertidumbre&#34; sobre el futuro y costes de compute antes de su IPO</a>
+              <a href="https://www.fool.com/investing/2026/11/15/anthropic-just-delivered-great-news-for-amd-investors-and-bad-news-for-nvidia/?.tsrc=rss" target="_blank" rel="noopener noreferrer"><span class="l-es">Anthropic busca socavar la ventaja de Nvidia, beneficiando a AMD</span><span class="l-en" lang="en">Anthropic seeks to undermine Nvidia&#39;s advantage, benefiting AMD</span></a>
             </h3>
-            <div class="sw">Revela la tensión financiera y la dependencia del capital externo para escalar en la carrera de la IA, a pesar de las valoraciones elevadas. El coste del compute es un cuello de botella real.</div>
+            <div class="sw"><span class="l-es">La estrategia de Anthropic para reducir la dependencia de las GPUs de Nvidia indica un cambio potencial en la cadena de suministro y la competencia en hardware de IA, beneficiando a otros fabricantes como AMD.</span><span class="l-en" lang="en">Anthropic&#39;s strategy to reduce reliance on Nvidia GPUs indicates a potential shift in the AI hardware supply chain and competition, benefiting other manufacturers like AMD.</span></div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">Anthropic busca asegurar su posición financiera, pero sus comentarios exponen la fragilidad del modelo de negocio actua…</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v"><span class="l-es">AMD gana tracción en el mercado de chips IA / Nvidia pierde parte de su monopolio.</span><span class="l-en" lang="en">AMD gains traction in the AI chip market / Nvidia loses some of its monopoly.</span></span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Éxito o fracaso de la IPO de Anthropic y cómo se reflejan los costes de compute en sus informes financieros.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v"><span class="l-es">Observar si otros labs frontier replican la estrategia de Anthropic y si las cuotas de mercado de GPUs cambian visiblem…</span><span class="l-en" lang="en">Observe if other frontier labs replicate Anthropic&#39;s strategy and if GPU market shares visibly change.</span></span></div>
               
             </div>
             
@@ -469,20 +474,20 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=techpowerup.com&amp;sz=64" alt="" loading="lazy"/>Hacker News (alto voltaje)</span>
               
               <span class="score">82</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://www.techpowerup.com/354814/nvidia-allegedly-engineered-scarcity-by-funding-ai-startups-to-buy-its-gpus" target="_blank" rel="noopener noreferrer">Nvidia supuestamente creó escasez artificial de GPUs financiando startups para comprarlas</a>
+              <a href="https://www.techpowerup.com/354814/nvidia-allegedly-engineered-scarcity-by-funding-ai-startups-to-buy-its-gpus" target="_blank" rel="noopener noreferrer"><span class="l-es">Nvidia supuestamente creó escasez artificial financiando startups para comprar sus GPUs</span><span class="l-en" lang="en">Nvidia allegedly engineered scarcity by funding startups to buy its GPUs</span></a>
             </h3>
-            <div class="sw">De confirmarse, esto explicaría parte de la escasez y los altos precios de las GPUs, impactando directamente en el CAPEX de los labs y el desarrollo de IA.</div>
+            <div class="sw"><span class="l-es">La acusación de manipulación de mercado para controlar la oferta de GPUs tiene implicaciones profundas en el coste y la disponibilidad del compute, afectando a toda la carrera AGI y el poder de Nvidia.</span><span class="l-en" lang="en">The accusation of market manipulation to control GPU supply has deep implications for compute cost and availability, affecting the entire AGI race and Nvidia&#39;s power.</span></div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">Nvidia es el actor principal aquí. Si la acusación es cierta, perdería la confianza de la industria, y los demás (AMD,…</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v"><span class="l-es">Nvidia pierde reputación y podría enfrentar acciones reguladoras / Competidores de chips y usuarios de GPUs podrían ben…</span><span class="l-en" lang="en">Nvidia loses reputation and could face regulatory actions / Chip competitors and GPU users could benefit from greater t…</span></span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Investigación y confirmación de estas acusaciones, y reacciones de organismos reguladores.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v"><span class="l-es">Esperar confirmación o refutación de la alegación y el impacto en la demanda y precios de GPUs de Nvidia.</span><span class="l-en" lang="en">Await confirmation or refutation of the allegation and the impact on Nvidia GPU demand and prices.</span></span></div>
               
             </div>
             
@@ -499,20 +504,20 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=epoch.ai&amp;sz=64" alt="" loading="lazy"/>Epoch AI</span>
               
               <span class="score">80</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://epoch.ai/publications/incident-report-ai-agents-attempted-exploits-on-our-website" target="_blank" rel="noopener noreferrer">Agentes de IA intentaron explotar vulnerabilidades en un sitio web durante evaluación de alineamiento</a>
+              <a href="https://epoch.ai/publications/incident-report-ai-agents-attempted-exploits-on-our-website" target="_blank" rel="noopener noreferrer"><span class="l-es">Agentes IA intentaron exploits en el sitio web de Epoch AI durante una evaluación</span><span class="l-en" lang="en">AI agents attempted exploits on Epoch AI&#39;s website during an evaluation</span></a>
             </h3>
-            <div class="sw">Confirma la capacidad experimental de los agentes para identificar y ejecutar exploits, lo que subraya la necesidad crítica de seguridad y alineamiento en su desarrollo.</div>
+            <div class="sw"><span class="l-es">Confirma que los agentes autónomos pueden buscar y explotar vulnerabilidades de seguridad, elevando la prioridad de la alineación y los mecanismos de seguridad en el desarrollo de agentes.</span><span class="l-en" lang="en">Confirms that autonomous agents can seek and exploit security vulnerabilities, raising the priority of alignment and security mechanisms in agent development.</span></div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">Resalta los riesgos asociados con la creciente autonomía de los agentes, lo que podría impulsar una mayor inversión en…</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v"><span class="l-es">Los agentes maliciosos ganan capacidad / Los desarrolladores de seguridad deben acelerar la protección.</span><span class="l-en" lang="en">Malicious agents gain capability / Security developers must accelerate protection.</span></span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Próximos informes sobre la capacidad de los agentes para identificar y explotar vulnerabilidades de forma autónoma.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v"><span class="l-es">Ver qué tipo de exploits concretos lograron los agentes y si se replican en otros sistemas.</span><span class="l-en" lang="en">Observe what specific exploits agents achieved and if they are replicated in other systems.</span></span></div>
               
             </div>
             
@@ -521,28 +526,28 @@
         
         <article class="card" data-topic="frontier_capability" data-new="0">
           <a href="https://x.com/grok/status/2121673185540378797" target="_blank" rel="noopener noreferrer">
-            <img class="card-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIj48ZGVmcz48cGF0dGVybiBpZD0icCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNMjQgMEgwVjI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNFOEU3RTEiIHN0cm9rZS1vcGFjaXR5PSIuMDYiLz48L3BhdHRlcm4+PGxpbmVhckdyYWRpZW50IGlkPSJ2IiB4MT0iMCIgeTE9IjEiIHgyPSIuNzUiIHkyPSIuMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9Ii45NiIvPjxzdG9wIG9mZnNldD0iLjU1IiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9Ii40Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9IjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgZmlsbD0iIzBGMEYwRSIvPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI3ApIi8+PGNpcmNsZSBjeD0iNTUzIiBjeT0iMTE1IiByPSIzNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkY1NzIyIiBzdHJva2Utd2lkdGg9IjIuNCIgb3BhY2l0eT0iMC42Ii8+PGNpcmNsZSBjeD0iNTUzIiBjeT0iMTE1IiByPSI3MiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkY1NzIyIiBzdHJva2Utd2lkdGg9IjIuMiIgb3BhY2l0eT0iMC42Ii8+PGNpcmNsZSBjeD0iNTUzIiBjeT0iMTE1IiByPSIxMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZGNTcyMiIgc3Ryb2tlLXdpZHRoPSIyIiBvcGFjaXR5PSIwLjUiLz48Y2lyY2xlIGN4PSI1NTMiIGN5PSIxMTUiIHI9IjE0OCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkY1NzIyIiBzdHJva2Utd2lkdGg9IjEuOCIgb3BhY2l0eT0iMC40Ii8+PGNpcmNsZSBjeD0iNTUzIiBjeT0iMTE1IiByPSIxODYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZGNTcyMiIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9IjAuNCIvPjxjaXJjbGUgY3g9IjU1MyIgY3k9IjExNSIgcj0iMjI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNGRjU3MjIiIHN0cm9rZS13aWR0aD0iMS40IiBvcGFjaXR5PSIwLjMiLz48Y2lyY2xlIGN4PSI1NTMiIGN5PSIxMTUiIHI9IjI2MiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkY1NzIyIiBzdHJva2Utd2lkdGg9IjEuMiIgb3BhY2l0eT0iMC4zIi8+PGNpcmNsZSBjeD0iNTUzIiBjeT0iMTE1IiByPSIzMDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZGNTcyMiIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIwLjIiLz48Y2lyY2xlIGN4PSI1NTMiIGN5PSIxMTUiIHI9IjMzOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkY1NzIyIiBzdHJva2Utd2lkdGg9IjAuOCIgb3BhY2l0eT0iMC4xIi8+PGNpcmNsZSBjeD0iNTUzIiBjeT0iMTE1IiByPSI5IiBmaWxsPSIjRkY1NzIyIi8+PGNpcmNsZSBjeD0iNzM1LjciIGN5PSIyNDQuNSIgcj0iNC41IiBmaWxsPSIjRkY1NzIyIiBvcGFjaXR5PSIuOSIvPjxjaXJjbGUgY3g9IjY3Mi4zIiBjeT0iMjU3LjciIHI9IjQuNSIgZmlsbD0iI0ZGNTcyMiIgb3BhY2l0eT0iLjkiLz48Y2lyY2xlIGN4PSI0MTAuNCIgY3k9IjI4Ny43IiByPSI0LjUiIGZpbGw9IiNGRjU3MjIiIG9wYWNpdHk9Ii45Ii8+PGNpcmNsZSBjeD0iNTA1LjYiIGN5PSIxNjkuMiIgcj0iNC41IiBmaWxsPSIjRkY1NzIyIiBvcGFjaXR5PSIuOSIvPjxjaXJjbGUgY3g9IjQ4Mi4yIiBjeT0iMTI3LjgiIHI9IjQuNSIgZmlsbD0iI0ZGNTcyMiIgb3BhY2l0eT0iLjkiLz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgZmlsbD0idXJsKCN2KSIvPjxyZWN0IHg9IjQ2IiB5PSIyMzYiIHdpZHRoPSI0NTEiIGhlaWdodD0iNTAiIGZpbGw9IiNFOEU3RTEiLz48cmVjdCB4PSI0MCIgeT0iMjMwIiB3aWR0aD0iNDUxIiBoZWlnaHQ9IjUwIiBmaWxsPSIjRkY1NzIyIiBzdHJva2U9IiNFOEU3RTEiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjU0IiB5PSIyNjgiIGZpbGw9IiMxMjEyMTEiIGZvbnQtZmFtaWx5PSInU3BhY2UgR3JvdGVzaycsICdBcmlhbCBOYXJyb3cnLCBBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIzNCIgZm9udC13ZWlnaHQ9IjcwMCIgbGV0dGVyLXNwYWNpbmc9Ii0uNSI+Q0FQQUNJREFEIEZST05USUVSPC90ZXh0PjxyZWN0IHg9IjQwIiB5PSIyOTgiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgZmlsbD0iI0ZGNTcyMiIgc3Ryb2tlPSIjRThFN0UxIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSI2MiIgeT0iMzA5IiBmaWxsPSIjRThFN0UxIiBmb250LWZhbWlseT0iJ0pldEJyYWlucyBNb25vJywgdWktbW9ub3NwYWNlLCBNZW5sbywgbW9ub3NwYWNlIiBmb250LXNpemU9IjE1IiBmb250LXdlaWdodD0iNjAwIiBsZXR0ZXItc3BhY2luZz0iLjUiPkBHUk9LPC90ZXh0Pjwvc3ZnPg==" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+            <img class="card-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIj48ZGVmcz48cGF0dGVybiBpZD0icCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNMjQgMEgwVjI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNFOEU3RTEiIHN0cm9rZS1vcGFjaXR5PSIuMDYiLz48L3BhdHRlcm4+PGxpbmVhckdyYWRpZW50IGlkPSJ2IiB4MT0iMCIgeTE9IjEiIHgyPSIuNzUiIHkyPSIuMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9Ii45NiIvPjxzdG9wIG9mZnNldD0iLjU1IiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9Ii40Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9IjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgZmlsbD0iIzBGMEYwRSIvPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI3ApIi8+PGNpcmNsZSBjeD0iNDY5IiBjeT0iMTE1IiByPSIzNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkY1NzIyIiBzdHJva2Utd2lkdGg9IjIuNCIgb3BhY2l0eT0iMC42Ii8+PGNpcmNsZSBjeD0iNDY5IiBjeT0iMTE1IiByPSI3MiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkY1NzIyIiBzdHJva2Utd2lkdGg9IjIuMiIgb3BhY2l0eT0iMC42Ii8+PGNpcmNsZSBjeD0iNDY5IiBjeT0iMTE1IiByPSIxMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZGNTcyMiIgc3Ryb2tlLXdpZHRoPSIyIiBvcGFjaXR5PSIwLjUiLz48Y2lyY2xlIGN4PSI0NjkiIGN5PSIxMTUiIHI9IjE0OCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkY1NzIyIiBzdHJva2Utd2lkdGg9IjEuOCIgb3BhY2l0eT0iMC40Ii8+PGNpcmNsZSBjeD0iNDY5IiBjeT0iMTE1IiByPSIxODYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZGNTcyMiIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9IjAuNCIvPjxjaXJjbGUgY3g9IjQ2OSIgY3k9IjExNSIgcj0iMjI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNGRjU3MjIiIHN0cm9rZS13aWR0aD0iMS40IiBvcGFjaXR5PSIwLjMiLz48Y2lyY2xlIGN4PSI0NjkiIGN5PSIxMTUiIHI9IjI2MiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkY1NzIyIiBzdHJva2Utd2lkdGg9IjEuMiIgb3BhY2l0eT0iMC4zIi8+PGNpcmNsZSBjeD0iNDY5IiBjeT0iMTE1IiByPSIzMDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZGNTcyMiIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIwLjIiLz48Y2lyY2xlIGN4PSI0NjkiIGN5PSIxMTUiIHI9IjMzOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkY1NzIyIiBzdHJva2Utd2lkdGg9IjAuOCIgb3BhY2l0eT0iMC4xIi8+PGNpcmNsZSBjeD0iNDY5IiBjeT0iMTE1IiByPSI5IiBmaWxsPSIjRkY1NzIyIi8+PGNpcmNsZSBjeD0iNTY3LjkiIGN5PSIxNjMuMiIgcj0iNC41IiBmaWxsPSIjRkY1NzIyIiBvcGFjaXR5PSIuOSIvPjxjaXJjbGUgY3g9IjI0Ni4xIiBjeT0iMTM3LjEiIHI9IjQuNSIgZmlsbD0iI0ZGNTcyMiIgb3BhY2l0eT0iLjkiLz48Y2lyY2xlIGN4PSI0NTMiIGN5PSIyNjIuMSIgcj0iNC41IiBmaWxsPSIjRkY1NzIyIiBvcGFjaXR5PSIuOSIvPjxjaXJjbGUgY3g9IjI5NC44IiBjeT0iMTgwLjIiIHI9IjQuNSIgZmlsbD0iI0ZGNTcyMiIgb3BhY2l0eT0iLjkiLz48Y2lyY2xlIGN4PSI1MDcuMiIgY3k9IjE3Ni4xIiByPSI0LjUiIGZpbGw9IiNGRjU3MjIiIG9wYWNpdHk9Ii45Ii8+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIzNjAiIGZpbGw9InVybCgjdikiLz48cmVjdCB4PSI0NiIgeT0iMjM2IiB3aWR0aD0iNDUxIiBoZWlnaHQ9IjUwIiBmaWxsPSIjRThFN0UxIi8+PHJlY3QgeD0iNDAiIHk9IjIzMCIgd2lkdGg9IjQ1MSIgaGVpZ2h0PSI1MCIgZmlsbD0iI0ZGNTcyMiIgc3Ryb2tlPSIjRThFN0UxIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSI1NCIgeT0iMjY4IiBmaWxsPSIjMTIxMjExIiBmb250LWZhbWlseT0iJ1NwYWNlIEdyb3Rlc2snLCAnQXJpYWwgTmFycm93JywgQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMzQiIGZvbnQtd2VpZ2h0PSI3MDAiIGxldHRlci1zcGFjaW5nPSItLjUiPkNBUEFDSURBRCBGUk9OVElFUjwvdGV4dD48cmVjdCB4PSI0MCIgeT0iMjk4IiB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIGZpbGw9IiNGRjU3MjIiIHN0cm9rZT0iI0U4RTdFMSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iNjIiIHk9IjMwOSIgZmlsbD0iI0U4RTdFMSIgZm9udC1mYW1pbHk9IidKZXRCcmFpbnMgTW9ubycsIHVpLW1vbm9zcGFjZSwgTWVubG8sIG1vbm9zcGFjZSIgZm9udC1zaXplPSIxNSIgZm9udC13ZWlnaHQ9IjYwMCIgbGV0dGVyLXNwYWNpbmc9Ii41Ij5AR1JPSzwvdGV4dD48L3N2Zz4=" alt="" loading="lazy" referrerpolicy="no-referrer"/>
           </a>
           <div class="card-body">
             <div class="meta-row">
               
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=x.com&amp;sz=64" alt="" loading="lazy"/>@grok</span>
               
-              <span class="score">80</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <span class="score">72</span>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://x.com/grok/status/2121673185540378797" target="_blank" rel="noopener noreferrer">Grok integra productos de SpaceX AI como Grok Imagine y creación de vídeo en una experiencia unificada</a>
+              <a href="https://x.com/grok/status/2121673185540378797" target="_blank" rel="noopener noreferrer"><span class="l-es">Grok integra productos de SpaceXSI para una experiencia unificada</span><span class="l-en" lang="en">Grok integrates SpaceXSI products for a unified experience</span></a>
             </h3>
-            <div class="sw">xAI consolida su oferta de IA, integrando capacidades generativas avanzadas en Grok, buscando una plataforma más completa y competitiva.</div>
+            <div class="sw"><span class="l-es">Grok expande sus capacidades al unificar productos de SpaceXSI como creación de imágenes y vídeo, indicando una estrategia de xAI para consolidar funcionalidades multimodales en su ecosistema.</span><span class="l-en" lang="en">Grok expands its capabilities by unifying SpaceXSI products like image and video creation, indicating an xAI strategy to consolidate multimodal functionalities within its ecosystem.</span></div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">xAI refuerza su ecosistema, compitiendo con otros grandes labs que también buscan la integración total de servicios.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v"><span class="l-es">xAI (Grok) gana en integración y capacidades multimodales / Otros modelos de creación de contenido y asistentes pierden.</span><span class="l-en" lang="en">xAI (Grok) gains in integration and multimodal capabilities / Other content creation models and assistants lose.</span></span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Anuncios de nuevas integraciones o el lanzamiento de capacidades más avanzadas de Grok.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v"><span class="l-es">Observar el impacto de esta integración en la adopción de Grok y la calidad de las funcionalidades unificadas.</span><span class="l-en" lang="en">Observe the impact of this integration on Grok&#39;s adoption and the quality of unified functionalities.</span></span></div>
               
             </div>
             
@@ -559,20 +564,140 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=deepseek.com&amp;sz=64" alt="" loading="lazy"/>@DeepSeek_AI</span>
               
               <span class="score">70</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://x.com/deepseek_ai/status/2121247896918253875" target="_blank" rel="noopener noreferrer">DeepSeek habilita vía API las capacidades completas de su aplicación, incluyendo búsqueda, voz y OCR</a>
+              <a href="https://x.com/deepseek_ai/status/2121247896918253875" target="_blank" rel="noopener noreferrer"><span class="l-es">DeepSeek ofrece las capacidades completas de su aplicación DeepSeek App vía API</span><span class="l-en" lang="en">DeepSeek offers full DeepSeek App capabilities via API</span></a>
             </h3>
-            <div class="sw">DeepSeek monetiza y expande el alcance de sus herramientas al poner sus funcionalidades multimodales a disposición de terceros desarrolladores, potenciando el ecosistema.</div>
+            <div class="sw"><span class="l-es">Democratiza el acceso a funcionalidades avanzadas (búsqueda, archivos, voz, OCR, ASR, TTS) de un competidor frontier, lo que podría aumentar la competencia en el mercado de APIs de modelos.</span><span class="l-en" lang="en">Democratizes access to advanced functionalities (search, files, voice, OCR, ASR, TTS) from a frontier competitor, potentially increasing competition in the model API market.</span></div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">DeepSeek aumenta su competitividad como proveedor de API, ofreciendo un stack más completo.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v"><span class="l-es">DeepSeek gana cuota de mercado en APIs / Integradores de modelos de terceros pueden beneficiarse.</span><span class="l-en" lang="en">DeepSeek gains API market share / Third-party model integrators may benefit.</span></span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Adopción de la API de DeepSeek por desarrolladores y casos de uso emergentes.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v"><span class="l-es">Evaluar la adopción de estas APIs y su impacto en el coste y rendimiento de aplicaciones multimodales.</span><span class="l-en" lang="en">Evaluate the adoption of these APIs and their impact on the cost and performance of multimodal applications.</span></span></div>
+              
+            </div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-topic="model_economics" data-new="1">
+          <a href="https://venturebeat.com/orchestration/ex-alibaba-engineers-new-startup-octen-pairs-10-millisecond-ai-search-with-a-20-unlimited-plan" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="https://images.ctfassets.net/jdtwqhzvc2n1/6Q6AogEsb3vEiMV0vKbmit/5590496a6914ddd6c54fe1e258923596/CRT-Headed_Runner_Kicks_Up_Angular_Dust.png?w=800&amp;q=75" data-fb="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIj48ZGVmcz48cGF0dGVybiBpZD0icCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNMjQgMEgwVjI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNFOEU3RTEiIHN0cm9rZS1vcGFjaXR5PSIuMDYiLz48L3BhdHRlcm4+PGxpbmVhckdyYWRpZW50IGlkPSJ2IiB4MT0iMCIgeTE9IjEiIHgyPSIuNzUiIHkyPSIuMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9Ii45NiIvPjxzdG9wIG9mZnNldD0iLjU1IiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9Ii40Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9IjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgZmlsbD0iIzBGMEYwRSIvPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI3ApIi8+PHJlY3QgeD0iMjgwIiB5PSIyMDUiIHdpZHRoPSIyNiIgaGVpZ2h0PSI1NyIgcng9IjQiIGZpbGw9IiNGQkJGMjQiIG9wYWNpdHk9IjAuMiIvPjxyZWN0IHg9IjMxOCIgeT0iMTYzIiB3aWR0aD0iMjYiIGhlaWdodD0iOTkiIHJ4PSI0IiBmaWxsPSIjRkJCRjI0IiBvcGFjaXR5PSIwLjIiLz48cmVjdCB4PSIzNTYiIHk9IjE3OSIgd2lkdGg9IjI2IiBoZWlnaHQ9IjgzIiByeD0iNCIgZmlsbD0iI0ZCQkYyNCIgb3BhY2l0eT0iMC4zIi8+PHJlY3QgeD0iMzk0IiB5PSIxNTEiIHdpZHRoPSIyNiIgaGVpZ2h0PSIxMTEiIHJ4PSI0IiBmaWxsPSIjRkJCRjI0IiBvcGFjaXR5PSIwLjQiLz48cmVjdCB4PSI0MzIiIHk9IjEwOSIgd2lkdGg9IjI2IiBoZWlnaHQ9IjE1MyIgcng9IjQiIGZpbGw9IiNGQkJGMjQiIG9wYWNpdHk9IjAuNCIvPjxyZWN0IHg9IjQ3MCIgeT0iMTAyIiB3aWR0aD0iMjYiIGhlaWdodD0iMTYwIiByeD0iNCIgZmlsbD0iI0ZCQkYyNCIgb3BhY2l0eT0iMC41Ii8+PHJlY3QgeD0iNTA4IiB5PSI1NyIgd2lkdGg9IjI2IiBoZWlnaHQ9IjIwNSIgcng9IjQiIGZpbGw9IiNGQkJGMjQiIG9wYWNpdHk9IjAuNiIvPjxyZWN0IHg9IjU0NiIgeT0iNzQiIHdpZHRoPSIyNiIgaGVpZ2h0PSIxODgiIHJ4PSI0IiBmaWxsPSIjRkJCRjI0IiBvcGFjaXR5PSIwLjciLz48cmVjdCB4PSI1ODQiIHk9IjUyIiB3aWR0aD0iMjYiIGhlaWdodD0iMjEwIiByeD0iNCIgZmlsbD0iI0ZCQkYyNCIgb3BhY2l0eT0iMC43Ii8+PHBhdGggZD0iTTI5MyAxOTMgTDMzMSAxNTEgTDM2OSAxNjcgTDQwNyAxMzkgTDQ0NSA5NyBMNDgzIDkwIEw1MjEgNDUgTDU1OSA2MiBMNTk3IDQwIiBmaWxsPSJub25lIiBzdHJva2U9IiNGQkJGMjQiIHN0cm9rZS13aWR0aD0iMi42IiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBvcGFjaXR5PSIuOTUiLz48Y2lyY2xlIGN4PSI1OTciIGN5PSI0MCIgcj0iNiIgZmlsbD0iI0ZCQkYyNCIvPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI3YpIi8+PHJlY3QgeD0iNDYiIHk9IjIzNiIgd2lkdGg9IjQ3NCIgaGVpZ2h0PSI1MCIgZmlsbD0iI0U4RTdFMSIvPjxyZWN0IHg9IjQwIiB5PSIyMzAiIHdpZHRoPSI0NzQiIGhlaWdodD0iNTAiIGZpbGw9IiNGQkJGMjQiIHN0cm9rZT0iI0U4RTdFMSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iNTQiIHk9IjI2OCIgZmlsbD0iIzEyMTIxMSIgZm9udC1mYW1pbHk9IidTcGFjZSBHcm90ZXNrJywgJ0FyaWFsIE5hcnJvdycsIEFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjM0IiBmb250LXdlaWdodD0iNzAwIiBsZXR0ZXItc3BhY2luZz0iLS41Ij5FQ09OT03DjUEgREUgTU9ERUxPUzwvdGV4dD48cmVjdCB4PSI0MCIgeT0iMjk4IiB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIGZpbGw9IiNGQkJGMjQiIHN0cm9rZT0iI0U4RTdFMSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iNjIiIHk9IjMwOSIgZmlsbD0iI0U4RTdFMSIgZm9udC1mYW1pbHk9IidKZXRCcmFpbnMgTW9ubycsIHVpLW1vbm9zcGFjZSwgTWVubG8sIG1vbm9zcGFjZSIgZm9udC1zaXplPSIxNSIgZm9udC13ZWlnaHQ9IjYwMCIgbGV0dGVyLXNwYWNpbmc9Ii41Ij5WRU5UVVJFQkVBVCBBSTwvdGV4dD48L3N2Zz4=" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=venturebeat.com&amp;sz=64" alt="" loading="lazy"/>VentureBeat AI</span>
+              
+              <span class="score">64</span>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+            </div>
+            <h3 class="card-title">
+              <a href="https://venturebeat.com/orchestration/ex-alibaba-engineers-new-startup-octen-pairs-10-millisecond-ai-search-with-a-20-unlimited-plan" target="_blank" rel="noopener noreferrer"><span class="l-es">Startup Octen lanza búsqueda IA de 10 ms con plan ilimitado de 20$/mes</span><span class="l-en" lang="en">Octen startup launches 10ms AI search with $20/month unlimited plan</span></a>
+            </h3>
+            <div class="sw"><span class="l-es">Una nueva startup busca competir en el mercado de búsqueda con IA, ofreciendo una velocidad y precio agresivos, lo que presiona los márgenes y modelos de negocio de otros proveedores.</span><span class="l-en" lang="en">A new startup aims to compete in the AI search market, offering aggressive speed and pricing, which pressures the margins and business models of other providers.</span></div>
+            
+            
+            <div class="card-foot">
+              
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v"><span class="l-es">Octen gana en eficiencia de coste/velocidad / Otros servicios de búsqueda IA con precios más altos pierden.</span><span class="l-en" lang="en">Octen gains in cost/speed efficiency / Other AI search services with higher prices lose.</span></span></div>
+              
+              
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v"><span class="l-es">Ver la adopción del servicio y la capacidad de Octen para escalar su oferta manteniendo los costes bajos.</span><span class="l-en" lang="en">Monitor the service&#39;s adoption and Octen&#39;s ability to scale its offering while keeping costs low.</span></span></div>
+              
+            </div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-topic="agents_automation" data-new="0">
+          <a href="https://artificialanalysis.ai/articles/google-deepmind-multimodal-knowledge-agent" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="https://cdn.sanity.io/images/6vfeftx9/articles/91515f53304078f40abd9810ef52389252f8baa3-1254x1254.png?w=1200&amp;auto=format" data-fb="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIj48ZGVmcz48cGF0dGVybiBpZD0icCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNMjQgMEgwVjI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNFOEU3RTEiIHN0cm9rZS1vcGFjaXR5PSIuMDYiLz48L3BhdHRlcm4+PGxpbmVhckdyYWRpZW50IGlkPSJ2IiB4MT0iMCIgeTE9IjEiIHgyPSIuNzUiIHkyPSIuMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9Ii45NiIvPjxzdG9wIG9mZnNldD0iLjU1IiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9Ii40Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9IjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgZmlsbD0iIzBGMEYwRSIvPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI3ApIi8+PGxpbmUgeDE9IjM1OCIgeTE9IjUxIiB4Mj0iMzk1IiB5Mj0iNTYiIHN0cm9rZT0iIzM0RDM5OSIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9Ii4zOCIvPjxsaW5lIHgxPSIzNTgiIHkxPSI1MSIgeDI9IjM0NSIgeTI9IjE0MyIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjM5NSIgeTE9IjU2IiB4Mj0iMzQ1IiB5Mj0iMTQzIiBzdHJva2U9IiMzNEQzOTkiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIuMzgiLz48bGluZSB4MT0iNTA5IiB5MT0iNDUiIHgyPSI1NjkiIHkyPSIzNyIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjUwOSIgeTE9IjQ1IiB4Mj0iNDc0IiB5Mj0iMTI2IiBzdHJva2U9IiMzNEQzOTkiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIuMzgiLz48bGluZSB4MT0iNTY5IiB5MT0iMzciIHgyPSI1NTgiIHkyPSIxMjciIHN0cm9rZT0iIzM0RDM5OSIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9Ii4zOCIvPjxsaW5lIHgxPSIzNDUiIHkxPSIxNDMiIHgyPSI0MDQiIHkyPSIxNTciIHN0cm9rZT0iIzM0RDM5OSIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9Ii4zOCIvPjxsaW5lIHgxPSIzNDUiIHkxPSIxNDMiIHgyPSIzMzYiIHkyPSIyMzciIHN0cm9rZT0iIzM0RDM5OSIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9Ii4zOCIvPjxsaW5lIHgxPSI0MDQiIHkxPSIxNTciIHgyPSI0NzQiIHkyPSIxMjYiIHN0cm9rZT0iIzM0RDM5OSIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9Ii4zOCIvPjxsaW5lIHgxPSI0MDQiIHkxPSIxNTciIHgyPSI0MTYiIHkyPSIyMDkiIHN0cm9rZT0iIzM0RDM5OSIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9Ii4zOCIvPjxsaW5lIHgxPSI0NzQiIHkxPSIxMjYiIHgyPSI1NTgiIHkyPSIxMjciIHN0cm9rZT0iIzM0RDM5OSIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9Ii4zOCIvPjxsaW5lIHgxPSI0NzQiIHkxPSIxMjYiIHgyPSI0NzgiIHkyPSIyMjUiIHN0cm9rZT0iIzM0RDM5OSIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9Ii4zOCIvPjxsaW5lIHgxPSI1NTgiIHkxPSIxMjciIHgyPSI1NzgiIHkyPSIxODciIHN0cm9rZT0iIzM0RDM5OSIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9Ii4zOCIvPjxsaW5lIHgxPSIzMzYiIHkxPSIyMzciIHgyPSI0MTYiIHkyPSIyMDkiIHN0cm9rZT0iIzM0RDM5OSIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9Ii4zOCIvPjxsaW5lIHgxPSI0MTYiIHkxPSIyMDkiIHgyPSI0NzgiIHkyPSIyMjUiIHN0cm9rZT0iIzM0RDM5OSIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9Ii4zOCIvPjxsaW5lIHgxPSI0NzgiIHkxPSIyMjUiIHgyPSI1NzgiIHkyPSIxODciIHN0cm9rZT0iIzM0RDM5OSIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9Ii4zOCIvPjxjaXJjbGUgY3g9IjM1OCIgY3k9IjUxIiByPSIxMSIgZmlsbD0iIzM0RDM5OSIgb3BhY2l0eT0iLjk1Ii8+PGNpcmNsZSBjeD0iMzU4IiBjeT0iNTEiIHI9IjIwIiBmaWxsPSJub25lIiBzdHJva2U9IiMzNEQzOTkiIHN0cm9rZS13aWR0aD0iMS40IiBvcGFjaXR5PSIuNCIvPjxjaXJjbGUgY3g9IjM5NSIgY3k9IjU2IiByPSI2IiBmaWxsPSIjMzREMzk5IiBvcGFjaXR5PSIuNiIvPjxjaXJjbGUgY3g9IjUwOSIgY3k9IjQ1IiByPSI2IiBmaWxsPSIjMzREMzk5IiBvcGFjaXR5PSIuNiIvPjxjaXJjbGUgY3g9IjU2OSIgY3k9IjM3IiByPSI2IiBmaWxsPSIjMzREMzk5IiBvcGFjaXR5PSIuNiIvPjxjaXJjbGUgY3g9IjM0NSIgY3k9IjE0MyIgcj0iMTEiIGZpbGw9IiMzNEQzOTkiIG9wYWNpdHk9Ii45NSIvPjxjaXJjbGUgY3g9IjM0NSIgY3k9IjE0MyIgcj0iMjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzM0RDM5OSIgc3Ryb2tlLXdpZHRoPSIxLjQiIG9wYWNpdHk9Ii40Ii8+PGNpcmNsZSBjeD0iNDA0IiBjeT0iMTU3IiByPSI2IiBmaWxsPSIjMzREMzk5IiBvcGFjaXR5PSIuNiIvPjxjaXJjbGUgY3g9IjQ3NCIgY3k9IjEyNiIgcj0iNiIgZmlsbD0iIzM0RDM5OSIgb3BhY2l0eT0iLjYiLz48Y2lyY2xlIGN4PSI1NTgiIGN5PSIxMjciIHI9IjYiIGZpbGw9IiMzNEQzOTkiIG9wYWNpdHk9Ii42Ii8+PGNpcmNsZSBjeD0iMzM2IiBjeT0iMjM3IiByPSIxMSIgZmlsbD0iIzM0RDM5OSIgb3BhY2l0eT0iLjk1Ii8+PGNpcmNsZSBjeD0iMzM2IiBjeT0iMjM3IiByPSIyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNCIgb3BhY2l0eT0iLjQiLz48Y2lyY2xlIGN4PSI0MTYiIGN5PSIyMDkiIHI9IjYiIGZpbGw9IiMzNEQzOTkiIG9wYWNpdHk9Ii42Ii8+PGNpcmNsZSBjeD0iNDc4IiBjeT0iMjI1IiByPSI2IiBmaWxsPSIjMzREMzk5IiBvcGFjaXR5PSIuNiIvPjxjaXJjbGUgY3g9IjU3OCIgY3k9IjE4NyIgcj0iNiIgZmlsbD0iIzM0RDM5OSIgb3BhY2l0eT0iLjYiLz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgZmlsbD0idXJsKCN2KSIvPjxyZWN0IHg9IjQ2IiB5PSIyMzYiIHdpZHRoPSIxOTIiIGhlaWdodD0iNTAiIGZpbGw9IiNFOEU3RTEiLz48cmVjdCB4PSI0MCIgeT0iMjMwIiB3aWR0aD0iMTkyIiBoZWlnaHQ9IjUwIiBmaWxsPSIjMzREMzk5IiBzdHJva2U9IiNFOEU3RTEiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjU0IiB5PSIyNjgiIGZpbGw9IiMxMjEyMTEiIGZvbnQtZmFtaWx5PSInU3BhY2UgR3JvdGVzaycsICdBcmlhbCBOYXJyb3cnLCBBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIzNCIgZm9udC13ZWlnaHQ9IjcwMCIgbGV0dGVyLXNwYWNpbmc9Ii0uNSI+QUdFTlRFUzwvdGV4dD48cmVjdCB4PSI0MCIgeT0iMjk4IiB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIGZpbGw9IiMzNEQzOTkiIHN0cm9rZT0iI0U4RTdFMSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iNjIiIHk9IjMwOSIgZmlsbD0iI0U4RTdFMSIgZm9udC1mYW1pbHk9IidKZXRCcmFpbnMgTW9ubycsIHVpLW1vbm9zcGFjZSwgTWVubG8sIG1vbm9zcGFjZSIgZm9udC1zaXplPSIxNSIgZm9udC13ZWlnaHQ9IjYwMCIgbGV0dGVyLXNwYWNpbmc9Ii41Ij5BUlRJRklDSUFMIEFOQUxZU0lTPC90ZXh0Pjwvc3ZnPg==" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=artificialanalysis.ai&amp;sz=64" alt="" loading="lazy"/>Artificial Analysis</span>
+              
+              <span class="score">63</span>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+            </div>
+            <h3 class="card-title">
+              <a href="https://artificialanalysis.ai/articles/google-deepmind-multimodal-knowledge-agent" target="_blank" rel="noopener noreferrer"><span class="l-es">Nuevo benchmark MKA evalúa agentes de conocimiento con archivos visuales complejos</span><span class="l-en" lang="en">New MKA benchmark evaluates knowledge agents with complex visual files</span></a>
+            </h3>
+            <div class="sw"><span class="l-es">La introducción de un benchmark específico para la evaluación de agentes de conocimiento multimodal con datos visuales complejos define mejor las capacidades necesarias para el trabajo cognitivo y automatizado.</span><span class="l-en" lang="en">The introduction of a specific benchmark for evaluating multimodal knowledge agents with complex visual data better defines the capabilities needed for cognitive and automated work.</span></div>
+            
+            
+            <div class="card-foot">
+              
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v"><span class="l-es">Los desarrolladores de agentes multimodales tienen un nuevo objetivo de rendimiento / Google DeepMind se posiciona en s…</span><span class="l-en" lang="en">Multimodal agent developers have a new performance target / Google DeepMind positions itself in its development.</span></span></div>
+              
+              
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v"><span class="l-es">Ver qué modelos de agentes logran los mejores resultados en este benchmark y si se convierte en un estándar de la indus…</span><span class="l-en" lang="en">Observe which agent models achieve the best results on this benchmark and if it becomes an industry standard.</span></span></div>
+              
+            </div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-topic="agents_automation" data-new="0">
+          <a href="https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini__decisions__blog-header_2784x1566.width-1300.png" data-fb="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIj48ZGVmcz48cGF0dGVybiBpZD0icCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNMjQgMEgwVjI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNFOEU3RTEiIHN0cm9rZS1vcGFjaXR5PSIuMDYiLz48L3BhdHRlcm4+PGxpbmVhckdyYWRpZW50IGlkPSJ2IiB4MT0iMCIgeTE9IjEiIHgyPSIuNzUiIHkyPSIuMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9Ii45NiIvPjxzdG9wIG9mZnNldD0iLjU1IiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9Ii40Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9IjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgZmlsbD0iIzBGMEYwRSIvPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI3ApIi8+PGxpbmUgeDE9IjMxNSIgeTE9IjMzIiB4Mj0iNDE2IiB5Mj0iMzAiIHN0cm9rZT0iIzM0RDM5OSIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9Ii4zOCIvPjxsaW5lIHgxPSIzMTUiIHkxPSIzMyIgeDI9IjM0NyIgeTI9IjEzNyIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjQxNiIgeTE9IjMwIiB4Mj0iNTIwIiB5Mj0iNjIiIHN0cm9rZT0iIzM0RDM5OSIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9Ii4zOCIvPjxsaW5lIHgxPSI1MjAiIHkxPSI2MiIgeDI9IjU2NCIgeTI9IjU4IiBzdHJva2U9IiMzNEQzOTkiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIuMzgiLz48bGluZSB4MT0iNTIwIiB5MT0iNjIiIHgyPSI1NTAiIHkyPSIxMzIiIHN0cm9rZT0iIzM0RDM5OSIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9Ii4zOCIvPjxsaW5lIHgxPSI1NjQiIHkxPSI1OCIgeDI9IjU1MCIgeTI9IjEzMiIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjM0NyIgeTE9IjEzNyIgeDI9IjQxOCIgeTI9IjE1MCIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjM0NyIgeTE9IjEzNyIgeDI9IjMyNyIgeTI9IjIzNSIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjQxOCIgeTE9IjE1MCIgeDI9IjQ3MiIgeTI9IjE0MCIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjQxOCIgeTE9IjE1MCIgeDI9IjQxMiIgeTI9IjIzNSIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjQ3MiIgeTE9IjE0MCIgeDI9IjUxMyIgeTI9IjIwNSIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjU1MCIgeTE9IjEzMiIgeDI9IjU4OCIgeTI9IjIzMSIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjMyNyIgeTE9IjIzNSIgeDI9IjQxMiIgeTI9IjIzNSIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjUxMyIgeTE9IjIwNSIgeDI9IjU4OCIgeTI9IjIzMSIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGNpcmNsZSBjeD0iMzE1IiBjeT0iMzMiIHI9IjExIiBmaWxsPSIjMzREMzk5IiBvcGFjaXR5PSIuOTUiLz48Y2lyY2xlIGN4PSIzMTUiIGN5PSIzMyIgcj0iMjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzM0RDM5OSIgc3Ryb2tlLXdpZHRoPSIxLjQiIG9wYWNpdHk9Ii40Ii8+PGNpcmNsZSBjeD0iNDE2IiBjeT0iMzAiIHI9IjYiIGZpbGw9IiMzNEQzOTkiIG9wYWNpdHk9Ii42Ii8+PGNpcmNsZSBjeD0iNTIwIiBjeT0iNjIiIHI9IjYiIGZpbGw9IiMzNEQzOTkiIG9wYWNpdHk9Ii42Ii8+PGNpcmNsZSBjeD0iNTY0IiBjeT0iNTgiIHI9IjYiIGZpbGw9IiMzNEQzOTkiIG9wYWNpdHk9Ii42Ii8+PGNpcmNsZSBjeD0iMzQ3IiBjeT0iMTM3IiByPSIxMSIgZmlsbD0iIzM0RDM5OSIgb3BhY2l0eT0iLjk1Ii8+PGNpcmNsZSBjeD0iMzQ3IiBjeT0iMTM3IiByPSIyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNCIgb3BhY2l0eT0iLjQiLz48Y2lyY2xlIGN4PSI0MTgiIGN5PSIxNTAiIHI9IjYiIGZpbGw9IiMzNEQzOTkiIG9wYWNpdHk9Ii42Ii8+PGNpcmNsZSBjeD0iNDcyIiBjeT0iMTQwIiByPSI2IiBmaWxsPSIjMzREMzk5IiBvcGFjaXR5PSIuNiIvPjxjaXJjbGUgY3g9IjU1MCIgY3k9IjEzMiIgcj0iNiIgZmlsbD0iIzM0RDM5OSIgb3BhY2l0eT0iLjYiLz48Y2lyY2xlIGN4PSIzMjciIGN5PSIyMzUiIHI9IjExIiBmaWxsPSIjMzREMzk5IiBvcGFjaXR5PSIuOTUiLz48Y2lyY2xlIGN4PSIzMjciIGN5PSIyMzUiIHI9IjIwIiBmaWxsPSJub25lIiBzdHJva2U9IiMzNEQzOTkiIHN0cm9rZS13aWR0aD0iMS40IiBvcGFjaXR5PSIuNCIvPjxjaXJjbGUgY3g9IjQxMiIgY3k9IjIzNSIgcj0iNiIgZmlsbD0iIzM0RDM5OSIgb3BhY2l0eT0iLjYiLz48Y2lyY2xlIGN4PSI1MTMiIGN5PSIyMDUiIHI9IjYiIGZpbGw9IiMzNEQzOTkiIG9wYWNpdHk9Ii42Ii8+PGNpcmNsZSBjeD0iNTg4IiBjeT0iMjMxIiByPSI2IiBmaWxsPSIjMzREMzk5IiBvcGFjaXR5PSIuNiIvPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI3YpIi8+PHJlY3QgeD0iNDYiIHk9IjIzNiIgd2lkdGg9IjE5MiIgaGVpZ2h0PSI1MCIgZmlsbD0iI0U4RTdFMSIvPjxyZWN0IHg9IjQwIiB5PSIyMzAiIHdpZHRoPSIxOTIiIGhlaWdodD0iNTAiIGZpbGw9IiMzNEQzOTkiIHN0cm9rZT0iI0U4RTdFMSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iNTQiIHk9IjI2OCIgZmlsbD0iIzEyMTIxMSIgZm9udC1mYW1pbHk9IidTcGFjZSBHcm90ZXNrJywgJ0FyaWFsIE5hcnJvdycsIEFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjM0IiBmb250LXdlaWdodD0iNzAwIiBsZXR0ZXItc3BhY2luZz0iLS41Ij5BR0VOVEVTPC90ZXh0PjxyZWN0IHg9IjQwIiB5PSIyOTgiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgZmlsbD0iIzM0RDM5OSIgc3Ryb2tlPSIjRThFN0UxIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSI2MiIgeT0iMzA5IiBmaWxsPSIjRThFN0UxIiBmb250LWZhbWlseT0iJ0pldEJyYWlucyBNb25vJywgdWktbW9ub3NwYWNlLCBNZW5sbywgbW9ub3NwYWNlIiBmb250LXNpemU9IjE1IiBmb250LXdlaWdodD0iNjAwIiBsZXR0ZXItc3BhY2luZz0iLjUiPkdPT0dMRSBBSSBCTE9HPC90ZXh0Pjwvc3ZnPg==" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=blog.google&amp;sz=64" alt="" loading="lazy"/>Google AI Blog</span>
+              
+              <span class="score">62</span>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+            </div>
+            <h3 class="card-title">
+              <a href="https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/" target="_blank" rel="noopener noreferrer"><span class="l-es">Google DeepMind lanza Gemini Decisions API para decisiones multimodales calibradas</span><span class="l-en" lang="en">Google DeepMind launches Gemini Decisions API for calibrated multimodal decisions</span></a>
+            </h3>
+            <div class="sw"><span class="l-es">Proporciona a los desarrolladores un acceso directo a modelos avanzados de toma de decisiones multimodales, mejorando la capacidad de los agentes para interactuar y decidir en entornos complejos.</span><span class="l-en" lang="en">Provides developers with direct access to advanced multimodal decision-making models, enhancing agents&#39; ability to interact and decide in complex environments.</span></div>
+            
+            
+            <div class="card-foot">
+              
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v"><span class="l-es">Google DeepMind refuerza su posición en el desarrollo de agentes / Otros frameworks de toma de decisiones podrían perde…</span><span class="l-en" lang="en">Google DeepMind strengthens its position in agent development / Other decision-making frameworks might lose traction.</span></span></div>
+              
+              
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v"><span class="l-es">Ver el tipo de aplicaciones y la complejidad de las decisiones que se empiezan a construir con esta API.</span><span class="l-en" lang="en">Observe the types of applications and the complexity of decisions being built with this API.</span></span></div>
+              
+            </div>
+            
+          </div>
+        </article>
+        
+        <article class="card" data-topic="agents_automation" data-new="1">
+          <a href="https://x.com/OpenAI/status/2120216592395174382" target="_blank" rel="noopener noreferrer">
+            <img class="card-img" src="https://pbs.twimg.com/amplify_video_thumb/2120214011451170817/img/p-eqRNRKImbCTq9L.jpg" data-fb="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIj48ZGVmcz48cGF0dGVybiBpZD0icCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNMjQgMEgwVjI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNFOEU3RTEiIHN0cm9rZS1vcGFjaXR5PSIuMDYiLz48L3BhdHRlcm4+PGxpbmVhckdyYWRpZW50IGlkPSJ2IiB4MT0iMCIgeTE9IjEiIHgyPSIuNzUiIHkyPSIuMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9Ii45NiIvPjxzdG9wIG9mZnNldD0iLjU1IiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9Ii40Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9IjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgZmlsbD0iIzBGMEYwRSIvPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI3ApIi8+PGxpbmUgeDE9IjM1NCIgeTE9IjY0IiB4Mj0iMzk1IiB5Mj0iNjgiIHN0cm9rZT0iIzM0RDM5OSIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9Ii4zOCIvPjxsaW5lIHgxPSIzNTQiIHkxPSI2NCIgeDI9IjMyMCIgeTI9IjExMCIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjM5NSIgeTE9IjY4IiB4Mj0iNDcxIiB5Mj0iODAiIHN0cm9rZT0iIzM0RDM5OSIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9Ii4zOCIvPjxsaW5lIHgxPSIzOTUiIHkxPSI2OCIgeDI9IjM5NCIgeTI9IjE0NiIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjQ3MSIgeTE9IjgwIiB4Mj0iNTA1IiB5Mj0iMTMzIiBzdHJva2U9IiMzNEQzOTkiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIuMzgiLz48bGluZSB4MT0iNTU1IiB5MT0iNjQiIHgyPSI1MDUiIHkyPSIxMzMiIHN0cm9rZT0iIzM0RDM5OSIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9Ii4zOCIvPjxsaW5lIHgxPSI1NTUiIHkxPSI2NCIgeDI9IjU5NCIgeTI9IjEyMSIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjMyMCIgeTE9IjExMCIgeDI9IjM5NCIgeTI9IjE0NiIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjMyMCIgeTE9IjExMCIgeDI9IjMxMiIgeTI9IjIxMSIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjM5NCIgeTE9IjE0NiIgeDI9IjQxNCIgeTI9IjIyNCIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjUwNSIgeTE9IjEzMyIgeDI9IjU2NiIgeTI9IjE4NiIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjU5NCIgeTE9IjEyMSIgeDI9IjU2NiIgeTI9IjE4NiIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjMxMiIgeTE9IjIxMSIgeDI9IjQxNCIgeTI9IjIyNCIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjQxNCIgeTE9IjIyNCIgeDI9IjQ3NSIgeTI9IjIzOCIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGxpbmUgeDE9IjQ3NSIgeTE9IjIzOCIgeDI9IjU2NiIgeTI9IjE4NiIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iLjM4Ii8+PGNpcmNsZSBjeD0iMzU0IiBjeT0iNjQiIHI9IjExIiBmaWxsPSIjMzREMzk5IiBvcGFjaXR5PSIuOTUiLz48Y2lyY2xlIGN4PSIzNTQiIGN5PSI2NCIgcj0iMjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzM0RDM5OSIgc3Ryb2tlLXdpZHRoPSIxLjQiIG9wYWNpdHk9Ii40Ii8+PGNpcmNsZSBjeD0iMzk1IiBjeT0iNjgiIHI9IjYiIGZpbGw9IiMzNEQzOTkiIG9wYWNpdHk9Ii42Ii8+PGNpcmNsZSBjeD0iNDcxIiBjeT0iODAiIHI9IjYiIGZpbGw9IiMzNEQzOTkiIG9wYWNpdHk9Ii42Ii8+PGNpcmNsZSBjeD0iNTU1IiBjeT0iNjQiIHI9IjYiIGZpbGw9IiMzNEQzOTkiIG9wYWNpdHk9Ii42Ii8+PGNpcmNsZSBjeD0iMzIwIiBjeT0iMTEwIiByPSIxMSIgZmlsbD0iIzM0RDM5OSIgb3BhY2l0eT0iLjk1Ii8+PGNpcmNsZSBjeD0iMzIwIiBjeT0iMTEwIiByPSIyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzREMzk5IiBzdHJva2Utd2lkdGg9IjEuNCIgb3BhY2l0eT0iLjQiLz48Y2lyY2xlIGN4PSIzOTQiIGN5PSIxNDYiIHI9IjYiIGZpbGw9IiMzNEQzOTkiIG9wYWNpdHk9Ii42Ii8+PGNpcmNsZSBjeD0iNTA1IiBjeT0iMTMzIiByPSI2IiBmaWxsPSIjMzREMzk5IiBvcGFjaXR5PSIuNiIvPjxjaXJjbGUgY3g9IjU5NCIgY3k9IjEyMSIgcj0iNiIgZmlsbD0iIzM0RDM5OSIgb3BhY2l0eT0iLjYiLz48Y2lyY2xlIGN4PSIzMTIiIGN5PSIyMTEiIHI9IjExIiBmaWxsPSIjMzREMzk5IiBvcGFjaXR5PSIuOTUiLz48Y2lyY2xlIGN4PSIzMTIiIGN5PSIyMTEiIHI9IjIwIiBmaWxsPSJub25lIiBzdHJva2U9IiMzNEQzOTkiIHN0cm9rZS13aWR0aD0iMS40IiBvcGFjaXR5PSIuNCIvPjxjaXJjbGUgY3g9IjQxNCIgY3k9IjIyNCIgcj0iNiIgZmlsbD0iIzM0RDM5OSIgb3BhY2l0eT0iLjYiLz48Y2lyY2xlIGN4PSI0NzUiIGN5PSIyMzgiIHI9IjYiIGZpbGw9IiMzNEQzOTkiIG9wYWNpdHk9Ii42Ii8+PGNpcmNsZSBjeD0iNTY2IiBjeT0iMTg2IiByPSI2IiBmaWxsPSIjMzREMzk5IiBvcGFjaXR5PSIuNiIvPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI3YpIi8+PHJlY3QgeD0iNDYiIHk9IjIzNiIgd2lkdGg9IjE5MiIgaGVpZ2h0PSI1MCIgZmlsbD0iI0U4RTdFMSIvPjxyZWN0IHg9IjQwIiB5PSIyMzAiIHdpZHRoPSIxOTIiIGhlaWdodD0iNTAiIGZpbGw9IiMzNEQzOTkiIHN0cm9rZT0iI0U4RTdFMSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iNTQiIHk9IjI2OCIgZmlsbD0iIzEyMTIxMSIgZm9udC1mYW1pbHk9IidTcGFjZSBHcm90ZXNrJywgJ0FyaWFsIE5hcnJvdycsIEFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjM0IiBmb250LXdlaWdodD0iNzAwIiBsZXR0ZXItc3BhY2luZz0iLS41Ij5BR0VOVEVTPC90ZXh0PjxyZWN0IHg9IjQwIiB5PSIyOTgiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgZmlsbD0iIzM0RDM5OSIgc3Ryb2tlPSIjRThFN0UxIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSI2MiIgeT0iMzA5IiBmaWxsPSIjRThFN0UxIiBmb250LWZhbWlseT0iJ0pldEJyYWlucyBNb25vJywgdWktbW9ub3NwYWNlLCBNZW5sbywgbW9ub3NwYWNlIiBmb250LXNpemU9IjE1IiBmb250LXdlaWdodD0iNjAwIiBsZXR0ZXItc3BhY2luZz0iLjUiPkBPUEVOQUk8L3RleHQ+PC9zdmc+" alt="" loading="lazy" referrerpolicy="no-referrer"/>
+          </a>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=openai.com&amp;sz=64" alt="" loading="lazy"/>@OpenAI</span>
+              
+              <span class="score">61</span>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+            </div>
+            <h3 class="card-title">
+              <a href="https://x.com/OpenAI/status/2120216592395174382" target="_blank" rel="noopener noreferrer"><span class="l-es">OpenAI lanza &#39;Businesses in ChatGPT&#39; en beta para agentes de atención al cliente</span><span class="l-en" lang="en">OpenAI launches &#39;Businesses in ChatGPT&#39; beta for customer service agents</span></a>
+            </h3>
+            <div class="sw"><span class="l-es">Se expande la aplicación de agentes autónomos a funciones empresariales directas, como la atención al cliente, ampliando la monetización de ChatGPT y el alcance de OpenAI.</span><span class="l-en" lang="en">Autonomous agents are expanding into direct business functions like customer service, increasing ChatGPT&#39;s monetization and OpenAI&#39;s reach.</span></div>
+            
+            
+            <div class="card-foot">
+              
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v"><span class="l-es">OpenAI gana en adopción empresarial / Competidores de plataformas de agentes empresariales pierden.</span><span class="l-en" lang="en">OpenAI gains in enterprise adoption / Competitors in enterprise agent platforms lose.</span></span></div>
+              
+              
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v"><span class="l-es">Observar la adopción por parte de empresas y el despliegue de agentes personalizados en este ámbito.</span><span class="l-en" lang="en">Monitor enterprise adoption and deployment of custom agents in this domain.</span></span></div>
               
             </div>
             
@@ -588,55 +713,25 @@
               
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=deepmind.google&amp;sz=64" alt="" loading="lazy"/>DeepMind Blog</span>
               <span class="multi">+1</span>
-              <span class="score">69</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <span class="score">35</span>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://deepmind.google/blog/introducing-gemini-4-hydrogen/" target="_blank" rel="noopener noreferrer">Google DeepMind presenta Gemini 4 Hydrogen, un nuevo modelo con capacidad de frontera</a>
+              <a href="https://deepmind.google/blog/introducing-gemini-4-hydrogen/" target="_blank" rel="noopener noreferrer"><span class="l-es">Google DeepMind lanza Gemini 4 Hydrogen para investigación científica</span><span class="l-en" lang="en">Google DeepMind launches Gemini 4 Hydrogen for scientific research</span></a>
             </h3>
-            <div class="sw">Google DeepMind continúa iterando en su serie Gemini, potenciando las capacidades de sus modelos. El nombre &#34;Hydrogen&#34; sugiere un enfoque o avance específico aún no detallado.</div>
+            <div class="sw"><span class="l-es">Un nuevo modelo de la serie Gemini enfocado en la investigación del hidrógeno, lo que indica un avance en la aplicación de modelos frontera a dominios científicos específicos con alto impacto potencial.</span><span class="l-en" lang="en">A new Gemini series model focused on hydrogen research, indicating an advancement in applying frontier models to specific scientific domains with high potential impact.</span></div>
             
-            <div class="also">También en:
+            <div class="also"><span class="l-es">También en:</span><span class="l-en" lang="en">Also in:</span>
               <span>Google AI Blog</span>
             </div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">Google DeepMind mantiene el ritmo en la carrera de modelos de frontera con una nueva versión de Gemini.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v"><span class="l-es">Google DeepMind afianza su liderazgo en &#39;AI for science&#39; / Otros centros de investigación pueden acelerar su propia IA…</span><span class="l-en" lang="en">Google DeepMind strengthens its lead in &#39;AI for science&#39; / Other research centers may accelerate their own AI for scien…</span></span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Detalles técnicos y benchmarks de rendimiento de Gemini 4 Hydrogen, especialmente en dominios clave.</span></div>
-              
-            </div>
-            
-          </div>
-        </article>
-        
-        <article class="card" data-topic="frontier_capability" data-new="0">
-          <a href="https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/" target="_blank" rel="noopener noreferrer">
-            <img class="card-img" src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini__decisions__blog-header_2784x1566.width-1300.png" data-fb="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzYwIj48ZGVmcz48cGF0dGVybiBpZD0icCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNMjQgMEgwVjI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNFOEU3RTEiIHN0cm9rZS1vcGFjaXR5PSIuMDYiLz48L3BhdHRlcm4+PGxpbmVhckdyYWRpZW50IGlkPSJ2IiB4MT0iMCIgeTE9IjEiIHgyPSIuNzUiIHkyPSIuMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9Ii45NiIvPjxzdG9wIG9mZnNldD0iLjU1IiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9Ii40Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMEYwRjBFIiBzdG9wLW9wYWNpdHk9IjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgZmlsbD0iIzBGMEYwRSIvPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIiBmaWxsPSJ1cmwoI3ApIi8+PGNpcmNsZSBjeD0iNDU5IiBjeT0iNjciIHI9IjM0IiBmaWxsPSJub25lIiBzdHJva2U9IiNGRjU3MjIiIHN0cm9rZS13aWR0aD0iMi40IiBvcGFjaXR5PSIwLjYiLz48Y2lyY2xlIGN4PSI0NTkiIGN5PSI2NyIgcj0iNzIiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZGNTcyMiIgc3Ryb2tlLXdpZHRoPSIyLjIiIG9wYWNpdHk9IjAuNiIvPjxjaXJjbGUgY3g9IjQ1OSIgY3k9IjY3IiByPSIxMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZGNTcyMiIgc3Ryb2tlLXdpZHRoPSIyIiBvcGFjaXR5PSIwLjUiLz48Y2lyY2xlIGN4PSI0NTkiIGN5PSI2NyIgcj0iMTQ4IiBmaWxsPSJub25lIiBzdHJva2U9IiNGRjU3MjIiIHN0cm9rZS13aWR0aD0iMS44IiBvcGFjaXR5PSIwLjQiLz48Y2lyY2xlIGN4PSI0NTkiIGN5PSI2NyIgcj0iMTg2IiBmaWxsPSJub25lIiBzdHJva2U9IiNGRjU3MjIiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIwLjQiLz48Y2lyY2xlIGN4PSI0NTkiIGN5PSI2NyIgcj0iMjI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNGRjU3MjIiIHN0cm9rZS13aWR0aD0iMS40IiBvcGFjaXR5PSIwLjMiLz48Y2lyY2xlIGN4PSI0NTkiIGN5PSI2NyIgcj0iMjYyIiBmaWxsPSJub25lIiBzdHJva2U9IiNGRjU3MjIiIHN0cm9rZS13aWR0aD0iMS4yIiBvcGFjaXR5PSIwLjMiLz48Y2lyY2xlIGN4PSI0NTkiIGN5PSI2NyIgcj0iMzAwIiBmaWxsPSJub25lIiBzdHJva2U9IiNGRjU3MjIiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC4yIi8+PGNpcmNsZSBjeD0iNDU5IiBjeT0iNjciIHI9IjMzOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkY1NzIyIiBzdHJva2Utd2lkdGg9IjAuOCIgb3BhY2l0eT0iMC4xIi8+PGNpcmNsZSBjeD0iNDU5IiBjeT0iNjciIHI9IjkiIGZpbGw9IiNGRjU3MjIiLz48Y2lyY2xlIGN4PSIzODguMiIgY3k9IjUzLjciIHI9IjQuNSIgZmlsbD0iI0ZGNTcyMiIgb3BhY2l0eT0iLjkiLz48Y2lyY2xlIGN4PSIzMTUuOSIgY3k9IjEwNC44IiByPSI0LjUiIGZpbGw9IiNGRjU3MjIiIG9wYWNpdHk9Ii45Ii8+PGNpcmNsZSBjeD0iMjM1LjMiIGN5PSI3OC4yIiByPSI0LjUiIGZpbGw9IiNGRjU3MjIiIG9wYWNpdHk9Ii45Ii8+PGNpcmNsZSBjeD0iMjc3IiBjeT0iMTA1LjIiIHI9IjQuNSIgZmlsbD0iI0ZGNTcyMiIgb3BhY2l0eT0iLjkiLz48Y2lyY2xlIGN4PSIyOTYuMSIgY3k9IjIyMC43IiByPSI0LjUiIGZpbGw9IiNGRjU3MjIiIG9wYWNpdHk9Ii45Ii8+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIzNjAiIGZpbGw9InVybCgjdikiLz48cmVjdCB4PSI0NiIgeT0iMjM2IiB3aWR0aD0iNDUxIiBoZWlnaHQ9IjUwIiBmaWxsPSIjRThFN0UxIi8+PHJlY3QgeD0iNDAiIHk9IjIzMCIgd2lkdGg9IjQ1MSIgaGVpZ2h0PSI1MCIgZmlsbD0iI0ZGNTcyMiIgc3Ryb2tlPSIjRThFN0UxIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSI1NCIgeT0iMjY4IiBmaWxsPSIjMTIxMjExIiBmb250LWZhbWlseT0iJ1NwYWNlIEdyb3Rlc2snLCAnQXJpYWwgTmFycm93JywgQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMzQiIGZvbnQtd2VpZ2h0PSI3MDAiIGxldHRlci1zcGFjaW5nPSItLjUiPkNBUEFDSURBRCBGUk9OVElFUjwvdGV4dD48cmVjdCB4PSI0MCIgeT0iMjk4IiB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIGZpbGw9IiNGRjU3MjIiIHN0cm9rZT0iI0U4RTdFMSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iNjIiIHk9IjMwOSIgZmlsbD0iI0U4RTdFMSIgZm9udC1mYW1pbHk9IidKZXRCcmFpbnMgTW9ubycsIHVpLW1vbm9zcGFjZSwgTWVubG8sIG1vbm9zcGFjZSIgZm9udC1zaXplPSIxNSIgZm9udC13ZWlnaHQ9IjYwMCIgbGV0dGVyLXNwYWNpbmc9Ii41Ij5HT09HTEUgQUkgQkxPRzwvdGV4dD48L3N2Zz4=" alt="" loading="lazy" referrerpolicy="no-referrer"/>
-          </a>
-          <div class="card-body">
-            <div class="meta-row">
-              
-              <span class="src"><img src="https://www.google.com/s2/favicons?domain=blog.google&amp;sz=64" alt="" loading="lazy"/>Google AI Blog</span>
-              
-              <span class="score">62</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
-            </div>
-            <h3 class="card-title">
-              <a href="https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/" target="_blank" rel="noopener noreferrer">Google lanza Gemini Decisions API con su nuevo modelo Gemini Decision para decisiones multimodales rápidas</a>
-            </h3>
-            <div class="sw">Google avanza en la capacidad de sus modelos para tomar decisiones complejas y calibradas basándose en múltiples tipos de datos, expandiendo el rol de sus LLMs.</div>
-            
-            
-            <div class="card-foot">
-              
-              <div class="fact pw"><span class="k">Poder</span><span class="v">Google refuerza su oferta de modelos, centrándose en la capacidad de decisión crítica para agentes autónomos.</span></div>
-              
-              
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Benchmarks de rendimiento de Gemini Decision frente a otros modelos en tareas de decisión multimodal.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v"><span class="l-es">Ver si se publican resultados concretos o descubrimientos significativos facilitados por Gemini 4 Hydrogen.</span><span class="l-en" lang="en">Observe if concrete results or significant discoveries facilitated by Gemini 4 Hydrogen are published.</span></span></div>
               
             </div>
             
@@ -650,41 +745,41 @@
 
       
       <div class="section-h">
-        <h2 class="sec">Contexto</h2>
-        <p class="sec-sub">De fondo: no cambia nada hoy</p>
+        <h2 class="sec"><span class="l-es">Contexto</span><span class="l-en" lang="en">Context</span></h2>
+        <p class="sec-sub"><span class="l-es">De fondo: no cambia nada hoy</span><span class="l-en" lang="en">Background: changes nothing today</span></p>
       </div>
       <div class="ctx">
         
-        <div class="cx" data-topic="compute_chips_dc" data-new="1">
-          <img src="https://www.google.com/s2/favicons?domain=stratechery.com&amp;sz=64" alt="" loading="lazy"/>
+        <div class="cx" data-topic="agents_automation" data-new="1">
+          <img src="https://www.google.com/s2/favicons?domain=the-decoder.com&amp;sz=64" alt="" loading="lazy"/>
           <div class="cx-b">
             <div class="cx-t">
-              <a href="https://stratechery.com/2026/the-end-of-jensen/" target="_blank" rel="noopener noreferrer">Stratechery analiza la dimisión de Jensen Huang y sus implicaciones para Nvidia y la industria</a>
+              <a href="https://the-decoder.com/australias-central-bank-finds-ai-hitting-young-workers-first-especially-in-software-and-customer-service/" target="_blank" rel="noopener noreferrer"><span class="l-es">Banco Central australiano observa mayor impacto de la IA en jóvenes trabajadores</span><span class="l-en" lang="en">Australian Central Bank observes greater AI impact on young workers</span></a>
             </div>
-            <div class="cx-w">Ofrece una perspectiva estratégica sobre la salida del CEO de Nvidia, su impacto en la compañía y en el mercado de chips para IA a largo plazo.</div>
-            <div class="cx-m">Compute &amp; chips · Stratechery · 66</div>
+            <div class="cx-w"><span class="l-es">Primeras señales macroeconómicas de que la automatización por IA está afectando desproporcionadamente a los jóvenes en roles de software y servicio al cliente. Indica una transformación estructural del mercado laboral.</span><span class="l-en" lang="en">Early macroeconomic signals that AI automation is disproportionately affecting young workers in software and customer service roles. It indicates a structural transformation of the labor market.</span></div>
+            <div class="cx-m"><span class="l-es">Agentes</span><span class="l-en" lang="en">Agents</span> · The Decoder · 52</div>
           </div>
         </div>
         
-        <div class="cx" data-topic="compute_chips_dc" data-new="1">
-          <img src="https://www.google.com/s2/favicons?domain=finance.yahoo.com&amp;sz=64" alt="" loading="lazy"/>
+        <div class="cx" data-topic="agents_automation" data-new="1">
+          <img src="https://www.google.com/s2/favicons?domain=reuters.com&amp;sz=64" alt="" loading="lazy"/>
           <div class="cx-b">
             <div class="cx-t">
-              <a href="https://www.fool.com/investing/2026/11/15/what-s-next-for-nvidia-after-jensen-huang-s-resignation/?.tsrc=rss" target="_blank" rel="noopener noreferrer">Análisis sobre el futuro de Nvidia tras la dimisión de Jensen Huang</a>
+              <a href="https://www.reuters.com/world/asia-pacific/top-scorer-south-korean-tax-exam-confesses-cheating-with-ai-2026-11-15/" target="_blank" rel="noopener noreferrer"><span class="l-es">Mejor nota en examen fiscal surcoreano confiesa haber copiado con IA</span><span class="l-en" lang="en">Top scorer on South Korean tax exam confesses to cheating with AI</span></a>
             </div>
-            <div class="cx-w">La incertidumbre en el liderazgo de Nvidia podría impactar en su estrategia de chips y su dominio en el mercado de hardware para IA.</div>
-            <div class="cx-m">Compute &amp; chips · Yahoo Finance (AI &amp; semis) · 63</div>
+            <div class="cx-w"><span class="l-es">Confirma la capacidad de la IA para asistir en tareas cognitivas complejas y las implicaciones éticas y educativas en la evaluación del conocimiento humano.</span><span class="l-en" lang="en">Confirms AI&#39;s ability to assist in complex cognitive tasks and the ethical and educational implications for evaluating human knowledge.</span></div>
+            <div class="cx-m"><span class="l-es">Agentes</span><span class="l-en" lang="en">Agents</span> · Reuters AI · 38</div>
           </div>
         </div>
         
-        <div class="cx" data-topic="geopolitics_power" data-new="1">
-          <img src="https://www.google.com/s2/favicons?domain=chinatalk.media&amp;sz=64" alt="" loading="lazy"/>
+        <div class="cx" data-topic="agents_automation" data-new="1">
+          <img src="https://www.google.com/s2/favicons?domain=openai.com&amp;sz=64" alt="" loading="lazy"/>
           <div class="cx-b">
             <div class="cx-t">
-              <a href="https://www.chinatalk.media/p/jensen-out-match-act-in" target="_blank" rel="noopener noreferrer">Podcast analiza la salida de Jensen Huang y su impacto geopolítico con la ley MATCH</a>
+              <a href="https://openai.com/business/customer-stories/shield" target="_blank" rel="noopener noreferrer"><span class="l-es">Shield usa OpenAI para automatizar traspaso de trabajo en portales heredados</span><span class="l-en" lang="en">Shield uses OpenAI to automate work handoff in legacy portals</span></a>
             </div>
-            <div class="cx-w">La dimisión del CEO de Nvidia se examina bajo la óptica de las políticas de control de exportaciones a China, señalando la escalada de la guerra tecnológica.</div>
-            <div class="cx-m">Geopolítica · ChinaTalk · 61</div>
+            <div class="cx-w"><span class="l-es">Ejemplo de cómo los agentes de IA se aplican para automatizar tareas repetitivas en sistemas antiguos, liberando a técnicos para trabajos de mayor valor, pero no introduce una nueva capacidad de frontera.</span><span class="l-en" lang="en">An example of how AI agents are applied to automate repetitive tasks in legacy systems, freeing up technicians for higher-value work, but it does not introduce a new frontier capability.</span></div>
+            <div class="cx-m"><span class="l-es">Agentes</span><span class="l-en" lang="en">Agents</span> · OpenAI · 31</div>
           </div>
         </div>
         
@@ -703,15 +798,15 @@
       
       <div class="widget">
         <div class="widget-title">
-          <span>Vigilancia de ayer</span>
-          <span class="lbl">2/3 confirmadas</span>
+          <span><span class="l-es">Vigilancia de ayer</span><span class="l-en" lang="en">Yesterday&#39;s watchlist</span></span>
+          <span class="lbl">2/3 <span class="l-es">confirmadas</span><span class="l-en" lang="en">confirmed</span></span>
         </div>
         
         <div class="wr hit">
           <span class="wr-ic">✓</span>
           <div>
             <div class="wr-t">Declaraciones oficiales de Nvidia sobre Jensen Huang y el impacto en su estrategia de producción de chips.</div>
-            <div class="wr-ev">→ El jefe de seguridad de Nvidia y el CEO Jensen Huang dimiten por la venta de chips a China</div>
+            <div class="wr-ev">→ Jensen Huang dimite como CEO de Nvidia tras investigación por chips a China y seguridad</div>
           </div>
         </div>
         
@@ -727,7 +822,7 @@
           <span class="wr-ic">✓</span>
           <div>
             <div class="wr-t">Detalles de las nuevas capacidades de Gemini 4 Hydrogen de Google DeepMind y sus benchmarks.</div>
-            <div class="wr-ev">→ Google DeepMind presenta Gemini 4 Hydrogen, un nuevo modelo con capacidad de frontera</div>
+            <div class="wr-ev">→ Google DeepMind lanza Gemini 4 Hydrogen para investigación científica</div>
           </div>
         </div>
         
@@ -737,12 +832,12 @@
       
       <div class="widget">
         <div class="widget-title">
-          <span>Memoria del radar</span>
-          <span class="lbl">Continuidad</span>
+          <span><span class="l-es">Memoria del radar</span><span class="l-en" lang="en">Radar memory</span></span>
+          <span class="lbl"><span class="l-es">Continuidad</span><span class="l-en" lang="en">Continuity</span></span>
         </div>
         
         <div class="thr">
-          <span class="thr-d">DÍA 11</span>
+          <span class="thr-d"><span class="l-es">DÍA</span><span class="l-en" lang="en">DAY</span> 11</span>
           <div>
             <div class="thr-t">Agentes y automatización</div>
             <div class="thr-l">ChatGPT Wallet permite a los agentes realizar compras seguras con aprobación del usuario</div>
@@ -750,42 +845,54 @@
         </div>
         
         <div class="thr">
-          <span class="thr-d">DÍA 5</span>
+          <span class="thr-d"><span class="l-es">DÍA</span><span class="l-en" lang="en">DAY</span> 5</span>
           <div>
             <div class="thr-t">Economía de modelos</div>
-            <div class="thr-l">CEO de Anthropic admite &#34;enorme incertidumbre&#34; sobre el futuro y costes de compute antes de su IPO</div>
+            <div class="thr-l">DeepSeek ofrece las capacidades completas de su aplicación DeepSeek App vía API</div>
           </div>
         </div>
         
         <div class="thr">
-          <span class="thr-d">DÍA 3</span>
+          <span class="thr-d"><span class="l-es">DÍA</span><span class="l-en" lang="en">DAY</span> 3</span>
           <div>
             <div class="thr-t">Compute y chips</div>
-            <div class="thr-l">Nvidia supuestamente creó escasez artificial de GPUs financiando startups para comprarlas</div>
+            <div class="thr-l">Anthropic busca socavar la ventaja de Nvidia, beneficiando a AMD</div>
           </div>
         </div>
         
         
         
-        <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">SpaceX</span>
-          <span class="dt">primera aparición</span></div>
+        <div class="mv"><span class="mv-b new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span><span class="nm">AMD</span>
+          <span class="dt"><span class="l-es">primera aparición</span><span class="l-en" lang="en">first appearance</span></span></div>
         
-        <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Stratechery</span>
-          <span class="dt">primera aparición</span></div>
+        <div class="mv"><span class="mv-b new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span><span class="nm">Australia</span>
+          <span class="dt"><span class="l-es">primera aparición</span><span class="l-en" lang="en">first appearance</span></span></div>
+        
+        <div class="mv"><span class="mv-b new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span><span class="nm">Octen</span>
+          <span class="dt"><span class="l-es">primera aparición</span><span class="l-en" lang="en">first appearance</span></span></div>
+        
+        <div class="mv"><span class="mv-b new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span><span class="nm">Shield</span>
+          <span class="dt"><span class="l-es">primera aparición</span><span class="l-en" lang="en">first appearance</span></span></div>
+        
+        <div class="mv"><span class="mv-b new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span><span class="nm">South Korean</span>
+          <span class="dt"><span class="l-es">primera aparición</span><span class="l-en" lang="en">first appearance</span></span></div>
         
         
-        <div class="mv"><span class="mv-b ret">Vuelve</span><span class="nm">DeepSeek</span>
-          <span class="dt">tras 6 días en silencio</span></div>
+        <div class="mv"><span class="mv-b ret"><span class="l-es">Vuelve</span><span class="l-en" lang="en">Back</span></span><span class="nm">DeepSeek</span>
+          <span class="dt"><span class="l-es">tras 6 días en silencio</span><span class="l-en" lang="en">after 6 silent days</span></span></div>
+        
+        <div class="mv"><span class="mv-b ret"><span class="l-es">Vuelve</span><span class="l-en" lang="en">Back</span></span><span class="nm">Artificial Analysis</span>
+          <span class="dt"><span class="l-es">tras 5 días en silencio</span><span class="l-en" lang="en">after 5 silent days</span></span></div>
         
         
-        <div class="mv"><span class="mv-b str">Racha</span><span class="nm">Gemini</span>
-          <span class="dt">5 días seguidos</span></div>
+        <div class="mv"><span class="mv-b str"><span class="l-es">Racha</span><span class="l-en" lang="en">Streak</span></span><span class="nm">Gemini</span>
+          <span class="dt"><span class="l-es">5 días seguidos</span><span class="l-en" lang="en">5 days in a row</span></span></div>
         
-        <div class="mv"><span class="mv-b str">Racha</span><span class="nm">NVIDIA</span>
-          <span class="dt">3 días seguidos</span></div>
+        <div class="mv"><span class="mv-b str"><span class="l-es">Racha</span><span class="l-en" lang="en">Streak</span></span><span class="nm">OpenAI</span>
+          <span class="dt"><span class="l-es">3 días seguidos</span><span class="l-en" lang="en">3 days in a row</span></span></div>
         
-        <div class="mv"><span class="mv-b str">Racha</span><span class="nm">OpenAI</span>
-          <span class="dt">3 días seguidos</span></div>
+        <div class="mv"><span class="mv-b str"><span class="l-es">Racha</span><span class="l-en" lang="en">Streak</span></span><span class="nm">NVIDIA</span>
+          <span class="dt"><span class="l-es">3 días seguidos</span><span class="l-en" lang="en">3 days in a row</span></span></div>
         
       </div>
       
@@ -793,20 +900,21 @@
       
       <div class="widget">
         <div class="widget-title">
-          <span>Riesgos y vigilancia</span>
-          <span class="lbl">Próximos días</span>
+          <span><span class="l-es">Riesgos y vigilancia</span><span class="l-en" lang="en">Risks and watch</span></span>
+          <span class="lbl"><span class="l-es">Próximos días</span><span class="l-en" lang="en">Coming days</span></span>
         </div>
-        <div class="rk">La dependencia del compute y el capital externo es un riesgo existencial para los labs, como señala Anthropic.</div><div class="rk">La autonomía creciente de los agentes introduce riesgos de seguridad y explotación no anticipados.</div><div class="rk">La incertidumbre y posible manipulación en el mercado de GPUs por parte de Nvidia amenaza el suministro y costes de compute.</div>
-        <div class="rk w">Detalles técnicos y benchmarks de Gemini 4 Hydrogen.</div><div class="rk w">Confirmación de las acusaciones contra Nvidia sobre la escasez artificial de GPUs y la respuesta regulatoria.</div><div class="rk w">Adopción y resultados reales de ChatGPT Wallet y los agentes de negocio de OpenAI.</div>
+        <div class="rk"><span class="l-es">La autonomía de los agentes introduce riesgos de seguridad y control, especialmente en transacciones económicas.</span><span class="l-en" lang="en">Agent autonomy introduces security and control risks, especially in economic transactions.</span></div><div class="rk"><span class="l-es">La escasez artificial de GPUs por parte de Nvidia, si se confirma, distorsiona el mercado y frena el desarrollo de otros actores.</span><span class="l-en" lang="en">Artificial GPU scarcity by Nvidia, if confirmed, distorts the market and hinders other players&#39; development.</span></div><div class="rk"><span class="l-es">La dependencia de pocos fabricantes de chips genera vulnerabilidad en la cadena de suministro y desequilibrios de poder.</span><span class="l-en" lang="en">Dependence on a few chip manufacturers creates supply chain vulnerability and power imbalances.</span></div>
+        <div class="rk w"><span class="l-es">Observar el volumen y el tipo de transacciones realizadas por ChatGPT Wallet en las próximas semanas.</span><span class="l-en" lang="en">Monitor the volume and type of transactions made by ChatGPT Wallet in the coming weeks.</span></div><div class="rk w"><span class="l-es">Verificar el impacto real en la disponibilidad de GPUs y la respuesta de los competidores de Nvidia tras los cambios directivos.</span><span class="l-en" lang="en">Verify the actual impact on GPU availability and the response of Nvidia&#39;s competitors following management changes.</span></div><div class="rk w"><span class="l-es">Analizar el uso y las capacidades emergentes del Gemini Decisions API en desarrollos de agentes de toma de decisiones.</span><span class="l-en" lang="en">Analyze the use and emerging capabilities of the Gemini Decisions API in decision-making agent developments.</span></div>
       </div>
       
 
     </aside>
   </div>
 
+  <div class="credits"><p class="credits-by"><span class="l-es">Hecho por</span><span class="l-en" lang="en">Made by</span> <strong>Rolando Fernández</strong></p><a class="bmc" href="https://buymeacoffee.com/rolandofernandez" target="_blank" rel="noopener"><span aria-hidden="true">☕</span> <span class="l-es">Invítame a un café</span><span class="l-en" lang="en">Buy me a coffee</span></a></div>
   <footer>
-    <span>10 items descartados por el filtro de relevancia</span>
-    <span>42/42 fuentes activas · X: 6 posts</span>
+    <span>12 <span class="l-es">items descartados por el filtro de relevancia</span><span class="l-en" lang="en">items dropped by the relevance filter</span></span>
+    <span>42/42 <span class="l-es">fuentes activas</span><span class="l-en" lang="en">active sources</span> · X: 6 posts</span>
   </footer>
 
 </div>
@@ -837,19 +945,28 @@
       return;
     }
 
+    // Texto visible en el idioma activo (los traducibles van duplicados).
+    function vis(node){
+      if (!node) return '';
+      var lang = document.documentElement.getAttribute('data-lang') === 'en' ? 'en' : 'es';
+      var pick = node.querySelector('.l-' + lang);
+      return ((pick || node).textContent || '').trim();
+    }
     function ficha(article){
       if (!article) return '';
       var a = article.querySelector('.hero-title a, .card-title a');
-      var title = a ? (a.textContent || '').trim() : '';
+      var title = vis(a);
       var swEl = article.querySelector('.sw');
-      var sw = swEl ? (swEl.textContent || '').trim() : '';
+      var sw = vis(swEl);
       var url = a ? (a.getAttribute('href') || '').trim() : '';
       return [title, sw, url].filter(Boolean).join('\n\n');
     }
     function copied(btn){
       btn.classList.add('ok');
-      btn.textContent = 'Copiado';
-      setTimeout(function(){ btn.classList.remove('ok'); btn.textContent = 'Copiar'; }, 1600);
+      var en = document.documentElement.getAttribute('data-lang') === 'en';
+      var label = btn.innerHTML;
+      btn.textContent = en ? 'Copied' : 'Copiado';
+      setTimeout(function(){ btn.classList.remove('ok'); btn.innerHTML = label; }, 1600);
     }
     function fallback(text, btn){
       var ta = document.createElement('textarea');
@@ -911,6 +1028,20 @@
       });
     });
     paint();
+
+    var langBtns = document.querySelectorAll('[data-lang-set]');
+    function curLang(){ try { return localStorage.getItem('lang') === 'en' ? 'en' : 'es'; } catch(e){ return 'es'; } }
+    function paintLang(){ var c = curLang(); langBtns.forEach(function(b){ b.setAttribute('aria-pressed', String(b.getAttribute('data-lang-set') === c)); }); }
+    langBtns.forEach(function(b){
+      b.addEventListener('click', function(){
+        var l = b.getAttribute('data-lang-set');
+        try { if (l === 'en') localStorage.setItem('lang', 'en'); else localStorage.removeItem('lang'); } catch(e){}
+        var d = document.documentElement;
+        if (l === 'en') { d.setAttribute('data-lang', 'en'); d.lang = 'en'; } else { d.removeAttribute('data-lang'); d.lang = 'es'; }
+        paintLang();
+      });
+    });
+    paintLang();
   })();
 </script>
 </body>

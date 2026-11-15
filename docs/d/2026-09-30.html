@@ -4,15 +4,31 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AI Strategic Radar</title>
-<meta name="description" content="Radar diario de la carrera AGI: modelos frontier, compute, China y agentes. Solo lo que mueve la aguja."/>
+<title>RADAR.IA · Edición del 2026-09-30</title>
+<meta name="description" content="Radar diario de la carrera hacia la AGI: modelos frontier, agentes, chips y compute, China y economía de la IA. Solo lo que cambia algo, con fuente y análisis."/>
+<meta name="robots" content="index, follow, max-image-preview:large"/>
+<link rel="canonical" href="https://aievolve.netlify.app/d/2026-09-30.html"/>
+<meta name="google-site-verification" content="yh8wm8HsAeqP892U5UGczQs-RLnGuNHx7WGfNntGduk"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="RADAR.IA"/>
+<meta property="og:locale" content="es_ES"/><meta property="og:locale:alternate" content="en_US"/>
+<meta property="og:title" content="RADAR.IA · Edición del 2026-09-30"/>
+<meta property="og:description" content="Radar diario de la carrera hacia la AGI: modelos frontier, agentes, chips y compute, China y economía de la IA. Solo lo que cambia algo, con fuente y análisis."/>
+<meta property="og:url" content="https://aievolve.netlify.app/d/2026-09-30.html"/>
+<meta property="og:image" content="https://aievolve.netlify.app/og.png"/>
+<meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="RADAR.IA · Edición del 2026-09-30"/>
+<meta name="twitter:description" content="Radar diario de la carrera hacia la AGI: modelos frontier, agentes, chips y compute, China y economía de la IA. Solo lo que cambia algo, con fuente y análisis."/>
+<meta name="twitter:image" content="https://aievolve.netlify.app/og.png"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://aievolve.netlify.app/#website","url":"https://aievolve.netlify.app/","name":"RADAR.IA","description":"Radar diario de la carrera hacia la AGI, con fuentes y análisis.","inLanguage":["es","en"],"isAccessibleForFree":true,"author":{"@type":"Person","name":"Rolando Fernández"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 <meta name="theme-color" content="#F4F3EF" media="(prefers-color-scheme: light)"/>
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)"/>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='1' y='1' width='30' height='30' fill='%23FF5722' stroke='%23121211' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%23121211' stroke-width='2.4'/%3E%3Cpath d='M16 16V6A10 10 0 0 1 25.5 12.9Z' fill='%23121211'/%3E%3Ccircle cx='11' cy='19.5' r='2' fill='%23121211'/%3E%3C/svg%3E"/>
-<script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<script>(function(){try{var d=document.documentElement,t=localStorage.getItem('theme'),l=localStorage.getItem('lang');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);if(l==='en'){d.setAttribute('data-lang','en');d.lang='en';}}catch(e){}})();</script>
 <script>
   // Va en <head> para estar escuchando antes de que se pinte la primera imagen.
   // Una imagen remota caida (hotlink bloqueado, 404, caducada) se cambia por la
@@ -100,6 +116,21 @@
   .page-h1{font:700 clamp(30px,4.2vw,56px)/1 var(--f-head);letter-spacing:-.03em;text-transform:uppercase;margin:6px 0 12px}
   .lede{color:var(--muted);font-size:17px;max-width:72ch;margin:0}
   .lead h1.page-h1{font:700 clamp(30px,4.2vw,56px)/1 var(--f-head);letter-spacing:-.03em;margin:6px 0 12px}
+
+  /* Bilingue: cada texto traducible va dos veces; se ve el del idioma activo. */
+  /* !important: reglas de componente con display propio no deben reactivar el idioma oculto. */
+  html:not([data-lang="en"]) .l-en{display:none!important}
+  html[data-lang="en"] .l-es{display:none!important}
+  .top-ctl{display:flex;gap:10px;flex-wrap:wrap}
+
+  /* Firma, como en moloch.sh: discreta, al pie */
+  .credits{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+           margin-top:40px;padding:12px 16px;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow-sm)}
+  .credits-by{margin:0;font:400 12px var(--f-mono);color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+  .credits-by strong{font:700 14px var(--f-head);color:var(--text);text-transform:none;letter-spacing:0;margin-left:6px}
+  .bmc{display:inline-flex;align-items:center;gap:7px;font:700 11.5px/1 var(--f-mono);text-transform:uppercase;
+       padding:8px 11px;background:var(--lime);color:#121211;border:2px solid var(--ink);box-shadow:var(--shadow-sm)}
+  .bmc:hover{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--ink)}
 
   @media(max-width:900px){
     .navtabs{order:3;margin:0;width:100%}
@@ -204,8 +235,8 @@
   .widget{background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow);padding:14px 16px}
   .widget-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:-14px -16px 12px;
                 padding:10px 16px;border-bottom:2px solid var(--ink);background:var(--card-2)}
-  .widget-title span:first-child{display:flex;align-items:center;gap:9px;font:700 12px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.06em}
-  .widget-title span:first-child::before{content:"";width:10px;height:10px;background:var(--orange);border:2px solid var(--ink)}
+  .widget-title>span:first-child{display:flex;align-items:center;gap:9px;font:700 12px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.06em}
+  .widget-title>span:first-child::before{content:"";width:10px;height:10px;background:var(--orange);border:2px solid var(--ink)}
   .widget-title .lbl{font:400 10px var(--f-mono);color:var(--muted);text-transform:uppercase}
 
   .market-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
@@ -269,40 +300,40 @@
 </style>
 </head>
 <body>
-<header class="topnav"><a class="brand" href="../index.html" aria-label="Radar.IA, portada"><span class="brand-icon"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 12V2.5A9.5 9.5 0 0 1 21.03 9.06Z" fill="currentColor"/><circle cx="7.5" cy="15" r="1.7" fill="currentColor"/></svg></span><span class="brand-text"><strong>Radar<em>.IA</em></strong><small>Radar estratégico de la carrera AGI</small></span></a><nav class="navtabs" aria-label="Secciones"><a class="navtab" href="../index.html"><i>01</i> Diario</a><a class="navtab" href="../weekly.html"><i>02</i> Semanal</a><a class="navtab" href="../archivo.html" aria-current="page"><i>03</i> Archivo</a></nav><div class="seg" role="group" aria-label="Tema"><button type="button" class="seg-btn" data-theme-set="auto">Auto</button><button type="button" class="seg-btn" data-theme-set="light">Claro</button><button type="button" class="seg-btn" data-theme-set="dark">Oscuro</button></div></header>
+<header class="topnav"><a class="brand" href="../index.html" aria-label="Radar.IA, portada"><span class="brand-icon"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 12V2.5A9.5 9.5 0 0 1 21.03 9.06Z" fill="currentColor"/><circle cx="7.5" cy="15" r="1.7" fill="currentColor"/></svg></span><span class="brand-text"><strong>Radar<em>.IA</em></strong><small><span class="l-es">Radar estratégico de la carrera AGI</span><span class="l-en" lang="en">Strategic radar of the AGI race</span></small></span></a><nav class="navtabs" aria-label="Secciones"><a class="navtab" href="../index.html"><i>01</i> <span class="l-es">Diario</span><span class="l-en" lang="en">Daily</span></a><a class="navtab" href="../weekly.html"><i>02</i> <span class="l-es">Semanal</span><span class="l-en" lang="en">Weekly</span></a><a class="navtab" href="../archivo.html" aria-current="page"><i>03</i> <span class="l-es">Archivo</span><span class="l-en" lang="en">Archive</span></a></nav><div class="top-ctl"><div class="seg" role="group" aria-label="Idioma"><button type="button" class="seg-btn" data-lang-set="es">ES</button><button type="button" class="seg-btn" data-lang-set="en">EN</button></div><div class="seg" role="group" aria-label="Tema"><button type="button" class="seg-btn" data-theme-set="auto">Auto</button><button type="button" class="seg-btn" data-theme-set="light"><span class="l-es">Claro</span><span class="l-en" lang="en">Light</span></button><button type="button" class="seg-btn" data-theme-set="dark"><span class="l-es">Oscuro</span><span class="l-en" lang="en">Dark</span></button></div></div></header>
 <div class="strip">
-  <span>Edición <b class="hl">2026-09-30</b></span>
-  <span class="it bad">ALERTA</span>
-  <span class="it">12 señales · 3 de contexto</span>
-  <span class="it warn">33/36 fuentes</span>
+  <span><span class="l-es">Edición</span><span class="l-en" lang="en">Edition</span> <b class="hl">2026-09-30</b></span>
+  <span class="it bad"><span class="l-es">ALERTA</span><span class="l-en" lang="en">ALERT</span></span>
+  <span class="it">12 <span class="l-es">señales</span><span class="l-en" lang="en">signals</span> · 3 <span class="l-es">de contexto</span><span class="l-en" lang="en">context</span></span>
+  <span class="it warn">33/36 <span class="l-es">fuentes</span><span class="l-en" lang="en">sources</span></span>
   <span class="it bad">X apagada</span>
-  <a class="r" href="../archivo.html">Archivo ↗</a>
+  <a class="r" href="../archivo.html"><span class="l-es">Archivo</span><span class="l-en" lang="en">Archive</span> ↗</a>
 </div>
 <div class="wrap">
 
   
   <div class="arch-bar">
-    <a href="../archivo.html">← Archivo</a>
+    <a href="../archivo.html">← <span class="l-es">Archivo</span><span class="l-en" lang="en">Archive</span></a>
     <a href="../d/2026-09-26.html">2026-09-26</a>
     <span class="here">2026-09-30</span>
     <a href="../d/2026-10-03.html">2026-10-03</a>
-    <a href="../index.html" style="margin-left:auto">Hoy</a>
+    <a href="../index.html" style="margin-left:auto"><span class="l-es">Hoy</span><span class="l-en" lang="en">Today</span></a>
   </div>
   
 
   <!-- Tesis del dia -->
   <div class="thesis">
-    <span class="kicker">2026-09-30 · lectura del día</span>
-    <h1 class="page-h1">Tesis del día</h1>
+    <span class="kicker">2026-09-30 · <span class="l-es">lectura del día</span><span class="l-en" lang="en">today&#39;s reading</span></span>
+    <h1 class="page-h1"><span class="l-es">Tesis del día</span><span class="l-en" lang="en">Thesis of the day</span></h1>
     <p class="tz">El día marca una intensificación en la carrera de agentes autónomos y una reconfiguración de la infraestructura de cómputo y su gobernanza, con movimientos clave en China.</p>
   </div>
 
   
   
   <div class="notice">
-    <b>Capa X apagada.</b>
+    <b><span class="l-es">Capa X apagada.</span><span class="l-en" lang="en">X layer off.</span></b>
     
-    El espejo no devolvió posts (6 cuentas). El briefing sigue con RSS.
+    <span class="l-es">El espejo no devolvió posts (6 cuentas). El briefing sigue con RSS.</span><span class="l-en" lang="en">The mirror returned no posts (6 accounts). The briefing continues with RSS.</span>
     
   </div>
   
@@ -310,20 +341,20 @@
   <!-- Tabs de tema -->
   
   <div class="tabs" id="tabs">
-    <span class="tab on" data-filter="all">Todas<span class="n">15</span></span>
+    <span class="tab on" data-filter="all"><span class="l-es">Todas</span><span class="l-en" lang="en">All</span><span class="n">15</span></span>
     
-    <span class="tab tab-new" data-filter="__new__">Nuevo<span class="n">13</span></span>
+    <span class="tab tab-new" data-filter="__new__"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span><span class="n">13</span></span>
     
     
-    <span class="tab" data-filter="agents_automation">Agentes<span class="n">5</span></span>
+    <span class="tab" data-filter="agents_automation"><span class="l-es">Agentes</span><span class="l-en" lang="en">Agents</span><span class="n">5</span></span>
     
-    <span class="tab" data-filter="geopolitics_power">Geopolítica<span class="n">3</span></span>
+    <span class="tab" data-filter="geopolitics_power"><span class="l-es">Geopolítica</span><span class="l-en" lang="en">Geopolitics</span><span class="n">3</span></span>
     
-    <span class="tab" data-filter="model_economics">Economía de modelos<span class="n">3</span></span>
+    <span class="tab" data-filter="model_economics"><span class="l-es">Economía de modelos</span><span class="l-en" lang="en">Model economics</span><span class="n">3</span></span>
     
-    <span class="tab" data-filter="frontier_capability">Capacidad frontier<span class="n">2</span></span>
+    <span class="tab" data-filter="frontier_capability"><span class="l-es">Capacidad frontier</span><span class="l-en" lang="en">Frontier capability</span><span class="n">2</span></span>
     
-    <span class="tab" data-filter="china_stack">Stack chino<span class="n">1</span></span>
+    <span class="tab" data-filter="china_stack"><span class="l-es">Stack chino</span><span class="l-en" lang="en">China stack</span><span class="n">1</span></span>
     
     <span class="tab" data-filter="compute_chips_dc">Compute &amp; chips<span class="n">1</span></span>
     
@@ -342,29 +373,29 @@
         </a>
         <div class="hero-body">
           <div class="meta-row">
-            <span class="tag">Capacidad frontier</span>
-            <span class="badge-new">Nuevo</span>
+            <span class="tag"><span class="l-es">Capacidad frontier</span><span class="l-en" lang="en">Frontier capability</span></span>
+            <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
             <span class="src"><img src="https://www.google.com/s2/favicons?domain=openai.com&amp;sz=64" alt="" loading="lazy"/>OpenAI</span>
             <span class="multi">+1 medios</span>
             <span class="score">100</span>
-            <button type="button" class="copy-btn" data-copy>Copiar</button>
+            <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
           </div>
           <h2 class="hero-title">
-            <a href="https://openai.com/index/introducing-gpt-6-1-sol" target="_blank" rel="noopener noreferrer">OpenAI lanza GPT-6.1 Sol: casi Astra para código y trabajo, a un quinto del precio.</a>
+            <a href="https://openai.com/index/introducing-gpt-6-1-sol" target="_blank" rel="noopener noreferrer"><span class="l-es">OpenAI lanza GPT-6.1 Sol: casi Astra para código y trabajo, a un quinto del precio.</span><span class="l-en" lang="en">Introducing GPT-6.1 Sol</span></a>
           </h2>
           <div class="sw">OpenAI reduce el coste de inferencia para capacidades cercanas a Astra, intensificando la presión de precios y haciendo la IA avanzada más accesible para desarrolladores.</div>
           
-          <div class="also">También en:
+          <div class="also"><span class="l-es">También en:</span><span class="l-en" lang="en">Also in:</span>
             <span>DeepMind Blog</span>
           </div>
           
           
           <div class="facts two">
             
-            <div class="fact pw"><span class="k">Poder</span><span class="v">OpenAI gana en accesibilidad/coste; competidores de modelos de código enfrentan más presión.</span></div>
+            <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">OpenAI gana en accesibilidad/coste; competidores de modelos de código enfrentan más presión.</span></div>
             
             
-            <div class="fact wn"><span class="k">Vigilar</span><span class="v">Rendimiento real en benchmarks de código o adopción masiva en entornos de desarrollo.</span></div>
+            <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Rendimiento real en benchmarks de código o adopción masiva en entornos de desarrollo.</span></div>
             
           </div>
           
@@ -384,14 +415,14 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=simonwillison.net&amp;sz=64" alt="" loading="lazy"/>Simon Willison (AI &amp; LLMs)</span>
               
               <span class="score">100</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://simonwillison.net/2026/Sep/29/anthropic-frontier-red-team/" target="_blank" rel="noopener noreferrer">Informe de Anthropic revela que GLM-5.3 y Claude Mythos Preview logran ataques de control.</a>
+              <a href="https://simonwillison.net/2026/Sep/29/anthropic-frontier-red-team/" target="_blank" rel="noopener noreferrer"><span class="l-es">Informe de Anthropic revela que GLM-5.3 y Claude Mythos Preview logran ataques de control.</span><span class="l-en" lang="en">Quoting Anthropic Frontier Red Team</span></a>
             </h3>
             <div class="sw">Modelos avanzados como GLM-5.3 y Claude Mythos Preview demuestran la capacidad de explotar vulnerabilidades de ciberseguridad, elevando el riesgo de agentes autónomos maliciosos.</div>
             
@@ -399,7 +430,7 @@
             <div class="card-foot">
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Lanzamientos de modelos que incorporen mitigaciones específicas para estas vulnerabilidades o incidentes de ciberseguri…</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Lanzamientos de modelos que incorporen mitigaciones específicas para estas vulnerabilidades o incidentes de ciberseguri…</span></div>
               
             </div>
             
@@ -412,24 +443,24 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=bloomberg.com&amp;sz=64" alt="" loading="lazy"/>Bloomberg Tech</span>
               
               <span class="score">100</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://www.bloomberg.com/news/articles/2026-09-30/deepseek-unveils-huawei-ai-chip-tools-that-may-replace-nvidia-s" target="_blank" rel="noopener noreferrer">DeepSeek presenta herramientas para chips IA de Huawei que podrían sustituir a NVIDIA.</a>
+              <a href="https://www.bloomberg.com/news/articles/2026-09-30/deepseek-unveils-huawei-ai-chip-tools-that-may-replace-nvidia-s" target="_blank" rel="noopener noreferrer"><span class="l-es">DeepSeek presenta herramientas para chips IA de Huawei que podrían sustituir a NVIDIA.</span><span class="l-en" lang="en">DeepSeek Unveils Huawei AI Chip Tools That May Replace Nvidia’s - Bloomberg.com</span></a>
             </h3>
             <div class="sw">DeepSeek, un actor clave en IA china, lanza software para los chips de Huawei, lo que acelera la independencia china de NVIDIA y reduce la efectividad de las sanciones de EE.UU.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">Huawei y DeepSeek ganan; NVIDIA pierde influencia en el mercado chino.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Huawei y DeepSeek ganan; NVIDIA pierde influencia en el mercado chino.</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Pruebas de rendimiento de estas herramientas o adopción por otros desarrolladores chinos.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Pruebas de rendimiento de estas herramientas o adopción por otros desarrolladores chinos.</span></div>
               
             </div>
             
@@ -442,24 +473,24 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=anthropic.com&amp;sz=64" alt="" loading="lazy"/>Anthropic</span>
               
               <span class="score">92</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://claude.com/blog/giving-companies-more-control-over-their-ai-agents-with-nvidia" target="_blank" rel="noopener noreferrer">Anthropic y NVIDIA lanzan plataforma de seguridad para agentes IA con control de ejecución.</a>
+              <a href="https://claude.com/blog/giving-companies-more-control-over-their-ai-agents-with-nvidia" target="_blank" rel="noopener noreferrer"><span class="l-es">Anthropic y NVIDIA lanzan plataforma de seguridad para agentes IA con control de ejecución.</span><span class="l-en" lang="en">Giving companies more control over their AI agents, with NVIDIA</span></a>
             </h3>
             <div class="sw">La plataforma Open Agent Safety Platform de NVIDIA, con participación de Anthropic, aborda preocupaciones de seguridad y control, facilitando la implementación de agentes en entornos corporativos.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">NVIDIA y Anthropic ganan en confianza empresarial para el despliegue de agentes.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">NVIDIA y Anthropic ganan en confianza empresarial para el despliegue de agentes.</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Adopción de Open Agent Safety Platform por grandes empresas o informes de ataques exitosos/fallidos a agentes.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Adopción de Open Agent Safety Platform por grandes empresas o informes de ataques exitosos/fallidos a agentes.</span></div>
               
             </div>
             
@@ -472,24 +503,24 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=theverge.com&amp;sz=64" alt="" loading="lazy"/>The Verge AI</span>
               
               <span class="score">86</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://www.theverge.com/ai-artificial-intelligence/1002584/trump-us-ai-safety-deal-self-regulation-tech-execs" target="_blank" rel="noopener noreferrer">Empresas tecnológicas de EE.UU. acuerdan autorregular la seguridad de la IA bajo pacto con Trump.</a>
+              <a href="https://www.theverge.com/ai-artificial-intelligence/1002584/trump-us-ai-safety-deal-self-regulation-tech-execs" target="_blank" rel="noopener noreferrer"><span class="l-es">Empresas tecnológicas de EE.UU. acuerdan autorregular la seguridad de la IA bajo pacto con Trump.</span><span class="l-en" lang="en">Here’s how tech leaders will self-police AI safety under Trump’s deal</span></a>
             </h3>
             <div class="sw">El acuerdo de autorregulación podría influir en el desarrollo y despliegue de modelos de frontera, potencialmente ralentizando o dirigiendo ciertas líneas de investigación para cumplir con las directrices acordadas.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">Los gobiernos pueden ganar influencia sobre el desarrollo de la IA a través de acuerdos &#34;morally binding&#34;.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Los gobiernos pueden ganar influencia sobre el desarrollo de la IA a través de acuerdos &#34;morally binding&#34;.</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Implementación de políticas o mecanismos de cumplimiento por parte de las empresas firmantes.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Implementación de políticas o mecanismos de cumplimiento por parte de las empresas firmantes.</span></div>
               
             </div>
             
@@ -502,24 +533,24 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=openai.com&amp;sz=64" alt="" loading="lazy"/>OpenAI</span>
               
               <span class="score">83</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://openai.com/index/introducing-dots" target="_blank" rel="noopener noreferrer">OpenAI presenta &#34;Dots&#34;, asistentes proactivos para proyectos y tareas cotidianas.</a>
+              <a href="https://openai.com/index/introducing-dots" target="_blank" rel="noopener noreferrer"><span class="l-es">OpenAI presenta &#34;Dots&#34;, asistentes proactivos para proyectos y tareas cotidianas.</span><span class="l-en" lang="en">Introducing dots</span></a>
             </h3>
             <div class="sw">OpenAI lanza una nueva categoría de agentes proactivos capaces de operar en proyectos complejos, marcando un avance significativo en la autonomía y capacidades de los agentes personales.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">OpenAI gana en la carrera de los agentes personales, estableciendo un nuevo estándar.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">OpenAI gana en la carrera de los agentes personales, estableciendo un nuevo estándar.</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Casos de uso reales de Dots o su impacto en la productividad de los usuarios.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Casos de uso reales de Dots o su impacto en la productividad de los usuarios.</span></div>
               
             </div>
             
@@ -532,24 +563,24 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=x.ai&amp;sz=64" alt="" loading="lazy"/>xAI</span>
               
               <span class="score">82</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://x.ai/news/team-bots" target="_blank" rel="noopener noreferrer">xAI lanza &#34;Team Bots&#34;, agentes IA que aprenden del equipo de trabajo.</a>
+              <a href="https://x.ai/news/team-bots" target="_blank" rel="noopener noreferrer"><span class="l-es">xAI lanza &#34;Team Bots&#34;, agentes IA que aprenden del equipo de trabajo.</span><span class="l-en" lang="en">Team Bots: AI coworkers that learn from your team - xAI</span></a>
             </h3>
             <div class="sw">xAI introduce agentes capaces de aprender del contexto y dinámicas de un equipo, apuntando a la automatización de workflows colaborativos y la sustitución de trabajo cognitivo en empresas.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">xAI gana terreno en el mercado de agentes empresariales.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">xAI gana terreno en el mercado de agentes empresariales.</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Adopción de Team Bots en empresas o su impacto en la eficiencia de equipos.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Adopción de Team Bots en empresas o su impacto en la eficiencia de equipos.</span></div>
               
             </div>
             
@@ -562,21 +593,21 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=reuters.com&amp;sz=64" alt="" loading="lazy"/>Reuters AI</span>
               
               <span class="score">80</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://www.reuters.com/world/us/trump-releases-ai-accord-with-tech-executives-2026-09-29/" target="_blank" rel="noopener noreferrer">Trump publica acuerdo de seguridad en IA con ejecutivos tecnológicos.</a>
+              <a href="https://www.reuters.com/world/us/trump-releases-ai-accord-with-tech-executives-2026-09-29/" target="_blank" rel="noopener noreferrer"><span class="l-es">Trump publica acuerdo de seguridad en IA con ejecutivos tecnológicos.</span><span class="l-en" lang="en">Trump releases AI accord with tech executives - Reuters</span></a>
             </h3>
             <div class="sw">La confirmación del acuerdo de autorregulación entre el gobierno de EE.UU. y las empresas tecnológicas establece un precedente para la gobernanza de la IA, afectando el desarrollo futuro de modelos de frontera.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">Gobiernos ganan influencia; empresas tecnológicas aceptan cierto nivel de supervisión.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Gobiernos ganan influencia; empresas tecnológicas aceptan cierto nivel de supervisión.</span></div>
               
               
             </div>
@@ -590,24 +621,24 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=mistral.ai&amp;sz=64" alt="" loading="lazy"/>Mistral</span>
               
               <span class="score">78</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://mistral.ai/news/hallo-deutschland/" target="_blank" rel="noopener noreferrer">Mistral abre un hub en Múnich para IA en física e IA industrial.</a>
+              <a href="https://mistral.ai/news/hallo-deutschland/" target="_blank" rel="noopener noreferrer"><span class="l-es">Mistral abre un hub en Múnich para IA en física e IA industrial.</span><span class="l-en" lang="en">Hallo, Deutschland!</span></a>
             </h3>
             <div class="sw">Mistral expande su capacidad de investigación en Europa, reforzando su posición como alternativa europea a los labs de EE.UU. y China, y enfocándose en IA para sectores estratégicos.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">Mistral gana al expandir su alcance y capacidades de investigación; Europa refuerza su stack de IA.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Mistral gana al expandir su alcance y capacidades de investigación; Europa refuerza su stack de IA.</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Anuncios de nuevos modelos o investigaciones resultantes del hub de Múnich.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Anuncios de nuevos modelos o investigaciones resultantes del hub de Múnich.</span></div>
               
             </div>
             
@@ -620,21 +651,21 @@
           </a>
           <div class="card-body">
             <div class="meta-row">
-              <span class="badge-new">Nuevo</span>
+              <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=businessinsider.com&amp;sz=64" alt="" loading="lazy"/>Business Insider Tech</span>
               
               <span class="score">76</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://www.businessinsider.com/openai-dots-ai-agents-use-cases-customer-lock-in-2026-9" target="_blank" rel="noopener noreferrer">Los agentes personales, clave para la retención de usuarios en empresas de IA.</a>
+              <a href="https://www.businessinsider.com/openai-dots-ai-agents-use-cases-customer-lock-in-2026-9" target="_blank" rel="noopener noreferrer"><span class="l-es">Los agentes personales, clave para la retención de usuarios en empresas de IA.</span><span class="l-en" lang="en">Personal agents are AI companies&#39; best shot at keeping you faithful</span></a>
             </h3>
             <div class="sw">La personalización profunda y el lock-in a través de agentes personales es una estrategia central para que las empresas de IA retengan a sus usuarios, creando barreras de cambio difíciles de superar.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">Empresas que desarrollen agentes personales potentes como OpenAI ganan ventaja competitiva.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Empresas que desarrollen agentes personales potentes como OpenAI ganan ventaja competitiva.</span></div>
               
               
             </div>
@@ -652,20 +683,20 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=anthropic.com&amp;sz=64" alt="" loading="lazy"/>Anthropic</span>
               
               <span class="score">66</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://claude.com/blog/build-plugins-for-claude" target="_blank" rel="noopener noreferrer">Anthropic lanza un sistema de plugins para Claude y un portal de directorio para desarrolladores.</a>
+              <a href="https://claude.com/blog/build-plugins-for-claude" target="_blank" rel="noopener noreferrer"><span class="l-es">Anthropic lanza un sistema de plugins para Claude y un portal de directorio para desarrolladores.</span><span class="l-en" lang="en">Build plugins for Claude</span></a>
             </h3>
             <div class="sw">Anthropic está construyendo un ecosistema para su modelo Claude, permitiendo a los desarrolladores extender sus capacidades, lo que es clave para la adopción y monetización de agentes autónomos.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">Anthropic gana al fomentar un ecosistema de terceros para Claude.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Anthropic gana al fomentar un ecosistema de terceros para Claude.</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Cantidad y calidad de plugins disponibles o volumen de integraciones empresariales.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Cantidad y calidad de plugins disponibles o volumen de integraciones empresariales.</span></div>
               
             </div>
             
@@ -682,20 +713,20 @@
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=deepmind.google&amp;sz=64" alt="" loading="lazy"/>DeepMind Blog</span>
               
               <span class="score">52</span>
-              <button type="button" class="copy-btn" data-copy>Copiar</button>
+              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
             </div>
             <h3 class="card-title">
-              <a href="https://deepmind.google/blog/advancing-private-ai-compute-with-secure-server-side-memory/" target="_blank" rel="noopener noreferrer">Google DeepMind avanza en cómputo privado con memoria segura de servidor para IA personal.</a>
+              <a href="https://deepmind.google/blog/advancing-private-ai-compute-with-secure-server-side-memory/" target="_blank" rel="noopener noreferrer"><span class="l-es">Google DeepMind avanza en cómputo privado con memoria segura de servidor para IA personal.</span><span class="l-en" lang="en">Advancing Private AI Compute with secure, server-side memory</span></a>
             </h3>
             <div class="sw">Google DeepMind mejora la privacidad y seguridad del cómputo para IA personal mediante memoria segura en servidor, clave para la adopción de agentes en entornos sensibles a datos.</div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k">Poder</span><span class="v">Google DeepMind gana en capacidad de ofrecer soluciones de IA más seguras y privadas.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Google DeepMind gana en capacidad de ofrecer soluciones de IA más seguras y privadas.</span></div>
               
               
-              <div class="fact wn"><span class="k">Vigilar</span><span class="v">Despliegue comercial de esta tecnología o adopción por parte de grandes clientes.</span></div>
+              <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Despliegue comercial de esta tecnología o adopción por parte de grandes clientes.</span></div>
               
             </div>
             
@@ -709,8 +740,8 @@
 
       
       <div class="section-h">
-        <h2 class="sec">Contexto</h2>
-        <p class="sec-sub">De fondo: no cambia nada hoy</p>
+        <h2 class="sec"><span class="l-es">Contexto</span><span class="l-en" lang="en">Context</span></h2>
+        <p class="sec-sub"><span class="l-es">De fondo: no cambia nada hoy</span><span class="l-en" lang="en">Background: changes nothing today</span></p>
       </div>
       <div class="ctx">
         
@@ -718,10 +749,10 @@
           <img src="https://www.google.com/s2/favicons?domain=thenationalnews.com&amp;sz=64" alt="" loading="lazy"/>
           <div class="cx-b">
             <div class="cx-t">
-              <a href="https://www.thenationalnews.com/future/technology/2026/09/29/ai-industry-needs-to-earn-6-trillion-by-2031-to-justify-data-centres/" target="_blank" rel="noopener noreferrer">La IA requiere 6 billones de dólares anuales en ingresos para justificar inversión en data centers.</a>
+              <a href="https://www.thenationalnews.com/future/technology/2026/09/29/ai-industry-needs-to-earn-6-trillion-by-2031-to-justify-data-centres/" target="_blank" rel="noopener noreferrer"><span class="l-es">La IA requiere 6 billones de dólares anuales en ingresos para justificar inversión en data centers.</span><span class="l-en" lang="en">AI needs $6T in annual revenue to justify data centre boom</span></a>
             </div>
             <div class="cx-w">La industria de la IA enfrenta una presión masiva para generar retornos que justifiquen la inmensa inversión en infraestructura (capex), poniendo en duda la sostenibilidad del boom actual.</div>
-            <div class="cx-m">Economía de modelos · Hacker News (alto voltaje) · 81</div>
+            <div class="cx-m"><span class="l-es">Economía de modelos</span><span class="l-en" lang="en">Model economics</span> · Hacker News (alto voltaje) · 81</div>
           </div>
         </div>
         
@@ -729,10 +760,10 @@
           <img src="https://www.google.com/s2/favicons?domain=stratechery.com&amp;sz=64" alt="" loading="lazy"/>
           <div class="cx-b">
             <div class="cx-t">
-              <a href="https://stratechery.com/2026/openai-dev-day-dot-and-openais-product-transition-sign-in-with-chatgpt/" target="_blank" rel="noopener noreferrer">Análisis de Stratechery sobre el Dev Day de OpenAI y la transición de producto con Dot.</a>
+              <a href="https://stratechery.com/2026/openai-dev-day-dot-and-openais-product-transition-sign-in-with-chatgpt/" target="_blank" rel="noopener noreferrer"><span class="l-es">Análisis de Stratechery sobre el Dev Day de OpenAI y la transición de producto con Dot.</span><span class="l-en" lang="en">OpenAI Dev Day, Dot and OpenAI’s Product Transition, Sign In With ChatGPT</span></a>
             </div>
             <div class="cx-w">Proporciona un marco para interpretar los anuncios de OpenAI, sugiriendo una estrategia a largo plazo hacia una experiencia de usuario más unificada y omnipresente con agentes.</div>
-            <div class="cx-m">Economía de modelos · Stratechery · 73</div>
+            <div class="cx-m"><span class="l-es">Economía de modelos</span><span class="l-en" lang="en">Model economics</span> · Stratechery · 73</div>
           </div>
         </div>
         
@@ -740,10 +771,10 @@
           <img src="https://www.google.com/s2/favicons?domain=anthropic.com&amp;sz=64" alt="" loading="lazy"/>
           <div class="cx-b">
             <div class="cx-t">
-              <a href="https://claude.com/blog/agents-you-can-coach-how-asana-builds-human-agent-teams-with-claude" target="_blank" rel="noopener noreferrer">Asana integra agentes Claude en su plataforma para equipos humanos-agente.</a>
+              <a href="https://claude.com/blog/agents-you-can-coach-how-asana-builds-human-agent-teams-with-claude" target="_blank" rel="noopener noreferrer"><span class="l-es">Asana integra agentes Claude en su plataforma para equipos humanos-agente.</span><span class="l-en" lang="en">Agents you can coach: how Asana builds human-agent teams with Claude</span></a>
             </div>
             <div class="cx-w">Muestra cómo una empresa está implementando agentes para flujos de trabajo colaborativos, destacando la necesidad de estructuras para integrar IA en equipos existentes.</div>
-            <div class="cx-m">Agentes · Anthropic · 71</div>
+            <div class="cx-m"><span class="l-es">Agentes</span><span class="l-en" lang="en">Agents</span> · Anthropic · 71</div>
           </div>
         </div>
         
@@ -762,8 +793,8 @@
       
       <div class="widget">
         <div class="widget-title">
-          <span>Vigilancia de ayer</span>
-          <span class="lbl">0/3 confirmadas</span>
+          <span><span class="l-es">Vigilancia de ayer</span><span class="l-en" lang="en">Yesterday&#39;s watchlist</span></span>
+          <span class="lbl">0/3 <span class="l-es">confirmadas</span><span class="l-en" lang="en">confirmed</span></span>
         </div>
         
         <div class="wr open">
@@ -796,12 +827,12 @@
       
       <div class="widget">
         <div class="widget-title">
-          <span>Memoria del radar</span>
-          <span class="lbl">Continuidad</span>
+          <span><span class="l-es">Memoria del radar</span><span class="l-en" lang="en">Radar memory</span></span>
+          <span class="lbl"><span class="l-es">Continuidad</span><span class="l-en" lang="en">Continuity</span></span>
         </div>
         
         <div class="thr">
-          <span class="thr-d">DÍA 11</span>
+          <span class="thr-d"><span class="l-es">DÍA</span><span class="l-en" lang="en">DAY</span> 11</span>
           <div>
             <div class="thr-t">Economía de modelos</div>
             <div class="thr-l">Los agentes personales, clave para la retención de usuarios en empresas de IA.</div>
@@ -809,7 +840,7 @@
         </div>
         
         <div class="thr">
-          <span class="thr-d">DÍA 11</span>
+          <span class="thr-d"><span class="l-es">DÍA</span><span class="l-en" lang="en">DAY</span> 11</span>
           <div>
             <div class="thr-t">Agentes y automatización</div>
             <div class="thr-l">Anthropic y NVIDIA lanzan plataforma de seguridad para agentes IA con control de ejecución.</div>
@@ -817,7 +848,7 @@
         </div>
         
         <div class="thr">
-          <span class="thr-d">DÍA 7</span>
+          <span class="thr-d"><span class="l-es">DÍA</span><span class="l-en" lang="en">DAY</span> 7</span>
           <div>
             <div class="thr-t">Capacidad frontier</div>
             <div class="thr-l">OpenAI lanza GPT-6.1 Sol: casi Astra para código y trabajo, a un quinto del precio.</div>
@@ -825,7 +856,7 @@
         </div>
         
         <div class="thr">
-          <span class="thr-d">DÍA 3</span>
+          <span class="thr-d"><span class="l-es">DÍA</span><span class="l-en" lang="en">DAY</span> 3</span>
           <div>
             <div class="thr-t">Geopolítica y poder</div>
             <div class="thr-l">Empresas tecnológicas de EE.UU. acuerdan autorregular la seguridad de la IA bajo pacto con Trump.</div>
@@ -834,43 +865,43 @@
         
         
         
-        <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Asana</span>
-          <span class="dt">primera aparición</span></div>
+        <div class="mv"><span class="mv-b new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span><span class="nm">Asana</span>
+          <span class="dt"><span class="l-es">primera aparición</span><span class="l-en" lang="en">first appearance</span></span></div>
         
-        <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Astra</span>
-          <span class="dt">primera aparición</span></div>
+        <div class="mv"><span class="mv-b new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span><span class="nm">Astra</span>
+          <span class="dt"><span class="l-es">primera aparición</span><span class="l-en" lang="en">first appearance</span></span></div>
         
-        <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Claude Managed Agents</span>
-          <span class="dt">primera aparición</span></div>
+        <div class="mv"><span class="mv-b new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span><span class="nm">Claude Managed Agents</span>
+          <span class="dt"><span class="l-es">primera aparición</span><span class="l-en" lang="en">first appearance</span></span></div>
         
-        <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">Claude Mythos Preview</span>
-          <span class="dt">primera aparición</span></div>
+        <div class="mv"><span class="mv-b new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span><span class="nm">Claude Mythos Preview</span>
+          <span class="dt"><span class="l-es">primera aparición</span><span class="l-en" lang="en">first appearance</span></span></div>
         
-        <div class="mv"><span class="mv-b new">Nuevo</span><span class="nm">David Sacks</span>
-          <span class="dt">primera aparición</span></div>
-        
-        
-        <div class="mv"><span class="mv-b ret">Vuelve</span><span class="nm">NVIDIA</span>
-          <span class="dt">tras 6 días en silencio</span></div>
-        
-        <div class="mv"><span class="mv-b ret">Vuelve</span><span class="nm">ChatGPT</span>
-          <span class="dt">tras 5 días en silencio</span></div>
-        
-        <div class="mv"><span class="mv-b ret">Vuelve</span><span class="nm">Trump</span>
-          <span class="dt">tras 5 días en silencio</span></div>
+        <div class="mv"><span class="mv-b new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span><span class="nm">David Sacks</span>
+          <span class="dt"><span class="l-es">primera aparición</span><span class="l-en" lang="en">first appearance</span></span></div>
         
         
-        <div class="mv"><span class="mv-b str">Racha</span><span class="nm">OpenAI</span>
-          <span class="dt">11 días seguidos</span></div>
+        <div class="mv"><span class="mv-b ret"><span class="l-es">Vuelve</span><span class="l-en" lang="en">Back</span></span><span class="nm">NVIDIA</span>
+          <span class="dt"><span class="l-es">tras 6 días en silencio</span><span class="l-en" lang="en">after 6 silent days</span></span></div>
         
-        <div class="mv"><span class="mv-b str">Racha</span><span class="nm">Anthropic</span>
-          <span class="dt">11 días seguidos</span></div>
+        <div class="mv"><span class="mv-b ret"><span class="l-es">Vuelve</span><span class="l-en" lang="en">Back</span></span><span class="nm">ChatGPT</span>
+          <span class="dt"><span class="l-es">tras 5 días en silencio</span><span class="l-en" lang="en">after 5 silent days</span></span></div>
         
-        <div class="mv"><span class="mv-b str">Racha</span><span class="nm">DeepSeek</span>
-          <span class="dt">4 días seguidos</span></div>
+        <div class="mv"><span class="mv-b ret"><span class="l-es">Vuelve</span><span class="l-en" lang="en">Back</span></span><span class="nm">Trump</span>
+          <span class="dt"><span class="l-es">tras 5 días en silencio</span><span class="l-en" lang="en">after 5 silent days</span></span></div>
         
-        <div class="mv"><span class="mv-b str">Racha</span><span class="nm">xAI</span>
-          <span class="dt">3 días seguidos</span></div>
+        
+        <div class="mv"><span class="mv-b str"><span class="l-es">Racha</span><span class="l-en" lang="en">Streak</span></span><span class="nm">OpenAI</span>
+          <span class="dt"><span class="l-es">11 días seguidos</span><span class="l-en" lang="en">11 days in a row</span></span></div>
+        
+        <div class="mv"><span class="mv-b str"><span class="l-es">Racha</span><span class="l-en" lang="en">Streak</span></span><span class="nm">Anthropic</span>
+          <span class="dt"><span class="l-es">11 días seguidos</span><span class="l-en" lang="en">11 days in a row</span></span></div>
+        
+        <div class="mv"><span class="mv-b str"><span class="l-es">Racha</span><span class="l-en" lang="en">Streak</span></span><span class="nm">DeepSeek</span>
+          <span class="dt"><span class="l-es">4 días seguidos</span><span class="l-en" lang="en">4 days in a row</span></span></div>
+        
+        <div class="mv"><span class="mv-b str"><span class="l-es">Racha</span><span class="l-en" lang="en">Streak</span></span><span class="nm">xAI</span>
+          <span class="dt"><span class="l-es">3 días seguidos</span><span class="l-en" lang="en">3 days in a row</span></span></div>
         
       </div>
       
@@ -878,8 +909,8 @@
       
       <div class="widget">
         <div class="widget-title">
-          <span>Riesgos y vigilancia</span>
-          <span class="lbl">Próximos días</span>
+          <span><span class="l-es">Riesgos y vigilancia</span><span class="l-en" lang="en">Risks and watch</span></span>
+          <span class="lbl"><span class="l-es">Próximos días</span><span class="l-en" lang="en">Coming days</span></span>
         </div>
         <div class="rk">La capacidad de modelos avanzados para realizar ciberataques aumenta el riesgo de agentes autónomos maliciosos.</div><div class="rk">La inmensa inversión en infraestructura de IA podría no ser sostenible si los ingresos no justifican el capex.</div>
         <div class="rk w">Adopción de la plataforma Open Agent Safety de NVIDIA o incidentes de seguridad con agentes.</div><div class="rk w">Pruebas de rendimiento de las herramientas de DeepSeek para chips Huawei.</div><div class="rk w">Lanzamientos de nuevos modelos o investigaciones resultantes del hub de Mistral en Múnich.</div>
@@ -889,9 +920,10 @@
     </aside>
   </div>
 
+  <div class="credits"><p class="credits-by"><span class="l-es">Hecho por</span><span class="l-en" lang="en">Made by</span> <strong>Rolando Fernández</strong></p><a class="bmc" href="https://buymeacoffee.com/rolandofernandez" target="_blank" rel="noopener"><span aria-hidden="true">☕</span> <span class="l-es">Invítame a un café</span><span class="l-en" lang="en">Buy me a coffee</span></a></div>
   <footer>
-    <span>9 items descartados por el filtro de relevancia</span>
-    <span>33/36 fuentes activas · sin items: VentureBeat AI, OpenRouter Insights, Moonshot (Kimi) · X: kill switch</span>
+    <span>9 <span class="l-es">items descartados por el filtro de relevancia</span><span class="l-en" lang="en">items dropped by the relevance filter</span></span>
+    <span>33/36 <span class="l-es">fuentes activas</span><span class="l-en" lang="en">active sources</span> · <span class="l-es">sin items</span><span class="l-en" lang="en">no items</span>: VentureBeat AI, OpenRouter Insights, Moonshot (Kimi) · X: kill switch</span>
   </footer>
 
 </div>
@@ -922,19 +954,28 @@
       return;
     }
 
+    // Texto visible en el idioma activo (los traducibles van duplicados).
+    function vis(node){
+      if (!node) return '';
+      var lang = document.documentElement.getAttribute('data-lang') === 'en' ? 'en' : 'es';
+      var pick = node.querySelector('.l-' + lang);
+      return ((pick || node).textContent || '').trim();
+    }
     function ficha(article){
       if (!article) return '';
       var a = article.querySelector('.hero-title a, .card-title a');
-      var title = a ? (a.textContent || '').trim() : '';
+      var title = vis(a);
       var swEl = article.querySelector('.sw');
-      var sw = swEl ? (swEl.textContent || '').trim() : '';
+      var sw = vis(swEl);
       var url = a ? (a.getAttribute('href') || '').trim() : '';
       return [title, sw, url].filter(Boolean).join('\n\n');
     }
     function copied(btn){
       btn.classList.add('ok');
-      btn.textContent = 'Copiado';
-      setTimeout(function(){ btn.classList.remove('ok'); btn.textContent = 'Copiar'; }, 1600);
+      var en = document.documentElement.getAttribute('data-lang') === 'en';
+      var label = btn.innerHTML;
+      btn.textContent = en ? 'Copied' : 'Copiado';
+      setTimeout(function(){ btn.classList.remove('ok'); btn.innerHTML = label; }, 1600);
     }
     function fallback(text, btn){
       var ta = document.createElement('textarea');
@@ -996,6 +1037,20 @@
       });
     });
     paint();
+
+    var langBtns = document.querySelectorAll('[data-lang-set]');
+    function curLang(){ try { return localStorage.getItem('lang') === 'en' ? 'en' : 'es'; } catch(e){ return 'es'; } }
+    function paintLang(){ var c = curLang(); langBtns.forEach(function(b){ b.setAttribute('aria-pressed', String(b.getAttribute('data-lang-set') === c)); }); }
+    langBtns.forEach(function(b){
+      b.addEventListener('click', function(){
+        var l = b.getAttribute('data-lang-set');
+        try { if (l === 'en') localStorage.setItem('lang', 'en'); else localStorage.removeItem('lang'); } catch(e){}
+        var d = document.documentElement;
+        if (l === 'en') { d.setAttribute('data-lang', 'en'); d.lang = 'en'; } else { d.removeAttribute('data-lang'); d.lang = 'es'; }
+        paintLang();
+      });
+    });
+    paintLang();
   })();
 </script>
 </body>
