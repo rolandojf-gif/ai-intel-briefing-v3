@@ -23,13 +23,17 @@ class PublishTests(unittest.TestCase):
         self.assertIn("application/ld+json", html)
         self.assertNotIn("earnest-pie", html)
 
-    def test_cloudflare_beacon_only_with_a_token(self):
+    def test_cloudflare_beacon_is_on_every_page_and_off_without_token(self):
         import src.brand as brand
-        self.assertNotIn("cloudflareinsights", str(brand.seo_head("t")))
+        from src.archive import ARCHIVO_TEMPLATE
+        beacon = 'data-cf-beacon=\'{"token": "ddd22b1c510f4ef2a210078c77c6d2d5"}\''
+        self.assertIn(beacon, self._html())
+        self.assertIn(beacon, str(brand.seo_head("t", path="weekly.html")))
+        self.assertIn("cloudflareinsights", ARCHIVO_TEMPLATE.render(months=[], n=0, n_entries=0, first="", last="", missing=""))
         old = brand.CLOUDFLARE_TOKEN
         try:
-            brand.CLOUDFLARE_TOKEN = "abc123"
-            self.assertIn('data-cf-beacon=\'{"token": "abc123"}\'', str(brand.seo_head("t")))
+            brand.CLOUDFLARE_TOKEN = ""
+            self.assertNotIn("cloudflareinsights", str(brand.seo_head("t")))
         finally:
             brand.CLOUDFLARE_TOKEN = old
 

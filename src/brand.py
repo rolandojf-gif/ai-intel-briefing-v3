@@ -249,7 +249,7 @@ SITE_NAME = "RADAR.IA"
 GOOGLE_VERIFICATION = "yh8wm8HsAeqP892U5UGczQs-RLnGuNHx7WGfNntGduk"
 # Token de Cloudflare Web Analytics. Vacio = sin beacon. Al crear el sitio en
 # Cloudflare se pega aqui y las tres paginas empiezan a medir.
-CLOUDFLARE_TOKEN = ""
+CLOUDFLARE_TOKEN = "ddd22b1c510f4ef2a210078c77c6d2d5"
 OG_IMAGE = SITE_URL + "og.png"
 DEFAULT_DESCRIPTION = ("Radar diario de la carrera hacia la AGI: modelos frontier, agentes, chips y compute, "
                        "China y economía de la IA. Solo lo que cambia algo, con fuente y análisis.")
@@ -283,6 +283,6 @@ def seo_head(title: str, path: str = "", description: str = DEFAULT_DESCRIPTION,
         '"author":{"@type":"Person","name":"Rolando Fernández"}}</script>',
     ]
     if CLOUDFLARE_TOKEN:
-        parts.append('<script defer src="https://static.cloudflareinsights.com/beacon.min.js" '
+        parts.append('<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" '
                      f'data-cf-beacon=\'{{"token": "{CLOUDFLARE_TOKEN}"}}\'></script>')
     return Markup("\n".join(parts) + "\n")
