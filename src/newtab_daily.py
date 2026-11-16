@@ -227,9 +227,30 @@ def publish_rss(day: date) -> bool:
     return True
 
 
+def already_published(day: date, analysis: bool) -> bool:
+    """¿Ya salio la edicion de hoy? Para que el segundo intento programado no repita.
+
+    Dia con Gemini: hace falta el snapshot de hoy y que NO este degradado (si la
+    primera ejecucion fallo, la segunda lo reintenta). Dia RSS: basta con la
+    edicion de NEXUS de hoy.
+    """
+    stamp = day.isoformat()
+    if analysis:
+        try:
+            snap = json.loads((DATA / f'{stamp}.json').read_text(encoding='utf-8'))
+        except (OSError, ValueError):
+            return False
+        return isinstance(snap, dict) and not snap.get('degraded') and bool(snap.get('items'))
+    return (NEWTAB / f'{stamp}.json').exists()
+
+
 def run(day: date, mode: str = 'auto') -> None:
     if mode not in ('auto', 'gemini', 'rss'):
         raise ValueError(f'Modo no válido: {mode}')
+    if mode == 'auto' and os.getenv('GITHUB_EVENT_NAME') == 'schedule':
+        if already_published(day, gemini_day(day)):
+            print(f'NEXUS: la edición del {day.isoformat()} ya está publicada; este intento no hace nada.')
+            return
     # Ejecución manual: como antes, Gemini por defecto, pero opción sin coste.
     if mode == 'auto' and os.getenv('GITHUB_EVENT_NAME') == 'workflow_dispatch':
         analysis = os.getenv('FORCE_GEMINI', '1').strip() != '0'

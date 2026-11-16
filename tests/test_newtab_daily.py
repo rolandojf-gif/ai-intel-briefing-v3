@@ -69,3 +69,23 @@ class NewtabDailyTests(unittest.TestCase):
 
 
 if __name__=='__main__': unittest.main()
+
+
+class SecondScheduledAttemptTests(unittest.TestCase):
+    def test_second_attempt_skips_when_the_edition_is_out(self):
+        import os
+        with tempfile.TemporaryDirectory() as temp:
+            data = Path(temp) / 'data'; newtab = Path(temp) / 'newtab'; data.mkdir(); newtab.mkdir()
+            day = date(2026, 10, 12)  # dia de Gemini (ancla 10-oct, alterno)
+            with patch.object(daily, 'DATA', data), patch.object(daily, 'NEWTAB', newtab):
+                self.assertFalse(daily.already_published(day, True))
+                (data / '2026-10-12.json').write_text(json.dumps({'degraded': True, 'items': [{'t': 1}]}))
+                self.assertFalse(daily.already_published(day, True))     # degradado: se reintenta
+                (data / '2026-10-12.json').write_text(json.dumps({'degraded': False, 'items': [{'t': 1}]}))
+                self.assertTrue(daily.already_published(day, True))
+                self.assertFalse(daily.already_published(date(2026, 10, 13), False))
+                (newtab / '2026-10-13.json').write_text('{}')
+                self.assertTrue(daily.already_published(date(2026, 10, 13), False))
+                with patch.dict(os.environ, {'GITHUB_EVENT_NAME': 'schedule'}), \
+                     patch('src.main.main', side_effect=AssertionError('no debe regenerar')):
+                    daily.run(day)   # ya publicada: no llama a Gemini

@@ -5,8 +5,13 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+  # Dos intentos: GitHub retrasa las tareas en hora en punto (la de las 05:00
+  # arrancaba hacia las 12:30). La segunda no hace nada si la primera ya
+  # publico la edicion del dia (ver already_published en src/newtab_daily.py).
   schedule:
-    - cron: "0 5 * * *"
+    - cron: "37 4 * * *"
+      timezone: "Europe/Madrid"
+    - cron: "37 6 * * *"
       timezone: "Europe/Madrid"
   workflow_dispatch:
     inputs:
