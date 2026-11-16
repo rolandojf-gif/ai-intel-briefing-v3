@@ -23,7 +23,7 @@ Para actualizarla después: `git pull` (o vuelve a descargar el ZIP en la misma 
 - Los artículos siempre enlazan a sus fuentes; la extensión no inventa noticias.
 - **Muestra todos los artículos válidos** de `items` (titular principal + 5 breves + el resto en la sección inferior), sin topes de 26/48 noticias. Se descartan únicamente elementos sin enlace HTTP(S), sin título o URLs repetidas.
 - Si falla la red muestra la edición almacenada y avisa de ello.
-- Tras fusionar el PR #17 de `ai-intel-briefing-v3`, GitHub Actions ejecutará una tarea diaria: Gemini en días alternos (anclaje 10/10/2026) y noticias RSS nuevas en los días intermedios. La página distingue el tipo de edición; nunca atribuye análisis de IA a una selección RSS.
+- GitHub Actions publica cada día una edición con análisis de Gemini (dos intentos, 04:37 y 06:37 de Madrid). Si una ejecución manual se lanza sin Gemini, sale una edición solo RSS; la página distingue el tipo de edición y nunca atribuye análisis de IA a una selección RSS.
 
 ## Privacidad y gasto
 

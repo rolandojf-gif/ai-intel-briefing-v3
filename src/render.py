@@ -839,7 +839,7 @@ TEMPLATE = ENV.from_string("""
 </div>
 
 <script>
-  // El radar se regenera en dias alternos. Si la edicion no es de hoy, se dice:
+  // Si la edicion no es de hoy (por ejemplo, antes de la ejecucion de la manana), se dice:
   // sin esto la portada de ayer se lee como si fuera la de hoy.
   (function(){
     var el = document.getElementById('stale');

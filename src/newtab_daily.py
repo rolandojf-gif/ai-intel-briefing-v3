@@ -1,7 +1,9 @@
 """Publica NEXUS NEWTAB diariamente sin duplicar análisis de Gemini.
 
-Gemini: cada dos días (anclaje 2026-10-10) reutilizando src.main.
-RSS: días intermedios; no invoca al LLM ni modifica el briefing estratégico.
+Gemini: todos los días (desde 2026-11-16) reutilizando src.main, así la web y
+NEXUS tienen análisis completo a diario. GEMINI_ALTERNATE=1 vuelve al calendario
+de días alternos (anclaje 2026-10-10) para reducir el coste a la mitad.
+RSS: solo en ejecuciones manuales sin Gemini o en modo alterno; no invoca al LLM.
 """
 from __future__ import annotations
 
@@ -24,7 +26,10 @@ RECENT_HOURS = 72
 
 
 def gemini_day(day: date) -> bool:
-    """Calendario alterno continuo: no se reinicia los lunes ni cada mes."""
+    """Gemini cada día; con GEMINI_ALTERNATE=1, calendario alterno continuo
+    (no se reinicia los lunes ni cada mes)."""
+    if os.getenv('GEMINI_ALTERNATE', '0').strip() != '1':
+        return True
     return (day - ANCHOR).days % 2 == 0
 
 

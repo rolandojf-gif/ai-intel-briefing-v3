@@ -9,6 +9,14 @@ from src import newtab_daily as daily
 
 
 class NewtabDailyTests(unittest.TestCase):
+    def test_gemini_runs_every_day_by_default(self):
+        import os
+        with patch.dict(os.environ, {}, clear=False):
+            os.environ.pop('GEMINI_ALTERNATE', None)
+            for n in range(0, 10):
+                self.assertTrue(daily.gemini_day(date(2026, 11, 16 + n)))
+
+    @patch.dict('os.environ', {'GEMINI_ALTERNATE': '1'})
     def test_calendar_does_not_reset_on_month_boundary(self):
         self.assertTrue(daily.gemini_day(date(2026, 10, 10)))
         self.assertFalse(daily.gemini_day(date(2026, 10, 11)))
