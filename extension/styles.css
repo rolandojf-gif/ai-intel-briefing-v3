@@ -154,8 +154,14 @@ button{font:inherit;cursor:pointer;color:inherit}
 .market-ticker-heading{display:flex;justify-content:space-between;gap:12px;align-items:center;font:400 10.5px var(--f-mono);color:var(--muted);text-transform:uppercase}
 .market-ticker-heading strong{display:flex;align-items:center;gap:8px;color:var(--text);font-weight:700;letter-spacing:.08em}
 .market-ticker-heading strong::before{content:"";width:10px;height:10px;background:var(--orange);border:2px solid var(--ink)}
-.market-ticker-quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-top:10px}
-.ticker-quote{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:5px;row-gap:3px;padding:8px 10px;border:1px solid var(--ink);background:var(--card-2);min-width:0}
+.market-ticker-view{overflow:hidden;margin-top:10px}
+.market-ticker-track{display:flex;width:max-content;animation:nexus-tick calc(var(--n) * 5s) linear infinite}
+.market-ticker-view:hover .market-ticker-track{animation-play-state:paused}
+@keyframes nexus-tick{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion: reduce){.market-ticker-track{animation:none}.market-ticker-view{overflow-x:auto}}
+.market-ticker-quotes{display:flex;gap:8px;padding-right:8px}
+.ticker-quote .market-spark{grid-column:1/-1;width:100%;height:20px}
+.ticker-quote{flex:0 0 210px;display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:5px;row-gap:3px;padding:8px 10px;border:1px solid var(--ink);background:var(--card-2);min-width:0}
 .ticker-name{font:600 10.5px var(--f-mono);color:var(--muted);grid-column:1/-1;text-transform:uppercase}
 .ticker-price{font:700 clamp(14px,1.3vw,18px) var(--f-mono);white-space:nowrap;font-variant-numeric:tabular-nums}
 .ticker-change{font:700 11px var(--f-mono);align-self:center;white-space:nowrap;text-align:right}
@@ -185,8 +191,9 @@ button{font:inherit;cursor:pointer;color:inherit}
   .editorial-rail{order:2}.lead-story{order:1}.latest-rail{order:3}
   .news-grid{grid-template-columns:1fr 1fr}
   .watch-grid{grid-template-columns:1fr}
-  .market-ticker-quotes{display:flex;overflow-x:auto;scrollbar-width:none}
-  .ticker-quote{flex:0 0 165px;grid-template-columns:1fr}
+  .ticker-quote{flex:0 0 170px;grid-template-columns:1fr}
+  .section-heading{flex-wrap:wrap}
+  .section-subtitle{white-space:normal}
   .ticker-change{text-align:left}
   .market-company-grid{grid-template-columns:1fr}
   .edition-bar{flex-direction:column;align-items:flex-start}

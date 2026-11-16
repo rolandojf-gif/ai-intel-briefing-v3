@@ -3,6 +3,7 @@ import { SOURCE_HOME, FRESH_MS, store, fetchLatest } from './src/feed.mjs';
 import { normalizeMarket, marketStore, fetchLatestMarket, marketCacheFresh } from './src/market.mjs';
 
 const byId = id => document.getElementById(id);
+const BAND_COMPANIES = ['NVDA', 'AMZN', 'MSFT', 'AAPL'];  // igual que TICKER_COMPANIES en src/render.py
 const RECHECK_MS = 10 * 60 * 1000;  // con la edicion de hoy en cache, recomprobar cada 10 min como mucho
 
 function setupTheme() {
@@ -102,14 +103,30 @@ function renderMarkets() {
   const bandLabel=el('div','market-ticker-heading');
   append(bandLabel,el('strong','','MERCADOS'),el('span','',`DATOS CONSULTADOS ${marketDateLabel(market.generatedAt)} · NO TIEMPO REAL`));
   append(ticker,bandLabel);
-  const band=el('div','market-ticker-quotes');
-  market.macro.forEach(q => {
-    const item=el('div','ticker-quote');
-    append(item,el('span','ticker-name',q.label),el('span','ticker-price',q.price));
-    append(item,el('span',`ticker-change ${q.available ? q.positive ? 'up':'down' : 'unavailable'}`,q.change||'SIN DATO'));
-    append(band,item);
-  });
-  append(ticker,band);
+  // Misma banda que la web: los indicadores macro + las cuatro grandes, en bucle.
+  // El contenido va dos veces para que la rotacion no tenga corte; la segunda
+  // copia queda fuera del arbol de accesibilidad.
+  const byTicker=new Map(market.companies.map(c=>[c.ticker,c]));
+  const quotes=[...market.macro, ...BAND_COMPANIES.map(t=>byTicker.get(t)).filter(Boolean)
+    .map(c=>({...c,label:c.label.replace(/ Corp\.$| Inc\.$|\.com Inc\.$/,'')}))];
+  const view=el('div','market-ticker-view');
+  const track=el('div','market-ticker-track');
+  track.style.setProperty('--n',String(quotes.length));
+  for (const copy of [0,1]) {
+    const band=el('div','market-ticker-quotes');
+    if (copy) band.setAttribute('aria-hidden','true');
+    quotes.forEach(q => {
+      const item=el('div','ticker-quote');
+      append(item,el('span','ticker-name',q.label),el('span','ticker-price',q.price));
+      append(item,el('span',`ticker-change ${q.available ? q.positive ? 'up':'down' : 'unavailable'}`,q.change||'SIN DATO'));
+      const spark=makeSparkline(q.sparkline,q.positive);
+      if (spark) append(item,spark);
+      append(band,item);
+    });
+    append(track,band);
+  }
+  append(view,track);
+  append(ticker,view);
   const valid=market.companies;
   companies.hidden=state.filter!=='all'||valid.length===0;
   if (valid.length===0)return;
