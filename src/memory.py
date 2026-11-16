@@ -141,8 +141,47 @@ def resolve_watchlist(history: list[dict], today_items: list[dict]) -> list[dict
 
 # -- Deltas de entidad -------------------------------------------------------
 
-def entity_deltas(history: list[dict], today_items: list[dict]) -> dict[str, Any]:
-    """Quien es nuevo, quien vuelve tras silencio y quien encadena dias."""
+def known_before(data_dir: Path, today: str) -> tuple[set[str], str]:
+    """Todo lo visto antes de hoy en el archivo: entidades y texto de titulares.
+
+    "Primera aparicion" se comparaba solo con los ultimos 10 dias: Alibaba,
+    Huawei o GPT-6 Astra salian como nuevos aunque llevaban meses en el radar.
+    """
+    names: set[str] = set()
+    texts: list[str] = []
+    if not data_dir.exists():
+        return names, ""
+    for p in sorted(data_dir.glob("*.json")):
+        if not _is_snapshot(p) or p.stem >= today:
+            continue
+        try:
+            snap = json.loads(p.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        for it in (snap.get("items") or []) if isinstance(snap, dict) else []:
+            if not isinstance(it, dict):
+                continue
+            names.update(str(e).strip().lower() for e in (it.get("entities") or []) if isinstance(e, str))
+            texts.append(" ".join(str(it.get(k) or "") for k in ("title", "title_es", "title_en", "so_what")))
+    return names, " ".join(texts).lower()
+
+
+def _seen_before(entity: str, known: tuple[set[str], str] | None) -> bool:
+    if not known:
+        return False
+    names, text = known
+    e = entity.strip().lower()
+    if e in names:
+        return True
+    return bool(re.search(r"(?<![\w-])" + re.escape(e) + r"(?![\w-])", text))
+
+
+def entity_deltas(history: list[dict], today_items: list[dict], known: tuple[set[str], str] | None = None) -> dict[str, Any]:
+    """Quien es nuevo, quien vuelve tras silencio y quien encadena dias.
+
+    `known` (de known_before) amplia "nuevo" a todo el archivo: solo es primera
+    aparicion si el nombre no salio nunca, ni como entidad ni en un titular.
+    """
     today_ents: set[str] = set()
     for it in today_items:
         for e in (it.get("entities") or []):
@@ -155,7 +194,7 @@ def entity_deltas(history: list[dict], today_items: list[dict]) -> dict[str, Any
     per_day = [_entities_of(s) for s in history]
     seen_ever = set().union(*per_day) if per_day else set()
 
-    new_entrants = sorted(e for e in today_ents if e not in seen_ever)
+    new_entrants = sorted(e for e in today_ents if e not in seen_ever and not _seen_before(e, known))
 
     returning = []
     for e in today_ents:

@@ -107,3 +107,31 @@ class SameStoryTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class EntityMergeTests(unittest.TestCase):
+    def _it(self, rid, title_es, ents, theme="frontier_capability", title_en=""):
+        return {"_rid": rid, "llm_score": 90, "verdict": "signal", "title_es": title_es, "title_en": title_en,
+                "so_what": f"analisis distinto numero {rid} " * 3, "entities": ents, "strategic_theme": theme}
+
+    def test_lab_blog_and_its_x_posts_are_one_story(self):
+        """2026-11-16: el blog de OpenAI y los posts de @OpenAI y @gdb salian como 3 cards."""
+        a = self._it(1, "OpenAI publica sobre una definición reticular del Modelo Estándar con GPT-6 Astra", ["OpenAI", "GPT-6 Astra"])
+        b = self._it(2, "Físico colabora con GPT-6 Astra para definir el Modelo Estándar en una retícula", ["OpenAI", "Nathaniel Craig", "GPT-6 Astra"])
+        c = self._it(3, "GPT-6 Astra utilizado en física teórica para definir el Modelo Estándar reticular", ["OpenAI", "GPT-6 Astra"])
+        for x in (a, b, c):
+            x["title_es"] = x["title_es"].replace("Modelo Estándar", "Modelo Estándar lattice")
+        self.assertEqual(merge_same_story([a, b, c]), 2)
+
+    def test_sharing_only_a_big_lab_or_a_loose_word_is_not_enough(self):
+        a = self._it(1, "OpenAI lanza ChatGPT Wallet para pagos de agentes", ["OpenAI", "ChatGPT Wallet"])
+        b = self._it(2, "OpenAI lanza Codex Cloud para agentes de programación", ["OpenAI", "Codex Cloud"])
+        self.assertFalse(same_story(a, b))
+        c = self._it(3, "Presentación de Gemini 3.6 Flash y Flash-Lite", ["Google", "flash"])
+        d = self._it(4, "Presentación del uso del ordenador en Gemini Flash", ["Google", "flash"])
+        self.assertFalse(same_story(c, d))
+
+    def test_same_name_but_different_theme_stays_apart(self):
+        a = self._it(1, "Gran modelo de lenguaje razona con grafos de tamaño", ["large language models"])
+        b = self._it(2, "Gran modelo de lenguaje y el tamaño de su huella ecológica", ["large language models"], theme="compute_chips_dc")
+        self.assertFalse(same_story(a, b))

@@ -20,6 +20,7 @@ from src.render import render_index
 from src.score import score_item
 from src.llm_rank import rank_batch
 from src.memory import (
+    known_before,
     _is_snapshot,
     activity_level,
     detect_threads,
@@ -969,7 +970,39 @@ def same_story(a: dict, b: dict) -> bool:
     ka, kb = _story_words(a.get("title_es")), _story_words(b.get("title_es"))
     if len(ka) >= 5 and len(kb) >= 5 and len(ka & kb) / min(len(ka), len(kb)) >= 0.85:
         return True
+
+    # Mismo hecho contado por el blog de un lab y por sus cuentas de X: titulares
+    # distintos, pero comparten un nombre PROPIO del suceso (un modelo, una
+    # persona; no "OpenAI" o "Nvidia") y las palabras clave del titular.
+    # Visto el 2026-11-16: GPT-6 Astra y el Modelo Estandar, en 3 cards.
+    ea = {str(e).strip().lower() for e in (a.get("entities") or []) if isinstance(e, str)}
+    eb = {str(e).strip().lower() for e in (b.get("entities") or []) if isinstance(e, str)}
+    # Solo nombres propios del suceso: varias palabras o con cifra ("GPT-6
+    # Astra", "Jensen Huang"). Palabras sueltas como "flash" o "agents", que el
+    # extractor antiguo tomaba por entidades, juntaban noticias distintas.
+    specific = {e for e in (ea & eb) - GENERIC_ACTORS if " " in e or re.search(r"\d", e)}
+    same_theme = (a.get("strategic_theme") or a.get("llm_theme")) == (b.get("strategic_theme") or b.get("llm_theme"))
+    if specific and same_theme:
+        skip = {w for e in specific for w in _story_words(e)}
+        wa = (_story_words(a.get("title_es")) | _story_words(a.get("title_en"))) - skip - GENERIC_WORDS
+        wb = (_story_words(b.get("title_es")) | _story_words(b.get("title_en"))) - skip - GENERIC_WORDS
+        if len({w for w in wa & wb if not w.isdigit()}) >= 2:
+            return True
     return False
+
+
+# Actores que aparecen en muchas noticias distintas el mismo dia: compartirlos
+# no indica que sea el mismo suceso.
+GENERIC_ACTORS = {
+    "openai", "anthropic", "google", "google deepmind", "deepmind", "meta", "microsoft", "nvidia",
+    "amazon", "aws", "apple", "xai", "deepseek", "alibaba", "huawei", "tsmc", "intel", "amd",
+    "mistral", "chatgpt", "claude", "gemini", "china", "estados unidos", "ee. uu.", "eeuu", "us", "usa",
+    "large language models", "large language model", "llm", "llms", "ai", "ia", "inteligencia artificial",
+    "artificial intelligence", "united states", "white house", "casa blanca",
+}
+GENERIC_WORDS = {"openai", "google", "anthropic", "nvidia", "nuevo", "nueva", "lanza", "launches", "para",
+                 "with", "from", "sobre", "como", "modelo", "model", "models", "modelos",
+                 "chip", "chips", "resumen", "análisis", "analysis", "nvidia", "meta", "apple", "agentes", "agents"}
 
 
 def merge_same_story(ranked: list[dict]) -> int:
@@ -1329,7 +1362,7 @@ def main():
         history = load_history(data_dir, today=today, days=10)
         memory = {
             "watch_resolved": resolve_watchlist(history, final_items),
-            "entity_deltas": entity_deltas(history, final_items),
+            "entity_deltas": entity_deltas(history, final_items, known_before(data_dir, today)),
             "threads": detect_threads(history, final_items),
         }
         level_label, level_class = activity_level(final_items, degraded=degraded)

@@ -260,3 +260,18 @@ class NewspaperLayoutTests(unittest.TestCase):
     def test_no_rest_section_when_everything_fits_on_the_front(self):
         self.assertIn('class="below no-rest"', self._html(n=1))
         self.assertIn('class="below"', self._html(n=9))
+
+
+class FirstAppearanceTests(unittest.TestCase):
+    def test_new_entrant_means_never_seen_in_the_whole_archive(self):
+        """Alibaba o Huawei salian como 'primera aparicion' por mirar solo 10 dias."""
+        from src.memory import entity_deltas, known_before
+        with tempfile.TemporaryDirectory() as tmp:
+            d = Path(tmp)
+            (d / "2026-08-06.json").write_text(json.dumps({"items": [{"title": "x", "entities": ["Alibaba"]}]}))
+            (d / "2026-09-01.json").write_text(json.dumps({"items": [{"title": "Gemini 4 Hydrogen leaks", "entities": []}]}))
+            (d / "2026-11-16.json").write_text(json.dumps({"items": [{"title": "hoy", "entities": ["Alibaba"]}]}))
+            known = known_before(d, "2026-11-16")
+            today = [{"entities": ["Alibaba", "Gemini 4 Hydrogen", "Nathaniel Craig"]}]
+            self.assertEqual(entity_deltas([], today, known)["new_entrants"], ["Nathaniel Craig"])
+            self.assertEqual(entity_deltas([], today)["new_entrants"], ["Alibaba", "Gemini 4 Hydrogen", "Nathaniel Craig"])
