@@ -98,7 +98,7 @@ def source_label(source: str) -> str:
     raw = (source or "Fuente").strip()
     if raw.startswith("X @"):
         return raw.replace("X @", "@", 1)
-    return raw.replace(" (AI)", "")
+    return raw.replace(" (AI)", "").replace(" (alto voltaje)", "")
 
 
 def source_logo_url(source: str, url: str = "") -> str:

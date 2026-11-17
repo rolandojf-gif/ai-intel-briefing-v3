@@ -278,6 +278,19 @@ def _mini_bars_html(series: List[int], days: List[str], accent_last: bool = True
     return f"<span class='mini-bars' aria-hidden='true'>{''.join(cells)}</span>"
 
 
+def _bi_opt(es: str, en: str) -> str:
+    """Par bilingüe que nunca expone texto en español cuando falta la traducción inglesa."""
+    es_t = (es or "").strip()
+    en_t = (en or "").strip()
+    if en_t and es_t:
+        return str(bi(es_t, en_t))
+    if en_t:
+        return f"<span class='l-en' lang='en'>{html_escape(en_t)}</span>"
+    if es_t:
+        return f"<span class='l-es'>{html_escape(es_t)}</span>"
+    return ""
+
+
 def _pick_weekly_top_signals(snapshots: List[Dict[str, Any]], limit: int = 6) -> List[Dict[str, Any]]:
     """Selecciona las mejores señales únicas de la semana, ordenadas por relevancia."""
     by_key: Dict[str, Dict[str, Any]] = {}
@@ -328,6 +341,36 @@ def main():
     weekly_risks: List[Tuple[str, str, str]] = []
     seen_risks = set()
 
+    # Recopila señales confirmadas y riesgos de más reciente a más antiguo
+    for di in range(n - 1, -1, -1):
+        snap = snapshots[di]
+        mem = snap.get("memory") or {}
+        for w in (mem.get("watch_resolved") or []):
+            if isinstance(w, dict) and w.get("status") == "hit":
+                wt_txt = clean_text(w.get("text") or "")
+                if wt_txt and wt_txt.lower() not in seen_watch_texts:
+                    seen_watch_texts.add(wt_txt.lower())
+                    confirmed_watches.append({
+                        "date": snap.get("date") or days[di],
+                        "text": wt_txt,
+                        "text_en": clean_text(w.get("text_en") or ""),
+                        "evidence": clean_text(w.get("evidence") or ""),
+                        "evidence_en": clean_text(w.get("evidence_en") or ""),
+                    })
+
+        br = snap.get("briefing") or {}
+        r_es_list = br.get("risks") or []
+        r_en_list = br.get("risks_en") or []
+        for ri, r_es in enumerate(r_es_list[:2]):
+            if not isinstance(r_es, str) or not r_es.strip():
+                continue
+            clean_r = clean_text(r_es)
+            r_key = clean_r[:50].lower()
+            if r_key not in seen_risks:
+                seen_risks.add(r_key)
+                clean_r_en = clean_text(r_en_list[ri]) if ri < len(r_en_list) and isinstance(r_en_list[ri], str) else ""
+                weekly_risks.append((snap.get("date") or days[di], clean_r, clean_r_en))
+
     for di, snap in enumerate(snapshots):
         items = snap.get("items", []) or []
         total_items_per_day.append(len(items))
@@ -342,35 +385,6 @@ def main():
         scores_today = [score_value(it) for it in items if isinstance(it, dict) and score_value(it) > 0]
         avg_sc = float(snap.get("score_avg") or (sum(scores_today) / len(scores_today) if scores_today else 0.0))
         avg_score_per_day.append(avg_sc)
-
-        # Recopila señales confirmadas (watch_resolved == hit)
-        mem = snap.get("memory") or {}
-        for w in (mem.get("watch_resolved") or []):
-            if isinstance(w, dict) and w.get("status") == "hit":
-                wt_txt = clean_text(w.get("text") or "")
-                if wt_txt and wt_txt.lower() not in seen_watch_texts:
-                    seen_watch_texts.add(wt_txt.lower())
-                    confirmed_watches.append({
-                        "date": snap.get("date") or days[di],
-                        "text": wt_txt,
-                        "text_en": clean_text(w.get("text_en") or "") or wt_txt,
-                        "evidence": clean_text(w.get("evidence") or ""),
-                        "evidence_en": clean_text(w.get("evidence_en") or ""),
-                    })
-
-        # Recopila riesgos estratégicos de los briefings
-        br = snap.get("briefing") or {}
-        r_es_list = br.get("risks") or []
-        r_en_list = br.get("risks_en") or []
-        for ri, r_es in enumerate(r_es_list[:2]):
-            if not isinstance(r_es, str) or not r_es.strip():
-                continue
-            clean_r = clean_text(r_es)
-            r_key = clean_r[:50].lower()
-            if r_key not in seen_risks:
-                seen_risks.add(r_key)
-                clean_r_en = clean_text(r_en_list[ri]) if ri < len(r_en_list) and isinstance(r_en_list[ri], str) else ""
-                weekly_risks.append((snap.get("date") or days[di], clean_r, clean_r_en))
 
         local_ent: Dict[str, int] = {}
         local_cat: Dict[str, int] = {}
@@ -594,9 +608,9 @@ def main():
         t_es = display_title(it)
         t_en = clean_text(it.get("title_en") or "") or clean_text(it.get("title") or "") or t_es
         sw_es = truncate_text(clean_text(it.get("so_what") or ""), 175)
-        sw_en = truncate_text(clean_text(it.get("so_what_en") or "") or clean_text(it.get("so_what") or ""), 175)
+        sw_en = truncate_text(clean_text(it.get("so_what_en") or ""), 175)
         pw_es = truncate_text(clean_text(it.get("power_shift") or ""), 85)
-        pw_en = truncate_text(clean_text(it.get("power_shift_en") or "") or clean_text(it.get("power_shift") or ""), 85)
+        pw_en = truncate_text(clean_text(it.get("power_shift_en") or ""), 85)
         url = safe_href(it.get("url") or it.get("link") or "")
         src_lbl = html_escape(source_label(it.get("source", "")))
         logo = html_escape(source_logo_url(it.get("source", ""), it.get("url") or it.get("link") or ""))
@@ -618,15 +632,15 @@ def main():
             )
 
         pw_block = ""
-        if pw_es:
+        if pw_es or pw_en:
             pw_block = (
                 f"<div class='wk-card-foot'>"
                 f"<div class='fact pw'><span class='k'>{bi('Impacto', 'Impact')}</span>"
-                f"<span class='v'>{bi(pw_es, pw_en)}</span></div>"
+                f"<span class='v'>{_bi_opt(pw_es, pw_en)}</span></div>"
                 f"</div>"
             )
 
-        sw_block = f"<p class='wk-card-sw'>{bi(sw_es, sw_en)}</p>" if sw_es else ""
+        sw_block = f"<p class='wk-card-sw'>{_bi_opt(sw_es, sw_en)}</p>" if (sw_es or sw_en) else ""
 
         top_cards_html_list.append(
             f"<article class='wk-card'>"
@@ -656,12 +670,13 @@ def main():
         d_str = days[di]
         snap = snapshots[di]
         br = snap.get("briefing") or {}
+        day_items = snap.get("items") or []
         th_es = clean_text(br.get("thesis") or "")
-        th_en = clean_text(br.get("thesis_en") or "") or th_es
+        th_en = clean_text(br.get("thesis_en") or "")
         if not th_es:
-            day_items = snap.get("items") or []
             th_es = display_title(day_items[0]) if day_items else "Sin movimientos de frontera."
-            th_en = clean_text((day_items[0].get("title_en") if day_items else "") or "") or th_es
+        if not th_en:
+            th_en = clean_text((day_items[0].get("title_en") or day_items[0].get("title") if day_items else "") or "") or "No frontier shifts."
         act = snap.get("activity") or {"label": "ACTIVO", "class": "active"}
         act_lbl = str(act.get("label") or "ACTIVO")
         act_en = ACTIVITY_EN.get(act_lbl, act_lbl)
@@ -680,7 +695,7 @@ def main():
             f"<span class='tl-cnt'>{n_sig} {bi('señales', 'signals')}{f' · +{n_ctx} ctx' if n_ctx else ''}</span>"
             f"<span class='score {sc_cls}'>{bi('Media', 'Avg')} {avg_sc}/100</span>"
             f"</div>"
-            f"<p class='tl-thesis'>{bi(truncate_text(th_es, 165), truncate_text(th_en, 165))}</p>"
+            f"<p class='tl-thesis'>{_bi_opt(truncate_text(th_es, 165), truncate_text(th_en, 165))}</p>"
             f"<div class='tl-bar'><i style='width:{pct_bar}%'></i></div>"
             f"</a>"
         )
@@ -796,19 +811,21 @@ def main():
         w_rows_list = []
         for w in confirmed_watches[:3]:
             ev_html = ""
-            if w["evidence"]:
-                ev_html = f"<div class='wk-hit-ev'>→ {bi(w['evidence'], w['evidence_en'])}</div>"
+            if w["evidence"] or w["evidence_en"]:
+                ev_html = f"<div class='wk-hit-ev'>→ {_bi_opt(w['evidence'], w['evidence_en'])}</div>"
             w_rows_list.append(
                 f"<div class='wk-watch-hit'>"
                 f"<span class='wk-hit-ic'>✓</span>"
-                f"<div><div class='wk-hit-t'>{bi(w['text'], w['text_en'])}</div>"
+                f"<div><div class='wk-hit-t'>{_bi_opt(w['text'], w['text_en'])}</div>"
                 f"{ev_html}</div></div>"
             )
         w_rows = "".join(w_rows_list)
+        w_cnt = len(confirmed_watches)
+        w_lbl = bi(f"{w_cnt} confirmada{'s' if w_cnt != 1 else ''}", f"{w_cnt} confirmed")
         watch_hits_html = (
             f"<div class='wk-subbox'>"
             f"<div class='wk-sub-h'><span>{bi('Señales confirmadas esta semana', 'Signals confirmed this week')}</span>"
-            f"<span class='lbl'>{len(confirmed_watches)} hit{'s' if len(confirmed_watches) != 1 else ''}</span></div>"
+            f"<span class='lbl'>{w_lbl}</span></div>"
             f"{w_rows}</div>"
         )
 
@@ -816,7 +833,7 @@ def main():
     if weekly_risks:
         r_rows = "".join(
             f"<div class='wk-risk-row'><span class='wk-rk-ic'>!</span>"
-            f"<div>{bi(r_es, r_en or r_es)}</div></div>"
+            f"<div>{_bi_opt(r_es, r_en)}</div></div>"
             for _, r_es, r_en in weekly_risks[:3]
         )
         risks_html = (
@@ -831,7 +848,7 @@ def main():
         title_en = clean_text(it.get("title_en") or "") or clean_text(it.get("title") or "") or title_es
         title_html = bi(title_es, title_en)
         sw_es = truncate_text(clean_text(it.get("so_what") or ""), 135)
-        sw_en = truncate_text(clean_text(it.get("so_what_en") or "") or clean_text(it.get("so_what") or ""), 135)
+        sw_en = truncate_text(clean_text(it.get("so_what_en") or ""), 135)
         url = (it.get("url") or it.get("link") or "").strip()
         src = html_escape(source_label(it.get("source") or ""))
         logo = html_escape(source_logo_url(it.get("source") or "", url))
@@ -842,7 +859,7 @@ def main():
         href = safe_href(url)
         tag = "a" if url else "div"
         href_attr = f" href='{href}' target='_blank' rel='noopener noreferrer'" if url else ""
-        hw_html = f"<div class='hw'>{bi(sw_es, sw_en)}</div>" if sw_es else ""
+        hw_html = f"<div class='hw'>{_bi_opt(sw_es, sw_en)}</div>" if (sw_es or sw_en) else ""
         date_span = f" · <span>{short_d}</span>" if short_d else ""
         return (
             f"<{tag} class='hit'{href_attr}>"
