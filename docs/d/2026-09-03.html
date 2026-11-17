@@ -316,12 +316,11 @@
   .ctx-block .section-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
   .sec-sub{margin:0;font:400 11.5px var(--f-mono);color:var(--muted);text-transform:uppercase}
   .ctx{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-  .cx{display:flex;gap:12px;align-items:flex-start;padding:14px;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow-sm)}
-  .cx img{width:20px;height:20px;padding:2px;background:var(--logo-bg);border:1px solid var(--line);flex-shrink:0;margin-top:2px}
-  .cx-b{min-width:0;flex:1}
-  .cx-t{font:700 15.5px/1.3 var(--f-head)}
-  .cx-w{font-size:13.5px;color:var(--muted);margin-top:5px;line-height:1.5}
-  .cx-m{font:400 11px var(--f-mono);color:var(--muted);margin-top:8px;text-transform:uppercase}
+  .cx{display:flex;flex-direction:column;gap:8px;padding:14px 16px;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow-sm)}
+  .cx .meta-row{margin-bottom:0}
+  .cx-tag{display:inline-block;font:700 10px/1 var(--f-mono);text-transform:uppercase;padding:3px 6px;border:1px solid var(--ink);background:var(--card-2);color:var(--text);flex-shrink:0}
+  .cx-t{margin:0;font:700 16px/1.3 var(--f-head);letter-spacing:-.01em}
+  .cx-w{font-size:13.5px;color:var(--muted);line-height:1.5;margin:0}
 
   .empty{padding:40px 26px;text-align:center;border:2px dashed var(--ink);background:var(--card)}
   .empty .big{font:700 20px var(--f-head);margin-bottom:8px;text-transform:uppercase}
@@ -495,7 +494,7 @@
           
           <div class="facts two">
             
-            <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Google mejora su oferta en modelos ligeros.</span></div>
+            <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v">Google mejora su oferta en modelos ligeros.</span></div>
             
             
             <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Pruebas de rendimiento público que confirmen la mejora en razonamiento e iteración con herramientas.</span></div>
@@ -564,7 +563,7 @@
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Google mejora su oferta en modelos ligeros.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v">Google mejora su oferta en modelos ligeros.</span></div>
               
               
               <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Pruebas de rendimiento público que confirmen la mejora en razonamiento e iteración con herramientas.</span></div>
@@ -594,7 +593,7 @@
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Anthropic y Claude ganan terreno en la adopción empresarial de agentes.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v">Anthropic y Claude ganan terreno en la adopción empresarial de agentes.</span></div>
               
               
               <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Anuncios de nuevas integraciones o métricas de adopción de agentes de comercio por parte de clientes.</span></div>
@@ -624,7 +623,7 @@
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Meta gana terreno significativamente, OpenAI ve un nuevo competidor directo.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v">Meta gana terreno significativamente, OpenAI ve un nuevo competidor directo.</span></div>
               
               
               <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Publicación de benchmarks y disponibilidad general de Muse Spark 1.3.</span></div>
@@ -654,7 +653,7 @@
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Meta se establece como un líder en capacidades frontier, desafiando a OpenAI.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v">Meta se establece como un líder en capacidades frontier, desafiando a OpenAI.</span></div>
               
               
               <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Lanzamiento oficial y APIs disponibles para el público o partners.</span></div>
@@ -685,7 +684,7 @@
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Moonshot y el stack chino de IA ganan potencial financiero y visibilidad.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v">Moonshot y el stack chino de IA ganan potencial financiero y visibilidad.</span></div>
               
               
               <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Confirmación oficial de la IPO y detalles de la valoración.</span></div>
@@ -715,7 +714,7 @@
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Hugging Face refuerza su papel en el stack de desarrollo de agentes.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v">Hugging Face refuerza su papel en el stack de desarrollo de agentes.</span></div>
               
               
               <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Ejemplos concretos de cómo Funes acelera o mejora el rendimiento de agentes de código en proyectos reales.</span></div>
@@ -746,7 +745,7 @@
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Empresas de semiconductores como Broadcom se benefician de la demanda de IA.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v">Empresas de semiconductores como Broadcom se benefician de la demanda de IA.</span></div>
               
               
               <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Confirmación de los datos de ventas de chips de Broadcom y otros fabricantes en próximos informes trimestrales.</span></div>
@@ -776,7 +775,7 @@
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">OpenAI establece un nuevo hito en seguridad, influyendo en la percepción de riesgo y confianza de modelos avanzados.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v">OpenAI establece un nuevo hito en seguridad, influyendo en la percepción de riesgo y confianza de modelos avanzados.</span></div>
               
               
               <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Detalle de los criterios de &#34;capacidad de ciberseguridad crítica&#34; y adopción por parte de otros labs.</span></div>
@@ -806,7 +805,7 @@
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Google DeepMind refuerza su catálogo de modelos especializados.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v">Google DeepMind refuerza su catálogo de modelos especializados.</span></div>
               
               
               <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Detalles sobre las capacidades específicas de la versión Cyber y su impacto en la ciberseguridad.</span></div>
@@ -836,7 +835,7 @@
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Anthropic afianza su rol como proveedor de infraestructura para agentes.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v">Anthropic afianza su rol como proveedor de infraestructura para agentes.</span></div>
               
               
               <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Desarrollo de más blueprints o marcos de trabajo similares para otros verticales.</span></div>
@@ -867,7 +866,7 @@
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Fable mejora su competitividad en el mercado empresarial.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v">Fable mejora su competitividad en el mercado empresarial.</span></div>
               
               
               <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Incremento de la base de usuarios empresariales de Fable o casos de éxito públicamente anunciados.</span></div>
@@ -897,7 +896,7 @@
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Meta fortalece el ecosistema open-source de agentes.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v">Meta fortalece el ecosistema open-source de agentes.</span></div>
               
               
               <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Desarrollo de marcos de seguridad o regulaciones específicas para el control de agentes autónomos.</span></div>
@@ -915,42 +914,45 @@
       <section class="ctx-block" id="ctx-block">
         <div class="section-h">
           <h2 class="sec"><span class="l-es">Contexto</span><span class="l-en" lang="en">Context</span></h2>
-          <p class="sec-sub"><span class="l-es">De fondo: no cambia nada hoy</span><span class="l-en" lang="en">Background: changes nothing today</span></p>
+          <p class="sec-sub"><span class="l-es">En segundo plano · Señales complementarias que completan la foto</span><span class="l-en" lang="en">In the background · Supporting signals shaping the backdrop</span></p>
         </div>
         <div class="ctx">
           
-          <div class="cx" data-topic="geopolitics_power" data-new="1">
-            <img src="https://www.google.com/s2/favicons?domain=chinatalk.media&amp;sz=64" alt="" loading="lazy"/>
-            <div class="cx-b">
-              <div class="cx-t">
-                <a href="https://www.chinatalk.media/p/china-on-the-hugging-face-incident" target="_blank" rel="noopener noreferrer"><span class="l-es">China busca redefinir la narrativa de la seguridad en IA tras el incidente de Hugging Face</span><span class="l-en" lang="en">China on the Hugging Face Incident</span></a>
-              </div>
-              <div class="cx-w">Este artículo muestra cómo China está influyendo en la conversación global sobre la seguridad de la IA, lo que podría impactar las regulaciones y estándares futuros, especialmente para modelos open-source.</div>
-              <div class="cx-m"><span class="l-es">Geopolítica</span><span class="l-en" lang="en">Geopolitics</span> · ChinaTalk · 58</div>
+          <article class="cx" data-topic="geopolitics_power" data-new="1">
+            <div class="meta-row">
+              <span class="cx-tag"><span class="l-es">Geopolítica</span><span class="l-en" lang="en">Geopolitics</span></span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=chinatalk.media&amp;sz=64" alt="" loading="lazy"/>ChinaTalk</span>
+              <span class="score">58</span>
             </div>
-          </div>
+            <h3 class="cx-t">
+              <a href="https://www.chinatalk.media/p/china-on-the-hugging-face-incident" target="_blank" rel="noopener noreferrer"><span class="l-es">China busca redefinir la narrativa de la seguridad en IA tras el incidente de Hugging Face</span><span class="l-en" lang="en">China on the Hugging Face Incident</span></a>
+            </h3>
+            <div class="cx-w">Este artículo muestra cómo China está influyendo en la conversación global sobre la seguridad de la IA, lo que podría impactar las regulaciones y estándares futuros, especialmente para modelos open-source.</div>
+          </article>
           
-          <div class="cx" data-topic="agents_automation" data-new="0">
-            <img src="https://www.google.com/s2/favicons?domain=openai.com&amp;sz=64" alt="" loading="lazy"/>
-            <div class="cx-b">
-              <div class="cx-t">
-                <a href="https://openai.com/index/ai-native-company-workflows" target="_blank" rel="noopener noreferrer"><span class="l-es">OpenAI muestra cómo empresas nativas de IA transforman flujos de trabajo en capacidades operativas</span><span class="l-en" lang="en">How AI-native companies turn workflows into operating capability</span></a>
-              </div>
-              <div class="cx-w">Presenta ejemplos de empresas que usan agentes de IA para optimizar procesos, demostrando el potencial de los agentes para mejorar la eficiencia operativa y la ventaja competitiva en la empresa.</div>
-              <div class="cx-m"><span class="l-es">Agentes</span><span class="l-en" lang="en">Agents</span> · OpenAI · 57</div>
+          <article class="cx" data-topic="agents_automation" data-new="0">
+            <div class="meta-row">
+              <span class="cx-tag"><span class="l-es">Agentes</span><span class="l-en" lang="en">Agents</span></span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=openai.com&amp;sz=64" alt="" loading="lazy"/>OpenAI</span>
+              <span class="score">57</span>
             </div>
-          </div>
+            <h3 class="cx-t">
+              <a href="https://openai.com/index/ai-native-company-workflows" target="_blank" rel="noopener noreferrer"><span class="l-es">OpenAI muestra cómo empresas nativas de IA transforman flujos de trabajo en capacidades operativas</span><span class="l-en" lang="en">How AI-native companies turn workflows into operating capability</span></a>
+            </h3>
+            <div class="cx-w">Presenta ejemplos de empresas que usan agentes de IA para optimizar procesos, demostrando el potencial de los agentes para mejorar la eficiencia operativa y la ventaja competitiva en la empresa.</div>
+          </article>
           
-          <div class="cx" data-topic="agents_automation" data-new="0">
-            <img src="https://www.google.com/s2/favicons?domain=x.ai&amp;sz=64" alt="" loading="lazy"/>
-            <div class="cx-b">
-              <div class="cx-t">
-                <a href="https://x.ai/news/grok-bot-and-x" target="_blank" rel="noopener noreferrer"><span class="l-es">Grok Bot se integra con la plataforma X</span><span class="l-en" lang="en">Grok Bot now works with X - X.ai</span></a>
-              </div>
-              <div class="cx-w">La integración de Grok Bot en X amplía el alcance y la funcionalidad de los agentes de xAI en una plataforma social masiva, con implicaciones para la automatización de interacciones y difusión de información.</div>
-              <div class="cx-m"><span class="l-es">Agentes</span><span class="l-en" lang="en">Agents</span> · xAI · 56</div>
+          <article class="cx" data-topic="agents_automation" data-new="0">
+            <div class="meta-row">
+              <span class="cx-tag"><span class="l-es">Agentes</span><span class="l-en" lang="en">Agents</span></span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=x.ai&amp;sz=64" alt="" loading="lazy"/>xAI</span>
+              <span class="score">56</span>
             </div>
-          </div>
+            <h3 class="cx-t">
+              <a href="https://x.ai/news/grok-bot-and-x" target="_blank" rel="noopener noreferrer"><span class="l-es">Grok Bot se integra con la plataforma X</span><span class="l-en" lang="en">Grok Bot now works with X - X.ai</span></a>
+            </h3>
+            <div class="cx-w">La integración de Grok Bot en X amplía el alcance y la funcionalidad de los agentes de xAI en una plataforma social masiva, con implicaciones para la automatización de interacciones y difusión de información.</div>
+          </article>
           
         </div>
       </section>

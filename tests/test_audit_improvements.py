@@ -212,6 +212,10 @@ class UxTimezoneHealthTests(unittest.TestCase):
                 "layer": "signal",
                 "score": 90,
                 "strategic_theme": "frontier_capability",
+                "power_shift": "X gana / Y pierde",
+                "power_shift_en": "X gains / Y loses",
+                "watch_next": "Hito verificable",
+                "watch_next_en": "Verifiable milestone",
                 "url": "https://example.com/1",
                 "is_new": True,
             },
@@ -246,6 +250,11 @@ class UxTimezoneHealthTests(unittest.TestCase):
         self.assertIn('id="ctx-block"', html)
         self.assertIn("yesterday's edition", html)
         self.assertIn("X off", html)
+        self.assertIn('<span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span>', html)
+        self.assertIn('<span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span>', html)
+        self.assertIn("En segundo plano", html)
+        self.assertIn("Supporting signals shaping the backdrop", html)
+        self.assertIn('<span class="cx-tag">', html)
 
     def test_health_check_warns_when_x_layer_killed_without_failing(self):
         snap = {

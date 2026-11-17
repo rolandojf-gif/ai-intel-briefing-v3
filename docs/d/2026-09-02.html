@@ -316,12 +316,11 @@
   .ctx-block .section-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
   .sec-sub{margin:0;font:400 11.5px var(--f-mono);color:var(--muted);text-transform:uppercase}
   .ctx{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-  .cx{display:flex;gap:12px;align-items:flex-start;padding:14px;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow-sm)}
-  .cx img{width:20px;height:20px;padding:2px;background:var(--logo-bg);border:1px solid var(--line);flex-shrink:0;margin-top:2px}
-  .cx-b{min-width:0;flex:1}
-  .cx-t{font:700 15.5px/1.3 var(--f-head)}
-  .cx-w{font-size:13.5px;color:var(--muted);margin-top:5px;line-height:1.5}
-  .cx-m{font:400 11px var(--f-mono);color:var(--muted);margin-top:8px;text-transform:uppercase}
+  .cx{display:flex;flex-direction:column;gap:8px;padding:14px 16px;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow-sm)}
+  .cx .meta-row{margin-bottom:0}
+  .cx-tag{display:inline-block;font:700 10px/1 var(--f-mono);text-transform:uppercase;padding:3px 6px;border:1px solid var(--ink);background:var(--card-2);color:var(--text);flex-shrink:0}
+  .cx-t{margin:0;font:700 16px/1.3 var(--f-head);letter-spacing:-.01em}
+  .cx-w{font-size:13.5px;color:var(--muted);line-height:1.5;margin:0}
 
   .empty{padding:40px 26px;text-align:center;border:2px dashed var(--ink);background:var(--card)}
   .empty .big{font:700 20px var(--f-head);margin-bottom:8px;text-transform:uppercase}
@@ -493,7 +492,7 @@
           
           <div class="facts two">
             
-            <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Anthropic gana / Otros frontier labs se ven presionados</span></div>
+            <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v">Anthropic gana / Otros frontier labs se ven presionados</span></div>
             
             
             <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Ver si otros modelos igualan o superan el rendimiento de Fable 5.1 en benchmarks públicos.</span></div>
@@ -562,7 +561,7 @@
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Anthropic gana / Otros frontier labs se ven presionados</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v">Anthropic gana / Otros frontier labs se ven presionados</span></div>
               
               
               <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Ver si otros modelos igualan o superan el rendimiento de Fable 5.1 en benchmarks públicos.</span></div>
@@ -593,7 +592,7 @@
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Anthropic gana cuota de mercado empresarial / Competidores con políticas de datos restrictivas pierden.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v">Anthropic gana cuota de mercado empresarial / Competidores con políticas de datos restrictivas pierden.</span></div>
               
               
               <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Aumento tangible en el uso de Claude por empresas que antes rechazaban sus políticas.</span></div>
@@ -624,7 +623,7 @@
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Anthropic (con Claude) gana en capacidades de agentes de código / Desarrolladores humanos para este tipo de tareas pier…</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v">Anthropic (con Claude) gana en capacidades de agentes de código / Desarrolladores humanos para este tipo de tareas pier…</span></div>
               
               
               <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Publicación del código o validación independiente de la complejidad y autonomía del proceso.</span></div>
@@ -654,7 +653,7 @@
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Anthropic gana en percepción de capacidad / Modelos rivales pierden su ventaja aparente.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v">Anthropic gana en percepción de capacidad / Modelos rivales pierden su ventaja aparente.</span></div>
               
               
               <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Reacciones de otros labs a estos benchmarks y posibles lanzamientos competitivos.</span></div>
@@ -684,7 +683,7 @@
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">OpenAI refuerza su liderazgo en modelos seguros / Otros labs son presionados a igualar estándares de seguridad.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v">OpenAI refuerza su liderazgo en modelos seguros / Otros labs son presionados a igualar estándares de seguridad.</span></div>
               
               
               <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Detalles técnicos sobre las capacidades específicas de ciberseguridad y su evaluación por terceros.</span></div>
@@ -715,7 +714,7 @@
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Fabricantes de chips, equipamiento para centros de datos y proveedores de energía ganan / Aquellos que no puedan escala…</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v">Fabricantes de chips, equipamiento para centros de datos y proveedores de energía ganan / Aquellos que no puedan escala…</span></div>
               
               
               <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Informes trimestrales de los principales proveedores de servicios cloud que confirmen este aumento de inversión en cape…</span></div>
@@ -745,7 +744,7 @@
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">AfterQuery gana / Competidores sin financiación similar pierden</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v">AfterQuery gana / Competidores sin financiación similar pierden</span></div>
               
               
               <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Confirmación de la ronda y detalles sobre el uso del capital para escalar infraestructura de entrenamiento.</span></div>
@@ -775,7 +774,7 @@
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Google DeepMind gana en capacidades multimodales y agénticas / Competidores sin esta capacidad pierden terreno en visió…</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v">Google DeepMind gana en capacidades multimodales y agénticas / Competidores sin esta capacidad pierden terreno en visió…</span></div>
               
               
               <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Disponibilidad de la API o herramientas para desarrolladores que usen esta capacidad.</span></div>
@@ -806,7 +805,7 @@
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Labs de IA en EE.UU. ganan libertad regulatoria / Países que abogan por regulación estricta pierden influencia en el ri…</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v">Labs de IA en EE.UU. ganan libertad regulatoria / Países que abogan por regulación estricta pierden influencia en el ri…</span></div>
               
               
               <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Conclusión del G20 sobre IA y declaraciones de otros países clave.</span></div>
@@ -836,7 +835,7 @@
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Ingenieros con dominio de IA agéntica ganan / Roles de ejecución manual pierden.</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v">Ingenieros con dominio de IA agéntica ganan / Roles de ejecución manual pierden.</span></div>
               
               
               <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Publicación de estudios de caso concretos de ChipAgents o similares con despliegues a escala.</span></div>
@@ -866,7 +865,7 @@
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Propietarios de contenido (Hollywood) ganan poder de negociación / Labs de IA necesitan acceso a datos y deben pagar po…</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v">Propietarios de contenido (Hollywood) ganan poder de negociación / Labs de IA necesitan acceso a datos y deben pagar po…</span></div>
               
               
               <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Anuncios de acuerdos concretos entre Google y grandes estudios, y las sumas involucradas.</span></div>
@@ -896,7 +895,7 @@
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k"><span class="l-es">Poder</span><span class="l-en" lang="en">Power</span></span><span class="v">Empresas que adoptan agentes para automatizar procesos ganan eficiencia / Negocios tradicionales con flujos manuales pi…</span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v">Empresas que adoptan agentes para automatizar procesos ganan eficiencia / Negocios tradicionales con flujos manuales pi…</span></div>
               
               
               <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v">Datos de impacto medibles (coste, tiempo) de estas implementaciones a gran escala.</span></div>
@@ -914,42 +913,45 @@
       <section class="ctx-block" id="ctx-block">
         <div class="section-h">
           <h2 class="sec"><span class="l-es">Contexto</span><span class="l-en" lang="en">Context</span></h2>
-          <p class="sec-sub"><span class="l-es">De fondo: no cambia nada hoy</span><span class="l-en" lang="en">Background: changes nothing today</span></p>
+          <p class="sec-sub"><span class="l-es">En segundo plano · Señales complementarias que completan la foto</span><span class="l-en" lang="en">In the background · Supporting signals shaping the backdrop</span></p>
         </div>
         <div class="ctx">
           
-          <div class="cx" data-topic="frontier_capability" data-new="1">
-            <img src="https://www.google.com/s2/favicons?domain=huggingface.co&amp;sz=64" alt="" loading="lazy"/>
-            <div class="cx-b">
-              <div class="cx-t">
-                <a href="https://huggingface.co/blog/allenai/benchmirt" target="_blank" rel="noopener noreferrer"><span class="l-es">BenchMIRT cuestiona la validez de las métricas en los benchmarks de LLM</span><span class="l-en" lang="en">BenchMIRT: What are LLM benchmarks actually measuring?</span></a>
-              </div>
-              <div class="cx-w">El análisis de BenchMIRT sugiere que los benchmarks actuales pueden no medir adecuadamente las capacidades de los LLM, lo que implica que las comparaciones de SOTA podrían ser engañosas y la carrera no lineal.</div>
-              <div class="cx-m"><span class="l-es">Capacidad frontier</span><span class="l-en" lang="en">Frontier capability</span> · Hugging Face Blog · 67</div>
+          <article class="cx" data-topic="frontier_capability" data-new="1">
+            <div class="meta-row">
+              <span class="cx-tag"><span class="l-es">Capacidad frontier</span><span class="l-en" lang="en">Frontier capability</span></span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=huggingface.co&amp;sz=64" alt="" loading="lazy"/>Hugging Face Blog</span>
+              <span class="score">67</span>
             </div>
-          </div>
+            <h3 class="cx-t">
+              <a href="https://huggingface.co/blog/allenai/benchmirt" target="_blank" rel="noopener noreferrer"><span class="l-es">BenchMIRT cuestiona la validez de las métricas en los benchmarks de LLM</span><span class="l-en" lang="en">BenchMIRT: What are LLM benchmarks actually measuring?</span></a>
+            </h3>
+            <div class="cx-w">El análisis de BenchMIRT sugiere que los benchmarks actuales pueden no medir adecuadamente las capacidades de los LLM, lo que implica que las comparaciones de SOTA podrían ser engañosas y la carrera no lineal.</div>
+          </article>
           
-          <div class="cx" data-topic="geopolitics_power" data-new="1">
-            <img src="https://www.google.com/s2/favicons?domain=x.ai&amp;sz=64" alt="" loading="lazy"/>
-            <div class="cx-b">
-              <div class="cx-t">
-                <a href="https://x.ai/news/biosafety-at-the-frontier" target="_blank" rel="noopener noreferrer"><span class="l-es">xAI aborda la bioseguridad en el desarrollo de modelos frontera</span><span class="l-en" lang="en">Biosecurity at the frontier - X.ai</span></a>
-              </div>
-              <div class="cx-w">xAI publica su postura sobre la bioseguridad en IA, un tema crítico para el despliegue de modelos frontera, indicando una creciente preocupación por riesgos asociados a capacidades avanzadas.</div>
-              <div class="cx-m"><span class="l-es">Geopolítica</span><span class="l-en" lang="en">Geopolitics</span> · xAI · 66</div>
+          <article class="cx" data-topic="geopolitics_power" data-new="1">
+            <div class="meta-row">
+              <span class="cx-tag"><span class="l-es">Geopolítica</span><span class="l-en" lang="en">Geopolitics</span></span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=x.ai&amp;sz=64" alt="" loading="lazy"/>xAI</span>
+              <span class="score">66</span>
             </div>
-          </div>
+            <h3 class="cx-t">
+              <a href="https://x.ai/news/biosafety-at-the-frontier" target="_blank" rel="noopener noreferrer"><span class="l-es">xAI aborda la bioseguridad en el desarrollo de modelos frontera</span><span class="l-en" lang="en">Biosecurity at the frontier - X.ai</span></a>
+            </h3>
+            <div class="cx-w">xAI publica su postura sobre la bioseguridad en IA, un tema crítico para el despliegue de modelos frontera, indicando una creciente preocupación por riesgos asociados a capacidades avanzadas.</div>
+          </article>
           
-          <div class="cx" data-topic="model_economics" data-new="0">
-            <img src="https://www.google.com/s2/favicons?domain=together.ai&amp;sz=64" alt="" loading="lazy"/>
-            <div class="cx-b">
-              <div class="cx-t">
-                <a href="https://www.together.ai/blog/glm-5-3-vs-glm-5-3-flash-on-deepswe-cost-coding-and-routing" target="_blank" rel="noopener noreferrer"><span class="l-es">GLM-5.3 Flash rinde 17x más barato y un 5.6% menos en pass@1 DeepSWE</span><span class="l-en" lang="en">GLM-5.3 vs. GLM-5.3 Flash on DeepSWE: Cost, Coding, and Routing</span></a>
-              </div>
-              <div class="cx-w">GLM-5.3 Flash ofrece una alternativa mucho más barata para tareas de codificación con un sacrificio de rendimiento tolerable, afectando la economía de los agentes de software.</div>
-              <div class="cx-m"><span class="l-es">Economía de modelos</span><span class="l-en" lang="en">Model economics</span> · Together AI · 64</div>
+          <article class="cx" data-topic="model_economics" data-new="0">
+            <div class="meta-row">
+              <span class="cx-tag"><span class="l-es">Economía de modelos</span><span class="l-en" lang="en">Model economics</span></span>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=together.ai&amp;sz=64" alt="" loading="lazy"/>Together AI</span>
+              <span class="score">64</span>
             </div>
-          </div>
+            <h3 class="cx-t">
+              <a href="https://www.together.ai/blog/glm-5-3-vs-glm-5-3-flash-on-deepswe-cost-coding-and-routing" target="_blank" rel="noopener noreferrer"><span class="l-es">GLM-5.3 Flash rinde 17x más barato y un 5.6% menos en pass@1 DeepSWE</span><span class="l-en" lang="en">GLM-5.3 vs. GLM-5.3 Flash on DeepSWE: Cost, Coding, and Routing</span></a>
+            </h3>
+            <div class="cx-w">GLM-5.3 Flash ofrece una alternativa mucho más barata para tareas de codificación con un sacrificio de rendimiento tolerable, afectando la economía de los agentes de software.</div>
+          </article>
           
         </div>
       </section>

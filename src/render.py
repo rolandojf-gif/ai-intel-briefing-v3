@@ -380,12 +380,11 @@ TEMPLATE = ENV.from_string("""
   .ctx-block .section-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
   .sec-sub{margin:0;font:400 11.5px var(--f-mono);color:var(--muted);text-transform:uppercase}
   .ctx{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-  .cx{display:flex;gap:12px;align-items:flex-start;padding:14px;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow-sm)}
-  .cx img{width:20px;height:20px;padding:2px;background:var(--logo-bg);border:1px solid var(--line);flex-shrink:0;margin-top:2px}
-  .cx-b{min-width:0;flex:1}
-  .cx-t{font:700 15.5px/1.3 var(--f-head)}
-  .cx-w{font-size:13.5px;color:var(--muted);margin-top:5px;line-height:1.5}
-  .cx-m{font:400 11px var(--f-mono);color:var(--muted);margin-top:8px;text-transform:uppercase}
+  .cx{display:flex;flex-direction:column;gap:8px;padding:14px 16px;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow-sm)}
+  .cx .meta-row{margin-bottom:0}
+  .cx-tag{display:inline-block;font:700 10px/1 var(--f-mono);text-transform:uppercase;padding:3px 6px;border:1px solid var(--ink);background:var(--card-2);color:var(--text);flex-shrink:0}
+  .cx-t{margin:0;font:700 16px/1.3 var(--f-head);letter-spacing:-.01em}
+  .cx-w{font-size:13.5px;color:var(--muted);line-height:1.5;margin:0}
 
   .empty{padding:40px 26px;text-align:center;border:2px dashed var(--ink);background:var(--card)}
   .empty .big{font:700 20px var(--f-head);margin-bottom:8px;text-transform:uppercase}
@@ -593,7 +592,7 @@ TEMPLATE = ENV.from_string("""
           {% if hero.power_shift or hero.watch_next %}
           <div class="facts {% if hero.power_shift and hero.watch_next %}two{% endif %}">
             {% if hero.power_shift %}
-            <div class="fact pw"><span class="k">{{ bi("Poder","Power") }}</span><span class="v">{{ bi(hero.power_shift, hero.power_shift_en) }}</span></div>
+            <div class="fact pw"><span class="k">{{ bi("Impacto","Impact") }}</span><span class="v">{{ bi(hero.power_shift, hero.power_shift_en) }}</span></div>
             {% endif %}
             {% if hero.watch_next %}
             <div class="fact wn"><span class="k">{{ bi("Vigilar","Watch") }}</span><span class="v">{{ bi(hero.watch_next, hero.watch_next_en) }}</span></div>
@@ -679,7 +678,7 @@ TEMPLATE = ENV.from_string("""
             {% if it.power_shift or it.watch_next %}
             <div class="card-foot">
               {% if it.power_shift %}
-              <div class="fact pw"><span class="k">{{ bi("Poder","Power") }}</span><span class="v">{{ bi(it.power_shift, it.power_shift_en) }}</span></div>
+              <div class="fact pw"><span class="k">{{ bi("Impacto","Impact") }}</span><span class="v">{{ bi(it.power_shift, it.power_shift_en) }}</span></div>
               {% endif %}
               {% if it.watch_next %}
               <div class="fact wn"><span class="k">{{ bi("Vigilar","Watch") }}</span><span class="v">{{ bi(it.watch_next, it.watch_next_en) }}</span></div>
@@ -697,20 +696,21 @@ TEMPLATE = ENV.from_string("""
       <section class="ctx-block" id="ctx-block">
         <div class="section-h">
           <h2 class="sec">{{ bi("Contexto","Context") }}</h2>
-          <p class="sec-sub">{{ bi("De fondo: no cambia nada hoy","Background: changes nothing today") }}</p>
+          <p class="sec-sub">{{ bi("En segundo plano · Señales complementarias que completan la foto","In the background · Supporting signals shaping the backdrop") }}</p>
         </div>
         <div class="ctx">
           {% for it in context %}
-          <div class="cx" data-topic="{{ it.theme_key }}" data-new="{{ 1 if it.is_new else 0 }}">
-            <img src="{{ it.logo }}" alt="" loading="lazy"/>
-            <div class="cx-b">
-              <div class="cx-t">
-                <a href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ bi(it.display_title, it.title_en) }}</a>
-              </div>
-              {% if it.so_what %}<div class="cx-w">{{ bi(it.so_what, it.so_what_en) }}</div>{% endif %}
-              <div class="cx-m">{{ bi(it.theme_label, it.theme_label_en) }} · {{ it.source_label }} · {{ it.score }}</div>
+          <article class="cx" data-topic="{{ it.theme_key }}" data-new="{{ 1 if it.is_new else 0 }}">
+            <div class="meta-row">
+              <span class="cx-tag">{{ bi(it.theme_label, it.theme_label_en) }}</span>
+              <span class="src"><img src="{{ it.logo }}" alt="" loading="lazy"/>{{ it.source_label }}</span>
+              <span class="score">{{ it.score }}</span>
             </div>
-          </div>
+            <h3 class="cx-t">
+              <a href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ bi(it.display_title, it.title_en) }}</a>
+            </h3>
+            {% if it.so_what %}<div class="cx-w">{{ bi(it.so_what, it.so_what_en) }}</div>{% endif %}
+          </article>
           {% endfor %}
         </div>
       </section>
