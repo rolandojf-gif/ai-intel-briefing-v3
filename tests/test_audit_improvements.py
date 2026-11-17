@@ -284,6 +284,37 @@ class UxTimezoneHealthTests(unittest.TestCase):
         self.assertEqual(code, 0)
         self.assertTrue(any("::warning title=Capa X apagada::" in a for a in annotations))
         self.assertTrue(any("Capa X apagada" in line for line in summary))
+    def test_weekly_deduplicates_items_and_renders_modern_dossier(self):
+        from pathlib import Path
+        import src.weekly as weekly
+        snaps = [
+            {
+                "date": "2026-11-16",
+                "items": [
+                    {"title_es": "Qwen4-Max v1", "url": "https://example.com/qwen4", "score": 100, "layer": "signal", "entities": ["Alibaba"]},
+                ],
+            },
+            {
+                "date": "2026-11-17",
+                "items": [
+                    {"title_es": "Qwen4-Max repetida", "url": "https://example.com/qwen4/", "score": 72, "layer": "context", "entities": ["Alibaba"]},
+                    {"title_es": "Agentes OpenAI", "url": "https://example.com/openai", "score": 94, "layer": "signal", "entities": ["OpenAI"]},
+                ],
+            },
+        ]
+        ent_hits = weekly.pick_items_for_entity(snaps, "Alibaba", limit=6)
+        self.assertEqual(len(ent_hits), 1)
+        top_hits = weekly._pick_weekly_top_signals(snaps, limit=6)
+        self.assertEqual(len(top_hits), 2)
+        self.assertEqual(top_hits[0]["score"], 100)
+
+        weekly.main()
+        html = Path("docs/weekly.html").read_text(encoding="utf-8")
+        self.assertIn('class="kpi-grid"', html)
+        self.assertIn("class='tl-day'", html)
+        self.assertIn("class='wk-card'", html)
+        self.assertIn('id="wk-tabs"', html)
+        self.assertNotIn("&amp;quot;", html)
 
 
 if __name__ == "__main__":
