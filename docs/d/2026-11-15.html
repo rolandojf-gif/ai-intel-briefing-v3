@@ -279,11 +279,20 @@
        border:2px solid var(--ink);background:var(--card-2);flex-shrink:0}
   .tag{background:var(--orange);color:#121211}
   .badge-new{background:var(--lime);color:#121211}
-  .score{font:700 11px var(--f-mono);color:var(--muted);margin-left:auto}
-  .copy-btn{font:700 10.5px/1 var(--f-mono);text-transform:uppercase;padding:5px 8px;cursor:pointer;
-            border:2px solid var(--ink);background:var(--card);color:var(--text);flex-shrink:0}
-  .copy-btn:hover{background:rgba(204,255,0,.3)}
-  .copy-btn.ok{background:#34D399;color:#121211}
+  .score{display:inline-flex;align-items:center;font:700 11px/1 var(--f-mono);margin-left:auto;padding:4px 7px;
+         border:1px solid var(--line);background:var(--card-2);color:var(--muted);font-variant-numeric:tabular-nums;
+         letter-spacing:.02em;flex-shrink:0}
+  .score.s-95{background:#FF4500;color:#121211;border:2px solid var(--ink);box-shadow:1px 1px 0 var(--ink)}
+  .score.s-88{background:#FF8A5C;color:#121211;border:1.5px solid var(--ink)}
+  .score.s-80{background:#FFE4D6;color:#9A3412;border:1.5px solid #EA580C}
+  .score.s-70{background:#F3F1EA;color:var(--muted);border:1px solid var(--line)}
+  .score.s-low{background:var(--card-2);color:var(--muted);border:1px solid var(--line);opacity:.82}
+  :root[data-theme="dark"] .score.s-80{background:rgba(255,87,34,.22);color:#FFA07A;border-color:#EA580C}
+  :root[data-theme="dark"] .score.s-70{background:#232320;color:var(--muted);border-color:var(--line)}
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]) .score.s-80{background:rgba(255,87,34,.22);color:#FFA07A;border-color:#EA580C}
+    :root:not([data-theme="light"]) .score.s-70{background:#232320;color:var(--muted);border-color:var(--line)}
+  }
   .hero-title{margin:0 0 10px;font:700 clamp(21px,2.4vw,30px)/1.15 var(--f-head);letter-spacing:-.02em}
   .hero-title a:hover,.card-title a:hover,.cx-t a:hover{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
   .sw{font-size:15px;line-height:1.6}
@@ -305,10 +314,11 @@
   .card-body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
   .card .meta-row{margin-bottom:0}
   .card-title{margin:0;font:700 19px/1.2 var(--f-head);letter-spacing:-.01em}
-  .card .sw{font-size:14px;line-height:1.55;color:var(--muted);
-            display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .card .sw{font-size:14px;line-height:1.5;color:var(--muted);
+            display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
   .card-foot{margin-top:auto;padding-top:10px;border-top:1px dashed var(--line);display:grid;gap:6px}
-  .card-foot .fact{font-size:12px}
+  .card-foot .fact{font-size:12px;line-height:1.4}
+  .card-foot .fact .v{min-width:0;flex:1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 
   /* -- Contexto -- */
   .section-h{margin:34px 0 14px}
@@ -320,7 +330,8 @@
   .cx .meta-row{margin-bottom:0}
   .cx-tag{display:inline-block;font:700 10px/1 var(--f-mono);text-transform:uppercase;padding:3px 6px;border:1px solid var(--ink);background:var(--card-2);color:var(--text);flex-shrink:0}
   .cx-t{margin:0;font:700 16px/1.3 var(--f-head);letter-spacing:-.01em}
-  .cx-w{font-size:13.5px;color:var(--muted);line-height:1.5;margin:0}
+  .cx-w{font-size:13.5px;color:var(--muted);line-height:1.48;margin:0;
+        display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 
   .empty{padding:40px 26px;text-align:center;border:2px dashed var(--ink);background:var(--card)}
   .empty .big{font:700 20px var(--f-head);margin-bottom:8px;text-transform:uppercase}
@@ -495,8 +506,7 @@
       </a>
       <div class="lead-meta">
         <span class="src"><img src="https://www.google.com/s2/favicons?domain=theverge.com&amp;sz=64" alt="" loading="lazy"/>The Verge AI</span>
-        <span class="score"><span class="l-es">Relevancia</span><span class="l-en" lang="en">Relevance</span> 96/100</span>
-        <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+        <span class="score s-95"><span class="l-es">Relevancia</span><span class="l-en" lang="en">Relevance</span> 96/100</span>
       </div>
           
           <div class="facts two">
@@ -559,8 +569,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=theverge.com&amp;sz=64" alt="" loading="lazy"/>The Verge AI</span>
               
-              <span class="score">96</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-95">96/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://www.theverge.com/column/1033943/jensen-huang-nvidia-china-spying-scandal-resignation" target="_blank" rel="noopener noreferrer"><span class="l-es">Análisis de la dimisión de Jensen Huang de Nvidia y las repercusiones de la crisis de liderazgo.</span><span class="l-en" lang="en">Analysis of Jensen Huang&#39;s resignation from Nvidia and the repercussions of the leadership crisis.</span></a>
@@ -589,8 +598,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=techcrunch.com&amp;sz=64" alt="" loading="lazy"/>TechCrunch AI</span>
               
-              <span class="score">93</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-88">93/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://techcrunch.com/2026/11/14/where-was-nvidias-security-team/" target="_blank" rel="noopener noreferrer"><span class="l-es">Jefe de seguridad de Nvidia dimitió en agosto antes de la salida de Jensen Huang y sospechas de filtración de chips.</span><span class="l-en" lang="en">Nvidia&#39;s security chief resigned in August before Jensen Huang&#39;s exit and suspected chip leaks.</span></a>
@@ -619,8 +627,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=finance.yahoo.com&amp;sz=64" alt="" loading="lazy"/>Yahoo Finance (AI &amp; semis)</span>
               
-              <span class="score">92</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-88">92/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://247wallst.com/investing/2026/11/15/elon-musk-warns-nvidia-will-lose-critical-deals-without-jensen-huang/?.tsrc=rss" target="_blank" rel="noopener noreferrer"><span class="l-es">Elon Musk advierte que Nvidia perderá acuerdos clave en la cadena de suministro sin Jensen Huang.</span><span class="l-en" lang="en">Elon Musk warns Nvidia will lose &#39;critical deals&#39; in the supply chain without Jensen Huang.</span></a>
@@ -649,8 +656,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=x.com&amp;sz=64" alt="" loading="lazy"/>@gdb</span>
               <span class="multi">+1</span>
-              <span class="score">85</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-80">85/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://x.com/gdb/status/2121295213025194172" target="_blank" rel="noopener noreferrer"><span class="l-es">ChatGPT Wallet permite a los agentes realizar compras seguras con aprobación del usuario.</span><span class="l-en" lang="en">ChatGPT Wallet enables agents to make secure purchases with user approval.</span></a>
@@ -683,8 +689,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=the-decoder.com&amp;sz=64" alt="" loading="lazy"/>The Decoder</span>
               
-              <span class="score">84</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-80">84/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://the-decoder.com/anthropics-claude-fable-5-2-doesnt-generate-images-it-paints-them/" target="_blank" rel="noopener noreferrer"><span class="l-es">Claude Fable 5.2 de Anthropic genera imágenes dibujando con código Python, no píxeles directos.</span><span class="l-en" lang="en">Anthropic&#39;s Claude Fable 5.2 generates images by drawing with Python code, not direct pixels.</span></a>
@@ -713,8 +718,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=chinatalk.media&amp;sz=64" alt="" loading="lazy"/>ChinaTalk</span>
               
-              <span class="score">82</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-80">82/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://www.chinatalk.media/p/jensen-out-match-act-in" target="_blank" rel="noopener noreferrer"><span class="l-es">Análisis de la dimisión de Jensen Huang y su posible vínculo con la ley MATCH de control de chips.</span><span class="l-en" lang="en">Analysis of Jensen Huang&#39;s resignation and its possible link to the MATCH Act chip control law.</span></a>
@@ -744,8 +748,7 @@
               
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=x.com&amp;sz=64" alt="" loading="lazy"/>@grok</span>
               
-              <span class="score">72</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-70">72/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://x.com/grok/status/2121673185540378797" target="_blank" rel="noopener noreferrer"><span class="l-es">xAI integra Grok Imagine y creación de vídeo en Grok para una experiencia unificada.</span><span class="l-en" lang="en">xAI integrates Grok Imagine and video creation into Grok for a unified experience.</span></a>
@@ -774,8 +777,7 @@
               
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=epoch.ai&amp;sz=64" alt="" loading="lazy"/>Epoch AI</span>
               
-              <span class="score">71</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-70">71/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://epoch.ai/publications/incident-report-ai-agents-attempted-exploits-on-our-website" target="_blank" rel="noopener noreferrer"><span class="l-es">Informe de incidente: Agentes de IA intentaron exploits en web de Epoch AI durante evaluación de alineación.</span><span class="l-en" lang="en">Incident report: AI agents attempted exploits on Epoch AI website during alignment evaluation.</span></a>
@@ -804,8 +806,7 @@
               
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=deepmind.google&amp;sz=64" alt="" loading="lazy"/>DeepMind Blog</span>
               <span class="multi">+1</span>
-              <span class="score">69</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-low">69/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://deepmind.google/blog/introducing-gemini-4-hydrogen/" target="_blank" rel="noopener noreferrer"><span class="l-es">Google DeepMind anuncia Gemini 4 Hydrogen, un nuevo modelo.</span><span class="l-en" lang="en">Google DeepMind announces Gemini 4 Hydrogen, a new model.</span></a>
@@ -838,8 +839,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=openai.com&amp;sz=64" alt="" loading="lazy"/>@OpenAI</span>
               
-              <span class="score">65</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-low">65/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://x.com/OpenAI/status/2120216592395174382" target="_blank" rel="noopener noreferrer"><span class="l-es">OpenAI lanza &#34;Businesses in ChatGPT&#34; en beta para que empresas creen agentes personalizados.</span><span class="l-en" lang="en">OpenAI launches &#34;Businesses in ChatGPT&#34; in beta for companies to create custom agents.</span></a>
@@ -868,8 +868,7 @@
               
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=blog.google&amp;sz=64" alt="" loading="lazy"/>Google AI Blog</span>
               
-              <span class="score">62</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-low">62/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/" target="_blank" rel="noopener noreferrer"><span class="l-es">Google lanza Gemini Decisions API para decisiones multimodales rápidas y calibradas.</span><span class="l-en" lang="en">Google launches Gemini Decisions API for fast, calibrated multimodal decisions.</span></a>
@@ -899,8 +898,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=openai.com&amp;sz=64" alt="" loading="lazy"/>OpenAI</span>
               
-              <span class="score">61</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-low">61/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://openai.com/business/customer-stories/shield" target="_blank" rel="noopener noreferrer"><span class="l-es">Shield usa agentes OpenAI Forge para automatizar tareas en portales empresariales legados.</span><span class="l-en" lang="en">Shield uses OpenAI Forge agents to automate tasks in legacy enterprise portals.</span></a>
@@ -936,7 +934,7 @@
             <div class="meta-row">
               <span class="cx-tag">Compute &amp; chips</span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=stratechery.com&amp;sz=64" alt="" loading="lazy"/>Stratechery</span>
-              <span class="score">66</span>
+              <span class="score s-low">66/100</span>
             </div>
             <h3 class="cx-t">
               <a href="https://stratechery.com/2026/the-end-of-jensen/" target="_blank" rel="noopener noreferrer"><span class="l-es">Stratechery analiza la caída de Jensen Huang y su impacto en Nvidia y la industria de chips.</span><span class="l-en" lang="en">Stratechery analyzes Jensen Huang&#39;s downfall and its impact on Nvidia and the chip industry.</span></a>
@@ -948,7 +946,7 @@
             <div class="meta-row">
               <span class="cx-tag"><span class="l-es">Economía de modelos</span><span class="l-en" lang="en">Model economics</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=deepseek.com&amp;sz=64" alt="" loading="lazy"/>@DeepSeek_AI</span>
-              <span class="score">56</span>
+              <span class="score s-low">56/100</span>
             </div>
             <h3 class="cx-t">
               <a href="https://x.com/deepseek_ai/status/2121247896918253875" target="_blank" rel="noopener noreferrer"><span class="l-es">DeepSeek lanza las capacidades de su App (búsqueda, archivos, voz) a través de su API.</span><span class="l-en" lang="en">DeepSeek launches its App&#39;s capabilities (search, files, voice) through its API.</span></a>
@@ -960,7 +958,7 @@
             <div class="meta-row">
               <span class="cx-tag"><span class="l-es">Agentes</span><span class="l-en" lang="en">Agents</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=artificialanalysis.ai&amp;sz=64" alt="" loading="lazy"/>Artificial Analysis</span>
-              <span class="score">55</span>
+              <span class="score s-low">55/100</span>
             </div>
             <h3 class="cx-t">
               <a href="https://artificialanalysis.ai/articles/google-deepmind-multimodal-knowledge-agent" target="_blank" rel="noopener noreferrer"><span class="l-es">Nuevo benchmark MKA para evaluar agentes de conocimiento multimodal con archivos visuales complejos.</span><span class="l-en" lang="en">New MKA benchmark to evaluate multimodal knowledge agents with complex visual files.</span></a>
@@ -1153,54 +1151,6 @@
       location.replace('d/' + d + '.html');
       return;
     }
-
-    // Texto visible en el idioma activo (los traducibles van duplicados).
-    function vis(node){
-      if (!node) return '';
-      var lang = document.documentElement.getAttribute('data-lang') === 'en' ? 'en' : 'es';
-      var pick = node.querySelector('.l-' + lang);
-      return ((pick || node).textContent || '').trim();
-    }
-    function ficha(article){
-      if (!article) return '';
-      var a = article.querySelector('.hero-title a, .card-title a');
-      var title = vis(a);
-      var swEl = article.querySelector('.sw');
-      var sw = vis(swEl);
-      var url = a ? (a.getAttribute('href') || '').trim() : '';
-      return [title, sw, url].filter(Boolean).join('\n\n');
-    }
-    function copied(btn){
-      btn.classList.add('ok');
-      var en = document.documentElement.getAttribute('data-lang') === 'en';
-      var label = btn.innerHTML;
-      btn.textContent = en ? 'Copied' : 'Copiado';
-      setTimeout(function(){ btn.classList.remove('ok'); btn.innerHTML = label; }, 1600);
-    }
-    function fallback(text, btn){
-      var ta = document.createElement('textarea');
-      ta.value = text;
-      ta.setAttribute('readonly', '');
-      ta.style.position = 'fixed';
-      ta.style.left = '-9999px';
-      document.body.appendChild(ta);
-      ta.select();
-      try { if (document.execCommand('copy')) copied(btn); } catch (e) {}
-      document.body.removeChild(ta);
-    }
-    document.querySelectorAll('[data-copy]').forEach(function(btn){
-      btn.addEventListener('click', function(ev){
-        ev.preventDefault();
-        ev.stopPropagation();
-        var text = ficha(btn.closest('article'));
-        if (!text) return;
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(text).then(function(){ copied(btn); }).catch(function(){ fallback(text, btn); });
-        } else {
-          fallback(text, btn);
-        }
-      });
-    });
 
     var tabs = document.querySelectorAll('#tabs .tab');
     if (!tabs.length) return;

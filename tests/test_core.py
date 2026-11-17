@@ -887,7 +887,7 @@ class CoreQualityTests(unittest.TestCase):
         self.assertIn("Capa X apagada", html)
         self.assertIn("kill switch", html)
 
-    def test_copy_ficha_button_on_hero_and_cards_not_context(self):
+    def test_copy_ficha_button_removed_from_daily_cards(self):
         from src.render import render_index
         items = [
             {"title": "Lead", "title_es": "Titular lead", "so_what": "Cambia el tablero",
@@ -898,10 +898,11 @@ class CoreQualityTests(unittest.TestCase):
              "score": 40, "layer": "context"},
         ]
         html = render_index(items, briefing={"thesis": "t"}, snapshot={"date": "2026-08-23"}, market={})
-        # Portada + las 2 señales en la rejilla (la de portada, oculta sin filtro); el contexto no.
-        self.assertEqual(html.count('class="copy-btn" data-copy'), 3)
-        self.assertIn("navigator.clipboard", html)
-        self.assertIn("Copiar", html)
+        self.assertNotIn("data-copy", html)
+        self.assertNotIn('class="copy-btn"', html)
+        self.assertIn('<span class="score s-88">', html)
+        self.assertIn("80/100</span>", html)
+        self.assertIn("40/100</span>", html)
 
     def test_weekly_matches_daily_chrome_and_drops_jargon(self):
         from src.weekly import main as weekly_main

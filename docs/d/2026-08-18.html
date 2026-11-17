@@ -279,11 +279,20 @@
        border:2px solid var(--ink);background:var(--card-2);flex-shrink:0}
   .tag{background:var(--orange);color:#121211}
   .badge-new{background:var(--lime);color:#121211}
-  .score{font:700 11px var(--f-mono);color:var(--muted);margin-left:auto}
-  .copy-btn{font:700 10.5px/1 var(--f-mono);text-transform:uppercase;padding:5px 8px;cursor:pointer;
-            border:2px solid var(--ink);background:var(--card);color:var(--text);flex-shrink:0}
-  .copy-btn:hover{background:rgba(204,255,0,.3)}
-  .copy-btn.ok{background:#34D399;color:#121211}
+  .score{display:inline-flex;align-items:center;font:700 11px/1 var(--f-mono);margin-left:auto;padding:4px 7px;
+         border:1px solid var(--line);background:var(--card-2);color:var(--muted);font-variant-numeric:tabular-nums;
+         letter-spacing:.02em;flex-shrink:0}
+  .score.s-95{background:#FF4500;color:#121211;border:2px solid var(--ink);box-shadow:1px 1px 0 var(--ink)}
+  .score.s-88{background:#FF8A5C;color:#121211;border:1.5px solid var(--ink)}
+  .score.s-80{background:#FFE4D6;color:#9A3412;border:1.5px solid #EA580C}
+  .score.s-70{background:#F3F1EA;color:var(--muted);border:1px solid var(--line)}
+  .score.s-low{background:var(--card-2);color:var(--muted);border:1px solid var(--line);opacity:.82}
+  :root[data-theme="dark"] .score.s-80{background:rgba(255,87,34,.22);color:#FFA07A;border-color:#EA580C}
+  :root[data-theme="dark"] .score.s-70{background:#232320;color:var(--muted);border-color:var(--line)}
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]) .score.s-80{background:rgba(255,87,34,.22);color:#FFA07A;border-color:#EA580C}
+    :root:not([data-theme="light"]) .score.s-70{background:#232320;color:var(--muted);border-color:var(--line)}
+  }
   .hero-title{margin:0 0 10px;font:700 clamp(21px,2.4vw,30px)/1.15 var(--f-head);letter-spacing:-.02em}
   .hero-title a:hover,.card-title a:hover,.cx-t a:hover{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
   .sw{font-size:15px;line-height:1.6}
@@ -305,10 +314,11 @@
   .card-body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
   .card .meta-row{margin-bottom:0}
   .card-title{margin:0;font:700 19px/1.2 var(--f-head);letter-spacing:-.01em}
-  .card .sw{font-size:14px;line-height:1.55;color:var(--muted);
-            display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .card .sw{font-size:14px;line-height:1.5;color:var(--muted);
+            display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
   .card-foot{margin-top:auto;padding-top:10px;border-top:1px dashed var(--line);display:grid;gap:6px}
-  .card-foot .fact{font-size:12px}
+  .card-foot .fact{font-size:12px;line-height:1.4}
+  .card-foot .fact .v{min-width:0;flex:1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 
   /* -- Contexto -- */
   .section-h{margin:34px 0 14px}
@@ -320,7 +330,8 @@
   .cx .meta-row{margin-bottom:0}
   .cx-tag{display:inline-block;font:700 10px/1 var(--f-mono);text-transform:uppercase;padding:3px 6px;border:1px solid var(--ink);background:var(--card-2);color:var(--text);flex-shrink:0}
   .cx-t{margin:0;font:700 16px/1.3 var(--f-head);letter-spacing:-.01em}
-  .cx-w{font-size:13.5px;color:var(--muted);line-height:1.5;margin:0}
+  .cx-w{font-size:13.5px;color:var(--muted);line-height:1.48;margin:0;
+        display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 
   .empty{padding:40px 26px;text-align:center;border:2px dashed var(--ink);background:var(--card)}
   .empty .big{font:700 20px var(--f-head);margin-bottom:8px;text-transform:uppercase}
@@ -478,8 +489,7 @@
       </a>
       <div class="lead-meta">
         <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.LG</span>
-        <span class="score"><span class="l-es">Relevancia</span><span class="l-en" lang="en">Relevance</span> 85/100</span>
-        <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+        <span class="score s-80"><span class="l-es">Relevancia</span><span class="l-en" lang="en">Relevance</span> 85/100</span>
       </div>
           
           
@@ -534,8 +544,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.LG</span>
               
-              <span class="score">85</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-80">85/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://arxiv.org/abs/2608.14563" target="_blank" rel="noopener noreferrer"><span class="l-es">Adaptación de dominio mediante paso hacia adelante (sin retropropagación entre capas)</span><span class="l-en" lang="en">Forward Pass Domain Adaptation (Without Cross-Layer Backpropagation)</span></a>
@@ -556,8 +565,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=semiwiki.com&amp;sz=64" alt="" loading="lazy"/>SemiWiki</span>
               
-              <span class="score">85</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-80">85/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://semiwiki.com/semiconductor-manufacturers/tsmc/372146-a-0-42-nanometer-breakthrough-from-tsmc-could-push-transistors-beyond-silicon/" target="_blank" rel="noopener noreferrer"><span class="l-es">Un avance de 0,42 nanómetros de TSMC podría impulsar los transistores más allá del silicio</span><span class="l-en" lang="en">A 0.42-Nanometer Breakthrough From TSMC Could Push Transistors Beyond Silicon</span></a>
@@ -578,8 +586,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.AI</span>
               
-              <span class="score">81</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-80">81/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://arxiv.org/abs/2608.14552" target="_blank" rel="noopener noreferrer"><span class="l-es">Los modelos de lenguaje de gran tamaño muestran sensibilidad metacognitiva en el razonamiento médico</span><span class="l-en" lang="en">Large Language Models Show Metacognitive Sensitivity in Medical Reasoning</span></a>
@@ -600,8 +607,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=semiwiki.com&amp;sz=64" alt="" loading="lazy"/>SemiWiki</span>
               
-              <span class="score">78</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-70">78/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://semiwiki.com/events/372079-chipagents-leads-the-ai-revolution-at-dac-2026/" target="_blank" rel="noopener noreferrer"><span class="l-es">ChipAgents lidera la revolución de la IA en la DAC 2026</span><span class="l-en" lang="en">ChipAgents Leads the AI Revolution at DAC 2026</span></a>
@@ -622,8 +628,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
               
-              <span class="score">77</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-70">77/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://arxiv.org/abs/2608.14621" target="_blank" rel="noopener noreferrer"><span class="l-es">AutoMem: un marco de automejora recursiva mediante gradientes de texto para la búsqueda automatizada de arquitecturas de memoria</span><span class="l-en" lang="en">AutoMem: A Text-Gradient Recursive Self-Improvement Framework for Automated Memory Architectures Search</span></a>
@@ -644,8 +649,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
               
-              <span class="score">76</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-70">76/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://arxiv.org/abs/2608.14604" target="_blank" rel="noopener noreferrer"><span class="l-es">Wiola 13M: una arquitectura de atención espiral con puertas para modelos de lenguaje pequeños y eficientes</span><span class="l-en" lang="en">Wiola 13M, a Gated Spiral Attention Architecture for Parameter Efficient Small Language Models</span></a>
@@ -666,8 +670,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=semiwiki.com&amp;sz=64" alt="" loading="lazy"/>SemiWiki</span>
               
-              <span class="score">72</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-70">72/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://semiwiki.com/eda/372254-rise-design-automation-at-dac-2026/" target="_blank" rel="noopener noreferrer"><span class="l-es">Rise Design Automation en la DAC 2026</span><span class="l-en" lang="en">Rise Design Automation at DAC 2026</span></a>
@@ -688,8 +691,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
               
-              <span class="score">71</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-70">71/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://arxiv.org/abs/2608.14577" target="_blank" rel="noopener noreferrer"><span class="l-es">HarmProfile: caracterización de distribuciones dañinas en LLM frontera</span><span class="l-en" lang="en">HarmProfile: Characterizing Harmful Distributions in Frontier LLMs</span></a>
@@ -710,8 +712,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
               
-              <span class="score">70</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-70">70/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://arxiv.org/abs/2608.14551" target="_blank" rel="noopener noreferrer"><span class="l-es">Señales de incertidumbre auxiliares para el cribado de revisiones sistemáticas asistido por LLM</span><span class="l-en" lang="en">Auxiliary uncertainty signals for LLM-assisted systematic review screening: a benchmark across eight Cohen drug-class reviews</span></a>
@@ -732,8 +733,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=deepmind.google&amp;sz=64" alt="" loading="lazy"/>DeepMind Blog</span>
               
-              <span class="score">67</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-low">67/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://deepmind.google/blog/introducing-gemini-3-6-flash-3-5-flash-lite-and-3-5-flash-cyber/" target="_blank" rel="noopener noreferrer"><span class="l-es">Presentación de Gemini 3.6 Flash, 3.5 Flash-Lite y 3.5 Flash Cyber</span><span class="l-en" lang="en">Introducing Gemini 3.6 Flash, 3.5 Flash-Lite, and 3.5 Flash Cyber</span></a>
@@ -754,8 +754,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
               
-              <span class="score">65</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-low">65/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://arxiv.org/abs/2608.14626" target="_blank" rel="noopener noreferrer"><span class="l-es">Alineación de seguridad de LLM en lenguajes de bajos recursos: una revisión sistemática de la literatura</span><span class="l-en" lang="en">LLM Safety Alignment in Low-Resource Languages: A Systematic Literature Review</span></a>
@@ -776,8 +775,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
               
-              <span class="score">65</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-low">65/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://arxiv.org/abs/2608.14584" target="_blank" rel="noopener noreferrer"><span class="l-es">Sistema difuso generativo multimodal: marco de respuesta a preguntas interactivo guiado por inferencia difusa</span><span class="l-en" lang="en">Multi-Modal Generative Fuzzy System: Fuzzy Inference Guided Large Model Interactive Question Answering Framework</span></a>
@@ -798,8 +796,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.AI</span>
               
-              <span class="score">56</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-low">56/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://arxiv.org/abs/2608.14550" target="_blank" rel="noopener noreferrer"><span class="l-es">FLOPs frente al trabajo real: la importancia de la replicación en la evaluación de la eficiencia de la IA</span><span class="l-en" lang="en">FLOPs vs Real Work: The Importance of Replication in AI Efficiency Assessment</span></a>
@@ -820,8 +817,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.LG</span>
               
-              <span class="score">51</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-low">51/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://arxiv.org/abs/2608.14556" target="_blank" rel="noopener noreferrer"><span class="l-es">Aprendizaje de métricas de Riemann discretas para campos físicos con equivariancia cochain-frame</span><span class="l-en" lang="en">Learning Discrete Riemannian Metrics for Physical Fields with Cochain-Frame Equivarianc</span></a>
@@ -842,8 +838,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=blog.google&amp;sz=64" alt="" loading="lazy"/>Google AI Blog</span>
               
-              <span class="score">32</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-low">32/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://blog.google/products-and-platforms/products/gemini/google-gemini-pixel-football-club-partnerships/" target="_blank" rel="noopener noreferrer"><span class="l-es">Acércate al juego con Gemini y Pixel</span><span class="l-en" lang="en">Get closer to the game with Gemini and Pixel</span></a>
@@ -915,54 +910,6 @@
       location.replace('d/' + d + '.html');
       return;
     }
-
-    // Texto visible en el idioma activo (los traducibles van duplicados).
-    function vis(node){
-      if (!node) return '';
-      var lang = document.documentElement.getAttribute('data-lang') === 'en' ? 'en' : 'es';
-      var pick = node.querySelector('.l-' + lang);
-      return ((pick || node).textContent || '').trim();
-    }
-    function ficha(article){
-      if (!article) return '';
-      var a = article.querySelector('.hero-title a, .card-title a');
-      var title = vis(a);
-      var swEl = article.querySelector('.sw');
-      var sw = vis(swEl);
-      var url = a ? (a.getAttribute('href') || '').trim() : '';
-      return [title, sw, url].filter(Boolean).join('\n\n');
-    }
-    function copied(btn){
-      btn.classList.add('ok');
-      var en = document.documentElement.getAttribute('data-lang') === 'en';
-      var label = btn.innerHTML;
-      btn.textContent = en ? 'Copied' : 'Copiado';
-      setTimeout(function(){ btn.classList.remove('ok'); btn.innerHTML = label; }, 1600);
-    }
-    function fallback(text, btn){
-      var ta = document.createElement('textarea');
-      ta.value = text;
-      ta.setAttribute('readonly', '');
-      ta.style.position = 'fixed';
-      ta.style.left = '-9999px';
-      document.body.appendChild(ta);
-      ta.select();
-      try { if (document.execCommand('copy')) copied(btn); } catch (e) {}
-      document.body.removeChild(ta);
-    }
-    document.querySelectorAll('[data-copy]').forEach(function(btn){
-      btn.addEventListener('click', function(ev){
-        ev.preventDefault();
-        ev.stopPropagation();
-        var text = ficha(btn.closest('article'));
-        if (!text) return;
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(text).then(function(){ copied(btn); }).catch(function(){ fallback(text, btn); });
-        } else {
-          fallback(text, btn);
-        }
-      });
-    });
 
     var tabs = document.querySelectorAll('#tabs .tab');
     if (!tabs.length) return;

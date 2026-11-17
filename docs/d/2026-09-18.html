@@ -279,11 +279,20 @@
        border:2px solid var(--ink);background:var(--card-2);flex-shrink:0}
   .tag{background:var(--orange);color:#121211}
   .badge-new{background:var(--lime);color:#121211}
-  .score{font:700 11px var(--f-mono);color:var(--muted);margin-left:auto}
-  .copy-btn{font:700 10.5px/1 var(--f-mono);text-transform:uppercase;padding:5px 8px;cursor:pointer;
-            border:2px solid var(--ink);background:var(--card);color:var(--text);flex-shrink:0}
-  .copy-btn:hover{background:rgba(204,255,0,.3)}
-  .copy-btn.ok{background:#34D399;color:#121211}
+  .score{display:inline-flex;align-items:center;font:700 11px/1 var(--f-mono);margin-left:auto;padding:4px 7px;
+         border:1px solid var(--line);background:var(--card-2);color:var(--muted);font-variant-numeric:tabular-nums;
+         letter-spacing:.02em;flex-shrink:0}
+  .score.s-95{background:#FF4500;color:#121211;border:2px solid var(--ink);box-shadow:1px 1px 0 var(--ink)}
+  .score.s-88{background:#FF8A5C;color:#121211;border:1.5px solid var(--ink)}
+  .score.s-80{background:#FFE4D6;color:#9A3412;border:1.5px solid #EA580C}
+  .score.s-70{background:#F3F1EA;color:var(--muted);border:1px solid var(--line)}
+  .score.s-low{background:var(--card-2);color:var(--muted);border:1px solid var(--line);opacity:.82}
+  :root[data-theme="dark"] .score.s-80{background:rgba(255,87,34,.22);color:#FFA07A;border-color:#EA580C}
+  :root[data-theme="dark"] .score.s-70{background:#232320;color:var(--muted);border-color:var(--line)}
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]) .score.s-80{background:rgba(255,87,34,.22);color:#FFA07A;border-color:#EA580C}
+    :root:not([data-theme="light"]) .score.s-70{background:#232320;color:var(--muted);border-color:var(--line)}
+  }
   .hero-title{margin:0 0 10px;font:700 clamp(21px,2.4vw,30px)/1.15 var(--f-head);letter-spacing:-.02em}
   .hero-title a:hover,.card-title a:hover,.cx-t a:hover{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
   .sw{font-size:15px;line-height:1.6}
@@ -305,10 +314,11 @@
   .card-body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
   .card .meta-row{margin-bottom:0}
   .card-title{margin:0;font:700 19px/1.2 var(--f-head);letter-spacing:-.01em}
-  .card .sw{font-size:14px;line-height:1.55;color:var(--muted);
-            display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .card .sw{font-size:14px;line-height:1.5;color:var(--muted);
+            display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
   .card-foot{margin-top:auto;padding-top:10px;border-top:1px dashed var(--line);display:grid;gap:6px}
-  .card-foot .fact{font-size:12px}
+  .card-foot .fact{font-size:12px;line-height:1.4}
+  .card-foot .fact .v{min-width:0;flex:1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 
   /* -- Contexto -- */
   .section-h{margin:34px 0 14px}
@@ -320,7 +330,8 @@
   .cx .meta-row{margin-bottom:0}
   .cx-tag{display:inline-block;font:700 10px/1 var(--f-mono);text-transform:uppercase;padding:3px 6px;border:1px solid var(--ink);background:var(--card-2);color:var(--text);flex-shrink:0}
   .cx-t{margin:0;font:700 16px/1.3 var(--f-head);letter-spacing:-.01em}
-  .cx-w{font-size:13.5px;color:var(--muted);line-height:1.5;margin:0}
+  .cx-w{font-size:13.5px;color:var(--muted);line-height:1.48;margin:0;
+        display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 
   .empty{padding:40px 26px;text-align:center;border:2px dashed var(--ink);background:var(--card)}
   .empty .big{font:700 20px var(--f-head);margin-bottom:8px;text-transform:uppercase}
@@ -488,8 +499,7 @@
       </a>
       <div class="lead-meta">
         <span class="src"><img src="https://www.google.com/s2/favicons?domain=techcrunch.com&amp;sz=64" alt="" loading="lazy"/>TechCrunch AI</span>
-        <span class="score"><span class="l-es">Relevancia</span><span class="l-en" lang="en">Relevance</span> 97/100</span>
-        <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+        <span class="score s-95"><span class="l-es">Relevancia</span><span class="l-en" lang="en">Relevance</span> 97/100</span>
       </div>
           
           <div class="facts two">
@@ -552,8 +562,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=techcrunch.com&amp;sz=64" alt="" loading="lazy"/>TechCrunch AI</span>
               
-              <span class="score">97</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-95">97/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://techcrunch.com/2026/09/17/crusoe-raises-3-9b-to-build-massive-data-centers-and-small-modular-ai-factories/" target="_blank" rel="noopener noreferrer"><span class="l-es">Crusoe capta 3.900M$ para expandir datacenters y &#39;fábricas de IA&#39; valorada en 30.900M$.</span><span class="l-en" lang="en">Crusoe raises $3.9B to build massive data centers and small modular ‘AI factories’</span></a>
@@ -582,8 +591,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=anthropic.com&amp;sz=64" alt="" loading="lazy"/>Anthropic</span>
               
-              <span class="score">92</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-88">92/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://claude.com/blog/projects-redesigned" target="_blank" rel="noopener noreferrer"><span class="l-es">Anthropic lanza &#39;Projects&#39; en Claude, automatizando flujos de trabajo con agentes delegados.</span><span class="l-en" lang="en">Projects redesigned: from folder to conversation</span></a>
@@ -612,8 +620,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=epoch.ai&amp;sz=64" alt="" loading="lazy"/>Epoch AI</span>
               
-              <span class="score">90</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-88">90/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://epoch.ai/data-insights/malaysia-china-chip-smuggling" target="_blank" rel="noopener noreferrer"><span class="l-es">Datos comerciales sugieren contrabando de 3.000M$ en chips a China a través de Malasia.</span><span class="l-en" lang="en">Trade data consistent with $3B of chips smuggled to China via Malaysia - Epoch AI</span></a>
@@ -643,8 +650,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=ai.meta.com&amp;sz=64" alt="" loading="lazy"/>Meta AI</span>
               
-              <span class="score">87</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-80">87/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://ai.meta.com/muse/download/" target="_blank" rel="noopener noreferrer"><span class="l-es">Meta lanza Muse, un agente de IA gratuito para Mac y móvil.</span><span class="l-en" lang="en">Download Muse: Free AI Agent for Mac &amp; Mobile - AI at Meta</span></a>
@@ -674,8 +680,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=reuters.com&amp;sz=64" alt="" loading="lazy"/>Reuters AI</span>
               
-              <span class="score">84</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-80">84/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://www.reuters.com/world/anthropic-quietly-sets-up-biology-lab-it-ramps-ai-drug-program-2026-09-18/" target="_blank" rel="noopener noreferrer"><span class="l-es">Anthropic establece discretamente un laboratorio de biología para su programa de fármacos con IA.</span><span class="l-en" lang="en">EXCLUSIVE: Anthropic quietly sets up biology lab as it ramps AI drug program - Reuters</span></a>
@@ -705,8 +710,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=bloomberg.com&amp;sz=64" alt="" loading="lazy"/>Bloomberg Tech</span>
               
-              <span class="score">83</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-80">83/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://www.bloomberg.com/news/articles/2026-09-18/softbank-raises-arm-margin-loan-to-25-billion-as-ai-bets-grow" target="_blank" rel="noopener noreferrer"><span class="l-es">SoftBank aumenta su préstamo sobre Arm a 25.000M$ para financiar apuestas en IA.</span><span class="l-en" lang="en">SoftBank Raises Arm Margin Loan to $25 Billion as AI Bets Grow - Bloomberg.com</span></a>
@@ -735,8 +739,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=hacktron.ai&amp;sz=64" alt="" loading="lazy"/>Hacker News (alto voltaje)</span>
               
-              <span class="score">82</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-80">82/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://www.hacktron.ai/blog/hacking-openai" target="_blank" rel="noopener noreferrer"><span class="l-es">Fallos de seguridad en OpenAI permitieron comprometer repositorios internos.</span><span class="l-en" lang="en">A heap overflow and SSO misconfiguration to compromise OpenAI internal repos</span></a>
@@ -765,8 +768,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=openai.com&amp;sz=64" alt="" loading="lazy"/>OpenAI</span>
               
-              <span class="score">73</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-70">73/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://openai.com/index/astra-for-law" target="_blank" rel="noopener noreferrer"><span class="l-es">OpenAI lanza &#39;Astra for Law&#39; para llevar inteligencia de frontera y flujos de trabajo a firmas legales.</span><span class="l-en" lang="en">Introducing Astra for Law</span></a>
@@ -795,8 +797,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=anthropic.com&amp;sz=64" alt="" loading="lazy"/>Anthropic</span>
               
-              <span class="score">72</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-70">72/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://claude.com/blog/working-at-the-frontier-how-balyasny-asset-management-evaluates-and-governs-claude-fable-5" target="_blank" rel="noopener noreferrer"><span class="l-es">Balyasny Asset Management usa Claude Fable 5 para automatizar miles de tareas financieras.</span><span class="l-en" lang="en">Working at the frontier: How Balyasny Asset Management evaluates and governs Claude Fable 5</span></a>
@@ -825,8 +826,7 @@
               
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=anthropic.com&amp;sz=64" alt="" loading="lazy"/>Anthropic</span>
               
-              <span class="score">72</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-70">72/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://claude.com/blog/cowork-is-now-claude" target="_blank" rel="noopener noreferrer"><span class="l-es">Anthropic unifica Claude Cowork y chat, e introduce Claude Docs y Claude Slides.</span><span class="l-en" lang="en">Claude Cowork and chat are now one Claude</span></a>
@@ -855,8 +855,7 @@
               
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=artificialanalysis.ai&amp;sz=64" alt="" loading="lazy"/>Artificial Analysis</span>
               
-              <span class="score">72</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-70">72/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://artificialanalysis.ai/articles/ant-group-releases-finance-focused-ling-3-0-flash-fin" target="_blank" rel="noopener noreferrer"><span class="l-es">Ant Group lanza Ling-3.0-flash-Fin, un nuevo modelo de IA especializado en finanzas.</span><span class="l-en" lang="en">Ant Group releases finance-focused Ling-3.0-flash-Fin September 16, 2026</span></a>
@@ -885,8 +884,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arstechnica.com&amp;sz=64" alt="" loading="lazy"/>Ars Technica AI</span>
               
-              <span class="score">71</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-70">71/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://arstechnica.com/security/2026/09/ai-text-watermarking-can-make-models-more-vulnerable-to-adversarial-prompts/" target="_blank" rel="noopener noreferrer"><span class="l-es">La marca de agua en LLMs puede alterar la respuesta a prompts dañinos, haciéndolos más vulnerables.</span><span class="l-en" lang="en">LLMs respond differently to harmful prompts when AI watermarking is used</span></a>
@@ -922,7 +920,7 @@
             <div class="meta-row">
               <span class="cx-tag"><span class="l-es">Capacidad frontier</span><span class="l-en" lang="en">Frontier capability</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=deepmind.google&amp;sz=64" alt="" loading="lazy"/>DeepMind Blog</span>
-              <span class="score">69</span>
+              <span class="score s-low">69/100</span>
             </div>
             <h3 class="cx-t">
               <a href="https://deepmind.google/blog/introducing-gemini-3-8-live-and-3-8-live-extended-thinking/" target="_blank" rel="noopener noreferrer"><span class="l-es">Google DeepMind lanza Gemini 3.8 Live y 3.8 Live Extended Thinking.</span><span class="l-en" lang="en">Introducing Gemini 3.8 Live and 3.8 Live Extended Thinking</span></a>
@@ -934,7 +932,7 @@
             <div class="meta-row">
               <span class="cx-tag"><span class="l-es">Economía de modelos</span><span class="l-en" lang="en">Model economics</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=mistral.ai&amp;sz=64" alt="" loading="lazy"/>Mistral</span>
-              <span class="score">66</span>
+              <span class="score s-low">66/100</span>
             </div>
             <h3 class="cx-t">
               <a href="https://mistral.ai/news/mistral-x-mozilla/" target="_blank" rel="noopener noreferrer"><span class="l-es">Mistral y Mozilla llevarán IA abierta, privada y multilingüe directamente al navegador web.</span><span class="l-en" lang="en">Mistral and Mozilla are bringing open, private and multilingual AI to your web browser</span></a>
@@ -946,7 +944,7 @@
             <div class="meta-row">
               <span class="cx-tag"><span class="l-es">Capacidad frontier</span><span class="l-en" lang="en">Frontier capability</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=x.ai&amp;sz=64" alt="" loading="lazy"/>xAI</span>
-              <span class="score">66</span>
+              <span class="score s-low">66/100</span>
             </div>
             <h3 class="cx-t">
               <a href="https://x.ai/news/grok-build-memory" target="_blank" rel="noopener noreferrer"><span class="l-es">xAI integra funcionalidad de memoria en Grok Build.</span><span class="l-en" lang="en">Memory in Grok Build - xAI</span></a>
@@ -1131,54 +1129,6 @@
       location.replace('d/' + d + '.html');
       return;
     }
-
-    // Texto visible en el idioma activo (los traducibles van duplicados).
-    function vis(node){
-      if (!node) return '';
-      var lang = document.documentElement.getAttribute('data-lang') === 'en' ? 'en' : 'es';
-      var pick = node.querySelector('.l-' + lang);
-      return ((pick || node).textContent || '').trim();
-    }
-    function ficha(article){
-      if (!article) return '';
-      var a = article.querySelector('.hero-title a, .card-title a');
-      var title = vis(a);
-      var swEl = article.querySelector('.sw');
-      var sw = vis(swEl);
-      var url = a ? (a.getAttribute('href') || '').trim() : '';
-      return [title, sw, url].filter(Boolean).join('\n\n');
-    }
-    function copied(btn){
-      btn.classList.add('ok');
-      var en = document.documentElement.getAttribute('data-lang') === 'en';
-      var label = btn.innerHTML;
-      btn.textContent = en ? 'Copied' : 'Copiado';
-      setTimeout(function(){ btn.classList.remove('ok'); btn.innerHTML = label; }, 1600);
-    }
-    function fallback(text, btn){
-      var ta = document.createElement('textarea');
-      ta.value = text;
-      ta.setAttribute('readonly', '');
-      ta.style.position = 'fixed';
-      ta.style.left = '-9999px';
-      document.body.appendChild(ta);
-      ta.select();
-      try { if (document.execCommand('copy')) copied(btn); } catch (e) {}
-      document.body.removeChild(ta);
-    }
-    document.querySelectorAll('[data-copy]').forEach(function(btn){
-      btn.addEventListener('click', function(ev){
-        ev.preventDefault();
-        ev.stopPropagation();
-        var text = ficha(btn.closest('article'));
-        if (!text) return;
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(text).then(function(){ copied(btn); }).catch(function(){ fallback(text, btn); });
-        } else {
-          fallback(text, btn);
-        }
-      });
-    });
 
     var tabs = document.querySelectorAll('#tabs .tab');
     if (!tabs.length) return;

@@ -279,11 +279,20 @@
        border:2px solid var(--ink);background:var(--card-2);flex-shrink:0}
   .tag{background:var(--orange);color:#121211}
   .badge-new{background:var(--lime);color:#121211}
-  .score{font:700 11px var(--f-mono);color:var(--muted);margin-left:auto}
-  .copy-btn{font:700 10.5px/1 var(--f-mono);text-transform:uppercase;padding:5px 8px;cursor:pointer;
-            border:2px solid var(--ink);background:var(--card);color:var(--text);flex-shrink:0}
-  .copy-btn:hover{background:rgba(204,255,0,.3)}
-  .copy-btn.ok{background:#34D399;color:#121211}
+  .score{display:inline-flex;align-items:center;font:700 11px/1 var(--f-mono);margin-left:auto;padding:4px 7px;
+         border:1px solid var(--line);background:var(--card-2);color:var(--muted);font-variant-numeric:tabular-nums;
+         letter-spacing:.02em;flex-shrink:0}
+  .score.s-95{background:#FF4500;color:#121211;border:2px solid var(--ink);box-shadow:1px 1px 0 var(--ink)}
+  .score.s-88{background:#FF8A5C;color:#121211;border:1.5px solid var(--ink)}
+  .score.s-80{background:#FFE4D6;color:#9A3412;border:1.5px solid #EA580C}
+  .score.s-70{background:#F3F1EA;color:var(--muted);border:1px solid var(--line)}
+  .score.s-low{background:var(--card-2);color:var(--muted);border:1px solid var(--line);opacity:.82}
+  :root[data-theme="dark"] .score.s-80{background:rgba(255,87,34,.22);color:#FFA07A;border-color:#EA580C}
+  :root[data-theme="dark"] .score.s-70{background:#232320;color:var(--muted);border-color:var(--line)}
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]) .score.s-80{background:rgba(255,87,34,.22);color:#FFA07A;border-color:#EA580C}
+    :root:not([data-theme="light"]) .score.s-70{background:#232320;color:var(--muted);border-color:var(--line)}
+  }
   .hero-title{margin:0 0 10px;font:700 clamp(21px,2.4vw,30px)/1.15 var(--f-head);letter-spacing:-.02em}
   .hero-title a:hover,.card-title a:hover,.cx-t a:hover{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
   .sw{font-size:15px;line-height:1.6}
@@ -305,10 +314,11 @@
   .card-body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
   .card .meta-row{margin-bottom:0}
   .card-title{margin:0;font:700 19px/1.2 var(--f-head);letter-spacing:-.01em}
-  .card .sw{font-size:14px;line-height:1.55;color:var(--muted);
-            display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .card .sw{font-size:14px;line-height:1.5;color:var(--muted);
+            display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
   .card-foot{margin-top:auto;padding-top:10px;border-top:1px dashed var(--line);display:grid;gap:6px}
-  .card-foot .fact{font-size:12px}
+  .card-foot .fact{font-size:12px;line-height:1.4}
+  .card-foot .fact .v{min-width:0;flex:1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 
   /* -- Contexto -- */
   .section-h{margin:34px 0 14px}
@@ -320,7 +330,8 @@
   .cx .meta-row{margin-bottom:0}
   .cx-tag{display:inline-block;font:700 10px/1 var(--f-mono);text-transform:uppercase;padding:3px 6px;border:1px solid var(--ink);background:var(--card-2);color:var(--text);flex-shrink:0}
   .cx-t{margin:0;font:700 16px/1.3 var(--f-head);letter-spacing:-.01em}
-  .cx-w{font-size:13.5px;color:var(--muted);line-height:1.5;margin:0}
+  .cx-w{font-size:13.5px;color:var(--muted);line-height:1.48;margin:0;
+        display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 
   .empty{padding:40px 26px;text-align:center;border:2px dashed var(--ink);background:var(--card)}
   .empty .big{font:700 20px var(--f-head);margin-bottom:8px;text-transform:uppercase}
@@ -484,8 +495,7 @@
       </a>
       <div class="lead-meta">
         <span class="src"><img src="https://www.google.com/s2/favicons?domain=openai.com&amp;sz=64" alt="" loading="lazy"/>OpenAI</span>
-        <span class="score"><span class="l-es">Relevancia</span><span class="l-en" lang="en">Relevance</span> 78/100</span>
-        <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+        <span class="score s-70"><span class="l-es">Relevancia</span><span class="l-en" lang="en">Relevance</span> 78/100</span>
       </div>
           
           <div class="facts two">
@@ -548,8 +558,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=openai.com&amp;sz=64" alt="" loading="lazy"/>OpenAI</span>
               
-              <span class="score">78</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-70">78/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://openai.com/index/sophos" target="_blank" rel="noopener noreferrer"><span class="l-es">Sophos reduce un 96% el tiempo de investigación de amenazas con OpenAI Daybreak.</span><span class="l-en" lang="en">Sophos cuts threat investigation time by 96% with OpenAI Daybreak</span></a>
@@ -578,8 +587,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=openai.com&amp;sz=64" alt="" loading="lazy"/>OpenAI</span>
               
-              <span class="score">71</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-70">71/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://openai.com/index/oracle" target="_blank" rel="noopener noreferrer"><span class="l-es">Oracle reduce el tiempo de trabajo de días a minutos con ChatGPT y Codex.</span><span class="l-en" lang="en">How Oracle turns days of work into minutes with ChatGPT and Codex</span></a>
@@ -608,8 +616,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=twitter.com&amp;sz=64" alt="" loading="lazy"/>Hacker News (alto voltaje)</span>
               
-              <span class="score">66</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-low">66/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://twitter.com/karpathy/status/2109361546505966046" target="_blank" rel="noopener noreferrer"><span class="l-es">La brecha en la comprensión real de las capacidades de los LLM se amplía.</span><span class="l-en" lang="en">The gap in shared understanding of LLM capability is widening</span></a>
@@ -638,8 +645,7 @@
               
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=openai.com&amp;sz=64" alt="" loading="lazy"/>OpenAI</span>
               
-              <span class="score">79</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-70">79/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://openai.com/index/asana-browser-agent" target="_blank" rel="noopener noreferrer"><span class="l-es">Asana reduce 76x costes de agentes con GPT-6.1 Sol en pruebas de navegador.</span><span class="l-en" lang="en">Asana cuts model costs 76x in browser tests with GPT-6.1 Sol</span></a>
@@ -668,8 +674,7 @@
               
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=mistral.ai&amp;sz=64" alt="" loading="lazy"/>Mistral</span>
               
-              <span class="score">69</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-low">69/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://mistral.ai/news/mistral-large-4/" target="_blank" rel="noopener noreferrer"><span class="l-es">Mistral presenta Mistral Large 4, su nuevo modelo de lenguaje.</span><span class="l-en" lang="en">Introducing Mistral Large 4</span></a>
@@ -698,8 +703,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=huggingface.co&amp;sz=64" alt="" loading="lazy"/>Hugging Face Blog</span>
               
-              <span class="score">60</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-low">60/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://huggingface.co/blog/allenai/impactful-scheduling" target="_blank" rel="noopener noreferrer"><span class="l-es">Optimización de la planificación de tareas en clusters de GPU para eficiencia.</span><span class="l-en" lang="en">Impactful scheduling for GPU clusters</span></a>
@@ -729,8 +733,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=reuters.com&amp;sz=64" alt="" loading="lazy"/>Reuters AI</span>
               
-              <span class="score">56</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-low">56/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://www.reuters.com/world/china/imf-says-ai-investment-keeps-global-growth-around-3-with-major-asia-benefits-2026-10-12/" target="_blank" rel="noopener noreferrer"><span class="l-es">El FMI prevé que la inversión en IA mantenga el crecimiento global en el 3%.</span><span class="l-en" lang="en">IMF says AI investment keeps global growth around 3%, with major Asia benefits - Reuters</span></a>
@@ -759,8 +762,7 @@
               
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=deepmind.google&amp;sz=64" alt="" loading="lazy"/>DeepMind Blog</span>
               
-              <span class="score">48</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-low">48/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model/" target="_blank" rel="noopener noreferrer"><span class="l-es">DeepMind lanza EmbeddingGemma 2, un modelo abierto y ligero de embeddings multimodales.</span><span class="l-en" lang="en">EmbeddingGemma 2: an open, lightweight multimodal embedding model</span></a>
@@ -796,7 +798,7 @@
             <div class="meta-row">
               <span class="cx-tag"><span class="l-es">Economía de modelos</span><span class="l-en" lang="en">Model economics</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=bloomberg.com&amp;sz=64" alt="" loading="lazy"/>Bloomberg Tech</span>
-              <span class="score">54</span>
+              <span class="score s-low">54/100</span>
             </div>
             <h3 class="cx-t">
               <a href="https://www.bloomberg.com/news/articles/2026-10-12/imf-chief-alarmed-at-slow-moving-tsunami-of-ai-for-jobs-taxes" target="_blank" rel="noopener noreferrer"><span class="l-es">Directora del FMI advierte de un &#34;tsunami lento&#34; de la IA en empleo y fiscalidad.</span><span class="l-en" lang="en">IMF Chief Alarmed at ‘Slow-Moving Tsunami’ of AI for Jobs, Taxes - Bloomberg.com</span></a>
@@ -808,7 +810,7 @@
             <div class="meta-row">
               <span class="cx-tag"><span class="l-es">Capacidad frontier</span><span class="l-en" lang="en">Frontier capability</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=epoch.ai&amp;sz=64" alt="" loading="lazy"/>Epoch AI</span>
-              <span class="score">52</span>
+              <span class="score s-low">52/100</span>
             </div>
             <h3 class="cx-t">
               <a href="https://epoch.ai/publications/innovationeval" target="_blank" rel="noopener noreferrer"><span class="l-es">¿Puede la IA automatizar ya la investigación y desarrollo de IA?</span><span class="l-en" lang="en">Can AI automate AI R&amp;D yet? - Epoch AI</span></a>
@@ -820,7 +822,7 @@
             <div class="meta-row">
               <span class="cx-tag"><span class="l-es">Capacidad frontier</span><span class="l-en" lang="en">Frontier capability</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=interconnects.ai&amp;sz=64" alt="" loading="lazy"/>Interconnects</span>
-              <span class="score">51</span>
+              <span class="score s-low">51/100</span>
             </div>
             <h3 class="cx-t">
               <a href="https://www.interconnects.ai/p/i-expect-rapid-progress-but-not-towards" target="_blank" rel="noopener noreferrer"><span class="l-es">Esperan un progreso rápido en IA, pero no hacia superinteligencia general.</span><span class="l-en" lang="en">I expect rapid progress but not towards general superintelligence</span></a>
@@ -985,54 +987,6 @@
       location.replace('d/' + d + '.html');
       return;
     }
-
-    // Texto visible en el idioma activo (los traducibles van duplicados).
-    function vis(node){
-      if (!node) return '';
-      var lang = document.documentElement.getAttribute('data-lang') === 'en' ? 'en' : 'es';
-      var pick = node.querySelector('.l-' + lang);
-      return ((pick || node).textContent || '').trim();
-    }
-    function ficha(article){
-      if (!article) return '';
-      var a = article.querySelector('.hero-title a, .card-title a');
-      var title = vis(a);
-      var swEl = article.querySelector('.sw');
-      var sw = vis(swEl);
-      var url = a ? (a.getAttribute('href') || '').trim() : '';
-      return [title, sw, url].filter(Boolean).join('\n\n');
-    }
-    function copied(btn){
-      btn.classList.add('ok');
-      var en = document.documentElement.getAttribute('data-lang') === 'en';
-      var label = btn.innerHTML;
-      btn.textContent = en ? 'Copied' : 'Copiado';
-      setTimeout(function(){ btn.classList.remove('ok'); btn.innerHTML = label; }, 1600);
-    }
-    function fallback(text, btn){
-      var ta = document.createElement('textarea');
-      ta.value = text;
-      ta.setAttribute('readonly', '');
-      ta.style.position = 'fixed';
-      ta.style.left = '-9999px';
-      document.body.appendChild(ta);
-      ta.select();
-      try { if (document.execCommand('copy')) copied(btn); } catch (e) {}
-      document.body.removeChild(ta);
-    }
-    document.querySelectorAll('[data-copy]').forEach(function(btn){
-      btn.addEventListener('click', function(ev){
-        ev.preventDefault();
-        ev.stopPropagation();
-        var text = ficha(btn.closest('article'));
-        if (!text) return;
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(text).then(function(){ copied(btn); }).catch(function(){ fallback(text, btn); });
-        } else {
-          fallback(text, btn);
-        }
-      });
-    });
 
     var tabs = document.querySelectorAll('#tabs .tab');
     if (!tabs.length) return;

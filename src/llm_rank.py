@@ -96,31 +96,32 @@ class RankOut(BaseModel):
     )
     so_what: str = Field(
         description=(
-            "Por qué le importa AL LECTOR, máx 200 chars. NO resumas el artículo: di la consecuencia "
-            "estratégica. Prohibido empezar con 'Este artículo' o 'Se anuncia'. Ve al grano."
+            "Por qué le importa AL LECTOR en 1 frase seca, máx 150 chars. NO resumas el artículo, "
+            "no repitas el titular ni quién gana/pierde (eso va en power_shift). Ve al grano."
         )
     )
     power_shift: str = Field(
         default="",
         description=(
-            "Quién gana y quién pierde posición, máx 110 chars. Formato 'X gana / Y pierde' o similar. "
-            "Vacío si el item no desplaza poder."
+            "Formato telegráfico 'X gana / Y pierde', máx 65 chars. Solo nombres/actores breves, "
+            "sin frases explicativas. Vacío si el item no desplaza poder."
         )
     )
     watch_next: str = Field(
         default="",
         description=(
-            "Qué señal concreta y verificable confirmaría o refutaría esto, máx 110 chars. "
-            "Debe ser falsable (algo que se pueda comprobar en días o semanas). Vacío si no aplica."
+            "Hito concreto y verificable en días o semanas, máx 75 chars. Empieza directo por el dato "
+            "o evento (prohibido abrir con 'Evaluar...', 'Monitorizar...', 'Observar...' o 'Ver si...'). "
+            "Vacío si no aplica."
         )
     )
     entities: List[str] = Field(default_factory=list, description="0-5 organizaciones/personas clave")
     # Version inglesa para el boton EN de la web. Misma llamada: sin coste extra
     # de peticiones, solo algo mas de texto de salida.
     headline_en: str = Field(default="", description="headline_es translated into natural English, max 90 chars. Same facts.")
-    so_what_en: str = Field(default="", description="so_what in natural English, max 200 chars.")
-    power_shift_en: str = Field(default="", description="power_shift in English ('X gains / Y loses'). Empty if power_shift is empty.")
-    watch_next_en: str = Field(default="", description="watch_next in English. Empty if watch_next is empty.")
+    so_what_en: str = Field(default="", description="so_what in natural English, max 150 chars.")
+    power_shift_en: str = Field(default="", description="power_shift in English ('X gains / Y loses'), max 65 chars. Empty if power_shift is empty.")
+    watch_next_en: str = Field(default="", description="watch_next in English, max 75 chars, no filler verbs. Empty if watch_next is empty.")
     same_story_as: int = Field(
         default=0,
         description=(
@@ -234,7 +235,10 @@ def rank_batch(
         "- relevance mide relevancia para ESTE lector, no calidad del artículo.\n"
         "  Un artículo excelente sobre algo que no le importa tiene relevance baja.\n"
         "- so_what: la consecuencia, no el resumen. Si no sabes decir qué consecuencia tiene,\n"
-        "  entonces es noise.\n\n"
+        "  entonces es noise.\n"
+        "- Sin redundancia entre campos: headline dice QUÉ pasó; so_what explica la consecuencia\n"
+        "  (máx 150 chars); power_shift solo nombra 'X gana / Y pierde' (máx 65 chars); watch_next\n"
+        "  va directo al hito verificable (máx 75 chars, sin verbos de relleno).\n\n"
         "VARIOS ITEMS SOBRE LO MISMO\n"
         "- Un gran suceso llega contado por muchos medios. NO les pongas a todos el mismo\n"
         "  titular ni el mismo so_what: el lector vería la misma card repetida.\n"

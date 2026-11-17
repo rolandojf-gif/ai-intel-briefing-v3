@@ -279,11 +279,20 @@
        border:2px solid var(--ink);background:var(--card-2);flex-shrink:0}
   .tag{background:var(--orange);color:#121211}
   .badge-new{background:var(--lime);color:#121211}
-  .score{font:700 11px var(--f-mono);color:var(--muted);margin-left:auto}
-  .copy-btn{font:700 10.5px/1 var(--f-mono);text-transform:uppercase;padding:5px 8px;cursor:pointer;
-            border:2px solid var(--ink);background:var(--card);color:var(--text);flex-shrink:0}
-  .copy-btn:hover{background:rgba(204,255,0,.3)}
-  .copy-btn.ok{background:#34D399;color:#121211}
+  .score{display:inline-flex;align-items:center;font:700 11px/1 var(--f-mono);margin-left:auto;padding:4px 7px;
+         border:1px solid var(--line);background:var(--card-2);color:var(--muted);font-variant-numeric:tabular-nums;
+         letter-spacing:.02em;flex-shrink:0}
+  .score.s-95{background:#FF4500;color:#121211;border:2px solid var(--ink);box-shadow:1px 1px 0 var(--ink)}
+  .score.s-88{background:#FF8A5C;color:#121211;border:1.5px solid var(--ink)}
+  .score.s-80{background:#FFE4D6;color:#9A3412;border:1.5px solid #EA580C}
+  .score.s-70{background:#F3F1EA;color:var(--muted);border:1px solid var(--line)}
+  .score.s-low{background:var(--card-2);color:var(--muted);border:1px solid var(--line);opacity:.82}
+  :root[data-theme="dark"] .score.s-80{background:rgba(255,87,34,.22);color:#FFA07A;border-color:#EA580C}
+  :root[data-theme="dark"] .score.s-70{background:#232320;color:var(--muted);border-color:var(--line)}
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]) .score.s-80{background:rgba(255,87,34,.22);color:#FFA07A;border-color:#EA580C}
+    :root:not([data-theme="light"]) .score.s-70{background:#232320;color:var(--muted);border-color:var(--line)}
+  }
   .hero-title{margin:0 0 10px;font:700 clamp(21px,2.4vw,30px)/1.15 var(--f-head);letter-spacing:-.02em}
   .hero-title a:hover,.card-title a:hover,.cx-t a:hover{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
   .sw{font-size:15px;line-height:1.6}
@@ -305,10 +314,11 @@
   .card-body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
   .card .meta-row{margin-bottom:0}
   .card-title{margin:0;font:700 19px/1.2 var(--f-head);letter-spacing:-.01em}
-  .card .sw{font-size:14px;line-height:1.55;color:var(--muted);
-            display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .card .sw{font-size:14px;line-height:1.5;color:var(--muted);
+            display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
   .card-foot{margin-top:auto;padding-top:10px;border-top:1px dashed var(--line);display:grid;gap:6px}
-  .card-foot .fact{font-size:12px}
+  .card-foot .fact{font-size:12px;line-height:1.4}
+  .card-foot .fact .v{min-width:0;flex:1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 
   /* -- Contexto -- */
   .section-h{margin:34px 0 14px}
@@ -320,7 +330,8 @@
   .cx .meta-row{margin-bottom:0}
   .cx-tag{display:inline-block;font:700 10px/1 var(--f-mono);text-transform:uppercase;padding:3px 6px;border:1px solid var(--ink);background:var(--card-2);color:var(--text);flex-shrink:0}
   .cx-t{margin:0;font:700 16px/1.3 var(--f-head);letter-spacing:-.01em}
-  .cx-w{font-size:13.5px;color:var(--muted);line-height:1.5;margin:0}
+  .cx-w{font-size:13.5px;color:var(--muted);line-height:1.48;margin:0;
+        display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 
   .empty{padding:40px 26px;text-align:center;border:2px dashed var(--ink);background:var(--card)}
   .empty .big{font:700 20px var(--f-head);margin-bottom:8px;text-transform:uppercase}
@@ -478,8 +489,7 @@
       </a>
       <div class="lead-meta">
         <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
-        <span class="score"><span class="l-es">Relevancia</span><span class="l-en" lang="en">Relevance</span> 80/100</span>
-        <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+        <span class="score s-80"><span class="l-es">Relevancia</span><span class="l-en" lang="en">Relevance</span> 80/100</span>
       </div>
           
           
@@ -534,8 +544,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
               
-              <span class="score">80</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-80">80/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://arxiv.org/abs/2606.24890" target="_blank" rel="noopener noreferrer"><span class="l-es">Pequeñas ediciones, grandes modelos: Cómo el activismo en Wikipedia moldea los valores de los LLM</span><span class="l-en" lang="en">Small edits, large models: How Wikipedia advocacy shapes LLM values</span></a>
@@ -556,8 +565,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=semiwiki.com&amp;sz=64" alt="" loading="lazy"/>SemiWiki</span>
               
-              <span class="score">80</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-80">80/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://semiwiki.com/artificial-intelligence/370320-the-wedding-of-the-year-why-ai-infrastructure-financing-is-becoming-a-semiconductor-story/" target="_blank" rel="noopener noreferrer"><span class="l-es">La boda del año: Por qué la financiación de infraestructura de IA se está convirtiendo en una historia de semiconductores</span><span class="l-en" lang="en">The Wedding of the Year: Why AI Infrastructure Financing Is Becoming a Semiconductor Story</span></a>
@@ -578,8 +586,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
               
-              <span class="score">79</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-70">79/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://arxiv.org/abs/2606.24893" target="_blank" rel="noopener noreferrer"><span class="l-es">AgentOdyssey: Generación de juegos de texto para agentes con aprendizaje continuo en tiempo de ejecución</span><span class="l-en" lang="en">AgentOdyssey: Open-Ended Long-Horizon Text Game Generation for Test-Time Continual Learning Agents</span></a>
@@ -600,8 +607,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
               
-              <span class="score">79</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-70">79/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://arxiv.org/abs/2606.24952" target="_blank" rel="noopener noreferrer"><span class="l-es">Detección perfecta, control fallido: La geometría del conocimiento frente al direccionamiento en modelos de lenguaje</span><span class="l-en" lang="en">Perfect Detection, Failed Control: The Geometry of Knowing vs. Steering in Language Models</span></a>
@@ -622,8 +628,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=semiwiki.com&amp;sz=64" alt="" loading="lazy"/>SemiWiki</span>
               
-              <span class="score">76</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-70">76/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://semiwiki.com/photonics/370505-the-modulator-is-not-the-product-why-ai-photonics-needs-an-electro-optical-realization-corridor/" target="_blank" rel="noopener noreferrer"><span class="l-es">El modulador no es el producto: Por qué la fotónica de IA necesita un corredor de realización electro-óptico</span><span class="l-en" lang="en">The Modulator Is Not the Product: Why AI Photonics Needs an Electro-Optical Realization Corridor</span></a>
@@ -644,8 +649,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
               
-              <span class="score">75</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-70">75/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://arxiv.org/abs/2606.24957" target="_blank" rel="noopener noreferrer"><span class="l-es">Dustin: Verificación dispersa aumentada para generación eficiente de contexto largo con decodificación especulativa</span><span class="l-en" lang="en">Dustin: Draft-Augmented Sparse Verification for Efficient Long-Context Generation with Speculative Decoding</span></a>
@@ -666,8 +670,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=deepmind.google&amp;sz=64" alt="" loading="lazy"/>DeepMind Blog</span>
               
-              <span class="score">74</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-70">74/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://deepmind.google/blog/introducing-computer-use-in-gemini-3-5-flash/" target="_blank" rel="noopener noreferrer"><span class="l-es">Presentamos el uso de ordenador en Gemini 3.5 Flash</span><span class="l-en" lang="en">Introducing computer use in Gemini 3.5 Flash</span></a>
@@ -688,8 +691,7 @@
               
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.AI</span>
               
-              <span class="score">71</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-70">71/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://arxiv.org/abs/2606.23938" target="_blank" rel="noopener noreferrer"><span class="l-es">Conducción neuro-simbólica: Razonamiento fiel basado en reglas para dirigir modelos VLA</span><span class="l-en" lang="en">Neuro-Symbolic Drive: Rule-Grounded Faithful Reasoning for Driving VLAs</span></a>
@@ -710,8 +712,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=semiwiki.com&amp;sz=64" alt="" loading="lazy"/>SemiWiki</span>
               
-              <span class="score">70</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-70">70/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://semiwiki.com/5g/370474-all-embracing-multiphysics-analysis-for-chiplet-based-systems/" target="_blank" rel="noopener noreferrer"><span class="l-es">Análisis multifísico integral para sistemas basados en chiplets</span><span class="l-en" lang="en">All-Embracing Multiphysics Analysis for Chiplet-Based Systems</span></a>
@@ -732,8 +733,7 @@
               
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.AI</span>
               
-              <span class="score">69</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-low">69/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://arxiv.org/abs/2606.23927" target="_blank" rel="noopener noreferrer"><span class="l-es">RIFT-Bench: Red-teaming dinámico para sistemas de IA de agentes</span><span class="l-en" lang="en">RIFT-Bench: Dynamic Red-teaming For Agentic AI Systems</span></a>
@@ -754,8 +754,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
               
-              <span class="score">68</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-low">68/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://arxiv.org/abs/2606.24889" target="_blank" rel="noopener noreferrer"><span class="l-es">Corrección de errores fonéticos basada en grafos para sistemas de reconocimiento de voz con ruido</span><span class="l-en" lang="en">Graph-Based Phonetic Error Correction of Noisy ASR</span></a>
@@ -776,8 +775,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.LG</span>
               
-              <span class="score">67</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-low">67/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://arxiv.org/abs/2606.24898" target="_blank" rel="noopener noreferrer"><span class="l-es">La supervisión densa no basta: El punto ciego de lectura en modelos de lenguaje con bucles</span><span class="l-en" lang="en">Dense Supervision Is Not Enough: The Readout Blind Spot in Looped Language Models</span></a>
@@ -798,8 +796,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.LG</span>
               
-              <span class="score">62</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-low">62/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://arxiv.org/abs/2606.24899" target="_blank" rel="noopener noreferrer"><span class="l-es">De la idea meta al descubrimiento matemático avanzado: Co-descubrimiento humano-IA de algoritmos cuánticos</span><span class="l-en" lang="en">From Meta Idea to Advanced Mathematical Discovery -- Human-AI Co-Discovery of Sign-Embedding Quantum Algorithms</span></a>
@@ -820,8 +817,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&amp;sz=64" alt="" loading="lazy"/>arXiv cs.CL</span>
               
-              <span class="score">61</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-low">61/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://arxiv.org/abs/2606.24915" target="_blank" rel="noopener noreferrer"><span class="l-es">Generación aumentada por recuperación TF-IDF consciente de errores para corrección en ASR</span><span class="l-en" lang="en">Error-Aware TF-IDF Retrieval-Augmented Generation for ASR Error Correction</span></a>
@@ -842,8 +838,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=blog.google&amp;sz=64" alt="" loading="lazy"/>Google AI Blog</span>
               
-              <span class="score">22</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-low">22/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://blog.google/products-and-platforms/products/search/thrifting-tips/" target="_blank" rel="noopener noreferrer"><span class="l-es">5 formas en las que Google Search puede mejorar tus compras de ropa de segunda mano y vintage</span><span class="l-en" lang="en">5 ways Google Search can level up your thrift and vintage shopping</span></a>
@@ -915,54 +910,6 @@
       location.replace('d/' + d + '.html');
       return;
     }
-
-    // Texto visible en el idioma activo (los traducibles van duplicados).
-    function vis(node){
-      if (!node) return '';
-      var lang = document.documentElement.getAttribute('data-lang') === 'en' ? 'en' : 'es';
-      var pick = node.querySelector('.l-' + lang);
-      return ((pick || node).textContent || '').trim();
-    }
-    function ficha(article){
-      if (!article) return '';
-      var a = article.querySelector('.hero-title a, .card-title a');
-      var title = vis(a);
-      var swEl = article.querySelector('.sw');
-      var sw = vis(swEl);
-      var url = a ? (a.getAttribute('href') || '').trim() : '';
-      return [title, sw, url].filter(Boolean).join('\n\n');
-    }
-    function copied(btn){
-      btn.classList.add('ok');
-      var en = document.documentElement.getAttribute('data-lang') === 'en';
-      var label = btn.innerHTML;
-      btn.textContent = en ? 'Copied' : 'Copiado';
-      setTimeout(function(){ btn.classList.remove('ok'); btn.innerHTML = label; }, 1600);
-    }
-    function fallback(text, btn){
-      var ta = document.createElement('textarea');
-      ta.value = text;
-      ta.setAttribute('readonly', '');
-      ta.style.position = 'fixed';
-      ta.style.left = '-9999px';
-      document.body.appendChild(ta);
-      ta.select();
-      try { if (document.execCommand('copy')) copied(btn); } catch (e) {}
-      document.body.removeChild(ta);
-    }
-    document.querySelectorAll('[data-copy]').forEach(function(btn){
-      btn.addEventListener('click', function(ev){
-        ev.preventDefault();
-        ev.stopPropagation();
-        var text = ficha(btn.closest('article'));
-        if (!text) return;
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(text).then(function(){ copied(btn); }).catch(function(){ fallback(text, btn); });
-        } else {
-          fallback(text, btn);
-        }
-      });
-    });
 
     var tabs = document.querySelectorAll('#tabs .tab');
     if (!tabs.length) return;

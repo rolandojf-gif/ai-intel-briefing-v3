@@ -279,11 +279,20 @@
        border:2px solid var(--ink);background:var(--card-2);flex-shrink:0}
   .tag{background:var(--orange);color:#121211}
   .badge-new{background:var(--lime);color:#121211}
-  .score{font:700 11px var(--f-mono);color:var(--muted);margin-left:auto}
-  .copy-btn{font:700 10.5px/1 var(--f-mono);text-transform:uppercase;padding:5px 8px;cursor:pointer;
-            border:2px solid var(--ink);background:var(--card);color:var(--text);flex-shrink:0}
-  .copy-btn:hover{background:rgba(204,255,0,.3)}
-  .copy-btn.ok{background:#34D399;color:#121211}
+  .score{display:inline-flex;align-items:center;font:700 11px/1 var(--f-mono);margin-left:auto;padding:4px 7px;
+         border:1px solid var(--line);background:var(--card-2);color:var(--muted);font-variant-numeric:tabular-nums;
+         letter-spacing:.02em;flex-shrink:0}
+  .score.s-95{background:#FF4500;color:#121211;border:2px solid var(--ink);box-shadow:1px 1px 0 var(--ink)}
+  .score.s-88{background:#FF8A5C;color:#121211;border:1.5px solid var(--ink)}
+  .score.s-80{background:#FFE4D6;color:#9A3412;border:1.5px solid #EA580C}
+  .score.s-70{background:#F3F1EA;color:var(--muted);border:1px solid var(--line)}
+  .score.s-low{background:var(--card-2);color:var(--muted);border:1px solid var(--line);opacity:.82}
+  :root[data-theme="dark"] .score.s-80{background:rgba(255,87,34,.22);color:#FFA07A;border-color:#EA580C}
+  :root[data-theme="dark"] .score.s-70{background:#232320;color:var(--muted);border-color:var(--line)}
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]) .score.s-80{background:rgba(255,87,34,.22);color:#FFA07A;border-color:#EA580C}
+    :root:not([data-theme="light"]) .score.s-70{background:#232320;color:var(--muted);border-color:var(--line)}
+  }
   .hero-title{margin:0 0 10px;font:700 clamp(21px,2.4vw,30px)/1.15 var(--f-head);letter-spacing:-.02em}
   .hero-title a:hover,.card-title a:hover,.cx-t a:hover{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
   .sw{font-size:15px;line-height:1.6}
@@ -305,10 +314,11 @@
   .card-body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
   .card .meta-row{margin-bottom:0}
   .card-title{margin:0;font:700 19px/1.2 var(--f-head);letter-spacing:-.01em}
-  .card .sw{font-size:14px;line-height:1.55;color:var(--muted);
-            display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .card .sw{font-size:14px;line-height:1.5;color:var(--muted);
+            display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
   .card-foot{margin-top:auto;padding-top:10px;border-top:1px dashed var(--line);display:grid;gap:6px}
-  .card-foot .fact{font-size:12px}
+  .card-foot .fact{font-size:12px;line-height:1.4}
+  .card-foot .fact .v{min-width:0;flex:1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 
   /* -- Contexto -- */
   .section-h{margin:34px 0 14px}
@@ -320,7 +330,8 @@
   .cx .meta-row{margin-bottom:0}
   .cx-tag{display:inline-block;font:700 10px/1 var(--f-mono);text-transform:uppercase;padding:3px 6px;border:1px solid var(--ink);background:var(--card-2);color:var(--text);flex-shrink:0}
   .cx-t{margin:0;font:700 16px/1.3 var(--f-head);letter-spacing:-.01em}
-  .cx-w{font-size:13.5px;color:var(--muted);line-height:1.5;margin:0}
+  .cx-w{font-size:13.5px;color:var(--muted);line-height:1.48;margin:0;
+        display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 
   .empty{padding:40px 26px;text-align:center;border:2px dashed var(--ink);background:var(--card)}
   .empty .big{font:700 20px var(--f-head);margin-bottom:8px;text-transform:uppercase}
@@ -485,8 +496,7 @@
       </a>
       <div class="lead-meta">
         <span class="src"><img src="https://www.google.com/s2/favicons?domain=bloomberg.com&amp;sz=64" alt="" loading="lazy"/>Bloomberg Tech</span>
-        <span class="score"><span class="l-es">Relevancia</span><span class="l-en" lang="en">Relevance</span> 100/100</span>
-        <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+        <span class="score s-95"><span class="l-es">Relevancia</span><span class="l-en" lang="en">Relevance</span> 100/100</span>
       </div>
           
           <div class="facts two">
@@ -550,8 +560,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=bloomberg.com&amp;sz=64" alt="" loading="lazy"/>Bloomberg Tech</span>
               
-              <span class="score">100</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-95">100/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://www.bloomberg.com/news/articles/2026-10-16/taiwan-to-curb-ai-chip-exports-to-china-as-part-of-us-trade-deal" target="_blank" rel="noopener noreferrer"><span class="l-es">Taiwán restringe la exportación de chips de IA a China por acuerdo comercial con EEUU.</span><span class="l-en" lang="en">Taiwan to Curb AI Chip Exports to China as Part of US Trade Deal - Bloomberg</span></a>
@@ -580,8 +589,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=together.ai&amp;sz=64" alt="" loading="lazy"/>Together AI</span>
               
-              <span class="score">97</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-95">97/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://www.together.ai/blog/meta-muse-spark-open" target="_blank" rel="noopener noreferrer"><span class="l-es">Meta Muse Spark Open, modelo de código agéntico, disponible en Together AI.</span><span class="l-en" lang="en">Meta Muse Spark Open is live on Together AI</span></a>
@@ -610,8 +618,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=artificialanalysis.ai&amp;sz=64" alt="" loading="lazy"/>Artificial Analysis</span>
               
-              <span class="score">96</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-95">96/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://artificialanalysis.ai/articles/vera-rubin-nvl72-agentperf" target="_blank" rel="noopener noreferrer"><span class="l-es">Publicados los primeros resultados de AgentPerf para la NVIDIA Vera Rubin NVL72.</span><span class="l-en" lang="en">First AA-AgentPerf results for NVIDIA Vera Rubin NVL72 October 15, 2026</span></a>
@@ -640,8 +647,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=theverge.com&amp;sz=64" alt="" loading="lazy"/>The Verge AI</span>
               
-              <span class="score">86</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-80">86/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://www.theverge.com/ai-artificial-intelligence/1012510/openai-chatgpt-google-chrome-tabs" target="_blank" rel="noopener noreferrer"><span class="l-es">ChatGPT puede acceder a las pestañas del navegador Chrome, expandiendo su contexto de operación.</span><span class="l-en" lang="en">ChatGPT can peek at your Chrome tabs now</span></a>
@@ -670,8 +676,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=huggingface.co&amp;sz=64" alt="" loading="lazy"/>Hugging Face Blog</span>
               
-              <span class="score">81</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-80">81/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://huggingface.co/blog/nvidia/scaling-indic-pretraining" target="_blank" rel="noopener noreferrer"><span class="l-es">Nuevo esfuerzo de preentrenamiento con 2.8 billones de tokens para lenguas indias.</span><span class="l-en" lang="en">Scaling Indic Pretraining: 2.8 Trillion Tokens and an Open Data Generation Pipeline</span></a>
@@ -700,8 +705,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=mistral.ai&amp;sz=64" alt="" loading="lazy"/>Mistral</span>
               
-              <span class="score">81</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-80">81/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://mistral.ai/news/timestral/" target="_blank" rel="noopener noreferrer"><span class="l-es">Mistral lanza Timestral, un modelo eficiente para pronóstico probabilístico en cuatro tamaños.</span><span class="l-en" lang="en">Introducing Timestral</span></a>
@@ -730,8 +734,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=x.ai&amp;sz=64" alt="" loading="lazy"/>xAI</span>
               
-              <span class="score">77</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-70">77/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://x.ai/news/grok-voice-3" target="_blank" rel="noopener noreferrer"><span class="l-es">xAI lanza Grok Voice 3.0, añadiendo nuevas capacidades de voz a su modelo.</span><span class="l-en" lang="en">Introducing Grok Voice 3.0 | SpaceXSI - xAI</span></a>
@@ -761,8 +764,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=reuters.com&amp;sz=64" alt="" loading="lazy"/>Reuters AI</span>
               
-              <span class="score">72</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-70">72/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://www.reuters.com/world/asia-pacific/g7-launch-exercises-guard-against-ai-cyber-attacks-2026-10-16/" target="_blank" rel="noopener noreferrer"><span class="l-es">El G7 realizará ejercicios para defenderse de ciberataques impulsados por IA.</span><span class="l-en" lang="en">G7 to launch exercises to guard against AI cyber attacks - Reuters</span></a>
@@ -791,8 +793,7 @@
               
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=blog.google&amp;sz=64" alt="" loading="lazy"/>Google AI Blog</span>
               
-              <span class="score">69</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-low">69/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/" target="_blank" rel="noopener noreferrer"><span class="l-es">Google anuncia Gemini 4 Argon, un nuevo modelo diseñado para problemas complejos.</span><span class="l-en" lang="en">Gemini 4 Argon: Built to solve your hardest problems</span></a>
@@ -828,7 +829,7 @@
             <div class="meta-row">
               <span class="cx-tag"><span class="l-es">Capacidad frontier</span><span class="l-en" lang="en">Frontier capability</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=latent.space&amp;sz=64" alt="" loading="lazy"/>Latent Space</span>
-              <span class="score">83</span>
+              <span class="score s-80">83/100</span>
             </div>
             <h3 class="cx-t">
               <a href="https://www.latent.space/p/ainews-agents-disprove-polysemanticity" target="_blank" rel="noopener noreferrer"><span class="l-es">Afirman que los agentes refutan la polisemanticidad, mejorando interpretatibilidad de IA.</span><span class="l-en" lang="en">[AINews] Agents disprove Polysemanticity; greatly improve Interpretability &amp; Alignment</span></a>
@@ -840,7 +841,7 @@
             <div class="meta-row">
               <span class="cx-tag"><span class="l-es">Geopolítica</span><span class="l-en" lang="en">Geopolitics</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=currentaffairs.org&amp;sz=64" alt="" loading="lazy"/>Hacker News (alto voltaje)</span>
-              <span class="score">65</span>
+              <span class="score s-low">65/100</span>
             </div>
             <h3 class="cx-t">
               <a href="https://www.currentaffairs.org/news/why-were-banning-ai" target="_blank" rel="noopener noreferrer"><span class="l-es">Argumentan motivos para la prohibición de la IA, señalando riesgos y desafíos.</span><span class="l-en" lang="en">Why We&#39;re Banning AI</span></a>
@@ -852,7 +853,7 @@
             <div class="meta-row">
               <span class="cx-tag"><span class="l-es">Capacidad frontier</span><span class="l-en" lang="en">Frontier capability</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=importai.substack.com&amp;sz=64" alt="" loading="lazy"/>Import AI</span>
-              <span class="score">51</span>
+              <span class="score s-low">51/100</span>
             </div>
             <h3 class="cx-t">
               <a href="https://jack-clark.net/2026/10/12/import-ai-476-creativity-and-rsi-worse-than-china-open-weight-models-ai-goes-to-space/" target="_blank" rel="noopener noreferrer"><span class="l-es">Modelos de IA carecen de razonamiento visual intuitivo según nuevo benchmark.</span><span class="l-en" lang="en">Import AI 476: Creativity and RSI; worse-than-China open weight models; AI goes to space</span></a>
@@ -1020,54 +1021,6 @@
       location.replace('d/' + d + '.html');
       return;
     }
-
-    // Texto visible en el idioma activo (los traducibles van duplicados).
-    function vis(node){
-      if (!node) return '';
-      var lang = document.documentElement.getAttribute('data-lang') === 'en' ? 'en' : 'es';
-      var pick = node.querySelector('.l-' + lang);
-      return ((pick || node).textContent || '').trim();
-    }
-    function ficha(article){
-      if (!article) return '';
-      var a = article.querySelector('.hero-title a, .card-title a');
-      var title = vis(a);
-      var swEl = article.querySelector('.sw');
-      var sw = vis(swEl);
-      var url = a ? (a.getAttribute('href') || '').trim() : '';
-      return [title, sw, url].filter(Boolean).join('\n\n');
-    }
-    function copied(btn){
-      btn.classList.add('ok');
-      var en = document.documentElement.getAttribute('data-lang') === 'en';
-      var label = btn.innerHTML;
-      btn.textContent = en ? 'Copied' : 'Copiado';
-      setTimeout(function(){ btn.classList.remove('ok'); btn.innerHTML = label; }, 1600);
-    }
-    function fallback(text, btn){
-      var ta = document.createElement('textarea');
-      ta.value = text;
-      ta.setAttribute('readonly', '');
-      ta.style.position = 'fixed';
-      ta.style.left = '-9999px';
-      document.body.appendChild(ta);
-      ta.select();
-      try { if (document.execCommand('copy')) copied(btn); } catch (e) {}
-      document.body.removeChild(ta);
-    }
-    document.querySelectorAll('[data-copy]').forEach(function(btn){
-      btn.addEventListener('click', function(ev){
-        ev.preventDefault();
-        ev.stopPropagation();
-        var text = ficha(btn.closest('article'));
-        if (!text) return;
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(text).then(function(){ copied(btn); }).catch(function(){ fallback(text, btn); });
-        } else {
-          fallback(text, btn);
-        }
-      });
-    });
 
     var tabs = document.querySelectorAll('#tabs .tab');
     if (!tabs.length) return;

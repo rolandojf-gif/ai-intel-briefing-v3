@@ -255,6 +255,22 @@ class UxTimezoneHealthTests(unittest.TestCase):
         self.assertIn("En segundo plano", html)
         self.assertIn("Supporting signals shaping the backdrop", html)
         self.assertIn('<span class="cx-tag">', html)
+        self.assertNotIn("data-copy", html)
+        self.assertEqual(render.score_tier(97), "s-95")
+        self.assertEqual(render.score_tier(90), "s-88")
+        self.assertEqual(render.score_tier(82), "s-80")
+        self.assertEqual(render.score_tier(74), "s-70")
+        self.assertEqual(render.score_tier(55), "s-low")
+        self.assertIn('<span class="score s-88">', html)
+        self.assertIn('<span class="score s-80">80/100</span>', html)
+        self.assertIn('<span class="score s-low">55/100</span>', html)
+
+    def test_llm_rank_fields_enforce_concise_non_redundant_copy(self):
+        import src.llm_rank as llm_rank
+        fields = llm_rank.RankOut.model_fields
+        self.assertIn("150", fields["so_what"].description)
+        self.assertIn("65", fields["power_shift"].description)
+        self.assertIn("75", fields["watch_next"].description)
 
     def test_health_check_warns_when_x_layer_killed_without_failing(self):
         snap = {

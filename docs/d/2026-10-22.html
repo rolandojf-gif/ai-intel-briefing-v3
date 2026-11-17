@@ -279,11 +279,20 @@
        border:2px solid var(--ink);background:var(--card-2);flex-shrink:0}
   .tag{background:var(--orange);color:#121211}
   .badge-new{background:var(--lime);color:#121211}
-  .score{font:700 11px var(--f-mono);color:var(--muted);margin-left:auto}
-  .copy-btn{font:700 10.5px/1 var(--f-mono);text-transform:uppercase;padding:5px 8px;cursor:pointer;
-            border:2px solid var(--ink);background:var(--card);color:var(--text);flex-shrink:0}
-  .copy-btn:hover{background:rgba(204,255,0,.3)}
-  .copy-btn.ok{background:#34D399;color:#121211}
+  .score{display:inline-flex;align-items:center;font:700 11px/1 var(--f-mono);margin-left:auto;padding:4px 7px;
+         border:1px solid var(--line);background:var(--card-2);color:var(--muted);font-variant-numeric:tabular-nums;
+         letter-spacing:.02em;flex-shrink:0}
+  .score.s-95{background:#FF4500;color:#121211;border:2px solid var(--ink);box-shadow:1px 1px 0 var(--ink)}
+  .score.s-88{background:#FF8A5C;color:#121211;border:1.5px solid var(--ink)}
+  .score.s-80{background:#FFE4D6;color:#9A3412;border:1.5px solid #EA580C}
+  .score.s-70{background:#F3F1EA;color:var(--muted);border:1px solid var(--line)}
+  .score.s-low{background:var(--card-2);color:var(--muted);border:1px solid var(--line);opacity:.82}
+  :root[data-theme="dark"] .score.s-80{background:rgba(255,87,34,.22);color:#FFA07A;border-color:#EA580C}
+  :root[data-theme="dark"] .score.s-70{background:#232320;color:var(--muted);border-color:var(--line)}
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]) .score.s-80{background:rgba(255,87,34,.22);color:#FFA07A;border-color:#EA580C}
+    :root:not([data-theme="light"]) .score.s-70{background:#232320;color:var(--muted);border-color:var(--line)}
+  }
   .hero-title{margin:0 0 10px;font:700 clamp(21px,2.4vw,30px)/1.15 var(--f-head);letter-spacing:-.02em}
   .hero-title a:hover,.card-title a:hover,.cx-t a:hover{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
   .sw{font-size:15px;line-height:1.6}
@@ -305,10 +314,11 @@
   .card-body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
   .card .meta-row{margin-bottom:0}
   .card-title{margin:0;font:700 19px/1.2 var(--f-head);letter-spacing:-.01em}
-  .card .sw{font-size:14px;line-height:1.55;color:var(--muted);
-            display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .card .sw{font-size:14px;line-height:1.5;color:var(--muted);
+            display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
   .card-foot{margin-top:auto;padding-top:10px;border-top:1px dashed var(--line);display:grid;gap:6px}
-  .card-foot .fact{font-size:12px}
+  .card-foot .fact{font-size:12px;line-height:1.4}
+  .card-foot .fact .v{min-width:0;flex:1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 
   /* -- Contexto -- */
   .section-h{margin:34px 0 14px}
@@ -320,7 +330,8 @@
   .cx .meta-row{margin-bottom:0}
   .cx-tag{display:inline-block;font:700 10px/1 var(--f-mono);text-transform:uppercase;padding:3px 6px;border:1px solid var(--ink);background:var(--card-2);color:var(--text);flex-shrink:0}
   .cx-t{margin:0;font:700 16px/1.3 var(--f-head);letter-spacing:-.01em}
-  .cx-w{font-size:13.5px;color:var(--muted);line-height:1.5;margin:0}
+  .cx-w{font-size:13.5px;color:var(--muted);line-height:1.48;margin:0;
+        display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 
   .empty{padding:40px 26px;text-align:center;border:2px dashed var(--ink);background:var(--card)}
   .empty .big{font:700 20px var(--f-head);margin-bottom:8px;text-transform:uppercase}
@@ -486,8 +497,7 @@
       </a>
       <div class="lead-meta">
         <span class="src"><img src="https://www.google.com/s2/favicons?domain=latent.space&amp;sz=64" alt="" loading="lazy"/>Latent Space</span>
-        <span class="score"><span class="l-es">Relevancia</span><span class="l-en" lang="en">Relevance</span> 100/100</span>
-        <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+        <span class="score s-95"><span class="l-es">Relevancia</span><span class="l-en" lang="en">Relevance</span> 100/100</span>
       </div>
           
           <div class="facts two">
@@ -550,8 +560,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=latent.space&amp;sz=64" alt="" loading="lazy"/>Latent Space</span>
               
-              <span class="score">100</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-95">100/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://www.latent.space/p/ainews-openais-patch-the-planet-program" target="_blank" rel="noopener noreferrer"><span class="l-es">Programa &#34;Patch the Planet&#34; de OpenAI descubre vulnerabilidades críticas en PHP.</span><span class="l-en" lang="en">[AINews] OpenAI’s Patch the Planet program is 1 of 2 parties to discover PHP2Shell vulnerabilities in core PHP affecting 70% of the web, using GPT-5.6 Sol; coordinated response over 2 months</span></a>
@@ -580,8 +589,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=wiz.io&amp;sz=64" alt="" loading="lazy"/>Hacker News (alto voltaje)</span>
               
-              <span class="score">94</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-88">94/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://www.wiz.io/blog/php2shell-php-rce" target="_blank" rel="noopener noreferrer"><span class="l-es">Un fallo RCE crítico descubierto en PHP, generado por IA.</span><span class="l-en" lang="en">PHP2Shell: AI uncovers critical RCE in PHP</span></a>
@@ -610,8 +618,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=openai.com&amp;sz=64" alt="" loading="lazy"/>OpenAI</span>
               
-              <span class="score">93</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-88">93/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://openai.com/index/openai-models-google-cloud" target="_blank" rel="noopener noreferrer"><span class="l-es">Modelos de OpenAI disponibles en Google Cloud a través de Model Garden.</span><span class="l-en" lang="en">OpenAI models are coming to Google Cloud</span></a>
@@ -640,8 +647,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=theverge.com&amp;sz=64" alt="" loading="lazy"/>The Verge AI</span>
               
-              <span class="score">92</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-88">92/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://www.theverge.com/ai-artificial-intelligence/1015958/data-center-pollution-rising-report" target="_blank" rel="noopener noreferrer"><span class="l-es">Centros de datos de IA amenazan la calidad del aire y el progreso ambiental en EE.UU.</span><span class="l-en" lang="en">Data centers could erase decades of air quality gains</span></a>
@@ -670,8 +676,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=chinatalk.media&amp;sz=64" alt="" loading="lazy"/>ChinaTalk</span>
               
-              <span class="score">92</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-88">92/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://www.chinatalk.media/p/mofcoms-new-ai-rules" target="_blank" rel="noopener noreferrer"><span class="l-es">Nuevas regulaciones del MOFCOM moldearán el futuro de la IA china.</span><span class="l-en" lang="en">MOFCOM&#39;s New Rules and the Future of Chinese AI</span></a>
@@ -700,8 +705,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=interconnects.ai&amp;sz=64" alt="" loading="lazy"/>Interconnects</span>
               
-              <span class="score">82</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-80">82/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://www.interconnects.ai/p/latest-open-artifacts-25-deepseek" target="_blank" rel="noopener noreferrer"><span class="l-es">Novedades en modelos abiertos (DeepSeek V4.1 Flash) y controles regulatorios en IA (EE.UU. y China).</span><span class="l-en" lang="en">Latest open artifacts (25): DeepSeek V4.1 Flash 1017, American-made models, and new regulatory controls in the US &amp; China</span></a>
@@ -731,8 +735,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=reuters.com&amp;sz=64" alt="" loading="lazy"/>Reuters AI</span>
               
-              <span class="score">80</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-80">80/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://www.reuters.com/business/media-telecom/palantir-says-it-cannot-shut-off-nato-ai-system-europeans-fear-us-tech-2026-10-22/" target="_blank" rel="noopener noreferrer"><span class="l-es">Palantir declara que no puede desconectar el sistema de IA de la OTAN, ante temores europeos.</span><span class="l-en" lang="en">Palantir says it cannot shut off NATO AI system as Europeans fear US tech dependence - Reuters</span></a>
@@ -761,8 +764,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=mistral.ai&amp;sz=64" alt="" loading="lazy"/>Mistral</span>
               
-              <span class="score">79</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-70">79/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://mistral.ai/news/voxtral-3/" target="_blank" rel="noopener noreferrer"><span class="l-es">Mistral lanza Voxtral 3, un SDK de agente de voz para 50+ idiomas en tiempo real.</span><span class="l-en" lang="en">Voxtral 3</span></a>
@@ -792,8 +794,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=simonwillison.net&amp;sz=64" alt="" loading="lazy"/>Simon Willison (AI &amp; LLMs)</span>
               
-              <span class="score">73</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-70">73/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://simonwillison.net/2026/Oct/21/php-security-release/" target="_blank" rel="noopener noreferrer"><span class="l-es">PHP Foundation explica la liberación de parches de seguridad para fallos RCE críticos.</span><span class="l-en" lang="en">Today&#39;s PHP Security Release, and How We&#39;re Strengthening PHP Security</span></a>
@@ -823,8 +824,7 @@
               
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=ai.meta.com&amp;sz=64" alt="" loading="lazy"/>Meta AI</span>
               
-              <span class="score">72</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-70">72/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://ai.meta.com/research/publications/muse-glimmer-30b-an-on-device-agentic-model/" target="_blank" rel="noopener noreferrer"><span class="l-es">Meta lanza Muse Glimmer 30B, un modelo de agente autónomo para dispositivos.</span><span class="l-en" lang="en">Muse Glimmer 30B: An On-Device Agentic Model | Research - AI at Meta</span></a>
@@ -854,8 +854,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=bloomberg.com&amp;sz=64" alt="" loading="lazy"/>Bloomberg Tech</span>
               
-              <span class="score">69</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-low">69/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://www.bloomberg.com/news/articles/2026-10-22/minimax-erases-post-ipo-gain-as-ai-model-rivalry-intensifies" target="_blank" rel="noopener noreferrer"><span class="l-es">MiniMax pierde valor tras su salida a bolsa por la intensa competencia en modelos de IA.</span><span class="l-en" lang="en">MiniMax Erases Post-IPO Gain as AI Model Rivalry Intensifies - Bloomberg.com</span></a>
@@ -884,8 +883,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=techcrunch.com&amp;sz=64" alt="" loading="lazy"/>TechCrunch AI</span>
               
-              <span class="score">64</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-low">64/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://techcrunch.com/2026/10/21/blackstones-jas-khaira-says-fears-over-ai-buildout-debt-are-overblown/" target="_blank" rel="noopener noreferrer"><span class="l-es">Blackstone no teme a la deuda generada por la expansión de la infraestructura de IA.</span><span class="l-en" lang="en">Blackstone’s Jas Khaira says fears over AI-buildout debt are overblown</span></a>
@@ -921,7 +919,7 @@
             <div class="meta-row">
               <span class="cx-tag"><span class="l-es">Economía de modelos</span><span class="l-en" lang="en">Model economics</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=together.ai&amp;sz=64" alt="" loading="lazy"/>Together AI</span>
-              <span class="score">62</span>
+              <span class="score s-low">62/100</span>
             </div>
             <h3 class="cx-t">
               <a href="https://www.together.ai/blog/together-post-training" target="_blank" rel="noopener noreferrer"><span class="l-es">Together AI lanza servicio de post-entrenamiento para modelos LLM abiertos.</span><span class="l-en" lang="en">Together Post-Training: frontier-grade model shaping, the way that fits you</span></a>
@@ -933,7 +931,7 @@
             <div class="meta-row">
               <span class="cx-tag"><span class="l-es">Agentes</span><span class="l-en" lang="en">Agents</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=nvidia.com&amp;sz=64" alt="" loading="lazy"/>NVIDIA Blog</span>
-              <span class="score">53</span>
+              <span class="score s-low">53/100</span>
             </div>
             <h3 class="cx-t">
               <a href="https://blogs.nvidia.com/blog/nemotron-3-5-super-vl/" target="_blank" rel="noopener noreferrer"><span class="l-es">NVIDIA lanza Nemotron 3.5 Super VL y Bolt, nuevos modelos abiertos para agentes eficientes.</span><span class="l-en" lang="en">Open From Data Center to Desktop: NVIDIA Expands Nemotron Family With Highest Efficiency Super VL and Bolt Models</span></a>
@@ -1104,54 +1102,6 @@
       location.replace('d/' + d + '.html');
       return;
     }
-
-    // Texto visible en el idioma activo (los traducibles van duplicados).
-    function vis(node){
-      if (!node) return '';
-      var lang = document.documentElement.getAttribute('data-lang') === 'en' ? 'en' : 'es';
-      var pick = node.querySelector('.l-' + lang);
-      return ((pick || node).textContent || '').trim();
-    }
-    function ficha(article){
-      if (!article) return '';
-      var a = article.querySelector('.hero-title a, .card-title a');
-      var title = vis(a);
-      var swEl = article.querySelector('.sw');
-      var sw = vis(swEl);
-      var url = a ? (a.getAttribute('href') || '').trim() : '';
-      return [title, sw, url].filter(Boolean).join('\n\n');
-    }
-    function copied(btn){
-      btn.classList.add('ok');
-      var en = document.documentElement.getAttribute('data-lang') === 'en';
-      var label = btn.innerHTML;
-      btn.textContent = en ? 'Copied' : 'Copiado';
-      setTimeout(function(){ btn.classList.remove('ok'); btn.innerHTML = label; }, 1600);
-    }
-    function fallback(text, btn){
-      var ta = document.createElement('textarea');
-      ta.value = text;
-      ta.setAttribute('readonly', '');
-      ta.style.position = 'fixed';
-      ta.style.left = '-9999px';
-      document.body.appendChild(ta);
-      ta.select();
-      try { if (document.execCommand('copy')) copied(btn); } catch (e) {}
-      document.body.removeChild(ta);
-    }
-    document.querySelectorAll('[data-copy]').forEach(function(btn){
-      btn.addEventListener('click', function(ev){
-        ev.preventDefault();
-        ev.stopPropagation();
-        var text = ficha(btn.closest('article'));
-        if (!text) return;
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(text).then(function(){ copied(btn); }).catch(function(){ fallback(text, btn); });
-        } else {
-          fallback(text, btn);
-        }
-      });
-    });
 
     var tabs = document.querySelectorAll('#tabs .tab');
     if (!tabs.length) return;

@@ -279,11 +279,20 @@
        border:2px solid var(--ink);background:var(--card-2);flex-shrink:0}
   .tag{background:var(--orange);color:#121211}
   .badge-new{background:var(--lime);color:#121211}
-  .score{font:700 11px var(--f-mono);color:var(--muted);margin-left:auto}
-  .copy-btn{font:700 10.5px/1 var(--f-mono);text-transform:uppercase;padding:5px 8px;cursor:pointer;
-            border:2px solid var(--ink);background:var(--card);color:var(--text);flex-shrink:0}
-  .copy-btn:hover{background:rgba(204,255,0,.3)}
-  .copy-btn.ok{background:#34D399;color:#121211}
+  .score{display:inline-flex;align-items:center;font:700 11px/1 var(--f-mono);margin-left:auto;padding:4px 7px;
+         border:1px solid var(--line);background:var(--card-2);color:var(--muted);font-variant-numeric:tabular-nums;
+         letter-spacing:.02em;flex-shrink:0}
+  .score.s-95{background:#FF4500;color:#121211;border:2px solid var(--ink);box-shadow:1px 1px 0 var(--ink)}
+  .score.s-88{background:#FF8A5C;color:#121211;border:1.5px solid var(--ink)}
+  .score.s-80{background:#FFE4D6;color:#9A3412;border:1.5px solid #EA580C}
+  .score.s-70{background:#F3F1EA;color:var(--muted);border:1px solid var(--line)}
+  .score.s-low{background:var(--card-2);color:var(--muted);border:1px solid var(--line);opacity:.82}
+  :root[data-theme="dark"] .score.s-80{background:rgba(255,87,34,.22);color:#FFA07A;border-color:#EA580C}
+  :root[data-theme="dark"] .score.s-70{background:#232320;color:var(--muted);border-color:var(--line)}
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]) .score.s-80{background:rgba(255,87,34,.22);color:#FFA07A;border-color:#EA580C}
+    :root:not([data-theme="light"]) .score.s-70{background:#232320;color:var(--muted);border-color:var(--line)}
+  }
   .hero-title{margin:0 0 10px;font:700 clamp(21px,2.4vw,30px)/1.15 var(--f-head);letter-spacing:-.02em}
   .hero-title a:hover,.card-title a:hover,.cx-t a:hover{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
   .sw{font-size:15px;line-height:1.6}
@@ -305,10 +314,11 @@
   .card-body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
   .card .meta-row{margin-bottom:0}
   .card-title{margin:0;font:700 19px/1.2 var(--f-head);letter-spacing:-.01em}
-  .card .sw{font-size:14px;line-height:1.55;color:var(--muted);
-            display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .card .sw{font-size:14px;line-height:1.5;color:var(--muted);
+            display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
   .card-foot{margin-top:auto;padding-top:10px;border-top:1px dashed var(--line);display:grid;gap:6px}
-  .card-foot .fact{font-size:12px}
+  .card-foot .fact{font-size:12px;line-height:1.4}
+  .card-foot .fact .v{min-width:0;flex:1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 
   /* -- Contexto -- */
   .section-h{margin:34px 0 14px}
@@ -320,7 +330,8 @@
   .cx .meta-row{margin-bottom:0}
   .cx-tag{display:inline-block;font:700 10px/1 var(--f-mono);text-transform:uppercase;padding:3px 6px;border:1px solid var(--ink);background:var(--card-2);color:var(--text);flex-shrink:0}
   .cx-t{margin:0;font:700 16px/1.3 var(--f-head);letter-spacing:-.01em}
-  .cx-w{font-size:13.5px;color:var(--muted);line-height:1.5;margin:0}
+  .cx-w{font-size:13.5px;color:var(--muted);line-height:1.48;margin:0;
+        display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 
   .empty{padding:40px 26px;text-align:center;border:2px dashed var(--ink);background:var(--card)}
   .empty .big{font:700 20px var(--f-head);margin-bottom:8px;text-transform:uppercase}
@@ -488,8 +499,7 @@
       </a>
       <div class="lead-meta">
         <span class="src"><img src="https://www.google.com/s2/favicons?domain=mistral.ai&amp;sz=64" alt="" loading="lazy"/>Mistral</span>
-        <span class="score"><span class="l-es">Relevancia</span><span class="l-en" lang="en">Relevance</span> 100/100</span>
-        <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+        <span class="score s-95"><span class="l-es">Relevancia</span><span class="l-en" lang="en">Relevance</span> 100/100</span>
       </div>
           
           <div class="facts two">
@@ -552,8 +562,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=mistral.ai&amp;sz=64" alt="" loading="lazy"/>Mistral</span>
               
-              <span class="score">100</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-95">100/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://mistral.ai/news/mistral-large-4-oss/" target="_blank" rel="noopener noreferrer"><span class="l-es">Mistral lanza Le Chonk, un modelo multimodal de 1T, open-weight y enfocado en codificación.</span><span class="l-en" lang="en">Le Chonk: Built for Coders, Trusted by Defenders.</span></a>
@@ -582,8 +591,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=artificialanalysis.ai&amp;sz=64" alt="" loading="lazy"/>Artificial Analysis</span>
               
-              <span class="score">97</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-95">97/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://artificialanalysis.ai/articles/gemini-4-carbon-new-number-1" target="_blank" rel="noopener noreferrer"><span class="l-es">Gemini 4 Carbon, el nuevo número uno en el Índice de Inteligencia Artificial v5.</span><span class="l-en" lang="en">Gemini 4 Carbon is the new 1 on the Artificial Analysis Intelligence Index v5 October 28, 2026</span></a>
@@ -612,8 +620,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=labs.ycombinator.com&amp;sz=64" alt="" loading="lazy"/>Hacker News (alto voltaje)</span>
               
-              <span class="score">89</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-88">89/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://labs.ycombinator.com/projects/games/index.html" target="_blank" rel="noopener noreferrer"><span class="l-es">Demostración de enjambres de agentes de IA operando autónomamente en Minecraft/Mindustry.</span><span class="l-en" lang="en">We ran AI agent swarms in Minecraft and Mindustry</span></a>
@@ -642,8 +649,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=epoch.ai&amp;sz=64" alt="" loading="lazy"/>Epoch AI</span>
               
-              <span class="score">89</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-88">89/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://epoch.ai/data-insights/ai-computing-capacity-additions-doubling" target="_blank" rel="noopener noreferrer"><span class="l-es">La capacidad global de cómputo para IA se duplica cada 9 meses.</span><span class="l-en" lang="en">New global AI computing capacity is doubling every 9 months - Epoch AI</span></a>
@@ -672,8 +678,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=deepmind.google&amp;sz=64" alt="" loading="lazy"/>DeepMind Blog</span>
               
-              <span class="score">87</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-80">87/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://deepmind.google/blog/gemini-4-carbon-our-next-frontier-model/" target="_blank" rel="noopener noreferrer"><span class="l-es">Google DeepMind anuncia Gemini 4 Carbon, su próximo modelo frontera.</span><span class="l-en" lang="en">Gemini 4 Carbon: Our next frontier model</span></a>
@@ -703,8 +708,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=bloomberg.com&amp;sz=64" alt="" loading="lazy"/>Bloomberg Tech</span>
               
-              <span class="score">84</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-80">84/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://www.bloomberg.com/news/articles/2026-10-30/big-tech-s-750-billion-ai-bet-collides-with-slowing-core-growth" target="_blank" rel="noopener noreferrer"><span class="l-es">Inversión de $750B de Big Tech en IA choca con desaceleración del crecimiento principal.</span><span class="l-en" lang="en">Big Tech’s $750 Billion AI Bet Collides With Slowing Core Growth - Bloomberg.com</span></a>
@@ -733,8 +737,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=theverge.com&amp;sz=64" alt="" loading="lazy"/>The Verge AI</span>
               
-              <span class="score">80</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-80">80/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://www.theverge.com/ai-artificial-intelligence/1022519/google-gemini-file-editing-documents-pdfs" target="_blank" rel="noopener noreferrer"><span class="l-es">Google Gemini integra generación y edición directa de archivos Docs y otros formatos.</span><span class="l-en" lang="en">You can generate and edit Google Docs files directly in Gemini chats now</span></a>
@@ -764,8 +767,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=reuters.com&amp;sz=64" alt="" loading="lazy"/>Reuters AI</span>
               
-              <span class="score">80</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-80">80/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://www.reuters.com/business/nasdaq-futures-tumble-amazon-intel-results-deepen-ai-spending-woes-2026-10-30/" target="_blank" rel="noopener noreferrer"><span class="l-es">Futuros del Nasdaq caen; Amazon e Intel intensifican preocupación sobre gasto en IA.</span><span class="l-en" lang="en">Nasdaq futures tumble as Amazon, Intel results deepen AI spending woes - Reuters</span></a>
@@ -795,8 +797,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=simonwillison.net&amp;sz=64" alt="" loading="lazy"/>Simon Willison (AI &amp; LLMs)</span>
               
-              <span class="score">78</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-70">78/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://simonwillison.net/2026/Oct/29/api-credits/" target="_blank" rel="noopener noreferrer"><span class="l-es">OpenAI replica el programa de créditos API de Anthropic para suscripciones ChatGPT.</span><span class="l-en" lang="en">API credits benefit for eligible ChatGPT subscriptions</span></a>
@@ -825,8 +826,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=semiwiki.com&amp;sz=64" alt="" loading="lazy"/>SemiWiki</span>
               
-              <span class="score">69</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-low">69/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://semiwiki.com/events/375312-semicon-west-2026-ai-made-the-steps-faster-the-time-between-them-is-next/" target="_blank" rel="noopener noreferrer"><span class="l-es">Industria de semiconductores acelera por la IA; prevé alcanzar $2 billones en 2030.</span><span class="l-en" lang="en">SEMICON West 2026: AI Made the Steps Faster. The Time Between Them Is Next.</span></a>
@@ -855,8 +855,7 @@
               
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=deepmind.google&amp;sz=64" alt="" loading="lazy"/>DeepMind Blog</span>
               
-              <span class="score">64</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-low">64/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/" target="_blank" rel="noopener noreferrer"><span class="l-es">Google DeepMind presenta Genie 4, su nuevo modelo de mundo para simulación real.</span><span class="l-en" lang="en">Genie 4: A new generation of world simulation</span></a>
@@ -885,8 +884,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=openai.com&amp;sz=64" alt="" loading="lazy"/>OpenAI</span>
               
-              <span class="score">59</span>
-              <button type="button" class="copy-btn" data-copy><span class="l-es">Copiar</span><span class="l-en" lang="en">Copy</span></button>
+              <span class="score s-low">59/100</span>
             </div>
             <h3 class="card-title">
               <a href="https://openai.com/index/how-we-detect-frontier-model-misalignment" target="_blank" rel="noopener noreferrer"><span class="l-es">OpenAI detalla detección de desalineación en modelos frontera y comportamiento de agentes.</span><span class="l-en" lang="en">How we detect frontier model misalignment</span></a>
@@ -922,7 +920,7 @@
             <div class="meta-row">
               <span class="cx-tag"><span class="l-es">Stack chino</span><span class="l-en" lang="en">China stack</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=chinatalk.media&amp;sz=64" alt="" loading="lazy"/>ChinaTalk</span>
-              <span class="score">51</span>
+              <span class="score s-low">51/100</span>
             </div>
             <h3 class="cx-t">
               <a href="https://www.chinatalk.media/p/is-half-of-chinas-ai-making-slop" target="_blank" rel="noopener noreferrer"><span class="l-es">Análisis sobre la calidad de la IA en China y el mito del 55% de tokens.</span><span class="l-en" lang="en">Is Half of China’s AI Making Slop?</span></a>
@@ -934,7 +932,7 @@
             <div class="meta-row">
               <span class="cx-tag"><span class="l-es">Geopolítica</span><span class="l-en" lang="en">Geopolitics</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=epoch.ai&amp;sz=64" alt="" loading="lazy"/>Epoch AI</span>
-              <span class="score">49</span>
+              <span class="score s-low">49/100</span>
             </div>
             <h3 class="cx-t">
               <a href="https://epoch.ai/publications/open-weight-models-patch-gap" target="_blank" rel="noopener noreferrer"><span class="l-es">Modelos IA open-weight pueden explotar la brecha de parcheo en software vulnerable.</span><span class="l-en" lang="en">Open-weight AI models can exploit the patch gap - Epoch AI</span></a>
@@ -946,7 +944,7 @@
             <div class="meta-row">
               <span class="cx-tag">Compute &amp; chips</span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arstechnica.com&amp;sz=64" alt="" loading="lazy"/>Ars Technica AI</span>
-              <span class="score">40</span>
+              <span class="score s-low">40/100</span>
             </div>
             <h3 class="cx-t">
               <a href="https://arstechnica.com/security/2026/10/code-execution-flaw-in-uefi-firmware-threatens-most-servers-on-planet-earth/" target="_blank" rel="noopener noreferrer"><span class="l-es">Fallo de ejecución de código en firmware UEFI afecta a la mayoría de servidores globales.</span><span class="l-en" lang="en">Code-execution flaw in UEFI firmware affects most servers on planet Earth</span></a>
@@ -1119,54 +1117,6 @@
       location.replace('d/' + d + '.html');
       return;
     }
-
-    // Texto visible en el idioma activo (los traducibles van duplicados).
-    function vis(node){
-      if (!node) return '';
-      var lang = document.documentElement.getAttribute('data-lang') === 'en' ? 'en' : 'es';
-      var pick = node.querySelector('.l-' + lang);
-      return ((pick || node).textContent || '').trim();
-    }
-    function ficha(article){
-      if (!article) return '';
-      var a = article.querySelector('.hero-title a, .card-title a');
-      var title = vis(a);
-      var swEl = article.querySelector('.sw');
-      var sw = vis(swEl);
-      var url = a ? (a.getAttribute('href') || '').trim() : '';
-      return [title, sw, url].filter(Boolean).join('\n\n');
-    }
-    function copied(btn){
-      btn.classList.add('ok');
-      var en = document.documentElement.getAttribute('data-lang') === 'en';
-      var label = btn.innerHTML;
-      btn.textContent = en ? 'Copied' : 'Copiado';
-      setTimeout(function(){ btn.classList.remove('ok'); btn.innerHTML = label; }, 1600);
-    }
-    function fallback(text, btn){
-      var ta = document.createElement('textarea');
-      ta.value = text;
-      ta.setAttribute('readonly', '');
-      ta.style.position = 'fixed';
-      ta.style.left = '-9999px';
-      document.body.appendChild(ta);
-      ta.select();
-      try { if (document.execCommand('copy')) copied(btn); } catch (e) {}
-      document.body.removeChild(ta);
-    }
-    document.querySelectorAll('[data-copy]').forEach(function(btn){
-      btn.addEventListener('click', function(ev){
-        ev.preventDefault();
-        ev.stopPropagation();
-        var text = ficha(btn.closest('article'));
-        if (!text) return;
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(text).then(function(){ copied(btn); }).catch(function(){ fallback(text, btn); });
-        } else {
-          fallback(text, btn);
-        }
-      });
-    });
 
     var tabs = document.querySelectorAll('#tabs .tab');
     if (!tabs.length) return;
