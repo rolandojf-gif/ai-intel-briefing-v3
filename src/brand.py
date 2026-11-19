@@ -149,14 +149,19 @@ BASE_CSS = """
   html[data-lang="en"] .l-es{display:none!important}
   .top-ctl{display:flex;gap:10px;flex-wrap:wrap}
 
-  /* Firma, como en moloch.sh: discreta, al pie */
-  .credits{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
-           margin-top:40px;padding:12px 16px;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow-sm)}
-  .credits-by{margin:0;font:400 12px var(--f-mono);color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
-  .credits-by strong{font:700 14px var(--f-head);color:var(--text);text-transform:none;letter-spacing:0;margin-left:6px}
-  .bmc{display:inline-flex;align-items:center;gap:7px;font:700 11.5px/1 var(--f-mono);text-transform:uppercase;
-       padding:8px 11px;background:var(--lime);color:#121211;border:2px solid var(--ink);box-shadow:var(--shadow-sm)}
-  .bmc:hover{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--ink)}
+  /* Firma, como en moloch.sh: nombre, una línea y enlaces en píldoras naranja neón */
+  .credits{display:flex;align-items:center;justify-content:space-between;gap:14px 24px;flex-wrap:wrap;
+           margin-top:40px;padding:16px 18px;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow-sm)}
+  .credits-id p{margin:0}
+  .credits-by{font:400 13px var(--f-mono);color:var(--text);letter-spacing:.02em}
+  .credits-by strong{font:700 19px var(--f-head);color:var(--text);letter-spacing:0;margin-left:2px;white-space:nowrap}
+  .credits-tag{margin-top:4px!important;color:var(--muted);font-size:14px}
+  .credits-links{display:flex;flex-wrap:wrap;gap:10px}
+  .credits-links a{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border:1.5px solid var(--orange);border-radius:999px;
+       color:var(--orange-ink);background:transparent;font:600 12px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.14em;text-decoration:none;
+       box-shadow:0 0 6px rgba(255,87,34,.35),inset 0 0 6px rgba(255,87,34,.12);transition:background .15s,color .15s,box-shadow .15s}
+  .credits-links a:hover,.credits-links a:focus-visible{background:var(--orange);color:#121211;box-shadow:0 0 14px rgba(255,87,34,.75),0 0 2px var(--orange)}
+  .credits-links .bmc-cup{font-size:15px;line-height:1}
 
   @media(max-width:900px){
     .navtabs{order:3;margin:0;width:100%}
@@ -246,12 +251,23 @@ def bi(es, en="") -> Markup:
 BMC_URL = "https://buymeacoffee.com/rolandofernandez"
 
 
+LINKEDIN_URL = "https://www.linkedin.com/in/rolando-fernandez-jara"
+GITHUB_URL = "https://github.com/rolandojf-gif"
+
+
 def credits() -> Markup:
-    """Firma y café, igual que en moloch.sh."""
+    """Firma con enlaces (LinkedIn, GitHub, café), igual que en moloch.sh."""
     return Markup(
-        '<div class="credits"><p class="credits-by">{} <strong>Rolando Fernández</strong></p>'
-        '<a class="bmc" href="{}" target="_blank" rel="noopener"><span aria-hidden="true">☕</span> {}</a></div>'
-    ).format(bi("Hecho por", "Made by"), BMC_URL, bi("Invítame a un café", "Buy me a coffee"))
+        '<div class="credits"><div class="credits-id">'
+        '<p class="credits-by">© 2026 RADAR.IA · {} <strong>Rolando Fernández</strong></p>'
+        '<p class="credits-tag">{}</p></div>'
+        '<nav class="credits-links" aria-label="Rolando Fernández">'
+        '<a href="{}" target="_blank" rel="noopener">LinkedIn</a>'
+        '<a href="{}" target="_blank" rel="noopener">GitHub</a>'
+        '<a class="bmc" href="{}" target="_blank" rel="noopener"><span class="bmc-cup" aria-hidden="true">☕</span> {}</a>'
+        '</nav></div>'
+    ).format(bi("por", "by"), bi("Radar diario de la carrera hacia la AGI, con fuentes y análisis.", "A daily radar of the race towards AGI, with sources and analysis."),
+             LINKEDIN_URL, GITHUB_URL, BMC_URL, bi("Invítame a un café", "Buy me a coffee"))
 
 
 # -- SEO ------------------------------------------------------------------
