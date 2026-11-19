@@ -325,6 +325,69 @@ class UxTimezoneHealthTests(unittest.TestCase):
         spanish_re = re.compile(r"[áéíóúñ¿¡]|\b(señales|menciones|ediciones|impacto|vigilar|confirmadas|alto voltaje)\b", re.I)
         self.assertEqual([t for t in en_texts if spanish_re.search(t)], [])
 
+    def test_adaptive_hero_subleads_cover_and_image_inheritance(self):
+        import xml.etree.ElementTree as ET
+        import src.cover as cover
+        import src.main as main_mod
+
+        # 1) Hero sin imagen -> modo Dossier editorial (sin <img> placeholder gigante)
+        no_photo_items = [
+            {"title_es": "OpenAI lanza GPT-6.2", "title_en": "OpenAI launches GPT-6.2", "layer": "signal",
+             "score": 100, "strategic_theme": "frontier_capability", "source": "OpenAI",
+             "url": "https://openai.com/gpt-6-2", "image_url": "", "entities": ["OpenAI"],
+             "power_shift": "OpenAI avanza", "power_shift_en": "OpenAI advances",
+             "watch_next": "Benchmarks", "watch_next_en": "Benchmarks"},
+            {"title_es": "Sublead dos", "title_en": "Sublead two", "layer": "signal",
+             "score": 95, "strategic_theme": "agents_automation", "source": "TechCrunch AI",
+             "url": "https://example.com/2", "image_url": "https://cdn.example.com/2.jpg"},
+            {"title_es": "Sublead tres", "title_en": "Sublead three", "layer": "signal",
+             "score": 90, "strategic_theme": "compute_chips_dc", "source": "The Verge AI",
+             "url": "https://example.com/3", "image_url": ""},
+        ]
+        html_dossier = render.render_index(
+            no_photo_items,
+            briefing={"thesis": "Tesis", "thesis_en": "Thesis"},
+            snapshot={"date": "2026-11-18", "pulse": {"value": 92, "series": [{"date": "2026-11-18", "value": 92}]}},
+            market={},
+        )
+        self.assertIn('class="lead lead-dossier"', html_dossier)
+        self.assertNotIn('class="lead-media"', html_dossier)
+        self.assertIn('class="lead-wm"', html_dossier)
+        self.assertIn('class="lead-cta"', html_dossier)
+        self.assertIn('class="subleads"', html_dossier)
+        self.assertEqual(html_dossier.count('<article class="sublead">'), 2)
+        self.assertIn("<b>92/100</b>", html_dossier)
+        self.assertLess(html_dossier.index('class="opening"'), html_dossier.index('class="telemetry-band"'))
+
+        # 2) Hero con foto -> modo Photo con barra superpuesta y fallback JS a Dossier
+        photo_items = [dict(no_photo_items[0], image_url="https://cdn.example.com/hero.jpg")]
+        html_photo = render.render_index(photo_items, briefing={"thesis": "Tesis"}, snapshot={"date": "2026-11-18"}, market={})
+        self.assertIn('class="lead lead-photo"', html_photo)
+        self.assertIn('class="lead-media"', html_photo)
+        self.assertIn("lead.classList.add('lead-dossier')", html_photo)
+
+        # 3) Cover SVG mejorada con entidad y score (XML válido < 6KB)
+        svg = cover.cover_svg("frontier_capability", "Capacidad frontier", "OpenAI", seed="s1", entity="OpenAI", score=100)
+        ET.fromstring(svg)
+        self.assertIn("OPENAI", svg)
+        self.assertIn(">100<", svg)
+        self.assertLess(len(svg), 6000)
+
+        # 4) Herencia de image_url en merge_same_story
+        lead = {"title": "OpenAI launches GPT-6.2 Astra and Sol with lower API pricing",
+                "title_es": "OpenAI lanza GPT-6.2 Astra y Sol con menor coste de API",
+                "source": "OpenAI", "url": "https://openai.com/a",
+                "llm_score": 100, "verdict": "signal", "strategic_theme": "frontier_capability",
+                "entities": ["OpenAI", "GPT-6.2 Astra"], "image_url": ""}
+        dup = {"title": "OpenAI launches GPT-6.2 Astra and Sol with lower API pricing",
+               "title_es": "OpenAI lanza GPT-6.2 Astra y Sol con menor coste de API",
+               "source": "The Verge AI", "url": "https://theverge.com/a",
+               "llm_score": 95, "verdict": "signal", "strategic_theme": "frontier_capability",
+               "entities": ["OpenAI", "GPT-6.2 Astra"], "image_url": "https://cdn.theverge.com/gpt62.jpg"}
+        merged = main_mod.merge_same_story([lead, dup])
+        self.assertEqual(merged, 1)
+        self.assertEqual(lead["image_url"], "https://cdn.theverge.com/gpt62.jpg")
+
 
 if __name__ == "__main__":
     unittest.main()

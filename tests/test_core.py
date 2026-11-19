@@ -538,7 +538,7 @@ class CoreQualityTests(unittest.TestCase):
         ]
         html = render_index(items, briefing={"thesis": "t"},
                             snapshot={"date": "2026-08-23"}, market={})
-        hero_pos = html.find('class="lead"')
+        hero_pos = html.find('<article class="lead ')
         self.assertGreater(hero_pos, 0)
         # El titular fresco tiene que aparecer en el hero, no el repeat.
         fresh_pos = html.find("Señal nueva de hoy")

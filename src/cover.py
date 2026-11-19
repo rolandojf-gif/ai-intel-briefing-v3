@@ -174,38 +174,113 @@ MOTIFS = {"chips": _chips, "waves": _waves, "graph": _graph, "bars": _bars,
           "stack": _stack, "globe": _globe, "radar": _radar}
 
 
-def cover_svg(theme_key: str, theme_label: str, source: str, seed: str = "") -> str:
-    accent, tint, motif = THEME_STYLE.get((theme_key or "").strip(), DEFAULT_STYLE)
+def theme_accent(theme_key: str) -> str:
+    accent, _tint, _motif = THEME_STYLE.get((theme_key or "").strip(), DEFAULT_STYLE)
+    return accent
+
+
+def motif_watermark_svg(theme_key: str, seed: str = "") -> str:
+    """Motivo geométrico limpio (sin texto) para el fondo atmosférico del Hero Dossier."""
+    accent, _tint, motif = THEME_STYLE.get((theme_key or "").strip(), DEFAULT_STYLE)
+    rng = random.Random(int(hashlib.md5((seed or theme_key or "").encode("utf-8")).hexdigest()[:12], 16))
+    art = MOTIFS[motif](rng, accent)
+    return (
+        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" preserveAspectRatio="xMaxYMin slice" aria-hidden="true">'
+        f'{art}'
+        f'</svg>'
+    )
+
+
+def cover_svg(
+    theme_key: str,
+    theme_label: str,
+    source: str,
+    seed: str = "",
+    entity: str = "",
+    score: int = 0,
+) -> str:
+    accent, _tint, motif = THEME_STYLE.get((theme_key or "").strip(), DEFAULT_STYLE)
     rng = random.Random(int(hashlib.md5((seed or theme_key or "").encode("utf-8")).hexdigest()[:12], 16))
     art = MOTIFS[motif](rng, accent)
     label = xml_escape((theme_label or "Señal")[:26].upper())  # mayusculas ANTES de escapar: &AMP; no es XML
-    src = xml_escape((source or "")[:40].upper())
+    src = xml_escape((source or "")[:36].upper())
+    ent_raw = (entity or "").strip()
+    ent = xml_escape(ent_raw[:20].upper()) if ent_raw else ""
     head = "'Space Grotesk', 'Arial Narrow', Arial, sans-serif"
     mono = "'JetBrains Mono', ui-monospace, Menlo, monospace"
-    tw = max(60, int(len(label) * 23.5))  # ancho aproximado de la etiqueta en mayusculas
+
+    # Etiqueta compacta de tema arriba a la izquierda (píldora brutalista)
+    pill_w = max(92, int(len(label) * 9.8) + 28)
+    top_pill = (
+        f'<rect x="34" y="30" width="{pill_w}" height="30" fill="#181816" stroke="{accent}" stroke-width="1.8"/>'
+        f'<rect x="34" y="30" width="8" height="30" fill="{accent}"/>'
+        f'<text x="52" y="50" fill="#F4F3EF" font-family="{mono}" font-size="13" font-weight="700" letter-spacing=".8">{label}</text>'
+    )
+
+    # Sello opcional de puntuación arriba a la derecha
+    score_badge = ""
+    if isinstance(score, (int, float)) and score > 0:
+        sc_int = int(round(score))
+        sc_fill = "#FF4500" if sc_int >= 95 else ("#FF8A5C" if sc_int >= 88 else "#242421")
+        sc_txt = "#121211" if sc_int >= 88 else "#E8E7E1"
+        score_badge = (
+            f'<rect x="{W - 96}" y="28" width="62" height="32" fill="{sc_fill}" stroke="#E8E7E1" stroke-width="1.6"/>'
+            f'<text x="{W - 65}" y="50" text-anchor="middle" fill="{sc_txt}" font-family="{mono}" font-size="16" font-weight="700">{sc_int}</text>'
+        )
+
+    # Bloque tipográfico principal abajo a la izquierda: entidad protagonista o tema
+    if ent:
+        ent_size = 44 if len(ent_raw) <= 11 else (36 if len(ent_raw) <= 15 else 29)
+        main_block = (
+            f'<rect x="34" y="216" width="6" height="58" fill="{accent}"/>'
+            f'<text x="52" y="264" fill="#F4F3EF" font-family="{head}" font-size="{ent_size}" font-weight="700" letter-spacing="-1">{ent}</text>'
+        )
+    else:
+        lbl_size = 34 if len(theme_label or "") <= 18 else 28
+        main_block = (
+            f'<rect x="34" y="222" width="6" height="48" fill="{accent}"/>'
+            f'<text x="52" y="260" fill="#F4F3EF" font-family="{head}" font-size="{lbl_size}" font-weight="700" letter-spacing="-.6">{label}</text>'
+        )
+
     source_row = (
-        f'<rect x="40" y="298" width="12" height="12" fill="{accent}" stroke="#E8E7E1" stroke-width="2"/>'
-        f'<text x="62" y="309" fill="#E8E7E1" font-family="{mono}" font-size="15" font-weight="600" letter-spacing=".5">{src}</text>'
+        f'<rect x="34" y="294" width="10" height="10" fill="{accent}"/>'
+        f'<text x="54" y="304" fill="#C6C5BE" font-family="{mono}" font-size="13.5" font-weight="600" letter-spacing=".6">{src}</text>'
     ) if src else ""
+
+    # Marcas de registro técnicas en las esquinas
+    ticks = (
+        f'<path d="M18 32V18H32 M{W-32} 18H{W-18}V32 M18 {H-32}V{H-18}H32 M{W-32} {H-18}H{W-18}V{H-32}" '
+        f'fill="none" stroke="#E8E7E1" stroke-opacity=".22" stroke-width="1.4"/>'
+    )
+
     return (
         f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}">'
         f'<defs>'
-        f'<pattern id="p" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#E8E7E1" stroke-opacity=".06"/></pattern>'
-        # Velo de asfalto abajo a la izquierda: la etiqueta se lee sobre cualquier motivo.
-        f'<linearGradient id="v" x1="0" y1="1" x2=".75" y2=".1"><stop offset="0" stop-color="#0F0F0E" stop-opacity=".96"/><stop offset=".55" stop-color="#0F0F0E" stop-opacity=".4"/><stop offset="1" stop-color="#0F0F0E" stop-opacity="0"/></linearGradient>'
+        f'<pattern id="p" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0V28" fill="none" stroke="#E8E7E1" stroke-opacity=".055"/></pattern>'
+        f'<radialGradient id="g" cx=".76" cy=".34" r=".62"><stop offset="0" stop-color="{accent}" stop-opacity=".24"/><stop offset=".6" stop-color="{accent}" stop-opacity=".06"/><stop offset="1" stop-color="#0E0E0D" stop-opacity="0"/></radialGradient>'
+        f'<linearGradient id="v" x1="0" y1="1" x2=".72" y2=".15"><stop offset="0" stop-color="#0E0E0D" stop-opacity=".97"/><stop offset=".52" stop-color="#0E0E0D" stop-opacity=".48"/><stop offset="1" stop-color="#0E0E0D" stop-opacity="0"/></linearGradient>'
         f'</defs>'
-        f'<rect width="{W}" height="{H}" fill="#0F0F0E"/><rect width="{W}" height="{H}" fill="url(#p)"/>'
+        f'<rect width="{W}" height="{H}" fill="#0E0E0D"/>'
+        f'<rect width="{W}" height="{H}" fill="url(#p)"/>'
+        f'<rect width="{W}" height="{H}" fill="url(#g)"/>'
         f'{art}'
         f'<rect width="{W}" height="{H}" fill="url(#v)"/>'
-        # Etiqueta de tema en bloque de color con sombra dura, como las tags de la marca.
-        f'<rect x="46" y="236" width="{tw + 28}" height="50" fill="#E8E7E1"/>'
-        f'<rect x="40" y="230" width="{tw + 28}" height="50" fill="{accent}" stroke="#E8E7E1" stroke-width="2"/>'
-        f'<text x="54" y="268" fill="#121211" font-family="{head}" font-size="34" font-weight="700" letter-spacing="-.5">{label}</text>'
+        f'{ticks}'
+        f'{top_pill}'
+        f'{score_badge}'
+        f'{main_block}'
         f'{source_row}'
         f'</svg>'
     )
 
 
-def cover_data_uri(theme_key: str, theme_label: str, source: str, seed: str = "") -> str:
-    svg = cover_svg(theme_key, theme_label, source, seed)
+def cover_data_uri(
+    theme_key: str,
+    theme_label: str,
+    source: str,
+    seed: str = "",
+    entity: str = "",
+    score: int = 0,
+) -> str:
+    svg = cover_svg(theme_key, theme_label, source, seed, entity=entity, score=score)
     return "data:image/svg+xml;base64," + base64.b64encode(svg.encode("utf-8")).decode("ascii")

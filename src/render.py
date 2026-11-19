@@ -113,15 +113,18 @@ def source_logo_url(source: str, url: str = "") -> str:
 def item_fallback_image(item: dict, lang: str = "es") -> str:
     """Portada generada (data URI) para un item sin imagen o con la imagen caida.
 
-    Solo tema y fuente: el titular ya va justo debajo, en la card. El dibujo lo
-    hace src/cover.py, con un motivo por tema sembrado con el propio item.
+    Lleva tema, entidad protagonista (si existe), puntuacion y fuente: el titular
+    ya va justo debajo, en la card. El dibujo lo hace src/cover.py.
     """
     from src.cover import cover_data_uri
 
     theme_key = (item.get("strategic_theme") or item.get("primary") or "other").strip() or "other"
     seed = f"{item.get('title') or item.get('title_es') or ''}|{item.get('url') or item.get('link') or ''}"
     label = THEME_LABELS_EN.get(theme_key, "Other signals") if lang == "en" else human_theme(theme_key)
-    return cover_data_uri(theme_key, label, source_label(item.get("source", "")), seed)
+    ents = item_entities(item, limit=1)
+    entity = ents[0] if ents else ""
+    sc = score_value(item)
+    return cover_data_uri(theme_key, label, source_label(item.get("source", "")), seed, entity=entity, score=sc)
 
 
 # -- Temas y puntuacion ------------------------------------------------------
@@ -209,11 +212,21 @@ TEMPLATE = ENV.from_string("""
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 {{ seo }}{{ brand_head }}<script>
   // Va en <head> para estar escuchando antes de que se pinte la primera imagen.
-  // Una imagen remota caida (hotlink bloqueado, 404, caducada) se cambia por la
-  // portada generada del item; un logo caido se oculta en vez de dejar el icono roto.
+  // Si falla la foto del Hero, la portada pasa limpiamente a modo Dossier tipografico
+  // en vez de enseñar un rectangulo gigante de relleno; en cards/subleads usa la portada SVG.
   document.addEventListener('error', function(ev){
     var t = ev.target;
     if (!t || t.tagName !== 'IMG') return;
+    if (t.classList.contains('hero-img')) {
+      var lead = t.closest && t.closest('.lead');
+      if (lead) {
+        lead.classList.remove('lead-photo');
+        lead.classList.add('lead-dossier');
+        var media = t.closest('.lead-media');
+        if (media) media.remove();
+        return;
+      }
+    }
     var fb = t.getAttribute('data-fb');
     if (fb) {
       // La portada generada lleva texto: se pone una por idioma.
@@ -226,10 +239,10 @@ TEMPLATE = ENV.from_string("""
   }, true);
 </script>
 <style>{{ brand_css }}
-  .wrap{max-width:1280px;margin:0 auto;padding:28px 24px 80px}
+  .wrap{max-width:1500px;margin:0 auto;padding:18px 24px 80px}
   .stale{font:700 10.5px/1 var(--f-mono);text-transform:uppercase;color:#121211;background:#FBBF24;
          border:1px solid var(--ink);padding:3px 7px}
-  .arch-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 22px;padding:10px 14px;
+  .arch-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 18px;padding:10px 14px;
             background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow-sm);font:600 12.5px var(--f-mono);text-transform:uppercase}
   .arch-bar a{color:var(--orange-ink);text-decoration:underline;text-underline-offset:3px}
   .arch-bar .here{background:var(--lime);color:#121211;padding:2px 6px;border:1px solid var(--ink)}
@@ -238,12 +251,12 @@ TEMPLATE = ENV.from_string("""
   .thesis{padding:0 0 22px}
   .thesis .page-h1{margin-top:8px}
   .thesis .tz{font:700 clamp(19px,2.2vw,26px)/1.3 var(--f-head);letter-spacing:-.015em;max-width:64ch;margin:0}
-  .notice{margin:0 0 18px;padding:14px 18px;border:2px dashed var(--ink);background:var(--card);font-size:14.5px;line-height:1.55}
+  .notice{margin:0 0 16px;padding:14px 18px;border:2px dashed var(--ink);background:var(--card);font-size:14.5px;line-height:1.55}
   .notice.warn{border-style:solid;box-shadow:inset 6px 0 0 #FBBF24}
 
   /* -- Tabs de tema -- */
-  .tabs{display:flex;gap:10px;flex-wrap:wrap;padding:0 0 24px}
-  .tab{appearance:none;margin:0;color:var(--text);font:600 12px/1.2 var(--f-mono);text-transform:uppercase;padding:8px 12px;cursor:pointer;user-select:none;
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;padding:0 0 18px}
+  .tab{appearance:none;margin:0;color:var(--text);font:600 12px/1.2 var(--f-mono);text-transform:uppercase;padding:7px 11px;cursor:pointer;user-select:none;
        border:2px solid var(--ink);background:var(--card);box-shadow:var(--shadow-sm);transition:transform .08s,box-shadow .08s}
   .tab:hover{background:rgba(204,255,0,.3)}
   .tab:active{transform:translate(2px,2px);box-shadow:none}
@@ -253,9 +266,10 @@ TEMPLATE = ENV.from_string("""
   .tab.on .n{color:#121211}
   .below.filter-empty,.ctx-block.filter-empty{display:none}
 
-  /* -- Disposicion de periodico (la de la extension NEXUS) -- */
-  .wrap{max-width:1500px}
-  .ticker{margin:0 0 22px;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow);padding:10px 14px 12px}
+  /* -- Banda de telemetria (Pulso + Mercados) debajo de la portada -- */
+  .telemetry-band{margin-top:26px;display:grid;gap:18px}
+  .deck.filtered .telemetry-band{display:none}
+  .ticker{margin:0;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow);padding:10px 14px 12px}
   .ticker-h{display:flex;justify-content:space-between;gap:12px;align-items:center;font:400 10.5px var(--f-mono);color:var(--muted);text-transform:uppercase}
   .ticker-h strong{display:flex;align-items:center;gap:8px;color:var(--text);font-weight:700;letter-spacing:.08em}
   .ticker-h strong::before{content:"";width:10px;height:10px;background:var(--orange);border:2px solid var(--ink)}
@@ -271,7 +285,7 @@ TEMPLATE = ENV.from_string("""
   @keyframes tick{to{transform:translateX(-50%)}}
   @media (prefers-reduced-motion: reduce){.ticker-track{animation:none}.ticker-view{overflow-x:auto}}
 
-  .pulse{display:grid;grid-template-columns:minmax(230px,300px) 1fr;gap:22px;align-items:end;margin:0 0 22px;padding:14px 16px;
+  .pulse{display:grid;grid-template-columns:minmax(230px,300px) 1fr;gap:22px;align-items:end;margin:0;padding:14px 16px;
          background:var(--asphalt);color:#E8E7E1;border:2px solid var(--ink);box-shadow:var(--shadow)}
   .pulse .kicker{color:var(--lime)}
   .pulse-num{display:flex;align-items:baseline;gap:6px;margin:4px 0 8px}
@@ -296,40 +310,123 @@ TEMPLATE = ENV.from_string("""
   .mv-bar{grid-column:1/-1;height:8px;border:1px solid var(--ink);background:var(--card-2)}
   .mv-bar i{display:block;height:100%;background:var(--orange)}
 
-  .opening{display:grid;grid-template-columns:minmax(0,1.85fr) minmax(300px,1fr);gap:clamp(20px,2.4vw,34px);align-items:start}
+  /* -- Portada (Hero adaptativo + Sub-leads + Editorial) -- */
+  .opening{display:grid;grid-template-columns:minmax(0,1.88fr) minmax(310px,1fr);gap:clamp(20px,2.2vw,30px);align-items:start}
   .deck.filtered .opening{display:none}
-  .rail{background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow);padding:16px}
-  .rail-h{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 14px;padding:0 0 8px;border-bottom:2px solid var(--ink);
+  .lead-col{display:flex;flex-direction:column;gap:18px;min-width:0}
+
+  .rail{background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow);padding:16px 18px}
+  .rail-h{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 12px;padding:0 0 8px;border-bottom:2px solid var(--ink);
           font:700 12px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.08em}
   .rail-h>span:first-child{display:flex;align-items:center;gap:9px}
   .rail-h>span:first-child::before{content:"";width:11px;height:11px;background:var(--orange);border:2px solid var(--ink);flex:0 0 auto}
   .rail-h .lbl{font:400 10.5px var(--f-mono);color:var(--muted);letter-spacing:.04em;white-space:nowrap}
-  .rail-title{font:700 28px/1.05 var(--f-head);text-transform:uppercase;letter-spacing:-.03em;margin:2px 0 12px}
-  .rail-thesis{font:500 15.5px/1.5 var(--f-head);margin:0 0 20px}
-  .keys{margin:0 0 18px;padding:0;list-style:none;counter-reset:k}
-  .keys li{counter-increment:k;display:grid;grid-template-columns:26px 1fr;gap:8px;padding:0 0 9px;margin-bottom:9px;border-bottom:1px dashed var(--line);font-size:13.5px;line-height:1.45}
+  .rail-title{font:700 26px/1.05 var(--f-head);text-transform:uppercase;letter-spacing:-.03em;margin:2px 0 10px}
+  .rail-thesis{font:500 15px/1.5 var(--f-head);margin:0 0 18px}
+  .keys{margin:0 0 16px;padding:0;list-style:none;counter-reset:k}
+  .keys li{counter-increment:k;display:grid;grid-template-columns:26px 1fr;gap:8px;padding:0 0 8px;margin-bottom:8px;border-bottom:1px dashed var(--line);font-size:13.5px;line-height:1.45}
   .keys li:last-child{margin-bottom:0}
   .keys li::before{content:counter(k,decimal-leading-zero);font:700 11px/1.7 var(--f-mono);color:var(--orange-ink)}
   .figures{border-top:2px solid var(--ink);padding-top:12px;display:flex;flex-direction:column;align-items:flex-start;gap:5px}
-  .big-n{font:700 48px/1 var(--f-head);letter-spacing:-.04em}
+  .big-n{font:700 44px/1 var(--f-head);letter-spacing:-.04em}
   .fig-note{font:400 11.5px/1.45 var(--f-mono);color:var(--muted)}
   .figures .ents{margin-top:6px}
 
-  .lead{min-width:0}
-  .lead .hero-title{font-size:clamp(30px,3.2vw,52px);line-height:1.04;letter-spacing:-.035em;margin:4px 0 14px}
-  .lead .sw{font-size:clamp(15.5px,1.2vw,18.5px);line-height:1.5;color:var(--muted);margin:0 0 18px}
-  .lead-fig{display:block;border:2px solid var(--ink);box-shadow:var(--shadow);background:var(--asphalt)}
-  .lead-fig .hero-img{border-bottom:0}
-  .lead-meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:16px 0 0;padding:8px 0;border-top:1px dashed var(--line);border-bottom:1px dashed var(--line)}
-  .lead-meta .score{margin-left:auto;text-transform:uppercase}
-  .lead .facts{border-top:0;margin-top:12px;padding-top:0}
-  .lead .fact{font-size:14px}
+  .lead{position:relative;min-width:0;background:var(--card);border:2px solid var(--ink);border-top:5px solid var(--lead-accent,var(--orange));
+        box-shadow:var(--shadow);overflow:hidden;transition:transform .12s,box-shadow .12s}
+  .lead:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+  .lead-wm{display:none;position:absolute;top:0;right:0;width:64%;height:100%;opacity:.36;pointer-events:none;z-index:1;
+           -webkit-mask-image:linear-gradient(245deg,rgba(0,0,0,.95) 0%,rgba(0,0,0,.35) 56%,transparent 88%);
+           mask-image:linear-gradient(245deg,rgba(0,0,0,.95) 0%,rgba(0,0,0,.35) 56%,transparent 88%)}
+  .lead-wm svg{width:100%;height:100%;display:block}
+  .lead-media{position:relative;display:block;overflow:hidden;background:var(--asphalt);border-bottom:2px solid var(--ink)}
+  .lead-media::after{content:"";position:absolute;inset:0;pointer-events:none;
+                     background:linear-gradient(180deg,rgba(15,15,14,.55) 0%,rgba(15,15,14,0) 38%,rgba(15,15,14,.32) 100%)}
+  .lead-media .hero-img{display:block;width:100%;aspect-ratio:2/1;max-height:400px;object-fit:cover;border-bottom:0;transition:transform .35s ease}
+  .lead-media:hover .hero-img{transform:scale(1.02)}
+  .lead-media-bar{position:absolute;top:14px;left:16px;right:16px;z-index:2;display:flex;align-items:center;gap:8px;flex-wrap:wrap;pointer-events:none}
+  .lead-media-bar .tag{background:var(--lead-accent,var(--orange));color:#121211;border:2px solid #121211;box-shadow:2px 2px 0 rgba(18,18,17,.65)}
+  .lead-media-bar .score{font-size:12.5px;padding:5px 9px}
+  .lead-body{position:relative;z-index:2;padding:20px 24px 22px}
+  .lead-top{display:none;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 16px}
+  .lead-top .tag{background:var(--lead-accent,var(--orange));color:#121211}
+  .lead-top .score{font-size:12.5px;padding:5px 9px}
+  .lead .hero-title{font:700 clamp(26px,2.6vw,42px)/1.08 var(--f-head);letter-spacing:-.032em;margin:0 0 12px}
+  .lead .sw{font-size:clamp(15px,1.15vw,17.5px);line-height:1.54;color:var(--muted);margin:0 0 18px;max-width:66ch}
 
-  .onradar{margin:0 0 18px;padding:12px 14px;background:var(--card-2);border:2px solid var(--ink);box-shadow:inset 6px 0 0 var(--orange)}
+  .lead-intel{display:grid;gap:10px;margin:0 0 16px}
+  @media(min-width:740px){.lead-intel.two{grid-template-columns:1fr 1fr;gap:12px}}
+  .intel-box{padding:11px 14px;background:var(--card-2);border:1.5px solid var(--line);display:flex;flex-direction:column;gap:5px}
+  .intel-k{display:inline-flex;align-self:flex-start;font:700 10px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.06em;
+           padding:3px 6px;border:1px solid var(--ink)}
+  .intel-box.pw .intel-k{background:var(--orange);color:#121211}
+  .intel-box.wn .intel-k{background:var(--lime);color:#121211}
+  .intel-v{font-size:13.5px;line-height:1.45}
+
+  .lead-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:16px;padding-top:14px;border-top:1px dashed var(--line)}
+  .lead-foot-l{display:flex;align-items:center;gap:10px;flex-wrap:wrap;min-width:0}
+  .lead-foot-l .ents{margin-top:0}
+  .lead-cta{display:inline-flex;align-items:center;gap:7px;font:700 11.5px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.04em;
+            padding:9px 14px;background:var(--lime);color:#121211;border:2px solid var(--ink);box-shadow:var(--shadow-sm);
+            transition:transform .08s,box-shadow .08s;white-space:nowrap}
+  .lead-cta:hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 var(--ink)}
+
+  /* Modo Dossier tipografico (cuando la noticia #1 no tiene foto real o la remota falla) */
+  .lead.lead-dossier{background:
+      radial-gradient(circle at 82% 24%,color-mix(in srgb,var(--lead-accent,#FF5722) 22%,transparent),transparent 58%),
+      linear-gradient(rgba(232,231,225,.05) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(232,231,225,.05) 1px,transparent 1px),
+      #0F0F0E;
+      background-size:100% 100%,26px 26px,26px 26px,100% 100%;
+      color:#F4F3EF;border-color:var(--ink)}
+  .lead.lead-dossier .lead-wm{display:block}
+  .lead.lead-dossier .lead-media{display:none}
+  .lead.lead-dossier .lead-top{display:flex}
+  .lead.lead-dossier .lead-body{padding:26px 28px 24px}
+  .lead.lead-dossier .lead-top .tag{border-color:#E8E7E1}
+  .lead.lead-dossier .lead-top .badge-new{border-color:#E8E7E1}
+  .lead.lead-dossier .hero-title{font-size:clamp(28px,2.95vw,45px);line-height:1.06;color:#FFFFFF;max-width:25ch}
+  .lead.lead-dossier .hero-title a:hover{text-decoration-color:var(--lead-accent,var(--lime))}
+  .lead.lead-dossier .sw{color:#CECDC6;font-size:clamp(15.5px,1.2vw,18px);margin-bottom:20px}
+  .lead.lead-dossier .intel-box{background:rgba(24,24,22,.88);border-color:#34342F;color:#ECEBE5}
+  .lead.lead-dossier .intel-k{border-color:#121211}
+  .lead.lead-dossier .lead-foot{border-top-color:#34342F}
+  .lead.lead-dossier .src{color:#D6D5CE}
+  .lead.lead-dossier .src img{border-color:#44443E}
+  .lead.lead-dossier .ent{background:#1D1D1A;border-color:#474740;color:#E8E7E1}
+  .lead.lead-dossier .also{color:#9C9B95}
+  .lead.lead-dossier .also a,.lead.lead-dossier .also span{color:#E8E7E1}
+  .lead.lead-dossier .lead-cta{border-color:#E8E7E1;box-shadow:3px 3px 0 rgba(232,231,225,.28)}
+  .lead.lead-dossier .lead-cta:hover{background:#FFFFFF;box-shadow:4px 4px 0 var(--lead-accent,var(--orange))}
+
+  /* Sub-leads (#02 y #03) bajo el Hero para equilibrar portada y Editorial */
+  .subleads-h{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:2px 0 8px;
+              font:700 11px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+  .subleads-h>span:first-child{display:flex;align-items:center;gap:8px}
+  .subleads-h>span:first-child::before{content:"";width:9px;height:9px;background:var(--orange);border:1.5px solid var(--ink)}
+  .subleads-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+  .sublead{display:grid;grid-template-columns:126px minmax(0,1fr);background:var(--card);border:2px solid var(--ink);
+           box-shadow:var(--shadow-sm);overflow:hidden;transition:transform .1s,box-shadow .1s}
+  .sublead:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--ink)}
+  .sublead-media{position:relative;display:block;background:var(--asphalt);border-right:2px solid var(--ink);min-height:126px;overflow:hidden}
+  .sublead-img{display:block;width:100%;height:100%;object-fit:cover}
+  .sublead-rk{position:absolute;top:7px;left:7px;font:700 10px/1 var(--f-mono);padding:3px 5px;
+              background:var(--asphalt);color:var(--lime);border:1px solid #E8E7E1}
+  .sublead-body{padding:11px 13px 12px;display:flex;flex-direction:column;gap:6px;min-width:0}
+  .sublead-body .meta-row{margin-bottom:0;gap:6px}
+  .sublead-body .src{font-size:10.5px;gap:5px}
+  .sublead-body .src img{width:15px;height:15px}
+  .sublead-title{margin:0;font:700 15.5px/1.22 var(--f-head);letter-spacing:-.015em;
+                 display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .sublead-title a:hover{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:2px}
+  .sublead-sw{margin:auto 0 0;font-size:12.5px;line-height:1.42;color:var(--muted);
+              display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+  .onradar{margin:0 0 16px;padding:12px 14px;background:var(--card-2);border:2px solid var(--ink);box-shadow:inset 6px 0 0 var(--orange)}
   .onradar .rail-h{margin-bottom:8px}
   .onradar p{font-size:13.5px;line-height:1.5;margin:0}
 
-  .below{margin-top:34px;padding-top:26px;border-top:3px solid var(--ink)}
+  .below{margin-top:30px;padding-top:24px;border-top:3px solid var(--ink)}
   .below .section-h{margin:0 0 16px}
   .below .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
   .deck:not(.filtered) .dup,.deck:not(.filtered) .h-filtered,.deck.filtered .h-all{display:none}
@@ -472,23 +569,28 @@ TEMPLATE = ENV.from_string("""
   footer{margin-top:56px;padding-top:14px;border-top:3px solid var(--ink);display:flex;justify-content:space-between;
          gap:16px;flex-wrap:wrap;font:400 12px var(--f-mono);color:var(--muted)}
 
-  @media(max-width:1160px){
-    .opening{grid-template-columns:minmax(0,1.55fr) minmax(260px,1fr)}
+  @media(max-width:1180px){
+    .opening{grid-template-columns:minmax(0,1.55fr) minmax(270px,1fr)}
+    .subleads-grid{grid-template-columns:1fr}
     .below .grid,.ctx{grid-template-columns:repeat(2,minmax(0,1fr))}
     .insights{grid-template-columns:1fr}
     .memory{grid-template-columns:1fr 1fr}
   }
   @media(max-width:920px){
     .opening{grid-template-columns:1fr}
+    .subleads-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   }
   @media(max-width:720px){
-    .grid,.below .grid,.ctx{grid-template-columns:1fr}
+    .grid,.below .grid,.ctx,.subleads-grid{grid-template-columns:1fr}
+    .sublead{grid-template-columns:104px minmax(0,1fr)}
+    .sublead-media{min-height:108px}
     .tq{flex:0 0 170px}
     .pulse{grid-template-columns:1fr}
     .memory,.companies .company-list{grid-template-columns:1fr}
-    .lead .hero-title{font-size:32px}
-    .wrap{padding:20px 16px 60px}
-    .tabs{flex-wrap:nowrap;overflow-x:auto;margin:0 -16px;padding:2px 16px 20px;scrollbar-width:none}
+    .lead.lead-dossier .lead-body,.lead-body{padding:18px 16px}
+    .lead .hero-title,.lead.lead-dossier .hero-title{font-size:27px}
+    .wrap{padding:16px 16px 60px}
+    .tabs{flex-wrap:nowrap;overflow-x:auto;margin:0 -16px;padding:2px 16px 16px;scrollbar-width:none}
     .tabs::-webkit-scrollbar{display:none}
     .tab{flex:0 0 auto;white-space:nowrap}
   }
@@ -499,6 +601,7 @@ TEMPLATE = ENV.from_string("""
 <div class="strip">
   <span>{{ bi("Edición","Edition") }} <b class="hl">{{ generated_at }}</b>{% if nav == 'daily' and not archive %} <span class="stale" id="stale" data-date="{{ generated_at }}" hidden></span>{% endif %}</span>
   <span class="it {{ 'bad' if activity.class == 'alert' else ('warn' if activity.class == 'active' else '') }}">{{ bi(activity.label, activity_en) }}</span>
+  {% if pulse and pulse.value is not none %}<span class="it {{ 'bad' if activity.class == 'alert' else ('warn' if activity.class == 'active' else '') }}">{{ bi("Pulso","Pulse") }} <b>{{ pulse.value }}/100</b></span>{% endif %}
   <span class="it">{{ n_signals }} {{ bi("señales","signals") }}{% if n_context %} · {{ n_context }} {{ bi("de contexto","context") }}{% endif %}</span>
   <span class="it{% if sources_dead %} warn{% endif %}">{{ sources_alive }}/{{ sources_total }} {{ bi("fuentes","sources") }}</span>
   {% if x_layer and x_layer.status == 'ok' and x_layer.posts %}<span class="it">X: {{ x_layer.posts }} posts</span>{% elif x_layer and x_layer.status in ['killed','disabled'] %}<span class="it bad">{{ bi("X apagada","X off") }}</span>{% endif %}
@@ -545,79 +648,42 @@ TEMPLATE = ENV.from_string("""
   </div>
   {% endif %}
 
-  <!-- Mercados: banda rotativa a todo el ancho. El contenido va dos veces para
-       que el bucle no tenga corte; la segunda copia es invisible para lectores. -->
-  {% if ticker_quotes %}
-  <section class="ticker" aria-label="Markets">
-    <div class="ticker-h"><strong>{{ bi("Mercados","Markets") }}</strong><span>{{ bi("Último cierre · no es tiempo real","Last close · not real time") }}</span></div>
-    <div class="ticker-view">
-      <div class="ticker-track" style="--n:{{ ticker_quotes|length }}">
-        {% for copy in (0, 1) %}
-        <div class="ticker-q"{% if copy %} aria-hidden="true"{% endif %}>
-          {% for m in ticker_quotes %}
-          <div class="tq{% if not m.available %} m-nodata{% endif %}">
-            <span class="tq-n">{{ m.label }}</span>
-            <span class="tq-p">{{ m.price_str }}</span>
-            {% if m.available %}<span class="m-chg {% if m.positive %}pos{% else %}neg{% endif %}">{{ m.change_str }}</span>{% else %}<span class="m-chg na">n/d</span>{% endif %}
-            {{ m.sparkline_svg|safe }}
-          </div>
-          {% endfor %}
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-  </section>
-  {% endif %}
-
-  <!-- Pulso de la carrera: indicador propio del radar -->
-  {% if pulse and pulse.series %}
-  <section class="pulse" aria-label="Race pulse">
-    <div class="pulse-now">
-      <span class="kicker">{{ bi("Pulso de la carrera","Race pulse") }}</span>
-      <div class="pulse-num"><strong>{{ pulse.value }}</strong><span>/100</span></div>
-      <div class="pulse-bar" role="img" aria-label="{{ pulse.value }} / 100"><i style="width:{{ pulse.value }}%"></i></div>
-    </div>
-    <div class="pulse-hist">
-      <div class="pulse-cols">
-        {% for p in pulse.series %}<i class="{% if loop.last %}now{% endif %}" style="height:{{ [p.value, 4]|max }}%" title="{{ p.date }} · {{ p.value }}"></i>{% endfor %}
-      </div>
-      <div class="pulse-note">
-        {% if pulse.hotter_than is not none %}{{ bi("Más intenso que el " ~ pulse.hotter_than ~ " % de las últimas " ~ pulse.editions ~ " ediciones", "Hotter than " ~ pulse.hotter_than ~ "% of the last " ~ pulse.editions ~ " editions") }} · {% endif %}{{ bi("mide cuánta señal trae el día, no el progreso hacia la AGI", "measures how much signal the day carries, not progress towards AGI") }}
-      </div>
-    </div>
-  </section>
-  {% endif %}
-
   <div class="deck" id="deck">
 
   {% if hero %}
   <section class="opening">
 
-    <!-- Portada -->
-    <article class="lead">
-      <div class="meta-row">
-        <span class="tag">{{ bi("Portada","Front page") }} / {{ bi(hero.theme_label, hero.theme_label_en) }}</span>
-        {% if hero.is_new %}<span class="badge-new">{{ bi("Nuevo","New") }}</span>{% endif %}
-      </div>
-      <h2 class="hero-title">
-        <a href="{{ (hero.url or hero.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ bi(hero.display_title, hero.title_en) }}</a>
-      </h2>
-      {% if hero.so_what %}<div class="sw">{{ bi(hero.so_what, hero.so_what_en) }}</div>{% endif %}
-      <a class="lead-fig" href="{{ (hero.url or hero.link)|safe_url }}" target="_blank" rel="noopener noreferrer">
-          {% if hero.cover_only %}<img class="hero-img l-es" src="{{ hero.image_url }}" alt=""/><img class="hero-img l-en" src="{{ hero.cover_en }}" alt=""/>
-          {% else %}<img class="hero-img" src="{{ hero.image_url }}" data-fb="{{ hero.fallback_image }}" data-fb-en="{{ hero.cover_en }}" alt="" referrerpolicy="no-referrer"/>{% endif %}
-      </a>
-      <div class="lead-meta">
-        <span class="src"><img src="{{ hero.logo }}" alt="" loading="lazy"/>{{ hero.source_label }}</span>
-        <span class="score {{ hero.score_cls }}">{{ bi("Relevancia","Relevance") }} {{ hero.score }}/100</span>
-      </div>
+    <!-- Columna protagonista: Portada #01 (adaptativa foto/dossier) + Sub-leads (#02 y #03) -->
+    <div class="lead-col">
+      <article class="lead {% if hero.cover_only %}lead-dossier{% else %}lead-photo{% endif %}" style="--lead-accent:{{ hero.accent }}">
+        <div class="lead-wm" aria-hidden="true">{{ hero.watermark_svg|safe }}</div>
+        {% if not hero.cover_only %}
+        <a class="lead-media" href="{{ (hero.url or hero.link)|safe_url }}" target="_blank" rel="noopener noreferrer">
+          <div class="lead-media-bar">
+            <span class="tag">#01 · {{ bi("Portada","Front page") }} / {{ bi(hero.theme_label, hero.theme_label_en) }}</span>
+            {% if hero.is_new %}<span class="badge-new">{{ bi("Nuevo","New") }}</span>{% endif %}
+            <span class="score {{ hero.score_cls }}">{{ hero.score }}/100</span>
+          </div>
+          <img class="hero-img" src="{{ hero.image_url }}" data-fb="{{ hero.fallback_image }}" data-fb-en="{{ hero.cover_en }}" alt="" referrerpolicy="no-referrer"/>
+        </a>
+        {% endif %}
+        <div class="lead-body">
+          <div class="lead-top">
+            <span class="tag">#01 · {{ bi("Portada","Front page") }} / {{ bi(hero.theme_label, hero.theme_label_en) }}</span>
+            {% if hero.is_new %}<span class="badge-new">{{ bi("Nuevo","New") }}</span>{% endif %}
+            <span class="score {{ hero.score_cls }}">{{ hero.score }}/100</span>
+          </div>
+          <h2 class="hero-title">
+            <a href="{{ (hero.url or hero.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ bi(hero.display_title, hero.title_en) }}</a>
+          </h2>
+          {% if hero.so_what %}<div class="sw">{{ bi(hero.so_what, hero.so_what_en) }}</div>{% endif %}
           {% if hero.power_shift or hero.watch_next %}
-          <div class="facts {% if hero.power_shift and hero.watch_next %}two{% endif %}">
+          <div class="lead-intel {% if hero.power_shift and hero.watch_next %}two{% endif %}">
             {% if hero.power_shift %}
-            <div class="fact pw"><span class="k">{{ bi("Impacto","Impact") }}</span><span class="v">{{ bi(hero.power_shift, hero.power_shift_en) }}</span></div>
+            <div class="intel-box pw"><span class="k intel-k">{{ bi("Impacto","Impact") }}</span><span class="intel-v">{{ bi(hero.power_shift, hero.power_shift_en) }}</span></div>
             {% endif %}
             {% if hero.watch_next %}
-            <div class="fact wn"><span class="k">{{ bi("Vigilar","Watch") }}</span><span class="v">{{ bi(hero.watch_next, hero.watch_next_en) }}</span></div>
+            <div class="intel-box wn"><span class="k intel-k">{{ bi("Vigilar","Watch") }}</span><span class="intel-v">{{ bi(hero.watch_next, hero.watch_next_en) }}</span></div>
             {% endif %}
           </div>
           {% endif %}
@@ -626,10 +692,48 @@ TEMPLATE = ENV.from_string("""
             {% for a in hero.also %}{% if a.url %}<a href="{{ a.url }}" target="_blank" rel="noopener noreferrer">{{ a.label }}</a>{% else %}<span>{{ a.label }}</span>{% endif %}{% if not loop.last %} · {% endif %}{% endfor %}{% if hero.also_more %} · +{{ hero.also_more }}{% endif %}
           </div>
           {% endif %}
-      {% if hero.ents %}
-      <div class="ents">{% for e in hero.ents %}<span class="ent">{{ e }}</span>{% endfor %}</div>
+          <div class="lead-foot">
+            <div class="lead-foot-l">
+              <span class="src"><img src="{{ hero.logo }}" alt="" loading="lazy"/>{{ hero.source_label }}</span>
+              {% if hero.ents %}
+              <div class="ents">{% for e in hero.ents[:4] %}<span class="ent">{{ e }}</span>{% endfor %}</div>
+              {% endif %}
+            </div>
+            <a class="lead-cta" href="{{ (hero.url or hero.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ bi("Leer fuente ↗","Read source ↗") }}</a>
+          </div>
+        </div>
+      </article>
+
+      {% if subleads %}
+      <div class="subleads">
+        <div class="subleads-h">
+          <span>{{ bi("También en portada","Also on the front page") }}</span>
+          <span>#02{% if subleads|length > 1 %} · #03{% endif %}</span>
+        </div>
+        <div class="subleads-grid{% if subleads|length == 1 %} single{% endif %}">
+          {% for it in subleads %}
+          <article class="sublead">
+            <a class="sublead-media" href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer">
+              <span class="sublead-rk">#0{{ loop.index + 1 }}</span>
+              {% if it.cover_only %}<img class="sublead-img l-es" src="{{ it.image_url }}" alt="" loading="lazy"/><img class="sublead-img l-en" src="{{ it.cover_en }}" alt="" loading="lazy"/>
+              {% else %}<img class="sublead-img" src="{{ it.image_url }}" data-fb="{{ it.fallback_image }}" data-fb-en="{{ it.cover_en }}" alt="" loading="lazy" referrerpolicy="no-referrer"/>{% endif %}
+            </a>
+            <div class="sublead-body">
+              <div class="meta-row">
+                <span class="src"><img src="{{ it.logo }}" alt="" loading="lazy"/>{{ it.source_label }}</span>
+                <span class="score {{ it.score_cls }}">{{ it.score }}/100</span>
+              </div>
+              <h3 class="sublead-title">
+                <a href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ bi(it.display_title, it.title_en) }}</a>
+              </h3>
+              {% if it.so_what %}<p class="sublead-sw">{{ bi(it.so_what, it.so_what_en) }}</p>{% endif %}
+            </div>
+          </article>
+          {% endfor %}
+        </div>
+      </div>
       {% endif %}
-    </article>
+    </div>
 
     <!-- Editorial -->
     <aside class="rail">
@@ -658,6 +762,53 @@ TEMPLATE = ENV.from_string("""
   </section>
   {% endif %}
 
+  {% if (pulse and pulse.series) or ticker_quotes %}
+  <div class="telemetry-band">
+    <!-- Pulso de la carrera: indicador propio del radar -->
+    {% if pulse and pulse.series %}
+    <section class="pulse" aria-label="Race pulse">
+      <div class="pulse-now">
+        <span class="kicker">{{ bi("Pulso de la carrera","Race pulse") }}</span>
+        <div class="pulse-num"><strong>{{ pulse.value }}</strong><span>/100</span></div>
+        <div class="pulse-bar" role="img" aria-label="{{ pulse.value }} / 100"><i style="width:{{ pulse.value }}%"></i></div>
+      </div>
+      <div class="pulse-hist">
+        <div class="pulse-cols">
+          {% for p in pulse.series %}<i class="{% if loop.last %}now{% endif %}" style="height:{{ [p.value, 4]|max }}%" title="{{ p.date }} · {{ p.value }}"></i>{% endfor %}
+        </div>
+        <div class="pulse-note">
+          {% if pulse.hotter_than is not none %}{{ bi("Más intenso que el " ~ pulse.hotter_than ~ " % de las últimas " ~ pulse.editions ~ " ediciones", "Hotter than " ~ pulse.hotter_than ~ "% of the last " ~ pulse.editions ~ " editions") }} · {% endif %}{{ bi("mide cuánta señal trae el día, no el progreso hacia la AGI", "measures how much signal the day carries, not progress towards AGI") }}
+        </div>
+      </div>
+    </section>
+    {% endif %}
+
+    <!-- Mercados: banda rotativa a todo el ancho. El contenido va dos veces para
+         que el bucle no tenga corte; la segunda copia es invisible para lectores. -->
+    {% if ticker_quotes %}
+    <section class="ticker" aria-label="Markets">
+      <div class="ticker-h"><strong>{{ bi("Mercados","Markets") }}</strong><span>{{ bi("Último cierre · no es tiempo real","Last close · not real time") }}</span></div>
+      <div class="ticker-view">
+        <div class="ticker-track" style="--n:{{ ticker_quotes|length }}">
+          {% for copy in (0, 1) %}
+          <div class="ticker-q"{% if copy %} aria-hidden="true"{% endif %}>
+            {% for m in ticker_quotes %}
+            <div class="tq{% if not m.available %} m-nodata{% endif %}">
+              <span class="tq-n">{{ m.label }}</span>
+              <span class="tq-p">{{ m.price_str }}</span>
+              {% if m.available %}<span class="m-chg {% if m.positive %}pos{% else %}neg{% endif %}">{{ m.change_str }}</span>{% else %}<span class="m-chg na">n/d</span>{% endif %}
+              {{ m.sparkline_svg|safe }}
+            </div>
+            {% endfor %}
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+    {% endif %}
+  </div>
+  {% endif %}
+
   {% if not hero and not stream %}
       <div class="empty">
         <div class="big">{{ bi("Hoy no ha pasado nada que mueva la aguja.","Nothing moved the needle today.") }}</div>
@@ -668,7 +819,7 @@ TEMPLATE = ENV.from_string("""
       </div>
       {% endif %}
 
-  <!-- Resto de señales (#2..#12). Con un filtro activo se incluye tambien la portada. -->
+  <!-- Resto de señales (#4..#12). Con un filtro activo se incluye tambien la portada. -->
   {% if signals %}
   <section class="below{% if not rest %} no-rest{% endif %}">
     <div class="section-h h-all"><h2 class="sec">{{ bi("Más allá del titular","Beyond the headline") }}</h2></div>
@@ -955,7 +1106,7 @@ def _ticker_quotes(market) -> list[dict]:
     return out
 
 
-LEAD_BLOCK = 1  # portada en opening; el resto (#2..#12) va directo a la rejilla
+LEAD_BLOCK = 3  # #1 Hero + #2/#3 Sub-leads en opening; #4..#12 van a la rejilla (3x3 exacto en dias de 12)
 ALSO_MAX = 6  # medios listados en "Tambien en" antes de resumir con +N
 
 
@@ -1034,6 +1185,12 @@ def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", 
     signals = demote_repeats_from_lead(signals, LEAD_SLOT_COUNT)
 
     hero = signals[0] if signals else None
+    if hero is not None:
+        from src.cover import motif_watermark_svg, theme_accent
+        h_seed = f"{hero.get('title') or hero.get('title_es') or ''}|{hero.get('url') or hero.get('link') or ''}"
+        hero["accent"] = theme_accent(hero["theme_key"])
+        hero["watermark_svg"] = motif_watermark_svg(hero["theme_key"], h_seed)
+    subleads = signals[1:LEAD_BLOCK] if len(signals) > 1 else []
     stream = signals[1:] if len(signals) > 1 else []
 
     # Tabs de tema estilo Discover: solo los temas presentes hoy, con contador.
@@ -1078,6 +1235,7 @@ def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", 
         ticker_quotes=_ticker_quotes(market),
         pulse=snapshot.get("pulse") or {},
         movers=snapshot.get("movers") or [],
+        subleads=subleads,
         rest=signals[LEAD_BLOCK:],
         lead_n=LEAD_BLOCK,
         key_signals=[clean_text(x) for x in (briefing.get("signals") or []) if isinstance(x, str)][:4],

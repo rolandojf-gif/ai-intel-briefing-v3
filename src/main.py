@@ -1024,6 +1024,10 @@ def merge_same_story(ranked: list[dict]) -> int:
 
         merged += 1
         it["verdict"] = "duplicate"
+        lead_img = (lead.get("image_url") or "").strip()
+        dup_img = (it.get("image_url") or "").strip()
+        if not lead_img.startswith(("http://", "https://")) and dup_img.startswith(("http://", "https://")):
+            lead["image_url"] = dup_img
         related = lead.setdefault("related", [])
         others = lead.setdefault("other_sources", [])
         for src, url in [(it.get("source"), it.get("url") or it.get("link") or "")] + [
