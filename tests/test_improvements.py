@@ -245,7 +245,7 @@ class NewspaperLayoutTests(unittest.TestCase):
         self.assertIn("clave uno", html)
         self.assertIn(">NVIDIA<", html)
         self.assertEqual(html.count('<article class="lead '), 1)
-        self.assertEqual(html.count('<article class="sublead">'), 2)
+        self.assertNotIn('class="subleads"', html)
         self.assertEqual(html.count('class="rail"'), 1)
         self.assertIn('class="below"', html)
         self.assertNotIn('class="brief"', html)
@@ -255,12 +255,12 @@ class NewspaperLayoutTests(unittest.TestCase):
         html = self._html()
         cards = re.findall(r'<article class="card( dup)?" data-topic="(\w+)"', html)
         self.assertEqual(len(cards), 9)
-        self.assertEqual(sum(1 for d, _ in cards if d), 3)
+        self.assertEqual(sum(1 for d, _ in cards if d), 1)
         self.assertIn("deck.classList.toggle('filtered'", html)
 
     def test_no_rest_section_when_everything_fits_on_the_front(self):
         self.assertIn('class="below no-rest"', self._html(n=1))
-        self.assertIn('class="below no-rest"', self._html(n=3))
+        self.assertIn('class="below"', self._html(n=3))
         self.assertIn('class="below"', self._html(n=9))
 
 

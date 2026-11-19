@@ -354,8 +354,9 @@ class UxTimezoneHealthTests(unittest.TestCase):
         self.assertNotIn('class="lead-media"', html_dossier)
         self.assertIn('class="lead-wm"', html_dossier)
         self.assertIn('class="lead-cta"', html_dossier)
-        self.assertIn('class="subleads"', html_dossier)
-        self.assertEqual(html_dossier.count('<article class="sublead">'), 2)
+        self.assertNotIn('class="subleads"', html_dossier)
+        self.assertIn("grid-template-columns:minmax(0,1fr) 365px", html_dossier)
+        self.assertIn("align-items:stretch", html_dossier)
         self.assertIn("<b>92/100</b>", html_dossier)
         self.assertLess(html_dossier.index('class="opening"'), html_dossier.index('class="telemetry-band"'))
 
