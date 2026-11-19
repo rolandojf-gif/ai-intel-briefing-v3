@@ -95,6 +95,14 @@
   .strip .r{margin-left:auto}
   .strip a{color:var(--lime);border:1px solid var(--lime);padding:2px 8px}
   .strip a:hover{background:var(--lime);color:#121211}
+  .data-links{display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .data-links .dl-h{color:#9C9B95;text-transform:uppercase;font-size:11px;letter-spacing:.06em}
+
+  /* Web hermana: MOLOCH.SH, el observatorio de modelos */
+  .sister{display:inline-flex;align-items:center;gap:10px;padding:7px 12px;background:var(--orange);color:#121211;
+          border:2px solid var(--ink);box-shadow:var(--shadow);font:700 12.5px/1.15 var(--f-mono);text-transform:uppercase}
+  .sister small{display:block;font:400 10px/1.2 var(--f-mono);letter-spacing:.02em;text-transform:none}
+  .sister:hover{transform:translate(1px,1px);box-shadow:var(--shadow-sm)}
 
   /* Etiqueta de seccion: cuadrado naranja + mono en mayusculas */
   .sec{display:flex;align-items:center;gap:10px;font:700 13px/1.2 var(--f-mono);
@@ -204,7 +212,7 @@
 </style>
 </head>
 <body>
-<header class="topnav"><a class="brand" href="index.html" aria-label="Radar.IA, portada"><span class="brand-icon"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 12V2.5A9.5 9.5 0 0 1 21.03 9.06Z" fill="currentColor"/><circle cx="7.5" cy="15" r="1.7" fill="currentColor"/></svg></span><span class="brand-text"><strong>Radar<em>.IA</em></strong><small><span class="l-es">Radar estratégico de la carrera AGI</span><span class="l-en" lang="en">Strategic radar of the AGI race</span></small></span></a><nav class="navtabs" aria-label="Secciones"><a class="navtab" href="index.html"><i>01</i> <span class="l-es">Diario</span><span class="l-en" lang="en">Daily</span></a><a class="navtab" href="weekly.html"><i>02</i> <span class="l-es">Semanal</span><span class="l-en" lang="en">Weekly</span></a><a class="navtab" href="archivo.html" aria-current="page"><i>03</i> <span class="l-es">Archivo</span><span class="l-en" lang="en">Archive</span></a></nav><div class="top-ctl"><div class="seg" role="group" aria-label="Idioma"><button type="button" class="seg-btn" data-lang-set="es">ES</button><button type="button" class="seg-btn" data-lang-set="en">EN</button></div><div class="seg" role="group" aria-label="Tema"><button type="button" class="seg-btn" data-theme-set="auto">Auto</button><button type="button" class="seg-btn" data-theme-set="light"><span class="l-es">Claro</span><span class="l-en" lang="en">Light</span></button><button type="button" class="seg-btn" data-theme-set="dark"><span class="l-es">Oscuro</span><span class="l-en" lang="en">Dark</span></button></div></div></header>
+<header class="topnav"><a class="brand" href="index.html" aria-label="Radar.IA, portada"><span class="brand-icon"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 12V2.5A9.5 9.5 0 0 1 21.03 9.06Z" fill="currentColor"/><circle cx="7.5" cy="15" r="1.7" fill="currentColor"/></svg></span><span class="brand-text"><strong>Radar<em>.IA</em></strong><small><span class="l-es">Radar estratégico de la carrera AGI</span><span class="l-en" lang="en">Strategic radar of the AGI race</span></small></span></a><nav class="navtabs" aria-label="Secciones"><a class="navtab" href="index.html"><i>01</i> <span class="l-es">Diario</span><span class="l-en" lang="en">Daily</span></a><a class="navtab" href="weekly.html"><i>02</i> <span class="l-es">Semanal</span><span class="l-en" lang="en">Weekly</span></a><a class="navtab" href="archivo.html" aria-current="page"><i>03</i> <span class="l-es">Archivo</span><span class="l-en" lang="en">Archive</span></a></nav><a class="sister" href="https://moloch-sh.netlify.app/" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">&gt;_</span><span>MOLOCH.SH ↗<small><span class="l-es">Observatorio de modelos</span><span class="l-en" lang="en">Model observatory</span></small></span></a><div class="top-ctl"><div class="seg" role="group" aria-label="Idioma"><button type="button" class="seg-btn" data-lang-set="es">ES</button><button type="button" class="seg-btn" data-lang-set="en">EN</button></div><div class="seg" role="group" aria-label="Tema"><button type="button" class="seg-btn" data-theme-set="auto">Auto</button><button type="button" class="seg-btn" data-theme-set="light"><span class="l-es">Claro</span><span class="l-en" lang="en">Light</span></button><button type="button" class="seg-btn" data-theme-set="dark"><span class="l-es">Oscuro</span><span class="l-en" lang="en">Dark</span></button></div></div></header>
 <div class="wrap">
   <div class="lead">
     <span class="kicker">2026-02-13 – 2026-11-19</span>
@@ -245,9 +253,9 @@
   
   <h2 class="month" id="m-2026-11">Noviembre 2026</h2>
   
-  <a class="day" href="d/2026-11-19.html" data-q="2026-11-19 Google lanza Gemini 4 Neon con mayor rendimiento y menor coste, intensificando la guerra de precios y capacidad en modelos de frontera, mientras Anthropic debuta en bolsa.">
+  <a class="day" href="d/2026-11-19.html" data-q="2026-11-19 El ritmo acelerado de lanzamientos de modelos de frontera por parte de Google y la monetización de acceso a APIs intensifican la competencia, mientras los agentes de IA demuestran capacidad de auto-mejora y automatizació">
     <span class="dt">2026-11-19</span>
-    <span class="th"><span class="l-es">Google lanza Gemini 4 Neon con mayor rendimiento y menor coste, intensificando la guerra de precios y capacidad en modelos de frontera, mientras Anthropic debuta en bolsa.</span><span class="l-en" lang="en">Google launches Gemini 4 Neon with improved performance and lower cost, intensifying the price and capability war in frontier models, while Anthropic goes public.</span></span>
+    <span class="th"><span class="l-es">El ritmo acelerado de lanzamientos de modelos de frontera por parte de Google y la monetización de acceso a APIs intensifican la competencia, mientras los agentes de IA demuestran capacidad de auto-mejora y automatizació</span><span class="l-en" lang="en">The accelerated pace of frontier model releases by Google and API access monetization intensify competition, while AI agents demonstrate self-improvement and cognitive task automation.</span></span>
     <span class="n"><span class="l-es">12 señales</span><span class="l-en" lang="en">12 signals</span></span>
   </a>
   
