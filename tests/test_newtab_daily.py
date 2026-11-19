@@ -97,3 +97,16 @@ class SecondScheduledAttemptTests(unittest.TestCase):
                 with patch.dict(os.environ, {'GITHUB_EVENT_NAME': 'schedule'}), \
                      patch('src.main.main', side_effect=AssertionError('no debe regenerar')):
                     daily.run(day)   # ya publicada: no llama a Gemini
+
+
+class NetlifySchedulerTests(unittest.TestCase):
+    def test_runs_launched_by_netlify_skip_when_edition_is_out(self):
+        import os
+        with tempfile.TemporaryDirectory() as temp:
+            data = Path(temp) / 'data'; newtab = Path(temp) / 'newtab'; data.mkdir(); newtab.mkdir()
+            day = date(2026, 11, 19)
+            (data / '2026-11-19.json').write_text(json.dumps({'degraded': False, 'items': [{'t': 1}]}))
+            env = {'GITHUB_EVENT_NAME': 'workflow_dispatch', 'FROM_SCHEDULER': '1', 'FORCE_GEMINI': '1'}
+            with patch.object(daily, 'DATA', data), patch.object(daily, 'NEWTAB', newtab), \
+                 patch.dict(os.environ, env), patch('src.main.main', side_effect=AssertionError('no debe regenerar')):
+                daily.run(day)

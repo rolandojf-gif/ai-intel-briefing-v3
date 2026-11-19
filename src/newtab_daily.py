@@ -252,7 +252,10 @@ def already_published(day: date, analysis: bool) -> bool:
 def run(day: date, mode: str = 'auto') -> None:
     if mode not in ('auto', 'gemini', 'rss'):
         raise ValueError(f'Modo no válido: {mode}')
-    if mode == 'auto' and os.getenv('GITHUB_EVENT_NAME') == 'schedule':
+    # Programado de verdad: el cron de GitHub o el programador de Netlify (que
+    # lanza el workflow a mano con from_scheduler). Si la edicion ya salio, no repite.
+    scheduled = os.getenv('GITHUB_EVENT_NAME') == 'schedule' or os.getenv('FROM_SCHEDULER') == '1'
+    if mode == 'auto' and scheduled:
         if already_published(day, gemini_day(day)):
             print(f'NEXUS: la edición del {day.isoformat()} ya está publicada; este intento no hace nada.')
             return
