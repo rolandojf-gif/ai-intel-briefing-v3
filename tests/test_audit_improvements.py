@@ -321,7 +321,10 @@ class UxTimezoneHealthTests(unittest.TestCase):
         body = re.sub(r"<head>.*?</head>|<style>.*?</style>|<script>.*?</script>", "", html, flags=re.S)
         en_view = re.sub(r"<span class=['\"]l-es['\"][^>]*>.*?</span>", "", body, flags=re.S)
         en_texts = [re.sub(r"\s+", " ", t).strip() for t in re.split(r"<[^>]+>", en_view)]
+        # Nombres propios con tilde o eñe (personas, productos): no son texto en español.
+        proper = ("Rolando Fernández", "Jalapeño")
         en_texts = [t for t in en_texts if t and t != "Rolando Fernández"]
+        en_texts = [t for t in (re.sub("|".join(map(re.escape, proper)), "", t) for t in en_texts)]
         spanish_re = re.compile(r"[áéíóúñ¿¡]|\b(señales|menciones|ediciones|impacto|vigilar|confirmadas|alto voltaje)\b", re.I)
         self.assertEqual([t for t in en_texts if spanish_re.search(t)], [])
 
