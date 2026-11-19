@@ -188,9 +188,10 @@
   .below.filter-empty,.ctx-block.filter-empty{display:none}
 
   /* -- Banda de telemetria (Pulso + Mercados) debajo de la portada -- */
-  .telemetry-band{margin-top:26px;display:grid;gap:18px}
+  .telemetry-band{margin-top:26px;display:grid;grid-template-columns:minmax(0,1fr);gap:18px;width:100%;max-width:100%}
+  .telemetry-band>*{min-width:0;max-width:100%}
   .deck.filtered .telemetry-band{display:none}
-  .ticker{margin:0;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow);padding:10px 14px 12px}
+  .ticker{margin:0;min-width:0;max-width:100%;overflow:hidden;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow);padding:10px 14px 12px}
   .ticker-h{display:flex;justify-content:space-between;gap:12px;align-items:center;font:400 10.5px var(--f-mono);color:var(--muted);text-transform:uppercase}
   .ticker-h strong{display:flex;align-items:center;gap:8px;color:var(--text);font-weight:700;letter-spacing:.08em}
   .ticker-h strong::before{content:"";width:10px;height:10px;background:var(--orange);border:2px solid var(--ink)}
@@ -200,14 +201,15 @@
   .tq-p{font:700 clamp(14px,1.25vw,18px) var(--f-mono);white-space:nowrap;font-variant-numeric:tabular-nums}
   .tq .spark{grid-column:1/-1;height:20px}
 
-  .ticker-view{overflow:hidden;margin-top:10px}
+  .ticker-view{overflow:hidden;margin-top:10px;max-width:100%}
   .ticker-track{display:flex;width:max-content;animation:tick calc(var(--n) * 5s) linear infinite}
   .ticker-view:hover .ticker-track{animation-play-state:paused}
   @keyframes tick{to{transform:translateX(-50%)}}
   @media (prefers-reduced-motion: reduce){.ticker-track{animation:none}.ticker-view{overflow-x:auto}}
 
-  .pulse{display:grid;grid-template-columns:minmax(230px,300px) 1fr;gap:22px;align-items:end;margin:0;padding:14px 16px;
+  .pulse{display:grid;grid-template-columns:minmax(230px,300px) minmax(0,1fr);gap:22px;align-items:end;margin:0;min-width:0;max-width:100%;padding:14px 16px;
          background:var(--asphalt);color:#E8E7E1;border:2px solid var(--ink);box-shadow:var(--shadow)}
+  .pulse-hist{min-width:0}
   .pulse .kicker{color:var(--lime)}
   .pulse-num{display:flex;align-items:baseline;gap:6px;margin:4px 0 8px}
   .pulse-num strong{font:700 58px/.9 var(--f-head);letter-spacing:-.04em;color:#fff}
