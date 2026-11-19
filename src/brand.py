@@ -124,6 +124,14 @@ BASE_CSS = """
   .strip .r{margin-left:auto}
   .strip a{color:var(--lime);border:1px solid var(--lime);padding:2px 8px}
   .strip a:hover{background:var(--lime);color:#121211}
+  .data-links{display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .data-links .dl-h{color:#9C9B95;text-transform:uppercase;font-size:11px;letter-spacing:.06em}
+
+  /* Web hermana: MOLOCH.SH, el observatorio de modelos */
+  .sister{display:inline-flex;align-items:center;gap:10px;padding:7px 12px;background:var(--orange);color:#121211;
+          border:2px solid var(--ink);box-shadow:var(--shadow);font:700 12.5px/1.15 var(--f-mono);text-transform:uppercase}
+  .sister small{display:block;font:400 10px/1.2 var(--f-mono);letter-spacing:.02em;text-transform:none}
+  .sister:hover{transform:translate(1px,1px);box-shadow:var(--shadow-sm)}
 
   /* Etiqueta de seccion: cuadrado naranja + mono en mayusculas */
   .sec{display:flex;align-items:center;gap:10px;font:700 13px/1.2 var(--f-mono);
@@ -213,6 +221,9 @@ def header(nav: str = "daily", root: str = "") -> Markup:
         '<span class="brand-text"><strong>Radar<em>.IA</em></strong>'
         '<small>' + str(bi('Radar estratégico de la carrera AGI', 'Strategic radar of the AGI race')) + '</small></span></a>'
         f'<nav class="navtabs" aria-label="Secciones">{tabs}</nav>'
+        '<a class="sister" href="https://moloch-sh.netlify.app/" target="_blank" rel="noopener noreferrer">'
+        '<span aria-hidden="true">&gt;_</span><span>MOLOCH.SH ↗<small>'
+        + str(bi('Observatorio de modelos', 'Model observatory')) + '</small></span></a>'
         '<div class="top-ctl"><div class="seg" role="group" aria-label="Idioma">'
         '<button type="button" class="seg-btn" data-lang-set="es">ES</button>'
         '<button type="button" class="seg-btn" data-lang-set="en">EN</button></div>'

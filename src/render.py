@@ -589,6 +589,11 @@ TEMPLATE = ENV.from_string("""
   <span class="it">{{ n_signals }} {{ bi("señales","signals") }}{% if n_context %} · {{ n_context }} {{ bi("de contexto","context") }}{% endif %}</span>
   <span class="it{% if sources_dead %} warn{% endif %}">{{ sources_alive }}/{{ sources_total }} {{ bi("fuentes","sources") }}</span>
   {% if x_layer and x_layer.status == 'ok' and x_layer.posts %}<span class="it">X: {{ x_layer.posts }} posts</span>{% elif x_layer and x_layer.status in ['killed','disabled'] %}<span class="it bad">{{ bi("X apagada","X off") }}</span>{% endif %}
+  <span class="r data-links"><span class="dl-h">{{ bi("Datos","Data") }}</span>
+    <a href="https://artificialanalysis.ai/models" target="_blank" rel="noopener noreferrer" title="Artificial Analysis · índice de inteligencia y precios">Artificial Analysis ↗</a>
+    <a href="https://epoch.ai/data/ai-models" target="_blank" rel="noopener noreferrer" title="Epoch AI · base de datos de modelos">Epoch {{ bi("Modelos","Models") }} ↗</a>
+    <a href="https://epoch.ai/eci" target="_blank" rel="noopener noreferrer" title="Epoch Capabilities Index">Epoch ECI ↗</a>
+  </span>
 </div>
 <div class="wrap">
 
