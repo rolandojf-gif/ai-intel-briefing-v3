@@ -200,12 +200,14 @@ class MemoryEnglishTests(unittest.TestCase):
     def test_watchlist_and_threads_carry_english(self):
         from src.memory import detect_threads, resolve_watchlist
         hist = [{"date": "2026-11-13", "items": [{"layer": "signal", "strategic_theme": "china_stack"}]},
-                {"date": "2026-11-14", "briefing": {"watch": ["Vigilar precios de DeepSeek R1"], "watch_en": ["Watch DeepSeek R1 pricing"]},
+                {"date": "2026-11-14", "briefing": {"watch": ["DeepSeek R1 baja precios"], "watch_en": ["DeepSeek R1 cuts prices"]},
                  "items": [{"layer": "signal", "strategic_theme": "china_stack"}]}]
-        today = [{"title_es": "DeepSeek R1 baja precios", "title_en": "DeepSeek R1 cuts prices", "layer": "signal",
+        today = [{"title": "DeepSeek R1 cuts prices", "url": "https://deepseek.com/pricing",
+                  "evidence_kind": "confirmed", "evidence": {"quote": "DeepSeek R1 cuts prices"},
+                  "title_es": "DeepSeek R1 baja precios", "title_en": "DeepSeek R1 cuts prices", "layer": "signal",
                   "strategic_theme": "china_stack", "entities": ["DeepSeek"]}]
         w = resolve_watchlist(hist, today)[0]
-        self.assertEqual((w["status"], w["text_en"], w["evidence_en"]), ("hit", "Watch DeepSeek R1 pricing", "DeepSeek R1 cuts prices"))
+        self.assertEqual((w["status"], w["text_en"], w["evidence_en"]), ("hit", "DeepSeek R1 cuts prices", "DeepSeek R1 cuts prices"))
         t = detect_threads(hist, today)[0]
         self.assertEqual((t["label_en"], t["lead_en"]), ("China stack", "DeepSeek R1 cuts prices"))
 

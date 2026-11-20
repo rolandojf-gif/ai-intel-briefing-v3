@@ -99,11 +99,13 @@ class CoreQualityTests(unittest.TestCase):
         history = [{
             "date": "2026-08-21",
             "briefing": {
-                "watch": ["Vigilar precios de DeepSeek R1 y cuotas de inferencia", "Confirmar despliegue de Blackwell B200"]
+                "watch": ["DeepSeek R1 reduce precios de inferencia un 30%", "Confirmar despliegue de Blackwell B200"]
             }
         }]
         today_items = [
-            {"title_es": "DeepSeek R1 reduce precios de inferencia un 30%", "entities": ["DeepSeek"]}
+            {"title": "DeepSeek R1 reduce precios de inferencia un 30%", "entities": ["DeepSeek"],
+             "url": "https://deepseek.com/pricing", "evidence_kind": "confirmed",
+             "evidence": {"quote": "DeepSeek R1 reduce precios de inferencia un 30%"}}
         ]
         resolved = resolve_watchlist(history, today_items)
         self.assertEqual(len(resolved), 2)

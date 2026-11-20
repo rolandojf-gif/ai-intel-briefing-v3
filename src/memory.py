@@ -19,6 +19,8 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any
 
+from src.evidence import PENDING, PROSPECTIVE, UNCERTAIN, sentences, source_evidence
+
 
 # -- Carga de historico ------------------------------------------------------
 
@@ -64,78 +66,51 @@ def _entities_of(snapshot: dict) -> set[str]:
 
 # -- Watchlist: lo que dijimos ayer, comprobado hoy --------------------------
 
-_STOPWORDS = {
-    "para", "sobre", "como", "entre", "desde", "hasta", "cuando", "donde", "este",
-    "esta", "estos", "estas", "todo", "toda", "más", "menos", "vigilar", "seguir",
-    "confirmar", "watch", "the", "and", "for", "with",
-}
+# El hito se formula como declaración observable. Solo una declaración completa
+# en la fuente primaria lo cierra; una paráfrasis se queda pendiente de revisión.
+_OBSERVED_ACTION = re.compile(
+    r"\b(publish(?:es|ed)?|releases?|released|launch(?:es|ed)?|cuts?|approves?|approved|"
+    r"ships?|shipped|files?|filed|reports?|reported|publica[nr]?|publicó|lanza[nr]?|"
+    r"lanzó|reduce[n]?|redujo|aprueba[n]?|aprobó)\b", re.I,
+)
 
 
-def _keyterms(text: str) -> set[str]:
-    """Terminos con carga semantica: nombres propios, modelos, siglas, cifras."""
-    terms: set[str] = set()
-    for m in re.findall(r"\b[A-Z][A-Za-z0-9]*(?:[-. ]?[A-Z0-9][A-Za-z0-9]*)*\b", text or ""):
-        t = m.strip()
-        if len(t) >= 3 and t.lower() not in _STOPWORDS:
-            terms.add(t.lower())
-    for m in re.findall(r"\b[a-zA-Z]?\d+(?:\.\d+)?\b", text or ""):
-        if len(m) >= 2:
-            terms.add(m.lower())
-    return terms
+def _statement(text: str) -> str:
+    return " ".join(text.split()).strip().rstrip(".").casefold()
 
 
 def resolve_watchlist(history: list[dict], today_items: list[dict]) -> list[dict]:
-    """Comprueba los `watch` del ultimo dia contra las senales de hoy.
-
-    Devuelve [{text, status: hit|open, evidence}]. Heuristica deliberadamente
-    conservadora: solo marca `hit` con solape claro de terminos, para que un
-    check signifique algo.
-    """
+    """Cierra solo hitos afirmados literalmente, con evidencia y URL de origen."""
     if not history:
         return []
-
-    prev = history[-1]
-    prev_watch = [w for w in ((prev.get("briefing") or {}).get("watch") or []) if isinstance(w, str)]
-    if not prev_watch:
-        return []
-
-    today_index: list[tuple[set[str], dict]] = []
-    for it in today_items:
-        blob = " ".join([
-            str(it.get("title_es") or ""),
-            str(it.get("title") or ""),
-            str(it.get("so_what") or ""),
-            " ".join(str(e) for e in (it.get("entities") or [])),
-        ])
-        today_index.append((_keyterms(blob), it))
-
-    prev_en = [w if isinstance(w, str) else "" for w in ((prev.get("briefing") or {}).get("watch_en") or [])]
-    resolved = []
-    for idx, w in enumerate(prev_watch[:4]):
-        w_en = prev_en[idx] if idx < len(prev_en) else ""
-        wterms = _keyterms(w)
-        if not wterms:
-            resolved.append({"text": w, "text_en": w_en, "status": "open", "evidence": "", "evidence_en": ""})
+    brief = history[-1].get("briefing") or {}
+    observed = {}
+    for item in today_items:
+        if item.get("evidence_kind") != "confirmed":
             continue
+        quote = (item.get("evidence") or {}).get("quote", "")
+        evidence = source_evidence(item, quote)
+        if not evidence or not _OBSERVED_ACTION.search(quote) or PROSPECTIVE.search(quote):
+            continue
+        if any(UNCERTAIN.search(item.get(k) or "") or PENDING.search(item.get(k) or "")
+               for k in ("title", "summary")):
+            continue
+        statement = _statement(quote)
+        if any(statement == _statement(s) for k in ("title", "summary")
+               for s in sentences(item.get(k) or "")):
+            observed[statement] = evidence
 
-        best, best_overlap = None, 0
-        for terms, it in today_index:
-            overlap = len(wterms & terms)
-            if overlap > best_overlap:
-                best, best_overlap = it, overlap
-
-        # Exigimos 2+ terminos coincidentes: 1 solo produce falsos positivos.
-        if best is not None and best_overlap >= 2:
-            resolved.append({
-                "text": w,
-                "text_en": w_en,
-                "status": "hit",
-                "evidence": (best.get("title_es") or best.get("title") or "")[:110],
-                "evidence_en": (best.get("title_en") or best.get("title") or "")[:110],
-            })
-        else:
-            resolved.append({"text": w, "text_en": w_en, "status": "open", "evidence": "", "evidence_en": ""})
-
+    resolved = []
+    english = brief.get("watch_en") or []
+    for idx, watch in enumerate((brief.get("watch") or [])[:4]):
+        if not isinstance(watch, str):
+            continue
+        en = english[idx] if idx < len(english) and isinstance(english[idx], str) else ""
+        evidence = observed.get(_statement(watch)) or observed.get(_statement(en))
+        quote = evidence["quote"] if evidence else ""
+        resolved.append({"text": watch, "text_en": en, "status": "hit" if evidence else "open",
+                         "evidence": quote, "evidence_en": quote,
+                         "evidence_url": evidence["url"] if evidence else ""})
     return resolved
 
 

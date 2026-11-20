@@ -68,14 +68,13 @@ class IngestionAndDedupTests(unittest.TestCase):
         self.assertEqual(resolved_calls, [["https://news.google.com/rss/articles/BEST"]])
         self.assertEqual(items[0]["url"], "https://openai.com/gpt-6")
 
-    def test_dedup_items_short_title_threshold(self):
+    def test_dedup_keeps_new_development_in_short_title(self):
         a = {"title": "OpenAI launches agent API", "link": "https://a.example/1", "source": "Source A"}
         b = {"title": "OpenAI launches agent pricing", "link": "https://b.example/2", "source": "Source B"}
         c = {"title": "OpenAI launches new Claude model", "link": "https://c.example/3", "source": "Source C"}
         out = main.dedup_items([a, b, c])
-        # a y b comparten 3/4 palabras (75%) -> fusionan; c solo comparte 2 palabras -> se conserva
-        self.assertEqual(len(out), 2)
-        self.assertIn("Source B", out[0].get("other_sources", []))
+        # El precio de la API es un desarrollo distinto de su lanzamiento.
+        self.assertEqual(out, [a, b, c])
 
     def test_cross_day_fuzzy_repeat_detection(self):
         with tempfile.TemporaryDirectory() as tmp:
