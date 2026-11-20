@@ -528,8 +528,8 @@ TEMPLATE = ENV.from_string("""
   .comp-price{font:700 12px var(--f-mono);font-variant-numeric:tabular-nums}
   .comp-chg{font:700 10.5px var(--f-mono)}
 
-  .wr,.thr,.mv,.rk{padding:8px 0;border-bottom:1px dashed var(--line)}
-  .wr:last-child,.thr:last-child,.mv:last-child,.rk:last-child{border-bottom:none;padding-bottom:0}
+  .wr,.thr,.mv,.rk,.visit-update{padding:8px 0;border-bottom:1px dashed var(--line)}
+  .wr:last-child,.thr:last-child,.mv:last-child,.rk:last-child,.visit-update:last-child{border-bottom:none;padding-bottom:0}
   .wr{display:flex;gap:10px;align-items:flex-start}
   .wr-ic{font:700 12px/1.5 var(--f-mono);flex-shrink:0}
   .wr.hit .wr-ic{color:var(--open)} .wr.open .wr-ic{color:var(--muted)}
@@ -548,7 +548,8 @@ TEMPLATE = ENV.from_string("""
   .mv .nm{font-weight:600}
   .mv .dt{color:var(--muted);font:400 10.5px var(--f-mono)}
   .none{font-size:12.5px;color:var(--muted);font-style:italic}
-  .rk{font-size:13px;line-height:1.5}
+  #visit-changes{margin-bottom:20px}
+  .rk,.visit-update{font-size:13px;line-height:1.5}
   .rk::before{content:"!";display:inline-grid;place-content:center;width:16px;height:16px;margin-right:7px;
               font:700 10px var(--f-mono);background:#FBBF24;color:#121211;border:1px solid var(--ink);vertical-align:1px}
   .rk.w::before{content:"→";background:var(--lime)}
@@ -622,6 +623,22 @@ TEMPLATE = ENV.from_string("""
     {{ bi("El espejo no devolvió posts (" ~ x_layer.configured ~ " cuentas). El briefing sigue con RSS.", "The mirror returned no posts (" ~ x_layer.configured ~ " accounts). The briefing continues with RSS.") }}
     {% endif %}
   </div>
+  {% endif %}
+
+  {% if nav == 'daily' and not archive %}
+  <section id="visit-changes" class="widget" data-edition="{{ generated_at }}" hidden>
+    <h2 class="widget-title"><span>{{ bi("Qué cambió desde tu última visita", "What changed since your last visit") }}</span></h2>
+    {% for u in visit_updates %}
+    <article class="visit-update" data-updated="{{ u.date }}" hidden>
+      <b>{{ u.date }} · {% if u.status == 'confirmed' %}{{ bi("Hito confirmado","Milestone confirmed") }}{% elif u.status == 'expired' %}{{ bi("Plazo vencido · sin confirmación localizada","Deadline passed · confirmation not found") }}{% elif u.status == 'correction' %}{{ bi("Rectificación publicada","Published correction") }}{% else %}{{ bi("Nuevo desarrollo","New development") }}{% if u.before.watch %} · {{ bi("Hito abierto","Milestone open") }}{% endif %}{% endif %}</b>
+      <div>{{ bi("Qué sabíamos","What we knew") }} · <a href="{{ u.before.url|safe_url }}">{{ bi(u.before.es,u.before.en) }}</a>
+      <small>{{ u.before.source }} · {{ u.before.date }}</small></div>
+      {% if u.after %}<div>{{ bi("Qué cambió","What changed") }} · <a href="{{ u.after.url|safe_url }}">{{ bi(u.after.es,u.after.en) }}</a>
+      <small>{{ u.after.source }} · {{ u.after.date }}</small></div>{% endif %}
+      {% if u.before.watch and u.status != 'confirmed' %}<div>{{ bi("Hito pendiente","Open milestone") }} · {{ bi(u.before.watch,u.before.watch_en) }}</div>{% endif %}
+    </article>
+    {% endfor %}
+  </section>
   {% endif %}
 
   <!-- Tabs de tema -->
@@ -971,6 +988,30 @@ TEMPLATE = ENV.from_string("""
 </div>
 
 <script>
+  // La visita se mide por edición. Recargar mantiene la misma comparación.
+  (function(){
+    const panel = document.getElementById('visit-changes');
+    if (!panel) return;
+    const today = panel.dataset.edition;
+    const key = 'nexus.daily.visit.v1';
+    try {
+      let state = null;
+      try { state = JSON.parse(localStorage.getItem(key)); } catch (_) {}
+      const valid = d => typeof d === 'string' && /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(d);
+      if (!valid(today) || (state && valid(state.latest) && state.latest > today)) return;
+      const previous = state && valid(state.latest)
+        ? (state.latest === today ? state.previous : state.latest) : null;
+      localStorage.setItem(key, JSON.stringify({latest: today, previous}));
+      if (!valid(previous) || previous >= today) return;
+      for (const row of panel.querySelectorAll('[data-updated]')) {
+        if (row.dataset.updated > previous && row.dataset.updated <= today) {
+          row.hidden = false;
+          panel.hidden = false;
+        }
+      }
+    } catch (_) { /* Sin historial local fiable no se afirma que haya novedades. */ }
+  })();
+
   // Si la edicion no es de hoy (por ejemplo, antes de la ejecucion de la manana), se dice:
   // sin esto la portada de ayer se lee como si fuera la de hoy.
   (function(){
@@ -1216,6 +1257,7 @@ def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", 
         n_context=len(context),
         n_dropped=snapshot.get("dropped_noise", 0),
         degraded=bool(snapshot.get("degraded")),
+        visit_updates=(memory.get("followups") or {}).get("updates", [])[:3],
         watch_resolved=watch_resolved,
         n_hits=sum(1 for w in watch_resolved if w.get("status") == "hit"),
         threads=threads,

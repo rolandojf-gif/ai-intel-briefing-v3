@@ -19,6 +19,7 @@ from src.fetch import clip_text, fetch_rss, resolve_items_google_news
 from src.fetch_x import fetch_x_search, fetch_x_user
 from src.render import render_index
 from src.score import score_item
+from src.followups import excerpt, followups, previous_state, with_open_stories
 from src.llm_rank import rank_batch
 from src.memory import (
     known_before,
@@ -616,12 +617,10 @@ def load_recent_context(data_dir: Path, today: str, days: int = 2) -> tuple[list
                 toks = _story_words(it.get(field, ""))
                 if len(toks) >= 4:
                     token_sets.append(toks)
-            title = (it.get("title") or "").strip()
-            summary = (it.get("summary") or "").strip()
-            excerpt = " | ".join(dict.fromkeys(x for x in (title, summary) if x))[:320]
-            if excerpt and excerpt not in seen_hl:
-                seen_hl.add(excerpt)
-                headlines.append(excerpt)
+            text = excerpt(it)
+            if text and text not in seen_hl:
+                seen_hl.add(text)
+                headlines.append(text)
 
     return token_sets, headlines[:20]
 
@@ -827,7 +826,7 @@ def compute_noise_penalty(it: dict) -> int:
 
 
 def _batch_fingerprint(payload: list[dict], recent_headlines: list[str] | None = None) -> str:
-    inputs = ["evidence-v1", payload, recent_headlines or []]
+    inputs = ["evidence-v1-followups", payload, recent_headlines or []]
     return hashlib.sha256(json.dumps(inputs, ensure_ascii=False, sort_keys=True).encode()).hexdigest()
 
 
@@ -1385,6 +1384,7 @@ def main():
     from src.fetch import enrich_items_with_images
 
     # 4) LLM Rank
+    recent_headlines = with_open_stories(recent_headlines, history, candidates)
     results_map, briefings = generate_llm_data(candidates, llm_cache, llm_done, recent_headlines=recent_headlines)
 
     # 5) Apply LLM Results (gate de relevancia)
@@ -1415,6 +1415,12 @@ def main():
         traceback.print_exc()
         memory = {"watch_resolved": [], "entity_deltas": {}, "threads": []}
         level_label, level_class = ("SIN FILTRAR", "quiet")
+
+    try:
+        memory["followups"] = followups(today, history, final_items, results_map, recent_headlines)
+    except Exception:
+        traceback.print_exc()
+        memory["followups"] = previous_state(history)
 
     # Indicadores propios: pulso de la carrera y quien la mueve. Accesorios:
     # si fallan, la edicion sale igual sin ellos.
