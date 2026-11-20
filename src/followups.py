@@ -72,7 +72,7 @@ def followups(today, history, items, results, recent):
         if decision.get("repeat_of") or decision.get("same_story_as"):
             continue
         link = decision.get("follow_up") or {}
-        number, quote = link.get("number", 0), decision.get("prior_quote", "")
+        number, quote = link.get("number", 0), link.get("quote", "")
         if not isinstance(number, int) or number < 1 or not quote.strip() or len(quote.strip()) < 12:
             continue
         origin = None

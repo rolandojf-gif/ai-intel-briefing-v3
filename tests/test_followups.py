@@ -20,7 +20,7 @@ def signal(rid, text, watch="", url=None):
 
 
 def decision(origin, number, quote, correction=False):
-    return {"prior_quote": quote, "follow_up": {"origin": origin, "number": number, "correction": correction}}
+    return {"follow_up": {"quote": quote, "origin": origin, "number": number, "correction": correction}}
 
 
 class FollowUpTests(unittest.TestCase):
