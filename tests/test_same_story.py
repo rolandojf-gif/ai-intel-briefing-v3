@@ -135,3 +135,18 @@ class EntityMergeTests(unittest.TestCase):
         a = self._it(1, "Gran modelo de lenguaje razona con grafos de tamaño", ["large language models"])
         b = self._it(2, "Gran modelo de lenguaje y el tamaño de su huella ecológica", ["large language models"], theme="compute_chips_dc")
         self.assertFalse(same_story(a, b))
+
+class EvidenceFallbackTests(unittest.TestCase):
+    def test_unlinked_syndicated_report_merges_with_source_attribution(self):
+        title = "Google launches Gemini 4 Neon"
+        a = dict(source="Reuters", title=title + " - Reuters", summary=title, evidence_kind="reported")
+        b = dict(source="AP", title=title + " - AP", summary="", evidence_kind="reported")
+        self.assertTrue(same_story(a, b))
+
+    def test_shared_editorial_headline_preserves_material_developments(self):
+        title = "Google launches Gemini 4 Neon"
+        a = dict(title=title, title_es="Google presenta Neon", evidence_kind="reported")
+        for update in ("Google cuts Gemini 4 Neon prices", "Independent tests show a 12% regression"):
+            with self.subTest(update=update):
+                self.assertFalse(same_story(a, dict(a, title=update)))
+                self.assertFalse(same_story(a, dict(a, summary=update)))

@@ -967,6 +967,15 @@ def _norm_text(text: str) -> str:
     return re.sub(r"[^a-z0-9áéíóúüñ]+", " ", (text or "").lower()).strip()
 
 
+def _syndicated_text(item: dict) -> tuple[str, str]:
+    title, summary = _source_text(item)
+    source = (item.get("source") or "").strip().casefold()
+    if source:
+        title = title.removesuffix(" - " + source)
+        summary = summary.removesuffix(" - " + source)
+    return title, "" if summary == title else summary
+
+
 def same_story(a: dict, b: dict) -> bool:
     """¿Cuentan `a` y `b` el mismo suceso segun el juicio del LLM?
 
@@ -981,9 +990,10 @@ def same_story(a: dict, b: dict) -> bool:
         return True
 
     if "evidence_kind" in a or "evidence_kind" in b:
-        # En el contrato de evidencia el modelo ya ha comparado los hechos.
-        # Compartir una inferencia o unas palabras no invalida un desarrollo.
-        return False
+        # Una republicación puede cambiar la firma o repetir el título como resumen.
+        # Cualquier dato adicional de la fuente conserva su propia ficha.
+        original = _syndicated_text(a)
+        return bool(original[0]) and original == _syndicated_text(b)
 
     ta, tb = _norm_text(a.get("title_es")), _norm_text(b.get("title_es"))
     if ta and ta == tb:
