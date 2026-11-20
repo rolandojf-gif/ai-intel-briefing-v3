@@ -17,6 +17,8 @@ pasaba a depender de como resolviera el modelo la contradiccion.
 from google import genai
 from pydantic import BaseModel, Field
 from typing import List, Literal
+
+from src.evidence import source_evidence
 import json
 import os
 
@@ -85,6 +87,11 @@ class RankOut(BaseModel):
     relevance: int = Field(ge=0, le=100, description="Relevancia para la tesis del lector, no calidad del artículo")
     theme: Theme
 
+    evidence_kind: Literal["confirmed", "reported", "inference", "speculation"]
+    evidence_quote: str = Field(description="Una frase literal del título o resumen que sustenta la noticia y su lectura. Vacío si falta.")
+    repeat_of: int = Field(default=0, description="Número del hecho ya publicado si no aporta novedad material; 0 si es nuevo.")
+    prior_quote: str = Field(default="", description="Solo para repeat_of: fragmento literal del histórico que acredita el mismo hecho.")
+
     headline_es: str = Field(
         description=(
             "Titular reescrito en castellano de España, afilado y concreto, máx 90 chars. "
@@ -133,7 +140,14 @@ class RankOut(BaseModel):
     )
 
 
+class BriefReference(BaseModel):
+    field: Literal["thesis", "signals", "risks", "watch"]
+    index: int = Field(ge=0, description="Posición desde 0 (tesis: 0)")
+    ids: List[int] = Field(description="Items cuyos extractos justifican esta conclusión o hito")
+
+
 class Briefing(BaseModel):
+    references: List[BriefReference] = Field(default_factory=list)
     thesis: str = Field(
         default="",
         description=(
@@ -205,14 +219,15 @@ def rank_batch(
         })
 
     recent_block = ""
+    cleaned_recent = []
     if recent_headlines:
-        cleaned_recent = [str(h).strip()[:140] for h in recent_headlines if str(h).strip()][:20]
+        cleaned_recent = [str(h).strip()[:320] for h in recent_headlines if str(h).strip()][:20]
         if cleaned_recent:
-            recent_lines = "\n".join(f"- {h}" for h in cleaned_recent)
+            recent_lines = "\n".join(f"{i}. {h}" for i, h in enumerate(cleaned_recent, 1))
             recent_block = (
                 "HISTÓRICO RECIENTE (ya publicado en las últimas 48h; si un item solo repite "
-                "lo mismo sin dato, precio, lanzamiento ni consecuencia nueva, rebaja relevance "
-                "y márcalo 'context' o 'noise'):\n"
+                "lo mismo sin dato, precio, lanzamiento ni consecuencia nueva, indica repeat_of "
+                "y copia prior_quote del número citado):\n"
                 f"{recent_lines}\n\n"
             )
 
@@ -245,7 +260,17 @@ def rank_batch(
         "- La misma noticia en otro medio, sin nada nuevo: same_story_as = id del mejor item.\n"
         "- Un desarrollo distinto del mismo suceso (reacción, petición, consecuencia, análisis\n"
         "  con tesis propia): same_story_as = 0 y un titular y un so_what que digan qué añade.\n\n"
+        "EVIDENCIA: confirmed solo para un acto propio documentado por fuente primaria; "
+        "reported para prensa, testimonios y métricas atribuidas; inference para análisis; speculation para hipótesis. "
+        "Conserva modalidad y atribución ES/EN. No conviertas planes, benchmarks propios ni rumores en hechos. "
+        "so_what y power_shift son inferencias sobre evidence_quote; omítelos si ese extracto no los sustenta. "
+        "Una confirmación posterior de un rumor, una métrica nueva o una reacción documentada son desarrollos distintos. "
+        "La mera reescritura o una segunda fuente sin novedades es repetición.\n"
         "REGLAS DEL BRIEFING\n"
+        "- Aporta references para cada tesis, señal, riesgo e hito. Usa solo los extractos literales de esos ids. "
+        "Cada referencia debe sustentar toda la frase en ambos idiomas. Omite las que no puedas respaldar.\n"
+        "- watch y watch_next: actor, acción observable y objeto, umbral o fecha concreta si procede. "
+        "Formula el resultado observable en presente afirmativo, como titular futuro, en ambos idiomas.\n"
         "- thesis: tu lectura del día en una frase. Si no ha pasado nada relevante, dilo.\n"
         "- signals: entre 2 y 5 bullets. Menos es mejor. Sin relleno.\n"
         "- watch: señales falsables, comprobables en días o semanas.\n"
@@ -280,8 +305,19 @@ def rank_batch(
     validated = BatchOut.model_validate(data)
 
     out_map: dict[int, dict] = {}
+    inputs = {it["id"]: it for it in payload}
+    eligible = {r.id for r in validated.results if r.verdict != "noise"}
     for r in validated.results:
-        out_map[int(r.id)] = r.model_dump()
+        if r.id not in inputs or r.id in out_map:
+            raise RuntimeError("Gemini returned unknown or duplicate result id.")
+        result = r.model_dump()
+        if r.same_story_as == r.id or r.same_story_as not in eligible:
+            result["same_story_as"] = 0
+        if (0 < r.repeat_of <= len(cleaned_recent) and source_evidence(inputs[r.id], r.evidence_quote)
+                and len(r.prior_quote.strip()) >= 12
+                and r.prior_quote in cleaned_recent[r.repeat_of - 1]):
+            result["verdict"] = "noise"
+        out_map[r.id] = result
 
     return {
         "briefing": validated.briefing.model_dump(),

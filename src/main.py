@@ -14,6 +14,7 @@ import traceback
 from email.utils import parsedate_to_datetime
 from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
+from src.evidence import LABELS, PENDING, UNCERTAIN, percentages_supported, qualify_item
 from src.fetch import clip_text, fetch_rss, resolve_items_google_news
 from src.fetch_x import fetch_x_search, fetch_x_user
 from src.render import render_index
@@ -55,40 +56,52 @@ def env_int(name: str, default: int) -> int:
         return default
 
 
-def merge_briefings(briefs: list[dict]) -> dict:
+def merge_briefings(briefs: list[dict], published: list[dict]) -> dict:
+    """Construye el JSON público solo con referencias a señales que han pasado el gate."""
+    by_id = {it["_rid"]: it for it in published if it.get("evidence") and "_rid" in it}
     out = {"signals": [], "risks": [], "watch": [], "entities_top": [],
-           "signals_en": [], "risks_en": [], "watch_en": []}
-
-    for b in briefs:
-        for k in out.keys():
-            out[k].extend(b.get(k, []))
-
-    def dedup(seq):
-        seen = set()
-        res = []
-        for x in seq:
-            if x in seen:
+           "signals_en": [], "risks_en": [], "watch_en": [], "evidence": {}}
+    for brief in briefs:
+        out["entities_top"] = list(dict.fromkeys(out["entities_top"] + brief.get("entities_top", [])))[:5]
+        for ref in brief.get("references", []):
+            field, idx, ids = ref["field"], ref["index"], ref["ids"]
+            if not ids or any(i not in by_id for i in ids):
                 continue
-            seen.add(x)
-            res.append(x)
-        return res
-
-    out["signals"] = dedup(out["signals"])[:5]
-    out["risks"] = dedup(out["risks"])[:3]
-    out["watch"] = dedup(out["watch"])[:3]
-    out["entities_top"] = dedup(out["entities_top"])[:5]
-    out["signals_en"] = dedup(out["signals_en"])[:5]
-    out["risks_en"] = dedup(out["risks_en"])[:3]
-    out["watch_en"] = dedup(out["watch_en"])[:3]
-    # La tesis no se acumula entre briefings: se toma la del primero que la traiga.
-    for b in briefs:
-        if (b.get("thesis") or "").strip():
-            out["thesis"] = b["thesis"].strip()
-            break
-    for b in briefs:
-        if (b.get("thesis_en") or "").strip():
-            out["thesis_en"] = b["thesis_en"].strip()
-            break
+            if field == "thesis":
+                if idx != 0 or "thesis" in out:
+                    continue
+                es, en = brief.get(field), brief.get("thesis_en")
+                key = field
+            else:
+                if len(out[field]) >= {"signals": 5, "risks": 3, "watch": 3}[field]:
+                    continue
+                es_list, en_list = brief.get(field, []), brief.get(field + "_en", [])
+                if not 0 <= idx < min(len(es_list), len(en_list)):
+                    continue
+                es, en = es_list[idx], en_list[idx]
+                key = f"{field}.{len(out[field])}"
+            if not es or not en:
+                continue
+            sources = [by_id[i] for i in dict.fromkeys(ids)]
+            if field != "watch":
+                if not percentages_supported(es + " " + en, [it["evidence"]["quote"] for it in sources]):
+                    continue
+                # Una síntesis es una lectura incluso si se apoya en hechos confirmados.
+                kind = "inference"
+                if any(it["evidence_kind"] == "speculation" for it in sources):
+                    kind = "speculation"
+                es, en = f"{LABELS[kind][0]} · {es}", f"{LABELS[kind][1]} · {en}"
+            if field == "thesis":
+                out[field], out["thesis_en"] = es, en
+            else:
+                if es in out[field]:
+                    continue
+                out[field].append(es)
+                out[field + "_en"].append(en)
+            out["evidence"][key] = [it["evidence"] for it in sources]
+    if "thesis" not in out:
+        out["thesis"] = "Evidencia insuficiente para una tesis del día."
+        out["thesis_en"] = "Insufficient evidence for a daily thesis."
     return out
 
 
@@ -501,45 +514,52 @@ def build_source_health(configured: list[str], items: list[dict], x_layer: dict 
 
 
 def dedup_items(items: list[dict]) -> list[dict]:
-    seen_urls = set()
-    seen_titles: list[tuple[set[str], dict]] = []
+    # El juicio semántico se hace tras el ranking. Con 3 palabras compartidas
+    # se perdían cambios de precio y otras novedades antes de llegar al modelo.
+    seen = {}
     deduped = []
     for it in items:
-        link = it.get("link", "") or it.get("url", "")
-        key = canonical_url(link)
-        if key and key in seen_urls:
+        key = _source_text(it)
+        lead = seen.get(key)
+        if lead is not None and key[0]:
+            source = it.get("source")
+            if source and source != lead.get("source"):
+                sources = lead.setdefault("other_sources", [])
+                if source not in sources:
+                    sources.append(source)
+                url = it.get("url") or it.get("link")
+                if url:
+                    related = lead.setdefault("related", [])
+                    if all(r["url"] != url for r in related):
+                        related.append({"source": source, "url": url})
             continue
-
-        raw_title = it.get("title", "")
-        words = set(re.findall(r"\b[a-zA-Z0-9]{4,}\b", raw_title.lower()))
-        # Si coinciden al menos 3 palabras y >=60% (o >=75% en titulares cortos), es la misma noticia
-        is_duplicate = False
-        if len(words) >= 3:
-            for past_words, past_it in seen_titles:
-                if not past_words:
-                    continue
-                min_len = min(len(words), len(past_words))
-                shared = len(words & past_words)
-                if shared < 3:
-                    continue
-                overlap = shared / min_len
-                threshold = 0.75 if min_len < 4 else 0.60
-                if overlap >= threshold:
-                    is_duplicate = True
-                    # Anotar como fuente alternativa
-                    other_srcs = past_it.setdefault("other_sources", [])
-                    src = it.get("source")
-                    if src and src not in other_srcs and src != past_it.get("source"):
-                        other_srcs.append(src)
-                    break
-        if is_duplicate:
-            continue
-
-        if key:
-            seen_urls.add(key)
-        seen_titles.append((words, it))
+        seen[key] = it
         deduped.append(it)
     return deduped
+
+
+def _source_text(it: dict) -> tuple[str, str]:
+    return tuple(" ".join((it.get(k) or "").split()).casefold() for k in ("title", "summary"))
+
+
+def exclude_reprints(items: list[dict], history: list[dict]) -> list[dict]:
+    past = [_source_text(it) for day in history for it in day.get("items", []) if isinstance(it, dict)]
+    exact = set(past)
+    fresh = []
+    for it in items:
+        title, summary = _source_text(it)
+        if title and (title, summary) in exact:
+            continue
+        # Un anuncio sin más contenido puede llegar después de la cobertura de
+        # su lanzamiento. Exigir nombre/version completos y un lanzamiento previo afirmativo.
+        bare = re.fullmatch(r"(?:introducing|presentamos) ([\w.-]+(?: [\w.-]+){1,5})", title)
+        if bare and not summary and any(c.isdigit() for c in bare[1]):
+            product = re.escape(bare[1])
+            launch = re.compile(r"\b(?:launches|released|lanza|introducing) " + product + r"(?=$|[,:;!]| (?:with|at|in|for|to|as|con|para)\b)")
+            if any(launch.search(t) and not UNCERTAIN.search(t) and not PENDING.search(t) for t, _ in past):
+                continue
+        fresh.append(it)
+    return fresh
 
 
 def title_fingerprint(title: str) -> str:
@@ -555,7 +575,7 @@ def load_recent_history(data_dir: Path, today: str, days: int = 5) -> tuple[set[
     # ordena despues de cualquier fecha) y los *.llm_cache.json ocupaban huecos
     # de la ventana y el historial real se quedaba en 4 ediciones o menos.
     snapshots = sorted((p for p in data_dir.glob("*.json") if _is_snapshot(p)), key=lambda p: p.name)
-    recent = [p for p in snapshots if p.stem != today][-days:]
+    recent = [p for p in snapshots if p.stem < today][-days:]
 
     for path in recent:
         try:
@@ -596,10 +616,12 @@ def load_recent_context(data_dir: Path, today: str, days: int = 2) -> tuple[list
                 toks = _story_words(it.get(field, ""))
                 if len(toks) >= 4:
                     token_sets.append(toks)
-            hl = (it.get("title_es") or it.get("title") or "").strip()
-            if hl and hl not in seen_hl:
-                seen_hl.add(hl)
-                headlines.append(hl)
+            title = (it.get("title") or "").strip()
+            summary = (it.get("summary") or "").strip()
+            excerpt = " | ".join(dict.fromkeys(x for x in (title, summary) if x))[:320]
+            if excerpt and excerpt not in seen_hl:
+                seen_hl.add(excerpt)
+                headlines.append(excerpt)
 
     return token_sets, headlines[:20]
 
@@ -804,12 +826,9 @@ def compute_noise_penalty(it: dict) -> int:
     return min(45, max(0, penalty))
 
 
-def _batch_fingerprint(payload: list[dict]) -> str:
-    s = json.dumps(
-        [{"id": p["id"], "t": (p.get("title") or "")[:50]} for p in payload],
-        ensure_ascii=False, separators=(",", ":"),
-    )
-    return hashlib.md5(s.encode()).hexdigest()[:12]
+def _batch_fingerprint(payload: list[dict], recent_headlines: list[str] | None = None) -> str:
+    inputs = ["evidence-v1", payload, recent_headlines or []]
+    return hashlib.sha256(json.dumps(inputs, ensure_ascii=False, sort_keys=True).encode()).hexdigest()
 
 
 def is_fresh_enough(it: dict) -> bool:
@@ -835,6 +854,8 @@ def generate_llm_data(
     recent_headlines: list[str] | None = None,
 ) -> tuple[dict, list]:
     global LLM_LAST_ERROR
+    if not candidates:
+        return {}, []
     llm_payload = []
     for idx, it in enumerate(candidates[:LLM_BATCH_SIZE], start=1):
         llm_payload.append({
@@ -846,18 +867,20 @@ def generate_llm_data(
         })
         it["_rid"] = idx
 
-    current_fp = _batch_fingerprint(llm_payload)
+    current_fp = _batch_fingerprint(llm_payload, recent_headlines)
     results_map = {}
     briefings = []
 
     force_refresh = env_flag("FORCE_GEMINI_REFRESH", "0")
 
+    stale_cache = False
     # Cache HIT
     if llm_cache.exists() and not force_refresh:
         try:
             cached = json.loads(llm_cache.read_text(encoding="utf-8"))
             cached_fp = cached.get("batch_fingerprint")
-            if cached_fp and cached_fp != current_fp:
+            if cached_fp != current_fp:
+                stale_cache = True
                 print("Gemini cache STALE: invalidating.")
             else:
                 results_map = cached.get("results_map", {}) or {}
@@ -871,7 +894,7 @@ def generate_llm_data(
         use_gemini = should_use_gemini_today()
         if not use_gemini:
             print("Gemini disabled for this run (non-scheduled).")
-        elif llm_done.exists() and not env_flag("FORCE_GEMINI", "0"):
+        elif llm_done.exists() and not stale_cache and not env_flag("FORCE_GEMINI", "0"):
             print("Skipping Gemini: llm_done present (already attempted today).")
         else:
             gemini_ok = False
@@ -944,6 +967,15 @@ def _norm_text(text: str) -> str:
     return re.sub(r"[^a-z0-9áéíóúüñ]+", " ", (text or "").lower()).strip()
 
 
+def _syndicated_text(item: dict) -> tuple[str, str]:
+    title, summary = _source_text(item)
+    source = (item.get("source") or "").strip().casefold()
+    if source:
+        title = title.removesuffix(" - " + source)
+        summary = summary.removesuffix(" - " + source)
+    return title, "" if summary == title else summary
+
+
 def same_story(a: dict, b: dict) -> bool:
     """¿Cuentan `a` y `b` el mismo suceso segun el juicio del LLM?
 
@@ -956,6 +988,12 @@ def same_story(a: dict, b: dict) -> bool:
     sa, sb = a.get("_same_as") or 0, b.get("_same_as") or 0
     if ra is not None and rb is not None and (sa == rb or sb == ra or (sa and sa == sb)):
         return True
+
+    if "evidence_kind" in a or "evidence_kind" in b:
+        # Una republicación puede cambiar la firma o repetir el título como resumen.
+        # Cualquier dato adicional de la fuente conserva su propia ficha.
+        original = _syndicated_text(a)
+        return bool(original[0]) and original == _syndicated_text(b)
 
     ta, tb = _norm_text(a.get("title_es")), _norm_text(b.get("title_es"))
     if ta and ta == tb:
@@ -1069,6 +1107,8 @@ def apply_llm_results(candidates: list[dict], results_map: dict) -> list[dict]:
             it["so_what_en"] = (llm.get("so_what_en") or "").strip()
             it["power_shift_en"] = (llm.get("power_shift_en") or "").strip()
             it["watch_next_en"] = (llm.get("watch_next_en") or "").strip()
+            if "evidence_kind" in llm:
+                qualify_item(it, llm)
         else:
             # Sin LLM no hay gate posible: se marca degradado y no se afirma relevancia.
             it["llm_score"] = None
@@ -1324,7 +1364,8 @@ def main():
         print(f"  SIN ITEMS: {', '.join(source_health['dead'])}")
 
     # 2) Dedup
-    deduped = dedup_items(items)
+    history = load_history(data_dir, today=today, days=10)
+    deduped = exclude_reprints(dedup_items(items), history[-5:])
 
     # 2.5) Novelty (anti-repeticion respecto ultimos dias)
     history_urls, history_titles = load_recent_history(data_dir, today=today, days=5)
@@ -1346,8 +1387,6 @@ def main():
     # 4) LLM Rank
     results_map, briefings = generate_llm_data(candidates, llm_cache, llm_done, recent_headlines=recent_headlines)
 
-    briefing = merge_briefings(briefings) if briefings else {}
-
     # 5) Apply LLM Results (gate de relevancia)
     final_items = apply_llm_results(candidates, results_map)
     # og:image solo para lo que se publica (~13 items), no para los 56 candidatos.
@@ -1357,13 +1396,14 @@ def main():
     score_avg, primary_dist, top_entities = calculate_stats(final_items)
     top_entities_list = [e for e, _ in top_entities]
 
-    if not briefing or not (briefing.get("thesis") or briefing.get("signals")):
+    if briefings:
+        briefing = merge_briefings(briefings, final_items)
+    else:
         briefing = generate_fallback_briefing(final_items, primary_dist, top_entities_list)
 
     # 6.5) Memoria: continuidad entre dias. Determinista, sobrevive a fallos del LLM.
-    degraded = not any(it.get("llm_score") is not None for it in final_items)
+    degraded = not results_map and (bool(candidates) or not items)
     try:
-        history = load_history(data_dir, today=today, days=10)
         memory = {
             "watch_resolved": resolve_watchlist(history, final_items),
             "entity_deltas": entity_deltas(history, final_items, known_before(data_dir, today)),
