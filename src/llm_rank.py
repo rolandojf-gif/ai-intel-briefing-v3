@@ -70,6 +70,13 @@ Theme = Literal[
 ]
 
 
+class FollowUp(BaseModel):
+    origin: Literal["batch", "history"]
+    number: int
+    quote: str = Field(description="Cita literal del antecedente de al menos 12 caracteres, en el idioma original.")
+    correction: bool = False
+
+
 class RankOut(BaseModel):
     id: int
 
@@ -90,7 +97,8 @@ class RankOut(BaseModel):
     evidence_kind: Literal["confirmed", "reported", "inference", "speculation"]
     evidence_quote: str = Field(description="Una frase literal del título o resumen que sustenta la noticia y su lectura. Vacío si falta.")
     repeat_of: int = Field(default=0, description="Número del hecho ya publicado si no aporta novedad material; 0 si es nuevo.")
-    prior_quote: str = Field(default="", description="Solo para repeat_of: fragmento literal del histórico que acredita el mismo hecho.")
+    prior_quote: str = Field(default="", description="Solo para repeat_of: cita literal del antecedente histórico.")
+    follow_up: FollowUp | None = Field(default=None, description="Comprueba los demás items del lote y el histórico. Si hay un desarrollo material, referencia el antecedente; en otro caso null.")
 
     headline_es: str = Field(
         description=(
@@ -225,7 +233,7 @@ def rank_batch(
         if cleaned_recent:
             recent_lines = "\n".join(f"{i}. {h}" for i, h in enumerate(cleaned_recent, 1))
             recent_block = (
-                "HISTÓRICO RECIENTE (ya publicado en las últimas 48h; si un item solo repite "
+                "HISTÓRICO RECIENTE (ediciones anteriores y seguimientos abiertos; si un item solo repite "
                 "lo mismo sin dato, precio, lanzamiento ni consecuencia nueva, indica repeat_of "
                 "y copia prior_quote del número citado):\n"
                 f"{recent_lines}\n\n"
@@ -266,6 +274,14 @@ def rank_batch(
         "so_what y power_shift son inferencias sobre evidence_quote; omítelos si ese extracto no los sustenta. "
         "Una confirmación posterior de un rumor, una métrica nueva o una reacción documentada son desarrollos distintos. "
         "La mera reescritura o una segunda fuente sin novedades es repetición.\n"
+        "follow_up solo cuando la fuente identifica inequívocamente el mismo acontecimiento y añade un dato, "
+        "reacción observada o rectificación. Cita en follow_up.quote el antecedente y en evidence_quote el cambio. "
+        "Si una pieza informa de un plan y otra documenta una reacción a ese mismo plan, la segunda "
+        "DEBE referenciar la primera incluso si ambas llegan hoy. Usa origin=batch y su id para el lote "
+        "actual, u origin=history y el número del histórico. Copia follow_up.quote en el resultado de la "
+        "reacción, literalmente del título o resumen del antecedente (al menos 12 caracteres). "
+        "Compartir actor o tema no basta. Una reacción a una hipótesis no la confirma. "
+        "Nunca mezcles follow_up con repeat_of ni same_story_as. Para hitos con plazo explícito conserva la fecha ISO si está en la fuente.\n"
         "REGLAS DEL BRIEFING\n"
         "- Aporta references para cada tesis, señal, riesgo e hito. Usa solo los extractos literales de esos ids. "
         "Cada referencia debe sustentar toda la frase en ambos idiomas. Omite las que no puedas respaldar.\n"
