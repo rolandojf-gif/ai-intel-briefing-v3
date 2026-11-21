@@ -14,6 +14,7 @@ from jinja2 import Environment, select_autoescape
 from markupsafe import Markup
 
 from src.brand import BASE_CSS as BRAND_CSS, HEAD as BRAND_HEAD, HTML_ATTRS, THEME_JS, bi, credits as brand_credits, header as brand_header, seo_head
+from src.evidence import measurement_context
 from src.config import LEAD_SLOT_COUNT, demote_repeats_from_lead, radar_today_str
 
 
@@ -205,6 +206,14 @@ ENV.filters["safe_url"] = _safe_url
 ENV.globals["bi"] = bi
 
 TEMPLATE = ENV.from_string("""
+{%- macro measurement(it) -%}
+  {% if it.measurement -%}
+  <details class="metric-context"><summary>{{ bi("Contexto de la medición","Measurement context") }}</summary>
+    <blockquote>{{ it.measurement.quote }}</blockquote>
+    <a href="{{ it.measurement.url|safe_url }}" target="_blank" rel="noopener noreferrer">{{ it.source_label }} ↗</a>
+  </details>
+  {%- endif %}
+{%- endmacro %}
 <!doctype html>
 <html {{ html_attrs }}>
 <head>
@@ -497,6 +506,11 @@ TEMPLATE = ENV.from_string("""
   .empty .big{font:700 20px var(--f-head);margin-bottom:8px;text-transform:uppercase}
   .empty .sub{font-size:14px;color:var(--muted);max-width:52ch;margin:0 auto;line-height:1.6}
 
+  .metric-context{margin:.65rem 0;font-size:.86rem;line-height:1.45}
+  .metric-context summary{cursor:pointer;font-weight:700}
+  .metric-context blockquote{margin:.45rem 0;padding-left:.7rem;border-left:2px solid var(--line)}
+  .metric-context a{text-decoration:underline}
+
   /* -- Sidebar -- */
   .sidebar{display:grid;gap:22px;position:sticky;top:16px}
   .widget{background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow);padding:14px 16px}
@@ -681,7 +695,8 @@ TEMPLATE = ENV.from_string("""
         <h2 class="hero-title">
           <a href="{{ (hero.url or hero.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ bi(hero.display_title, hero.title_en) }}</a>
         </h2>
-        {% if hero.so_what %}<div class="sw">{{ bi(hero.so_what, hero.so_what_en) }}</div>{% endif %}
+        {% if hero.so_what %}<div class="sw">{{ bi(hero.so_what, hero.so_what_en) }}</div>{% endif %}{% if hero.measurement %}
+            {{ measurement(hero) }}{% endif %}
         {% if hero.power_shift or hero.watch_next %}
         <div class="lead-intel {% if hero.power_shift and hero.watch_next %}two{% endif %}">
           {% if hero.power_shift %}
@@ -818,7 +833,8 @@ TEMPLATE = ENV.from_string("""
             <h3 class="card-title">
               <a href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ bi(it.display_title, it.title_en) }}</a>
             </h3>
-            {% if it.so_what %}<div class="sw">{{ bi(it.so_what, it.so_what_en) }}</div>{% endif %}
+            {% if it.so_what %}<div class="sw">{{ bi(it.so_what, it.so_what_en) }}</div>{% endif %}{% if it.measurement %}
+            {{ measurement(it) }}{% endif %}
             {% if it.also %}
             <div class="also">{{ bi("También en:","Also in:") }}
               {% for a in it.also %}{% if a.url %}<a href="{{ a.url }}" target="_blank" rel="noopener noreferrer">{{ a.label }}</a>{% else %}<span>{{ a.label }}</span>{% endif %}{% if not loop.last %} · {% endif %}{% endfor %}{% if it.also_more %} · +{{ it.also_more }}{% endif %}
@@ -858,7 +874,8 @@ TEMPLATE = ENV.from_string("""
             <h3 class="cx-t">
               <a href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ bi(it.display_title, it.title_en) }}</a>
             </h3>
-            {% if it.so_what %}<div class="cx-w">{{ bi(it.so_what, it.so_what_en) }}</div>{% endif %}
+            {% if it.so_what %}<div class="cx-w">{{ bi(it.so_what, it.so_what_en) }}</div>{% endif %}{% if it.measurement %}
+            {{ measurement(it) }}{% endif %}
           </article>
           {% endfor %}
         </div>
@@ -1136,6 +1153,7 @@ def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", 
         it["score_cls"] = score_tier(it["score"])
         it["theme_key"] = (it.get("strategic_theme") or it.get("primary") or "other").strip() or "other"
         it["theme_label"] = human_theme(it["theme_key"])
+        it["measurement"] = measurement_context(raw)
         it["display_title"] = display_title(it)
         it["so_what"] = truncate_text(clean_text(it.get("so_what") or it.get("why") or ""), 230)
         it["power_shift"] = truncate_text(it.get("power_shift") or "", 120)
