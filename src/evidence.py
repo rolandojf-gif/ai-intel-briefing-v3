@@ -120,3 +120,42 @@ def qualify_item(item, result):
                 elif item.get(key):
                     item[key] = f"{LABELS['inference'][idx]} · {item[key]}"
     item["why"] = item["so_what"]
+
+
+# Prefer explicit measurement units; a model version or a percentage alone is ambiguous.
+_MEASUREMENT = re.compile(
+    r"\b\d+(?:[.,]\d+)?\s*(?:tokens?/s(?:ec(?:ond)?)?|tokens? per second|ms|milliseconds?|milisegundos)\b", re.I,
+)
+_RANK = re.compile(r"(?:\brank(?:ed)?\s+#?|\bpuesto\s+|\bclimbed to\s+#?)\d+\b", re.I)
+_PERCENT = re.compile(r"\b\d+(?:[.,]\d+)?\s*(?:%|percent\b|por ciento\b)", re.I)
+_TEST_CONTEXT = re.compile(
+    r"\b(?:accuracy|precision|recall|Elo|success rate|error rate|throughput|latency|benchmarks?|"
+    r"tests?|tasa de éxito|tasa de error|latencia|pruebas?|precisión)\b", re.I,
+)
+_FINANCIAL = re.compile(
+    r"\b(?:share price|stock price|shareholder|revenue|earnings|market share|valuation|"
+    r"cotización|precio de la acción|cuota de mercado|ingresos|valoración)\b", re.I,
+)
+
+
+def measurement_context(item):
+    """Una frase original completa que documente una medida. No calcular ni traducir cifras."""
+    evidence = item.get("evidence") or {}
+    quote = evidence.get("quote", "")
+    if "evidence" in item and (not quote or not source_evidence(item, quote)):
+        return None
+    for field in ("summary", "title"):
+        for sentence in sentences(item.get(field) or ""):
+            # En el contrato actual la cifra debe pertenecer a la cita validada.
+            # Recuperar la frase completa conserva «hasta», el comparador y las condiciones.
+            cited = sentence
+            if quote and sentence not in quote:
+                if quote not in sentence:
+                    continue
+                cited = quote
+            if _FINANCIAL.search(sentence):
+                continue
+            if _MEASUREMENT.search(cited) or ((_PERCENT.search(cited) or _RANK.search(cited))
+                                               and _TEST_CONTEXT.search(sentence)):
+                return source_evidence(item, sentence) or None
+    return None
