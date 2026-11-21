@@ -206,6 +206,10 @@ ENV.filters["safe_url"] = _safe_url
 ENV.globals["bi"] = bi
 
 TEMPLATE = ENV.from_string("""
+{%- macro watch_text(it) -%}
+  {%- if it.watch_anchor -%}<a class="watch-link" href="#{{ it.watch_anchor }}">{{ bi("Ver hito","View milestone") }}</a>
+  {%- else -%}{{ bi(it.watch_next, it.watch_next_en) }}{%- endif -%}
+{%- endmacro %}
 {%- macro measurement(it) -%}
   {% if it.measurement -%}
   <details class="metric-context"><summary>{{ bi("Contexto de la medición","Measurement context") }}</summary>
@@ -312,14 +316,6 @@ TEMPLATE = ENV.from_string("""
   .pulse-cols i:hover{background:var(--orange)}
   .pulse-note{font:400 11px/1.4 var(--f-mono);color:#9C9B95;margin-top:8px}
 
-  .movers{list-style:none;margin:0;padding:0}
-  .movers li{display:grid;grid-template-columns:1fr auto;gap:4px 8px;align-items:baseline;padding:0 0 9px;margin-bottom:9px;border-bottom:1px dashed var(--line)}
-  .movers li:last-child{padding-bottom:0;margin-bottom:0;border-bottom:none}
-  .mv-n{font:700 14.5px var(--f-head)}
-  .mv-t{font:700 10.5px var(--f-mono);color:var(--muted);text-transform:uppercase}
-  .mv-t.t-up,.mv-t.t-new{color:var(--open)} .mv-t.t-down{color:var(--bad)}
-  .mv-bar{grid-column:1/-1;height:8px;border:1px solid var(--ink);background:var(--card-2)}
-  .mv-bar i{display:block;height:100%;background:var(--orange)}
 
   /* -- Portada (Hero adaptativo + Editorial estrecho y alineado) -- */
   .opening{display:grid;grid-template-columns:minmax(0,1fr) 365px;gap:22px;align-items:stretch}
@@ -338,9 +334,6 @@ TEMPLATE = ENV.from_string("""
   .keys li:last-child{margin-bottom:0;border-bottom:none;padding-bottom:0}
   .keys li::before{content:counter(k,decimal-leading-zero);font:700 10.5px/1.65 var(--f-mono);color:var(--orange-ink)}
   .rail-foot{margin-top:auto;padding-top:12px;display:flex;flex-direction:column;gap:12px}
-  .onradar{margin:0;padding:10px 12px;background:var(--card-2);border:2px solid var(--ink);box-shadow:inset 5px 0 0 var(--orange)}
-  .onradar .rail-h{margin-bottom:6px;padding-bottom:5px;border-bottom-width:1.5px;font-size:10.5px}
-  .onradar p{font-size:12.8px;line-height:1.44;margin:0}
   .figures{border-top:2px solid var(--ink);padding-top:10px;display:flex;flex-direction:column;gap:7px}
   .fig-row{display:flex;align-items:baseline;justify-content:space-between;gap:8px;flex-wrap:wrap}
   .fig-count{font:700 18px/1 var(--f-head);letter-spacing:-.03em}
@@ -429,11 +422,6 @@ TEMPLATE = ENV.from_string("""
   .deck:not(.filtered) .below.no-rest{display:none}
   .deck.filtered .below{margin-top:0;padding-top:0;border-top:0}
 
-  .insights{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(280px,1fr);gap:22px;margin-top:34px;align-items:start}
-  .insights.single{grid-template-columns:minmax(0,1fr)}
-  .companies{margin-top:0}
-  .companies .company-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 28px}
-  .memory{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:34px;align-items:start}
 
   /* -- Hero y cards: bordes de tinta y sombra dura -- */
   .hero,.card{background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow);transition:transform .1s,box-shadow .1s}
@@ -492,15 +480,14 @@ TEMPLATE = ENV.from_string("""
   /* -- Contexto -- */
   .section-h{margin:34px 0 14px}
   .section-h h2{margin:0}
-  .ctx-block .section-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
-  .sec-sub{margin:0;font:400 11.5px var(--f-mono);color:var(--muted);text-transform:uppercase}
-  .ctx{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-  .cx{display:flex;flex-direction:column;gap:8px;padding:14px 16px;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow-sm)}
-  .cx .meta-row{margin-bottom:0}
-  .cx-tag{display:inline-block;font:700 10px/1 var(--f-mono);text-transform:uppercase;padding:3px 6px;border:1px solid var(--ink);background:var(--card-2);color:var(--text);flex-shrink:0}
-  .cx-t{margin:0;font:700 16px/1.3 var(--f-head);letter-spacing:-.01em}
-  .cx-w{font-size:13.5px;color:var(--muted);line-height:1.48;margin:0;
-        display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .ctx,.watch-agenda,.watch-results{border-top:2px solid var(--ink);background:var(--card)}
+  .cx,.watch-row{display:grid;grid-template-columns:minmax(9rem,15rem) minmax(0,1fr);gap:16px;align-items:baseline;padding:14px 16px;border-bottom:1px solid var(--line)}
+  .cx-t,.watch-row p{margin:0;font:600 16px/1.45 var(--f-head);max-width:80ch}
+  .watch-link,.watch-row a{text-decoration:underline;text-underline-offset:3px}
+  .watch-row .src{align-self:start}
+  .watch-row blockquote{margin:5px 0;color:var(--muted);font-size:14px}
+  [id^="watch-point-"]{scroll-margin-top:12px}
+  [id^="watch-point-"]:target{box-shadow:inset 4px 0 var(--orange)}
 
   .empty{padding:40px 26px;text-align:center;border:2px dashed var(--ink);background:var(--card)}
   .empty .big{font:700 20px var(--f-head);margin-bottom:8px;text-transform:uppercase}
@@ -521,71 +508,33 @@ TEMPLATE = ENV.from_string("""
   .widget-title>span:first-child::before{content:"";width:10px;height:10px;background:var(--orange);border:2px solid var(--ink)}
   .widget-title .lbl{font:400 10px var(--f-mono);color:var(--muted);text-transform:uppercase}
 
-  .market-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-  .m-box{background:var(--card-2);border:1px solid var(--ink);padding:9px 10px}
-  .m-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
-  .m-lbl{font:600 11px var(--f-mono);text-transform:uppercase;color:var(--muted)}
   .m-chg{font:700 11px var(--f-mono)}
-  .m-chg.pos,.comp-chg.pos{color:var(--open)} .m-chg.neg,.comp-chg.neg{color:var(--bad)}
-  .m-chg.na,.comp-chg.na,.comp-price.na{color:var(--muted);font-weight:400}
+  .m-chg.pos{color:var(--open)} .m-chg.neg{color:var(--bad)}
+  .m-chg.na{color:var(--muted);font-weight:400}
   .m-price{font:700 14px var(--f-mono);margin-bottom:4px;font-variant-numeric:tabular-nums}
   .m-nodata{opacity:.55}
   .spark{width:100%;height:22px;display:block}
   .spark.pos polyline{stroke:var(--open)} .spark.neg polyline{stroke:var(--bad)}
 
-  .comp-item{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line)}
-  .comp-item:last-child{border-bottom:none;padding-bottom:0}
-  .comp-info{display:flex;align-items:center;gap:9px;min-width:0}
-  .comp-logo{width:24px;height:24px;padding:2px;flex-shrink:0;background:var(--logo-bg);border:1px solid var(--line)}
-  .comp-name{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .comp-ticker{font:400 10px var(--f-mono);color:var(--muted)}
-  .comp-val{text-align:right;flex-shrink:0}
-  .comp-price{font:700 12px var(--f-mono);font-variant-numeric:tabular-nums}
-  .comp-chg{font:700 10.5px var(--f-mono)}
-
-  .wr,.thr,.mv,.rk,.visit-update{padding:8px 0;border-bottom:1px dashed var(--line)}
-  .wr:last-child,.thr:last-child,.mv:last-child,.rk:last-child,.visit-update:last-child{border-bottom:none;padding-bottom:0}
-  .wr{display:flex;gap:10px;align-items:flex-start}
-  .wr-ic{font:700 12px/1.5 var(--f-mono);flex-shrink:0}
-  .wr.hit .wr-ic{color:var(--open)} .wr.open .wr-ic{color:var(--muted)}
-  .wr-t{font-size:13px;line-height:1.5}
-  .wr.open .wr-t{color:var(--muted)}
-  .wr-ev{font-size:12px;color:var(--open);margin-top:3px;line-height:1.4}
-  .thr{display:flex;gap:11px;align-items:baseline}
-  .thr-d{font:700 10px var(--f-mono);flex-shrink:0;padding:3px 5px;border:2px solid var(--ink);background:var(--ink);color:var(--paper)}
-  .thr-t{font-size:13px;font-weight:600}
-  .thr-l{font-size:12px;color:var(--muted);margin-top:2px;line-height:1.4}
-  .mv{display:flex;gap:8px;align-items:center;font-size:12.5px;flex-wrap:wrap}
-  .mv-b{font:700 9.5px/1 var(--f-mono);text-transform:uppercase;padding:3px 5px;border:1px solid var(--ink);flex-shrink:0}
-  .mv-b.new{background:var(--lime);color:#121211}
-  .mv-b.ret{background:#FBBF24;color:#121211}
-  .mv-b.str{background:var(--orange);color:#121211}
-  .mv .nm{font-weight:600}
-  .mv .dt{color:var(--muted);font:400 10.5px var(--f-mono)}
-  .none{font-size:12.5px;color:var(--muted);font-style:italic}
   #visit-changes{margin-bottom:20px}
-  .rk,.visit-update{font-size:13px;line-height:1.5}
-  .rk::before{content:"!";display:inline-grid;place-content:center;width:16px;height:16px;margin-right:7px;
-              font:700 10px var(--f-mono);background:#FBBF24;color:#121211;border:1px solid var(--ink);vertical-align:1px}
-  .rk.w::before{content:"→";background:var(--lime)}
+  .visit-update{padding:8px 0;border-bottom:1px dashed var(--line);font-size:13px;line-height:1.5}
+  .visit-update:last-child{border-bottom:none;padding-bottom:0}
 
   footer{margin-top:56px;padding-top:14px;border-top:3px solid var(--ink);display:flex;justify-content:space-between;
          gap:16px;flex-wrap:wrap;font:400 12px var(--f-mono);color:var(--muted)}
 
   @media(max-width:1180px){
     .opening{grid-template-columns:minmax(0,1fr) 320px}
-    .below .grid,.ctx{grid-template-columns:repeat(2,minmax(0,1fr))}
-    .insights{grid-template-columns:1fr}
-    .memory{grid-template-columns:1fr 1fr}
+    .below .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   }
   @media(max-width:920px){
     .opening{grid-template-columns:1fr}
   }
   @media(max-width:720px){
-    .grid,.below .grid,.ctx{grid-template-columns:1fr}
+    .grid,.below .grid{grid-template-columns:1fr}
     .tq{flex:0 0 170px}
     .pulse{grid-template-columns:1fr}
-    .memory,.companies .company-list{grid-template-columns:1fr}
+    .cx,.watch-row{grid-template-columns:1fr;gap:5px}
     .lead-media .hero-img{aspect-ratio:16/9;max-height:240px}
     .lead.lead-dossier .lead-body,.lead-body{padding:18px 16px}
     .lead .hero-title,.lead.lead-dossier .hero-title{font-size:27px}
@@ -704,7 +653,7 @@ TEMPLATE = ENV.from_string("""
           <div class="intel-box pw"><span class="k intel-k">{{ bi("Impacto","Impact") }}</span><span class="intel-v">{{ bi(hero.impact, hero.impact_en) }}</span></div>
           {% endif %}
           {% if hero.watch_next %}
-          <div class="intel-box wn"><span class="k intel-k">{{ bi("Vigilar","Watch") }}</span><span class="intel-v">{{ bi(hero.watch_next, hero.watch_next_en) }}</span></div>
+          <div class="intel-box wn"><span class="k intel-k">{{ bi("Vigilar","Watch") }}</span><span class="intel-v">{{ watch_text(hero) }}</span></div>
           {% endif %}
         </div>
         {% endif %}
@@ -737,12 +686,6 @@ TEMPLATE = ENV.from_string("""
       </ol>
       {% endif %}
       <div class="rail-foot">
-        {% if watch_list %}
-        <div class="onradar">
-          <div class="rail-h"><span>{{ bi("En el radar","On the radar") }}</span></div>
-          <p>{{ bi(watch_list[0], watch_en[0] if watch_en else "") }}</p>
-        </div>
-        {% endif %}
         <div class="figures">
           <div class="fig-row">
             <strong class="fig-count">{{ n_signals + n_context }}</strong>
@@ -847,7 +790,7 @@ TEMPLATE = ENV.from_string("""
               <div class="fact pw"><span class="k">{{ bi("Impacto","Impact") }}</span><span class="v">{{ bi(it.impact, it.impact_en) }}</span></div>
               {% endif %}
               {% if it.watch_next %}
-              <div class="fact wn"><span class="k">{{ bi("Vigilar","Watch") }}</span><span class="v">{{ bi(it.watch_next, it.watch_next_en) }}</span></div>
+              <div class="fact wn"><span class="k">{{ bi("Vigilar","Watch") }}</span><span class="v">{{ watch_text(it) }}</span></div>
               {% endif %}
             </div>
             {% endif %}
@@ -862,21 +805,15 @@ TEMPLATE = ENV.from_string("""
       <section class="ctx-block" id="ctx-block">
         <div class="section-h">
           <h2 class="sec">{{ bi("Contexto","Context") }}</h2>
-          <p class="sec-sub">{{ bi("En segundo plano · Señales complementarias que completan la foto","In the background · Supporting signals shaping the backdrop") }}</p>
         </div>
         <div class="ctx">
           {% for it in context %}
           <article class="cx" data-topic="{{ it.theme_key }}" data-new="{{ 1 if it.is_new else 0 }}">
-            <div class="meta-row">
-              <span class="cx-tag">{{ bi(it.theme_label, it.theme_label_en) }}</span>
-              <span class="src"><img src="{{ it.logo }}" alt="" loading="lazy"/>{{ it.source_label }}</span>
-              <span class="score {{ it.score_cls }}">{{ it.score }}/100</span>
+            <span class="src"><img src="{{ it.logo }}" alt="" loading="lazy"/>{{ it.source_label }}</span>
+            <div>
+              <h3 class="cx-t"><a href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ bi(it.display_title, it.title_en) }}</a></h3>
+              {% if it.measurement %}{{ measurement(it) }}{% endif %}
             </div>
-            <h3 class="cx-t">
-              <a href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ bi(it.display_title, it.title_en) }}</a>
-            </h3>
-            {% if it.so_what %}<div class="cx-w">{{ bi(it.so_what, it.so_what_en) }}</div>{% endif %}{% if it.measurement %}
-            {{ measurement(it) }}{% endif %}
           </article>
           {% endfor %}
         </div>
@@ -885,117 +822,32 @@ TEMPLATE = ENV.from_string("""
 
   </div>
 
-      {% if (market and market.companies) or movers %}
-      <section class="insights{% if not (market and market.companies and movers) %} single{% endif %}">
-        {% if market and market.companies %}
-        <div class="widget companies">
-          <div class="widget-title">
-            <span>{{ bi("Empresas en tendencia","Trending companies") }}</span>
-            <span class="lbl">AI & Semis</span>
-          </div>
-          <div class="company-list">
-            {% for c in market.companies %}
-            <div class="comp-item">
-              <div class="comp-info">
-                <img src="{{ c.logo }}" alt="" class="comp-logo" loading="lazy"/>
-                <div>
-                  <div class="comp-name">{{ c.name }}</div>
-                  <div class="comp-ticker">{{ c.ticker }} · {{ c.exchange }}</div>
-                </div>
-              </div>
-              <div class="comp-val">
-                <div class="comp-price{% if not c.available %} na{% endif %}">{{ c.price_str }}</div>
-                {% if c.available %}
-                <div class="comp-chg {% if c.positive %}pos{% else %}neg{% endif %}">{{ c.change_str }}</div>
-                {% else %}
-                <div class="comp-chg na" title="Cotización no disponible en este run">n/d</div>
-                {% endif %}
-              </div>
-            </div>
-            {% endfor %}
-          </div>
-        </div>
-        {% endif %}
-        {% if movers %}
-        <div class="widget">
-          <div class="widget-title">
-            <span>{{ bi("Quién mueve la carrera","Who moves the race") }}</span>
-            <span class="lbl">{{ bi("Últimas ediciones","Recent editions") }}</span>
-          </div>
-          <ul class="movers">
-            {% for m in movers %}
-            <li><span class="mv-n">{{ m.entity }}</span>
-              <span class="mv-t t-{{ m.trend }}" title="{{ m.trend }}">{% if m.trend == 'up' %}▲{% elif m.trend == 'down' %}▼{% elif m.trend == 'new' %}{{ bi("nuevo","new") }}{% else %}＝{% endif %}</span>
-              <span class="mv-bar"><i style="width:{{ m.share }}%"></i></span></li>
-            {% endfor %}
-          </ul>
-        </div>
-        {% endif %}
-      </section>
-      {% endif %}
-
-  <!-- Memoria del radar: lo que dijimos, lo que persiste, lo que viene -->
-  <section class="memory">
-      {% if watch_resolved %}
-      <div class="widget">
-        <div class="widget-title">
-          <span>{{ bi("Vigilancia de ayer","Yesterday's watchlist") }}</span>
-          <span class="lbl">{{ n_hits }}/{{ watch_resolved|length }} {{ bi("confirmadas","confirmed") }}</span>
-        </div>
-        {% for w in watch_resolved %}
-        <div class="wr {{ w.status }}">
-          <span class="wr-ic">{% if w.status == 'hit' %}✓{% else %}○{% endif %}</span>
-          <div>
-            <div class="wr-t">{{ bi(w.text, w.text_en) }}</div>
-            {% if w.evidence %}<div class="wr-ev">→ {{ bi(w.evidence, w.evidence_en) }}</div>{% endif %}
-          </div>
-        </div>
-        {% endfor %}
+  {% if watch_agenda %}
+  <section aria-labelledby="agenda-title">
+    <div class="section-h"><h2 class="sec" id="agenda-title">{{ bi("Qué vigilar","What to watch") }}</h2></div>
+    <div class="watch-agenda">
+      {% for w in watch_agenda %}
+      <div class="watch-row" id="{{ w.anchor }}">
+        <div class="src">{% for ref in w.refs %}<a href="{{ ref.url }}" target="_blank" rel="noopener noreferrer">{{ ref.source }}</a>{% if not loop.last %} · {% endif %}{% endfor %}</div>
+        <p>{{ bi(w.text, w.text_en) }}</p>
       </div>
-      {% endif %}
-      {% if threads or has_moves %}
-      <div class="widget">
-        <div class="widget-title">
-          <span>{{ bi("Memoria del radar","Radar memory") }}</span>
-          <span class="lbl">{{ bi("Continuidad","Continuity") }}</span>
-        </div>
-        {% for t in threads %}
-        <div class="thr">
-          <span class="thr-d">{{ bi("DÍA","DAY") }} {{ t.days }}</span>
-          <div>
-            <div class="thr-t">{{ bi(t.label, t.label_en) }}</div>
-            {% if t.lead %}<div class="thr-l">{{ bi(t.lead, t.lead_en) }}</div>{% endif %}
-          </div>
-        </div>
-        {% endfor %}
-        {% if not threads %}
-        <div class="none">{{ bi("Ninguna narrativa encadena 3 o más días.","No story has run for 3+ days.") }}</div>
-        {% endif %}
-        {% for e in deltas.new_entrants %}
-        <div class="mv"><span class="mv-b new">{{ bi("Nuevo","New") }}</span><span class="nm">{{ e }}</span>
-          <span class="dt">{{ bi("primera aparición","first appearance") }}</span></div>
-        {% endfor %}
-        {% for r in deltas.returning %}
-        <div class="mv"><span class="mv-b ret">{{ bi("Vuelve","Back") }}</span><span class="nm">{{ r.entity }}</span>
-          <span class="dt">{{ bi("tras " ~ r.silent_days ~ " días en silencio", "after " ~ r.silent_days ~ " silent days") }}</span></div>
-        {% endfor %}
-        {% for s in deltas.streaks %}
-        <div class="mv"><span class="mv-b str">{{ bi("Racha","Streak") }}</span><span class="nm">{{ s.entity }}</span>
-          <span class="dt">{{ bi(s.days ~ " días seguidos", s.days ~ " days in a row") }}</span></div>
-        {% endfor %}
-      </div>
-      {% endif %}
-      {% if risks or watch_list %}
-      <div class="widget">
-        <div class="widget-title">
-          <span>{{ bi("Riesgos y vigilancia","Risks and watch") }}</span>
-          <span class="lbl">{{ bi("Próximos días","Coming days") }}</span>
-        </div>
-        {% for r in risks %}<div class="rk">{{ bi(r, risks_en[loop.index0] if loop.index0 < risks_en|length else "") }}</div>{% endfor %}
-        {% for w in watch_list %}<div class="rk w">{{ bi(w, watch_en[loop.index0] if loop.index0 < watch_en|length else "") }}</div>{% endfor %}
-      </div>
-      {% endif %}
+      {% endfor %}
+    </div>
   </section>
+  {% endif %}
+  {% if watch_results %}
+  <section aria-labelledby="results-title">
+    <div class="section-h"><h2 class="sec" id="results-title">{{ bi("Hitos confirmados","Confirmed milestones") }}</h2></div>
+    <div class="watch-results">
+      {% for w in watch_results %}
+      <div class="watch-row">
+        <a class="src" href="{{ w.evidence_url }}" target="_blank" rel="noopener noreferrer">{{ bi("Ver evidencia","View evidence") }}</a>
+        <div><p>{{ bi(w.text, w.text_en) }}</p><blockquote>{{ w.evidence }}</blockquote></div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
 
   {{ credits }}
   <footer>
@@ -1136,6 +988,42 @@ LEAD_BLOCK = 1  # #1 Hero a altura completa en opening; #2..#12 van a la rejilla
 ALSO_MAX = 6  # medios listados en "Tambien en" antes de resumir con +N
 
 
+def _watch_agenda(briefing, signals, results):
+    """Prioritize the watch points of stories cited by the daily briefing."""
+    agenda = []
+    seen = {w["text"].strip().casefold() for w in results}
+    english = briefing.get("watch_en") or []
+    evidence = briefing.get("evidence") or {}
+    watches = (briefing.get("watch") or [])[:3]
+    ref_groups = []
+    for i in range(len(watches)):
+        ref_groups.append([
+            {"url": ref["url"], "source": source_label(ref.get("source") or urlparse(ref["url"]).netloc)}
+            for ref in evidence.get(f"watch.{i}", [])
+            if isinstance(ref, dict) and _safe_url(ref.get("url")) != "#"
+        ])
+    citations = Counter(ref["url"] for refs in ref_groups for ref in refs)
+    for i, (text, refs) in enumerate(zip(watches, ref_groups)):
+        if not isinstance(text, str) or not text.strip() or text.strip().casefold() in seen:
+            continue
+        # A citation selects a story for the agenda, not evidence of a hit.
+        # With multiple references or cards, retain the briefing's own wording.
+        cited = []
+        if len(refs) == 1 and citations[refs[0]["url"]] == 1:
+            cited = [it for it in signals if refs[0]["url"] == (it.get("url") or it.get("link"))]
+        anchor = f"watch-point-{i + 1}"
+        text_en = english[i] if i < len(english) else ""
+        original = text.strip().casefold()
+        if len(cited) == 1 and cited[0]["watch_next"] and not cited[0].get("watch_anchor"):
+            it = cited[0]
+            if it["watch_next"].casefold() not in seen:
+                it["watch_anchor"] = anchor
+                text, text_en = it["watch_next"], it["watch_next_en"]
+        seen.update((original, text.strip().casefold()))
+        agenda.append({"anchor": anchor, "refs": refs, "text": text, "text_en": text_en})
+    return agenda
+
+
 def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", root="", archive=None):
     briefing = briefing or {}
     snapshot = snapshot or {}
@@ -1158,13 +1046,13 @@ def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", 
         it["display_title"] = display_title(it)
         it["so_what"] = truncate_text(clean_text(it.get("so_what") or it.get("why") or ""), 230)
         it["power_shift"] = truncate_text(it.get("power_shift") or "", 120)
-        it["watch_next"] = truncate_text(it.get("watch_next") or "", 120)
+        it["watch_next"] = (it.get("watch_next") or "").strip()
         it["theme_label_en"] = THEME_LABELS_EN.get(it["theme_key"], "Other signals")
         # Sin titular traducido, el original del feed (casi siempre en inglés).
         it["title_en"] = clean_text(it.get("title_en") or "") or clean_text(it.get("title") or "")
         it["so_what_en"] = truncate_text(clean_text(it.get("so_what_en") or ""), 230)
         it["power_shift_en"] = truncate_text(it.get("power_shift_en") or "", 120)
-        it["watch_next_en"] = truncate_text(it.get("watch_next_en") or "", 120)
+        it["watch_next_en"] = (it.get("watch_next_en") or "").strip()
         # La consecuencia editorial también es impacto; conservar su grado de certeza.
         it["impact_from_consequence"] = bool(
             not it["power_shift"] and it.get("evidence") and it["so_what"] and it["so_what"] != UNVERIFIED[0]
@@ -1241,10 +1129,12 @@ def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", 
     show_new_tab = 0 < n_new < len(visible)
 
     memory = snapshot.get("memory") or {}
-    deltas = memory.get("entity_deltas") or {}
-    watch_resolved = memory.get("watch_resolved") or []
-    threads = memory.get("threads") or []
-    has_moves = bool(deltas.get("new_entrants") or deltas.get("returning") or deltas.get("streaks"))
+    watch_results = [
+        w for w in (memory.get("watch_resolved") or [])
+        if w.get("status") == "hit" and w.get("text") and (w.get("evidence") or "").strip()
+        and _safe_url(w.get("evidence_url")) != "#"
+    ]
+    watch_agenda = _watch_agenda(briefing, signals, watch_results)
 
     thesis = clean_text(briefing.get("thesis") or "")
     if not thesis:
@@ -1266,7 +1156,6 @@ def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", 
         signals=signals,
         ticker_quotes=_ticker_quotes(market),
         pulse=snapshot.get("pulse") or {},
-        movers=snapshot.get("movers") or [],
         rest=signals[LEAD_BLOCK:],
         lead_n=LEAD_BLOCK,
         key_signals=[clean_text(x) for x in (briefing.get("signals") or []) if isinstance(x, str)][:3],
@@ -1283,17 +1172,11 @@ def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", 
         n_dropped=snapshot.get("dropped_noise", 0),
         degraded=bool(snapshot.get("degraded")),
         visit_updates=(memory.get("followups") or {}).get("updates", [])[:3],
-        watch_resolved=watch_resolved,
-        n_hits=sum(1 for w in watch_resolved if w.get("status") == "hit"),
-        threads=threads,
-        deltas=deltas,
-        has_moves=has_moves,
-        risks=(briefing.get("risks") or [])[:3],
-        watch_list=(briefing.get("watch") or [])[:3],
+        watch_agenda=watch_agenda,
+        watch_results=watch_results,
         sources_alive=health.get("alive", 0),
         sources_total=health.get("configured", 0),
         sources_dead=", ".join(dead[:4]) if dead else "",
-        market=market,
         nav=nav or "daily",
         root=root or "",
         archive=archive,
@@ -1303,8 +1186,6 @@ def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", 
                      path="" if not archive else f"d/{snapshot.get('date') or ''}.html"),
         credits=brand_credits(),
         thesis_en=clean_text(briefing.get("thesis_en") or ""),
-        risks_en=(briefing.get("risks_en") or [])[:3],
-        watch_en=(briefing.get("watch_en") or [])[:3],
         activity_en=ACTIVITY_EN.get(str((snapshot.get("activity") or {}).get("label") or ""), ""),
         brand_css=Markup(BRAND_CSS),
         brand_header=brand_header(nav or "daily", root or ""),
