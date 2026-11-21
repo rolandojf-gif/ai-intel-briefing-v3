@@ -359,7 +359,7 @@ class UxTimezoneHealthTests(unittest.TestCase):
         self.assertIn('class="lead-wm"', html_dossier)
         self.assertIn('class="lead-cta"', html_dossier)
         self.assertNotIn('class="subleads"', html_dossier)
-        self.assertIn("grid-template-columns:285px minmax(0,1fr) 295px", html_dossier)
+        self.assertIn("grid-template-columns:minmax(295px,330px) minmax(0,1.85fr) minmax(310px,345px)", html_dossier)
         self.assertIn("align-items:stretch", html_dossier)
         self.assertLess(html_dossier.index('class="rail"'), html_dossier.index('class="lead lead-dossier"'))
         self.assertIn("<b>92/100</b>", html_dossier)
