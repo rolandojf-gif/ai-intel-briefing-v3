@@ -164,3 +164,14 @@ class HistoricalRegressionTests(unittest.TestCase):
                         {"briefing": {}, "results": [{**result, **change}]})
                     out = llm_rank.rank_batch([item], recent_headlines=[previous])
                     self.assertEqual(out["map"][1]["verdict"], expected)
+
+    def test_failed_global_thesis_can_use_a_published_signal_with_its_own_evidence(self):
+        it = {**outlet(21, "The Decoder"), "_rid": 1}
+        rejected = {"thesis": "Sin respaldo", "thesis_en": "Unsupported",
+                    "references": [{"field": "thesis", "index": 0, "ids": [99]}]}
+        b = main.merge_briefings([rejected], [it])
+        self.assertIn(it["so_what"], b["thesis"])
+        self.assertIn(it["so_what_en"], b["thesis_en"])
+        self.assertEqual(b["evidence"]["thesis"], [it["evidence"]])
+        b = main.merge_briefings([rejected], [dict(it, evidence={})])
+        self.assertNotIn("thesis", b["evidence"])

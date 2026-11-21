@@ -14,7 +14,7 @@ import traceback
 from email.utils import parsedate_to_datetime
 from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
-from src.evidence import LABELS, PENDING, UNCERTAIN, percentages_supported, qualify_item
+from src.evidence import LABELS, PENDING, UNCERTAIN, percentages_supported, qualify_item, source_evidence
 from src.fetch import clip_text, fetch_rss, resolve_items_google_news
 from src.fetch_x import fetch_x_search, fetch_x_user
 from src.render import render_index
@@ -101,8 +101,23 @@ def merge_briefings(briefs: list[dict], published: list[dict]) -> dict:
                 out[field + "_en"].append(en)
             out["evidence"][key] = [it["evidence"] for it in sources]
     if "thesis" not in out:
-        out["thesis"] = "Evidencia insuficiente para una tesis del día."
-        out["thesis_en"] = "Insufficient evidence for a daily thesis."
+        # La tesis global puede citar un item que el gate descartó. Una lectura
+        # acotada conserva titular, atribución, inferencia y cita de una señal publicada.
+        for it in published:
+            if it.get("layer") != "signal" or it.get("evidence_kind") not in {"confirmed", "reported"}:
+                continue
+            ev = source_evidence(it, (it.get("evidence") or {}).get("quote"))
+            es, en = it.get("so_what") or "", it.get("so_what_en") or ""
+            if (ev and it.get("title_es") and it.get("title_en")
+                    and es.startswith("Inferencia · ") and en.startswith("Inference · ")
+                    and percentages_supported(es + " " + en, [ev["quote"]])):
+                out["thesis"] = f"Señal destacada · {it['title_es']}. {es}"
+                out["thesis_en"] = f"Signal in focus · {it['title_en']}. {en}"
+                out["evidence"]["thesis"] = [ev]
+                break
+        else:
+            out["thesis"] = "Sin una tesis verificable para esta edición."
+            out["thesis_en"] = "No verifiable thesis for this edition."
     return out
 
 
