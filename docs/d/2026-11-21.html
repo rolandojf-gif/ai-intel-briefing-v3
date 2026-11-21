@@ -238,29 +238,62 @@
   .pulse-note{font:400 11px/1.4 var(--f-mono);color:#9C9B95;margin-top:8px}
 
 
-  /* -- Portada (Hero adaptativo + Editorial estrecho y alineado) -- */
-  .opening{display:grid;grid-template-columns:minmax(0,1fr) 365px;gap:22px;align-items:stretch}
-  .deck.filtered .opening{display:none}
+  /* -- Portada a 3 columnas: Editorial (izq) · Hero #01 (centro) · Contexto + Qué vigilar (der) -- */
+  .opening{display:grid;grid-template-columns:285px minmax(0,1fr) 295px;gap:20px;align-items:stretch}
+  .opening[data-cols="2"]{grid-template-columns:300px minmax(0,1fr)}
+  .deck.filtered{display:flex;flex-direction:column}
+  .deck.filtered .opening{order:2;display:block;margin-top:26px}
+  .deck.filtered .opening.filter-empty{display:none}
+  .deck.filtered .opening .rail,.deck.filtered .opening .lead,.deck.filtered .opening .watch-rail{display:none}
+  .deck.filtered .opening .side-rail{padding:0;background:transparent;border:0;box-shadow:none;height:auto}
 
-  .rail{display:flex;flex-direction:column;height:100%;min-width:0;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow);padding:16px 18px}
+  .rail,.side-rail{display:flex;flex-direction:column;height:100%;min-width:0;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow);padding:15px 16px}
   .rail-h{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 10px;padding:0 0 7px;border-bottom:2px solid var(--ink);
-          font:700 11.5px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.08em}
-  .rail-h>span:first-child{display:flex;align-items:center;gap:8px}
+          font:700 11px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.08em}
+  .rail-h>span:first-child{display:flex;align-items:center;gap:7px}
   .rail-h>span:first-child::before{content:"";width:10px;height:10px;background:var(--orange);border:2px solid var(--ink);flex:0 0 auto}
-  .rail-h .lbl{font:400 10px var(--f-mono);color:var(--muted);letter-spacing:.04em;white-space:nowrap}
-  .rail-title{font:700 22px/1.08 var(--f-head);text-transform:uppercase;letter-spacing:-.028em;margin:2px 0 8px}
-  .rail-thesis{font:500 14px/1.48 var(--f-head);margin:0 0 14px}
+  .watch-rail .rail-h>span:first-child::before{background:var(--lime)}
+  .rail-h .lbl{font:400 9.5px var(--f-mono);color:var(--muted);letter-spacing:.04em;white-space:nowrap}
+  .rail-title{font:700 20px/1.08 var(--f-head);text-transform:uppercase;letter-spacing:-.028em;margin:2px 0 8px}
+  .rail-thesis{font:500 13.5px/1.46 var(--f-head);margin:0 0 14px}
   .keys{margin:0 0 12px;padding:0;list-style:none;counter-reset:k}
-  .keys li{counter-increment:k;display:grid;grid-template-columns:24px 1fr;gap:7px;padding:0 0 7px;margin-bottom:7px;border-bottom:1px dashed var(--line);font-size:13px;line-height:1.42}
+  .keys li{counter-increment:k;display:grid;grid-template-columns:22px 1fr;gap:6px;padding:0 0 7px;margin-bottom:7px;border-bottom:1px dashed var(--line);font-size:12.6px;line-height:1.42}
   .keys li:last-child{margin-bottom:0;border-bottom:none;padding-bottom:0}
   .keys li::before{content:counter(k,decimal-leading-zero);font:700 10.5px/1.65 var(--f-mono);color:var(--orange-ink)}
-  .rail-foot{margin-top:auto;padding-top:12px;display:flex;flex-direction:column;gap:12px}
+  .rail-foot{margin-top:auto;padding-top:12px;display:flex;flex-direction:column;gap:10px}
   .figures{border-top:2px solid var(--ink);padding-top:10px;display:flex;flex-direction:column;gap:7px}
   .fig-row{display:flex;align-items:baseline;justify-content:space-between;gap:8px;flex-wrap:wrap}
-  .fig-count{font:700 18px/1 var(--f-head);letter-spacing:-.03em}
-  .fig-note{font:400 10.5px/1.35 var(--f-mono);color:var(--muted)}
+  .fig-count{font:700 22px/1 var(--f-head);letter-spacing:-.03em}
+  .fig-note{font:400 10px/1.35 var(--f-mono);color:var(--muted)}
   .figures .ents{margin-top:0;gap:5px}
   .figures .ent{font-size:10px;padding:2px 5px}
+
+  /* Columna derecha: Contexto (lectura rapida) + Que vigilar (seguimiento) */
+  .side-rail{gap:16px}
+  .side-rail .ctx-block{margin:0}
+  .side-rail .ctx{border-top:0;background:transparent;counter-reset:cx}
+  .side-rail .cx{counter-increment:cx;display:grid;grid-template-columns:22px minmax(0,1fr);gap:6px;align-items:start;padding:0 0 9px;margin-bottom:9px;border-bottom:1px dashed var(--line)}
+  .side-rail .cx:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+  .side-rail .cx::before{content:counter(cx,decimal-leading-zero);font:700 10.5px/1.45 var(--f-mono);color:var(--orange-ink)}
+  .side-rail .cx-body{display:flex;flex-direction:column;gap:3px;min-width:0}
+  .side-rail .cx-theme{font:700 9.5px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--orange-ink)}
+  .side-rail .cx-t{margin:0;font:700 13.5px/1.28 var(--f-head);letter-spacing:-.012em;max-width:none}
+  .side-rail .cx .src{font-size:9.8px;gap:5px;margin-top:2px}
+  .side-rail .cx .src img{width:13px;height:13px}
+  .side-rail .metric-context{margin:.35rem 0 0;font-size:.78rem}
+  .side-rail .metric-context summary{padding:.15rem .55rem;font-size:.74rem}
+  .watch-rail{margin-top:auto}
+  .side-rail .watch-agenda{border-top:0;background:transparent}
+  .side-rail .watch-row{display:flex;flex-direction:column;gap:4px;padding:8px 0 8px 10px;border-bottom:1px dashed var(--line);border-left:3px solid var(--lime)}
+  .side-rail .watch-row:first-child{padding-top:2px}
+  .side-rail .watch-row:last-child{border-bottom:none;padding-bottom:0}
+  .side-rail .watch-row p{font:500 12.6px/1.42 var(--f-head);max-width:none;margin:0}
+  .side-rail .watch-row .src{font-size:9.8px;line-height:1.3}
+  .side-rail [id^="watch-point-"]:target{background:rgba(255,87,34,.08);border-left-color:var(--orange);box-shadow:none;padding-right:6px}
+  .deck.filtered .side-rail .ctx{border-top:2px solid var(--ink);background:var(--card)}
+  .deck.filtered .side-rail .cx{grid-template-columns:minmax(0,1fr);gap:6px;padding:14px 16px;margin-bottom:0;border-bottom:1px solid var(--line)}
+  .deck.filtered .side-rail .cx::before{display:none}
+  .deck.filtered .side-rail .cx-t{font:600 16px/1.45 var(--f-head)}
 
   .lead{position:relative;display:flex;flex-direction:column;height:100%;min-width:0;background:var(--card);border:2px solid var(--ink);border-top:5px solid var(--lead-accent,var(--orange));
         box-shadow:var(--shadow);overflow:hidden;transition:transform .12s,box-shadow .12s}
@@ -272,17 +305,17 @@
   .lead-media{position:relative;display:block;overflow:hidden;background:var(--asphalt);border-bottom:2px solid var(--ink)}
   .lead-media::after{content:"";position:absolute;inset:0;pointer-events:none;
                      background:linear-gradient(180deg,rgba(15,15,14,.55) 0%,rgba(15,15,14,0) 38%,rgba(15,15,14,.32) 100%)}
-  .lead-media .hero-img{display:block;width:100%;aspect-ratio:21/9;max-height:320px;object-fit:cover;border-bottom:0;transition:transform .35s ease}
+  .lead-media .hero-img{display:block;width:100%;aspect-ratio:16/9;max-height:330px;object-fit:cover;border-bottom:0;transition:transform .35s ease}
   .lead-media:hover .hero-img{transform:scale(1.02)}
   .lead-media-bar{position:absolute;top:14px;left:16px;right:16px;z-index:2;display:flex;align-items:center;gap:8px;flex-wrap:wrap;pointer-events:none}
   .lead-media-bar .tag{background:var(--lead-accent,var(--orange));color:#121211;border:2px solid #121211;box-shadow:2px 2px 0 rgba(18,18,17,.65)}
   .lead-media-bar .score{font-size:12.5px;padding:5px 9px}
-  .lead-body{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;padding:20px 26px 20px}
+  .lead-body{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;padding:20px 24px 20px}
   .lead-top{display:none;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 18px}
   .lead-top .tag{background:var(--lead-accent,var(--orange));color:#121211}
   .lead-top .score{font-size:12.5px;padding:5px 9px}
-  .lead .hero-title{font:700 clamp(25px,2.45vw,38px)/1.08 var(--f-head);letter-spacing:-.032em;margin:0 0 12px}
-  .lead .sw{font-size:clamp(15px,1.15vw,17.5px);line-height:1.52;color:var(--muted);margin:0 0 16px;max-width:68ch}
+  .lead .hero-title{font:700 clamp(24px,2.2vw,35px)/1.08 var(--f-head);letter-spacing:-.032em;margin:0 0 12px}
+  .lead .sw{font-size:clamp(14.5px,1.1vw,16.5px);line-height:1.52;color:var(--muted);margin:0 0 16px;max-width:66ch}
 
   .lead-intel{display:grid;gap:10px;margin:0 0 14px}
   @media(min-width:740px){.lead-intel.two{grid-template-columns:1fr 1fr;gap:12px}}
@@ -293,7 +326,7 @@
            padding:3px 6px;border:1px solid var(--ink)}
   .intel-box.pw .intel-k{background:var(--orange);color:#121211}
   .intel-box.wn .intel-k{background:var(--lime);color:#121211}
-  .intel-v{font-size:13.5px;line-height:1.45}
+  .intel-v{font-size:13.2px;line-height:1.45}
 
   .lead-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:auto;padding-top:16px;border-top:1px dashed var(--line)}
   .lead-foot-l{display:flex;align-items:center;gap:10px;flex-wrap:wrap;min-width:0}
@@ -314,14 +347,16 @@
   .lead.lead-dossier .lead-wm{display:block}
   .lead.lead-dossier .lead-media{display:none}
   .lead.lead-dossier .lead-top{display:flex}
-  .lead.lead-dossier .lead-body{padding:28px 34px 24px}
+  .lead.lead-dossier .lead-body{padding:26px 28px 22px}
   .lead.lead-dossier .lead-top .tag{border-color:#E8E7E1}
   .lead.lead-dossier .lead-top .badge-new{border-color:#E8E7E1}
-  .lead.lead-dossier .hero-title{font-size:clamp(32px,3.5vw,54px);line-height:1.03;color:#FFFFFF;max-width:25ch;margin-bottom:18px}
+  .lead.lead-dossier .hero-title{font-size:clamp(28px,2.85vw,44px);line-height:1.05;color:#FFFFFF;max-width:24ch;margin-bottom:16px}
   .lead.lead-dossier .hero-title a:hover{text-decoration-color:var(--lead-accent,var(--lime))}
-  .lead.lead-dossier .sw{color:#D4D3CC;font-size:clamp(16px,1.25vw,19px);line-height:1.54;margin-bottom:26px;max-width:58ch}
+  .lead.lead-dossier .sw{color:#D4D3CC;font-size:clamp(15px,1.15vw,17.5px);line-height:1.54;margin-bottom:22px;max-width:58ch}
+  .lead.lead-dossier .metric-context blockquote{border-left-color:#44443E;color:#D4D3CC}
+  .lead.lead-dossier .metric-context a{color:var(--lime)}
   .lead.lead-dossier .lead-intel{margin-top:auto;margin-bottom:0}
-  .lead.lead-dossier .intel-box{background:rgba(20,20,18,.9);border-color:#34342F;color:#ECEBE5;padding:14px 16px}
+  .lead.lead-dossier .intel-box{background:rgba(20,20,18,.9);border-color:#34342F;color:#ECEBE5;padding:13px 15px}
   .lead.lead-dossier .intel-box.pw{border-left-color:var(--orange)}
   .lead.lead-dossier .intel-box.wn{border-left-color:var(--lime)}
   .lead.lead-dossier .intel-k{border-color:#121211}
@@ -341,7 +376,7 @@
   .below .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
   .deck:not(.filtered) .dup,.deck:not(.filtered) .h-filtered,.deck.filtered .h-all{display:none}
   .deck:not(.filtered) .below.no-rest{display:none}
-  .deck.filtered .below{margin-top:0;padding-top:0;border-top:0}
+  .deck.filtered .below{order:1;margin-top:0;padding-top:0;border-top:0}
 
 
   /* -- Hero y cards: bordes de tinta y sombra dura -- */
@@ -444,12 +479,16 @@
   footer{margin-top:56px;padding-top:14px;border-top:3px solid var(--ink);display:flex;justify-content:space-between;
          gap:16px;flex-wrap:wrap;font:400 12px var(--f-mono);color:var(--muted)}
 
-  @media(max-width:1180px){
-    .opening{grid-template-columns:minmax(0,1fr) 320px}
+  @media(max-width:1220px){
+    .opening{grid-template-columns:1fr 1fr}
+    .opening .lead{grid-column:1/-1;order:-1}
+    .opening[data-cols="2"]{grid-template-columns:300px minmax(0,1fr)}
+    .opening[data-cols="2"] .lead{grid-column:auto;order:0}
     .below .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   }
-  @media(max-width:920px){
-    .opening{grid-template-columns:1fr}
+  @media(max-width:860px){
+    .opening,.opening[data-cols="2"]{grid-template-columns:1fr}
+    .opening .lead,.opening[data-cols="2"] .lead{grid-column:auto;order:-1}
   }
   @media(max-width:720px){
     .grid,.below .grid{grid-template-columns:1fr}
@@ -467,7 +506,7 @@
 </style>
 </head>
 <body>
-<header class="topnav"><a class="brand" href="../index.html" aria-label="Radar.IA, portada"><span class="brand-icon"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 12V2.5A9.5 9.5 0 0 1 21.03 9.06Z" fill="currentColor"/><circle cx="7.5" cy="15" r="1.7" fill="currentColor"/></svg></span><span class="brand-text"><strong>Radar<em>.IA</em></strong><small><span class="l-es">Radar estratégico de la carrera AGI</span><span class="l-en" lang="en">Strategic radar of the AGI race</span></small></span></a><nav class="navtabs" aria-label="Secciones"><a class="navtab" href="../index.html"><i>01</i> <span class="l-es">Diario</span><span class="l-en" lang="en">Daily</span></a><a class="navtab" href="../weekly.html"><i>02</i> <span class="l-es">Semanal</span><span class="l-en" lang="en">Weekly</span></a><a class="navtab" href="../archivo.html" aria-current="page"><i>03</i> <span class="l-es">Archivo</span><span class="l-en" lang="en">Archive</span></a></nav><a class="sister" href="https://moloch-sh.netlify.app/" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">&gt;_</span><span>MOLOCH.SH ↗<small><span class="l-es">Observatorio de modelos</span><span class="l-en" lang="en">Model observatory</span></small></span></a><div class="top-ctl"><div class="seg" role="group" aria-label="Idioma"><button type="button" class="seg-btn" data-lang-set="es">ES</button><button type="button" class="seg-btn" data-lang-set="en">EN</button></div><div class="seg" role="group" aria-label="Tema"><button type="button" class="seg-btn" data-theme-set="auto">Auto</button><button type="button" class="seg-btn" data-theme-set="light"><span class="l-es">Claro</span><span class="l-en" lang="en">Light</span></button><button type="button" class="seg-btn" data-theme-set="dark"><span class="l-es">Oscuro</span><span class="l-en" lang="en">Dark</span></button></div></div></header>
+<header class="topnav"><a class="brand" href="../index.html" aria-label="Radar.IA, portada"><span class="brand-icon"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 12V2.5A9.5 9.5 0 0 1 21.03 9.06Z" fill="currentColor"/><circle cx="7.5" cy="15" r="1.7" fill="currentColor"/></svg></span><span class="brand-text"><strong>Radar<em>.IA</em></strong><small><span class="l-es">Radar estratégico de la carrera AGI</span><span class="l-en" lang="en">Strategic radar of the AGI race</span></small></span></a><nav class="navtabs" aria-label="Secciones"><a class="navtab" href="../index.html"><i>01</i> <span class="l-es">Diario</span><span class="l-en" lang="en">Daily</span></a><a class="navtab" href="../weekly.html"><i>02</i> <span class="l-es">Semanal</span><span class="l-en" lang="en">Weekly</span></a><a class="navtab" href="../archivo.html"><i>03</i> <span class="l-es">Archivo</span><span class="l-en" lang="en">Archive</span></a></nav><a class="sister" href="https://moloch-sh.netlify.app/" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">&gt;_</span><span>MOLOCH.SH ↗<small><span class="l-es">Observatorio de modelos</span><span class="l-en" lang="en">Model observatory</span></small></span></a><div class="top-ctl"><div class="seg" role="group" aria-label="Idioma"><button type="button" class="seg-btn" data-lang-set="es">ES</button><button type="button" class="seg-btn" data-lang-set="en">EN</button></div><div class="seg" role="group" aria-label="Tema"><button type="button" class="seg-btn" data-theme-set="auto">Auto</button><button type="button" class="seg-btn" data-theme-set="light"><span class="l-es">Claro</span><span class="l-en" lang="en">Light</span></button><button type="button" class="seg-btn" data-theme-set="dark"><span class="l-es">Oscuro</span><span class="l-en" lang="en">Dark</span></button></div></div></header>
 <div class="strip">
   <span><span class="l-es">Edición</span><span class="l-en" lang="en">Edition</span> <b class="hl">2026-11-21</b></span>
   <span class="it bad"><span class="l-es">ALERTA</span><span class="l-en" lang="en">ALERT</span></span>
@@ -496,7 +535,7 @@
   
   
 
-
+  
 
   <!-- Tabs de tema -->
   
@@ -524,7 +563,29 @@
   
   <section class="opening">
 
-    <!-- Portada #01 (adaptativa foto/dossier) a altura completa junto al Editorial -->
+    <!-- Columna izquierda: El Editorial -->
+    <aside class="rail">
+      <div class="rail-h"><span><span class="l-es">El editorial</span><span class="l-en" lang="en">Editorial</span></span><span class="lbl">01 / <span class="l-es">Análisis</span><span class="l-en" lang="en">Analysis</span></span></div>
+      <h1 class="rail-title"><span class="l-es">La tesis del día</span><span class="l-en" lang="en">Thesis of the day</span></h1>
+      <p class="rail-thesis"><span class="l-es">Inferencia · Las defensas de GPT-6.2 parecen más robustas: en pruebas adaptativas, la tasa de éxito al extraer su razonamiento protegido cayó del 54 % al 0,2 %.</span><span class="l-en" lang="en">Inference · GPT-6.2’s defenses appear stronger: in adaptive tests, the success rate for extracting protected reasoning fell from 54% to 0.2%.</span></p>
+      
+      <div class="rail-h"><span><span class="l-es">Claves del día</span><span class="l-en" lang="en">Key points</span></span><span class="lbl"><span class="l-es">Selección</span><span class="l-en" lang="en">Selection</span></span></div>
+      <ol class="keys">
+        <li><span class="l-es">Inferencia · Google DeepMind exhibe capacidades de codificación de Gemini 4 Neon con un simulador 3D.</span><span class="l-en" lang="en">Inference · Google DeepMind showcases Gemini 4 Neon&#39;s coding capabilities with a 3D simulator.</span></li><li><span class="l-es">Inferencia · Un matemático de Anthropic afirma haber resuelto la Hipótesis de Riemann con la ayuda de Claude.</span><span class="l-en" lang="en">Inference · An Anthropic mathematician claims to have solved the Riemann Hypothesis with the help of Claude.</span></li><li><span class="l-es">Hipótesis · NVIDIA enfrenta inestabilidad con la salida de Jensen Huang, impactando la estrategia de chips.</span><span class="l-en" lang="en">Hypothesis · NVIDIA faces instability with Jensen Huang&#39;s departure, impacting chip strategy.</span></li>
+      </ol>
+      
+      <div class="rail-foot">
+        <div class="figures">
+          <div class="fig-row">
+            <strong class="fig-count">15</strong>
+            <span class="fig-note">12 <span class="l-es">señales</span><span class="l-en" lang="en">signals</span> · 3 <span class="l-es">contexto</span><span class="l-en" lang="en">context</span> · 6 <span class="l-es">descartadas</span><span class="l-en" lang="en">dropped</span></span>
+          </div>
+          <div class="ents"><span class="ent">OpenAI</span><span class="ent">NVIDIA</span><span class="ent">Anthropic</span><span class="ent">Jensen Huang</span><span class="ent">RoboColosseum</span></div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Columna central: Portada #01 (adaptativa foto/dossier) -->
     <article class="lead lead-photo" style="--lead-accent:#FF5722">
       <div class="lead-wm" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" preserveAspectRatio="xMaxYMin slice" aria-hidden="true"><circle cx="486" cy="136" r="34" fill="none" stroke="#FF5722" stroke-width="2.4" opacity="0.6"/><circle cx="486" cy="136" r="72" fill="none" stroke="#FF5722" stroke-width="2.2" opacity="0.6"/><circle cx="486" cy="136" r="110" fill="none" stroke="#FF5722" stroke-width="2" opacity="0.5"/><circle cx="486" cy="136" r="148" fill="none" stroke="#FF5722" stroke-width="1.8" opacity="0.4"/><circle cx="486" cy="136" r="186" fill="none" stroke="#FF5722" stroke-width="1.6" opacity="0.4"/><circle cx="486" cy="136" r="224" fill="none" stroke="#FF5722" stroke-width="1.4" opacity="0.3"/><circle cx="486" cy="136" r="262" fill="none" stroke="#FF5722" stroke-width="1.2" opacity="0.3"/><circle cx="486" cy="136" r="300" fill="none" stroke="#FF5722" stroke-width="1" opacity="0.2"/><circle cx="486" cy="136" r="338" fill="none" stroke="#FF5722" stroke-width="0.8" opacity="0.1"/><circle cx="486" cy="136" r="9" fill="#FF5722"/><circle cx="472.8" cy="206.8" r="4.5" fill="#FF5722" opacity=".9"/><circle cx="300" cy="133.7" r="4.5" fill="#FF5722" opacity=".9"/><circle cx="376.1" cy="131.2" r="4.5" fill="#FF5722" opacity=".9"/><circle cx="418" cy="159.5" r="4.5" fill="#FF5722" opacity=".9"/><circle cx="532.4" cy="276.5" r="4.5" fill="#FF5722" opacity=".9"/></svg></div>
       
@@ -578,27 +639,72 @@
       </div>
     </article>
 
-    <!-- Editorial -->
-    <aside class="rail">
-      <div class="rail-h"><span><span class="l-es">El editorial</span><span class="l-en" lang="en">Editorial</span></span><span class="lbl">01 / <span class="l-es">Análisis</span><span class="l-en" lang="en">Analysis</span></span></div>
-      <h1 class="rail-title"><span class="l-es">La tesis del día</span><span class="l-en" lang="en">Thesis of the day</span></h1>
-      <p class="rail-thesis"><span class="l-es">Inferencia · Las defensas de GPT-6.2 parecen más robustas: en pruebas adaptativas, la tasa de éxito al extraer su razonamiento protegido cayó del 54 % al 0,2 %.</span><span class="l-en" lang="en">Inference · GPT-6.2’s defenses appear stronger: in adaptive tests, the success rate for extracting protected reasoning fell from 54% to 0.2%.</span></p>
+    <!-- Columna derecha: Contexto + Qué vigilar -->
+    
+    <aside class="side-rail">
       
-      <div class="rail-h"><span><span class="l-es">Claves del día</span><span class="l-en" lang="en">Key points</span></span><span class="lbl"><span class="l-es">Selección</span><span class="l-en" lang="en">Selection</span></span></div>
-      <ol class="keys">
-        <li><span class="l-es">Inferencia · Google DeepMind exhibe capacidades de codificación de Gemini 4 Neon con un simulador 3D.</span><span class="l-en" lang="en">Inference · Google DeepMind showcases Gemini 4 Neon&#39;s coding capabilities with a 3D simulator.</span></li><li><span class="l-es">Inferencia · Un matemático de Anthropic afirma haber resuelto la Hipótesis de Riemann con la ayuda de Claude.</span><span class="l-en" lang="en">Inference · An Anthropic mathematician claims to have solved the Riemann Hypothesis with the help of Claude.</span></li><li><span class="l-es">Hipótesis · NVIDIA enfrenta inestabilidad con la salida de Jensen Huang, impactando la estrategia de chips.</span><span class="l-en" lang="en">Hypothesis · NVIDIA faces instability with Jensen Huang&#39;s departure, impacting chip strategy.</span></li>
-      </ol>
-      
-      <div class="rail-foot">
-        <div class="figures">
-          <div class="fig-row">
-            <strong class="fig-count">15</strong>
-            <span class="fig-note">12 <span class="l-es">señales</span><span class="l-en" lang="en">signals</span> · 3 <span class="l-es">contexto</span><span class="l-en" lang="en">context</span> · 6 <span class="l-es">descartadas</span><span class="l-en" lang="en">dropped</span></span>
-          </div>
-          <div class="ents"><span class="ent">OpenAI</span><span class="ent">NVIDIA</span><span class="ent">Anthropic</span><span class="ent">Jensen Huang</span><span class="ent">RoboColosseum</span></div>
+      <section class="ctx-block" id="ctx-block">
+        <div class="rail-h"><span><span class="l-es">Contexto</span><span class="l-en" lang="en">Context</span></span><span class="lbl"><span class="l-es">Lectura rápida</span><span class="l-en" lang="en">Quick read</span></span></div>
+        <div class="ctx">
+          
+          <article class="cx" data-topic="frontier_capability" data-new="1">
+            <div class="cx-body">
+              <span class="cx-theme"><span class="l-es">Capacidad frontier</span><span class="l-en" lang="en">Frontier capability</span></span>
+              <h3 class="cx-t"><a href="https://artificialanalysis.ai/articles/inkling-2-mini" target="_blank" rel="noopener noreferrer"><span class="l-es">Según la fuente · Thinking Machines lanza Inkling 2 Mini, un transformer de pesos abiertos</span><span class="l-en" lang="en">Reported · Thinking Machines releases Inkling 2 Mini, an open-weights looped transformer</span></a></h3>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=artificialanalysis.ai&amp;sz=64" alt="" loading="lazy"/>Artificial Analysis</span>
+              
+            </div>
+          </article>
+          
+          <article class="cx" data-topic="frontier_capability" data-new="1">
+            <div class="cx-body">
+              <span class="cx-theme"><span class="l-es">Capacidad frontier</span><span class="l-en" lang="en">Frontier capability</span></span>
+              <h3 class="cx-t"><a href="https://www.together.ai/blog/qwen3-tts" target="_blank" rel="noopener noreferrer"><span class="l-es">Confirmado · Qwen3 TTS de Alibaba disponible en Together AI con multilenguaje y baja latencia</span><span class="l-en" lang="en">Confirmed · Alibaba&#39;s Qwen3 TTS available on Together AI with multi-language and low latency</span></a></h3>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=together.ai&amp;sz=64" alt="" loading="lazy"/>Together AI</span>
+              <details class="metric-context"><summary><span class="l-es">Contexto de la medición</span><span class="l-en" lang="en">Measurement context</span></summary>
+    <blockquote><span class="l-es">Mantén la misma voz en todo el producto, cambia su tono con una instrucción en lenguaje natural y alterna entre 10 idiomas, con el primer audio en tan solo 97 ms.</span><span class="l-en" lang="en">Keep one voice across your product, change its tone with a plain-language instruction and move it between 10 languages, with first audio in as little as 97ms.</span></blockquote>
+    <a href="https://www.together.ai/blog/qwen3-tts" target="_blank" rel="noopener noreferrer">Together AI ↗</a>
+  </details>
+            </div>
+          </article>
+          
+          <article class="cx" data-topic="agents_automation" data-new="1">
+            <div class="cx-body">
+              <span class="cx-theme"><span class="l-es">Agentes</span><span class="l-en" lang="en">Agents</span></span>
+              <h3 class="cx-t"><a href="https://stratechery.com/2026/down-in-dc/" target="_blank" rel="noopener noreferrer"><span class="l-es">Inferencia · Stratechery analiza debates sobre agentes de IA en Washington D.C.</span><span class="l-en" lang="en">Inference · Stratechery analyzes debates on AI agents in Washington D.C.</span></a></h3>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=stratechery.com&amp;sz=64" alt="" loading="lazy"/>Stratechery</span>
+              
+            </div>
+          </article>
+          
         </div>
-      </div>
+      </section>
+      
+      
+      <section class="watch-rail" aria-labelledby="agenda-title">
+        <div class="rail-h"><span id="agenda-title"><span class="l-es">Qué vigilar</span><span class="l-en" lang="en">What to watch</span></span><span class="lbl"><span class="l-es">Seguimiento</span><span class="l-en" lang="en">Follow-up</span></span></div>
+        <div class="watch-agenda">
+          
+          <div class="watch-row" id="watch-point-1">
+            <p><span class="l-es">Verificación independiente de la prueba matemática por la comunidad académica global.</span><span class="l-en" lang="en">Independent verification of the mathematical proof by the global academic community.</span></p>
+            <div class="src"><a href="https://www.theverge.com/ai-artificial-intelligence/1010051/anthropic-riemann-hypothesis-millennium-prize-problem" target="_blank" rel="noopener noreferrer">The Verge AI</a></div>
+          </div>
+          
+          <div class="watch-row" id="watch-point-2">
+            <p><span class="l-es">Nombramiento del nuevo CEO y las primeras decisiones estratégicas de la nueva directiva de NVIDIA.</span><span class="l-en" lang="en">Appointment of the new CEO and the first strategic decisions of NVIDIA&#39;s new management.</span></p>
+            <div class="src"><a href="https://techcrunch.com/podcast/the-fallout-from-nvidias-jensen-huang-scandal-continues/" target="_blank" rel="noopener noreferrer">TechCrunch AI</a></div>
+          </div>
+          
+          <div class="watch-row" id="watch-point-3">
+            <p><span class="l-es">Reacciones de los proveedores de IA y medidas concretas para mitigar las fugas de datos en su cadena de valor.</span><span class="l-en" lang="en">Reactions from AI providers and concrete measures to mitigate data leaks in their value chain.</span></p>
+            <div class="src"><a href="https://arstechnica.com/security/2026/11/a-leaky-ai-supply-chain-is-exposing-secret-user-data-at-an-alarming-rate/" target="_blank" rel="noopener noreferrer">Ars Technica AI</a></div>
+          </div>
+          
+        </div>
+      </section>
+      
     </aside>
+    
   </section>
   
 
@@ -625,6 +731,163 @@
 
     <!-- Mercados: banda rotativa a todo el ancho. El contenido va dos veces para
          que el bucle no tenga corte; la segunda copia es invisible para lectores. -->
+    
+    <section class="ticker" aria-label="Markets">
+      <div class="ticker-h"><strong><span class="l-es">Mercados</span><span class="l-en" lang="en">Markets</span></strong><span><span class="l-es">Último cierre · no es tiempo real</span><span class="l-en" lang="en">Last close · not real time</span></span></div>
+      <div class="ticker-view">
+        <div class="ticker-track" style="--n:10">
+          
+          <div class="ticker-q">
+            
+            <div class="tq">
+              <span class="tq-n">S&amp;P Futures</span>
+              <span class="tq-p">6,966.75 US$</span>
+              <span class="m-chg neg">-3.20%</span>
+              <svg viewBox="0 0 100 24" class="spark neg"><polyline fill="none" stroke="#C81E3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,8.6 9.4,6.0 16.8,13.2 24.2,12.8 31.5,9.1 38.9,9.7 46.3,7.7 53.7,8.2 61.1,8.9 68.5,12.0 75.8,13.7 83.2,14.1 90.6,17.1 98.0,22.0"/></svg>
+            </div>
+            
+            <div class="tq">
+              <span class="tq-n">NASDAQ F.</span>
+              <span class="tq-p">25,291.00 US$</span>
+              <span class="m-chg neg">-4.92%</span>
+              <svg viewBox="0 0 100 24" class="spark neg"><polyline fill="none" stroke="#C81E3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,7.3 9.4,6.0 16.8,14.9 24.2,13.2 31.5,8.7 38.9,9.6 46.3,6.5 53.7,6.9 61.1,8.6 68.5,12.3 75.8,13.3 83.2,12.7 90.6,15.6 98.0,22.0"/></svg>
+            </div>
+            
+            <div class="tq">
+              <span class="tq-n">Bitcoin</span>
+              <span class="tq-p">56,938.43 US$</span>
+              <span class="m-chg neg">-8.02%</span>
+              <svg viewBox="0 0 100 24" class="spark neg"><polyline fill="none" stroke="#C81E3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,6.0 9.4,7.0 16.8,6.4 24.2,7.7 31.5,7.5 38.9,9.7 46.3,12.4 53.7,15.9 61.1,14.9 68.5,15.3 75.8,15.2 83.2,16.9 90.6,17.8 98.0,22.0"/></svg>
+            </div>
+            
+            <div class="tq">
+              <span class="tq-n">Ethereum</span>
+              <span class="tq-p">1,567.13 US$</span>
+              <span class="m-chg neg">-10.71%</span>
+              <svg viewBox="0 0 100 24" class="spark neg"><polyline fill="none" stroke="#C81E3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,6.0 9.4,8.8 16.8,8.5 24.2,10.5 31.5,10.3 38.9,11.2 46.3,13.4 53.7,17.2 61.1,15.6 68.5,16.0 75.8,15.9 83.2,17.0 90.6,17.5 98.0,22.0"/></svg>
+            </div>
+            
+            <div class="tq">
+              <span class="tq-n">VIX</span>
+              <span class="tq-p">35.89</span>
+              <span class="m-chg pos">+26.20%</span>
+              <svg viewBox="0 0 100 24" class="spark pos"><polyline fill="none" stroke="#0E9F6E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,18.5 9.4,22.0 16.8,12.4 24.2,14.5 31.5,19.3 38.9,19.6 46.3,21.3 53.7,20.3 61.1,19.8 68.5,16.8 75.8,14.7 83.2,15.4 90.6,12.2 98.0,6.0"/></svg>
+            </div>
+            
+            <div class="tq">
+              <span class="tq-n">Brent</span>
+              <span class="tq-p">89.87</span>
+              <span class="m-chg neg">-2.29%</span>
+              <svg viewBox="0 0 100 24" class="spark neg"><polyline fill="none" stroke="#C81E3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,6.0 9.4,16.5 16.8,12.2 24.2,12.2 31.5,18.9 38.9,20.1 46.3,18.6 53.7,15.1 61.1,15.0 68.5,19.0 75.8,18.2 83.2,19.6 90.6,19.5 98.0,22.0"/></svg>
+            </div>
+            
+            <div class="tq">
+              <span class="tq-n">NVIDIA</span>
+              <span class="tq-p">125.53 US$</span>
+              <span class="m-chg neg">-14.01%</span>
+              <svg viewBox="0 0 100 24" class="spark neg"><polyline fill="none" stroke="#C81E3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,6.0 9.4,7.3 16.8,10.9 24.2,10.0 31.5,11.5 38.9,13.5 46.3,12.5 53.7,14.0 61.1,14.6 68.5,16.0 75.8,16.1 83.2,17.0 90.6,18.0 98.0,22.0"/></svg>
+            </div>
+            
+            <div class="tq">
+              <span class="tq-n">Amazon</span>
+              <span class="tq-p">246.82 US$</span>
+              <span class="m-chg neg">-4.10%</span>
+              <svg viewBox="0 0 100 24" class="spark neg"><polyline fill="none" stroke="#C81E3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,19.4 9.4,9.2 16.8,13.1 24.2,13.7 31.5,8.6 38.9,6.0 46.3,9.1 53.7,8.3 61.1,8.8 68.5,14.7 75.8,14.6 83.2,8.1 90.6,15.0 98.0,22.0"/></svg>
+            </div>
+            
+            <div class="tq">
+              <span class="tq-n">Microsoft</span>
+              <span class="tq-p">484.52 US$</span>
+              <span class="m-chg neg">-2.77%</span>
+              <svg viewBox="0 0 100 24" class="spark neg"><polyline fill="none" stroke="#C81E3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,13.8 9.4,6.0 16.8,10.5 24.2,11.7 31.5,8.4 38.9,11.1 46.3,13.8 53.7,13.4 61.1,13.2 68.5,14.5 75.8,17.1 83.2,16.7 90.6,18.9 98.0,22.0"/></svg>
+            </div>
+            
+            <div class="tq">
+              <span class="tq-n">Apple</span>
+              <span class="tq-p">342.56 US$</span>
+              <span class="m-chg neg">-1.90%</span>
+              <svg viewBox="0 0 100 24" class="spark neg"><polyline fill="none" stroke="#C81E3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,22.0 9.4,10.4 16.8,13.9 24.2,15.1 31.5,9.7 38.9,11.1 46.3,6.4 53.7,6.9 61.1,6.0 68.5,8.3 75.8,8.9 83.2,8.5 90.6,10.6 98.0,15.0"/></svg>
+            </div>
+            
+          </div>
+          
+          <div class="ticker-q" aria-hidden="true">
+            
+            <div class="tq">
+              <span class="tq-n">S&amp;P Futures</span>
+              <span class="tq-p">6,966.75 US$</span>
+              <span class="m-chg neg">-3.20%</span>
+              <svg viewBox="0 0 100 24" class="spark neg"><polyline fill="none" stroke="#C81E3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,8.6 9.4,6.0 16.8,13.2 24.2,12.8 31.5,9.1 38.9,9.7 46.3,7.7 53.7,8.2 61.1,8.9 68.5,12.0 75.8,13.7 83.2,14.1 90.6,17.1 98.0,22.0"/></svg>
+            </div>
+            
+            <div class="tq">
+              <span class="tq-n">NASDAQ F.</span>
+              <span class="tq-p">25,291.00 US$</span>
+              <span class="m-chg neg">-4.92%</span>
+              <svg viewBox="0 0 100 24" class="spark neg"><polyline fill="none" stroke="#C81E3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,7.3 9.4,6.0 16.8,14.9 24.2,13.2 31.5,8.7 38.9,9.6 46.3,6.5 53.7,6.9 61.1,8.6 68.5,12.3 75.8,13.3 83.2,12.7 90.6,15.6 98.0,22.0"/></svg>
+            </div>
+            
+            <div class="tq">
+              <span class="tq-n">Bitcoin</span>
+              <span class="tq-p">56,938.43 US$</span>
+              <span class="m-chg neg">-8.02%</span>
+              <svg viewBox="0 0 100 24" class="spark neg"><polyline fill="none" stroke="#C81E3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,6.0 9.4,7.0 16.8,6.4 24.2,7.7 31.5,7.5 38.9,9.7 46.3,12.4 53.7,15.9 61.1,14.9 68.5,15.3 75.8,15.2 83.2,16.9 90.6,17.8 98.0,22.0"/></svg>
+            </div>
+            
+            <div class="tq">
+              <span class="tq-n">Ethereum</span>
+              <span class="tq-p">1,567.13 US$</span>
+              <span class="m-chg neg">-10.71%</span>
+              <svg viewBox="0 0 100 24" class="spark neg"><polyline fill="none" stroke="#C81E3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,6.0 9.4,8.8 16.8,8.5 24.2,10.5 31.5,10.3 38.9,11.2 46.3,13.4 53.7,17.2 61.1,15.6 68.5,16.0 75.8,15.9 83.2,17.0 90.6,17.5 98.0,22.0"/></svg>
+            </div>
+            
+            <div class="tq">
+              <span class="tq-n">VIX</span>
+              <span class="tq-p">35.89</span>
+              <span class="m-chg pos">+26.20%</span>
+              <svg viewBox="0 0 100 24" class="spark pos"><polyline fill="none" stroke="#0E9F6E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,18.5 9.4,22.0 16.8,12.4 24.2,14.5 31.5,19.3 38.9,19.6 46.3,21.3 53.7,20.3 61.1,19.8 68.5,16.8 75.8,14.7 83.2,15.4 90.6,12.2 98.0,6.0"/></svg>
+            </div>
+            
+            <div class="tq">
+              <span class="tq-n">Brent</span>
+              <span class="tq-p">89.87</span>
+              <span class="m-chg neg">-2.29%</span>
+              <svg viewBox="0 0 100 24" class="spark neg"><polyline fill="none" stroke="#C81E3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,6.0 9.4,16.5 16.8,12.2 24.2,12.2 31.5,18.9 38.9,20.1 46.3,18.6 53.7,15.1 61.1,15.0 68.5,19.0 75.8,18.2 83.2,19.6 90.6,19.5 98.0,22.0"/></svg>
+            </div>
+            
+            <div class="tq">
+              <span class="tq-n">NVIDIA</span>
+              <span class="tq-p">125.53 US$</span>
+              <span class="m-chg neg">-14.01%</span>
+              <svg viewBox="0 0 100 24" class="spark neg"><polyline fill="none" stroke="#C81E3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,6.0 9.4,7.3 16.8,10.9 24.2,10.0 31.5,11.5 38.9,13.5 46.3,12.5 53.7,14.0 61.1,14.6 68.5,16.0 75.8,16.1 83.2,17.0 90.6,18.0 98.0,22.0"/></svg>
+            </div>
+            
+            <div class="tq">
+              <span class="tq-n">Amazon</span>
+              <span class="tq-p">246.82 US$</span>
+              <span class="m-chg neg">-4.10%</span>
+              <svg viewBox="0 0 100 24" class="spark neg"><polyline fill="none" stroke="#C81E3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,19.4 9.4,9.2 16.8,13.1 24.2,13.7 31.5,8.6 38.9,6.0 46.3,9.1 53.7,8.3 61.1,8.8 68.5,14.7 75.8,14.6 83.2,8.1 90.6,15.0 98.0,22.0"/></svg>
+            </div>
+            
+            <div class="tq">
+              <span class="tq-n">Microsoft</span>
+              <span class="tq-p">484.52 US$</span>
+              <span class="m-chg neg">-2.77%</span>
+              <svg viewBox="0 0 100 24" class="spark neg"><polyline fill="none" stroke="#C81E3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,13.8 9.4,6.0 16.8,10.5 24.2,11.7 31.5,8.4 38.9,11.1 46.3,13.8 53.7,13.4 61.1,13.2 68.5,14.5 75.8,17.1 83.2,16.7 90.6,18.9 98.0,22.0"/></svg>
+            </div>
+            
+            <div class="tq">
+              <span class="tq-n">Apple</span>
+              <span class="tq-p">342.56 US$</span>
+              <span class="m-chg neg">-1.90%</span>
+              <svg viewBox="0 0 100 24" class="spark neg"><polyline fill="none" stroke="#C81E3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,22.0 9.4,10.4 16.8,13.9 24.2,15.1 31.5,9.7 38.9,11.1 46.3,6.4 53.7,6.9 61.1,6.0 68.5,8.3 75.8,8.9 83.2,8.5 90.6,10.6 98.0,15.0"/></svg>
+            </div>
+            
+          </div>
+          
+        </div>
+      </div>
+    </section>
     
   </div>
   
@@ -689,14 +952,14 @@
             <h3 class="card-title">
               <a href="https://techcrunch.com/podcast/the-fallout-from-nvidias-jensen-huang-scandal-continues/" target="_blank" rel="noopener noreferrer"><span class="l-es">Hipótesis · La salida de Jensen Huang de NVIDIA sigue generando inestabilidad y reajustes internos</span><span class="l-en" lang="en">Hypothesis · Jensen Huang&#39;s departure from NVIDIA continues to generate instability and internal adjustments</span></a>
             </h3>
-
+            
             
             
             <div class="card-foot">
               
               <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v"><span class="l-es">Inferencia · La inestabilidad en la cúpula de NVIDIA, actor clave en chips de IA, podría afectar la estrategia a largo plazo y la cadena de suministro.</span><span class="l-en" lang="en">Inference · Instability at the top of NVIDIA, a key AI chip player, could affect long-term strategy and the supply chain.</span></span></div>
               
-
+              
               <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v"><a class="watch-link" href="#watch-point-2"><span class="l-es">Ver hito</span><span class="l-en" lang="en">View milestone</span></a></span></div>
               
             </div>
@@ -872,13 +1135,13 @@
             <h3 class="card-title">
               <a href="https://finance.yahoo.com/markets/stocks/articles/coreweave-crwv-fairly-valued-fresh-031612848.html?.tsrc=rss" target="_blank" rel="noopener noreferrer"><span class="l-es">Hipótesis · ¿Refleja la cotización de CoreWeave (CRWV) su valor tras los nuevos resultados de MLPerf?</span><span class="l-en" lang="en">Hypothesis · Is CoreWeave (CRWV) Fairly Valued After Fresh MLPerf Results?</span></a>
             </h3>
-
+            
             
             
             <div class="card-foot">
               
               <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v"><span class="l-es">Inferencia · Destaca la capacidad de su infraestructura de IA para entrenar modelos complejos con nuevos chips NVIDIA, posicionándose en la vanguardia del compute.</span><span class="l-en" lang="en">Inference · Highlights its AI infrastructure&#39;s capacity to train complex models with new NVIDIA chips, positioning it at the forefront of compute.</span></span></div>
-
+              
               
               <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v"><span class="l-es">Otros proveedores publican benchmarks similares con hardware NVIDIA Vera Rubin.</span><span class="l-en" lang="en">Other providers publish similar benchmarks with NVIDIA Vera Rubin hardware.</span></span></div>
               
@@ -901,13 +1164,13 @@
             <h3 class="card-title">
               <a href="https://signal.org/blog/protecting-your-privacy/" target="_blank" rel="noopener noreferrer"><span class="l-es">Inferencia · Proponen restringir captura de datos por agentes IA en sistemas operativos móviles</span><span class="l-en" lang="en">Inference · Proposal to restrict AI agents from capturing data on mobile operating systems</span></a>
             </h3>
-
+            
             
             
             <div class="card-foot">
               
               <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v"><span class="l-es">Inferencia · Aborda un riesgo de privacidad crítico para la adopción masiva de agentes de IA, con posibles implicaciones regulatorias y de diseño.</span><span class="l-en" lang="en">Inference · Addresses a critical privacy risk for mass adoption of AI agents, with potential regulatory and design implications.</span></span></div>
-
+              
               
               <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v"><span class="l-es">Desarrollo de normativas o implementación de restricciones por parte de fabricantes de sistemas operativos.</span><span class="l-en" lang="en">Development of regulations or implementation of restrictions by operating system manufacturers.</span></span></div>
               
@@ -960,13 +1223,13 @@
             <h3 class="card-title">
               <a href="https://www.reuters.com/world/india/indias-ai-free-appeal-draws-record-foreign-buying-earnings-will-decide-if-it-2026-11-20/" target="_blank" rel="noopener noreferrer"><span class="l-es">Hipótesis · La menor exposición a la IA atrae compras extranjeras récord a India. ¿Se sostendrán tras los resultados?</span><span class="l-en" lang="en">Hypothesis · India&#39;s AI-free appeal draws record foreign buying, earnings will decide if it lasts - Reuters</span></a>
             </h3>
-
+            
             
             
             <div class="card-foot">
               
               <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v"><span class="l-es">Inferencia · Sugiere una divergencia en las estrategias de inversión global, buscando mercados menos expuestos a la volatilidad y riesgos asociados a la IA.</span><span class="l-en" lang="en">Inference · Suggests a divergence in global investment strategies, seeking markets less exposed to AI-associated volatility and risks.</span></span></div>
-
+              
               
               <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v"><span class="l-es">Impacto a largo plazo de esta estrategia en el crecimiento económico y la posición global de India.</span><span class="l-en" lang="en">Long-term impact of this strategy on India&#39;s economic growth and global position.</span></span></div>
               
@@ -989,13 +1252,13 @@
             <h3 class="card-title">
               <a href="https://openai.com/index/introducing-medchembench" target="_blank" rel="noopener noreferrer"><span class="l-es">Hipótesis · ¿Puede la IA ayudar a identificar candidatos prometedores a fármacos?</span><span class="l-en" lang="en">Hypothesis · Can AI help scientists identify promising drug candidates?</span></a>
             </h3>
-
+            
             
             
             <div class="card-foot">
               
               <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v"><span class="l-es">Inferencia · Proporciona una métrica para el progreso de la IA en la interpretación molecular y el razonamiento científico complejo, áreas clave para la AGI.</span><span class="l-en" lang="en">Inference · Provides a metric for AI progress in molecular interpretation and complex scientific reasoning, key areas for AGI.</span></span></div>
-
+              
               
               <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v"><span class="l-es">Modelos de IA mostrando mejoras significativas en las puntuaciones de MedChemBench.</span><span class="l-en" lang="en">AI models showing significant improvements in MedChemBench scores.</span></span></div>
               
@@ -1009,69 +1272,11 @@
   
 
       
-      <section class="ctx-block" id="ctx-block">
-        <div class="section-h">
-          <h2 class="sec"><span class="l-es">Contexto</span><span class="l-en" lang="en">Context</span></h2>
-        </div>
-        <div class="ctx">
-          
-          <article class="cx" data-topic="frontier_capability" data-new="1">
-            <span class="src"><img src="https://www.google.com/s2/favicons?domain=artificialanalysis.ai&amp;sz=64" alt="" loading="lazy"/>Artificial Analysis</span>
-            <div>
-              <h3 class="cx-t"><a href="https://artificialanalysis.ai/articles/inkling-2-mini" target="_blank" rel="noopener noreferrer"><span class="l-es">Según la fuente · Thinking Machines lanza Inkling 2 Mini, un transformer de pesos abiertos</span><span class="l-en" lang="en">Reported · Thinking Machines releases Inkling 2 Mini, an open-weights looped transformer</span></a></h3>
-
-            </div>
-          </article>
-          
-          <article class="cx" data-topic="frontier_capability" data-new="1">
-            <span class="src"><img src="https://www.google.com/s2/favicons?domain=together.ai&amp;sz=64" alt="" loading="lazy"/>Together AI</span>
-            <div>
-              <h3 class="cx-t"><a href="https://www.together.ai/blog/qwen3-tts" target="_blank" rel="noopener noreferrer"><span class="l-es">Confirmado · Qwen3 TTS de Alibaba disponible en Together AI con multilenguaje y baja latencia</span><span class="l-en" lang="en">Confirmed · Alibaba&#39;s Qwen3 TTS available on Together AI with multi-language and low latency</span></a></h3>
-              <details class="metric-context"><summary><span class="l-es">Contexto de la medición</span><span class="l-en" lang="en">Measurement context</span></summary>
-    <blockquote><span class="l-es">Mantén la misma voz en todo el producto, cambia su tono con una instrucción en lenguaje natural y alterna entre 10 idiomas, con el primer audio en tan solo 97 ms.</span><span class="l-en" lang="en">Keep one voice across your product, change its tone with a plain-language instruction and move it between 10 languages, with first audio in as little as 97ms.</span></blockquote>
-    <a href="https://www.together.ai/blog/qwen3-tts" target="_blank" rel="noopener noreferrer">Together AI ↗</a>
-  </details>
-            </div>
-          </article>
-          
-          <article class="cx" data-topic="agents_automation" data-new="1">
-            <span class="src"><img src="https://www.google.com/s2/favicons?domain=stratechery.com&amp;sz=64" alt="" loading="lazy"/>Stratechery</span>
-            <div>
-              <h3 class="cx-t"><a href="https://stratechery.com/2026/down-in-dc/" target="_blank" rel="noopener noreferrer"><span class="l-es">Inferencia · Stratechery analiza debates sobre agentes de IA en Washington D.C.</span><span class="l-en" lang="en">Inference · Stratechery analyzes debates on AI agents in Washington D.C.</span></a></h3>
-
-            </div>
-          </article>
-          
-        </div>
-      </section>
-      
 
   </div>
 
-
-  <section aria-labelledby="agenda-title">
-    <div class="section-h"><h2 class="sec" id="agenda-title"><span class="l-es">Qué vigilar</span><span class="l-en" lang="en">What to watch</span></h2></div>
-    <div class="watch-agenda">
-      
-      <div class="watch-row" id="watch-point-1">
-        <div class="src"><a href="https://www.theverge.com/ai-artificial-intelligence/1010051/anthropic-riemann-hypothesis-millennium-prize-problem" target="_blank" rel="noopener noreferrer">The Verge AI</a></div>
-        <p><span class="l-es">Verificación independiente de la prueba matemática por la comunidad académica global.</span><span class="l-en" lang="en">Independent verification of the mathematical proof by the global academic community.</span></p>
-      </div>
-      
-      <div class="watch-row" id="watch-point-2">
-        <div class="src"><a href="https://techcrunch.com/podcast/the-fallout-from-nvidias-jensen-huang-scandal-continues/" target="_blank" rel="noopener noreferrer">TechCrunch AI</a></div>
-        <p><span class="l-es">Nombramiento del nuevo CEO y las primeras decisiones estratégicas de la nueva directiva de NVIDIA.</span><span class="l-en" lang="en">Appointment of the new CEO and the first strategic decisions of NVIDIA&#39;s new management.</span></p>
-      </div>
-      
-      <div class="watch-row" id="watch-point-3">
-        <div class="src"><a href="https://arstechnica.com/security/2026/11/a-leaky-ai-supply-chain-is-exposing-secret-user-data-at-an-alarming-rate/" target="_blank" rel="noopener noreferrer">Ars Technica AI</a></div>
-        <p><span class="l-es">Reacciones de los proveedores de IA y medidas concretas para mitigar las fugas de datos en su cadena de valor.</span><span class="l-en" lang="en">Reactions from AI providers and concrete measures to mitigate data leaks in their value chain.</span></p>
-      </div>
-      
-    </div>
-  </section>
-
-
+  
+  
 
   <div class="credits"><div class="credits-id"><p class="credits-by">© 2026 RADAR.IA · <span class="l-es">por</span><span class="l-en" lang="en">by</span> <strong>Rolando Fernández</strong></p><p class="credits-tag"><span class="l-es">Radar diario de la carrera hacia la AGI, con fuentes y análisis.</span><span class="l-en" lang="en">A daily radar of the race towards AGI, with sources and analysis.</span></p></div><nav class="credits-links" aria-label="Rolando Fernández"><a href="https://www.linkedin.com/in/rolando-fernandez-jara" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/rolandojf-gif" target="_blank" rel="noopener">GitHub</a><a class="bmc" href="https://buymeacoffee.com/rolandofernandez" target="_blank" rel="noopener"><span class="bmc-cup" aria-hidden="true">☕</span> <span class="l-es">Invítame a un café</span><span class="l-en" lang="en">Buy me a coffee</span></a></nav></div>
   <footer>
@@ -1168,7 +1373,19 @@
         if (below) below.classList.toggle('filter-empty', on && visBelow === 0);
         var ctxBlock = document.getElementById('ctx-block');
         if (ctxBlock) ctxBlock.classList.toggle('filter-empty', on && visCtx === 0);
+        var opening = document.querySelector('.opening');
+        if (opening) opening.classList.toggle('filter-empty', on && visCtx === 0);
       });
+    });
+
+    document.addEventListener('click', function(ev){
+      var a = ev.target && ev.target.closest && ev.target.closest('a.watch-link');
+      if (!a) return;
+      var deck = document.getElementById('deck');
+      if (deck && deck.classList.contains('filtered')) {
+        var allTab = document.querySelector('#tabs .tab[data-filter="all"]');
+        if (allTab) allTab.click();
+      }
     });
   })();
 </script>

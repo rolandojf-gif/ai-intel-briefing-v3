@@ -317,29 +317,62 @@ TEMPLATE = ENV.from_string("""
   .pulse-note{font:400 11px/1.4 var(--f-mono);color:#9C9B95;margin-top:8px}
 
 
-  /* -- Portada (Hero adaptativo + Editorial estrecho y alineado) -- */
-  .opening{display:grid;grid-template-columns:minmax(0,1fr) 365px;gap:22px;align-items:stretch}
-  .deck.filtered .opening{display:none}
+  /* -- Portada a 3 columnas: Editorial (izq) · Hero #01 (centro) · Contexto + Qué vigilar (der) -- */
+  .opening{display:grid;grid-template-columns:285px minmax(0,1fr) 295px;gap:20px;align-items:stretch}
+  .opening[data-cols="2"]{grid-template-columns:300px minmax(0,1fr)}
+  .deck.filtered{display:flex;flex-direction:column}
+  .deck.filtered .opening{order:2;display:block;margin-top:26px}
+  .deck.filtered .opening.filter-empty{display:none}
+  .deck.filtered .opening .rail,.deck.filtered .opening .lead,.deck.filtered .opening .watch-rail{display:none}
+  .deck.filtered .opening .side-rail{padding:0;background:transparent;border:0;box-shadow:none;height:auto}
 
-  .rail{display:flex;flex-direction:column;height:100%;min-width:0;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow);padding:16px 18px}
+  .rail,.side-rail{display:flex;flex-direction:column;height:100%;min-width:0;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow);padding:15px 16px}
   .rail-h{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 10px;padding:0 0 7px;border-bottom:2px solid var(--ink);
-          font:700 11.5px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.08em}
-  .rail-h>span:first-child{display:flex;align-items:center;gap:8px}
+          font:700 11px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.08em}
+  .rail-h>span:first-child{display:flex;align-items:center;gap:7px}
   .rail-h>span:first-child::before{content:"";width:10px;height:10px;background:var(--orange);border:2px solid var(--ink);flex:0 0 auto}
-  .rail-h .lbl{font:400 10px var(--f-mono);color:var(--muted);letter-spacing:.04em;white-space:nowrap}
-  .rail-title{font:700 22px/1.08 var(--f-head);text-transform:uppercase;letter-spacing:-.028em;margin:2px 0 8px}
-  .rail-thesis{font:500 14px/1.48 var(--f-head);margin:0 0 14px}
+  .watch-rail .rail-h>span:first-child::before{background:var(--lime)}
+  .rail-h .lbl{font:400 9.5px var(--f-mono);color:var(--muted);letter-spacing:.04em;white-space:nowrap}
+  .rail-title{font:700 20px/1.08 var(--f-head);text-transform:uppercase;letter-spacing:-.028em;margin:2px 0 8px}
+  .rail-thesis{font:500 13.5px/1.46 var(--f-head);margin:0 0 14px}
   .keys{margin:0 0 12px;padding:0;list-style:none;counter-reset:k}
-  .keys li{counter-increment:k;display:grid;grid-template-columns:24px 1fr;gap:7px;padding:0 0 7px;margin-bottom:7px;border-bottom:1px dashed var(--line);font-size:13px;line-height:1.42}
+  .keys li{counter-increment:k;display:grid;grid-template-columns:22px 1fr;gap:6px;padding:0 0 7px;margin-bottom:7px;border-bottom:1px dashed var(--line);font-size:12.6px;line-height:1.42}
   .keys li:last-child{margin-bottom:0;border-bottom:none;padding-bottom:0}
   .keys li::before{content:counter(k,decimal-leading-zero);font:700 10.5px/1.65 var(--f-mono);color:var(--orange-ink)}
-  .rail-foot{margin-top:auto;padding-top:12px;display:flex;flex-direction:column;gap:12px}
+  .rail-foot{margin-top:auto;padding-top:12px;display:flex;flex-direction:column;gap:10px}
   .figures{border-top:2px solid var(--ink);padding-top:10px;display:flex;flex-direction:column;gap:7px}
   .fig-row{display:flex;align-items:baseline;justify-content:space-between;gap:8px;flex-wrap:wrap}
-  .fig-count{font:700 18px/1 var(--f-head);letter-spacing:-.03em}
-  .fig-note{font:400 10.5px/1.35 var(--f-mono);color:var(--muted)}
+  .fig-count{font:700 22px/1 var(--f-head);letter-spacing:-.03em}
+  .fig-note{font:400 10px/1.35 var(--f-mono);color:var(--muted)}
   .figures .ents{margin-top:0;gap:5px}
   .figures .ent{font-size:10px;padding:2px 5px}
+
+  /* Columna derecha: Contexto (lectura rapida) + Que vigilar (seguimiento) */
+  .side-rail{gap:16px}
+  .side-rail .ctx-block{margin:0}
+  .side-rail .ctx{border-top:0;background:transparent;counter-reset:cx}
+  .side-rail .cx{counter-increment:cx;display:grid;grid-template-columns:22px minmax(0,1fr);gap:6px;align-items:start;padding:0 0 9px;margin-bottom:9px;border-bottom:1px dashed var(--line)}
+  .side-rail .cx:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+  .side-rail .cx::before{content:counter(cx,decimal-leading-zero);font:700 10.5px/1.45 var(--f-mono);color:var(--orange-ink)}
+  .side-rail .cx-body{display:flex;flex-direction:column;gap:3px;min-width:0}
+  .side-rail .cx-theme{font:700 9.5px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--orange-ink)}
+  .side-rail .cx-t{margin:0;font:700 13.5px/1.28 var(--f-head);letter-spacing:-.012em;max-width:none}
+  .side-rail .cx .src{font-size:9.8px;gap:5px;margin-top:2px}
+  .side-rail .cx .src img{width:13px;height:13px}
+  .side-rail .metric-context{margin:.35rem 0 0;font-size:.78rem}
+  .side-rail .metric-context summary{padding:.15rem .55rem;font-size:.74rem}
+  .watch-rail{margin-top:auto}
+  .side-rail .watch-agenda{border-top:0;background:transparent}
+  .side-rail .watch-row{display:flex;flex-direction:column;gap:4px;padding:8px 0 8px 10px;border-bottom:1px dashed var(--line);border-left:3px solid var(--lime)}
+  .side-rail .watch-row:first-child{padding-top:2px}
+  .side-rail .watch-row:last-child{border-bottom:none;padding-bottom:0}
+  .side-rail .watch-row p{font:500 12.6px/1.42 var(--f-head);max-width:none;margin:0}
+  .side-rail .watch-row .src{font-size:9.8px;line-height:1.3}
+  .side-rail [id^="watch-point-"]:target{background:rgba(255,87,34,.08);border-left-color:var(--orange);box-shadow:none;padding-right:6px}
+  .deck.filtered .side-rail .ctx{border-top:2px solid var(--ink);background:var(--card)}
+  .deck.filtered .side-rail .cx{grid-template-columns:minmax(0,1fr);gap:6px;padding:14px 16px;margin-bottom:0;border-bottom:1px solid var(--line)}
+  .deck.filtered .side-rail .cx::before{display:none}
+  .deck.filtered .side-rail .cx-t{font:600 16px/1.45 var(--f-head)}
 
   .lead{position:relative;display:flex;flex-direction:column;height:100%;min-width:0;background:var(--card);border:2px solid var(--ink);border-top:5px solid var(--lead-accent,var(--orange));
         box-shadow:var(--shadow);overflow:hidden;transition:transform .12s,box-shadow .12s}
@@ -351,17 +384,17 @@ TEMPLATE = ENV.from_string("""
   .lead-media{position:relative;display:block;overflow:hidden;background:var(--asphalt);border-bottom:2px solid var(--ink)}
   .lead-media::after{content:"";position:absolute;inset:0;pointer-events:none;
                      background:linear-gradient(180deg,rgba(15,15,14,.55) 0%,rgba(15,15,14,0) 38%,rgba(15,15,14,.32) 100%)}
-  .lead-media .hero-img{display:block;width:100%;aspect-ratio:21/9;max-height:320px;object-fit:cover;border-bottom:0;transition:transform .35s ease}
+  .lead-media .hero-img{display:block;width:100%;aspect-ratio:16/9;max-height:330px;object-fit:cover;border-bottom:0;transition:transform .35s ease}
   .lead-media:hover .hero-img{transform:scale(1.02)}
   .lead-media-bar{position:absolute;top:14px;left:16px;right:16px;z-index:2;display:flex;align-items:center;gap:8px;flex-wrap:wrap;pointer-events:none}
   .lead-media-bar .tag{background:var(--lead-accent,var(--orange));color:#121211;border:2px solid #121211;box-shadow:2px 2px 0 rgba(18,18,17,.65)}
   .lead-media-bar .score{font-size:12.5px;padding:5px 9px}
-  .lead-body{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;padding:20px 26px 20px}
+  .lead-body{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;padding:20px 24px 20px}
   .lead-top{display:none;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 18px}
   .lead-top .tag{background:var(--lead-accent,var(--orange));color:#121211}
   .lead-top .score{font-size:12.5px;padding:5px 9px}
-  .lead .hero-title{font:700 clamp(25px,2.45vw,38px)/1.08 var(--f-head);letter-spacing:-.032em;margin:0 0 12px}
-  .lead .sw{font-size:clamp(15px,1.15vw,17.5px);line-height:1.52;color:var(--muted);margin:0 0 16px;max-width:68ch}
+  .lead .hero-title{font:700 clamp(24px,2.2vw,35px)/1.08 var(--f-head);letter-spacing:-.032em;margin:0 0 12px}
+  .lead .sw{font-size:clamp(14.5px,1.1vw,16.5px);line-height:1.52;color:var(--muted);margin:0 0 16px;max-width:66ch}
 
   .lead-intel{display:grid;gap:10px;margin:0 0 14px}
   @media(min-width:740px){.lead-intel.two{grid-template-columns:1fr 1fr;gap:12px}}
@@ -372,7 +405,7 @@ TEMPLATE = ENV.from_string("""
            padding:3px 6px;border:1px solid var(--ink)}
   .intel-box.pw .intel-k{background:var(--orange);color:#121211}
   .intel-box.wn .intel-k{background:var(--lime);color:#121211}
-  .intel-v{font-size:13.5px;line-height:1.45}
+  .intel-v{font-size:13.2px;line-height:1.45}
 
   .lead-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:auto;padding-top:16px;border-top:1px dashed var(--line)}
   .lead-foot-l{display:flex;align-items:center;gap:10px;flex-wrap:wrap;min-width:0}
@@ -393,14 +426,16 @@ TEMPLATE = ENV.from_string("""
   .lead.lead-dossier .lead-wm{display:block}
   .lead.lead-dossier .lead-media{display:none}
   .lead.lead-dossier .lead-top{display:flex}
-  .lead.lead-dossier .lead-body{padding:28px 34px 24px}
+  .lead.lead-dossier .lead-body{padding:26px 28px 22px}
   .lead.lead-dossier .lead-top .tag{border-color:#E8E7E1}
   .lead.lead-dossier .lead-top .badge-new{border-color:#E8E7E1}
-  .lead.lead-dossier .hero-title{font-size:clamp(32px,3.5vw,54px);line-height:1.03;color:#FFFFFF;max-width:25ch;margin-bottom:18px}
+  .lead.lead-dossier .hero-title{font-size:clamp(28px,2.85vw,44px);line-height:1.05;color:#FFFFFF;max-width:24ch;margin-bottom:16px}
   .lead.lead-dossier .hero-title a:hover{text-decoration-color:var(--lead-accent,var(--lime))}
-  .lead.lead-dossier .sw{color:#D4D3CC;font-size:clamp(16px,1.25vw,19px);line-height:1.54;margin-bottom:26px;max-width:58ch}
+  .lead.lead-dossier .sw{color:#D4D3CC;font-size:clamp(15px,1.15vw,17.5px);line-height:1.54;margin-bottom:22px;max-width:58ch}
+  .lead.lead-dossier .metric-context blockquote{border-left-color:#44443E;color:#D4D3CC}
+  .lead.lead-dossier .metric-context a{color:var(--lime)}
   .lead.lead-dossier .lead-intel{margin-top:auto;margin-bottom:0}
-  .lead.lead-dossier .intel-box{background:rgba(20,20,18,.9);border-color:#34342F;color:#ECEBE5;padding:14px 16px}
+  .lead.lead-dossier .intel-box{background:rgba(20,20,18,.9);border-color:#34342F;color:#ECEBE5;padding:13px 15px}
   .lead.lead-dossier .intel-box.pw{border-left-color:var(--orange)}
   .lead.lead-dossier .intel-box.wn{border-left-color:var(--lime)}
   .lead.lead-dossier .intel-k{border-color:#121211}
@@ -420,7 +455,7 @@ TEMPLATE = ENV.from_string("""
   .below .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
   .deck:not(.filtered) .dup,.deck:not(.filtered) .h-filtered,.deck.filtered .h-all{display:none}
   .deck:not(.filtered) .below.no-rest{display:none}
-  .deck.filtered .below{margin-top:0;padding-top:0;border-top:0}
+  .deck.filtered .below{order:1;margin-top:0;padding-top:0;border-top:0}
 
 
   /* -- Hero y cards: bordes de tinta y sombra dura -- */
@@ -523,12 +558,16 @@ TEMPLATE = ENV.from_string("""
   footer{margin-top:56px;padding-top:14px;border-top:3px solid var(--ink);display:flex;justify-content:space-between;
          gap:16px;flex-wrap:wrap;font:400 12px var(--f-mono);color:var(--muted)}
 
-  @media(max-width:1180px){
-    .opening{grid-template-columns:minmax(0,1fr) 320px}
+  @media(max-width:1220px){
+    .opening{grid-template-columns:1fr 1fr}
+    .opening .lead{grid-column:1/-1;order:-1}
+    .opening[data-cols="2"]{grid-template-columns:300px minmax(0,1fr)}
+    .opening[data-cols="2"] .lead{grid-column:auto;order:0}
     .below .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   }
-  @media(max-width:920px){
-    .opening{grid-template-columns:1fr}
+  @media(max-width:860px){
+    .opening,.opening[data-cols="2"]{grid-template-columns:1fr}
+    .opening .lead,.opening[data-cols="2"] .lead{grid-column:auto;order:-1}
   }
   @media(max-width:720px){
     .grid,.below .grid{grid-template-columns:1fr}
@@ -621,9 +660,31 @@ TEMPLATE = ENV.from_string("""
   <div class="deck" id="deck">
 
   {% if hero %}
-  <section class="opening">
+  <section class="opening"{% if not (context or watch_agenda) %} data-cols="2"{% endif %}>
 
-    <!-- Portada #01 (adaptativa foto/dossier) a altura completa junto al Editorial -->
+    <!-- Columna izquierda: El Editorial -->
+    <aside class="rail">
+      <div class="rail-h"><span>{{ bi("El editorial","Editorial") }}</span><span class="lbl">01 / {{ bi("Análisis","Analysis") }}</span></div>
+      <h1 class="rail-title">{{ bi("La tesis del día","Thesis of the day") }}</h1>
+      <p class="rail-thesis">{{ bi(thesis, thesis_en) }}</p>
+      {% if key_signals %}
+      <div class="rail-h"><span>{{ bi("Claves del día","Key points") }}</span><span class="lbl">{{ bi("Selección","Selection") }}</span></div>
+      <ol class="keys">
+        {% for k in key_signals %}<li>{{ bi(k, key_signals_en[loop.index0] if loop.index0 < key_signals_en|length else "") }}</li>{% endfor %}
+      </ol>
+      {% endif %}
+      <div class="rail-foot">
+        <div class="figures">
+          <div class="fig-row">
+            <strong class="fig-count">{{ n_signals + n_context }}</strong>
+            <span class="fig-note">{{ n_signals }} {{ bi("señales","signals") }}{% if n_context %} · {{ n_context }} {{ bi("contexto","context") }}{% endif %} · {{ n_dropped }} {{ bi("descartadas","dropped") }}</span>
+          </div>
+          {% if top_entities %}<div class="ents">{% for e in top_entities %}<span class="ent">{{ e }}</span>{% endfor %}</div>{% endif %}
+        </div>
+      </div>
+    </aside>
+
+    <!-- Columna central: Portada #01 (adaptativa foto/dossier) -->
     <article class="lead {% if hero.cover_only %}lead-dossier{% else %}lead-photo{% endif %}" style="--lead-accent:{{ hero.accent }}">
       <div class="lead-wm" aria-hidden="true">{{ hero.watermark_svg|safe }}</div>
       {% if not hero.cover_only %}
@@ -674,27 +735,41 @@ TEMPLATE = ENV.from_string("""
       </div>
     </article>
 
-    <!-- Editorial -->
-    <aside class="rail">
-      <div class="rail-h"><span>{{ bi("El editorial","Editorial") }}</span><span class="lbl">01 / {{ bi("Análisis","Analysis") }}</span></div>
-      <h1 class="rail-title">{{ bi("La tesis del día","Thesis of the day") }}</h1>
-      <p class="rail-thesis">{{ bi(thesis, thesis_en) }}</p>
-      {% if key_signals %}
-      <div class="rail-h"><span>{{ bi("Claves del día","Key points") }}</span><span class="lbl">{{ bi("Selección","Selection") }}</span></div>
-      <ol class="keys">
-        {% for k in key_signals %}<li>{{ bi(k, key_signals_en[loop.index0] if loop.index0 < key_signals_en|length else "") }}</li>{% endfor %}
-      </ol>
-      {% endif %}
-      <div class="rail-foot">
-        <div class="figures">
-          <div class="fig-row">
-            <strong class="fig-count">{{ n_signals + n_context }}</strong>
-            <span class="fig-note">{{ n_signals }} {{ bi("señales","signals") }}{% if n_context %} · {{ n_context }} {{ bi("contexto","context") }}{% endif %} · {{ n_dropped }} {{ bi("descartadas","dropped") }}</span>
-          </div>
-          {% if top_entities %}<div class="ents">{% for e in top_entities %}<span class="ent">{{ e }}</span>{% endfor %}</div>{% endif %}
+    <!-- Columna derecha: Contexto + Qué vigilar -->
+    {% if context or watch_agenda %}
+    <aside class="side-rail">
+      {% if context %}
+      <section class="ctx-block" id="ctx-block">
+        <div class="rail-h"><span>{{ bi("Contexto","Context") }}</span><span class="lbl">{{ bi("Lectura rápida","Quick read") }}</span></div>
+        <div class="ctx">
+          {% for it in context %}
+          <article class="cx" data-topic="{{ it.theme_key }}" data-new="{{ 1 if it.is_new else 0 }}">
+            <div class="cx-body">
+              <span class="cx-theme">{{ bi(it.theme_label, it.theme_label_en) }}</span>
+              <h3 class="cx-t"><a href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ bi(it.display_title, it.title_en) }}</a></h3>
+              <span class="src"><img src="{{ it.logo }}" alt="" loading="lazy"/>{{ it.source_label }}</span>
+              {% if it.measurement %}{{ measurement(it) }}{% endif %}
+            </div>
+          </article>
+          {% endfor %}
         </div>
-      </div>
+      </section>
+      {% endif %}
+      {% if watch_agenda %}
+      <section class="watch-rail" aria-labelledby="agenda-title">
+        <div class="rail-h"><span id="agenda-title">{{ bi("Qué vigilar","What to watch") }}</span><span class="lbl">{{ bi("Seguimiento","Follow-up") }}</span></div>
+        <div class="watch-agenda">
+          {% for w in watch_agenda %}
+          <div class="watch-row" id="{{ w.anchor }}">
+            <p>{{ bi(w.text, w.text_en) }}</p>
+            {% if w.refs %}<div class="src">{% for ref in w.refs %}<a href="{{ ref.url }}" target="_blank" rel="noopener noreferrer">{{ ref.source }}</a>{% if not loop.last %} · {% endif %}{% endfor %}</div>{% endif %}
+          </div>
+          {% endfor %}
+        </div>
+      </section>
+      {% endif %}
     </aside>
+    {% endif %}
   </section>
   {% endif %}
 
@@ -801,7 +876,7 @@ TEMPLATE = ENV.from_string("""
   </section>
   {% endif %}
 
-      {% if context %}
+      {% if context and not hero %}
       <section class="ctx-block" id="ctx-block">
         <div class="section-h">
           <h2 class="sec">{{ bi("Contexto","Context") }}</h2>
@@ -822,7 +897,7 @@ TEMPLATE = ENV.from_string("""
 
   </div>
 
-  {% if watch_agenda %}
+  {% if watch_agenda and not hero %}
   <section aria-labelledby="agenda-title">
     <div class="section-h"><h2 class="sec" id="agenda-title">{{ bi("Qué vigilar","What to watch") }}</h2></div>
     <div class="watch-agenda">
@@ -944,7 +1019,19 @@ TEMPLATE = ENV.from_string("""
         if (below) below.classList.toggle('filter-empty', on && visBelow === 0);
         var ctxBlock = document.getElementById('ctx-block');
         if (ctxBlock) ctxBlock.classList.toggle('filter-empty', on && visCtx === 0);
+        var opening = document.querySelector('.opening');
+        if (opening) opening.classList.toggle('filter-empty', on && visCtx === 0);
       });
+    });
+
+    document.addEventListener('click', function(ev){
+      var a = ev.target && ev.target.closest && ev.target.closest('a.watch-link');
+      if (!a) return;
+      var deck = document.getElementById('deck');
+      if (deck && deck.classList.contains('filtered')) {
+        var allTab = document.querySelector('#tabs .tab[data-filter="all"]');
+        if (allTab) allTab.click();
+      }
     });
   })();
 </script>

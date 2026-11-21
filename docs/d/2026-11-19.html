@@ -237,41 +237,63 @@
   .pulse-cols i:hover{background:var(--orange)}
   .pulse-note{font:400 11px/1.4 var(--f-mono);color:#9C9B95;margin-top:8px}
 
-  .movers{list-style:none;margin:0;padding:0}
-  .movers li{display:grid;grid-template-columns:1fr auto;gap:4px 8px;align-items:baseline;padding:0 0 9px;margin-bottom:9px;border-bottom:1px dashed var(--line)}
-  .movers li:last-child{padding-bottom:0;margin-bottom:0;border-bottom:none}
-  .mv-n{font:700 14.5px var(--f-head)}
-  .mv-t{font:700 10.5px var(--f-mono);color:var(--muted);text-transform:uppercase}
-  .mv-t.t-up,.mv-t.t-new{color:var(--open)} .mv-t.t-down{color:var(--bad)}
-  .mv-bar{grid-column:1/-1;height:8px;border:1px solid var(--ink);background:var(--card-2)}
-  .mv-bar i{display:block;height:100%;background:var(--orange)}
 
-  /* -- Portada (Hero adaptativo + Editorial estrecho y alineado) -- */
-  .opening{display:grid;grid-template-columns:minmax(0,1fr) 365px;gap:22px;align-items:stretch}
-  .deck.filtered .opening{display:none}
+  /* -- Portada a 3 columnas: Editorial (izq) · Hero #01 (centro) · Contexto + Qué vigilar (der) -- */
+  .opening{display:grid;grid-template-columns:285px minmax(0,1fr) 295px;gap:20px;align-items:stretch}
+  .opening[data-cols="2"]{grid-template-columns:300px minmax(0,1fr)}
+  .deck.filtered{display:flex;flex-direction:column}
+  .deck.filtered .opening{order:2;display:block;margin-top:26px}
+  .deck.filtered .opening.filter-empty{display:none}
+  .deck.filtered .opening .rail,.deck.filtered .opening .lead,.deck.filtered .opening .watch-rail{display:none}
+  .deck.filtered .opening .side-rail{padding:0;background:transparent;border:0;box-shadow:none;height:auto}
 
-  .rail{display:flex;flex-direction:column;height:100%;min-width:0;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow);padding:16px 18px}
+  .rail,.side-rail{display:flex;flex-direction:column;height:100%;min-width:0;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow);padding:15px 16px}
   .rail-h{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 10px;padding:0 0 7px;border-bottom:2px solid var(--ink);
-          font:700 11.5px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.08em}
-  .rail-h>span:first-child{display:flex;align-items:center;gap:8px}
+          font:700 11px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.08em}
+  .rail-h>span:first-child{display:flex;align-items:center;gap:7px}
   .rail-h>span:first-child::before{content:"";width:10px;height:10px;background:var(--orange);border:2px solid var(--ink);flex:0 0 auto}
-  .rail-h .lbl{font:400 10px var(--f-mono);color:var(--muted);letter-spacing:.04em;white-space:nowrap}
-  .rail-title{font:700 22px/1.08 var(--f-head);text-transform:uppercase;letter-spacing:-.028em;margin:2px 0 8px}
-  .rail-thesis{font:500 14px/1.48 var(--f-head);margin:0 0 14px}
+  .watch-rail .rail-h>span:first-child::before{background:var(--lime)}
+  .rail-h .lbl{font:400 9.5px var(--f-mono);color:var(--muted);letter-spacing:.04em;white-space:nowrap}
+  .rail-title{font:700 20px/1.08 var(--f-head);text-transform:uppercase;letter-spacing:-.028em;margin:2px 0 8px}
+  .rail-thesis{font:500 13.5px/1.46 var(--f-head);margin:0 0 14px}
   .keys{margin:0 0 12px;padding:0;list-style:none;counter-reset:k}
-  .keys li{counter-increment:k;display:grid;grid-template-columns:24px 1fr;gap:7px;padding:0 0 7px;margin-bottom:7px;border-bottom:1px dashed var(--line);font-size:13px;line-height:1.42}
+  .keys li{counter-increment:k;display:grid;grid-template-columns:22px 1fr;gap:6px;padding:0 0 7px;margin-bottom:7px;border-bottom:1px dashed var(--line);font-size:12.6px;line-height:1.42}
   .keys li:last-child{margin-bottom:0;border-bottom:none;padding-bottom:0}
   .keys li::before{content:counter(k,decimal-leading-zero);font:700 10.5px/1.65 var(--f-mono);color:var(--orange-ink)}
-  .rail-foot{margin-top:auto;padding-top:12px;display:flex;flex-direction:column;gap:12px}
-  .onradar{margin:0;padding:10px 12px;background:var(--card-2);border:2px solid var(--ink);box-shadow:inset 5px 0 0 var(--orange)}
-  .onradar .rail-h{margin-bottom:6px;padding-bottom:5px;border-bottom-width:1.5px;font-size:10.5px}
-  .onradar p{font-size:12.8px;line-height:1.44;margin:0}
+  .rail-foot{margin-top:auto;padding-top:12px;display:flex;flex-direction:column;gap:10px}
   .figures{border-top:2px solid var(--ink);padding-top:10px;display:flex;flex-direction:column;gap:7px}
   .fig-row{display:flex;align-items:baseline;justify-content:space-between;gap:8px;flex-wrap:wrap}
-  .fig-count{font:700 18px/1 var(--f-head);letter-spacing:-.03em}
-  .fig-note{font:400 10.5px/1.35 var(--f-mono);color:var(--muted)}
+  .fig-count{font:700 22px/1 var(--f-head);letter-spacing:-.03em}
+  .fig-note{font:400 10px/1.35 var(--f-mono);color:var(--muted)}
   .figures .ents{margin-top:0;gap:5px}
   .figures .ent{font-size:10px;padding:2px 5px}
+
+  /* Columna derecha: Contexto (lectura rapida) + Que vigilar (seguimiento) */
+  .side-rail{gap:16px}
+  .side-rail .ctx-block{margin:0}
+  .side-rail .ctx{border-top:0;background:transparent;counter-reset:cx}
+  .side-rail .cx{counter-increment:cx;display:grid;grid-template-columns:22px minmax(0,1fr);gap:6px;align-items:start;padding:0 0 9px;margin-bottom:9px;border-bottom:1px dashed var(--line)}
+  .side-rail .cx:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+  .side-rail .cx::before{content:counter(cx,decimal-leading-zero);font:700 10.5px/1.45 var(--f-mono);color:var(--orange-ink)}
+  .side-rail .cx-body{display:flex;flex-direction:column;gap:3px;min-width:0}
+  .side-rail .cx-theme{font:700 9.5px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--orange-ink)}
+  .side-rail .cx-t{margin:0;font:700 13.5px/1.28 var(--f-head);letter-spacing:-.012em;max-width:none}
+  .side-rail .cx .src{font-size:9.8px;gap:5px;margin-top:2px}
+  .side-rail .cx .src img{width:13px;height:13px}
+  .side-rail .metric-context{margin:.35rem 0 0;font-size:.78rem}
+  .side-rail .metric-context summary{padding:.15rem .55rem;font-size:.74rem}
+  .watch-rail{margin-top:auto}
+  .side-rail .watch-agenda{border-top:0;background:transparent}
+  .side-rail .watch-row{display:flex;flex-direction:column;gap:4px;padding:8px 0 8px 10px;border-bottom:1px dashed var(--line);border-left:3px solid var(--lime)}
+  .side-rail .watch-row:first-child{padding-top:2px}
+  .side-rail .watch-row:last-child{border-bottom:none;padding-bottom:0}
+  .side-rail .watch-row p{font:500 12.6px/1.42 var(--f-head);max-width:none;margin:0}
+  .side-rail .watch-row .src{font-size:9.8px;line-height:1.3}
+  .side-rail [id^="watch-point-"]:target{background:rgba(255,87,34,.08);border-left-color:var(--orange);box-shadow:none;padding-right:6px}
+  .deck.filtered .side-rail .ctx{border-top:2px solid var(--ink);background:var(--card)}
+  .deck.filtered .side-rail .cx{grid-template-columns:minmax(0,1fr);gap:6px;padding:14px 16px;margin-bottom:0;border-bottom:1px solid var(--line)}
+  .deck.filtered .side-rail .cx::before{display:none}
+  .deck.filtered .side-rail .cx-t{font:600 16px/1.45 var(--f-head)}
 
   .lead{position:relative;display:flex;flex-direction:column;height:100%;min-width:0;background:var(--card);border:2px solid var(--ink);border-top:5px solid var(--lead-accent,var(--orange));
         box-shadow:var(--shadow);overflow:hidden;transition:transform .12s,box-shadow .12s}
@@ -283,17 +305,17 @@
   .lead-media{position:relative;display:block;overflow:hidden;background:var(--asphalt);border-bottom:2px solid var(--ink)}
   .lead-media::after{content:"";position:absolute;inset:0;pointer-events:none;
                      background:linear-gradient(180deg,rgba(15,15,14,.55) 0%,rgba(15,15,14,0) 38%,rgba(15,15,14,.32) 100%)}
-  .lead-media .hero-img{display:block;width:100%;aspect-ratio:21/9;max-height:320px;object-fit:cover;border-bottom:0;transition:transform .35s ease}
+  .lead-media .hero-img{display:block;width:100%;aspect-ratio:16/9;max-height:330px;object-fit:cover;border-bottom:0;transition:transform .35s ease}
   .lead-media:hover .hero-img{transform:scale(1.02)}
   .lead-media-bar{position:absolute;top:14px;left:16px;right:16px;z-index:2;display:flex;align-items:center;gap:8px;flex-wrap:wrap;pointer-events:none}
   .lead-media-bar .tag{background:var(--lead-accent,var(--orange));color:#121211;border:2px solid #121211;box-shadow:2px 2px 0 rgba(18,18,17,.65)}
   .lead-media-bar .score{font-size:12.5px;padding:5px 9px}
-  .lead-body{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;padding:20px 26px 20px}
+  .lead-body{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;padding:20px 24px 20px}
   .lead-top{display:none;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 18px}
   .lead-top .tag{background:var(--lead-accent,var(--orange));color:#121211}
   .lead-top .score{font-size:12.5px;padding:5px 9px}
-  .lead .hero-title{font:700 clamp(25px,2.45vw,38px)/1.08 var(--f-head);letter-spacing:-.032em;margin:0 0 12px}
-  .lead .sw{font-size:clamp(15px,1.15vw,17.5px);line-height:1.52;color:var(--muted);margin:0 0 16px;max-width:68ch}
+  .lead .hero-title{font:700 clamp(24px,2.2vw,35px)/1.08 var(--f-head);letter-spacing:-.032em;margin:0 0 12px}
+  .lead .sw{font-size:clamp(14.5px,1.1vw,16.5px);line-height:1.52;color:var(--muted);margin:0 0 16px;max-width:66ch}
 
   .lead-intel{display:grid;gap:10px;margin:0 0 14px}
   @media(min-width:740px){.lead-intel.two{grid-template-columns:1fr 1fr;gap:12px}}
@@ -304,7 +326,7 @@
            padding:3px 6px;border:1px solid var(--ink)}
   .intel-box.pw .intel-k{background:var(--orange);color:#121211}
   .intel-box.wn .intel-k{background:var(--lime);color:#121211}
-  .intel-v{font-size:13.5px;line-height:1.45}
+  .intel-v{font-size:13.2px;line-height:1.45}
 
   .lead-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:auto;padding-top:16px;border-top:1px dashed var(--line)}
   .lead-foot-l{display:flex;align-items:center;gap:10px;flex-wrap:wrap;min-width:0}
@@ -325,14 +347,16 @@
   .lead.lead-dossier .lead-wm{display:block}
   .lead.lead-dossier .lead-media{display:none}
   .lead.lead-dossier .lead-top{display:flex}
-  .lead.lead-dossier .lead-body{padding:28px 34px 24px}
+  .lead.lead-dossier .lead-body{padding:26px 28px 22px}
   .lead.lead-dossier .lead-top .tag{border-color:#E8E7E1}
   .lead.lead-dossier .lead-top .badge-new{border-color:#E8E7E1}
-  .lead.lead-dossier .hero-title{font-size:clamp(32px,3.5vw,54px);line-height:1.03;color:#FFFFFF;max-width:25ch;margin-bottom:18px}
+  .lead.lead-dossier .hero-title{font-size:clamp(28px,2.85vw,44px);line-height:1.05;color:#FFFFFF;max-width:24ch;margin-bottom:16px}
   .lead.lead-dossier .hero-title a:hover{text-decoration-color:var(--lead-accent,var(--lime))}
-  .lead.lead-dossier .sw{color:#D4D3CC;font-size:clamp(16px,1.25vw,19px);line-height:1.54;margin-bottom:26px;max-width:58ch}
+  .lead.lead-dossier .sw{color:#D4D3CC;font-size:clamp(15px,1.15vw,17.5px);line-height:1.54;margin-bottom:22px;max-width:58ch}
+  .lead.lead-dossier .metric-context blockquote{border-left-color:#44443E;color:#D4D3CC}
+  .lead.lead-dossier .metric-context a{color:var(--lime)}
   .lead.lead-dossier .lead-intel{margin-top:auto;margin-bottom:0}
-  .lead.lead-dossier .intel-box{background:rgba(20,20,18,.9);border-color:#34342F;color:#ECEBE5;padding:14px 16px}
+  .lead.lead-dossier .intel-box{background:rgba(20,20,18,.9);border-color:#34342F;color:#ECEBE5;padding:13px 15px}
   .lead.lead-dossier .intel-box.pw{border-left-color:var(--orange)}
   .lead.lead-dossier .intel-box.wn{border-left-color:var(--lime)}
   .lead.lead-dossier .intel-k{border-color:#121211}
@@ -352,13 +376,8 @@
   .below .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
   .deck:not(.filtered) .dup,.deck:not(.filtered) .h-filtered,.deck.filtered .h-all{display:none}
   .deck:not(.filtered) .below.no-rest{display:none}
-  .deck.filtered .below{margin-top:0;padding-top:0;border-top:0}
+  .deck.filtered .below{order:1;margin-top:0;padding-top:0;border-top:0}
 
-  .insights{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(280px,1fr);gap:22px;margin-top:34px;align-items:start}
-  .insights.single{grid-template-columns:minmax(0,1fr)}
-  .companies{margin-top:0}
-  .companies .company-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 28px}
-  .memory{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:34px;align-items:start}
 
   /* -- Hero y cards: bordes de tinta y sombra dura -- */
   .hero,.card{background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow);transition:transform .1s,box-shadow .1s}
@@ -417,19 +436,24 @@
   /* -- Contexto -- */
   .section-h{margin:34px 0 14px}
   .section-h h2{margin:0}
-  .ctx-block .section-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
-  .sec-sub{margin:0;font:400 11.5px var(--f-mono);color:var(--muted);text-transform:uppercase}
-  .ctx{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-  .cx{display:flex;flex-direction:column;gap:8px;padding:14px 16px;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow-sm)}
-  .cx .meta-row{margin-bottom:0}
-  .cx-tag{display:inline-block;font:700 10px/1 var(--f-mono);text-transform:uppercase;padding:3px 6px;border:1px solid var(--ink);background:var(--card-2);color:var(--text);flex-shrink:0}
-  .cx-t{margin:0;font:700 16px/1.3 var(--f-head);letter-spacing:-.01em}
-  .cx-w{font-size:13.5px;color:var(--muted);line-height:1.48;margin:0;
-        display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .ctx,.watch-agenda,.watch-results{border-top:2px solid var(--ink);background:var(--card)}
+  .cx,.watch-row{display:grid;grid-template-columns:minmax(9rem,15rem) minmax(0,1fr);gap:16px;align-items:baseline;padding:14px 16px;border-bottom:1px solid var(--line)}
+  .cx-t,.watch-row p{margin:0;font:600 16px/1.45 var(--f-head);max-width:80ch}
+  .watch-link,.watch-row a{text-decoration:underline;text-underline-offset:3px}
+  .watch-row .src{align-self:start}
+  .watch-row blockquote{margin:5px 0;color:var(--muted);font-size:14px}
+  [id^="watch-point-"]{scroll-margin-top:12px}
+  [id^="watch-point-"]:target{box-shadow:inset 4px 0 var(--orange)}
 
   .empty{padding:40px 26px;text-align:center;border:2px dashed var(--ink);background:var(--card)}
   .empty .big{font:700 20px var(--f-head);margin-bottom:8px;text-transform:uppercase}
   .empty .sub{font-size:14px;color:var(--muted);max-width:52ch;margin:0 auto;line-height:1.6}
+
+  .metric-context{margin:.65rem 0;font-size:.86rem;line-height:1.45}
+  .metric-context summary{display:list-item;width:fit-content;max-width:100%;box-sizing:border-box;cursor:pointer;font-weight:700;background:#ffda55;color:#201a07;border:1px solid #806419;border-radius:1rem;padding:.22rem .75rem}
+  .metric-context summary:focus-visible{outline:3px solid currentColor;outline-offset:2px}
+  .metric-context blockquote{margin:.45rem 0;padding-left:.7rem;border-left:2px solid var(--line)}
+  .metric-context a{text-decoration:underline}
 
   /* -- Sidebar -- */
   .sidebar{display:grid;gap:22px;position:sticky;top:16px}
@@ -440,70 +464,37 @@
   .widget-title>span:first-child::before{content:"";width:10px;height:10px;background:var(--orange);border:2px solid var(--ink)}
   .widget-title .lbl{font:400 10px var(--f-mono);color:var(--muted);text-transform:uppercase}
 
-  .market-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-  .m-box{background:var(--card-2);border:1px solid var(--ink);padding:9px 10px}
-  .m-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
-  .m-lbl{font:600 11px var(--f-mono);text-transform:uppercase;color:var(--muted)}
   .m-chg{font:700 11px var(--f-mono)}
-  .m-chg.pos,.comp-chg.pos{color:var(--open)} .m-chg.neg,.comp-chg.neg{color:var(--bad)}
-  .m-chg.na,.comp-chg.na,.comp-price.na{color:var(--muted);font-weight:400}
+  .m-chg.pos{color:var(--open)} .m-chg.neg{color:var(--bad)}
+  .m-chg.na{color:var(--muted);font-weight:400}
   .m-price{font:700 14px var(--f-mono);margin-bottom:4px;font-variant-numeric:tabular-nums}
   .m-nodata{opacity:.55}
   .spark{width:100%;height:22px;display:block}
   .spark.pos polyline{stroke:var(--open)} .spark.neg polyline{stroke:var(--bad)}
 
-  .comp-item{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line)}
-  .comp-item:last-child{border-bottom:none;padding-bottom:0}
-  .comp-info{display:flex;align-items:center;gap:9px;min-width:0}
-  .comp-logo{width:24px;height:24px;padding:2px;flex-shrink:0;background:var(--logo-bg);border:1px solid var(--line)}
-  .comp-name{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .comp-ticker{font:400 10px var(--f-mono);color:var(--muted)}
-  .comp-val{text-align:right;flex-shrink:0}
-  .comp-price{font:700 12px var(--f-mono);font-variant-numeric:tabular-nums}
-  .comp-chg{font:700 10.5px var(--f-mono)}
-
-  .wr,.thr,.mv,.rk{padding:8px 0;border-bottom:1px dashed var(--line)}
-  .wr:last-child,.thr:last-child,.mv:last-child,.rk:last-child{border-bottom:none;padding-bottom:0}
-  .wr{display:flex;gap:10px;align-items:flex-start}
-  .wr-ic{font:700 12px/1.5 var(--f-mono);flex-shrink:0}
-  .wr.hit .wr-ic{color:var(--open)} .wr.open .wr-ic{color:var(--muted)}
-  .wr-t{font-size:13px;line-height:1.5}
-  .wr.open .wr-t{color:var(--muted)}
-  .wr-ev{font-size:12px;color:var(--open);margin-top:3px;line-height:1.4}
-  .thr{display:flex;gap:11px;align-items:baseline}
-  .thr-d{font:700 10px var(--f-mono);flex-shrink:0;padding:3px 5px;border:2px solid var(--ink);background:var(--ink);color:var(--paper)}
-  .thr-t{font-size:13px;font-weight:600}
-  .thr-l{font-size:12px;color:var(--muted);margin-top:2px;line-height:1.4}
-  .mv{display:flex;gap:8px;align-items:center;font-size:12.5px;flex-wrap:wrap}
-  .mv-b{font:700 9.5px/1 var(--f-mono);text-transform:uppercase;padding:3px 5px;border:1px solid var(--ink);flex-shrink:0}
-  .mv-b.new{background:var(--lime);color:#121211}
-  .mv-b.ret{background:#FBBF24;color:#121211}
-  .mv-b.str{background:var(--orange);color:#121211}
-  .mv .nm{font-weight:600}
-  .mv .dt{color:var(--muted);font:400 10.5px var(--f-mono)}
-  .none{font-size:12.5px;color:var(--muted);font-style:italic}
-  .rk{font-size:13px;line-height:1.5}
-  .rk::before{content:"!";display:inline-grid;place-content:center;width:16px;height:16px;margin-right:7px;
-              font:700 10px var(--f-mono);background:#FBBF24;color:#121211;border:1px solid var(--ink);vertical-align:1px}
-  .rk.w::before{content:"→";background:var(--lime)}
+  #visit-changes{margin-bottom:20px}
+  .visit-update{padding:8px 0;border-bottom:1px dashed var(--line);font-size:13px;line-height:1.5}
+  .visit-update:last-child{border-bottom:none;padding-bottom:0}
 
   footer{margin-top:56px;padding-top:14px;border-top:3px solid var(--ink);display:flex;justify-content:space-between;
          gap:16px;flex-wrap:wrap;font:400 12px var(--f-mono);color:var(--muted)}
 
-  @media(max-width:1180px){
-    .opening{grid-template-columns:minmax(0,1fr) 320px}
-    .below .grid,.ctx{grid-template-columns:repeat(2,minmax(0,1fr))}
-    .insights{grid-template-columns:1fr}
-    .memory{grid-template-columns:1fr 1fr}
+  @media(max-width:1220px){
+    .opening{grid-template-columns:1fr 1fr}
+    .opening .lead{grid-column:1/-1;order:-1}
+    .opening[data-cols="2"]{grid-template-columns:300px minmax(0,1fr)}
+    .opening[data-cols="2"] .lead{grid-column:auto;order:0}
+    .below .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   }
-  @media(max-width:920px){
-    .opening{grid-template-columns:1fr}
+  @media(max-width:860px){
+    .opening,.opening[data-cols="2"]{grid-template-columns:1fr}
+    .opening .lead,.opening[data-cols="2"] .lead{grid-column:auto;order:-1}
   }
   @media(max-width:720px){
-    .grid,.below .grid,.ctx{grid-template-columns:1fr}
+    .grid,.below .grid{grid-template-columns:1fr}
     .tq{flex:0 0 170px}
     .pulse{grid-template-columns:1fr}
-    .memory,.companies .company-list{grid-template-columns:1fr}
+    .cx,.watch-row{grid-template-columns:1fr;gap:5px}
     .lead-media .hero-img{aspect-ratio:16/9;max-height:240px}
     .lead.lead-dossier .lead-body,.lead-body{padding:18px 16px}
     .lead .hero-title,.lead.lead-dossier .hero-title{font-size:27px}
@@ -515,7 +506,7 @@
 </style>
 </head>
 <body>
-<header class="topnav"><a class="brand" href="../index.html" aria-label="Radar.IA, portada"><span class="brand-icon"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 12V2.5A9.5 9.5 0 0 1 21.03 9.06Z" fill="currentColor"/><circle cx="7.5" cy="15" r="1.7" fill="currentColor"/></svg></span><span class="brand-text"><strong>Radar<em>.IA</em></strong><small><span class="l-es">Radar estratégico de la carrera AGI</span><span class="l-en" lang="en">Strategic radar of the AGI race</span></small></span></a><nav class="navtabs" aria-label="Secciones"><a class="navtab" href="../index.html"><i>01</i> <span class="l-es">Diario</span><span class="l-en" lang="en">Daily</span></a><a class="navtab" href="../weekly.html"><i>02</i> <span class="l-es">Semanal</span><span class="l-en" lang="en">Weekly</span></a><a class="navtab" href="../archivo.html" aria-current="page"><i>03</i> <span class="l-es">Archivo</span><span class="l-en" lang="en">Archive</span></a></nav><a class="sister" href="https://moloch-sh.netlify.app/" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">&gt;_</span><span>MOLOCH.SH ↗<small><span class="l-es">Observatorio de modelos</span><span class="l-en" lang="en">Model observatory</span></small></span></a><div class="top-ctl"><div class="seg" role="group" aria-label="Idioma"><button type="button" class="seg-btn" data-lang-set="es">ES</button><button type="button" class="seg-btn" data-lang-set="en">EN</button></div><div class="seg" role="group" aria-label="Tema"><button type="button" class="seg-btn" data-theme-set="auto">Auto</button><button type="button" class="seg-btn" data-theme-set="light"><span class="l-es">Claro</span><span class="l-en" lang="en">Light</span></button><button type="button" class="seg-btn" data-theme-set="dark"><span class="l-es">Oscuro</span><span class="l-en" lang="en">Dark</span></button></div></div></header>
+<header class="topnav"><a class="brand" href="../index.html" aria-label="Radar.IA, portada"><span class="brand-icon"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 12V2.5A9.5 9.5 0 0 1 21.03 9.06Z" fill="currentColor"/><circle cx="7.5" cy="15" r="1.7" fill="currentColor"/></svg></span><span class="brand-text"><strong>Radar<em>.IA</em></strong><small><span class="l-es">Radar estratégico de la carrera AGI</span><span class="l-en" lang="en">Strategic radar of the AGI race</span></small></span></a><nav class="navtabs" aria-label="Secciones"><a class="navtab" href="../index.html"><i>01</i> <span class="l-es">Diario</span><span class="l-en" lang="en">Daily</span></a><a class="navtab" href="../weekly.html"><i>02</i> <span class="l-es">Semanal</span><span class="l-en" lang="en">Weekly</span></a><a class="navtab" href="../archivo.html"><i>03</i> <span class="l-es">Archivo</span><span class="l-en" lang="en">Archive</span></a></nav><a class="sister" href="https://moloch-sh.netlify.app/" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">&gt;_</span><span>MOLOCH.SH ↗<small><span class="l-es">Observatorio de modelos</span><span class="l-en" lang="en">Model observatory</span></small></span></a><div class="top-ctl"><div class="seg" role="group" aria-label="Idioma"><button type="button" class="seg-btn" data-lang-set="es">ES</button><button type="button" class="seg-btn" data-lang-set="en">EN</button></div><div class="seg" role="group" aria-label="Tema"><button type="button" class="seg-btn" data-theme-set="auto">Auto</button><button type="button" class="seg-btn" data-theme-set="light"><span class="l-es">Claro</span><span class="l-en" lang="en">Light</span></button><button type="button" class="seg-btn" data-theme-set="dark"><span class="l-es">Oscuro</span><span class="l-en" lang="en">Dark</span></button></div></div></header>
 <div class="strip">
   <span><span class="l-es">Edición</span><span class="l-en" lang="en">Edition</span> <b class="hl">2026-11-19</b></span>
   <span class="it bad"><span class="l-es">ALERTA</span><span class="l-en" lang="en">ALERT</span></span>
@@ -544,6 +535,8 @@
   
   
 
+  
+
   <!-- Tabs de tema -->
   
   <div class="tabs" id="tabs" role="tablist">
@@ -570,7 +563,29 @@
   
   <section class="opening">
 
-    <!-- Portada #01 (adaptativa foto/dossier) a altura completa junto al Editorial -->
+    <!-- Columna izquierda: El Editorial -->
+    <aside class="rail">
+      <div class="rail-h"><span><span class="l-es">El editorial</span><span class="l-en" lang="en">Editorial</span></span><span class="lbl">01 / <span class="l-es">Análisis</span><span class="l-en" lang="en">Analysis</span></span></div>
+      <h1 class="rail-title"><span class="l-es">La tesis del día</span><span class="l-en" lang="en">Thesis of the day</span></h1>
+      <p class="rail-thesis"><span class="l-es">El ritmo acelerado de lanzamientos de modelos de frontera por parte de Google y la monetización de acceso a APIs intensifican la competencia, mientras los agentes de IA demuestran capacidad de auto-mejora y automatización de tareas cognitivas.</span><span class="l-en" lang="en">The accelerated pace of frontier model releases by Google and API access monetization intensify competition, while AI agents demonstrate self-improvement and cognitive task automation.</span></p>
+      
+      <div class="rail-h"><span><span class="l-es">Claves del día</span><span class="l-en" lang="en">Key points</span></span><span class="lbl"><span class="l-es">Selección</span><span class="l-en" lang="en">Selection</span></span></div>
+      <ol class="keys">
+        <li><span class="l-es">Google lanza Gemini 4 Neon, más capaz y económico, y DeepMind presenta también Genie 4.</span><span class="l-en" lang="en">Google launches Gemini 4 Neon, more capable and cheaper, and DeepMind also introduces Genie 4.</span></li><li><span class="l-es">OpenAI demuestra el uso de IA para optimizar el diseño de chips de AMD y sus propios diseños, mejorando la eficiencia del cómputo.</span><span class="l-en" lang="en">OpenAI demonstrates AI use to optimize AMD and its own chip designs, improving compute efficiency.</span></li><li><span class="l-es">Agentes de IA superan a contables humanos en auditoría y automatizan tareas para xAI y contabilidad vía ChatGPT.</span><span class="l-en" lang="en">AI agents outperform human accountants in audits and automate tasks for xAI and accounting via ChatGPT.</span></li>
+      </ol>
+      
+      <div class="rail-foot">
+        <div class="figures">
+          <div class="fig-row">
+            <strong class="fig-count">15</strong>
+            <span class="fig-note">12 <span class="l-es">señales</span><span class="l-en" lang="en">signals</span> · 3 <span class="l-es">contexto</span><span class="l-en" lang="en">context</span> · 9 <span class="l-es">descartadas</span><span class="l-en" lang="en">dropped</span></span>
+          </div>
+          <div class="ents"><span class="ent">OpenAI</span><span class="ent">Anthropic</span><span class="ent">Google</span><span class="ent">DeepMind</span><span class="ent">AMD</span></div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Columna central: Portada #01 (adaptativa foto/dossier) -->
     <article class="lead lead-photo" style="--lead-accent:#FF5722">
       <div class="lead-wm" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" preserveAspectRatio="xMaxYMin slice" aria-hidden="true"><circle cx="548" cy="77" r="34" fill="none" stroke="#FF5722" stroke-width="2.4" opacity="0.6"/><circle cx="548" cy="77" r="72" fill="none" stroke="#FF5722" stroke-width="2.2" opacity="0.6"/><circle cx="548" cy="77" r="110" fill="none" stroke="#FF5722" stroke-width="2" opacity="0.5"/><circle cx="548" cy="77" r="148" fill="none" stroke="#FF5722" stroke-width="1.8" opacity="0.4"/><circle cx="548" cy="77" r="186" fill="none" stroke="#FF5722" stroke-width="1.6" opacity="0.4"/><circle cx="548" cy="77" r="224" fill="none" stroke="#FF5722" stroke-width="1.4" opacity="0.3"/><circle cx="548" cy="77" r="262" fill="none" stroke="#FF5722" stroke-width="1.2" opacity="0.3"/><circle cx="548" cy="77" r="300" fill="none" stroke="#FF5722" stroke-width="1" opacity="0.2"/><circle cx="548" cy="77" r="338" fill="none" stroke="#FF5722" stroke-width="0.8" opacity="0.1"/><circle cx="548" cy="77" r="9" fill="#FF5722"/><circle cx="328.7" cy="31.3" r="4.5" fill="#FF5722" opacity=".9"/><circle cx="703.8" cy="238" r="4.5" fill="#FF5722" opacity=".9"/><circle cx="669.3" cy="218" r="4.5" fill="#FF5722" opacity=".9"/><circle cx="603.5" cy="122.9" r="4.5" fill="#FF5722" opacity=".9"/><circle cx="557.7" cy="262.7" r="4.5" fill="#FF5722" opacity=".9"/></svg></div>
       
@@ -620,33 +635,69 @@
       </div>
     </article>
 
-    <!-- Editorial -->
-    <aside class="rail">
-      <div class="rail-h"><span><span class="l-es">El editorial</span><span class="l-en" lang="en">Editorial</span></span><span class="lbl">01 / <span class="l-es">Análisis</span><span class="l-en" lang="en">Analysis</span></span></div>
-      <h1 class="rail-title"><span class="l-es">La tesis del día</span><span class="l-en" lang="en">Thesis of the day</span></h1>
-      <p class="rail-thesis"><span class="l-es">El ritmo acelerado de lanzamientos de modelos de frontera por parte de Google y la monetización de acceso a APIs intensifican la competencia, mientras los agentes de IA demuestran capacidad de auto-mejora y automatización de tareas cognitivas.</span><span class="l-en" lang="en">The accelerated pace of frontier model releases by Google and API access monetization intensify competition, while AI agents demonstrate self-improvement and cognitive task automation.</span></p>
+    <!-- Columna derecha: Contexto + Qué vigilar -->
+    
+    <aside class="side-rail">
       
-      <div class="rail-h"><span><span class="l-es">Claves del día</span><span class="l-en" lang="en">Key points</span></span><span class="lbl"><span class="l-es">Selección</span><span class="l-en" lang="en">Selection</span></span></div>
-      <ol class="keys">
-        <li><span class="l-es">Google lanza Gemini 4 Neon, más capaz y económico, y DeepMind presenta también Genie 4.</span><span class="l-en" lang="en">Google launches Gemini 4 Neon, more capable and cheaper, and DeepMind also introduces Genie 4.</span></li><li><span class="l-es">OpenAI demuestra el uso de IA para optimizar el diseño de chips de AMD y sus propios diseños, mejorando la eficiencia del cómputo.</span><span class="l-en" lang="en">OpenAI demonstrates AI use to optimize AMD and its own chip designs, improving compute efficiency.</span></li><li><span class="l-es">Agentes de IA superan a contables humanos en auditoría y automatizan tareas para xAI y contabilidad vía ChatGPT.</span><span class="l-en" lang="en">AI agents outperform human accountants in audits and automate tasks for xAI and accounting via ChatGPT.</span></li>
-      </ol>
-      
-      <div class="rail-foot">
-        
-        <div class="onradar">
-          <div class="rail-h"><span><span class="l-es">En el radar</span><span class="l-en" lang="en">On the radar</span></span></div>
-          <p><span class="l-es">Nuevas evaluaciones de rendimiento real de Gemini 4 Neon y Genie 4 y su impacto en la cuota de mercado.</span><span class="l-en" lang="en">New real-world performance evaluations of Gemini 4 Neon and Genie 4 and their market share impact.</span></p>
+      <section class="ctx-block" id="ctx-block">
+        <div class="rail-h"><span><span class="l-es">Contexto</span><span class="l-en" lang="en">Context</span></span><span class="lbl"><span class="l-es">Lectura rápida</span><span class="l-en" lang="en">Quick read</span></span></div>
+        <div class="ctx">
+          
+          <article class="cx" data-topic="compute_chips_dc" data-new="1">
+            <div class="cx-body">
+              <span class="cx-theme">Compute &amp; chips</span>
+              <h3 class="cx-t"><a href="https://semiwiki.com/eda/pdf-solutions/376337-pdf-solutions-has-the-puck-finally-arrived/" target="_blank" rel="noopener noreferrer"><span class="l-es">PDF Solutions crea la infraestructura para un sistema operativo de autonomía de semiconductores.</span><span class="l-en" lang="en">PDF Solutions creates infrastructure for a semiconductor autonomy operating system.</span></a></h3>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=semiwiki.com&amp;sz=64" alt="" loading="lazy"/>SemiWiki</span>
+              
+            </div>
+          </article>
+          
+          <article class="cx" data-topic="geopolitics_power" data-new="0">
+            <div class="cx-body">
+              <span class="cx-theme"><span class="l-es">Geopolítica</span><span class="l-en" lang="en">Geopolitics</span></span>
+              <h3 class="cx-t"><a href="https://www.chinatalk.media/p/bis-finally-takes-a-stand" target="_blank" rel="noopener noreferrer"><span class="l-es">El BIS endurece los controles para evitar la fuga de cómputo de IA a China.</span><span class="l-en" lang="en">The BIS tightens controls to prevent AI compute leakage to China.</span></a></h3>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=chinatalk.media&amp;sz=64" alt="" loading="lazy"/>ChinaTalk</span>
+              
+            </div>
+          </article>
+          
+          <article class="cx" data-topic="agents_automation" data-new="1">
+            <div class="cx-body">
+              <span class="cx-theme"><span class="l-es">Agentes</span><span class="l-en" lang="en">Agents</span></span>
+              <h3 class="cx-t"><a href="https://stratechery.com/2026/an-interview-with-eric-seufert-about-agentic-commerce/" target="_blank" rel="noopener noreferrer"><span class="l-es">Análisis sobre el impacto de los agentes de IA en el comercio y el marketing.</span><span class="l-en" lang="en">Analysis on the impact of AI agents on commerce and marketing.</span></a></h3>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=stratechery.com&amp;sz=64" alt="" loading="lazy"/>Stratechery</span>
+              
+            </div>
+          </article>
+          
         </div>
-        
-        <div class="figures">
-          <div class="fig-row">
-            <strong class="fig-count">15</strong>
-            <span class="fig-note">12 <span class="l-es">señales</span><span class="l-en" lang="en">signals</span> · 3 <span class="l-es">contexto</span><span class="l-en" lang="en">context</span> · 9 <span class="l-es">descartadas</span><span class="l-en" lang="en">dropped</span></span>
+      </section>
+      
+      
+      <section class="watch-rail" aria-labelledby="agenda-title">
+        <div class="rail-h"><span id="agenda-title"><span class="l-es">Qué vigilar</span><span class="l-en" lang="en">What to watch</span></span><span class="lbl"><span class="l-es">Seguimiento</span><span class="l-en" lang="en">Follow-up</span></span></div>
+        <div class="watch-agenda">
+          
+          <div class="watch-row" id="watch-point-1">
+            <p><span class="l-es">Nuevas evaluaciones de rendimiento real de Gemini 4 Neon y Genie 4 y su impacto en la cuota de mercado.</span><span class="l-en" lang="en">New real-world performance evaluations of Gemini 4 Neon and Genie 4 and their market share impact.</span></p>
+            
           </div>
-          <div class="ents"><span class="ent">OpenAI</span><span class="ent">Anthropic</span><span class="ent">Google</span><span class="ent">DeepMind</span><span class="ent">AMD</span></div>
+          
+          <div class="watch-row" id="watch-point-2">
+            <p><span class="l-es">Anuncios de otros labs sobre uso de IA en diseño de chips o eficiencias de cómputo.</span><span class="l-en" lang="en">Announcements from other labs on AI use in chip design or compute efficiencies.</span></p>
+            
+          </div>
+          
+          <div class="watch-row" id="watch-point-3">
+            <p><span class="l-es">Adopción de los plugins de contabilidad de ChatGPT y métricas de eficiencia del equipo contable de xAI.</span><span class="l-en" lang="en">Adoption of ChatGPT&#39;s accounting plugins and efficiency metrics of xAI&#39;s autonomous accounting team.</span></p>
+            
+          </div>
+          
         </div>
-      </div>
+      </section>
+      
     </aside>
+    
   </section>
   
 
@@ -967,6 +1018,10 @@
               <a href="https://www.together.ai/blog/road-to-together-compiler" target="_blank" rel="noopener noreferrer"><span class="l-es">Together AI usa agentes para optimizar kernels GPU, superando el código manual en un 28%.</span><span class="l-en" lang="en">Together AI uses agents to optimize GPU kernels, outperforming manual code by 28%.</span></a>
             </h3>
             <div class="sw"><span class="l-es">Los agentes de IA pueden generar código más eficiente para GPUs que los ingenieros humanos, acelerando el rendimiento de los modelos y reduciendo el coste computacional.</span><span class="l-en" lang="en">AI agents can generate more efficient GPU code than human engineers, accelerating model performance and reducing computational cost.</span></div>
+            <details class="metric-context"><summary><span class="l-es">Contexto de la medición</span><span class="l-en" lang="en">Measurement context</span></summary>
+    <blockquote><span class="l-es">Cita original: It beats hand-written megakernels by 28% on B200 (2,118 vs 1,649 tokens/s on Llama 3.2 1B).</span><span class="l-en" lang="en">It beats hand-written megakernels by 28% on B200 (2,118 vs 1,649 tokens/s on Llama 3.2 1B).</span></blockquote>
+    <a href="https://www.together.ai/blog/road-to-together-compiler" target="_blank" rel="noopener noreferrer">Together AI ↗</a>
+  </details>
             
             
             <div class="card-foot">
@@ -1044,220 +1099,11 @@
   
 
       
-      <section class="ctx-block" id="ctx-block">
-        <div class="section-h">
-          <h2 class="sec"><span class="l-es">Contexto</span><span class="l-en" lang="en">Context</span></h2>
-          <p class="sec-sub"><span class="l-es">En segundo plano · Señales complementarias que completan la foto</span><span class="l-en" lang="en">In the background · Supporting signals shaping the backdrop</span></p>
-        </div>
-        <div class="ctx">
-          
-          <article class="cx" data-topic="compute_chips_dc" data-new="1">
-            <div class="meta-row">
-              <span class="cx-tag">Compute &amp; chips</span>
-              <span class="src"><img src="https://www.google.com/s2/favicons?domain=semiwiki.com&amp;sz=64" alt="" loading="lazy"/>SemiWiki</span>
-              <span class="score s-70">74/100</span>
-            </div>
-            <h3 class="cx-t">
-              <a href="https://semiwiki.com/eda/pdf-solutions/376337-pdf-solutions-has-the-puck-finally-arrived/" target="_blank" rel="noopener noreferrer"><span class="l-es">PDF Solutions crea la infraestructura para un sistema operativo de autonomía de semiconductores.</span><span class="l-en" lang="en">PDF Solutions creates infrastructure for a semiconductor autonomy operating system.</span></a>
-            </h3>
-            <div class="cx-w"><span class="l-es">La automatización en el diseño y fabricación de semiconductores avanza hacia sistemas autónomos, fundamental para escalar la producción de chips de IA.</span><span class="l-en" lang="en">Automation in semiconductor design and manufacturing advances towards autonomous systems, crucial for scaling AI chip production.</span></div>
-          </article>
-          
-          <article class="cx" data-topic="geopolitics_power" data-new="0">
-            <div class="meta-row">
-              <span class="cx-tag"><span class="l-es">Geopolítica</span><span class="l-en" lang="en">Geopolitics</span></span>
-              <span class="src"><img src="https://www.google.com/s2/favicons?domain=chinatalk.media&amp;sz=64" alt="" loading="lazy"/>ChinaTalk</span>
-              <span class="score s-70">72/100</span>
-            </div>
-            <h3 class="cx-t">
-              <a href="https://www.chinatalk.media/p/bis-finally-takes-a-stand" target="_blank" rel="noopener noreferrer"><span class="l-es">El BIS endurece los controles para evitar la fuga de cómputo de IA a China.</span><span class="l-en" lang="en">The BIS tightens controls to prevent AI compute leakage to China.</span></a>
-            </h3>
-            <div class="cx-w"><span class="l-es">Las nuevas restricciones del BIS buscan limitar el acceso de China a la capacidad de cómputo esencial para el entrenamiento de modelos de IA, impactando su avance.</span><span class="l-en" lang="en">New BIS restrictions aim to limit China&#39;s access to essential compute capacity for AI model training, impacting its progress.</span></div>
-          </article>
-          
-          <article class="cx" data-topic="agents_automation" data-new="1">
-            <div class="meta-row">
-              <span class="cx-tag"><span class="l-es">Agentes</span><span class="l-en" lang="en">Agents</span></span>
-              <span class="src"><img src="https://www.google.com/s2/favicons?domain=stratechery.com&amp;sz=64" alt="" loading="lazy"/>Stratechery</span>
-              <span class="score s-low">69/100</span>
-            </div>
-            <h3 class="cx-t">
-              <a href="https://stratechery.com/2026/an-interview-with-eric-seufert-about-agentic-commerce/" target="_blank" rel="noopener noreferrer"><span class="l-es">Análisis sobre el impacto de los agentes de IA en el comercio y el marketing.</span><span class="l-en" lang="en">Analysis on the impact of AI agents on commerce and marketing.</span></a>
-            </h3>
-            <div class="cx-w"><span class="l-es">La automatización de procesos de compraventa mediante agentes de IA redefinirá la interacción con el comercio y la monetización publicitaria.</span><span class="l-en" lang="en">Automation of buying and selling processes by AI agents will redefine commercial interaction and advertising monetization.</span></div>
-          </article>
-          
-        </div>
-      </section>
-      
 
   </div>
 
-      
-      <section class="insights single">
-        
-        
-        <div class="widget">
-          <div class="widget-title">
-            <span><span class="l-es">Quién mueve la carrera</span><span class="l-en" lang="en">Who moves the race</span></span>
-            <span class="lbl"><span class="l-es">Últimas ediciones</span><span class="l-en" lang="en">Recent editions</span></span>
-          </div>
-          <ul class="movers">
-            
-            <li><span class="mv-n">OpenAI</span>
-              <span class="mv-t t-up" title="up">▲</span>
-              <span class="mv-bar"><i style="width:100%"></i></span></li>
-            
-            <li><span class="mv-n">NVIDIA</span>
-              <span class="mv-t t-up" title="up">▲</span>
-              <span class="mv-bar"><i style="width:55%"></i></span></li>
-            
-            <li><span class="mv-n">Anthropic</span>
-              <span class="mv-t t-up" title="up">▲</span>
-              <span class="mv-bar"><i style="width:41%"></i></span></li>
-            
-            <li><span class="mv-n">DeepMind</span>
-              <span class="mv-t t-flat" title="flat">＝</span>
-              <span class="mv-bar"><i style="width:38%"></i></span></li>
-            
-            <li><span class="mv-n">Google</span>
-              <span class="mv-t t-up" title="up">▲</span>
-              <span class="mv-bar"><i style="width:34%"></i></span></li>
-            
-            <li><span class="mv-n">Jensen Huang</span>
-              <span class="mv-t t-up" title="up">▲</span>
-              <span class="mv-bar"><i style="width:33%"></i></span></li>
-            
-          </ul>
-        </div>
-        
-      </section>
-      
-
-  <!-- Memoria del radar: lo que dijimos, lo que persiste, lo que viene -->
-  <section class="memory">
-      
-      <div class="widget">
-        <div class="widget-title">
-          <span><span class="l-es">Vigilancia de ayer</span><span class="l-en" lang="en">Yesterday&#39;s watchlist</span></span>
-          <span class="lbl">0/3 <span class="l-es">confirmadas</span><span class="l-en" lang="en">confirmed</span></span>
-        </div>
-        
-        <div class="wr open">
-          <span class="wr-ic">○</span>
-          <div>
-            <div class="wr-t"><span class="l-es">Monitorizar el feedback de usuarios sobre la estabilidad y rendimiento real de GPT-6.2 Astra y Sol en entornos de producción.</span><span class="l-en" lang="en">Monitor user feedback on the stability and real-world performance of GPT-6.2 Astra and Sol in production environments.</span></div>
-            
-          </div>
-        </div>
-        
-        <div class="wr open">
-          <span class="wr-ic">○</span>
-          <div>
-            <div class="wr-t"><span class="l-es">Observar el impacto del nuevo plugin de robótica de Google en la adopción de Gemini 4 Hydrogen para la automatización industrial.</span><span class="l-en" lang="en">Observe the impact of Google&#39;s new robotics plugin on Gemini 4 Hydrogen adoption for industrial automation.</span></div>
-            
-          </div>
-        </div>
-        
-        <div class="wr open">
-          <span class="wr-ic">○</span>
-          <div>
-            <div class="wr-t"><span class="l-es">Evaluar si la ausencia de Jensen Huang en un rol clave de inversión altera el ritmo de las adquisiciones estratégicas de NVIDIA.</span><span class="l-en" lang="en">Assess if Jensen Huang&#39;s absence from a key investment role alters the pace of NVIDIA&#39;s strategic acquisitions.</span></div>
-            
-          </div>
-        </div>
-        
-      </div>
-      
-      
-      <div class="widget">
-        <div class="widget-title">
-          <span><span class="l-es">Memoria del radar</span><span class="l-en" lang="en">Radar memory</span></span>
-          <span class="lbl"><span class="l-es">Continuidad</span><span class="l-en" lang="en">Continuity</span></span>
-        </div>
-        
-        <div class="thr">
-          <span class="thr-d"><span class="l-es">DÍA</span><span class="l-en" lang="en">DAY</span> 11</span>
-          <div>
-            <div class="thr-t"><span class="l-es">Agentes y automatización</span><span class="l-en" lang="en">Agents and automation</span></div>
-            <div class="thr-l"><span class="l-es">Agentes de IA superan a contables de KPMG en la formulación de preguntas de auditoría.</span><span class="l-en" lang="en">AI agents outperform KPMG accountants in formulating audit questions.</span></div>
-          </div>
-        </div>
-        
-        <div class="thr">
-          <span class="thr-d"><span class="l-es">DÍA</span><span class="l-en" lang="en">DAY</span> 7</span>
-          <div>
-            <div class="thr-t"><span class="l-es">Compute y chips</span><span class="l-en" lang="en">Compute and chips</span></div>
-            <div class="thr-l"><span class="l-es">OpenAI usa sus modelos para mejorar el diseño de chips de AMD y su propio chip Jalapeño.</span><span class="l-en" lang="en">OpenAI uses its models to improve AMD chip design and its own Jalapeño chip.</span></div>
-          </div>
-        </div>
-        
-        <div class="thr">
-          <span class="thr-d"><span class="l-es">DÍA</span><span class="l-en" lang="en">DAY</span> 6</span>
-          <div>
-            <div class="thr-t"><span class="l-es">Capacidad frontier</span><span class="l-en" lang="en">Frontier capability</span></div>
-            <div class="thr-l"><span class="l-es">Google lanza Gemini 4 Neon: rendimiento de codificación a nivel Opus 5.5 y 25% más barato.</span><span class="l-en" lang="en">Google launches Gemini 4 Neon: Opus 5.5-level coding performance at 25% lower price.</span></div>
-          </div>
-        </div>
-        
-        <div class="thr">
-          <span class="thr-d"><span class="l-es">DÍA</span><span class="l-en" lang="en">DAY</span> 5</span>
-          <div>
-            <div class="thr-t"><span class="l-es">Geopolítica y poder</span><span class="l-en" lang="en">Geopolitics and power</span></div>
-            <div class="thr-l"><span class="l-es">Las empresas de chips ignoran las peticiones de pausa en IA, priorizando el crecimiento.</span><span class="l-en" lang="en">Chip companies ignore AI pause requests, prioritizing growth.</span></div>
-          </div>
-        </div>
-        
-        
-        
-        <div class="mv"><span class="mv-b new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span><span class="nm">BILLcom</span>
-          <span class="dt"><span class="l-es">primera aparición</span><span class="l-en" lang="en">first appearance</span></span></div>
-        
-        <div class="mv"><span class="mv-b new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span><span class="nm">Eric Seufert</span>
-          <span class="dt"><span class="l-es">primera aparición</span><span class="l-en" lang="en">first appearance</span></span></div>
-        
-        <div class="mv"><span class="mv-b new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span><span class="nm">FrontierML</span>
-          <span class="dt"><span class="l-es">primera aparición</span><span class="l-en" lang="en">first appearance</span></span></div>
-        
-        <div class="mv"><span class="mv-b new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span><span class="nm">KPMG</span>
-          <span class="dt"><span class="l-es">primera aparición</span><span class="l-en" lang="en">first appearance</span></span></div>
-        
-        <div class="mv"><span class="mv-b new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span><span class="nm">Oracle NetSuite</span>
-          <span class="dt"><span class="l-es">primera aparición</span><span class="l-en" lang="en">first appearance</span></span></div>
-        
-        
-        <div class="mv"><span class="mv-b ret"><span class="l-es">Vuelve</span><span class="l-en" lang="en">Back</span></span><span class="nm">ChatGPT</span>
-          <span class="dt"><span class="l-es">tras 3 días en silencio</span><span class="l-en" lang="en">after 3 silent days</span></span></div>
-        
-        
-        <div class="mv"><span class="mv-b str"><span class="l-es">Racha</span><span class="l-en" lang="en">Streak</span></span><span class="nm">NVIDIA</span>
-          <span class="dt"><span class="l-es">7 días seguidos</span><span class="l-en" lang="en">7 days in a row</span></span></div>
-        
-        <div class="mv"><span class="mv-b str"><span class="l-es">Racha</span><span class="l-en" lang="en">Streak</span></span><span class="nm">OpenAI</span>
-          <span class="dt"><span class="l-es">7 días seguidos</span><span class="l-en" lang="en">7 days in a row</span></span></div>
-        
-        <div class="mv"><span class="mv-b str"><span class="l-es">Racha</span><span class="l-en" lang="en">Streak</span></span><span class="nm">Anthropic</span>
-          <span class="dt"><span class="l-es">6 días seguidos</span><span class="l-en" lang="en">6 days in a row</span></span></div>
-        
-        <div class="mv"><span class="mv-b str"><span class="l-es">Racha</span><span class="l-en" lang="en">Streak</span></span><span class="nm">DeepMind</span>
-          <span class="dt"><span class="l-es">6 días seguidos</span><span class="l-en" lang="en">6 days in a row</span></span></div>
-        
-        <div class="mv"><span class="mv-b str"><span class="l-es">Racha</span><span class="l-en" lang="en">Streak</span></span><span class="nm">Google</span>
-          <span class="dt"><span class="l-es">5 días seguidos</span><span class="l-en" lang="en">5 days in a row</span></span></div>
-        
-      </div>
-      
-      
-      <div class="widget">
-        <div class="widget-title">
-          <span><span class="l-es">Riesgos y vigilancia</span><span class="l-en" lang="en">Risks and watch</span></span>
-          <span class="lbl"><span class="l-es">Próximos días</span><span class="l-en" lang="en">Coming days</span></span>
-        </div>
-        <div class="rk"><span class="l-es">La complejidad de la oferta de modelos y precios de Google DeepMind puede frenar su adopción.</span><span class="l-en" lang="en">The complexity of Google DeepMind&#39;s model offerings and pricing may hinder adoption.</span></div><div class="rk"><span class="l-es">La presión por la demanda de chips eclipsa las preocupaciones sobre la seguridad y el riesgo de la IA de frontera.</span><span class="l-en" lang="en">Pressure from chip demand overshadows concerns about frontier AI safety and risk.</span></div><div class="rk"><span class="l-es">La acelerada automatización del trabajo cognitivo por agentes de IA puede llevar a disrupción laboral sin precedentes.</span><span class="l-en" lang="en">Rapid automation of cognitive work by AI agents may lead to unprecedented job disruption.</span></div>
-        <div class="rk w"><span class="l-es">Nuevas evaluaciones de rendimiento real de Gemini 4 Neon y Genie 4 y su impacto en la cuota de mercado.</span><span class="l-en" lang="en">New real-world performance evaluations of Gemini 4 Neon and Genie 4 and their market share impact.</span></div><div class="rk w"><span class="l-es">Anuncios de otros labs sobre uso de IA en diseño de chips o eficiencias de cómputo.</span><span class="l-en" lang="en">Announcements from other labs on AI use in chip design or compute efficiencies.</span></div><div class="rk w"><span class="l-es">Adopción de los plugins de contabilidad de ChatGPT y métricas de eficiencia del equipo contable de xAI.</span><span class="l-en" lang="en">Adoption of ChatGPT&#39;s accounting plugins and efficiency metrics of xAI&#39;s autonomous accounting team.</span></div>
-      </div>
-      
-  </section>
+  
+  
 
   <div class="credits"><div class="credits-id"><p class="credits-by">© 2026 RADAR.IA · <span class="l-es">por</span><span class="l-en" lang="en">by</span> <strong>Rolando Fernández</strong></p><p class="credits-tag"><span class="l-es">Radar diario de la carrera hacia la AGI, con fuentes y análisis.</span><span class="l-en" lang="en">A daily radar of the race towards AGI, with sources and analysis.</span></p></div><nav class="credits-links" aria-label="Rolando Fernández"><a href="https://www.linkedin.com/in/rolando-fernandez-jara" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/rolandojf-gif" target="_blank" rel="noopener">GitHub</a><a class="bmc" href="https://buymeacoffee.com/rolandofernandez" target="_blank" rel="noopener"><span class="bmc-cup" aria-hidden="true">☕</span> <span class="l-es">Invítame a un café</span><span class="l-en" lang="en">Buy me a coffee</span></a></nav></div>
   <footer>
@@ -1268,6 +1114,30 @@
 </div>
 
 <script>
+  // La visita se mide por edición. Recargar mantiene la misma comparación.
+  (function(){
+    const panel = document.getElementById('visit-changes');
+    if (!panel) return;
+    const today = panel.dataset.edition;
+    const key = 'nexus.daily.visit.v1';
+    try {
+      let state = null;
+      try { state = JSON.parse(localStorage.getItem(key)); } catch (_) {}
+      const valid = d => typeof d === 'string' && /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(d);
+      if (!valid(today) || (state && valid(state.latest) && state.latest > today)) return;
+      const previous = state && valid(state.latest)
+        ? (state.latest === today ? state.previous : state.latest) : null;
+      localStorage.setItem(key, JSON.stringify({latest: today, previous}));
+      if (!valid(previous) || previous >= today) return;
+      for (const row of panel.querySelectorAll('[data-updated]')) {
+        if (row.dataset.updated > previous && row.dataset.updated <= today) {
+          row.hidden = false;
+          panel.hidden = false;
+        }
+      }
+    } catch (_) { /* Sin historial local fiable no se afirma que haya novedades. */ }
+  })();
+
   // Si la edicion no es de hoy (por ejemplo, antes de la ejecucion de la manana), se dice:
   // sin esto la portada de ayer se lee como si fuera la de hoy.
   (function(){
@@ -1330,7 +1200,19 @@
         if (below) below.classList.toggle('filter-empty', on && visBelow === 0);
         var ctxBlock = document.getElementById('ctx-block');
         if (ctxBlock) ctxBlock.classList.toggle('filter-empty', on && visCtx === 0);
+        var opening = document.querySelector('.opening');
+        if (opening) opening.classList.toggle('filter-empty', on && visCtx === 0);
       });
+    });
+
+    document.addEventListener('click', function(ev){
+      var a = ev.target && ev.target.closest && ev.target.closest('a.watch-link');
+      if (!a) return;
+      var deck = document.getElementById('deck');
+      if (deck && deck.classList.contains('filtered')) {
+        var allTab = document.querySelector('#tabs .tab[data-filter="all"]');
+        if (allTab) allTab.click();
+      }
     });
   })();
 </script>
