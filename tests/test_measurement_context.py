@@ -48,3 +48,11 @@ class MeasurementContextTests(unittest.TestCase):
             self.assertIn("Contexto de la medición", html)
             self.assertIn("Measurement context", html)
             self.assertIn("first audio in as little as 97ms", html)
+
+    def test_spanish_translation_is_bound_to_exact_source_and_figures(self):
+        source = next(x for x in items(21) if x["source"] == "The Decoder")
+        citation = measurement_context(source)
+        self.assertIn("54 % al 0,2 %", citation["es"])
+        for change in ({"es": "Pasó del 54 % al 2 %."}, {"original": "Otra prueba."}):
+            modified = dict(source, measurement_translation={**source["measurement_translation"], **change})
+            self.assertNotIn("es", measurement_context(modified))

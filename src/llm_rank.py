@@ -18,7 +18,7 @@ from google import genai
 from pydantic import BaseModel, Field
 from typing import List, Literal
 
-from src.evidence import source_evidence
+from src.evidence import measurement_context, source_evidence
 import json
 import os
 
@@ -100,6 +100,8 @@ class RankOut(BaseModel):
     prior_quote: str = Field(default="", description="Solo para repeat_of: cita literal del antecedente histórico.")
     follow_up: FollowUp | None = Field(default=None, description="Comprueba los demás items del lote y el histórico. Si hay un desarrollo material, referencia el antecedente; en otro caso null.")
 
+    source_title_es: str = Field(min_length=1, description="Traducción fiel y concisa al castellano del titular original, para poder citarlo incluso si falta evidencia. Conserva preguntas, atribución y condicionales.")
+    measurement_es: str = Field(default="", description="Si recibes measurement, traduce esa frase entera al español. Conserva cifras en dígitos, unidades, límites y comparador. Vacío en otro caso.")
     headline_es: str = Field(
         description=(
             "Titular reescrito en castellano de España, afilado y concreto, máx 90 chars. "
@@ -226,6 +228,11 @@ def rank_batch(
             "url": (it.get("url") or "")[:300],
         })
 
+    for entry in payload:
+        measure = measurement_context(entry)
+        if measure:
+            entry["measurement"] = measure["quote"]
+
     recent_block = ""
     cleaned_recent = []
     if recent_headlines:
@@ -327,6 +334,8 @@ def rank_batch(
         if r.id not in inputs or r.id in out_map:
             raise RuntimeError("Gemini returned unknown or duplicate result id.")
         result = r.model_dump()
+        if r.measurement_es:
+            result["measurement_original"] = inputs[r.id].get("measurement", "")
         if r.same_story_as == r.id or r.same_story_as not in eligible:
             result["same_story_as"] = 0
         if (0 < r.repeat_of <= len(cleaned_recent) and source_evidence(inputs[r.id], r.evidence_quote)

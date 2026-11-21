@@ -826,7 +826,7 @@ def compute_noise_penalty(it: dict) -> int:
 
 
 def _batch_fingerprint(payload: list[dict], recent_headlines: list[str] | None = None) -> str:
-    inputs = ["evidence-v1-followups", payload, recent_headlines or []]
+    inputs = ["evidence-v1-bilingual", payload, recent_headlines or []]
     return hashlib.sha256(json.dumps(inputs, ensure_ascii=False, sort_keys=True).encode()).hexdigest()
 
 

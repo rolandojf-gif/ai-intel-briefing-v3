@@ -82,9 +82,10 @@ def qualify_item(item, result):
     evidence = source_evidence(item, result.get("evidence_quote"))
     kind = result.get("evidence_kind")
     title = item.get("title") or ""
+    source_title_es = (result.get("source_title_es") or "").strip()
     if not evidence or kind not in LABELS:
         item.update(evidence={}, evidence_kind="unverified",
-                    title_es=f"Sin verificar · {title}", title_en=f"Unverified · {title}",
+                    title_es=f"Sin verificar · {source_title_es or title}", title_en=f"Unverified · {title}",
                     so_what=UNVERIFIED[0], so_what_en=UNVERIFIED[1],
                     power_shift="", power_shift_en="", watch_next="", watch_next_en="")
     else:
@@ -108,7 +109,7 @@ def qualify_item(item, result):
             if (kind == "speculation" and not (UNCERTAIN.search(headline) or PROSPECTIVE.search(headline))
                     and (UNCERTAIN.search(title) or PROSPECTIVE.search(title))):
                 # Una traducción categórica puede incluso cambiar el verbo (planificar → lanzar).
-                headline = title
+                headline = (source_title_es or title) if lang == "es" else title
             item[key] = f"{LABELS[kind][idx]} · {headline}"
             suffix = "" if lang == "es" else "_en"
             for field in ("so_what", "power_shift"):
@@ -119,6 +120,10 @@ def qualify_item(item, result):
                     item[key] = UNVERIFIED[idx] if field == "so_what" else ""
                 elif item.get(key):
                     item[key] = f"{LABELS['inference'][idx]} · {item[key]}"
+    translation = result.get("measurement_es") or ""
+    original = result.get("measurement_original") or ""
+    if translation and original:
+        item["measurement_translation"] = {"original": original, "es": translation}
     item["why"] = item["so_what"]
 
 
@@ -157,5 +162,14 @@ def measurement_context(item):
                 continue
             if _MEASUREMENT.search(cited) or ((_PERCENT.search(cited) or _RANK.search(cited))
                                                and _TEST_CONTEXT.search(sentence)):
-                return source_evidence(item, sentence) or None
+                citation = source_evidence(item, sentence)
+                if not citation:
+                    return None
+                translation = item.get("measurement_translation") or {}
+                if translation.get("original") == sentence and translation.get("es"):
+                    def numbers(text):
+                        return [v.replace(",", ".") for v in re.findall(r"\d+(?:[.,]\d+)*", text)]
+                    if numbers(sentence) == numbers(translation["es"]):
+                        citation["es"] = translation["es"]
+                return citation
     return None

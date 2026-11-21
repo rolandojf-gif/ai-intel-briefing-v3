@@ -46,7 +46,9 @@ class HistoricalRegressionTests(unittest.TestCase):
 
     def test_apple_hypothesis_does_not_establish_a_winner(self):
         apple = outlet(20, "TechCrunch AI")
-        result = judge(apple, headline_es="Apple lanza su agente", headline_en="Apple launches its agent")
+        result = judge(apple, headline_es="Apple lanza su agente", headline_en="Apple launches its agent",
+                       source_title_es="Apple podría estar desarrollando un agente para Mac")
+        self.assertIn("podría estar desarrollando", result["title_es"])
         self.assertEqual(result["evidence_kind"], "speculation")
         self.assertIn("Hipótesis", result["title_es"])
         self.assertIn("Hypothesis", result["title_en"])
@@ -151,7 +153,7 @@ class HistoricalRegressionTests(unittest.TestCase):
         previous = outlet(19, "VentureBeat AI")["title"]
         item = {**current, "id": 1}
         result = {"id": 1, "verdict": "signal", "relevance": 80, "theme": "frontier_capability",
-                  "headline_es": current["title_es"], "so_what": "", "evidence_kind": "confirmed",
+                  "source_title_es": current["title_es"], "headline_es": current["title_es"], "so_what": "", "evidence_kind": "confirmed",
                   "evidence_quote": current["title"], "repeat_of": 1, "prior_quote": previous}
         with patch.object(llm_rank, "client") as client:
             for change, expected in [({}, "noise"), ({"repeat_of": 2}, "signal"),

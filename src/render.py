@@ -14,7 +14,7 @@ from jinja2 import Environment, select_autoescape
 from markupsafe import Markup
 
 from src.brand import BASE_CSS as BRAND_CSS, HEAD as BRAND_HEAD, HTML_ATTRS, THEME_JS, bi, credits as brand_credits, header as brand_header, seo_head
-from src.evidence import measurement_context
+from src.evidence import UNVERIFIED, measurement_context
 from src.config import LEAD_SLOT_COUNT, demote_repeats_from_lead, radar_today_str
 
 
@@ -209,7 +209,7 @@ TEMPLATE = ENV.from_string("""
 {%- macro measurement(it) -%}
   {% if it.measurement -%}
   <details class="metric-context"><summary>{{ bi("Contexto de la medición","Measurement context") }}</summary>
-    <blockquote>{{ it.measurement.quote }}</blockquote>
+    <blockquote>{{ bi(it.measurement.es or ("Cita original: " ~ it.measurement.quote), it.measurement.quote) }}</blockquote>
     <a href="{{ it.measurement.url|safe_url }}" target="_blank" rel="noopener noreferrer">{{ it.source_label }} ↗</a>
   </details>
   {%- endif %}
@@ -507,7 +507,8 @@ TEMPLATE = ENV.from_string("""
   .empty .sub{font-size:14px;color:var(--muted);max-width:52ch;margin:0 auto;line-height:1.6}
 
   .metric-context{margin:.65rem 0;font-size:.86rem;line-height:1.45}
-  .metric-context summary{cursor:pointer;font-weight:700}
+  .metric-context summary{display:list-item;width:fit-content;max-width:100%;box-sizing:border-box;cursor:pointer;font-weight:700;background:#ffda55;color:#201a07;border:1px solid #806419;border-radius:1rem;padding:.22rem .75rem}
+  .metric-context summary:focus-visible{outline:3px solid currentColor;outline-offset:2px}
   .metric-context blockquote{margin:.45rem 0;padding-left:.7rem;border-left:2px solid var(--line)}
   .metric-context a{text-decoration:underline}
 
@@ -695,12 +696,12 @@ TEMPLATE = ENV.from_string("""
         <h2 class="hero-title">
           <a href="{{ (hero.url or hero.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ bi(hero.display_title, hero.title_en) }}</a>
         </h2>
-        {% if hero.so_what %}<div class="sw">{{ bi(hero.so_what, hero.so_what_en) }}</div>{% endif %}{% if hero.measurement %}
+        {% if hero.so_what and not hero.impact_from_consequence %}<div class="sw">{{ bi(hero.so_what, hero.so_what_en) }}</div>{% endif %}{% if hero.measurement %}
             {{ measurement(hero) }}{% endif %}
-        {% if hero.power_shift or hero.watch_next %}
-        <div class="lead-intel {% if hero.power_shift and hero.watch_next %}two{% endif %}">
-          {% if hero.power_shift %}
-          <div class="intel-box pw"><span class="k intel-k">{{ bi("Impacto","Impact") }}</span><span class="intel-v">{{ bi(hero.power_shift, hero.power_shift_en) }}</span></div>
+        {% if hero.impact or hero.watch_next %}
+        <div class="lead-intel {% if hero.impact and hero.watch_next %}two{% endif %}">
+          {% if hero.impact %}
+          <div class="intel-box pw"><span class="k intel-k">{{ bi("Impacto","Impact") }}</span><span class="intel-v">{{ bi(hero.impact, hero.impact_en) }}</span></div>
           {% endif %}
           {% if hero.watch_next %}
           <div class="intel-box wn"><span class="k intel-k">{{ bi("Vigilar","Watch") }}</span><span class="intel-v">{{ bi(hero.watch_next, hero.watch_next_en) }}</span></div>
@@ -833,17 +834,17 @@ TEMPLATE = ENV.from_string("""
             <h3 class="card-title">
               <a href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ bi(it.display_title, it.title_en) }}</a>
             </h3>
-            {% if it.so_what %}<div class="sw">{{ bi(it.so_what, it.so_what_en) }}</div>{% endif %}{% if it.measurement %}
+            {% if it.so_what and not it.impact_from_consequence %}<div class="sw">{{ bi(it.so_what, it.so_what_en) }}</div>{% endif %}{% if it.measurement %}
             {{ measurement(it) }}{% endif %}
             {% if it.also %}
             <div class="also">{{ bi("También en:","Also in:") }}
               {% for a in it.also %}{% if a.url %}<a href="{{ a.url }}" target="_blank" rel="noopener noreferrer">{{ a.label }}</a>{% else %}<span>{{ a.label }}</span>{% endif %}{% if not loop.last %} · {% endif %}{% endfor %}{% if it.also_more %} · +{{ it.also_more }}{% endif %}
             </div>
             {% endif %}
-            {% if it.power_shift or it.watch_next %}
+            {% if it.impact or it.watch_next %}
             <div class="card-foot">
-              {% if it.power_shift %}
-              <div class="fact pw"><span class="k">{{ bi("Impacto","Impact") }}</span><span class="v">{{ bi(it.power_shift, it.power_shift_en) }}</span></div>
+              {% if it.impact %}
+              <div class="fact pw"><span class="k">{{ bi("Impacto","Impact") }}</span><span class="v">{{ bi(it.impact, it.impact_en) }}</span></div>
               {% endif %}
               {% if it.watch_next %}
               <div class="fact wn"><span class="k">{{ bi("Vigilar","Watch") }}</span><span class="v">{{ bi(it.watch_next, it.watch_next_en) }}</span></div>
@@ -1101,7 +1102,7 @@ TEMPLATE = ENV.from_string("""
 """)
 
 
-TICKER_COMPANIES = ("NVDA", "AMZN", "MSFT", "AAPL")
+TICKER_COMPANIES = ("NVDA", "AMZN", "MSFT", "AAPL", "ANT")
 
 
 def _ticker_quotes(market) -> list[dict]:
@@ -1164,6 +1165,12 @@ def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", 
         it["so_what_en"] = truncate_text(clean_text(it.get("so_what_en") or ""), 230)
         it["power_shift_en"] = truncate_text(it.get("power_shift_en") or "", 120)
         it["watch_next_en"] = truncate_text(it.get("watch_next_en") or "", 120)
+        # La consecuencia editorial también es impacto; conservar su grado de certeza.
+        it["impact_from_consequence"] = bool(
+            not it["power_shift"] and it.get("evidence") and it["so_what"] and it["so_what"] != UNVERIFIED[0]
+        )
+        it["impact"] = it["so_what"] if it["impact_from_consequence"] else it["power_shift"]
+        it["impact_en"] = it["so_what_en"] if it["impact_from_consequence"] else it["power_shift_en"]
         it["ents"] = item_entities(it)
         it["source_label"] = source_label(it.get("source", ""))
         it["logo"] = source_logo_url(it.get("source", ""), it.get("url") or it.get("link") or "")
