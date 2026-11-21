@@ -131,6 +131,7 @@ def get_market_overview() -> dict:
     ]
 
     ai_companies = [
+        {"name": "Anthropic (ANT)", "ticker": "ANT", "exchange": "NASDAQ", "logo": "https://www.google.com/s2/favicons?domain=anthropic.com&sz=64"},
         {"name": "NVIDIA Corp.", "ticker": "NVDA", "exchange": "NASDAQ", "logo": "https://www.google.com/s2/favicons?domain=nvidia.com&sz=64"},
         {"name": "Super Micro Comp.", "ticker": "SMCI", "exchange": "NASDAQ", "logo": "https://www.google.com/s2/favicons?domain=supermicro.com&sz=64"},
         {"name": "TSMC Ltd.", "ticker": "TSM", "exchange": "NYSE", "logo": "https://www.google.com/s2/favicons?domain=tsmc.com&sz=64"},

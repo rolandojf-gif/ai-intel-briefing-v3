@@ -48,21 +48,22 @@ class TickerTests(unittest.TestCase):
         src = inspect.getsource(market.get_market_overview)
         self.assertIn('"BZ=F"', src)
         self.assertIn('"AAPL"', src)
+        self.assertIn('"ANT"', src)
 
-    def test_band_rotates_with_macro_plus_big_four_and_renders_indicators(self):
+    def test_band_rotates_with_selected_companies_and_renders_indicators(self):
         from src.render import render_index
         q = {"available": True, "price_str": "1.00", "change_str": "+1%", "positive": True, "sparkline_svg": ""}
         market = {"macro": [{**q, "label": "Brent"}],
                   "companies": [{**q, "name": n, "ticker": t} for n, t in
                                 (("NVIDIA Corp.", "NVDA"), ("Amazon.com Inc.", "AMZN"), ("Microsoft Corp.", "MSFT"),
-                                 ("Apple Inc.", "AAPL"), ("TSMC Ltd.", "TSM"))]}
+                                 ("Apple Inc.", "AAPL"), ("Anthropic (ANT)", "ANT"), ("TSMC Ltd.", "TSM"))]}
         items = [{"title_es": "A", "layer": "signal", "score": 90, "url": "https://e.com/a"}]
         snap = {"date": "2026-11-15", "pulse": {"value": 67, "hotter_than": 80, "editions": 20,
                                                 "series": [{"date": "d", "value": 30}, {"date": "h", "value": 67}]},
                 "movers": [{"entity": "NVIDIA", "share": 100, "trend": "up"}]}
         html = render_index(items, briefing={"thesis": "t"}, snapshot=snap, market=market)
         band = html.split('class="ticker-track"')[1].split("</section>")[0]
-        for label in ("Brent", "NVIDIA", "Amazon", "Microsoft", "Apple"):
+        for label in ("Brent", "NVIDIA", "Amazon", "Microsoft", "Apple", "Anthropic (ANT)"):
             self.assertEqual(band.count(f'<span class="tq-n">{label}</span>'), 2, label)   # dos copias: bucle sin corte
         self.assertNotIn("TSMC", band)
         self.assertIn('aria-hidden="true"', band)
