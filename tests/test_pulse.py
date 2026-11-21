@@ -70,7 +70,7 @@ class TickerTests(unittest.TestCase):
         self.assertIn("prefers-reduced-motion", html)
         self.assertIn('<strong>67</strong>', html)
         self.assertIn("Hotter than 80% of the last 20 editions", html)
-        self.assertIn('class="movers"', html)
+        self.assertNotIn('class="movers"', html)
 
     def test_no_pulse_block_without_data(self):
         from src.render import render_index

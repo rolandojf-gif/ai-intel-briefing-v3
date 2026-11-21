@@ -228,6 +228,7 @@ class UxTimezoneHealthTests(unittest.TestCase):
                 "is_new": False,
             },
             {
+                "source": "Together AI",
                 "title_es": "Contexto 1",
                 "title_en": "Context 1",
                 "layer": "context",
@@ -251,9 +252,11 @@ class UxTimezoneHealthTests(unittest.TestCase):
         self.assertIn("X off", html)
         self.assertIn('<span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span>', html)
         self.assertIn('<span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span>', html)
-        self.assertIn("En segundo plano", html)
-        self.assertIn("Supporting signals shaping the backdrop", html)
-        self.assertIn('<span class="cx-tag">', html)
+        ctx = html.split('id="ctx-block"', 1)[1].split("</section>", 1)[0]
+        self.assertIn('data-topic="frontier_capability"', ctx)
+        for text in ("Contexto 1", "Context 1", "Together AI"):
+            self.assertIn(text, ctx)
+        self.assertNotIn('class="score', ctx)
         self.assertNotIn("data-copy", html)
         self.assertEqual(render.score_tier(97), "s-95")
         self.assertEqual(render.score_tier(90), "s-88")
@@ -262,7 +265,6 @@ class UxTimezoneHealthTests(unittest.TestCase):
         self.assertEqual(render.score_tier(55), "s-low")
         self.assertIn('<span class="score s-88">', html)
         self.assertIn('<span class="score s-80">80/100</span>', html)
-        self.assertIn('<span class="score s-low">55/100</span>', html)
 
     def test_llm_rank_fields_enforce_concise_non_redundant_copy(self):
         import src.llm_rank as llm_rank

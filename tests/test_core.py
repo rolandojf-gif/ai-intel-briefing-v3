@@ -904,7 +904,8 @@ class CoreQualityTests(unittest.TestCase):
         self.assertNotIn('class="copy-btn"', html)
         self.assertIn('<span class="score s-88">', html)
         self.assertIn("80/100</span>", html)
-        self.assertIn("40/100</span>", html)
+        self.assertIn("Solo contexto", html)
+        self.assertNotIn("40/100</span>", html)
 
     def test_weekly_matches_daily_chrome_and_drops_jargon(self):
         from src.weekly import main as weekly_main
