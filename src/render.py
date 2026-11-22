@@ -622,9 +622,34 @@ TEMPLATE = ENV.from_string("""
   .spark{width:100%;height:22px;display:block}
   .spark.pos polyline{stroke:var(--open)} .spark.neg polyline{stroke:var(--bad)}
 
-  #visit-changes{margin-bottom:20px}
-  .visit-update{padding:8px 0;border-bottom:1px dashed var(--line);font-size:13px;line-height:1.5}
-  .visit-update:last-child{border-bottom:none;padding-bottom:0}
+  #visit-changes{margin:24px 0 0;padding:16px 18px}
+  #visit-changes[hidden],.visit-update[hidden]{display:none}
+  #visit-changes .widget-title{margin:-16px -18px 14px;padding:10px 18px}
+  .deck.filtered #visit-changes{display:none}
+  .vc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(460px,1fr));gap:14px}
+  .visit-update{display:flex;flex-direction:column;gap:10px;padding:13px 14px;background:var(--card-2);border:1.5px solid var(--ink)}
+  .vc-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .vc-status{display:inline-flex;align-items:center;gap:5px;font:700 10px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.05em;
+             padding:3px 7px;border:1.5px solid var(--ink);background:var(--lime);color:#121211}
+  .vc-status.vc-confirmed{background:#34D399;color:#121211}
+  .vc-status.vc-correction{background:#FBBF24;color:#121211}
+  .vc-status.vc-expired{background:var(--card);color:var(--muted)}
+  .vc-date{font:600 10.5px var(--f-mono);color:var(--muted)}
+  .vc-flow{display:grid;grid-template-columns:minmax(0,1fr) 22px minmax(0,1.15fr);gap:8px;align-items:stretch}
+  .vc-flow.single{grid-template-columns:minmax(0,1fr)}
+  .vc-step{display:flex;flex-direction:column;gap:5px;padding:10px 11px;border:1px solid var(--line);background:var(--card)}
+  .vc-step.vc-before{background:transparent;border-style:dashed}
+  .vc-step.vc-after{border-color:var(--ink);border-left:3.5px solid var(--orange)}
+  .vc-step-h{display:flex;align-items:center;justify-content:space-between;gap:6px;flex-wrap:wrap}
+  .vc-k{font:700 9.5px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.06em;padding:2px 5px;border:1px solid var(--line);color:var(--muted);background:var(--card-2)}
+  .vc-after .vc-k{background:var(--orange);color:#121211;border-color:var(--ink)}
+  .vc-meta{font:600 10px/1 var(--f-mono);color:var(--muted);text-transform:uppercase}
+  .vc-link{font:600 13.5px/1.35 var(--f-head);color:var(--text);text-decoration:none}
+  .vc-before .vc-link{font-weight:500;color:var(--muted)}
+  .vc-link:hover{text-decoration:underline;text-underline-offset:2px}
+  .vc-arrow{display:grid;place-items:center;font:700 16px/1 var(--f-mono);color:var(--orange-ink)}
+  .vc-watch{display:flex;align-items:baseline;gap:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:12.5px;line-height:1.4;color:var(--muted)}
+  .vc-wk{font:700 9.5px/1 var(--f-mono);text-transform:uppercase;padding:2px 5px;border:1px solid var(--ink);background:var(--lime);color:#121211;flex-shrink:0}
 
   footer{margin-top:56px;padding-top:14px;border-top:3px solid var(--ink);display:flex;justify-content:space-between;
          gap:16px;flex-wrap:wrap;font:400 12px var(--f-mono);color:var(--muted)}
@@ -641,7 +666,8 @@ TEMPLATE = ENV.from_string("""
     .opening .lead,.opening[data-cols="2"] .lead{grid-column:auto;order:-1}
   }
   @media(max-width:720px){
-    .grid,.below .grid{grid-template-columns:1fr}
+    .grid,.below .grid,.vc-grid,.vc-flow{grid-template-columns:1fr}
+    .vc-arrow{transform:rotate(90deg);height:16px}
     .tq{flex:0 0 170px}
     .pulse{grid-template-columns:1fr}
     .cx,.watch-row{grid-template-columns:1fr;gap:5px}
@@ -697,22 +723,6 @@ TEMPLATE = ENV.from_string("""
     {{ bi("El espejo no devolvió posts (" ~ x_layer.configured ~ " cuentas). El briefing sigue con RSS.", "The mirror returned no posts (" ~ x_layer.configured ~ " accounts). The briefing continues with RSS.") }}
     {% endif %}
   </div>
-  {% endif %}
-
-  {% if nav == 'daily' and not archive %}
-  <section id="visit-changes" class="widget" data-edition="{{ generated_at }}" hidden>
-    <h2 class="widget-title"><span>{{ bi("Qué cambió desde tu última visita", "What changed since your last visit") }}</span></h2>
-    {% for u in visit_updates %}
-    <article class="visit-update" data-updated="{{ u.date }}" hidden>
-      <b>{{ u.date }} · {% if u.status == 'confirmed' %}{{ bi("Hito confirmado","Milestone confirmed") }}{% elif u.status == 'expired' %}{{ bi("Plazo vencido · sin confirmación localizada","Deadline passed · confirmation not found") }}{% elif u.status == 'correction' %}{{ bi("Rectificación publicada","Published correction") }}{% else %}{{ bi("Nuevo desarrollo","New development") }}{% if u.before.watch %} · {{ bi("Hito abierto","Milestone open") }}{% endif %}{% endif %}</b>
-      <div>{{ bi("Qué sabíamos","What we knew") }} · <a href="{{ u.before.url|safe_url }}">{{ bi(u.before.es,u.before.en) }}</a>
-      <small>{{ u.before.source }} · {{ u.before.date }}</small></div>
-      {% if u.after %}<div>{{ bi("Qué cambió","What changed") }} · <a href="{{ u.after.url|safe_url }}">{{ bi(u.after.es,u.after.en) }}</a>
-      <small>{{ u.after.source }} · {{ u.after.date }}</small></div>{% endif %}
-      {% if u.before.watch and u.status != 'confirmed' %}<div>{{ bi("Hito pendiente","Open milestone") }} · {{ bi(u.before.watch,u.before.watch_en) }}</div>{% endif %}
-    </article>
-    {% endfor %}
-  </section>
   {% endif %}
 
   <!-- Tabs de tema -->
@@ -902,6 +912,55 @@ TEMPLATE = ENV.from_string("""
     </section>
     {% endif %}
   </div>
+  {% endif %}
+
+  {% if nav == 'daily' and not archive %}
+  <section id="visit-changes" class="widget" data-edition="{{ generated_at }}" hidden>
+    <h2 class="widget-title">
+      <span>{{ bi("Qué cambió desde tu última visita", "What changed since your last visit") }}</span>
+      <span class="lbl">{{ bi("Seguimiento","Story follow-up") }}</span>
+    </h2>
+    <div class="vc-grid">
+      {% for u in visit_updates %}
+      <article class="visit-update" data-updated="{{ u.date }}" hidden>
+        <div class="vc-top">
+          <span class="vc-status vc-{{ u.status }}">
+            {% if u.status == 'confirmed' %}{{ bi("✓ Hito confirmado","✓ Milestone confirmed") }}
+            {% elif u.status == 'expired' %}{{ bi("○ Plazo vencido","○ Deadline passed") }}
+            {% elif u.status == 'correction' %}{{ bi("! Rectificación","! Correction") }}
+            {% else %}{{ bi("↻ Nuevo desarrollo","↻ New development") }}{% endif %}
+          </span>
+          <span class="vc-date">{{ u.date }}</span>
+        </div>
+        <div class="vc-flow{% if not u.after %} single{% endif %}">
+          <div class="vc-step vc-before">
+            <div class="vc-step-h">
+              <span class="vc-k">{{ bi("Antes","Before") }}</span>
+              <span class="vc-meta">{{ u.before.source }}{% if u.before.date %} · {{ u.before.date[5:] }}{% endif %}</span>
+            </div>
+            <a class="vc-link" href="{{ u.before.url|safe_url }}" target="_blank" rel="noopener noreferrer">{{ bi(u.before.es, u.before.en) }}</a>
+          </div>
+          {% if u.after %}
+          <span class="vc-arrow" aria-hidden="true">→</span>
+          <div class="vc-step vc-after">
+            <div class="vc-step-h">
+              <span class="vc-k">{{ bi("Ahora","Now") }}</span>
+              <span class="vc-meta">{{ u.after.source }}{% if u.after.date %} · {{ u.after.date[5:] }}{% endif %}</span>
+            </div>
+            <a class="vc-link" href="{{ u.after.url|safe_url }}" target="_blank" rel="noopener noreferrer">{{ bi(u.after.es, u.after.en) }}</a>
+          </div>
+          {% endif %}
+        </div>
+        {% if u.before.watch and u.status != 'confirmed' %}
+        <div class="vc-watch">
+          <span class="vc-wk">{{ bi("Pendiente","Open") }}</span>
+          <span>{{ bi(u.before.watch, u.before.watch_en) }}</span>
+        </div>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </div>
+  </section>
   {% endif %}
 
   {% if not hero and not stream %}
@@ -1328,6 +1387,22 @@ def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", 
     health = snapshot.get("source_health") or {}
     dead = health.get("dead") or []
 
+    raw_updates = (memory.get("followups") or {}).get("updates", [])[:3]
+    visit_updates = []
+    for u in raw_updates:
+        if not isinstance(u, dict):
+            continue
+        clean_u = dict(u)
+        for side in ("before", "after"):
+            part = clean_u.get(side)
+            if isinstance(part, dict):
+                cp = dict(part)
+                for k in ("es", "en"):
+                    if isinstance(cp.get(k), str):
+                        cp[k] = strip_evidence_prefix(cp[k])
+                clean_u[side] = cp
+        visit_updates.append(clean_u)
+
     return TEMPLATE.render(
         generated_at=snapshot.get("date") or radar_today_str(),
         activity=snapshot.get("activity") or {"label": "ACTIVO", "class": "active"},
@@ -1350,7 +1425,7 @@ def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", 
         n_context=len(context),
         n_dropped=snapshot.get("dropped_noise", 0),
         degraded=bool(snapshot.get("degraded")),
-        visit_updates=(memory.get("followups") or {}).get("updates", [])[:3],
+        visit_updates=visit_updates,
         watch_agenda=watch_agenda,
         watch_results=watch_results,
         sources_alive=health.get("alive", 0),

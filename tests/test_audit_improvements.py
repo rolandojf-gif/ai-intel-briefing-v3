@@ -439,7 +439,26 @@ class UxTimezoneHealthTests(unittest.TestCase):
                 "signals": ["Inferencia · Primera clave editorial."],
                 "signals_en": ["Inference · First editorial key point."],
             },
-            snapshot={"date": "2026-11-22"},
+            snapshot={
+                "date": "2026-11-22",
+                "memory": {
+                    "followups": {
+                        "updates": [{
+                            "date": "2026-11-22",
+                            "status": "development",
+                            "before": {
+                                "source": "The Verge AI", "date": "2026-11-21", "url": "https://example.com/1",
+                                "es": "Según la fuente · Antes de la noticia", "en": "Reported · Before story",
+                                "watch": "Verificación independiente.", "watch_en": "Independent check.",
+                            },
+                            "after": {
+                                "source": "Latent Space", "date": "2026-11-22", "url": "https://example.com/2",
+                                "es": "Confirmado · Después de la noticia", "en": "Confirmed · After story",
+                            },
+                        }],
+                    },
+                },
+            },
             market=market,
         )
         # Prefijos repetitivos eliminados de titulares, bajadas y editorial
@@ -449,6 +468,8 @@ class UxTimezoneHealthTests(unittest.TestCase):
         self.assertNotIn("Inferencia · La pausa", html)
         self.assertNotIn("Inferencia · El coste", html)
         self.assertNotIn("Inferencia · Primera clave", html)
+        self.assertNotIn("Según la fuente · Antes de la noticia", html)
+        self.assertNotIn("Confirmado · Después de la noticia", html)
         self.assertIn("Loudoun County suspende nuevos centros de datos", html)
         self.assertIn("El coste del cómputo marca el pulso del día.", html)
         # Pastillas discretas presentes
@@ -459,6 +480,11 @@ class UxTimezoneHealthTests(unittest.TestCase):
         self.assertIn('href="https://www.investing.com/indices/us-spx-500-futures"', html)
         self.assertIn('href="https://www.investing.com/equities/nvidia-corp"', html)
         self.assertIn('href="https://www.investing.com/equities/anthropic"', html)
+        # "Qué cambió desde tu última visita" entre Mercados (.telemetry-band) y Más allá del titular (.below)
+        self.assertLess(html.index('class="telemetry-band"'), html.index('id="visit-changes"'))
+        self.assertLess(html.index('id="visit-changes"'), html.index('class="below'))
+        self.assertIn("Antes de la noticia", html)
+        self.assertIn("Después de la noticia", html)
 
 
 if __name__ == "__main__":
