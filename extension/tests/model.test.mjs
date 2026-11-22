@@ -136,3 +136,36 @@ test('also lists the other outlets of a merged story, safely', async () => {
     {label: 'Stratechery', href: ''},
   ]);
 });
+
+test('elimina prefijos repetitivos de evidencia de títulos, tesis y claves preservando evidenceKind', () => {
+  const copy = structuredClone(fixture);
+  copy.briefing = {
+    ...copy.briefing,
+    thesis: 'Inferencia · El cómputo y la seguridad marcan el ritmo.',
+    signals: ['Inferencia · Primera clave limpia.', 'Hipótesis · Segunda clave limpia.'],
+  };
+  copy.items = [
+    {
+      title_es: 'Según la fuente · Loudoun County suspende nuevos centros de datos',
+      so_what: 'Inferencia · Frena la expansión de infraestructura.',
+      power_shift: 'Inferencia · Reguladores ganan',
+      evidence_kind: 'reported',
+      link: 'https://example.org/loudoun',
+      source: 'Business Insider Tech',
+    },
+    {
+      title_es: 'Confirmado · OpenAI detalla defensas contra destilación',
+      link: 'https://openai.com/defenses',
+      source: 'OpenAI',
+    },
+  ];
+  const edition = normalizeEdition(copy);
+  assert.equal(edition.thesis, 'El cómputo y la seguridad marcan el ritmo.');
+  assert.deepEqual(edition.signals, ['Primera clave limpia.', 'Segunda clave limpia.']);
+  assert.equal(edition.items[0].title, 'Loudoun County suspende nuevos centros de datos');
+  assert.equal(edition.items[0].why, 'Frena la expansión de infraestructura.');
+  assert.equal(edition.items[0].powerShift, 'Reguladores ganan');
+  assert.equal(edition.items[0].evidenceKind, 'reported');
+  assert.equal(edition.items[1].title, 'OpenAI detalla defensas contra destilación');
+  assert.equal(edition.items[1].evidenceKind, 'confirmed');
+});

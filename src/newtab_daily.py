@@ -40,9 +40,39 @@ def atomic_json(path: Path, data: dict) -> None:
     tmp.replace(path)
 
 
+def _clean_newtab_payload(data: dict) -> dict:
+    """Limpia prefijos repetitivos de certeza (Según la fuente ·, Confirmado ·, Inferencia ·) para NEXUS DAILY."""
+    from src.render import strip_evidence_prefix
+    out = dict(data)
+    items = out.get('items')
+    if isinstance(items, list):
+        cleaned_items = []
+        for raw in items:
+            if not isinstance(raw, dict):
+                cleaned_items.append(raw)
+                continue
+            it = dict(raw)
+            for field in ('title_es', 'title_en', 'so_what', 'so_what_en', 'why', 'power_shift', 'power_shift_en'):
+                if isinstance(it.get(field), str) and it[field]:
+                    it[field] = strip_evidence_prefix(it[field])
+            cleaned_items.append(it)
+        out['items'] = cleaned_items
+    br = out.get('briefing')
+    if isinstance(br, dict):
+        cbr = dict(br)
+        for field in ('thesis', 'thesis_en'):
+            if isinstance(cbr.get(field), str) and cbr[field]:
+                cbr[field] = strip_evidence_prefix(cbr[field])
+        for field in ('signals', 'signals_en'):
+            if isinstance(cbr.get(field), list):
+                cbr[field] = [strip_evidence_prefix(s) if isinstance(s, str) else s for s in cbr[field]]
+        out['briefing'] = cbr
+    return out
+
+
 def publish(data: dict) -> None:
     # Registro preciso de publicación; cron usa Europe/Madrid, los datos ISO son UTC.
-    data = {**data, 'generated_at': datetime.now(timezone.utc).isoformat()}
+    data = {**_clean_newtab_payload(data), 'generated_at': datetime.now(timezone.utc).isoformat()}
     day = data['date']
     atomic_json(NEWTAB / f'{day}.json', data)
     atomic_json(NEWTAB / 'latest.json', data)

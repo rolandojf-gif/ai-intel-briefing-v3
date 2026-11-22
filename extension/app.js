@@ -47,6 +47,20 @@ function alsoLine(article) {
   });
   return line;
 }
+const EVIDENCE_META = {
+  confirmed: ['Confirmado', 'Confirmado por fuente primaria'],
+  reported: ['Según la fuente', 'Reportado por medio externo'],
+  inference: ['Inferencia', 'Lectura editorial basada en la fuente'],
+  speculation: ['Hipótesis', 'Hipótesis, rumor o anuncio en curso'],
+  unverified: ['Sin verificar', 'Sin evidencia verificable en la fuente'],
+};
+function evidencePill(article) {
+  const entry = EVIDENCE_META[article?.evidenceKind];
+  if (!entry) return null;
+  const pill = el('span', `ev-pill ev-${article.evidenceKind}`, entry[0]);
+  pill.title = entry[1];
+  return pill;
+}
 function sectionHead(text, subtitle = '') {
   const bar = el('div', 'section-heading');
   bar.append(el('span', '', text));
@@ -211,7 +225,9 @@ function renderLead(article, edition) {
     append(lead, figure);
   }
   const meta = el('div', 'story-meta');
-  append(meta, el('span','',article.source.toUpperCase()), el('span','', rss ? 'SIN ANÁLISIS DE IA' : `RELEVANCIA ${Math.round(article.score)}/100`));
+  const metaSrc = el('span', 'story-meta-src');
+  append(metaSrc, el('span', '', article.source.toUpperCase()), evidencePill(article));
+  append(meta, metaSrc, el('span', '', rss ? 'SIN ANÁLISIS DE IA' : `RELEVANCIA ${Math.round(article.score)}/100`));
   append(lead, meta);
   if (article.why) {
     const analysis = el('div','analysis-note');
@@ -230,7 +246,9 @@ function renderLatest(items, edition) {
     const wrapper = el('article','brief-item');
     append(wrapper, el('span','brief-index', String(index + 1).padStart(2,'0')));
     const body = el('div','brief-body');
-    append(body, el('div','eyebrow brief-category', describeTheme(article.theme)), link(article,'brief-title'), el('div','brief-source', article.source));
+    const srcRow = el('div', 'brief-source');
+    append(srcRow, el('span', '', article.source), evidencePill(article));
+    append(body, el('div','eyebrow brief-category', describeTheme(article.theme)), link(article,'brief-title'), srcRow);
     append(wrapper, body);
     append(latest, wrapper);
   });
@@ -249,7 +267,9 @@ function card(article, index) {
   append(text, heading);
   if (article.why || article.summary) append(text, el('p','news-card-deck',article.why || article.summary));
   append(text, alsoLine(article));
-  append(text, el('div','card-source',article.source.toUpperCase()));
+  const srcRow = el('div', 'card-source');
+  append(srcRow, el('span', '', article.source.toUpperCase()), evidencePill(article));
+  append(text, srcRow);
   if (article.image) {
     const photo = el('a', 'news-card-image'); photo.href = article.href; photo.rel='noopener noreferrer';
     const img = el('img');img.src=article.image;img.alt='';img.loading='lazy';img.referrerPolicy='no-referrer';

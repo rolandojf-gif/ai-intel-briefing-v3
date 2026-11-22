@@ -75,6 +75,32 @@ class NewtabDailyTests(unittest.TestCase):
                 self.assertFalse(daily.publish_rss(date(2026,10,11)))
             self.assertEqual(old.read_text(),'{"date":"2026-10-10"}')
 
+    def test_publish_strips_evidence_prefixes_for_nexus_daily(self):
+        with tempfile.TemporaryDirectory() as temp:
+            path = Path(temp)
+            payload = {
+                'date': '2026-11-22',
+                'edition_type': 'analysis',
+                'briefing': {
+                    'thesis': 'Inferencia · Tesis limpia.',
+                    'signals': ['Inferencia · Clave uno.'],
+                },
+                'items': [{
+                    'title_es': 'Según la fuente · Titular limpio',
+                    'so_what': 'Inferencia · Bajada limpia.',
+                    'evidence_kind': 'reported',
+                    'url': 'https://example.org/a',
+                }],
+            }
+            with patch.object(daily, 'NEWTAB', path):
+                daily.publish(payload)
+            stored = json.loads((path / 'latest.json').read_text(encoding='utf-8'))
+            self.assertEqual(stored['items'][0]['title_es'], 'Titular limpio')
+            self.assertEqual(stored['items'][0]['so_what'], 'Bajada limpia.')
+            self.assertEqual(stored['items'][0]['evidence_kind'], 'reported')
+            self.assertEqual(stored['briefing']['thesis'], 'Tesis limpia.')
+            self.assertEqual(stored['briefing']['signals'], ['Clave uno.'])
+
 
 if __name__=='__main__': unittest.main()
 

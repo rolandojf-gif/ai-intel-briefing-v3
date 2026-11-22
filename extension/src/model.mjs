@@ -7,18 +7,52 @@ export function safeHttpUrl(raw) {
   } catch { return ''; }
 }
 
+const EVIDENCE_PREFIX_RE = /^(?:Confirmado|Confirmed|Según la fuente|Reported|Inferencia|Inference|Hipótesis|Hypothesis|Sin verificar|Unverified|Señal destacada|Featured signal)\s*[·:\-–—]\s*/i;
+const PREFIX_TO_KIND = {
+  confirmado: 'confirmed', confirmed: 'confirmed',
+  'según la fuente': 'reported', reported: 'reported',
+  inferencia: 'inference', inference: 'inference',
+  hipótesis: 'speculation', hypothesis: 'speculation',
+  'sin verificar': 'unverified', unverified: 'unverified',
+};
+const VALID_KINDS = new Set(['confirmed', 'reported', 'inference', 'speculation', 'unverified']);
+
+export function stripEvidencePrefix(raw, limit = 240) {
+  let text = asText(raw, limit + 40);
+  while (text) {
+    const m = text.match(EVIDENCE_PREFIX_RE);
+    if (!m) break;
+    text = text.slice(m[0].length).trimStart();
+  }
+  return text.slice(0, limit);
+}
+
+export function inferEvidenceKind(raw) {
+  const direct = asText(raw?.evidence_kind, 24).toLowerCase();
+  if (VALID_KINDS.has(direct)) return direct;
+  for (const field of [raw?.title_es, raw?.title_en]) {
+    const m = asText(field, 80).match(EVIDENCE_PREFIX_RE);
+    if (m) {
+      const label = m[0].replace(/\s*[·:\-–—]\s*$/, '').trim().toLowerCase();
+      if (PREFIX_TO_KIND[label]) return PREFIX_TO_KIND[label];
+    }
+  }
+  return '';
+}
+
 export function normalizeItem(raw, index = 0) {
   if (!raw || typeof raw !== 'object') return null;
   const href = safeHttpUrl(raw.link || raw.url);
-  const title = asText(raw.title_es || raw.title, 220);
+  const title = stripEvidencePrefix(raw.title_es || raw.title, 220);
   if (!href || !title) return null;
   return {
     id: String(index), href, title,
     source: asText(raw.source || 'Fuente original', 90),
     summary: asText(raw.summary || '', 480),
-    why: asText(raw.so_what || raw.why || '', 280),
-    powerShift: asText(raw.power_shift || '', 220),
+    why: stripEvidencePrefix(raw.so_what || raw.why || '', 280),
+    powerShift: stripEvidencePrefix(raw.power_shift || '', 220),
     watchNext: asText(raw.watch_next || '', 220),
+    evidenceKind: inferEvidenceKind(raw),
     image: safeHttpUrl(raw.image_url),
     score: Number.isFinite(Number(raw.final_score)) ? Number(raw.final_score) : 0,
     timestamp: raw.published || '',
@@ -68,8 +102,8 @@ export function normalizeEdition(payload) {
     editionType: payload.edition_type === 'rss' ? 'rss' : 'analysis',
     analysisDate: /^\d{4}-\d{2}-\d{2}$/.test(payload.analysis_date || '') ? payload.analysis_date : payload.date,
     items,
-    thesis: asText(briefing.thesis, 500),
-    signals: limitedStrings(briefing.signals, 5, 320),
+    thesis: stripEvidencePrefix(briefing.thesis, 500),
+    signals: limitedStrings(briefing.signals, 5, 320, true),
     risks: limitedStrings(briefing.risks, 3, 320),
     watch: limitedStrings(briefing.watch, 4, 320),
     topEntities: Array.isArray(payload.top_entities) ? payload.top_entities.map(e => asText(e?.entity, 40)).filter(Boolean).slice(0, 6) : [],
@@ -78,8 +112,10 @@ export function normalizeEdition(payload) {
   };
 }
 
-function limitedStrings(raw, maxItems, maxChars) {
-  return Array.isArray(raw) ? raw.map(s => asText(s, maxChars)).filter(Boolean).slice(0, maxItems) : [];
+function limitedStrings(raw, maxItems, maxChars, stripPrefix = false) {
+  return Array.isArray(raw)
+    ? raw.map(s => (stripPrefix ? stripEvidencePrefix(s, maxChars) : asText(s, maxChars))).filter(Boolean).slice(0, maxItems)
+    : [];
 }
 
 export function filterItems(edition, theme = 'all') {
