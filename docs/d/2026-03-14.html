@@ -173,7 +173,7 @@
     .strip .r{margin-left:0}
   }
 
-  .wrap{max-width:1500px;margin:0 auto;padding:18px 24px 80px}
+  .wrap{max-width:1580px;margin:0 auto;padding:18px 24px 80px}
   .stale{font:700 10.5px/1 var(--f-mono);text-transform:uppercase;color:#121211;background:#FBBF24;
          border:1px solid var(--ink);padding:3px 7px}
   .arch-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 18px;padding:10px 14px;
@@ -237,41 +237,63 @@
   .pulse-cols i:hover{background:var(--orange)}
   .pulse-note{font:400 11px/1.4 var(--f-mono);color:#9C9B95;margin-top:8px}
 
-  .movers{list-style:none;margin:0;padding:0}
-  .movers li{display:grid;grid-template-columns:1fr auto;gap:4px 8px;align-items:baseline;padding:0 0 9px;margin-bottom:9px;border-bottom:1px dashed var(--line)}
-  .movers li:last-child{padding-bottom:0;margin-bottom:0;border-bottom:none}
-  .mv-n{font:700 14.5px var(--f-head)}
-  .mv-t{font:700 10.5px var(--f-mono);color:var(--muted);text-transform:uppercase}
-  .mv-t.t-up,.mv-t.t-new{color:var(--open)} .mv-t.t-down{color:var(--bad)}
-  .mv-bar{grid-column:1/-1;height:8px;border:1px solid var(--ink);background:var(--card-2)}
-  .mv-bar i{display:block;height:100%;background:var(--orange)}
 
-  /* -- Portada (Hero adaptativo + Editorial estrecho y alineado) -- */
-  .opening{display:grid;grid-template-columns:minmax(0,1fr) 365px;gap:22px;align-items:stretch}
-  .deck.filtered .opening{display:none}
+  /* -- Portada a 3 columnas: Editorial (izq) · Hero #01 (centro) · Contexto + Qué vigilar (der) -- */
+  .opening{display:grid;grid-template-columns:minmax(295px,330px) minmax(0,1.85fr) minmax(310px,345px);gap:24px;align-items:stretch}
+  .opening[data-cols="2"]{grid-template-columns:320px minmax(0,1fr)}
+  .deck.filtered{display:flex;flex-direction:column}
+  .deck.filtered .opening{order:2;display:block;margin-top:26px}
+  .deck.filtered .opening.filter-empty{display:none}
+  .deck.filtered .opening .rail,.deck.filtered .opening .lead,.deck.filtered .opening .watch-rail{display:none}
+  .deck.filtered .opening .side-rail{padding:0;background:transparent;border:0;box-shadow:none;height:auto}
 
-  .rail{display:flex;flex-direction:column;height:100%;min-width:0;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow);padding:16px 18px}
-  .rail-h{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 10px;padding:0 0 7px;border-bottom:2px solid var(--ink);
+  .rail,.side-rail{display:flex;flex-direction:column;height:100%;min-width:0;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow);padding:18px 20px}
+  .rail-h{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 12px;padding:0 0 8px;border-bottom:2px solid var(--ink);
           font:700 11.5px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.08em}
   .rail-h>span:first-child{display:flex;align-items:center;gap:8px}
   .rail-h>span:first-child::before{content:"";width:10px;height:10px;background:var(--orange);border:2px solid var(--ink);flex:0 0 auto}
-  .rail-h .lbl{font:400 10px var(--f-mono);color:var(--muted);letter-spacing:.04em;white-space:nowrap}
-  .rail-title{font:700 22px/1.08 var(--f-head);text-transform:uppercase;letter-spacing:-.028em;margin:2px 0 8px}
-  .rail-thesis{font:500 14px/1.48 var(--f-head);margin:0 0 14px}
-  .keys{margin:0 0 12px;padding:0;list-style:none;counter-reset:k}
-  .keys li{counter-increment:k;display:grid;grid-template-columns:24px 1fr;gap:7px;padding:0 0 7px;margin-bottom:7px;border-bottom:1px dashed var(--line);font-size:13px;line-height:1.42}
+  .watch-rail .rail-h>span:first-child::before{background:var(--lime)}
+  .rail-h .lbl{font:400 10.5px var(--f-mono);color:var(--muted);letter-spacing:.04em;white-space:nowrap}
+  .rail-title{font:700 23px/1.1 var(--f-head);text-transform:uppercase;letter-spacing:-.028em;margin:2px 0 10px}
+  .rail-thesis{font:500 15px/1.52 var(--f-head);margin:0 0 18px}
+  .keys{margin:0 0 14px;padding:0;list-style:none;counter-reset:k}
+  .keys li{counter-increment:k;display:grid;grid-template-columns:25px 1fr;gap:8px;padding:0 0 10px;margin-bottom:10px;border-bottom:1px dashed var(--line);font-size:14px;line-height:1.48}
   .keys li:last-child{margin-bottom:0;border-bottom:none;padding-bottom:0}
-  .keys li::before{content:counter(k,decimal-leading-zero);font:700 10.5px/1.65 var(--f-mono);color:var(--orange-ink)}
-  .rail-foot{margin-top:auto;padding-top:12px;display:flex;flex-direction:column;gap:12px}
-  .onradar{margin:0;padding:10px 12px;background:var(--card-2);border:2px solid var(--ink);box-shadow:inset 5px 0 0 var(--orange)}
-  .onradar .rail-h{margin-bottom:6px;padding-bottom:5px;border-bottom-width:1.5px;font-size:10.5px}
-  .onradar p{font-size:12.8px;line-height:1.44;margin:0}
-  .figures{border-top:2px solid var(--ink);padding-top:10px;display:flex;flex-direction:column;gap:7px}
+  .keys li::before{content:counter(k,decimal-leading-zero);font:700 11.5px/1.6 var(--f-mono);color:var(--orange-ink)}
+  .rail-foot{margin-top:auto;padding-top:14px;display:flex;flex-direction:column;gap:10px}
+  .figures{border-top:2px solid var(--ink);padding-top:12px;display:flex;flex-direction:column;gap:8px}
   .fig-row{display:flex;align-items:baseline;justify-content:space-between;gap:8px;flex-wrap:wrap}
-  .fig-count{font:700 18px/1 var(--f-head);letter-spacing:-.03em}
-  .fig-note{font:400 10.5px/1.35 var(--f-mono);color:var(--muted)}
-  .figures .ents{margin-top:0;gap:5px}
-  .figures .ent{font-size:10px;padding:2px 5px}
+  .fig-count{font:700 24px/1 var(--f-head);letter-spacing:-.03em}
+  .fig-note{font:400 11px/1.35 var(--f-mono);color:var(--muted)}
+  .figures .ents{margin-top:0;gap:6px}
+  .figures .ent{font-size:11px;padding:3px 6px}
+
+  /* Columna derecha: Contexto (lectura rapida) + Que vigilar (seguimiento) */
+  .side-rail{gap:20px}
+  .side-rail .ctx-block{margin:0}
+  .side-rail .ctx{border-top:0;background:transparent;counter-reset:cx}
+  .side-rail .cx{counter-increment:cx;display:grid;grid-template-columns:25px minmax(0,1fr);gap:8px;align-items:start;padding:0 0 12px;margin-bottom:12px;border-bottom:1px dashed var(--line)}
+  .side-rail .cx:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+  .side-rail .cx::before{content:counter(cx,decimal-leading-zero);font:700 11.5px/1.45 var(--f-mono);color:var(--orange-ink)}
+  .side-rail .cx-body{display:flex;flex-direction:column;gap:4px;min-width:0}
+  .side-rail .cx-theme{font:700 10.5px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--orange-ink)}
+  .side-rail .cx-t{margin:0;font:700 15px/1.34 var(--f-head);letter-spacing:-.012em;max-width:none}
+  .side-rail .cx .src{font-size:11px;gap:6px;margin-top:2px}
+  .side-rail .cx .src img{width:15px;height:15px}
+  .side-rail .metric-context{margin:.45rem 0 0;font-size:.84rem}
+  .side-rail .metric-context summary{padding:.2rem .65rem;font-size:.8rem}
+  .watch-rail{margin-top:auto}
+  .side-rail .watch-agenda{border-top:0;background:transparent}
+  .side-rail .watch-row{display:flex;flex-direction:column;gap:5px;padding:10px 0 10px 12px;border-bottom:1px dashed var(--line);border-left:3px solid var(--lime)}
+  .side-rail .watch-row:first-child{padding-top:3px}
+  .side-rail .watch-row:last-child{border-bottom:none;padding-bottom:0}
+  .side-rail .watch-row p{font:500 14px/1.46 var(--f-head);max-width:none;margin:0}
+  .side-rail .watch-row .src{font-size:11px;line-height:1.35}
+  .side-rail [id^="watch-point-"]:target{background:rgba(255,87,34,.08);border-left-color:var(--orange);box-shadow:none;padding-right:6px}
+  .deck.filtered .side-rail .ctx{border-top:2px solid var(--ink);background:var(--card)}
+  .deck.filtered .side-rail .cx{grid-template-columns:minmax(0,1fr);gap:6px;padding:14px 16px;margin-bottom:0;border-bottom:1px solid var(--line)}
+  .deck.filtered .side-rail .cx::before{display:none}
+  .deck.filtered .side-rail .cx-t{font:600 16px/1.45 var(--f-head)}
 
   .lead{position:relative;display:flex;flex-direction:column;height:100%;min-width:0;background:var(--card);border:2px solid var(--ink);border-top:5px solid var(--lead-accent,var(--orange));
         box-shadow:var(--shadow);overflow:hidden;transition:transform .12s,box-shadow .12s}
@@ -283,34 +305,34 @@
   .lead-media{position:relative;display:block;overflow:hidden;background:var(--asphalt);border-bottom:2px solid var(--ink)}
   .lead-media::after{content:"";position:absolute;inset:0;pointer-events:none;
                      background:linear-gradient(180deg,rgba(15,15,14,.55) 0%,rgba(15,15,14,0) 38%,rgba(15,15,14,.32) 100%)}
-  .lead-media .hero-img{display:block;width:100%;aspect-ratio:21/9;max-height:320px;object-fit:cover;border-bottom:0;transition:transform .35s ease}
+  .lead-media .hero-img{display:block;width:100%;aspect-ratio:16/9;max-height:360px;object-fit:cover;border-bottom:0;transition:transform .35s ease}
   .lead-media:hover .hero-img{transform:scale(1.02)}
   .lead-media-bar{position:absolute;top:14px;left:16px;right:16px;z-index:2;display:flex;align-items:center;gap:8px;flex-wrap:wrap;pointer-events:none}
   .lead-media-bar .tag{background:var(--lead-accent,var(--orange));color:#121211;border:2px solid #121211;box-shadow:2px 2px 0 rgba(18,18,17,.65)}
   .lead-media-bar .score{font-size:12.5px;padding:5px 9px}
-  .lead-body{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;padding:20px 26px 20px}
+  .lead-body{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;padding:22px 26px 22px}
   .lead-top{display:none;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 18px}
   .lead-top .tag{background:var(--lead-accent,var(--orange));color:#121211}
   .lead-top .score{font-size:12.5px;padding:5px 9px}
-  .lead .hero-title{font:700 clamp(25px,2.45vw,38px)/1.08 var(--f-head);letter-spacing:-.032em;margin:0 0 12px}
-  .lead .sw{font-size:clamp(15px,1.15vw,17.5px);line-height:1.52;color:var(--muted);margin:0 0 16px;max-width:68ch}
+  .lead .hero-title{font:700 clamp(26px,2.35vw,38px)/1.08 var(--f-head);letter-spacing:-.032em;margin:0 0 14px}
+  .lead .sw{font-size:clamp(15.5px,1.15vw,17.5px);line-height:1.55;color:var(--muted);margin:0 0 18px;max-width:66ch}
 
-  .lead-intel{display:grid;gap:10px;margin:0 0 14px}
-  @media(min-width:740px){.lead-intel.two{grid-template-columns:1fr 1fr;gap:12px}}
-  .intel-box{padding:11px 14px;background:var(--card-2);border:1.5px solid var(--line);display:flex;flex-direction:column;gap:5px}
+  .lead-intel{display:grid;gap:12px;margin:0 0 16px}
+  @media(min-width:740px){.lead-intel.two{grid-template-columns:1fr 1fr;gap:14px}}
+  .intel-box{padding:12px 15px;background:var(--card-2);border:1.5px solid var(--line);display:flex;flex-direction:column;gap:6px}
   .intel-box.pw{border-left:3.5px solid var(--orange)}
   .intel-box.wn{border-left:3.5px solid var(--lime)}
-  .intel-k{display:inline-flex;align-self:flex-start;font:700 10px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.06em;
+  .intel-k{display:inline-flex;align-self:flex-start;font:700 10.5px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.06em;
            padding:3px 6px;border:1px solid var(--ink)}
   .intel-box.pw .intel-k{background:var(--orange);color:#121211}
   .intel-box.wn .intel-k{background:var(--lime);color:#121211}
-  .intel-v{font-size:13.5px;line-height:1.45}
+  .intel-v{font-size:14px;line-height:1.48}
 
   .lead-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:auto;padding-top:16px;border-top:1px dashed var(--line)}
   .lead-foot-l{display:flex;align-items:center;gap:10px;flex-wrap:wrap;min-width:0}
   .lead-foot-l .ents{margin-top:0}
-  .lead-cta{display:inline-flex;align-items:center;gap:7px;font:700 11.5px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.04em;
-            padding:9px 14px;background:var(--lime);color:#121211;border:2px solid var(--ink);box-shadow:var(--shadow-sm);
+  .lead-cta{display:inline-flex;align-items:center;gap:7px;font:700 12px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.04em;
+            padding:10px 15px;background:var(--lime);color:#121211;border:2px solid var(--ink);box-shadow:var(--shadow-sm);
             transition:transform .08s,box-shadow .08s;white-space:nowrap}
   .lead-cta:hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 var(--ink)}
 
@@ -325,12 +347,14 @@
   .lead.lead-dossier .lead-wm{display:block}
   .lead.lead-dossier .lead-media{display:none}
   .lead.lead-dossier .lead-top{display:flex}
-  .lead.lead-dossier .lead-body{padding:28px 34px 24px}
+  .lead.lead-dossier .lead-body{padding:28px 30px 24px}
   .lead.lead-dossier .lead-top .tag{border-color:#E8E7E1}
   .lead.lead-dossier .lead-top .badge-new{border-color:#E8E7E1}
-  .lead.lead-dossier .hero-title{font-size:clamp(32px,3.5vw,54px);line-height:1.03;color:#FFFFFF;max-width:25ch;margin-bottom:18px}
+  .lead.lead-dossier .hero-title{font-size:clamp(30px,3vw,46px);line-height:1.05;color:#FFFFFF;max-width:24ch;margin-bottom:18px}
   .lead.lead-dossier .hero-title a:hover{text-decoration-color:var(--lead-accent,var(--lime))}
-  .lead.lead-dossier .sw{color:#D4D3CC;font-size:clamp(16px,1.25vw,19px);line-height:1.54;margin-bottom:26px;max-width:58ch}
+  .lead.lead-dossier .sw{color:#D4D3CC;font-size:clamp(16px,1.2vw,18px);line-height:1.55;margin-bottom:24px;max-width:58ch}
+  .lead.lead-dossier .metric-context blockquote{border-left-color:#44443E;color:#D4D3CC}
+  .lead.lead-dossier .metric-context a{color:var(--lime)}
   .lead.lead-dossier .lead-intel{margin-top:auto;margin-bottom:0}
   .lead.lead-dossier .intel-box{background:rgba(20,20,18,.9);border-color:#34342F;color:#ECEBE5;padding:14px 16px}
   .lead.lead-dossier .intel-box.pw{border-left-color:var(--orange)}
@@ -352,13 +376,8 @@
   .below .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
   .deck:not(.filtered) .dup,.deck:not(.filtered) .h-filtered,.deck.filtered .h-all{display:none}
   .deck:not(.filtered) .below.no-rest{display:none}
-  .deck.filtered .below{margin-top:0;padding-top:0;border-top:0}
+  .deck.filtered .below{order:1;margin-top:0;padding-top:0;border-top:0}
 
-  .insights{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(280px,1fr);gap:22px;margin-top:34px;align-items:start}
-  .insights.single{grid-template-columns:minmax(0,1fr)}
-  .companies{margin-top:0}
-  .companies .company-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 28px}
-  .memory{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:34px;align-items:start}
 
   /* -- Hero y cards: bordes de tinta y sombra dura -- */
   .hero,.card{background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow);transition:transform .1s,box-shadow .1s}
@@ -417,19 +436,24 @@
   /* -- Contexto -- */
   .section-h{margin:34px 0 14px}
   .section-h h2{margin:0}
-  .ctx-block .section-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
-  .sec-sub{margin:0;font:400 11.5px var(--f-mono);color:var(--muted);text-transform:uppercase}
-  .ctx{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-  .cx{display:flex;flex-direction:column;gap:8px;padding:14px 16px;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow-sm)}
-  .cx .meta-row{margin-bottom:0}
-  .cx-tag{display:inline-block;font:700 10px/1 var(--f-mono);text-transform:uppercase;padding:3px 6px;border:1px solid var(--ink);background:var(--card-2);color:var(--text);flex-shrink:0}
-  .cx-t{margin:0;font:700 16px/1.3 var(--f-head);letter-spacing:-.01em}
-  .cx-w{font-size:13.5px;color:var(--muted);line-height:1.48;margin:0;
-        display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .ctx,.watch-agenda,.watch-results{border-top:2px solid var(--ink);background:var(--card)}
+  .cx,.watch-row{display:grid;grid-template-columns:minmax(9rem,15rem) minmax(0,1fr);gap:16px;align-items:baseline;padding:14px 16px;border-bottom:1px solid var(--line)}
+  .cx-t,.watch-row p{margin:0;font:600 16px/1.45 var(--f-head);max-width:80ch}
+  .watch-link,.watch-row a{text-decoration:underline;text-underline-offset:3px}
+  .watch-row .src{align-self:start}
+  .watch-row blockquote{margin:5px 0;color:var(--muted);font-size:14px}
+  [id^="watch-point-"]{scroll-margin-top:12px}
+  [id^="watch-point-"]:target{box-shadow:inset 4px 0 var(--orange)}
 
   .empty{padding:40px 26px;text-align:center;border:2px dashed var(--ink);background:var(--card)}
   .empty .big{font:700 20px var(--f-head);margin-bottom:8px;text-transform:uppercase}
   .empty .sub{font-size:14px;color:var(--muted);max-width:52ch;margin:0 auto;line-height:1.6}
+
+  .metric-context{margin:.65rem 0;font-size:.86rem;line-height:1.45}
+  .metric-context summary{display:list-item;width:fit-content;max-width:100%;box-sizing:border-box;cursor:pointer;font-weight:700;background:#ffda55;color:#201a07;border:1px solid #806419;border-radius:1rem;padding:.22rem .75rem}
+  .metric-context summary:focus-visible{outline:3px solid currentColor;outline-offset:2px}
+  .metric-context blockquote{margin:.45rem 0;padding-left:.7rem;border-left:2px solid var(--line)}
+  .metric-context a{text-decoration:underline}
 
   /* -- Sidebar -- */
   .sidebar{display:grid;gap:22px;position:sticky;top:16px}
@@ -440,70 +464,37 @@
   .widget-title>span:first-child::before{content:"";width:10px;height:10px;background:var(--orange);border:2px solid var(--ink)}
   .widget-title .lbl{font:400 10px var(--f-mono);color:var(--muted);text-transform:uppercase}
 
-  .market-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-  .m-box{background:var(--card-2);border:1px solid var(--ink);padding:9px 10px}
-  .m-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
-  .m-lbl{font:600 11px var(--f-mono);text-transform:uppercase;color:var(--muted)}
   .m-chg{font:700 11px var(--f-mono)}
-  .m-chg.pos,.comp-chg.pos{color:var(--open)} .m-chg.neg,.comp-chg.neg{color:var(--bad)}
-  .m-chg.na,.comp-chg.na,.comp-price.na{color:var(--muted);font-weight:400}
+  .m-chg.pos{color:var(--open)} .m-chg.neg{color:var(--bad)}
+  .m-chg.na{color:var(--muted);font-weight:400}
   .m-price{font:700 14px var(--f-mono);margin-bottom:4px;font-variant-numeric:tabular-nums}
   .m-nodata{opacity:.55}
   .spark{width:100%;height:22px;display:block}
   .spark.pos polyline{stroke:var(--open)} .spark.neg polyline{stroke:var(--bad)}
 
-  .comp-item{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line)}
-  .comp-item:last-child{border-bottom:none;padding-bottom:0}
-  .comp-info{display:flex;align-items:center;gap:9px;min-width:0}
-  .comp-logo{width:24px;height:24px;padding:2px;flex-shrink:0;background:var(--logo-bg);border:1px solid var(--line)}
-  .comp-name{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .comp-ticker{font:400 10px var(--f-mono);color:var(--muted)}
-  .comp-val{text-align:right;flex-shrink:0}
-  .comp-price{font:700 12px var(--f-mono);font-variant-numeric:tabular-nums}
-  .comp-chg{font:700 10.5px var(--f-mono)}
-
-  .wr,.thr,.mv,.rk{padding:8px 0;border-bottom:1px dashed var(--line)}
-  .wr:last-child,.thr:last-child,.mv:last-child,.rk:last-child{border-bottom:none;padding-bottom:0}
-  .wr{display:flex;gap:10px;align-items:flex-start}
-  .wr-ic{font:700 12px/1.5 var(--f-mono);flex-shrink:0}
-  .wr.hit .wr-ic{color:var(--open)} .wr.open .wr-ic{color:var(--muted)}
-  .wr-t{font-size:13px;line-height:1.5}
-  .wr.open .wr-t{color:var(--muted)}
-  .wr-ev{font-size:12px;color:var(--open);margin-top:3px;line-height:1.4}
-  .thr{display:flex;gap:11px;align-items:baseline}
-  .thr-d{font:700 10px var(--f-mono);flex-shrink:0;padding:3px 5px;border:2px solid var(--ink);background:var(--ink);color:var(--paper)}
-  .thr-t{font-size:13px;font-weight:600}
-  .thr-l{font-size:12px;color:var(--muted);margin-top:2px;line-height:1.4}
-  .mv{display:flex;gap:8px;align-items:center;font-size:12.5px;flex-wrap:wrap}
-  .mv-b{font:700 9.5px/1 var(--f-mono);text-transform:uppercase;padding:3px 5px;border:1px solid var(--ink);flex-shrink:0}
-  .mv-b.new{background:var(--lime);color:#121211}
-  .mv-b.ret{background:#FBBF24;color:#121211}
-  .mv-b.str{background:var(--orange);color:#121211}
-  .mv .nm{font-weight:600}
-  .mv .dt{color:var(--muted);font:400 10.5px var(--f-mono)}
-  .none{font-size:12.5px;color:var(--muted);font-style:italic}
-  .rk{font-size:13px;line-height:1.5}
-  .rk::before{content:"!";display:inline-grid;place-content:center;width:16px;height:16px;margin-right:7px;
-              font:700 10px var(--f-mono);background:#FBBF24;color:#121211;border:1px solid var(--ink);vertical-align:1px}
-  .rk.w::before{content:"→";background:var(--lime)}
+  #visit-changes{margin-bottom:20px}
+  .visit-update{padding:8px 0;border-bottom:1px dashed var(--line);font-size:13px;line-height:1.5}
+  .visit-update:last-child{border-bottom:none;padding-bottom:0}
 
   footer{margin-top:56px;padding-top:14px;border-top:3px solid var(--ink);display:flex;justify-content:space-between;
          gap:16px;flex-wrap:wrap;font:400 12px var(--f-mono);color:var(--muted)}
 
-  @media(max-width:1180px){
-    .opening{grid-template-columns:minmax(0,1fr) 320px}
-    .below .grid,.ctx{grid-template-columns:repeat(2,minmax(0,1fr))}
-    .insights{grid-template-columns:1fr}
-    .memory{grid-template-columns:1fr 1fr}
+  @media(max-width:1220px){
+    .opening{grid-template-columns:1fr 1fr}
+    .opening .lead{grid-column:1/-1;order:-1}
+    .opening[data-cols="2"]{grid-template-columns:300px minmax(0,1fr)}
+    .opening[data-cols="2"] .lead{grid-column:auto;order:0}
+    .below .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   }
-  @media(max-width:920px){
-    .opening{grid-template-columns:1fr}
+  @media(max-width:860px){
+    .opening,.opening[data-cols="2"]{grid-template-columns:1fr}
+    .opening .lead,.opening[data-cols="2"] .lead{grid-column:auto;order:-1}
   }
   @media(max-width:720px){
-    .grid,.below .grid,.ctx{grid-template-columns:1fr}
+    .grid,.below .grid{grid-template-columns:1fr}
     .tq{flex:0 0 170px}
     .pulse{grid-template-columns:1fr}
-    .memory,.companies .company-list{grid-template-columns:1fr}
+    .cx,.watch-row{grid-template-columns:1fr;gap:5px}
     .lead-media .hero-img{aspect-ratio:16/9;max-height:240px}
     .lead.lead-dossier .lead-body,.lead-body{padding:18px 16px}
     .lead .hero-title,.lead.lead-dossier .hero-title{font-size:27px}
@@ -544,6 +535,8 @@
   
   
 
+  
+
   <!-- Tabs de tema -->
   
   <div class="tabs" id="tabs" role="tablist">
@@ -568,7 +561,29 @@
   
   <section class="opening">
 
-    <!-- Portada #01 (adaptativa foto/dossier) a altura completa junto al Editorial -->
+    <!-- Columna izquierda: El Editorial -->
+    <aside class="rail">
+      <div class="rail-h"><span><span class="l-es">El editorial</span><span class="l-en" lang="en">Editorial</span></span><span class="lbl">01 / <span class="l-es">Análisis</span><span class="l-en" lang="en">Analysis</span></span></div>
+      <h1 class="rail-title"><span class="l-es">La tesis del día</span><span class="l-en" lang="en">Thesis of the day</span></h1>
+      <p class="rail-thesis">OpenAI entrena GPT-5.2 y 5.3 sobre NVIDIA GB200, marcando el inicio de los modelos agénticos nativos.</p>
+      
+      <div class="rail-h"><span><span class="l-es">Claves del día</span><span class="l-en" lang="en">Key points</span></span><span class="lbl"><span class="l-es">Selección</span><span class="l-en" lang="en">Selection</span></span></div>
+      <ol class="keys">
+        <li>OpenAI entrena GPT-5.2 y 5.3 sobre NVIDIA GB200, marcando el inicio de los modelos agénticos nativos.</li><li>Isambard-AI con 21 exaflops posiciona al Reino Unido en la vanguardia de la soberanía de cómputo en Europa.</li><li>NVIDIA unifica arquitecturas de vehículos autónomos hacia modelos end-to-end entrenados con datos físicos.</li>
+      </ol>
+      
+      <div class="rail-foot">
+        <div class="figures">
+          <div class="fig-row">
+            <strong class="fig-count">15</strong>
+            <span class="fig-note">15 <span class="l-es">señales</span><span class="l-en" lang="en">signals</span> · 0 <span class="l-es">descartadas</span><span class="l-en" lang="en">dropped</span></span>
+          </div>
+          <div class="ents"><span class="ent">NVIDIA</span><span class="ent">Google</span><span class="ent">OpenAI</span><span class="ent">UK-LLM</span><span class="ent">University of Bristol</span></div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Columna central: Portada #01 (adaptativa foto/dossier) -->
     <article class="lead lead-dossier" style="--lead-accent:#FF8A5C">
       <div class="lead-wm" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" preserveAspectRatio="xMaxYMin slice" aria-hidden="true"><circle cx="516" cy="140" r="44" fill="none" stroke="#FF8A5C" stroke-width="1.5" opacity=".42"/><circle cx="516" cy="140" r="88" fill="none" stroke="#FF8A5C" stroke-width="1.5" opacity=".42"/><circle cx="516" cy="140" r="132" fill="none" stroke="#FF8A5C" stroke-width="1.5" opacity=".42"/><line x1="384" y1="140" x2="648" y2="140" stroke="#FF8A5C" stroke-width="1" opacity=".3"/><line x1="516" y1="8" x2="516" y2="272" stroke="#FF8A5C" stroke-width="1" opacity=".3"/><path d="M516 140 L474.2 14.8 A132 132 0 0 1 564.7 17.3 Z" fill="#FF8A5C" opacity=".2"/><line x1="516" y1="140" x2="564.7" y2="17.3" stroke="#FF8A5C" stroke-width="2.2" opacity=".9"/><circle cx="612.8" cy="195.6" r="5" fill="#FF8A5C" opacity=".9"/><circle cx="468.6" cy="129.8" r="5" fill="#FF8A5C" opacity=".9"/><circle cx="417.8" cy="183.4" r="5" fill="#FF8A5C" opacity=".9"/><circle cx="521.4" cy="192.5" r="5" fill="#FF8A5C" opacity=".9"/></svg></div>
       
@@ -596,33 +611,35 @@
       </div>
     </article>
 
-    <!-- Editorial -->
-    <aside class="rail">
-      <div class="rail-h"><span><span class="l-es">El editorial</span><span class="l-en" lang="en">Editorial</span></span><span class="lbl">01 / <span class="l-es">Análisis</span><span class="l-en" lang="en">Analysis</span></span></div>
-      <h1 class="rail-title"><span class="l-es">La tesis del día</span><span class="l-en" lang="en">Thesis of the day</span></h1>
-      <p class="rail-thesis">OpenAI entrena GPT-5.2 y 5.3 sobre NVIDIA GB200, marcando el inicio de los modelos agénticos nativos.</p>
+    <!-- Columna derecha: Contexto + Qué vigilar -->
+    
+    <aside class="side-rail">
       
-      <div class="rail-h"><span><span class="l-es">Claves del día</span><span class="l-en" lang="en">Key points</span></span><span class="lbl"><span class="l-es">Selección</span><span class="l-en" lang="en">Selection</span></span></div>
-      <ol class="keys">
-        <li>OpenAI entrena GPT-5.2 y 5.3 sobre NVIDIA GB200, marcando el inicio de los modelos agénticos nativos.</li><li>Isambard-AI con 21 exaflops posiciona al Reino Unido en la vanguardia de la soberanía de cómputo en Europa.</li><li>NVIDIA unifica arquitecturas de vehículos autónomos hacia modelos end-to-end entrenados con datos físicos.</li>
-      </ol>
       
-      <div class="rail-foot">
-        
-        <div class="onradar">
-          <div class="rail-h"><span><span class="l-es">En el radar</span><span class="l-en" lang="en">On the radar</span></span></div>
-          <p>Efectividad real de GPT-5.3 Codex en tareas de autoprogramación y despliegue autónomo.</p>
-        </div>
-        
-        <div class="figures">
-          <div class="fig-row">
-            <strong class="fig-count">15</strong>
-            <span class="fig-note">15 <span class="l-es">señales</span><span class="l-en" lang="en">signals</span> · 0 <span class="l-es">descartadas</span><span class="l-en" lang="en">dropped</span></span>
+      <section class="watch-rail" aria-labelledby="agenda-title">
+        <div class="rail-h"><span id="agenda-title"><span class="l-es">Qué vigilar</span><span class="l-en" lang="en">What to watch</span></span><span class="lbl"><span class="l-es">Seguimiento</span><span class="l-en" lang="en">Follow-up</span></span></div>
+        <div class="watch-agenda">
+          
+          <div class="watch-row" id="watch-point-1">
+            <p>Efectividad real de GPT-5.3 Codex en tareas de autoprogramación y despliegue autónomo.</p>
+            
           </div>
-          <div class="ents"><span class="ent">NVIDIA</span><span class="ent">Google</span><span class="ent">OpenAI</span><span class="ent">UK-LLM</span><span class="ent">University of Bristol</span></div>
+          
+          <div class="watch-row" id="watch-point-2">
+            <p>Resultados del modelo soberano UK-LLM en la preservación y razonamiento de lenguas celtas.</p>
+            
+          </div>
+          
+          <div class="watch-row" id="watch-point-3">
+            <p>Adopción de herramientas de IA agéntica por parte de ingenieros de chips para acelerar ciclos de diseño.</p>
+            
+          </div>
+          
         </div>
-      </div>
+      </section>
+      
     </aside>
+    
   </section>
   
 
@@ -960,23 +977,8 @@
 
   </div>
 
-      
-
-  <!-- Memoria del radar: lo que dijimos, lo que persiste, lo que viene -->
-  <section class="memory">
-      
-      
-      
-      <div class="widget">
-        <div class="widget-title">
-          <span><span class="l-es">Riesgos y vigilancia</span><span class="l-en" lang="en">Risks and watch</span></span>
-          <span class="lbl"><span class="l-es">Próximos días</span><span class="l-en" lang="en">Coming days</span></span>
-        </div>
-        <div class="rk">Inestabilidad geopolítica crítica en Oriente Medio que amenaza la estabilidad de rutas de suministro y energía.</div><div class="rk">Creciente dependencia de datos sintéticos físicamente precisos para el entrenamiento de modelos de IA física.</div><div class="rk">Cuellos de botella energéticos en datacenters que requieren intervención política directa para su viabilidad.</div>
-        <div class="rk w">Efectividad real de GPT-5.3 Codex en tareas de autoprogramación y despliegue autónomo.</div><div class="rk w">Resultados del modelo soberano UK-LLM en la preservación y razonamiento de lenguas celtas.</div><div class="rk w">Adopción de herramientas de IA agéntica por parte de ingenieros de chips para acelerar ciclos de diseño.</div>
-      </div>
-      
-  </section>
+  
+  
 
   <div class="credits"><div class="credits-id"><p class="credits-by">© 2026 RADAR.IA · <span class="l-es">por</span><span class="l-en" lang="en">by</span> <strong>Rolando Fernández</strong></p><p class="credits-tag"><span class="l-es">Radar diario de la carrera hacia la AGI, con fuentes y análisis.</span><span class="l-en" lang="en">A daily radar of the race towards AGI, with sources and analysis.</span></p></div><nav class="credits-links" aria-label="Rolando Fernández"><a href="https://www.linkedin.com/in/rolando-fernandez-jara" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/rolandojf-gif" target="_blank" rel="noopener">GitHub</a><a class="bmc" href="https://buymeacoffee.com/rolandofernandez" target="_blank" rel="noopener"><span class="bmc-cup" aria-hidden="true">☕</span> <span class="l-es">Invítame a un café</span><span class="l-en" lang="en">Buy me a coffee</span></a></nav></div>
   <footer>
@@ -987,6 +989,30 @@
 </div>
 
 <script>
+  // La visita se mide por edición. Recargar mantiene la misma comparación.
+  (function(){
+    const panel = document.getElementById('visit-changes');
+    if (!panel) return;
+    const today = panel.dataset.edition;
+    const key = 'nexus.daily.visit.v1';
+    try {
+      let state = null;
+      try { state = JSON.parse(localStorage.getItem(key)); } catch (_) {}
+      const valid = d => typeof d === 'string' && /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(d);
+      if (!valid(today) || (state && valid(state.latest) && state.latest > today)) return;
+      const previous = state && valid(state.latest)
+        ? (state.latest === today ? state.previous : state.latest) : null;
+      localStorage.setItem(key, JSON.stringify({latest: today, previous}));
+      if (!valid(previous) || previous >= today) return;
+      for (const row of panel.querySelectorAll('[data-updated]')) {
+        if (row.dataset.updated > previous && row.dataset.updated <= today) {
+          row.hidden = false;
+          panel.hidden = false;
+        }
+      }
+    } catch (_) { /* Sin historial local fiable no se afirma que haya novedades. */ }
+  })();
+
   // Si la edicion no es de hoy (por ejemplo, antes de la ejecucion de la manana), se dice:
   // sin esto la portada de ayer se lee como si fuera la de hoy.
   (function(){
@@ -1049,7 +1075,19 @@
         if (below) below.classList.toggle('filter-empty', on && visBelow === 0);
         var ctxBlock = document.getElementById('ctx-block');
         if (ctxBlock) ctxBlock.classList.toggle('filter-empty', on && visCtx === 0);
+        var opening = document.querySelector('.opening');
+        if (opening) opening.classList.toggle('filter-empty', on && visCtx === 0);
       });
+    });
+
+    document.addEventListener('click', function(ev){
+      var a = ev.target && ev.target.closest && ev.target.closest('a.watch-link');
+      if (!a) return;
+      var deck = document.getElementById('deck');
+      if (deck && deck.classList.contains('filtered')) {
+        var allTab = document.querySelector('#tabs .tab[data-filter="all"]');
+        if (allTab) allTab.click();
+      }
     });
   })();
 </script>

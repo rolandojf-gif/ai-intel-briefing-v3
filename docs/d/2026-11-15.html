@@ -173,7 +173,7 @@
     .strip .r{margin-left:0}
   }
 
-  .wrap{max-width:1500px;margin:0 auto;padding:18px 24px 80px}
+  .wrap{max-width:1580px;margin:0 auto;padding:18px 24px 80px}
   .stale{font:700 10.5px/1 var(--f-mono);text-transform:uppercase;color:#121211;background:#FBBF24;
          border:1px solid var(--ink);padding:3px 7px}
   .arch-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 18px;padding:10px 14px;
@@ -237,41 +237,63 @@
   .pulse-cols i:hover{background:var(--orange)}
   .pulse-note{font:400 11px/1.4 var(--f-mono);color:#9C9B95;margin-top:8px}
 
-  .movers{list-style:none;margin:0;padding:0}
-  .movers li{display:grid;grid-template-columns:1fr auto;gap:4px 8px;align-items:baseline;padding:0 0 9px;margin-bottom:9px;border-bottom:1px dashed var(--line)}
-  .movers li:last-child{padding-bottom:0;margin-bottom:0;border-bottom:none}
-  .mv-n{font:700 14.5px var(--f-head)}
-  .mv-t{font:700 10.5px var(--f-mono);color:var(--muted);text-transform:uppercase}
-  .mv-t.t-up,.mv-t.t-new{color:var(--open)} .mv-t.t-down{color:var(--bad)}
-  .mv-bar{grid-column:1/-1;height:8px;border:1px solid var(--ink);background:var(--card-2)}
-  .mv-bar i{display:block;height:100%;background:var(--orange)}
 
-  /* -- Portada (Hero adaptativo + Editorial estrecho y alineado) -- */
-  .opening{display:grid;grid-template-columns:minmax(0,1fr) 365px;gap:22px;align-items:stretch}
-  .deck.filtered .opening{display:none}
+  /* -- Portada a 3 columnas: Editorial (izq) · Hero #01 (centro) · Contexto + Qué vigilar (der) -- */
+  .opening{display:grid;grid-template-columns:minmax(295px,330px) minmax(0,1.85fr) minmax(310px,345px);gap:24px;align-items:stretch}
+  .opening[data-cols="2"]{grid-template-columns:320px minmax(0,1fr)}
+  .deck.filtered{display:flex;flex-direction:column}
+  .deck.filtered .opening{order:2;display:block;margin-top:26px}
+  .deck.filtered .opening.filter-empty{display:none}
+  .deck.filtered .opening .rail,.deck.filtered .opening .lead,.deck.filtered .opening .watch-rail{display:none}
+  .deck.filtered .opening .side-rail{padding:0;background:transparent;border:0;box-shadow:none;height:auto}
 
-  .rail{display:flex;flex-direction:column;height:100%;min-width:0;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow);padding:16px 18px}
-  .rail-h{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 10px;padding:0 0 7px;border-bottom:2px solid var(--ink);
+  .rail,.side-rail{display:flex;flex-direction:column;height:100%;min-width:0;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow);padding:18px 20px}
+  .rail-h{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 12px;padding:0 0 8px;border-bottom:2px solid var(--ink);
           font:700 11.5px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.08em}
   .rail-h>span:first-child{display:flex;align-items:center;gap:8px}
   .rail-h>span:first-child::before{content:"";width:10px;height:10px;background:var(--orange);border:2px solid var(--ink);flex:0 0 auto}
-  .rail-h .lbl{font:400 10px var(--f-mono);color:var(--muted);letter-spacing:.04em;white-space:nowrap}
-  .rail-title{font:700 22px/1.08 var(--f-head);text-transform:uppercase;letter-spacing:-.028em;margin:2px 0 8px}
-  .rail-thesis{font:500 14px/1.48 var(--f-head);margin:0 0 14px}
-  .keys{margin:0 0 12px;padding:0;list-style:none;counter-reset:k}
-  .keys li{counter-increment:k;display:grid;grid-template-columns:24px 1fr;gap:7px;padding:0 0 7px;margin-bottom:7px;border-bottom:1px dashed var(--line);font-size:13px;line-height:1.42}
+  .watch-rail .rail-h>span:first-child::before{background:var(--lime)}
+  .rail-h .lbl{font:400 10.5px var(--f-mono);color:var(--muted);letter-spacing:.04em;white-space:nowrap}
+  .rail-title{font:700 23px/1.1 var(--f-head);text-transform:uppercase;letter-spacing:-.028em;margin:2px 0 10px}
+  .rail-thesis{font:500 15px/1.52 var(--f-head);margin:0 0 18px}
+  .keys{margin:0 0 14px;padding:0;list-style:none;counter-reset:k}
+  .keys li{counter-increment:k;display:grid;grid-template-columns:25px 1fr;gap:8px;padding:0 0 10px;margin-bottom:10px;border-bottom:1px dashed var(--line);font-size:14px;line-height:1.48}
   .keys li:last-child{margin-bottom:0;border-bottom:none;padding-bottom:0}
-  .keys li::before{content:counter(k,decimal-leading-zero);font:700 10.5px/1.65 var(--f-mono);color:var(--orange-ink)}
-  .rail-foot{margin-top:auto;padding-top:12px;display:flex;flex-direction:column;gap:12px}
-  .onradar{margin:0;padding:10px 12px;background:var(--card-2);border:2px solid var(--ink);box-shadow:inset 5px 0 0 var(--orange)}
-  .onradar .rail-h{margin-bottom:6px;padding-bottom:5px;border-bottom-width:1.5px;font-size:10.5px}
-  .onradar p{font-size:12.8px;line-height:1.44;margin:0}
-  .figures{border-top:2px solid var(--ink);padding-top:10px;display:flex;flex-direction:column;gap:7px}
+  .keys li::before{content:counter(k,decimal-leading-zero);font:700 11.5px/1.6 var(--f-mono);color:var(--orange-ink)}
+  .rail-foot{margin-top:auto;padding-top:14px;display:flex;flex-direction:column;gap:10px}
+  .figures{border-top:2px solid var(--ink);padding-top:12px;display:flex;flex-direction:column;gap:8px}
   .fig-row{display:flex;align-items:baseline;justify-content:space-between;gap:8px;flex-wrap:wrap}
-  .fig-count{font:700 18px/1 var(--f-head);letter-spacing:-.03em}
-  .fig-note{font:400 10.5px/1.35 var(--f-mono);color:var(--muted)}
-  .figures .ents{margin-top:0;gap:5px}
-  .figures .ent{font-size:10px;padding:2px 5px}
+  .fig-count{font:700 24px/1 var(--f-head);letter-spacing:-.03em}
+  .fig-note{font:400 11px/1.35 var(--f-mono);color:var(--muted)}
+  .figures .ents{margin-top:0;gap:6px}
+  .figures .ent{font-size:11px;padding:3px 6px}
+
+  /* Columna derecha: Contexto (lectura rapida) + Que vigilar (seguimiento) */
+  .side-rail{gap:20px}
+  .side-rail .ctx-block{margin:0}
+  .side-rail .ctx{border-top:0;background:transparent;counter-reset:cx}
+  .side-rail .cx{counter-increment:cx;display:grid;grid-template-columns:25px minmax(0,1fr);gap:8px;align-items:start;padding:0 0 12px;margin-bottom:12px;border-bottom:1px dashed var(--line)}
+  .side-rail .cx:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+  .side-rail .cx::before{content:counter(cx,decimal-leading-zero);font:700 11.5px/1.45 var(--f-mono);color:var(--orange-ink)}
+  .side-rail .cx-body{display:flex;flex-direction:column;gap:4px;min-width:0}
+  .side-rail .cx-theme{font:700 10.5px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--orange-ink)}
+  .side-rail .cx-t{margin:0;font:700 15px/1.34 var(--f-head);letter-spacing:-.012em;max-width:none}
+  .side-rail .cx .src{font-size:11px;gap:6px;margin-top:2px}
+  .side-rail .cx .src img{width:15px;height:15px}
+  .side-rail .metric-context{margin:.45rem 0 0;font-size:.84rem}
+  .side-rail .metric-context summary{padding:.2rem .65rem;font-size:.8rem}
+  .watch-rail{margin-top:auto}
+  .side-rail .watch-agenda{border-top:0;background:transparent}
+  .side-rail .watch-row{display:flex;flex-direction:column;gap:5px;padding:10px 0 10px 12px;border-bottom:1px dashed var(--line);border-left:3px solid var(--lime)}
+  .side-rail .watch-row:first-child{padding-top:3px}
+  .side-rail .watch-row:last-child{border-bottom:none;padding-bottom:0}
+  .side-rail .watch-row p{font:500 14px/1.46 var(--f-head);max-width:none;margin:0}
+  .side-rail .watch-row .src{font-size:11px;line-height:1.35}
+  .side-rail [id^="watch-point-"]:target{background:rgba(255,87,34,.08);border-left-color:var(--orange);box-shadow:none;padding-right:6px}
+  .deck.filtered .side-rail .ctx{border-top:2px solid var(--ink);background:var(--card)}
+  .deck.filtered .side-rail .cx{grid-template-columns:minmax(0,1fr);gap:6px;padding:14px 16px;margin-bottom:0;border-bottom:1px solid var(--line)}
+  .deck.filtered .side-rail .cx::before{display:none}
+  .deck.filtered .side-rail .cx-t{font:600 16px/1.45 var(--f-head)}
 
   .lead{position:relative;display:flex;flex-direction:column;height:100%;min-width:0;background:var(--card);border:2px solid var(--ink);border-top:5px solid var(--lead-accent,var(--orange));
         box-shadow:var(--shadow);overflow:hidden;transition:transform .12s,box-shadow .12s}
@@ -283,34 +305,34 @@
   .lead-media{position:relative;display:block;overflow:hidden;background:var(--asphalt);border-bottom:2px solid var(--ink)}
   .lead-media::after{content:"";position:absolute;inset:0;pointer-events:none;
                      background:linear-gradient(180deg,rgba(15,15,14,.55) 0%,rgba(15,15,14,0) 38%,rgba(15,15,14,.32) 100%)}
-  .lead-media .hero-img{display:block;width:100%;aspect-ratio:21/9;max-height:320px;object-fit:cover;border-bottom:0;transition:transform .35s ease}
+  .lead-media .hero-img{display:block;width:100%;aspect-ratio:16/9;max-height:360px;object-fit:cover;border-bottom:0;transition:transform .35s ease}
   .lead-media:hover .hero-img{transform:scale(1.02)}
   .lead-media-bar{position:absolute;top:14px;left:16px;right:16px;z-index:2;display:flex;align-items:center;gap:8px;flex-wrap:wrap;pointer-events:none}
   .lead-media-bar .tag{background:var(--lead-accent,var(--orange));color:#121211;border:2px solid #121211;box-shadow:2px 2px 0 rgba(18,18,17,.65)}
   .lead-media-bar .score{font-size:12.5px;padding:5px 9px}
-  .lead-body{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;padding:20px 26px 20px}
+  .lead-body{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;padding:22px 26px 22px}
   .lead-top{display:none;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 18px}
   .lead-top .tag{background:var(--lead-accent,var(--orange));color:#121211}
   .lead-top .score{font-size:12.5px;padding:5px 9px}
-  .lead .hero-title{font:700 clamp(25px,2.45vw,38px)/1.08 var(--f-head);letter-spacing:-.032em;margin:0 0 12px}
-  .lead .sw{font-size:clamp(15px,1.15vw,17.5px);line-height:1.52;color:var(--muted);margin:0 0 16px;max-width:68ch}
+  .lead .hero-title{font:700 clamp(26px,2.35vw,38px)/1.08 var(--f-head);letter-spacing:-.032em;margin:0 0 14px}
+  .lead .sw{font-size:clamp(15.5px,1.15vw,17.5px);line-height:1.55;color:var(--muted);margin:0 0 18px;max-width:66ch}
 
-  .lead-intel{display:grid;gap:10px;margin:0 0 14px}
-  @media(min-width:740px){.lead-intel.two{grid-template-columns:1fr 1fr;gap:12px}}
-  .intel-box{padding:11px 14px;background:var(--card-2);border:1.5px solid var(--line);display:flex;flex-direction:column;gap:5px}
+  .lead-intel{display:grid;gap:12px;margin:0 0 16px}
+  @media(min-width:740px){.lead-intel.two{grid-template-columns:1fr 1fr;gap:14px}}
+  .intel-box{padding:12px 15px;background:var(--card-2);border:1.5px solid var(--line);display:flex;flex-direction:column;gap:6px}
   .intel-box.pw{border-left:3.5px solid var(--orange)}
   .intel-box.wn{border-left:3.5px solid var(--lime)}
-  .intel-k{display:inline-flex;align-self:flex-start;font:700 10px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.06em;
+  .intel-k{display:inline-flex;align-self:flex-start;font:700 10.5px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.06em;
            padding:3px 6px;border:1px solid var(--ink)}
   .intel-box.pw .intel-k{background:var(--orange);color:#121211}
   .intel-box.wn .intel-k{background:var(--lime);color:#121211}
-  .intel-v{font-size:13.5px;line-height:1.45}
+  .intel-v{font-size:14px;line-height:1.48}
 
   .lead-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:auto;padding-top:16px;border-top:1px dashed var(--line)}
   .lead-foot-l{display:flex;align-items:center;gap:10px;flex-wrap:wrap;min-width:0}
   .lead-foot-l .ents{margin-top:0}
-  .lead-cta{display:inline-flex;align-items:center;gap:7px;font:700 11.5px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.04em;
-            padding:9px 14px;background:var(--lime);color:#121211;border:2px solid var(--ink);box-shadow:var(--shadow-sm);
+  .lead-cta{display:inline-flex;align-items:center;gap:7px;font:700 12px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.04em;
+            padding:10px 15px;background:var(--lime);color:#121211;border:2px solid var(--ink);box-shadow:var(--shadow-sm);
             transition:transform .08s,box-shadow .08s;white-space:nowrap}
   .lead-cta:hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 var(--ink)}
 
@@ -325,12 +347,14 @@
   .lead.lead-dossier .lead-wm{display:block}
   .lead.lead-dossier .lead-media{display:none}
   .lead.lead-dossier .lead-top{display:flex}
-  .lead.lead-dossier .lead-body{padding:28px 34px 24px}
+  .lead.lead-dossier .lead-body{padding:28px 30px 24px}
   .lead.lead-dossier .lead-top .tag{border-color:#E8E7E1}
   .lead.lead-dossier .lead-top .badge-new{border-color:#E8E7E1}
-  .lead.lead-dossier .hero-title{font-size:clamp(32px,3.5vw,54px);line-height:1.03;color:#FFFFFF;max-width:25ch;margin-bottom:18px}
+  .lead.lead-dossier .hero-title{font-size:clamp(30px,3vw,46px);line-height:1.05;color:#FFFFFF;max-width:24ch;margin-bottom:18px}
   .lead.lead-dossier .hero-title a:hover{text-decoration-color:var(--lead-accent,var(--lime))}
-  .lead.lead-dossier .sw{color:#D4D3CC;font-size:clamp(16px,1.25vw,19px);line-height:1.54;margin-bottom:26px;max-width:58ch}
+  .lead.lead-dossier .sw{color:#D4D3CC;font-size:clamp(16px,1.2vw,18px);line-height:1.55;margin-bottom:24px;max-width:58ch}
+  .lead.lead-dossier .metric-context blockquote{border-left-color:#44443E;color:#D4D3CC}
+  .lead.lead-dossier .metric-context a{color:var(--lime)}
   .lead.lead-dossier .lead-intel{margin-top:auto;margin-bottom:0}
   .lead.lead-dossier .intel-box{background:rgba(20,20,18,.9);border-color:#34342F;color:#ECEBE5;padding:14px 16px}
   .lead.lead-dossier .intel-box.pw{border-left-color:var(--orange)}
@@ -352,13 +376,8 @@
   .below .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
   .deck:not(.filtered) .dup,.deck:not(.filtered) .h-filtered,.deck.filtered .h-all{display:none}
   .deck:not(.filtered) .below.no-rest{display:none}
-  .deck.filtered .below{margin-top:0;padding-top:0;border-top:0}
+  .deck.filtered .below{order:1;margin-top:0;padding-top:0;border-top:0}
 
-  .insights{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(280px,1fr);gap:22px;margin-top:34px;align-items:start}
-  .insights.single{grid-template-columns:minmax(0,1fr)}
-  .companies{margin-top:0}
-  .companies .company-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 28px}
-  .memory{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:34px;align-items:start}
 
   /* -- Hero y cards: bordes de tinta y sombra dura -- */
   .hero,.card{background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow);transition:transform .1s,box-shadow .1s}
@@ -417,19 +436,24 @@
   /* -- Contexto -- */
   .section-h{margin:34px 0 14px}
   .section-h h2{margin:0}
-  .ctx-block .section-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
-  .sec-sub{margin:0;font:400 11.5px var(--f-mono);color:var(--muted);text-transform:uppercase}
-  .ctx{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-  .cx{display:flex;flex-direction:column;gap:8px;padding:14px 16px;background:var(--card);border:2px solid var(--ink);box-shadow:var(--shadow-sm)}
-  .cx .meta-row{margin-bottom:0}
-  .cx-tag{display:inline-block;font:700 10px/1 var(--f-mono);text-transform:uppercase;padding:3px 6px;border:1px solid var(--ink);background:var(--card-2);color:var(--text);flex-shrink:0}
-  .cx-t{margin:0;font:700 16px/1.3 var(--f-head);letter-spacing:-.01em}
-  .cx-w{font-size:13.5px;color:var(--muted);line-height:1.48;margin:0;
-        display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .ctx,.watch-agenda,.watch-results{border-top:2px solid var(--ink);background:var(--card)}
+  .cx,.watch-row{display:grid;grid-template-columns:minmax(9rem,15rem) minmax(0,1fr);gap:16px;align-items:baseline;padding:14px 16px;border-bottom:1px solid var(--line)}
+  .cx-t,.watch-row p{margin:0;font:600 16px/1.45 var(--f-head);max-width:80ch}
+  .watch-link,.watch-row a{text-decoration:underline;text-underline-offset:3px}
+  .watch-row .src{align-self:start}
+  .watch-row blockquote{margin:5px 0;color:var(--muted);font-size:14px}
+  [id^="watch-point-"]{scroll-margin-top:12px}
+  [id^="watch-point-"]:target{box-shadow:inset 4px 0 var(--orange)}
 
   .empty{padding:40px 26px;text-align:center;border:2px dashed var(--ink);background:var(--card)}
   .empty .big{font:700 20px var(--f-head);margin-bottom:8px;text-transform:uppercase}
   .empty .sub{font-size:14px;color:var(--muted);max-width:52ch;margin:0 auto;line-height:1.6}
+
+  .metric-context{margin:.65rem 0;font-size:.86rem;line-height:1.45}
+  .metric-context summary{display:list-item;width:fit-content;max-width:100%;box-sizing:border-box;cursor:pointer;font-weight:700;background:#ffda55;color:#201a07;border:1px solid #806419;border-radius:1rem;padding:.22rem .75rem}
+  .metric-context summary:focus-visible{outline:3px solid currentColor;outline-offset:2px}
+  .metric-context blockquote{margin:.45rem 0;padding-left:.7rem;border-left:2px solid var(--line)}
+  .metric-context a{text-decoration:underline}
 
   /* -- Sidebar -- */
   .sidebar{display:grid;gap:22px;position:sticky;top:16px}
@@ -440,70 +464,37 @@
   .widget-title>span:first-child::before{content:"";width:10px;height:10px;background:var(--orange);border:2px solid var(--ink)}
   .widget-title .lbl{font:400 10px var(--f-mono);color:var(--muted);text-transform:uppercase}
 
-  .market-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-  .m-box{background:var(--card-2);border:1px solid var(--ink);padding:9px 10px}
-  .m-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
-  .m-lbl{font:600 11px var(--f-mono);text-transform:uppercase;color:var(--muted)}
   .m-chg{font:700 11px var(--f-mono)}
-  .m-chg.pos,.comp-chg.pos{color:var(--open)} .m-chg.neg,.comp-chg.neg{color:var(--bad)}
-  .m-chg.na,.comp-chg.na,.comp-price.na{color:var(--muted);font-weight:400}
+  .m-chg.pos{color:var(--open)} .m-chg.neg{color:var(--bad)}
+  .m-chg.na{color:var(--muted);font-weight:400}
   .m-price{font:700 14px var(--f-mono);margin-bottom:4px;font-variant-numeric:tabular-nums}
   .m-nodata{opacity:.55}
   .spark{width:100%;height:22px;display:block}
   .spark.pos polyline{stroke:var(--open)} .spark.neg polyline{stroke:var(--bad)}
 
-  .comp-item{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line)}
-  .comp-item:last-child{border-bottom:none;padding-bottom:0}
-  .comp-info{display:flex;align-items:center;gap:9px;min-width:0}
-  .comp-logo{width:24px;height:24px;padding:2px;flex-shrink:0;background:var(--logo-bg);border:1px solid var(--line)}
-  .comp-name{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .comp-ticker{font:400 10px var(--f-mono);color:var(--muted)}
-  .comp-val{text-align:right;flex-shrink:0}
-  .comp-price{font:700 12px var(--f-mono);font-variant-numeric:tabular-nums}
-  .comp-chg{font:700 10.5px var(--f-mono)}
-
-  .wr,.thr,.mv,.rk{padding:8px 0;border-bottom:1px dashed var(--line)}
-  .wr:last-child,.thr:last-child,.mv:last-child,.rk:last-child{border-bottom:none;padding-bottom:0}
-  .wr{display:flex;gap:10px;align-items:flex-start}
-  .wr-ic{font:700 12px/1.5 var(--f-mono);flex-shrink:0}
-  .wr.hit .wr-ic{color:var(--open)} .wr.open .wr-ic{color:var(--muted)}
-  .wr-t{font-size:13px;line-height:1.5}
-  .wr.open .wr-t{color:var(--muted)}
-  .wr-ev{font-size:12px;color:var(--open);margin-top:3px;line-height:1.4}
-  .thr{display:flex;gap:11px;align-items:baseline}
-  .thr-d{font:700 10px var(--f-mono);flex-shrink:0;padding:3px 5px;border:2px solid var(--ink);background:var(--ink);color:var(--paper)}
-  .thr-t{font-size:13px;font-weight:600}
-  .thr-l{font-size:12px;color:var(--muted);margin-top:2px;line-height:1.4}
-  .mv{display:flex;gap:8px;align-items:center;font-size:12.5px;flex-wrap:wrap}
-  .mv-b{font:700 9.5px/1 var(--f-mono);text-transform:uppercase;padding:3px 5px;border:1px solid var(--ink);flex-shrink:0}
-  .mv-b.new{background:var(--lime);color:#121211}
-  .mv-b.ret{background:#FBBF24;color:#121211}
-  .mv-b.str{background:var(--orange);color:#121211}
-  .mv .nm{font-weight:600}
-  .mv .dt{color:var(--muted);font:400 10.5px var(--f-mono)}
-  .none{font-size:12.5px;color:var(--muted);font-style:italic}
-  .rk{font-size:13px;line-height:1.5}
-  .rk::before{content:"!";display:inline-grid;place-content:center;width:16px;height:16px;margin-right:7px;
-              font:700 10px var(--f-mono);background:#FBBF24;color:#121211;border:1px solid var(--ink);vertical-align:1px}
-  .rk.w::before{content:"→";background:var(--lime)}
+  #visit-changes{margin-bottom:20px}
+  .visit-update{padding:8px 0;border-bottom:1px dashed var(--line);font-size:13px;line-height:1.5}
+  .visit-update:last-child{border-bottom:none;padding-bottom:0}
 
   footer{margin-top:56px;padding-top:14px;border-top:3px solid var(--ink);display:flex;justify-content:space-between;
          gap:16px;flex-wrap:wrap;font:400 12px var(--f-mono);color:var(--muted)}
 
-  @media(max-width:1180px){
-    .opening{grid-template-columns:minmax(0,1fr) 320px}
-    .below .grid,.ctx{grid-template-columns:repeat(2,minmax(0,1fr))}
-    .insights{grid-template-columns:1fr}
-    .memory{grid-template-columns:1fr 1fr}
+  @media(max-width:1220px){
+    .opening{grid-template-columns:1fr 1fr}
+    .opening .lead{grid-column:1/-1;order:-1}
+    .opening[data-cols="2"]{grid-template-columns:300px minmax(0,1fr)}
+    .opening[data-cols="2"] .lead{grid-column:auto;order:0}
+    .below .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   }
-  @media(max-width:920px){
-    .opening{grid-template-columns:1fr}
+  @media(max-width:860px){
+    .opening,.opening[data-cols="2"]{grid-template-columns:1fr}
+    .opening .lead,.opening[data-cols="2"] .lead{grid-column:auto;order:-1}
   }
   @media(max-width:720px){
-    .grid,.below .grid,.ctx{grid-template-columns:1fr}
+    .grid,.below .grid{grid-template-columns:1fr}
     .tq{flex:0 0 170px}
     .pulse{grid-template-columns:1fr}
-    .memory,.companies .company-list{grid-template-columns:1fr}
+    .cx,.watch-row{grid-template-columns:1fr;gap:5px}
     .lead-media .hero-img{aspect-ratio:16/9;max-height:240px}
     .lead.lead-dossier .lead-body,.lead-body{padding:18px 16px}
     .lead .hero-title,.lead.lead-dossier .hero-title{font-size:27px}
@@ -544,6 +535,8 @@
   
   
 
+  
+
   <!-- Tabs de tema -->
   
   <div class="tabs" id="tabs" role="tablist">
@@ -570,7 +563,29 @@
   
   <section class="opening">
 
-    <!-- Portada #01 (adaptativa foto/dossier) a altura completa junto al Editorial -->
+    <!-- Columna izquierda: El Editorial -->
+    <aside class="rail">
+      <div class="rail-h"><span><span class="l-es">El editorial</span><span class="l-en" lang="en">Editorial</span></span><span class="lbl">01 / <span class="l-es">Análisis</span><span class="l-en" lang="en">Analysis</span></span></div>
+      <h1 class="rail-title"><span class="l-es">La tesis del día</span><span class="l-en" lang="en">Thesis of the day</span></h1>
+      <p class="rail-thesis"><span class="l-es">La dimisión de Jensen Huang en Nvidia ha desencadenado incertidumbre geopolítica y estratégica en el suministro de chips, mientras los laboratorios frontier aceleran el despliegue de agentes autónomos y capacidades multimodales avanzadas.</span><span class="l-en" lang="en">Jensen Huang&#39;s resignation at Nvidia has triggered geopolitical and strategic uncertainty in chip supply, while frontier labs accelerate the deployment of autonomous agents and advanced multimodal capabilities.</span></p>
+      
+      <div class="rail-h"><span><span class="l-es">Claves del día</span><span class="l-en" lang="en">Key points</span></span><span class="lbl"><span class="l-es">Selección</span><span class="l-en" lang="en">Selection</span></span></div>
+      <ol class="keys">
+        <li><span class="l-es">Dimisión de Jensen Huang en Nvidia genera inestabilidad en la cadena de suministro de chips y abre la puerta a más control geopolítico.</span><span class="l-en" lang="en">Jensen Huang&#39;s resignation at Nvidia generates instability in the chip supply chain and opens the door to more geopolitical control.</span></li><li><span class="l-es">OpenAI lanza ChatGPT Wallet y Business Agents, monetizando y expandiendo la autonomía transaccional de los agentes.</span><span class="l-en" lang="en">OpenAI launches ChatGPT Wallet and Business Agents, monetizing and expanding agents&#39; transactional autonomy.</span></li><li><span class="l-es">Google DeepMind presenta Gemini 4 Hydrogen y la API de Decisiones, indicando avances en modelos y capacidad de agentes.</span><span class="l-en" lang="en">Google DeepMind introduces Gemini 4 Hydrogen and the Decisions API, indicating advancements in models and agent capabilities.</span></li>
+      </ol>
+      
+      <div class="rail-foot">
+        <div class="figures">
+          <div class="fig-row">
+            <strong class="fig-count">15</strong>
+            <span class="fig-note">12 <span class="l-es">señales</span><span class="l-en" lang="en">signals</span> · 3 <span class="l-es">contexto</span><span class="l-en" lang="en">context</span> · 10 <span class="l-es">descartadas</span><span class="l-en" lang="en">dropped</span></span>
+          </div>
+          <div class="ents"><span class="ent">NVIDIA</span><span class="ent">Jensen Huang</span><span class="ent">OpenAI</span><span class="ent">DeepMind</span><span class="ent">China</span></div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Columna central: Portada #01 (adaptativa foto/dossier) -->
     <article class="lead lead-photo" style="--lead-accent:#E8E7E1">
       <div class="lead-wm" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" preserveAspectRatio="xMaxYMin slice" aria-hidden="true"><circle cx="518" cy="138" r="132" fill="#E8E7E1" fill-opacity=".07" stroke="#E8E7E1" stroke-width="2" opacity=".8"/><ellipse cx="518" cy="138" rx="44" ry="132" fill="none" stroke="#E8E7E1" stroke-width="1.3" opacity=".4"/><ellipse cx="518" cy="138" rx="88" ry="132" fill="none" stroke="#E8E7E1" stroke-width="1.3" opacity=".4"/><line x1="518" y1="6" x2="518" y2="270" stroke="#E8E7E1" stroke-width="1.3" opacity=".4"/><line x1="411.5" y1="60" x2="624.5" y2="60" stroke="#E8E7E1" stroke-width="1.3" opacity=".4"/><line x1="392.2" y1="98" x2="643.8" y2="98" stroke="#E8E7E1" stroke-width="1.3" opacity=".4"/><line x1="386" y1="138" x2="650" y2="138" stroke="#E8E7E1" stroke-width="1.3" opacity=".4"/><line x1="392.2" y1="178" x2="643.8" y2="178" stroke="#E8E7E1" stroke-width="1.3" opacity=".4"/><line x1="411.5" y1="216" x2="624.5" y2="216" stroke="#E8E7E1" stroke-width="1.3" opacity=".4"/><circle cx="550.9" cy="89.7" r="6" fill="#E8E7E1"/><circle cx="550.9" cy="89.7" r="14" fill="none" stroke="#E8E7E1" stroke-width="1.3" opacity=".5"/><circle cx="562.7" cy="119.1" r="6" fill="#E8E7E1"/><circle cx="562.7" cy="119.1" r="14" fill="none" stroke="#E8E7E1" stroke-width="1.3" opacity=".5"/><circle cx="604.1" cy="163.5" r="6" fill="#E8E7E1"/><circle cx="604.1" cy="163.5" r="14" fill="none" stroke="#E8E7E1" stroke-width="1.3" opacity=".5"/><circle cx="530.7" cy="163.5" r="6" fill="#E8E7E1"/><circle cx="530.7" cy="163.5" r="14" fill="none" stroke="#E8E7E1" stroke-width="1.3" opacity=".5"/></svg></div>
       
@@ -616,33 +631,69 @@
       </div>
     </article>
 
-    <!-- Editorial -->
-    <aside class="rail">
-      <div class="rail-h"><span><span class="l-es">El editorial</span><span class="l-en" lang="en">Editorial</span></span><span class="lbl">01 / <span class="l-es">Análisis</span><span class="l-en" lang="en">Analysis</span></span></div>
-      <h1 class="rail-title"><span class="l-es">La tesis del día</span><span class="l-en" lang="en">Thesis of the day</span></h1>
-      <p class="rail-thesis"><span class="l-es">La dimisión de Jensen Huang en Nvidia ha desencadenado incertidumbre geopolítica y estratégica en el suministro de chips, mientras los laboratorios frontier aceleran el despliegue de agentes autónomos y capacidades multimodales avanzadas.</span><span class="l-en" lang="en">Jensen Huang&#39;s resignation at Nvidia has triggered geopolitical and strategic uncertainty in chip supply, while frontier labs accelerate the deployment of autonomous agents and advanced multimodal capabilities.</span></p>
+    <!-- Columna derecha: Contexto + Qué vigilar -->
+    
+    <aside class="side-rail">
       
-      <div class="rail-h"><span><span class="l-es">Claves del día</span><span class="l-en" lang="en">Key points</span></span><span class="lbl"><span class="l-es">Selección</span><span class="l-en" lang="en">Selection</span></span></div>
-      <ol class="keys">
-        <li><span class="l-es">Dimisión de Jensen Huang en Nvidia genera inestabilidad en la cadena de suministro de chips y abre la puerta a más control geopolítico.</span><span class="l-en" lang="en">Jensen Huang&#39;s resignation at Nvidia generates instability in the chip supply chain and opens the door to more geopolitical control.</span></li><li><span class="l-es">OpenAI lanza ChatGPT Wallet y Business Agents, monetizando y expandiendo la autonomía transaccional de los agentes.</span><span class="l-en" lang="en">OpenAI launches ChatGPT Wallet and Business Agents, monetizing and expanding agents&#39; transactional autonomy.</span></li><li><span class="l-es">Google DeepMind presenta Gemini 4 Hydrogen y la API de Decisiones, indicando avances en modelos y capacidad de agentes.</span><span class="l-en" lang="en">Google DeepMind introduces Gemini 4 Hydrogen and the Decisions API, indicating advancements in models and agent capabilities.</span></li>
-      </ol>
-      
-      <div class="rail-foot">
-        
-        <div class="onradar">
-          <div class="rail-h"><span><span class="l-es">En el radar</span><span class="l-en" lang="en">On the radar</span></span></div>
-          <p><span class="l-es">Impacto real de la salida de Huang en los precios y disponibilidad de GPUs de Nvidia.</span><span class="l-en" lang="en">Real impact of Huang&#39;s departure on Nvidia GPU prices and availability.</span></p>
+      <section class="ctx-block" id="ctx-block">
+        <div class="rail-h"><span><span class="l-es">Contexto</span><span class="l-en" lang="en">Context</span></span><span class="lbl"><span class="l-es">Lectura rápida</span><span class="l-en" lang="en">Quick read</span></span></div>
+        <div class="ctx">
+          
+          <article class="cx" data-topic="compute_chips_dc" data-new="1">
+            <div class="cx-body">
+              <span class="cx-theme">Compute &amp; chips</span>
+              <h3 class="cx-t"><a href="https://stratechery.com/2026/the-end-of-jensen/" target="_blank" rel="noopener noreferrer"><span class="l-es">Stratechery analiza la caída de Jensen Huang y su impacto en Nvidia y la industria de chips.</span><span class="l-en" lang="en">Stratechery analyzes Jensen Huang&#39;s downfall and its impact on Nvidia and the chip industry.</span></a></h3>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=stratechery.com&amp;sz=64" alt="" loading="lazy"/>Stratechery</span>
+              
+            </div>
+          </article>
+          
+          <article class="cx" data-topic="model_economics" data-new="0">
+            <div class="cx-body">
+              <span class="cx-theme"><span class="l-es">Economía de modelos</span><span class="l-en" lang="en">Model economics</span></span>
+              <h3 class="cx-t"><a href="https://x.com/deepseek_ai/status/2121247896918253875" target="_blank" rel="noopener noreferrer"><span class="l-es">DeepSeek lanza las capacidades de su App (búsqueda, archivos, voz) a través de su API.</span><span class="l-en" lang="en">DeepSeek launches its App&#39;s capabilities (search, files, voice) through its API.</span></a></h3>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=deepseek.com&amp;sz=64" alt="" loading="lazy"/>@DeepSeek_AI</span>
+              
+            </div>
+          </article>
+          
+          <article class="cx" data-topic="agents_automation" data-new="0">
+            <div class="cx-body">
+              <span class="cx-theme"><span class="l-es">Agentes</span><span class="l-en" lang="en">Agents</span></span>
+              <h3 class="cx-t"><a href="https://artificialanalysis.ai/articles/google-deepmind-multimodal-knowledge-agent" target="_blank" rel="noopener noreferrer"><span class="l-es">Nuevo benchmark MKA para evaluar agentes de conocimiento multimodal con archivos visuales complejos.</span><span class="l-en" lang="en">New MKA benchmark to evaluate multimodal knowledge agents with complex visual files.</span></a></h3>
+              <span class="src"><img src="https://www.google.com/s2/favicons?domain=artificialanalysis.ai&amp;sz=64" alt="" loading="lazy"/>Artificial Analysis</span>
+              
+            </div>
+          </article>
+          
         </div>
-        
-        <div class="figures">
-          <div class="fig-row">
-            <strong class="fig-count">15</strong>
-            <span class="fig-note">12 <span class="l-es">señales</span><span class="l-en" lang="en">signals</span> · 3 <span class="l-es">contexto</span><span class="l-en" lang="en">context</span> · 10 <span class="l-es">descartadas</span><span class="l-en" lang="en">dropped</span></span>
+      </section>
+      
+      
+      <section class="watch-rail" aria-labelledby="agenda-title">
+        <div class="rail-h"><span id="agenda-title"><span class="l-es">Qué vigilar</span><span class="l-en" lang="en">What to watch</span></span><span class="lbl"><span class="l-es">Seguimiento</span><span class="l-en" lang="en">Follow-up</span></span></div>
+        <div class="watch-agenda">
+          
+          <div class="watch-row" id="watch-point-1">
+            <p><span class="l-es">Impacto real de la salida de Huang en los precios y disponibilidad de GPUs de Nvidia.</span><span class="l-en" lang="en">Real impact of Huang&#39;s departure on Nvidia GPU prices and availability.</span></p>
+            
           </div>
-          <div class="ents"><span class="ent">NVIDIA</span><span class="ent">Jensen Huang</span><span class="ent">OpenAI</span><span class="ent">DeepMind</span><span class="ent">China</span></div>
+          
+          <div class="watch-row" id="watch-point-2">
+            <p><span class="l-es">Adopción de ChatGPT Wallet y el volumen de transacciones realizadas por agentes.</span><span class="l-en" lang="en">Adoption of ChatGPT Wallet and the volume of transactions made by agents.</span></p>
+            
+          </div>
+          
+          <div class="watch-row" id="watch-point-3">
+            <p><span class="l-es">Detalles técnicos y rendimiento de Gemini 4 Hydrogen y la API de Decisiones de Google.</span><span class="l-en" lang="en">Technical details and performance of Gemini 4 Hydrogen and Google&#39;s Decisions API.</span></p>
+            
+          </div>
+          
         </div>
-      </div>
+      </section>
+      
     </aside>
+    
   </section>
   
 
@@ -1045,198 +1096,11 @@
   
 
       
-      <section class="ctx-block" id="ctx-block">
-        <div class="section-h">
-          <h2 class="sec"><span class="l-es">Contexto</span><span class="l-en" lang="en">Context</span></h2>
-          <p class="sec-sub"><span class="l-es">En segundo plano · Señales complementarias que completan la foto</span><span class="l-en" lang="en">In the background · Supporting signals shaping the backdrop</span></p>
-        </div>
-        <div class="ctx">
-          
-          <article class="cx" data-topic="compute_chips_dc" data-new="1">
-            <div class="meta-row">
-              <span class="cx-tag">Compute &amp; chips</span>
-              <span class="src"><img src="https://www.google.com/s2/favicons?domain=stratechery.com&amp;sz=64" alt="" loading="lazy"/>Stratechery</span>
-              <span class="score s-low">66/100</span>
-            </div>
-            <h3 class="cx-t">
-              <a href="https://stratechery.com/2026/the-end-of-jensen/" target="_blank" rel="noopener noreferrer"><span class="l-es">Stratechery analiza la caída de Jensen Huang y su impacto en Nvidia y la industria de chips.</span><span class="l-en" lang="en">Stratechery analyzes Jensen Huang&#39;s downfall and its impact on Nvidia and the chip industry.</span></a>
-            </h3>
-            <div class="cx-w"><span class="l-es">La dimisión de Jensen Huang es un punto de inflexión para Nvidia, que podría redefinir su liderazgo en hardware de IA y la dinámica competitiva de la industria.</span><span class="l-en" lang="en">Jensen Huang&#39;s resignation is a turning point for Nvidia, which could redefine its leadership in AI hardware and the competitive dynamics of the industry.</span></div>
-          </article>
-          
-          <article class="cx" data-topic="model_economics" data-new="0">
-            <div class="meta-row">
-              <span class="cx-tag"><span class="l-es">Economía de modelos</span><span class="l-en" lang="en">Model economics</span></span>
-              <span class="src"><img src="https://www.google.com/s2/favicons?domain=deepseek.com&amp;sz=64" alt="" loading="lazy"/>@DeepSeek_AI</span>
-              <span class="score s-low">56/100</span>
-            </div>
-            <h3 class="cx-t">
-              <a href="https://x.com/deepseek_ai/status/2121247896918253875" target="_blank" rel="noopener noreferrer"><span class="l-es">DeepSeek lanza las capacidades de su App (búsqueda, archivos, voz) a través de su API.</span><span class="l-en" lang="en">DeepSeek launches its App&#39;s capabilities (search, files, voice) through its API.</span></a>
-            </h3>
-            <div class="cx-w"><span class="l-es">DeepSeek busca expandir su cuota de mercado permitiendo a los desarrolladores integrar funciones avanzadas, compitiendo directamente con ofertas API de otros modelos.</span><span class="l-en" lang="en">DeepSeek seeks to expand its market share by allowing developers to integrate advanced features, competing directly with other models&#39; API offerings.</span></div>
-          </article>
-          
-          <article class="cx" data-topic="agents_automation" data-new="0">
-            <div class="meta-row">
-              <span class="cx-tag"><span class="l-es">Agentes</span><span class="l-en" lang="en">Agents</span></span>
-              <span class="src"><img src="https://www.google.com/s2/favicons?domain=artificialanalysis.ai&amp;sz=64" alt="" loading="lazy"/>Artificial Analysis</span>
-              <span class="score s-low">55/100</span>
-            </div>
-            <h3 class="cx-t">
-              <a href="https://artificialanalysis.ai/articles/google-deepmind-multimodal-knowledge-agent" target="_blank" rel="noopener noreferrer"><span class="l-es">Nuevo benchmark MKA para evaluar agentes de conocimiento multimodal con archivos visuales complejos.</span><span class="l-en" lang="en">New MKA benchmark to evaluate multimodal knowledge agents with complex visual files.</span></a>
-            </h3>
-            <div class="cx-w"><span class="l-es">La introducción de un nuevo benchmark permite una evaluación más rigurosa de las capacidades de los agentes multimodales, facilitando el seguimiento del progreso hacia la AGI.</span><span class="l-en" lang="en">The introduction of a new benchmark allows for a more rigorous evaluation of multimodal agent capabilities, facilitating progress tracking towards AGI.</span></div>
-          </article>
-          
-        </div>
-      </section>
-      
 
   </div>
 
-      
-      <section class="insights single">
-        
-        
-        <div class="widget">
-          <div class="widget-title">
-            <span><span class="l-es">Quién mueve la carrera</span><span class="l-en" lang="en">Who moves the race</span></span>
-            <span class="lbl"><span class="l-es">Últimas ediciones</span><span class="l-en" lang="en">Recent editions</span></span>
-          </div>
-          <ul class="movers">
-            
-            <li><span class="mv-n">OpenAI</span>
-              <span class="mv-t t-down" title="down">▼</span>
-              <span class="mv-bar"><i style="width:100%"></i></span></li>
-            
-            <li><span class="mv-n">DeepMind</span>
-              <span class="mv-t t-up" title="up">▲</span>
-              <span class="mv-bar"><i style="width:91%"></i></span></li>
-            
-            <li><span class="mv-n">Jensen Huang</span>
-              <span class="mv-t t-new" title="new"><span class="l-es">nuevo</span><span class="l-en" lang="en">new</span></span>
-              <span class="mv-bar"><i style="width:71%"></i></span></li>
-            
-            <li><span class="mv-n">NVIDIA</span>
-              <span class="mv-t t-up" title="up">▲</span>
-              <span class="mv-bar"><i style="width:71%"></i></span></li>
-            
-            <li><span class="mv-n">Google</span>
-              <span class="mv-t t-up" title="up">▲</span>
-              <span class="mv-bar"><i style="width:59%"></i></span></li>
-            
-            <li><span class="mv-n">Anthropic</span>
-              <span class="mv-t t-down" title="down">▼</span>
-              <span class="mv-bar"><i style="width:53%"></i></span></li>
-            
-          </ul>
-        </div>
-        
-      </section>
-      
-
-  <!-- Memoria del radar: lo que dijimos, lo que persiste, lo que viene -->
-  <section class="memory">
-      
-      <div class="widget">
-        <div class="widget-title">
-          <span><span class="l-es">Vigilancia de ayer</span><span class="l-en" lang="en">Yesterday&#39;s watchlist</span></span>
-          <span class="lbl">2/3 <span class="l-es">confirmadas</span><span class="l-en" lang="en">confirmed</span></span>
-        </div>
-        
-        <div class="wr hit">
-          <span class="wr-ic">✓</span>
-          <div>
-            <div class="wr-t"><span class="l-es">Declaraciones oficiales de Nvidia sobre Jensen Huang y el impacto en su estrategia de producción de chips.</span><span class="l-en" lang="en">Official statements from Nvidia regarding Jensen Huang and the impact on its chip production strategy.</span></div>
-            <div class="wr-ev">→ <span class="l-es">Análisis de la dimisión de Jensen Huang de Nvidia y las repercusiones de la crisis de liderazgo.</span><span class="l-en" lang="en">Analysis of Jensen Huang&#39;s resignation from Nvidia and the fallout from the leadership crisis.</span></div>
-          </div>
-        </div>
-        
-        <div class="wr open">
-          <span class="wr-ic">○</span>
-          <div>
-            <div class="wr-t"><span class="l-es">Demostraciones de OpenAI ChatGPT Wallet en transacciones reales y expansión a otros mercados.</span><span class="l-en" lang="en">Real-world demonstrations of OpenAI ChatGPT Wallet transactions and expansion to new markets.</span></div>
-            
-          </div>
-        </div>
-        
-        <div class="wr hit">
-          <span class="wr-ic">✓</span>
-          <div>
-            <div class="wr-t"><span class="l-es">Detalles de las nuevas capacidades de Gemini 4 Hydrogen de Google DeepMind y sus benchmarks.</span><span class="l-en" lang="en">Details on Google DeepMind&#39;s Gemini 4 Hydrogen capabilities and benchmarks.</span></div>
-            <div class="wr-ev">→ <span class="l-es">Google DeepMind anuncia Gemini 4 Hydrogen, un nuevo modelo.</span><span class="l-en" lang="en">Google DeepMind announces Gemini 4 Hydrogen, a new model in the Gemini 4 line.</span></div>
-          </div>
-        </div>
-        
-      </div>
-      
-      
-      <div class="widget">
-        <div class="widget-title">
-          <span><span class="l-es">Memoria del radar</span><span class="l-en" lang="en">Radar memory</span></span>
-          <span class="lbl"><span class="l-es">Continuidad</span><span class="l-en" lang="en">Continuity</span></span>
-        </div>
-        
-        <div class="thr">
-          <span class="thr-d"><span class="l-es">DÍA</span><span class="l-en" lang="en">DAY</span> 11</span>
-          <div>
-            <div class="thr-t"><span class="l-es">Agentes y automatización</span><span class="l-en" lang="en">Agents and automation</span></div>
-            <div class="thr-l"><span class="l-es">ChatGPT Wallet permite a los agentes realizar compras seguras con aprobación del usuario.</span><span class="l-en" lang="en">ChatGPT Wallet enables agents to make secure purchases with user approval.</span></div>
-          </div>
-        </div>
-        
-        <div class="thr">
-          <span class="thr-d"><span class="l-es">DÍA</span><span class="l-en" lang="en">DAY</span> 3</span>
-          <div>
-            <div class="thr-t"><span class="l-es">Compute y chips</span><span class="l-en" lang="en">Compute and chips</span></div>
-            <div class="thr-l"><span class="l-es">Elon Musk advierte que Nvidia perderá acuerdos clave en la cadena de suministro sin Jensen Huang.</span><span class="l-en" lang="en">Elon Musk warns Nvidia will lose &#39;critical deals&#39; in the supply chain without Jensen Huang.</span></div>
-          </div>
-        </div>
-        
-        
-        
-        <div class="mv"><span class="mv-b new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span><span class="nm">Claude Fable 5.2</span>
-          <span class="dt"><span class="l-es">primera aparición</span><span class="l-en" lang="en">first appearance</span></span></div>
-        
-        <div class="mv"><span class="mv-b new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span><span class="nm">Colette Kress</span>
-          <span class="dt"><span class="l-es">primera aparición</span><span class="l-en" lang="en">first appearance</span></span></div>
-        
-        <div class="mv"><span class="mv-b new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span><span class="nm">Elon Musk</span>
-          <span class="dt"><span class="l-es">primera aparición</span><span class="l-en" lang="en">first appearance</span></span></div>
-        
-        <div class="mv"><span class="mv-b new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span><span class="nm">Grok Imagine</span>
-          <span class="dt"><span class="l-es">primera aparición</span><span class="l-en" lang="en">first appearance</span></span></div>
-        
-        <div class="mv"><span class="mv-b new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span><span class="nm">Shield</span>
-          <span class="dt"><span class="l-es">primera aparición</span><span class="l-en" lang="en">first appearance</span></span></div>
-        
-        
-        <div class="mv"><span class="mv-b ret"><span class="l-es">Vuelve</span><span class="l-en" lang="en">Back</span></span><span class="nm">DeepSeek</span>
-          <span class="dt"><span class="l-es">tras 6 días en silencio</span><span class="l-en" lang="en">after 6 silent days</span></span></div>
-        
-        
-        <div class="mv"><span class="mv-b str"><span class="l-es">Racha</span><span class="l-en" lang="en">Streak</span></span><span class="nm">Gemini</span>
-          <span class="dt"><span class="l-es">5 días seguidos</span><span class="l-en" lang="en">5 days in a row</span></span></div>
-        
-        <div class="mv"><span class="mv-b str"><span class="l-es">Racha</span><span class="l-en" lang="en">Streak</span></span><span class="nm">NVIDIA</span>
-          <span class="dt"><span class="l-es">3 días seguidos</span><span class="l-en" lang="en">3 days in a row</span></span></div>
-        
-        <div class="mv"><span class="mv-b str"><span class="l-es">Racha</span><span class="l-en" lang="en">Streak</span></span><span class="nm">OpenAI</span>
-          <span class="dt"><span class="l-es">3 días seguidos</span><span class="l-en" lang="en">3 days in a row</span></span></div>
-        
-      </div>
-      
-      
-      <div class="widget">
-        <div class="widget-title">
-          <span><span class="l-es">Riesgos y vigilancia</span><span class="l-en" lang="en">Risks and watch</span></span>
-          <span class="lbl"><span class="l-es">Próximos días</span><span class="l-en" lang="en">Coming days</span></span>
-        </div>
-        <div class="rk"><span class="l-es">La inestabilidad en Nvidia podría impactar el suministro y coste de chips GPU, esenciales para el entrenamiento de modelos.</span><span class="l-en" lang="en">Nvidia&#39;s instability could impact GPU supply and cost, essential for model training.</span></div><div class="rk"><span class="l-es">El aumento de agentes autónomos plantea riesgos de seguridad no anticipados, como la explotación de vulnerabilidades.</span><span class="l-en" lang="en">The rise of autonomous agents poses unanticipated security risks, such as vulnerability exploitation.</span></div><div class="rk"><span class="l-es">La carrera de funcionalidades entre frontier labs podría priorizar el lanzamiento sobre la seguridad rigurosa.</span><span class="l-en" lang="en">The feature race among frontier labs could prioritize launch over rigorous safety.</span></div>
-        <div class="rk w"><span class="l-es">Impacto real de la salida de Huang en los precios y disponibilidad de GPUs de Nvidia.</span><span class="l-en" lang="en">Real impact of Huang&#39;s departure on Nvidia GPU prices and availability.</span></div><div class="rk w"><span class="l-es">Adopción de ChatGPT Wallet y el volumen de transacciones realizadas por agentes.</span><span class="l-en" lang="en">Adoption of ChatGPT Wallet and the volume of transactions made by agents.</span></div><div class="rk w"><span class="l-es">Detalles técnicos y rendimiento de Gemini 4 Hydrogen y la API de Decisiones de Google.</span><span class="l-en" lang="en">Technical details and performance of Gemini 4 Hydrogen and Google&#39;s Decisions API.</span></div>
-      </div>
-      
-  </section>
+  
+  
 
   <div class="credits"><div class="credits-id"><p class="credits-by">© 2026 RADAR.IA · <span class="l-es">por</span><span class="l-en" lang="en">by</span> <strong>Rolando Fernández</strong></p><p class="credits-tag"><span class="l-es">Radar diario de la carrera hacia la AGI, con fuentes y análisis.</span><span class="l-en" lang="en">A daily radar of the race towards AGI, with sources and analysis.</span></p></div><nav class="credits-links" aria-label="Rolando Fernández"><a href="https://www.linkedin.com/in/rolando-fernandez-jara" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/rolandojf-gif" target="_blank" rel="noopener">GitHub</a><a class="bmc" href="https://buymeacoffee.com/rolandofernandez" target="_blank" rel="noopener"><span class="bmc-cup" aria-hidden="true">☕</span> <span class="l-es">Invítame a un café</span><span class="l-en" lang="en">Buy me a coffee</span></a></nav></div>
   <footer>
@@ -1247,6 +1111,30 @@
 </div>
 
 <script>
+  // La visita se mide por edición. Recargar mantiene la misma comparación.
+  (function(){
+    const panel = document.getElementById('visit-changes');
+    if (!panel) return;
+    const today = panel.dataset.edition;
+    const key = 'nexus.daily.visit.v1';
+    try {
+      let state = null;
+      try { state = JSON.parse(localStorage.getItem(key)); } catch (_) {}
+      const valid = d => typeof d === 'string' && /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(d);
+      if (!valid(today) || (state && valid(state.latest) && state.latest > today)) return;
+      const previous = state && valid(state.latest)
+        ? (state.latest === today ? state.previous : state.latest) : null;
+      localStorage.setItem(key, JSON.stringify({latest: today, previous}));
+      if (!valid(previous) || previous >= today) return;
+      for (const row of panel.querySelectorAll('[data-updated]')) {
+        if (row.dataset.updated > previous && row.dataset.updated <= today) {
+          row.hidden = false;
+          panel.hidden = false;
+        }
+      }
+    } catch (_) { /* Sin historial local fiable no se afirma que haya novedades. */ }
+  })();
+
   // Si la edicion no es de hoy (por ejemplo, antes de la ejecucion de la manana), se dice:
   // sin esto la portada de ayer se lee como si fuera la de hoy.
   (function(){
@@ -1309,7 +1197,19 @@
         if (below) below.classList.toggle('filter-empty', on && visBelow === 0);
         var ctxBlock = document.getElementById('ctx-block');
         if (ctxBlock) ctxBlock.classList.toggle('filter-empty', on && visCtx === 0);
+        var opening = document.querySelector('.opening');
+        if (opening) opening.classList.toggle('filter-empty', on && visCtx === 0);
       });
+    });
+
+    document.addEventListener('click', function(ev){
+      var a = ev.target && ev.target.closest && ev.target.closest('a.watch-link');
+      if (!a) return;
+      var deck = document.getElementById('deck');
+      if (deck && deck.classList.contains('filtered')) {
+        var allTab = document.querySelector('#tabs .tab[data-filter="all"]');
+        if (allTab) allTab.click();
+      }
     });
   })();
 </script>
