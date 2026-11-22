@@ -60,6 +60,7 @@ def load_snapshot(path: Path) -> dict:
 
 
 def thesis_of(snap: dict) -> str:
+    from src.render import strip_evidence_prefix
     briefing = snap.get("briefing") or {}
     text = (briefing.get("thesis") or "").strip()
     if not text:
@@ -71,7 +72,7 @@ def thesis_of(snap: dict) -> str:
         if items:
             it = items[0]
             text = (it.get("title_es") or it.get("title") or "").strip()
-    text = re.sub(r"\s+", " ", text)
+    text = strip_evidence_prefix(text)
     return text[:220]
 
 

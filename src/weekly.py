@@ -15,6 +15,7 @@ from src.render import (
     score_value,
     source_label,
     source_logo_url,
+    strip_evidence_prefix,
     truncate_text,
 )
 import json
@@ -606,11 +607,11 @@ def main():
         th_es = human_category(th_key)
         th_en = human_category_en(th_key)
         t_es = display_title(it)
-        t_en = clean_text(it.get("title_en") or "") or clean_text(it.get("title") or "") or t_es
-        sw_es = truncate_text(clean_text(it.get("so_what") or ""), 175)
-        sw_en = truncate_text(clean_text(it.get("so_what_en") or ""), 175)
-        pw_es = truncate_text(clean_text(it.get("power_shift") or ""), 85)
-        pw_en = truncate_text(clean_text(it.get("power_shift_en") or ""), 85)
+        t_en = strip_evidence_prefix(it.get("title_en") or "") or strip_evidence_prefix(it.get("title") or "") or t_es
+        sw_es = truncate_text(strip_evidence_prefix(it.get("so_what") or ""), 175)
+        sw_en = truncate_text(strip_evidence_prefix(it.get("so_what_en") or ""), 175)
+        pw_es = truncate_text(strip_evidence_prefix(it.get("power_shift") or ""), 85)
+        pw_en = truncate_text(strip_evidence_prefix(it.get("power_shift_en") or ""), 85)
         url = safe_href(it.get("url") or it.get("link") or "")
         src_lbl = html_escape(source_label(it.get("source", "")))
         logo = html_escape(source_logo_url(it.get("source", ""), it.get("url") or it.get("link") or ""))
@@ -671,12 +672,12 @@ def main():
         snap = snapshots[di]
         br = snap.get("briefing") or {}
         day_items = snap.get("items") or []
-        th_es = clean_text(br.get("thesis") or "")
-        th_en = clean_text(br.get("thesis_en") or "")
+        th_es = strip_evidence_prefix(br.get("thesis") or "")
+        th_en = strip_evidence_prefix(br.get("thesis_en") or "")
         if not th_es:
             th_es = display_title(day_items[0]) if day_items else "Sin movimientos de frontera."
         if not th_en:
-            th_en = clean_text((day_items[0].get("title_en") or day_items[0].get("title") if day_items else "") or "") or "No frontier shifts."
+            th_en = strip_evidence_prefix((day_items[0].get("title_en") or day_items[0].get("title") if day_items else "") or "") or "No frontier shifts."
         act = snap.get("activity") or {"label": "ACTIVO", "class": "active"}
         act_lbl = str(act.get("label") or "ACTIVO")
         act_en = ACTIVITY_EN.get(act_lbl, act_lbl)
@@ -845,10 +846,10 @@ def main():
     # Hilos por entidad y por tema (con score, fecha, fuente y bajada)
     def item_row(it: Dict[str, Any]) -> str:
         title_es = display_title(it)
-        title_en = clean_text(it.get("title_en") or "") or clean_text(it.get("title") or "") or title_es
+        title_en = strip_evidence_prefix(it.get("title_en") or "") or strip_evidence_prefix(it.get("title") or "") or title_es
         title_html = bi(title_es, title_en)
-        sw_es = truncate_text(clean_text(it.get("so_what") or ""), 135)
-        sw_en = truncate_text(clean_text(it.get("so_what_en") or ""), 135)
+        sw_es = truncate_text(strip_evidence_prefix(it.get("so_what") or ""), 135)
+        sw_en = truncate_text(strip_evidence_prefix(it.get("so_what_en") or ""), 135)
         url = (it.get("url") or it.get("link") or "").strip()
         src = html_escape(source_label(it.get("source") or ""))
         logo = html_escape(source_logo_url(it.get("source") or "", url))

@@ -209,8 +209,12 @@
   .ticker-h strong{display:flex;align-items:center;gap:8px;color:var(--text);font-weight:700;letter-spacing:.08em}
   .ticker-h strong::before{content:"";width:10px;height:10px;background:var(--orange);border:2px solid var(--ink)}
   .ticker-q{display:flex;gap:8px;padding-right:8px}
-  .tq{flex:0 0 210px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 6px;align-items:center;padding:8px 10px;border:1px solid var(--ink);background:var(--card-2);min-width:0}
-  .tq-n{grid-column:1/-1;font:600 10.5px var(--f-mono);color:var(--muted);text-transform:uppercase}
+  .tq{flex:0 0 210px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 6px;align-items:center;padding:8px 10px;border:1px solid var(--ink);background:var(--card-2);min-width:0;color:inherit;text-decoration:none;transition:border-color .12s,background-color .12s,transform .12s}
+  a.tq:hover{border-color:var(--orange);background:var(--card);transform:translateY(-1px)}
+  a.tq:focus-visible{outline:2px solid var(--orange);outline-offset:-2px}
+  .tq-n{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:6px;font:600 10.5px var(--f-mono);color:var(--muted);text-transform:uppercase}
+  a.tq .tq-n::after{content:"↗";font-size:10px;opacity:.45;transition:opacity .12s,color .12s}
+  a.tq:hover .tq-n::after{opacity:1;color:var(--orange-ink)}
   .tq-p{font:700 clamp(14px,1.25vw,18px) var(--f-mono);white-space:nowrap;font-variant-numeric:tabular-nums}
   .tq .spark{grid-column:1/-1;height:20px}
 
@@ -392,6 +396,17 @@
        border:2px solid var(--ink);background:var(--card-2);flex-shrink:0}
   .tag{background:var(--orange);color:#121211}
   .badge-new{background:var(--lime);color:#121211}
+  .ev-pill{display:inline-flex;align-items:center;gap:4px;font:600 9.5px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.03em;
+           padding:3px 7px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--muted);flex-shrink:0;white-space:nowrap}
+  .ev-pill::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.78;flex:0 0 auto}
+  .ev-pill.ev-confirmed{color:var(--open);border-color:color-mix(in srgb,var(--open) 42%,transparent)}
+  .ev-pill.ev-speculation{color:#B45309;border-color:rgba(217,119,6,.42)}
+  .ev-pill.ev-unverified{border-style:dashed}
+  .lead.lead-dossier .ev-pill{color:#A8A7A0;border-color:#3A3A34;background:rgba(255,255,255,.04)}
+  .lead.lead-dossier .ev-pill.ev-confirmed{color:#34D399;border-color:rgba(52,211,153,.38)}
+  .lead.lead-dossier .ev-pill.ev-speculation{color:#FBBF24;border-color:rgba(251,191,36,.38)}
+  .cx-meta{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:2px}
+  .cx-meta .ev-pill{font-size:8.8px;padding:2px 6px}
   .score{display:inline-flex;align-items:center;font:700 11px/1 var(--f-mono);margin-left:auto;padding:4px 7px;
          border:1px solid var(--line);background:var(--card-2);color:var(--muted);font-variant-numeric:tabular-nums;
          letter-spacing:.02em;flex-shrink:0}
@@ -402,9 +417,11 @@
   .score.s-low{background:var(--card-2);color:var(--muted);border:1px solid var(--line);opacity:.82}
   :root[data-theme="dark"] .score.s-80{background:rgba(255,87,34,.22);color:#FFA07A;border-color:#EA580C}
   :root[data-theme="dark"] .score.s-70{background:#232320;color:var(--muted);border-color:var(--line)}
+  :root[data-theme="dark"] .ev-pill.ev-speculation{color:#FBBF24;border-color:rgba(251,191,36,.38)}
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]) .score.s-80{background:rgba(255,87,34,.22);color:#FFA07A;border-color:#EA580C}
     :root:not([data-theme="light"]) .score.s-70{background:#232320;color:var(--muted);border-color:var(--line)}
+    :root:not([data-theme="light"]) .ev-pill.ev-speculation{color:#FBBF24;border-color:rgba(251,191,36,.38)}
   }
   .hero-title{margin:0 0 10px;font:700 clamp(21px,2.4vw,30px)/1.15 var(--f-head);letter-spacing:-.02em}
   .hero-title a:hover,.card-title a:hover,.cx-t a:hover{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
@@ -506,7 +523,7 @@
 </style>
 </head>
 <body>
-<header class="topnav"><a class="brand" href="../index.html" aria-label="Radar.IA, portada"><span class="brand-icon"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 12V2.5A9.5 9.5 0 0 1 21.03 9.06Z" fill="currentColor"/><circle cx="7.5" cy="15" r="1.7" fill="currentColor"/></svg></span><span class="brand-text"><strong>Radar<em>.IA</em></strong><small><span class="l-es">Radar estratégico de la carrera AGI</span><span class="l-en" lang="en">Strategic radar of the AGI race</span></small></span></a><nav class="navtabs" aria-label="Secciones"><a class="navtab" href="../index.html"><i>01</i> <span class="l-es">Diario</span><span class="l-en" lang="en">Daily</span></a><a class="navtab" href="../weekly.html"><i>02</i> <span class="l-es">Semanal</span><span class="l-en" lang="en">Weekly</span></a><a class="navtab" href="../archivo.html" aria-current="page"><i>03</i> <span class="l-es">Archivo</span><span class="l-en" lang="en">Archive</span></a></nav><a class="sister" href="https://moloch-sh.netlify.app/" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">&gt;_</span><span>MOLOCH.SH ↗<small><span class="l-es">Observatorio de modelos</span><span class="l-en" lang="en">Model observatory</span></small></span></a><div class="top-ctl"><div class="seg" role="group" aria-label="Idioma"><button type="button" class="seg-btn" data-lang-set="es">ES</button><button type="button" class="seg-btn" data-lang-set="en">EN</button></div><div class="seg" role="group" aria-label="Tema"><button type="button" class="seg-btn" data-theme-set="auto">Auto</button><button type="button" class="seg-btn" data-theme-set="light"><span class="l-es">Claro</span><span class="l-en" lang="en">Light</span></button><button type="button" class="seg-btn" data-theme-set="dark"><span class="l-es">Oscuro</span><span class="l-en" lang="en">Dark</span></button></div></div></header>
+<header class="topnav"><a class="brand" href="../index.html" aria-label="Radar.IA, portada"><span class="brand-icon"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 12V2.5A9.5 9.5 0 0 1 21.03 9.06Z" fill="currentColor"/><circle cx="7.5" cy="15" r="1.7" fill="currentColor"/></svg></span><span class="brand-text"><strong>Radar<em>.IA</em></strong><small><span class="l-es">Radar estratégico de la carrera AGI</span><span class="l-en" lang="en">Strategic radar of the AGI race</span></small></span></a><nav class="navtabs" aria-label="Secciones"><a class="navtab" href="../index.html"><i>01</i> <span class="l-es">Diario</span><span class="l-en" lang="en">Daily</span></a><a class="navtab" href="../weekly.html"><i>02</i> <span class="l-es">Semanal</span><span class="l-en" lang="en">Weekly</span></a><a class="navtab" href="../archivo.html"><i>03</i> <span class="l-es">Archivo</span><span class="l-en" lang="en">Archive</span></a></nav><a class="sister" href="https://moloch-sh.netlify.app/" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">&gt;_</span><span>MOLOCH.SH ↗<small><span class="l-es">Observatorio de modelos</span><span class="l-en" lang="en">Model observatory</span></small></span></a><div class="top-ctl"><div class="seg" role="group" aria-label="Idioma"><button type="button" class="seg-btn" data-lang-set="es">ES</button><button type="button" class="seg-btn" data-lang-set="en">EN</button></div><div class="seg" role="group" aria-label="Tema"><button type="button" class="seg-btn" data-theme-set="auto">Auto</button><button type="button" class="seg-btn" data-theme-set="light"><span class="l-es">Claro</span><span class="l-en" lang="en">Light</span></button><button type="button" class="seg-btn" data-theme-set="dark"><span class="l-es">Oscuro</span><span class="l-en" lang="en">Dark</span></button></div></div></header>
 <div class="strip">
   <span><span class="l-es">Edición</span><span class="l-en" lang="en">Edition</span> <b class="hl">2026-11-21</b></span>
   <span class="it bad"><span class="l-es">ALERTA</span><span class="l-en" lang="en">ALERT</span></span>
@@ -567,11 +584,11 @@
     <aside class="rail">
       <div class="rail-h"><span><span class="l-es">El editorial</span><span class="l-en" lang="en">Editorial</span></span><span class="lbl">01 / <span class="l-es">Análisis</span><span class="l-en" lang="en">Analysis</span></span></div>
       <h1 class="rail-title"><span class="l-es">La tesis del día</span><span class="l-en" lang="en">Thesis of the day</span></h1>
-      <p class="rail-thesis"><span class="l-es">Inferencia · Las defensas de GPT-6.2 parecen más robustas: en pruebas adaptativas, la tasa de éxito al extraer su razonamiento protegido cayó del 54 % al 0,2 %.</span><span class="l-en" lang="en">Inference · GPT-6.2’s defenses appear stronger: in adaptive tests, the success rate for extracting protected reasoning fell from 54% to 0.2%.</span></p>
+      <p class="rail-thesis"><span class="l-es">Las defensas de GPT-6.2 parecen más robustas: en pruebas adaptativas, la tasa de éxito al extraer su razonamiento protegido cayó del 54 % al 0,2 %.</span><span class="l-en" lang="en">GPT-6.2’s defenses appear stronger: in adaptive tests, the success rate for extracting protected reasoning fell from 54% to 0.2%.</span></p>
       
       <div class="rail-h"><span><span class="l-es">Claves del día</span><span class="l-en" lang="en">Key points</span></span><span class="lbl"><span class="l-es">Selección</span><span class="l-en" lang="en">Selection</span></span></div>
       <ol class="keys">
-        <li><span class="l-es">Inferencia · Google DeepMind exhibe capacidades de codificación de Gemini 4 Neon con un simulador 3D.</span><span class="l-en" lang="en">Inference · Google DeepMind showcases Gemini 4 Neon&#39;s coding capabilities with a 3D simulator.</span></li><li><span class="l-es">Inferencia · Un matemático de Anthropic afirma haber resuelto la Hipótesis de Riemann con la ayuda de Claude.</span><span class="l-en" lang="en">Inference · An Anthropic mathematician claims to have solved the Riemann Hypothesis with the help of Claude.</span></li><li><span class="l-es">Hipótesis · NVIDIA enfrenta inestabilidad con la salida de Jensen Huang, impactando la estrategia de chips.</span><span class="l-en" lang="en">Hypothesis · NVIDIA faces instability with Jensen Huang&#39;s departure, impacting chip strategy.</span></li>
+        <li><span class="l-es">Google DeepMind exhibe capacidades de codificación de Gemini 4 Neon con un simulador 3D.</span><span class="l-en" lang="en">Google DeepMind showcases Gemini 4 Neon&#39;s coding capabilities with a 3D simulator.</span></li><li><span class="l-es">Un matemático de Anthropic afirma haber resuelto la Hipótesis de Riemann con la ayuda de Claude.</span><span class="l-en" lang="en">An Anthropic mathematician claims to have solved the Riemann Hypothesis with the help of Claude.</span></li><li><span class="l-es">NVIDIA enfrenta inestabilidad con la salida de Jensen Huang, impactando la estrategia de chips.</span><span class="l-en" lang="en">NVIDIA faces instability with Jensen Huang&#39;s departure, impacting chip strategy.</span></li>
       </ol>
       
       <div class="rail-foot">
@@ -605,9 +622,9 @@
           <span class="score s-95">99/100</span>
         </div>
         <h2 class="hero-title">
-          <a href="https://the-decoder.com/openai-makes-it-much-harder-for-attackers-to-extract-how-its-latest-ai-models-think/" target="_blank" rel="noopener noreferrer"><span class="l-es">Según la fuente · OpenAI refuerza defensas contra extracción de lógica interna de GPT-6.2 Astra y Sol</span><span class="l-en" lang="en">Reported · OpenAI strengthens defenses against internal reasoning extraction from GPT-6.2 Astra and Sol</span></a>
+          <a href="https://the-decoder.com/openai-makes-it-much-harder-for-attackers-to-extract-how-its-latest-ai-models-think/" target="_blank" rel="noopener noreferrer"><span class="l-es">OpenAI refuerza defensas contra extracción de lógica interna de GPT-6.2 Astra y Sol</span><span class="l-en" lang="en">OpenAI strengthens defenses against internal reasoning extraction from GPT-6.2 Astra and Sol</span></a>
         </h2>
-        <div class="sw"><span class="l-es">Inferencia · Reduce la vulnerabilidad a la ingeniería inversa y el uso no autorizado de capacidades de modelos avanzados sin sus salvaguardas.</span><span class="l-en" lang="en">Inference · Reduces vulnerability to reverse engineering and unauthorized use of advanced model capabilities without their safeguards.</span></div>
+        <div class="sw"><span class="l-es">Reduce la vulnerabilidad a la ingeniería inversa y el uso no autorizado de capacidades de modelos avanzados sin sus salvaguardas.</span><span class="l-en" lang="en">Reduces vulnerability to reverse engineering and unauthorized use of advanced model capabilities without their safeguards.</span></div>
             <details class="metric-context"><summary><span class="l-es">Contexto de la medición</span><span class="l-en" lang="en">Measurement context</span></summary>
     <blockquote><span class="l-es">En pruebas adaptativas de equipo rojo, la tasa de éxito al extraer el razonamiento protegido cayó del 54 % al 0,2 %.</span><span class="l-en" lang="en">In adaptive red-teaming tests, the success rate for extracting protected reasoning fell from 54 percent to 0.2 percent.</span></blockquote>
     <a href="https://the-decoder.com/openai-makes-it-much-harder-for-attackers-to-extract-how-its-latest-ai-models-think/" target="_blank" rel="noopener noreferrer">The Decoder ↗</a>
@@ -615,7 +632,7 @@
         
         <div class="lead-intel two">
           
-          <div class="intel-box pw"><span class="k intel-k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="intel-v"><span class="l-es">Inferencia · OpenAI gana</span><span class="l-en" lang="en">Inference · OpenAI gains</span></span></div>
+          <div class="intel-box pw"><span class="k intel-k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="intel-v"><span class="l-es">OpenAI gana</span><span class="l-en" lang="en">OpenAI gains</span></span></div>
           
           
           <div class="intel-box wn"><span class="k intel-k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="intel-v"><span class="l-es">Otros labs implementan medidas similares o se reportan ataques con éxito en nuevos modelos.</span><span class="l-en" lang="en">Other labs implement similar measures or successful attacks on new models are reported.</span></span></div>
@@ -630,6 +647,7 @@
         <div class="lead-foot">
           <div class="lead-foot-l">
             <span class="src"><img src="https://www.google.com/s2/favicons?domain=the-decoder.com&amp;sz=64" alt="" loading="lazy"/>The Decoder</span>
+            <span class="ev-pill ev-reported" title="Reportado por medio externo"><span class="l-es">Según la fuente</span><span class="l-en" lang="en">Reported</span></span>
             
             <div class="ents"><span class="ent">OpenAI</span></div>
             
@@ -650,8 +668,11 @@
           <article class="cx" data-topic="frontier_capability" data-new="1">
             <div class="cx-body">
               <span class="cx-theme"><span class="l-es">Capacidad frontier</span><span class="l-en" lang="en">Frontier capability</span></span>
-              <h3 class="cx-t"><a href="https://artificialanalysis.ai/articles/inkling-2-mini" target="_blank" rel="noopener noreferrer"><span class="l-es">Según la fuente · Thinking Machines lanza Inkling 2 Mini, un transformer de pesos abiertos</span><span class="l-en" lang="en">Reported · Thinking Machines releases Inkling 2 Mini, an open-weights looped transformer</span></a></h3>
-              <span class="src"><img src="https://www.google.com/s2/favicons?domain=artificialanalysis.ai&amp;sz=64" alt="" loading="lazy"/>Artificial Analysis</span>
+              <h3 class="cx-t"><a href="https://artificialanalysis.ai/articles/inkling-2-mini" target="_blank" rel="noopener noreferrer"><span class="l-es">Thinking Machines lanza Inkling 2 Mini, un transformer de pesos abiertos</span><span class="l-en" lang="en">Thinking Machines releases Inkling 2 Mini, an open-weights looped transformer</span></a></h3>
+              <div class="cx-meta">
+                <span class="src"><img src="https://www.google.com/s2/favicons?domain=artificialanalysis.ai&amp;sz=64" alt="" loading="lazy"/>Artificial Analysis</span>
+                <span class="ev-pill ev-reported" title="Reportado por medio externo"><span class="l-es">Según la fuente</span><span class="l-en" lang="en">Reported</span></span>
+              </div>
               
             </div>
           </article>
@@ -659,8 +680,11 @@
           <article class="cx" data-topic="frontier_capability" data-new="1">
             <div class="cx-body">
               <span class="cx-theme"><span class="l-es">Capacidad frontier</span><span class="l-en" lang="en">Frontier capability</span></span>
-              <h3 class="cx-t"><a href="https://www.together.ai/blog/qwen3-tts" target="_blank" rel="noopener noreferrer"><span class="l-es">Confirmado · Qwen3 TTS de Alibaba disponible en Together AI con multilenguaje y baja latencia</span><span class="l-en" lang="en">Confirmed · Alibaba&#39;s Qwen3 TTS available on Together AI with multi-language and low latency</span></a></h3>
-              <span class="src"><img src="https://www.google.com/s2/favicons?domain=together.ai&amp;sz=64" alt="" loading="lazy"/>Together AI</span>
+              <h3 class="cx-t"><a href="https://www.together.ai/blog/qwen3-tts" target="_blank" rel="noopener noreferrer"><span class="l-es">Qwen3 TTS de Alibaba disponible en Together AI con multilenguaje y baja latencia</span><span class="l-en" lang="en">Alibaba&#39;s Qwen3 TTS available on Together AI with multi-language and low latency</span></a></h3>
+              <div class="cx-meta">
+                <span class="src"><img src="https://www.google.com/s2/favicons?domain=together.ai&amp;sz=64" alt="" loading="lazy"/>Together AI</span>
+                <span class="ev-pill ev-confirmed" title="Confirmado por fuente primaria"><span class="l-es">Confirmado</span><span class="l-en" lang="en">Confirmed</span></span>
+              </div>
               <details class="metric-context"><summary><span class="l-es">Contexto de la medición</span><span class="l-en" lang="en">Measurement context</span></summary>
     <blockquote><span class="l-es">Mantén la misma voz en todo el producto, cambia su tono con una instrucción en lenguaje natural y alterna entre 10 idiomas, con el primer audio en tan solo 97 ms.</span><span class="l-en" lang="en">Keep one voice across your product, change its tone with a plain-language instruction and move it between 10 languages, with first audio in as little as 97ms.</span></blockquote>
     <a href="https://www.together.ai/blog/qwen3-tts" target="_blank" rel="noopener noreferrer">Together AI ↗</a>
@@ -671,8 +695,11 @@
           <article class="cx" data-topic="agents_automation" data-new="1">
             <div class="cx-body">
               <span class="cx-theme"><span class="l-es">Agentes</span><span class="l-en" lang="en">Agents</span></span>
-              <h3 class="cx-t"><a href="https://stratechery.com/2026/down-in-dc/" target="_blank" rel="noopener noreferrer"><span class="l-es">Inferencia · Stratechery analiza debates sobre agentes de IA en Washington D.C.</span><span class="l-en" lang="en">Inference · Stratechery analyzes debates on AI agents in Washington D.C.</span></a></h3>
-              <span class="src"><img src="https://www.google.com/s2/favicons?domain=stratechery.com&amp;sz=64" alt="" loading="lazy"/>Stratechery</span>
+              <h3 class="cx-t"><a href="https://stratechery.com/2026/down-in-dc/" target="_blank" rel="noopener noreferrer"><span class="l-es">Stratechery analiza debates sobre agentes de IA en Washington D.C.</span><span class="l-en" lang="en">Stratechery analyzes debates on AI agents in Washington D.C.</span></a></h3>
+              <div class="cx-meta">
+                <span class="src"><img src="https://www.google.com/s2/favicons?domain=stratechery.com&amp;sz=64" alt="" loading="lazy"/>Stratechery</span>
+                <span class="ev-pill ev-inference" title="Lectura editorial basada en la fuente"><span class="l-es">Inferencia</span><span class="l-en" lang="en">Inference</span></span>
+              </div>
               
             </div>
           </article>
@@ -753,12 +780,13 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=the-decoder.com&amp;sz=64" alt="" loading="lazy"/>The Decoder</span>
               <span class="multi">+2</span>
+              <span class="ev-pill ev-reported" title="Reportado por medio externo"><span class="l-es">Según la fuente</span><span class="l-en" lang="en">Reported</span></span>
               <span class="score s-95">99/100</span>
             </div>
             <h3 class="card-title">
-              <a href="https://the-decoder.com/openai-makes-it-much-harder-for-attackers-to-extract-how-its-latest-ai-models-think/" target="_blank" rel="noopener noreferrer"><span class="l-es">Según la fuente · OpenAI refuerza defensas contra extracción de lógica interna de GPT-6.2 Astra y Sol</span><span class="l-en" lang="en">Reported · OpenAI strengthens defenses against internal reasoning extraction from GPT-6.2 Astra and Sol</span></a>
+              <a href="https://the-decoder.com/openai-makes-it-much-harder-for-attackers-to-extract-how-its-latest-ai-models-think/" target="_blank" rel="noopener noreferrer"><span class="l-es">OpenAI refuerza defensas contra extracción de lógica interna de GPT-6.2 Astra y Sol</span><span class="l-en" lang="en">OpenAI strengthens defenses against internal reasoning extraction from GPT-6.2 Astra and Sol</span></a>
             </h3>
-            <div class="sw"><span class="l-es">Inferencia · Reduce la vulnerabilidad a la ingeniería inversa y el uso no autorizado de capacidades de modelos avanzados sin sus salvaguardas.</span><span class="l-en" lang="en">Inference · Reduces vulnerability to reverse engineering and unauthorized use of advanced model capabilities without their safeguards.</span></div>
+            <div class="sw"><span class="l-es">Reduce la vulnerabilidad a la ingeniería inversa y el uso no autorizado de capacidades de modelos avanzados sin sus salvaguardas.</span><span class="l-en" lang="en">Reduces vulnerability to reverse engineering and unauthorized use of advanced model capabilities without their safeguards.</span></div>
             <details class="metric-context"><summary><span class="l-es">Contexto de la medición</span><span class="l-en" lang="en">Measurement context</span></summary>
     <blockquote><span class="l-es">En pruebas adaptativas de equipo rojo, la tasa de éxito al extraer el razonamiento protegido cayó del 54 % al 0,2 %.</span><span class="l-en" lang="en">In adaptive red-teaming tests, the success rate for extracting protected reasoning fell from 54 percent to 0.2 percent.</span></blockquote>
     <a href="https://the-decoder.com/openai-makes-it-much-harder-for-attackers-to-extract-how-its-latest-ai-models-think/" target="_blank" rel="noopener noreferrer">The Decoder ↗</a>
@@ -771,7 +799,7 @@
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v"><span class="l-es">Inferencia · OpenAI gana</span><span class="l-en" lang="en">Inference · OpenAI gains</span></span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v"><span class="l-es">OpenAI gana</span><span class="l-en" lang="en">OpenAI gains</span></span></div>
               
               
               <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v"><span class="l-es">Otros labs implementan medidas similares o se reportan ataques con éxito en nuevos modelos.</span><span class="l-en" lang="en">Other labs implement similar measures or successful attacks on new models are reported.</span></span></div>
@@ -790,17 +818,18 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=techcrunch.com&amp;sz=64" alt="" loading="lazy"/>TechCrunch AI</span>
               
+              <span class="ev-pill ev-speculation" title="Hipótesis, rumor o anuncio en curso"><span class="l-es">Hipótesis</span><span class="l-en" lang="en">Hypothesis</span></span>
               <span class="score s-95">98/100</span>
             </div>
             <h3 class="card-title">
-              <a href="https://techcrunch.com/podcast/the-fallout-from-nvidias-jensen-huang-scandal-continues/" target="_blank" rel="noopener noreferrer"><span class="l-es">Hipótesis · La salida de Jensen Huang de NVIDIA sigue generando inestabilidad y reajustes internos</span><span class="l-en" lang="en">Hypothesis · Jensen Huang&#39;s departure from NVIDIA continues to generate instability and internal adjustments</span></a>
+              <a href="https://techcrunch.com/podcast/the-fallout-from-nvidias-jensen-huang-scandal-continues/" target="_blank" rel="noopener noreferrer"><span class="l-es">La salida de Jensen Huang de NVIDIA sigue generando inestabilidad y reajustes internos</span><span class="l-en" lang="en">Jensen Huang&#39;s departure from NVIDIA continues to generate instability and internal adjustments</span></a>
             </h3>
             
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v"><span class="l-es">Inferencia · La inestabilidad en la cúpula de NVIDIA, actor clave en chips de IA, podría afectar la estrategia a largo plazo y la cadena de suministro.</span><span class="l-en" lang="en">Inference · Instability at the top of NVIDIA, a key AI chip player, could affect long-term strategy and the supply chain.</span></span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v"><span class="l-es">La inestabilidad en la cúpula de NVIDIA, actor clave en chips de IA, podría afectar la estrategia a largo plazo y la cadena de suministro.</span><span class="l-en" lang="en">Instability at the top of NVIDIA, a key AI chip player, could affect long-term strategy and the supply chain.</span></span></div>
               
               
               <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v"><a class="watch-link" href="#watch-point-2"><span class="l-es">Ver hito</span><span class="l-en" lang="en">View milestone</span></a></span></div>
@@ -819,12 +848,13 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=latent.space&amp;sz=64" alt="" loading="lazy"/>Latent Space</span>
               <span class="multi">+1</span>
+              <span class="ev-pill ev-reported" title="Reportado por medio externo"><span class="l-es">Según la fuente</span><span class="l-en" lang="en">Reported</span></span>
               <span class="score s-95">97/100</span>
             </div>
             <h3 class="card-title">
-              <a href="https://latent.space/p/ainews-anthropic-successfully-completes-largest-ipo-in-history-valued-at-1-5t/" target="_blank" rel="noopener noreferrer"><span class="l-es">Según la fuente · Anthropic cierra una IPO histórica con valoración inicial de 1.5 billones de dólares</span><span class="l-en" lang="en">Reported · Anthropic closes historic IPO with initial valuation of $1.5 trillion</span></a>
+              <a href="https://latent.space/p/ainews-anthropic-successfully-completes-largest-ipo-in-history-valued-at-1-5t/" target="_blank" rel="noopener noreferrer"><span class="l-es">Anthropic cierra una IPO histórica con valoración inicial de 1.5 billones de dólares</span><span class="l-en" lang="en">Anthropic closes historic IPO with initial valuation of $1.5 trillion</span></a>
             </h3>
-            <div class="sw"><span class="l-es">Inferencia · Establece un nuevo precedente para la valoración de los labs frontera, inyectando capital masivo en Anthropic para impulsar su desarrollo de AGI.</span><span class="l-en" lang="en">Inference · Sets a new precedent for frontier lab valuation, injecting massive capital into Anthropic to drive its AGI development.</span></div>
+            <div class="sw"><span class="l-es">Establece un nuevo precedente para la valoración de los labs frontera, inyectando capital masivo en Anthropic para impulsar su desarrollo de AGI.</span><span class="l-en" lang="en">Sets a new precedent for frontier lab valuation, injecting massive capital into Anthropic to drive its AGI development.</span></div>
             
             <div class="also"><span class="l-es">También en:</span><span class="l-en" lang="en">Also in:</span>
               <a href="https://www.bloomberg.com/news/articles/2026-11-20/anthropic-share-slump-nearly-erases-ipo-pop-as-ai-trade-unravels" target="_blank" rel="noopener noreferrer">Bloomberg Tech</a>
@@ -833,7 +863,7 @@
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v"><span class="l-es">Inferencia · Anthropic gana</span><span class="l-en" lang="en">Inference · Anthropic gains</span></span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v"><span class="l-es">Anthropic gana</span><span class="l-en" lang="en">Anthropic gains</span></span></div>
               
               
               <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v"><span class="l-es">Estabilización de la cotización de Anthropic y cómo invierte el capital de la IPO en compute o talento.</span><span class="l-en" lang="en">Stabilization of Anthropic&#39;s stock price and how it invests IPO capital in compute or talent.</span></span></div>
@@ -852,12 +882,13 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=x.com&amp;sz=64" alt="" loading="lazy"/>@gdb</span>
               
+              <span class="ev-pill ev-reported" title="Reportado por medio externo"><span class="l-es">Según la fuente</span><span class="l-en" lang="en">Reported</span></span>
               <span class="score s-95">96/100</span>
             </div>
             <h3 class="card-title">
-              <a href="https://x.com/gdb/status/2123953589882413337" target="_blank" rel="noopener noreferrer"><span class="l-es">Según la fuente · GPT-6.2 Astra de OpenAI lidera rankings de robótica en RoboColosseum</span><span class="l-en" lang="en">Reported · OpenAI&#39;s GPT-6.2 Astra leads robotics rankings in RoboColosseum</span></a>
+              <a href="https://x.com/gdb/status/2123953589882413337" target="_blank" rel="noopener noreferrer"><span class="l-es">GPT-6.2 Astra de OpenAI lidera rankings de robótica en RoboColosseum</span><span class="l-en" lang="en">OpenAI&#39;s GPT-6.2 Astra leads robotics rankings in RoboColosseum</span></a>
             </h3>
-            <div class="sw"><span class="l-es">Inferencia · Demuestra un avance significativo en la capacidad de los modelos frontera para controlar sistemas robóticos complejos y tareas de manipulación.</span><span class="l-en" lang="en">Inference · Demonstrates a significant advance in the ability of frontier models to control complex robotic systems and manipulation tasks.</span></div>
+            <div class="sw"><span class="l-es">Demuestra un avance significativo en la capacidad de los modelos frontera para controlar sistemas robóticos complejos y tareas de manipulación.</span><span class="l-en" lang="en">Demonstrates a significant advance in the ability of frontier models to control complex robotic systems and manipulation tasks.</span></div>
             <details class="metric-context"><summary><span class="l-es">Contexto de la medición</span><span class="l-en" lang="en">Measurement context</span></summary>
     <blockquote><span class="l-es">🤖 En un solo día hicimos cientos de comparaciones directas en condiciones reales y el modelo subió al puesto 1 del ranking Elo SO-101 de @RoboColosseum.</span><span class="l-en" lang="en">🤖 In just ONE DAY, we ran hundreds of head-to-head comparisons in the wild, and it climbed to 1 in @RoboColosseum ’s SO-101 Elo rankings.</span></blockquote>
     <a href="https://x.com/gdb/status/2123953589882413337" target="_blank" rel="noopener noreferrer">@gdb ↗</a>
@@ -866,7 +897,7 @@
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v"><span class="l-es">Inferencia · OpenAI gana</span><span class="l-en" lang="en">Inference · OpenAI gains</span></span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v"><span class="l-es">OpenAI gana</span><span class="l-en" lang="en">OpenAI gains</span></span></div>
               
               
               <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v"><span class="l-es">Casos de uso reales de GPT-6.2 Astra en entornos robóticos de producción o nuevas demostraciones.</span><span class="l-en" lang="en">Real-world use cases of GPT-6.2 Astra in production robotic environments or new demonstrations.</span></span></div>
@@ -885,17 +916,18 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=theverge.com&amp;sz=64" alt="" loading="lazy"/>The Verge AI</span>
               
+              <span class="ev-pill ev-reported" title="Reportado por medio externo"><span class="l-es">Según la fuente</span><span class="l-en" lang="en">Reported</span></span>
               <span class="score s-95">95/100</span>
             </div>
             <h3 class="card-title">
-              <a href="https://www.theverge.com/ai-artificial-intelligence/1010051/anthropic-riemann-hypothesis-millennium-prize-problem" target="_blank" rel="noopener noreferrer"><span class="l-es">Según la fuente · Matemático de Anthropic afirma haber resuelto la Hipótesis de Riemann con Claude</span><span class="l-en" lang="en">Reported · Anthropic mathematician claims to have solved Riemann Hypothesis with Claude</span></a>
+              <a href="https://www.theverge.com/ai-artificial-intelligence/1010051/anthropic-riemann-hypothesis-millennium-prize-problem" target="_blank" rel="noopener noreferrer"><span class="l-es">Matemático de Anthropic afirma haber resuelto la Hipótesis de Riemann con Claude</span><span class="l-en" lang="en">Anthropic mathematician claims to have solved Riemann Hypothesis with Claude</span></a>
             </h3>
-            <div class="sw"><span class="l-es">Inferencia · Representaría un avance sin precedentes en la capacidad de la IA para la resolución de problemas matemáticos abstractos de frontera.</span><span class="l-en" lang="en">Inference · Would represent an unprecedented breakthrough in AI&#39;s capacity for solving frontier abstract mathematical problems.</span></div>
+            <div class="sw"><span class="l-es">Representaría un avance sin precedentes en la capacidad de la IA para la resolución de problemas matemáticos abstractos de frontera.</span><span class="l-en" lang="en">Would represent an unprecedented breakthrough in AI&#39;s capacity for solving frontier abstract mathematical problems.</span></div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v"><span class="l-es">Inferencia · Anthropic gana</span><span class="l-en" lang="en">Inference · Anthropic gains</span></span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v"><span class="l-es">Anthropic gana</span><span class="l-en" lang="en">Anthropic gains</span></span></div>
               
               
               <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v"><a class="watch-link" href="#watch-point-1"><span class="l-es">Ver hito</span><span class="l-en" lang="en">View milestone</span></a></span></div>
@@ -914,17 +946,18 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=deepmind.google&amp;sz=64" alt="" loading="lazy"/>@GoogleDeepMind</span>
               
+              <span class="ev-pill ev-confirmed" title="Confirmado por fuente primaria"><span class="l-es">Confirmado</span><span class="l-en" lang="en">Confirmed</span></span>
               <span class="score s-88">88/100</span>
             </div>
             <h3 class="card-title">
-              <a href="https://x.com/GoogleDeepMind/status/2123826572385833119" target="_blank" rel="noopener noreferrer"><span class="l-es">Confirmado · Gemini 4 Neon de Google DeepMind crea simulador de esquí 3D en tiempo real</span><span class="l-en" lang="en">Confirmed · Google DeepMind&#39;s Gemini 4 Neon creates real-time 3D ski simulator</span></a>
+              <a href="https://x.com/GoogleDeepMind/status/2123826572385833119" target="_blank" rel="noopener noreferrer"><span class="l-es">Gemini 4 Neon de Google DeepMind crea simulador de esquí 3D en tiempo real</span><span class="l-en" lang="en">Google DeepMind&#39;s Gemini 4 Neon creates real-time 3D ski simulator</span></a>
             </h3>
-            <div class="sw"><span class="l-es">Inferencia · Demuestra las capacidades de codificación y generación de entornos 3D complejos de Gemini 4 Neon, una señal de avance en agentes autónomos.</span><span class="l-en" lang="en">Inference · Demonstrates Gemini 4 Neon&#39;s coding and complex 3D environment generation capabilities, a sign of progress in autonomous agents.</span></div>
+            <div class="sw"><span class="l-es">Demuestra las capacidades de codificación y generación de entornos 3D complejos de Gemini 4 Neon, una señal de avance en agentes autónomos.</span><span class="l-en" lang="en">Demonstrates Gemini 4 Neon&#39;s coding and complex 3D environment generation capabilities, a sign of progress in autonomous agents.</span></div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v"><span class="l-es">Inferencia · Google DeepMind gana</span><span class="l-en" lang="en">Inference · Google DeepMind gains</span></span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v"><span class="l-es">Google DeepMind gana</span><span class="l-en" lang="en">Google DeepMind gains</span></span></div>
               
               
               <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v"><span class="l-es">Gemini 4 Neon aplicado a tareas de codificación más complejas o en producción comercial.</span><span class="l-en" lang="en">Gemini 4 Neon applied to more complex coding tasks or in commercial production.</span></span></div>
@@ -943,17 +976,18 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=arstechnica.com&amp;sz=64" alt="" loading="lazy"/>Ars Technica AI</span>
               
+              <span class="ev-pill ev-reported" title="Reportado por medio externo"><span class="l-es">Según la fuente</span><span class="l-en" lang="en">Reported</span></span>
               <span class="score s-88">88/100</span>
             </div>
             <h3 class="card-title">
-              <a href="https://arstechnica.com/security/2026/11/a-leaky-ai-supply-chain-is-exposing-secret-user-data-at-an-alarming-rate/" target="_blank" rel="noopener noreferrer"><span class="l-es">Según la fuente · Investigación revela graves fugas de datos de usuario en la cadena de suministro de IA</span><span class="l-en" lang="en">Reported · Research reveals serious user data leaks in the AI supply chain</span></a>
+              <a href="https://arstechnica.com/security/2026/11/a-leaky-ai-supply-chain-is-exposing-secret-user-data-at-an-alarming-rate/" target="_blank" rel="noopener noreferrer"><span class="l-es">Investigación revela graves fugas de datos de usuario en la cadena de suministro de IA</span><span class="l-en" lang="en">Research reveals serious user data leaks in the AI supply chain</span></a>
             </h3>
-            <div class="sw"><span class="l-es">Inferencia · Subraya un riesgo fundamental de privacidad y seguridad que frena la adopción de IA en entornos sensibles y con datos confidenciales.</span><span class="l-en" lang="en">Inference · Highlights a fundamental privacy and security risk that hinders AI adoption in sensitive environments and with confidential data.</span></div>
+            <div class="sw"><span class="l-es">Subraya un riesgo fundamental de privacidad y seguridad que frena la adopción de IA en entornos sensibles y con datos confidenciales.</span><span class="l-en" lang="en">Highlights a fundamental privacy and security risk that hinders AI adoption in sensitive environments and with confidential data.</span></div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v"><span class="l-es">Inferencia · Usuarios/privacidad pierden / Atacantes ganan</span><span class="l-en" lang="en">Inference · Users/privacy lose / Attackers gain</span></span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v"><span class="l-es">Usuarios/privacidad pierden / Atacantes ganan</span><span class="l-en" lang="en">Users/privacy lose / Attackers gain</span></span></div>
               
               
               <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v"><a class="watch-link" href="#watch-point-3"><span class="l-es">Ver hito</span><span class="l-en" lang="en">View milestone</span></a></span></div>
@@ -973,17 +1007,18 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=finance.yahoo.com&amp;sz=64" alt="" loading="lazy"/>Yahoo Finance (AI &amp; semis)</span>
               
+              <span class="ev-pill ev-speculation" title="Hipótesis, rumor o anuncio en curso"><span class="l-es">Hipótesis</span><span class="l-en" lang="en">Hypothesis</span></span>
               <span class="score s-80">86/100</span>
             </div>
             <h3 class="card-title">
-              <a href="https://finance.yahoo.com/markets/stocks/articles/coreweave-crwv-fairly-valued-fresh-031612848.html?.tsrc=rss" target="_blank" rel="noopener noreferrer"><span class="l-es">Hipótesis · ¿Refleja la cotización de CoreWeave (CRWV) su valor tras los nuevos resultados de MLPerf?</span><span class="l-en" lang="en">Hypothesis · Is CoreWeave (CRWV) Fairly Valued After Fresh MLPerf Results?</span></a>
+              <a href="https://finance.yahoo.com/markets/stocks/articles/coreweave-crwv-fairly-valued-fresh-031612848.html?.tsrc=rss" target="_blank" rel="noopener noreferrer"><span class="l-es">¿Refleja la cotización de CoreWeave (CRWV) su valor tras los nuevos resultados de MLPerf?</span><span class="l-en" lang="en">Is CoreWeave (CRWV) Fairly Valued After Fresh MLPerf Results?</span></a>
             </h3>
             
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v"><span class="l-es">Inferencia · Destaca la capacidad de su infraestructura de IA para entrenar modelos complejos con nuevos chips NVIDIA, posicionándose en la vanguardia del compute.</span><span class="l-en" lang="en">Inference · Highlights its AI infrastructure&#39;s capacity to train complex models with new NVIDIA chips, positioning it at the forefront of compute.</span></span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v"><span class="l-es">Destaca la capacidad de su infraestructura de IA para entrenar modelos complejos con nuevos chips NVIDIA, posicionándose en la vanguardia del compute.</span><span class="l-en" lang="en">Highlights its AI infrastructure&#39;s capacity to train complex models with new NVIDIA chips, positioning it at the forefront of compute.</span></span></div>
               
               
               <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v"><span class="l-es">Otros proveedores publican benchmarks similares con hardware NVIDIA Vera Rubin.</span><span class="l-en" lang="en">Other providers publish similar benchmarks with NVIDIA Vera Rubin hardware.</span></span></div>
@@ -1002,17 +1037,18 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=signal.org&amp;sz=64" alt="" loading="lazy"/>Hacker News</span>
               
+              <span class="ev-pill ev-inference" title="Lectura editorial basada en la fuente"><span class="l-es">Inferencia</span><span class="l-en" lang="en">Inference</span></span>
               <span class="score s-80">86/100</span>
             </div>
             <h3 class="card-title">
-              <a href="https://signal.org/blog/protecting-your-privacy/" target="_blank" rel="noopener noreferrer"><span class="l-es">Inferencia · Proponen restringir captura de datos por agentes IA en sistemas operativos móviles</span><span class="l-en" lang="en">Inference · Proposal to restrict AI agents from capturing data on mobile operating systems</span></a>
+              <a href="https://signal.org/blog/protecting-your-privacy/" target="_blank" rel="noopener noreferrer"><span class="l-es">Proponen restringir captura de datos por agentes IA en sistemas operativos móviles</span><span class="l-en" lang="en">Proposal to restrict AI agents from capturing data on mobile operating systems</span></a>
             </h3>
             
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v"><span class="l-es">Inferencia · Aborda un riesgo de privacidad crítico para la adopción masiva de agentes de IA, con posibles implicaciones regulatorias y de diseño.</span><span class="l-en" lang="en">Inference · Addresses a critical privacy risk for mass adoption of AI agents, with potential regulatory and design implications.</span></span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v"><span class="l-es">Aborda un riesgo de privacidad crítico para la adopción masiva de agentes de IA, con posibles implicaciones regulatorias y de diseño.</span><span class="l-en" lang="en">Addresses a critical privacy risk for mass adoption of AI agents, with potential regulatory and design implications.</span></span></div>
               
               
               <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v"><span class="l-es">Desarrollo de normativas o implementación de restricciones por parte de fabricantes de sistemas operativos.</span><span class="l-en" lang="en">Development of regulations or implementation of restrictions by operating system manufacturers.</span></span></div>
@@ -1031,17 +1067,18 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=openai.com&amp;sz=64" alt="" loading="lazy"/>OpenAI</span>
               
+              <span class="ev-pill ev-reported" title="Reportado por medio externo"><span class="l-es">Según la fuente</span><span class="l-en" lang="en">Reported</span></span>
               <span class="score s-70">76/100</span>
             </div>
             <h3 class="card-title">
-              <a href="https://openai.com/business/customer-stories/hebbia" target="_blank" rel="noopener noreferrer"><span class="l-es">Según la fuente · Hebbia mejora investigación financiera con GPT-6 Astra en cobertura y citas</span><span class="l-en" lang="en">Reported · Hebbia improves financial research with GPT-6 Astra in coverage and citations</span></a>
+              <a href="https://openai.com/business/customer-stories/hebbia" target="_blank" rel="noopener noreferrer"><span class="l-es">Hebbia mejora investigación financiera con GPT-6 Astra en cobertura y citas</span><span class="l-en" lang="en">Hebbia improves financial research with GPT-6 Astra in coverage and citations</span></a>
             </h3>
-            <div class="sw"><span class="l-es">Inferencia · Indica que GPT-6 Astra ofrece mejoras tangibles en tareas de análisis de información compleja para profesionales, ampliando su utilidad en el sector.</span><span class="l-en" lang="en">Inference · Indicates GPT-6 Astra offers tangible improvements in complex information analysis tasks for professionals, expanding its utility in the sector.</span></div>
+            <div class="sw"><span class="l-es">Indica que GPT-6 Astra ofrece mejoras tangibles en tareas de análisis de información compleja para profesionales, ampliando su utilidad en el sector.</span><span class="l-en" lang="en">Indicates GPT-6 Astra offers tangible improvements in complex information analysis tasks for professionals, expanding its utility in the sector.</span></div>
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v"><span class="l-es">Inferencia · OpenAI gana</span><span class="l-en" lang="en">Inference · OpenAI gains</span></span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v"><span class="l-es">OpenAI gana</span><span class="l-en" lang="en">OpenAI gains</span></span></div>
               
               
               <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v"><span class="l-es">Despliegue más amplio de GPT-6 Astra en sectores profesionales y reportes de adopción.</span><span class="l-en" lang="en">Broader deployment of GPT-6 Astra in professional sectors and adoption reports.</span></span></div>
@@ -1061,17 +1098,18 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=reuters.com&amp;sz=64" alt="" loading="lazy"/>Reuters AI</span>
               
+              <span class="ev-pill ev-speculation" title="Hipótesis, rumor o anuncio en curso"><span class="l-es">Hipótesis</span><span class="l-en" lang="en">Hypothesis</span></span>
               <span class="score s-70">72/100</span>
             </div>
             <h3 class="card-title">
-              <a href="https://www.reuters.com/world/india/indias-ai-free-appeal-draws-record-foreign-buying-earnings-will-decide-if-it-2026-11-20/" target="_blank" rel="noopener noreferrer"><span class="l-es">Hipótesis · La menor exposición a la IA atrae compras extranjeras récord a India. ¿Se sostendrán tras los resultados?</span><span class="l-en" lang="en">Hypothesis · India&#39;s AI-free appeal draws record foreign buying, earnings will decide if it lasts - Reuters</span></a>
+              <a href="https://www.reuters.com/world/india/indias-ai-free-appeal-draws-record-foreign-buying-earnings-will-decide-if-it-2026-11-20/" target="_blank" rel="noopener noreferrer"><span class="l-es">La menor exposición a la IA atrae compras extranjeras récord a India. ¿Se sostendrán tras los resultados?</span><span class="l-en" lang="en">India&#39;s AI-free appeal draws record foreign buying, earnings will decide if it lasts - Reuters</span></a>
             </h3>
             
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v"><span class="l-es">Inferencia · Sugiere una divergencia en las estrategias de inversión global, buscando mercados menos expuestos a la volatilidad y riesgos asociados a la IA.</span><span class="l-en" lang="en">Inference · Suggests a divergence in global investment strategies, seeking markets less exposed to AI-associated volatility and risks.</span></span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v"><span class="l-es">Sugiere una divergencia en las estrategias de inversión global, buscando mercados menos expuestos a la volatilidad y riesgos asociados a la IA.</span><span class="l-en" lang="en">Suggests a divergence in global investment strategies, seeking markets less exposed to AI-associated volatility and risks.</span></span></div>
               
               
               <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v"><span class="l-es">Impacto a largo plazo de esta estrategia en el crecimiento económico y la posición global de India.</span><span class="l-en" lang="en">Long-term impact of this strategy on India&#39;s economic growth and global position.</span></span></div>
@@ -1090,17 +1128,18 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=openai.com&amp;sz=64" alt="" loading="lazy"/>OpenAI</span>
               
+              <span class="ev-pill ev-speculation" title="Hipótesis, rumor o anuncio en curso"><span class="l-es">Hipótesis</span><span class="l-en" lang="en">Hypothesis</span></span>
               <span class="score s-70">71/100</span>
             </div>
             <h3 class="card-title">
-              <a href="https://openai.com/index/introducing-medchembench" target="_blank" rel="noopener noreferrer"><span class="l-es">Hipótesis · ¿Puede la IA ayudar a identificar candidatos prometedores a fármacos?</span><span class="l-en" lang="en">Hypothesis · Can AI help scientists identify promising drug candidates?</span></a>
+              <a href="https://openai.com/index/introducing-medchembench" target="_blank" rel="noopener noreferrer"><span class="l-es">¿Puede la IA ayudar a identificar candidatos prometedores a fármacos?</span><span class="l-en" lang="en">Can AI help scientists identify promising drug candidates?</span></a>
             </h3>
             
             
             
             <div class="card-foot">
               
-              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v"><span class="l-es">Inferencia · Proporciona una métrica para el progreso de la IA en la interpretación molecular y el razonamiento científico complejo, áreas clave para la AGI.</span><span class="l-en" lang="en">Inference · Provides a metric for AI progress in molecular interpretation and complex scientific reasoning, key areas for AGI.</span></span></div>
+              <div class="fact pw"><span class="k"><span class="l-es">Impacto</span><span class="l-en" lang="en">Impact</span></span><span class="v"><span class="l-es">Proporciona una métrica para el progreso de la IA en la interpretación molecular y el razonamiento científico complejo, áreas clave para la AGI.</span><span class="l-en" lang="en">Provides a metric for AI progress in molecular interpretation and complex scientific reasoning, key areas for AGI.</span></span></div>
               
               
               <div class="fact wn"><span class="k"><span class="l-es">Vigilar</span><span class="l-en" lang="en">Watch</span></span><span class="v"><span class="l-es">Modelos de IA mostrando mejoras significativas en las puntuaciones de MedChemBench.</span><span class="l-en" lang="en">AI models showing significant improvements in MedChemBench scores.</span></span></div>

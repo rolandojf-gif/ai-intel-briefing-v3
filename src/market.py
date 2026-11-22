@@ -11,6 +11,39 @@ CACHE_FILE = Path("docs/data/market_cache.json")
 TIMEOUT = 6
 USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"
 
+INVESTING_URLS = {
+    "sp500": "https://www.investing.com/indices/us-spx-500-futures",
+    "s&p futures": "https://www.investing.com/indices/us-spx-500-futures",
+    "nasdaq": "https://www.investing.com/indices/nq-100-futures",
+    "nasdaq f.": "https://www.investing.com/indices/nq-100-futures",
+    "bitcoin": "https://www.investing.com/crypto/bitcoin/btc-usd",
+    "ethereum": "https://www.investing.com/crypto/ethereum/eth-usd",
+    "vix": "https://www.investing.com/indices/volatility-s-p-500",
+    "brent": "https://www.investing.com/commodities/brent-oil",
+    "NVDA": "https://www.investing.com/equities/nvidia-corp",
+    "AMZN": "https://www.investing.com/equities/amazon-com-inc",
+    "MSFT": "https://www.investing.com/equities/microsoft-corp",
+    "AAPL": "https://www.investing.com/equities/apple-computer-inc",
+    "ANT": "https://www.investing.com/equities/anthropic",
+    "SMCI": "https://www.investing.com/equities/super-micro-computer",
+    "TSM": "https://www.investing.com/equities/taiwan-semicond.manufacturing-co",
+    "GOOGL": "https://www.investing.com/equities/google-inc",
+    "ASML": "https://www.investing.com/equities/asml-holding",
+    "PLTR": "https://www.investing.com/equities/palantir-technologies-inc",
+}
+
+
+def investing_url(key_or_ticker: str = "", label: str = "") -> str:
+    """Devuelve la URL canónica en Investing.com para un índice, cripto o acción."""
+    for raw in (key_or_ticker, label):
+        s = (raw or "").strip()
+        if not s:
+            continue
+        for candidate in (s, s.upper(), s.lower()):
+            if candidate in INVESTING_URLS:
+                return INVESTING_URLS[candidate]
+    return ""
+
 
 def _generate_sparkline(points: list[float], positive: bool = True, width: int = 100, height: int = 24) -> str:
     """Sparkline de la serie real. Sin puntos suficientes, nada: no se inventa curva."""
@@ -151,6 +184,7 @@ def get_market_overview() -> dict:
         else:
             q = _fetch_yahoo_quote(m["symbol"])
 
+        url = investing_url(m["key"], m["label"])
         if not q:
             return {
                 "label": m["label"],
@@ -159,6 +193,7 @@ def get_market_overview() -> dict:
                 "positive": True,
                 "available": False,
                 "sparkline_svg": "",
+                "url": url,
             }
 
         price = q["price"]
@@ -179,9 +214,11 @@ def get_market_overview() -> dict:
             "available": True,
             "sparkline_svg": _generate_sparkline(points, positive=is_pos),
             "sparkline_points": points,
+            "url": url,
         }
 
     def _build_company(c: dict) -> dict:
+        url = investing_url(c["ticker"], c["name"])
         q = _fetch_yahoo_quote(c["ticker"])
         if not q:
             return {
@@ -193,6 +230,7 @@ def get_market_overview() -> dict:
                 "positive": True,
                 "available": False,
                 "logo": c["logo"],
+                "url": url,
             }
 
         change = q["change_pct"]
@@ -206,6 +244,7 @@ def get_market_overview() -> dict:
             "available": True,
             "logo": c["logo"],
             "sparkline_points": q.get("sparkline_points") or [],
+            "url": url,
         }
 
     with ThreadPoolExecutor(max_workers=8) as pool:

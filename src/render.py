@@ -45,11 +45,62 @@ def clean_text(text: str) -> str:
     return re.sub(r"\s+", " ", raw).strip()
 
 
+_EVIDENCE_PREFIX_RE = re.compile(
+    r"^(?:Confirmado|Confirmed|Según la fuente|Reported|Inferencia|Inference|"
+    r"Hipótesis|Hypothesis|Sin verificar|Unverified|Señal destacada|Featured signal)\s*[·:\-–—]\s*",
+    re.I,
+)
+
+EVIDENCE_BADGES = {
+    "confirmed": ("Confirmado", "Confirmed", "Confirmado por fuente primaria", "Confirmed by primary source"),
+    "reported": ("Según la fuente", "Reported", "Reportado por medio externo", "Reported by external outlet"),
+    "inference": ("Inferencia", "Inference", "Lectura editorial basada en la fuente", "Editorial reading based on the source"),
+    "speculation": ("Hipótesis", "Hypothesis", "Hipótesis, rumor o anuncio en curso", "Hypothesis, rumor, or pending announcement"),
+    "unverified": ("Sin verificar", "Unverified", "Sin evidencia verificable en la fuente", "No verifiable evidence in the source"),
+}
+
+_PREFIX_TO_KIND = {
+    "confirmado": "confirmed", "confirmed": "confirmed",
+    "según la fuente": "reported", "reported": "reported",
+    "inferencia": "inference", "inference": "inference",
+    "hipótesis": "speculation", "hypothesis": "speculation",
+    "sin verificar": "unverified", "unverified": "unverified",
+}
+
+
+def strip_evidence_prefix(text: str) -> str:
+    """Elimina prefijos repetitivos de certeza del texto visible (pasan a pastilla discreta)."""
+    cleaned = clean_text(text)
+    while cleaned:
+        m = _EVIDENCE_PREFIX_RE.match(cleaned)
+        if not m:
+            break
+        cleaned = cleaned[m.end():].lstrip()
+    return cleaned
+
+
+def evidence_badge(item: dict) -> dict | None:
+    """Devuelve metadatos para la pastilla informativa discreta de certeza, si existe."""
+    kind = (item.get("evidence_kind") or "").strip().lower()
+    if kind not in EVIDENCE_BADGES:
+        for field in ("title_es", "title_en"):
+            m = _EVIDENCE_PREFIX_RE.match(clean_text(item.get(field) or ""))
+            if m:
+                raw_lbl = re.sub(r"\s*[·:\-–—]\s*$", "", m.group(0)).strip().lower()
+                kind = _PREFIX_TO_KIND.get(raw_lbl, "")
+                if kind in EVIDENCE_BADGES:
+                    break
+    if kind not in EVIDENCE_BADGES:
+        return None
+    es, en, tip_es, tip_en = EVIDENCE_BADGES[kind]
+    return {"kind": kind, "es": es, "en": en, "tip_es": tip_es, "tip_en": tip_en}
+
+
 def display_title(item: dict) -> str:
-    """Prefiere el titular reescrito por el LLM: los originales llegan sucios."""
-    t = clean_text(item.get("title_es") or "")
+    """Prefiere el titular reescrito por el LLM, limpio de prefijos repetitivos de evidencia."""
+    t = strip_evidence_prefix(item.get("title_es") or "")
     if not t:
-        t = clean_text(item.get("title") or "")
+        t = strip_evidence_prefix(item.get("title") or "")
     return t or "(sin titulo)"
 
 
@@ -218,6 +269,9 @@ TEMPLATE = ENV.from_string("""
   </details>
   {%- endif %}
 {%- endmacro %}
+{%- macro ev_pill(it) -%}
+  {% if it.ev -%}<span class="ev-pill ev-{{ it.ev.kind }}" title="{{ it.ev.tip_es }}">{{ bi(it.ev.es, it.ev.en) }}</span>{%- endif %}
+{%- endmacro %}
 <!doctype html>
 <html {{ html_attrs }}>
 <head>
@@ -288,8 +342,12 @@ TEMPLATE = ENV.from_string("""
   .ticker-h strong{display:flex;align-items:center;gap:8px;color:var(--text);font-weight:700;letter-spacing:.08em}
   .ticker-h strong::before{content:"";width:10px;height:10px;background:var(--orange);border:2px solid var(--ink)}
   .ticker-q{display:flex;gap:8px;padding-right:8px}
-  .tq{flex:0 0 210px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 6px;align-items:center;padding:8px 10px;border:1px solid var(--ink);background:var(--card-2);min-width:0}
-  .tq-n{grid-column:1/-1;font:600 10.5px var(--f-mono);color:var(--muted);text-transform:uppercase}
+  .tq{flex:0 0 210px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 6px;align-items:center;padding:8px 10px;border:1px solid var(--ink);background:var(--card-2);min-width:0;color:inherit;text-decoration:none;transition:border-color .12s,background-color .12s,transform .12s}
+  a.tq:hover{border-color:var(--orange);background:var(--card);transform:translateY(-1px)}
+  a.tq:focus-visible{outline:2px solid var(--orange);outline-offset:-2px}
+  .tq-n{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:6px;font:600 10.5px var(--f-mono);color:var(--muted);text-transform:uppercase}
+  a.tq .tq-n::after{content:"↗";font-size:10px;opacity:.45;transition:opacity .12s,color .12s}
+  a.tq:hover .tq-n::after{opacity:1;color:var(--orange-ink)}
   .tq-p{font:700 clamp(14px,1.25vw,18px) var(--f-mono);white-space:nowrap;font-variant-numeric:tabular-nums}
   .tq .spark{grid-column:1/-1;height:20px}
 
@@ -471,6 +529,17 @@ TEMPLATE = ENV.from_string("""
        border:2px solid var(--ink);background:var(--card-2);flex-shrink:0}
   .tag{background:var(--orange);color:#121211}
   .badge-new{background:var(--lime);color:#121211}
+  .ev-pill{display:inline-flex;align-items:center;gap:4px;font:600 9.5px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.03em;
+           padding:3px 7px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--muted);flex-shrink:0;white-space:nowrap}
+  .ev-pill::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.78;flex:0 0 auto}
+  .ev-pill.ev-confirmed{color:var(--open);border-color:color-mix(in srgb,var(--open) 42%,transparent)}
+  .ev-pill.ev-speculation{color:#B45309;border-color:rgba(217,119,6,.42)}
+  .ev-pill.ev-unverified{border-style:dashed}
+  .lead.lead-dossier .ev-pill{color:#A8A7A0;border-color:#3A3A34;background:rgba(255,255,255,.04)}
+  .lead.lead-dossier .ev-pill.ev-confirmed{color:#34D399;border-color:rgba(52,211,153,.38)}
+  .lead.lead-dossier .ev-pill.ev-speculation{color:#FBBF24;border-color:rgba(251,191,36,.38)}
+  .cx-meta{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:2px}
+  .cx-meta .ev-pill{font-size:8.8px;padding:2px 6px}
   .score{display:inline-flex;align-items:center;font:700 11px/1 var(--f-mono);margin-left:auto;padding:4px 7px;
          border:1px solid var(--line);background:var(--card-2);color:var(--muted);font-variant-numeric:tabular-nums;
          letter-spacing:.02em;flex-shrink:0}
@@ -481,9 +550,11 @@ TEMPLATE = ENV.from_string("""
   .score.s-low{background:var(--card-2);color:var(--muted);border:1px solid var(--line);opacity:.82}
   :root[data-theme="dark"] .score.s-80{background:rgba(255,87,34,.22);color:#FFA07A;border-color:#EA580C}
   :root[data-theme="dark"] .score.s-70{background:#232320;color:var(--muted);border-color:var(--line)}
+  :root[data-theme="dark"] .ev-pill.ev-speculation{color:#FBBF24;border-color:rgba(251,191,36,.38)}
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]) .score.s-80{background:rgba(255,87,34,.22);color:#FFA07A;border-color:#EA580C}
     :root:not([data-theme="light"]) .score.s-70{background:#232320;color:var(--muted);border-color:var(--line)}
+    :root:not([data-theme="light"]) .ev-pill.ev-speculation{color:#FBBF24;border-color:rgba(251,191,36,.38)}
   }
   .hero-title{margin:0 0 10px;font:700 clamp(21px,2.4vw,30px)/1.15 var(--f-head);letter-spacing:-.02em}
   .hero-title a:hover,.card-title a:hover,.cx-t a:hover{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
@@ -726,6 +797,7 @@ TEMPLATE = ENV.from_string("""
         <div class="lead-foot">
           <div class="lead-foot-l">
             <span class="src"><img src="{{ hero.logo }}" alt="" loading="lazy"/>{{ hero.source_label }}</span>
+            {{ ev_pill(hero) }}
             {% if hero.ents %}
             <div class="ents">{% for e in hero.ents[:4] %}<span class="ent">{{ e }}</span>{% endfor %}</div>
             {% endif %}
@@ -747,7 +819,10 @@ TEMPLATE = ENV.from_string("""
             <div class="cx-body">
               <span class="cx-theme">{{ bi(it.theme_label, it.theme_label_en) }}</span>
               <h3 class="cx-t"><a href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ bi(it.display_title, it.title_en) }}</a></h3>
-              <span class="src"><img src="{{ it.logo }}" alt="" loading="lazy"/>{{ it.source_label }}</span>
+              <div class="cx-meta">
+                <span class="src"><img src="{{ it.logo }}" alt="" loading="lazy"/>{{ it.source_label }}</span>
+                {{ ev_pill(it) }}
+              </div>
               {% if it.measurement %}{{ measurement(it) }}{% endif %}
             </div>
           </article>
@@ -798,18 +873,27 @@ TEMPLATE = ENV.from_string("""
          que el bucle no tenga corte; la segunda copia es invisible para lectores. -->
     {% if ticker_quotes %}
     <section class="ticker" aria-label="Markets">
-      <div class="ticker-h"><strong>{{ bi("Mercados","Markets") }}</strong><span>{{ bi("Último cierre · no es tiempo real","Last close · not real time") }}</span></div>
+      <div class="ticker-h"><strong>{{ bi("Mercados","Markets") }}</strong><span>{{ bi("Último cierre · Investing.com · no es tiempo real","Last close · Investing.com · not real time") }}</span></div>
       <div class="ticker-view">
         <div class="ticker-track" style="--n:{{ ticker_quotes|length }}">
           {% for copy in (0, 1) %}
           <div class="ticker-q"{% if copy %} aria-hidden="true"{% endif %}>
             {% for m in ticker_quotes %}
+            {% if m.url %}
+            <a class="tq{% if not m.available %} m-nodata{% endif %}" href="{{ m.url|safe_url }}" target="_blank" rel="noopener noreferrer"{% if copy %} tabindex="-1"{% endif %} title="{{ m.label }} · Investing.com">
+              <span class="tq-n">{{ m.label }}</span>
+              <span class="tq-p">{{ m.price_str }}</span>
+              {% if m.available %}<span class="m-chg {% if m.positive %}pos{% else %}neg{% endif %}">{{ m.change_str }}</span>{% else %}<span class="m-chg na">n/d</span>{% endif %}
+              {{ m.sparkline_svg|safe }}
+            </a>
+            {% else %}
             <div class="tq{% if not m.available %} m-nodata{% endif %}">
               <span class="tq-n">{{ m.label }}</span>
               <span class="tq-p">{{ m.price_str }}</span>
               {% if m.available %}<span class="m-chg {% if m.positive %}pos{% else %}neg{% endif %}">{{ m.change_str }}</span>{% else %}<span class="m-chg na">n/d</span>{% endif %}
               {{ m.sparkline_svg|safe }}
             </div>
+            {% endif %}
             {% endfor %}
           </div>
           {% endfor %}
@@ -847,6 +931,7 @@ TEMPLATE = ENV.from_string("""
               {% if it.is_new %}<span class="badge-new">{{ bi("Nuevo","New") }}</span>{% endif %}
               <span class="src"><img src="{{ it.logo }}" alt="" loading="lazy"/>{{ it.source_label }}</span>
               {% if it.other_sources %}<span class="multi">+{{ it.other_sources|length }}</span>{% endif %}
+              {{ ev_pill(it) }}
               <span class="score {{ it.score_cls }}">{{ it.score }}/100</span>
             </div>
             <h3 class="card-title">
@@ -884,7 +969,10 @@ TEMPLATE = ENV.from_string("""
         <div class="ctx">
           {% for it in context %}
           <article class="cx" data-topic="{{ it.theme_key }}" data-new="{{ 1 if it.is_new else 0 }}">
-            <span class="src"><img src="{{ it.logo }}" alt="" loading="lazy"/>{{ it.source_label }}</span>
+            <div class="cx-meta">
+              <span class="src"><img src="{{ it.logo }}" alt="" loading="lazy"/>{{ it.source_label }}</span>
+              {{ ev_pill(it) }}
+            </div>
             <div>
               <h3 class="cx-t"><a href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer">{{ bi(it.display_title, it.title_en) }}</a></h3>
               {% if it.measurement %}{{ measurement(it) }}{% endif %}
@@ -1046,7 +1134,7 @@ TICKER_COMPANIES = ("NVDA", "AMZN", "MSFT", "AAPL", "ANT")
 
 def _ticker_quotes(market) -> list[dict]:
     """Banda de mercados: macro + las cuatro grandes, con el mismo formato."""
-    from src.market import _generate_sparkline
+    from src.market import _generate_sparkline, investing_url
     if not isinstance(market, dict):
         return []
     out = []
@@ -1056,6 +1144,8 @@ def _ticker_quotes(market) -> list[dict]:
         row = dict(m)
         if not row.get("sparkline_svg") and row.get("sparkline_points"):
             row["sparkline_svg"] = _generate_sparkline(row.get("sparkline_points") or [], positive=bool(row.get("positive")))
+        if not row.get("url"):
+            row["url"] = investing_url(row.get("key") or "", row.get("label") or "")
         out.append(row)
     by_ticker = {c.get("ticker"): c for c in (market.get("companies") or []) if isinstance(c, dict)}
     for t in TICKER_COMPANIES:
@@ -1067,6 +1157,7 @@ def _ticker_quotes(market) -> list[dict]:
             "price_str": c.get("price_str"), "change_str": c.get("change_str"),
             "positive": c.get("positive"), "available": c.get("available"),
             "sparkline_svg": _generate_sparkline(c.get("sparkline_points") or [], positive=bool(c.get("positive"))),
+            "url": c.get("url") or investing_url(t, c.get("name") or ""),
         })
     return out
 
@@ -1130,15 +1221,16 @@ def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", 
         it["theme_key"] = (it.get("strategic_theme") or it.get("primary") or "other").strip() or "other"
         it["theme_label"] = human_theme(it["theme_key"])
         it["measurement"] = measurement_context(raw)
+        it["ev"] = evidence_badge(raw)
         it["display_title"] = display_title(it)
-        it["so_what"] = truncate_text(clean_text(it.get("so_what") or it.get("why") or ""), 230)
-        it["power_shift"] = truncate_text(it.get("power_shift") or "", 120)
+        it["so_what"] = truncate_text(strip_evidence_prefix(it.get("so_what") or it.get("why") or ""), 230)
+        it["power_shift"] = truncate_text(strip_evidence_prefix(it.get("power_shift") or ""), 120)
         it["watch_next"] = (it.get("watch_next") or "").strip()
         it["theme_label_en"] = THEME_LABELS_EN.get(it["theme_key"], "Other signals")
         # Sin titular traducido, el original del feed (casi siempre en inglés).
-        it["title_en"] = clean_text(it.get("title_en") or "") or clean_text(it.get("title") or "")
-        it["so_what_en"] = truncate_text(clean_text(it.get("so_what_en") or ""), 230)
-        it["power_shift_en"] = truncate_text(it.get("power_shift_en") or "", 120)
+        it["title_en"] = strip_evidence_prefix(it.get("title_en") or "") or strip_evidence_prefix(it.get("title") or "")
+        it["so_what_en"] = truncate_text(strip_evidence_prefix(it.get("so_what_en") or ""), 230)
+        it["power_shift_en"] = truncate_text(strip_evidence_prefix(it.get("power_shift_en") or ""), 120)
         it["watch_next_en"] = (it.get("watch_next_en") or "").strip()
         # La consecuencia editorial también es impacto; conservar su grado de certeza.
         it["impact_from_consequence"] = bool(
@@ -1223,11 +1315,11 @@ def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", 
     ]
     watch_agenda = _watch_agenda(briefing, signals, watch_results)
 
-    thesis = clean_text(briefing.get("thesis") or "")
+    thesis = strip_evidence_prefix(briefing.get("thesis") or "")
     if not thesis:
         sigs = briefing.get("signals") or []
         if sigs:
-            thesis = clean_text(sigs[0])
+            thesis = strip_evidence_prefix(sigs[0])
         elif signals:
             thesis = signals[0]["display_title"]
         else:
@@ -1245,8 +1337,8 @@ def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", 
         pulse=snapshot.get("pulse") or {},
         rest=signals[LEAD_BLOCK:],
         lead_n=LEAD_BLOCK,
-        key_signals=[clean_text(x) for x in (briefing.get("signals") or []) if isinstance(x, str)][:3],
-        key_signals_en=[clean_text(x) for x in (briefing.get("signals_en") or []) if isinstance(x, str)][:3],
+        key_signals=[strip_evidence_prefix(x) for x in (briefing.get("signals") or []) if isinstance(x, str)][:3],
+        key_signals_en=[strip_evidence_prefix(x) for x in (briefing.get("signals_en") or []) if isinstance(x, str)][:3],
         top_entities=[e.get("entity") for e in (snapshot.get("top_entities") or []) if isinstance(e, dict) and e.get("entity")][:6],
         hero=hero,
         stream=stream,
@@ -1272,7 +1364,7 @@ def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", 
         seo=seo_head("RADAR.IA · Radar diario de la carrera hacia la AGI" if not archive else f"RADAR.IA · Edición del {snapshot.get('date') or ''}",
                      path="" if not archive else f"d/{snapshot.get('date') or ''}.html"),
         credits=brand_credits(),
-        thesis_en=clean_text(briefing.get("thesis_en") or ""),
+        thesis_en=strip_evidence_prefix(briefing.get("thesis_en") or ""),
         activity_en=ACTIVITY_EN.get(str((snapshot.get("activity") or {}).get("label") or ""), ""),
         brand_css=Markup(BRAND_CSS),
         brand_header=brand_header(nav or "daily", root or ""),

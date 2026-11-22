@@ -394,6 +394,72 @@ class UxTimezoneHealthTests(unittest.TestCase):
         self.assertEqual(merged, 1)
         self.assertEqual(lead["image_url"], "https://cdn.theverge.com/gpt62.jpg")
 
+    def test_evidence_pill_and_investing_ticker_links(self):
+        items = [
+            {
+                "title_es": "Según la fuente · Loudoun County suspende nuevos centros de datos",
+                "title_en": "Reported · Loudoun County pauses new data centers",
+                "so_what": "Inferencia · La pausa frena expansión de infraestructura.",
+                "so_what_en": "Inference · The pause slows infrastructure buildout.",
+                "power_shift": "Inferencia · Reguladores ganan / Empresas de IA pierden",
+                "power_shift_en": "Inference · Regulators gain / AI firms lose",
+                "evidence_kind": "reported",
+                "layer": "signal",
+                "score": 98,
+                "strategic_theme": "compute_chips_dc",
+                "source": "The Verge AI",
+                "url": "https://example.com/loudoun",
+            },
+            {
+                "title_es": "Confirmado · OpenAI refuerza defensas contra destilación",
+                "title_en": "Confirmed · OpenAI strengthens anti-distillation defenses",
+                "evidence_kind": "confirmed",
+                "layer": "context",
+                "score": 70,
+                "strategic_theme": "frontier_capability",
+                "source": "OpenAI",
+                "url": "https://openai.com/defenses",
+            },
+        ]
+        market = {
+            "macro": [
+                {"label": "Bitcoin", "available": True, "price_str": "59,103.95 US$", "change_str": "-2.10%", "positive": False},
+                {"label": "S&P Futures", "available": True, "price_str": "6,935.00 US$", "change_str": "+0.30%", "positive": True},
+            ],
+            "companies": [
+                {"name": "NVIDIA Corp.", "ticker": "NVDA", "available": True, "price_str": "125.53 US$", "change_str": "-1.20%", "positive": False},
+                {"name": "Anthropic (ANT)", "ticker": "ANT", "available": True, "price_str": "88.91 US$", "change_str": "-8.50%", "positive": False},
+            ],
+        }
+        html = render.render_index(
+            items,
+            briefing={
+                "thesis": "Inferencia · El coste del cómputo marca el pulso del día.",
+                "thesis_en": "Inference · Compute cost sets today's pace.",
+                "signals": ["Inferencia · Primera clave editorial."],
+                "signals_en": ["Inference · First editorial key point."],
+            },
+            snapshot={"date": "2026-11-22"},
+            market=market,
+        )
+        # Prefijos repetitivos eliminados de titulares, bajadas y editorial
+        self.assertNotIn("Según la fuente · Loudoun", html)
+        self.assertNotIn("Reported · Loudoun", html)
+        self.assertNotIn("Confirmado · OpenAI", html)
+        self.assertNotIn("Inferencia · La pausa", html)
+        self.assertNotIn("Inferencia · El coste", html)
+        self.assertNotIn("Inferencia · Primera clave", html)
+        self.assertIn("Loudoun County suspende nuevos centros de datos", html)
+        self.assertIn("El coste del cómputo marca el pulso del día.", html)
+        # Pastillas discretas presentes
+        self.assertIn('class="ev-pill ev-reported"', html)
+        self.assertIn('class="ev-pill ev-confirmed"', html)
+        # Enlaces verificados a Investing.com en el carrusel de mercados
+        self.assertIn('href="https://www.investing.com/crypto/bitcoin/btc-usd"', html)
+        self.assertIn('href="https://www.investing.com/indices/us-spx-500-futures"', html)
+        self.assertIn('href="https://www.investing.com/equities/nvidia-corp"', html)
+        self.assertIn('href="https://www.investing.com/equities/anthropic"', html)
+
 
 if __name__ == "__main__":
     unittest.main()
