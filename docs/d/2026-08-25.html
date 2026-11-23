@@ -209,8 +209,12 @@
   .ticker-h strong{display:flex;align-items:center;gap:8px;color:var(--text);font-weight:700;letter-spacing:.08em}
   .ticker-h strong::before{content:"";width:10px;height:10px;background:var(--orange);border:2px solid var(--ink)}
   .ticker-q{display:flex;gap:8px;padding-right:8px}
-  .tq{flex:0 0 210px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 6px;align-items:center;padding:8px 10px;border:1px solid var(--ink);background:var(--card-2);min-width:0}
-  .tq-n{grid-column:1/-1;font:600 10.5px var(--f-mono);color:var(--muted);text-transform:uppercase}
+  .tq{flex:0 0 210px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 6px;align-items:center;padding:8px 10px;border:1px solid var(--ink);background:var(--card-2);min-width:0;color:inherit;text-decoration:none;transition:border-color .12s,background-color .12s,transform .12s}
+  a.tq:hover{border-color:var(--orange);background:var(--card);transform:translateY(-1px)}
+  a.tq:focus-visible{outline:2px solid var(--orange);outline-offset:-2px}
+  .tq-n{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:6px;font:600 10.5px var(--f-mono);color:var(--muted);text-transform:uppercase}
+  a.tq .tq-n::after{content:"↗";font-size:10px;opacity:.45;transition:opacity .12s,color .12s}
+  a.tq:hover .tq-n::after{opacity:1;color:var(--orange-ink)}
   .tq-p{font:700 clamp(14px,1.25vw,18px) var(--f-mono);white-space:nowrap;font-variant-numeric:tabular-nums}
   .tq .spark{grid-column:1/-1;height:20px}
 
@@ -392,6 +396,17 @@
        border:2px solid var(--ink);background:var(--card-2);flex-shrink:0}
   .tag{background:var(--orange);color:#121211}
   .badge-new{background:var(--lime);color:#121211}
+  .ev-pill{display:inline-flex;align-items:center;gap:4px;font:600 9.5px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.03em;
+           padding:3px 7px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--muted);flex-shrink:0;white-space:nowrap}
+  .ev-pill::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.78;flex:0 0 auto}
+  .ev-pill.ev-confirmed{color:var(--open);border-color:color-mix(in srgb,var(--open) 42%,transparent)}
+  .ev-pill.ev-speculation{color:#B45309;border-color:rgba(217,119,6,.42)}
+  .ev-pill.ev-unverified{border-style:dashed}
+  .lead.lead-dossier .ev-pill{color:#A8A7A0;border-color:#3A3A34;background:rgba(255,255,255,.04)}
+  .lead.lead-dossier .ev-pill.ev-confirmed{color:#34D399;border-color:rgba(52,211,153,.38)}
+  .lead.lead-dossier .ev-pill.ev-speculation{color:#FBBF24;border-color:rgba(251,191,36,.38)}
+  .cx-meta{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:2px}
+  .cx-meta .ev-pill{font-size:8.8px;padding:2px 6px}
   .score{display:inline-flex;align-items:center;font:700 11px/1 var(--f-mono);margin-left:auto;padding:4px 7px;
          border:1px solid var(--line);background:var(--card-2);color:var(--muted);font-variant-numeric:tabular-nums;
          letter-spacing:.02em;flex-shrink:0}
@@ -402,9 +417,11 @@
   .score.s-low{background:var(--card-2);color:var(--muted);border:1px solid var(--line);opacity:.82}
   :root[data-theme="dark"] .score.s-80{background:rgba(255,87,34,.22);color:#FFA07A;border-color:#EA580C}
   :root[data-theme="dark"] .score.s-70{background:#232320;color:var(--muted);border-color:var(--line)}
+  :root[data-theme="dark"] .ev-pill.ev-speculation{color:#FBBF24;border-color:rgba(251,191,36,.38)}
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]) .score.s-80{background:rgba(255,87,34,.22);color:#FFA07A;border-color:#EA580C}
     :root:not([data-theme="light"]) .score.s-70{background:#232320;color:var(--muted);border-color:var(--line)}
+    :root:not([data-theme="light"]) .ev-pill.ev-speculation{color:#FBBF24;border-color:rgba(251,191,36,.38)}
   }
   .hero-title{margin:0 0 10px;font:700 clamp(21px,2.4vw,30px)/1.15 var(--f-head);letter-spacing:-.02em}
   .hero-title a:hover,.card-title a:hover,.cx-t a:hover{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
@@ -472,9 +489,34 @@
   .spark{width:100%;height:22px;display:block}
   .spark.pos polyline{stroke:var(--open)} .spark.neg polyline{stroke:var(--bad)}
 
-  #visit-changes{margin-bottom:20px}
-  .visit-update{padding:8px 0;border-bottom:1px dashed var(--line);font-size:13px;line-height:1.5}
-  .visit-update:last-child{border-bottom:none;padding-bottom:0}
+  #visit-changes{margin:24px 0 0;padding:16px 18px}
+  #visit-changes[hidden],.visit-update[hidden]{display:none}
+  #visit-changes .widget-title{margin:-16px -18px 14px;padding:10px 18px}
+  .deck.filtered #visit-changes{display:none}
+  .vc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(460px,1fr));gap:14px}
+  .visit-update{display:flex;flex-direction:column;gap:10px;padding:13px 14px;background:var(--card-2);border:1.5px solid var(--ink)}
+  .vc-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .vc-status{display:inline-flex;align-items:center;gap:5px;font:700 10px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.05em;
+             padding:3px 7px;border:1.5px solid var(--ink);background:var(--lime);color:#121211}
+  .vc-status.vc-confirmed{background:#34D399;color:#121211}
+  .vc-status.vc-correction{background:#FBBF24;color:#121211}
+  .vc-status.vc-expired{background:var(--card);color:var(--muted)}
+  .vc-date{font:600 10.5px var(--f-mono);color:var(--muted)}
+  .vc-flow{display:grid;grid-template-columns:minmax(0,1fr) 22px minmax(0,1.15fr);gap:8px;align-items:stretch}
+  .vc-flow.single{grid-template-columns:minmax(0,1fr)}
+  .vc-step{display:flex;flex-direction:column;gap:5px;padding:10px 11px;border:1px solid var(--line);background:var(--card)}
+  .vc-step.vc-before{background:transparent;border-style:dashed}
+  .vc-step.vc-after{border-color:var(--ink);border-left:3.5px solid var(--orange)}
+  .vc-step-h{display:flex;align-items:center;justify-content:space-between;gap:6px;flex-wrap:wrap}
+  .vc-k{font:700 9.5px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.06em;padding:2px 5px;border:1px solid var(--line);color:var(--muted);background:var(--card-2)}
+  .vc-after .vc-k{background:var(--orange);color:#121211;border-color:var(--ink)}
+  .vc-meta{font:600 10px/1 var(--f-mono);color:var(--muted);text-transform:uppercase}
+  .vc-link{font:600 13.5px/1.35 var(--f-head);color:var(--text);text-decoration:none}
+  .vc-before .vc-link{font-weight:500;color:var(--muted)}
+  .vc-link:hover{text-decoration:underline;text-underline-offset:2px}
+  .vc-arrow{display:grid;place-items:center;font:700 16px/1 var(--f-mono);color:var(--orange-ink)}
+  .vc-watch{display:flex;align-items:baseline;gap:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:12.5px;line-height:1.4;color:var(--muted)}
+  .vc-wk{font:700 9.5px/1 var(--f-mono);text-transform:uppercase;padding:2px 5px;border:1px solid var(--ink);background:var(--lime);color:#121211;flex-shrink:0}
 
   footer{margin-top:56px;padding-top:14px;border-top:3px solid var(--ink);display:flex;justify-content:space-between;
          gap:16px;flex-wrap:wrap;font:400 12px var(--f-mono);color:var(--muted)}
@@ -491,7 +533,8 @@
     .opening .lead,.opening[data-cols="2"] .lead{grid-column:auto;order:-1}
   }
   @media(max-width:720px){
-    .grid,.below .grid{grid-template-columns:1fr}
+    .grid,.below .grid,.vc-grid,.vc-flow{grid-template-columns:1fr}
+    .vc-arrow{transform:rotate(90deg);height:16px}
     .tq{flex:0 0 170px}
     .pulse{grid-template-columns:1fr}
     .cx,.watch-row{grid-template-columns:1fr;gap:5px}
@@ -540,8 +583,6 @@
     <span class="l-es">El espejo no devolvió posts (6 cuentas). El briefing sigue con RSS.</span><span class="l-en" lang="en">The mirror returned no posts (6 accounts). The briefing continues with RSS.</span>
     
   </div>
-  
-
   
 
   <!-- Tabs de tema -->
@@ -632,6 +673,7 @@
           <div class="lead-foot-l">
             <span class="src"><img src="https://www.google.com/s2/favicons?domain=openai.com&amp;sz=64" alt="" loading="lazy"/>OpenAI</span>
             
+            
             <div class="ents"><span class="ent">OpenAI</span><span class="ent">GPT-5.6</span><span class="ent">Kiro</span></div>
             
           </div>
@@ -652,7 +694,10 @@
             <div class="cx-body">
               <span class="cx-theme"><span class="l-es">Geopolítica</span><span class="l-en" lang="en">Geopolitics</span></span>
               <h3 class="cx-t"><a href="https://www.chinatalk.media/p/how-ai-becomes-a-political-crisis" target="_blank" rel="noopener noreferrer"><span class="l-es">Análisis: Cómo la IA se está convirtiendo en una crisis política.</span><span class="l-en" lang="en">How AI Becomes a Political Crisis</span></a></h3>
-              <span class="src"><img src="https://www.google.com/s2/favicons?domain=chinatalk.media&amp;sz=64" alt="" loading="lazy"/>ChinaTalk</span>
+              <div class="cx-meta">
+                <span class="src"><img src="https://www.google.com/s2/favicons?domain=chinatalk.media&amp;sz=64" alt="" loading="lazy"/>ChinaTalk</span>
+                
+              </div>
               
             </div>
           </article>
@@ -661,7 +706,10 @@
             <div class="cx-body">
               <span class="cx-theme"><span class="l-es">Agentes</span><span class="l-en" lang="en">Agents</span></span>
               <h3 class="cx-t"><a href="https://larsfaye.com/articles/ai-coding-will-prevent-expertise" target="_blank" rel="noopener noreferrer"><span class="l-es">La dependencia de la IA hará colapsar la experiencia en codificación, según un análisis.</span><span class="l-en" lang="en">Coding expertise is going to collapse from AI reliance</span></a></h3>
-              <span class="src"><img src="https://www.google.com/s2/favicons?domain=larsfaye.com&amp;sz=64" alt="" loading="lazy"/>Hacker News</span>
+              <div class="cx-meta">
+                <span class="src"><img src="https://www.google.com/s2/favicons?domain=larsfaye.com&amp;sz=64" alt="" loading="lazy"/>Hacker News</span>
+                
+              </div>
               
             </div>
           </article>
@@ -670,7 +718,10 @@
             <div class="cx-body">
               <span class="cx-theme"><span class="l-es">Agentes</span><span class="l-en" lang="en">Agents</span></span>
               <h3 class="cx-t"><a href="https://mistral.ai/news/agentic-search/" target="_blank" rel="noopener noreferrer"><span class="l-es">Mistral lanza Agentic Search para resultados más precisos y eficientes en sistemas de IA.</span><span class="l-en" lang="en">Agentic Search. More accurate and efficient results from your AI systems.</span></a></h3>
-              <span class="src"><img src="https://www.google.com/s2/favicons?domain=mistral.ai&amp;sz=64" alt="" loading="lazy"/>Mistral</span>
+              <div class="cx-meta">
+                <span class="src"><img src="https://www.google.com/s2/favicons?domain=mistral.ai&amp;sz=64" alt="" loading="lazy"/>Mistral</span>
+                
+              </div>
               
             </div>
           </article>
@@ -710,6 +761,8 @@
 
   
 
+  
+
   <!-- Resto de señales (#2..#12). Con un filtro activo se incluye tambien la portada. -->
   
   <section class="below">
@@ -725,6 +778,7 @@
             <div class="meta-row">
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=openai.com&amp;sz=64" alt="" loading="lazy"/>OpenAI</span>
+              
               
               <span class="score s-95">98/100</span>
             </div>
@@ -754,6 +808,7 @@
             <div class="meta-row">
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=semiwiki.com&amp;sz=64" alt="" loading="lazy"/>SemiWiki</span>
+              
               
               <span class="score s-88">88/100</span>
             </div>
@@ -785,6 +840,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=bloomberg.com&amp;sz=64" alt="" loading="lazy"/>Bloomberg Tech</span>
               
+              
               <span class="score s-80">84/100</span>
             </div>
             <h3 class="card-title">
@@ -814,6 +870,7 @@
             <div class="meta-row">
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=artificialanalysis.ai&amp;sz=64" alt="" loading="lazy"/>Artificial Analysis</span>
+              
               
               <span class="score s-80">80/100</span>
             </div>
@@ -845,6 +902,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=reuters.com&amp;sz=64" alt="" loading="lazy"/>Reuters AI</span>
               
+              
               <span class="score s-80">80/100</span>
             </div>
             <h3 class="card-title">
@@ -873,6 +931,7 @@
             <div class="meta-row">
               
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=anthropic.com&amp;sz=64" alt="" loading="lazy"/>Anthropic</span>
+              
               
               <span class="score s-70">76/100</span>
             </div>
@@ -904,6 +963,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=stratechery.com&amp;sz=64" alt="" loading="lazy"/>Stratechery</span>
               
+              
               <span class="score s-70">73/100</span>
             </div>
             <h3 class="card-title">
@@ -932,6 +992,7 @@
             <div class="meta-row">
               
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=x.ai&amp;sz=64" alt="" loading="lazy"/>xAI</span>
+              
               
               <span class="score s-70">72/100</span>
             </div>
@@ -962,6 +1023,7 @@
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=epoch.ai&amp;sz=64" alt="" loading="lazy"/>Epoch AI</span>
               
+              
               <span class="score s-70">72/100</span>
             </div>
             <h3 class="card-title">
@@ -990,6 +1052,7 @@
             <div class="meta-row">
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=anthropic.com&amp;sz=64" alt="" loading="lazy"/>Anthropic</span>
+              
               
               <span class="score s-70">71/100</span>
             </div>
@@ -1020,6 +1083,7 @@
               
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=together.ai&amp;sz=64" alt="" loading="lazy"/>Together AI</span>
               
+              
               <span class="score s-70">71/100</span>
             </div>
             <h3 class="card-title">
@@ -1048,6 +1112,7 @@
             <div class="meta-row">
               <span class="badge-new"><span class="l-es">Nuevo</span><span class="l-en" lang="en">New</span></span>
               <span class="src"><img src="https://www.google.com/s2/favicons?domain=finance.yahoo.com&amp;sz=64" alt="" loading="lazy"/>Yahoo Finance News</span>
+              
               
               <span class="score s-70">70/100</span>
             </div>

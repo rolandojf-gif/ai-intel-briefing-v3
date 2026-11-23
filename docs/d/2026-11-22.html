@@ -489,9 +489,34 @@
   .spark{width:100%;height:22px;display:block}
   .spark.pos polyline{stroke:var(--open)} .spark.neg polyline{stroke:var(--bad)}
 
-  #visit-changes{margin-bottom:20px}
-  .visit-update{padding:8px 0;border-bottom:1px dashed var(--line);font-size:13px;line-height:1.5}
-  .visit-update:last-child{border-bottom:none;padding-bottom:0}
+  #visit-changes{margin:24px 0 0;padding:16px 18px}
+  #visit-changes[hidden],.visit-update[hidden]{display:none}
+  #visit-changes .widget-title{margin:-16px -18px 14px;padding:10px 18px}
+  .deck.filtered #visit-changes{display:none}
+  .vc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(460px,1fr));gap:14px}
+  .visit-update{display:flex;flex-direction:column;gap:10px;padding:13px 14px;background:var(--card-2);border:1.5px solid var(--ink)}
+  .vc-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .vc-status{display:inline-flex;align-items:center;gap:5px;font:700 10px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.05em;
+             padding:3px 7px;border:1.5px solid var(--ink);background:var(--lime);color:#121211}
+  .vc-status.vc-confirmed{background:#34D399;color:#121211}
+  .vc-status.vc-correction{background:#FBBF24;color:#121211}
+  .vc-status.vc-expired{background:var(--card);color:var(--muted)}
+  .vc-date{font:600 10.5px var(--f-mono);color:var(--muted)}
+  .vc-flow{display:grid;grid-template-columns:minmax(0,1fr) 22px minmax(0,1.15fr);gap:8px;align-items:stretch}
+  .vc-flow.single{grid-template-columns:minmax(0,1fr)}
+  .vc-step{display:flex;flex-direction:column;gap:5px;padding:10px 11px;border:1px solid var(--line);background:var(--card)}
+  .vc-step.vc-before{background:transparent;border-style:dashed}
+  .vc-step.vc-after{border-color:var(--ink);border-left:3.5px solid var(--orange)}
+  .vc-step-h{display:flex;align-items:center;justify-content:space-between;gap:6px;flex-wrap:wrap}
+  .vc-k{font:700 9.5px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.06em;padding:2px 5px;border:1px solid var(--line);color:var(--muted);background:var(--card-2)}
+  .vc-after .vc-k{background:var(--orange);color:#121211;border-color:var(--ink)}
+  .vc-meta{font:600 10px/1 var(--f-mono);color:var(--muted);text-transform:uppercase}
+  .vc-link{font:600 13.5px/1.35 var(--f-head);color:var(--text);text-decoration:none}
+  .vc-before .vc-link{font-weight:500;color:var(--muted)}
+  .vc-link:hover{text-decoration:underline;text-underline-offset:2px}
+  .vc-arrow{display:grid;place-items:center;font:700 16px/1 var(--f-mono);color:var(--orange-ink)}
+  .vc-watch{display:flex;align-items:baseline;gap:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:12.5px;line-height:1.4;color:var(--muted)}
+  .vc-wk{font:700 9.5px/1 var(--f-mono);text-transform:uppercase;padding:2px 5px;border:1px solid var(--ink);background:var(--lime);color:#121211;flex-shrink:0}
 
   footer{margin-top:56px;padding-top:14px;border-top:3px solid var(--ink);display:flex;justify-content:space-between;
          gap:16px;flex-wrap:wrap;font:400 12px var(--f-mono);color:var(--muted)}
@@ -508,7 +533,8 @@
     .opening .lead,.opening[data-cols="2"] .lead{grid-column:auto;order:-1}
   }
   @media(max-width:720px){
-    .grid,.below .grid{grid-template-columns:1fr}
+    .grid,.below .grid,.vc-grid,.vc-flow{grid-template-columns:1fr}
+    .vc-arrow{transform:rotate(90deg);height:16px}
     .tq{flex:0 0 170px}
     .pulse{grid-template-columns:1fr}
     .cx,.watch-row{grid-template-columns:1fr;gap:5px}
@@ -523,7 +549,7 @@
 </style>
 </head>
 <body>
-<header class="topnav"><a class="brand" href="../index.html" aria-label="Radar.IA, portada"><span class="brand-icon"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 12V2.5A9.5 9.5 0 0 1 21.03 9.06Z" fill="currentColor"/><circle cx="7.5" cy="15" r="1.7" fill="currentColor"/></svg></span><span class="brand-text"><strong>Radar<em>.IA</em></strong><small><span class="l-es">Radar estratégico de la carrera AGI</span><span class="l-en" lang="en">Strategic radar of the AGI race</span></small></span></a><nav class="navtabs" aria-label="Secciones"><a class="navtab" href="../index.html"><i>01</i> <span class="l-es">Diario</span><span class="l-en" lang="en">Daily</span></a><a class="navtab" href="../weekly.html"><i>02</i> <span class="l-es">Semanal</span><span class="l-en" lang="en">Weekly</span></a><a class="navtab" href="../archivo.html"><i>03</i> <span class="l-es">Archivo</span><span class="l-en" lang="en">Archive</span></a></nav><a class="sister" href="https://moloch-sh.netlify.app/" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">&gt;_</span><span>MOLOCH.SH ↗<small><span class="l-es">Observatorio de modelos</span><span class="l-en" lang="en">Model observatory</span></small></span></a><div class="top-ctl"><div class="seg" role="group" aria-label="Idioma"><button type="button" class="seg-btn" data-lang-set="es">ES</button><button type="button" class="seg-btn" data-lang-set="en">EN</button></div><div class="seg" role="group" aria-label="Tema"><button type="button" class="seg-btn" data-theme-set="auto">Auto</button><button type="button" class="seg-btn" data-theme-set="light"><span class="l-es">Claro</span><span class="l-en" lang="en">Light</span></button><button type="button" class="seg-btn" data-theme-set="dark"><span class="l-es">Oscuro</span><span class="l-en" lang="en">Dark</span></button></div></div></header>
+<header class="topnav"><a class="brand" href="../index.html" aria-label="Radar.IA, portada"><span class="brand-icon"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 12V2.5A9.5 9.5 0 0 1 21.03 9.06Z" fill="currentColor"/><circle cx="7.5" cy="15" r="1.7" fill="currentColor"/></svg></span><span class="brand-text"><strong>Radar<em>.IA</em></strong><small><span class="l-es">Radar estratégico de la carrera AGI</span><span class="l-en" lang="en">Strategic radar of the AGI race</span></small></span></a><nav class="navtabs" aria-label="Secciones"><a class="navtab" href="../index.html"><i>01</i> <span class="l-es">Diario</span><span class="l-en" lang="en">Daily</span></a><a class="navtab" href="../weekly.html"><i>02</i> <span class="l-es">Semanal</span><span class="l-en" lang="en">Weekly</span></a><a class="navtab" href="../archivo.html" aria-current="page"><i>03</i> <span class="l-es">Archivo</span><span class="l-en" lang="en">Archive</span></a></nav><a class="sister" href="https://moloch-sh.netlify.app/" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">&gt;_</span><span>MOLOCH.SH ↗<small><span class="l-es">Observatorio de modelos</span><span class="l-en" lang="en">Model observatory</span></small></span></a><div class="top-ctl"><div class="seg" role="group" aria-label="Idioma"><button type="button" class="seg-btn" data-lang-set="es">ES</button><button type="button" class="seg-btn" data-lang-set="en">EN</button></div><div class="seg" role="group" aria-label="Tema"><button type="button" class="seg-btn" data-theme-set="auto">Auto</button><button type="button" class="seg-btn" data-theme-set="light"><span class="l-es">Claro</span><span class="l-en" lang="en">Light</span></button><button type="button" class="seg-btn" data-theme-set="dark"><span class="l-es">Oscuro</span><span class="l-en" lang="en">Dark</span></button></div></div></header>
 <div class="strip">
   <span><span class="l-es">Edición</span><span class="l-en" lang="en">Edition</span> <b class="hl">2026-11-22</b></span>
   <span class="it warn"><span class="l-es">ACTIVO</span><span class="l-en" lang="en">ACTIVE</span></span>
@@ -550,8 +576,6 @@
   
 
   
-  
-
   
 
   <!-- Tabs de tema -->
@@ -724,222 +748,9 @@
     <!-- Mercados: banda rotativa a todo el ancho. El contenido va dos veces para
          que el bucle no tenga corte; la segunda copia es invisible para lectores. -->
     
-    <section class="ticker" aria-label="Markets">
-      <div class="ticker-h"><strong><span class="l-es">Mercados</span><span class="l-en" lang="en">Markets</span></strong><span><span class="l-es">Último cierre · Investing.com · no es tiempo real</span><span class="l-en" lang="en">Last close · Investing.com · not real time</span></span></div>
-      <div class="ticker-view">
-        <div class="ticker-track" style="--n:11">
-          
-          <div class="ticker-q">
-            
-            
-            <a class="tq" href="https://www.investing.com/indices/us-spx-500-futures" target="_blank" rel="noopener noreferrer" title="S&amp;P Futures · Investing.com">
-              <span class="tq-n">S&amp;P Futures</span>
-              <span class="tq-p">6,935.00 US$</span>
-              <span class="m-chg neg">-3.64%</span>
-              <svg viewBox="0 0 100 24" class="spark neg"><polyline fill="none" stroke="#C81E3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,8.5 9.4,6.0 16.8,12.9 24.2,12.5 31.5,9.0 38.9,9.6 46.3,7.6 53.7,8.1 61.1,8.8 68.5,11.7 75.8,13.4 83.2,13.7 90.6,16.7 98.0,22.0"/></svg>
-            </a>
-            
-            
-            
-            <a class="tq" href="https://www.investing.com/indices/nq-100-futures" target="_blank" rel="noopener noreferrer" title="NASDAQ F. · Investing.com">
-              <span class="tq-n">NASDAQ F.</span>
-              <span class="tq-p">25,126.50 US$</span>
-              <span class="m-chg neg">-5.54%</span>
-              <svg viewBox="0 0 100 24" class="spark neg"><polyline fill="none" stroke="#C81E3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,7.2 9.4,6.0 16.8,14.4 24.2,12.9 31.5,8.6 38.9,9.4 46.3,6.4 53.7,6.8 61.1,8.5 68.5,12.0 75.8,12.9 83.2,12.4 90.6,15.1 98.0,22.0"/></svg>
-            </a>
-            
-            
-            
-            <a class="tq" href="https://www.investing.com/crypto/bitcoin/btc-usd" target="_blank" rel="noopener noreferrer" title="Bitcoin · Investing.com">
-              <span class="tq-n">Bitcoin</span>
-              <span class="tq-p">59,103.95 US$</span>
-              <span class="m-chg pos">+0.52%</span>
-              <svg viewBox="0 0 100 24" class="spark pos"><polyline fill="none" stroke="#0E9F6E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,6.6 9.4,6.0 16.8,7.5 24.2,7.2 31.5,9.8 38.9,12.8 46.3,16.8 53.7,15.7 61.1,16.1 68.5,16.1 75.8,17.9 83.2,19.0 90.6,22.0 98.0,21.7"/></svg>
-            </a>
-            
-            
-            
-            <a class="tq" href="https://www.investing.com/crypto/ethereum/eth-usd" target="_blank" rel="noopener noreferrer" title="Ethereum · Investing.com">
-              <span class="tq-n">Ethereum</span>
-              <span class="tq-p">1,656.98 US$</span>
-              <span class="m-chg pos">+2.32%</span>
-              <svg viewBox="0 0 100 24" class="spark pos"><polyline fill="none" stroke="#0E9F6E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,6.3 9.4,6.0 16.8,8.5 24.2,8.4 31.5,9.6 38.9,12.4 46.3,17.3 53.7,15.2 61.1,15.8 68.5,15.6 75.8,17.1 83.2,17.8 90.6,22.0 98.0,20.8"/></svg>
-            </a>
-            
-            
-            
-            <a class="tq" href="https://www.investing.com/indices/volatility-s-p-500" target="_blank" rel="noopener noreferrer" title="VIX · Investing.com">
-              <span class="tq-n">VIX</span>
-              <span class="tq-p">35.89</span>
-              <span class="m-chg pos">+26.20%</span>
-              <svg viewBox="0 0 100 24" class="spark pos"><polyline fill="none" stroke="#0E9F6E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,18.5 9.4,22.0 16.8,12.4 24.2,14.5 31.5,19.3 38.9,19.6 46.3,21.3 53.7,20.3 61.1,19.8 68.5,16.8 75.8,14.7 83.2,15.4 90.6,12.2 98.0,6.0"/></svg>
-            </a>
-            
-            
-            
-            <a class="tq" href="https://www.investing.com/commodities/brent-oil" target="_blank" rel="noopener noreferrer" title="Brent · Investing.com">
-              <span class="tq-n">Brent</span>
-              <span class="tq-p">92.57</span>
-              <span class="m-chg pos">+0.64%</span>
-              <svg viewBox="0 0 100 24" class="spark pos"><polyline fill="none" stroke="#0E9F6E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,6.0 9.4,17.9 16.8,13.0 24.2,13.0 31.5,20.6 38.9,22.0 46.3,20.3 53.7,16.3 61.1,16.3 68.5,20.7 75.8,19.8 83.2,21.4 90.6,21.4 98.0,20.6"/></svg>
-            </a>
-            
-            
-            
-            <a class="tq" href="https://www.investing.com/equities/nvidia-corp" target="_blank" rel="noopener noreferrer" title="NVIDIA · Investing.com">
-              <span class="tq-n">NVIDIA</span>
-              <span class="tq-p">125.53 US$</span>
-              <span class="m-chg neg">-14.01%</span>
-              <svg viewBox="0 0 100 24" class="spark neg"><polyline fill="none" stroke="#C81E3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,6.0 9.4,7.3 16.8,10.9 24.2,10.0 31.5,11.5 38.9,13.5 46.3,12.5 53.7,14.0 61.1,14.6 68.5,16.0 75.8,16.1 83.2,17.0 90.6,18.0 98.0,22.0"/></svg>
-            </a>
-            
-            
-            
-            <a class="tq" href="https://www.investing.com/equities/amazon-com-inc" target="_blank" rel="noopener noreferrer" title="Amazon · Investing.com">
-              <span class="tq-n">Amazon</span>
-              <span class="tq-p">246.82 US$</span>
-              <span class="m-chg neg">-4.10%</span>
-              <svg viewBox="0 0 100 24" class="spark neg"><polyline fill="none" stroke="#C81E3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,19.4 9.4,9.2 16.8,13.1 24.2,13.7 31.5,8.6 38.9,6.0 46.3,9.1 53.7,8.3 61.1,8.8 68.5,14.7 75.8,14.6 83.2,8.1 90.6,15.0 98.0,22.0"/></svg>
-            </a>
-            
-            
-            
-            <a class="tq" href="https://www.investing.com/equities/microsoft-corp" target="_blank" rel="noopener noreferrer" title="Microsoft · Investing.com">
-              <span class="tq-n">Microsoft</span>
-              <span class="tq-p">484.52 US$</span>
-              <span class="m-chg neg">-2.77%</span>
-              <svg viewBox="0 0 100 24" class="spark neg"><polyline fill="none" stroke="#C81E3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,13.8 9.4,6.0 16.8,10.5 24.2,11.7 31.5,8.4 38.9,11.1 46.3,13.8 53.7,13.4 61.1,13.2 68.5,14.5 75.8,17.1 83.2,16.7 90.6,18.9 98.0,22.0"/></svg>
-            </a>
-            
-            
-            
-            <a class="tq" href="https://www.investing.com/equities/apple-computer-inc" target="_blank" rel="noopener noreferrer" title="Apple · Investing.com">
-              <span class="tq-n">Apple</span>
-              <span class="tq-p">342.56 US$</span>
-              <span class="m-chg neg">-1.90%</span>
-              <svg viewBox="0 0 100 24" class="spark neg"><polyline fill="none" stroke="#C81E3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,22.0 9.4,10.4 16.8,13.9 24.2,15.1 31.5,9.7 38.9,11.1 46.3,6.4 53.7,6.9 61.1,6.0 68.5,8.3 75.8,8.9 83.2,8.5 90.6,10.6 98.0,15.0"/></svg>
-            </a>
-            
-            
-            
-            <a class="tq" href="https://www.investing.com/equities/anthropic" target="_blank" rel="noopener noreferrer" title="Anthropic (ANT) · Investing.com">
-              <span class="tq-n">Anthropic (ANT)</span>
-              <span class="tq-p">88.91 US$</span>
-              <span class="m-chg neg">-8.50%</span>
-              <svg viewBox="0 0 100 24" class="spark neg"><polyline fill="none" stroke="#C81E3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,6.0 98.0,22.0"/></svg>
-            </a>
-            
-            
-          </div>
-          
-          <div class="ticker-q" aria-hidden="true">
-            
-            
-            <a class="tq" href="https://www.investing.com/indices/us-spx-500-futures" target="_blank" rel="noopener noreferrer" tabindex="-1" title="S&amp;P Futures · Investing.com">
-              <span class="tq-n">S&amp;P Futures</span>
-              <span class="tq-p">6,935.00 US$</span>
-              <span class="m-chg neg">-3.64%</span>
-              <svg viewBox="0 0 100 24" class="spark neg"><polyline fill="none" stroke="#C81E3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,8.5 9.4,6.0 16.8,12.9 24.2,12.5 31.5,9.0 38.9,9.6 46.3,7.6 53.7,8.1 61.1,8.8 68.5,11.7 75.8,13.4 83.2,13.7 90.6,16.7 98.0,22.0"/></svg>
-            </a>
-            
-            
-            
-            <a class="tq" href="https://www.investing.com/indices/nq-100-futures" target="_blank" rel="noopener noreferrer" tabindex="-1" title="NASDAQ F. · Investing.com">
-              <span class="tq-n">NASDAQ F.</span>
-              <span class="tq-p">25,126.50 US$</span>
-              <span class="m-chg neg">-5.54%</span>
-              <svg viewBox="0 0 100 24" class="spark neg"><polyline fill="none" stroke="#C81E3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,7.2 9.4,6.0 16.8,14.4 24.2,12.9 31.5,8.6 38.9,9.4 46.3,6.4 53.7,6.8 61.1,8.5 68.5,12.0 75.8,12.9 83.2,12.4 90.6,15.1 98.0,22.0"/></svg>
-            </a>
-            
-            
-            
-            <a class="tq" href="https://www.investing.com/crypto/bitcoin/btc-usd" target="_blank" rel="noopener noreferrer" tabindex="-1" title="Bitcoin · Investing.com">
-              <span class="tq-n">Bitcoin</span>
-              <span class="tq-p">59,103.95 US$</span>
-              <span class="m-chg pos">+0.52%</span>
-              <svg viewBox="0 0 100 24" class="spark pos"><polyline fill="none" stroke="#0E9F6E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,6.6 9.4,6.0 16.8,7.5 24.2,7.2 31.5,9.8 38.9,12.8 46.3,16.8 53.7,15.7 61.1,16.1 68.5,16.1 75.8,17.9 83.2,19.0 90.6,22.0 98.0,21.7"/></svg>
-            </a>
-            
-            
-            
-            <a class="tq" href="https://www.investing.com/crypto/ethereum/eth-usd" target="_blank" rel="noopener noreferrer" tabindex="-1" title="Ethereum · Investing.com">
-              <span class="tq-n">Ethereum</span>
-              <span class="tq-p">1,656.98 US$</span>
-              <span class="m-chg pos">+2.32%</span>
-              <svg viewBox="0 0 100 24" class="spark pos"><polyline fill="none" stroke="#0E9F6E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,6.3 9.4,6.0 16.8,8.5 24.2,8.4 31.5,9.6 38.9,12.4 46.3,17.3 53.7,15.2 61.1,15.8 68.5,15.6 75.8,17.1 83.2,17.8 90.6,22.0 98.0,20.8"/></svg>
-            </a>
-            
-            
-            
-            <a class="tq" href="https://www.investing.com/indices/volatility-s-p-500" target="_blank" rel="noopener noreferrer" tabindex="-1" title="VIX · Investing.com">
-              <span class="tq-n">VIX</span>
-              <span class="tq-p">35.89</span>
-              <span class="m-chg pos">+26.20%</span>
-              <svg viewBox="0 0 100 24" class="spark pos"><polyline fill="none" stroke="#0E9F6E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,18.5 9.4,22.0 16.8,12.4 24.2,14.5 31.5,19.3 38.9,19.6 46.3,21.3 53.7,20.3 61.1,19.8 68.5,16.8 75.8,14.7 83.2,15.4 90.6,12.2 98.0,6.0"/></svg>
-            </a>
-            
-            
-            
-            <a class="tq" href="https://www.investing.com/commodities/brent-oil" target="_blank" rel="noopener noreferrer" tabindex="-1" title="Brent · Investing.com">
-              <span class="tq-n">Brent</span>
-              <span class="tq-p">92.57</span>
-              <span class="m-chg pos">+0.64%</span>
-              <svg viewBox="0 0 100 24" class="spark pos"><polyline fill="none" stroke="#0E9F6E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,6.0 9.4,17.9 16.8,13.0 24.2,13.0 31.5,20.6 38.9,22.0 46.3,20.3 53.7,16.3 61.1,16.3 68.5,20.7 75.8,19.8 83.2,21.4 90.6,21.4 98.0,20.6"/></svg>
-            </a>
-            
-            
-            
-            <a class="tq" href="https://www.investing.com/equities/nvidia-corp" target="_blank" rel="noopener noreferrer" tabindex="-1" title="NVIDIA · Investing.com">
-              <span class="tq-n">NVIDIA</span>
-              <span class="tq-p">125.53 US$</span>
-              <span class="m-chg neg">-14.01%</span>
-              <svg viewBox="0 0 100 24" class="spark neg"><polyline fill="none" stroke="#C81E3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,6.0 9.4,7.3 16.8,10.9 24.2,10.0 31.5,11.5 38.9,13.5 46.3,12.5 53.7,14.0 61.1,14.6 68.5,16.0 75.8,16.1 83.2,17.0 90.6,18.0 98.0,22.0"/></svg>
-            </a>
-            
-            
-            
-            <a class="tq" href="https://www.investing.com/equities/amazon-com-inc" target="_blank" rel="noopener noreferrer" tabindex="-1" title="Amazon · Investing.com">
-              <span class="tq-n">Amazon</span>
-              <span class="tq-p">246.82 US$</span>
-              <span class="m-chg neg">-4.10%</span>
-              <svg viewBox="0 0 100 24" class="spark neg"><polyline fill="none" stroke="#C81E3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,19.4 9.4,9.2 16.8,13.1 24.2,13.7 31.5,8.6 38.9,6.0 46.3,9.1 53.7,8.3 61.1,8.8 68.5,14.7 75.8,14.6 83.2,8.1 90.6,15.0 98.0,22.0"/></svg>
-            </a>
-            
-            
-            
-            <a class="tq" href="https://www.investing.com/equities/microsoft-corp" target="_blank" rel="noopener noreferrer" tabindex="-1" title="Microsoft · Investing.com">
-              <span class="tq-n">Microsoft</span>
-              <span class="tq-p">484.52 US$</span>
-              <span class="m-chg neg">-2.77%</span>
-              <svg viewBox="0 0 100 24" class="spark neg"><polyline fill="none" stroke="#C81E3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,13.8 9.4,6.0 16.8,10.5 24.2,11.7 31.5,8.4 38.9,11.1 46.3,13.8 53.7,13.4 61.1,13.2 68.5,14.5 75.8,17.1 83.2,16.7 90.6,18.9 98.0,22.0"/></svg>
-            </a>
-            
-            
-            
-            <a class="tq" href="https://www.investing.com/equities/apple-computer-inc" target="_blank" rel="noopener noreferrer" tabindex="-1" title="Apple · Investing.com">
-              <span class="tq-n">Apple</span>
-              <span class="tq-p">342.56 US$</span>
-              <span class="m-chg neg">-1.90%</span>
-              <svg viewBox="0 0 100 24" class="spark neg"><polyline fill="none" stroke="#C81E3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,22.0 9.4,10.4 16.8,13.9 24.2,15.1 31.5,9.7 38.9,11.1 46.3,6.4 53.7,6.9 61.1,6.0 68.5,8.3 75.8,8.9 83.2,8.5 90.6,10.6 98.0,15.0"/></svg>
-            </a>
-            
-            
-            
-            <a class="tq" href="https://www.investing.com/equities/anthropic" target="_blank" rel="noopener noreferrer" tabindex="-1" title="Anthropic (ANT) · Investing.com">
-              <span class="tq-n">Anthropic (ANT)</span>
-              <span class="tq-p">88.91 US$</span>
-              <span class="m-chg neg">-8.50%</span>
-              <svg viewBox="0 0 100 24" class="spark neg"><polyline fill="none" stroke="#C81E3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="2.0,6.0 98.0,22.0"/></svg>
-            </a>
-            
-            
-          </div>
-          
-        </div>
-      </div>
-    </section>
-    
   </div>
+  
+
   
 
   
