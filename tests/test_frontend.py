@@ -142,6 +142,14 @@ class EmbeddedJavaScriptTests(unittest.TestCase):
         # Y el caracter combinante crudo no debe aparecer.
         self.assertNotIn(chr(0x0300), html)
 
+    def test_degraded_notice_renders_bold_without_escaped_tags(self):
+        from src.render import render_index
+
+        html = render_index([], snapshot={"date": "2026-11-23", "degraded": True})
+        self.assertIn('<b><span class="l-es">Modo degradado.</span><span class="l-en" lang="en">Degraded mode.</span></b>', html)
+        self.assertNotIn("&lt;b&gt;Modo degradado.&lt;/b&gt;", html)
+        self.assertNotIn("&lt;b&gt;Degraded mode.&lt;/b&gt;", html)
+
 
 if __name__ == "__main__":
     unittest.main()

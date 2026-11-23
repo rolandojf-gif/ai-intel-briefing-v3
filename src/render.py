@@ -710,8 +710,9 @@ TEMPLATE = ENV.from_string("""
 
   {% if degraded %}
   <div class="notice warn">
-    {{ bi("<b>Modo degradado.</b> El análisis del LLM no está disponible hoy, así que el filtro de relevancia no se ha aplicado. Lo que ves está ordenado por heurística y puede contener ruido."|safe,
-          "<b>Degraded mode.</b> The LLM analysis is unavailable today, so the relevance filter was not applied. Items are ranked heuristically and may include noise."|safe) }}
+    <b>{{ bi("Modo degradado.","Degraded mode.") }}</b>
+    {{ bi("El análisis del LLM no está disponible hoy, así que el filtro de relevancia no se ha aplicado. Lo que ves está ordenado por heurística y puede contener ruido.",
+          "The LLM analysis is unavailable today, so the relevance filter was not applied. Items are ranked heuristically and may include noise.") }}
   </div>
   {% endif %}
   {% if x_layer and x_layer.status in ['killed', 'disabled'] %}
