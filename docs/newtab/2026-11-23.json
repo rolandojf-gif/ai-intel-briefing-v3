@@ -1,14 +1,23 @@
 {
   "date": "2026-11-23",
-  "score_avg": 58.8,
+  "score_avg": 78.88,
   "primary_dist": {
-    "models": 8,
+    "models": 4,
+    "invest": 2,
     "infra": 1,
-    "invest": 1
+    "misc": 1
   },
   "top_entities": [
     {
-      "entity": "These",
+      "entity": "OpenAI",
+      "count": 3
+    },
+    {
+      "entity": "China",
+      "count": 2
+    },
+    {
+      "entity": "Anthropic",
       "count": 2
     },
     {
@@ -16,39 +25,157 @@
       "count": 1
     },
     {
-      "entity": "Monitor",
-      "count": 1
-    },
-    {
-      "entity": "Select Styling Specimens",
-      "count": 1
-    },
-    {
-      "entity": "Distillation",
+      "entity": "Greg Brockman",
       "count": 1
     }
   ],
   "briefing": {
-    "thesis": "Análisis no disponible hoy: el filtro de relevancia no se ha aplicado.",
-    "thesis_en": "Analysis unavailable today: the relevance filter was not applied.",
     "signals": [
-      "Perplexity's new Monitor API turns web search from a one-off query into a nonstop watchdog",
-      "Select Styling Specimens",
-      "Distillation can reproduce powerful AI capabilities without the safeguards built around them. We’re sharing new research on our wo"
+      "Perplexity lanza una API que permite a los agentes monitorizar la web de forma autónoma y recibir alertas solo con cambios relevantes.",
+      "OpenAI publica nueva investigación detallando defensas contra la extracción adversaria de capacidades de sus modelos.",
+      "OpenAI, a través de Greg Brockman y un post oficial, propone usar la perplejidad como métrica estándar para establecer límites de seguridad en IA avanzada.",
+      "La incertidumbre financiera tras la IPO de Anthropic está frenando futuros acuerdos de inversión en IA en China."
     ],
     "risks": [
-      "Sin juicio del LLM no se puede distinguir señal de ruido: tratar todo como no verificado."
+      "Inferencia · La complejidad de proteger las capacidades de los modelos frente a la extracción adversaria sigue siendo un riesgo de seguridad para los modelos frontier.",
+      "Inferencia · La volatilidad del mercado, como la observada tras la IPO de Anthropic y la situación de Nvidia, podría limitar la inversión en desarrollo de IA y compute, especialmente en China."
     ],
     "watch": [
-      "Confirmar que el análisis vuelve a ejecutarse en el próximo run."
+      "Anuncios de integraciones de Perplexity Monitor API en flujos de trabajo autónomos o plataformas de agentes.",
+      "Otros labs de frontera adoptan la perplejidad como métrica de seguridad compartida para sus modelos.",
+      "Nuevos anuncios de grandes acuerdos de inversión en IA en China o movimientos en la valoración de Nvidia."
     ],
     "entities_top": [
-      "These",
+      "OpenAI",
       "Perplexity",
-      "Monitor",
-      "Select Styling Specimens",
-      "Distillation"
-    ]
+      "Nvidia",
+      "Anthropic",
+      "China"
+    ],
+    "signals_en": [
+      "Perplexity launches an API enabling agents to autonomously monitor the web, alerting only on relevant changes.",
+      "OpenAI publishes new research detailing defenses against adversarial capability extraction from its models.",
+      "OpenAI, via Greg Brockman and an official post, proposes using perplexity as a standard metric for advanced AI safety limits.",
+      "Financial uncertainty post-Anthropic IPO is slowing down future AI investment deals in China."
+    ],
+    "risks_en": [
+      "Inference · The complexity of protecting model capabilities against adversarial extraction remains a security risk for frontier models.",
+      "Inference · Market volatility, as seen after the Anthropic IPO and Nvidia's situation, could limit investment in AI development and compute, especially in China."
+    ],
+    "watch_en": [
+      "Announcements of Perplexity Monitor API integrations into autonomous workflows or agent platforms.",
+      "Other frontier labs adopt perplexity as a shared safety metric for their models.",
+      "New announcements of major AI investment deals in China or movements in Nvidia's valuation."
+    ],
+    "evidence": {
+      "thesis": [
+        {
+          "source": "The Decoder",
+          "url": "https://the-decoder.com/perplexitys-new-monitor-api-turns-web-search-from-a-one-off-query-into-a-nonstop-watchdog/",
+          "quote": "Perplexity is launching a Monitor API that searches the web on a schedule and alerts agents via webhook only when relevant changes occur."
+        },
+        {
+          "source": "X @OpenAI",
+          "url": "https://x.com/OpenAI/status/2123862344422088794",
+          "quote": "Distillation can reproduce powerful AI capabilities without the safeguards built around them. We’re sharing new research on our work to combat distillation of our models, how these capabilities transfer, and how we detect and disrupt coordinated attempts."
+        },
+        {
+          "source": "X @gdb",
+          "url": "https://x.com/gdb/status/2124582684840399311",
+          "quote": "This post provides transparency that can be the foundation of industry-wide shared safety bars. Perhaps the most important concept from the post is the following: \"AI will also significantly contribute to progress on alignment and monitoring, I think that progress is unlikely to be fast enough to allow the full potential acceleration in pretraining.\" Towards ensuring that safety keeps pace with general intelligence of pretrained models (as measured by \"perplexity\"), the post proposes \"common limits, based on perplexity and other measurements, that developers are committed to not crossing until our ability to under"
+        },
+        {
+          "source": "Bloomberg Tech",
+          "url": "https://www.bloomberg.com/news/articles/2026-11-23/china-s-next-ai-deals-clouded-by-selloff-after-anthropic-ipo",
+          "quote": "China’s Next AI Deals Clouded by Selloff After Anthropic IPO"
+        }
+      ],
+      "signals.0": [
+        {
+          "source": "The Decoder",
+          "url": "https://the-decoder.com/perplexitys-new-monitor-api-turns-web-search-from-a-one-off-query-into-a-nonstop-watchdog/",
+          "quote": "Perplexity is launching a Monitor API that searches the web on a schedule and alerts agents via webhook only when relevant changes occur."
+        }
+      ],
+      "signals.1": [
+        {
+          "source": "X @OpenAI",
+          "url": "https://x.com/OpenAI/status/2123862344422088794",
+          "quote": "Distillation can reproduce powerful AI capabilities without the safeguards built around them. We’re sharing new research on our work to combat distillation of our models, how these capabilities transfer, and how we detect and disrupt coordinated attempts."
+        }
+      ],
+      "signals.2": [
+        {
+          "source": "X @gdb",
+          "url": "https://x.com/gdb/status/2124582684840399311",
+          "quote": "This post provides transparency that can be the foundation of industry-wide shared safety bars. Perhaps the most important concept from the post is the following: \"AI will also significantly contribute to progress on alignment and monitoring, I think that progress is unlikely to be fast enough to allow the full potential acceleration in pretraining.\" Towards ensuring that safety keeps pace with general intelligence of pretrained models (as measured by \"perplexity\"), the post proposes \"common limits, based on perplexity and other measurements, that developers are committed to not crossing until our ability to under"
+        },
+        {
+          "source": "OpenAI",
+          "url": "https://openai.com/index/perplexity-and-intelligence",
+          "quote": "How perplexity measures progress in AI models, and why it could help developers establish a shared approach to evaluating emerging capabilities."
+        }
+      ],
+      "signals.3": [
+        {
+          "source": "Bloomberg Tech",
+          "url": "https://www.bloomberg.com/news/articles/2026-11-23/china-s-next-ai-deals-clouded-by-selloff-after-anthropic-ipo",
+          "quote": "China’s Next AI Deals Clouded by Selloff After Anthropic IPO"
+        }
+      ],
+      "risks.0": [
+        {
+          "source": "X @OpenAI",
+          "url": "https://x.com/OpenAI/status/2123862344422088794",
+          "quote": "Distillation can reproduce powerful AI capabilities without the safeguards built around them. We’re sharing new research on our work to combat distillation of our models, how these capabilities transfer, and how we detect and disrupt coordinated attempts."
+        }
+      ],
+      "risks.1": [
+        {
+          "source": "Yahoo Finance (AI & semis)",
+          "url": "https://www.tikr.com/blog/michael-burry-sees-1929s-and-2000s-lack-of-a-proximate-cause-in-earnings-nvidias-estimates-keep-rising?ref=yahoofinance&tlnk=yf-261123-rg89fg6v&.tsrc=rss",
+          "quote": "Michael Burry says the AI selloff shares 1929’s and 2000’s “lack of a proximate cause in earnings,” and Nvidia fits. The whole drop has come from Nvidia’s multiple, now 8."
+        },
+        {
+          "source": "Bloomberg Tech",
+          "url": "https://www.bloomberg.com/news/articles/2026-11-23/china-s-next-ai-deals-clouded-by-selloff-after-anthropic-ipo",
+          "quote": "China’s Next AI Deals Clouded by Selloff After Anthropic IPO"
+        }
+      ],
+      "watch.0": [
+        {
+          "source": "The Decoder",
+          "url": "https://the-decoder.com/perplexitys-new-monitor-api-turns-web-search-from-a-one-off-query-into-a-nonstop-watchdog/",
+          "quote": "Perplexity is launching a Monitor API that searches the web on a schedule and alerts agents via webhook only when relevant changes occur."
+        }
+      ],
+      "watch.1": [
+        {
+          "source": "X @gdb",
+          "url": "https://x.com/gdb/status/2124582684840399311",
+          "quote": "This post provides transparency that can be the foundation of industry-wide shared safety bars. Perhaps the most important concept from the post is the following: \"AI will also significantly contribute to progress on alignment and monitoring, I think that progress is unlikely to be fast enough to allow the full potential acceleration in pretraining.\" Towards ensuring that safety keeps pace with general intelligence of pretrained models (as measured by \"perplexity\"), the post proposes \"common limits, based on perplexity and other measurements, that developers are committed to not crossing until our ability to under"
+        },
+        {
+          "source": "OpenAI",
+          "url": "https://openai.com/index/perplexity-and-intelligence",
+          "quote": "How perplexity measures progress in AI models, and why it could help developers establish a shared approach to evaluating emerging capabilities."
+        }
+      ],
+      "watch.2": [
+        {
+          "source": "Yahoo Finance (AI & semis)",
+          "url": "https://www.tikr.com/blog/michael-burry-sees-1929s-and-2000s-lack-of-a-proximate-cause-in-earnings-nvidias-estimates-keep-rising?ref=yahoofinance&tlnk=yf-261123-rg89fg6v&.tsrc=rss",
+          "quote": "Michael Burry says the AI selloff shares 1929’s and 2000’s “lack of a proximate cause in earnings,” and Nvidia fits. The whole drop has come from Nvidia’s multiple, now 8."
+        },
+        {
+          "source": "Bloomberg Tech",
+          "url": "https://www.bloomberg.com/news/articles/2026-11-23/china-s-next-ai-deals-clouded-by-selloff-after-anthropic-ipo",
+          "quote": "China’s Next AI Deals Clouded by Selloff After Anthropic IPO"
+        }
+      ]
+    },
+    "thesis": "La carrera AGI avanza en capacidades de agente y refuerza la seguridad, mientras la volatilidad del mercado y las preocupaciones geopolíticas impactan la inversión en la IA china.",
+    "thesis_en": "The AGI race advances in agent capabilities and strengthens safety, while market volatility and geopolitical concerns impact investment in Chinese AI."
   },
   "memory": {
     "watch_resolved": [
@@ -79,11 +206,11 @@
     ],
     "entity_deltas": {
       "new_entrants": [
-        "Beginner",
-        "Boost Stock Liquidity",
-        "China Lowers Margin",
-        "Monitor",
-        "Perhaps"
+        "Baillie Gifford",
+        "GIC",
+        "Greg Brockman",
+        "Michael Burry",
+        "Notable Capital"
       ],
       "returning": [
         {
@@ -95,25 +222,41 @@
         {
           "entity": "OpenAI",
           "days": 11
+        },
+        {
+          "entity": "Anthropic",
+          "days": 10
+        },
+        {
+          "entity": "NVIDIA",
+          "days": 3
         }
       ]
     },
     "threads": [
       {
+        "theme": "compute_chips_dc",
+        "label": "Compute y chips",
+        "days": 11,
+        "lead": "Según la fuente · Michael Burry compara la caída de Nvidia con burbujas de 1929 y 2000",
+        "label_en": "Compute and chips",
+        "lead_en": "Reported · Michael Burry compares Nvidia's decline to 1929 and 2000 bubbles"
+      },
+      {
         "theme": "agents_automation",
         "label": "Agentes y automatización",
         "days": 11,
-        "lead": "Perplexity's new Monitor API turns web search from a one-off query into a nonstop watchdog",
+        "lead": "Según la fuente · Perplexity lanza Monitor API para vigilancia web autónoma por agentes",
         "label_en": "Agents and automation",
-        "lead_en": "Perplexity's new Monitor API turns web search from a one-off query into a nonstop watchdog"
+        "lead_en": "Reported · Perplexity launches Monitor API for autonomous web surveillance by agents"
       },
       {
         "theme": "frontier_capability",
         "label": "Capacidad frontier",
         "days": 10,
-        "lead": "Distillation can reproduce powerful AI capabilities without the safeguards built around them. We’re sharing ne",
+        "lead": "Hipótesis · Ayudé a iniciar OpenAI porque quiero que la AGI sea segura y beneficiosa para las personas. Esta p",
         "label_en": "Frontier capability",
-        "lead_en": "Distillation can reproduce powerful AI capabilities without the safeguards built around them. We’re sharing ne"
+        "lead_en": "Hypothesis · I helped start OpenAI because I want AGI to be safe and beneficial for people. This post provides"
       }
     ],
     "followups": {
@@ -249,69 +392,330 @@
           "watch": "Declaraciones futuras de Anthropic sobre su estrategia de seguridad y crecimiento.",
           "watch_en": "Future statements from Anthropic on its safety and growth strategy.",
           "due": ""
+        },
+        {
+          "source": "The Decoder",
+          "url": "https://the-decoder.com/openai-makes-it-much-harder-for-attackers-to-extract-how-its-latest-ai-models-think/",
+          "quote": "OpenAI makes it much harder for attackers to extract how its latest AI models think",
+          "date": "2026-11-21",
+          "excerpt": "OpenAI makes it much harder for attackers to extract how its latest AI models think | OpenAI has significantly strengthened safeguards against extracting internal reasoning from GPT-6.2 Astra and GPT-6.2 Sol. In adaptive red-teaming tests, the success rate for extracting protected reasoning fell from 54 percent to 0.2 ",
+          "es": "Según la fuente · OpenAI refuerza defensas contra extracción de lógica interna de GPT-6.2 Astra y Sol",
+          "en": "Reported · OpenAI strengthens defenses against internal reasoning extraction from GPT-6.2 Astra and Sol",
+          "watch": "Otros labs implementan medidas similares o se reportan ataques con éxito en nuevos modelos.",
+          "watch_en": "Other labs implement similar measures or successful attacks on new models are reported.",
+          "due": ""
+        },
+        {
+          "source": "Latent Space",
+          "url": "https://latent.space/p/ainews-anthropic-successfully-completes-largest-ipo-in-history-valued-at-1-5t/",
+          "quote": "Anthropic successfully completes largest IPO in history, valued at $1.5T",
+          "date": "2026-11-21",
+          "excerpt": "[AINews] Anthropic successfully completes largest IPO in history, valued at $1.5T | November 19, 2026 — ANT went from $83 at pricing to $111.50 at the open and $97.17 at the close. Plus, Google opens Genie 4 to developers.",
+          "es": "Según la fuente · Anthropic cierra una IPO histórica con valoración inicial de 1.5 billones de dólares",
+          "en": "Reported · Anthropic closes historic IPO with initial valuation of $1.5 trillion",
+          "watch": "Estabilización de la cotización de Anthropic y cómo invierte el capital de la IPO en compute o talento.",
+          "watch_en": "Stabilization of Anthropic's stock price and how it invests IPO capital in compute or talent.",
+          "due": ""
+        },
+        {
+          "source": "The Decoder",
+          "url": "https://the-decoder.com/perplexitys-new-monitor-api-turns-web-search-from-a-one-off-query-into-a-nonstop-watchdog/",
+          "quote": "Perplexity is launching a Monitor API that searches the web on a schedule and alerts agents via webhook only when relevant changes occur.",
+          "date": "2026-11-23",
+          "excerpt": "Perplexity's new Monitor API turns web search from a one-off query into a nonstop watchdog | Perplexity is launching a Monitor API that searches the web on a schedule and alerts agents via webhook only when relevant changes occur. Its own decision model filters out unimportant results. For Perplexity, the API is part o",
+          "es": "Según la fuente · Perplexity lanza Monitor API para vigilancia web autónoma por agentes",
+          "en": "Reported · Perplexity launches Monitor API for autonomous web surveillance by agents",
+          "watch": "Anuncios de integraciones de Monitor API en plataformas de agentes.",
+          "watch_en": "Announcements of Monitor API integrations into agent platforms.",
+          "due": ""
+        },
+        {
+          "source": "X @gdb",
+          "url": "https://x.com/gdb/status/2124582684840399311",
+          "quote": "This post provides transparency that can be the foundation of industry-wide shared safety bars. Perhaps the most important concept from the post is the following: \"AI will also significantly contribute to progress on alignment and monitoring, I think that progress is unlikely to be fast enough to allow the full potential acceleration in pretraining.\" Towards ensuring that safety keeps pace with general intelligence of pretrained models (as measured by \"perplexity\"), the post proposes \"common limits, based on perplexity and other measurements, that developers are committed to not crossing until our ability to under",
+          "date": "2026-11-23",
+          "excerpt": "I helped start OpenAI because I want AGI to be safe and beneficial for people. This post provides transparency that can be the foundation of industry-wide shared safety bars. Perhaps the most important concept from the post is the following: \"AI will also significantly contribute to progress on alignment and monitoring",
+          "es": "Hipótesis · Ayudé a iniciar OpenAI porque quiero que la AGI sea segura y beneficiosa para las personas. Esta publicación proporciona transparencia que puede ser la base de barras de seguridad compartidas en toda la industria. Quizás el concepto más importante de la publicación es el siguiente:",
+          "en": "Hypothesis · I helped start OpenAI because I want AGI to be safe and beneficial for people. This post provides transparency that can be the foundation of industry-wide shared safety bars. Perhaps the most important concept from the post is the following: \"AI will also significantly contribute to progress on alignment and monitoring, I think that progress is unlikely to be fast enough to allow the full potential acceleration in pretraining.\" Towards ensuring that safety keeps pace with general intelligence of pretrained models (as measured by \"perplexity\"), the post proposes \"common limits, based on perplexity and other measurements, that developers are committed to not crossing until our ability to understand and monitor AI behavior achieves a certain concrete milestone (such as the development of a successor to CoT monitors).\" The general idea is to create a first shared limit, on some shared key metric, along with concrete exit criteria that would allow going beyond that. This can lead to a \"common framework for setting successive limits and pacing further development\". Excited to move forward the conversation on pacing towards shared standards that are rooted in the science!",
+          "watch": "Labs de frontera adoptan la perplejidad como métrica de seguridad compartida.",
+          "watch_en": "Frontier labs adopt perplexity as a shared safety metric.",
+          "due": ""
+        },
+        {
+          "source": "OpenAI",
+          "url": "https://openai.com/index/perplexity-and-intelligence",
+          "quote": "How perplexity measures progress in AI models, and why it could help developers establish a shared approach to evaluating emerging capabilities.",
+          "date": "2026-11-23",
+          "excerpt": "Perplexity and Intelligence | How perplexity measures progress in AI models, and why it could help developers establish a shared approach to evaluating emerging capabilities.",
+          "es": "Hipótesis · OpenAI explica la perplejidad como métrica clave para el progreso y la seguridad de la IA",
+          "en": "Hypothesis · OpenAI explains perplexity as a key metric for AI progress and safety",
+          "watch": "Debates sobre la adopción de la perplejidad como estándar de la industria.",
+          "watch_en": "Discussions on the adoption of perplexity as an industry standard.",
+          "due": ""
+        },
+        {
+          "source": "TechCrunch AI",
+          "url": "https://techcrunch.com/2026/11/22/how-notable-capital-gic-and-baillie-gifford-bet-big-on-anthropic-before-its-ipo/",
+          "quote": "Three significant backers share what gave them conviction to bet billions on Anthropic.",
+          "date": "2026-11-23",
+          "excerpt": "How Notable Capital, GIC, and Baillie Gifford bet big on Anthropic before its IPO | Three significant backers share what gave them conviction to bet billions on Anthropic.",
+          "es": "Según la fuente · Detalles de los inversores clave que apostaron por Anthropic antes de su IPO",
+          "en": "Reported · Details of key investors who backed Anthropic before its IPO",
+          "watch": "Análisis de la rentabilidad de estas inversiones a medio plazo.",
+          "watch_en": "Analysis of the profitability of these investments in the medium term.",
+          "due": ""
         }
       ],
       "closed": {},
       "updates": [
         {
-          "date": "2026-11-22",
+          "date": "2026-11-23",
           "before": {
-            "source": "The Verge AI",
-            "url": "https://www.theverge.com/ai-artificial-intelligence/1010051/anthropic-riemann-hypothesis-millennium-prize-problem",
-            "quote": "Anthropic mathematician claims to have solved prestigious Millennium Prize problem with Claude",
+            "source": "The Decoder",
+            "url": "https://the-decoder.com/openai-makes-it-much-harder-for-attackers-to-extract-how-its-latest-ai-models-think/",
+            "quote": "OpenAI makes it much harder for attackers to extract how its latest AI models think",
             "date": "2026-11-21",
-            "excerpt": "Anthropic mathematician claims to have solved prestigious Millennium Prize problem with Claude | Anthropic mathematician Levent Alpöge claims he has proved the Riemann hypothesis, one of mathematics's most notoriously difficult problems, with the help of Claude, cracking a puzzle that has eluded some of the world's bes",
-            "es": "Según la fuente · Matemático de Anthropic afirma haber resuelto la Hipótesis de Riemann con Claude",
-            "en": "Reported · Anthropic mathematician claims to have solved Riemann Hypothesis with Claude",
-            "watch": "Verificación independiente de la prueba matemática por la comunidad académica global.",
-            "watch_en": "Independent verification of the mathematical proof by the global academic community."
+            "excerpt": "OpenAI makes it much harder for attackers to extract how its latest AI models think | OpenAI has significantly strengthened safeguards against extracting internal reasoning from GPT-6.2 Astra and GPT-6.2 Sol. In adaptive red-teaming tests, the success rate for extracting protected reasoning fell from 54 percent to 0.2 ",
+            "es": "Según la fuente · OpenAI refuerza defensas contra extracción de lógica interna de GPT-6.2 Astra y Sol",
+            "en": "Reported · OpenAI strengthens defenses against internal reasoning extraction from GPT-6.2 Astra and Sol",
+            "watch": "Otros labs implementan medidas similares o se reportan ataques con éxito en nuevos modelos.",
+            "watch_en": "Other labs implement similar measures or successful attacks on new models are reported."
           },
           "after": {
-            "source": "Latent Space",
-            "url": "https://latent.space/p/ainews-riemann-hypothesis-proved-twice-independently/",
-            "quote": "Riemann Hypothesis proved...twice independently",
-            "date": "2026-11-22",
-            "excerpt": "[AINews] Riemann Hypothesis proved...twice independently | November 20 2026 —",
-            "es": "Según la fuente · La Hipótesis de Riemann, resuelta de forma independiente por dos equipos, uno con Claude",
-            "en": "Reported · Riemann Hypothesis solved independently by two teams, one with Claude",
-            "watch": "Publicación de las pruebas completas de la resolución de la Hipótesis de Riemann.",
-            "watch_en": "Publication of the full proofs for the Riemann Hypothesis resolution."
+            "source": "X @OpenAI",
+            "url": "https://x.com/OpenAI/status/2123862344422088794",
+            "quote": "Distillation can reproduce powerful AI capabilities without the safeguards built around them. We’re sharing new research on our work to combat distillation of our models, how these capabilities transfer, and how we detect and disrupt coordinated attempts.",
+            "date": "2026-11-23",
+            "excerpt": "Distillation can reproduce powerful AI capabilities without the safeguards built around them. We’re sharing new research on our work to combat distillation of our models, how these capabilities transfer, and how we detect and disrupt coordinated attempts. These findings are helping us sharpen our defenses and support s",
+            "es": "Confirmado · OpenAI publica investigación sobre nuevas defensas contra la extracción de capacidades",
+            "en": "Confirmed · OpenAI publishes research on new defenses against capability extraction",
+            "watch": "Publicación de métodos de defensa similares por otros frontier labs.",
+            "watch_en": "Publication of similar defense methods by other frontier labs."
           },
           "status": "development"
         },
         {
-          "date": "2026-11-22",
+          "date": "2026-11-23",
           "before": {
-            "source": "TechRadar AI",
-            "url": "https://www.techradar.com/pro/security/i-leaked-secrets-an-ai-agent-confessed-to-its-own-data-leak-but-others-got-around-corporate-protections",
-            "quote": "'I leaked secrets': An AI agent confessed to its own data leak — but others got around corporate protections",
-            "date": "2026-11-22",
-            "excerpt": "'I leaked secrets': An AI agent confessed to its own data leak — but others got around corporate protections | Two AI incidents exposed corporate security weaknesses after one assistant leaked confidential credentials while another bypassed restrictions through an alternative API connection.",
-            "es": "Según la fuente · Agentes de IA filtran credenciales y eluden protecciones corporativas",
-            "en": "Reported · AI agents leak credentials and bypass corporate protections",
-            "watch": "Desarrollo de nuevas políticas o herramientas para mitigar fugas de datos por agentes.",
-            "watch_en": "Development of new policies or tools to mitigate data leaks by agents."
+            "source": "Latent Space",
+            "url": "https://latent.space/p/ainews-anthropic-successfully-completes-largest-ipo-in-history-valued-at-1-5t/",
+            "quote": "Anthropic successfully completes largest IPO in history, valued at $1.5T",
+            "date": "2026-11-21",
+            "excerpt": "[AINews] Anthropic successfully completes largest IPO in history, valued at $1.5T | November 19, 2026 — ANT went from $83 at pricing to $111.50 at the open and $97.17 at the close. Plus, Google opens Genie 4 to developers.",
+            "es": "Según la fuente · Anthropic cierra una IPO histórica con valoración inicial de 1.5 billones de dólares",
+            "en": "Reported · Anthropic closes historic IPO with initial valuation of $1.5 trillion",
+            "watch": "Estabilización de la cotización de Anthropic y cómo invierte el capital de la IPO en compute o talento.",
+            "watch_en": "Stabilization of Anthropic's stock price and how it invests IPO capital in compute or talent."
           },
           "after": {
-            "source": "Reuters AI",
-            "url": "https://www.reuters.com/legal/litigation/signal-restricts-screenshots-block-ai-agents-reading-messages-2026-11-20/",
-            "quote": "Signal restricts screenshots to block AI agents from reading messages",
+            "source": "Bloomberg Tech",
+            "url": "https://www.bloomberg.com/news/articles/2026-11-23/china-s-next-ai-deals-clouded-by-selloff-after-anthropic-ipo",
+            "quote": "China’s Next AI Deals Clouded by Selloff After Anthropic IPO",
+            "date": "2026-11-23",
+            "excerpt": "China’s Next AI Deals Clouded by Selloff After Anthropic IPO - Bloomberg.com | China’s Next AI Deals Clouded by Selloff After Anthropic IPO Bloomberg.com",
+            "es": "Según la fuente · La volatilidad tras la IPO de Anthropic nubla futuros acuerdos de IA en China",
+            "en": "Reported · Volatility after Anthropic IPO clouds future AI deals in China",
+            "watch": "Anuncios de grandes acuerdos de inversión en IA en China.",
+            "watch_en": "Announcements of major AI investment deals in China."
+          },
+          "status": "development"
+        },
+        {
+          "date": "2026-11-23",
+          "before": {
+            "source": "Yahoo Finance (AI & semis)",
+            "url": "https://247wallst.com/investing/2026/11/21/nvidia-stock-has-crashed-48-and-now-trades-at-15-times-earnings-its-cheapest-in-more-than-a-decade-and-cheaper-than-microsoft-and-broadcom/?.tsrc=rss",
+            "quote": "Nvidia Stock Has Crashed 48% and Now Trades at 15 Times Earnings",
             "date": "2026-11-22",
-            "excerpt": "EXCLUSIVE: Signal restricts screenshots to block AI agents from reading messages - Reuters | EXCLUSIVE: Signal restricts screenshots to block AI agents from reading messages Reuters",
-            "es": "Según la fuente · Signal restringe capturas de pantalla para evitar lectura de mensajes por agentes de IA",
-            "en": "Reported · Signal restricts screenshots to prevent AI agents from reading messages",
-            "watch": "Implementación de medidas similares por otras aplicaciones de mensajería.",
-            "watch_en": "Implementation of similar measures by other messaging applications."
+            "excerpt": "Nvidia Stock Has Crashed 48% and Now Trades at 15 Times Earnings, Its Cheapest in More Than a Decade and Cheaper Than Microsoft and Broadcom | Nvidia closed 48% below its record on Friday and trades at 15 times its last four quarters of earnings, the lowest since at least 2014 and less than Microsoft or Broadcom. Here ",
+            "es": "Según la fuente · Las acciones de Nvidia caen un 48%, cotizando a 15 veces beneficios",
+            "en": "Reported · Nvidia stock falls 48%, trading at 15 times earnings",
+            "watch": "Próximos resultados financieros de Nvidia y previsiones de demanda de chips.",
+            "watch_en": "Nvidia's upcoming financial results and chip demand forecasts."
+          },
+          "after": {
+            "source": "Yahoo Finance (AI & semis)",
+            "url": "https://www.tikr.com/blog/michael-burry-sees-1929s-and-2000s-lack-of-a-proximate-cause-in-earnings-nvidias-estimates-keep-rising?ref=yahoofinance&tlnk=yf-261123-rg89fg6v&.tsrc=rss",
+            "quote": "Michael Burry says the AI selloff shares 1929’s and 2000’s “lack of a proximate cause in earnings,” and Nvidia fits. The whole drop has come from Nvidia’s multiple, now 8.",
+            "date": "2026-11-23",
+            "excerpt": "Michael Burry Sees 1929’s and 2000’s “Lack of a Proximate Cause in Earnings.” Nvidia’s Estimates Keep Rising | Key TakeawaysMichael Burry says the AI selloff shares 1929’s and 2000’s “lack of a proximate cause in earnings,” and Nvidia fits. The whole drop has come from Nvidia’s multiple, now 8.",
+            "es": "Según la fuente · Michael Burry compara la caída de Nvidia con burbujas de 1929 y 2000",
+            "en": "Reported · Michael Burry compares Nvidia's decline to 1929 and 2000 bubbles",
+            "watch": "Publicación del próximo informe de resultados de Nvidia.",
+            "watch_en": "Nvidia's next earnings report publication."
           },
           "status": "development"
         }
       ]
     }
   },
-  "pulse": {},
-  "movers": [],
+  "pulse": {
+    "value": 35,
+    "series": [
+      {
+        "date": "2026-09-19",
+        "value": 81
+      },
+      {
+        "date": "2026-09-23",
+        "value": 85
+      },
+      {
+        "date": "2026-09-26",
+        "value": 86
+      },
+      {
+        "date": "2026-09-30",
+        "value": 83
+      },
+      {
+        "date": "2026-10-03",
+        "value": 73
+      },
+      {
+        "date": "2026-10-07",
+        "value": 79
+      },
+      {
+        "date": "2026-10-10",
+        "value": 82
+      },
+      {
+        "date": "2026-10-12",
+        "value": 44
+      },
+      {
+        "date": "2026-10-14",
+        "value": 63
+      },
+      {
+        "date": "2026-10-16",
+        "value": 63
+      },
+      {
+        "date": "2026-10-18",
+        "value": 80
+      },
+      {
+        "date": "2026-10-20",
+        "value": 69
+      },
+      {
+        "date": "2026-10-22",
+        "value": 82
+      },
+      {
+        "date": "2026-10-24",
+        "value": 83
+      },
+      {
+        "date": "2026-10-26",
+        "value": 49
+      },
+      {
+        "date": "2026-10-28",
+        "value": 84
+      },
+      {
+        "date": "2026-10-30",
+        "value": 81
+      },
+      {
+        "date": "2026-11-01",
+        "value": 76
+      },
+      {
+        "date": "2026-11-03",
+        "value": 47
+      },
+      {
+        "date": "2026-11-05",
+        "value": 70
+      },
+      {
+        "date": "2026-11-14",
+        "value": 39
+      },
+      {
+        "date": "2026-11-15",
+        "value": 78
+      },
+      {
+        "date": "2026-11-16",
+        "value": 92
+      },
+      {
+        "date": "2026-11-17",
+        "value": 88
+      },
+      {
+        "date": "2026-11-18",
+        "value": 84
+      },
+      {
+        "date": "2026-11-19",
+        "value": 92
+      },
+      {
+        "date": "2026-11-20",
+        "value": 86
+      },
+      {
+        "date": "2026-11-21",
+        "value": 88
+      },
+      {
+        "date": "2026-11-22",
+        "value": 83
+      },
+      {
+        "date": "2026-11-23",
+        "value": 35
+      }
+    ],
+    "hotter_than": 0,
+    "editions": 29
+  },
+  "movers": [
+    {
+      "entity": "OpenAI",
+      "weight": 12.7,
+      "share": 100,
+      "trend": "flat"
+    },
+    {
+      "entity": "Anthropic",
+      "weight": 10.27,
+      "share": 81,
+      "trend": "up"
+    },
+    {
+      "entity": "NVIDIA",
+      "weight": 4.25,
+      "share": 33,
+      "trend": "down"
+    },
+    {
+      "entity": "DeepMind",
+      "weight": 3.59,
+      "share": 28,
+      "trend": "flat"
+    },
+    {
+      "entity": "Google",
+      "weight": 2.94,
+      "share": 23,
+      "trend": "flat"
+    },
+    {
+      "entity": "AMD",
+      "weight": 2.75,
+      "share": 22,
+      "trend": "new"
+    }
+  ],
   "activity": {
-    "label": "SIN FILTRAR",
+    "label": "TRANQUILO",
     "class": "quiet"
   },
   "source_health": {
@@ -417,13 +821,13 @@
       "X @GoogleDeepMind"
     ]
   },
-  "degraded": true,
-  "llm_error": "ClientError(\"402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are depleted. Please go to AI Studio at https://ai.studio/projects to manage your project and billing. Learn more at https://ai.google.dev/gemini-api/docs/billing#prepay. ', 'status': 'RESOURCE_EXHAUSTED'}}\")",
-  "dropped_noise": 0,
+  "degraded": false,
+  "llm_error": "",
+  "dropped_noise": 11,
   "merged_duplicates": 0,
   "counts": {
-    "signal": 0,
-    "context": 0
+    "signal": 5,
+    "context": 3
   },
   "items": [
     {
@@ -438,115 +842,40 @@
         "economics",
         "benchmarks"
       ],
-      "score": 100,
+      "score": 98,
       "primary": "models",
-      "tags": [
-        "invest",
-        "models"
-      ],
+      "tags": [],
       "heuristic_score": 93,
       "url": "https://the-decoder.com/perplexitys-new-monitor-api-turns-web-search-from-a-one-off-query-into-a-nonstop-watchdog/",
       "is_repeat": false,
       "novelty_score": 100,
       "adjusted_score": 93,
-      "llm_score": null,
-      "verdict": "unrated",
-      "so_what": "",
-      "power_shift": "",
-      "watch_next": "",
-      "llm_theme": "",
-      "title_es": "",
+      "llm_score": 85,
+      "verdict": "signal",
+      "so_what": "Permite a los agentes monitorizar internet de forma continua, facilitando la automatización de tareas que requieren vigilancia constante de información cambiante.",
+      "power_shift": "Perplexity gana / Agentes ganan",
+      "watch_next": "Anuncios de integraciones de Monitor API en plataformas de agentes.",
+      "title_es": "Perplexity lanza Monitor API para vigilancia web autónoma por agentes",
+      "llm_theme": "agents_automation",
+      "why": "Permite a los agentes monitorizar internet de forma continua, facilitando la automatización de tareas que requieren vigilancia constante de información cambiante.",
       "entities": [
-        "Perplexity",
-        "Monitor"
+        "Perplexity"
       ],
-      "why": "Perplexity is launching a Monitor API that searches the web on a schedule and alerts agents via webhook only when relevant changes occur. Its own decision model",
+      "title_en": "Perplexity launches Monitor API for autonomous web surveillance by agents",
+      "so_what_en": "Enables agents to continuously monitor the internet, facilitating automation of tasks requiring constant vigilance of changing information.",
+      "power_shift_en": "Perplexity gains / Agents gain",
+      "watch_next_en": "Announcements of Monitor API integrations into agent platforms.",
+      "evidence": {
+        "source": "The Decoder",
+        "url": "https://the-decoder.com/perplexitys-new-monitor-api-turns-web-search-from-a-one-off-query-into-a-nonstop-watchdog/",
+        "quote": "Perplexity is launching a Monitor API that searches the web on a schedule and alerts agents via webhook only when relevant changes occur."
+      },
+      "evidence_kind": "reported",
       "noise_penalty": 0,
-      "final_score": 100,
-      "ranking_reason": "fallback_adjusted+recency(12)-noise(0)",
+      "final_score": 98,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(12)-noise(0)",
       "strategic_theme": "agents_automation",
-      "layer": "unrated"
-    },
-    {
-      "title": "Select Styling Specimens",
-      "link": "https://simonwillison.net/2026/Nov/22/select-styling/",
-      "published": "2026-11-22T19:45:06+00:00",
-      "summary": "Tool: Select Styling Specimens I got frustrated at how HTML boxes default to looking different in different browsers, and are (I think) quite ugly in Chrome: So I had Claude Fable 5.2 build me this page showing all of the ways they can be styled: Build an HTML page that shows all of the ways a select box can be styled, I plan to take screenshots in every desktop and mobile browser After some experimentation I've decided my favorite CSS for select boxes is this: select { appearance : none ; color : # 1f2933 ; padding : 0.5 em 2.25 em 0.5 em 0.75 em ; border : 1 px solid # c4cbd3 ; border-radius : 6 px ; background : # fff url ( \"data: /svg+xml,%3Csvg xmlns=' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23667085' stroke-width='1.5'/%3E%…",
-      "image_url": "https://static.simonwillison.net/static/2026/select-firefox-safari-chrome.webp",
-      "source": "Simon Willison (AI & LLMs)",
-      "feed_tags": [
-        "agents",
-        "mcp",
-        "coding",
-        "tools"
-      ],
-      "score": 93,
-      "primary": "models",
-      "tags": [
-        "models"
-      ],
-      "heuristic_score": 81,
-      "url": "https://simonwillison.net/2026/Nov/22/select-styling/",
-      "is_repeat": false,
-      "novelty_score": 100,
-      "adjusted_score": 81,
-      "llm_score": null,
-      "verdict": "unrated",
-      "so_what": "",
-      "power_shift": "",
-      "watch_next": "",
-      "llm_theme": "",
-      "title_es": "",
-      "entities": [
-        "Select Styling Specimens"
-      ],
-      "why": "Tool: Select Styling Specimens I got frustrated at how HTML boxes default to looking different in different browsers, and are (I think) quite ugly in Chrome: So",
-      "noise_penalty": 0,
-      "final_score": 93,
-      "ranking_reason": "fallback_adjusted+recency(12)-noise(0)",
-      "strategic_theme": "agents_automation",
-      "layer": "unrated"
-    },
-    {
-      "title": "Distillation can reproduce powerful AI capabilities without the safeguards built around them. We’re sharing new research on our work to combat distillation of our models, how these capabilities transfer, and how we detect and disrupt coordinated attempts. These findings are helping us sharpen our defenses and support safeguards across the industry.",
-      "link": "https://x.com/OpenAI/status/2123862344422088794",
-      "published": "2026-11-20T19:33:37+00:00",
-      "summary": "Distillation can reproduce powerful AI capabilities without the safeguards built around them. We’re sharing new research on our work to combat distillation of our models, how these capabilities transfer, and how we detect and disrupt coordinated attempts. These findings are helping us sharpen our defenses and support safeguards across the industry. openai.com/index/combatting-… Link Combatting adversarial distillation OpenAI’s layered approach to adversarial distillation combines model training, safeguards, detection, and enforcement to protect against capability extraction. openai.com",
-      "image_url": "https://pbs.twimg.com/card_img/2123861635983171584/ZI5ZQCaQ?format=jpg&name=800x419",
-      "source": "X @OpenAI",
-      "feed_tags": [
-        "labs",
-        "x",
-        "frontier"
-      ],
-      "score": 76,
-      "primary": "models",
-      "tags": [
-        "infra",
-        "models"
-      ],
-      "heuristic_score": 80,
-      "url": "https://x.com/OpenAI/status/2123862344422088794",
-      "is_repeat": false,
-      "novelty_score": 100,
-      "adjusted_score": 80,
-      "llm_score": null,
-      "verdict": "unrated",
-      "so_what": "",
-      "power_shift": "",
-      "watch_next": "",
-      "llm_theme": "",
-      "title_es": "",
-      "entities": [
-        "Distillation",
-        "These"
-      ],
-      "why": "Distillation can reproduce powerful AI capabilities without the safeguards built around them. We’re sharing new research on our work to combat distillation of o",
-      "noise_penalty": 4,
-      "final_score": 76,
-      "ranking_reason": "fallback_adjusted+recency(0)-noise(4)",
-      "strategic_theme": "frontier_capability",
-      "layer": "unrated"
+      "layer": "signal"
     },
     {
       "title": "I helped start OpenAI because I want AGI to be safe and beneficial for people. This post provides transparency that can be the foundation of industry-wide shared safety bars. Perhaps the most important concept from the post is the following: \"AI will also significantly contribute to progress on alignment and monitoring, I think that progress is unlikely to be fast enough to allow the full potential acceleration in pretraining.\" Towards ensuring that safety keeps pace with general intelligence of pretrained models (as measured by \"perplexity\"), the post proposes \"common limits, based on perplexity and other measurements, that developers are committed to not crossing until our ability to understand and monitor AI behavior achieves a certain concrete milestone (such as the development of a successor to CoT monitors).\" The general idea is to create a first shared limit, on some shared key metric, along with concrete exit criteria that would allow going beyond that. This can lead to a \"common framework for setting successive limits and pacing further development\". Excited to move forward the conversation on pacing towards shared standards that are rooted in the science!",
@@ -560,163 +889,94 @@
         "x",
         "frontier"
       ],
-      "score": 57,
+      "score": 95,
       "primary": "models",
-      "tags": [
-        "models"
-      ],
+      "tags": [],
       "heuristic_score": 45,
       "url": "https://x.com/gdb/status/2124582684840399311",
       "is_repeat": false,
       "novelty_score": 100,
       "adjusted_score": 45,
-      "llm_score": null,
-      "verdict": "unrated",
-      "so_what": "",
+      "llm_score": 90,
+      "verdict": "signal",
+      "so_what": "Establecer límites basados en métricas como la perplejidad podría crear un estándar de seguridad industrial compartido para el despliegue de modelos avanzados.",
       "power_shift": "",
-      "watch_next": "",
-      "llm_theme": "",
-      "title_es": "",
+      "watch_next": "Labs de frontera adoptan la perplejidad como métrica de seguridad compartida.",
+      "title_es": "Ayudé a iniciar OpenAI porque quiero que la AGI sea segura y beneficiosa para las personas. Esta publicación proporciona transparencia que puede ser la base de barras de seguridad compartidas en toda la industria. Quizás el concepto más importante de la publicación es el siguiente:",
+      "llm_theme": "frontier_capability",
+      "why": "Establecer límites basados en métricas como la perplejidad podría crear un estándar de seguridad industrial compartido para el despliegue de modelos avanzados.",
       "entities": [
         "OpenAI",
-        "AGI",
-        "Perhaps",
-        "Towards",
-        "Excited"
+        "Greg Brockman"
       ],
-      "why": "I helped start OpenAI because I want AGI to be safe and beneficial for people. This post provides transparency that can be the foundation of industry-wide share",
+      "title_en": "I helped start OpenAI because I want AGI to be safe and beneficial for people. This post provides transparency that can be the foundation of industry-wide shared safety bars. Perhaps the most important concept from the post is the following: \"AI will also significantly contribute to progress on alignment and monitoring, I think that progress is unlikely to be fast enough to allow the full potential acceleration in pretraining.\" Towards ensuring that safety keeps pace with general intelligence of pretrained models (as measured by \"perplexity\"), the post proposes \"common limits, based on perplexity and other measurements, that developers are committed to not crossing until our ability to understand and monitor AI behavior achieves a certain concrete milestone (such as the development of a successor to CoT monitors).\" The general idea is to create a first shared limit, on some shared key metric, along with concrete exit criteria that would allow going beyond that. This can lead to a \"common framework for setting successive limits and pacing further development\". Excited to move forward the conversation on pacing towards shared standards that are rooted in the science!",
+      "so_what_en": "Establishing limits based on metrics like perplexity could create a shared industry safety standard for deploying advanced models.",
+      "power_shift_en": "",
+      "watch_next_en": "Frontier labs adopt perplexity as a shared safety metric.",
+      "evidence": {
+        "source": "X @gdb",
+        "url": "https://x.com/gdb/status/2124582684840399311",
+        "quote": "This post provides transparency that can be the foundation of industry-wide shared safety bars. Perhaps the most important concept from the post is the following: \"AI will also significantly contribute to progress on alignment and monitoring, I think that progress is unlikely to be fast enough to allow the full potential acceleration in pretraining.\" Towards ensuring that safety keeps pace with general intelligence of pretrained models (as measured by \"perplexity\"), the post proposes \"common limits, based on perplexity and other measurements, that developers are committed to not crossing until our ability to under"
+      },
+      "evidence_kind": "speculation",
       "noise_penalty": 0,
-      "final_score": 57,
-      "ranking_reason": "fallback_adjusted+recency(12)-noise(0)",
+      "final_score": 95,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(12)-noise(0)",
       "strategic_theme": "frontier_capability",
-      "layer": "unrated"
+      "layer": "signal"
     },
     {
-      "title": "A Beginner's Guide to Local AI with Inkling, Qwen, and Unsloth",
-      "link": "https://www.gpupartner.com/blog/beginners-guide-local-ai-inkling-qwen-unsloth",
-      "published": "2026-11-22T21:01:16+00:00",
-      "summary": "Article URL: Comments URL: Points: 363 # Comments: 145",
-      "image_url": "https://www.gpupartner.com/blog/beginners-guide-local-ai-inkling-qwen-unsloth/opengraph-image-17m7t5?6653c98c6cd84ba6",
-      "source": "Hacker News (alto voltaje)",
+      "title": "Distillation can reproduce powerful AI capabilities without the safeguards built around them. We’re sharing new research on our work to combat distillation of our models, how these capabilities transfer, and how we detect and disrupt coordinated attempts. These findings are helping us sharpen our defenses and support safeguards across the industry.",
+      "link": "https://x.com/OpenAI/status/2123862344422088794",
+      "published": "2026-11-20T19:33:37+00:00",
+      "summary": "Distillation can reproduce powerful AI capabilities without the safeguards built around them. We’re sharing new research on our work to combat distillation of our models, how these capabilities transfer, and how we detect and disrupt coordinated attempts. These findings are helping us sharpen our defenses and support safeguards across the industry. openai.com/index/combatting-… Link Combatting adversarial distillation OpenAI’s layered approach to adversarial distillation combines model training, safeguards, detection, and enforcement to protect against capability extraction. openai.com",
+      "image_url": "https://pbs.twimg.com/card_img/2123861635983171584/ZI5ZQCaQ?format=jpg&name=800x419",
+      "source": "X @OpenAI",
       "feed_tags": [
-        "community",
-        "signal"
+        "labs",
+        "x",
+        "frontier"
       ],
-      "score": 53,
+      "score": 84,
       "primary": "models",
-      "tags": [
-        "models"
-      ],
-      "heuristic_score": 41,
-      "url": "https://www.gpupartner.com/blog/beginners-guide-local-ai-inkling-qwen-unsloth",
+      "tags": [],
+      "heuristic_score": 80,
+      "url": "https://x.com/OpenAI/status/2123862344422088794",
       "is_repeat": false,
       "novelty_score": 100,
-      "adjusted_score": 41,
-      "llm_score": null,
-      "verdict": "unrated",
-      "so_what": "",
-      "power_shift": "",
-      "watch_next": "",
-      "llm_theme": "",
-      "title_es": "",
+      "adjusted_score": 80,
+      "llm_score": 90,
+      "verdict": "signal",
+      "so_what": "Reduce el riesgo de que actores maliciosos extraigan las capacidades avanzadas de los modelos de OpenAI para uso no autorizado o perjudicial.",
+      "power_shift": "OpenAI gana / Actores adversarios pierden",
+      "watch_next": "Publicación de métodos de defensa similares por otros frontier labs.",
+      "title_es": "OpenAI publica investigación sobre nuevas defensas contra la extracción de capacidades",
+      "llm_theme": "frontier_capability",
+      "why": "Reduce el riesgo de que actores maliciosos extraigan las capacidades avanzadas de los modelos de OpenAI para uso no autorizado o perjudicial.",
       "entities": [
-        "Qwen",
-        "Beginner",
-        "Local",
-        "Inkling",
-        "Unsloth"
+        "OpenAI"
       ],
-      "why": "Article URL: Comments URL: Points: 363 # Comments: 145",
-      "noise_penalty": 0,
-      "final_score": 53,
-      "ranking_reason": "fallback_adjusted+recency(12)-noise(0)",
-      "strategic_theme": "china_stack",
-      "layer": "unrated"
+      "title_en": "OpenAI publishes research on new defenses against capability extraction",
+      "so_what_en": "Reduces the risk of malicious actors extracting advanced model capabilities for unauthorized or harmful use.",
+      "power_shift_en": "OpenAI gains / Adversarial actors lose",
+      "watch_next_en": "Publication of similar defense methods by other frontier labs.",
+      "evidence": {
+        "source": "X @OpenAI",
+        "url": "https://x.com/OpenAI/status/2123862344422088794",
+        "quote": "Distillation can reproduce powerful AI capabilities without the safeguards built around them. We’re sharing new research on our work to combat distillation of our models, how these capabilities transfer, and how we detect and disrupt coordinated attempts."
+      },
+      "evidence_kind": "confirmed",
+      "noise_penalty": 4,
+      "final_score": 84,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(0)-noise(4)",
+      "strategic_theme": "frontier_capability",
+      "layer": "signal"
     },
     {
-      "title": "The vibe-coding revolution is coming to all the gadgets",
-      "link": "https://www.theverge.com/column/1039139/vibe-coding-gadgets-tv-camera",
-      "published": "2026-11-22T13:00:00+00:00",
-      "summary": "This is The Stepback, a weekly newsletter breaking down one essential story from the tech world. For more on the vibe-hacking of everything, follow David Pierce. The Stepback arrives in our subscribers' inboxes on Sunday at 8AM ET. Opt in for The Stepback here. How it started Like so many things with AI, it's not […]",
-      "image_url": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/11/AI_vibe_coding_hacker_hardware.jpg?quality=90&strip=all&crop=0,0,100,100",
-      "source": "The Verge AI",
-      "feed_tags": [
-        "tech",
-        "models",
-        "product"
-      ],
-      "score": 47,
-      "primary": "models",
-      "tags": [
-        "invest",
-        "models"
-      ],
-      "heuristic_score": 35,
-      "url": "https://www.theverge.com/column/1039139/vibe-coding-gadgets-tv-camera",
-      "is_repeat": false,
-      "novelty_score": 100,
-      "adjusted_score": 35,
-      "llm_score": null,
-      "verdict": "unrated",
-      "so_what": "",
-      "power_shift": "",
-      "watch_next": "",
-      "llm_theme": "",
-      "title_es": "",
-      "entities": [],
-      "why": "This is The Stepback, a weekly newsletter breaking down one essential story from the tech world. For more on the vibe-hacking of everything, follow David Pierce",
-      "noise_penalty": 0,
-      "final_score": 47,
-      "ranking_reason": "fallback_adjusted+recency(12)-noise(0)",
-      "strategic_theme": "agents_automation",
-      "layer": "unrated"
-    },
-    {
-      "title": "These 4kg drones land on live 420 kV power lines to recharge from the magnetic field — logging 20,000 hours hunting hidden bottlenecks across European and US grids",
-      "link": "https://www.techradar.com/pro/these-4-kg-drones-land-on-live-420-kv-power-lines-to-recharge-from-the-magnetic-field-logging-20-000-hours-hunting-hidden-bottlenecks-across-european-and-us-grids",
-      "published": "2026-11-23T00:10:00+00:00",
-      "summary": "Nomadic has developed self-charging drones that inspect energized power lines, monitor changing conditions, and help electricity operators identify transmission weaknesses.",
-      "image_url": "https://cdn.mos.cms.futurecdn.net/zQvKDHun2g6D2CarU4ZsnE-1920-80.png",
-      "source": "TechRadar AI",
-      "feed_tags": [
-        "tech",
-        "hardware",
-        "models"
-      ],
-      "score": 46,
-      "primary": "infra",
-      "tags": [
-        "infra"
-      ],
-      "heuristic_score": 34,
-      "url": "https://www.techradar.com/pro/these-4-kg-drones-land-on-live-420-kv-power-lines-to-recharge-from-the-magnetic-field-logging-20-000-hours-hunting-hidden-bottlenecks-across-european-and-us-grids",
-      "is_repeat": false,
-      "novelty_score": 100,
-      "adjusted_score": 34,
-      "llm_score": null,
-      "verdict": "unrated",
-      "so_what": "",
-      "power_shift": "",
-      "watch_next": "",
-      "llm_theme": "",
-      "title_es": "",
-      "entities": [
-        "EEUU",
-        "These",
-        "European"
-      ],
-      "why": "Nomadic has developed self-charging drones that inspect energized power lines, monitor changing conditions, and help electricity operators identify transmission",
-      "noise_penalty": 0,
-      "final_score": 46,
-      "ranking_reason": "fallback_adjusted+recency(12)-noise(0)",
-      "strategic_theme": "compute_chips_dc",
-      "layer": "unrated"
-    },
-    {
-      "title": "China Lowers Margin Requirement to 80% to Boost Stock Liquidity - Bloomberg.com",
-      "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOQ0lsWGMtQzFaN3pHeFA3ZFVNLWdHN0lDcVZESDA4UFZUVlVpXzhTdllpOHhTZDBzX2pvT3dEdDNZS1laUnh0bzVWZS16WXZyYlVvTW5qU3VVOXVzSzFVTlRWbzB2eFhoS0VVVk14WGU0aGQxLUxaOG1Gb01lTURmMERJaDhEVkVoNXdxdFNLTVZLdXFGWjZ4WWJWajV4NmZaTEhuUmFLY1BzVHQxQTRoZ1l4WQ?oc=5",
-      "published": "2026-11-23T04:45:00+00:00",
-      "summary": "China Lowers Margin Requirement to 80% to Boost Stock Liquidity Bloomberg.com",
+      "title": "China’s Next AI Deals Clouded by Selloff After Anthropic IPO - Bloomberg.com",
+      "link": "https://www.bloomberg.com/news/articles/2026-11-23/china-s-next-ai-deals-clouded-by-selloff-after-anthropic-ipo",
+      "published": "2026-11-23T07:05:00+00:00",
+      "summary": "China’s Next AI Deals Clouded by Selloff After Anthropic IPO Bloomberg.com",
       "image_url": "",
       "source": "Bloomberg Tech",
       "feed_tags": [
@@ -725,118 +985,234 @@
         "chips",
         "market"
       ],
-      "score": 45,
+      "score": 79,
       "primary": "invest",
-      "tags": [
-        "invest",
-        "geopol"
-      ],
-      "heuristic_score": 33,
-      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOQ0lsWGMtQzFaN3pHeFA3ZFVNLWdHN0lDcVZESDA4UFZUVlVpXzhTdllpOHhTZDBzX2pvT3dEdDNZS1laUnh0bzVWZS16WXZyYlVvTW5qU3VVOXVzSzFVTlRWbzB2eFhoS0VVVk14WGU0aGQxLUxaOG1Gb01lTURmMERJaDhEVkVoNXdxdFNLTVZLdXFGWjZ4WWJWajV4NmZaTEhuUmFLY1BzVHQxQTRoZ1l4WQ?oc=5",
+      "tags": [],
+      "heuristic_score": 23,
+      "url": "https://www.bloomberg.com/news/articles/2026-11-23/china-s-next-ai-deals-clouded-by-selloff-after-anthropic-ipo",
       "is_repeat": false,
       "novelty_score": 100,
-      "adjusted_score": 33,
-      "llm_score": null,
-      "verdict": "unrated",
-      "so_what": "",
-      "power_shift": "",
-      "watch_next": "",
-      "llm_theme": "",
-      "title_es": "",
+      "adjusted_score": 23,
+      "llm_score": 75,
+      "verdict": "signal",
+      "so_what": "La incertidumbre en los mercados globales de IA afecta negativamente la inversión en el stack tecnológico chino, ralentizando su desarrollo y expansión.",
+      "power_shift": "Inversores cautos ganan / Ecosistema chino de IA pierde impulso",
+      "watch_next": "Anuncios de grandes acuerdos de inversión en IA en China.",
+      "title_es": "La volatilidad tras la IPO de Anthropic nubla futuros acuerdos de IA en China",
+      "llm_theme": "china_stack",
+      "why": "La incertidumbre en los mercados globales de IA afecta negativamente la inversión en el stack tecnológico chino, ralentizando su desarrollo y expansión.",
       "entities": [
-        "China Lowers Margin",
-        "Requirement",
-        "Boost Stock Liquidity",
-        "Bloomberg"
+        "China",
+        "Anthropic"
       ],
-      "why": "China Lowers Margin Requirement to 80% to Boost Stock Liquidity Bloomberg.com",
+      "title_en": "Volatility after Anthropic IPO clouds future AI deals in China",
+      "so_what_en": "Uncertainty in global AI markets negatively impacts investment in the Chinese tech stack, slowing its development and expansion.",
+      "power_shift_en": "Cautious investors gain / Chinese AI ecosystem loses momentum",
+      "watch_next_en": "Announcements of major AI investment deals in China.",
+      "evidence": {
+        "source": "Bloomberg Tech",
+        "url": "https://www.bloomberg.com/news/articles/2026-11-23/china-s-next-ai-deals-clouded-by-selloff-after-anthropic-ipo",
+        "quote": "China’s Next AI Deals Clouded by Selloff After Anthropic IPO"
+      },
+      "evidence_kind": "reported",
       "noise_penalty": 0,
-      "final_score": 45,
-      "ranking_reason": "fallback_adjusted+recency(12)-noise(0)",
-      "strategic_theme": "model_economics",
-      "layer": "unrated"
+      "final_score": 79,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(12)-noise(0)",
+      "strategic_theme": "china_stack",
+      "layer": "signal"
     },
     {
-      "title": "GPT-6.2 Astra - Epoch AI",
-      "link": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9DQlZKNEI5bWhDSjJvcFdzeTNJcWo5TVZXZlMzMTU1RnFYc09QZks3QVlObUpIM3JwV1B3bG95bmxZVjRGSWh2VTExbVpXQQ?oc=5",
-      "published": "2026-11-18T01:50:10+00:00",
-      "summary": "GPT-6.2 Astra Epoch AI",
-      "image_url": "",
-      "source": "Epoch AI",
+      "title": "Michael Burry Sees 1929’s and 2000’s “Lack of a Proximate Cause in Earnings.” Nvidia’s Estimates Keep Rising",
+      "link": "https://www.tikr.com/blog/michael-burry-sees-1929s-and-2000s-lack-of-a-proximate-cause-in-earnings-nvidias-estimates-keep-rising?ref=yahoofinance&tlnk=yf-261123-rg89fg6v&.tsrc=rss",
+      "published": "2026-11-23T09:35:24+00:00",
+      "summary": "Key TakeawaysMichael Burry says the AI selloff shares 1929’s and 2000’s “lack of a proximate cause in earnings,” and Nvidia fits. The whole drop has come from Nvidia’s multiple, now 8.",
+      "image_url": "https://res.cloudinary.com/tikr/images/w_600,h_400,c_scale/f_webp,q_auto/v1792651257/images/FEATURED-IMAGE-MAKER-1871/FEATURED-IMAGE-MAKER-1871.png?_i=AA",
+      "source": "Yahoo Finance (AI & semis)",
       "feed_tags": [
-        "compute",
-        "economics",
-        "analysis",
+        "finance",
+        "market",
+        "hardware",
+        "chips"
+      ],
+      "score": 68,
+      "primary": "infra",
+      "tags": [],
+      "heuristic_score": 34,
+      "url": "https://www.tikr.com/blog/michael-burry-sees-1929s-and-2000s-lack-of-a-proximate-cause-in-earnings-nvidias-estimates-keep-rising?ref=yahoofinance&tlnk=yf-261123-rg89fg6v&.tsrc=rss",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 34,
+      "llm_score": 60,
+      "verdict": "signal",
+      "so_what": "La opinión de Burry sugiere una posible sobrevaloración del sector IA, lo que podría impactar la inversión en compute y chips para el desarrollo de AGI.",
+      "power_shift": "Inversores escépticos ganan / Nvidia pierde narrativa",
+      "watch_next": "Publicación del próximo informe de resultados de Nvidia.",
+      "title_es": "Michael Burry compara la caída de Nvidia con burbujas de 1929 y 2000",
+      "llm_theme": "compute_chips_dc",
+      "why": "La opinión de Burry sugiere una posible sobrevaloración del sector IA, lo que podría impactar la inversión en compute y chips para el desarrollo de AGI.",
+      "entities": [
+        "NVIDIA",
+        "Michael Burry"
+      ],
+      "title_en": "Michael Burry compares Nvidia's decline to 1929 and 2000 bubbles",
+      "so_what_en": "Burry's opinion suggests potential overvaluation in the AI sector, which could impact investment in compute and chips for AGI development.",
+      "power_shift_en": "Skeptical investors gain / Nvidia loses narrative",
+      "watch_next_en": "Nvidia's next earnings report publication.",
+      "evidence": {
+        "source": "Yahoo Finance (AI & semis)",
+        "url": "https://www.tikr.com/blog/michael-burry-sees-1929s-and-2000s-lack-of-a-proximate-cause-in-earnings-nvidias-estimates-keep-rising?ref=yahoofinance&tlnk=yf-261123-rg89fg6v&.tsrc=rss",
+        "quote": "Michael Burry says the AI selloff shares 1929’s and 2000’s “lack of a proximate cause in earnings,” and Nvidia fits. The whole drop has come from Nvidia’s multiple, now 8."
+      },
+      "evidence_kind": "reported",
+      "noise_penalty": 0,
+      "final_score": 68,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(12)-noise(0)",
+      "strategic_theme": "compute_chips_dc",
+      "layer": "signal"
+    },
+    {
+      "title": "Perplexity and Intelligence",
+      "link": "https://openai.com/index/perplexity-and-intelligence",
+      "published": "2026-11-22T00:00:00+00:00",
+      "summary": "How perplexity measures progress in AI models, and why it could help developers establish a shared approach to evaluating emerging capabilities.",
+      "image_url": "https://images.ctfassets.net/kftzwdyauwt9/6rIIhCRSKrhIfe385Onmcz/aca2d190553c62fd5d49efb5d5ce1eb6/perplexity-and-intelligence-social.png?w=1600&h=900&fit=fill",
+      "source": "OpenAI",
+      "feed_tags": [
+        "labs",
+        "models",
         "frontier"
       ],
-      "score": 36,
+      "score": 78,
       "primary": "models",
-      "tags": [
-        "models"
-      ],
-      "heuristic_score": 48,
-      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9DQlZKNEI5bWhDSjJvcFdzeTNJcWo5TVZXZlMzMTU1RnFYc09QZks3QVlObUpIM3JwV1B3bG95bmxZVjRGSWh2VTExbVpXQQ?oc=5",
+      "tags": [],
+      "heuristic_score": 27,
+      "url": "https://openai.com/index/perplexity-and-intelligence",
       "is_repeat": false,
       "novelty_score": 100,
-      "adjusted_score": 48,
-      "llm_score": null,
-      "verdict": "unrated",
-      "so_what": "",
+      "adjusted_score": 27,
+      "llm_score": 80,
+      "verdict": "context",
+      "so_what": "Articula una base técnica para la evaluación de capacidades de modelos, fundamental para establecer umbrales de seguridad y desarrollo responsable de AGI.",
       "power_shift": "",
-      "watch_next": "",
-      "llm_theme": "",
-      "title_es": "",
+      "watch_next": "Debates sobre la adopción de la perplejidad como estándar de la industria.",
+      "title_es": "OpenAI explica la perplejidad como métrica clave para el progreso y la seguridad de la IA",
+      "llm_theme": "frontier_capability",
+      "why": "Articula una base técnica para la evaluación de capacidades de modelos, fundamental para establecer umbrales de seguridad y desarrollo responsable de AGI.",
       "entities": [
-        "GPT-6",
-        "Astra",
-        "Epoch"
+        "OpenAI"
       ],
-      "why": "GPT-6.2 Astra Epoch AI",
-      "noise_penalty": 12,
-      "final_score": 36,
-      "ranking_reason": "fallback_adjusted+recency(0)-noise(12)",
-      "strategic_theme": "compute_chips_dc",
-      "layer": "unrated"
+      "title_en": "OpenAI explains perplexity as a key metric for AI progress and safety",
+      "so_what_en": "Articulates a technical basis for evaluating model capabilities, fundamental for establishing AGI safety thresholds and responsible development.",
+      "power_shift_en": "",
+      "watch_next_en": "Discussions on the adoption of perplexity as an industry standard.",
+      "evidence": {
+        "source": "OpenAI",
+        "url": "https://openai.com/index/perplexity-and-intelligence",
+        "quote": "How perplexity measures progress in AI models, and why it could help developers establish a shared approach to evaluating emerging capabilities."
+      },
+      "evidence_kind": "speculation",
+      "noise_penalty": 0,
+      "final_score": 78,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(6)-noise(0)",
+      "strategic_theme": "frontier_capability",
+      "layer": "context"
     },
     {
-      "title": "Introducing harness adapters: adapt your favorite model to your harness to improve performance and cost",
-      "link": "https://huggingface.co/blog/harness-adapters-at-scale",
-      "published": "2026-11-20T00:00:00+00:00",
-      "summary": "",
-      "image_url": "https://huggingface.co/blog/assets/harness-adapters-at-scale/thumbnail.png",
-      "source": "Hugging Face Blog",
+      "title": "AI and The Ethnic Unity Law",
+      "link": "https://www.chinatalk.media/p/the-role-of-ai-in-enforcing-chinas",
+      "published": "2026-11-22T11:38:55+00:00",
+      "summary": "一切为了实现民族团结",
+      "image_url": "https://substackcdn.com/image/fetch/$s_!IM-W!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb5556e3d-59b6-4596-aa03-89e0a711f927_2048x1467.png",
+      "source": "ChinaTalk",
       "feed_tags": [
-        "models",
-        "open_weights"
+        "china",
+        "geopol",
+        "analysis"
       ],
-      "score": 35,
-      "primary": "models",
-      "tags": [
-        "invest",
-        "models"
-      ],
-      "heuristic_score": 39,
-      "url": "https://huggingface.co/blog/harness-adapters-at-scale",
+      "score": 68,
+      "primary": "misc",
+      "tags": [],
+      "heuristic_score": 6,
+      "url": "https://www.chinatalk.media/p/the-role-of-ai-in-enforcing-chinas",
       "is_repeat": false,
       "novelty_score": 100,
-      "adjusted_score": 39,
-      "llm_score": null,
-      "verdict": "unrated",
-      "so_what": "",
+      "adjusted_score": 6,
+      "llm_score": 65,
+      "verdict": "context",
+      "so_what": "La fuente disponible no permite verificar la conclusión.",
       "power_shift": "",
       "watch_next": "",
-      "llm_theme": "",
-      "title_es": "",
-      "entities": [],
-      "why": "",
-      "noise_penalty": 4,
-      "final_score": 35,
-      "ranking_reason": "fallback_adjusted+recency(0)-noise(4)",
+      "title_es": "IA y la Ley de Unidad Étnica",
+      "llm_theme": "geopolitics_power",
+      "why": "La fuente disponible no permite verificar la conclusión.",
+      "entities": [
+        "China"
+      ],
+      "title_en": "AI and The Ethnic Unity Law",
+      "so_what_en": "The available source does not verify the conclusion.",
+      "power_shift_en": "",
+      "watch_next_en": "",
+      "evidence": {},
+      "evidence_kind": "unverified",
+      "noise_penalty": 0,
+      "final_score": 68,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(12)-noise(0)",
+      "strategic_theme": "geopolitics_power",
+      "layer": "context"
+    },
+    {
+      "title": "How Notable Capital, GIC, and Baillie Gifford bet big on Anthropic before its IPO",
+      "link": "https://techcrunch.com/2026/11/22/how-notable-capital-gic-and-baillie-gifford-bet-big-on-anthropic-before-its-ipo/",
+      "published": "2026-11-23T01:25:53+00:00",
+      "summary": "Three significant backers share what gave them conviction to bet billions on Anthropic.",
+      "image_url": "https://techcrunch.com/wp-content/uploads/2026/11/antrhopic-openingday-getty.jpg?resize=1200,801",
+      "source": "TechCrunch AI",
+      "feed_tags": [
+        "tech",
+        "startups",
+        "models",
+        "compute"
+      ],
+      "score": 61,
+      "primary": "invest",
+      "tags": [],
+      "heuristic_score": 18,
+      "url": "https://techcrunch.com/2026/11/22/how-notable-capital-gic-and-baillie-gifford-bet-big-on-anthropic-before-its-ipo/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 18,
+      "llm_score": 55,
+      "verdict": "context",
+      "so_what": "Ofrece contexto sobre la capitalización inicial de Anthropic y la confianza de inversores institucionales en su estrategia de seguridad en IA, pero no es un nuevo evento de mercado.",
+      "power_shift": "",
+      "watch_next": "Análisis de la rentabilidad de estas inversiones a medio plazo.",
+      "title_es": "Detalles de los inversores clave que apostaron por Anthropic antes de su IPO",
+      "llm_theme": "model_economics",
+      "why": "Ofrece contexto sobre la capitalización inicial de Anthropic y la confianza de inversores institucionales en su estrategia de seguridad en IA, pero no es un nuevo evento de mercado.",
+      "entities": [
+        "Anthropic",
+        "Notable Capital",
+        "GIC",
+        "Baillie Gifford"
+      ],
+      "title_en": "Details of key investors who backed Anthropic before its IPO",
+      "so_what_en": "Provides context on Anthropic's initial capitalization and institutional investor confidence in its AI safety strategy, but is not a new market event.",
+      "power_shift_en": "",
+      "watch_next_en": "Analysis of the profitability of these investments in the medium term.",
+      "evidence": {
+        "source": "TechCrunch AI",
+        "url": "https://techcrunch.com/2026/11/22/how-notable-capital-gic-and-baillie-gifford-bet-big-on-anthropic-before-its-ipo/",
+        "quote": "Three significant backers share what gave them conviction to bet billions on Anthropic."
+      },
+      "evidence_kind": "reported",
+      "noise_penalty": 0,
+      "final_score": 61,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(12)-noise(0)",
       "strategic_theme": "model_economics",
-      "layer": "unrated"
+      "layer": "context"
     }
   ],
   "edition_type": "analysis",
   "analysis_date": "2026-11-23",
-  "generated_at": "2026-11-23T05:38:02.927235+00:00"
+  "generated_at": "2026-11-23T10:12:55.075848+00:00"
 }
