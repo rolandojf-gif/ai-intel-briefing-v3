@@ -150,6 +150,45 @@ class EmbeddedJavaScriptTests(unittest.TestCase):
         self.assertNotIn("&lt;b&gt;Modo degradado.&lt;/b&gt;", html)
         self.assertNotIn("&lt;b&gt;Degraded mode.&lt;/b&gt;", html)
 
+    def test_long_x_post_headline_is_clamped_and_subtitle_not_duplicated(self):
+        from src.render import clamp_headline, render_index
+
+        long_tweet = (
+            "I helped start OpenAI because I want AGI to be safe and beneficial for people. "
+            "This post provides transparency that can be the foundation of industry-wide shared safety bars. "
+            + ("More details about pacing and shared benchmarks. " * 20)
+        )
+        self.assertEqual(
+            clamp_headline(long_tweet),
+            "I helped start OpenAI because I want AGI to be safe and beneficial for people.",
+        )
+        run_on = "word " * 60
+        clamped_run_on = clamp_headline(run_on, 160)
+        self.assertLessEqual(len(clamped_run_on), 160)
+        self.assertTrue(clamped_run_on.endswith("…"))
+
+        items = [
+            {"title": "Hero item", "url": "https://example.com/1", "score": 95, "source": "Reuters AI"},
+            {
+                "title": long_tweet,
+                "why": long_tweet[:160],
+                "summary": long_tweet[:500],
+                "url": "https://x.com/gdb/status/123",
+                "score": 57,
+                "source": "X @gdb",
+            },
+        ]
+        html = render_index(items, snapshot={"date": "2026-11-23", "degraded": True}, market={})
+        self.assertIn(".card-title{", html)
+        self.assertIn("-webkit-line-clamp:3", html)
+        self.assertIn(
+            '>I helped start OpenAI because I want AGI to be safe and beneficial for people.</a>',
+            html,
+        )
+        # El subtítulo debe arrancar en la segunda frase, no repetir el titular.
+        self.assertIn('<div class="sw">This post provides transparency', html)
+        self.assertNotIn('<div class="sw">I helped start OpenAI', html)
+
 
 if __name__ == "__main__":
     unittest.main()

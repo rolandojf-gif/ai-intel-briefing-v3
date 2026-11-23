@@ -96,12 +96,52 @@ def evidence_badge(item: dict) -> dict | None:
     return {"kind": kind, "es": es, "en": en, "tip_es": tip_es, "tip_en": tip_en}
 
 
+def clamp_headline(text: str, limit: int = 160) -> str:
+    """Acorta titulares desmesurados (p. ej. hilos de X) en fin de frase o palabra."""
+    raw = re.sub(r"\s+", " ", (text or "").strip())
+    if len(raw) <= limit:
+        return raw
+    # Si hay un final de frase natural entre 55 y `limit` caracteres, cortamos ahi.
+    sentence_ends = [m.end() for m in re.finditer(r"[.!?](?:\s|$)", raw[: limit + 1])]
+    good_ends = [pos for pos in sentence_ends if 55 <= pos <= limit + 1]
+    if good_ends:
+        return raw[: good_ends[-1]].strip()
+    cut = raw[: max(0, limit - 1)]
+    if " " in cut[40:]:
+        cut = cut.rsplit(" ", 1)[0]
+    return cut.rstrip(" ,;:-–—") + "…"
+
+
+def _dedup_subtitle(title: str, subtitle: str, fallback_body: str = "") -> str:
+    """Evita que el subtitulo repita el arranque literal del titular (tipico en posts de X)."""
+    sub = re.sub(r"\s+", " ", (subtitle or "").strip())
+    if not sub:
+        return ""
+    probe = re.sub(r"\s+", " ", (title or "").strip()).rstrip("….").strip()
+    if len(probe) < 24:
+        return sub
+
+    def _norm(s: str) -> str:
+        return s.lower().replace("’", "'").replace("“", '"').replace("”", '"')
+
+    probe_n = _norm(probe)
+    if not _norm(sub).startswith(probe_n):
+        return sub
+
+    source = sub
+    fb = re.sub(r"\s+", " ", (fallback_body or "").strip())
+    if fb and len(fb) > len(sub) and _norm(fb).startswith(probe_n):
+        source = fb
+    rest = source[len(probe):].lstrip(" .!?…,:;–—-\"'")
+    return rest if len(rest) >= 20 else ""
+
+
 def display_title(item: dict) -> str:
     """Prefiere el titular reescrito por el LLM, limpio de prefijos repetitivos de evidencia."""
     t = strip_evidence_prefix(item.get("title_es") or "")
     if not t:
         t = strip_evidence_prefix(item.get("title") or "")
-    return t or "(sin titulo)"
+    return clamp_headline(t) or "(sin titulo)"
 
 
 # -- Fuentes -----------------------------------------------------------------
@@ -414,7 +454,8 @@ TEMPLATE = ENV.from_string("""
   .side-rail .cx::before{content:counter(cx,decimal-leading-zero);font:700 11.5px/1.45 var(--f-mono);color:var(--orange-ink)}
   .side-rail .cx-body{display:flex;flex-direction:column;gap:4px;min-width:0}
   .side-rail .cx-theme{font:700 10.5px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--orange-ink)}
-  .side-rail .cx-t{margin:0;font:700 15px/1.34 var(--f-head);letter-spacing:-.012em;max-width:none}
+  .side-rail .cx-t{margin:0;font:700 15px/1.34 var(--f-head);letter-spacing:-.012em;max-width:none;
+                   display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
   .side-rail .cx .src{font-size:11px;gap:6px;margin-top:2px}
   .side-rail .cx .src img{width:15px;height:15px}
   .side-rail .metric-context{margin:.45rem 0 0;font-size:.84rem}
@@ -451,7 +492,8 @@ TEMPLATE = ENV.from_string("""
   .lead-top{display:none;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 18px}
   .lead-top .tag{background:var(--lead-accent,var(--orange));color:#121211}
   .lead-top .score{font-size:12.5px;padding:5px 9px}
-  .lead .hero-title{font:700 clamp(26px,2.35vw,38px)/1.08 var(--f-head);letter-spacing:-.032em;margin:0 0 14px}
+  .lead .hero-title{font:700 clamp(26px,2.35vw,38px)/1.08 var(--f-head);letter-spacing:-.032em;margin:0 0 14px;
+                    display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
   .lead .sw{font-size:clamp(15.5px,1.15vw,17.5px);line-height:1.55;color:var(--muted);margin:0 0 18px;max-width:66ch}
 
   .lead-intel{display:grid;gap:12px;margin:0 0 16px}
@@ -576,8 +618,9 @@ TEMPLATE = ENV.from_string("""
   .card{display:flex;flex-direction:column}
   .card-body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
   .card .meta-row{margin-bottom:0}
-  .card-title{margin:0;font:700 19px/1.2 var(--f-head);letter-spacing:-.01em}
-  .card .sw{font-size:14px;line-height:1.5;color:var(--muted);
+  .card-title{margin:0;font:700 19px/1.22 var(--f-head);letter-spacing:-.01em;
+              display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
+  .card .sw{font-size:14px;line-height:1.5;color:var(--muted);overflow-wrap:anywhere;
             display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
   .card-foot{margin-top:auto;padding-top:10px;border-top:1px dashed var(--line);display:grid;gap:6px}
   .card-foot .fact{font-size:12px;line-height:1.4}
@@ -1283,13 +1326,18 @@ def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", 
         it["measurement"] = measurement_context(raw)
         it["ev"] = evidence_badge(raw)
         it["display_title"] = display_title(it)
-        it["so_what"] = truncate_text(strip_evidence_prefix(it.get("so_what") or it.get("why") or ""), 230)
+        raw_sw = strip_evidence_prefix(it.get("so_what") or it.get("why") or "")
+        raw_summary = strip_evidence_prefix(it.get("summary") or "") if not it.get("so_what") else ""
+        it["so_what"] = truncate_text(_dedup_subtitle(it["display_title"], raw_sw, raw_summary), 230)
         it["power_shift"] = truncate_text(strip_evidence_prefix(it.get("power_shift") or ""), 120)
         it["watch_next"] = (it.get("watch_next") or "").strip()
         it["theme_label_en"] = THEME_LABELS_EN.get(it["theme_key"], "Other signals")
         # Sin titular traducido, el original del feed (casi siempre en inglés).
-        it["title_en"] = strip_evidence_prefix(it.get("title_en") or "") or strip_evidence_prefix(it.get("title") or "")
-        it["so_what_en"] = truncate_text(strip_evidence_prefix(it.get("so_what_en") or ""), 230)
+        it["title_en"] = clamp_headline(
+            strip_evidence_prefix(it.get("title_en") or "") or strip_evidence_prefix(it.get("title") or "")
+        )
+        raw_sw_en = strip_evidence_prefix(it.get("so_what_en") or "")
+        it["so_what_en"] = truncate_text(_dedup_subtitle(it["title_en"], raw_sw_en), 230)
         it["power_shift_en"] = truncate_text(strip_evidence_prefix(it.get("power_shift_en") or ""), 120)
         it["watch_next_en"] = (it.get("watch_next_en") or "").strip()
         # La consecuencia editorial también es impacto; conservar su grado de certeza.
@@ -1413,8 +1461,8 @@ def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", 
         pulse=snapshot.get("pulse") or {},
         rest=signals[LEAD_BLOCK:],
         lead_n=LEAD_BLOCK,
-        key_signals=[strip_evidence_prefix(x) for x in (briefing.get("signals") or []) if isinstance(x, str)][:3],
-        key_signals_en=[strip_evidence_prefix(x) for x in (briefing.get("signals_en") or []) if isinstance(x, str)][:3],
+        key_signals=[clamp_headline(strip_evidence_prefix(x), 180) for x in (briefing.get("signals") or []) if isinstance(x, str)][:3],
+        key_signals_en=[clamp_headline(strip_evidence_prefix(x), 180) for x in (briefing.get("signals_en") or []) if isinstance(x, str)][:3],
         top_entities=[e.get("entity") for e in (snapshot.get("top_entities") or []) if isinstance(e, dict) and e.get("entity")][:6],
         hero=hero,
         stream=stream,
