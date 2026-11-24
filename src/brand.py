@@ -221,9 +221,9 @@ def header(nav: str = "daily", root: str = "") -> Markup:
     )
     return Markup(
         '<header class="topnav">'
-        f'<a class="brand" href="{root}index.html" aria-label="Radar.IA, portada">'
+        f'<a class="brand" href="{root}index.html" aria-label="Radar.AI, portada">'
         f'<span class="brand-icon">{ICON_SVG}</span>'
-        '<span class="brand-text"><strong>Radar<em>.IA</em></strong>'
+        '<span class="brand-text"><strong>Radar<em>.AI</em></strong>'
         '<small>' + str(bi('Radar estratégico de la carrera AGI', 'Strategic radar of the AGI race')) + '</small></span></a>'
         f'<nav class="navtabs" aria-label="Secciones">{tabs}</nav>'
         '<a class="sister" href="https://moloch-sh.netlify.app/" target="_blank" rel="noopener noreferrer">'
@@ -259,7 +259,7 @@ def credits() -> Markup:
     """Firma con enlaces (LinkedIn, GitHub, café), igual que en moloch.sh."""
     return Markup(
         '<div class="credits"><div class="credits-id">'
-        '<p class="credits-by">© 2026 RADAR.IA · {} <strong>Rolando Fernández</strong></p>'
+        '<p class="credits-by">© 2026 RADAR.AI · {} <strong>Rolando Fernández</strong></p>'
         '<p class="credits-tag">{}</p></div>'
         '<nav class="credits-links" aria-label="Rolando Fernández">'
         '<a href="{}" target="_blank" rel="noopener">LinkedIn</a>'
@@ -272,7 +272,7 @@ def credits() -> Markup:
 
 # -- SEO ------------------------------------------------------------------
 SITE_URL = "https://aievolve.netlify.app/"
-SITE_NAME = "RADAR.IA"
+SITE_NAME = "RADAR.AI"
 GOOGLE_VERIFICATION = "yh8wm8HsAeqP892U5UGczQs-RLnGuNHx7WGfNntGduk"
 # Token de Cloudflare Web Analytics. Vacio = sin beacon. Al crear el sitio en
 # Cloudflare se pega aqui y las tres paginas empiezan a medir.

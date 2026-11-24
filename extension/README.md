@@ -1,6 +1,6 @@
 # NEXUS DAILY · New Tab (0.4)
 
-**Periódico personal en cada pestaña nueva de Chrome, con la marca de Radar.IA** (la misma de moloch.sh y brain.gym: papel con cuadrícula, tinta, naranja y lima, tema claro/oscuro/auto).
+**Periódico personal en cada pestaña nueva de Chrome, con la marca de Radar.AI** (la misma de moloch.sh y brain.gym: papel con cuadrícula, tinta, naranja y lima, tema claro/oscuro/auto).
 
 Vive en este repositorio, junto al pipeline que la alimenta: `extension/`.
 

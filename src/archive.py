@@ -122,7 +122,7 @@ ENV.globals.update(
     html_attrs=Markup(HTML_ATTRS),
     bi=bi,
     credits=brand_credits(),
-    seo=seo_head("RADAR.IA · Archivo: todas las ediciones del radar", path="archivo.html"),
+    seo=seo_head("RADAR.AI · Archivo: todas las ediciones del radar", path="archivo.html"),
 )
 
 ARCHIVO_TEMPLATE = ENV.from_string("""

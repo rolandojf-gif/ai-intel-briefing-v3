@@ -159,7 +159,7 @@ class CoreQualityTests(unittest.TestCase):
             {"title": "DeepSeek analysis", "title_es": "Análisis de DeepSeek", "score": 75, "layer": "context", "image_url": ""},
         ]
         html = render_index(items, briefing={"thesis": "Tesis de prueba"}, snapshot={"date": "2026-08-23"})
-        self.assertIn("RADAR.IA", html)
+        self.assertIn("RADAR.AI", html)
         self.assertIn("Lanzamiento de Gemini 3.7", html)
         self.assertIn("Mercados", html)
         self.assertIn("SMCI", html)
@@ -1037,7 +1037,7 @@ class CoreQualityTests(unittest.TestCase):
         weekly_main()
         html = Path("docs/weekly.html").read_text(encoding="utf-8")
         self.assertIn("--paper:#F4F3EF", html)
-        self.assertIn("Radar<em>.IA</em>", html)
+        self.assertIn("Radar<em>.AI</em>", html)
         self.assertIn("Space Grotesk", html)
         self.assertIn("Semanal", html)
         self.assertIn('href="weekly.html"', html)

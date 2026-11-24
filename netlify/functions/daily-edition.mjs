@@ -1,5 +1,5 @@
 /**
- * Programador de la edicion diaria de RADAR.IA (Netlify Scheduled Function).
+ * Programador de la edicion diaria de RADAR.AI (Netlify Scheduled Function).
  *
  * El programador de GitHub retrasaba las tareas de este repo 8-9 horas (la de
  * las 04:37 arrancaba hacia las 13:10). Netlify cumple la hora; esta funcion

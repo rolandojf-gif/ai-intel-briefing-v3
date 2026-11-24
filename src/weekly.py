@@ -933,7 +933,7 @@ def main():
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-{seo_head("RADAR.IA · Semanal: quién tira y qué temas mandan", path="weekly.html")}{BRAND_HEAD}<script>
+{seo_head("RADAR.AI · Semanal: quién tira y qué temas mandan", path="weekly.html")}{BRAND_HEAD}<script>
   document.addEventListener('error', function(ev){{
     var t = ev.target;
     if (!t || t.tagName !== 'IMG') return;
