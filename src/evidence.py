@@ -33,6 +33,7 @@ def percentages_supported(text, quotes):
 PRIMARY_HOSTS = {
     "openai.com", "anthropic.com", "deepmind.google", "blog.google", "mistral.ai",
     "ai.meta.com", "x.ai", "together.ai", "deepseek.com", "api-docs.deepseek.com",
+    "nvidianews.nvidia.com", "investor.nvidia.com", "blogs.nvidia.com",
 }
 
 

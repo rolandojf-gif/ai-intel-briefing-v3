@@ -561,21 +561,76 @@ class CoreQualityTests(unittest.TestCase):
         return sources
 
     def test_lab_caps_are_asymmetric(self):
-        """Un lab que suelta dos cosas el mismo día no puede perder una por cap:1."""
+        """Un lab que suelta dos cosas el mismo día no puede perder una por cap:1, y sigue por encima de prensa generalista."""
         sources = self._load_feeds()
         self.assertGreaterEqual(int(sources["OpenAI"]["cap"]), 3)
         self.assertGreaterEqual(int(sources["Anthropic"]["cap"]), 3)
         self.assertGreaterEqual(int(sources["SemiAnalysis"]["cap"]), 2)
-        self.assertEqual(int(sources["Reuters AI"]["cap"]), 1)
-        self.assertEqual(int(sources["Bloomberg Tech"]["cap"]), 1)
+        self.assertGreaterEqual(int(sources["NVIDIA Newsroom"]["cap"]), 2)
+        self.assertEqual(int(sources["Reuters AI"]["cap"]), 2)
+        self.assertEqual(int(sources["Bloomberg Tech"]["cap"]), 2)
+        self.assertLess(int(sources["Reuters AI"]["cap"]), int(sources["OpenAI"]["cap"]))
 
     def test_thesis_labs_have_primary_feeds(self):
-        """La tesis nombra Meta y xAI; sin feed primario el radar no los ve."""
+        """La tesis nombra Meta, xAI y NVIDIA; sin feed primario el radar no los ve."""
         sources = self._load_feeds()
-        for name in ("Meta AI", "xAI", "Epoch AI", "Import AI", "Moonshot (Kimi)"):
+        for name in ("Meta AI", "xAI", "NVIDIA Newsroom", "Epoch AI", "Import AI", "Moonshot (Kimi)"):
             self.assertIn(name, sources, f"falta fuente {name}")
             self.assertGreaterEqual(int(sources[name].get("cap") or 0), 1)
             self.assertTrue(sources[name].get("url"), f"{name} sin url")
+
+    def test_governance_shock_and_rolling_source_window(self):
+        """Un terremoto de cúpula/mercado (p. ej. regreso de Jensen Huang a NVIDIA) no puede sacar 0 ni perder por cruzar las 00:00 UTC."""
+        from datetime import datetime, timezone
+        from src.evidence import primary_source
+        from src.main import _source_selection_key
+
+        board_pr = score_item(
+            "NVIDIA Board Reinstates Jensen Huang as President, CEO and Board Director",
+            "NVIDIA today announced that effective immediately, Jensen Huang has been reinstated as President and CEO.",
+            "NVIDIA Newsroom",
+        )
+        market_rally = score_item(
+            "Nvidia reinstates Jensen Huang as CEO after $900 billion stock rally",
+            "Nvidia shares surged 28% Monday after the board brought back founder Jensen Huang.",
+            "Reuters AI",
+        )
+        minor_congress = score_item(
+            "Trump defended Jensen Huang's return as Nvidia CEO. Both sides of the aisle want answers.",
+            "Despite assurances from the White House that he poses no national security risk, members of Congress still want to hear from Jensen Huang.",
+            "Business Insider Tech",
+        )
+        self.assertGreaterEqual(board_pr["score"], 60)
+        self.assertNotEqual(board_pr["primary"], "misc")
+        self.assertGreaterEqual(market_rally["score"], 70)
+
+        # El radar corre a las 03:37 UTC del 24-nov: una pieza principal del 23-nov
+        # a las 16:00 UTC debe imponerse a una reacción menor publicada a las 02:39 UTC del 24-nov.
+        run_now = datetime(2026, 11, 24, 3, 37, tzinfo=timezone.utc)
+        main_item = {
+            "published": "2026-11-23T16:00:00+00:00",
+            "heuristic_score": market_rally["score"],
+            "source": "Business Insider Tech",
+        }
+        late_reaction = {
+            "published": "2026-11-24T02:39:32+00:00",
+            "heuristic_score": 11,
+            "source": "Business Insider Tech",
+        }
+        stale_item = {
+            "published": "2026-11-21T12:00:00+00:00",
+            "heuristic_score": 95,
+            "source": "Business Insider Tech",
+        }
+        self.assertGreater(
+            _source_selection_key(main_item, now_utc=run_now),
+            _source_selection_key(late_reaction, now_utc=run_now),
+        )
+        self.assertGreater(
+            _source_selection_key(late_reaction, now_utc=run_now),
+            _source_selection_key(stale_item, now_utc=run_now),
+        )
+        self.assertTrue(primary_source({"url": "https://nvidianews.nvidia.com/news/nvidia-board-reinstates-jensen-huang"}))
 
     def test_llm_batch_covers_configured_caps(self):
         """Si el lote es menor que la suma de caps, el gate recrea cola sin juzgar."""

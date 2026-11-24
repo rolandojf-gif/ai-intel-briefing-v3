@@ -102,7 +102,8 @@ KNOWN_ENTITIES = [
     "Llama 4", "Llama 3.3", "Llama", "Mistral Large", "Codestral",
     "Fable", "Mythos", "Sol", "MiniMax", "01.AI", "Yi", "Baichuan",
     "Cohere", "Scale AI", "Together AI", "ASML", "SMIC", "Blackwell", "Rubin",
-    "Huawei", "Baidu", "CoreWeave", "SoftBank", "Oracle", "Broadcom", "SK hynix",
+    "Huawei", "Baidu", "CoreWeave", "SoftBank", "Oracle", "Broadcom", "SK hynix", "Micron",
+    "Jensen Huang", "Sam Altman", "Dario Amodei", "Demis Hassabis", "Elon Musk", "Liang Wenfeng",
 ]
 
 ENTITY_ALIASES = {

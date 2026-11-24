@@ -311,13 +311,28 @@ def should_use_gemini_today() -> bool:
     return False
 
 
-def _source_selection_key(it: dict) -> tuple[int, int, int, int]:
+SOURCE_RECENT_WINDOW_HOURS = 30.0
+
+
+def _source_selection_key(it: dict, now_utc: datetime | None = None) -> tuple[int, int, int, int, int, int]:
+    """Ordena candidatos dentro de cada fuente antes de aplicar `cap`.
+
+    Usa una ventana móvil de 30h en vez de `timestamp // 86400` (medianoche UTC):
+    como el radar corre a las 03:37 UTC, cortar a las 00:00 UTC hacía que cualquier
+    pieza menor publicada de madrugada desplazara a las grandes noticias del día
+    anterior en EE. UU./Europa antes siquiera de llegar a Gemini.
+    """
     fresh_flag = 1 if is_fresh_enough(it) else 0
     dt = parse_published_dt(it.get("published"))
     has_dt = 1 if dt is not None else 0
-    day_bucket = int(dt.timestamp() // 86400) if dt is not None else 0
     hscore = int(it.get("heuristic_score", 0) or 0)
-    return (fresh_flag, has_dt, day_bucket, hscore)
+    if dt is None:
+        return (fresh_flag, 0, 0, -9999, hscore, 0)
+    ref = now_utc if now_utc is not None else datetime.now(timezone.utc)
+    age_hours = max(0.0, (ref - dt).total_seconds() / 3600.0)
+    in_recent_cycle = 1 if age_hours <= SOURCE_RECENT_WINDOW_HOURS else 0
+    age_day_bucket = 0 if in_recent_cycle else -int(age_hours // 24.0)
+    return (fresh_flag, has_dt, in_recent_cycle, age_day_bucket, hscore, int(dt.timestamp()))
 
 
 def _fetch_non_x_source(s: dict, stype: str, limit: int) -> list[dict]:
@@ -966,7 +981,7 @@ MAX_REPEAT_SIGNALS = 3  # techo blando de repeats dentro de signals si hay senal
 # del LLM y no se puede publicar (ver el gate en apply_llm_results).
 # El test test_llm_batch_covers_configured_caps ancla esto a la suma de caps
 # de feeds.yaml: si subes un cap, sube este número.
-LLM_BATCH_SIZE = 64
+LLM_BATCH_SIZE = 72
 
 # Score minimo para que power_shift rescate un item que el LLM no marco signal.
 # Sin umbral no filtra: el campo viene relleno en ~75% de los items.

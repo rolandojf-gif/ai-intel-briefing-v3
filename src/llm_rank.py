@@ -39,14 +39,18 @@ LE IMPORTA (en este orden):
 1. Progreso real hacia AGI y movimientos de los frontier labs
    (OpenAI, Anthropic, Google DeepMind, DeepSeek, Meta, xAI, Mistral, Qwen, Moonshot, Zhipu).
 2. Agentes, coding agents, MCP, workflows autónomos y sustitución de trabajo cognitivo.
-3. Compute, chips, datacenters, energía: quién puede entrenar qué y a qué coste.
+3. Compute, chips, datacenters, energía y monopolios críticos del hardware
+   (NVIDIA, TSMC, ASML, Broadcom, SK hynix, AMD): quién puede entrenar qué y a qué coste.
 4. Economía de modelos: precios de API, márgenes, coste por token, capex.
 5. Stack chino de IA y geopolítica: export controls, Huawei, SMIC, soberanía.
-6. Cambios de poder de mercado: quién gana y quién pierde posición.
+6. Cambios de poder de mercado y gobernanza crítica: salidas o retornos de CEO/fundadores,
+   crisis de consejo, OPVs/IPOs, compras estratégicas, investigaciones regulatorias/antitrust
+   o sacudidas bursátiles masivas en frontier labs o actores críticos de cómputo (p. ej. NVIDIA).
 
 NO LE IMPORTA (marcar como noise):
 - Notas de prensa corporativas y marketing reciclado.
-- Fichajes, premios, becas, webinars, eventos, conferencias, patrocinios.
+- Contrataciones rutinarias de empleados (salvo CEO/fundadores/consejo de actores clave),
+  premios, becas, webinars, eventos, conferencias, patrocinios.
 - Papers académicos incrementales sin implicación estratégica
   (optimizaciones de arquitectura marginales, aplicaciones de nicho).
 - Bumps de versión de librerías y notas de release de tooling menor.
@@ -83,10 +87,11 @@ class RankOut(BaseModel):
     verdict: Verdict = Field(
         description=(
             "signal = noticia real con consecuencia: nuevo modelo, hardware/chips, agentes, "
-            "economía de modelos o movimiento de mercado estratégico. Va al radar principal. "
+            "economía de modelos, crisis de cúpula/CEO/consejo en actores clave (OpenAI, Anthropic, "
+            "NVIDIA, TSMC, DeepMind...), OPVs/compras o movimiento de mercado estratégico. Va al radar principal. "
             "context = análisis de fondo o pieza secundaria; aporta perspectiva pero no cambia nada hoy. "
-            "noise = marketing corporativo, fichajes, webinars, eventos, tutoriales, bumps de versión "
-            "y papers incrementales sin impacto. "
+            "noise = marketing corporativo, contrataciones rutinarias, webinars, eventos, tutoriales, "
+            "bumps de versión y papers incrementales sin impacto. "
             "Ante la duda entre signal y context, elige signal. Ante la duda entre context y noise, "
             "elige noise: el relleno no entra al radar."
         )
@@ -185,7 +190,8 @@ SYSTEM = (
     "Eres el analista jefe de inteligencia estratégica de un solo lector. "
     "Tu trabajo NO es resumir noticias: es decidir qué merece su atención hoy y por qué. "
     "Cubre con generosidad lo que de verdad ocurre en la industria —lanzamientos, chips, "
-    "precios, agentes, movimientos de mercado— y corta sin piedad el relleno corporativo. "
+    "precios, agentes, crisis de liderazgo/CEO/consejo en actores clave y movimientos de mercado— "
+    "y corta sin piedad el relleno corporativo. "
     "El error que debes evitar no es incluir de más, sino dejar pasar promoción disfrazada "
     "de noticia o publicar algo sin poder decir qué consecuencia tiene. "
     "No inventes hechos ni cifras que no estén en el material. "
@@ -255,11 +261,12 @@ def rank_batch(
         "2) Genera un briefing global basado SOLO en los items marcados signal/context.\n\n"
         "REGLAS DE JUICIO\n"
         "- 'signal' es el caso normal para una noticia real: lanzamiento de modelo, salto de\n"
-        "  capacidad, chips y compute, precios y márgenes, agentes, o un movimiento de mercado\n"
-        "  con consecuencia. No lo reserves solo a lo histórico; el radar debe reflejar el día.\n"
+        "  capacidad, chips y compute, precios y márgenes, agentes, cambios de CEO/consejo o crisis\n"
+        "  de gobernanza en labs frontier y monopolios de hardware (NVIDIA, TSMC, ASML...), OPVs/compras\n"
+        "  o un movimiento de mercado con consecuencia. No lo reserves solo a lo histórico; el radar debe reflejar el día.\n"
         "- 'context' es para el análisis de fondo y lo secundario: aporta perspectiva pero no\n"
         "  cambia nada hoy.\n"
-        "- 'noise' es marketing corporativo, fichajes, becas, webinars, eventos, patrocinios,\n"
+        "- 'noise' es marketing corporativo, contrataciones rutinarias (no cúpula de actores clave), becas, webinars, eventos, patrocinios,\n"
         "  tutoriales, bumps de versión, papers incrementales y verticales de nicho.\n"
         "  Aquí sí sé implacable: eso no llega nunca al radar.\n"
         "- relevance mide relevancia para ESTE lector, no calidad del artículo.\n"

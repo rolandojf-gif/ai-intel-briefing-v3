@@ -23,12 +23,14 @@ KEYWORDS = {
     "invest": [
         "earnings","guidance","capex","opex","margin","backlog","revenue",
         "supply","shortage","constraint","price","pricing","api","cost","tokens","cost per token",
-        "valuation","funding","investment","deal","contract","customer","demand","arr","series"
+        "valuation","funding","investment","deal","contract","customer","demand","arr","series",
+        "ipo","acquisition","acquires","merger","buyout","market cap","trillion","billion","rally","plunge","selloff","sell-off"
     ],
     "geopol": [
-        "export control","sanction","sanctions","china","taiwan","biden","eu ai act","bis",
+        "export control","sanction","sanctions","china","taiwan","biden","trump","eu ai act","bis",
         "sovereign","regulation","chip act","policy","nist","eu commission",
-        "huawei","bytedance","alibaba","tencent","national security","entity list"
+        "huawei","bytedance","alibaba","tencent","national security","entity list",
+        "antitrust","doj","sec","ftc","subpoena","smuggling","tariff","tariffs"
     ],
     "hype": [
         "breakthrough","state-of-the-art","sota","launch","released","announces",
@@ -39,6 +41,17 @@ KEYWORDS = {
         "special presentation","sponsored","meet us","join us","booth","register now"
     ],
 }
+
+STRATEGIC_ACTOR_RE = re.compile(
+    r"\b(nvidia|nvda|jensen huang|tsmc|asml|broadcom|sk hynix|micron|amd|arm|coreweave|"
+    r"openai|sam altman|anthropic|dario amodei|deepmind|demis hassabis|xai|elon musk|"
+    r"deepseek|liang wenfeng|mistral|qwen|alibaba|zhipu|moonshot|huawei|smic)\b"
+)
+GOVERNANCE_OR_MARKET_SHOCK_RE = re.compile(
+    r"\b(ceo|chief executive|board|reinstat\w*|resign\w*|oust\w*|fired|step\w* down|succession|"
+    r"ipo|acqui\w+|merger|buyout|antitrust|subpoena|doj|sec|ftc|probe|investigation|"
+    r"trillion|market cap|rally|plung\w*|surge\w*|tumble\w*)\b"
+)
 
 def _count_hits(text: str, words: list[str]) -> int:
     t = text.lower()
@@ -63,13 +76,24 @@ def score_item(title: str, summary: str, source: str) -> dict:
     hard_signal_patterns = [
         r"\b(gpt|claude|gemini|deepseek|llama|mistral|qwen|kimi|glm|zhipu|moonshot|grok|minimax|yi|fable|mythos|sol|command|phi|o1|o3|o4|r1|r2|v3|v4)[-\s]?(v?\d|\b)",
         r"\b(api|pricing|price|cost|tokens?|cost per million|tps)\b",
-        r"\b(capex|revenue|margin|earnings|guidance|backlog|deal|valuation)\b",
+        r"\b(capex|revenue|margin|earnings|guidance|backlog|deal|valuation|ipo|market cap|trillion)\b",
         r"\b(hbm|hbm3e|hbm4|gb200|b200|blackwell|rubin|vr200|mi300|mi350|tpu|gpu|datacenter|data center|cluster|power|cooling)\b",
-        r"\b(export control|sanction|eu ai act|nist|sovereign|bis|entity list)\b",
+        r"\b(export control|sanction|eu ai act|nist|sovereign|bis|entity list|antitrust|subpoena)\b",
         r"\b(agent|agents|mcp|coding|tool use|autonomous|reasoning|thinking|distillation|benchmark|evals?)\b",
         r"\b(weights?|open-weights?|open weights?|checkpoint|weights release|open-source|open source)\b",
     ]
     hard_signals = sum(1 for pat in hard_signal_patterns if re.search(pat, text_l))
+
+    # Cambios de cúpula, OPVs, compras, investigaciones o sacudidas bursátiles en actores críticos
+    strategic_actor_shock = bool(
+        STRATEGIC_ACTOR_RE.search(text_l) and GOVERNANCE_OR_MARKET_SHOCK_RE.search(text_l)
+    )
+    if strategic_actor_shock:
+        hard_signals += 2
+        raw += 36
+        if invest == 0 and geopol == 0:
+            invest += 2
+
     raw += hard_signals * 10
 
     # Boost major release / milestone
@@ -91,8 +115,8 @@ def score_item(title: str, summary: str, source: str) -> dict:
     if "semiwiki" in src:
         raw += 6
     if "nvidia" in src:
-        nvidia_strategic_signal = (infra + invest + geopol) > 0 or any(
-            k in text_l for k in ("datacenter", "hbm", "gpu", "inference", "training", "pricing", "capex", "blackwell", "gb200")
+        nvidia_strategic_signal = strategic_actor_shock or (infra + invest + geopol) > 0 or any(
+            k in text_l for k in ("datacenter", "hbm", "gpu", "inference", "training", "pricing", "capex", "blackwell", "gb200", "rubin")
         )
         if nvidia_strategic_signal:
             raw += 5
@@ -103,6 +127,7 @@ def score_item(title: str, summary: str, source: str) -> dict:
         "venturebeat", "techcrunch", "rundown", "latent space",
         "artificial analysis", "semianalysis", "stratechery", "chinatalk",
         "epoch ai", "import ai", "interconnects", "fabricated knowledge", "arc prize",
+        "reuters", "bloomberg",
     )):
         raw += 6
     if "deepmind" in src or "google ai" in src or "openai" in src or "anthropic" in src:

@@ -12,23 +12,23 @@ sources:
   # ── Prensa Generalista & Negocios de IA ─────────────────────────
   - name: Reuters AI
     type: rss
-    url: https://news.google.com/rss/search?q=site:reuters.com+AI+OR+%22artificial+intelligence%22&hl=en-US&gl=US&ceid=US:en
+    url: https://news.google.com/rss/search?q=site:reuters.com+(AI+OR+%22artificial+intelligence%22+OR+Nvidia+OR+OpenAI+OR+Anthropic+OR+TSMC)&hl=en-US&gl=US&ceid=US:en
     limit: 10
-    cap: 1
+    cap: 2
     tags: [business, geopol, industry, models]
 
   - name: Bloomberg Tech
     type: rss
-    url: https://news.google.com/rss/search?q=site:bloomberg.com+AI+OR+%22artificial+intelligence%22&hl=en-US&gl=US&ceid=US:en
+    url: https://news.google.com/rss/search?q=site:bloomberg.com+(AI+OR+%22artificial+intelligence%22+OR+Nvidia+OR+OpenAI+OR+Anthropic+OR+TSMC)&hl=en-US&gl=US&ceid=US:en
     limit: 10
-    cap: 1
+    cap: 2
     tags: [business, finance, chips, market]
 
   - name: Business Insider Tech
     type: rss
     url: https://feeds.businessinsider.com/custom/all
     limit: 10
-    cap: 1
+    cap: 2
     tags: [business, tech, models]
 
   # finance.yahoo.com/news/rssindex devuelve 404 desde 2026-11 (y /news/rss y
@@ -38,7 +38,7 @@ sources:
     type: rss
     url: https://feeds.finance.yahoo.com/rss/2.0/headline?s=NVDA,TSM,AMD,AVGO,ASML,MSFT&region=US&lang=en-US
     limit: 10
-    cap: 1
+    cap: 2
     tags: [finance, market, hardware, chips]
 
 
@@ -56,14 +56,14 @@ sources:
     type: rss
     url: https://www.theverge.com/rss/ai-artificial-intelligence/index.xml
     limit: 8
-    cap: 1
+    cap: 2
     tags: [tech, models, product]
 
   - name: TechCrunch AI
     type: rss
     url: https://techcrunch.com/category/artificial-intelligence/feed/
     limit: 8
-    cap: 1
+    cap: 2
     tags: [tech, startups, models, compute]
 
   - name: Ars Technica AI
@@ -245,6 +245,13 @@ sources:
     cap: 1
     tags: [infra, chips]
 
+  - name: NVIDIA Newsroom
+    type: rss
+    url: https://news.google.com/rss/search?q=site:nvidianews.nvidia.com&hl=en-US&gl=US&ceid=US:en
+    limit: 8
+    cap: 2
+    tags: [infra, chips, market, labs]
+
   - name: NVIDIA Blog (AI)
     type: rss
     url: https://blogs.nvidia.com/blog/category/deep-learning/feed/
@@ -350,7 +357,7 @@ sources:
 
   - name: Hacker News (alto voltaje)
     type: rss
-    url: https://hnrss.org/newest?q=AI+OR+LLM+OR+OpenAI+OR+Anthropic&points=150
+    url: https://hnrss.org/newest?q=AI+OR+LLM+OR+OpenAI+OR+Anthropic+OR+Nvidia+OR+DeepMind+OR+DeepSeek+OR+TSMC&points=150
     limit: 8
-    cap: 1
+    cap: 2
     tags: [community, signal]
