@@ -1,19 +1,19 @@
 {
-  "date": "2026-11-23",
-  "score_avg": 78.88,
+  "date": "2026-11-24",
+  "score_avg": 85.67,
   "primary_dist": {
-    "models": 4,
-    "invest": 2,
+    "models": 10,
     "infra": 1,
+    "geopol": 3,
     "misc": 1
   },
   "top_entities": [
     {
       "entity": "OpenAI",
-      "count": 3
+      "count": 4
     },
     {
-      "entity": "China",
+      "entity": "Zhipu AI",
       "count": 2
     },
     {
@@ -21,183 +21,192 @@
       "count": 2
     },
     {
-      "entity": "Perplexity",
-      "count": 1
+      "entity": "DeepMind",
+      "count": 2
     },
     {
-      "entity": "Greg Brockman",
-      "count": 1
+      "entity": "China",
+      "count": 2
     }
   ],
   "briefing": {
     "signals": [
-      "Perplexity lanza una API que permite a los agentes monitorizar la web de forma autónoma y recibir alertas solo con cambios relevantes.",
-      "OpenAI publica nueva investigación detallando defensas contra la extracción adversaria de capacidades de sus modelos.",
-      "OpenAI, a través de Greg Brockman y un post oficial, propone usar la perplejidad como métrica estándar para establecer límites de seguridad en IA avanzada.",
-      "La incertidumbre financiera tras la IPO de Anthropic está frenando futuros acuerdos de inversión en IA en China."
+      "Z.ai presenta un \"loop transformer\" de 750B parámetros que busca igualar modelos de mayor tamaño, una tendencia que indica mayor eficiencia de entrenamiento.",
+      "Google DeepMind y Anthropic demuestran capacidades avanzadas de agentes en optimización cuántica y revisión de código, moviendo la automatización a tareas cognitivas complejas.",
+      "OpenAI logra un rendimiento del 97% en robótica con GPT-6.2 Astra, demostrando un salto cualitativo en control de sistemas físicos.",
+      "La capacidad de inferencia agentiva crece un 4.6x anual, superando el 2.6x de la capacidad de cómputo general, señalando una reorientación estratégica de la infraestructura.",
+      "Anthropic aumenta su gasto en cómputo un 4x anual, superando el 3x de OpenAI, lo que indica una intensificación de la inversión en entrenamiento de modelos."
     ],
     "risks": [
-      "Inferencia · La complejidad de proteger las capacidades de los modelos frente a la extracción adversaria sigue siendo un riesgo de seguridad para los modelos frontier.",
-      "Inferencia · La volatilidad del mercado, como la observada tras la IPO de Anthropic y la situación de Nvidia, podría limitar la inversión en desarrollo de IA y compute, especialmente en China."
+      "Hipótesis · La creciente demanda energética de los centros de datos de IA presiona las redes eléctricas, los costes y la agenda climática.",
+      "Inferencia · Las restricciones geopolíticas como la lista negra de EEUU a empresas chinas pueden ralentizar el progreso de IA de frontera."
     ],
     "watch": [
-      "Anuncios de integraciones de Perplexity Monitor API en flujos de trabajo autónomos o plataformas de agentes.",
-      "Otros labs de frontera adoptan la perplejidad como métrica de seguridad compartida para sus modelos.",
-      "Nuevos anuncios de grandes acuerdos de inversión en IA en China o movimientos en la valoración de Nvidia."
+      "Z.ai publica benchmarks del modelo GLM-5.4 de 750B para verificar su eficiencia.",
+      "Impacto de Claude Ship en los tiempos de desarrollo de software y su adopción masiva.",
+      "Evaluación del impacto del programa AscendGYM en el rendimiento real de los chips Huawei."
     ],
     "entities_top": [
       "OpenAI",
-      "Perplexity",
-      "Nvidia",
       "Anthropic",
+      "Google DeepMind",
+      "Z.ai",
       "China"
     ],
     "signals_en": [
-      "Perplexity launches an API enabling agents to autonomously monitor the web, alerting only on relevant changes.",
-      "OpenAI publishes new research detailing defenses against adversarial capability extraction from its models.",
-      "OpenAI, via Greg Brockman and an official post, proposes using perplexity as a standard metric for advanced AI safety limits.",
-      "Financial uncertainty post-Anthropic IPO is slowing down future AI investment deals in China."
+      "Z.ai introduces a 750B parameter \"loop transformer\" aiming to match larger models, indicating a trend towards higher training efficiency.",
+      "Google DeepMind and Anthropic demonstrate advanced agent capabilities in quantum optimization and code review, moving automation into complex cognitive tasks.",
+      "OpenAI achieves 97% performance in robotics with GPT-6.2 Astra, showing a qualitative leap in controlling complex physical systems.",
+      "Agentic inference capacity grows 4.6x annually, surpassing the 2.6x of general compute, signaling a strategic reorientation of infrastructure.",
+      "Anthropic increases its compute spending 4x annually, exceeding OpenAI's 3x, indicating an intensification of model training investment."
     ],
     "risks_en": [
-      "Inference · The complexity of protecting model capabilities against adversarial extraction remains a security risk for frontier models.",
-      "Inference · Market volatility, as seen after the Anthropic IPO and Nvidia's situation, could limit investment in AI development and compute, especially in China."
+      "Hypothesis · The increasing energy demand from AI data centers strains power grids, costs, and the climate agenda.",
+      "Inference · Geopolitical restrictions like the US blacklisting Chinese companies could slow down frontier AI progress."
     ],
     "watch_en": [
-      "Announcements of Perplexity Monitor API integrations into autonomous workflows or agent platforms.",
-      "Other frontier labs adopt perplexity as a shared safety metric for their models.",
-      "New announcements of major AI investment deals in China or movements in Nvidia's valuation."
+      "Z.ai releases GLM-5.4 750B model benchmarks to verify its efficiency.",
+      "Impact of Claude Ship on software development times and widespread adoption.",
+      "Assessment of AscendGYM program's impact on actual Huawei chip performance."
     ],
     "evidence": {
       "thesis": [
         {
-          "source": "The Decoder",
-          "url": "https://the-decoder.com/perplexitys-new-monitor-api-turns-web-search-from-a-one-off-query-into-a-nonstop-watchdog/",
-          "quote": "Perplexity is launching a Monitor API that searches the web on a schedule and alerts agents via webhook only when relevant changes occur."
+          "source": "Simon Willison (AI & LLMs)",
+          "url": "https://simonwillison.net/2026/Nov/23/glm-54/",
+          "quote": "GLM 5.4 is now available from Chinese AI lab Z.ai. It's their first model to use a looped transformer architecture, which they describe like this: In a standard Transformer, each layer runs once per forward pass. In a Loop Transformer, a group of weight-shared layers runs for multiple iterations, refining the hidden states from the previous pass."
         },
         {
-          "source": "X @OpenAI",
-          "url": "https://x.com/OpenAI/status/2123862344422088794",
-          "quote": "Distillation can reproduce powerful AI capabilities without the safeguards built around them. We’re sharing new research on our work to combat distillation of our models, how these capabilities transfer, and how we detect and disrupt coordinated attempts."
+          "source": "X @GoogleDeepMind",
+          "url": "https://x.com/GoogleDeepMind/status/2124911073266413634",
+          "quote": "Using teams of Gemini 4 agents, we’ve built new quantum circuits that cut future simulation costs by up to 10 times."
+        },
+        {
+          "source": "TechCrunch AI",
+          "url": "https://techcrunch.com/2026/11/23/anthropic-launches-claude-ship-letting-ai-agents-review-fix-and-approve-code-changes/",
+          "quote": "Anthropic's new developer tools aim to eliminate another bottleneck by letting agents handle routine approvals."
         },
         {
           "source": "X @gdb",
-          "url": "https://x.com/gdb/status/2124582684840399311",
-          "quote": "This post provides transparency that can be the foundation of industry-wide shared safety bars. Perhaps the most important concept from the post is the following: \"AI will also significantly contribute to progress on alignment and monitoring, I think that progress is unlikely to be fast enough to allow the full potential acceleration in pretraining.\" Towards ensuring that safety keeps pace with general intelligence of pretrained models (as measured by \"perplexity\"), the post proposes \"common limits, based on perplexity and other measurements, that developers are committed to not crossing until our ability to under"
+          "url": "https://x.com/gdb/status/2125041014587146384",
+          "quote": "GPT-6.2 Astra on Codex scores 97% on RoboDojo-RC Tier 1 across 120 real-world robot trials, the highest among anything we've tested. We are retiring RoboDojo from future evaluations."
         },
         {
-          "source": "Bloomberg Tech",
-          "url": "https://www.bloomberg.com/news/articles/2026-11-23/china-s-next-ai-deals-clouded-by-selloff-after-anthropic-ipo",
-          "quote": "China’s Next AI Deals Clouded by Selloff After Anthropic IPO"
+          "source": "Epoch AI",
+          "url": "https://epoch.ai/data-insights/agentic-inference-capacity-growth",
+          "quote": "Agentic inference capacity grew 4.6× in a year, versus 2.6× for compute capacity"
+        },
+        {
+          "source": "Epoch AI",
+          "url": "https://epoch.ai/data-insights/anthropic-openai-compute-spend-growth",
+          "quote": "Anthropic’s compute spending is increasing by 4x per year, outpacing OpenAI’s 3x"
         }
       ],
       "signals.0": [
         {
-          "source": "The Decoder",
-          "url": "https://the-decoder.com/perplexitys-new-monitor-api-turns-web-search-from-a-one-off-query-into-a-nonstop-watchdog/",
-          "quote": "Perplexity is launching a Monitor API that searches the web on a schedule and alerts agents via webhook only when relevant changes occur."
+          "source": "Simon Willison (AI & LLMs)",
+          "url": "https://simonwillison.net/2026/Nov/23/glm-54/",
+          "quote": "GLM 5.4 is now available from Chinese AI lab Z.ai. It's their first model to use a looped transformer architecture, which they describe like this: In a standard Transformer, each layer runs once per forward pass. In a Loop Transformer, a group of weight-shared layers runs for multiple iterations, refining the hidden states from the previous pass."
         }
       ],
       "signals.1": [
         {
-          "source": "X @OpenAI",
-          "url": "https://x.com/OpenAI/status/2123862344422088794",
-          "quote": "Distillation can reproduce powerful AI capabilities without the safeguards built around them. We’re sharing new research on our work to combat distillation of our models, how these capabilities transfer, and how we detect and disrupt coordinated attempts."
+          "source": "TechCrunch AI",
+          "url": "https://techcrunch.com/2026/11/23/anthropic-launches-claude-ship-letting-ai-agents-review-fix-and-approve-code-changes/",
+          "quote": "Anthropic's new developer tools aim to eliminate another bottleneck by letting agents handle routine approvals."
+        },
+        {
+          "source": "DeepMind Blog",
+          "url": "https://deepmind.google/blog/finding-faster-quantum-algorithms-with-agents-and-formal-verification/",
+          "quote": "Using agent teams and formal verification to improve quantum algorithms for fusion and chemistry."
         }
       ],
       "signals.2": [
         {
           "source": "X @gdb",
-          "url": "https://x.com/gdb/status/2124582684840399311",
-          "quote": "This post provides transparency that can be the foundation of industry-wide shared safety bars. Perhaps the most important concept from the post is the following: \"AI will also significantly contribute to progress on alignment and monitoring, I think that progress is unlikely to be fast enough to allow the full potential acceleration in pretraining.\" Towards ensuring that safety keeps pace with general intelligence of pretrained models (as measured by \"perplexity\"), the post proposes \"common limits, based on perplexity and other measurements, that developers are committed to not crossing until our ability to under"
-        },
-        {
-          "source": "OpenAI",
-          "url": "https://openai.com/index/perplexity-and-intelligence",
-          "quote": "How perplexity measures progress in AI models, and why it could help developers establish a shared approach to evaluating emerging capabilities."
+          "url": "https://x.com/gdb/status/2125041014587146384",
+          "quote": "GPT-6.2 Astra on Codex scores 97% on RoboDojo-RC Tier 1 across 120 real-world robot trials, the highest among anything we've tested. We are retiring RoboDojo from future evaluations."
         }
       ],
       "signals.3": [
         {
-          "source": "Bloomberg Tech",
-          "url": "https://www.bloomberg.com/news/articles/2026-11-23/china-s-next-ai-deals-clouded-by-selloff-after-anthropic-ipo",
-          "quote": "China’s Next AI Deals Clouded by Selloff After Anthropic IPO"
+          "source": "Epoch AI",
+          "url": "https://epoch.ai/data-insights/agentic-inference-capacity-growth",
+          "quote": "Agentic inference capacity grew 4.6× in a year, versus 2.6× for compute capacity"
+        }
+      ],
+      "signals.4": [
+        {
+          "source": "Epoch AI",
+          "url": "https://epoch.ai/data-insights/anthropic-openai-compute-spend-growth",
+          "quote": "Anthropic’s compute spending is increasing by 4x per year, outpacing OpenAI’s 3x"
         }
       ],
       "risks.0": [
         {
-          "source": "X @OpenAI",
-          "url": "https://x.com/OpenAI/status/2123862344422088794",
-          "quote": "Distillation can reproduce powerful AI capabilities without the safeguards built around them. We’re sharing new research on our work to combat distillation of our models, how these capabilities transfer, and how we detect and disrupt coordinated attempts."
+          "source": "TechRadar AI",
+          "url": "https://www.techradar.com/pro/power-demands-at-ai-data-centers-set-to-double-by-2030-adding-the-equivalent-of-another-great-britain-to-the-grid-as-an-extra-usd4-trillion-in-spending-kicks-in",
+          "quote": "Global data center electricity demand could double by 2030, intensifying pressure on power grids, household bills, and emissions."
+        },
+        {
+          "source": "The Verge AI",
+          "url": "https://www.theverge.com/science/1040497/ai-data-centers-electricity-un-climate-summit",
+          "quote": "The clean energy revolution hinges on electrifying the entire global economy just as power-hungry data centers are surging."
         }
       ],
       "risks.1": [
         {
-          "source": "Yahoo Finance (AI & semis)",
-          "url": "https://www.tikr.com/blog/michael-burry-sees-1929s-and-2000s-lack-of-a-proximate-cause-in-earnings-nvidias-estimates-keep-rising?ref=yahoofinance&tlnk=yf-261123-rg89fg6v&.tsrc=rss",
-          "quote": "Michael Burry says the AI selloff shares 1929’s and 2000’s “lack of a proximate cause in earnings,” and Nvidia fits. The whole drop has come from Nvidia’s multiple, now 8."
-        },
-        {
           "source": "Bloomberg Tech",
-          "url": "https://www.bloomberg.com/news/articles/2026-11-23/china-s-next-ai-deals-clouded-by-selloff-after-anthropic-ipo",
-          "quote": "China’s Next AI Deals Clouded by Selloff After Anthropic IPO"
+          "url": "https://www.bloomberg.com/news/articles/2026-11-24/us-blacklists-alibaba-owned-company-in-setback-to-ai-ambitions",
+          "quote": "US Blacklists Alibaba-Owned Company in Setback to AI Ambitions Bloomberg.com"
         }
       ],
       "watch.0": [
         {
-          "source": "The Decoder",
-          "url": "https://the-decoder.com/perplexitys-new-monitor-api-turns-web-search-from-a-one-off-query-into-a-nonstop-watchdog/",
-          "quote": "Perplexity is launching a Monitor API that searches the web on a schedule and alerts agents via webhook only when relevant changes occur."
+          "source": "Simon Willison (AI & LLMs)",
+          "url": "https://simonwillison.net/2026/Nov/23/glm-54/",
+          "quote": "GLM 5.4 is now available from Chinese AI lab Z.ai. It's their first model to use a looped transformer architecture, which they describe like this: In a standard Transformer, each layer runs once per forward pass. In a Loop Transformer, a group of weight-shared layers runs for multiple iterations, refining the hidden states from the previous pass."
         }
       ],
       "watch.1": [
         {
-          "source": "X @gdb",
-          "url": "https://x.com/gdb/status/2124582684840399311",
-          "quote": "This post provides transparency that can be the foundation of industry-wide shared safety bars. Perhaps the most important concept from the post is the following: \"AI will also significantly contribute to progress on alignment and monitoring, I think that progress is unlikely to be fast enough to allow the full potential acceleration in pretraining.\" Towards ensuring that safety keeps pace with general intelligence of pretrained models (as measured by \"perplexity\"), the post proposes \"common limits, based on perplexity and other measurements, that developers are committed to not crossing until our ability to under"
-        },
-        {
-          "source": "OpenAI",
-          "url": "https://openai.com/index/perplexity-and-intelligence",
-          "quote": "How perplexity measures progress in AI models, and why it could help developers establish a shared approach to evaluating emerging capabilities."
+          "source": "TechCrunch AI",
+          "url": "https://techcrunch.com/2026/11/23/anthropic-launches-claude-ship-letting-ai-agents-review-fix-and-approve-code-changes/",
+          "quote": "Anthropic's new developer tools aim to eliminate another bottleneck by letting agents handle routine approvals."
         }
       ],
       "watch.2": [
         {
-          "source": "Yahoo Finance (AI & semis)",
-          "url": "https://www.tikr.com/blog/michael-burry-sees-1929s-and-2000s-lack-of-a-proximate-cause-in-earnings-nvidias-estimates-keep-rising?ref=yahoofinance&tlnk=yf-261123-rg89fg6v&.tsrc=rss",
-          "quote": "Michael Burry says the AI selloff shares 1929’s and 2000’s “lack of a proximate cause in earnings,” and Nvidia fits. The whole drop has come from Nvidia’s multiple, now 8."
-        },
-        {
-          "source": "Bloomberg Tech",
-          "url": "https://www.bloomberg.com/news/articles/2026-11-23/china-s-next-ai-deals-clouded-by-selloff-after-anthropic-ipo",
-          "quote": "China’s Next AI Deals Clouded by Selloff After Anthropic IPO"
+          "source": "Import AI",
+          "url": "https://jack-clark.net/2026/11/23/import-ai-482-huawei-kernel-benchmarks-airborne-drone-detection-and-a-national-labs-ai-science-benchmark/",
+          "quote": "Chinese researchers optimize Huawei chips with a kernel improvement benchmark:…AscendGYM will help China do its own form of RSI…Researchers with the Shenzhen Loop Area Institute, a Chinese research organization, have built and released AscendGYM, […]"
         }
       ]
     },
-    "thesis": "La carrera AGI avanza en capacidades de agente y refuerza la seguridad, mientras la volatilidad del mercado y las preocupaciones geopolíticas impactan la inversión en la IA china.",
-    "thesis_en": "The AGI race advances in agent capabilities and strengthens safety, while market volatility and geopolitical concerns impact investment in Chinese AI."
+    "thesis": "La carrera AGI se intensifica con nuevas arquitecturas que prometen eficiencia extrema, demostraciones de agentes en robótica y ciencia, y una agresiva inversión en cómputo.",
+    "thesis_en": "The AGI race intensifies with new architectures promising extreme efficiency, agent demonstrations in robotics and science, and aggressive compute investment."
   },
   "memory": {
     "watch_resolved": [
       {
-        "text": "Decisiones regulatorias sobre centros de datos en Loudoun County, Virginia.",
-        "text_en": "Regulatory decisions on data centers in Loudoun County, Virginia.",
+        "text": "Anuncios de integraciones de Perplexity Monitor API en flujos de trabajo autónomos o plataformas de agentes.",
+        "text_en": "Announcements of Perplexity Monitor API integrations into autonomous workflows or agent platforms.",
         "status": "open",
         "evidence": "",
         "evidence_en": "",
         "evidence_url": ""
       },
       {
-        "text": "Desarrollo de nuevas políticas de seguridad para mitigar fugas de datos y ataques de agentes de IA.",
-        "text_en": "Development of new security policies to mitigate data leaks and AI agent attacks.",
+        "text": "Otros labs de frontera adoptan la perplejidad como métrica de seguridad compartida para sus modelos.",
+        "text_en": "Other frontier labs adopt perplexity as a shared safety metric for their models.",
         "status": "open",
         "evidence": "",
         "evidence_en": "",
         "evidence_url": ""
       },
       {
-        "text": "Publicación de las pruebas completas de la resolución de la Hipótesis de Riemann.",
-        "text_en": "Publication of the full proofs for the Riemann Hypothesis resolution.",
+        "text": "Nuevos anuncios de grandes acuerdos de inversión en IA en China o movimientos en la valoración de Nvidia.",
+        "text_en": "New announcements of major AI investment deals in China or movements in Nvidia's valuation.",
         "status": "open",
         "evidence": "",
         "evidence_en": "",
@@ -206,16 +215,24 @@
     ],
     "entity_deltas": {
       "new_entrants": [
-        "Baillie Gifford",
-        "GIC",
-        "Greg Brockman",
-        "Michael Burry",
-        "Notable Capital"
+        "About Agents",
+        "Amazon Earnings",
+        "Congreso de EEUU",
+        "Robocurve",
+        "Thinking Machines Lab"
       ],
       "returning": [
         {
-          "entity": "Perplexity",
+          "entity": "Epoch AI",
           "silent_days": 5
+        },
+        {
+          "entity": "EEUU",
+          "silent_days": 3
+        },
+        {
+          "entity": "Gemini",
+          "silent_days": 3
         }
       ],
       "streaks": [
@@ -225,38 +242,50 @@
         },
         {
           "entity": "Anthropic",
-          "days": 10
+          "days": 11
         },
         {
           "entity": "NVIDIA",
+          "days": 4
+        },
+        {
+          "entity": "China",
           "days": 3
         }
       ]
     },
     "threads": [
       {
-        "theme": "compute_chips_dc",
-        "label": "Compute y chips",
+        "theme": "frontier_capability",
+        "label": "Capacidad frontier",
         "days": 11,
-        "lead": "Según la fuente · Michael Burry compara la caída de Nvidia con burbujas de 1929 y 2000",
-        "label_en": "Compute and chips",
-        "lead_en": "Reported · Michael Burry compares Nvidia's decline to 1929 and 2000 bubbles"
+        "lead": "Según la fuente · Z.ai lanza GLM-5.4 de 750B con arquitectura 'loop transformer'",
+        "label_en": "Frontier capability",
+        "lead_en": "Reported · Z.ai launches 750B GLM-5.4 model with 'loop transformer' architecture"
       },
       {
         "theme": "agents_automation",
         "label": "Agentes y automatización",
         "days": 11,
-        "lead": "Según la fuente · Perplexity lanza Monitor API para vigilancia web autónoma por agentes",
+        "lead": "Según la fuente · Anthropic lanza Claude Ship: agentes IA para revisar y aprobar código",
         "label_en": "Agents and automation",
-        "lead_en": "Reported · Perplexity launches Monitor API for autonomous web surveillance by agents"
+        "lead_en": "Reported · Anthropic launches Claude Ship: AI agents for code review and approval"
       },
       {
-        "theme": "frontier_capability",
-        "label": "Capacidad frontier",
-        "days": 10,
-        "lead": "Hipótesis · Ayudé a iniciar OpenAI porque quiero que la AGI sea segura y beneficiosa para las personas. Esta p",
-        "label_en": "Frontier capability",
-        "lead_en": "Hypothesis · I helped start OpenAI because I want AGI to be safe and beneficial for people. This post provides"
+        "theme": "compute_chips_dc",
+        "label": "Compute y chips",
+        "days": 11,
+        "lead": "Hipótesis · La demanda de energía en los centros de datos de IA se duplicará para 2030, añadiendo el equivalen",
+        "label_en": "Compute and chips",
+        "lead_en": "Hypothesis · Power demands at AI data centers set to double by 2030 — adding the equivalent of another Great B"
+      },
+      {
+        "theme": "china_stack",
+        "label": "Stack chino",
+        "days": 3,
+        "lead": "Hipótesis · Investigadores chinos optimizan chips Huawei Ascend con el benchmark AscendGYM",
+        "label_en": "China stack",
+        "lead_en": "Hypothesis · Chinese researchers optimize Huawei Ascend chips with AscendGYM benchmark"
       }
     ],
     "followups": {
@@ -464,10 +493,182 @@
           "watch": "Análisis de la rentabilidad de estas inversiones a medio plazo.",
           "watch_en": "Analysis of the profitability of these investments in the medium term.",
           "due": ""
+        },
+        {
+          "source": "The Decoder",
+          "url": "https://the-decoder.com/z-ai-follows-openai-into-loop-transformer-territory-with-its-new-750b-flagship-model/",
+          "quote": "Z.ai is moving its flagship GLM-5.4 model to a loop architecture in which 28 layers run twice, which the company says lets the 750-billion-parameter model match models with 2 to 3 trillion parameters.",
+          "date": "2026-11-24",
+          "excerpt": "Z.ai follows OpenAI into loop transformer territory with its new 750B flagship model | Z.ai is moving its flagship GLM-5.4 model to a loop architecture in which 28 layers run twice, which the company says lets the 750-billion-parameter model match models with 2 to 3 trillion parameters. Benchmark scores are only availa",
+          "es": "Según la fuente · Z.ai lanza GLM-5.4 de 750B con arquitectura 'loop transformer'",
+          "en": "Reported · Z.ai launches 750B GLM-5.4 model with 'loop transformer' architecture",
+          "watch": "Z.ai publica benchmarks del modelo GLM-5.4 de 750B",
+          "watch_en": "Z.ai publishes GLM-5.4 750B model benchmarks",
+          "due": ""
+        },
+        {
+          "source": "X @GoogleDeepMind",
+          "url": "https://x.com/GoogleDeepMind/status/2124911073266413634",
+          "quote": "Using teams of Gemini 4 agents, we’ve built new quantum circuits that cut future simulation costs by up to 10 times.",
+          "date": "2026-11-24",
+          "excerpt": "Quantum computers could one day transform fusion energy, chemistry, and drug discovery - if we can make the algorithms efficient enough to run on early hardware. Using teams of Gemini 4 agents, we’ve built new quantum circuits that cut future simulation costs by up to 10 times.",
+          "es": "Hipótesis · Los ordenadores cuánticos podrían transformar algún día la energía de fusión, la química y el descubrimiento de fármacos - si podemos hacer que los algoritmos sean lo suficientemente eficientes como para ejecutarse en hardware temprano. Usando equipos de agentes Gemini 4, hemos construido nuevos circuitos cuánticos que reducen los costos de simulación futuros hasta 10 veces.",
+          "en": "Hypothesis · Quantum computers could one day transform fusion energy, chemistry, and drug discovery - if we can make the algorithms efficient enough to run on early hardware. Using teams of Gemini 4 agents, we’ve built new quantum circuits that cut future simulation costs by up to 10 times.",
+          "watch": "Resultados de la aplicación de estos circuitos en simulaciones de fusión o química",
+          "watch_en": "Results of applying these circuits in fusion or chemistry simulations",
+          "due": ""
+        },
+        {
+          "source": "TechCrunch AI",
+          "url": "https://techcrunch.com/2026/11/23/anthropic-launches-claude-ship-letting-ai-agents-review-fix-and-approve-code-changes/",
+          "quote": "Anthropic's new developer tools aim to eliminate another bottleneck by letting agents handle routine approvals.",
+          "date": "2026-11-24",
+          "excerpt": "Anthropic launches Claude Ship, letting AI agents review, fix, and approve code changes | As AI-generated code piles up, Anthropic's new developer tools aim to eliminate another bottleneck by letting agents handle routine approvals.",
+          "es": "Según la fuente · Anthropic lanza Claude Ship: agentes IA para revisar y aprobar código",
+          "en": "Reported · Anthropic launches Claude Ship: AI agents for code review and approval",
+          "watch": "Adopción de Claude Ship y su impacto en tiempos de despliegue de software",
+          "watch_en": "Claude Ship adoption and impact on software deployment times",
+          "due": ""
+        },
+        {
+          "source": "X @gdb",
+          "url": "https://x.com/gdb/status/2125041014587146384",
+          "quote": "GPT-6.2 Astra on Codex scores 97% on RoboDojo-RC Tier 1 across 120 real-world robot trials, the highest among anything we've tested. We are retiring RoboDojo from future evaluations.",
+          "date": "2026-11-24",
+          "excerpt": "GPT-6.2 Astra is a step function on robotics: | GPT-6.2 Astra is a step function on robotics: Robocurve PBC (@robocurve) GPT-6.2 Astra on Codex scores 97% on RoboDojo-RC Tier 1 across 120 real-world robot trials, the highest among anything we've tested. We are retiring RoboDojo from future evaluations. More details bel",
+          "es": "Según la fuente · GPT-6.2 Astra de OpenAI logra 97% en test de robótica RoboDojo-RC Tier 1",
+          "en": "Reported · OpenAI's GPT-6.2 Astra scores 97% on RoboDojo-RC Tier 1 robotics test",
+          "watch": "Aplicaciones prácticas y despliegue de GPT-6.2 Astra en robótica real",
+          "watch_en": "Practical applications and deployment of GPT-6.2 Astra in real robotics",
+          "due": ""
+        },
+        {
+          "source": "TechRadar AI",
+          "url": "https://www.techradar.com/pro/power-demands-at-ai-data-centers-set-to-double-by-2030-adding-the-equivalent-of-another-great-britain-to-the-grid-as-an-extra-usd4-trillion-in-spending-kicks-in",
+          "quote": "Global data center electricity demand could double by 2030, intensifying pressure on power grids, household bills, and emissions.",
+          "date": "2026-11-24",
+          "excerpt": "Power demands at AI data centers set to double by 2030 — adding the equivalent of another Great Britain to the grid as an extra $4 trillion in spending kicks in | Global data center electricity demand could double by 2030, intensifying pressure on power grids, household bills, and emissions.",
+          "es": "Hipótesis · La demanda de energía en los centros de datos de IA se duplicará para 2030, añadiendo el equivalente a otra Gran Bretaña a la red, mientras se activan 4 billones de dólares adicionales en gasto",
+          "en": "Hypothesis · Power demands at AI data centers set to double by 2030 — adding the equivalent of another Great Britain to the grid as an extra $4 trillion in spending kicks in",
+          "watch": "Planes de expansión de capacidad eléctrica de gobiernos y utilities",
+          "watch_en": "Government and utility plans for electricity capacity expansion",
+          "due": ""
+        },
+        {
+          "source": "VentureBeat AI",
+          "url": "https://venturebeat.com/orchestration/claude-fable-5-2-cost-three-times-as-much-as-opus-5-5-for-nearly-the-same-results-in-a-venturebeat-bug-fixing-test",
+          "quote": "Fable 5.2 cost 3x Opus 5.5 for 1 more bug fix",
+          "date": "2026-11-24",
+          "excerpt": "Fable 5.2 cost 3x Opus 5.5 for 1 more bug fix - VentureBeat | Fable 5.2 cost 3x Opus 5.5 for 1 more bug fix VentureBeat",
+          "es": "Según la fuente · Fable 5.2 es 3 veces más caro que Opus 5.5 con mínima mejora en corrección de bugs",
+          "en": "Reported · Fable 5.2 is 3 times more expensive than Opus 5.5 with minimal bug fix improvement",
+          "watch": "Análisis de coste-rendimiento de modelos de código en tareas complejas",
+          "watch_en": "Cost-performance analysis of code models in complex tasks",
+          "due": ""
+        },
+        {
+          "source": "Bloomberg Tech",
+          "url": "https://www.bloomberg.com/news/articles/2026-11-24/us-blacklists-alibaba-owned-company-in-setback-to-ai-ambitions",
+          "quote": "US Blacklists Alibaba-Owned Company in Setback to AI Ambitions Bloomberg.com",
+          "date": "2026-11-24",
+          "excerpt": "US Blacklists Alibaba-Owned Company in Setback to AI Ambitions - Bloomberg.com | US Blacklists Alibaba-Owned Company in Setback to AI Ambitions Bloomberg.com",
+          "es": "Según la fuente · EEUU incluye empresa de Alibaba en lista negra, afectando ambiciones de IA china",
+          "en": "Reported · US blacklists Alibaba-owned company, impacting China's AI ambitions",
+          "watch": "Reacción del gobierno chino o contramedidas",
+          "watch_en": "Chinese government's reaction or countermeasures",
+          "due": ""
+        },
+        {
+          "source": "Import AI",
+          "url": "https://jack-clark.net/2026/11/23/import-ai-482-huawei-kernel-benchmarks-airborne-drone-detection-and-a-national-labs-ai-science-benchmark/",
+          "quote": "Chinese researchers optimize Huawei chips with a kernel improvement benchmark:…AscendGYM will help China do its own form of RSI…Researchers with the Shenzhen Loop Area Institute, a Chinese research organization, have built and released AscendGYM, […]",
+          "date": "2026-11-24",
+          "excerpt": "Import AI 482: Huawei kernel benchmarks; airborne drone detection; and a national lab’s AI science benchmark | Welcome to Import AI, a newsletter about AI research. Import AI runs on arXiv, cappuccinos, and feedback from readers. Subscribe now Chinese researchers optimize Huawei chips with a kernel improvement benchmar",
+          "es": "Hipótesis · Investigadores chinos optimizan chips Huawei Ascend con el benchmark AscendGYM",
+          "en": "Hypothesis · Chinese researchers optimize Huawei Ascend chips with AscendGYM benchmark",
+          "watch": "Impacto de AscendGYM en el rendimiento real y adopción de chips Ascend",
+          "watch_en": "Impact of AscendGYM on real-world performance and adoption of Ascend chips",
+          "due": ""
+        },
+        {
+          "source": "Epoch AI",
+          "url": "https://epoch.ai/data-insights/agentic-inference-capacity-growth",
+          "quote": "Agentic inference capacity grew 4.6× in a year, versus 2.6× for compute capacity",
+          "date": "2026-11-24",
+          "excerpt": "Agentic inference capacity grew 4.6× in a year, versus 2.6× for compute capacity - Epoch AI | Agentic inference capacity grew 4.6× in a year, versus 2.6× for compute capacity Epoch AI",
+          "es": "Según la fuente · Capacidad de inferencia agentiva creció 4.6x, superando 2.6x de cómputo general",
+          "en": "Reported · Agentic inference capacity grew 4.6x, surpassing 2.6x of general compute",
+          "watch": "Tendencia de inversión en infraestructura dedicada a inferencia agentiva",
+          "watch_en": "Investment trend in infrastructure dedicated to agentic inference",
+          "due": ""
+        },
+        {
+          "source": "Epoch AI",
+          "url": "https://epoch.ai/data-insights/anthropic-openai-compute-spend-growth",
+          "quote": "Anthropic’s compute spending is increasing by 4x per year, outpacing OpenAI’s 3x",
+          "date": "2026-11-24",
+          "excerpt": "Anthropic’s compute spending is increasing by 4x per year, outpacing OpenAI’s 3x - Epoch AI | Anthropic’s compute spending is increasing by 4x per year, outpacing OpenAI’s 3x Epoch AI",
+          "es": "Según la fuente · Gasto en cómputo de Anthropic aumenta un 4x anual, superando el 3x de OpenAI",
+          "en": "Reported · Anthropic's compute spending increases 4x annually, surpassing OpenAI's 3x",
+          "watch": "Nuevos lanzamientos de modelos de Anthropic que justifiquen esta inversión",
+          "watch_en": "New Anthropic model releases justifying this investment",
+          "due": ""
         }
       ],
       "closed": {},
       "updates": [
+        {
+          "date": "2026-11-24",
+          "before": {
+            "source": "The Decoder",
+            "url": "https://the-decoder.com/z-ai-follows-openai-into-loop-transformer-territory-with-its-new-750b-flagship-model/",
+            "quote": "Z.ai is moving its flagship GLM-5.4 model to a loop architecture in which 28 layers run twice, which the company says lets the 750-billion-parameter model match models with 2 to 3 trillion parameters.",
+            "date": "2026-11-24",
+            "excerpt": "Z.ai follows OpenAI into loop transformer territory with its new 750B flagship model | Z.ai is moving its flagship GLM-5.4 model to a loop architecture in which 28 layers run twice, which the company says lets the 750-billion-parameter model match models with 2 to 3 trillion parameters. Benchmark scores are only availa",
+            "es": "Según la fuente · Z.ai lanza GLM-5.4 de 750B con arquitectura 'loop transformer'",
+            "en": "Reported · Z.ai launches 750B GLM-5.4 model with 'loop transformer' architecture",
+            "watch": "Z.ai publica benchmarks del modelo GLM-5.4 de 750B",
+            "watch_en": "Z.ai publishes GLM-5.4 750B model benchmarks"
+          },
+          "after": {
+            "source": "Simon Willison (AI & LLMs)",
+            "url": "https://simonwillison.net/2026/Nov/23/glm-54/",
+            "quote": "GLM 5.4 is now available from Chinese AI lab Z.ai. It's their first model to use a looped transformer architecture, which they describe like this: In a standard Transformer, each layer runs once per forward pass. In a Loop Transformer, a group of weight-shared layers runs for multiple iterations, refining the hidden states from the previous pass.",
+            "date": "2026-11-24",
+            "excerpt": "GLM-5.4: Toward Generalized Coding with Our First Loop Transformer | GLM-5.4: Toward Generalized Coding with Our First Loop Transformer GLM 5.4 is now available from Chinese AI lab Z.ai. It's their first model to use a looped transformer architecture, which they describe like this: In a standard Transformer, each layer",
+            "es": "Según la fuente · Z.ai detalla GLM-5.4, su primer 'loop transformer' con 750B parámetros",
+            "en": "Reported · Z.ai details GLM-5.4, its first 'loop transformer' with 750B parameters",
+            "watch": "Publicación de benchmarks de rendimiento de GLM-5.4 de Z.ai",
+            "watch_en": "Release of Z.ai's GLM-5.4 performance benchmarks"
+          },
+          "status": "development"
+        },
+        {
+          "date": "2026-11-24",
+          "before": {
+            "source": "X @GoogleDeepMind",
+            "url": "https://x.com/GoogleDeepMind/status/2124911073266413634",
+            "quote": "Using teams of Gemini 4 agents, we’ve built new quantum circuits that cut future simulation costs by up to 10 times.",
+            "date": "2026-11-24",
+            "excerpt": "Quantum computers could one day transform fusion energy, chemistry, and drug discovery - if we can make the algorithms efficient enough to run on early hardware. Using teams of Gemini 4 agents, we’ve built new quantum circuits that cut future simulation costs by up to 10 times.",
+            "es": "Hipótesis · Los ordenadores cuánticos podrían transformar algún día la energía de fusión, la química y el descubrimiento de fármacos - si podemos hacer que los algoritmos sean lo suficientemente eficientes como para ejecutarse en hardware temprano. Usando equipos de agentes Gemini 4, hemos construido nuevos circuitos cuánticos que reducen los costos de simulación futuros hasta 10 veces.",
+            "en": "Hypothesis · Quantum computers could one day transform fusion energy, chemistry, and drug discovery - if we can make the algorithms efficient enough to run on early hardware. Using teams of Gemini 4 agents, we’ve built new quantum circuits that cut future simulation costs by up to 10 times.",
+            "watch": "Resultados de la aplicación de estos circuitos en simulaciones de fusión o química",
+            "watch_en": "Results of applying these circuits in fusion or chemistry simulations"
+          },
+          "after": {
+            "source": "DeepMind Blog",
+            "url": "https://deepmind.google/blog/finding-faster-quantum-algorithms-with-agents-and-formal-verification/",
+            "quote": "Using agent teams and formal verification to improve quantum algorithms for fusion and chemistry.",
+            "date": "2026-11-24",
+            "excerpt": "Finding faster quantum algorithms with agents and formal verification | Using agent teams and formal verification to improve quantum algorithms for fusion and chemistry.",
+            "es": "Confirmado · DeepMind detalla uso de agentes para acelerar algoritmos cuánticos en fusión y química",
+            "en": "Confirmed · DeepMind details use of agents to accelerate quantum algorithms in fusion and chemistry",
+            "watch": "Publicación de resultados detallados o pruebas experimentales de los algoritmos",
+            "watch_en": "Release of detailed results or experimental tests of algorithms"
+          },
+          "status": "development"
+        },
         {
           "date": "2026-11-23",
           "before": {
@@ -493,69 +694,13 @@
             "watch_en": "Publication of similar defense methods by other frontier labs."
           },
           "status": "development"
-        },
-        {
-          "date": "2026-11-23",
-          "before": {
-            "source": "Latent Space",
-            "url": "https://latent.space/p/ainews-anthropic-successfully-completes-largest-ipo-in-history-valued-at-1-5t/",
-            "quote": "Anthropic successfully completes largest IPO in history, valued at $1.5T",
-            "date": "2026-11-21",
-            "excerpt": "[AINews] Anthropic successfully completes largest IPO in history, valued at $1.5T | November 19, 2026 — ANT went from $83 at pricing to $111.50 at the open and $97.17 at the close. Plus, Google opens Genie 4 to developers.",
-            "es": "Según la fuente · Anthropic cierra una IPO histórica con valoración inicial de 1.5 billones de dólares",
-            "en": "Reported · Anthropic closes historic IPO with initial valuation of $1.5 trillion",
-            "watch": "Estabilización de la cotización de Anthropic y cómo invierte el capital de la IPO en compute o talento.",
-            "watch_en": "Stabilization of Anthropic's stock price and how it invests IPO capital in compute or talent."
-          },
-          "after": {
-            "source": "Bloomberg Tech",
-            "url": "https://www.bloomberg.com/news/articles/2026-11-23/china-s-next-ai-deals-clouded-by-selloff-after-anthropic-ipo",
-            "quote": "China’s Next AI Deals Clouded by Selloff After Anthropic IPO",
-            "date": "2026-11-23",
-            "excerpt": "China’s Next AI Deals Clouded by Selloff After Anthropic IPO - Bloomberg.com | China’s Next AI Deals Clouded by Selloff After Anthropic IPO Bloomberg.com",
-            "es": "Según la fuente · La volatilidad tras la IPO de Anthropic nubla futuros acuerdos de IA en China",
-            "en": "Reported · Volatility after Anthropic IPO clouds future AI deals in China",
-            "watch": "Anuncios de grandes acuerdos de inversión en IA en China.",
-            "watch_en": "Announcements of major AI investment deals in China."
-          },
-          "status": "development"
-        },
-        {
-          "date": "2026-11-23",
-          "before": {
-            "source": "Yahoo Finance (AI & semis)",
-            "url": "https://247wallst.com/investing/2026/11/21/nvidia-stock-has-crashed-48-and-now-trades-at-15-times-earnings-its-cheapest-in-more-than-a-decade-and-cheaper-than-microsoft-and-broadcom/?.tsrc=rss",
-            "quote": "Nvidia Stock Has Crashed 48% and Now Trades at 15 Times Earnings",
-            "date": "2026-11-22",
-            "excerpt": "Nvidia Stock Has Crashed 48% and Now Trades at 15 Times Earnings, Its Cheapest in More Than a Decade and Cheaper Than Microsoft and Broadcom | Nvidia closed 48% below its record on Friday and trades at 15 times its last four quarters of earnings, the lowest since at least 2014 and less than Microsoft or Broadcom. Here ",
-            "es": "Según la fuente · Las acciones de Nvidia caen un 48%, cotizando a 15 veces beneficios",
-            "en": "Reported · Nvidia stock falls 48%, trading at 15 times earnings",
-            "watch": "Próximos resultados financieros de Nvidia y previsiones de demanda de chips.",
-            "watch_en": "Nvidia's upcoming financial results and chip demand forecasts."
-          },
-          "after": {
-            "source": "Yahoo Finance (AI & semis)",
-            "url": "https://www.tikr.com/blog/michael-burry-sees-1929s-and-2000s-lack-of-a-proximate-cause-in-earnings-nvidias-estimates-keep-rising?ref=yahoofinance&tlnk=yf-261123-rg89fg6v&.tsrc=rss",
-            "quote": "Michael Burry says the AI selloff shares 1929’s and 2000’s “lack of a proximate cause in earnings,” and Nvidia fits. The whole drop has come from Nvidia’s multiple, now 8.",
-            "date": "2026-11-23",
-            "excerpt": "Michael Burry Sees 1929’s and 2000’s “Lack of a Proximate Cause in Earnings.” Nvidia’s Estimates Keep Rising | Key TakeawaysMichael Burry says the AI selloff shares 1929’s and 2000’s “lack of a proximate cause in earnings,” and Nvidia fits. The whole drop has come from Nvidia’s multiple, now 8.",
-            "es": "Según la fuente · Michael Burry compara la caída de Nvidia con burbujas de 1929 y 2000",
-            "en": "Reported · Michael Burry compares Nvidia's decline to 1929 and 2000 bubbles",
-            "watch": "Publicación del próximo informe de resultados de Nvidia.",
-            "watch_en": "Nvidia's next earnings report publication."
-          },
-          "status": "development"
         }
       ]
     }
   },
   "pulse": {
-    "value": 35,
+    "value": 92,
     "series": [
-      {
-        "date": "2026-09-19",
-        "value": 81
-      },
       {
         "date": "2026-09-23",
         "value": 85
@@ -671,9 +816,13 @@
       {
         "date": "2026-11-23",
         "value": 35
+      },
+      {
+        "date": "2026-11-24",
+        "value": 92
       }
     ],
-    "hotter_than": 0,
+    "hotter_than": 93,
     "editions": 29
   },
   "movers": [
@@ -681,42 +830,42 @@
       "entity": "OpenAI",
       "weight": 12.7,
       "share": 100,
-      "trend": "flat"
-    },
-    {
-      "entity": "Anthropic",
-      "weight": 10.27,
-      "share": 81,
-      "trend": "up"
-    },
-    {
-      "entity": "NVIDIA",
-      "weight": 4.25,
-      "share": 33,
       "trend": "down"
     },
     {
+      "entity": "Anthropic",
+      "weight": 9.14,
+      "share": 72,
+      "trend": "up"
+    },
+    {
       "entity": "DeepMind",
-      "weight": 3.59,
-      "share": 28,
+      "weight": 3.63,
+      "share": 29,
+      "trend": "down"
+    },
+    {
+      "entity": "China",
+      "weight": 3.43,
+      "share": 27,
       "trend": "flat"
     },
     {
-      "entity": "Google",
-      "weight": 2.94,
-      "share": 23,
-      "trend": "flat"
+      "entity": "NVIDIA",
+      "weight": 3.39,
+      "share": 27,
+      "trend": "down"
     },
     {
-      "entity": "AMD",
-      "weight": 2.75,
-      "share": 22,
-      "trend": "new"
+      "entity": "Alibaba",
+      "weight": 2.58,
+      "share": 20,
+      "trend": "up"
     }
   ],
   "activity": {
-    "label": "TRANQUILO",
-    "class": "quiet"
+    "label": "ALERTA",
+    "class": "alert"
   },
   "source_health": {
     "configured": 46,
@@ -823,67 +972,263 @@
   },
   "degraded": false,
   "llm_error": "",
-  "dropped_noise": 11,
+  "dropped_noise": 12,
   "merged_duplicates": 0,
   "counts": {
-    "signal": 5,
+    "signal": 12,
     "context": 3
   },
   "items": [
     {
-      "title": "Perplexity's new Monitor API turns web search from a one-off query into a nonstop watchdog",
-      "link": "https://the-decoder.com/perplexitys-new-monitor-api-turns-web-search-from-a-one-off-query-into-a-nonstop-watchdog/",
-      "published": "2026-11-22T14:20:28+00:00",
-      "summary": "Perplexity is launching a Monitor API that searches the web on a schedule and alerts agents via webhook only when relevant changes occur. Its own decision model filters out unimportant results. For Perplexity, the API is part of a broader strategy to stand out from an increasingly interchangeable chatbot business through developer tools. The article Perplexity's new Monitor API turns web search from a one-off query into a nonstop watchdog appeared first on The Decoder .",
-      "image_url": "https://the-decoder.com/wp-content/uploads/2026/06/Perplexity-Logo-Silhouette-Nano-Banana-Pro.jpg",
+      "title": "Z.ai follows OpenAI into loop transformer territory with its new 750B flagship model",
+      "link": "https://the-decoder.com/z-ai-follows-openai-into-loop-transformer-territory-with-its-new-750b-flagship-model/",
+      "published": "2026-11-23T15:13:03+00:00",
+      "summary": "Z.ai is moving its flagship GLM-5.4 model to a loop architecture in which 28 layers run twice, which the company says lets the 750-billion-parameter model match models with 2 to 3 trillion parameters. Benchmark scores are only available for a smaller 30B test model so far, and Z.ai is positioning GLM-5.4 as the start of \"Generalized Coding,\" where code also generates videos, games, and CAD models. The article Z.ai follows OpenAI into loop transformer territory with its new 750B flagship model appeared first on The Decoder .",
+      "image_url": "https://the-decoder.com/wp-content/uploads/2026/06/zhipu-ai-logo-wall-nano-banana-pro.jpg",
       "source": "The Decoder",
       "feed_tags": [
         "models",
         "economics",
         "benchmarks"
       ],
-      "score": 98,
+      "score": 100,
       "primary": "models",
       "tags": [],
-      "heuristic_score": 93,
-      "url": "https://the-decoder.com/perplexitys-new-monitor-api-turns-web-search-from-a-one-off-query-into-a-nonstop-watchdog/",
+      "heuristic_score": 100,
+      "url": "https://the-decoder.com/z-ai-follows-openai-into-loop-transformer-territory-with-its-new-750b-flagship-model/",
       "is_repeat": false,
       "novelty_score": 100,
-      "adjusted_score": 93,
-      "llm_score": 85,
+      "adjusted_score": 100,
+      "llm_score": 90,
       "verdict": "signal",
-      "so_what": "Permite a los agentes monitorizar internet de forma continua, facilitando la automatización de tareas que requieren vigilancia constante de información cambiante.",
-      "power_shift": "Perplexity gana / Agentes ganan",
-      "watch_next": "Anuncios de integraciones de Monitor API en plataformas de agentes.",
-      "title_es": "Perplexity lanza Monitor API para vigilancia web autónoma por agentes",
-      "llm_theme": "agents_automation",
-      "why": "Permite a los agentes monitorizar internet de forma continua, facilitando la automatización de tareas que requieren vigilancia constante de información cambiante.",
+      "so_what": "Z.ai introduce una arquitectura de bucle que podría escalar la eficiencia de modelos, un movimiento clave en la carrera por capacidades.",
+      "power_shift": "Z.ai gana / Otros frontier labs bajo presión",
+      "watch_next": "Z.ai publica benchmarks del modelo GLM-5.4 de 750B",
+      "title_es": "Z.ai lanza GLM-5.4 de 750B con arquitectura 'loop transformer'",
+      "llm_theme": "frontier_capability",
+      "why": "Z.ai introduce una arquitectura de bucle que podría escalar la eficiencia de modelos, un movimiento clave en la carrera por capacidades.",
       "entities": [
-        "Perplexity"
+        "Zhipu AI",
+        "OpenAI"
       ],
-      "title_en": "Perplexity launches Monitor API for autonomous web surveillance by agents",
-      "so_what_en": "Enables agents to continuously monitor the internet, facilitating automation of tasks requiring constant vigilance of changing information.",
-      "power_shift_en": "Perplexity gains / Agents gain",
-      "watch_next_en": "Announcements of Monitor API integrations into agent platforms.",
+      "title_en": "Z.ai launches 750B GLM-5.4 model with 'loop transformer' architecture",
+      "so_what_en": "Z.ai introduces a loop architecture that could scale model efficiency, a key move in the race for capabilities.",
+      "power_shift_en": "Z.ai gains / Other frontier labs pressured",
+      "watch_next_en": "Z.ai publishes GLM-5.4 750B model benchmarks",
       "evidence": {
         "source": "The Decoder",
-        "url": "https://the-decoder.com/perplexitys-new-monitor-api-turns-web-search-from-a-one-off-query-into-a-nonstop-watchdog/",
-        "quote": "Perplexity is launching a Monitor API that searches the web on a schedule and alerts agents via webhook only when relevant changes occur."
+        "url": "https://the-decoder.com/z-ai-follows-openai-into-loop-transformer-territory-with-its-new-750b-flagship-model/",
+        "quote": "Z.ai is moving its flagship GLM-5.4 model to a loop architecture in which 28 layers run twice, which the company says lets the 750-billion-parameter model match models with 2 to 3 trillion parameters."
       },
       "evidence_kind": "reported",
       "noise_penalty": 0,
-      "final_score": 98,
+      "final_score": 100,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(12)-noise(0)",
+      "strategic_theme": "frontier_capability",
+      "layer": "signal"
+    },
+    {
+      "title": "GLM-5.4: Toward Generalized Coding with Our First Loop Transformer",
+      "link": "https://simonwillison.net/2026/Nov/23/glm-54/",
+      "published": "2026-11-23T23:40:49+00:00",
+      "summary": "GLM-5.4: Toward Generalized Coding with Our First Loop Transformer GLM 5.4 is now available from Chinese AI lab Z.ai. It's their first model to use a looped transformer architecture, which they describe like this: In a standard Transformer, each layer runs once per forward pass. In a Loop Transformer, a group of weight-shared layers runs for multiple iterations, refining the hidden states from the previous pass. This gives us a deeper network without increasing the parameter count. This is the second mention of looped transformers I've seen in the past week - the first was Inkling 2 Mini from Thinking Machines Lab on November 20th, who said: Inkling 2 Mini is a looped transformer, running the middle layers of the model three times for every token. This allows the model to apply more reaso…",
+      "image_url": "https://static.simonwillison.net/static/2026/glm-5.4-max.webp",
+      "source": "Simon Willison (AI & LLMs)",
+      "feed_tags": [
+        "agents",
+        "mcp",
+        "coding",
+        "tools"
+      ],
+      "score": 100,
+      "primary": "models",
+      "tags": [],
+      "heuristic_score": 100,
+      "url": "https://simonwillison.net/2026/Nov/23/glm-54/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 100,
+      "llm_score": 95,
+      "verdict": "signal",
+      "so_what": "La arquitectura de transformadores en bucle es una tendencia emergente para escalar capacidades con menos parámetros, aumentando la eficiencia de entrenamiento.",
+      "power_shift": "Z.ai gana / Otros frontier labs bajo presión",
+      "watch_next": "Publicación de benchmarks de rendimiento de GLM-5.4 de Z.ai",
+      "title_es": "Z.ai detalla GLM-5.4, su primer 'loop transformer' con 750B parámetros",
+      "llm_theme": "frontier_capability",
+      "why": "La arquitectura de transformadores en bucle es una tendencia emergente para escalar capacidades con menos parámetros, aumentando la eficiencia de entrenamiento.",
+      "entities": [
+        "Zhipu AI",
+        "Thinking Machines Lab",
+        "OpenAI"
+      ],
+      "title_en": "Z.ai details GLM-5.4, its first 'loop transformer' with 750B parameters",
+      "so_what_en": "The loop transformer architecture is an emerging trend to scale capabilities with fewer parameters, increasing training efficiency.",
+      "power_shift_en": "Z.ai gains / Other frontier labs pressured",
+      "watch_next_en": "Release of Z.ai's GLM-5.4 performance benchmarks",
+      "evidence": {
+        "source": "Simon Willison (AI & LLMs)",
+        "url": "https://simonwillison.net/2026/Nov/23/glm-54/",
+        "quote": "GLM 5.4 is now available from Chinese AI lab Z.ai. It's their first model to use a looped transformer architecture, which they describe like this: In a standard Transformer, each layer runs once per forward pass. In a Loop Transformer, a group of weight-shared layers runs for multiple iterations, refining the hidden states from the previous pass."
+      },
+      "evidence_kind": "reported",
+      "noise_penalty": 0,
+      "final_score": 100,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(12)-noise(0)",
+      "strategic_theme": "frontier_capability",
+      "layer": "signal"
+    },
+    {
+      "title": "Anthropic launches Claude Ship, letting AI agents review, fix, and approve code changes",
+      "link": "https://techcrunch.com/2026/11/23/anthropic-launches-claude-ship-letting-ai-agents-review-fix-and-approve-code-changes/",
+      "published": "2026-11-23T22:05:50+00:00",
+      "summary": "As AI-generated code piles up, Anthropic's new developer tools aim to eliminate another bottleneck by letting agents handle routine approvals.",
+      "image_url": "https://techcrunch.com/wp-content/uploads/2026/10/GettyImages-2295579000.jpg?resize=1200,800",
+      "source": "TechCrunch AI",
+      "feed_tags": [
+        "tech",
+        "startups",
+        "models",
+        "compute"
+      ],
+      "score": 100,
+      "primary": "models",
+      "tags": [],
+      "heuristic_score": 97,
+      "url": "https://techcrunch.com/2026/11/23/anthropic-launches-claude-ship-letting-ai-agents-review-fix-and-approve-code-changes/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 97,
+      "llm_score": 90,
+      "verdict": "signal",
+      "so_what": "La automatización de la revisión y aprobación de código con agentes reduce los cuellos de botella en el desarrollo de software y aumenta la eficiencia.",
+      "power_shift": "Anthropic gana / Ingenieros de software y QA pierden tiempo",
+      "watch_next": "Adopción de Claude Ship y su impacto en tiempos de despliegue de software",
+      "title_es": "Anthropic lanza Claude Ship: agentes IA para revisar y aprobar código",
+      "llm_theme": "agents_automation",
+      "why": "La automatización de la revisión y aprobación de código con agentes reduce los cuellos de botella en el desarrollo de software y aumenta la eficiencia.",
+      "entities": [
+        "Anthropic",
+        "Claude"
+      ],
+      "title_en": "Anthropic launches Claude Ship: AI agents for code review and approval",
+      "so_what_en": "Automating code review and approval with agents reduces software development bottlenecks and increases efficiency.",
+      "power_shift_en": "Anthropic gains / Software engineers and QA save time",
+      "watch_next_en": "Claude Ship adoption and impact on software deployment times",
+      "evidence": {
+        "source": "TechCrunch AI",
+        "url": "https://techcrunch.com/2026/11/23/anthropic-launches-claude-ship-letting-ai-agents-review-fix-and-approve-code-changes/",
+        "quote": "Anthropic's new developer tools aim to eliminate another bottleneck by letting agents handle routine approvals."
+      },
+      "evidence_kind": "reported",
+      "noise_penalty": 0,
+      "final_score": 100,
       "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(12)-noise(0)",
       "strategic_theme": "agents_automation",
       "layer": "signal"
     },
     {
-      "title": "I helped start OpenAI because I want AGI to be safe and beneficial for people. This post provides transparency that can be the foundation of industry-wide shared safety bars. Perhaps the most important concept from the post is the following: \"AI will also significantly contribute to progress on alignment and monitoring, I think that progress is unlikely to be fast enough to allow the full potential acceleration in pretraining.\" Towards ensuring that safety keeps pace with general intelligence of pretrained models (as measured by \"perplexity\"), the post proposes \"common limits, based on perplexity and other measurements, that developers are committed to not crossing until our ability to understand and monitor AI behavior achieves a certain concrete milestone (such as the development of a successor to CoT monitors).\" The general idea is to create a first shared limit, on some shared key metric, along with concrete exit criteria that would allow going beyond that. This can lead to a \"common framework for setting successive limits and pacing further development\". Excited to move forward the conversation on pacing towards shared standards that are rooted in the science!",
-      "link": "https://x.com/gdb/status/2124582684840399311",
-      "published": "2026-11-22T19:15:59+00:00",
-      "summary": "I helped start OpenAI because I want AGI to be safe and beneficial for people. This post provides transparency that can be the foundation of industry-wide shared safety bars. Perhaps the most important concept from the post is the following: \"AI will also significantly contribute to progress on alignment and monitoring, I think that progress is unlikely to be fast enough to allow the full potential acceleration in pretraining.\" Towards ensuring that safety keeps pace with general intelligence of pretrained models (as measured by \"perplexity\"), the post proposes \"common limits, based on perplexity and other measurements, that developers are committed to not crossing until our ability to understand and monitor AI behavior achieves a certain concrete milestone (such as the development of a s…",
-      "image_url": "https://pbs.twimg.com/media/HXvptOTXIAAtrY0.jpg",
+      "title": "GPT-6.2 Astra is a step function on robotics:",
+      "link": "https://x.com/gdb/status/2125041014587146384",
+      "published": "2026-11-24T01:37:13+00:00",
+      "summary": "GPT-6.2 Astra is a step function on robotics: Robocurve PBC (@robocurve) GPT-6.2 Astra on Codex scores 97% on RoboDojo-RC Tier 1 across 120 real-world robot trials, the highest among anything we've tested. We are retiring RoboDojo from future evaluations. More details below 🧵 Video —",
+      "image_url": "https://pbs.twimg.com/media/HX2ewDVbgAAnlY0.jpg",
       "source": "X @gdb",
+      "feed_tags": [
+        "labs",
+        "x",
+        "frontier"
+      ],
+      "score": 100,
+      "primary": "models",
+      "tags": [],
+      "heuristic_score": 86,
+      "url": "https://x.com/gdb/status/2125041014587146384",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 86,
+      "llm_score": 95,
+      "verdict": "signal",
+      "so_what": "El rendimiento superior de GPT-6.2 Astra en robótica sugiere un avance significativo en la capacidad de los modelos para controlar sistemas físicos complejos.",
+      "power_shift": "OpenAI gana / Otros labs de robótica bajo presión",
+      "watch_next": "Aplicaciones prácticas y despliegue de GPT-6.2 Astra en robótica real",
+      "title_es": "GPT-6.2 Astra de OpenAI logra 97% en test de robótica RoboDojo-RC Tier 1",
+      "llm_theme": "frontier_capability",
+      "why": "El rendimiento superior de GPT-6.2 Astra en robótica sugiere un avance significativo en la capacidad de los modelos para controlar sistemas físicos complejos.",
+      "entities": [
+        "OpenAI",
+        "GPT-6.2 Astra",
+        "Robocurve"
+      ],
+      "title_en": "OpenAI's GPT-6.2 Astra scores 97% on RoboDojo-RC Tier 1 robotics test",
+      "so_what_en": "GPT-6.2 Astra's superior performance in robotics suggests a significant advance in models' ability to control complex physical systems.",
+      "power_shift_en": "OpenAI gains / Other robotics labs pressured",
+      "watch_next_en": "Practical applications and deployment of GPT-6.2 Astra in real robotics",
+      "evidence": {
+        "source": "X @gdb",
+        "url": "https://x.com/gdb/status/2125041014587146384",
+        "quote": "GPT-6.2 Astra on Codex scores 97% on RoboDojo-RC Tier 1 across 120 real-world robot trials, the highest among anything we've tested. We are retiring RoboDojo from future evaluations."
+      },
+      "evidence_kind": "reported",
+      "noise_penalty": 0,
+      "final_score": 100,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(12)-noise(0)",
+      "strategic_theme": "frontier_capability",
+      "layer": "signal"
+    },
+    {
+      "title": "Power demands at AI data centers set to double by 2030 — adding the equivalent of another Great Britain to the grid as an extra $4 trillion in spending kicks in",
+      "link": "https://www.techradar.com/pro/power-demands-at-ai-data-centers-set-to-double-by-2030-adding-the-equivalent-of-another-great-britain-to-the-grid-as-an-extra-usd4-trillion-in-spending-kicks-in",
+      "published": "2026-11-24T02:15:00+00:00",
+      "summary": "Global data center electricity demand could double by 2030, intensifying pressure on power grids, household bills, and emissions.",
+      "image_url": "https://cdn.mos.cms.futurecdn.net/7N4ZtNATBytQgNsTt95woQ-1920-80.jpg",
+      "source": "TechRadar AI",
+      "feed_tags": [
+        "tech",
+        "hardware",
+        "models"
+      ],
+      "score": 99,
+      "primary": "infra",
+      "tags": [],
+      "heuristic_score": 69,
+      "url": "https://www.techradar.com/pro/power-demands-at-ai-data-centers-set-to-double-by-2030-adding-the-equivalent-of-another-great-britain-to-the-grid-as-an-extra-usd4-trillion-in-spending-kicks-in",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 69,
+      "llm_score": 90,
+      "verdict": "signal",
+      "so_what": "El crecimiento exponencial de la demanda energética de los data centers de IA generará presión en redes eléctricas y aumentará los costes operativos de los modelos.",
+      "power_shift": "",
+      "watch_next": "Planes de expansión de capacidad eléctrica de gobiernos y utilities",
+      "title_es": "La demanda de energía en los centros de datos de IA se duplicará para 2030, añadiendo el equivalente a otra Gran Bretaña a la red, mientras se activan 4 billones de dólares adicionales en gasto",
+      "llm_theme": "compute_chips_dc",
+      "why": "El crecimiento exponencial de la demanda energética de los data centers de IA generará presión en redes eléctricas y aumentará los costes operativos de los modelos.",
+      "entities": [
+        "Power"
+      ],
+      "title_en": "Power demands at AI data centers set to double by 2030 — adding the equivalent of another Great Britain to the grid as an extra $4 trillion in spending kicks in",
+      "so_what_en": "The exponential growth in AI data center energy demand will strain power grids and increase models' operational costs.",
+      "power_shift_en": "",
+      "watch_next_en": "Government and utility plans for electricity capacity expansion",
+      "evidence": {
+        "source": "TechRadar AI",
+        "url": "https://www.techradar.com/pro/power-demands-at-ai-data-centers-set-to-double-by-2030-adding-the-equivalent-of-another-great-britain-to-the-grid-as-an-extra-usd4-trillion-in-spending-kicks-in",
+        "quote": "Global data center electricity demand could double by 2030, intensifying pressure on power grids, household bills, and emissions."
+      },
+      "evidence_kind": "speculation",
+      "noise_penalty": 0,
+      "final_score": 99,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(12)-noise(0)",
+      "strategic_theme": "compute_chips_dc",
+      "layer": "signal"
+    },
+    {
+      "title": "Quantum computers could one day transform fusion energy, chemistry, and drug discovery - if we can make the algorithms efficient enough to run on early hardware. Using teams of Gemini 4 agents, we’ve built new quantum circuits that cut future simulation costs by up to 10 times.",
+      "link": "https://x.com/GoogleDeepMind/status/2124911073266413634",
+      "published": "2026-11-23T17:00:53+00:00",
+      "summary": "Quantum computers could one day transform fusion energy, chemistry, and drug discovery - if we can make the algorithms efficient enough to run on early hardware. Using teams of Gemini 4 agents, we’ve built new quantum circuits that cut future simulation costs by up to 10 times.",
+      "image_url": "https://pbs.twimg.com/media/HX0zDLEXQAE654e.jpg",
+      "source": "X @GoogleDeepMind",
       "feed_tags": [
         "labs",
         "x",
@@ -892,91 +1237,140 @@
       "score": 95,
       "primary": "models",
       "tags": [],
-      "heuristic_score": 45,
-      "url": "https://x.com/gdb/status/2124582684840399311",
+      "heuristic_score": 100,
+      "url": "https://x.com/GoogleDeepMind/status/2124911073266413634",
       "is_repeat": false,
       "novelty_score": 100,
-      "adjusted_score": 45,
-      "llm_score": 90,
+      "adjusted_score": 100,
+      "llm_score": 80,
       "verdict": "signal",
-      "so_what": "Establecer límites basados en métricas como la perplejidad podría crear un estándar de seguridad industrial compartido para el despliegue de modelos avanzados.",
+      "so_what": "El uso de agentes para optimizar algoritmos cuánticos es una aplicación estratégica que demuestra el potencial de los agentes en investigación científica de frontera.",
       "power_shift": "",
-      "watch_next": "Labs de frontera adoptan la perplejidad como métrica de seguridad compartida.",
-      "title_es": "Ayudé a iniciar OpenAI porque quiero que la AGI sea segura y beneficiosa para las personas. Esta publicación proporciona transparencia que puede ser la base de barras de seguridad compartidas en toda la industria. Quizás el concepto más importante de la publicación es el siguiente:",
-      "llm_theme": "frontier_capability",
-      "why": "Establecer límites basados en métricas como la perplejidad podría crear un estándar de seguridad industrial compartido para el despliegue de modelos avanzados.",
+      "watch_next": "Resultados de la aplicación de estos circuitos en simulaciones de fusión o química",
+      "title_es": "Los ordenadores cuánticos podrían transformar algún día la energía de fusión, la química y el descubrimiento de fármacos - si podemos hacer que los algoritmos sean lo suficientemente eficientes como para ejecutarse en hardware temprano. Usando equipos de agentes Gemini 4, hemos construido nuevos circuitos cuánticos que reducen los costos de simulación futuros hasta 10 veces.",
+      "llm_theme": "agents_automation",
+      "why": "El uso de agentes para optimizar algoritmos cuánticos es una aplicación estratégica que demuestra el potencial de los agentes en investigación científica de frontera.",
       "entities": [
-        "OpenAI",
-        "Greg Brockman"
+        "DeepMind",
+        "Gemini"
       ],
-      "title_en": "I helped start OpenAI because I want AGI to be safe and beneficial for people. This post provides transparency that can be the foundation of industry-wide shared safety bars. Perhaps the most important concept from the post is the following: \"AI will also significantly contribute to progress on alignment and monitoring, I think that progress is unlikely to be fast enough to allow the full potential acceleration in pretraining.\" Towards ensuring that safety keeps pace with general intelligence of pretrained models (as measured by \"perplexity\"), the post proposes \"common limits, based on perplexity and other measurements, that developers are committed to not crossing until our ability to understand and monitor AI behavior achieves a certain concrete milestone (such as the development of a successor to CoT monitors).\" The general idea is to create a first shared limit, on some shared key metric, along with concrete exit criteria that would allow going beyond that. This can lead to a \"common framework for setting successive limits and pacing further development\". Excited to move forward the conversation on pacing towards shared standards that are rooted in the science!",
-      "so_what_en": "Establishing limits based on metrics like perplexity could create a shared industry safety standard for deploying advanced models.",
+      "title_en": "Quantum computers could one day transform fusion energy, chemistry, and drug discovery - if we can make the algorithms efficient enough to run on early hardware. Using teams of Gemini 4 agents, we’ve built new quantum circuits that cut future simulation costs by up to 10 times.",
+      "so_what_en": "The use of agents to optimize quantum algorithms is a strategic application demonstrating their potential in frontier scientific research.",
       "power_shift_en": "",
-      "watch_next_en": "Frontier labs adopt perplexity as a shared safety metric.",
+      "watch_next_en": "Results of applying these circuits in fusion or chemistry simulations",
       "evidence": {
-        "source": "X @gdb",
-        "url": "https://x.com/gdb/status/2124582684840399311",
-        "quote": "This post provides transparency that can be the foundation of industry-wide shared safety bars. Perhaps the most important concept from the post is the following: \"AI will also significantly contribute to progress on alignment and monitoring, I think that progress is unlikely to be fast enough to allow the full potential acceleration in pretraining.\" Towards ensuring that safety keeps pace with general intelligence of pretrained models (as measured by \"perplexity\"), the post proposes \"common limits, based on perplexity and other measurements, that developers are committed to not crossing until our ability to under"
+        "source": "X @GoogleDeepMind",
+        "url": "https://x.com/GoogleDeepMind/status/2124911073266413634",
+        "quote": "Using teams of Gemini 4 agents, we’ve built new quantum circuits that cut future simulation costs by up to 10 times."
       },
       "evidence_kind": "speculation",
       "noise_penalty": 0,
       "final_score": 95,
       "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(12)-noise(0)",
-      "strategic_theme": "frontier_capability",
+      "strategic_theme": "agents_automation",
       "layer": "signal"
     },
     {
-      "title": "Distillation can reproduce powerful AI capabilities without the safeguards built around them. We’re sharing new research on our work to combat distillation of our models, how these capabilities transfer, and how we detect and disrupt coordinated attempts. These findings are helping us sharpen our defenses and support safeguards across the industry.",
-      "link": "https://x.com/OpenAI/status/2123862344422088794",
-      "published": "2026-11-20T19:33:37+00:00",
-      "summary": "Distillation can reproduce powerful AI capabilities without the safeguards built around them. We’re sharing new research on our work to combat distillation of our models, how these capabilities transfer, and how we detect and disrupt coordinated attempts. These findings are helping us sharpen our defenses and support safeguards across the industry. openai.com/index/combatting-… Link Combatting adversarial distillation OpenAI’s layered approach to adversarial distillation combines model training, safeguards, detection, and enforcement to protect against capability extraction. openai.com",
-      "image_url": "https://pbs.twimg.com/card_img/2123861635983171584/ZI5ZQCaQ?format=jpg&name=800x419",
-      "source": "X @OpenAI",
+      "title": "Fable 5.2 cost 3x Opus 5.5 for 1 more bug fix - VentureBeat",
+      "link": "https://venturebeat.com/orchestration/claude-fable-5-2-cost-three-times-as-much-as-opus-5-5-for-nearly-the-same-results-in-a-venturebeat-bug-fixing-test",
+      "published": "2026-11-23T21:20:29+00:00",
+      "summary": "Fable 5.2 cost 3x Opus 5.5 for 1 more bug fix VentureBeat",
+      "image_url": "https://images.ctfassets.net/jdtwqhzvc2n1/2CNMUt2T9bhrAyVobOavFU/910f546098561132c86c20ed31700b80/Gemini_Generated_Image_65fdg065fdg065fd.jpeg?w=800&q=75",
+      "source": "VentureBeat AI",
       "feed_tags": [
-        "labs",
-        "x",
-        "frontier"
+        "tech",
+        "models",
+        "enterprise",
+        "agents"
       ],
-      "score": 84,
+      "score": 93,
       "primary": "models",
       "tags": [],
-      "heuristic_score": 80,
-      "url": "https://x.com/OpenAI/status/2123862344422088794",
+      "heuristic_score": 59,
+      "url": "https://venturebeat.com/orchestration/claude-fable-5-2-cost-three-times-as-much-as-opus-5-5-for-nearly-the-same-results-in-a-venturebeat-bug-fixing-test",
       "is_repeat": false,
       "novelty_score": 100,
-      "adjusted_score": 80,
-      "llm_score": 90,
+      "adjusted_score": 59,
+      "llm_score": 85,
       "verdict": "signal",
-      "so_what": "Reduce el riesgo de que actores maliciosos extraigan las capacidades avanzadas de los modelos de OpenAI para uso no autorizado o perjudicial.",
-      "power_shift": "OpenAI gana / Actores adversarios pierden",
-      "watch_next": "Publicación de métodos de defensa similares por otros frontier labs.",
-      "title_es": "OpenAI publica investigación sobre nuevas defensas contra la extracción de capacidades",
-      "llm_theme": "frontier_capability",
-      "why": "Reduce el riesgo de que actores maliciosos extraigan las capacidades avanzadas de los modelos de OpenAI para uso no autorizado o perjudicial.",
+      "so_what": "La diferencia de costes para una mejora marginal en la corrección de errores subraya la importancia de la eficiencia económica en la adopción de modelos avanzados.",
+      "power_shift": "Opus gana / Fable pierde cuota",
+      "watch_next": "Análisis de coste-rendimiento de modelos de código en tareas complejas",
+      "title_es": "Fable 5.2 es 3 veces más caro que Opus 5.5 con mínima mejora en corrección de bugs",
+      "llm_theme": "model_economics",
+      "why": "La diferencia de costes para una mejora marginal en la corrección de errores subraya la importancia de la eficiencia económica en la adopción de modelos avanzados.",
       "entities": [
-        "OpenAI"
+        "Fable",
+        "Opus"
       ],
-      "title_en": "OpenAI publishes research on new defenses against capability extraction",
-      "so_what_en": "Reduces the risk of malicious actors extracting advanced model capabilities for unauthorized or harmful use.",
-      "power_shift_en": "OpenAI gains / Adversarial actors lose",
-      "watch_next_en": "Publication of similar defense methods by other frontier labs.",
+      "title_en": "Fable 5.2 is 3 times more expensive than Opus 5.5 with minimal bug fix improvement",
+      "so_what_en": "The cost difference for marginal bug fix improvement highlights the importance of economic efficiency in advanced model adoption.",
+      "power_shift_en": "Opus gains / Fable loses share",
+      "watch_next_en": "Cost-performance analysis of code models in complex tasks",
       "evidence": {
-        "source": "X @OpenAI",
-        "url": "https://x.com/OpenAI/status/2123862344422088794",
-        "quote": "Distillation can reproduce powerful AI capabilities without the safeguards built around them. We’re sharing new research on our work to combat distillation of our models, how these capabilities transfer, and how we detect and disrupt coordinated attempts."
+        "source": "VentureBeat AI",
+        "url": "https://venturebeat.com/orchestration/claude-fable-5-2-cost-three-times-as-much-as-opus-5-5-for-nearly-the-same-results-in-a-venturebeat-bug-fixing-test",
+        "quote": "Fable 5.2 cost 3x Opus 5.5 for 1 more bug fix"
       },
-      "evidence_kind": "confirmed",
-      "noise_penalty": 4,
-      "final_score": 84,
-      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(0)-noise(4)",
-      "strategic_theme": "frontier_capability",
+      "evidence_kind": "reported",
+      "noise_penalty": 0,
+      "final_score": 93,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(12)-noise(0)",
+      "strategic_theme": "model_economics",
       "layer": "signal"
     },
     {
-      "title": "China’s Next AI Deals Clouded by Selloff After Anthropic IPO - Bloomberg.com",
-      "link": "https://www.bloomberg.com/news/articles/2026-11-23/china-s-next-ai-deals-clouded-by-selloff-after-anthropic-ipo",
-      "published": "2026-11-23T07:05:00+00:00",
-      "summary": "China’s Next AI Deals Clouded by Selloff After Anthropic IPO Bloomberg.com",
+      "title": "Finding faster quantum algorithms with agents and formal verification",
+      "link": "https://deepmind.google/blog/finding-faster-quantum-algorithms-with-agents-and-formal-verification/",
+      "published": "2026-11-23T16:59:40+00:00",
+      "summary": "Using agent teams and formal verification to improve quantum algorithms for fusion and chemistry.",
+      "image_url": "https://lh3.googleusercontent.com/jIoM2lo98EDqLMQjIaXBlXPmXgPbUPpM2GgtXcDsGekZBOPUY41IjBsnuZIhLac7MSOuRkklNBsp20a5M25oDz-xTIY0BIqoBxUqmmXvEHwlM3MJJw=w528-h297-n-nu-rw-lo",
+      "source": "DeepMind Blog",
+      "feed_tags": [
+        "labs",
+        "models",
+        "frontier"
+      ],
+      "score": 90,
+      "primary": "models",
+      "tags": [],
+      "heuristic_score": 37,
+      "url": "https://deepmind.google/blog/finding-faster-quantum-algorithms-with-agents-and-formal-verification/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 37,
+      "llm_score": 85,
+      "verdict": "signal",
+      "so_what": "La investigación de DeepMind demuestra cómo los agentes pueden generar eficiencias significativas en algoritmos cuánticos para campos críticos como la energía y la química.",
+      "power_shift": "Google DeepMind gana / Investigación cuántica se acelera",
+      "watch_next": "Publicación de resultados detallados o pruebas experimentales de los algoritmos",
+      "title_es": "DeepMind detalla uso de agentes para acelerar algoritmos cuánticos en fusión y química",
+      "llm_theme": "agents_automation",
+      "why": "La investigación de DeepMind demuestra cómo los agentes pueden generar eficiencias significativas en algoritmos cuánticos para campos críticos como la energía y la química.",
+      "entities": [
+        "DeepMind"
+      ],
+      "title_en": "DeepMind details use of agents to accelerate quantum algorithms in fusion and chemistry",
+      "so_what_en": "DeepMind's research demonstrates how agents can generate significant efficiencies in quantum algorithms for critical fields like energy and chemistry.",
+      "power_shift_en": "Google DeepMind gains / Quantum research accelerates",
+      "watch_next_en": "Release of detailed results or experimental tests of algorithms",
+      "evidence": {
+        "source": "DeepMind Blog",
+        "url": "https://deepmind.google/blog/finding-faster-quantum-algorithms-with-agents-and-formal-verification/",
+        "quote": "Using agent teams and formal verification to improve quantum algorithms for fusion and chemistry."
+      },
+      "evidence_kind": "confirmed",
+      "noise_penalty": 0,
+      "final_score": 90,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(12)-noise(0)",
+      "strategic_theme": "agents_automation",
+      "layer": "signal"
+    },
+    {
+      "title": "US Blacklists Alibaba-Owned Company in Setback to AI Ambitions - Bloomberg.com",
+      "link": "https://www.bloomberg.com/news/articles/2026-11-24/us-blacklists-alibaba-owned-company-in-setback-to-ai-ambitions",
+      "published": "2026-11-24T01:45:00+00:00",
+      "summary": "US Blacklists Alibaba-Owned Company in Setback to AI Ambitions Bloomberg.com",
       "image_url": "",
       "source": "Bloomberg Tech",
       "feed_tags": [
@@ -985,234 +1379,335 @@
         "chips",
         "market"
       ],
-      "score": 79,
-      "primary": "invest",
+      "score": 90,
+      "primary": "geopol",
       "tags": [],
-      "heuristic_score": 23,
-      "url": "https://www.bloomberg.com/news/articles/2026-11-23/china-s-next-ai-deals-clouded-by-selloff-after-anthropic-ipo",
+      "heuristic_score": 11,
+      "url": "https://www.bloomberg.com/news/articles/2026-11-24/us-blacklists-alibaba-owned-company-in-setback-to-ai-ambitions",
       "is_repeat": false,
       "novelty_score": 100,
-      "adjusted_score": 23,
-      "llm_score": 75,
+      "adjusted_score": 11,
+      "llm_score": 90,
       "verdict": "signal",
-      "so_what": "La incertidumbre en los mercados globales de IA afecta negativamente la inversión en el stack tecnológico chino, ralentizando su desarrollo y expansión.",
-      "power_shift": "Inversores cautos ganan / Ecosistema chino de IA pierde impulso",
-      "watch_next": "Anuncios de grandes acuerdos de inversión en IA en China.",
-      "title_es": "La volatilidad tras la IPO de Anthropic nubla futuros acuerdos de IA en China",
-      "llm_theme": "china_stack",
-      "why": "La incertidumbre en los mercados globales de IA afecta negativamente la inversión en el stack tecnológico chino, ralentizando su desarrollo y expansión.",
+      "so_what": "La acción de EEUU restringe el acceso de una empresa china a tecnología clave, frenando el desarrollo de IA de frontera en China y escalando tensiones geopolíticas.",
+      "power_shift": "EEUU gana / Alibaba pierde",
+      "watch_next": "Reacción del gobierno chino o contramedidas",
+      "title_es": "EEUU incluye empresa de Alibaba en lista negra, afectando ambiciones de IA china",
+      "llm_theme": "geopolitics_power",
+      "why": "La acción de EEUU restringe el acceso de una empresa china a tecnología clave, frenando el desarrollo de IA de frontera en China y escalando tensiones geopolíticas.",
       "entities": [
-        "China",
-        "Anthropic"
+        "EEUU",
+        "Alibaba",
+        "China"
       ],
-      "title_en": "Volatility after Anthropic IPO clouds future AI deals in China",
-      "so_what_en": "Uncertainty in global AI markets negatively impacts investment in the Chinese tech stack, slowing its development and expansion.",
-      "power_shift_en": "Cautious investors gain / Chinese AI ecosystem loses momentum",
-      "watch_next_en": "Announcements of major AI investment deals in China.",
+      "title_en": "US blacklists Alibaba-owned company, impacting China's AI ambitions",
+      "so_what_en": "The US action restricts a Chinese company's access to key technology, hindering China's frontier AI development and escalating geopolitical tensions.",
+      "power_shift_en": "US gains / Alibaba loses",
+      "watch_next_en": "Chinese government's reaction or countermeasures",
       "evidence": {
         "source": "Bloomberg Tech",
-        "url": "https://www.bloomberg.com/news/articles/2026-11-23/china-s-next-ai-deals-clouded-by-selloff-after-anthropic-ipo",
-        "quote": "China’s Next AI Deals Clouded by Selloff After Anthropic IPO"
+        "url": "https://www.bloomberg.com/news/articles/2026-11-24/us-blacklists-alibaba-owned-company-in-setback-to-ai-ambitions",
+        "quote": "US Blacklists Alibaba-Owned Company in Setback to AI Ambitions Bloomberg.com"
       },
       "evidence_kind": "reported",
       "noise_penalty": 0,
-      "final_score": 79,
+      "final_score": 90,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(12)-noise(0)",
+      "strategic_theme": "geopolitics_power",
+      "layer": "signal"
+    },
+    {
+      "title": "Import AI 482: Huawei kernel benchmarks; airborne drone detection; and a national lab’s AI science benchmark",
+      "link": "https://jack-clark.net/2026/11/23/import-ai-482-huawei-kernel-benchmarks-airborne-drone-detection-and-a-national-labs-ai-science-benchmark/",
+      "published": "2026-11-23T14:11:17+00:00",
+      "summary": "Welcome to Import AI, a newsletter about AI research. Import AI runs on arXiv, cappuccinos, and feedback from readers. Subscribe now Chinese researchers optimize Huawei chips with a kernel improvement benchmark:…AscendGYM will help China do its own form of RSI…Researchers with the Shenzhen Loop Area Institute, a Chinese research organization, have built and released AscendGYM, […]",
+      "image_url": "https://i0.wp.com/jack-clark.net/wp-content/uploads/2026/11/https3A2F2Fsubstack-post-media.s3.amazonaws.com2Fpublic2Fimages2Fd6d17996-2bef-40a4-abe3-be72a0e8a227_258x258-3McPHi.png?resize=150%2C150&ssl=1",
+      "source": "Import AI",
+      "feed_tags": [
+        "frontier",
+        "analysis",
+        "geopol"
+      ],
+      "score": 88,
+      "primary": "geopol",
+      "tags": [],
+      "heuristic_score": 82,
+      "url": "https://jack-clark.net/2026/11/23/import-ai-482-huawei-kernel-benchmarks-airborne-drone-detection-and-a-national-labs-ai-science-benchmark/",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 82,
+      "llm_score": 75,
+      "verdict": "signal",
+      "so_what": "La optimización de chips Huawei por investigadores chinos acelera la autonomía y capacidad computacional de China en IA, reduciendo dependencia externa.",
+      "power_shift": "",
+      "watch_next": "Impacto de AscendGYM en el rendimiento real y adopción de chips Ascend",
+      "title_es": "Investigadores chinos optimizan chips Huawei Ascend con el benchmark AscendGYM",
+      "llm_theme": "china_stack",
+      "why": "La optimización de chips Huawei por investigadores chinos acelera la autonomía y capacidad computacional de China en IA, reduciendo dependencia externa.",
+      "entities": [
+        "Huawei",
+        "China"
+      ],
+      "title_en": "Chinese researchers optimize Huawei Ascend chips with AscendGYM benchmark",
+      "so_what_en": "Chinese researchers optimizing Huawei chips accelerates China's AI autonomy and computational capacity, reducing external dependence.",
+      "power_shift_en": "",
+      "watch_next_en": "Impact of AscendGYM on real-world performance and adoption of Ascend chips",
+      "evidence": {
+        "source": "Import AI",
+        "url": "https://jack-clark.net/2026/11/23/import-ai-482-huawei-kernel-benchmarks-airborne-drone-detection-and-a-national-labs-ai-science-benchmark/",
+        "quote": "Chinese researchers optimize Huawei chips with a kernel improvement benchmark:…AscendGYM will help China do its own form of RSI…Researchers with the Shenzhen Loop Area Institute, a Chinese research organization, have built and released AscendGYM, […]"
+      },
+      "evidence_kind": "speculation",
+      "noise_penalty": 0,
+      "final_score": 88,
       "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(12)-noise(0)",
       "strategic_theme": "china_stack",
       "layer": "signal"
     },
     {
-      "title": "Michael Burry Sees 1929’s and 2000’s “Lack of a Proximate Cause in Earnings.” Nvidia’s Estimates Keep Rising",
-      "link": "https://www.tikr.com/blog/michael-burry-sees-1929s-and-2000s-lack-of-a-proximate-cause-in-earnings-nvidias-estimates-keep-rising?ref=yahoofinance&tlnk=yf-261123-rg89fg6v&.tsrc=rss",
-      "published": "2026-11-23T09:35:24+00:00",
-      "summary": "Key TakeawaysMichael Burry says the AI selloff shares 1929’s and 2000’s “lack of a proximate cause in earnings,” and Nvidia fits. The whole drop has come from Nvidia’s multiple, now 8.",
-      "image_url": "https://res.cloudinary.com/tikr/images/w_600,h_400,c_scale/f_webp,q_auto/v1792651257/images/FEATURED-IMAGE-MAKER-1871/FEATURED-IMAGE-MAKER-1871.png?_i=AA",
-      "source": "Yahoo Finance (AI & semis)",
+      "title": "Agentic inference capacity grew 4.6× in a year, versus 2.6× for compute capacity - Epoch AI",
+      "link": "https://epoch.ai/data-insights/agentic-inference-capacity-growth",
+      "published": "2026-11-18T18:23:24+00:00",
+      "summary": "Agentic inference capacity grew 4.6× in a year, versus 2.6× for compute capacity Epoch AI",
+      "image_url": "https://epoch.ai/assets/images/data-insights/agentic-inference-capacity-growth/t-agentic-inference-capacity-growth.png",
+      "source": "Epoch AI",
       "feed_tags": [
-        "finance",
-        "market",
-        "hardware",
-        "chips"
+        "compute",
+        "economics",
+        "analysis",
+        "frontier"
       ],
-      "score": 68,
-      "primary": "infra",
+      "score": 73,
+      "primary": "models",
       "tags": [],
-      "heuristic_score": 34,
-      "url": "https://www.tikr.com/blog/michael-burry-sees-1929s-and-2000s-lack-of-a-proximate-cause-in-earnings-nvidias-estimates-keep-rising?ref=yahoofinance&tlnk=yf-261123-rg89fg6v&.tsrc=rss",
+      "heuristic_score": 28,
+      "url": "https://epoch.ai/data-insights/agentic-inference-capacity-growth",
       "is_repeat": false,
       "novelty_score": 100,
-      "adjusted_score": 34,
-      "llm_score": 60,
+      "adjusted_score": 28,
+      "llm_score": 95,
       "verdict": "signal",
-      "so_what": "La opinión de Burry sugiere una posible sobrevaloración del sector IA, lo que podría impactar la inversión en compute y chips para el desarrollo de AGI.",
-      "power_shift": "Inversores escépticos ganan / Nvidia pierde narrativa",
-      "watch_next": "Publicación del próximo informe de resultados de Nvidia.",
-      "title_es": "Michael Burry compara la caída de Nvidia con burbujas de 1929 y 2000",
-      "llm_theme": "compute_chips_dc",
-      "why": "La opinión de Burry sugiere una posible sobrevaloración del sector IA, lo que podría impactar la inversión en compute y chips para el desarrollo de AGI.",
+      "so_what": "El crecimiento acelerado de la inferencia agentiva sobre la capacidad de cómputo general indica una rápida priorización de arquitecturas basadas en agentes en el desarrollo de IA.",
+      "power_shift": "Modelos agentivos ganan / Modelos monolíticos pierden relevancia",
+      "watch_next": "Tendencia de inversión en infraestructura dedicada a inferencia agentiva",
+      "title_es": "Capacidad de inferencia agentiva creció 4.6x, superando 2.6x de cómputo general",
+      "llm_theme": "agents_automation",
+      "why": "El crecimiento acelerado de la inferencia agentiva sobre la capacidad de cómputo general indica una rápida priorización de arquitecturas basadas en agentes en el desarrollo de IA.",
       "entities": [
-        "NVIDIA",
-        "Michael Burry"
+        "Epoch AI"
       ],
-      "title_en": "Michael Burry compares Nvidia's decline to 1929 and 2000 bubbles",
-      "so_what_en": "Burry's opinion suggests potential overvaluation in the AI sector, which could impact investment in compute and chips for AGI development.",
-      "power_shift_en": "Skeptical investors gain / Nvidia loses narrative",
-      "watch_next_en": "Nvidia's next earnings report publication.",
+      "title_en": "Agentic inference capacity grew 4.6x, surpassing 2.6x of general compute",
+      "so_what_en": "The accelerated growth of agentic inference over general compute capacity indicates a rapid prioritization of agent-based architectures in AI development.",
+      "power_shift_en": "Agentic models gain / Monolithic models lose relevance",
+      "watch_next_en": "Investment trend in infrastructure dedicated to agentic inference",
       "evidence": {
-        "source": "Yahoo Finance (AI & semis)",
-        "url": "https://www.tikr.com/blog/michael-burry-sees-1929s-and-2000s-lack-of-a-proximate-cause-in-earnings-nvidias-estimates-keep-rising?ref=yahoofinance&tlnk=yf-261123-rg89fg6v&.tsrc=rss",
-        "quote": "Michael Burry says the AI selloff shares 1929’s and 2000’s “lack of a proximate cause in earnings,” and Nvidia fits. The whole drop has come from Nvidia’s multiple, now 8."
+        "source": "Epoch AI",
+        "url": "https://epoch.ai/data-insights/agentic-inference-capacity-growth",
+        "quote": "Agentic inference capacity grew 4.6× in a year, versus 2.6× for compute capacity"
       },
       "evidence_kind": "reported",
-      "noise_penalty": 0,
-      "final_score": 68,
-      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(12)-noise(0)",
-      "strategic_theme": "compute_chips_dc",
+      "noise_penalty": 12,
+      "final_score": 73,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(0)-noise(12)",
+      "strategic_theme": "agents_automation",
       "layer": "signal"
     },
     {
-      "title": "Perplexity and Intelligence",
-      "link": "https://openai.com/index/perplexity-and-intelligence",
-      "published": "2026-11-22T00:00:00+00:00",
-      "summary": "How perplexity measures progress in AI models, and why it could help developers establish a shared approach to evaluating emerging capabilities.",
-      "image_url": "https://images.ctfassets.net/kftzwdyauwt9/6rIIhCRSKrhIfe385Onmcz/aca2d190553c62fd5d49efb5d5ce1eb6/perplexity-and-intelligence-social.png?w=1600&h=900&fit=fill",
-      "source": "OpenAI",
+      "title": "Anthropic’s compute spending is increasing by 4x per year, outpacing OpenAI’s 3x - Epoch AI",
+      "link": "https://epoch.ai/data-insights/anthropic-openai-compute-spend-growth",
+      "published": "2026-11-18T21:41:16+00:00",
+      "summary": "Anthropic’s compute spending is increasing by 4x per year, outpacing OpenAI’s 3x Epoch AI",
+      "image_url": "https://epoch.ai/assets/images/data-insights/anthropic-openai-compute-spend-growth/t-anthropic-openai-compute-spend-growth.png",
+      "source": "Epoch AI",
       "feed_tags": [
-        "labs",
-        "models",
+        "compute",
+        "economics",
+        "analysis",
         "frontier"
       ],
-      "score": 78,
-      "primary": "models",
-      "tags": [],
-      "heuristic_score": 27,
-      "url": "https://openai.com/index/perplexity-and-intelligence",
-      "is_repeat": false,
-      "novelty_score": 100,
-      "adjusted_score": 27,
-      "llm_score": 80,
-      "verdict": "context",
-      "so_what": "Articula una base técnica para la evaluación de capacidades de modelos, fundamental para establecer umbrales de seguridad y desarrollo responsable de AGI.",
-      "power_shift": "",
-      "watch_next": "Debates sobre la adopción de la perplejidad como estándar de la industria.",
-      "title_es": "OpenAI explica la perplejidad como métrica clave para el progreso y la seguridad de la IA",
-      "llm_theme": "frontier_capability",
-      "why": "Articula una base técnica para la evaluación de capacidades de modelos, fundamental para establecer umbrales de seguridad y desarrollo responsable de AGI.",
-      "entities": [
-        "OpenAI"
-      ],
-      "title_en": "OpenAI explains perplexity as a key metric for AI progress and safety",
-      "so_what_en": "Articulates a technical basis for evaluating model capabilities, fundamental for establishing AGI safety thresholds and responsible development.",
-      "power_shift_en": "",
-      "watch_next_en": "Discussions on the adoption of perplexity as an industry standard.",
-      "evidence": {
-        "source": "OpenAI",
-        "url": "https://openai.com/index/perplexity-and-intelligence",
-        "quote": "How perplexity measures progress in AI models, and why it could help developers establish a shared approach to evaluating emerging capabilities."
-      },
-      "evidence_kind": "speculation",
-      "noise_penalty": 0,
-      "final_score": 78,
-      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(6)-noise(0)",
-      "strategic_theme": "frontier_capability",
-      "layer": "context"
-    },
-    {
-      "title": "AI and The Ethnic Unity Law",
-      "link": "https://www.chinatalk.media/p/the-role-of-ai-in-enforcing-chinas",
-      "published": "2026-11-22T11:38:55+00:00",
-      "summary": "一切为了实现民族团结",
-      "image_url": "https://substackcdn.com/image/fetch/$s_!IM-W!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb5556e3d-59b6-4596-aa03-89e0a711f927_2048x1467.png",
-      "source": "ChinaTalk",
-      "feed_tags": [
-        "china",
-        "geopol",
-        "analysis"
-      ],
-      "score": 68,
+      "score": 70,
       "primary": "misc",
       "tags": [],
       "heuristic_score": 6,
-      "url": "https://www.chinatalk.media/p/the-role-of-ai-in-enforcing-chinas",
+      "url": "https://epoch.ai/data-insights/anthropic-openai-compute-spend-growth",
       "is_repeat": false,
       "novelty_score": 100,
       "adjusted_score": 6,
-      "llm_score": 65,
+      "llm_score": 95,
+      "verdict": "signal",
+      "so_what": "Anthropic está invirtiendo más agresivamente en capacidad de cómputo que OpenAI, lo que podría traducirse en un entrenamiento de modelos más rápido y competitivo.",
+      "power_shift": "Anthropic gana capacidad / OpenAI se ve presionada",
+      "watch_next": "Nuevos lanzamientos de modelos de Anthropic que justifiquen esta inversión",
+      "title_es": "Gasto en cómputo de Anthropic aumenta un 4x anual, superando el 3x de OpenAI",
+      "llm_theme": "model_economics",
+      "why": "Anthropic está invirtiendo más agresivamente en capacidad de cómputo que OpenAI, lo que podría traducirse en un entrenamiento de modelos más rápido y competitivo.",
+      "entities": [
+        "Anthropic",
+        "OpenAI",
+        "Epoch AI"
+      ],
+      "title_en": "Anthropic's compute spending increases 4x annually, surpassing OpenAI's 3x",
+      "so_what_en": "Anthropic is investing more aggressively in compute capacity than OpenAI, which could translate into faster, more competitive model training.",
+      "power_shift_en": "Anthropic gains capacity / OpenAI pressured",
+      "watch_next_en": "New Anthropic model releases justifying this investment",
+      "evidence": {
+        "source": "Epoch AI",
+        "url": "https://epoch.ai/data-insights/anthropic-openai-compute-spend-growth",
+        "quote": "Anthropic’s compute spending is increasing by 4x per year, outpacing OpenAI’s 3x"
+      },
+      "evidence_kind": "reported",
+      "noise_penalty": 12,
+      "final_score": 70,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(0)-noise(12)",
+      "strategic_theme": "model_economics",
+      "layer": "signal"
+    },
+    {
+      "title": "AI data centers throw another wrench into chaotic UN climate talks",
+      "link": "https://www.theverge.com/science/1040497/ai-data-centers-electricity-un-climate-summit",
+      "published": "2026-11-23T21:09:37+00:00",
+      "summary": "The clean energy revolution hinges on electrifying the entire global economy just as power-hungry data centers are surging. It's a challenge delegates from all over the world had to grapple with during the United Nations climate conference, called COP31, that came to a chaotic and unsatisfying close in Antalya, Turkey, on Sunday. Each year, attendees […]",
+      "image_url": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/11/gettyimages-2306098413.jpg?quality=90&strip=all&crop=0,0,100,100",
+      "source": "The Verge AI",
+      "feed_tags": [
+        "tech",
+        "models",
+        "product"
+      ],
+      "score": 71,
+      "primary": "models",
+      "tags": [],
+      "heuristic_score": 56,
+      "url": "https://www.theverge.com/science/1040497/ai-data-centers-electricity-un-climate-summit",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 56,
+      "llm_score": 60,
       "verdict": "context",
-      "so_what": "La fuente disponible no permite verificar la conclusión.",
+      "so_what": "La creciente demanda de energía de los data centers de IA es un factor disruptivo en la agenda climática global, añadiendo presión a las políticas energéticas.",
       "power_shift": "",
       "watch_next": "",
-      "title_es": "IA y la Ley de Unidad Étnica",
-      "llm_theme": "geopolitics_power",
-      "why": "La fuente disponible no permite verificar la conclusión.",
-      "entities": [
-        "China"
-      ],
-      "title_en": "AI and The Ethnic Unity Law",
-      "so_what_en": "The available source does not verify the conclusion.",
+      "title_es": "Centros de datos de IA complican negociaciones climáticas de la ONU por demanda energética",
+      "llm_theme": "compute_chips_dc",
+      "why": "La creciente demanda de energía de los data centers de IA es un factor disruptivo en la agenda climática global, añadiendo presión a las políticas energéticas.",
+      "entities": [],
+      "title_en": "AI data centers complicate UN climate talks due to energy demand",
+      "so_what_en": "The increasing energy demand from AI data centers is a disruptive factor in the global climate agenda, adding pressure to energy policies.",
       "power_shift_en": "",
       "watch_next_en": "",
-      "evidence": {},
-      "evidence_kind": "unverified",
+      "evidence": {
+        "source": "The Verge AI",
+        "url": "https://www.theverge.com/science/1040497/ai-data-centers-electricity-un-climate-summit",
+        "quote": "The clean energy revolution hinges on electrifying the entire global economy just as power-hungry data centers are surging."
+      },
+      "evidence_kind": "inference",
       "noise_penalty": 0,
-      "final_score": 68,
+      "final_score": 71,
       "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(12)-noise(0)",
-      "strategic_theme": "geopolitics_power",
+      "strategic_theme": "compute_chips_dc",
       "layer": "context"
     },
     {
-      "title": "How Notable Capital, GIC, and Baillie Gifford bet big on Anthropic before its IPO",
-      "link": "https://techcrunch.com/2026/11/22/how-notable-capital-gic-and-baillie-gifford-bet-big-on-anthropic-before-its-ipo/",
-      "published": "2026-11-23T01:25:53+00:00",
-      "summary": "Three significant backers share what gave them conviction to bet billions on Anthropic.",
-      "image_url": "https://techcrunch.com/wp-content/uploads/2026/11/antrhopic-openingday-getty.jpg?resize=1200,801",
-      "source": "TechCrunch AI",
+      "title": "Amazon Earnings, The Chip Question, About Agents",
+      "link": "https://stratechery.com/2026/amazon-earnings-the-chip-question-about-agents/",
+      "published": "2026-11-23T11:00:00+00:00",
+      "summary": "Amazon makes the case they are not like other compute providers, even as they signal the willingness to give up margin to serve the frontier.",
+      "image_url": "",
+      "source": "Stratechery",
       "feed_tags": [
-        "tech",
-        "startups",
-        "models",
-        "compute"
+        "market_power",
+        "economics",
+        "analysis"
       ],
-      "score": 61,
-      "primary": "invest",
+      "score": 60,
+      "primary": "models",
       "tags": [],
-      "heuristic_score": 18,
-      "url": "https://techcrunch.com/2026/11/22/how-notable-capital-gic-and-baillie-gifford-bet-big-on-anthropic-before-its-ipo/",
+      "heuristic_score": 91,
+      "url": "https://stratechery.com/2026/amazon-earnings-the-chip-question-about-agents/",
       "is_repeat": false,
       "novelty_score": 100,
-      "adjusted_score": 18,
-      "llm_score": 55,
+      "adjusted_score": 91,
+      "llm_score": 40,
       "verdict": "context",
-      "so_what": "Ofrece contexto sobre la capitalización inicial de Anthropic y la confianza de inversores institucionales en su estrategia de seguridad en IA, pero no es un nuevo evento de mercado.",
+      "so_what": "Amazon podría reducir sus márgenes en servicios de cómputo para atraer a empresas de IA de frontera, intensificando la competencia en infraestructura.",
       "power_shift": "",
-      "watch_next": "Análisis de la rentabilidad de estas inversiones a medio plazo.",
-      "title_es": "Detalles de los inversores clave que apostaron por Anthropic antes de su IPO",
+      "watch_next": "",
+      "title_es": "Análisis de Amazon: dispuesta a sacrificar margen en cómputo para IA de frontera",
       "llm_theme": "model_economics",
-      "why": "Ofrece contexto sobre la capitalización inicial de Anthropic y la confianza de inversores institucionales en su estrategia de seguridad en IA, pero no es un nuevo evento de mercado.",
+      "why": "Amazon podría reducir sus márgenes en servicios de cómputo para atraer a empresas de IA de frontera, intensificando la competencia en infraestructura.",
       "entities": [
-        "Anthropic",
-        "Notable Capital",
-        "GIC",
-        "Baillie Gifford"
+        "Amazon",
+        "Amazon Earnings",
+        "About Agents"
       ],
-      "title_en": "Details of key investors who backed Anthropic before its IPO",
-      "so_what_en": "Provides context on Anthropic's initial capitalization and institutional investor confidence in its AI safety strategy, but is not a new market event.",
+      "title_en": "Amazon analysis: willing to sacrifice compute margin for frontier AI",
+      "so_what_en": "Amazon could reduce its margins on compute services to attract frontier AI companies, intensifying infrastructure competition.",
       "power_shift_en": "",
-      "watch_next_en": "Analysis of the profitability of these investments in the medium term.",
+      "watch_next_en": "",
       "evidence": {
-        "source": "TechCrunch AI",
-        "url": "https://techcrunch.com/2026/11/22/how-notable-capital-gic-and-baillie-gifford-bet-big-on-anthropic-before-its-ipo/",
-        "quote": "Three significant backers share what gave them conviction to bet billions on Anthropic."
+        "source": "Stratechery",
+        "url": "https://stratechery.com/2026/amazon-earnings-the-chip-question-about-agents/",
+        "quote": "Amazon makes the case they are not like other compute providers, even as they signal the willingness to give up margin to serve the frontier."
+      },
+      "evidence_kind": "inference",
+      "noise_penalty": 0,
+      "final_score": 60,
+      "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(12)-noise(0)",
+      "strategic_theme": "model_economics",
+      "layer": "context"
+    },
+    {
+      "title": "Trump defended Jensen Huang's return as Nvidia CEO. Both sides of the aisle want answers.",
+      "link": "https://www.businessinsider.com/congress-demands-testimony-nvidia-ceo-jensen-huang-reinstatement-trump-2026-11",
+      "published": "2026-11-24T02:39:32+00:00",
+      "summary": "Despite assurances from the White House that he poses no national security risk, members of Congress still want to hear from Jensen Huang.",
+      "image_url": "https://i.insider.com/6b04f2550b69407d788a5e1d?format=jpeg",
+      "source": "Business Insider Tech",
+      "feed_tags": [
+        "business",
+        "tech",
+        "models"
+      ],
+      "score": 56,
+      "primary": "geopol",
+      "tags": [],
+      "heuristic_score": 11,
+      "url": "https://www.businessinsider.com/congress-demands-testimony-nvidia-ceo-jensen-huang-reinstatement-trump-2026-11",
+      "is_repeat": false,
+      "novelty_score": 100,
+      "adjusted_score": 11,
+      "llm_score": 50,
+      "verdict": "context",
+      "so_what": "El regreso del CEO de Nvidia ha generado escrutinio político, sugiriendo que la posición de la compañía es un punto sensible en la geopolítica tecnológica.",
+      "power_shift": "",
+      "watch_next": "",
+      "title_es": "Congreso de EEUU exige explicaciones a Jensen Huang tras su regreso a Nvidia",
+      "llm_theme": "geopolitics_power",
+      "why": "El regreso del CEO de Nvidia ha generado escrutinio político, sugiriendo que la posición de la compañía es un punto sensible en la geopolítica tecnológica.",
+      "entities": [
+        "Jensen Huang",
+        "NVIDIA",
+        "Trump",
+        "Congreso de EEUU"
+      ],
+      "title_en": "US Congress demands explanations from Jensen Huang after his return to Nvidia",
+      "so_what_en": "The return of Nvidia's CEO has generated political scrutiny, suggesting the company's position is a sensitive point in tech geopolitics.",
+      "power_shift_en": "",
+      "watch_next_en": "",
+      "evidence": {
+        "source": "Business Insider Tech",
+        "url": "https://www.businessinsider.com/congress-demands-testimony-nvidia-ceo-jensen-huang-reinstatement-trump-2026-11",
+        "quote": "Despite assurances from the White House that he poses no national security risk, members of Congress still want to hear from Jensen Huang."
       },
       "evidence_kind": "reported",
       "noise_penalty": 0,
-      "final_score": 61,
+      "final_score": 56,
       "ranking_reason": "llm(0.85)+adjusted(0.15)+recency(12)-noise(0)",
-      "strategic_theme": "model_economics",
+      "strategic_theme": "geopolitics_power",
       "layer": "context"
     }
   ],
   "edition_type": "analysis",
-  "analysis_date": "2026-11-23",
-  "generated_at": "2026-11-23T10:12:55.075848+00:00"
+  "analysis_date": "2026-11-24",
+  "generated_at": "2026-11-24T03:39:34.503270+00:00"
 }
