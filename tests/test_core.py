@@ -572,12 +572,31 @@ class CoreQualityTests(unittest.TestCase):
         self.assertLess(int(sources["Reuters AI"]["cap"]), int(sources["OpenAI"]["cap"]))
 
     def test_thesis_labs_have_primary_feeds(self):
-        """La tesis nombra Meta, xAI y NVIDIA; sin feed primario el radar no los ve."""
+        """La tesis nombra labs, hyperscalers y monopolios de silicio; sin feed primario el radar no los ve."""
+        from src.evidence import primary_source
         sources = self._load_feeds()
-        for name in ("Meta AI", "xAI", "NVIDIA Newsroom", "Epoch AI", "Import AI", "Moonshot (Kimi)"):
+        for name in (
+            "Meta AI", "xAI", "NVIDIA Newsroom", "TSMC Press", "ASML Press",
+            "Microsoft Official", "Amazon / AWS Press", "Apple Newsroom (AI)",
+            "Alibaba / Qwen News", "Epoch AI", "Import AI", "Moonshot (Kimi)",
+        ):
             self.assertIn(name, sources, f"falta fuente {name}")
             self.assertGreaterEqual(int(sources[name].get("cap") or 0), 1)
             self.assertTrue(sources[name].get("url"), f"{name} sin url")
+        for name in ("X @sama", "X @nvidia"):
+            self.assertIn(name, sources, f"falta cuenta X {name}")
+            self.assertEqual(sources[name]["type"], "x")
+            self.assertEqual(int(sources[name]["cap"]), 1)
+        for url in (
+            "https://pr.tsmc.com/english/news/3349",
+            "https://investor.asml.com/news-releases/news-release-details/q3",
+            "https://blogs.microsoft.com/blog/2026/10/12/maia/",
+            "https://press.aboutamazon.com/aws/2026/3/trainium",
+            "https://www.apple.com/newsroom/2026/09/siri-ai/",
+            "https://www.alibabagroup.com/en-US/document-123",
+        ):
+            self.assertTrue(primary_source({"url": url}), f"debería ser fuente primaria: {url}")
+        self.assertTrue(primary_source({"source": "X @nvidia", "url": "https://x.com/nvidia/status/123"}))
 
     def test_governance_shock_and_rolling_source_window(self):
         """Un terremoto de cúpula/mercado (p. ej. regreso de Jensen Huang a NVIDIA) no puede sacar 0 ni perder por cruzar las 00:00 UTC."""

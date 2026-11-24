@@ -131,6 +131,27 @@ sources:
     cap: 2
     tags: [labs, models, frontier]
 
+  - name: Microsoft Official
+    type: rss
+    url: https://news.google.com/rss/search?q=site:blogs.microsoft.com+(AI+OR+OpenAI+OR+Azure+OR+Copilot+OR+Maia+OR+datacenter)&hl=en-US&gl=US&ceid=US:en
+    limit: 8
+    cap: 1
+    tags: [labs, compute, models, enterprise]
+
+  - name: Amazon / AWS Press
+    type: rss
+    url: https://news.google.com/rss/search?q=site:press.aboutamazon.com+(AWS+OR+Anthropic+OR+Trainium+OR+Bedrock+OR+AI+OR+datacenter)&hl=en-US&gl=US&ceid=US:en
+    limit: 8
+    cap: 1
+    tags: [labs, compute, chips, enterprise]
+
+  - name: Apple Newsroom (AI)
+    type: rss
+    url: https://news.google.com/rss/search?q=site:apple.com/newsroom+(%22Apple+Intelligence%22+OR+%22Siri+AI%22+OR+AI+OR+silicon)&hl=en-US&gl=US&ceid=US:en
+    limit: 6
+    cap: 1
+    tags: [models, chips, product]
+
 
   # ── Benchmarks Independientes & Evaluación ──────────────────────────
   - name: Artificial Analysis
@@ -179,6 +200,13 @@ sources:
     limit: 6
     cap: 2
     tags: [china, models, open_weights]
+
+  - name: Alibaba / Qwen News
+    type: rss
+    url: https://news.google.com/rss/search?q=(site:alibabagroup.com+OR+site:alibabacloud.com)+(Qwen+OR+AI+OR+T-Head+OR+chip)&hl=en-US&gl=US&ceid=US:en
+    limit: 6
+    cap: 1
+    tags: [china, labs, models, chips]
 
   - name: DeepSeek Releases
     type: rss
@@ -259,6 +287,20 @@ sources:
     cap: 1
     tags: [infra, chips]
 
+  - name: TSMC Press
+    type: rss
+    url: https://news.google.com/rss/search?q=site:pr.tsmc.com/english&hl=en-US&gl=US&ceid=US:en
+    limit: 6
+    cap: 1
+    tags: [infra, chips, market]
+
+  - name: ASML Press
+    type: rss
+    url: https://news.google.com/rss/search?q=site:investor.asml.com+-buyback&hl=en-US&gl=US&ceid=US:en
+    limit: 6
+    cap: 1
+    tags: [infra, chips, geopol]
+
 
   - name: Fabricated Knowledge
     type: rss
@@ -311,6 +353,13 @@ sources:
     cap: 1
     tags: [labs, x, frontier]
 
+  - name: X @sama
+    type: x
+    username: sama
+    limit: 6
+    cap: 1
+    tags: [labs, x, frontier]
+
   - name: X @AnthropicAI
     type: x
     username: AnthropicAI
@@ -326,6 +375,13 @@ sources:
     limit: 6
     cap: 1
     tags: [labs, x, frontier]
+
+  - name: X @nvidia
+    type: x
+    username: nvidia
+    limit: 6
+    cap: 1
+    tags: [infra, chips, x, labs]
 
   - name: X @karpathy
     type: x

@@ -7,7 +7,8 @@ KEYWORDS = {
         "tsmc","samsung","intel foundry","substrate","interconnect","smic","asml",
         "blackwell","b200","gb200","b100","rubin","r100","vr200","hopper","h100","h200","mi300","mi350","mi325",
         "venice","diamond rapids","dram","cluster","rack","accelerator","cuda","xpu","asic","wafer","foundry",
-        "tpu","tpu v5","tpu v6","trainium","inferentia"
+        "tpu","tpu v5","tpu v6","trainium","trainium2","trainium3","inferentia","maia","cobalt","graviton",
+        "euv","high-na","2nm","a16","zhenwu","t-head"
     ],
     "models": [
         "llm","model","reasoning","agent","agents","tool","tools","mcp","alignment","rl","rlhf",
@@ -16,9 +17,10 @@ KEYWORDS = {
         "test-time compute","thinking","chain of thought","synthetic data","weights","open weights",
         "gpt","gpt-6","gpt-5","gpt-4","claude","claude 4","claude 5","gemini","gemini 4","gemini 3.5",
         "deepseek","deepseek-r2","deepseek-r1","deepseek-v4","deepseek-v3",
-        "kimi","kimi k3","glm","glm-5","glm-4","zhipu","qwen","qwen2.5","qwen 3","moonshot",
+        "kimi","kimi k3","glm","glm-5","glm-4","zhipu","qwen","qwen2.5","qwen 3","qwen4","qwen 4","qwen-4","moonshot",
         "fable","mythos","sol","minimax","yi","01.ai","baichuan","llama","llama 4","llama 3.3",
-        "mistral","codestral","pixtral","grok","grok 4","grok 3","grok imagine","o1","o3","o4","command r","phi"
+        "mistral","codestral","pixtral","grok","grok 4","grok 3","grok imagine","o1","o3","o4","command r","phi",
+        "apple intelligence","siri ai","amazon nova","bedrock"
     ],
     "invest": [
         "earnings","guidance","capex","opex","margin","backlog","revenue",
@@ -45,6 +47,7 @@ KEYWORDS = {
 STRATEGIC_ACTOR_RE = re.compile(
     r"\b(nvidia|nvda|jensen huang|tsmc|asml|broadcom|sk hynix|micron|amd|arm|coreweave|"
     r"openai|sam altman|anthropic|dario amodei|deepmind|demis hassabis|xai|elon musk|"
+    r"microsoft|satya nadella|amazon|aws|apple|google|meta|"
     r"deepseek|liang wenfeng|mistral|qwen|alibaba|zhipu|moonshot|huawei|smic)\b"
 )
 GOVERNANCE_OR_MARKET_SHOCK_RE = re.compile(
@@ -77,7 +80,7 @@ def score_item(title: str, summary: str, source: str) -> dict:
         r"\b(gpt|claude|gemini|deepseek|llama|mistral|qwen|kimi|glm|zhipu|moonshot|grok|minimax|yi|fable|mythos|sol|command|phi|o1|o3|o4|r1|r2|v3|v4)[-\s]?(v?\d|\b)",
         r"\b(api|pricing|price|cost|tokens?|cost per million|tps)\b",
         r"\b(capex|revenue|margin|earnings|guidance|backlog|deal|valuation|ipo|market cap|trillion)\b",
-        r"\b(hbm|hbm3e|hbm4|gb200|b200|blackwell|rubin|vr200|mi300|mi350|tpu|gpu|datacenter|data center|cluster|power|cooling)\b",
+        r"\b(hbm|hbm3e|hbm4|gb200|b200|blackwell|rubin|vr200|mi300|mi350|tpu|trainium\d*|maia|euv|high-na|cowos|gpu|datacenter|data center|cluster|power|cooling)\b",
         r"\b(export control|sanction|eu ai act|nist|sovereign|bis|entity list|antitrust|subpoena)\b",
         r"\b(agent|agents|mcp|coding|tool use|autonomous|reasoning|thinking|distillation|benchmark|evals?)\b",
         r"\b(weights?|open-weights?|open weights?|checkpoint|weights release|open-source|open source)\b",
@@ -102,10 +105,10 @@ def score_item(title: str, summary: str, source: str) -> dict:
     if re.search(r"\b(frontier|reasoning|benchmark|eval|multimodal|distillation|chain of thought)\b", text_l) and models:
         raw += 8
     # Boost Chinese frontier ecosystem & competition
-    if re.search(r"\b(kimi|glm|zhipu|deepseek|qwen|moonshot|minimax|01\.ai|yi|baichuan|huawei|smic)\b", text_l):
+    if re.search(r"\b(kimi|glm|zhipu|deepseek|qwen|qwen4|moonshot|minimax|01\.ai|yi|baichuan|huawei|smic|t-head|zhenwu)\b", text_l):
         raw += 9
     # Boost new/frontier models
-    if re.search(r"\b(mythos|fable|sol|gemini[-\s]?[34]|claude[-\s]?[345]|gpt[-\s]?[56]|o3|o4|grok[-\s]?[34]|deepseek[-\s]?[rv][1234]|glm[-\s]?5|kimi[-\s]?k3)\b", text_l):
+    if re.search(r"\b(mythos|fable|sol|gemini[-\s]?[34]|claude[-\s]?[345]|gpt[-\s]?[56]|o3|o4|grok[-\s]?[34]|deepseek[-\s]?[rv][1234]|glm[-\s]?5|kimi[-\s]?k3|qwen[-\s]?4)\b", text_l):
         raw += 10
 
     if promo and hard_signals == 0:
@@ -114,11 +117,11 @@ def score_item(title: str, summary: str, source: str) -> dict:
     src = (source or "").lower()
     if "semiwiki" in src:
         raw += 6
-    if "nvidia" in src:
-        nvidia_strategic_signal = strategic_actor_shock or (infra + invest + geopol) > 0 or any(
-            k in text_l for k in ("datacenter", "hbm", "gpu", "inference", "training", "pricing", "capex", "blackwell", "gb200", "rubin")
+    if any(k in src for k in ("nvidia", "tsmc", "asml", "microsoft", "amazon", "apple", "alibaba")):
+        corp_strategic_signal = strategic_actor_shock or (infra + invest + models + geopol) > 0 or any(
+            k in text_l for k in ("datacenter", "hbm", "gpu", "inference", "training", "pricing", "capex", "blackwell", "gb200", "rubin", "euv", "wafer")
         )
-        if nvidia_strategic_signal:
+        if corp_strategic_signal:
             raw += 5
     if "arxiv" in src:
         raw += 4

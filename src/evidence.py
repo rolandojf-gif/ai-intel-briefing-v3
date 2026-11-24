@@ -34,6 +34,10 @@ PRIMARY_HOSTS = {
     "openai.com", "anthropic.com", "deepmind.google", "blog.google", "mistral.ai",
     "ai.meta.com", "x.ai", "together.ai", "deepseek.com", "api-docs.deepseek.com",
     "nvidianews.nvidia.com", "investor.nvidia.com", "blogs.nvidia.com",
+    "pr.tsmc.com", "tsmc.com", "investor.asml.com", "asml.com",
+    "blogs.microsoft.com", "news.microsoft.com",
+    "press.aboutamazon.com", "aws.amazon.com", "apple.com",
+    "alibabagroup.com", "home.alibabagroup.com", "alibabacloud.com", "qwenlm.github.io",
 }
 
 
@@ -63,7 +67,7 @@ def primary_source(item):
     if host in PRIMARY_HOSTS:
         return True
     account = (item.get("source") or "").removeprefix("X @").lower()
-    return (host in {"x.com", "twitter.com"} and account in {"openai", "anthropicai", "googledeepmind"}
+    return (host in {"x.com", "twitter.com"} and account in {"openai", "anthropicai", "googledeepmind", "nvidia"}
             and parts.path.lower().startswith(f"/{account}/status/"))
 
 

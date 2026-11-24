@@ -865,7 +865,7 @@ def is_fresh_enough(it: dict) -> bool:
     age = item_age_days(it)
     if age is None:
         return True
-    if any(s in source for s in ("nvidia", "google ai", "deepmind", "semiwiki")):
+    if any(s in source for s in ("nvidia", "tsmc", "asml", "apple", "google ai", "deepmind", "semiwiki")):
         return age <= 7
     return age <= 5
 
@@ -981,7 +981,7 @@ MAX_REPEAT_SIGNALS = 3  # techo blando de repeats dentro de signals si hay senal
 # del LLM y no se puede publicar (ver el gate en apply_llm_results).
 # El test test_llm_batch_covers_configured_caps ancla esto a la suma de caps
 # de feeds.yaml: si subes un cap, sube este número.
-LLM_BATCH_SIZE = 72
+LLM_BATCH_SIZE = 80
 
 # Score minimo para que power_shift rescate un item que el LLM no marco signal.
 # Sin umbral no filtra: el campo viene relleno en ~75% de los items.
