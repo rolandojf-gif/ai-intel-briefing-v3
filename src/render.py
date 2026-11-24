@@ -1382,7 +1382,15 @@ def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", 
         it["cover_en"] = fallback_en
         enriched.append(it)
 
-    enriched.sort(key=lambda x: x.get("score", 0), reverse=True)
+    ev_rank = {"confirmed": 4, "reported": 3, "inference": 2, "speculation": 1, "unverified": 0}
+    enriched.sort(
+        key=lambda x: (
+            x.get("score", 0),
+            ev_rank.get(((x.get("ev") or {}).get("kind") or x.get("evidence_kind") or ""), 3),
+            int(x.get("llm_score") or 0),
+        ),
+        reverse=True,
+    )
 
     signals = [it for it in enriched if it.get("layer") == "signal"]
     context = [it for it in enriched if it.get("layer") == "context"]

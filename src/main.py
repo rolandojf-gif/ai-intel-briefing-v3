@@ -1188,6 +1188,10 @@ def apply_llm_results(candidates: list[dict], results_map: dict) -> list[dict]:
             ranking_reason = f"fallback_adjusted+recency({recency_boost})-noise({noise_penalty})"
             it["llm_score"] = None
 
+        if it.get("evidence_kind") == "unverified":
+            final_score = min(final_score, 68)
+            ranking_reason += "+unverified_cap(68)"
+
         it["noise_penalty"] = noise_penalty
         it["final_score"] = final_score
         it["score"] = final_score  # legacy alias
@@ -1198,7 +1202,15 @@ def apply_llm_results(candidates: list[dict], results_map: dict) -> list[dict]:
 
         reranked.append(it)
 
-    reranked.sort(key=lambda x: x.get("final_score", x.get("score", 0)), reverse=True)
+    ev_rank = {"confirmed": 4, "reported": 3, "inference": 2, "speculation": 1, "unverified": 0}
+    reranked.sort(
+        key=lambda x: (
+            x.get("final_score", x.get("score", 0)),
+            ev_rank.get(x.get("evidence_kind") or "", 3),
+            int(x.get("llm_score") or 0),
+        ),
+        reverse=True,
+    )
 
     # Antes del gate: si no, nueve cards del mismo suceso se comen los huecos
     # de MAX_SIGNALS y dejan fuera señales distintas.

@@ -632,6 +632,57 @@ class CoreQualityTests(unittest.TestCase):
         )
         self.assertTrue(primary_source({"url": "https://nvidianews.nvidia.com/news/nvidia-board-reinstates-jensen-huang"}))
 
+        # A igualdad de techo (100/100), un hecho Confirmado de fuente primaria debe liderar sobre una Hipótesis,
+        # y un item Sin verificar no debe quedarse en 100/100.
+        from src.main import apply_llm_results
+        fresh_iso = datetime.now(timezone.utc).isoformat()
+        cands = [
+            {
+                "_rid": 1,
+                "title": "Rumor says lab might pivot compute",
+                "summary": "Rumor says lab might pivot compute.",
+                "url": "https://example.com/spec",
+                "published": fresh_iso,
+                "source": "The Decoder",
+                "primary": "invest",
+                "heuristic_score": 100,
+                "adjusted_score": 100,
+            },
+            {
+                "_rid": 2,
+                "title": "NVIDIA Board Reinstates Jensen Huang as CEO",
+                "summary": "NVIDIA today announced Jensen Huang has been reinstated as CEO.",
+                "url": "https://nvidianews.nvidia.com/news/reinstates-huang",
+                "published": fresh_iso,
+                "source": "NVIDIA Newsroom",
+                "primary": "invest",
+                "heuristic_score": 63,
+                "adjusted_score": 63,
+            },
+            {
+                "_rid": 3,
+                "title": "Opinion piece without matching quote",
+                "summary": "Short blurb.",
+                "url": "https://example.com/unv",
+                "published": fresh_iso,
+                "source": "The Verge AI",
+                "heuristic_score": 80,
+                "adjusted_score": 80,
+            },
+        ]
+        ranked = apply_llm_results(
+            cands,
+            {
+                "1": {"verdict": "signal", "relevance": 98, "evidence_kind": "speculation", "evidence_quote": "Rumor says lab might pivot compute", "source_title_es": "Rumor", "headline_es": "Rumor", "so_what": "Impacto"},
+                "2": {"verdict": "signal", "relevance": 100, "evidence_kind": "confirmed", "evidence_quote": "NVIDIA Board Reinstates Jensen Huang as CEO", "source_title_es": "Nvidia restituye a Huang", "headline_es": "Nvidia restituye a Huang", "so_what": "Giro de mando"},
+                "3": {"verdict": "signal", "relevance": 95, "evidence_kind": "reported", "evidence_quote": "invented quote not in source", "source_title_es": "Sin cita", "headline_es": "Sin cita", "so_what": "Nada"},
+            },
+        )
+        self.assertEqual(ranked[0]["source"], "NVIDIA Newsroom")
+        self.assertEqual(ranked[0]["evidence_kind"], "confirmed")
+        unv = next(x for x in ranked if x["source"] == "The Verge AI")
+        self.assertLessEqual(unv["final_score"], 68)
+
     def test_llm_batch_covers_configured_caps(self):
         """Si el lote es menor que la suma de caps, el gate recrea cola sin juzgar."""
         from src.main import LLM_BATCH_SIZE
