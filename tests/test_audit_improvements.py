@@ -365,12 +365,12 @@ class UxTimezoneHealthTests(unittest.TestCase):
         self.assertIn("<b>92/100</b>", html_dossier)
         self.assertLess(html_dossier.index('class="opening"'), html_dossier.index('class="telemetry-band"'))
 
-        # 2) Hero con foto -> modo Photo con ilustración de respaldo
+        # 2) Hero con foto -> modo Photo con barra superpuesta y fallback JS a Dossier
         photo_items = [dict(no_photo_items[0], image_url="https://cdn.example.com/hero.jpg")]
         html_photo = render.render_index(photo_items, briefing={"thesis": "Tesis"}, snapshot={"date": "2026-11-18"}, market={})
         self.assertIn('class="lead lead-photo"', html_photo)
         self.assertIn('class="lead-media"', html_photo)
-        self.assertIn('<img class="hero-img l-es" src="data:image/svg+xml;base64,', html_photo)
+        self.assertIn("lead.classList.add('lead-dossier')", html_photo)
 
         # 3) Cover SVG mejorada con entidad y score (XML válido < 6KB)
         svg = cover.cover_svg("frontier_capability", "Capacidad frontier", "OpenAI", seed="s1", entity="OpenAI", score=100)

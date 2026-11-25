@@ -103,19 +103,29 @@ class FollowUpTests(unittest.TestCase):
         self.assertNotIn("<img onerror", html)
         self.assertEqual(html.count('data-updated="'), 3)
         self.assertNotIn('id="visit-changes"', render_index([], snapshot=day, archive={"prev":"2026-11-19"}, market={}))
+        self.assertNotRegex(html, r'<(?:section id="visit-changes"|article class="visit-update")[^>]* hidden')
+        empty_html = render_index([], market={})
+        self.assertIn('id="visit-empty">', empty_html)
         if not shutil.which("node"):
             self.skipTest("node unavailable")
         script = re.search(r"// La visita.*?(\(function\(\)\{.*?\}\)\(\);)",html,re.S).group(1)
         js = """const assert=require('node:assert/strict');let value=null, panel;
             const localStorage={getItem:()=>value,setItem:(k,v)=>{value=v}};
             const document={getElementById:()=>panel};
-            function visit(day){const row={dataset:{updated:'2026-11-20'},hidden:true};
-              panel={hidden:true,dataset:{edition:day},querySelectorAll:()=>[row]};""" + script + """
-              return !panel.hidden && !row.hidden;}
-            assert.equal(visit('2026-11-18'),false); assert.equal(visit('2026-11-20'),true);
-            assert.equal(visit('2026-11-20'),true); assert.equal(visit('2026-11-19'),false);
-            assert.equal(visit('2026-11-21'),false);
-            localStorage.getItem=()=>{throw Error()};assert.equal(visit('2026-11-22'),false);"""
+            function visit(day){
+              const row={dataset:{updated:'2026-11-20'},hidden:false};
+              const recent={hidden:false}, empty={hidden:true};
+              panel={dataset:{edition:day},querySelectorAll:()=>[row],
+                     querySelector:id=>id==='#visit-recent'?recent:empty};""" + script + """
+              return [!row.hidden, !recent.hidden, !empty.hidden];}
+            assert.deepEqual(visit('2026-11-20'),[true,true,false]);
+            assert.deepEqual(visit('2026-11-20'),[true,true,false]);
+            value=JSON.stringify({latest:'2026-11-18'});
+            assert.deepEqual(visit('2026-11-20'),[true,false,false]);
+            assert.deepEqual(visit('2026-11-20'),[true,false,false]);
+            assert.deepEqual(visit('2026-11-21'),[false,false,true]);
+            localStorage.getItem=()=>{throw Error()};
+            assert.deepEqual(visit('2026-11-22'),[true,true,false]);"""
         subprocess.run(["node", "-e", js], check=True, capture_output=True)
 
     def test_visit_comparison_keeps_long_social_posts_scannable_in_both_languages(self):
