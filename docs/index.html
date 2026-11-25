@@ -493,11 +493,12 @@
   .spark.pos polyline{stroke:var(--open)} .spark.neg polyline{stroke:var(--bad)}
 
   #visit-changes{margin:24px 0 0;padding:16px 18px}
-  #visit-changes[hidden],.visit-update[hidden]{display:none}
+  .visit-update[hidden]{display:none}
   #visit-changes .widget-title{margin:-16px -18px 14px;padding:10px 18px}
-  .deck.filtered #visit-changes{display:none}
-  .vc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(460px,1fr));gap:14px}
-  .visit-update{display:flex;flex-direction:column;gap:10px;padding:13px 14px;background:var(--card-2);border:1.5px solid var(--ink)}
+  .deck.filtered #visit-changes{order:3}
+  .vc-note{margin:0 0 10px;color:var(--muted);font-size:13px}
+  .vc-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:14px}
+  .visit-update{display:flex;flex-direction:column;gap:8px;min-width:0;padding:12px 14px;background:var(--card-2);border:1.5px solid var(--ink);overflow-wrap:anywhere}
   .vc-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
   .vc-status{display:inline-flex;align-items:center;gap:5px;font:700 10px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.05em;
              padding:3px 7px;border:1.5px solid var(--ink);background:var(--lime);color:#121211}
@@ -517,7 +518,7 @@
   .vc-link{font:600 13.5px/1.35 var(--f-head);color:var(--text);text-decoration:none}
   .vc-before .vc-link{font-weight:500;color:var(--muted)}
   .vc-link:hover{text-decoration:underline;text-underline-offset:2px}
-  .vc-arrow{display:grid;place-items:center;font:700 16px/1 var(--f-mono);color:var(--orange-ink)}
+  .vc-arrow{align-self:center;text-align:center;font:700 16px/1 var(--f-mono);color:var(--orange-ink)}
   .vc-watch{display:flex;align-items:baseline;gap:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:12.5px;line-height:1.4;color:var(--muted)}
   .vc-wk{font:700 9.5px/1 var(--f-mono);text-transform:uppercase;padding:2px 5px;border:1px solid var(--ink);background:var(--lime);color:#121211;flex-shrink:0}
 
@@ -536,8 +537,8 @@
     .opening .lead,.opening[data-cols="2"] .lead{grid-column:auto;order:-1}
   }
   @media(max-width:720px){
-    .grid,.below .grid,.vc-grid,.vc-flow{grid-template-columns:1fr}
-    .vc-arrow{transform:rotate(90deg);height:16px}
+    .grid,.below .grid,.vc-flow{grid-template-columns:minmax(0,1fr)}
+    .vc-arrow{display:none}
     .tq{flex:0 0 170px}
     .pulse{grid-template-columns:1fr}
     .cx,.watch-row{grid-template-columns:1fr;gap:5px}
@@ -982,14 +983,16 @@
   
 
   
-  <section id="visit-changes" class="widget" data-edition="2026-11-25" hidden>
+  <section id="visit-changes" class="widget" data-edition="2026-11-25">
     <h2 class="widget-title">
       <span><span class="l-es">Qué cambió desde tu última visita</span><span class="l-en" lang="en">What changed since your last visit</span></span>
       <span class="lbl"><span class="l-es">Seguimiento</span><span class="l-en" lang="en">Story follow-up</span></span>
     </h2>
-    <div class="vc-grid">
+    <p class="vc-note" id="visit-recent"><span class="l-es">Últimos cambios registrados en el radar.</span><span class="l-en" lang="en">Latest changes tracked by the radar.</span></p>
+    <p class="vc-note" id="visit-empty" hidden><span class="l-es">Sin novedades de seguimiento en este periodo.</span><span class="l-en" lang="en">No follow-up updates in this period.</span></p>
+    <div class="vc-list">
       
-      <article class="visit-update" data-updated="2026-11-25" hidden>
+      <article class="visit-update" data-updated="2026-11-25">
         <div class="vc-top">
           <span class="vc-status vc-development">
             <span class="l-es">↻ Nuevo desarrollo</span><span class="l-en" lang="en">↻ New development</span>
@@ -1023,7 +1026,7 @@
         
       </article>
       
-      <article class="visit-update" data-updated="2026-11-25" hidden>
+      <article class="visit-update" data-updated="2026-11-25">
         <div class="vc-top">
           <span class="vc-status vc-development">
             <span class="l-es">↻ Nuevo desarrollo</span><span class="l-en" lang="en">↻ New development</span>
@@ -1036,7 +1039,7 @@
               <span class="vc-k"><span class="l-es">Antes</span><span class="l-en" lang="en">Before</span></span>
               <span class="vc-meta">X @GoogleDeepMind · 11-24</span>
             </div>
-            <a class="vc-link" href="https://x.com/GoogleDeepMind/status/2124911073266413634" target="_blank" rel="noopener noreferrer"><span class="l-es">Las computadoras cuánticas podrían transformar algún día la energía de fusión, la química y el descubrimiento de fármacos, si podemos hacer que los algoritmos sean lo suficientemente eficientes como para ejecutarse en hardware temprano. Usando equipos de agentes Gemini 4, hemos construido nuevos circuitos cuánticos que reducen los futuros costos de simulación hasta 10 veces.</span><span class="l-en" lang="en">Quantum computers could one day transform fusion energy, chemistry, and drug discovery - if we can make the algorithms efficient enough to run on early hardware. Using teams of Gemini 4 agents, we’ve built new quantum circuits that cut future simulation costs by up to 10 times.</span></a>
+            <a class="vc-link" href="https://x.com/GoogleDeepMind/status/2124911073266413634" target="_blank" rel="noopener noreferrer"><span class="l-es">Las computadoras cuánticas podrían transformar algún día la energía de fusión, la química y el descubrimiento de fármacos, si podemos…</span><span class="l-en" lang="en">Quantum computers could one day transform fusion energy, chemistry, and drug discovery - if we can make the algorithms efficient enough to…</span></a>
           </div>
           
           <span class="vc-arrow" aria-hidden="true">→</span>
@@ -1052,7 +1055,7 @@
         
       </article>
       
-      <article class="visit-update" data-updated="2026-11-25" hidden>
+      <article class="visit-update" data-updated="2026-11-25">
         <div class="vc-top">
           <span class="vc-status vc-development">
             <span class="l-es">↻ Nuevo desarrollo</span><span class="l-en" lang="en">↻ New development</span>
@@ -1509,12 +1512,14 @@
         ? (state.latest === today ? state.previous : state.latest) : null;
       localStorage.setItem(key, JSON.stringify({latest: today, previous}));
       if (!valid(previous) || previous >= today) return;
+      const recent = panel.querySelector('#visit-recent');
+      if (recent) recent.hidden = true;
+      let hasUpdates = false;
       for (const row of panel.querySelectorAll('[data-updated]')) {
-        if (row.dataset.updated > previous && row.dataset.updated <= today) {
-          row.hidden = false;
-          panel.hidden = false;
-        }
+        row.hidden = !(row.dataset.updated > previous && row.dataset.updated <= today);
+        if (!row.hidden) hasUpdates = true;
       }
+      panel.querySelector('#visit-empty').hidden = hasUpdates;
     } catch (_) { /* Sin historial local fiable no se afirma que haya novedades. */ }
   })();
 
