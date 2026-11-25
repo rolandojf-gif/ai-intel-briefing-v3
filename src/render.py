@@ -677,7 +677,7 @@ TEMPLATE = ENV.from_string("""
   #visit-changes .widget-title{margin:-16px -18px 14px;padding:10px 18px}
   .deck.filtered #visit-changes{order:3}
   .vc-note{margin:0 0 10px;color:var(--muted);font-size:13px}
-  .vc-list{display:grid;gap:12px}
+  .vc-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:14px}
   .visit-update{display:flex;flex-direction:column;gap:8px;min-width:0;padding:12px 14px;background:var(--card-2);border:1.5px solid var(--ink);overflow-wrap:anywhere}
   .vc-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
   .vc-status{display:inline-flex;align-items:center;gap:5px;font:700 10px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.05em;
@@ -686,7 +686,7 @@ TEMPLATE = ENV.from_string("""
   .vc-status.vc-correction{background:#FBBF24;color:#121211}
   .vc-status.vc-expired{background:var(--card);color:var(--muted)}
   .vc-date{font:600 10.5px var(--f-mono);color:var(--muted)}
-  .vc-flow{display:grid;grid-template-columns:minmax(0,1fr) 22px minmax(0,1.15fr);gap:8px;align-items:start}
+  .vc-flow{display:grid;grid-template-columns:minmax(0,1fr) 22px minmax(0,1.15fr);gap:8px;align-items:stretch}
   .vc-flow.single{grid-template-columns:minmax(0,1fr)}
   .vc-step{display:flex;flex-direction:column;gap:5px;padding:10px 11px;border:1px solid var(--line);background:var(--card)}
   .vc-step.vc-before{background:transparent;border-style:dashed}
