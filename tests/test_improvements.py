@@ -129,6 +129,8 @@ class FrontTests(unittest.TestCase):
          "url": "https://example.com/a", "image_url": "https://cdn.example.com/a.jpg"},
         {"title": "Sin foto", "title_es": "Sin foto", "score": 80, "layer": "signal",
          "url": "https://example.com/b", "image_url": ""},
+        {"title": "Con anuncio", "title_es": "Con anuncio", "score": 75, "layer": "signal",
+         "url": "https://example.com/c", "image_url": "https://cdn.example.com/english-banner.jpg"},
     ]
 
     def _html(self, **kw):
@@ -136,26 +138,28 @@ class FrontTests(unittest.TestCase):
         return render_index([dict(i) for i in self.ITEMS], briefing={"thesis": "t"},
                             snapshot={"date": "2026-11-14"}, market={}, **kw)
 
-    def test_remote_images_carry_a_generated_fallback(self):
+    def test_remote_images_only_appear_in_english_with_a_generated_fallback(self):
         import re
         html = self._html()
-        hero = re.search(r'<img class="hero-img"[^>]*>', html).group(0)
-        self.assertIn('src="https://cdn.example.com/a.jpg"', hero)
-        self.assertIn('data-fb="data:image/svg+xml;base64,', hero)
-        self.assertIn('data-fb-en="data:image/svg+xml;base64,', hero)
-        # El que ya usa la portada generada no necesita respaldo: va una por idioma.
-        cards = re.findall(r'<img class="card-img l-e[sn]"[^>]*>', html)
-        self.assertEqual(len(cards), 2)
-        for c in cards:
-            self.assertIn('src="data:image/svg+xml;base64,', c)
-            self.assertNotIn("data-fb", c)
+        covers_es = re.findall(r'<img class="(?:hero-img|card-img) l-es"[^>]*>', html)
+        self.assertEqual(len(covers_es), 4)
+        for cover in covers_es:
+            self.assertIn('src="data:image/svg+xml;base64,', cover)
+            self.assertNotIn("data-fb", cover)
+        for url in ("https://cdn.example.com/a.jpg", "https://cdn.example.com/english-banner.jpg"):
+            images = re.findall(r'<img[^>]*src="' + re.escape(url) + r'"[^>]*>', html)
+            self.assertTrue(images)
+            for image in images:
+                self.assertIn(' l-en"', image)
+                self.assertIn('data-fb="data:image/svg+xml;base64,', image)
+        self.assertRegex(html, r'<img class="card-img l-en" src="data:image/svg\+xml;base64,[^"]*" alt="" loading="lazy"/>')
 
     def test_generated_cover_is_translated(self):
         import base64
         from src.render import item_fallback_image
         item = {"title": "t", "strategic_theme": "frontier_capability", "source": "X @grok"}
         dec = lambda uri: base64.b64decode(uri.split(",", 1)[1]).decode()
-        self.assertIn("CAPACIDAD FRONTIER", dec(item_fallback_image(item)))
+        self.assertIn("CAPACIDAD DE VANGUARDIA", dec(item_fallback_image(item)))
         self.assertIn("FRONTIER CAPABILITY", dec(item_fallback_image(item, "en")))
 
     def test_site_defaults_to_english_and_light(self):

@@ -210,7 +210,7 @@ def source_logo_url(source: str, url: str = "") -> str:
 
 
 def item_fallback_image(item: dict, lang: str = "es") -> str:
-    """Portada generada (data URI) para un item sin imagen o con la imagen caida.
+    """Portada generada para ES y para fichas sin imagen de origen en EN.
 
     Lleva tema, entidad protagonista (si existe), puntuacion y fuente: el titular
     ya va justo debajo, en la card. El dibujo lo hace src/cover.py.
@@ -219,7 +219,8 @@ def item_fallback_image(item: dict, lang: str = "es") -> str:
 
     theme_key = (item.get("strategic_theme") or item.get("primary") or "other").strip() or "other"
     seed = f"{item.get('title') or item.get('title_es') or ''}|{item.get('url') or item.get('link') or ''}"
-    label = THEME_LABELS_EN.get(theme_key, "Other signals") if lang == "en" else human_theme(theme_key)
+    labels = THEME_LABELS_EN if lang == "en" else COVER_LABELS_ES
+    label = labels.get(theme_key, labels["other"])
     ents = item_entities(item, limit=1)
     entity = ents[0] if ents else ""
     sc = score_value(item)
@@ -246,6 +247,12 @@ THEME_LABELS_EN = {
     "compute_chips_dc": "Compute & chips", "model_economics": "Model economics",
     "model_economics_pricing": "Model economics", "china_stack": "China stack",
     "geopolitics_power": "Geopolitics", "other": "Other signals", "misc": "Other signals",
+}
+COVER_LABELS_ES = {
+    **THEME_LABELS,
+    "frontier_capability": "Capacidad de vanguardia",
+    "compute_chips_dc": "Cómputo y chips",
+    "china_stack": "Ecosistema chino",
 }
 ACTIVITY_EN = {"ALERTA": "ALERT", "ACTIVO": "ACTIVE", "TRANQUILO": "QUIET",
                "SIN SEÑAL": "NO SIGNAL", "SIN FILTRAR": "UNFILTERED"}
@@ -319,6 +326,10 @@ TEMPLATE = ENV.from_string("""
 {%- macro ev_pill(it) -%}
   {% if it.ev -%}<span class="ev-pill ev-{{ it.ev.kind }}" title="{{ it.ev.tip_es }}">{{ bi(it.ev.es, it.ev.en) }}</span>{%- endif %}
 {%- endmacro %}
+{%- macro news_image(es_cover, en_cover, remote, css_class, lazy=false) -%}
+  <img class="{{ css_class }} l-es" src="{{ es_cover }}" alt=""{% if lazy %} loading="lazy"{% endif %}/>
+  <img class="{{ css_class }} l-en" src="{{ remote or en_cover }}" alt=""{% if lazy %} loading="lazy"{% endif %}{% if remote %} data-fb="{{ en_cover }}" referrerpolicy="no-referrer"{% endif %}/>
+{%- endmacro %}
 <!doctype html>
 <html {{ html_attrs }}>
 <head>
@@ -326,27 +337,14 @@ TEMPLATE = ENV.from_string("""
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 {{ seo }}{{ brand_head }}<script>
   // Va en <head> para estar escuchando antes de que se pinte la primera imagen.
-  // Si falla la foto del Hero, la portada pasa limpiamente a modo Dossier tipografico
-  // en vez de enseñar un rectangulo gigante de relleno; en las cards usa la portada SVG.
+  // Si falla una foto en inglés, se usa su portada editorial.
   document.addEventListener('error', function(ev){
     var t = ev.target;
     if (!t || t.tagName !== 'IMG') return;
-    if (t.classList.contains('hero-img')) {
-      var lead = t.closest && t.closest('.lead');
-      if (lead) {
-        lead.classList.remove('lead-photo');
-        lead.classList.add('lead-dossier');
-        var media = t.closest('.lead-media');
-        if (media) media.remove();
-        return;
-      }
-    }
     var fb = t.getAttribute('data-fb');
     if (fb) {
-      // La portada generada lleva texto: se pone una por idioma.
-      var en = t.getAttribute('data-fb-en');
-      t.removeAttribute('data-fb'); t.removeAttribute('data-fb-en'); t.removeAttribute('loading');
-      if (en) { var c = t.cloneNode(false); c.src = en; c.classList.add('l-en'); t.classList.add('l-es'); t.parentNode.insertBefore(c, t.nextSibling); }
+      t.removeAttribute('data-fb');
+      t.removeAttribute('loading');
       t.src = fb;
     }
     else { t.style.visibility = 'hidden'; }
@@ -676,8 +674,8 @@ TEMPLATE = ENV.from_string("""
   #visit-changes[hidden],.visit-update[hidden]{display:none}
   #visit-changes .widget-title{margin:-16px -18px 14px;padding:10px 18px}
   .deck.filtered #visit-changes{display:none}
-  .vc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(460px,1fr));gap:14px}
-  .visit-update{display:flex;flex-direction:column;gap:10px;padding:13px 14px;background:var(--card-2);border:1.5px solid var(--ink)}
+  .vc-list{display:grid;gap:12px}
+  .visit-update{display:flex;flex-direction:column;gap:8px;min-width:0;padding:12px 14px;background:var(--card-2);border:1.5px solid var(--ink);overflow-wrap:anywhere}
   .vc-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
   .vc-status{display:inline-flex;align-items:center;gap:5px;font:700 10px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.05em;
              padding:3px 7px;border:1.5px solid var(--ink);background:var(--lime);color:#121211}
@@ -685,7 +683,7 @@ TEMPLATE = ENV.from_string("""
   .vc-status.vc-correction{background:#FBBF24;color:#121211}
   .vc-status.vc-expired{background:var(--card);color:var(--muted)}
   .vc-date{font:600 10.5px var(--f-mono);color:var(--muted)}
-  .vc-flow{display:grid;grid-template-columns:minmax(0,1fr) 22px minmax(0,1.15fr);gap:8px;align-items:stretch}
+  .vc-flow{display:grid;grid-template-columns:minmax(0,1fr) 22px minmax(0,1.15fr);gap:8px;align-items:start}
   .vc-flow.single{grid-template-columns:minmax(0,1fr)}
   .vc-step{display:flex;flex-direction:column;gap:5px;padding:10px 11px;border:1px solid var(--line);background:var(--card)}
   .vc-step.vc-before{background:transparent;border-style:dashed}
@@ -697,7 +695,7 @@ TEMPLATE = ENV.from_string("""
   .vc-link{font:600 13.5px/1.35 var(--f-head);color:var(--text);text-decoration:none}
   .vc-before .vc-link{font-weight:500;color:var(--muted)}
   .vc-link:hover{text-decoration:underline;text-underline-offset:2px}
-  .vc-arrow{display:grid;place-items:center;font:700 16px/1 var(--f-mono);color:var(--orange-ink)}
+  .vc-arrow{align-self:center;text-align:center;font:700 16px/1 var(--f-mono);color:var(--orange-ink)}
   .vc-watch{display:flex;align-items:baseline;gap:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:12.5px;line-height:1.4;color:var(--muted)}
   .vc-wk{font:700 9.5px/1 var(--f-mono);text-transform:uppercase;padding:2px 5px;border:1px solid var(--ink);background:var(--lime);color:#121211;flex-shrink:0}
 
@@ -716,8 +714,8 @@ TEMPLATE = ENV.from_string("""
     .opening .lead,.opening[data-cols="2"] .lead{grid-column:auto;order:-1}
   }
   @media(max-width:720px){
-    .grid,.below .grid,.vc-grid,.vc-flow{grid-template-columns:1fr}
-    .vc-arrow{transform:rotate(90deg);height:16px}
+    .grid,.below .grid,.vc-flow{grid-template-columns:minmax(0,1fr)}
+    .vc-arrow{display:none}
     .tq{flex:0 0 170px}
     .pulse{grid-template-columns:1fr}
     .cx,.watch-row{grid-template-columns:1fr;gap:5px}
@@ -818,20 +816,21 @@ TEMPLATE = ENV.from_string("""
 
     <!-- Columna central: Portada #01 (adaptativa foto/dossier) -->
     <article class="lead {% if hero.cover_only %}lead-dossier{% else %}lead-photo{% endif %}" style="--lead-accent:{{ hero.accent }}">
+      {% if hero.cover_only %}
       <div class="lead-wm" aria-hidden="true">{{ hero.watermark_svg|safe }}</div>
-      {% if not hero.cover_only %}
+      {% else %}
       <a class="lead-media" href="{{ (hero.url or hero.link)|safe_url }}" target="_blank" rel="noopener noreferrer">
         <div class="lead-media-bar">
-          <span class="tag">#01 · {{ bi("Portada","Front page") }} / {{ bi(hero.theme_label, hero.theme_label_en) }}</span>
+          <span class="tag">#01 · {{ bi("Portada","Front page") }} / {{ bi(hero.cover_theme_es, hero.theme_label_en) }}</span>
           {% if hero.is_new %}<span class="badge-new">{{ bi("Nuevo","New") }}</span>{% endif %}
           <span class="score {{ hero.score_cls }}">{{ hero.score }}/100</span>
         </div>
-        <img class="hero-img" src="{{ hero.image_url }}" data-fb="{{ hero.fallback_image }}" data-fb-en="{{ hero.cover_en }}" alt="" referrerpolicy="no-referrer"/>
+        {{ news_image(hero.cover_art, hero.cover_art, hero.image_url, "hero-img") }}
       </a>
       {% endif %}
       <div class="lead-body">
         <div class="lead-top">
-          <span class="tag">#01 · {{ bi("Portada","Front page") }} / {{ bi(hero.theme_label, hero.theme_label_en) }}</span>
+          <span class="tag">#01 · {{ bi("Portada","Front page") }} / {{ bi(hero.cover_theme_es, hero.theme_label_en) }}</span>
           {% if hero.is_new %}<span class="badge-new">{{ bi("Nuevo","New") }}</span>{% endif %}
           <span class="score {{ hero.score_cls }}">{{ hero.score }}/100</span>
         </div>
@@ -971,7 +970,7 @@ TEMPLATE = ENV.from_string("""
       <span>{{ bi("Qué cambió desde tu última visita", "What changed since your last visit") }}</span>
       <span class="lbl">{{ bi("Seguimiento","Story follow-up") }}</span>
     </h2>
-    <div class="vc-grid">
+    <div class="vc-list">
       {% for u in visit_updates %}
       <article class="visit-update" data-updated="{{ u.date }}" hidden>
         <div class="vc-top">
@@ -1033,8 +1032,7 @@ TEMPLATE = ENV.from_string("""
       {% for it in signals %}{% set dup = loop.index0 < lead_n %}
         <article class="card{% if dup %} dup{% endif %}" data-topic="{{ it.theme_key }}" data-new="{{ 1 if it.is_new else 0 }}">
           <a href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer">
-            {% if it.cover_only %}<img class="card-img l-es" src="{{ it.image_url }}" alt="" loading="lazy"/><img class="card-img l-en" src="{{ it.cover_en }}" alt="" loading="lazy"/>
-            {% else %}<img class="card-img" src="{{ it.image_url }}" data-fb="{{ it.fallback_image }}" data-fb-en="{{ it.cover_en }}" alt="" loading="lazy" referrerpolicy="no-referrer"/>{% endif %}
+            {{ news_image(it.cover_es, it.cover_en, it.image_url, "card-img", lazy=true) }}
           </a>
           <div class="card-body">
             <div class="meta-row">
@@ -1378,15 +1376,12 @@ def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", 
         it["also"] = also[:ALSO_MAX]
         it["also_more"] = max(0, len(also) - ALSO_MAX)
 
-        # La portada generada sirve dos veces: como imagen si el item no trae
-        # ninguna, y como respaldo en cliente (data-fb) si la remota no carga.
-        # La portada lleva el tema escrito, asi que hay una por idioma.
-        fallback, fallback_en = item_fallback_image(it), item_fallback_image(it, "en")
+        # Las imágenes de la fuente pueden llevar texto incrustado en otro idioma.
+        it["cover_es"] = item_fallback_image(it)
+        it["cover_en"] = item_fallback_image(it, "en")
         img = (it.get("image_url") or "").strip()
-        it["cover_only"] = not img or not img.startswith(("http://", "https://"))
-        it["image_url"] = fallback if it["cover_only"] else img
-        it["fallback_image"] = "" if it["cover_only"] else fallback
-        it["cover_en"] = fallback_en
+        it["image_url"] = img if img.startswith(("http://", "https://")) else ""
+        it["cover_only"] = not it["image_url"]
         enriched.append(it)
 
     ev_rank = {"confirmed": 4, "reported": 3, "inference": 2, "speculation": 1, "unverified": 0}
@@ -1409,10 +1404,13 @@ def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", 
 
     hero = signals[0] if signals else None
     if hero is not None:
-        from src.cover import motif_watermark_svg, theme_accent
+        from src.cover import motif_watermark_svg, svg_data_uri, theme_accent
         h_seed = f"{hero.get('title') or hero.get('title_es') or ''}|{hero.get('url') or hero.get('link') or ''}"
         hero["accent"] = theme_accent(hero["theme_key"])
         hero["watermark_svg"] = motif_watermark_svg(hero["theme_key"], h_seed)
+        hero["cover_theme_es"] = COVER_LABELS_ES.get(hero["theme_key"], COVER_LABELS_ES["other"])
+        if hero["image_url"]:
+            hero["cover_art"] = svg_data_uri(hero["watermark_svg"])
     stream = signals[1:] if len(signals) > 1 else []
 
     # Tabs de tema estilo Discover: solo los temas presentes hoy, con contador.
@@ -1463,7 +1461,7 @@ def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", 
                 cp = dict(part)
                 for k in ("es", "en"):
                     if isinstance(cp.get(k), str):
-                        cp[k] = strip_evidence_prefix(cp[k])
+                        cp[k] = clamp_headline(strip_evidence_prefix(cp[k]), 140)
                 clean_u[side] = cp
         visit_updates.append(clean_u)
 

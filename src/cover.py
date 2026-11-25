@@ -1,4 +1,4 @@
-"""Portada generada para los items sin imagen (o cuya imagen remota no carga).
+"""Portada editorial generada para las fichas del radar.
 
 Lleva solo el TEMA y la FUENTE: el titular ya esta justo debajo, en la card.
 Cada tema tiene su color y su motivo grafico, y el dibujo se siembra con el
@@ -282,5 +282,8 @@ def cover_data_uri(
     entity: str = "",
     score: int = 0,
 ) -> str:
-    svg = cover_svg(theme_key, theme_label, source, seed, entity=entity, score=score)
+    return svg_data_uri(cover_svg(theme_key, theme_label, source, seed, entity=entity, score=score))
+
+
+def svg_data_uri(svg: str) -> str:
     return "data:image/svg+xml;base64," + base64.b64encode(svg.encode("utf-8")).decode("ascii")

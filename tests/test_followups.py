@@ -117,3 +117,18 @@ class FollowUpTests(unittest.TestCase):
             assert.equal(visit('2026-11-21'),false);
             localStorage.getItem=()=>{throw Error()};assert.equal(visit('2026-11-22'),false);"""
         subprocess.run(["node", "-e", js], check=True, capture_output=True)
+
+    def test_visit_comparison_keeps_long_social_posts_scannable_in_both_languages(self):
+        day = json.loads(Path("docs/data/2026-11-25.json").read_text())
+        before = next(u["before"] for u in day["memory"]["followups"]["updates"]
+                      if u["before"]["source"] == "X @GoogleDeepMind")
+        html = render_index(day["items"], briefing=day["briefing"], snapshot=day, market={})
+        panel = html.split('id="visit-changes"', 1)[1].split("</section>", 1)[0]
+        self.assertIn('class="vc-list"', panel)
+        link = re.search(r'href="' + re.escape(before["url"]) + r'"[^>]*>(.*?)</a>', panel).group(1)
+        titles = re.findall(r'<span class="l-e[sn]"[^>]*>([^<]+)</span>', link)
+        self.assertEqual(len(titles), 2)
+        for title in titles:
+            self.assertLessEqual(len(title), 140)
+        self.assertIn("Las computadoras cuánticas", titles[0])
+        self.assertIn("Quantum computers", titles[1])
