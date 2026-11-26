@@ -493,11 +493,12 @@
   .spark.pos polyline{stroke:var(--open)} .spark.neg polyline{stroke:var(--bad)}
 
   #visit-changes{margin:24px 0 0;padding:16px 18px}
-  #visit-changes[hidden],.visit-update[hidden]{display:none}
+  .visit-update[hidden]{display:none}
   #visit-changes .widget-title{margin:-16px -18px 14px;padding:10px 18px}
-  .deck.filtered #visit-changes{display:none}
-  .vc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(460px,1fr));gap:14px}
-  .visit-update{display:flex;flex-direction:column;gap:10px;padding:13px 14px;background:var(--card-2);border:1.5px solid var(--ink)}
+  .deck.filtered #visit-changes{order:3}
+  .vc-note{margin:0 0 10px;color:var(--muted);font-size:13px}
+  .vc-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:14px}
+  .visit-update{display:flex;flex-direction:column;gap:8px;min-width:0;padding:12px 14px;background:var(--card-2);border:1.5px solid var(--ink);overflow-wrap:anywhere}
   .vc-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
   .vc-status{display:inline-flex;align-items:center;gap:5px;font:700 10px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.05em;
              padding:3px 7px;border:1.5px solid var(--ink);background:var(--lime);color:#121211}
@@ -517,7 +518,7 @@
   .vc-link{font:600 13.5px/1.35 var(--f-head);color:var(--text);text-decoration:none}
   .vc-before .vc-link{font-weight:500;color:var(--muted)}
   .vc-link:hover{text-decoration:underline;text-underline-offset:2px}
-  .vc-arrow{display:grid;place-items:center;font:700 16px/1 var(--f-mono);color:var(--orange-ink)}
+  .vc-arrow{align-self:center;text-align:center;font:700 16px/1 var(--f-mono);color:var(--orange-ink)}
   .vc-watch{display:flex;align-items:baseline;gap:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:12.5px;line-height:1.4;color:var(--muted)}
   .vc-wk{font:700 9.5px/1 var(--f-mono);text-transform:uppercase;padding:2px 5px;border:1px solid var(--ink);background:var(--lime);color:#121211;flex-shrink:0}
 
@@ -536,8 +537,8 @@
     .opening .lead,.opening[data-cols="2"] .lead{grid-column:auto;order:-1}
   }
   @media(max-width:720px){
-    .grid,.below .grid,.vc-grid,.vc-flow{grid-template-columns:1fr}
-    .vc-arrow{transform:rotate(90deg);height:16px}
+    .grid,.below .grid,.vc-flow{grid-template-columns:minmax(0,1fr)}
+    .vc-arrow{display:none}
     .tq{flex:0 0 170px}
     .pulse{grid-template-columns:1fr}
     .cx,.watch-row{grid-template-columns:1fr;gap:5px}
@@ -1165,12 +1166,14 @@
         ? (state.latest === today ? state.previous : state.latest) : null;
       localStorage.setItem(key, JSON.stringify({latest: today, previous}));
       if (!valid(previous) || previous >= today) return;
+      const recent = panel.querySelector('#visit-recent');
+      if (recent) recent.hidden = true;
+      let hasUpdates = false;
       for (const row of panel.querySelectorAll('[data-updated]')) {
-        if (row.dataset.updated > previous && row.dataset.updated <= today) {
-          row.hidden = false;
-          panel.hidden = false;
-        }
+        row.hidden = !(row.dataset.updated > previous && row.dataset.updated <= today);
+        if (!row.hidden) hasUpdates = true;
       }
+      panel.querySelector('#visit-empty').hidden = hasUpdates;
     } catch (_) { /* Sin historial local fiable no se afirma que haya novedades. */ }
   })();
 
