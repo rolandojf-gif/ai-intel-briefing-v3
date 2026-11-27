@@ -107,6 +107,11 @@ KNOWN_ENTITIES = [
 ]
 
 ENTITY_ALIASES = {
+    # Actores politicos con nombre neutro: la entidad sale igual en ES y en EN.
+    "Administración Trump": "Trump",
+    "Gobierno de Trump": "Trump",
+    "Trump Administration": "Trump",
+    "Donald Trump": "Trump",
     "UK": "Reino Unido",
     "US": "EEUU",
     "USA": "EEUU",

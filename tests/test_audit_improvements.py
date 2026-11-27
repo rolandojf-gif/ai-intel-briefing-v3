@@ -309,8 +309,19 @@ class UxTimezoneHealthTests(unittest.TestCase):
         self.assertEqual(len(top_hits), 2)
         self.assertEqual(top_hits[0]["score"], 100)
 
-        weekly.main()
-        html = Path("docs/weekly.html").read_text(encoding="utf-8")
+        # Datos fijos, no los del dia: con docs/data el test dependia de lo que
+        # Gemini escribiera cada mañana y el 2026-11-26 una entidad en español
+        # ("Administración Trump") bloqueo la publicacion durante dos dias.
+        import json, tempfile
+        from unittest import mock
+        with tempfile.TemporaryDirectory() as tmp:
+            data = Path(tmp) / "data"; data.mkdir()
+            for snap in snaps:
+                (data / f"{snap['date']}.json").write_text(json.dumps(snap), encoding="utf-8")
+            out = Path(tmp) / "weekly.html"
+            with mock.patch.object(weekly, "DATA_DIR", data), mock.patch.object(weekly, "OUT_HTML", out):
+                weekly.main()
+            html = out.read_text(encoding="utf-8")
         self.assertIn('class="kpi-grid"', html)
         self.assertIn("class='tl-day'", html)
         self.assertIn("class='wk-card'", html)
