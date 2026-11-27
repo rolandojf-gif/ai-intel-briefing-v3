@@ -34,6 +34,9 @@ permissions:
 jobs:
   test:
     runs-on: ubuntu-latest
+    outputs:
+      full: ${{ steps.full.outcome }}
+      ext: ${{ steps.ext.outcome }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -48,11 +51,27 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run unit tests
+      # Bloqueantes: el pipeline de datos y que todos los modulos carguen. Si
+      # esto falla, no se publica (la edicion saldria rota o vacia).
+      - name: Pipeline tests (bloquean la publicacion)
+        run: |
+          python -c "import src.main, src.render, src.weekly, src.archive, src.newtab_daily, src.health_check"
+          python -m unittest -v tests.test_llm_client tests.test_health_check tests.test_newtab_daily \
+            tests.test_newtab_market tests.test_x_layer tests.test_editorial_evidence
+
+      # El resto (diseño, textos, idiomas) en la edicion diaria NO frena la
+      # publicacion: el 26-27 nov un test de idioma del semanal dejo la web dos
+      # dias sin actualizar. Si falla, la edicion sale y el job acaba en rojo.
+      # En push y pull request sigue siendo bloqueante, como siempre.
+      - name: Full test suite
+        id: full
+        continue-on-error: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
         run: |
           python -m unittest discover -s tests -v
 
       - name: Run extension tests
+        id: ext
+        continue-on-error: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
         run: node --test extension/tests/*.test.mjs netlify/lib/*.test.mjs
 
   generate:
@@ -123,3 +142,11 @@ jobs:
       # como del 7 al 13 de noviembre.
       - name: Health check
         run: python -m src.health_check
+
+      # Va despues de publicar: la edicion ya esta fuera. Deja el run en rojo
+      # (y el email de GitHub) si fallaron tests que no bloquean.
+      - name: Avisar de tests fallidos
+        if: ${{ !cancelled() && (needs.test.outputs.full == 'failure' || needs.test.outputs.ext == 'failure') }}
+        run: |
+          echo "::error title=Tests fallidos::La edicion se ha publicado, pero fallan tests de interfaz (suite completa: ${{ needs.test.outputs.full }}, extension: ${{ needs.test.outputs.ext }}). Revisa el job test."
+          exit 1
