@@ -287,7 +287,7 @@
   .side-rail .cx .src img{width:15px;height:15px}
   .side-rail .metric-context{margin:.45rem 0 0;font-size:.84rem}
   .side-rail .metric-context summary{padding:.2rem .65rem;font-size:.8rem}
-  .watch-rail{margin-top:auto}
+  .deck.filtered .watch-standalone{display:none}
   .side-rail .watch-agenda{border-top:0;background:transparent}
   .side-rail .watch-row{display:flex;flex-direction:column;gap:5px;padding:10px 0 10px 12px;border-bottom:1px dashed var(--line);border-left:3px solid var(--lime)}
   .side-rail .watch-row:first-child{padding-top:3px}
@@ -599,7 +599,7 @@
   <div class="deck" id="deck">
 
   
-  <section class="opening">
+  <section class="opening" data-cols="2">
 
     <!-- Columna izquierda: El Editorial -->
     <aside class="rail">
@@ -672,33 +672,30 @@
 
     <!-- Columna derecha: Contexto + Qué vigilar -->
     
-    <aside class="side-rail">
+  </section>
+
+
+
+  <section class="watch-standalone" aria-labelledby="agenda-title">
+    <div class="section-h"><h2 class="sec" id="agenda-title"><span class="l-es">Qué vigilar</span><span class="l-en" lang="en">What to watch</span></h2></div>
+    <div class="watch-agenda">
       
+      <div class="watch-row" id="watch-point-1">
+        <div class="src"><a href="https://the-decoder.com/banned-nvidia-blackwell-chips-turn-up-in-a-shanghai-data-center-linked-to-alice-huang-bloomberg-reports/" target="_blank" rel="noopener noreferrer">The Decoder</a></div>
+        <p><span class="l-es">Respuesta oficial de EE. UU. y Nvidia a la investigación de Bloomberg.</span><span class="l-en" lang="en">Official response from the US and Nvidia to Bloomberg&#39;s investigation.</span></p>
+      </div>
       
-      <section class="watch-rail" aria-labelledby="agenda-title">
-        <div class="rail-h"><span id="agenda-title"><span class="l-es">Qué vigilar</span><span class="l-en" lang="en">What to watch</span></span><span class="lbl"><span class="l-es">Seguimiento</span><span class="l-en" lang="en">Follow-up</span></span></div>
-        <div class="watch-agenda">
-          
-          <div class="watch-row" id="watch-point-1">
-            <p><span class="l-es">Respuesta oficial de EE. UU. y Nvidia a la investigación de Bloomberg.</span><span class="l-en" lang="en">Official response from the US and Nvidia to Bloomberg&#39;s investigation.</span></p>
-            <div class="src"><a href="https://the-decoder.com/banned-nvidia-blackwell-chips-turn-up-in-a-shanghai-data-center-linked-to-alice-huang-bloomberg-reports/" target="_blank" rel="noopener noreferrer">The Decoder</a></div>
-          </div>
-          
-          <div class="watch-row" id="watch-point-2">
-            <p><span class="l-es">Votación o desarrollo de la ley MATCH en EE. UU. y reacciones de ASML.</span><span class="l-en" lang="en">Vote or development of the MATCH Act in the US and ASML&#39;s reactions.</span></p>
-            <div class="src"><a href="https://www.tikr.com/blog/dutch-trade-minister-the-us-is-not-the-boss-of-veldhoven-thats-good-news-for-asmls-china-sales?ref=yahoofinance&amp;tlnk=yf-261127-j78q9rgp&amp;.tsrc=rss" target="_blank" rel="noopener noreferrer">Yahoo Finance (AI &amp; semis)</a></div>
-          </div>
-          
-          <div class="watch-row" id="watch-point-3">
-            <p><span class="l-es">Lanzamiento general de Private Inference y casos de éxito iniciales.</span><span class="l-en" lang="en">General release of Private Inference and initial success stories.</span></p>
-            <div class="src"><a href="https://x.com/gdb/status/2125824585027272727" target="_blank" rel="noopener noreferrer">@gdb</a></div>
-          </div>
-          
-        </div>
-      </section>
+      <div class="watch-row" id="watch-point-2">
+        <div class="src"><a href="https://www.tikr.com/blog/dutch-trade-minister-the-us-is-not-the-boss-of-veldhoven-thats-good-news-for-asmls-china-sales?ref=yahoofinance&amp;tlnk=yf-261127-j78q9rgp&amp;.tsrc=rss" target="_blank" rel="noopener noreferrer">Yahoo Finance (AI &amp; semis)</a></div>
+        <p><span class="l-es">Votación o desarrollo de la ley MATCH en EE. UU. y reacciones de ASML.</span><span class="l-en" lang="en">Vote or development of the MATCH Act in the US and ASML&#39;s reactions.</span></p>
+      </div>
       
-    </aside>
-    
+      <div class="watch-row" id="watch-point-3">
+        <div class="src"><a href="https://x.com/gdb/status/2125824585027272727" target="_blank" rel="noopener noreferrer">@gdb</a></div>
+        <p><span class="l-es">Lanzamiento general de Private Inference y casos de éxito iniciales.</span><span class="l-en" lang="en">General release of Private Inference and initial success stories.</span></p>
+      </div>
+
+    </div>
   </section>
   
 
@@ -1377,7 +1374,6 @@
 
   </div>
 
-  
   
 
   <div class="credits"><div class="credits-id"><p class="credits-by">© 2026 RADAR.AI · <span class="l-es">por</span><span class="l-en" lang="en">by</span> <strong>Rolando Fernández</strong></p><p class="credits-tag"><span class="l-es">Radar diario de la carrera hacia la AGI, con fuentes y análisis.</span><span class="l-en" lang="en">A daily radar of the race towards AGI, with sources and analysis.</span></p></div><nav class="credits-links" aria-label="Rolando Fernández"><a href="https://www.linkedin.com/in/rolando-fernandez-jara" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/rolandojf-gif" target="_blank" rel="noopener">GitHub</a><a class="bmc" href="https://buymeacoffee.com/rolandofernandez" target="_blank" rel="noopener"><span class="bmc-cup" aria-hidden="true">☕</span> <span class="l-es">Invítame a un café</span><span class="l-en" lang="en">Buy me a coffee</span></a></nav></div>

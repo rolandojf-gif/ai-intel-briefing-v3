@@ -467,7 +467,7 @@ TEMPLATE = ENV.from_string("""
   .side-rail .cx .src img{width:15px;height:15px}
   .side-rail .metric-context{margin:.45rem 0 0;font-size:.84rem}
   .side-rail .metric-context summary{padding:.2rem .65rem;font-size:.8rem}
-  .watch-rail{margin-top:auto}
+  .deck.filtered .watch-standalone{display:none}
   .side-rail .watch-agenda{border-top:0;background:transparent}
   .side-rail .watch-row{display:flex;flex-direction:column;gap:5px;padding:10px 0 10px 12px;border-bottom:1px dashed var(--line);border-left:3px solid var(--lime)}
   .side-rail .watch-row:first-child{padding-top:3px}
@@ -796,7 +796,7 @@ TEMPLATE = ENV.from_string("""
   <div class="deck" id="deck">
 
   {% if hero %}
-  <section class="opening"{% if not (context or watch_agenda) %} data-cols="2"{% endif %}>
+  <section class="opening"{% if not context %} data-cols="2"{% endif %}>
 
     <!-- Columna izquierda: El Editorial -->
     <aside class="rail">
@@ -873,9 +873,8 @@ TEMPLATE = ENV.from_string("""
     </article>
 
     <!-- Columna derecha: Contexto + Qué vigilar -->
-    {% if context or watch_agenda %}
+    {% if context %}
     <aside class="side-rail">
-      {% if context %}
       <section class="ctx-block" id="ctx-block">
         <div class="rail-h"><span>{{ bi("Contexto","Context") }}</span><span class="lbl">{{ bi("Lectura rápida","Quick read") }}</span></div>
         <div class="ctx">
@@ -894,7 +893,6 @@ TEMPLATE = ENV.from_string("""
           {% endfor %}
         </div>
       </section>
-      {% endif %}
       {% if watch_agenda %}
       <section class="watch-rail" aria-labelledby="agenda-title">
         <div class="rail-h"><span id="agenda-title">{{ bi("Qué vigilar","What to watch") }}</span><span class="lbl">{{ bi("Seguimiento","Follow-up") }}</span></div>
@@ -910,6 +908,20 @@ TEMPLATE = ENV.from_string("""
       {% endif %}
     </aside>
     {% endif %}
+  </section>
+  {% endif %}
+
+  {% if watch_agenda and (not hero or not context) %}
+  <section class="watch-standalone" aria-labelledby="agenda-title">
+    <div class="section-h"><h2 class="sec" id="agenda-title">{{ bi("Qué vigilar","What to watch") }}</h2></div>
+    <div class="watch-agenda">
+      {% for w in watch_agenda %}
+      <div class="watch-row" id="{{ w.anchor }}">
+        <div class="src">{% for ref in w.refs %}<a href="{{ ref.url }}" target="_blank" rel="noopener noreferrer">{{ ref.source }}</a>{% if not loop.last %} · {% endif %}{% endfor %}</div>
+        <p>{{ bi(w.text, w.text_en) }}</p>
+      </div>
+      {% endfor %}
+    </div>
   </section>
   {% endif %}
 
@@ -1105,19 +1117,6 @@ TEMPLATE = ENV.from_string("""
 
   </div>
 
-  {% if watch_agenda and not hero %}
-  <section aria-labelledby="agenda-title">
-    <div class="section-h"><h2 class="sec" id="agenda-title">{{ bi("Qué vigilar","What to watch") }}</h2></div>
-    <div class="watch-agenda">
-      {% for w in watch_agenda %}
-      <div class="watch-row" id="{{ w.anchor }}">
-        <div class="src">{% for ref in w.refs %}<a href="{{ ref.url }}" target="_blank" rel="noopener noreferrer">{{ ref.source }}</a>{% if not loop.last %} · {% endif %}{% endfor %}</div>
-        <p>{{ bi(w.text, w.text_en) }}</p>
-      </div>
-      {% endfor %}
-    </div>
-  </section>
-  {% endif %}
   {% if watch_results %}
   <section aria-labelledby="results-title">
     <div class="section-h"><h2 class="sec" id="results-title">{{ bi("Hitos confirmados","Confirmed milestones") }}</h2></div>

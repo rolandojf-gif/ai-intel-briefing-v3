@@ -21,6 +21,10 @@ class DailyGridTests(unittest.TestCase):
     def test_november_28_has_nine_distinct_cards_and_a_separate_lead(self):
         day = json.loads(Path("docs/data/2026-11-28.json").read_text())
         html = render_index(day["items"], day["briefing"], day, market={})
+        self.assertIn('<section class="opening" data-cols="2">', html)
+        self.assertNotIn('<aside class="side-rail">', html)
+        self.assertEqual(html.count('id="agenda-title"'), 1)
+        self.assertLess(html.index('class="watch-standalone"'), html.index('class="telemetry-band"'))
         grid = cards(html)
         self.assertEqual(len(grid), 9)
         self.assertEqual(sum('>Contexto</span>' in card for card in grid), 2)
@@ -29,6 +33,15 @@ class DailyGridTests(unittest.TestCase):
         for item in day["items"]:
             href = f'href="{item["url"]}"'
             self.assertEqual(sum(href in html_lib.unescape(card) for card in [lead, *grid]), 1)
+
+    def test_context_remaining_in_hero_keeps_the_three_column_layout(self):
+        items = [story(i) for i in range(7)] + [story(7, "context")]
+        html = render_index(items, briefing={"watch": ["Hito pendiente"]}, market={})
+        self.assertIn('<section class="opening">', html)
+        rail = html.split('<aside class="side-rail">')[1].split('</aside>')[0]
+        self.assertIn('id="ctx-block"', rail)
+        self.assertIn('id="agenda-title"', rail)
+        self.assertNotIn('<section class="watch-standalone"', html)
 
     def test_complete_rows_use_current_news_first(self):
         for count in (6, 9, 12, 15):
