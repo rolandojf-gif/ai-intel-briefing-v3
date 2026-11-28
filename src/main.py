@@ -12,9 +12,8 @@ import statistics
 import re
 import traceback
 from email.utils import parsedate_to_datetime
-from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
-from src.evidence import LABELS, PENDING, UNCERTAIN, percentages_supported, qualify_item, source_evidence
+from src.evidence import LABELS, PENDING, UNCERTAIN, canonical_url, percentages_supported, qualify_item, source_evidence
 from src.fetch import clip_text, fetch_rss, resolve_items_google_news
 from src.fetch_x import fetch_x_search, fetch_x_user
 from src.render import render_index
@@ -156,44 +155,6 @@ def clean_signal_text(text: str, source: str = "") -> str:
 
     raw = re.sub(r"\s+@\w+\s+[A-Z][a-z]{2}\s+\d{1,2}\s+", " ", raw)
     return re.sub(r"\s+", " ", raw).strip()
-
-
-TRACKING_QUERY_KEYS = {
-    "utm_source",
-    "utm_medium",
-    "utm_campaign",
-    "utm_term",
-    "utm_content",
-    "gclid",
-    "fbclid",
-    "mc_cid",
-    "mc_eid",
-    "ref",
-    "ref_src",
-}
-
-
-def canonical_url(url: str) -> str:
-    raw = (url or "").strip()
-    if not raw:
-        return ""
-
-    try:
-        parsed = urlsplit(raw)
-    except ValueError:
-        return raw
-
-    if not parsed.scheme or not parsed.netloc:
-        return raw
-
-    pairs = [
-        (k, v)
-        for k, v in parse_qsl(parsed.query, keep_blank_values=True)
-        if k.lower() not in TRACKING_QUERY_KEYS
-    ]
-    query = urlencode(pairs, doseq=True)
-    path = parsed.path.rstrip("/") or "/"
-    return urlunsplit((parsed.scheme.lower(), parsed.netloc.lower(), path, query, ""))
 
 
 def is_bad_entity(e: str) -> bool:
@@ -973,7 +934,7 @@ def generate_llm_data(
 
 
 MAX_SIGNALS = 12     # techo de senales primarias
-MAX_CONTEXT = 3      # capa secundaria de contexto reducida
+MAX_CONTEXT = 4      # con 12 señales, permite 1 portada y 15 tarjetas
 MAX_REPEAT_SIGNALS = 3  # techo blando de repeats dentro de signals si hay senal fresca
 # LEAD_SLOT_COUNT vive en src/config.py junto a demote_repeats_from_lead.
 
@@ -1533,7 +1494,7 @@ def main():
         print("NEXUS MARKET publication failed (non-blocking):")
         traceback.print_exc()
 
-    page = render_index(final_items, briefing=briefing, snapshot=daily_snapshot, market=market_data)
+    page = render_index(final_items, briefing=briefing, snapshot=daily_snapshot, market=market_data, history=history)
     Path("docs").mkdir(exist_ok=True)
     Path("docs/index.html").write_text(page, encoding="utf-8")
 

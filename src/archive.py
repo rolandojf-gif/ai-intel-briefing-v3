@@ -505,6 +505,7 @@ def write_archive(docs_dir: Path, *, write_days: bool = True) -> int:
                 briefing=snap.get("briefing") or {},
                 snapshot=snap,
                 market={},
+                history=snaps[max(0, i - 10):i],
                 nav="archivo",
                 root="../",
                 archive={
