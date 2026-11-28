@@ -1,6 +1,6 @@
 """Evidencia que puede comprobarse en el título o extracto recibido del feed."""
 import re
-from urllib.parse import urlsplit
+from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 
 UNCERTAIN = re.compile(
@@ -39,6 +39,44 @@ PRIMARY_HOSTS = {
     "press.aboutamazon.com", "aws.amazon.com", "apple.com",
     "alibabagroup.com", "home.alibabagroup.com", "alibabacloud.com", "qwenlm.github.io",
 }
+
+
+TRACKING_QUERY_KEYS = {
+    "utm_source",
+    "utm_medium",
+    "utm_campaign",
+    "utm_term",
+    "utm_content",
+    "gclid",
+    "fbclid",
+    "mc_cid",
+    "mc_eid",
+    "ref",
+    "ref_src",
+}
+
+
+def canonical_url(url: str) -> str:
+    raw = (url or "").strip()
+    if not raw:
+        return ""
+
+    try:
+        parsed = urlsplit(raw)
+    except ValueError:
+        return raw
+
+    if not parsed.scheme or not parsed.netloc:
+        return raw
+
+    pairs = [
+        (k, v)
+        for k, v in parse_qsl(parsed.query, keep_blank_values=True)
+        if k.lower() not in TRACKING_QUERY_KEYS
+    ]
+    query = urlencode(pairs, doseq=True)
+    path = parsed.path.rstrip("/") or "/"
+    return urlunsplit((parsed.scheme.lower(), parsed.netloc.lower(), path, query, ""))
 
 
 def source_url(item):

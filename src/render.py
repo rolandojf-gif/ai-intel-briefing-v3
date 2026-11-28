@@ -14,7 +14,7 @@ from jinja2 import Environment, select_autoescape
 from markupsafe import Markup
 
 from src.brand import BASE_CSS as BRAND_CSS, HEAD as BRAND_HEAD, HTML_ATTRS, THEME_JS, bi, credits as brand_credits, header as brand_header, seo_head
-from src.evidence import UNVERIFIED, measurement_context
+from src.evidence import UNVERIFIED, canonical_url, measurement_context, source_url
 from src.config import LEAD_SLOT_COUNT, demote_repeats_from_lead, radar_today_str
 
 
@@ -559,7 +559,9 @@ TEMPLATE = ENV.from_string("""
 
   .below{margin-top:30px;padding-top:24px;border-top:3px solid var(--ink)}
   .below .section-h{margin:0 0 16px}
-  .below .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .below .grid{display:flex;flex-wrap:wrap;--card-width:calc((100% - 44px)/3)}
+  .below .card{flex:1 1 var(--card-width);min-width:0}
+  .deck.filtered .from-archive{display:none}
   .deck:not(.filtered) .dup,.deck:not(.filtered) .h-filtered,.deck.filtered .h-all{display:none}
   .deck:not(.filtered) .below.no-rest{display:none}
   .deck.filtered .below{order:1;margin-top:0;padding-top:0;border-top:0}
@@ -710,14 +712,15 @@ TEMPLATE = ENV.from_string("""
     .opening .lead{grid-column:1/-1;order:-1}
     .opening[data-cols="2"]{grid-template-columns:300px minmax(0,1fr)}
     .opening[data-cols="2"] .lead{grid-column:auto;order:0}
-    .below .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .below .grid{--card-width:calc((100% - 22px)/2)}
   }
   @media(max-width:860px){
     .opening,.opening[data-cols="2"]{grid-template-columns:1fr}
     .opening .lead,.opening[data-cols="2"] .lead{grid-column:auto;order:-1}
   }
   @media(max-width:720px){
-    .grid,.below .grid,.vc-flow{grid-template-columns:minmax(0,1fr)}
+    .below .grid{--card-width:100%}
+    .grid,.vc-flow{grid-template-columns:minmax(0,1fr)}
     .vc-arrow{display:none}
     .tq{flex:0 0 170px}
     .pulse{grid-template-columns:1fr}
@@ -1019,7 +1022,7 @@ TEMPLATE = ENV.from_string("""
   </section>
   {% endif %}
 
-  {% if not hero and not stream %}
+  {% if not n_signals and not n_context %}
       <div class="empty">
         <div class="big">{{ bi("Hoy no ha pasado nada que mueva la aguja.","Nothing moved the needle today.") }}</div>
         <div class="sub">
@@ -1030,20 +1033,22 @@ TEMPLATE = ENV.from_string("""
       {% endif %}
 
   <!-- Resto de señales (#2..#12). Con un filtro activo se incluye tambien la portada. -->
-  {% if signals %}
-  <section class="below{% if not rest %} no-rest{% endif %}">
+  {% if grid_cards %}
+  <section class="below{% if not has_grid_cards %} no-rest{% endif %}">
     <div class="section-h h-all"><h2 class="sec">{{ bi("Más allá del titular","Beyond the headline") }}</h2></div>
     <div class="section-h h-filtered"><h2 class="sec">{{ bi("Señales de esta sección","Signals in this section") }}</h2></div>
     <div class="grid">
-      {% for it in signals %}{% set dup = loop.index0 < lead_n %}
-        <article class="card{% if dup %} dup{% endif %}" data-topic="{{ it.theme_key }}" data-new="{{ 1 if it.is_new else 0 }}">
+      {% for it in grid_cards %}{% set dup = hero and loop.first %}
+        <article class="card{% if dup %} dup{% elif it.archive_date %} from-archive{% endif %}"{% if not it.archive_date %} data-topic="{{ it.theme_key }}" data-new="{{ 1 if it.is_new else 0 }}"{% endif %}>
           <a href="{{ (it.url or it.link)|safe_url }}" target="_blank" rel="noopener noreferrer">
             {% if it.cover_only %}<img class="card-img l-es" src="{{ it.image_url }}" alt="" loading="lazy"/><img class="card-img l-en" src="{{ it.cover_en }}" alt="" loading="lazy"/>
             {% else %}<img class="card-img" src="{{ it.image_url }}" data-fb="{{ it.fallback_image }}" data-fb-en="{{ it.cover_en }}" alt="" loading="lazy" referrerpolicy="no-referrer"/>{% endif %}
           </a>
           <div class="card-body">
             <div class="meta-row">
-              {% if it.is_new %}<span class="badge-new">{{ bi("Nuevo","New") }}</span>{% endif %}
+              {% if it.archive_date %}<span class="tag">{{ bi("Archivo","Archive") }} · {{ it.archive_date }}</span>
+              {% elif it.is_new %}<span class="badge-new">{{ bi("Nuevo","New") }}</span>{% endif %}
+              {% if it.layer == "context" %}<span class="tag">{{ bi("Contexto","Context") }}</span>{% endif %}
               <span class="src"><img src="{{ it.logo }}" alt="" loading="lazy"/>{{ it.source_label }}</span>
               {% if it.other_sources %}<span class="multi">+{{ it.other_sources|length }}</span>{% endif %}
               {{ ev_pill(it) }}
@@ -1279,7 +1284,6 @@ def _ticker_quotes(market) -> list[dict]:
     return out
 
 
-LEAD_BLOCK = 1  # #1 Hero a altura completa en opening; #2..#12 van a la rejilla de cards completas
 ALSO_MAX = 6  # medios listados en "Tambien en" antes de resumir con +N
 
 
@@ -1319,17 +1323,7 @@ def _watch_agenda(briefing, signals, results):
     return agenda
 
 
-def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", root="", archive=None):
-    briefing = briefing or {}
-    snapshot = snapshot or {}
-
-    if market is None:
-        try:
-            from src.market import get_market_overview
-            market = get_market_overview()
-        except Exception:
-            market = {}
-
+def _enrich_cards(items):
     enriched = []
     for raw in (items or []):
         it = dict(raw)
@@ -1396,6 +1390,53 @@ def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", 
         it["cover_en"] = fallback_en
         enriched.append(it)
 
+    return enriched
+
+
+def _story_keys(item):
+    urls = [source_url(item)] + [source_url(ref) for ref in item.get("related") or [] if isinstance(ref, dict)]
+    titles = [strip_evidence_prefix(item.get(key, "")).casefold() for key in ("title", "title_es", "title_en")]
+    return {canonical_url(url) for url in urls if url} | {title for title in titles if title}
+
+
+def _archive_cards(history, date, current, needed):
+    if needed <= 0 or not history:
+        return []
+    seen = {key for item in current for key in _story_keys(item)}
+    chosen = []
+    for edition in reversed(history):
+        day = edition.get("date") or ""
+        if edition.get("degraded") or not day or day >= date:
+            continue
+        for item in edition.get("items") or []:
+            if item.get("layer") != "signal" or item.get("is_repeat") or not source_url(item):
+                continue
+            if item.get("evidence_kind") not in ("confirmed", "reported") or not item.get("title_es"):
+                continue
+            if not (item.get("evidence") or {}).get("quote"):
+                continue
+            keys = _story_keys(item)
+            if keys & seen:
+                continue
+            chosen.append(dict(item, archive_date=day))
+            seen.update(keys)
+            if len(chosen) == needed:
+                return _enrich_cards(chosen)
+    return _enrich_cards(chosen)
+
+
+def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", root="", archive=None, history=()):
+    briefing = briefing or {}
+    snapshot = snapshot or {}
+
+    if market is None:
+        try:
+            from src.market import get_market_overview
+            market = get_market_overview()
+        except Exception:
+            market = {}
+
+    enriched = _enrich_cards(items)
     ev_rank = {"confirmed": 4, "reported": 3, "inference": 2, "speculation": 1, "unverified": 0}
     enriched.sort(
         key=lambda x: (
@@ -1420,7 +1461,15 @@ def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", 
         h_seed = f"{hero.get('title') or hero.get('title_es') or ''}|{hero.get('url') or hero.get('link') or ''}"
         hero["accent"] = theme_accent(hero["theme_key"])
         hero["watermark_svg"] = motif_watermark_svg(hero["theme_key"], h_seed)
-    stream = signals[1:] if len(signals) > 1 else []
+
+    # La portada vive fuera de la cuadrícula. Completar primero con contexto de hoy.
+    count = max(0, len(signals) - 1)
+    complete_rows = (count + len(context)) // 3
+    target = max(6, count + (-count % 3), complete_rows * 3)
+    needed = target - count
+    past = _archive_cards(history, snapshot.get("date") or "", enriched, needed - len(context))
+    take = min(needed, len(context)) if past or count + len(context) >= target else 0
+    grid_cards = signals + context[:take] + past
 
     # Tabs de tema estilo Discover: solo los temas presentes hoy, con contador.
     visible = signals + context
@@ -1478,17 +1527,15 @@ def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", 
         generated_at=snapshot.get("date") or radar_today_str(),
         activity=snapshot.get("activity") or {"label": "ACTIVO", "class": "active"},
         thesis=thesis,
-        signals=signals,
+        grid_cards=grid_cards,
         ticker_quotes=_ticker_quotes(market),
         pulse=snapshot.get("pulse") or {},
-        rest=signals[LEAD_BLOCK:],
-        lead_n=LEAD_BLOCK,
+        has_grid_cards=len(grid_cards) > int(bool(hero)),
         key_signals=[clamp_headline(strip_evidence_prefix(x), 180) for x in (briefing.get("signals") or []) if isinstance(x, str)][:3],
         key_signals_en=[clamp_headline(strip_evidence_prefix(x), 180) for x in (briefing.get("signals_en") or []) if isinstance(x, str)][:3],
         top_entities=[e.get("entity") for e in (snapshot.get("top_entities") or []) if isinstance(e, dict) and e.get("entity")][:6],
         hero=hero,
-        stream=stream,
-        context=context,
+        context=context[take:],
         theme_tabs=theme_tabs,
         show_new_tab=show_new_tab,
         n_new=n_new,
