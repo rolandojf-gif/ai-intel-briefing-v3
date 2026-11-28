@@ -467,7 +467,6 @@ TEMPLATE = ENV.from_string("""
   .side-rail .cx .src img{width:15px;height:15px}
   .side-rail .metric-context{margin:.45rem 0 0;font-size:.84rem}
   .side-rail .metric-context summary{padding:.2rem .65rem;font-size:.8rem}
-  .deck.filtered .watch-standalone{display:none}
   .side-rail .watch-agenda{border-top:0;background:transparent}
   .side-rail .watch-row{display:flex;flex-direction:column;gap:5px;padding:10px 0 10px 12px;border-bottom:1px dashed var(--line);border-left:3px solid var(--lime)}
   .side-rail .watch-row:first-child{padding-top:3px}
@@ -796,7 +795,7 @@ TEMPLATE = ENV.from_string("""
   <div class="deck" id="deck">
 
   {% if hero %}
-  <section class="opening"{% if not context %} data-cols="2"{% endif %}>
+  <section class="opening"{% if not (context or watch_agenda) %} data-cols="2"{% endif %}>
 
     <!-- Columna izquierda: El Editorial -->
     <aside class="rail">
@@ -873,8 +872,9 @@ TEMPLATE = ENV.from_string("""
     </article>
 
     <!-- Columna derecha: Contexto + Qué vigilar -->
-    {% if context %}
+    {% if context or watch_agenda %}
     <aside class="side-rail">
+      {% if context %}
       <section class="ctx-block" id="ctx-block">
         <div class="rail-h"><span>{{ bi("Contexto","Context") }}</span><span class="lbl">{{ bi("Lectura rápida","Quick read") }}</span></div>
         <div class="ctx">
@@ -893,6 +893,7 @@ TEMPLATE = ENV.from_string("""
           {% endfor %}
         </div>
       </section>
+      {% endif %}
       {% if watch_agenda %}
       <section class="watch-rail" aria-labelledby="agenda-title">
         <div class="rail-h"><span id="agenda-title">{{ bi("Qué vigilar","What to watch") }}</span><span class="lbl">{{ bi("Seguimiento","Follow-up") }}</span></div>
@@ -908,20 +909,6 @@ TEMPLATE = ENV.from_string("""
       {% endif %}
     </aside>
     {% endif %}
-  </section>
-  {% endif %}
-
-  {% if watch_agenda and (not hero or not context) %}
-  <section class="watch-standalone" aria-labelledby="agenda-title">
-    <div class="section-h"><h2 class="sec" id="agenda-title">{{ bi("Qué vigilar","What to watch") }}</h2></div>
-    <div class="watch-agenda">
-      {% for w in watch_agenda %}
-      <div class="watch-row" id="{{ w.anchor }}">
-        <div class="src">{% for ref in w.refs %}<a href="{{ ref.url }}" target="_blank" rel="noopener noreferrer">{{ ref.source }}</a>{% if not loop.last %} · {% endif %}{% endfor %}</div>
-        <p>{{ bi(w.text, w.text_en) }}</p>
-      </div>
-      {% endfor %}
-    </div>
   </section>
   {% endif %}
 
@@ -1117,6 +1104,19 @@ TEMPLATE = ENV.from_string("""
 
   </div>
 
+  {% if watch_agenda and not hero %}
+  <section aria-labelledby="agenda-title">
+    <div class="section-h"><h2 class="sec" id="agenda-title">{{ bi("Qué vigilar","What to watch") }}</h2></div>
+    <div class="watch-agenda">
+      {% for w in watch_agenda %}
+      <div class="watch-row" id="{{ w.anchor }}">
+        <div class="src">{% for ref in w.refs %}<a href="{{ ref.url }}" target="_blank" rel="noopener noreferrer">{{ ref.source }}</a>{% if not loop.last %} · {% endif %}{% endfor %}</div>
+        <p>{{ bi(w.text, w.text_en) }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
   {% if watch_results %}
   <section aria-labelledby="results-title">
     <div class="section-h"><h2 class="sec" id="results-title">{{ bi("Hitos confirmados","Confirmed milestones") }}</h2></div>
@@ -1461,14 +1461,17 @@ def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", 
         hero["accent"] = theme_accent(hero["theme_key"])
         hero["watermark_svg"] = motif_watermark_svg(hero["theme_key"], h_seed)
 
-    # La portada vive fuera de la cuadrícula. Completar primero con contexto de hoy.
+    # Reservar las primeras lecturas de contexto para la columna derecha.
+    reserved = min(2, len(context)) if hero else 0
+    extra_context = context[reserved:]
     count = max(0, len(signals) - 1)
     complete_rows = (count + len(context)) // 3
     target = max(6, count + (-count % 3), complete_rows * 3)
     needed = target - count
-    past = _archive_cards(history, snapshot.get("date") or "", enriched, needed - len(context))
-    take = min(needed, len(context)) if past or count + len(context) >= target else 0
-    grid_cards = signals + context[:take] + past
+    past = _archive_cards(history, snapshot.get("date") or "", enriched, needed - len(extra_context))
+    take = min(needed, len(extra_context)) if past or count + len(extra_context) >= target else 0
+    grid_cards = signals + extra_context[:take] + past
+    sidebar_context = context[:reserved] + extra_context[take:]
 
     # Tabs de tema estilo Discover: solo los temas presentes hoy, con contador.
     visible = signals + context
@@ -1534,7 +1537,7 @@ def render_index(items, briefing=None, snapshot=None, market=None, nav="daily", 
         key_signals_en=[clamp_headline(strip_evidence_prefix(x), 180) for x in (briefing.get("signals_en") or []) if isinstance(x, str)][:3],
         top_entities=[e.get("entity") for e in (snapshot.get("top_entities") or []) if isinstance(e, dict) and e.get("entity")][:6],
         hero=hero,
-        context=context[take:],
+        context=sidebar_context,
         theme_tabs=theme_tabs,
         show_new_tab=show_new_tab,
         n_new=n_new,
